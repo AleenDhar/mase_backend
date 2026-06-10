@@ -224,16 +224,23 @@ def _build_model():
         return CachedChatAnthropic(
             model_name=selected.split(":", 1)[1],
             api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
-            # A big opp (large SF record + many meetings/contacts, amplified by
-            # the lifted knowledge-search cap) needs a single synthesis call that
-            # can run several minutes. 180s was too tight: the call timed out and,
-            # with 2 retries each also >180s, failed at ~540s (APITimeoutError —
-            # see Austrian Post 006P700000J71MD). Give one call real room (600s,
-            # safely under Anthropic's ~10-min non-stream limit) and only ONE
-            # retry — a timeout retry on the same huge context just times out
-            # again, so 3 attempts only burned budget.
+            # STREAMING is the real fix for big-opp failures. A large opp (huge
+            # SF record + many meetings/contacts, amplified by the lifted
+            # knowledge-search cap) produces a synthesis call that runs many
+            # minutes, and Anthropic INTERRUPTS long *non-streaming* requests at
+            # ~540s — so McAfee/Austrian-Post-class deals failed at ~543s with
+            # APITimeoutError no matter how high the timeout was set (the
+            # interruption isn't ours). Streaming keeps the connection alive with
+            # continuous data so the response completes (Anthropic's documented
+            # guidance for long requests). langchain routes .ainvoke() through
+            # _astream when streaming=True, and CachedChatAnthropic preserves
+            # prompt caching on the streaming path, so tool use + caching still work.
+            streaming=True,
             max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "1")),
-            timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "600")),
+            # Generous read window for a long stream, kept under the per-opp
+            # wall-clock (DEAL_SWEEP_TIMEOUT_S=1200) so the orchestrator — not the
+            # SDK — owns the final ceiling.
+            timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "900")),
             max_tokens=int(os.getenv("DEAL_SWEEP_MAX_TOKENS", "16000")),
             stop=None,
         )

@@ -1,0 +1,32 @@
+# AWS CodeBuild spec — builds the MASE Docker image and pushes it to ECR.
+# Used because local Docker isn't available on the dev machine; the build runs
+# entirely in AWS (also sidesteps the corporate Zscaler proxy at build time).
+# deploy.ps1 uploads the repo as an S3 zip and starts a build, passing IMAGE_TAG.
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: "ap-south-1"
+    ECR_REPO: "022187637784.dkr.ecr.ap-south-1.amazonaws.com/mase-service"
+    DOCKER_BUILDKIT: "1"
+    # IMAGE_TAG is overridden per-build by deploy.ps1 (start-build env override);
+    # this default is only a fallback for manual console builds.
+    IMAGE_TAG: "manual"
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to ECR..."
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REPO"
+  build:
+    commands:
+      - echo "Building image $ECR_REPO:$IMAGE_TAG"
+      - docker build -t "$ECR_REPO:$IMAGE_TAG" -t "$ECR_REPO:latest" .
+      - echo "=== Sanity check - import the app local packages inside the image ==="
+      - 'docker run --rm "$ECR_REPO:$IMAGE_TAG" python -c "import custom_tools.opportunity_observatory, custom_tools.search_knowledge, agent_checklist.context_trim_middleware, verifier, deal_engine_report, salesforce_task_writer, deal_engine_sweep, deal_engine_store, pipeline_runner"'
+  post_build:
+    commands:
+      - echo "Pushing image..."
+      - docker push "$ECR_REPO:$IMAGE_TAG"
+      - docker push "$ECR_REPO:latest"
+      - echo "Done. Pushed $ECR_REPO:$IMAGE_TAG"

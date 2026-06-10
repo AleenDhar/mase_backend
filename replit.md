@@ -1,0 +1,47 @@
+# DeepAgent Server
+
+## Overview
+A FastAPI agentic server (port 5000) built on LangGraph's DeepAgents framework. Integrates 16 MCP servers (Salesforce, Avoma, ZoomInfo, Seamless.ai, Showpad, Lemlist, Gojiberry, Wiza, Lusha, Apollo, ZeroBounce, LinkedIn Ads, Clearout, Eloqua, Mailchimp, Supabase). Supports multiple LLMs (Claude / GPT-4 / Gemini), Streamable HTTP MCP endpoint at `POST /mcp` for Claude Desktop/Claude.ai, web search + deep research, RAG over uploaded documents (pgvector), and real-time Supabase persistence of all chat events.
+
+## User Preferences
+- Iterative development; ask before major changes.
+- Simple language; functional programming; detailed explanations.
+- Do not change folder `Z` or file `Y`.
+
+## System Architecture
+FastAPI app in `server.py` orchestrates LangGraph agents, MCP subprocesses, and external services.
+
+### Core
+- **MCP integration:** Each MCP server (e.g. `salesforce_mcp_server.py`) runs as a stdio subprocess, declared in `mcp_config.json`. Tools load in parallel with error isolation; a background health-check loop reloads failed servers.
+- **Custom tools** (`custom_tools/`): `send_to_clay` (webhook push with structured field mapping), `search_knowledge` (RAG semantic search, capped at `MAX_SEARCH_KNOWLEDGE_PER_TURN=6` with bag-of-words dedupe), `web_search_with_urls` (DuckDuckGo, structured), `web_scrape` (BeautifulSoup, strips nav/ads/scripts).
+- **RAG:** Documents chunked (1000 chars, 200 overlap) + embedded via OpenAI `text-embedding-ada-002`; stored in Supabase + `pgvector`. Access scoped by `project_id` and `chat_id`.
+- **APIs:** REST + WebSocket (`/api/chat`, `/api/chat/async`, `/api/chat/structured/async`, `/api/documents/upload`, `/api/mcp/status`, etc.). Async endpoints + Supabase persistence eliminate HTTP timeouts on long agent runs.
+- **Persistence:** All chat events (`status`, `tool_call`, `thinking`, `tool_result`, `token`, `final`, `error`) and document metadata stream into Supabase tables (`chat_messages`, `documents`, `document_chunks`).
+
+### Subsystems (see Detailed docs)
+- **MCP server endpoint (`POST /mcp`):** Single `query_agent` tool wrapping all B2B tools, OAuth 2.0 + PKCE, gateway meta-tools, and first-class Opportunity Observatory tools. See [docs/mcp-endpoint.md](docs/mcp-endpoint.md).
+- **Security & authentication:** Supabase RLS lockdown plus Bearer-token auth on all non-`/mcp` HTTP + WebSocket routes. See [docs/security-auth.md](docs/security-auth.md).
+- **Cost, performance & hang protection:** Prompt caching, tool-output summariser, tool allow/denylists, context-trim middleware, conversation summariser, verifier, and watchdog hang protection. See [docs/cost-performance.md](docs/cost-performance.md).
+- **Supabase MCP server:** `supabase_mcp_server.py` exposes 7 read/DML/DDL tools via the Supabase Management API. See [docs/supabase-mcp.md](docs/supabase-mcp.md).
+- **Avoma SNS webhook & pipeline runner:** `POST /webhook` receiver (hardened SNS gates) → lean enrichment → opportunity-analysis agent, plus the multi-phase `pipeline_runner.py`. See [docs/avoma-webhook.md](docs/avoma-webhook.md).
+- **Cache layer & Opportunity Observatory:** Pre-processed query layer over 3 Supabase cache tables + pre-computed long-form opportunity dossiers. See [docs/cache-and-observatory.md](docs/cache-and-observatory.md).
+- **Analysis feature:** Spreadsheet-style analyses over many opportunities (rows=opps; data/AI columns each with own prompt+model); a "Run All" engine fills AI cells row-by-row (left-to-right, bounded parallelism) + read-only querying. 5 Supabase tables (realtime, anon SELECT only, writes via service-role); Bearer-gated `/api/analysis…` REST + agent tools. **Dashboards:** an analysis → many spec-driven chart dashboards (`dashboards` table); the agent emits a widget spec validated against a widget/aggregation allowlist with column-id binding checks (never raw SQL/table names), stored for the frontend to render. A run interrupted mid-flight (e.g. a server restart leaves `analyses.status="running"` frozen) is recovered with `POST /api/analysis/{id}/resume` (`engine.start_resume`), which recomputes only the non-done AI cells. See [docs/analysis-feature.md](docs/analysis-feature.md).
+- **Deal Intelligence Engine:** Backend for a four-tab frontend (Deals, Espresso/to-do, Matcha/pipeline-health, Chat) under `/api/deal-engine/*`, namespaced to avoid the agent's `/api/chat`. One evidence-anchored canonical record per opportunity lives in the `deal_records` table (`migrations/0005_deal_engine.sql`; applied via `scripts/setup_deal_engine_schema.py`): flat filter columns + a `record` jsonb holding `hard` (Salesforce facts) and `ai` (sweep-produced analysis columns). `deal_engine_store.py` (httpx + service-role, mirrors `analysis_store.py`) does CRUD + deterministic view derivations — `derive_todo` (Espresso: critical rank-1 moves on key deals, our open/overdue deliverables, open explicit + implicit requirements, best-practice flags) and `derive_matcha` (coverage of OPEN pipeline vs per-RSD target $4M excluding closed deals, byStage, NAA-by-month, stalled-at-Qualified ≥30d). Team hierarchy (VP Anthony Gray → RSDs) via `get_team` (env `DEAL_ENGINE_TEAM`). Read endpoints + a service-role `POST /records` upsert (the future sweep's write path) + `POST /chat` RevOps strategist over a compact book projection (OpenAI `gpt-4o`; Anthropic 404s in this env). Same anon-SELECT/service-role-write/realtime posture as the analysis tables. The `/sweep` agent (Salesforce + Avoma MCP) produces the canonical records (`deal_engine_sweep.py`): bulk `POST /sweep`, manual single-opp `POST /sweep/{opp_id}` (sync), and `POST /sweep/trigger` (async 202 fire-and-forget for a Salesforce-update Flow webhook — per-opp 15-char dedupe + bounded `DEAL_TRIGGER_CONCURRENCY`). **Run audit log:** every `analyze_one` execution (any source) writes one row to `deal_trigger_runs` (+ `deal_trigger_latest` distinct-on view; `migrations/0006`, `scripts/setup_deal_trigger_runs_schema.py`; `deal_trigger_log.py`) capturing source/status/duration/model/tokens/cost/error; surfaced via `GET /api/deal-engine/trigger-logs` (latest per opp) and `GET /api/deal-engine/trigger-logs/{opp_id}` (full history) for the update-log dashboard.
+- **Jarvis cross-analysis agent:** A backend-only agent scoped to a GLOBAL toggle list of analyses plus an editable system prompt (`jarvis_settings` singleton table — `enabled_analysis_ids` + `system_prompt`; `jarvis_store.py`). Bearer-gated `GET/PUT /api/jarvis/settings` manage both fields with partial updates (send only what changed; `system_prompt=""` resets to the backend default `DEFAULT_JARVIS_INSTRUCTIONS`); `POST /api/jarvis/chat/async` mirrors `/api/chat/async` (run-slot guards + Supabase persistence). At chat time `_build_jarvis_system_prompt` composes the (custom-or-default) persona + the live enabled-analyses scope listing + always-on operating rules (search-analyses-first, read-only, cite) that the UI can't edit away. Jarvis tools (`custom_tools/jarvis_tools.py`: `jarvis_list_analyses`, `jarvis_search`, `jarvis_filter_rows`, `jarvis_get_cells`) are auto-scoped to the enabled analyses and are searched FIRST, falling back to the shared read-only native tool catalog. Salesforce writes stay blocked via the shared denylist. See [docs/jarvis-frontend-integration.md](docs/jarvis-frontend-integration.md).
+
+## External Dependencies
+Core: DeepAgents · FastAPI · Uvicorn · LangChain MCP Adapters · FastMCP · LangChain Anthropic / OpenAI · Supabase · psutil. Embeddings: OpenAI `text-embedding-ada-002`. MCP servers are one Python file each (plus Apollo via npx); notable integration detail for Lemlist, LinkedIn Ads, Eloqua, and Clay lives in [docs/integrations.md](docs/integrations.md).
+
+## Detailed docs
+- [docs/mcp-endpoint.md](docs/mcp-endpoint.md) — MCP server endpoint (`POST /mcp`) + gateway meta-tools.
+- [docs/security-auth.md](docs/security-auth.md) — Supabase RLS lockdown + Data/admin API authentication.
+- [docs/cost-performance.md](docs/cost-performance.md) — Cost & performance + hang protection.
+- [docs/supabase-mcp.md](docs/supabase-mcp.md) — Supabase MCP server.
+- [docs/avoma-webhook.md](docs/avoma-webhook.md) — Avoma SNS webhook + opportunity-analysis agent + pipeline runner.
+- [docs/cache-and-observatory.md](docs/cache-and-observatory.md) — Cache layer + Opportunity Observatory.
+- [docs/analysis-feature.md](docs/analysis-feature.md) — Analysis feature backend (schema, Run-All engine, models, env knobs).
+- [docs/frontend-analysis-integration.md](docs/frontend-analysis-integration.md) — Analysis frontend contract (realtime tables, anon/RLS model, REST shapes).
+- [docs/jarvis-frontend-integration.md](docs/jarvis-frontend-integration.md) — Jarvis UI contract (settings tab: enabled-analyses + editable system prompt; chat realtime).
+- [docs/deal-engine-what-changed.md](docs/deal-engine-what-changed.md) — "What changed" panel contract (per-deal + book-feed deltas, human label/group, owner grouping).
+- [docs/integrations.md](docs/integrations.md) — External dependencies detail (Lemlist, LinkedIn Ads, Eloqua, Other).
+- [docs/frontend_phase_outputs_contract.md](docs/frontend_phase_outputs_contract.md) — Phase outputs frontend parsing contract.

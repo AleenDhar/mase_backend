@@ -1,0 +1,17 @@
+# MCP server endpoint (`POST /mcp`)
+Exposes a single `query_agent` tool wrapping all ~149 B2B tools. OAuth 2.0 Authorization Code + PKCE: `/.well-known/oauth-protected-resource` (RFC 9728), `/.well-known/oauth-authorization-server`, `/oauth/register` (RFC 7591 DCR), `GET/POST /authorize` (passphrase = `DISPATCH_SECRET`), `/oauth/token`. Two prod gotchas (both fixed):
+1. `uvicorn.run(..., proxy_headers=True, forwarded_allow_ips="*")` — trusts Replit proxy's `X-Forwarded-Proto: https` so OAuth discovery URLs use `https://`, not `http://`.
+2. FastMCP DNS rebinding protection explicitly disabled (`enable_dns_rebinding_protection=False`) — default rejects all external Claude.ai IPs with HTTP 421. `_MCPGateway` Bearer check replaces it.
+
+Gateway meta-tools: `get_apps`, `get_tools`, `call_tool` (fuzzy name match), `smart_call` (NL→tool selection).
+
+**Opportunity Observatory tools exposed first-class on `/mcp` (added 2026-05-29):** `list_opportunity_dossiers`, `get_opportunity_dossier`, `search_opportunity_dossiers` are now registered as their own `@_mcp.tool()` wrappers (`server.py` after `smart_call`, ~line 6800), each delegating to the read-only `custom_tools/opportunity_observatory.py` `@tool`s via `run_in_executor` (those tools use sync httpx). They appear by EXACT name in `tools/list` so external Claude calls them directly instead of falling through `call_tool`'s difflib fuzzy matcher (which previously mis-routed `list_opportunity_dossiers` → unrelated `list_users`). Same read-only/single-table/section-allowlist scoping as the underlying tools; no write path. FastMCP `instructions` string (~line 6383) updated to list all 7 tools. Verified: server boots clean, all 3 in `tools/list`, `list_opportunity_dossiers` returns real dossiers through the MCP endpoint.
+
+**Structured opportunity + Avoma meeting data exposed first-class on `/mcp` (added 2026-06-03):** seven more `@_mcp.tool()` wrappers registered after the Observatory ones (`server.py`), each delegating via `run_in_executor` to read-only module functions (single source of truth): `list_cached_opportunities`, `search_cached_opportunities`, `get_cached_opportunity`, `get_opportunity_field_history` (→ `cache_qa.read_*`), `list_opportunity_diagnoses` (→ `lake.read_diagnoses`), `list_opportunity_meetings` (→ `cache_qa.read_opportunity_meetings`, meeting_cache), `get_meeting_analysis` (→ `cache_qa.read_meeting_analysis`, avoma_event_reports). All appear by EXACT name in `tools/list` (14 total), are strictly read-only, support opportunity_id/account_id lookup + momentum/stage filtering + limit/offset pagination (`has_more`+`next_offset`). FastMCP `instructions` updated to list all 14 tools. Note: `avoma_event_reports.sf_opportunity_id` is NULL on many rows and `meeting_cache.opportunity_ids` only links some opps, so a 0-count result for a given opp is real data, not a tool error.
+
+**Unauth testing toggle:** `_MCPGateway` honours `MCP_ALLOW_UNAUTH` (truthy = `1/true/yes/on`) to skip the Bearer gate entirely so `/mcp` (incl. the opp/Avoma tools) can be hit without a token. Currently set in the **development** environment only — production stays Bearer-gated. Delete the dev env var to re-require auth in development.
+
+Confirmed working via dev domain URL and prod URL (`agent-salesforce-link.replit.app`). Claude Desktop config:
+```json
+{"mcpServers":{"deep-agent":{"type":"http","url":"https://<host>/mcp","headers":{"Authorization":"Bearer <DISPATCH_SECRET>"}}}}
+```

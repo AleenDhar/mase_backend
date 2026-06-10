@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MASE Agent</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a1f2e; --panel2:#202637; --border:#2a3142;
+    --border2:#3a4258; --text:#e3e6ec; --muted:#8a93a6; --accent:#4a9eff;
+    --user:#21304a; --assistant:#1a1f2e;
+  }
+  * { box-sizing:border-box; }
+  html,body { height:100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    display:flex; flex-direction:column; height:100vh; }
+  header { background:var(--panel); padding:14px 22px; border-bottom:1px solid var(--border); flex:0 0 auto; }
+  header h1 { margin:0; font-size:17px; font-weight:600; }
+  header p { margin:3px 0 0; font-size:12.5px; color:var(--muted); }
+  #log { flex:1 1 auto; overflow-y:auto; padding:22px; max-width:900px; width:100%; margin:0 auto; }
+  .msg { margin:0 0 16px; line-height:1.55; font-size:14.5px; }
+  .msg .role { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:5px; }
+  .bubble { padding:13px 16px; border-radius:10px; border:1px solid var(--border); white-space:pre-wrap; word-wrap:break-word; }
+  .msg.user .bubble { background:var(--user); border-color:#2c3e5e; }
+  .msg.assistant .bubble { background:var(--assistant); }
+  .bubble code { background:#11161f; padding:2px 6px; border-radius:4px; color:#9bd1ff; font-size:13px; }
+  .bubble strong { color:#fff; }
+  .status { color:var(--muted); font-size:13px; display:flex; align-items:center; gap:8px; }
+  .spinner { width:13px; height:13px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  footer { flex:0 0 auto; border-top:1px solid var(--border); background:var(--panel); padding:14px 22px; }
+  .inputrow { display:flex; gap:10px; max-width:900px; margin:0 auto; }
+  #q { flex:1; resize:none; background:var(--panel2); color:var(--text); border:1px solid var(--border2);
+       border-radius:9px; padding:12px 14px; font-size:15px; font-family:inherit; min-height:46px; max-height:160px; }
+  #q:focus { outline:none; border-color:var(--accent); }
+  #send { background:var(--accent); color:#06121f; border:none; border-radius:9px; padding:0 22px; font-size:15px; font-weight:600; cursor:pointer; }
+  #send:disabled { opacity:.5; cursor:default; }
+  .hint { max-width:900px; margin:8px auto 0; font-size:11.5px; color:var(--muted); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>MASE Agent</h1>
+    <p>Ask anything — the agent has live access to Salesforce, Avoma, LinkedIn, Apollo, Mailchimp and 11 more tools. Answers can take 10–60s.</p>
+  </header>
+
+  <div id="log"></div>
+
+  <footer>
+    <div class="inputrow">
+      <textarea id="q" placeholder="e.g. Which opportunities are stalled? Find contacts at Acme Corp on LinkedIn." autofocus></textarea>
+      <button id="send">Ask</button>
+    </div>
+    <div class="hint">Enter to send · Shift+Enter for newline · the conversation is kept in this tab only.</div>
+  </footer>
+
+<script>
+  // ---- Config -------------------------------------------------------------
+  const API = "http://mase-alb-1262623499.ap-south-1.elb.amazonaws.com";
+  // Model to use. Sent explicitly so the UI works regardless of the server's
+  // default. Options: "anthropic:claude-sonnet-4-6", "anthropic:claude-opus-4-8".
+  // Set to "" to use the server default instead.
+  const MODEL = "anthropic:claude-sonnet-4-6";
+
+  // ---- State --------------------------------------------------------------
+  const history = [];               // [{role, content}]
+  const logEl = document.getElementById("log");
+  const qEl   = document.getElementById("q");
+  const sendEl= document.getElementById("send");
+  let busy = false;
+
+  // ---- Tiny safe markdown (escape first, then a few inline rules) ----------
+  function fmt(t) {
+    const esc = (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    return esc
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/^[\s]*[-*]\s+(.*)$/gm, "• $1");
+  }
+
+  function addMsg(role, html) {
+    const wrap = document.createElement("div");
+    wrap.className = "msg " + role;
+    wrap.innerHTML = '<div class="role">' + (role === "user" ? "You" : "Agent") +
+                     '</div><div class="bubble">' + html + '</div>';
+    logEl.appendChild(wrap);
+    logEl.scrollTop = logEl.scrollHeight;
+    return wrap.querySelector(".bubble");
+  }
+
+  function setStatus(bubble, text) {
+    bubble.innerHTML = '<div class="status"><div class="spinner"></div><span>' +
+                       (text || "Thinking…") + '</span></div>';
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  async function ask() {
+    if (busy) return;
+    const question = qEl.value.trim();
+    if (!question) return;
+    busy = true; sendEl.disabled = true; qEl.value = "";
+
+    history.push({ role: "user", content: question });
+    addMsg("user", fmt(question));
+    const bubble = addMsg("assistant", "");
+    setStatus(bubble, "Thinking…");
+
+    const reqBody = {
+      messages: history,
+      stream: true,
+      chat_id: (crypto.randomUUID ? crypto.randomUUID() : "ui-" + Date.now())
+    };
+    if (MODEL) reqBody.model = MODEL;
+
+    let answer = "";
+    try {
+      const resp = await fetch(API + "/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reqBody)
+      });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+
+      const reader = resp.body.getReader();
+      const dec = new TextDecoder();
+      let buf = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf("\n\n")) >= 0) {
+          const chunk = buf.slice(0, i); buf = buf.slice(i + 2);
+          const dl = chunk.split("\n").find(l => l.startsWith("data:"));
+          if (!dl) continue;
+          let evt; try { evt = JSON.parse(dl.slice(5).trim()); } catch { continue; }
+          if (!evt || evt.type === "ping" || evt.type === "chat_id") continue;
+          if (evt.type === "final") {
+            answer = evt.content || "(no answer)";
+          } else if (evt.type === "error") {
+            answer = "⚠️ " + (evt.content || "error");
+          } else if (evt.content) {
+            // status / thinking / tool progress
+            setStatus(bubble, String(evt.content).slice(0, 140));
+          }
+        }
+      }
+      if (!answer) answer = "(the agent ended without a final answer)";
+    } catch (e) {
+      answer = "⚠️ Request failed: " + e.message +
+               "\n\n(Is the endpoint reachable? This page calls " + API + ")";
+    }
+
+    bubble.innerHTML = fmt(answer);
+    history.push({ role: "assistant", content: answer });
+    logEl.scrollTop = logEl.scrollHeight;
+    busy = false; sendEl.disabled = false; qEl.focus();
+  }
+
+  sendEl.addEventListener("click", ask);
+  qEl.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(); }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+  "mcp_servers": {
+    "salesforce": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/salesforce_mcp_server.py"
+      ],
+      "env": {
+        "SF_USERNAME": "${SF_USERNAME}",
+        "SF_PASSWORD": "<SET_VIA_ENV_OR_REPLACE>",
+        "SF_SECURITY_TOKEN": "<SET_VIA_ENV_OR_REPLACE>",
+        "SF_DOMAIN": "${SF_DOMAIN}"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "avoma": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/avoma_mcp_server.py"
+      ],
+      "transport": "stdio",
+      "enabled": true
+    },
+    "apollo": {
+      "command": "npx",
+      "args": [
+        "@thevgergroup/apollo-io-mcp@latest"
+      ],
+      "env": {
+        "APOLLO_API_KEY": "<SET_VIA_ENV_OR_REPLACE>",
+        "APOLLO_BASE_URL": "https://api.apollo.io/api/v1",
+        "XDG_CONFIG_HOME": "/tmp/.config",
+        "HOME": "/tmp"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "zoominfo": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/zoominfo_mcp_server.py"
+      ],
+      "env": {
+        "ZOOMINFO_CLIENT_ID": "${ZOOMINFO_CLIENT_ID}",
+        "ZOOMINFO_CLIENT_SECRET": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "seamlessai": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/seamlessai_mcp_server.py"
+      ],
+      "env": {
+        "SEAMLESS_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "lemlist": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/lemlist_mcp_server.py"
+      ],
+      "env": {
+        "LEMLIST_API_KEY": "<SET_VIA_ENV_OR_REPLACE>",
+        "SF_USERNAME": "${SF_USERNAME}",
+        "SF_PASSWORD": "<SET_VIA_ENV_OR_REPLACE>",
+        "SF_SECURITY_TOKEN": "<SET_VIA_ENV_OR_REPLACE>",
+        "SF_DOMAIN": "${SF_DOMAIN}",
+        "SUPABASE_URL": "${SUPABASE_URL}",
+        "SUPABASE_SERVICE_ROLE_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "zerobounce": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@zerobounce/mcp",
+        "<SET_VIA_ENV_OR_REPLACE>"
+      ],
+      "env": {
+        "ZEROBOUNCE_API_KEY": "<SET_VIA_ENV_OR_REPLACE>",
+        "XDG_CONFIG_HOME": "/tmp/.config"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "showpad": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/showpad_mcp_server.py"
+      ],
+      "env": {
+        "SHOWPAD_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "gojiberry": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/gojiberry_mcp_server.py"
+      ],
+      "env": {
+        "GOJIBERRY_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "wiza": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/wiza_mcp_server.py"
+      ],
+      "env": {
+        "WIZA_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "lusha": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/lusha_mcp_server.py"
+      ],
+      "env": {
+        "LUSHA_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "linkedin": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/linkedin_mcp_server.py"
+      ],
+      "env": {
+        "LINKEDIN_ACCESS_TOKEN": "<SET_VIA_ENV_OR_REPLACE>",
+        "LINKEDIN_CLIENT_ID": "${LINKEDIN_CLIENT_ID}",
+        "LINKEDIN_CLIENT_SECRET": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "smartlead": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "<SET_VIA_ENV_OR_REPLACE>"
+      ]
+    },
+    "clearout": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/clearout_mcp_server.py"
+      ],
+      "env": {
+        "CLEAROUT_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "eloqua": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/eloqua_mcp_server.py"
+      ],
+      "env": {
+        "ELOQUA_SITE_NAME": "${ELOQUA_SITE_NAME}",
+        "ELOQUA_USERNAME": "${ELOQUA_USERNAME}",
+        "ELOQUA_PASSWORD": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "deepl": {
+      "command": "npx",
+      "args": [
+        "deepl-mcp-server"
+      ],
+      "env": {
+        "DEEPL_API_KEY": "<SET_VIA_ENV_OR_REPLACE>",
+        "XDG_CONFIG_HOME": "/tmp/.config",
+        "HOME": "/tmp"
+      },
+      "transport": "stdio",
+      "enabled": false
+    },
+    "mailchimp": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/mailchimp_mcp_server.py"
+      ],
+      "env": {
+        "MAILCHIMP_API_KEY": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    },
+    "supabase": {
+      "command": "/opt/venv/bin/python3",
+      "args": [
+        "/app/supabase_mcp_server.py"
+      ],
+      "env": {
+        "SUPABASE_PROJECT_REF": "${SUPABASE_PROJECT_REF}",
+        "SUPABASE_ACCESS_TOKEN": "<SET_VIA_ENV_OR_REPLACE>",
+        "SUPABASE_ADMIN_TOKEN": "<SET_VIA_ENV_OR_REPLACE>"
+      },
+      "transport": "stdio",
+      "enabled": true
+    }
+  }
+}

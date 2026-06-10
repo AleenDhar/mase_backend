@@ -1,0 +1,37 @@
+# Keep the build context small and free of secrets / local junk.
+# NOTE: build-certs/ is intentionally NOT ignored — the Dockerfile needs it.
+
+.git
+.github
+**/__pycache__
+**/*.py[cod]
+*.so
+
+# Local tooling / agent state
+.claude
+.config
+.local
+.canvas
+.agents
+.aws
+.pytest_cache
+.mypy_cache
+.pythonlibs
+.venv
+venv
+
+# Replit-specific (contains secrets — must NOT go into the image)
+.replit
+replit.md
+
+# Runtime-generated / large, not needed in the image.
+# NOTE: do NOT exclude local Python packages the app imports (custom_tools,
+# agent_checklist, verifier, ...). Only exclude non-code / generated content.
+mcp_output
+exports
+attached_assets
+
+# Build artifacts for the image itself
+Dockerfile
+.dockerignore
+*.log

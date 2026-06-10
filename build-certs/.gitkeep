@@ -1,0 +1,4 @@
+# This directory holds the corporate (Zscaler) root CA certs that deploy.ps1
+# exports here at build time so `pip` works through the TLS-inspecting proxy.
+# The actual *.crt files are git-ignored; only this placeholder is committed
+# so the Dockerfile's `COPY build-certs/ ...` always has a directory to copy.

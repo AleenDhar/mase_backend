@@ -1,0 +1,16 @@
+- [Terminal-row contract](terminal-row-contract.md) — every chat turn/pipeline run writes EXACTLY ONE final/error row; status isn't terminal; phase_error + skip-advisory are NOT terminal.
+- [asyncio atomic claim](asyncio-atomic-claim.md) — for per-resource mutual exclusion across async paths, check+claim a shared set with NO await between; must be symmetric; process-local only.
+- [Per-chat run guard](per-chat-run-guard.md) — one run per chat_id; reserve before try + release in finally; register task in body not generator; _starting_chats bridges deferred-registration gap.
+- [LLM model availability](llm-model-availability.md) — both providers work now, BUT OpenAI gpt-4o hangs when many MCP tools are bound; tool-using agents must default to Anthropic claude-sonnet.
+- [Salesforce write lockdown](salesforce-write-lockdown.md) — never write to SF; enforced by MCP_TOOL_DENYLIST on shared catalog (covers chat + analysis cells); keep SF read tools.
+- [Deal sweep resume](deal-sweep-resume.md) — sweep run-state is in-memory; restart interrupts a live run; resume with report-minus-persisted (15-char id match), never re-charge finished opps.
+- [Deal sweep stage authority](deal-sweep-stage-authority.md) — server-owned record fields (stage, swept_at) must be OVERRIDDEN from live source/`_today()` each sweep; agent JSON is stale/hallucinated.
+- [Deal-engine to-do horizon](deal-todo-horizon.md) — daily Espresso defers far-future items via `_within_todo_horizon`; the act-now-vs-in-control "soft nudge" judgment lives in the sweep prompt, not the view.
+- [Salesforce 15 vs 18 IDs](salesforce-id-15-vs-18.md) — report-export IDs are 15-char, API returns 18-char; join on id[:15] or every row silently misses.
+- [Avoma MCP contention](avoma-mcp-contention.md) — "read operation timed out" = concurrency on the single Avoma subprocess, not a slow API; raised httpx timeout + added timeout retries.
+- [Final row is clean answer only](final-row-clean-answer.md) — the `final` chat_messages row must be the answer alone; thinking/tool_call/tool_result are already separate rows, never inline that trace.
+- [Analysis run recovery](analysis-run-recovery.md) — restart orphans `analyses.status="running"` (guard is in-memory); recover with `POST /api/analysis/{id}/resume` (only non-done cells), not a full re-run.
+- [Analysis fetch/filter/search tools](analysis-fetch-tools.md) — purpose-built read tools for analysis cells so the agent stops using raw supabase_query; URL-encode model terms, UUID-validate id lists, paginate with has_more.
+- [search_knowledge cap scoping](search-knowledge-cap-scoping.md) — RAG cap is per model-STEP (reset each auto-continue iter), dedupe stays run-scoped; per-run cap strangles legit multi-step runs → hard-cancel.
+- [MCP opp + Avoma data tools](mcp-opp-data-tools.md) — read-only opp/meeting tools on /mcp delegate to cache_qa/lake read_* (single source); 0-counts are real (sf_opportunity_id NULL, meeting_cache links subset); MCP_ALLOW_UNAUTH dev-only toggle.
+- [Deal sweep living memory](deal-living-memory.md) — sweep MERGES not overwrites; packets[]=source of truth, ai.* is a projection; candidates derived server-side; significant-field-only change deltas; durable facts go dormant not deleted.

@@ -2299,6 +2299,8 @@ _lemlist_semaphore = asyncio.Semaphore(1)
 # ---------------------------------------------------------------------------
 _LLM_PRICING: Dict[str, tuple] = {
     # Anthropic — prices updated April 2026 (per million tokens)
+    "claude-fable-5":      (10.0,  50.0),   # Fable 5: $10/$50 (most capable)
+    "claude-opus-4-8":     (5.0,   25.0),   # Opus 4.8: $5/$25
     "claude-opus-4-7":     (5.0,   25.0),   # Opus 4.7: $5/$25 (released Apr 16 2026)
     "claude-opus-4":       (5.0,   25.0),   # Opus 4.6: $5/$25
     "claude-3-opus":       (15.0,  75.0),   # Claude 3 Opus (legacy)

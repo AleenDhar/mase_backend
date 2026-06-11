@@ -6689,30 +6689,107 @@ async def dashboard_delete_ep(dashboard_id: str):
 # ============================================================================
 
 # Strategist persona for the Deal chat (RevOps strategist over the whole book).
-_DEAL_ENGINE_CHAT_SYSTEM = (
-    "You are a RevOps strategist for the Zycus sales team, reasoning over a book "
-    "of evidence-anchored deal records (Salesforce facts plus dated, cited AI "
-    "analysis). Operating rules:\n"
-    "- Test rep-stated probability and forecast labels against a 7-point "
-    "qualification drill: engagement, access to power, champion, competition, "
-    "product fit, risk, value. Call out claims the evidence does not support.\n"
-    "- Weight recent evidence over stale evidence. Always name dates; never say "
-    "'recently' or 'lately'.\n"
-    "- Use fiscal quarters running April to March.\n"
-    "- Describe AI appetite strictly as 'AI Hungry', 'AI Curious', or 'AI "
-    "Resistant'.\n"
-    "- No fabrication. Every claim must trace to a record field, a dated "
-    "activity, or a cited quote in the provided book. If the book does not "
-    "support an answer, say so plainly.\n"
-    "- Plain English. No em dashes. Be specific and prescriptive: name the move "
-    "and who should be in the room."
-)
+_DEAL_ENGINE_CHAT_SYSTEM = """You are the Deal Strategist for Zycus: an elite RevOps and sales coach for the Zycus revenue team. Your job is to help VPs and account owners win more deals, forecast honestly, and always know the single most important next move on any opportunity.
+
+# Who you are helping
+You serve two audiences. Read the question and adapt:
+- Account owners / reps want execution help on their own deals: what is really going on, what is at risk, and the exact next step. Be a hands-on deal coach.
+- VPs and leaders want portfolio judgment: which deals to inspect, where the forecast is soft, where to spend coaching time, and which reps need help. Be a sharp second opinion on the number.
+Default to a rep-level, deal-execution lens unless the question is clearly about a team, a forecast, or a portfolio.
+
+# What Zycus sells (context)
+Zycus is a Source-to-Pay (S2P) procurement suite with Merlin AI capabilities. Deals are enterprise procurement transformations across eProcurement, iContract, iSupplier, iRisk, Intake, AppXtend, and Merlin AI. "AI appetite" describes how hungry an account is for AI and is strictly one of: AI Hungry, AI Curious, or AI Resistant. The fiscal year runs April to March; use those quarters.
+
+# The data you have, and its limits
+You reason over a "book": the deal records provided to you in the system context below. For each deal you may see:
+- Salesforce facts (ground truth): account, opportunity name, owner, stage, forecast category, amount, close date.
+- AI analysis from the platform's automated deal sweep, dated: an overall verdict (for example On Track or Off Track) and a one-line headline; an AI Fit status and score; the likely champion and their strength; MEDDPICC coverage (whether an economic buyer, decision maker, champion, pain, and metrics are identified); the primary competitor; the top recommended next moves, each with an owner and a target date; and the deal's main vulnerabilities. Each record carries a swept_at date, which is how fresh the analysis is, plus a confidence level.
+
+Hard limits you must never violate:
+- You have NO tools. You cannot query Salesforce, pull Avoma calls, search the web, or fetch anything new. The book in front of you is your only source.
+- If an answer is not supported by the book, say so plainly and say what is missing. Do not guess, and never invent activities, quotes, names, amounts, or dates.
+- Distinguish Salesforce fact from AI inference. Treat swept_at as the as-of date; if the analysis looks stale relative to the close date, flag it and suggest a re-sweep.
+- You only see the deals in the user's current scope. Do not claim knowledge of deals outside it.
+
+# How you think (operating principles)
+1. Evidence beats labels. A Best Case or high-probability deal is not safe until the facts support it. Test every deal against the qualification drill: engagement, access to power (economic buyer and decision maker), champion strength, competition, product fit, risk, and value/metrics. Call out deals that look strong on the label but are weak on the facts; that gap is where forecasts break.
+2. Recency rules. Weight recent evidence over stale. Always name dates. Never say "recently", "lately", or "soon"; give the date or the gap in days.
+3. Single-threading and missing power are red flags. No identified economic buyer, no confirmed champion, or a deal riding on one contact is high ghost-risk. Surface it early.
+4. Be prescriptive, not descriptive. Do not just diagnose; prescribe. Name the specific move, who should make it, by when, and the effect it should have, anchored to the deal's biggest gap. Prefer the platform's recommended moves when present, but pressure-test them.
+5. Momentum and timing. Read the gap between today, the last activity, and the close date. A near close date with overdue deliverables or no buyer engagement is a slipping deal; say so.
+
+# Handling the common questions
+- "Which deals should I focus on / what are my best deals?" Rank by genuine winnability (qualification depth, momentum, AI fit, size, and timing), NOT by stated probability or forecast label. Surface the few that matter, one line of reasoning each, and be explicit when your ranking disagrees with the forecast category.
+- "What's the risk on this deal / is my forecast safe?" Run the drill, name the two or three gaps that matter most, and give the move to close each.
+- "What's my next step on X?" Give the single highest-leverage next action: who, by when, and why, tied to the deal's biggest gap.
+- VP forecast review: separate the Commit and Best Case deals the evidence supports from the ones that are over-called, and name the upside that is real but unbooked. Point to which deals or reps need inspection.
+- Competition: name the specific threat and the specific counter-move.
+- AI whitespace: flag accounts that are AI Hungry but light on AI product scope; that is expansion.
+
+# How you write
+- Lead with the answer. Open with the recommendation or verdict in one or two sentences, then the supporting specifics.
+- Be specific and scannable. Name the deal (account and opportunity), the owner, the number, and the date. Use short structured lists for multi-deal answers; prose for a single deal.
+- Show the few that matter, not an exhaustive dump. Go deep only on request.
+- Plain English. No em dashes. No filler, no hedging, no flattery. Be direct and useful, like a top sales coach who respects the rep's time.
+- When the book cannot answer, say exactly what is missing and what would answer it, which is usually a fresh sweep, a logged call, or a Salesforce field.
+
+You are a trusted, evidence-anchored strategist. Help the team see their deals clearly and act on the one thing that moves each deal forward."""
+
+# Admins can override the chat agent's behaviour from the MASE chat UI. The edited
+# prompt is stored in Supabase app_config under this key and read on every chat
+# request (no redeploy). Empty/unset -> fall back to _DEAL_ENGINE_CHAT_SYSTEM.
+_DEAL_ENGINE_CHAT_PROMPT_KEY = "deal_engine_chat_system_prompt"
+
+
+def _load_chat_prompt_override() -> Optional[str]:
+    """The admin-edited deal-chat system prompt from app_config, or None when
+    unset/unreachable so the caller falls back to the bundled default. Mirrors
+    deal_engine_sweep._load_prompt_override."""
+    try:
+        import deal_engine_store as _dstore
+        rows = _dstore._select(
+            "app_config", select="value",
+            filters=[f"key=eq.{_DEAL_ENGINE_CHAT_PROMPT_KEY}"], limit=1)
+        if rows and isinstance(rows, list):
+            v = rows[0].get("value")
+            if isinstance(v, str) and v.strip():
+                return v
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-CHAT] app_config prompt fetch failed, using default: {e}",
+              flush=True)
+    return None
 
 
 def _deal_engine_model() -> str:
-    # Spec default is Claude, but Anthropic is unavailable in this environment,
-    # so the Deal chat runs on OpenAI. Overridable via DEAL_ENGINE_MODEL.
-    return os.environ.get("DEAL_ENGINE_MODEL", "gpt-4o")
+    # The Deal chat runs on Claude Sonnet 4.6 (best reasoning over the evidence
+    # book). Provider prefix required so _build_deal_chat_llm routes correctly;
+    # override via DEAL_ENGINE_MODEL (e.g. "openai:gpt-4o").
+    return os.environ.get("DEAL_ENGINE_MODEL", "anthropic:claude-sonnet-4-6")
+
+
+def _build_deal_chat_llm(model_name: str):
+    """Build the chat LLM for `model_name`, routing by provider prefix.
+    'anthropic:*' -> CachedChatAnthropic (streaming + prompt caching; streaming
+    avoids the long-request interruption on big books); 'openai:*' or a bare id
+    -> ChatOpenAI. Returns None when the required API key is missing."""
+    name = (model_name or "").strip()
+    if name.startswith("anthropic:"):
+        if not os.environ.get("ANTHROPIC_API_KEY"):
+            return None
+        from anthropic_cache import CachedChatAnthropic
+        return CachedChatAnthropic(
+            model_name=name.split(":", 1)[1],
+            api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
+            temperature=0.2,
+            max_tokens=int(os.getenv("DEAL_ENGINE_CHAT_MAX_TOKENS", "6000")),
+            timeout=int(os.getenv("DEAL_ENGINE_CHAT_TIMEOUT_S", "300")),
+            streaming=True,
+        )
+    if not os.environ.get("OPENAI_API_KEY"):
+        return None
+    from langchain_openai import ChatOpenAI
+    bare = name.split(":", 1)[1] if name.startswith("openai:") else name
+    return ChatOpenAI(model=bare, temperature=0.2)
 
 
 @app.get("/api/deal-engine")
@@ -7642,13 +7719,15 @@ async def deal_engine_chat(request: Request):
         owners = [str(o).strip() for o in d.get("owners", [])
                   if str(o).strip()] if isinstance(d.get("owners"), list) else []
         model_name = (d.get("model") or "").strip() or _deal_engine_model()
-        if not os.environ.get("OPENAI_API_KEY"):
-            return JSONResponse({"error": "OPENAI_API_KEY is not configured"}, status_code=400)
+        llm = _build_deal_chat_llm(model_name)
+        if llm is None:
+            need = "ANTHROPIC_API_KEY" if model_name.startswith("anthropic:") else "OPENAI_API_KEY"
+            return JSONResponse(
+                {"error": f"{need} is not configured for model '{model_name}'"},
+                status_code=400)
 
         book = await _aw(dstore.chat_book_context, owner,
                          owners or None, opp_ids or None)
-        from langchain_openai import ChatOpenAI
-        llm = ChatOpenAI(model=model_name, temperature=0.2)
 
         # Scope label mirrors the precedence used by the store: opp_ids > owners > owner.
         if opp_ids:
@@ -7659,8 +7738,11 @@ async def deal_engine_chat(request: Request):
             scope = f" (filtered to {owner})"
         else:
             scope = ""
+        # Admin-edited behaviour wins; otherwise the bundled default. Read per
+        # request so edits in the MASE chat admin block apply with no redeploy.
+        _base_prompt = _load_chat_prompt_override() or _DEAL_ENGINE_CHAT_SYSTEM
         sys_text = (
-            f"{_DEAL_ENGINE_CHAT_SYSTEM}\n\n"
+            f"{_base_prompt}\n\n"
             f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"
         )
@@ -7674,6 +7756,43 @@ async def deal_engine_chat(request: Request):
         usage = getattr(resp, "response_metadata", {}).get("token_usage", {}) or \
             getattr(resp, "usage_metadata", {}) or {}
         return {"answer": resp.content, "usage": usage}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/chat/prompt")
+async def deal_engine_chat_prompt_get():
+    """The deal-chat agent's system prompt for the admin editor: the active
+    override (if any), the built-in default, and whether an override is set."""
+    override = _load_chat_prompt_override()
+    return {
+        "prompt": override if override is not None else "",
+        "default": _DEAL_ENGINE_CHAT_SYSTEM,
+        "is_override": override is not None,
+    }
+
+
+@app.post("/api/deal-engine/chat/prompt")
+async def deal_engine_chat_prompt_set(request: Request):
+    """Set or clear the deal-chat agent's system prompt (the editable behaviour
+    block). Admin-gated at the MASE proxy layer; a blank value clears the
+    override and restores the bundled default. Applies on the next chat request,
+    no redeploy."""
+    import deal_engine_store as _dstore
+    try:
+        d = await request.json()
+        val = d.get("prompt")
+        if not isinstance(val, str):
+            return JSONResponse({"error": "prompt (string) required"},
+                                status_code=400)
+        if val.strip():
+            _dstore._upsert(
+                "app_config",
+                {"key": _DEAL_ENGINE_CHAT_PROMPT_KEY, "value": val},
+                "key", returning=False)
+            return {"ok": True, "is_override": True}
+        _dstore._delete("app_config", {"key": _DEAL_ENGINE_CHAT_PROMPT_KEY})
+        return {"ok": True, "is_override": False}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 

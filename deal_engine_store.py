@@ -979,11 +979,34 @@ def chat_book_context(
             "forecast_category": hard.get("forecast_category"),
             "amount": hard.get("amount"),
             "close_date": hard.get("close_date"),
+            # AI fit appetite (AI Hungry / Curious / Resistant) + score.
             "ais_status": hard.get("ais_status"),
             "ais_score": hard.get("ais_score"),
+            # Overall AI verdict + one-line diagnosis.
             "verdict": _g(ai, "north_star_verdict", "verdict"),
             "verdict_headline": _g(ai, "north_star_verdict", "headline"),
-            "top_move": (_items(ai, "recommended_moves")[:1] or [{}])[0].get("action"),
-            "vulnerabilities": [v.get("category") for v in _items(ai, "vulnerabilities")][:5],
+            # Data freshness + how sure the analysis is — lets the strategist
+            # weight recency and flag stale records.
+            "swept_at": rec.get("swept_at"),
+            "analysis_confidence": rec.get("analysis_confidence"),
+            # Buying-committee coverage (MEDDPICC) so the drill is grounded.
+            "champion": _g(ai, "champion_strength", "champion"),
+            "champion_strength": _g(ai, "champion_strength", "strength"),
+            "meddpicc": {
+                "economic_buyer": bool(hard.get("eb_identified")),
+                "decision_maker": bool(hard.get("dm_identified")),
+                "champion": bool(hard.get("champion_identified")),
+                "pain": bool(hard.get("pain_identified")),
+                "metrics": bool(hard.get("metrics_identified")),
+            },
+            "competitor": hard.get("primary_competitor") or hard.get("competitor") or None,
+            # Top recommended moves WITH owner + target date so the strategist
+            # can prescribe the next step instead of only the #1 action label.
+            "next_moves": [
+                {"action": m.get("action"), "owner": m.get("owner"),
+                 "by": m.get("trigger_date"), "expected_effect": m.get("expected_effect")}
+                for m in _items(ai, "recommended_moves")[:3]
+            ],
+            "vulnerabilities": [v.get("category") for v in _items(ai, "vulnerabilities")][:6],
         })
     return out

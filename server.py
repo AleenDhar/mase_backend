@@ -1734,15 +1734,6 @@ MULTI-DAY REPORT (date range, 2+ days — e.g. "last 10 days", "Apr 21–30", "t
 
 SINGLE-CAMPAIGN DRILL-DOWN (one specific campaign): Use eloqua_get_campaign_email_report with a tight date range + campaign_name_filter.
 
-OPPORTUNITY OBSERVATORY (pre-computed deal dossiers — 3 dedicated tools):
-The Observatory holds pre-written, long-form intelligence dossiers for a curated set of opportunities, stored in a single Supabase table. Each dossier has header fields (name, opportunity_owner, close_date, amount, stage, account_name) plus 8 markdown sections: sf_90day_evidence, avoma_evidence, outbound_campaign_intelligence, bundle_a_deal_progress, bundle_b_competition_fit, bundle_c_stakeholder_map, bundle_d_vulnerabilities, diagnosis_sheet.
-WHEN TO USE: Whenever the user asks about an opportunity's deal health, risks/vulnerabilities, competition, stakeholders, deal progress, or wants a briefing/dossier on a specific deal or account, CHECK THE OBSERVATORY FIRST. It is far cheaper and faster than re-deriving the same picture from live Salesforce + Avoma tool calls. Only fall back to live soql/Avoma tools if the opportunity is NOT in the Observatory or the user explicitly wants fresh real-time data.
-THE 3 TOOLS (read-only, scoped to this one table — there is no write path):
-1. list_opportunity_dossiers(limit, stage, account_name_contains, name_contains) — Lightweight discovery. Returns ONLY header rows (no heavy markdown). Use this to see what's available or to filter by stage/account/name. Start here when you don't already know the opportunity_id.
-2. get_opportunity_dossier(opportunity_id, sections=None) — The full dossier for ONE opportunity. `sections` is an OPTIONAL comma-separated subset of the 8 section names above — pass it to pull only what you need (e.g. sections="bundle_d_vulnerabilities,diagnosis_sheet" for a risk question) and save tokens. Omit it to get the whole dossier. Unknown section names are rejected.
-3. search_opportunity_dossiers(query, limit) — Fuzzy substring search over opportunity name + account name. Use when the user gives a company/deal name but not an ID. Returns header rows; follow up with get_opportunity_dossier using the returned opportunity_id.
-TYPICAL FLOW: search_opportunity_dossiers OR list_opportunity_dossiers (find the opportunity_id) → get_opportunity_dossier(opportunity_id, sections=...) (pull the relevant sections). Do NOT use the generic supabase_query MCP tool for this data — these 3 tools are the correct, scoped path.
-
 OUTPUT AND FILE RULES (MANDATORY):
 1. ALWAYS deliver your final output directly in the chat response. NEVER write output to a file.
 2. Present findings in clear, structured text within the conversation.
@@ -8458,30 +8449,24 @@ _mcp = _FastMCP(
         "message). The server automatically selects the right tool, infers the correct "
         "arguments, and executes — all in one step. Use this whenever the user describes "
         "what they want in plain English.\n\n"
-        "Opportunity Observatory (pre-computed deal dossiers) — call these THREE by "
-        "exact name; do NOT route them through call_tool/smart_call:\n"
-        "5. list_opportunity_dossiers — lightweight header rows (find the right opp).\n"
-        "6. get_opportunity_dossier — one full dossier by opportunity_id (optionally a "
-        "subset of sections).\n"
-        "7. search_opportunity_dossiers — fuzzy search by opportunity/account name.\n\n"
-        "Structured opportunity + Avoma meeting data (cache + diagnosis history) — also "
+        "Structured opportunity + Avoma meeting data (cache + diagnosis history) — "
         "call these EIGHT by exact name; all are read-only and return structured JSON with "
         "limit/offset pagination (has_more + next_offset):\n"
-        "8. list_cached_opportunities — list/filter the opportunity_cache (by momentum, "
+        "5. list_cached_opportunities — list/filter the opportunity_cache (by momentum, "
         "stage, amount, is_closed, etc.).\n"
-        "9. search_cached_opportunities — substring search opportunity_cache by "
+        "6. search_cached_opportunities — substring search opportunity_cache by "
         "opportunity/account name.\n"
-        "10. get_cached_opportunity — one opportunity's full cached state + its linked "
+        "7. get_cached_opportunity — one opportunity's full cached state + its linked "
         "meetings + recent field-history, by opportunity_id.\n"
-        "11. get_opportunity_field_history — field-change history for one opportunity "
+        "8. get_opportunity_field_history — field-change history for one opportunity "
         "(optionally filtered to one field_name).\n"
-        "12. list_opportunity_diagnoses — prior diagnosis runs (full text + momentum "
+        "9. list_opportunity_diagnoses — prior diagnosis runs (full text + momentum "
         "verdict, health rating, top risks, timestamp) by account_id and/or opportunity_id.\n"
-        "13. list_opportunity_meetings — Avoma meetings linked to one opportunity "
+        "10. list_opportunity_meetings — Avoma meetings linked to one opportunity "
         "(meeting_cache: title, date, transcript summary), by opportunity_id.\n"
-        "14. get_meeting_analysis — per-meeting Avoma AI analysis reports for one "
+        "11. get_meeting_analysis — per-meeting Avoma AI analysis reports for one "
         "opportunity (conflicts, win likelihood, evidence), by opportunity_id.\n"
-        "15. find_meetings_by_name — find a deal's meetings (and optionally analysis) "
+        "12. find_meetings_by_name — find a deal's meetings (and optionally analysis) "
         "directly from a company/deal name, no opportunity_id needed."
     ),
     transport_security=_TransportSecuritySettings(enable_dns_rebinding_protection=False),
@@ -8883,104 +8868,6 @@ async def smart_call(app_name: str, intent: str, context: str = "") -> str:
             "reasoning":      reasoning,
             "error":          f"{type(exc).__name__}: {exc}",
         })
-
-
-# ---------------------------------------------------------------------------
-# Opportunity Observatory — first-class MCP tools (exposed by EXACT name).
-#
-# These wrap the read-only @tool functions in custom_tools/opportunity_observatory.py
-# so external MCP clients (Claude Desktop / Claude.ai) see them directly in
-# tools/list and call them by name — instead of falling through to call_tool's
-# fuzzy matcher (which previously mis-routed `list_opportunity_dossiers` to an
-# unrelated `list_users` tool). Each is hard-scoped to the single
-# opportunity_observatory table; no write path. Sync httpx reads run in an
-# executor so they don't block the event loop.
-# ---------------------------------------------------------------------------
-from custom_tools import opportunity_observatory as _obs
-
-
-@_mcp.tool()
-async def list_opportunity_dossiers(
-    limit: int = 50,
-    stage: Optional[str] = None,
-    account_name_contains: Optional[str] = None,
-    name_contains: Optional[str] = None,
-) -> str:
-    """List Opportunity Observatory dossiers (lightweight — header fields only).
-
-    The Observatory holds one rich, pre-computed dossier per opportunity (SF
-    90-day evidence, Avoma evidence, outbound/campaign intelligence, and four
-    diagnostic bundles A-D plus a final diagnosis sheet). This returns ONLY the
-    header fields so you can find the right opportunity before pulling its full
-    dossier with get_opportunity_dossier.
-
-    Args:
-        limit:                 Max rows (default 50, hard cap 200).
-        stage:                 Exact stage filter (e.g. 'Qualified', 'Shortlisted').
-        account_name_contains: Case-insensitive substring match on account_name.
-        name_contains:         Case-insensitive substring match on opportunity name.
-
-    Returns:
-        JSON string: {count, dossiers:[{opportunity_id, name, opportunity_owner,
-        close_date, amount, stage, account_name, updated_at}]}.
-    """
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, lambda: _obs.list_opportunity_dossiers.invoke({
-        "limit": limit,
-        "stage": stage,
-        "account_name_contains": account_name_contains,
-        "name_contains": name_contains,
-    }))
-
-
-@_mcp.tool()
-async def get_opportunity_dossier(opportunity_id: str, sections: Optional[str] = None) -> str:
-    """Fetch one full Opportunity Observatory dossier by opportunity_id.
-
-    Returns the header fields plus long-form analysis sections (multi-paragraph
-    markdown). Pull only the sections you need for large dossiers.
-
-    Available sections: sf_90day_evidence, avoma_evidence,
-    outbound_campaign_intelligence, bundle_a_deal_progress,
-    bundle_b_competition_fit, bundle_c_stakeholder_map, bundle_d_vulnerabilities,
-    diagnosis_sheet.
-
-    Args:
-        opportunity_id: Salesforce Opportunity Id (from list/search).
-        sections:       Optional comma-separated subset of section names above.
-                        Omit to return ALL sections (can be large).
-
-    Returns:
-        JSON string with the header fields + requested section(s), or an error.
-    """
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, lambda: _obs.get_opportunity_dossier.invoke({
-        "opportunity_id": opportunity_id,
-        "sections": sections,
-    }))
-
-
-@_mcp.tool()
-async def search_opportunity_dossiers(query: str, limit: int = 20) -> str:
-    """Substring search the Observatory across opportunity name + account name.
-
-    Case-insensitive ILIKE match on either `name` or `account_name`. Use this
-    when you have a fuzzy company or deal name. Returns lightweight header rows;
-    follow up with get_opportunity_dossier for the full content.
-
-    Args:
-        query: Search text (e.g. 'Bright Horizons', 'Anora'). Matched as a
-               substring against both name and account_name.
-        limit: Max rows (default 20, hard cap 200).
-
-    Returns:
-        JSON string: {count, dossiers:[...header fields...]}.
-    """
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, lambda: _obs.search_opportunity_dossiers.invoke({
-        "query": query,
-        "limit": limit,
-    }))
 
 
 # ---------------------------------------------------------------------------

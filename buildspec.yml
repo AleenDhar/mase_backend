@@ -23,7 +23,7 @@ phases:
       - echo "Building image $ECR_REPO:$IMAGE_TAG"
       - docker build -t "$ECR_REPO:$IMAGE_TAG" -t "$ECR_REPO:latest" .
       - echo "=== Sanity check - import the app local packages inside the image ==="
-      - 'docker run --rm "$ECR_REPO:$IMAGE_TAG" python -c "import custom_tools.opportunity_observatory, custom_tools.search_knowledge, agent_checklist.context_trim_middleware, verifier, deal_engine_report, salesforce_task_writer, deal_engine_sweep, deal_engine_store, pipeline_runner"'
+      - 'docker run --rm "$ECR_REPO:$IMAGE_TAG" python -c "import custom_tools.search_knowledge, agent_checklist.context_trim_middleware, verifier, deal_engine_report, salesforce_task_writer, deal_engine_sweep, deal_engine_store, pipeline_runner"'
   post_build:
     commands:
       - echo "Pushing image..."

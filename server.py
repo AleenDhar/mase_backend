@@ -6979,17 +6979,34 @@ async def deal_engine_todo_push(request: Request):
                           "(no action/commitment/requirement/need/flag text)"},
                 status_code=400)
         who_id = str(d.get("who_id") or "").strip() or None
-        # Write directly to Salesforce (server-side, not via the agent).
+        # Per-user push: the proxy injects the rep's OAuth token + instance_url
+        # when they've connected their Salesforce, so the Task is created AS the
+        # rep (CreatedBy + Owner = them). If the rep is connected but their token
+        # fails, we DO NOT silently fall back to the shared user (that's exactly
+        # the "shows as Aleen" problem) — we surface a reconnect error. Only an
+        # UNconnected caller falls back to the shared integration user.
+        sf_token = str(d.get("sf_access_token") or "").strip() or None
+        sf_instance = str(d.get("sf_instance_url") or "").strip() or None
         try:
-            result = await _aw(
-                sfw.create_completed_task,
-                subject=subject, what_id=what_id,
-                activity_date=_date.today().isoformat(),
-                description=description, who_id=who_id,
-            )
+            if sf_token and sf_instance:
+                result = await _aw(
+                    sfw.create_completed_task_oauth,
+                    access_token=sf_token, instance_url=sf_instance,
+                    subject=subject, what_id=what_id,
+                    activity_date=_date.today().isoformat(),
+                    description=description, who_id=who_id,
+                )
+            else:
+                result = await _aw(
+                    sfw.create_completed_task,
+                    subject=subject, what_id=what_id,
+                    activity_date=_date.today().isoformat(),
+                    description=description, who_id=who_id,
+                )
         except sfw.SalesforceWriteError as e:
-            return JSONResponse({"error": f"Salesforce write failed: {e}"},
-                                status_code=502)
+            msg = (f"Salesforce write failed — reconnect your Salesforce account: {e}"
+                   if sf_token else f"Salesforce write failed: {e}")
+            return JSONResponse({"error": msg}, status_code=502)
         if not (isinstance(result, dict) and result.get("success")
                 and result.get("id")):
             # Do NOT persist a push record on failure, so the rep can retry.

@@ -104,3 +104,64 @@ def create_completed_task(
         raise
     except Exception as e:  # noqa: BLE001
         raise SalesforceWriteError(f"Task create failed: {e}")
+
+
+# Salesforce REST API version used for the per-user (OAuth) write path.
+SF_API_VERSION = "v60.0"
+
+
+def create_completed_task_oauth(
+    *,
+    access_token: str,
+    instance_url: str,
+    subject: str,
+    what_id: str,
+    activity_date: str,
+    description: Optional[str] = None,
+    who_id: Optional[str] = None,
+    owner_id: Optional[str] = None,
+) -> dict:
+    """Create the COMPLETED Task using a USER's OAuth access token (the rep/VP),
+    so CreatedBy AND Owner are the rep — not the shared integration user. Same
+    field mapping as create_completed_task, but POSTs to the REST API at the
+    user's instance_url with their bearer token. Returns the SF create result
+    {"id","success","errors"}. Raises SalesforceWriteError on failure (incl. 401
+    so the caller can fall back to the shared connection)."""
+    import requests  # lazy: keeps module import light
+    subj = truncate_subject(subject)
+    if not subj:
+        raise SalesforceWriteError("subject is required")
+    if not (what_id or "").strip():
+        raise SalesforceWriteError("what_id (Opportunity id) is required")
+    if not (access_token and instance_url):
+        raise SalesforceWriteError("missing access_token/instance_url for per-user push")
+    payload: dict = {
+        "Subject": subj,
+        "Status": "Completed",
+        "Priority": "Normal",
+        "WhatId": what_id.strip(),
+    }
+    if activity_date:
+        payload["ActivityDate"] = activity_date
+    if description:
+        payload["Description"] = description
+    if who_id:
+        payload["WhoId"] = who_id
+    if owner_id:
+        payload["OwnerId"] = owner_id
+    url = f"{instance_url.rstrip('/')}/services/data/{SF_API_VERSION}/sobjects/Task"
+    try:
+        r = requests.post(
+            url, json=payload,
+            headers={"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"},
+            timeout=30,
+        )
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Task create (oauth) request failed: {e}")
+    if r.status_code in (200, 201):
+        try:
+            j = r.json()
+        except Exception:  # noqa: BLE001
+            j = {}
+        return {"id": j.get("id"), "success": bool(j.get("success", True)), "errors": j.get("errors", [])}
+    raise SalesforceWriteError(f"Task create (oauth) failed [{r.status_code}]: {r.text[:300]}")

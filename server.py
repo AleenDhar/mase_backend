@@ -119,12 +119,6 @@ class Config:
         os.getenv("CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD", "60000"))
     CONVERSATION_KEEP_RECENT_MESSAGES = int(
         os.getenv("CONVERSATION_KEEP_RECENT_MESSAGES", "20"))
-    # Always keep the latest N agent FINAL responses verbatim (only the final
-    # answer text — tool calls / thinking are excluded upstream). Anything older
-    # than this many assistant turns gets folded into the rolling summary, while
-    # every user message is preserved verbatim regardless.
-    CONVERSATION_KEEP_RECENT_FINALS = int(
-        os.getenv("CONVERSATION_KEEP_RECENT_FINALS", "10"))
     SUMMARIZER_INPUT_LIMIT = int(os.getenv("SUMMARIZER_INPUT_LIMIT", "50000"))
 
     # Intra-run context-trim middleware (cost task #40). Fires before EVERY
@@ -258,43 +252,6 @@ if config.SUPABASE_URL and config.SUPABASE_SERVICE_KEY and Client:
         print(f"Failed to initialize Supabase: {e}")
 
 
-async def archive_tool_output(
-    tool_name: str,
-    result,
-    result_str: str,
-    chat_id: Optional[str] = None,
-) -> None:
-    """Persist a large MCP tool response to Supabase (AWS adaptation).
-
-    Replaces the on-disk ``mcp_output/*.json`` archive so nothing is written to
-    the (ephemeral) container filesystem on ECS Fargate — every full tool payload
-    now lives in the ``mcp_tool_outputs`` table. Best-effort: never raises and is
-    fire-and-forget, so it can't add latency to or break the tool path.
-    """
-    if supabase is None:
-        return
-    try:
-        row = {
-            "chat_id": chat_id,
-            "tool_name": tool_name,
-            "size_chars": len(result_str),
-        }
-        if isinstance(result, (dict, list)):
-            try:
-                row["payload"] = json.loads(result_str)
-            except Exception:
-                row["payload_text"] = result_str
-        else:
-            row["payload_text"] = result_str
-        loop = asyncio.get_running_loop()
-        await loop.run_in_executor(
-            None,
-            lambda: supabase.table("mcp_tool_outputs").insert(row).execute(),
-        )
-    except Exception as e:
-        print(f"  [TOOL-ARCHIVE] Supabase insert skipped: {e}")
-
-
 class ContextWindowManager:
     """Manages context window using ChatGPT for summarization."""
 
@@ -399,122 +356,21 @@ RULES:
             print(f"[SUMMARIZER] ❌ failed | tool={tool_name} | took={elapsed_sum:.1f}s | err={e}", flush=True)
             return self._truncate_with_context(result_str)
 
-    @staticmethod
-    def _msg_role(m) -> str:
-        if isinstance(m, dict):
-            return str(m.get("role", "") or "")
-        return str(getattr(m, "role", getattr(m, "type", "")) or "")
-
-    @staticmethod
-    def _older_user_block(older_messages: list) -> str:
-        """Render the older USER turns verbatim as a labeled block to prepend to
-        the summary. Returns "" when there are none. Keeps run inputs (ids,
-        names, "don't push until asked") from being paraphrased away."""
-        turns = []
-        for _msg in older_messages:
-            if isinstance(_msg, dict):
-                _role = _msg.get("role", "")
-                _content = str(_msg.get("content", ""))
-            else:
-                _role = getattr(_msg, "type", "")
-                _content = str(getattr(_msg, "content", ""))
-            if _role in ("user", "human") and _content.strip():
-                turns.append(_content.strip())
-        if not turns:
-            return ""
-        numbered = "\n\n".join(f"  {i}. {t}" for i, t in enumerate(turns, 1))
-        return (
-            "\n\n[EARLIER USER MESSAGES — verbatim, oldest first. These are "
-            "the user's PAST requests in this conversation, NOT the current "
-            "one. Treat them as authoritative for any original task inputs "
-            "(ids, names, instructions). The CURRENT request is the most "
-            "recent user message that follows this summary.]\n" + numbered
-        )
-
-    @staticmethod
-    def _normalize(messages: list) -> list:
-        """Coerce a message list to plain {role, content} dicts (the recent
-        window the agent sees verbatim)."""
-        out = []
-        for msg in messages:
-            if isinstance(msg, dict):
-                role = msg.get("role", "user")
-                content = msg.get("content", "")
-            else:
-                role = getattr(msg, "type", "user").replace(
-                    "human", "user").replace("ai", "assistant")
-                content = str(getattr(msg, "content", ""))
-            out.append({"role": role, "content": content})
-        return out
-
-    def _with_user_context(self, user_block: str, recent_messages: list) -> list:
-        """Fallback used when no real summary is available: keep the recent
-        window verbatim and, if there were older user turns, re-attach them
-        ahead of it so run inputs survive even without the LLM summarizer."""
-        recent = self._normalize(recent_messages)
-        if not user_block:
-            return recent
-        note = {
-            "role": "system",
-            "content": f"[CONVERSATION HISTORY — older turns omitted]{user_block}"
-                       "\n[END — recent messages follow below]",
-        }
-        return [note] + recent
-
     async def summarize_conversation_history(self, messages: list) -> list:
-        # Policy (single entry point for every chat endpoint):
-        #   • Keep the latest N agent FINAL responses verbatim (N =
-        #     CONVERSATION_KEEP_RECENT_FINALS, default 10). Only the final answer
-        #     text reaches here — tool calls / thinking are stripped upstream.
-        #   • Keep EVERY user message verbatim (the older ones are re-attached
-        #     below, clearly labeled as past turns — run inputs must never be
-        #     paraphrased away).
-        #   • Summarize everything OLDER than that window into a rolling summary.
-        # We shape the history when the chat is over the token budget OR has more
-        # than N agent finals; otherwise it's short enough to pass through (with a
-        # cheap recent-window trim that still preserves user turns).
         total_tokens = self.estimate_messages_tokens(messages)
-        keep_finals = max(1, config.CONVERSATION_KEEP_RECENT_FINALS)
-        asst_pos = [i for i, m in enumerate(messages)
-                    if self._msg_role(m) in ("assistant", "ai")]
-        over_threshold = total_tokens >= config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD
-        too_many_finals = len(asst_pos) > keep_finals
-
-        if not over_threshold and not too_many_finals:
-            # Short, in-budget chat: nothing to summarize. Still cap a long-ish
-            # history to the recent window WITHOUT dropping earlier user turns.
-            if len(messages) > 10:
-                return _trim_keeping_user_turns(messages, 10)
+        if total_tokens < config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
             return messages
-
-        # Choose the split so the recent window contains (at least) the last
-        # `keep_finals` agent finals plus any user turns interleaved with them.
-        if too_many_finals:
-            split = asst_pos[-keep_finals]
-        elif asst_pos:
-            # <= keep_finals finals → keep ALL of them; only leading content is
-            # "older" (typically just the opening user message(s)).
-            split = asst_pos[0]
-        else:
-            split = max(0, len(messages) - config.CONVERSATION_KEEP_RECENT_MESSAGES)
-        if split <= 0:
-            # Everything already lives inside the keep window — nothing older to
-            # summarize. Return as-is so the recent finals stay fully intact.
+        keep_count = config.CONVERSATION_KEEP_RECENT_MESSAGES
+        if len(messages) <= keep_count:
             return messages
-
-        older_messages = messages[:split]
-        recent_messages = messages[split:]
+        older_messages = messages[:-keep_count]
+        recent_messages = messages[-keep_count:]
         print(
-            f"  Summarizing conversation: {len(messages)} messages "
-            f"({total_tokens:,} tokens); keeping last {len(asst_pos[-keep_finals:]) if too_many_finals else len(asst_pos)} "
-            f"agent finals + all user turns verbatim, summarizing {len(older_messages)} older message(s)"
+            f"  Summarizing conversation: {len(messages)} messages ({total_tokens:,} tokens)"
         )
-        # Older USER turns, rendered verbatim — re-attached to the summary AND to
-        # both fallbacks so run inputs survive no matter which path we take.
-        _older_user_block = self._older_user_block(older_messages)
         summarizer = self._get_summarizer()
         if summarizer is None:
-            return self._with_user_context(_older_user_block, recent_messages)
+            return recent_messages
         try:
             from langchain_core.messages import HumanMessage, SystemMessage
             history_text = ""
@@ -551,18 +407,21 @@ Keep under 3000 words."""),
             ]
             response = await summarizer.ainvoke(summary_messages)
             summary_content = response.content
-            # Preserve EVERY earlier USER message verbatim (see _older_user_block).
-            # Project chats hinge on the initial message — it carries the run
-            # inputs (SF account id, sender/owner, campaign id, "don't push until
-            # asked") that a prose summary can paraphrase away, after which the
-            # agent says it has no run context.
             summary_msg = {
                 "role":
                 "system",
                 "content":
-                f"[CONVERSATION HISTORY SUMMARY]\n{summary_content}{_older_user_block}\n[END SUMMARY - Recent messages (latest agent finals + current request) follow below]"
+                f"[CONVERSATION HISTORY SUMMARY]\n{summary_content}\n[END SUMMARY - Recent messages follow below]"
             }
-            compressed = [summary_msg] + self._normalize(recent_messages)
+            compressed = [summary_msg] + [{
+                "role":
+                msg.get("role", "user") if isinstance(msg, dict) else getattr(
+                    msg, 'type', 'user').replace('human', 'user').replace(
+                        'ai', 'assistant'),
+                "content":
+                msg.get("content", "") if isinstance(msg, dict) else str(
+                    getattr(msg, 'content', ''))
+            } for msg in recent_messages]
             new_tokens = self.estimate_messages_tokens(compressed)
             print(
                 f"  Conversation compressed: {total_tokens:,} -> {new_tokens:,} tokens"
@@ -570,7 +429,7 @@ Keep under 3000 words."""),
             return compressed
         except Exception as e:
             print(f"  Conversation summarization failed: {e}")
-            return self._with_user_context(_older_user_block, recent_messages)
+            return recent_messages
 
     def _truncate_with_context(self, text: str, max_length: int = None) -> str:
         max_len = max_length or config.MCP_MAX_STRING_LENGTH
@@ -1110,20 +969,20 @@ class AgentManager:
             if len(result_str) <= SUMMARIZE_THRESHOLD:
                 return result
 
-            # Archive the full response to Supabase (AWS: replaces the old
-            # mcp_output/*.json write to the ephemeral container filesystem).
-            # Fire-and-forget so it never adds latency to the tool path.
-            asyncio.create_task(
-                archive_tool_output(
-                    original_tool.name,
-                    result,
-                    result_str,
-                    chat_id=_current_chat_id.get(None),
-                )
-            )
+            os.makedirs("mcp_output", exist_ok=True)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            unique_id = uuid.uuid4().hex[:8]
+            filename = f"mcp_output/{original_tool.name}_{timestamp}_{unique_id}.json"
+            with open(filename, 'w') as f:
+                try:
+                    if isinstance(result, (dict, list)):
+                        json.dump(result, f, indent=2, default=str)
+                    else:
+                        f.write(result_str)
+                except:
+                    f.write(result_str)
             print(
-                f"  Archived full response to Supabase "
-                f"(tool={original_tool.name}, {len(result_str):,} chars)"
+                f"  Saved full response to {filename} ({len(result_str):,} chars)"
             )
 
             if len(result_str) <= MAX_RESPONSE_SIZE and not _skip_llm_summarizer.get():
@@ -1734,6 +1593,15 @@ MULTI-DAY REPORT (date range, 2+ days — e.g. "last 10 days", "Apr 21–30", "t
 
 SINGLE-CAMPAIGN DRILL-DOWN (one specific campaign): Use eloqua_get_campaign_email_report with a tight date range + campaign_name_filter.
 
+OPPORTUNITY OBSERVATORY (pre-computed deal dossiers — 3 dedicated tools):
+The Observatory holds pre-written, long-form intelligence dossiers for a curated set of opportunities, stored in a single Supabase table. Each dossier has header fields (name, opportunity_owner, close_date, amount, stage, account_name) plus 8 markdown sections: sf_90day_evidence, avoma_evidence, outbound_campaign_intelligence, bundle_a_deal_progress, bundle_b_competition_fit, bundle_c_stakeholder_map, bundle_d_vulnerabilities, diagnosis_sheet.
+WHEN TO USE: Whenever the user asks about an opportunity's deal health, risks/vulnerabilities, competition, stakeholders, deal progress, or wants a briefing/dossier on a specific deal or account, CHECK THE OBSERVATORY FIRST. It is far cheaper and faster than re-deriving the same picture from live Salesforce + Avoma tool calls. Only fall back to live soql/Avoma tools if the opportunity is NOT in the Observatory or the user explicitly wants fresh real-time data.
+THE 3 TOOLS (read-only, scoped to this one table — there is no write path):
+1. list_opportunity_dossiers(limit, stage, account_name_contains, name_contains) — Lightweight discovery. Returns ONLY header rows (no heavy markdown). Use this to see what's available or to filter by stage/account/name. Start here when you don't already know the opportunity_id.
+2. get_opportunity_dossier(opportunity_id, sections=None) — The full dossier for ONE opportunity. `sections` is an OPTIONAL comma-separated subset of the 8 section names above — pass it to pull only what you need (e.g. sections="bundle_d_vulnerabilities,diagnosis_sheet" for a risk question) and save tokens. Omit it to get the whole dossier. Unknown section names are rejected.
+3. search_opportunity_dossiers(query, limit) — Fuzzy substring search over opportunity name + account name. Use when the user gives a company/deal name but not an ID. Returns header rows; follow up with get_opportunity_dossier using the returned opportunity_id.
+TYPICAL FLOW: search_opportunity_dossiers OR list_opportunity_dossiers (find the opportunity_id) → get_opportunity_dossier(opportunity_id, sections=...) (pull the relevant sections). Do NOT use the generic supabase_query MCP tool for this data — these 3 tools are the correct, scoped path.
+
 OUTPUT AND FILE RULES (MANDATORY):
 1. ALWAYS deliver your final output directly in the chat response. NEVER write output to a file.
 2. Present findings in clear, structured text within the conversation.
@@ -2023,20 +1891,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Wire the multi-phase ABM pipeline orchestrator: POST /api/run-pipeline (+ its
-# DELETE/{chat_id} and GET /_active helpers). pipeline_runner.py declares these
-# on its own APIRouter; without this include the routes are never registered and
-# VIBE's pipeline dispatch (lib/dispatch-pipeline.ts -> {ALB}/api/run-pipeline)
-# gets HTTP 404 {"detail":"Not Found"} — which is exactly the ABM failure mode.
-# pipeline_runner imports `server` only lazily inside request handlers, so this
-# top-level import is circular-import-safe.
-try:
-    import pipeline_runner as _pipeline_runner
-    app.include_router(_pipeline_runner.router)
-    print("[STARTUP] pipeline_runner router included (POST /api/run-pipeline)")
-except Exception as _e:  # noqa: BLE001
-    print(f"[STARTUP] WARNING: pipeline_runner router NOT included: {_e}")
-
 agent_manager = AgentManager()
 
 # Let the per-cell AI-column agents (analysis_engine) reuse the SAME tool catalog
@@ -2112,46 +1966,6 @@ def _build_message_content(msg: ChatMessage) -> dict:
             })
         return {"role": msg.role, "content": content_blocks}
     return {"role": msg.role, "content": msg.content}
-
-
-def _trim_keeping_user_turns(messages: list, keep_recent: int = 10) -> list:
-    """Trim a long-but-under-threshold history to the recent window WITHOUT
-    losing the user's earlier turns.
-
-    Project/ABM chats hinge on the FIRST message — it carries the run inputs
-    (SF account id, sender/owner, campaign id, "don't push until asked"). A
-    blind `messages[-keep_recent:]` slice drops it once the chat grows past
-    `keep_recent` rows, after which a re-run sees only recent assistant
-    "please provide inputs" replies and concludes it has no inputs (see chat
-    91381297). So we keep the recent window and re-attach any earlier
-    user/human messages the window dropped, in order, ahead of it — labeled as
-    PAST turns so the agent still treats the last message as the current
-    request. Mirrors the verbatim-user-message preservation in
-    summarize_conversation_history for the under-threshold path."""
-    if len(messages) <= keep_recent:
-        return messages
-    recent = messages[-keep_recent:]
-    dropped = messages[:-keep_recent]
-
-    def _role(m):
-        if isinstance(m, dict):
-            return m.get("role", "")
-        return getattr(m, "role", getattr(m, "type", ""))
-
-    earlier_user = [m for m in dropped if _role(m) in ("user", "human")]
-    if not earlier_user:
-        return recent
-    label = {
-        "role": "system",
-        "content": (
-            "[EARLIER USER MESSAGES — verbatim, oldest first. These are the "
-            "user's PAST requests in this conversation, NOT the current one. "
-            "Treat them as authoritative for any original task inputs (ids, "
-            "names, instructions). The CURRENT request is the most recent user "
-            "message at the end.]"
-        ),
-    }
-    return [label] + earlier_user + recent
 
 
 _supabase_seq_counters = {}
@@ -2290,8 +2104,6 @@ _lemlist_semaphore = asyncio.Semaphore(1)
 # ---------------------------------------------------------------------------
 _LLM_PRICING: Dict[str, tuple] = {
     # Anthropic — prices updated April 2026 (per million tokens)
-    "claude-fable-5":      (10.0,  50.0),   # Fable 5: $10/$50 (most capable)
-    "claude-opus-4-8":     (5.0,   25.0),   # Opus 4.8: $5/$25
     "claude-opus-4-7":     (5.0,   25.0),   # Opus 4.7: $5/$25 (released Apr 16 2026)
     "claude-opus-4":       (5.0,   25.0),   # Opus 4.6: $5/$25
     "claude-3-opus":       (15.0,  75.0),   # Claude 3 Opus (legacy)
@@ -3183,9 +2995,13 @@ async def chat_async(request: ChatRequest):
 
         messages = [_build_message_content(msg) for msg in request.messages]
 
-        # Single self-gating entry point: keeps the latest N agent finals + all
-        # user turns verbatim and summarizes anything older.
-        messages = await context_manager.summarize_conversation_history(messages)
+        total_chars = sum(len(str(m.get("content", ""))) for m in messages)
+        estimated_tokens = total_chars // 4
+        if estimated_tokens > config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
+            messages = await context_manager.summarize_conversation_history(
+                messages)
+        elif len(messages) > 10:
+            messages = messages[-10:]
 
         chunk_queue = asyncio.Queue()
         stream_done = asyncio.Event()
@@ -3311,9 +3127,13 @@ async def chat(request: ChatRequest):
 
         messages = [_build_message_content(msg) for msg in request.messages]
 
-        # Single self-gating entry point: keeps the latest N agent finals + all
-        # user turns verbatim and summarizes anything older.
-        messages = await context_manager.summarize_conversation_history(messages)
+        total_chars = sum(len(str(m.get("content", ""))) for m in messages)
+        estimated_tokens = total_chars // 4
+        if estimated_tokens > config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
+            messages = await context_manager.summarize_conversation_history(
+                messages)
+        elif len(messages) > 10:
+            messages = messages[-10:]
 
         if request.stream:
             event_queue = asyncio.Queue()
@@ -3976,9 +3796,12 @@ async def structured_chat(request: StructuredChatRequest):
             agent = await agent_manager.get_agent()
             messages = [_build_message_content(msg) for msg in request.messages]
 
-            # Single self-gating entry point: keeps the latest N agent finals +
-            # all user turns verbatim and summarizes anything older.
-            messages = await context_manager.summarize_conversation_history(messages)
+            total_chars = sum(len(str(m.get("content", ""))) for m in messages)
+            estimated_tokens = total_chars // 4
+            if estimated_tokens > config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
+                messages = await context_manager.summarize_conversation_history(messages)
+            elif len(messages) > 10:
+                messages = messages[-10:]
 
             schema_str = json.dumps(request.structured_output_format, indent=2)
             structured_instruction = f"\n\nIMPORTANT: You MUST respond with valid JSON matching this exact schema:\n{schema_str}\n\nDo not include any text outside the JSON object."
@@ -4111,9 +3934,12 @@ async def structured_chat_async(request: StructuredChatRequest):
                 agent = await agent_manager.get_agent()
                 messages = [_build_message_content(msg) for msg in request.messages]
 
-                # Single self-gating entry point: keeps the latest N agent finals
-                # + all user turns verbatim and summarizes anything older.
-                messages = await context_manager.summarize_conversation_history(messages)
+                total_chars = sum(len(str(m.get("content", ""))) for m in messages)
+                estimated_tokens = total_chars // 4
+                if estimated_tokens > config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
+                    messages = await context_manager.summarize_conversation_history(messages)
+                elif len(messages) > 10:
+                    messages = messages[-10:]
 
                 schema_str = json.dumps(request.structured_output_format, indent=2)
                 structured_instruction = f"\n\nIMPORTANT: You MUST respond with valid JSON matching this exact schema:\n{schema_str}\n\nDo not include any text outside the JSON object."
@@ -4721,9 +4547,11 @@ async def jarvis_chat_async(request: ChatRequest):
         agent = await agent_manager.get_agent()
 
         messages = [_build_message_content(msg) for msg in request.messages]
-        # Single self-gating entry point: keeps the latest N agent finals + all
-        # user turns verbatim and summarizes anything older.
-        messages = await context_manager.summarize_conversation_history(messages)
+        total_chars = sum(len(str(m.get("content", ""))) for m in messages)
+        if total_chars // 4 > config.CONVERSATION_SUMMARIZE_TOKEN_THRESHOLD:
+            messages = await context_manager.summarize_conversation_history(messages)
+        elif len(messages) > 10:
+            messages = messages[-10:]
 
         chunk_queue = asyncio.Queue()
         stream_done = asyncio.Event()
@@ -5209,13 +5037,12 @@ async def sns_webhook(request: Request):
         print("[SNS-WEBHOOK] ⚠ signature verification DISABLED (SNS_VERIFY_SIGNATURE=false)", flush=True)
 
     try:
-        _raw = _json.dumps(body, default=str)
-        asyncio.create_task(
-            archive_tool_output(
-                f"sns_{msg_type or 'unknown'}", body, _raw, chat_id=None
-            )
-        )
-        print("[SNS-WEBHOOK] 💾 raw archived to Supabase", flush=True)
+        os.makedirs("mcp_output", exist_ok=True)
+        ts = _dt.utcnow().strftime("%Y%m%d_%H%M%S")
+        fname = f"mcp_output/sns_{msg_type or 'unknown'}_{ts}_{msg_id[:8] or 'noid'}.json"
+        with open(fname, "w") as f:
+            _json.dump(body, f, indent=2)
+        print(f"[SNS-WEBHOOK] 💾 raw saved to {fname}", flush=True)
     except Exception as e:
         print(f"[SNS-WEBHOOK] ⚠ failed to persist raw: {e}", flush=True)
 
@@ -6014,6 +5841,80 @@ async def _nightly_sf_pull_scheduler():
             await asyncio.sleep(300)
 
 
+async def _nightly_hard_refresh_scheduler():
+    """Background loop that fires the token-free hard-fact reconciliation once per
+    day at the configured local hour. This re-reads the live Salesforce hard facts
+    (stage / amount / dates / owner+manager / competitor / next step) for every
+    persisted deal record and overwrites them with no AI cost, so reps never see
+    stale facts between paid AI sweeps.
+
+    sweep.hard_refresh_all() owns ALL the mutual exclusion: it serializes against
+    itself, refuses while the in-process AI sweep is running, and refuses while the
+    durable sweep_queue has waiting/working rows (the out-of-process worker), so it
+    can never clobber — or be clobbered by — the paid sweep / queue worker.
+
+    Runs an hour after the SF-pull cron by default so cache/discovery has settled.
+    Discovery hygiene (deleting deals slipped back to 'Initial Interest') is OFF by
+    default — this job is facts-only; report reconciliation owns membership.
+
+    Env overrides:
+      - DEAL_HARD_REFRESH_CRON_ENABLED   (default "true") — set false to disable.
+      - DEAL_HARD_REFRESH_CRON_HOUR      (default 1)       — hour of day, 0-23.
+      - DEAL_HARD_REFRESH_CRON_TZ        (default "UTC")   — IANA tz.
+      - DEAL_HARD_REFRESH_CRON_DELETE_II (default "false") — also delete deals now
+        back at 'Initial Interest' (discovery hygiene; off for a pure fact sync).
+    """
+    import deal_engine_sweep as sweep
+    if os.getenv("DEAL_HARD_REFRESH_CRON_ENABLED", "true").strip().lower() in ("false", "0", "no", "off"):
+        print("[NIGHTLY-HARD-REFRESH] scheduler disabled via DEAL_HARD_REFRESH_CRON_ENABLED", flush=True)
+        return
+    from datetime import datetime, timedelta, timezone
+    tz_name = os.getenv("DEAL_HARD_REFRESH_CRON_TZ", "UTC")
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(tz_name)
+    except Exception as e:
+        print(f"[NIGHTLY-HARD-REFRESH] bad DEAL_HARD_REFRESH_CRON_TZ={tz_name!r} ({e}); falling back to UTC", flush=True)
+        tz = timezone.utc
+        tz_name = "UTC"
+    try:
+        hour = max(0, min(23, int(os.getenv("DEAL_HARD_REFRESH_CRON_HOUR", "1"))))
+    except (TypeError, ValueError):
+        hour = 1
+    delete_ii = os.getenv("DEAL_HARD_REFRESH_CRON_DELETE_II", "false").strip().lower() in ("true", "1", "yes", "on")
+    while True:
+        # Each iteration is fully guarded so a transient error can never
+        # permanently kill the scheduler task.
+        try:
+            now = datetime.now(tz)
+            nxt = now.replace(hour=hour, minute=0, second=0, microsecond=0)
+            if nxt <= now:
+                nxt = nxt + timedelta(days=1)
+            sleep_s = max(1.0, (nxt - now).total_seconds())
+            print(f"[NIGHTLY-HARD-REFRESH] next run at {nxt.isoformat()} "
+                  f"({tz_name}) — sleeping {int(sleep_s)}s", flush=True)
+            await asyncio.sleep(sleep_s)
+            summary = await sweep.hard_refresh_all(
+                agent_manager,
+                delete_initial_interest=delete_ii,
+                source="nightly_cron",
+            )
+            if summary.get("skipped"):
+                print(f"[NIGHTLY-HARD-REFRESH] skipped: {summary['skipped']} "
+                      "(AI sweep / queue / another refresh active)", flush=True)
+            else:
+                print(f"[NIGHTLY-HARD-REFRESH] done: records={summary.get('records')} "
+                      f"matched={summary.get('matched')} updated={summary.get('updated')} "
+                      f"removed={summary.get('removed')} unmatched={summary.get('unmatched')} "
+                      f"failed={summary.get('failed')}", flush=True)
+            await asyncio.sleep(60)  # avoid a double-fire within the same minute
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            print(f"[NIGHTLY-HARD-REFRESH] scheduler loop error: {e}; retrying in 300s", flush=True)
+            await asyncio.sleep(300)
+
+
 @app.get("/cron/sf-pull-refresh")
 async def cron_sf_pull_refresh(lookback_hours: int = 72, limit: int = 25, opp_only: bool = True):
     """Re-run the deterministic 3-tier SF pull + cache refresh for recently-seen
@@ -6682,107 +6583,30 @@ async def dashboard_delete_ep(dashboard_id: str):
 # ============================================================================
 
 # Strategist persona for the Deal chat (RevOps strategist over the whole book).
-_DEAL_ENGINE_CHAT_SYSTEM = """You are the Deal Strategist for Zycus: an elite RevOps and sales coach for the Zycus revenue team. Your job is to help VPs and account owners win more deals, forecast honestly, and always know the single most important next move on any opportunity.
-
-# Who you are helping
-You serve two audiences. Read the question and adapt:
-- Account owners / reps want execution help on their own deals: what is really going on, what is at risk, and the exact next step. Be a hands-on deal coach.
-- VPs and leaders want portfolio judgment: which deals to inspect, where the forecast is soft, where to spend coaching time, and which reps need help. Be a sharp second opinion on the number.
-Default to a rep-level, deal-execution lens unless the question is clearly about a team, a forecast, or a portfolio.
-
-# What Zycus sells (context)
-Zycus is a Source-to-Pay (S2P) procurement suite with Merlin AI capabilities. Deals are enterprise procurement transformations across eProcurement, iContract, iSupplier, iRisk, Intake, AppXtend, and Merlin AI. "AI appetite" describes how hungry an account is for AI and is strictly one of: AI Hungry, AI Curious, or AI Resistant. The fiscal year runs April to March; use those quarters.
-
-# The data you have, and its limits
-You reason over a "book": the deal records provided to you in the system context below. For each deal you may see:
-- Salesforce facts (ground truth): account, opportunity name, owner, stage, forecast category, amount, close date.
-- AI analysis from the platform's automated deal sweep, dated: an overall verdict (for example On Track or Off Track) and a one-line headline; an AI Fit status and score; the likely champion and their strength; MEDDPICC coverage (whether an economic buyer, decision maker, champion, pain, and metrics are identified); the primary competitor; the top recommended next moves, each with an owner and a target date; and the deal's main vulnerabilities. Each record carries a swept_at date, which is how fresh the analysis is, plus a confidence level.
-
-Hard limits you must never violate:
-- You have NO tools. You cannot query Salesforce, pull Avoma calls, search the web, or fetch anything new. The book in front of you is your only source.
-- If an answer is not supported by the book, say so plainly and say what is missing. Do not guess, and never invent activities, quotes, names, amounts, or dates.
-- Distinguish Salesforce fact from AI inference. Treat swept_at as the as-of date; if the analysis looks stale relative to the close date, flag it and suggest a re-sweep.
-- You only see the deals in the user's current scope. Do not claim knowledge of deals outside it.
-
-# How you think (operating principles)
-1. Evidence beats labels. A Best Case or high-probability deal is not safe until the facts support it. Test every deal against the qualification drill: engagement, access to power (economic buyer and decision maker), champion strength, competition, product fit, risk, and value/metrics. Call out deals that look strong on the label but are weak on the facts; that gap is where forecasts break.
-2. Recency rules. Weight recent evidence over stale. Always name dates. Never say "recently", "lately", or "soon"; give the date or the gap in days.
-3. Single-threading and missing power are red flags. No identified economic buyer, no confirmed champion, or a deal riding on one contact is high ghost-risk. Surface it early.
-4. Be prescriptive, not descriptive. Do not just diagnose; prescribe. Name the specific move, who should make it, by when, and the effect it should have, anchored to the deal's biggest gap. Prefer the platform's recommended moves when present, but pressure-test them.
-5. Momentum and timing. Read the gap between today, the last activity, and the close date. A near close date with overdue deliverables or no buyer engagement is a slipping deal; say so.
-
-# Handling the common questions
-- "Which deals should I focus on / what are my best deals?" Rank by genuine winnability (qualification depth, momentum, AI fit, size, and timing), NOT by stated probability or forecast label. Surface the few that matter, one line of reasoning each, and be explicit when your ranking disagrees with the forecast category.
-- "What's the risk on this deal / is my forecast safe?" Run the drill, name the two or three gaps that matter most, and give the move to close each.
-- "What's my next step on X?" Give the single highest-leverage next action: who, by when, and why, tied to the deal's biggest gap.
-- VP forecast review: separate the Commit and Best Case deals the evidence supports from the ones that are over-called, and name the upside that is real but unbooked. Point to which deals or reps need inspection.
-- Competition: name the specific threat and the specific counter-move.
-- AI whitespace: flag accounts that are AI Hungry but light on AI product scope; that is expansion.
-
-# How you write
-- Lead with the answer. Open with the recommendation or verdict in one or two sentences, then the supporting specifics.
-- Be specific and scannable. Name the deal (account and opportunity), the owner, the number, and the date. Use short structured lists for multi-deal answers; prose for a single deal.
-- Show the few that matter, not an exhaustive dump. Go deep only on request.
-- Plain English. No em dashes. No filler, no hedging, no flattery. Be direct and useful, like a top sales coach who respects the rep's time.
-- When the book cannot answer, say exactly what is missing and what would answer it, which is usually a fresh sweep, a logged call, or a Salesforce field.
-
-You are a trusted, evidence-anchored strategist. Help the team see their deals clearly and act on the one thing that moves each deal forward."""
-
-# Admins can override the chat agent's behaviour from the MASE chat UI. The edited
-# prompt is stored in Supabase app_config under this key and read on every chat
-# request (no redeploy). Empty/unset -> fall back to _DEAL_ENGINE_CHAT_SYSTEM.
-_DEAL_ENGINE_CHAT_PROMPT_KEY = "deal_engine_chat_system_prompt"
-
-
-def _load_chat_prompt_override() -> Optional[str]:
-    """The admin-edited deal-chat system prompt from app_config, or None when
-    unset/unreachable so the caller falls back to the bundled default. Mirrors
-    deal_engine_sweep._load_prompt_override."""
-    try:
-        import deal_engine_store as _dstore
-        rows = _dstore._select(
-            "app_config", select="value",
-            filters=[f"key=eq.{_DEAL_ENGINE_CHAT_PROMPT_KEY}"], limit=1)
-        if rows and isinstance(rows, list):
-            v = rows[0].get("value")
-            if isinstance(v, str) and v.strip():
-                return v
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-CHAT] app_config prompt fetch failed, using default: {e}",
-              flush=True)
-    return None
+_DEAL_ENGINE_CHAT_SYSTEM = (
+    "You are a RevOps strategist for the Zycus sales team, reasoning over a book "
+    "of evidence-anchored deal records (Salesforce facts plus dated, cited AI "
+    "analysis). Operating rules:\n"
+    "- Test rep-stated probability and forecast labels against a 7-point "
+    "qualification drill: engagement, access to power, champion, competition, "
+    "product fit, risk, value. Call out claims the evidence does not support.\n"
+    "- Weight recent evidence over stale evidence. Always name dates; never say "
+    "'recently' or 'lately'.\n"
+    "- Use fiscal quarters running April to March.\n"
+    "- Describe AI appetite strictly as 'AI Hungry', 'AI Curious', or 'AI "
+    "Resistant'.\n"
+    "- No fabrication. Every claim must trace to a record field, a dated "
+    "activity, or a cited quote in the provided book. If the book does not "
+    "support an answer, say so plainly.\n"
+    "- Plain English. No em dashes. Be specific and prescriptive: name the move "
+    "and who should be in the room."
+)
 
 
 def _deal_engine_model() -> str:
-    # The Deal chat runs on Claude Sonnet 4.6 (best reasoning over the evidence
-    # book). Provider prefix required so _build_deal_chat_llm routes correctly;
-    # override via DEAL_ENGINE_MODEL (e.g. "openai:gpt-4o").
-    return os.environ.get("DEAL_ENGINE_MODEL", "anthropic:claude-sonnet-4-6")
-
-
-def _build_deal_chat_llm(model_name: str):
-    """Build the chat LLM for `model_name`, routing by provider prefix.
-    'anthropic:*' -> CachedChatAnthropic (streaming + prompt caching; streaming
-    avoids the long-request interruption on big books); 'openai:*' or a bare id
-    -> ChatOpenAI. Returns None when the required API key is missing."""
-    name = (model_name or "").strip()
-    if name.startswith("anthropic:"):
-        if not os.environ.get("ANTHROPIC_API_KEY"):
-            return None
-        from anthropic_cache import CachedChatAnthropic
-        return CachedChatAnthropic(
-            model_name=name.split(":", 1)[1],
-            api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
-            temperature=0.2,
-            max_tokens=int(os.getenv("DEAL_ENGINE_CHAT_MAX_TOKENS", "6000")),
-            timeout=int(os.getenv("DEAL_ENGINE_CHAT_TIMEOUT_S", "300")),
-            streaming=True,
-        )
-    if not os.environ.get("OPENAI_API_KEY"):
-        return None
-    from langchain_openai import ChatOpenAI
-    bare = name.split(":", 1)[1] if name.startswith("openai:") else name
-    return ChatOpenAI(model=bare, temperature=0.2)
+    # Spec default is Claude, but Anthropic is unavailable in this environment,
+    # so the Deal chat runs on OpenAI. Overridable via DEAL_ENGINE_MODEL.
+    return os.environ.get("DEAL_ENGINE_MODEL", "gpt-4o")
 
 
 @app.get("/api/deal-engine")
@@ -7165,7 +6989,15 @@ async def deal_engine_sweep_trigger(request: Request):
             return JSONResponse(
                 {"error": "provide an opportunity id (opp_id / id / recordId) "
                           "or opp_ids[]"}, status_code=400)
-        results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
+        if sweep.queue_enabled():
+            # Queue mode: enqueue a durable `waiting` row per opp; the separate
+            # worker.py drains it. The web process does NOT run the analysis, so
+            # a burst of Salesforce updates can't starve it.
+            results = {oid: await sweep.enqueue_trigger(agent_manager, oid)
+                       for oid in ids}
+        else:
+            results = {oid: sweep.trigger_opp_async(agent_manager, oid)
+                       for oid in ids}
         return JSONResponse(
             {"status": "accepted", "results": results, "count": len(ids),
              "note": "analysis runs in the background; poll the record or the "
@@ -7268,8 +7100,40 @@ async def deal_engine_hard_refresh(request: Request):
             agent_manager,
             delete_initial_interest=delete_ii,
             concurrency=concurrency,
+            source="manual",
         )
         return summary
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/hard-refresh/status")
+async def deal_engine_hard_refresh_status():
+    """Summary of the most recent token-free hard-fact reconciliation (records /
+    matched / updated / removed / unmatched / failed / finished_at / source) and
+    whether one is running right now. Survives a server restart (persisted to
+    disk), so the last nightly run can be checked later."""
+    import deal_engine_sweep as sweep
+    try:
+        return {
+            "running": bool(getattr(sweep, "_hard_refresh_running", False)),
+            "last": sweep.get_hard_refresh_last(),
+        }
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/hard-refresh/history")
+async def deal_engine_hard_refresh_history(limit: int = 200):
+    """Append-only history of token-free hard-fact reconciliation runs, newest
+    first. Each row records timestamp, source (manual / nightly), and the
+    records / matched / updated / removed / unmatched / failed counts — so the
+    nightly schedule is auditable and an anomalous run (unusually high/low
+    updated/removed counts) can be spotted over time. `limit` caps the rows
+    returned (default 200)."""
+    import deal_hard_refresh_log as hard_refresh_log
+    try:
+        return {"runs": hard_refresh_log.list_runs(limit=int(limit))}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -7280,24 +7144,6 @@ async def deal_engine_sweep_status():
     import deal_engine_sweep as sweep
     try:
         return await sweep.get_status()
-    except Exception as e:  # noqa: BLE001
-        return JSONResponse({"error": str(e)}, status_code=500)
-
-
-@app.get("/api/deal-engine/sweep/active")
-async def deal_engine_sweep_active():
-    """The 15-char opp keys whose single-opp re-analysis is in flight right now.
-
-    Lightweight (in-memory, no DB read) so the sweep admin UI can poll it every
-    few seconds to show a live 'running' pill per opportunity — covering manual
-    'Run now' clicks, Salesforce update triggers, and discovery claims alike."""
-    import deal_engine_sweep as sweep
-    try:
-        runs = await asyncio.to_thread(sweep.get_active_runs)
-        ids = sorted({r.get("opp_id_15") for r in runs if r.get("opp_id_15")})
-        # `inflight` (ids) drives the per-opp Running… pills; `runs` (full rows)
-        # feeds the Reruns tab so in-flight re-analyses show there too.
-        return {"inflight": ids, "count": len(ids), "runs": runs}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -7348,6 +7194,20 @@ async def deal_engine_sweep_dashboard():
   .controls { margin-left:auto; display:flex; gap:8px; align-items:center; }
   select,button { background:var(--line); color:var(--txt); border:1px solid #3a4258; padding:5px 10px; border-radius:5px; font-size:12px; cursor:pointer; }
   #updated { font-size:11px; color:var(--muted); }
+  .hr-panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 18px; margin-bottom:18px; display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  .hr-panel .hr-title { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  .hr-panel .hr-src { font-size:11px; padding:3px 10px; border-radius:999px; background:var(--line); color:var(--txt); }
+  .hr-panel .hr-src.nightly_cron { background:#1e3a5f; color:#7cc4ff; }
+  .hr-panel .hr-src.manual { background:#5c4a16; color:#f0c674; }
+  .hr-panel .hr-when { font-size:12px; color:var(--muted); }
+  .hr-panel .hr-stats { display:flex; gap:18px; margin-left:auto; flex-wrap:wrap; }
+  .hr-panel .hr-stat { text-align:center; }
+  .hr-panel .hr-stat .v { font-size:18px; font-weight:700; }
+  .hr-panel .hr-stat .k { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-top:1px; }
+  .hr-panel .hr-stat.updated .v { color:#7ee787; }
+  .hr-panel .hr-stat.removed .v { color:#f0c674; }
+  .hr-panel .hr-stat.failed .v { color:#ff8585; }
+  .hr-panel .hr-run { font-size:11px; padding:3px 10px; border-radius:999px; background:#1e3a5f; color:#7cc4ff; }
 </style></head>
 <body>
 <header>
@@ -7377,6 +7237,19 @@ async def deal_engine_sweep_dashboard():
     <div class="card failed"><div class="n" id="c-failed">0</div><div class="l">Failed</div></div>
   </div>
   <div class="bar"><i class="b-done" id="bar-done"></i><i class="b-run" id="bar-run"></i><i class="b-failed" id="bar-failed"></i></div>
+  <div class="hr-panel" id="hr-panel" style="display:none">
+    <span class="hr-title">Hard-fact sync</span>
+    <span class="hr-src" id="hr-src">—</span>
+    <span class="hr-when" id="hr-when"></span>
+    <span class="hr-run" id="hr-run" style="display:none">running…</span>
+    <div class="hr-stats">
+      <div class="hr-stat"><div class="v" id="hr-records">0</div><div class="k">Records</div></div>
+      <div class="hr-stat"><div class="v" id="hr-matched">0</div><div class="k">Matched</div></div>
+      <div class="hr-stat updated"><div class="v" id="hr-updated">0</div><div class="k">Updated</div></div>
+      <div class="hr-stat removed"><div class="v" id="hr-removed">0</div><div class="k">Removed</div></div>
+      <div class="hr-stat failed"><div class="v" id="hr-failed">0</div><div class="k">Failed</div></div>
+    </div>
+  </div>
   <table>
     <thead><tr><th>#</th><th>Account</th><th>Owner</th><th>Opp ID</th><th>Status</th><th>Tries</th><th>Duration</th><th>Error</th></tr></thead>
     <tbody id="rows"></tbody>
@@ -7425,8 +7298,37 @@ async function tick(){
   </tr>`).join('');
   $('updated').textContent = 'updated ' + new Date().toLocaleTimeString();
 }
+async function tickHardRefresh(){
+  let d;
+  try { const r = await fetch('/api/deal-engine/hard-refresh/status', {credentials:'same-origin'});
+        if(!r.ok) return;
+        d = await r.json(); }
+  catch(e){ return; }
+  const last = d && d.last;
+  const running = !!(d && d.running);
+  $('hr-run').style.display = running ? '' : 'none';
+  if(!last || !Object.keys(last).length){
+    if(running){ $('hr-panel').style.display=''; $('hr-src').style.display='none'; $('hr-when').textContent='no completed sync yet'; }
+    return;
+  }
+  $('hr-panel').style.display='';
+  $('hr-src').style.display='';
+  const src = last.source || 'manual';
+  $('hr-src').textContent = src;
+  $('hr-src').className = 'hr-src ' + esc(src);
+  const fin = last.finished_at;
+  let when = '';
+  if(fin){ const dt = new Date(fin); when = isNaN(dt) ? esc(fin) : ('last synced ' + dt.toLocaleString()); }
+  $('hr-when').textContent = when;
+  $('hr-records').textContent = last.records!=null ? last.records : 0;
+  $('hr-matched').textContent = last.matched!=null ? last.matched : 0;
+  $('hr-updated').textContent = last.updated!=null ? last.updated : 0;
+  $('hr-removed').textContent = last.removed!=null ? last.removed : 0;
+  $('hr-failed').textContent = last.failed!=null ? last.failed : 0;
+}
 $('filter').addEventListener('change', tick);
 tick(); setInterval(tick, 2500);
+tickHardRefresh(); setInterval(tickHardRefresh, 10000);
 </script>
 </body></html>""")
 
@@ -7729,15 +7631,13 @@ async def deal_engine_chat(request: Request):
         owners = [str(o).strip() for o in d.get("owners", [])
                   if str(o).strip()] if isinstance(d.get("owners"), list) else []
         model_name = (d.get("model") or "").strip() or _deal_engine_model()
-        llm = _build_deal_chat_llm(model_name)
-        if llm is None:
-            need = "ANTHROPIC_API_KEY" if model_name.startswith("anthropic:") else "OPENAI_API_KEY"
-            return JSONResponse(
-                {"error": f"{need} is not configured for model '{model_name}'"},
-                status_code=400)
+        if not os.environ.get("OPENAI_API_KEY"):
+            return JSONResponse({"error": "OPENAI_API_KEY is not configured"}, status_code=400)
 
         book = await _aw(dstore.chat_book_context, owner,
                          owners or None, opp_ids or None)
+        from langchain_openai import ChatOpenAI
+        llm = ChatOpenAI(model=model_name, temperature=0.2)
 
         # Scope label mirrors the precedence used by the store: opp_ids > owners > owner.
         if opp_ids:
@@ -7748,11 +7648,8 @@ async def deal_engine_chat(request: Request):
             scope = f" (filtered to {owner})"
         else:
             scope = ""
-        # Admin-edited behaviour wins; otherwise the bundled default. Read per
-        # request so edits in the MASE chat admin block apply with no redeploy.
-        _base_prompt = _load_chat_prompt_override() or _DEAL_ENGINE_CHAT_SYSTEM
         sys_text = (
-            f"{_base_prompt}\n\n"
+            f"{_DEAL_ENGINE_CHAT_SYSTEM}\n\n"
             f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"
         )
@@ -7766,43 +7663,6 @@ async def deal_engine_chat(request: Request):
         usage = getattr(resp, "response_metadata", {}).get("token_usage", {}) or \
             getattr(resp, "usage_metadata", {}) or {}
         return {"answer": resp.content, "usage": usage}
-    except Exception as e:  # noqa: BLE001
-        return JSONResponse({"error": str(e)}, status_code=500)
-
-
-@app.get("/api/deal-engine/chat/prompt")
-async def deal_engine_chat_prompt_get():
-    """The deal-chat agent's system prompt for the admin editor: the active
-    override (if any), the built-in default, and whether an override is set."""
-    override = _load_chat_prompt_override()
-    return {
-        "prompt": override if override is not None else "",
-        "default": _DEAL_ENGINE_CHAT_SYSTEM,
-        "is_override": override is not None,
-    }
-
-
-@app.post("/api/deal-engine/chat/prompt")
-async def deal_engine_chat_prompt_set(request: Request):
-    """Set or clear the deal-chat agent's system prompt (the editable behaviour
-    block). Admin-gated at the MASE proxy layer; a blank value clears the
-    override and restores the bundled default. Applies on the next chat request,
-    no redeploy."""
-    import deal_engine_store as _dstore
-    try:
-        d = await request.json()
-        val = d.get("prompt")
-        if not isinstance(val, str):
-            return JSONResponse({"error": "prompt (string) required"},
-                                status_code=400)
-        if val.strip():
-            _dstore._upsert(
-                "app_config",
-                {"key": _DEAL_ENGINE_CHAT_PROMPT_KEY, "value": val},
-                "key", returning=False)
-            return {"ok": True, "is_override": True}
-        _dstore._delete("app_config", {"key": _DEAL_ENGINE_CHAT_PROMPT_KEY})
-        return {"ok": True, "is_override": False}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -8108,6 +7968,11 @@ async def startup_event():
 
     # Nightly deterministic SF pull + cache refresh (default midnight UTC).
     asyncio.create_task(_nightly_sf_pull_scheduler())
+
+    # Nightly token-free hard-fact reconciliation (default 01:00 UTC) — re-reads
+    # live Salesforce hard facts onto every deal record with no AI cost, keeping
+    # the book accurate between paid AI sweeps.
+    asyncio.create_task(_nightly_hard_refresh_scheduler())
 
 
 @app.on_event("shutdown")
@@ -8466,24 +8331,30 @@ _mcp = _FastMCP(
         "message). The server automatically selects the right tool, infers the correct "
         "arguments, and executes — all in one step. Use this whenever the user describes "
         "what they want in plain English.\n\n"
-        "Structured opportunity + Avoma meeting data (cache + diagnosis history) — "
+        "Opportunity Observatory (pre-computed deal dossiers) — call these THREE by "
+        "exact name; do NOT route them through call_tool/smart_call:\n"
+        "5. list_opportunity_dossiers — lightweight header rows (find the right opp).\n"
+        "6. get_opportunity_dossier — one full dossier by opportunity_id (optionally a "
+        "subset of sections).\n"
+        "7. search_opportunity_dossiers — fuzzy search by opportunity/account name.\n\n"
+        "Structured opportunity + Avoma meeting data (cache + diagnosis history) — also "
         "call these EIGHT by exact name; all are read-only and return structured JSON with "
         "limit/offset pagination (has_more + next_offset):\n"
-        "5. list_cached_opportunities — list/filter the opportunity_cache (by momentum, "
+        "8. list_cached_opportunities — list/filter the opportunity_cache (by momentum, "
         "stage, amount, is_closed, etc.).\n"
-        "6. search_cached_opportunities — substring search opportunity_cache by "
+        "9. search_cached_opportunities — substring search opportunity_cache by "
         "opportunity/account name.\n"
-        "7. get_cached_opportunity — one opportunity's full cached state + its linked "
+        "10. get_cached_opportunity — one opportunity's full cached state + its linked "
         "meetings + recent field-history, by opportunity_id.\n"
-        "8. get_opportunity_field_history — field-change history for one opportunity "
+        "11. get_opportunity_field_history — field-change history for one opportunity "
         "(optionally filtered to one field_name).\n"
-        "9. list_opportunity_diagnoses — prior diagnosis runs (full text + momentum "
+        "12. list_opportunity_diagnoses — prior diagnosis runs (full text + momentum "
         "verdict, health rating, top risks, timestamp) by account_id and/or opportunity_id.\n"
-        "10. list_opportunity_meetings — Avoma meetings linked to one opportunity "
+        "13. list_opportunity_meetings — Avoma meetings linked to one opportunity "
         "(meeting_cache: title, date, transcript summary), by opportunity_id.\n"
-        "11. get_meeting_analysis — per-meeting Avoma AI analysis reports for one "
+        "14. get_meeting_analysis — per-meeting Avoma AI analysis reports for one "
         "opportunity (conflicts, win likelihood, evidence), by opportunity_id.\n"
-        "12. find_meetings_by_name — find a deal's meetings (and optionally analysis) "
+        "15. find_meetings_by_name — find a deal's meetings (and optionally analysis) "
         "directly from a company/deal name, no opportunity_id needed."
     ),
     transport_security=_TransportSecuritySettings(enable_dns_rebinding_protection=False),
@@ -8885,6 +8756,104 @@ async def smart_call(app_name: str, intent: str, context: str = "") -> str:
             "reasoning":      reasoning,
             "error":          f"{type(exc).__name__}: {exc}",
         })
+
+
+# ---------------------------------------------------------------------------
+# Opportunity Observatory — first-class MCP tools (exposed by EXACT name).
+#
+# These wrap the read-only @tool functions in custom_tools/opportunity_observatory.py
+# so external MCP clients (Claude Desktop / Claude.ai) see them directly in
+# tools/list and call them by name — instead of falling through to call_tool's
+# fuzzy matcher (which previously mis-routed `list_opportunity_dossiers` to an
+# unrelated `list_users` tool). Each is hard-scoped to the single
+# opportunity_observatory table; no write path. Sync httpx reads run in an
+# executor so they don't block the event loop.
+# ---------------------------------------------------------------------------
+from custom_tools import opportunity_observatory as _obs
+
+
+@_mcp.tool()
+async def list_opportunity_dossiers(
+    limit: int = 50,
+    stage: Optional[str] = None,
+    account_name_contains: Optional[str] = None,
+    name_contains: Optional[str] = None,
+) -> str:
+    """List Opportunity Observatory dossiers (lightweight — header fields only).
+
+    The Observatory holds one rich, pre-computed dossier per opportunity (SF
+    90-day evidence, Avoma evidence, outbound/campaign intelligence, and four
+    diagnostic bundles A-D plus a final diagnosis sheet). This returns ONLY the
+    header fields so you can find the right opportunity before pulling its full
+    dossier with get_opportunity_dossier.
+
+    Args:
+        limit:                 Max rows (default 50, hard cap 200).
+        stage:                 Exact stage filter (e.g. 'Qualified', 'Shortlisted').
+        account_name_contains: Case-insensitive substring match on account_name.
+        name_contains:         Case-insensitive substring match on opportunity name.
+
+    Returns:
+        JSON string: {count, dossiers:[{opportunity_id, name, opportunity_owner,
+        close_date, amount, stage, account_name, updated_at}]}.
+    """
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, lambda: _obs.list_opportunity_dossiers.invoke({
+        "limit": limit,
+        "stage": stage,
+        "account_name_contains": account_name_contains,
+        "name_contains": name_contains,
+    }))
+
+
+@_mcp.tool()
+async def get_opportunity_dossier(opportunity_id: str, sections: Optional[str] = None) -> str:
+    """Fetch one full Opportunity Observatory dossier by opportunity_id.
+
+    Returns the header fields plus long-form analysis sections (multi-paragraph
+    markdown). Pull only the sections you need for large dossiers.
+
+    Available sections: sf_90day_evidence, avoma_evidence,
+    outbound_campaign_intelligence, bundle_a_deal_progress,
+    bundle_b_competition_fit, bundle_c_stakeholder_map, bundle_d_vulnerabilities,
+    diagnosis_sheet.
+
+    Args:
+        opportunity_id: Salesforce Opportunity Id (from list/search).
+        sections:       Optional comma-separated subset of section names above.
+                        Omit to return ALL sections (can be large).
+
+    Returns:
+        JSON string with the header fields + requested section(s), or an error.
+    """
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, lambda: _obs.get_opportunity_dossier.invoke({
+        "opportunity_id": opportunity_id,
+        "sections": sections,
+    }))
+
+
+@_mcp.tool()
+async def search_opportunity_dossiers(query: str, limit: int = 20) -> str:
+    """Substring search the Observatory across opportunity name + account name.
+
+    Case-insensitive ILIKE match on either `name` or `account_name`. Use this
+    when you have a fuzzy company or deal name. Returns lightweight header rows;
+    follow up with get_opportunity_dossier for the full content.
+
+    Args:
+        query: Search text (e.g. 'Bright Horizons', 'Anora'). Matched as a
+               substring against both name and account_name.
+        limit: Max rows (default 20, hard cap 200).
+
+    Returns:
+        JSON string: {count, dossiers:[...header fields...]}.
+    """
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, lambda: _obs.search_opportunity_dossiers.invoke({
+        "query": query,
+        "limit": limit,
+    }))
 
 
 # ---------------------------------------------------------------------------

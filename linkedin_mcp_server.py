@@ -4,7 +4,7 @@ import time
 import threading
 from typing import Optional, Any
 from datetime import datetime, timedelta
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 import httpx
 from fastmcp import FastMCP
@@ -47,7 +47,21 @@ mcp = FastMCP(
         "To analyse performance by region (US/EU/APAC), use linkedin_get_campaigns to get "
         "all campaigns with their targeting criteria (locations field), group them by region "
         "manually, then call linkedin_get_campaign_analytics per campaign to aggregate spend "
-        "and engagement per region."
+        "and engagement per region.\n"
+        "AD LIBRARY (public ad-transparency, separate from the campaign tools above): "
+        "use linkedin_search_ad_library to see the ads ANY company is publicly running — a "
+        "competitor's OR our own — by advertiser/company name and/or keyword, optionally "
+        "narrowed by country and date range. Use the campaign-analytics tools "
+        "(linkedin_get_*_analytics) for OUR OWN spend/clicks/leads performance; use the Ad "
+        "Library tools for the actual creative/messaging any advertiser is running publicly. "
+        "The search returns ad METADATA (advertiser, format, active dates, impression range, "
+        "targeting/countries, public ad_url); the creative COPY (headline/body/CTA) comes "
+        "from include_creative=True on the search OR linkedin_get_ad_library_ad(ad_id) for one "
+        "ad. Note the destination/landing URL is NOT exposed by LinkedIn's public Ad Library. "
+        "For an 'us vs. competitors, how do we improve' request, there is no comparison "
+        "endpoint: run linkedin_search_ad_library once per company (ours and each competitor) "
+        "with include_creative=True, then reason over the results yourself and give a "
+        "side-by-side read with concrete creative/messaging suggestions."
     ),
 )
 
@@ -590,6 +604,269 @@ def linkedin_get_creative_analytics(
 
 
 # ---------------------------------------------------------------------------
+# Write tools: pause / reactivate campaigns and creatives
+# Require a token with the rw_ads scope AND an ACCOUNT_MANAGER /
+# CAMPAIGN_MANAGER / CREATIVE_MANAGER role on the ad account.
+# ---------------------------------------------------------------------------
+
+CAMPAIGN_STATUS_VALUES = (
+    "ACTIVE", "PAUSED", "ARCHIVED", "DRAFT", "COMPLETED", "CANCELED",
+)
+CREATIVE_STATUS_VALUES = (
+    "ACTIVE", "PAUSED", "ARCHIVED", "CANCELLED", "DRAFT",
+)
+
+
+def _post_partial_update_raw(raw_url: str, patch_body: dict) -> httpx.Response:
+    """
+    Send a LinkedIn RestLi PARTIAL_UPDATE.
+
+    Uses build_request/send against a fully-built URL (mirroring _get_raw) so an
+    already-encoded URN in the path is not double-encoded, and adds the
+    X-RestLi-Method: PARTIAL_UPDATE header LinkedIn requires for $set patches.
+    Returns the raw response; the caller inspects status_code.
+    """
+    headers = {**_headers(), "X-RestLi-Method": "PARTIAL_UPDATE"}
+    with httpx.Client(timeout=30) as client:
+        req = client.build_request("POST", raw_url, headers=headers, json=patch_body)
+        resp = client.send(req)
+    return resp
+
+
+def _write_error_payload(resp: httpx.Response, action: str) -> dict:
+    """Map a failed LinkedIn write response to a plain-language error dict."""
+    status_code = resp.status_code
+    raw_text = resp.text or ""
+    li_message = ""
+    li_code = ""
+    try:
+        body = resp.json()
+        if isinstance(body, dict):
+            li_message = str(body.get("message", "") or "")
+            li_code = str(body.get("code", "") or body.get("serviceErrorCode", "") or "")
+    except Exception:
+        li_message = raw_text
+
+    lower = f"{li_message} {li_code} {raw_text}".lower()
+    li_text = li_message or raw_text
+
+    if "review" in lower and "creative" in action:
+        error = "creative_in_review"
+        message = (
+            "This creative is still in review and cannot be paused or have its "
+            "status changed until LinkedIn finishes reviewing it. "
+            f"LinkedIn said: {li_text}"
+        )
+    elif status_code == 426 or "nonexistent_version" in lower:
+        error = "api_version_expired"
+        message = (
+            f"The LinkedIn API version ({LINKEDIN_API_VERSION}) is expired or no "
+            "longer accepted. Bump LINKEDIN_API_VERSION in linkedin_mcp_server.py "
+            f"to a currently-supported month. LinkedIn said: {li_text}"
+        )
+    elif status_code == 429 or "rate" in lower and "limit" in lower:
+        error = "rate_limited"
+        message = (
+            "LinkedIn rate-limited this write (429). Wait a moment and retry. "
+            f"LinkedIn said: {li_text}"
+        )
+    elif status_code in (401, 403) or "permission" in lower or "scope" in lower \
+            or "access_denied" in lower or "not authorized" in lower:
+        error = "permission_or_scope"
+        message = (
+            f"LinkedIn rejected the {action} ({status_code}). The access token most "
+            "likely lacks the 'rw_ads' write scope (read-only 'r_ads' cannot write), "
+            "or the token's member is not ACCOUNT_MANAGER / CAMPAIGN_MANAGER / "
+            "CREATIVE_MANAGER on this ad account (a VIEWER cannot write even with "
+            "rw_ads). A user-provided 3-legged OAuth token with rw_ads is required — "
+            f"this cannot be minted automatically. LinkedIn said: {li_text}"
+        )
+    else:
+        error = "linkedin_error"
+        message = f"LinkedIn API error during {action} ({status_code}): {li_text}"
+
+    return {
+        "status": "error",
+        "error": error,
+        "http_status": status_code,
+        "linkedin_code": li_code,
+        "message": message,
+    }
+
+
+@mcp.tool()
+def linkedin_set_campaign_status(account_id: str, campaign_id: str, status: str) -> str:
+    """
+    Pause, reactivate, or otherwise change the status of a LinkedIn campaign.
+
+    This is a WRITE operation that changes live ad delivery: setting a campaign
+    to PAUSED stops it serving; setting it to ACTIVE resumes delivery. Requires a
+    LINKEDIN_ACCESS_TOKEN with the 'rw_ads' scope and an ACCOUNT_MANAGER /
+    CAMPAIGN_MANAGER role on the account.
+
+    IMPORTANT: Resolve the exact numeric account_id and campaign_id first via
+    linkedin_get_campaigns / linkedin_get_campaign_details. Never guess a
+    campaign from a fuzzy name match — act only on an explicit numeric ID.
+
+    Args:
+        account_id: LinkedIn ad account ID (numeric, e.g. "506537541").
+        campaign_id: LinkedIn campaign ID (numeric — the last segment of
+            urn:li:sponsoredCampaign:{id}).
+        status: New status. One of ACTIVE, PAUSED, ARCHIVED, DRAFT, COMPLETED,
+            CANCELED.
+
+    Returns:
+        JSON with the requested status and the actual current_status re-read
+        from LinkedIn after the write (so the result is confirmed, not assumed),
+        or a plain-language error (permission/scope, expired version, rate limit).
+    """
+    status = (status or "").strip().upper()
+    if status not in CAMPAIGN_STATUS_VALUES:
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_status",
+            "message": (
+                f"Invalid campaign status '{status}'. Must be one of: "
+                f"{', '.join(CAMPAIGN_STATUS_VALUES)}."
+            ),
+        }, indent=2)
+
+    raw_url = f"{LINKEDIN_REST_BASE}/adAccounts/{account_id}/adCampaigns/{campaign_id}"
+    patch_body = {"patch": {"$set": {"status": status}}}
+    try:
+        resp = _post_partial_update_raw(raw_url, patch_body)
+    except Exception as exc:
+        return json.dumps({
+            "status": "error",
+            "error": "request_failed",
+            "message": f"Request to LinkedIn failed: {exc}",
+        }, indent=2)
+
+    if resp.status_code >= 400:
+        return json.dumps(
+            _write_error_payload(resp, f"campaign {campaign_id} status update"),
+            indent=2,
+        )
+
+    try:
+        current = _get(f"/adAccounts/{account_id}/adCampaigns/{campaign_id}")
+        new_status = current.get("status")
+    except Exception as exc:
+        return json.dumps({
+            "status": "success",
+            "warning": f"Write succeeded but re-read failed: {exc}",
+            "account_id": account_id,
+            "campaign_id": campaign_id,
+            "requested_status": status,
+        }, indent=2, default=str)
+
+    return json.dumps({
+        "status": "success",
+        "account_id": account_id,
+        "campaign_id": campaign_id,
+        "requested_status": status,
+        "current_status": new_status,
+        "confirmed": new_status == status,
+        "campaign": current,
+    }, indent=2, default=str)
+
+
+@mcp.tool()
+def linkedin_set_creative_status(
+    account_id: str, creative_urn: str, intended_status: str
+) -> str:
+    """
+    Pause, reactivate, or otherwise change the intendedStatus of a LinkedIn ad
+    creative.
+
+    This is a WRITE operation affecting live delivery: setting intendedStatus to
+    PAUSED stops the ad serving; ACTIVE resumes it. A creative still in review
+    cannot be changed until LinkedIn finishes its review. Requires a
+    LINKEDIN_ACCESS_TOKEN with the 'rw_ads' scope and an ACCOUNT_MANAGER /
+    CREATIVE_MANAGER role on the account.
+
+    IMPORTANT: Resolve the exact creative via linkedin_get_creatives first. Never
+    guess a creative from a fuzzy name match — act only on an explicit ID/URN.
+
+    Args:
+        account_id: LinkedIn ad account ID (numeric, e.g. "506537541").
+        creative_urn: The creative URN (urn:li:sponsoredCreative:{id}) OR the
+            bare numeric creative ID — both are accepted and normalized.
+        intended_status: New intendedStatus. One of ACTIVE, PAUSED, ARCHIVED,
+            CANCELLED, DRAFT.
+
+    Returns:
+        JSON with the requested status and the actual current_intended_status
+        re-read from LinkedIn after the write (so the result is confirmed, not
+        assumed), or a plain-language error (creative-in-review, permission/scope,
+        expired version, rate limit).
+    """
+    intended_status = (intended_status or "").strip().upper()
+    if intended_status not in CREATIVE_STATUS_VALUES:
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_status",
+            "message": (
+                f"Invalid creative intendedStatus '{intended_status}'. Must be one "
+                f"of: {', '.join(CREATIVE_STATUS_VALUES)}."
+            ),
+        }, indent=2)
+
+    raw = (creative_urn or "").strip()
+    if raw.startswith("urn:li:sponsoredCreative:"):
+        creative_id = raw.split(":")[-1]
+    else:
+        creative_id = raw
+    if not creative_id:
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_creative",
+            "message": "creative_urn is required (a URN or a bare numeric ID).",
+        }, indent=2)
+
+    full_urn = f"urn:li:sponsoredCreative:{creative_id}"
+    encoded = quote(full_urn, safe="")
+    raw_url = f"{LINKEDIN_REST_BASE}/adAccounts/{account_id}/creatives/{encoded}"
+    patch_body = {"patch": {"$set": {"intendedStatus": intended_status}}}
+    try:
+        resp = _post_partial_update_raw(raw_url, patch_body)
+    except Exception as exc:
+        return json.dumps({
+            "status": "error",
+            "error": "request_failed",
+            "message": f"Request to LinkedIn failed: {exc}",
+        }, indent=2)
+
+    if resp.status_code >= 400:
+        return json.dumps(
+            _write_error_payload(resp, f"creative {full_urn} status update"),
+            indent=2,
+        )
+
+    try:
+        current = _get_raw(raw_url)
+        new_status = current.get("intendedStatus") if isinstance(current, dict) else None
+    except Exception as exc:
+        return json.dumps({
+            "status": "success",
+            "warning": f"Write succeeded but re-read failed: {exc}",
+            "account_id": account_id,
+            "creative_urn": full_urn,
+            "requested_intended_status": intended_status,
+        }, indent=2, default=str)
+
+    return json.dumps({
+        "status": "success",
+        "account_id": account_id,
+        "creative_urn": full_urn,
+        "requested_intended_status": intended_status,
+        "current_intended_status": new_status,
+        "confirmed": new_status == intended_status,
+        "creative": current,
+    }, indent=2, default=str)
+
+
+# ---------------------------------------------------------------------------
 # Lead Gen Forms & Responses
 # Requires: r_ads_leadgen_automation scope (separate LinkedIn Lead Sync API
 # program — apply at developer.linkedin.com/product-catalog/marketing/lead-generation)
@@ -808,6 +1085,490 @@ def linkedin_get_all_leads(
             "Individual contact details (name/email) require Advanced Tier."
         ),
         "per_campaign": per_campaign,
+    }, indent=2, default=str)
+
+
+# ---------------------------------------------------------------------------
+# Ad Library (public ad-transparency API) — READ ONLY
+# Separate from the campaign-management/analytics endpoints above: this is the
+# public ad library that lets you see the ads ANY company is publicly running
+# (competitors or our own), for creative/messaging research.
+#
+#   Search:  GET /rest/adLibrary?q=criteria
+#              &keyword=...&advertiser=...
+#              &countries=List(US,GB)
+#              &dateRange=(start:(year:Y,month:M,day:D),end:(...))
+#              &start=0&count=25
+#   Detail:  GET /rest/adLibrary/{adId}
+#
+# Uses the SAME LINKEDIN_ACCESS_TOKEN and versioned headers as every other read
+# here. NOTE: the Ad Library API is a private Marketing API product that must be
+# approved ON TOP OF r_ads/r_ads_reporting; an un-provisioned token gets a 404
+# on /adLibrary. That case is surfaced as a clear, humanized error (below) that
+# tells the operator to request Ad Library access and refresh the token — we do
+# NOT hardcode or invent a separate credential.
+#
+# RestLi syntax (List(...), the dateRange tuple) is built into the raw URL and
+# sent via httpx build_request+send so httpx's params= encoder does not double-
+# encode it (same approach as the analytics/creatives readers above).
+# ---------------------------------------------------------------------------
+
+
+def _adlibrary_error_payload(resp: httpx.Response, action: str) -> dict:
+    """Map a failed LinkedIn Ad Library read to a plain-language error dict."""
+    status_code = resp.status_code
+    raw_text = resp.text or ""
+    li_message = ""
+    li_code = ""
+    try:
+        body = resp.json()
+        if isinstance(body, dict):
+            li_message = str(body.get("message", "") or "")
+            li_code = str(body.get("code", "") or body.get("serviceErrorCode", "") or "")
+    except Exception:
+        li_message = raw_text
+
+    lower = f"{li_message} {li_code} {raw_text}".lower()
+    li_text = li_message or raw_text
+
+    if status_code == 404 or "not found" in lower or "no resource" in lower:
+        error = "ad_library_not_enabled"
+        message = (
+            f"LinkedIn returned 404 for the Ad Library endpoint during {action}. "
+            "The Ad Library API is a separate, PRIVATE Marketing API product that "
+            "must be approved on top of the current r_ads / r_ads_reporting access. "
+            "Apply for Ad Library API access in the LinkedIn Developer Portal "
+            "(My Apps > your app > Products), and once approved, re-authenticate and "
+            "update the LINKEDIN_ACCESS_TOKEN secret with a token carrying the new "
+            f"product. LinkedIn said: {li_text}"
+        )
+    elif status_code in (401, 403) or "permission" in lower or "scope" in lower \
+            or "access_denied" in lower or "not authorized" in lower:
+        error = "permission_or_scope"
+        message = (
+            f"LinkedIn rejected the Ad Library {action} ({status_code}). The access "
+            "token most likely lacks the Ad Library API product/scope. The Ad Library "
+            "API requires a separate approval on top of r_ads; request it in the "
+            "LinkedIn Developer Portal, then refresh the LINKEDIN_ACCESS_TOKEN secret. "
+            f"LinkedIn said: {li_text}"
+        )
+    elif status_code == 426 or "nonexistent_version" in lower:
+        error = "api_version_expired"
+        message = (
+            f"The LinkedIn API version ({LINKEDIN_API_VERSION}) is expired or no "
+            "longer accepted. Bump LINKEDIN_API_VERSION in linkedin_mcp_server.py "
+            f"to a currently-supported month. LinkedIn said: {li_text}"
+        )
+    elif status_code == 429 or ("rate" in lower and "limit" in lower):
+        error = "rate_limited"
+        message = (
+            "LinkedIn rate-limited this Ad Library read (429). Wait a moment and "
+            f"retry. LinkedIn said: {li_text}"
+        )
+    else:
+        error = "linkedin_error"
+        message = f"LinkedIn Ad Library API error during {action} ({status_code}): {li_text}"
+
+    return {
+        "status": "error",
+        "error": error,
+        "http_status": status_code,
+        "linkedin_code": li_code,
+        "message": message,
+    }
+
+
+def _adlibrary_fetch(raw_url: str, action: str) -> tuple:
+    """
+    GET a fully-built Ad Library URL via raw build_request+send (no param
+    re-encoding). Returns (ok: bool, payload). On HTTP/transport failure,
+    payload is a humanized error dict instead of raising.
+    """
+    try:
+        with httpx.Client(timeout=30) as client:
+            req = client.build_request("GET", raw_url, headers=_headers())
+            resp = client.send(req)
+    except Exception as exc:
+        return False, {
+            "status": "error",
+            "error": "request_failed",
+            "message": f"Request to LinkedIn Ad Library failed: {exc}",
+        }
+    if resp.status_code >= 400:
+        return False, _adlibrary_error_payload(resp, action)
+    try:
+        return True, resp.json()
+    except Exception:
+        return True, {"raw_response": resp.text}
+
+
+def _epoch_ms_to_date(value: Any) -> Optional[str]:
+    """Convert a LinkedIn epoch-millisecond timestamp to a YYYY-MM-DD string."""
+    try:
+        return datetime.utcfromtimestamp(int(value) / 1000).strftime("%Y-%m-%d")
+    except Exception:
+        return None
+
+
+def _ad_id_from_url(ad_url: str) -> Optional[str]:
+    """Pull the numeric ad id out of an Ad Library detail URL."""
+    if not ad_url:
+        return None
+    return ad_url.rstrip("/").split("/")[-1].split("?")[0] or None
+
+
+def _is_ad_library_url(url: str) -> bool:
+    """
+    True only for a public LinkedIn Ad Library detail URL
+    (https://www.linkedin.com/ad-library/detail/{id}). Used to block SSRF: the
+    scraper must never be pointed at an arbitrary/internal host.
+    """
+    try:
+        parsed = urlparse(url or "")
+    except Exception:
+        return False
+    return (
+        parsed.scheme == "https"
+        and parsed.netloc.lower() in ("www.linkedin.com", "linkedin.com")
+        and parsed.path.startswith("/ad-library/detail/")
+    )
+
+
+def _simplify_ad(ad: Any) -> dict:
+    """
+    Project one Ad Library search element into comparison-friendly METADATA.
+
+    The Ad Library `q=criteria` finder returns metadata only — advertiser,
+    ad type, impression range, active dates, targeting, and the public detail
+    URL. It does NOT return the creative copy (headline / body / CTA); that lives
+    on the public detail page and is fetched by linkedin_get_ad_library_ad (or by
+    passing include_creative=True to the search). The full untouched record is
+    kept under `raw`.
+    """
+    if not isinstance(ad, dict):
+        return {"raw": ad}
+
+    details = ad.get("details", {}) if isinstance(ad.get("details"), dict) else {}
+    advertiser = details.get("advertiser", {}) if isinstance(details.get("advertiser"), dict) else {}
+    stats = details.get("adStatistics", {}) if isinstance(details.get("adStatistics"), dict) else {}
+    targeting = details.get("adTargeting", []) if isinstance(details.get("adTargeting"), list) else []
+
+    countries = None
+    for facet in targeting:
+        if isinstance(facet, dict) and facet.get("facetName") == "Location":
+            countries = facet.get("includedSegments") or None
+            break
+
+    impressions = stats.get("totalImpressions")
+    if isinstance(impressions, dict):
+        impressions = {"from": impressions.get("from"), "to": impressions.get("to")}
+
+    ad_url = ad.get("adUrl")
+    return {
+        "ad_id": _ad_id_from_url(ad_url),
+        "ad_url": ad_url,
+        "advertiser": advertiser.get("advertiserName"),
+        "advertiser_legal_name": advertiser.get("adPayer"),
+        "advertiser_url": advertiser.get("advertiserUrl"),
+        "format": details.get("type"),
+        "total_impressions_range": impressions,
+        "first_shown": _epoch_ms_to_date(stats.get("firstImpressionAt")),
+        "last_shown": _epoch_ms_to_date(stats.get("latestImpressionAt")),
+        "countries": countries,
+        "targeting": targeting,
+        "is_restricted": ad.get("isRestricted"),
+        "note": (
+            "Creative copy (headline/body/CTA) is not in the search response — "
+            "fetch it with linkedin_get_ad_library_ad(ad_id) or pass "
+            "include_creative=True."
+        ),
+        "raw": ad,
+    }
+
+
+def _fetch_ad_creative(ad_url: str) -> dict:
+    """
+    Fetch the PUBLIC Ad Library detail page (no auth required) and extract the
+    actual creative copy LinkedIn does not expose via the API: advertiser name,
+    headline, body copy, and the call-to-action button label.
+
+    The landing/destination URL is intentionally NOT shown by LinkedIn's public
+    Ad Library (the CTA button carries no href), so it cannot be returned.
+
+    Returns a dict with the extracted fields, or {"error": ...} on failure.
+    """
+    if not ad_url:
+        return {"error": "no_ad_url", "message": "No public ad URL to fetch."}
+    if not _is_ad_library_url(ad_url):
+        return {
+            "error": "invalid_ad_url",
+            "message": (
+                "Refusing to fetch a non Ad Library URL; only "
+                "https://www.linkedin.com/ad-library/detail/ pages are allowed."
+            ),
+        }
+    try:
+        from bs4 import BeautifulSoup
+    except Exception as exc:
+        return {"error": "parser_unavailable", "message": f"BeautifulSoup not available: {exc}"}
+
+    try:
+        with httpx.Client(timeout=30, follow_redirects=True) as client:
+            resp = client.get(ad_url, headers={"User-Agent": "Mozilla/5.0"})
+    except Exception as exc:
+        return {"error": "request_failed", "message": f"Fetch of {ad_url} failed: {exc}"}
+
+    if resp.status_code == 404:
+        return {"error": "ad_not_found", "message": f"Ad detail page not found (404): {ad_url}"}
+    if resp.status_code >= 400:
+        return {"error": "page_error", "message": f"Ad detail page error {resp.status_code}: {ad_url}"}
+
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    body_el = soup.select_one(".commentary__content")
+    body = body_el.get_text("\n", strip=True) if body_el else None
+
+    headline = None
+    cta = None
+    head_el = soup.select_one(".sponsored-content-headline")
+    if head_el:
+        cta_btn = head_el.find(
+            attrs={"data-tracking-control-name": "ad_library_ad_detail_cta"}
+        )
+        if cta_btn:
+            cta = cta_btn.get_text(strip=True) or None
+            cta_btn.extract()
+        headline = head_el.get_text(" ", strip=True) or None
+
+    advertiser = None
+    adv_el = soup.find(
+        "a", attrs={"data-tracking-control-name": "ad_library_ad_preview_advertiser"}
+    )
+    if adv_el:
+        advertiser = adv_el.get_text(strip=True) or None
+
+    return {
+        "advertiser": advertiser,
+        "headline": headline,
+        "body": body,
+        "call_to_action": cta,
+        "landing_url": None,
+        "landing_url_note": (
+            "LinkedIn's public Ad Library does not expose the destination/landing "
+            "URL for an ad, so it is not available."
+        ),
+        "ad_url": ad_url,
+    }
+
+
+@mcp.tool()
+def linkedin_search_ad_library(
+    advertiser: Optional[str] = None,
+    keyword: Optional[str] = None,
+    countries: Optional[str] = None,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    count: int = 25,
+    max_results: int = 50,
+    include_creative: bool = False,
+) -> str:
+    """
+    Search the public LinkedIn Ad Library for ads a company is currently running.
+
+    This is the ad-TRANSPARENCY API (separate from the campaign-analytics tools):
+    it returns the ads ANY company is publicly running — a competitor's OR our own
+    — so the agent can read and compare creative/messaging. Use this (not the
+    campaign tools) when the user names a company and wants to see "what ads is X
+    running" or "us vs. competitor, how do we improve". The same single tool
+    covers both sides: search the competitor's name for theirs, search our company
+    name for ours, then reason over the two result sets.
+
+    At least one of `advertiser` or `keyword` is required. The Ad Library is a
+    LIVE snapshot of ACTIVE ads (no historical archive), so an ad that stopped
+    running will not appear.
+
+    The search API returns METADATA per ad (advertiser, ad format/type,
+    impression range, active dates, targeting incl. countries, and the public
+    detail URL). The creative COPY (headline / body / call-to-action) is not in
+    the search response — set include_creative=True to also fetch each ad's copy
+    from its public detail page, or call linkedin_get_ad_library_ad per ad.
+
+    Args:
+        advertiser: Advertiser / company name to filter by (e.g. "Salesforce").
+        keyword: Free-text keyword matched against ad copy and advertiser name
+            (e.g. "marketing automation"). Combine with or use instead of
+            `advertiser`.
+        countries: Optional comma-separated ISO 3166-1 alpha-2 country codes to
+            narrow where the ads ran (e.g. "US,GB,DE").
+        start_date: Optional date-range start, YYYY-MM-DD (requires end_date).
+        end_date: Optional date-range end, YYYY-MM-DD (requires start_date).
+        count: Page size per request (default 25, max 100).
+        max_results: Cap on total ads returned across pages (default 50). Raise
+            for large advertisers; pagination follows LinkedIn's `paging.total`.
+        include_creative: When True, also fetch each returned ad's headline, body
+            copy, and CTA from its public detail page. This adds one HTTP request
+            per ad, so keep max_results modest (e.g. <= 15) when enabling it.
+
+    Returns:
+        JSON with the matched ads. Each ad carries comparison-friendly metadata
+        (advertiser, format, active date range, impressions range, targeting,
+        countries, public ad_url) plus the full `raw` record; with
+        include_creative=True each ad also gets a `creative` block (headline,
+        body, call_to_action). On a missing Ad Library product/scope, returns a
+        clear, humanized error explaining how to request access.
+    """
+    if not (advertiser or keyword):
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_request",
+            "message": (
+                "Provide at least one of `advertiser` (company name) or `keyword` "
+                "to search the Ad Library."
+            ),
+        }, indent=2)
+
+    if (start_date and not end_date) or (end_date and not start_date):
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_request",
+            "message": "start_date and end_date must be provided together (YYYY-MM-DD).",
+        }, indent=2)
+
+    page_size = max(1, min(int(count or 25), 100))
+    max_results = max(1, int(max_results or 50))
+
+    parts = ["q=criteria"]
+    if keyword:
+        parts.append(f"keyword={quote(keyword, safe='')}")
+    if advertiser:
+        parts.append(f"advertiser={quote(advertiser, safe='')}")
+    if countries:
+        codes = [c.strip().upper() for c in countries.split(",") if c.strip()]
+        if codes:
+            parts.append(f"countries=List({','.join(codes)})")
+    if start_date and end_date:
+        parts.append(f"dateRange={_build_date_range(start_date, end_date)}")
+    base = "&".join(parts)
+
+    all_ads: list = []
+    start = 0
+    while True:
+        raw_url = (
+            f"{LINKEDIN_REST_BASE}/adLibrary?{base}"
+            f"&start={start}&count={page_size}"
+        )
+        ok, payload = _adlibrary_fetch(raw_url, "search")
+        if not ok:
+            return json.dumps(payload, indent=2)
+        elements = payload.get("elements", []) if isinstance(payload, dict) else []
+        all_ads.extend(elements)
+        paging = payload.get("paging", {}) if isinstance(payload, dict) else {}
+        total = paging.get("total", len(all_ads))
+        fetched = start + len(elements)
+        if (
+            len(elements) < page_size
+            or fetched >= total
+            or len(all_ads) >= max_results
+        ):
+            break
+        start += page_size
+
+    all_ads = all_ads[:max_results]
+    ads = [_simplify_ad(a) for a in all_ads]
+
+    if include_creative:
+        for ad in ads:
+            ad["creative"] = _fetch_ad_creative(ad.get("ad_url"))
+            ad.pop("note", None)
+
+    return json.dumps({
+        "status": "success",
+        "filters": {
+            "advertiser": advertiser,
+            "keyword": keyword,
+            "countries": countries,
+            "start_date": start_date,
+            "end_date": end_date,
+        },
+        "total_ads": len(ads),
+        "note": (
+            "The Ad Library is a live snapshot of ACTIVE ads only (no historical "
+            "archive). Search returns metadata; creative copy (headline/body/CTA) "
+            "comes from include_creative=True or linkedin_get_ad_library_ad. The "
+            "destination/landing URL is not exposed by LinkedIn's public Ad "
+            "Library. For 'us vs. competitor' requests, run this once per company "
+            "and compare the result sets."
+        ),
+        "ads": ads,
+    }, indent=2, default=str)
+
+
+@mcp.tool()
+def linkedin_get_ad_library_ad(ad_id: str) -> str:
+    """
+    Fetch the full creative detail for a single LinkedIn Ad Library ad.
+
+    Use after linkedin_search_ad_library when the agent needs the actual ad COPY
+    (headline, body, call-to-action) that the search metadata does not include.
+    The detail comes from the ad's PUBLIC Ad Library page (the `ad_url` /
+    `ad_id` from a search result) — the Ad Library API itself has no per-ad GET
+    endpoint, so this reads the public detail page (no extra credential needed).
+
+    Args:
+        ad_id: The Ad Library ad id from a linkedin_search_ad_library result
+            (the numeric id, or the full public ad_url — both are accepted).
+
+    Returns:
+        JSON with the ad's advertiser, headline, body copy, and call-to-action.
+        The destination/landing URL is NOT exposed by LinkedIn's public Ad
+        Library and is therefore returned as null. Returns a clear error if the
+        ad page cannot be fetched.
+    """
+    raw = (ad_id or "").strip()
+    if not raw:
+        return json.dumps({
+            "status": "error",
+            "error": "invalid_request",
+            "message": "ad_id is required (a numeric Ad Library id or its public ad_url).",
+        }, indent=2)
+
+    if raw.startswith("http"):
+        resolved_id = _ad_id_from_url(raw)
+        if not _is_ad_library_url(raw) or not (resolved_id and resolved_id.isdigit()):
+            return json.dumps({
+                "status": "error",
+                "error": "invalid_request",
+                "message": (
+                    "ad_id must be a numeric Ad Library id, or a public LinkedIn "
+                    "Ad Library detail URL of the form "
+                    "https://www.linkedin.com/ad-library/detail/{id}."
+                ),
+            }, indent=2)
+        ad_url = f"https://www.linkedin.com/ad-library/detail/{resolved_id}"
+    else:
+        if not raw.isdigit():
+            return json.dumps({
+                "status": "error",
+                "error": "invalid_request",
+                "message": "ad_id must be the numeric Ad Library id (or its public ad_url).",
+            }, indent=2)
+        resolved_id = raw
+        ad_url = f"https://www.linkedin.com/ad-library/detail/{raw}"
+
+    creative = _fetch_ad_creative(ad_url)
+    if creative.get("error"):
+        return json.dumps({
+            "status": "error",
+            "error": creative["error"],
+            "message": creative.get("message", "Failed to fetch the ad detail page."),
+            "ad_id": resolved_id,
+            "ad_url": ad_url,
+        }, indent=2)
+
+    return json.dumps({
+        "status": "success",
+        "ad_id": resolved_id,
+        "ad": creative,
     }, indent=2, default=str)
 
 

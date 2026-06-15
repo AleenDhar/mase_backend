@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import json
+import os
 import re
 from typing import Any, Optional
 
@@ -608,6 +609,40 @@ def _live(packets: list) -> list:
             if p.get("status") in ("active", "dormant")]
 
 
+# Stakeholders to surface on the dashboard. The packets keep the FULL durable
+# roster, but the projected stakeholder_map is capped to the few that matter so
+# the UI does not render a long, noisy list. Ranked by role importance, then by
+# most-recent contact. Cap is env-tunable (DEAL_STAKEHOLDER_CAP, default 7).
+_ROLE_PRIORITY = {
+    "economic buyer": 0,
+    "decision maker": 1,
+    "champion": 2,
+    "coach": 3,
+    "influencer": 4,
+    "detractor": 5,
+    "unknown": 6,
+}
+
+
+def _stakeholder_cap() -> int:
+    try:
+        return max(1, int(os.getenv("DEAL_STAKEHOLDER_CAP", "7")))
+    except (TypeError, ValueError):
+        return 7
+
+
+def _rank_stakeholders(items: list) -> list:
+    """Most important stakeholders first: role priority (EB > DM > Champion >
+    Coach > Influencer > Detractor > Unknown), then most-recent contact. Stable
+    two-pass sort: recency desc, then role priority asc."""
+    def _role_rank(s: dict) -> int:
+        role = str((s or {}).get("role") or "unknown").strip().lower()
+        return _ROLE_PRIORITY.get(role, 6)
+    by_recency = sorted(
+        items, key=lambda s: str((s or {}).get("last_contact_date") or ""), reverse=True)
+    return sorted(by_recency, key=_role_rank)
+
+
 def project_into_ai(agent_ai: dict, packets: list) -> dict:
     """Regenerate the packet-backed `ai.*` item lists from active + dormant
     packets, preserving the agent's derived sections and summaries. The result is
@@ -664,7 +699,7 @@ def project_into_ai(agent_ai: dict, packets: list) -> dict:
 
     ai["explicit_requirements"] = {"items": expl}
     ai["implicit_requirements"] = {"items": impl}
-    ai["stakeholder_map"] = {"items": stake}
+    ai["stakeholder_map"] = {"items": _rank_stakeholders(stake)[:_stakeholder_cap()]}
 
     cp = dict(ai.get("competitive_position") or {})
     cp["competitors"] = comps

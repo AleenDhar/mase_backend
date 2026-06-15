@@ -19,7 +19,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 # to hang. Counter is keyed by chat_id and reset at the start of each
 # agent run via reset_search_knowledge_counter(chat_id).
 MAX_SEARCH_KNOWLEDGE_PER_TURN = int(
-    os.environ.get("MAX_SEARCH_KNOWLEDGE_PER_TURN", "100"))
+    os.environ.get("MAX_SEARCH_KNOWLEDGE_PER_TURN", "6"))
 
 # Hard-stop escalation (added 2026-05-22 after chat 8359d7a6 burned $8.02
 # on RAG loops). When the cap fires repeatedly, returning an error string
@@ -30,7 +30,7 @@ MAX_SEARCH_KNOWLEDGE_PER_TURN = int(
 # cancel the in-process agent task via server.cancel_running_chat so the
 # next LLM turn never fires.
 MAX_SK_CAP_HITS_BEFORE_CANCEL = int(
-    os.environ.get("MAX_SK_CAP_HITS_BEFORE_CANCEL", "5"))
+    os.environ.get("MAX_SK_CAP_HITS_BEFORE_CANCEL", "3"))
 
 _sk_counter_lock = threading.Lock()
 # Run-scoped dedupe memory (NOT reset between auto-continue steps) so the
@@ -112,45 +112,90 @@ def _fire_cancel(chat_id: str) -> bool:
 
 
 def _check_and_record_sk_call(chat_id: str, query: str) -> Optional[str]:
-    """Soft governor for search_knowledge. Returns a short guidance string when a
-    call should be SOFT-blocked (an exact-duplicate query, or beyond a generous
-    per-step budget), or None to let it proceed.
-
-    IMPORTANT: this NEVER cancels or terminates the agent. Earlier versions
-    hard-cancelled the run after repeated cap hits, which crashed long, legitimately
-    RAG-heavy workflows (e.g. ABM) mid-flight and lost their context. The cap is now
-    a high, advisory soft limit: when exceeded we just ask the model to proceed with
-    what it has and return the result text — a safe fallback, never a crash."""
+    """Returns an error message string if the call should be blocked,
+    None if it should proceed."""
     bucket = chat_id or _SK_NO_CHAT_BUCKET
     if not chat_id:
+        # One-line breadcrumb so prod logs surface the wiring gap that
+        # caused chat 88f73936's cap-bypass loop.
         print(f"[SK_CAP] WARNING: search_knowledge called with no chat_id; "
               f"using shared fallback bucket. query={query[:80]!r}")
     norm = _normalize_query(query)
+    should_cancel = False
+    cancel_reason = ""
     with _sk_counter_lock:
         seen = _sk_seen_queries.setdefault(bucket, [])
         if norm and norm in seen:
-            # Exact-duplicate dedupe — cheap, prevents wasted identical queries.
-            print(f"[SK_CAP] dedupe (duplicate) chat={chat_id or '<none>'} "
+            print(f"[SK_CAP] BLOCKED (duplicate) chat={chat_id or '<none>'} "
                   f"query={query[:80]!r}")
+            # Duplicates do NOT count against the hard-cancel budget —
+            # they're often parallel tool_use siblings from the same LLM
+            # turn and we don't want to nuke a run for one accidental
+            # parallel call.
             return (
                 "Duplicate search_knowledge query (already executed this turn). "
-                "Reuse the prior results instead of re-querying — proceed."
+                "Reuse the prior results instead of re-querying — proceed to drafting."
             )
         count = _sk_step_count.get(bucket, 0)
         if count >= MAX_SEARCH_KNOWLEDGE_PER_TURN:
-            # Soft cap only — advise, never terminate.
-            print(f"[SK_CAP] soft cap reached (cap={MAX_SEARCH_KNOWLEDGE_PER_TURN}) "
-                  f"chat={chat_id or '<none>'} prior={count} query={query[:80]!r}")
-            return (
-                f"You have already run {count} knowledge searches this step "
-                f"(soft cap {MAX_SEARCH_KNOWLEDGE_PER_TURN}). You almost certainly "
-                f"have enough context now — proceed with what you have, and only "
-                f"search again for a specific fact that is genuinely still missing. "
+            hits = _sk_cap_hits.get(bucket, 0) + 1
+            _sk_cap_hits[bucket] = hits
+            print(f"[SK_CAP] BLOCKED (cap={MAX_SEARCH_KNOWLEDGE_PER_TURN}) "
+                  f"chat={chat_id or '<none>'} query={query[:80]!r} "
+                  f"prior={count} cap_hits={hits}/{MAX_SK_CAP_HITS_BEFORE_CANCEL}")
+            # Escalate only when a SINGLE model step keeps spamming searches
+            # after being told to stop — cap_hits is reset every auto-continue
+            # step, so a legitimately RAG-heavy workflow spread across many
+            # steps no longer trips this (each step gets a fresh budget). We
+            # release the lock before calling _fire_cancel because
+            # cancel_running_chat may write to Supabase and we don't want to
+            # hold this lock during I/O. Don't mark `_sk_cancelled` here — only
+            # mark it on a successful cancel (below) so a failed cancel can be
+            # retried on the next cap-hit instead of leaving the run unstopped.
+            if (chat_id and hits >= MAX_SK_CAP_HITS_BEFORE_CANCEL
+                    and chat_id not in _sk_cancelled):
+                should_cancel = True
+                cancel_reason = (
+                    f"search_knowledge cap exceeded {hits} times in one step; "
+                    f"cancelling agent to stop the RAG loop"
+                )
+            err = (
+                f"search_knowledge cap of {MAX_SEARCH_KNOWLEDGE_PER_TURN} "
+                f"reached for this step. Stop searching and use what you "
+                f"already have to proceed (drafting / next phase). "
                 f"Already-queried this run: {seen[-10:]}"
             )
-        seen.append(norm)
-        _sk_step_count[bucket] = count + 1
-        return None
+            if should_cancel:
+                err = (
+                    "RUN TERMINATED: search_knowledge cap exceeded "
+                    f"{hits} times in a single step. The agent has been "
+                    "cancelled to stop a runaway RAG loop that would "
+                    "otherwise burn the cost budget. "
+                    f"Already-queried this run: {seen[-10:]}"
+                )
+        else:
+            seen.append(norm)
+            _sk_step_count[bucket] = count + 1
+            return None
+    # Outside the lock: do the cancel I/O. Only mark `_sk_cancelled` on
+    # success so a failed cancel attempt can be retried by the next
+    # cap-hit instead of silently leaving the runaway loop alive.
+    if should_cancel:
+        print(f"[SK_CAP] ESCALATING chat={chat_id}: {cancel_reason}")
+        cancelled = _fire_cancel(chat_id)
+        print(f"[SK_CAP] cancel_running_chat({chat_id}) -> {cancelled}")
+        if cancelled:
+            with _sk_counter_lock:
+                _sk_cancelled.add(chat_id)
+        else:
+            # Cancel didn't land — downgrade the user-facing error so it
+            # doesn't claim "RUN TERMINATED" when the run is still alive.
+            err = (
+                f"search_knowledge cap of {MAX_SEARCH_KNOWLEDGE_PER_TURN} "
+                f"per turn reached AND attempt to terminate the run failed. "
+                f"Stop searching and proceed to drafting with what you have."
+            )
+    return err
 
 
 def _get_embedding(text: str) -> List[float]:

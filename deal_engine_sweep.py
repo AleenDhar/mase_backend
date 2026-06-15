@@ -40,6 +40,9 @@ from deepagents_patches import disable_write_todos
 import deal_engine_store as store
 import opportunity_analyzer as _oa  # reuse _extract_json / _final_text
 import deal_trigger_log as _trigger_log
+import deal_hard_refresh_log as _hard_refresh_log
+import deal_engine_validation as _val
+import sweep_queue as _queue
 
 disable_write_todos()
 
@@ -100,31 +103,7 @@ def _parse_sf_dt(value: Optional[str]) -> Optional[datetime]:
     return dt
 
 
-def _load_prompt_override() -> Optional[str]:
-    """Admin-edited sweep prompt stored in Supabase app_config
-    (key='deal_sweep_system_prompt'), written by the VIBE /admin/sweep editor.
-    Returns None when unset or unreachable so the caller falls back to the
-    bundled file."""
-    try:
-        rows = store._select("app_config", select="value",
-                             filters=["key=eq.deal_sweep_system_prompt"], limit=1)
-        if rows and isinstance(rows, list):
-            v = rows[0].get("value")
-            if isinstance(v, str) and v.strip():
-                return v
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] app_config prompt fetch failed, using bundled .md: {e}",
-              flush=True)
-    return None
-
-
 def _load_prompt() -> str:
-    # Prefer the admin-edited prompt from app_config (the VIBE /admin/sweep editor)
-    # so changes take effect on the next sweep with NO redeploy; fall back to the
-    # bundled prompts/deal_engine_sweep_system_prompt.md.
-    override = _load_prompt_override()
-    if override:
-        return override
     if not _PROMPT_PATH.exists():
         raise FileNotFoundError(f"sweep prompt missing: {_PROMPT_PATH}")
     return _PROMPT_PATH.read_text()
@@ -224,24 +203,9 @@ def _build_model():
         return CachedChatAnthropic(
             model_name=selected.split(":", 1)[1],
             api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
-            # STREAMING is the real fix for big-opp failures. A large opp (huge
-            # SF record + many meetings/contacts, amplified by the lifted
-            # knowledge-search cap) produces a synthesis call that runs many
-            # minutes, and Anthropic INTERRUPTS long *non-streaming* requests at
-            # ~540s — so McAfee/Austrian-Post-class deals failed at ~543s with
-            # APITimeoutError no matter how high the timeout was set (the
-            # interruption isn't ours). Streaming keeps the connection alive with
-            # continuous data so the response completes (Anthropic's documented
-            # guidance for long requests). langchain routes .ainvoke() through
-            # _astream when streaming=True, and CachedChatAnthropic preserves
-            # prompt caching on the streaming path, so tool use + caching still work.
-            streaming=True,
-            max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "1")),
-            # Generous read window for a long stream, kept under the per-opp
-            # wall-clock (DEAL_SWEEP_TIMEOUT_S=1200) so the orchestrator — not the
-            # SDK — owns the final ceiling.
-            timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "900")),
-            max_tokens=int(os.getenv("DEAL_SWEEP_MAX_TOKENS", "16000")),
+            max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "2")),
+            timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "180")),
+            max_tokens=int(os.getenv("DEAL_SWEEP_MAX_TOKENS", "32000")),
             stop=None,
         )
     from langchain.chat_models import init_chat_model
@@ -430,6 +394,8 @@ def _map_opps(rows: list[dict]) -> list[dict]:
             "account": _sf_name(o, "Account", "Name"),
             "owner_name": _sf_name(o, "Owner", "Name"),
             "owner_id": o.get("OwnerId"),
+            "manager_name": _sf_name(o, "Owner", "Manager", "Name"),
+            "manager_id": _sf_name(o, "Owner", "ManagerId"),
             "stage": o.get("StageName"),
             "forecast_category": o.get("ForecastCategoryName"),
             "amount": o.get("Amount"),
@@ -443,8 +409,56 @@ def _map_opps(rows: list[dict]) -> list[dict]:
                 o.get("Competitors__c"), o.get("Others_Competitors_Please_specify__c")),
             "last_modified": o.get("LastModifiedDate"),
             "created": o.get("CreatedDate"),
+            # Deterministic SF date facts the server owns (date-only for the two
+            # datetime fields so they compare cleanly with the model's emitted
+            # YYYY-MM-DD). LastActivityDate / Qualified_Submission_Date__c are
+            # already date-typed in Salesforce.
+            "created_date": ((o.get("CreatedDate") or "")[:10] or None),
+            "last_modified_date": ((o.get("LastModifiedDate") or "")[:10] or None),
+            "last_activity_date": o.get("LastActivityDate"),
+            "qualified_date": o.get("Qualified_Submission_Date__c"),
         })
     return out
+
+
+# Part 1: the ONE authoritative Salesforce field list every opp-snapshot SOQL
+# uses. Keeping the three readers (single-opp hydration, book discovery, and
+# id-list enrichment) on a single constant means the server-owned hard.* override
+# and the fabrication gate always validate against the exact same ground-truth
+# columns. ONLY org-verified fields belong here — an unverified field 400s the
+# query and breaks the WHOLE sweep, so do not add a column without confirming it
+# exists in the org first (Task spec Part 1 ruling F).
+_OPP_SELECT_FIELDS = (
+    "Id, Name, Account.Name, Owner.Name, OwnerId, "
+    "Owner.ManagerId, Owner.Manager.Name, StageName, ForecastCategoryName, "
+    "Amount, CloseDate, "
+    "Next_Step__c, AIS_Score__c, AIS_Status__c, AIS_Why__c, Products__c, Competitors__c, "
+    "Others_Competitors_Please_specify__c, LastModifiedDate, CreatedDate, "
+    "LastActivityDate, Qualified_Submission_Date__c"
+)
+
+
+async def _authoritative_opp(agent_manager, opp_id: str) -> dict:
+    """The authoritative per-opp Salesforce snapshot (core mechanics + the deal
+    owner's manager) via direct SOQL, mapped to the `_map_opps` shape.
+
+    Every entry path funnels through analyze_one, but several pass only a THIN opp
+    dict (the worker queue carries just id/account/owner_name/name). Without this
+    hydration the server-owned hard.* override below would be a near no-op on the
+    main production path, so the model's stage/amount/manager could survive. We
+    fetch the real values here so the override always has ground truth. Best-effort:
+    returns {} on any failure and the caller falls back to whatever it was given."""
+    if not opp_id:
+        return {}
+    q = (f"SELECT {_OPP_SELECT_FIELDS} "
+         f"FROM Opportunity WHERE Id = '{_sql_str(opp_id)}' LIMIT 1")
+    try:
+        mapped = _map_opps(await _soql(agent_manager, q))
+    except Exception as e:  # noqa: BLE001 — never block the sweep on this read
+        print(f"[DEAL-SWEEP] authoritative-opp read failed opp={opp_id}: "
+              f"{type(e).__name__}: {e}", flush=True)
+        return {}
+    return mapped[0] if mapped else {}
 
 
 async def discover_opps(
@@ -460,11 +474,7 @@ async def discover_opps(
       book matches reality even when the env RSD names are placeholders. If VP
       resolution yields nobody, fall back to the configured RSD names.
     """
-    base = ("SELECT Id, Name, Account.Name, Owner.Name, OwnerId, StageName, ForecastCategoryName, "
-            "Amount, CloseDate, "
-            "Next_Step__c, AIS_Score__c, AIS_Status__c, AIS_Why__c, Products__c, Competitors__c, "
-            "Others_Competitors_Please_specify__c, LastModifiedDate, CreatedDate "
-            "FROM Opportunity WHERE ")
+    base = f"SELECT {_OPP_SELECT_FIELDS} FROM Opportunity WHERE "
     tail = f" AND IsClosed = false ORDER BY Amount DESC NULLS LAST LIMIT {int(limit)}"
 
     if owner:
@@ -520,10 +530,7 @@ async def _enrich_opp_ids(agent_manager, opp_ids: list[str]) -> list[dict]:
         if not chunk:
             continue
         ids = ",".join("'" + _sql_str(c) + "'" for c in chunk)
-        q = ("SELECT Id, Name, Account.Name, Owner.Name, OwnerId, StageName, ForecastCategoryName, "
-             "Amount, CloseDate, "
-             "Next_Step__c, AIS_Score__c, AIS_Status__c, AIS_Why__c, Products__c, Competitors__c, "
-             "Others_Competitors_Please_specify__c, LastModifiedDate, CreatedDate FROM Opportunity "
+        q = (f"SELECT {_OPP_SELECT_FIELDS} FROM Opportunity "
              f"WHERE Id IN ({ids})")
         try:
             for o in _map_opps(await _soql(agent_manager, q)):
@@ -708,6 +715,7 @@ def _sweep_facts_block(opp: dict, buyer: dict) -> str:
         f"- Products: {_f(opp.get('products'))}",
         f"- Competitor(s): {_f(opp.get('competitor'))}",
         f"- Owner: {_f(opp.get('owner_name'))}",
+        f"- Owner's manager: {_f(opp.get('manager_name'))}",
         f"- Account: {_f(opp.get('account'))}",
     ]
     return (
@@ -722,6 +730,95 @@ def _sweep_facts_block(opp: dict, buyer: dict) -> str:
         + "\n".join(lines)
         + f"\nToday's date is {_today()}.\n"
     )
+
+
+MEDDPICC_ELEMENTS = (
+    "metrics", "economic_buyer", "decision_criteria", "decision_process",
+    "paper_process", "identify_pain", "champion", "competition",
+)
+
+
+def _normalize_meddpicc(new_ai: dict, existing_ai: Optional[dict]) -> None:
+    """Normalise ai.meddpicc to the 8 fixed elements, each {status, narrative,
+    sources}. When this sweep produced an empty/missing narrative for an element
+    but the prior record had a real one, carry the prior element forward — a thin
+    or dark read must never blank a previously detailed element (mirrors the
+    champion-backfill philosophy in project_into_ai). Mutates new_ai in place."""
+    new_md = new_ai.get("meddpicc")
+    new_md = new_md if isinstance(new_md, dict) else {}
+    prior_md = (existing_ai or {}).get("meddpicc")
+    prior_md = prior_md if isinstance(prior_md, dict) else {}
+    out: dict = {}
+    for el in MEDDPICC_ELEMENTS:
+        cur = new_md.get(el)
+        cur = cur if isinstance(cur, dict) else {}
+        narrative = str(cur.get("narrative") or "").strip()
+        if not narrative:
+            prior = prior_md.get(el)
+            prior = prior if isinstance(prior, dict) else None
+            prior_narr = str((prior or {}).get("narrative") or "").strip()
+            if prior_narr:
+                psrc = (prior or {}).get("sources")
+                out[el] = {
+                    "status": (prior or {}).get("status") or "partial",
+                    "narrative": prior_narr,
+                    "sources": psrc if isinstance(psrc, list) else [],
+                    "carried_forward": True,
+                }
+                continue
+        status = str(cur.get("status") or "").strip().lower()
+        if status not in ("confirmed", "partial", "gap"):
+            status = "partial" if narrative else "gap"
+        sources = cur.get("sources")
+        out[el] = {
+            "status": status,
+            "narrative": narrative,
+            "sources": sources if isinstance(sources, list) else [],
+        }
+    new_ai["meddpicc"] = out
+
+
+_ACTIVE_USERS_CACHE: dict = {"names": set(), "ts": 0.0}
+_ACTIVE_USERS_TTL_S = int(os.getenv("DEAL_ACTIVE_USERS_TTL_S", "3600"))
+
+
+async def _active_user_names(agent_manager) -> set:
+    """Normalised names of all ACTIVE Salesforce users, cached per-process with a
+    TTL. Feeds the fabrication gate's internal-person check (so an "executive
+    connect with <rep>" move is verifiable against the real roster) without a
+    per-opp query. Best-effort: on a read failure we keep the last good set
+    (possibly empty), so the gate degrades to "no roster" rather than blocking."""
+    now = time.time()
+    cached = _ACTIVE_USERS_CACHE.get("names") or set()
+    if cached and (now - float(_ACTIVE_USERS_CACHE.get("ts") or 0)) < _ACTIVE_USERS_TTL_S:
+        return cached
+    names: set = set()
+    try:
+        rows = await _soql(agent_manager, "SELECT Name FROM User WHERE IsActive = true")
+        for r in rows or []:
+            if isinstance(r, dict):
+                nm = _val._norm_name(r.get("Name"))
+                if nm:
+                    names.add(nm)
+    except Exception as e:  # noqa: BLE001 — gate degrades gracefully without it
+        print(f"[DEAL-SWEEP] active-user roster read failed: "
+              f"{type(e).__name__}: {e}", flush=True)
+        return cached
+    if names:
+        _ACTIVE_USERS_CACHE["names"] = names
+        _ACTIVE_USERS_CACHE["ts"] = now
+        return names
+    return cached
+
+
+def _attendees_of(rec: dict) -> list:
+    """The Avoma attendee names the agent echoed in evidence_coverage (top-level);
+    the gate uses them to verify buyer names the record asserts."""
+    ec = rec.get("evidence_coverage") if isinstance(rec, dict) else None
+    att = ec.get("avoma_attendees") if isinstance(ec, dict) else None
+    if not isinstance(att, list):
+        return []
+    return [a for a in att if isinstance(a, str) and a.strip()]
 
 
 async def analyze_one(
@@ -739,11 +836,7 @@ async def analyze_one(
     if recursion_limit is None:
         recursion_limit = int(os.getenv("DEAL_SWEEP_RECURSION_LIMIT", "80"))
     if timeout_s is None:
-        # Per-opp wall-clock for the WHOLE analysis (all tool calls + model
-        # calls). Raised 900 -> 1200 so a big opp's longer synthesis call (now
-        # up to 600s) plus its one retry and the tool round-trips fit inside the
-        # budget instead of being cut off mid-run.
-        timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "1200"))
+        timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "900"))
     opp_id = opp["id"]
     model_name = _selected_model_name()
     usage = {"uncached_input": 0, "output": 0, "cache_creation": 0,
@@ -751,7 +844,8 @@ async def analyze_one(
     t0 = time.time()
     result = {"opp_id": opp_id, "account": opp.get("account"),
               "owner_name": opp.get("owner_name"), "status": "pending",
-              "duration_ms": 0, "error": None,
+              "duration_ms": 0, "error": None, "validation_violations": 0,
+              "failed_validation": False,
               "thin": False, "thin_reason": None, "calls_read": None}
     _skip_token = None
     print(f"[DEAL-SWEEP] analyze_one START opp={opp_id}", flush=True)
@@ -784,6 +878,39 @@ async def analyze_one(
                   f"{type(_e).__name__}: {_e}", flush=True)
             buyer = {}
         identity_block = _buyer_identity_block(buyer)
+        # Authoritative per-opp Salesforce snapshot (core mechanics + the deal
+        # owner's manager). Several entry paths pass only a THIN opp dict (the
+        # worker queue carries just id/account/owner_name/name), so without this
+        # the server-owned hard.* override below would be a near no-op and the
+        # model's stage/amount/manager could survive. Merge the real values over
+        # whatever we were handed (skip id so the caller's key is preserved).
+        try:
+            _auth = await _authoritative_opp(agent_manager, opp_id)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] authoritative hydration failed opp={opp_id}: "
+                  f"{type(_e).__name__}: {_e}", flush=True)
+            _auth = {}
+        for _ak, _av in (_auth or {}).items():
+            if _ak != "id" and _av not in (None, ""):
+                opp[_ak] = _av
+        # Degraded/failed authoritative read (empty _auth from an exception or a
+        # not-found opp): do NOT let the server-owned manager override below blank a
+        # known manager just because this one read failed (living-memory: a durable
+        # fact goes dormant, it is not deleted on a bad read). Carry the last
+        # server-derived manager_name forward. We still NEVER trust the model's value
+        # here — the prior persisted value was itself set from Salesforce by this gate.
+        if not _auth:
+            _prior_mgr = ((existing_record.get("hard") or {}).get("manager_name")
+                          if isinstance(existing_record, dict) else None)
+            if _prior_mgr and not opp.get("manager_name"):
+                opp["manager_name"] = _prior_mgr
+        # People allowlist for the anti-fabrication gate: names we can vouch for
+        # without a per-item source (SF contact roles + recent task contacts +
+        # names on the prior record THAT CARRIED A SOURCE). Sourced/Avoma-discovered
+        # people are accepted via their own provenance, so they need not be in here;
+        # an unsourced prior name is NOT grandfathered (legacy fabrications get
+        # cleaned on re-sweep instead of surviving forever).
+        _allowlist = _val.build_people_allowlist(buyer, existing_record)
         # Skip the per-tool gpt-4o-mini prose summariser for this run (same path
         # the opportunity_analyzer uses unattended on this exact toolset): the
         # summariser rewrites Salesforce field reads into lossy prose, dropping the
@@ -797,6 +924,7 @@ async def analyze_one(
             _skip_token = _server._skip_llm_summarizer.set(True)
         except Exception as _e:  # noqa: BLE001
             print(f"[DEAL-SWEEP] could not set summariser-skip flag: {_e}", flush=True)
+        _active_users = await _active_user_names(agent_manager)
         user_msg = (
             f"Sweep Salesforce Opportunity Id `{opp_id}`"
             + (f" (account: {opp.get('account')}, name: {opp.get('name')})" if opp.get("account") else "")
@@ -806,157 +934,344 @@ async def analyze_one(
             + identity_block
             + topics_block
         )
-        coro = agent.ainvoke(
-            {"messages": [{"role": "user", "content": user_msg}]},
-            config={"recursion_limit": recursion_limit},
-        )
-        agent_result = await asyncio.wait_for(coro, timeout=timeout_s)
-        usage = _sum_usage(agent_result.get("messages", [])
-                           if isinstance(agent_result, dict) else [])
-        text = _oa._final_text(agent_result)
-        print(f"[DEAL-SWEEP] ainvoke returned opp={opp_id} text_chars={len(text or '')}", flush=True)
-        parsed = _oa._extract_json(text)
-        if not isinstance(parsed, dict) or parsed.get("_error"):
-            result["status"] = "parse_error"
-            result["error"] = (parsed or {}).get("_error", "unparseable record")
-            return result
-        # Normalise required envelope fields before persisting.
-        parsed["opp_id"] = opp_id
-        # swept_at is owned by the server, not the model: the agent sometimes emits
-        # a future or wrong date. Always stamp the real run date.
-        parsed["swept_at"] = _today()
-        # Snapshot what the AGENT itself read from Salesforce, BEFORE we override
-        # hard.* from the live discovery snapshot below. If the agent's own read
-        # produced none of the core mechanics, its SOQL almost certainly failed
-        # (we still persist a record using the snapshot — never withhold — but we
-        # mark it retryable).
-        _agent_hard = parsed.get("hard") or {}
-        _agent_sf_blank = not any(
-            (_agent_hard.get(k) not in (None, "", 0))
-            for k in ("stage", "amount", "close_date", "account_name", "owner_name"))
-        hard = parsed.setdefault("hard", {})
-        hard.setdefault("opp_id", opp_id)
-        # Identity labels (owner/account/name) come from the live Salesforce read
-        # captured at sweep time and are AUTHORITATIVE: the agent sometimes emits a
-        # blank or stale owner, which under setdefault would otherwise win over the
-        # real value. OVERRIDE whenever we actually have a value (skip None/empty so
-        # we never blank a field SF didn't return), mirroring the stage/structured-
-        # field handling below.
-        for _lk, _lv in (("owner_name", opp.get("owner_name")),
-                         ("owner_id", opp.get("owner_id")),
-                         ("account_name", opp.get("account")),
-                         ("opp_name", opp.get("name"))):
-            if _lv is not None and _lv != "":
-                hard[_lk] = _lv
-            else:
-                hard.setdefault(_lk, _lv)
-        # Re-sync StageName from the live Salesforce read captured at sweep time.
-        # The agent's emitted record can carry a stale stage; the SF value is the
-        # source of truth, so OVERRIDE (not setdefault) whenever we have it.
-        if opp.get("stage"):
-            hard["stage"] = opp.get("stage")
-        # Same override semantics for the structured Salesforce fields captured at
-        # sweep time: live SF is the source of truth, so overwrite whatever the
-        # agent emitted whenever we actually have a value (skip None/empty so we
-        # never blank out a field SF didn't return).
-        for _k in ("forecast_category", "amount", "close_date", "next_step",
-                   "ais_score", "ais_status", "ais_why", "products", "competitor"):
-            _v = opp.get(_k)
-            if _v is not None and _v != "":
-                hard[_k] = _v
-        # Read-quality gates for living-memory expiry. We only retire carried-
-        # forward facts when this sweep genuinely saw the deal — otherwise a read
-        # hiccup would silently drop durable memory. Two gates:
-        #   * _sf_ok      -- the agent's own Salesforce read returned core
-        #                    mechanics (used to retire obsolete pre-v2 hygiene
-        #                    flags that assert a field is missing).
-        #   * _clean_read -- a full clean read: SF mechanics + Avoma account-
-        #                    attendee discovery actually ran, and it is NOT a
-        #                    suspect-dark read (zero calls while contact roles or
-        #                    recent SF activity exist, i.e. discovery likely
-        #                    missed the calls). Gates the age-based retirement.
-        _sf_ok = not _agent_sf_blank
-        _ec_clean = parsed.get("evidence_coverage")
-        _cr_raw_clean = _ec_clean.get("calls_read") if isinstance(_ec_clean, dict) else None
-        try:
-            _cr_clean = int(_cr_raw_clean) if _cr_raw_clean is not None else None
-        except (TypeError, ValueError):
-            _cr_clean = None
-        _roles_clean = int(buyer.get("roles_count") or 0) if isinstance(buyer, dict) else 0
-        _recent_clean = (_within_days(buyer.get("last_activity_date"), 45)
-                         if isinstance(buyer, dict) else False)
-        _suspect_dark = (_cr_clean == 0 and (_roles_clean > 0 or _recent_clean))
-        _clean_read = bool(
-            _sf_ok and hard.get("stage") and hard.get("close_date")
-            and isinstance(_ec_clean, dict) and _ec_clean.get("discovery_method")
-            and not _suspect_dark)
-        # Per-deal living memory: merge this sweep into the durable packets and
-        # regenerate the packet-backed ai.* lists by projection, so prior facts
-        # the agent did not re-mention are retained (dormant) and the dashboard
-        # contract is unchanged. Never let this fail a sweep: on any error we fall
-        # back to the agent's record as-is.
-        try:
-            candidates = packets_mod.extract_candidates(
-                parsed.get("ai") or {}, parsed.get("hard") or {})
-            if candidates or existing_packets:
-                merged_packets, new_deltas = packets_mod.reconcile(
-                    existing_packets, candidates, parsed["swept_at"])
-                # Clean-read expiry: retire aged carried-forward packets the agent
-                # did not re-confirm (only on a clean read) and obsolete pre-v2
-                # hygiene flags (whenever the SF read worked), so stale items and
-                # wrong-field flags stop projecting as live. Prepend its deltas.
-                if _sf_ok or _clean_read:
-                    merged_packets, _exp_deltas = packets_mod.expire_stale(
-                        merged_packets, parsed["swept_at"],
-                        retire_aged=_clean_read, retire_obsolete=_sf_ok)
-                    if _exp_deltas:
-                        new_deltas = _exp_deltas + new_deltas
-                        print(f"[DEAL-SWEEP] expiry opp={opp_id} retired "
-                              f"{len(_exp_deltas)} stale packet(s) "
-                              f"(clean_read={_clean_read} sf_ok={_sf_ok})", flush=True)
-                prior_deltas = existing_record.get("deltas") or []
-                delta_cap = int(os.getenv("DEAL_DELTA_CAP", "200"))
-                parsed["packets"] = merged_packets
-                parsed["deltas"] = (new_deltas + prior_deltas)[:delta_cap]
-                parsed["ai"] = packets_mod.project_into_ai(
-                    parsed.get("ai") or {}, merged_packets)
-                parsed["schema_version"] = 2
-                print(f"[DEAL-SWEEP] living-memory opp={opp_id} "
-                      f"packets={len(merged_packets)} new_deltas={len(new_deltas)}",
-                      flush=True)
-        except Exception as _e:  # noqa: BLE001
-            print(f"[DEAL-SWEEP] reconcile skipped opp={opp_id}: "
-                  f"{type(_e).__name__}: {_e}", flush=True)
-        # Recency guard: when this sweep read ZERO buyer calls the deal has no
-        # fresh engagement evidence, so any "open requirement" is necessarily
-        # carried-forward context, not a freshly confirmed ask. We key off
-        # calls_read (the same signal the thin-detection below already trusts)
-        # rather than each item's own date, because the agent sometimes re-stamps
-        # a stale ask (e.g. a 2024 NDA request) with the current year to look
-        # recent — the date is the field it fabricates, calls_read is not. We act
-        # ONLY on an explicit, valid zero; a missing/malformed count is treated as
-        # "unknown" and left untouched so we never clear a warm deal by accident.
-        # The durable packets still retain the asks as history and the
-        # re-engagement path lives in recommended_moves, so the deal-detail view
-        # stops surfacing stale asks as live requirements.
-        _ec_guard = parsed.get("evidence_coverage")
-        _cr_raw = _ec_guard.get("calls_read") if isinstance(_ec_guard, dict) else None
-        try:
-            _calls_read_guard = int(_cr_raw) if _cr_raw is not None else None
-        except (TypeError, ValueError):
-            _calls_read_guard = None
-        if _calls_read_guard == 0 and isinstance(parsed.get("ai"), dict):
-            _ai_block = parsed["ai"]
-            _moved = 0
-            for _sec in ("explicit_requirements", "implicit_requirements"):
-                _s = _ai_block.get(_sec)
-                _its = _s.get("items") if isinstance(_s, dict) else None
-                if isinstance(_its, list):
-                    _moved += len(_its)
-                _ai_block[_sec] = {"items": []}
-            if _moved:
-                print(f"[DEAL-SWEEP] recency-guard opp={opp_id} cleared {_moved} "
-                      f"carried-forward requirement(s) (calls_read=0)", flush=True)
+        _meta = {"agent_sf_blank": False}
+
+        def _finalize(parsed: dict) -> dict:
+            """Deterministic FACT preparation that turns ONE raw agent record into
+            a gate-ready candidate: server-owned hard.* override, manager
+            reassertion, raw-output people sanitisation, placeholder scrub, and
+            per-fact source stamping. Does NOT build the living-memory packets —
+            that runs once via _apply_living_memory AFTER the gate, so packets are
+            always derived from gate-clean ai. Synchronous and safe to re-run on a
+            retry. Records honest hygiene notes in evidence_coverage.gaps but does
+            NOT set the gate's violation count — that is owned by the gate outcome
+            below."""
+            # packets / deltas / schema_version are SERVER-OWNED living memory,
+            # rebuilt deterministically by _apply_living_memory from the gate-clean
+            # ai AFTER validation. Drop any the model emitted so a hallucinated
+            # packet/delta blob can never ride the raw output into the persist path
+            # (e.g. on the no-candidates / reconcile-exception branches that don't
+            # reassign them). The authoritative prior packets live in
+            # existing_packets/existing_record, not in this turn's model output.
+            for _owned in ("packets", "deltas", "schema_version"):
+                parsed.pop(_owned, None)
+            # Normalise required envelope fields before persisting.
+            parsed["opp_id"] = opp_id
+            # swept_at is owned by the server, not the model: the agent sometimes
+            # emits a future or wrong date. Always stamp the real run date.
+            parsed["swept_at"] = _today()
+            # Snapshot what the AGENT itself read from Salesforce, BEFORE we
+            # override hard.* from the live discovery snapshot below. If the
+            # agent's own read produced none of the core mechanics, its SOQL almost
+            # certainly failed (we still persist a record using the snapshot —
+            # never withhold — but we mark it retryable).
+            _agent_hard = parsed.get("hard") or {}
+            _agent_sf_blank = not any(
+                (_agent_hard.get(k) not in (None, "", 0))
+                for k in ("stage", "amount", "close_date", "account_name", "owner_name"))
+            _meta["agent_sf_blank"] = _agent_sf_blank
+            hard = parsed.setdefault("hard", {})
+            hard.setdefault("opp_id", opp_id)
+            # Server-owned deterministic Salesforce facts: a SINGLE canonical
+            # override path (shared with the AI-free hard refresh) writes the
+            # identity labels, every SF-sourced hard fact, and the server-computed
+            # days_to_close from the live snapshot, so the model can never author
+            # a fact we hold ground truth for. When THIS opp's authoritative read
+            # succeeded (_auth non-empty), Salesforce wins outright — including
+            # CLEARING a value the model invented for a field SF leaves blank; a
+            # degraded read only fills, never blanks (a known fact stays put).
+            # manager_name is handled just below via reassert_manager.
+            _val.apply_sf_hard_facts(hard, opp, authoritative=bool(_auth))
+            # manager_name is SERVER-OWNED: forced to the live Owner.Manager.Name
+            # from the authoritative snapshot (or None when SF has none), NEVER the
+            # model's value. Count a REAL fabrication (a non-empty model name that
+            # contradicts ground truth) BEFORE we overwrite it — omitting it, the
+            # new normal, is not a violation.
+            _manager_viol = 1 if _val.manager_fabricated(hard, opp) else 0
+            _val.reassert_manager(hard, opp)
+            # Anti-fabrication people gate on the RAW agent output, BEFORE it
+            # becomes packets: drop structured people that are neither a known
+            # SF/Avoma contact nor carry a source. Runs here so fabrications never
+            # enter durable memory; legit carried-forward (dormant) names are
+            # untouched (not in raw output).
+            _people_violations: list = []
+            try:
+                _people_violations = _val.sanitize_people(parsed.get("ai") or {}, _allowlist)
+                if _people_violations:
+                    print(f"[DEAL-SWEEP] people-gate opp={opp_id} removed "
+                          f"{len(_people_violations)} unverifiable person field(s)", flush=True)
+            except Exception as _e:  # noqa: BLE001 — gate must never block the sweep
+                print(f"[DEAL-SWEEP] people-gate skipped opp={opp_id}: "
+                      f"{type(_e).__name__}: {_e}", flush=True)
+            # Deterministic hygiene pass: re-assert the server-owned manager
+            # (defensive — projection only touches ai.*), scrub template/
+            # placeholder leakage, stamp per-fact provenance the server can vouch
+            # for, and record honest hygiene notes in evidence_coverage.gaps. The
+            # gate's pass/fail (below) — not this pass — owns the violation count.
+            try:
+                _val.reassert_manager(parsed.setdefault("hard", {}), opp)
+                _scrub_n = _val.scrub_record(parsed)
+                _val.stamp_fact_sources(parsed.setdefault("hard", {}), opp)
+                _viol_notes = list(_people_violations)
+                if _manager_viol:
+                    _viol_notes.append("overrode a fabricated manager_name with the "
+                                       "live Salesforce owner's manager")
+                if _scrub_n:
+                    _viol_notes.append(f"scrubbed {_scrub_n} placeholder/template string(s)")
+                if _viol_notes:
+                    _ec_v = parsed.setdefault("evidence_coverage", {})
+                    if isinstance(_ec_v, dict):
+                        _g = _ec_v.setdefault("gaps", [])
+                        if isinstance(_g, list):
+                            _g.extend(_viol_notes)
+            except Exception as _e:  # noqa: BLE001 — never block persistence
+                print(f"[DEAL-SWEEP] finalize hygiene skipped opp={opp_id}: "
+                      f"{type(_e).__name__}: {_e}", flush=True)
+            return parsed
+
+        def _apply_living_memory(parsed: dict) -> None:
+            """Living-memory packet step, run ONCE after the anti-fabrication gate
+            has approved (or deterministically sanitised) the facts. Building the
+            durable packets HERE — not per attempt inside _finalize — guarantees
+            packets are always derived from gate-clean ai.*, so a fabrication the
+            gate stripped from ai (a free-text person, a structured person, or a
+            placeholder) can never survive in the packet store (the source of
+            truth) and re-project on a later sweep. Merges this sweep into the
+            durable packets, retires aged/obsolete carried-forward facts on a clean
+            read, regenerates the packet-backed ai.* by projection, then applies the
+            zero-calls recency guard and the MEDDPICC normalise. Never raises."""
+            import copy
+            hard = parsed.setdefault("hard", {})
+            _agent_sf_blank = bool(_meta.get("agent_sf_blank"))
+            # Read-quality gates for living-memory expiry. We only retire carried-
+            # forward facts when this sweep genuinely saw the deal — otherwise a
+            # read hiccup would silently drop durable memory. Two gates:
+            #   * _sf_ok      -- the agent's own Salesforce read returned core
+            #                    mechanics (used to retire obsolete pre-v2 hygiene
+            #                    flags that assert a field is missing).
+            #   * _clean_read -- a full clean read: SF mechanics + Avoma account-
+            #                    attendee discovery actually ran, and it is NOT a
+            #                    suspect-dark read (zero calls while contact roles
+            #                    or recent SF activity exist, i.e. discovery likely
+            #                    missed the calls). Gates the age-based retirement.
+            _sf_ok = not _agent_sf_blank
+            _ec_clean = parsed.get("evidence_coverage")
+            _cr_raw_clean = _ec_clean.get("calls_read") if isinstance(_ec_clean, dict) else None
+            try:
+                _cr_clean = int(_cr_raw_clean) if _cr_raw_clean is not None else None
+            except (TypeError, ValueError):
+                _cr_clean = None
+            _roles_clean = int(buyer.get("roles_count") or 0) if isinstance(buyer, dict) else 0
+            _recent_clean = (_within_days(buyer.get("last_activity_date"), 45)
+                             if isinstance(buyer, dict) else False)
+            _suspect_dark = (_cr_clean == 0 and (_roles_clean > 0 or _recent_clean))
+            _clean_read = bool(
+                _sf_ok and hard.get("stage") and hard.get("close_date")
+                and isinstance(_ec_clean, dict) and _ec_clean.get("discovery_method")
+                and not _suspect_dark)
+            # Reconcile against a DEEPCOPY of the prior packets (defensive — keep
+            # existing_packets/existing_record pristine for the post-persist
+            # thin-detection that still reads them).
+            _prior_packets = copy.deepcopy(existing_packets)
+            # People allowlist for BOTH the packet gate and the MEDDPICC gate —
+            # built identically to the per-attempt gate's _sanitize_allow so the
+            # carried-forward surfaces are held to exactly the same bar.
+            _pkt_allow = set(_allowlist)
+            _pkt_allow |= {_val._norm_name(n) for n in _attendees_of(parsed)}
+            _pkt_allow |= set(_active_users or set())
+            _pkt_allow |= {_val._norm_name(n)
+                           for n in _val._sourced_names_in_record(existing_record)}
+            _pkt_allow.discard("")
+            try:
+                candidates = packets_mod.extract_candidates(
+                    parsed.get("ai") or {}, parsed.get("hard") or {})
+                if candidates or _prior_packets:
+                    merged_packets, new_deltas = packets_mod.reconcile(
+                        _prior_packets, candidates, parsed["swept_at"])
+                    # Clean-read expiry: retire aged carried-forward packets the
+                    # agent did not re-confirm (only on a clean read) and obsolete
+                    # pre-v2 hygiene flags (whenever the SF read worked), so stale
+                    # items and wrong-field flags stop projecting. Prepend deltas.
+                    if _sf_ok or _clean_read:
+                        merged_packets, _exp_deltas = packets_mod.expire_stale(
+                            merged_packets, parsed["swept_at"],
+                            retire_aged=_clean_read, retire_obsolete=_sf_ok)
+                        if _exp_deltas:
+                            new_deltas = _exp_deltas + new_deltas
+                            print(f"[DEAL-SWEEP] expiry opp={opp_id} retired "
+                                  f"{len(_exp_deltas)} stale packet(s) "
+                                  f"(clean_read={_clean_read} sf_ok={_sf_ok})", flush=True)
+                    # Packet-level anti-fabrication gate: the per-attempt gate only
+                    # cleaned THIS sweep's raw output, but reconcile just merged in
+                    # the carried-forward packets — a pre-gate sweep may have minted
+                    # one holding a fabricated person/placeholder. Sanitise the
+                    # MERGED store before projecting so legacy poison can never be
+                    # re-introduced into ai.* after validation. Runs on ANY read
+                    # quality (poison removal is not a fact-retention decision). The
+                    # allowlist (_pkt_allow, built above) mirrors the gate exactly.
+                    merged_packets, _pkt_fixes = _val.sanitize_packets(
+                        merged_packets, _pkt_allow, opp)
+                    if _pkt_fixes:
+                        print(f"[DEAL-SWEEP] packet-gate opp={opp_id} sanitized "
+                              f"{_pkt_fixes} poisoned carried-forward packet(s)",
+                              flush=True)
+                    prior_deltas = existing_record.get("deltas") or []
+                    delta_cap = int(os.getenv("DEAL_DELTA_CAP", "200"))
+                    parsed["packets"] = merged_packets
+                    parsed["deltas"] = (new_deltas + prior_deltas)[:delta_cap]
+                    parsed["ai"] = packets_mod.project_into_ai(
+                        parsed.get("ai") or {}, merged_packets)
+                    parsed["schema_version"] = 2
+                    print(f"[DEAL-SWEEP] living-memory opp={opp_id} "
+                          f"packets={len(merged_packets)} new_deltas={len(new_deltas)}",
+                          flush=True)
+            except Exception as _e:  # noqa: BLE001
+                print(f"[DEAL-SWEEP] reconcile skipped opp={opp_id}: "
+                      f"{type(_e).__name__}: {_e}", flush=True)
+            # Recency guard: when this sweep read ZERO buyer calls the deal has no
+            # fresh engagement evidence, so any "open requirement" is necessarily
+            # carried-forward context, not a freshly confirmed ask. We key off
+            # calls_read (the same signal the thin-detection below already trusts)
+            # rather than each item's own date, because the agent sometimes
+            # re-stamps a stale ask (e.g. a 2024 NDA request) with the current year
+            # to look recent — the date is the field it fabricates, calls_read is
+            # not. We act ONLY on an explicit, valid zero; a missing/malformed
+            # count is treated as "unknown" and left untouched so we never clear a
+            # warm deal by accident. The durable packets still retain the asks as
+            # history and the re-engagement path lives in recommended_moves, so the
+            # deal-detail view stops surfacing stale asks as live requirements.
+            _ec_guard = parsed.get("evidence_coverage")
+            _cr_raw = _ec_guard.get("calls_read") if isinstance(_ec_guard, dict) else None
+            try:
+                _calls_read_guard = int(_cr_raw) if _cr_raw is not None else None
+            except (TypeError, ValueError):
+                _calls_read_guard = None
+            if _calls_read_guard == 0 and isinstance(parsed.get("ai"), dict):
+                _ai_block = parsed["ai"]
+                _moved = 0
+                for _sec in ("explicit_requirements", "implicit_requirements"):
+                    _s = _ai_block.get(_sec)
+                    _its = _s.get("items") if isinstance(_s, dict) else None
+                    if isinstance(_its, list):
+                        _moved += len(_its)
+                    _ai_block[_sec] = {"items": []}
+                if _moved:
+                    print(f"[DEAL-SWEEP] recency-guard opp={opp_id} cleared {_moved} "
+                          f"carried-forward requirement(s) (calls_read=0)", flush=True)
+            # MEDDPICC per-element block: normalise to the 8 fixed elements and
+            # carry a prior detailed element forward when this sweep emitted an
+            # empty one, so a thin/dark read never blanks a previously rich block.
+            if isinstance(parsed.get("ai"), dict):
+                try:
+                    _normalize_meddpicc(parsed["ai"], existing_record.get("ai") or {})
+                    # MEDDPICC anti-fabrication gate: narratives (incl. a prior
+                    # element carried forward above) are free text NOT covered by
+                    # validate_record / sanitize_people / the action-text sanitizer,
+                    # so a person/placeholder minted by a pre-gate sweep could ride a
+                    # carried-forward element into the record. Neutralise it here,
+                    # AFTER carry-forward, on ANY read quality.
+                    _md_fixes = _val.sanitize_meddpicc(parsed["ai"], _pkt_allow, opp)
+                    if _md_fixes:
+                        print(f"[DEAL-SWEEP] meddpicc-gate opp={opp_id} neutralised "
+                              f"{_md_fixes} fabrication(s) in MEDDPICC narrative",
+                              flush=True)
+                except Exception as _e:  # noqa: BLE001
+                    print(f"[DEAL-SWEEP] meddpicc normalize skipped opp={opp_id}: "
+                          f"{type(_e).__name__}: {_e}", flush=True)
+
+        # MANDATORY anti-fabrication gate at the single persist chokepoint (Task
+        # spec Part 4): invoke -> _finalize -> validate_record. A clean candidate
+        # is persisted; a failing one is RE-RUN with the violations fed back to the
+        # model (<=2 retries); if the model still cannot anchor every fact, a
+        # deterministic last-resort sanitize forces each offending value to the
+        # Salesforce truth / a role / null and we persist that honest record ONCE.
+        # The sweep is therefore structurally unable to persist an invented fact.
+        _max_attempts = max(1, int(os.getenv("DEAL_SWEEP_GATE_ATTEMPTS", "3")))
+        _feedback = ""
+        _failed_validation = False
+        _final_violations: list = []
+        parsed = None
+        for _attempt in range(_max_attempts):
+            coro = agent.ainvoke(
+                {"messages": [{"role": "user", "content": user_msg + _feedback}]},
+                config={"recursion_limit": recursion_limit},
+            )
+            agent_result = await asyncio.wait_for(coro, timeout=timeout_s)
+            # Accumulate token usage ACROSS attempts so the audit log charges the
+            # full cost of a retried run, not just the last attempt.
+            _u = _sum_usage(agent_result.get("messages", [])
+                            if isinstance(agent_result, dict) else [])
+            for _uk in ("uncached_input", "output", "cache_creation", "cache_read", "total"):
+                usage[_uk] = (usage.get(_uk) or 0) + (_u.get(_uk) or 0)
+            usage["seen"] = bool(usage.get("seen")) or bool(_u.get("seen"))
+            text = _oa._final_text(agent_result)
+            print(f"[DEAL-SWEEP] ainvoke returned opp={opp_id} "
+                  f"attempt={_attempt + 1}/{_max_attempts} "
+                  f"text_chars={len(text or '')}", flush=True)
+            _candidate = _oa._extract_json(text)
+            if not isinstance(_candidate, dict) or _candidate.get("_error"):
+                if _attempt < _max_attempts - 1:
+                    _feedback = ("\n\n--- Your previous output was not valid JSON. "
+                                 "Re-emit the FULL canonical record as a single JSON "
+                                 "object — no preamble, no markdown fences. ---")
+                    print(f"[DEAL-SWEEP] parse failed opp={opp_id} "
+                          f"attempt={_attempt + 1} -> retry", flush=True)
+                    continue
+                result["status"] = "parse_error"
+                result["error"] = (_candidate or {}).get("_error", "unparseable record")
+                return result
+            parsed = _finalize(_candidate)
+            _violations = _val.validate_record(
+                parsed,
+                sf_facts=opp,
+                contact_roles=(buyer or {}).get("contacts"),
+                avoma_attendees=_attendees_of(parsed),
+                active_sf_user_names=_active_users,
+                prior_names=_val._sourced_names_in_record(existing_record),
+            )
+            if not _violations:
+                if _attempt:
+                    print(f"[DEAL-SWEEP] gate PASS opp={opp_id} on retry "
+                          f"{_attempt + 1}/{_max_attempts}", flush=True)
+                break
+            if _attempt < _max_attempts - 1:
+                _feedback = _val.format_validation_feedback(_violations)
+                print(f"[DEAL-SWEEP] gate FAIL opp={opp_id} "
+                      f"attempt={_attempt + 1}/{_max_attempts} "
+                      f"violations={len(_violations)} -> retry", flush=True)
+                continue
+            # Retries exhausted: deterministic last-resort sanitize, then persist
+            # ONCE. An honest, scrubbed record is always saved (never withhold).
+            # The sanitize allowlist mirrors the gate's people check (contacts +
+            # echoed attendees + active users + SOURCED prior names) so legitimate
+            # people survive while unverifiable ones are dropped.
+            _sanitize_allow = set(_allowlist)
+            _sanitize_allow |= {_val._norm_name(n) for n in _attendees_of(parsed)}
+            _sanitize_allow |= set(_active_users or set())
+            _sanitize_allow |= {_val._norm_name(n)
+                                for n in _val._sourced_names_in_record(existing_record)}
+            _sanitize_allow.discard("")
+            _fixes = _val.sanitize_failed_record(parsed, _violations, opp,
+                                                 allowlist=_sanitize_allow)
+            _failed_validation = True
+            _final_violations = _violations
+            print(f"[DEAL-SWEEP] gate EXHAUSTED opp={opp_id} sanitized "
+                  f"{len(_violations)} violation(s) with {_fixes} fix(es)", flush=True)
+            break
+        # The audit count reflects ONLY unresolved violations at exhaustion — it is
+        # 0 when the record passed clean or a retry fixed it; it is the count of
+        # facts the model never anchored (then deterministically sanitized) when it
+        # did not. result["failed_validation"] flags the latter for the dashboard.
+        result["validation_violations"] = len(_final_violations) if _failed_validation else 0
+        result["failed_validation"] = _failed_validation
+        if result["validation_violations"]:
+            print(f"[DEAL-SWEEP] validation gate opp={opp_id} persisted with "
+                  f"{result['validation_violations']} sanitized fabrication(s)", flush=True)
+        _agent_sf_blank = bool(_meta.get("agent_sf_blank"))
+        # Build the durable living-memory packets ONCE, AFTER the gate has approved
+        # or sanitised the facts — so packets are always derived from gate-clean ai
+        # and a stripped fabrication can never survive in the packet store.
+        _apply_living_memory(parsed)
         await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Thin-record detection (drives the worker's retry loop). We ALWAYS keep
@@ -1047,6 +1362,7 @@ def _persist_run_log(opp: dict, source: str, result: dict,
             "total_tokens": usage.get("total") or None,
             "cost_usd": round(cost, 6) if cost else None,
             "error": result.get("error"),
+            "validation_violations": int(result.get("validation_violations") or 0),
         }
         _trigger_log.log_run(row)
     except Exception as e:  # noqa: BLE001
@@ -1150,15 +1466,121 @@ async def _run_sweep(agent_manager, run_id: str, owner: Optional[str],
                                "finished_at": _now()})
 
 
+def queue_enabled() -> bool:
+    """Crash-safe queue mode (default ON). When true, a sweep ENQUEUES book opps
+    as durable `waiting` rows and the separate worker.py drains them, so the web
+    process never runs the batch itself. Flip DEAL_SWEEP_USE_QUEUE=false to fall
+    back to the legacy in-process batch (kept for emergencies)."""
+    return os.getenv("DEAL_SWEEP_USE_QUEUE", "true").lower() in ("1", "true", "yes")
+
+
+async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
+                           opp_ids: Optional[list[str]] = None,
+                           limit: int = 500) -> dict:
+    """Queue-mode sweep start. Resolve the book (the SAME report-as-book
+    membership that is the single source of truth) and enqueue one `waiting` row
+    per opp under a fresh run_id, then return immediately — the worker drains the
+    queue. One book sweep at a time: refuses while rows are still waiting/working
+    so a second click can't double-enqueue the book.
+    """
+    snap = await asyncio.to_thread(_queue.status)
+    if (snap.get("waiting", 0) + snap.get("working", 0)) > 0:
+        raise RuntimeError("a sweep is already in progress (queue not drained)")
+    if _discovery_running:
+        raise RuntimeError("a discovery sweep is in progress; try again shortly")
+    if _hard_refresh_running:
+        raise RuntimeError("a hard refresh is in progress; try again shortly")
+
+    if opp_ids:
+        opp_ids = list(dict.fromkeys(i for i in opp_ids if i))
+        # Gate an explicit subset on report-as-book membership (the single source
+        # of truth). A manual/triggered subset must NEVER enqueue a non-member —
+        # new members are added solely by report reconciliation. active_opp_ids15
+        # raises (not returns empty) on a degraded read, so this can't silently
+        # drop the whole list.
+        active = await asyncio.to_thread(store.active_opp_ids15)
+        dropped = [i for i in opp_ids if (i or "")[:15] not in active]
+        if dropped:
+            print(f"[DEAL-SWEEP] queue enqueue dropped {len(dropped)} non-book "
+                  f"opp(s) (not in MASE report): {dropped[:10]}", flush=True)
+        opp_ids = [i for i in opp_ids if (i or "")[:15] in active]
+        if not opp_ids:
+            return {"run_id": None, "status": "queued", "mode": "queue",
+                    "owner": owner or "all-team", "total": 0,
+                    "note": "no in-book opportunities to enqueue (all ids were "
+                            "outside the MASE report)."}
+        opps = await _enrich_opp_ids(agent_manager, opp_ids)
+        if owner:
+            for o in opps:
+                o.setdefault("owner_name", owner)
+    else:
+        opps = await discover_opps(agent_manager, owner, limit=limit)
+
+    run_id = uuid.uuid4().hex[:12]
+    enqueued = await asyncio.to_thread(_queue.enqueue_book, run_id, opps)
+    print(f"[DEAL-SWEEP] queue enqueue run={run_id} owner={owner or 'ALL'} "
+          f"opps={enqueued}", flush=True)
+    return {
+        "run_id": run_id, "status": "queued", "mode": "queue",
+        "owner": owner or "all-team", "total": enqueued,
+        "note": ("enqueued; the sweep worker drains the queue. Poll "
+                 "/api/deal-engine/sweep/status for progress."),
+    }
+
+
+async def enqueue_trigger(agent_manager, opp_id: str) -> str:
+    """Queue-mode single-opp trigger (the Salesforce-update webhook). Enrich the
+    opp's display labels cheaply (one SOQL, no agent run) so the dashboard row is
+    populated, then enqueue exactly one `waiting` row. Idempotent: an opp already
+    waiting/working is left as-is ("already_queued")."""
+    opp_id = (opp_id or "").strip()
+    if not opp_id:
+        return "error"
+    # Membership comes ONLY from the MASE report (single source of truth). A
+    # trigger is a faster RE-sweep of a deal already in the book — it must never
+    # ADD a non-member (e.g. a Salesforce-update webhook firing on an opp outside
+    # the report). New members are added solely by report reconciliation.
+    if not await asyncio.to_thread(store.is_active_member, opp_id):
+        print(f"[DEAL-SWEEP] trigger opp={opp_id} -> not_in_book (skipped)",
+              flush=True)
+        return "not_in_book"
+    # Mutual exclusion with the AI-free hard refresh: once it has set its guard no
+    # new queue work may be enqueued, or the worker could claim the row and write a
+    # full record over the freshly-corrected SF facts. The webhook is fire-and-
+    # forget and the deal is re-swept next cycle, so skipping loses nothing durable.
+    if _hard_refresh_running:
+        print(f"[DEAL-SWEEP] trigger opp={opp_id} -> skipped "
+              "(hard_refresh_in_progress)", flush=True)
+        return "skipped_hard_refresh"
+    try:
+        enriched = await _enrich_opp_ids(agent_manager, [opp_id])
+        opp = enriched[0] if enriched else {"id": opp_id}
+    except Exception as e:  # noqa: BLE001 — labels are best-effort; never block enqueue
+        print(f"[DEAL-SWEEP] trigger enrich failed opp={opp_id}: "
+              f"{type(e).__name__}: {e}", flush=True)
+        opp = {"id": opp_id}
+    opp.setdefault("id", opp_id)
+    return await asyncio.to_thread(
+        _queue.enqueue_one, f"trigger-{opp_id[:15]}", opp)
+
+
 async def start_sweep(agent_manager, *, owner: Optional[str] = None,
                       opp_ids: Optional[list[str]] = None, limit: int = 500,
                       concurrency: Optional[int] = None,
                       max_retries: Optional[int] = None) -> dict:
-    """Kick off a sweep in the background. One at a time. Returns the run header.
+    """Kick off a sweep. One at a time. Returns the run header.
 
-    concurrency: opps processed in parallel (default DEAL_SWEEP_CONCURRENCY, 10).
+    In queue mode (default) this just enqueues the book and returns; the separate
+    worker.py process does the work. With DEAL_SWEEP_USE_QUEUE=false it runs the
+    legacy in-process batch.
+
+    concurrency: opps processed in parallel (legacy path only; default
+        DEAL_SWEEP_CONCURRENCY, 10). The worker owns concurrency in queue mode.
     max_retries: extra attempts per opp on failure (default DEAL_SWEEP_MAX_RETRIES, 2).
     """
+    if queue_enabled():
+        return await enqueue_book_run(
+            agent_manager, owner=owner, opp_ids=opp_ids, limit=limit)
     global _run_task
     if concurrency is None:
         concurrency = int(os.getenv("DEAL_SWEEP_CONCURRENCY", "10"))
@@ -1236,6 +1658,28 @@ def _persisted_completed_rows() -> list[dict]:
 
 
 async def get_status() -> dict:
+    if queue_enabled():
+        try:
+            st = await asyncio.to_thread(_queue.status)
+            # Surface the anti-fabrication counter (how many fabrications the gate
+            # caught + neutralized in the last 24h). Best-effort: never let the
+            # audit read 500 the dashboard.
+            try:
+                _vc = await asyncio.to_thread(
+                    _trigger_log.count_validation_violations, 24)
+                st["validation"] = _vc
+                # Top-level failure counter the frontend "Sync Quality" panel
+                # reads directly (Task spec Part 6): how many records FAILED the
+                # gate (needed last-resort sanitize) in the last 24h.
+                st["records_failed_validation"] = int(_vc.get("runs_with_violations") or 0)
+            except Exception as e:  # noqa: BLE001
+                print(f"[DEAL-SWEEP] validation-counter read failed: "
+                      f"{type(e).__name__}: {e}", flush=True)
+                st.setdefault("records_failed_validation", 0)
+            return st
+        except Exception as e:  # noqa: BLE001 — never 500 the dashboard; fall back
+            print(f"[DEAL-SWEEP] queue status read failed, falling back to "
+                  f"in-memory: {type(e).__name__}: {e}", flush=True)
     async with _state_lock:
         state = json.loads(json.dumps(_RUN_STATE, default=str))
 
@@ -1249,6 +1693,16 @@ async def get_status() -> dict:
         state["opps"] = extra + live_opps
         state["total"] = (state.get("total") or len(live_opps)) + len(extra)
         state["done"] = (state.get("done") or 0) + len(extra)
+    # Same anti-fabrication counters as the queue path, so /sweep/status always
+    # carries the top-level gate counter regardless of which branch served it.
+    try:
+        _vc = await asyncio.to_thread(_trigger_log.count_validation_violations, 24)
+        state["validation"] = _vc
+        state["records_failed_validation"] = int(_vc.get("runs_with_violations") or 0)
+    except Exception as e:  # noqa: BLE001 — never 500 the dashboard
+        print(f"[DEAL-SWEEP] validation-counter read failed (fallback): "
+              f"{type(e).__name__}: {e}", flush=True)
+        state.setdefault("records_failed_validation", 0)
     return state
 
 
@@ -1349,6 +1803,15 @@ async def discover_and_sweep_new(
         if running:
             return {"skipped": "sweep_in_progress", "discovered": 0, "new": 0,
                     "swept": 0, "completed": 0, "failed": 0, "opp_ids": []}
+        # Mutual exclusion with the AI-free hard refresh (same reasoning as the
+        # other enqueue paths): once the hard refresh has set its guard, discovery
+        # must NOT analyze/upsert any opp, or analyze_one would write a full record
+        # over the freshly-corrected SF facts. Discovery is schedule-driven and
+        # re-runs next cycle, so skipping loses nothing durable.
+        if _hard_refresh_running:
+            return {"skipped": "hard_refresh_in_progress", "discovered": 0,
+                    "new": 0, "swept": 0, "completed": 0, "failed": 0,
+                    "opp_ids": []}
 
         opps = await discover_opps(agent_manager, None, limit=limit)
         # Skip deals sitting at "Initial Interest": these are too early-stage for
@@ -1613,6 +2076,32 @@ async def reconcile_membership(
 # merges them onto every persisted record, preserving the AI analysis + history.
 _hard_refresh_running: bool = False
 _hard_refresh_last: dict = {}
+_HARD_REFRESH_LAST_PATH = Path(__file__).parent / ".deal_engine_hard_refresh_last.json"
+
+
+def _save_hard_refresh_last(summary: dict) -> None:
+    """Persist the most recent hard-refresh summary so it survives a restart and
+    can be checked later. Best-effort; never raises."""
+    try:
+        _HARD_REFRESH_LAST_PATH.write_text(json.dumps(summary, default=str))
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-HARD-REFRESH] summary save failed: {type(e).__name__}: {e}",
+              flush=True)
+
+
+def get_hard_refresh_last() -> dict:
+    """The summary of the most recent hard refresh (records / matched / updated /
+    removed / unmatched / failed / finished_at / source). Returns the in-memory
+    copy if present, else the persisted file, else {} when none has run yet."""
+    if _hard_refresh_last:
+        return _hard_refresh_last
+    try:
+        if _HARD_REFRESH_LAST_PATH.exists():
+            return json.loads(_HARD_REFRESH_LAST_PATH.read_text())
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-HARD-REFRESH] summary load failed: {type(e).__name__}: {e}",
+              flush=True)
+    return {}
 
 
 async def hard_refresh_all(
@@ -1620,6 +2109,7 @@ async def hard_refresh_all(
     *,
     delete_initial_interest: bool = True,
     concurrency: Optional[int] = None,
+    source: str = "manual",
 ) -> dict:
     """Refresh the hard Salesforce fields on every canonical deal record, with no
     AI cost.
@@ -1638,13 +2128,35 @@ async def hard_refresh_all(
 
     # Serialize hard refreshes (atomic: no await between check and set).
     if _hard_refresh_running:
-        return {"skipped": "hard_refresh_in_progress"}
+        out = {"skipped": "hard_refresh_in_progress", "status": "skipped",
+               "source": source, "finished_at": _now()}
+        _hard_refresh_log.log_run(out)  # log EVERY invocation, skips included
+        return out
     _hard_refresh_running = True
+    # `out` is the audit row; the finally block logs it for ALL exit paths
+    # (completed run, no-op skip, or fatal failure) so the nightly cadence and
+    # any anomalous run are always recorded.
+    out: dict = {"status": "completed", "source": source}
     try:
         async with _state_lock:
             running = _RUN_STATE.get("status") == "running"
         if running:
-            return {"skipped": "sweep_in_progress"}
+            out = {"skipped": "sweep_in_progress", "status": "skipped",
+                   "source": source}
+            return out
+        # Queue mode: the batch sweep runs in the SEPARATE worker.py process and is
+        # tracked in sweep_queue, NOT this process's _RUN_STATE. Our guard is now
+        # set, so no NEW work can be enqueued (every enqueue_* path checks
+        # _hard_refresh_running); refuse only if work is ALREADY waiting/working,
+        # else the worker could write a record between our re-read and upsert and we
+        # would clobber it with a stale full-record blob.
+        if queue_enabled():
+            snap = await asyncio.to_thread(_queue.status)
+            waiting, working = snap.get("waiting", 0), snap.get("working", 0)
+            if (waiting + working) > 0:
+                out = {"skipped": "sweep_queue_active", "status": "skipped",
+                       "source": source, "waiting": waiting, "working": working}
+                return out
 
         records = await asyncio.to_thread(store.list_records, None)
         ids: list[str] = []
@@ -1659,7 +2171,7 @@ async def hard_refresh_all(
         out = {
             "records": len(records), "matched": 0, "updated": 0,
             "removed": 0, "unmatched": 0, "failed": 0,
-            "removed_opps": [],
+            "removed_opps": [], "source": source, "status": "completed",
         }
         sem = asyncio.Semaphore(concurrency)
 
@@ -1688,22 +2200,16 @@ async def hard_refresh_all(
                     latest = await asyncio.to_thread(store.get_record, key)
                     rec = latest or rec
                     hard = rec.setdefault("hard", {})
-                    # Live Salesforce is authoritative for every hard field: OVERRIDE
-                    # whenever we have a value, skip None/empty so we never blank a
-                    # field SF didn't return (mirrors analyze_one's hard-write rules).
-                    for k_live, k_hard in (("owner_name", "owner_name"),
-                                           ("owner_id", "owner_id"),
-                                           ("account", "account_name"),
-                                           ("name", "opp_name"),
-                                           ("stage", "stage"),
-                                           ("forecast_category", "forecast_category"),
-                                           ("amount", "amount"),
-                                           ("close_date", "close_date"),
-                                           ("next_step", "next_step"),
-                                           ("products", "products")):
-                        v = live.get(k_live)
-                        if v is not None and v != "":
-                            hard[k_hard] = v
+                    # The opp matched the bulk SOQL, so this is a CONFIRMED-clean
+                    # Salesforce read: apply the SAME canonical override the AI
+                    # sweep uses, authoritative=True so Salesforce wins outright
+                    # (a field SF leaves blank CLEARS any model-authored value).
+                    # manager via reassert_manager (server-owned), then stamp
+                    # provenance so the corrected facts carry a <field>_source
+                    # exactly like a fresh sweep would.
+                    _val.apply_sf_hard_facts(hard, live, authoritative=True)
+                    _val.reassert_manager(hard, live)
+                    _val.stamp_fact_sources(hard, live)
                     await asyncio.to_thread(store.upsert_record, rec)
                     out["updated"] += 1
                 except Exception as e:  # noqa: BLE001
@@ -1716,12 +2222,23 @@ async def hard_refresh_all(
         _history_cache["ts"] = 0.0
         out["finished_at"] = _now()
         _hard_refresh_last = out
-        print(f"[DEAL-HARD-REFRESH] records={out['records']} matched={out['matched']} "
-              f"updated={out['updated']} removed={out['removed']} "
-              f"unmatched={out['unmatched']} failed={out['failed']}", flush=True)
+        _save_hard_refresh_last(out)
+        print(f"[DEAL-HARD-REFRESH] source={out['source']} records={out['records']} "
+              f"matched={out['matched']} updated={out['updated']} "
+              f"removed={out['removed']} unmatched={out['unmatched']} "
+              f"failed={out['failed']}", flush=True)
         return out
+    except Exception as e:  # noqa: BLE001 — record the fatal failure, then re-raise
+        out = {"status": "failed", "source": source,
+               "error": f"{type(e).__name__}: {e}"}
+        raise
     finally:
         _hard_refresh_running = False
+        # Append-only audit trail for EVERY non-early-return invocation
+        # (completed, skipped, or failed). Best-effort — never masks the result
+        # or the re-raised exception.
+        out.setdefault("finished_at", _now())
+        _hard_refresh_log.log_run(out)
 
 
 # ---- single-opp trigger (e.g. a Salesforce update webhook) ----
@@ -1734,122 +2251,10 @@ _trigger_sem: Optional[asyncio.Semaphore] = None
 _trigger_tasks: set = set()
 
 
-# ---------------------------------------------------------------------------
-# Shared (cross-instance) active-run registry.
-#
-# The MASE API runs as 2+ ECS tasks behind the ALB. _trigger_inflight is a
-# per-PROCESS set, so a UI poll that lands on a different task than the one
-# running the sweep sees an empty set — the "Running…" pill flickers on/off
-# every poll. So the UI-facing signal is mirrored into a tiny shared table
-# (deal_active_runs): every task writes a row at start and deletes it at the
-# end, and the /sweep/active endpoint reads the table (with a TTL guard so a
-# crashed run can't pin a row forever). _trigger_inflight stays as the
-# per-process dedup guard.
-# ---------------------------------------------------------------------------
-_ACTIVE_RUN_TTL_MIN = int(os.getenv("DEAL_ACTIVE_RUN_TTL_MIN", "30"))
-
-
-def _active_ttl_iso() -> str:
-    return (datetime.now(timezone.utc)
-            - timedelta(minutes=_ACTIVE_RUN_TTL_MIN)).isoformat()
-
-
-def _mark_active(opp_id: str, key: str, source: str,
-                 opp: Optional[dict] = None) -> None:
-    """Best-effort: record this opp as in-flight in the shared table so every
-    API instance (and the UI) sees it. Never raises."""
-    try:
-        row = {
-            "opp_id_15": key,
-            "opp_id": opp_id,
-            "opp_name": (opp or {}).get("name"),
-            "account_name": (opp or {}).get("account"),
-            "owner_name": (opp or {}).get("owner_name"),
-            "source": source,
-            "started_at": datetime.now(timezone.utc).isoformat(),
-        }
-        store._upsert("deal_active_runs", row, "opp_id_15", returning=False)
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] _mark_active failed key={key}: "
-              f"{type(e).__name__}: {e}", flush=True)
-
-
-def _refresh_active(opp_id: str, key: str, source: str,
-                    opp: Optional[dict]) -> None:
-    """Re-stamp the active row once enrichment resolved the opp name/account/
-    owner, so the Reruns tab shows a friendly label instead of the bare id.
-    PATCH (not upsert) so the original started_at is preserved."""
-    if not opp:
-        return
-    try:
-        store._patch(
-            "deal_active_runs",
-            {
-                "opp_name": opp.get("name"),
-                "account_name": opp.get("account"),
-                "owner_name": opp.get("owner_name"),
-                "source": source,
-            },
-            filters=[f"opp_id_15=eq.{key}"],
-        )
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] _refresh_active failed key={key}: "
-              f"{type(e).__name__}: {e}", flush=True)
-
-
-def _clear_active(key: str) -> None:
-    """Best-effort: drop the shared in-flight row when the run ends. Never raises."""
-    try:
-        store._delete("deal_active_runs", {"opp_id_15": key})
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] _clear_active failed key={key}: "
-              f"{type(e).__name__}: {e}", flush=True)
-
-
-def get_active_runs() -> list[dict]:
-    """Full rows for the opps whose single-opp re-analysis is in flight right
-    now — shared across instances, TTL-bounded. Shape suits the Reruns tab."""
-    try:
-        rows = store._select(
-            "deal_active_runs",
-            select="opp_id_15,opp_id,opp_name,account_name,owner_name,source,started_at",
-            filters=[f"started_at=gte.{_active_ttl_iso()}"],
-            order="started_at.desc",
-        )
-        return rows or []
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] get_active_runs failed: "
-              f"{type(e).__name__}: {e}", flush=True)
-        # Degrade to this process's local view rather than going blank.
-        return [{"opp_id_15": k, "opp_id": k, "opp_name": None,
-                 "account_name": None, "owner_name": None,
-                 "source": "trigger", "started_at": None}
-                for k in sorted(_trigger_inflight)]
-
-
-def get_active_opp_ids() -> list[str]:
-    """The 15-char keys of opportunities whose single-opp re-analysis is in
-    flight right now. Reads the SHARED table so every API instance agrees
-    (fixes the per-process 'Running…' flicker); falls back to the local set."""
-    try:
-        rows = store._select(
-            "deal_active_runs", select="opp_id_15",
-            filters=[f"started_at=gte.{_active_ttl_iso()}"],
-        )
-        return sorted({r.get("opp_id_15") for r in rows if r.get("opp_id_15")})
-    except Exception as e:  # noqa: BLE001
-        print(f"[DEAL-SWEEP] get_active_opp_ids failed: "
-              f"{type(e).__name__}: {e}", flush=True)
-        return sorted(_trigger_inflight)
-
-
 async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
     """Worker: enrich + analyze one opp, bounded by the trigger semaphore.
     Always releases the in-flight claim. Returns the analyze_one result."""
     global _trigger_sem
-    # Mark active in the SHARED table immediately so the UI shows it on the
-    # next poll regardless of which task answers. Cleared in finally.
-    await asyncio.to_thread(_mark_active, opp_id, key, "salesforce_trigger", None)
     try:
         # Membership comes ONLY from the MASE report. A trigger is a faster
         # RE-sweep of a deal already in the book — it must never ADD a non-member
@@ -1859,15 +2264,22 @@ async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
             print(f"[DEAL-SWEEP] trigger opp={opp_id} -> not_in_book (skipped)",
                   flush=True)
             return {"opp_id": opp_id, "status": "not_in_book"}
+        # Mutual exclusion with the AI-free hard refresh (symmetric with the full
+        # sweep, which start_sweep/enqueue already gate on). A trigger runs a slow
+        # AI analysis off an existing-record base; if it landed mid hard-refresh
+        # its full-record write could clobber the freshly-corrected SF facts. The
+        # webhook is fire-and-forget and the deal is re-swept on the next cycle,
+        # so skipping here is safe and loses nothing durable.
+        if _hard_refresh_running:
+            print(f"[DEAL-SWEEP] trigger opp={opp_id} -> skipped "
+                  "(hard_refresh_in_progress)", flush=True)
+            return {"opp_id": opp_id, "status": "skipped",
+                    "reason": "hard_refresh_in_progress"}
         if _trigger_sem is None:
             _trigger_sem = asyncio.Semaphore(
                 max(1, int(os.getenv("DEAL_TRIGGER_CONCURRENCY", "3"))))
         async with _trigger_sem:
             opps = await _enrich_opp_ids(agent_manager, [opp_id])
-            # Now that we know the name/account/owner, label the active row.
-            await asyncio.to_thread(
-                _refresh_active, opp_id, key, "salesforce_trigger",
-                opps[0] if opps else None)
             res = await analyze_one(agent_manager, opps[0], source="salesforce_trigger")
         # Refresh the dashboard/book history so the updated record shows promptly.
         _history_cache["ts"] = 0.0
@@ -1875,7 +2287,6 @@ async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
         return res
     finally:
         _trigger_inflight.discard(key)
-        await asyncio.to_thread(_clear_active, key)
 
 
 def trigger_opp_async(agent_manager, opp_id: str) -> str:

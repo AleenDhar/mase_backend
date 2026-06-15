@@ -296,6 +296,48 @@ def _build_tools(supabase):
             supabase, query, include_analysis=include_analysis,
             opp_limit=opp_limit, meeting_limit=meeting_limit)))
 
+    async def list_dossiers(query: Optional[str] = None, limit: int = 10) -> str:
+        """List/search long-form deal dossiers (opportunity_observatory) by name
+        or account. Returns headers only (no heavy markdown)."""
+        lim = max(1, min(int(limit or 10), 50))
+
+        def _run():
+            cols = "opportunity_id,name,opportunity_owner,close_date,amount,stage,account_name"
+            qy = supabase.table("opportunity_observatory").select(cols)
+            if query:
+                q = query.strip().strip("?.,!")
+                qy = qy.or_(f"name.ilike.%{q}%,account_name.ilike.%{q}%")
+            return qy.limit(lim).execute()
+
+        res = await _exec(_run)
+        return _short({"count": len(res.data or []), "dossiers": res.data})
+
+    async def get_dossier(opportunity_id: str, sections: Optional[str] = None) -> str:
+        """Full long-form dossier for one opportunity from opportunity_observatory.
+        sections (optional) is a comma-separated subset of: sf_90day_evidence,
+        avoma_evidence, outbound_campaign_intelligence, bundle_a_deal_progress,
+        bundle_b_competition_fit, bundle_c_stakeholder_map, bundle_d_vulnerabilities,
+        diagnosis_sheet."""
+        oid = (opportunity_id or "").strip()
+        valid = {"sf_90day_evidence", "avoma_evidence", "outbound_campaign_intelligence",
+                 "bundle_a_deal_progress", "bundle_b_competition_fit",
+                 "bundle_c_stakeholder_map", "bundle_d_vulnerabilities", "diagnosis_sheet"}
+        header = "opportunity_id,name,opportunity_owner,close_date,amount,stage,account_name"
+        if sections:
+            req = [s.strip() for s in sections.split(",") if s.strip()]
+            bad = [s for s in req if s not in valid]
+            if bad:
+                return _short({"error": f"unknown section(s): {bad}",
+                               "valid_sections": sorted(valid)})
+            cols = header + "," + ",".join(req)
+        else:
+            cols = header + "," + ",".join(sorted(valid))
+        res = await _exec(lambda: supabase.table("opportunity_observatory").select(cols)
+                          .eq("opportunity_id", oid).limit(1).execute())
+        if not (res.data or []):
+            return _short({"error": f"no dossier with id '{oid}'"})
+        return _short(res.data[0], max_chars=12000)
+
     specs = [
         (search_opportunities, "search_opportunities"),
         (filter_opportunities, "filter_opportunities"),
@@ -303,6 +345,8 @@ def _build_tools(supabase):
         (get_field_history, "get_field_history"),
         (get_meeting_analysis, "get_meeting_analysis"),
         (find_meetings_by_name, "find_meetings_by_name"),
+        (list_dossiers, "list_dossiers"),
+        (get_dossier, "get_dossier"),
     ]
     tools = []
     for fn, name in specs:

@@ -291,3 +291,47 @@ def test_real_sweep_deltas_all_labelled():
         pd = P.present_delta(d)
         assert pd["label"], f"empty label for {d}"
         assert pd["group"] in ("added", "changed", "resolved", "dormant")
+
+
+# ---- Stakeholder cap: dashboard list is bounded and prioritised --------------
+
+def _stake(name, role, date):
+    return {"name": name, "title": "", "role": role,
+            "last_contact_date": date, "sentiment": "", "risk": ""}
+
+
+def test_stakeholder_cap_limits_and_prioritises(monkeypatch):
+    monkeypatch.delenv("DEAL_STAKEHOLDER_CAP", raising=False)
+    ai = {"stakeholder_map": {"items": [
+        _stake("Inf Old", "Influencer", "2026-01-01"),
+        _stake("Inf New", "Influencer", "2026-06-01"),
+        _stake("Detractor", "Detractor", "2026-06-09"),
+        _stake("Unknown A", "Unknown", "2026-06-08"),
+        _stake("Unknown B", "Unknown", "2026-06-07"),
+        _stake("Coach", "Coach", "2026-05-01"),
+        _stake("Champ", "Champion", "2026-03-01"),
+        _stake("EB", "Economic Buyer", "2026-02-01"),
+        _stake("DM", "Decision Maker", "2026-04-01"),
+    ]}}
+    _, _, proj = _sweep([], ai)
+    items = proj["stakeholder_map"]["items"]
+    # Default cap is 7.
+    assert len(items) == 7
+    names = [s["name"] for s in items]
+    # Highest-priority roles must be retained, in role order.
+    assert names[:5] == ["EB", "DM", "Champ", "Coach", "Inf New"]
+    # The lowest-priority (Unknown) contacts are the ones dropped.
+    assert "Unknown A" not in names
+    assert "Unknown B" not in names
+
+
+def test_stakeholder_cap_env_override(monkeypatch):
+    monkeypatch.setenv("DEAL_STAKEHOLDER_CAP", "2")
+    ai = {"stakeholder_map": {"items": [
+        _stake("EB", "Economic Buyer", "2026-02-01"),
+        _stake("Champ", "Champion", "2026-03-01"),
+        _stake("Inf", "Influencer", "2026-06-01"),
+    ]}}
+    _, _, proj = _sweep([], ai)
+    items = proj["stakeholder_map"]["items"]
+    assert [s["name"] for s in items] == ["EB", "Champ"]

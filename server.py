@@ -9730,6 +9730,20 @@ class _AppWithMCP:
         await self._fastapi(scope, receive, send)
 
 
+# Mount the multi-phase ABM pipeline orchestrator: POST /api/run-pipeline (+ its
+# DELETE/{chat_id} and GET /_active helpers). pipeline_runner declares these on
+# its own APIRouter; without this include the routes are never registered and
+# VIBE's pipeline dispatch (lib/dispatch-pipeline.ts -> {ALB}/api/run-pipeline)
+# gets HTTP 404 {"detail":"Not Found"} — the ABM "project route" failure. Mount
+# on the FastAPI instance BEFORE it's wrapped below. (Re-added: a merge dropped
+# this include, which is what broke the project route in production.)
+try:
+    import pipeline_runner as _pipeline_runner
+    _fastapi_app.include_router(_pipeline_runner.router)
+    print("[STARTUP] pipeline_runner router included (POST /api/run-pipeline)")
+except Exception as _e:  # noqa: BLE001
+    print(f"[STARTUP] WARNING: pipeline_runner router NOT included: {_e}")
+
 # Reassign module-level `app` so uvicorn.run("server:app", …) picks up the wrapper.
 app = _AppWithMCP(_fastapi_app, _mcp_gateway)
 

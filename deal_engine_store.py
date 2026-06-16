@@ -751,6 +751,10 @@ def insert_push(*, todo_key: str, opp_id: str, category: Optional[str],
 TODO_HORIZON_DAYS = int(os.environ.get("DEAL_TODO_HORIZON_DAYS", "60"))
 # Cap on best-practice flags surfaced per deal so the urgent few aren't buried.
 TODO_MAX_BEST_PRACTICE = int(os.environ.get("DEAL_TODO_MAX_BEST_PRACTICE", "5"))
+# Critical surface = the rolling next-moves plan. Emit several ranked moves (not just
+# rank-1) so the UI can present next-7 / next-14 / next-30-day horizons; cap to keep
+# the surface focused.
+TODO_MAX_CRITICAL = int(os.environ.get("DEAL_TODO_MAX_CRITICAL", "6"))
 # A dated ask/commitment whose evidence is older than this (and not re-confirmed
 # on a recent call/activity) is treated as context/history, not a live to-do, so
 # the action surface stays forward-looking instead of resurfacing year-old asks.
@@ -886,11 +890,15 @@ def derive_todo(owner: Optional[str] = None) -> dict:
             def _act_date(m):
                 return m.get("act_by") or m.get("trigger_date")
             actionable = [m for m in moves if _within_todo_horizon(_act_date(m))]
-            if actionable:
-                top = min(actionable, key=lambda m: _num(m.get("rank")) if m.get("rank") is not None else 1)
+            # Emit the rolling plan: every actionable move, ranked, so the UI can group
+            # them into next-7 / next-14 / next-30-day horizons (not just rank-1). A key
+            # deal whose only moves are far-future legitimately has no near-term action.
+            actionable.sort(key=lambda m: _num(m.get("rank")) if m.get("rank") is not None else 99)
+            for top in actionable[:TODO_MAX_CRITICAL]:
                 critical.append(_stamp_todo({**ctx,
                                  "action": top.get("action"),
                                  "intervention_owner": top.get("owner"),
+                                 "horizon": top.get("horizon"),
                                  "trigger": top.get("trigger"),
                                  "trigger_date": top.get("trigger_date"),
                                  "act_by": top.get("act_by"),

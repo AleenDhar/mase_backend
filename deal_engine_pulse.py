@@ -296,11 +296,15 @@ def flag_contradicts_live_pulse(text: Any, pulse: Optional[dict]) -> bool:
         return False
     if any(s in t for s in _GHOST_MARKERS):
         return True
-    # "N months since / of silence / no contact" — a months-long gap is a direct
-    # contradiction of a live pulse.
-    if re.search(r"\d+\s*months?", t) and any(
+    # "N months since / of silence / no contact / unaddressed" — a months-long gap
+    # is a direct contradiction of a live pulse. Handle "15 months", "15+ months"
+    # and "15-17 months" forms.
+    if re.search(r"\d+\+?(?:\s*-\s*\d+)?\s*months?", t) and any(
             k in t for k in ("since", "silence", "no contact", "no buyer",
-                             "without", "ago", "dark", "stall", "engage")):
+                             "without", "ago", "dark", "stall", "engage",
+                             "unaddressed", "ignored", "never delivered",
+                             "never reached", "disengaged", "re-engage",
+                             "reengage")):
         return True
     # "N days since last buyer touch" where N clearly exceeds the live window.
     m = re.search(r"(\d+)\s*days?", t)

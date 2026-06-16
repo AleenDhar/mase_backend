@@ -36,6 +36,10 @@ _SERVICE_KEY = (
 # Hard-scoped table names — constants, never supplied by the caller.
 T_RECORDS = "deal_records"
 T_PUSHES = "deal_todo_pushes"
+# User overrides on the AI-derived to-dos (edit/delete), keyed by todo_key so they
+# persist across daily re-sweeps; and manually-added completed updates.
+T_OVERRIDES = "deal_todo_overrides"
+T_MANUAL = "deal_manual_updates"
 
 _TIMEOUT = 30.0
 
@@ -741,6 +745,76 @@ def insert_push(*, todo_key: str, opp_id: str, category: Optional[str],
     return res[0] if res else row
 
 
+# ---------- To-do overrides (edit / delete) + manual completed updates ----------
+
+def upsert_override(*, todo_key: str, opp_id: str, action: str,
+                    edited_text: Optional[str] = None,
+                    edited_due: Optional[str] = None,
+                    created_by: Optional[str] = None) -> dict:
+    """Persist a user edit or delete of one AI-derived to-do, keyed by todo_key so
+    it survives the daily re-sweep (the regenerated item with the same key picks the
+    override back up). action is 'edit' or 'delete'."""
+    if action not in ("edit", "delete"):
+        raise DealEngineError("action must be 'edit' or 'delete'")
+    row = {
+        "todo_key": todo_key,
+        "opp_id": (str(opp_id or "").strip())[:15],
+        "action": action,
+        "edited_text": edited_text,
+        "edited_due": edited_due or None,
+        "created_by": created_by,
+        "updated_at": _now(),
+    }
+    res = _upsert(T_OVERRIDES, row, on_conflict="todo_key")
+    return res[0] if res else row
+
+
+def clear_override(todo_key: str) -> None:
+    """Remove an override (undo an edit/delete) for one todo_key."""
+    _delete(T_OVERRIDES, {"todo_key": str(todo_key)})
+
+
+def _overrides_index() -> dict[str, dict]:
+    """Map todo_key -> {action, edited_text, edited_due} across all overrides.
+    Degrades to {} if the table isn't present yet (so /todo keeps working)."""
+    try:
+        rows = _select(T_OVERRIDES, select="todo_key,action,edited_text,edited_due")
+    except DealEngineError:
+        return {}
+    return {r["todo_key"]: r for r in rows if r.get("todo_key")}
+
+
+def insert_manual_update(*, opp_id: str, note: str, done_date: Optional[str] = None,
+                         sf_task_id: Optional[str] = None,
+                         created_by: Optional[str] = None) -> dict:
+    """Persist a manually-added completed update on a deal (surfaces under
+    'Recently completed'). done_date is the date it was actually done."""
+    row = {
+        "opp_id": (str(opp_id or "").strip())[:15],
+        "note": note,
+        "done_date": done_date or None,
+        "sf_task_id": sf_task_id,
+        "created_by": created_by,
+    }
+    res = _insert(T_MANUAL, row)
+    return res[0] if res else row
+
+
+def list_manual_updates(opp_id: Optional[str] = None) -> list[dict]:
+    """Manual completed updates, optionally for one opp (15-char-prefix match).
+    Degrades to [] if the table isn't present yet."""
+    filters = []
+    if opp_id:
+        prefix = (str(opp_id or "").strip())[:15]
+        if prefix:
+            filters.append(f"opp_id=like.{quote(prefix, safe='')}*")
+    try:
+        return _select(T_MANUAL, select="*", filters=filters or None,
+                       order="done_date.desc")
+    except DealEngineError:
+        return []
+
+
 # ---------- Espresso (to-do) derivation ----------
 
 # Daily to-do actionability horizon. The dashboard is rebuilt every day, so a
@@ -854,6 +928,49 @@ def attach_pulse(rec: dict) -> dict:
     return out
 
 
+def stamp_move_overrides(rec: dict, ovr: Optional[dict] = None) -> dict:
+    """Stamp every recommended_move with its deterministic todo_key and apply any
+    user edit/delete override keyed by that todo_key. Serve-time only (read path),
+    no mutation of the stored record. This makes the drawer's next-moves plan honour
+    edits/deletes for EVERY deal — including the ones that don't flow through
+    derive_todo's forecast-critical gate (whose other to-do buckets already get the
+    same overrides applied in derive_todo). Pass a shared `ovr` index when mapping a
+    list of records so the override table is read once, not per record."""
+    if not isinstance(rec, dict):
+        return rec
+    ai = rec.get("ai") or {}
+    rm = ai.get("recommended_moves") if isinstance(ai, dict) else None
+    items = rm.get("items") if isinstance(rm, dict) else None
+    if not isinstance(items, list) or not items:
+        return rec
+    if ovr is None:
+        ovr = _overrides_index()
+    opp = rec.get("opp_id") or (rec.get("hard") or {}).get("opp_id")
+    out_items = []
+    for m in items:
+        if not isinstance(m, dict):
+            out_items.append(m); continue
+        key = todo_key(opp, "critical", m.get("action"),
+                       m.get("act_by") or m.get("trigger_date"))
+        m2 = dict(m); m2["todo_key"] = key
+        o = ovr.get(key)
+        if o:
+            if o.get("action") == "delete":
+                continue
+            if o.get("action") == "edit":
+                m2["edited"] = True
+                if o.get("edited_text"):
+                    m2["action"] = o["edited_text"]
+                if o.get("edited_due"):
+                    m2["act_by"] = o["edited_due"]
+        out_items.append(m2)
+    out = dict(rec); out_ai = dict(ai); out_rm = dict(rm)
+    out_rm["items"] = out_items
+    out_ai["recommended_moves"] = out_rm
+    out["ai"] = out_ai
+    return out
+
+
 def derive_todo(owner: Optional[str] = None) -> dict:
     """RSD-filterable action list grouped by impact, computed from the records.
 
@@ -956,6 +1073,45 @@ def derive_todo(owner: Optional[str] = None) -> dict:
             best_practice.append(_stamp_todo({**ctx, "flag": flag_text},
                                  "bestPractice", flag_text, None, pmap))
 
+    # Apply user overrides (edit/delete), keyed by todo_key so they survive the
+    # daily re-sweep: a deleted to-do stays gone; an edited one keeps the user's
+    # wording (and due date). The todo_key stays the ORIGINAL, so push state and
+    # the override both keep matching the regenerated item.
+    ovr = _overrides_index()
+    def _apply_overrides(items: list, primary_field: str) -> list:
+        if not ovr:
+            return items
+        out = []
+        for it in items:
+            o = ovr.get(it.get("todo_key"))
+            if not o:
+                out.append(it); continue
+            if o.get("action") == "delete":
+                continue
+            if o.get("action") == "edit":
+                it = dict(it)
+                it["edited"] = True
+                if o.get("edited_text"):
+                    it[primary_field] = o["edited_text"]
+                if o.get("edited_due"):
+                    it["due"] = o["edited_due"]; it["act_by"] = o["edited_due"]
+            out.append(it)
+        return out
+    critical = _apply_overrides(critical, "action")
+    important = _apply_overrides(important, "commitment")
+    explicit = _apply_overrides(explicit, "requirement")
+    implicit = _apply_overrides(implicit, "inferred_need")
+    best_practice = _apply_overrides(best_practice, "flag")
+
+    # Manually-added completed updates (book-wide; carry opp_id only, so the
+    # frontend filters by opp and merges them into 'Recently completed').
+    manual = [{
+        "id": m.get("id"), "opp_id": m.get("opp_id"),
+        "note": m.get("note"), "done_date": m.get("done_date"),
+        "sf_task_id": m.get("sf_task_id"), "created_by": m.get("created_by"),
+        "created_at": m.get("created_at"),
+    } for m in list_manual_updates(None)]
+
     return {
         "owner": owner or "all",
         "critical": critical,
@@ -963,6 +1119,7 @@ def derive_todo(owner: Optional[str] = None) -> dict:
         "explicitRequirements": explicit,
         "implicit": implicit,
         "bestPractice": best_practice,
+        "manualCompleted": manual,
     }
 
 

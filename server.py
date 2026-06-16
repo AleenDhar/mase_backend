@@ -6669,6 +6669,11 @@ async def deal_engine_opportunities(owner: str = ""):
     import deal_engine_store as dstore
     try:
         records = await _aw(dstore.list_records, owner or None)
+        # Frontend contract: every record carries `pulse`; also stamp each
+        # recommended_move with its todo_key + apply user edit/delete overrides
+        # (read the override table ONCE for the whole list).
+        ovr = await _aw(dstore._overrides_index)
+        records = [dstore.stamp_move_overrides(dstore.attach_pulse(r), ovr) for r in records]
         return {"count": len(records), "records": records}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
@@ -6679,7 +6684,11 @@ async def deal_engine_opportunity(opp_id: str):
     import deal_engine_store as dstore
     try:
         rec = await _aw(dstore.get_record, opp_id)
-        return rec or JSONResponse({"error": "opportunity not found"}, status_code=404)
+        if not rec:
+            return JSONResponse({"error": "opportunity not found"}, status_code=404)
+        # Frontend contract: `record["pulse"]` always present; also stamp
+        # recommended_moves with todo_key + apply user edit/delete overrides.
+        return dstore.stamp_move_overrides(dstore.attach_pulse(rec))
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -6845,6 +6854,111 @@ async def deal_engine_todo_push(request: Request):
         return {"ok": True, "already_pushed": False, "sf_task_id": sf_task_id,
                 "todo_key": key, "pushed_at": push.get("pushed_at"),
                 "subject": rec_subject}
+    except dstore.DealEngineError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/todo/override")
+async def deal_engine_todo_override(request: Request):
+    """Persist a user EDIT or DELETE of an AI-derived to-do, keyed by todo_key so it
+    survives the daily re-sweep (the regenerated item with the same key picks the
+    override back up). Body: {opp_id, todo_key, action:'edit'|'delete', text?, due?,
+    by?}. For 'delete', text/due are ignored."""
+    import deal_engine_store as dstore
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        return JSONResponse({"error": "invalid JSON body"}, status_code=400)
+    if not isinstance(d, dict):
+        return JSONResponse({"error": "body must be a JSON object"}, status_code=400)
+    key = str(d.get("todo_key") or "").strip()
+    opp_id = str(d.get("opp_id") or "").strip()
+    action = str(d.get("action") or "").strip()
+    if not key:
+        return JSONResponse({"error": "todo_key required"}, status_code=400)
+    if not opp_id:
+        return JSONResponse({"error": "opp_id required"}, status_code=400)
+    if action not in ("edit", "delete"):
+        return JSONResponse({"error": "action must be 'edit' or 'delete'"}, status_code=400)
+    text = (str(d.get("text") or "").strip() or None) if action == "edit" else None
+    due = (str(d.get("due") or "").strip() or None) if action == "edit" else None
+    if action == "edit" and not text:
+        return JSONResponse({"error": "text required for an edit"}, status_code=400)
+    by = str(d.get("by") or d.get("pushed_by") or "").strip() or None
+    try:
+        await _aw(dstore.upsert_override, todo_key=key, opp_id=opp_id, action=action,
+                  edited_text=text, edited_due=due, created_by=by)
+        return {"ok": True, "todo_key": key, "action": action}
+    except dstore.DealEngineError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/todo/override/clear")
+async def deal_engine_todo_override_clear(request: Request):
+    """Undo an edit/delete override for one todo_key. Body: {todo_key}."""
+    import deal_engine_store as dstore
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        return JSONResponse({"error": "invalid JSON body"}, status_code=400)
+    key = str((d or {}).get("todo_key") or "").strip()
+    if not key:
+        return JSONResponse({"error": "todo_key required"}, status_code=400)
+    try:
+        await _aw(dstore.clear_override, key)
+        return {"ok": True, "todo_key": key}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/todo/update")
+async def deal_engine_todo_update(request: Request):
+    """Add a manual COMPLETED update on a deal. Logs a completed Salesforce Task on
+    the Opportunity AND stores it for the in-app 'Recently completed' list. The
+    in-app row is saved even if the Salesforce write fails (sf_error is returned),
+    so a manually-logged update is never lost. Body: {opp_id, note, done_date?, by?}."""
+    from datetime import date as _date
+    import deal_engine_store as dstore
+    import salesforce_task_writer as sfw
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        return JSONResponse({"error": "invalid JSON body"}, status_code=400)
+    if not isinstance(d, dict):
+        return JSONResponse({"error": "body must be a JSON object"}, status_code=400)
+    opp_id = str(d.get("opp_id") or "").strip()
+    note = str(d.get("note") or "").strip()
+    done_date = str(d.get("done_date") or "").strip() or _date.today().isoformat()
+    by = str(d.get("by") or d.get("pushed_by") or "").strip() or None
+    if not opp_id:
+        return JSONResponse({"error": "opp_id required"}, status_code=400)
+    if not note:
+        return JSONResponse({"error": "note required"}, status_code=400)
+    try:
+        rec = await _aw(dstore.get_record, opp_id)
+        what_id = (rec.get("opp_id") if rec else None) or opp_id
+        sf_task_id = None
+        sf_error = None
+        subject = sfw.truncate_subject(note)
+        description = ("Deal Engine manual update (completed) logged from MASE.\n"
+                       f"Update: {note}\nDone: {done_date}" + (f"\nBy: {by}" if by else ""))
+        try:
+            result = await _aw(sfw.create_completed_task, subject=subject,
+                               what_id=what_id, activity_date=done_date,
+                               description=description, who_id=None)
+            if isinstance(result, dict) and result.get("success") and result.get("id"):
+                sf_task_id = result.get("id")
+            else:
+                sf_error = "Salesforce did not confirm Task creation"
+        except sfw.SalesforceWriteError as e:
+            sf_error = f"Salesforce write failed: {e}"
+        row = await _aw(dstore.insert_manual_update, opp_id=what_id, note=note,
+                        done_date=done_date, sf_task_id=sf_task_id, created_by=by)
+        return {"ok": True, "update": row, "sf_task_id": sf_task_id, "sf_error": sf_error}
     except dstore.DealEngineError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
     except Exception as e:  # noqa: BLE001

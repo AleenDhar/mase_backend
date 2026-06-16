@@ -27,6 +27,11 @@ from urllib.parse import quote
 
 import httpx
 
+# Single app-wide rule for the canonical (15-char) opportunity id. Importing it
+# (rather than re-implementing `[:15]`) keeps ONE definition so the queue can never
+# drift from deal_records and reintroduce 15- vs 18-char duplicate rows.
+from deal_engine_store import canonical_opp_id
+
 _SUPABASE_URL = (os.environ.get("SUPABASE_URL", "") or "").rstrip("/")
 _SERVICE_KEY = (
     os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
@@ -161,15 +166,12 @@ def enqueue_book(run_id: str, opps: list[dict]) -> int:
     rows = []
     seen = set()
     for o in opps:
-        oid = (o.get("id") or "").strip()
-        if not oid:
-            continue
-        # Canonicalize to the 15-char Salesforce id (matches the deal_records store
-        # key) so a 15-char (book/report) and an 18-char (trigger/CDC) enqueue of
-        # the SAME opp collapse onto ONE queue row. Without this they keyed as two
-        # rows and two workers swept the same deal at once (double cost + API load).
-        oid = oid[:15]
-        if oid in seen:
+        # Canonicalize to the 15-char Salesforce id (the single app-wide rule) so a
+        # 15-char (book/report) and an 18-char (trigger/CDC) enqueue of the SAME opp
+        # collapse onto ONE queue row. Without this they keyed as two rows and two
+        # workers swept the same deal at once (double cost + API load).
+        oid = canonical_opp_id(o.get("id"))
+        if not oid or oid in seen:
             continue
         seen.add(oid)
         rows.append({
@@ -196,13 +198,12 @@ def enqueue_one(run_id: str, opp: dict) -> str:
     """Idempotent single-opp enqueue (the Salesforce-update trigger path) via the
     enqueue_one_sweep() RPC. Returns "accepted" (newly queued / re-armed a
     finished row) or "already_queued" (a waiting/working row was left untouched)."""
-    oid = (opp.get("id") or "").strip()
+    # Canonicalize to the 15-char Salesforce id (the single app-wide rule) so 15-
+    # and 18-char enqueues of the same opp map to ONE row and the deal can never be
+    # swept twice concurrently.
+    oid = canonical_opp_id(opp.get("id"))
     if not oid:
         return "error"
-    # Canonicalize to the 15-char Salesforce id (matches enqueue_book + the
-    # deal_records store key) so 15- and 18-char enqueues of the same opp map to
-    # ONE row and the deal can never be swept twice concurrently.
-    oid = oid[:15]
     out = _rpc("enqueue_one_sweep", {
         "p_opp_id": oid,
         "p_run_id": run_id,

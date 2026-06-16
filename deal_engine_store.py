@@ -43,6 +43,24 @@ T_MANUAL = "deal_manual_updates"
 
 _TIMEOUT = 30.0
 
+
+# ---------------------------------------------------------------------------
+# Canonical opportunity-id form — the SINGLE source of truth for the whole app.
+#
+# Salesforce ids come in two forms that refer to the SAME record: 15-char
+# (case-sensitive; report exports, Lightning URLs) and 18-char (case-insensitive;
+# the API / CDC). We standardise on the 15-CHAR form EVERYWHERE we key or store an
+# opportunity (deal_records, sweep_queue, todo pushes), so the two forms can never
+# create two rows / two records / two concurrent sweeps for one deal. Avoma requires
+# the 15-char id and Salesforce SOQL `Id = '<15-char>'` matches fine, so 15-char is
+# safe end-to-end. Every id that ENTERS a storage path must pass through here.
+# ---------------------------------------------------------------------------
+def canonical_opp_id(opp_id: Optional[str]) -> str:
+    """The canonical 15-char Salesforce opportunity id (trimmed). Accepts a 15- or
+    18-char id (or None) and always returns the 15-char form; '' for empty input."""
+    return (opp_id or "").strip()[:15]
+
+
 # Pipeline coverage target per RSD (overridable via env).
 COVERAGE_TARGET = float(os.environ.get("DEAL_ENGINE_COVERAGE_TARGET", "4000000"))
 
@@ -261,16 +279,15 @@ def _num(v) -> float:
 def upsert_record(record: dict) -> dict:
     """Insert/replace one canonical deal record. `record` must carry opp_id and
     the hard/ai layers; the flat filter columns are derived from it."""
-    opp_id = (record.get("opp_id") or "").strip()
+    # Canonicalize the key to the 15-char Salesforce ID via the single app-wide
+    # helper. The table is PK'd on the 15-char form, but discovery/enrichment/sweep
+    # inputs frequently carry the 18-char form; without this, an 18-char upsert
+    # would INSERT a duplicate row alongside the canonical 15-char one instead of
+    # updating it. Keep the jsonb copy in lockstep so derivations/re-reads stay
+    # consistent.
+    opp_id = canonical_opp_id(record.get("opp_id"))
     if not opp_id:
         raise DealEngineError("record.opp_id is required")
-    # Canonicalize the key to the 15-char Salesforce ID. The table is PK'd on the
-    # 15-char form, but discovery/enrichment/sweep inputs frequently carry the
-    # 18-char form; without this, an 18-char upsert would INSERT a duplicate row
-    # alongside the canonical 15-char one instead of updating it. Keep the jsonb
-    # copy in lockstep so derivations and re-reads stay consistent.
-    if len(opp_id) > 15:
-        opp_id = opp_id[:15]
     record["opp_id"] = opp_id
     hard = record.get("hard") or {}
     row = {

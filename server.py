@@ -6887,9 +6887,14 @@ async def deal_engine_todo_override(request: Request):
     if action == "edit" and not text:
         return JSONResponse({"error": "text required for an edit"}, status_code=400)
     by = str(d.get("by") or d.get("pushed_by") or "").strip() or None
+    # capture what/where so the Learning Observatory can mine deletes & edits
+    cat = str(d.get("category") or "").strip() or None
+    orig = str(d.get("orig_text") or d.get("text") or "").strip() or None
+    stage = str(d.get("stage") or "").strip() or None
     try:
         await _aw(dstore.upsert_override, todo_key=key, opp_id=opp_id, action=action,
-                  edited_text=text, edited_due=due, created_by=by)
+                  edited_text=text, edited_due=due, created_by=by,
+                  category=cat, orig_text=orig, stage=stage)
         return {"ok": True, "todo_key": key, "action": action}
     except dstore.DealEngineError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
@@ -6961,6 +6966,97 @@ async def deal_engine_todo_update(request: Request):
         return {"ok": True, "update": row, "sf_task_id": sf_task_id, "sf_error": sf_error}
     except dstore.DealEngineError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/learnings")
+async def deal_engine_learnings(status: str = ""):
+    """List Learning Observatory entries (optionally by status). Each carries
+    category, stage_scope, scope, status, source, evidence, weight."""
+    import deal_engine_store as dstore
+    try:
+        return {"learnings": await _aw(dstore.list_learnings, status or None)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/learnings/signals")
+async def deal_engine_learning_signals():
+    """The raw operator-behaviour signals the observatory learns from — deleted /
+    edited / completed to-dos and manual updates, grouped by stage + category. Feeds
+    both the UI 'Signals' panel and the daily miner."""
+    import deal_engine_store as dstore
+    try:
+        return await _aw(dstore.mine_signals)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/learnings")
+async def deal_engine_learning_create(request: Request):
+    """Add a learning. Admin 'doc entry point' (source=manual) and the daily miner
+    (source=mined) both use this. Defaults to status='candidate' — promotion to
+    'active' is an explicit switch via the PATCH route. Body: {title, body, category?,
+    stage_scope?, scope?, scope_selector?, status?, source?, evidence?, weight?, by?}."""
+    import deal_engine_store as dstore
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        return JSONResponse({"error": "invalid JSON body"}, status_code=400)
+    if not isinstance(d, dict):
+        return JSONResponse({"error": "body must be a JSON object"}, status_code=400)
+    title = str(d.get("title") or "").strip()
+    body = str(d.get("body") or "").strip()
+    if not title or not body:
+        return JSONResponse({"error": "title and body are required"}, status_code=400)
+    allowed_cat = {"risk", "equity", "assurance", "differentiation", "general"}
+    category = str(d.get("category") or "general").strip().lower()
+    if category not in allowed_cat:
+        category = "general"
+    allowed_status = {"candidate", "active", "paused", "retired"}
+    status = str(d.get("status") or "candidate").strip().lower()
+    if status not in allowed_status:
+        status = "candidate"
+    source = "mined" if str(d.get("source") or "").strip().lower() == "mined" else "manual"
+    try:
+        row = await _aw(dstore.insert_learning, title=title, body=body, category=category,
+                        stage_scope=str(d.get("stage_scope") or "any").strip(),
+                        scope=str(d.get("scope") or "global").strip(),
+                        scope_selector=d.get("scope_selector") if isinstance(d.get("scope_selector"), dict) else {},
+                        status=status, source=source,
+                        evidence=d.get("evidence") if isinstance(d.get("evidence"), list) else [],
+                        weight=int(d.get("weight") or 0),
+                        created_by=str(d.get("by") or "").strip() or None)
+        return {"ok": True, "learning": row}
+    except dstore.DealEngineError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/learnings/{learning_id}")
+async def deal_engine_learning_update(learning_id: str, request: Request):
+    """Patch one learning — primarily to flip the switch (status: candidate -> active
+    -> paused -> retired) or tweak body/category/stage_scope/weight. Body: any subset
+    of {status, title, body, category, stage_scope, scope, weight}."""
+    import deal_engine_store as dstore
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        return JSONResponse({"error": "invalid JSON body"}, status_code=400)
+    if not isinstance(d, dict) or not d:
+        return JSONResponse({"error": "non-empty JSON body required"}, status_code=400)
+    patch = {k: d[k] for k in ("status", "title", "body", "category", "stage_scope", "scope", "weight") if k in d}
+    if "status" in patch and patch["status"] not in ("candidate", "active", "paused", "retired"):
+        return JSONResponse({"error": "invalid status"}, status_code=400)
+    if not patch:
+        return JSONResponse({"error": "no updatable fields in body"}, status_code=400)
+    try:
+        row = await _aw(dstore.update_learning, learning_id, patch)
+        if not row:
+            return JSONResponse({"error": "learning not found"}, status_code=404)
+        return {"ok": True, "learning": row}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 

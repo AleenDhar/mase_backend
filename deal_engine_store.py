@@ -40,6 +40,8 @@ T_PUSHES = "deal_todo_pushes"
 # persist across daily re-sweeps; and manually-added completed updates.
 T_OVERRIDES = "deal_todo_overrides"
 T_MANUAL = "deal_manual_updates"
+# Learning Observatory: curated learnings that evolve Deal Sweep over time.
+T_LEARNINGS = "sweep_learnings"
 
 _TIMEOUT = 30.0
 
@@ -767,10 +769,15 @@ def insert_push(*, todo_key: str, opp_id: str, category: Optional[str],
 def upsert_override(*, todo_key: str, opp_id: str, action: str,
                     edited_text: Optional[str] = None,
                     edited_due: Optional[str] = None,
-                    created_by: Optional[str] = None) -> dict:
+                    created_by: Optional[str] = None,
+                    category: Optional[str] = None,
+                    orig_text: Optional[str] = None,
+                    stage: Optional[str] = None) -> dict:
     """Persist a user edit or delete of one AI-derived to-do, keyed by todo_key so
     it survives the daily re-sweep (the regenerated item with the same key picks the
-    override back up). action is 'edit' or 'delete'."""
+    override back up). action is 'edit' or 'delete'. category/orig_text/stage are
+    captured so the Learning Observatory can mine WHAT (and at which stage) people
+    delete or rewrite — a delete row alone is otherwise just an opaque hash."""
     if action not in ("edit", "delete"):
         raise DealEngineError("action must be 'edit' or 'delete'")
     row = {
@@ -780,6 +787,9 @@ def upsert_override(*, todo_key: str, opp_id: str, action: str,
         "edited_text": edited_text,
         "edited_due": edited_due or None,
         "created_by": created_by,
+        "category": category,
+        "orig_text": orig_text,
+        "stage": stage,
         "updated_at": _now(),
     }
     res = _upsert(T_OVERRIDES, row, on_conflict="todo_key")
@@ -830,6 +840,128 @@ def list_manual_updates(opp_id: Optional[str] = None) -> list[dict]:
                        order="done_date.desc")
     except DealEngineError:
         return []
+
+
+# ---------- Learning Observatory: store + signal mining ----------
+
+def list_learnings(status: Optional[str] = None) -> list[dict]:
+    """Curated learnings, optionally filtered by status. Degrades to [] if absent."""
+    filters = [f"status=eq.{quote(status, safe='')}"] if status else None
+    try:
+        return _select(T_LEARNINGS, select="*", filters=filters, order="updated_at.desc")
+    except DealEngineError:
+        return []
+
+
+def insert_learning(*, title: str, body: str, category: str = "general",
+                    stage_scope: str = "any", scope: str = "global",
+                    scope_selector: Optional[dict] = None, status: str = "candidate",
+                    source: str = "manual", evidence: Optional[list] = None,
+                    weight: int = 0, created_by: Optional[str] = None) -> dict:
+    """Insert one learning. Manual admin entries default status='candidate' (the daily
+    miner uses the same path); promotion to 'active' is an explicit switch."""
+    row = {
+        "title": title, "body": body, "category": category, "stage_scope": stage_scope,
+        "scope": scope, "scope_selector": scope_selector or {}, "status": status,
+        "source": source, "evidence": evidence or [], "weight": weight,
+        "created_by": created_by,
+    }
+    res = _insert(T_LEARNINGS, row)
+    return res[0] if res else row
+
+
+def update_learning(learning_id: str, patch: dict) -> Optional[dict]:
+    """Patch one learning (e.g. flip status candidate->active->paused->retired)."""
+    p = {**patch, "updated_at": _now()}
+    res = _patch(T_LEARNINGS, p,
+                 filters=[f"id=eq.{quote(str(learning_id), safe='')}"], returning=True)
+    return res[0] if res else None
+
+
+def existing_learning_titles() -> set[str]:
+    """Lowercased titles already on record — the daily miner dedupes against these so
+    it only ever adds genuinely new learnings."""
+    try:
+        rows = _select(T_LEARNINGS, select="title")
+    except DealEngineError:
+        return set()
+    return {str(r.get("title", "")).strip().lower() for r in rows if r.get("title")}
+
+
+def _opp_stage_map() -> dict[str, str]:
+    """15-char opp id -> current SF stage, from the active book."""
+    out: dict[str, str] = {}
+    try:
+        rows = _select(T_RECORDS, select="record", filters=["active=is.true"])
+    except DealEngineError:
+        return out
+    for r in rows:
+        rec = r.get("record") or {}
+        oid = (str(rec.get("opp_id") or ""))[:15]
+        if oid:
+            out[oid] = (rec.get("hard") or {}).get("stage")
+    return out
+
+
+def mine_signals(limit_samples: int = 6) -> dict:
+    """Aggregate the raw operator-behaviour signals the Learning Observatory learns
+    from — grouped by deal STAGE and to-do CATEGORY:
+      - deleted to-dos  (people saw no significance — what to stop generating)
+      - edited to-dos   (the wording/shape people actually want)
+      - completed to-dos (deal_todo_pushes — what people prioritise finishing)
+      - manual updates  (deal_manual_updates — what activity people log themselves)
+    This is the evidence the daily miner reads to propose significant, stage-aligned
+    learnings. Read-only; no interpretation here (that's the miner's job)."""
+    from collections import defaultdict
+    stage_by_opp = _opp_stage_map()
+
+    def stage_of(opp):
+        return stage_by_opp.get((str(opp or ""))[:15]) or "unknown"
+
+    def fetch(table, **kw):
+        try:
+            return _select(table, **kw)
+        except DealEngineError:
+            return []
+
+    deletes = fetch(T_OVERRIDES, select="*", filters=["action=eq.delete"])
+    edits = fetch(T_OVERRIDES, select="*", filters=["action=eq.edit"])
+    pushes = fetch(T_PUSHES, select="todo_key,opp_id,category,subject,pushed_at")
+    manual = fetch(T_MANUAL, select="*")
+
+    def agg(rows, *, cat_key, text_key, stage_key=None):
+        groups = defaultdict(lambda: {"count": 0, "samples": []})
+        for row in rows:
+            # prefer the stage captured on the row; fall back to the deal's current
+            # stage so attribution works even for rows logged before capture existed.
+            st = (row.get(stage_key) if stage_key else None) or stage_of(row.get("opp_id"))
+            cat = row.get(cat_key) or "uncategorized"
+            g = groups[(st or "unknown", cat)]
+            g["count"] += 1
+            t = str(row.get(text_key) or "").strip()
+            if t and len(g["samples"]) < limit_samples and t not in g["samples"]:
+                g["samples"].append(t[:180])
+        return [{"stage": k[0], "category": k[1], "count": v["count"], "samples": v["samples"]}
+                for k, v in sorted(groups.items(), key=lambda x: -x[1]["count"])]
+
+    mgroups = defaultdict(lambda: {"count": 0, "samples": []})
+    for m in manual:
+        st = stage_of(m.get("opp_id"))
+        g = mgroups[st]
+        g["count"] += 1
+        t = str(m.get("note") or "").strip()
+        if t and len(g["samples"]) < limit_samples:
+            g["samples"].append(t[:180])
+
+    return {
+        "deleted": agg(deletes, cat_key="category", text_key="orig_text", stage_key="stage"),
+        "edited": agg(edits, cat_key="category", text_key="edited_text", stage_key="stage"),
+        "completed": agg(pushes, cat_key="category", text_key="subject"),
+        "manual_updates": [{"stage": k, "count": v["count"], "samples": v["samples"]}
+                           for k, v in sorted(mgroups.items(), key=lambda x: -x[1]["count"])],
+        "totals": {"deleted": len(deletes), "edited": len(edits),
+                   "completed": len(pushes), "manual_updates": len(manual)},
+    }
 
 
 # ---------- Espresso (to-do) derivation ----------

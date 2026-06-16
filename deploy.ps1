@@ -329,6 +329,69 @@ if (-not [string]::IsNullOrWhiteSpace($oldActive)) {
     Write-Host "No previous service to drain (first deploy)."
 }
 
+# ----------------------------------------------------------------------------
+# 7. Sweep worker (standing service that drains the durable sweep_queue)
+# ----------------------------------------------------------------------------
+# The worker runs the SAME image but `python worker.py` (no HTTP server), so it
+# has NO portMappings and NO /api/health healthCheck — that check would fail and
+# ECS would kill the task. It keeps heavy sweeps OUT of the web process; restarts
+# crash-safely (reclaims stale queue rows on boot). Kept current on every deploy.
+Write-Step "Deploy sweep worker"
+$workerTaskDefJson = @"
+{
+  "family": "mase-worker",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "$Cpu",
+  "memory": "$Memory",
+  "executionRoleArn": "$ExecRoleArn",
+  "taskRoleArn": "$TaskRoleArn",
+  "containerDefinitions": [
+    {
+      "name": "mase-worker",
+      "image": "$ImageUri",
+      "essential": true,
+      "command": ["python", "worker.py"],
+      "environment": [
+        { "name": "DEAL_SWEEP_CONCURRENCY", "value": "2" },
+        { "name": "MCP_SERVER_ALLOWLIST", "value": "salesforce,avoma" }
+      ],
+      "secrets": [ $secretsJson ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "$LogGroup",
+          "awslogs-region": "$Region",
+          "awslogs-stream-prefix": "worker"
+        }
+      }
+    }
+  ]
+}
+"@
+$wtdFile = Join-Path $env:TEMP "mase-worker-taskdef-$Tag.json"
+$workerTaskDefJson | Out-File -FilePath $wtdFile -Encoding ascii
+$wtdArn = & $AWS ecs register-task-definition --cli-input-json "file://$wtdFile" --query "taskDefinition.taskDefinitionArn" --output text
+if ($LASTEXITCODE -ne 0) { throw "register worker task-definition failed" }
+Write-Host "Registered $wtdArn"
+
+$workerNet = "awsvpcConfiguration={subnets=[$($Subnets -join ',')],securityGroups=[$TaskSg],assignPublicIp=ENABLED}"
+$workerExists = & $AWS ecs describe-services --cluster $Cluster --services mase-worker `
+                  --query "services[?status=='ACTIVE'].serviceName" --output text 2>$null
+if ([string]::IsNullOrWhiteSpace($workerExists)) {
+    Write-Host "Creating service mase-worker"
+    & $AWS ecs create-service --cluster $Cluster --service-name mase-worker `
+        --task-definition $wtdArn --desired-count 1 --launch-type FARGATE `
+        --network-configuration $workerNet `
+        --query "service.serviceName" --output text | Out-Host
+} else {
+    Write-Host "Updating service mase-worker"
+    & $AWS ecs update-service --cluster $Cluster --service mase-worker `
+        --task-definition $wtdArn --desired-count 1 `
+        --query "service.serviceName" --output text | Out-Host
+}
+if ($LASTEXITCODE -ne 0) { throw "worker service deploy failed" }
+
 Write-Step "DONE"
 Write-Host "Deployed tag : $Tag"
 Write-Host "Live colour  : $idle"

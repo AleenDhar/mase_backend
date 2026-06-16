@@ -389,6 +389,63 @@ def _needs_packet_baseline(rec: dict) -> bool:
     return int(rec.get("schema_version") or 0) < 2
 
 
+def _needs_pulse_baseline(rec: dict) -> bool:
+    """A record needs a pulse baseline if it was swept before the engagement
+    pulse existed (no stamped `pulse` with a state). Records that already carry a
+    stamped pulse are left untouched — the next real sweep re-stamps them with
+    fresh evidence, so re-stamping here would only duplicate that work."""
+    if not isinstance(rec, dict):
+        return False
+    p = rec.get("pulse")
+    return not (isinstance(p, dict) and p.get("state"))
+
+
+def backfill_pulse(*, dry_run: bool = False) -> dict:
+    """Token-free, idempotent pass that stamps an engagement pulse onto every
+    record that predates the pulse (stored `pulse: null`), so the persisted
+    record and the dashboard `pulse_summary` aggregate are consistent immediately
+    instead of only after each deal's natural next sweep.
+
+    Behaviour (deliberate, documented):
+      * For each record WITHOUT a stamped pulse we derive one with
+        deal_engine_pulse.compute_pulse_from_hard from its EXISTING hard.* facts —
+        the SAME shape the derived views (Espresso/Matcha) already compute on read
+        via _pulse_of — and write it to record["pulse"].
+      * Nothing else is touched: no ai re-projection, no SF read, no token spend.
+
+    Idempotent: records already carrying a stamped pulse are skipped, so re-running
+    is a no-op. Per-record errors are counted and skipped so one bad record cannot
+    abort the whole pass.
+
+    `dry_run=True` computes the same stats but writes nothing.
+    """
+    records = _select(T_RECORDS, select="record", order="account_name.asc")
+    stats = {"total": len(records), "stamped": 0, "skipped": 0,
+             "by_state": {"live": 0, "cooling": 0, "dark": 0, "unknown": 0},
+             "errors": 0}
+    for row in records:
+        rec = row.get("record")
+        if not isinstance(rec, dict) or not (rec.get("opp_id") or "").strip():
+            stats["skipped"] += 1
+            continue
+        if not _needs_pulse_baseline(rec):
+            stats["skipped"] += 1
+            continue
+        try:
+            pulse = _pulse.compute_pulse_from_hard(rec.get("hard") or {})
+            rec["pulse"] = pulse
+            state = pulse.get("state") or "unknown"
+            stats["by_state"][state if state in stats["by_state"] else "unknown"] += 1
+            if not dry_run:
+                upsert_record(rec)
+            stats["stamped"] += 1
+        except Exception as e:  # noqa: BLE001 — one bad record must not abort the pass
+            stats["errors"] += 1
+            print(f"[DEAL-PULSE-BACKFILL] stamp failed opp={rec.get('opp_id')}: "
+                  f"{type(e).__name__}: {e}", flush=True)
+    return stats
+
+
 def backfill_packets(*, dry_run: bool = False) -> dict:
     """One-time, idempotent pass that seeds a living-memory packets baseline onto
     every deal record that predates living memory, so the "What changed" feed is
@@ -445,6 +502,7 @@ def backfill_packets(*, dry_run: bool = False) -> dict:
 # ---------- living-memory change feed (deltas) ----------
 
 import deal_engine_packets as _packets  # noqa: E402
+import deal_engine_pulse as _pulse  # noqa: E402
 
 # The four rep-facing buckets, in a stable display order.
 DELTA_GROUPS = ("added", "changed", "resolved", "dormant")
@@ -763,6 +821,35 @@ def _stamp_todo(item: dict, category: str, text: Any, date_str: Any,
     return item
 
 
+def _pulse_of(rec: dict) -> dict:
+    """The single authoritative engagement pulse for a record. Prefer the pulse
+    stamped at sweep time; for a record swept before the pulse existed, derive an
+    equivalent one from its stored hard.* facts so the derived views always read
+    the SAME pulse shape."""
+    p = rec.get("pulse")
+    if isinstance(p, dict) and p.get("state"):
+        return p
+    return _pulse.compute_pulse_from_hard(rec.get("hard") or {})
+
+
+def attach_pulse(rec: dict) -> dict:
+    """Return a read-only copy of `rec` with `pulse` guaranteed for the API.
+
+    The frontend contract promises `record["pulse"]` on every opportunities
+    response, but records swept before the pulse existed have no stamped pulse.
+    This fills it in (deriving from the stored hard.* facts via `_pulse_of`)
+    WITHOUT mutating the write path — no upsert caller routes through here, so a
+    read-time-derived pulse can never be persisted over a freshly-swept one."""
+    if not isinstance(rec, dict):
+        return rec
+    p = rec.get("pulse")
+    if isinstance(p, dict) and p.get("state"):
+        return rec
+    out = dict(rec)
+    out["pulse"] = _pulse_of(rec)
+    return out
+
+
 def derive_todo(owner: Optional[str] = None) -> dict:
     """RSD-filterable action list grouped by impact, computed from the records.
 
@@ -777,6 +864,7 @@ def derive_todo(owner: Optional[str] = None) -> dict:
     for rec in records:
         hard = rec.get("hard") or {}
         ai = rec.get("ai") or {}
+        pulse = _pulse_of(rec)
         ctx = {
             "opp_id": rec.get("opp_id"),
             "account_name": hard.get("account_name"),
@@ -851,6 +939,12 @@ def derive_todo(owner: Optional[str] = None) -> dict:
         flist = flags if isinstance(flags, list) else []
         for f in flist[:TODO_MAX_BEST_PRACTICE]:
             flag_text = f if isinstance(f, str) else f.get("flag") or f
+            # Read-time safety net (covers records swept before pulse-reconcile, or
+            # an exception path that skipped it): drop stale-worldview flags
+            # (ghost / dark-for-months / future-date / wrong-stage) that contradict
+            # a live pulse, so the Espresso surface never nags a live deal.
+            if _pulse.flag_contradicts_live_pulse(flag_text, pulse):
+                continue
             best_practice.append(_stamp_todo({**ctx, "flag": flag_text},
                                  "bestPractice", flag_text, None, pmap))
 
@@ -898,8 +992,11 @@ def derive_matcha(owner: Optional[str] = None) -> dict:
             naa_by_month[key] = naa_by_month.get(key, 0) + 1
 
         if (stage or "").strip().lower() == "qualified":
-            la = _to_date(hard.get("last_activity_date"))
-            days_idle = (today - la).days if la else None
+            # Read idle-days from the one authoritative pulse so the stalled rollup
+            # cannot disagree with the verdict's engagement read. days_since_activity
+            # is the same verified-activity recency the pulse anchors on.
+            pulse = _pulse_of(rec)
+            days_idle = pulse.get("days_since_activity")
             if days_idle is None or days_idle >= STALLED_DAYS:
                 stalled.append({
                     "opp_id": rec.get("opp_id"),

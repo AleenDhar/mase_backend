@@ -42,6 +42,7 @@ import opportunity_analyzer as _oa  # reuse _extract_json / _final_text
 import deal_trigger_log as _trigger_log
 import deal_hard_refresh_log as _hard_refresh_log
 import deal_engine_validation as _val
+import deal_engine_pulse as _pulse
 import sweep_queue as _queue
 
 disable_write_todos()
@@ -925,12 +926,30 @@ async def analyze_one(
         except Exception as _e:  # noqa: BLE001
             print(f"[DEAL-SWEEP] could not set summariser-skip flag: {_e}", flush=True)
         _active_users = await _active_user_names(agent_manager)
+        # Pre-run engagement pulse (calls_read not yet known): one authoritative,
+        # today-anchored read of how this deal is being worked, derived from the
+        # authoritative SF mechanics + Next Step rep-outreach parse. Injected as
+        # ground truth so every section the agent emits is consistent with it
+        # (no ghost/dark/future-date/wrong-stage worldview on a live deal; the
+        # recent rep outreach is surfaced rather than reported as silence).
+        _pre_pulse = _pulse.compute_pulse(
+            last_activity_date=(buyer.get("last_activity_date")
+                                if isinstance(buyer, dict) else None)
+            or opp.get("last_activity_date"),
+            calls_read=None,
+            stage=opp.get("stage"),
+            close_date=opp.get("close_date"),
+            forecast_category=opp.get("forecast_category"),
+            qualified_date=opp.get("qualified_date"),
+            next_step=opp.get("next_step"),
+        )
         user_msg = (
             f"Sweep Salesforce Opportunity Id `{opp_id}`"
             + (f" (account: {opp.get('account')}, name: {opp.get('name')})" if opp.get("account") else "")
             + ". Follow your system prompt end-to-end and emit the canonical record "
             "JSON. Output JSON only, no preamble."
             + _sweep_facts_block(opp, buyer)
+            + "\n\n" + _pulse.render_block(_pre_pulse) + "\n"
             + identity_block
             + topics_block
         )
@@ -953,7 +972,7 @@ async def analyze_one(
             # (e.g. on the no-candidates / reconcile-exception branches that don't
             # reassign them). The authoritative prior packets live in
             # existing_packets/existing_record, not in this turn's model output.
-            for _owned in ("packets", "deltas", "schema_version"):
+            for _owned in ("packets", "deltas", "schema_version", "pulse"):
                 parsed.pop(_owned, None)
             # Normalise required envelope fields before persisting.
             parsed["opp_id"] = opp_id
@@ -1043,6 +1062,19 @@ async def analyze_one(
             import copy
             hard = parsed.setdefault("hard", {})
             _agent_sf_blank = bool(_meta.get("agent_sf_blank"))
+            # ONE authoritative engagement pulse, now recomputed WITH this sweep's
+            # calls_read folded in, from the server-owned hard.* facts (already
+            # overridden from the live SF snapshot in _finalize). Stamped onto the
+            # canonical record as the single signal every section + derived view
+            # reads. _finalize already dropped any model-emitted "pulse".
+            _ec_pulse = parsed.get("evidence_coverage")
+            _cr_pulse_raw = _ec_pulse.get("calls_read") if isinstance(_ec_pulse, dict) else None
+            try:
+                _cr_pulse = int(_cr_pulse_raw) if _cr_pulse_raw is not None else None
+            except (TypeError, ValueError):
+                _cr_pulse = None
+            final_pulse = _pulse.compute_pulse_from_hard(hard, calls_read=_cr_pulse)
+            parsed["pulse"] = final_pulse
             # Read-quality gates for living-memory expiry. We only retire carried-
             # forward facts when this sweep genuinely saw the deal — otherwise a
             # read hiccup would silently drop durable memory. Two gates:
@@ -1115,6 +1147,24 @@ async def analyze_one(
                         print(f"[DEAL-SWEEP] packet-gate opp={opp_id} sanitized "
                               f"{_pkt_fixes} poisoned carried-forward packet(s)",
                               flush=True)
+                    # Pulse reconciliation: when the live pulse shows recent
+                    # verified activity, retire stale-worldview best-practice flags
+                    # (ghost / dark-for-months / future-date / wrong-stage) — both
+                    # this sweep's fresh ones (already merged in as hygiene packets
+                    # above) AND carried-forward ones — so they stop projecting as
+                    # live to-do flags that contradict a live deal. Gated on the
+                    # pulse being live (which itself requires a known recent
+                    # LastActivityDate), not on _clean_read, so a live deal whose
+                    # calls discovery missed (suspect-dark) still gets cleaned.
+                    if _pulse.is_pulse_live(final_pulse):
+                        merged_packets, _pulse_deltas = packets_mod.retire_contradicted_hygiene(
+                            merged_packets, parsed["swept_at"],
+                            lambda t: _pulse.flag_contradicts_live_pulse(t, final_pulse))
+                        if _pulse_deltas:
+                            new_deltas = _pulse_deltas + new_deltas
+                            print(f"[DEAL-SWEEP] pulse-reconcile opp={opp_id} retired "
+                                  f"{len(_pulse_deltas)} stale-worldview flag(s) "
+                                  f"(state=live)", flush=True)
                     prior_deltas = existing_record.get("deltas") or []
                     delta_cap = int(os.getenv("DEAL_DELTA_CAP", "200"))
                     parsed["packets"] = merged_packets
@@ -1274,6 +1324,9 @@ async def analyze_one(
         _apply_living_memory(parsed)
         await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
+        # Surface the stamped engagement state so the dashboard/audit can flag a
+        # regression (a live deal read as dark, or vice versa).
+        result["pulse_state"] = (parsed.get("pulse") or {}).get("state")
         # Thin-record detection (drives the worker's retry loop). We ALWAYS keep
         # the record we just persisted — "thin" never withholds, it only flags the
         # record as worth one more attempt:
@@ -1646,6 +1699,12 @@ def _persisted_completed_rows() -> list[dict]:
                 "status": "completed", "error": None, "attempts": 1,
                 "duration_ms": 0, "started_at": None,
                 "finished_at": rec.get("swept_at"),
+                # Prefer the pulse stamped at sweep time; for a record swept
+                # before the pulse existed, derive the SAME state from its stored
+                # hard.* facts so the book roll-up matches the per-deal badge and
+                # is not swamped by "unknown".
+                "pulse_state": ((rec.get("pulse") or {}).get("state")
+                                or _pulse.compute_pulse_from_hard(hard).get("state")),
             }
             prev = by_key.get(key)
             if prev is None or (row["finished_at"] or "") >= (prev["finished_at"] or ""):
@@ -1655,6 +1714,20 @@ def _persisted_completed_rows() -> list[dict]:
     rows = list(by_key.values())
     _history_cache.update({"ts": now, "rows": rows})
     return rows
+
+
+def _pulse_summary() -> dict:
+    """Aggregate the stamped engagement state across all persisted records so the
+    dashboard can flag regressions (a wave of dark deals, or a live deal read as
+    dark). Best-effort and cached via _persisted_completed_rows."""
+    counts = {"live": 0, "cooling": 0, "dark": 0, "unknown": 0}
+    try:
+        for r in _persisted_completed_rows():
+            s = r.get("pulse_state") or "unknown"
+            counts[s if s in counts else "unknown"] += 1
+    except Exception:  # noqa: BLE001 — never 500 the dashboard
+        pass
+    return counts
 
 
 async def get_status() -> dict:
@@ -1676,6 +1749,10 @@ async def get_status() -> dict:
                 print(f"[DEAL-SWEEP] validation-counter read failed: "
                       f"{type(e).__name__}: {e}", flush=True)
                 st.setdefault("records_failed_validation", 0)
+            try:
+                st["pulse_summary"] = await asyncio.to_thread(_pulse_summary)
+            except Exception:  # noqa: BLE001
+                st.setdefault("pulse_summary", {})
             return st
         except Exception as e:  # noqa: BLE001 — never 500 the dashboard; fall back
             print(f"[DEAL-SWEEP] queue status read failed, falling back to "

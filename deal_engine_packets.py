@@ -488,6 +488,32 @@ def expire_stale(packets: list, today: str, *, retire_aged: bool = True,
     return list(packets or []), deltas
 
 
+def retire_contradicted_hygiene(packets: list, today: str,
+                                predicate) -> tuple[list, list]:
+    """Retire LIVE hygiene (best-practice flag) packets whose flag text matches
+    `predicate(text) -> bool`. Used to drop stale-worldview flags (ghost /
+    dark-for-months / future-date / wrong-stage) that contradict the live
+    engagement pulse, so they stop projecting as live to-do flags. Retired
+    packets stay in the store + history (kept in deltas); they are merely
+    excluded from the projection by `_live`. Pure; the caller gates on the pulse
+    being live. Returns (packets, deltas)."""
+    deltas: list[dict] = []
+    for e in packets or []:
+        if e.get("status") in ("superseded", "resolved", "retired"):
+            continue
+        if e.get("type") != "hygiene":
+            continue
+        v = e.get("value") or {}
+        flag = v.get("flag") if isinstance(v, dict) else v
+        text = str(flag or e.get("subject") or "")
+        if predicate(text):
+            e["status"] = "retired"
+            e["last_updated"] = today
+            deltas.append(_delta(today, e, "retired",
+                                 reason="contradicts live engagement pulse"))
+    return list(packets or []), deltas
+
+
 # ---------------------------------------------------------------------------
 # Candidate extraction (server-side, from the agent's emitted ai.* / hard)
 # ---------------------------------------------------------------------------

@@ -177,10 +177,18 @@ async def _drain_loop() -> None:
     behind. Periodically reclaim rows whose claim has gone stale (a worker that
     hung or vanished mid-opp) so they don't get stuck forever.
     """
-    reclaimed = await asyncio.to_thread(q.reclaim_stragglers)
+    # Startup recovery MUST be age-based (reclaim_stale), NOT a blanket
+    # reclaim_stragglers. With a multi-task worker fleet, a blanket "flip every
+    # `working` row to waiting" steals rows that OTHER LIVE workers are actively
+    # processing -> the same opp gets swept twice (double cost + API load). An
+    # age-based reclaim only touches rows whose claim is older than STALE_CLAIM_S
+    # (genuinely orphaned, since no healthy run takes that long), so it recovers a
+    # crashed worker's rows without ever stealing a peer's in-flight work.
+    reclaimed = await asyncio.to_thread(q.reclaim_stale)
     if reclaimed:
-        _log(f"startup: reclaimed {reclaimed} stuck 'working' row(s) -> waiting")
-    _log(f"draining queue (concurrency={CONCURRENCY}, max_retries={MAX_RETRIES})")
+        _log(f"startup: reclaimed {reclaimed} stale 'working' row(s) -> waiting")
+    _log(f"draining queue (concurrency={CONCURRENCY}, max_retries={MAX_RETRIES}, "
+         f"stale_after={q.STALE_CLAIM_S}s)")
 
     inflight: set[asyncio.Task] = set()
     last_reclaim = time.time()

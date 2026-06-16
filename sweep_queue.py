@@ -50,7 +50,11 @@ _ANALYZE_TIMEOUT_S = int(os.environ.get("DEAL_SWEEP_TIMEOUT_S", "900"))
 # raised; override explicitly with DEAL_SWEEP_STALE_CLAIM_S only if you must.
 STALE_CLAIM_S = int(os.environ.get(
     "DEAL_SWEEP_STALE_CLAIM_S",
-    str(_ANALYZE_TIMEOUT_S + max(300, _ANALYZE_TIMEOUT_S // 2)),
+    # First-pass analyze_one AND the quality inspector's recovery re-synthesis can
+    # each run up to the per-opp timeout, so a single LEGIT run can take ~2x the
+    # timeout. Stale-reclaim must sit safely above that, or a long-but-healthy run
+    # gets force-reclaimed mid-flight and processed twice (a duplicate sweep).
+    str(_ANALYZE_TIMEOUT_S * 2 + max(600, _ANALYZE_TIMEOUT_S // 2)),
 ))
 
 
@@ -158,12 +162,19 @@ def enqueue_book(run_id: str, opps: list[dict]) -> int:
     seen = set()
     for o in opps:
         oid = (o.get("id") or "").strip()
-        if not oid or oid in seen:
+        if not oid:
+            continue
+        # Canonicalize to the 15-char Salesforce id (matches the deal_records store
+        # key) so a 15-char (book/report) and an 18-char (trigger/CDC) enqueue of
+        # the SAME opp collapse onto ONE queue row. Without this they keyed as two
+        # rows and two workers swept the same deal at once (double cost + API load).
+        oid = oid[:15]
+        if oid in seen:
             continue
         seen.add(oid)
         rows.append({
             "opp_id": oid,
-            "opp_id_15": oid[:15],
+            "opp_id_15": oid,
             "run_id": run_id,
             "status": "waiting",
             "attempts": 0,
@@ -188,6 +199,10 @@ def enqueue_one(run_id: str, opp: dict) -> str:
     oid = (opp.get("id") or "").strip()
     if not oid:
         return "error"
+    # Canonicalize to the 15-char Salesforce id (matches enqueue_book + the
+    # deal_records store key) so 15- and 18-char enqueues of the same opp map to
+    # ONE row and the deal can never be swept twice concurrently.
+    oid = oid[:15]
     out = _rpc("enqueue_one_sweep", {
         "p_opp_id": oid,
         "p_run_id": run_id,

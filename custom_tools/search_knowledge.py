@@ -14,23 +14,26 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
-# Per-turn search_knowledge budget — caps RAG over-fetching that bloats
+# Per-step search_knowledge budget — caps RAG over-fetching that bloats
 # context and (per chat f4c06387) makes downstream LLM calls large enough
 # to hang. Counter is keyed by chat_id and reset at the start of each
-# agent run via reset_search_knowledge_counter(chat_id).
+# agent run via reset_search_knowledge_counter(chat_id). Raised 6 -> 50 so
+# RAG-heavy work (esp. multi-phase pipeline runs that hold many phases'
+# worth of retrieval in a single agentic turn) isn't throttled.
 MAX_SEARCH_KNOWLEDGE_PER_TURN = int(
-    os.environ.get("MAX_SEARCH_KNOWLEDGE_PER_TURN", "6"))
+    os.environ.get("MAX_SEARCH_KNOWLEDGE_PER_TURN", "50"))
 
 # Hard-stop escalation (added 2026-05-22 after chat 8359d7a6 burned $8.02
-# on RAG loops). When the cap fires repeatedly, returning an error string
-# to the LLM is too soft a signal — Sonnet 4.6 keeps fan-out generating
-# new parallel search_knowledge tool_use blocks each turn ("try a
-# different query"), and each rejected turn still costs ~$1 in input
-# tokens. After this many cap-blocked calls in a single chat, we forcibly
-# cancel the in-process agent task via server.cancel_running_chat so the
-# next LLM turn never fires.
+# on RAG loops). When the cap fires repeatedly we *could* forcibly cancel
+# the in-process agent task via server.cancel_running_chat. That cancel,
+# however, also tears down legitimate runs — including pipeline runs, which
+# execute through /api/chat in-process — so search_knowledge hitting its cap
+# would "break/stop the agent". DISABLED by default (0 = never cancel): the
+# per-step cap still soft-blocks individual over-fetches with a guidance
+# string the LLM can act on, but it can no longer terminate the run. Set a
+# positive value to re-enable the runaway-RAG kill switch.
 MAX_SK_CAP_HITS_BEFORE_CANCEL = int(
-    os.environ.get("MAX_SK_CAP_HITS_BEFORE_CANCEL", "3"))
+    os.environ.get("MAX_SK_CAP_HITS_BEFORE_CANCEL", "0"))
 
 _sk_counter_lock = threading.Lock()
 # Run-scoped dedupe memory (NOT reset between auto-continue steps) so the
@@ -152,7 +155,8 @@ def _check_and_record_sk_call(chat_id: str, query: str) -> Optional[str]:
             # hold this lock during I/O. Don't mark `_sk_cancelled` here — only
             # mark it on a successful cancel (below) so a failed cancel can be
             # retried on the next cap-hit instead of leaving the run unstopped.
-            if (chat_id and hits >= MAX_SK_CAP_HITS_BEFORE_CANCEL
+            if (MAX_SK_CAP_HITS_BEFORE_CANCEL > 0
+                    and chat_id and hits >= MAX_SK_CAP_HITS_BEFORE_CANCEL
                     and chat_id not in _sk_cancelled):
                 should_cancel = True
                 cancel_reason = (

@@ -23,6 +23,7 @@ subprocess and high concurrency OOM-crashes the box).
 """
 import asyncio
 import os
+import random
 import signal
 import time
 import traceback
@@ -38,9 +39,41 @@ import sweep_queue as q  # noqa: E402
 
 CONCURRENCY = max(1, int(os.getenv("DEAL_SWEEP_CONCURRENCY", "2")))
 MAX_RETRIES = max(0, int(os.getenv("DEAL_SWEEP_MAX_RETRIES", "2")))
+# A TRANSIENT upstream failure (LLM/MCP rate limit or overload — see _is_transient)
+# must NOT permanently fail a deal. It gets a much larger attempt budget and an
+# exponential, jittered backoff so the deal simply WAITS for pressure to drop and
+# succeeds later, instead of landing in `failed`. This is the core resilience to
+# Anthropic / Avoma / Salesforce rate limits: we never burn a deal on a 429/529/520
+# /timeout — we pace and retry.
+MAX_TRANSIENT_RETRIES = max(MAX_RETRIES, int(os.getenv("DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "10")))
+BACKOFF_BASE_S = float(os.getenv("DEAL_SWEEP_BACKOFF_BASE_S", "8"))
+BACKOFF_MAX_S = float(os.getenv("DEAL_SWEEP_BACKOFF_MAX_S", "180"))
 POLL_IDLE_S = float(os.getenv("DEAL_SWEEP_POLL_IDLE_S", "5"))
 RECLAIM_EVERY_S = float(os.getenv("DEAL_SWEEP_RECLAIM_EVERY_S", "120"))
 BOOTSTRAP_TIMEOUT_S = float(os.getenv("DEAL_SWEEP_BOOTSTRAP_TIMEOUT_S", "240"))
+
+# Substrings that mark a TRANSIENT upstream failure (rate limit / overload / network
+# blip from Anthropic, Avoma, or Salesforce). These self-heal once load drops, so we
+# re-queue with backoff rather than failing the deal.
+_TRANSIENT_MARKERS = (
+    "apitimeouterror", "ratelimit", "rate limit", "rate_limit", "429",
+    "overloaded", "overload", "529", "520", "502", "503", "504",
+    "internalservererror", "service unavailable", "timed out", "timeout",
+    "connection", "econnreset", "temporarily", "try again", "too many requests",
+)
+
+
+def _is_transient(err: str) -> bool:
+    e = (err or "").lower()
+    return any(m in e for m in _TRANSIENT_MARKERS)
+
+
+def _backoff_delay(attempts: int) -> float:
+    """Exponential backoff with jitter (the jitter de-syncs the worker fleet so
+    re-queued deals don't all retry in the same instant and re-trip the limit)."""
+    raw = min(BACKOFF_MAX_S, BACKOFF_BASE_S * (2 ** max(0, attempts - 1)))
+    return raw * random.uniform(0.5, 1.0)
+
 
 _stop = asyncio.Event()
 
@@ -69,6 +102,34 @@ async def _bootstrap_agent() -> None:
     raise RuntimeError(
         "MCP tools did not load in time "
         f"(salesforce={bool(by.get('salesforce'))}, avoma={bool(by.get('avoma'))})")
+
+
+async def _retry_or_fail(opp_id: str, attempts: int, reason: str, dur) -> None:
+    """Decide a non-completed opp's fate. A TRANSIENT upstream error (LLM/MCP rate
+    limit, overload, 5xx, timeout) is re-queued with exponential, jittered backoff
+    under a large attempt budget — so a temporary rate limit NEVER permanently fails
+    a deal; it just waits for pressure to drop and succeeds later. A genuine error
+    gets the normal small retry budget, then fails."""
+    transient = _is_transient(reason)
+    cap = MAX_TRANSIENT_RETRIES if transient else MAX_RETRIES
+    if attempts <= cap:
+        if transient:
+            delay = _backoff_delay(attempts)
+            _log(f"transient upstream error {opp_id} (attempt {attempts}/{cap}); "
+                 f"backoff {delay:.0f}s then re-queue: {reason[:140]}")
+            try:
+                # Interruptible sleep: a shutdown during backoff leaves the row
+                # `working`, which the next worker reclaims — nothing is lost.
+                await asyncio.wait_for(_stop.wait(), timeout=delay)
+                return
+            except asyncio.TimeoutError:
+                pass
+        await asyncio.to_thread(q.retry, opp_id, error=reason)
+        _log(f"retry {opp_id} (attempt {attempts}/{cap}"
+             f"{', transient' if transient else ''}): {reason[:140]}")
+    else:
+        await asyncio.to_thread(q.mark_failed, opp_id, error=reason, duration_ms=dur)
+        _log(f"failed {opp_id} after {attempts} attempts: {reason[:140]}")
 
 
 async def _process(row: dict) -> None:
@@ -101,22 +162,12 @@ async def _process(row: dict) -> None:
         reason = ((res or {}).get("error")
                   or (res or {}).get("thin_reason")
                   or status or "incomplete")
-        if attempts <= MAX_RETRIES:
-            await asyncio.to_thread(q.retry, opp_id, error=reason)
-            _log(f"retry {opp_id} (attempt {attempts}/{MAX_RETRIES + 1}): {reason}")
-        else:
-            await asyncio.to_thread(q.mark_failed, opp_id, error=reason, duration_ms=dur)
-            _log(f"failed {opp_id} after {attempts} attempts: {reason}")
+        await _retry_or_fail(opp_id, attempts, reason, dur)
     except Exception as e:  # noqa: BLE001 — one bad opp must never kill the worker
         dur = int((time.time() - t0) * 1000)
         err = f"{type(e).__name__}: {str(e)[:300]}"
         traceback.print_exc()
-        if attempts <= MAX_RETRIES:
-            await asyncio.to_thread(q.retry, opp_id, error=err)
-            _log(f"retry {opp_id} after error (attempt {attempts}): {err}")
-        else:
-            await asyncio.to_thread(q.mark_failed, opp_id, error=err, duration_ms=dur)
-            _log(f"failed {opp_id} after error: {err}")
+        await _retry_or_fail(opp_id, attempts, err, dur)
 
 
 async def _drain_loop() -> None:

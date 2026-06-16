@@ -401,6 +401,7 @@ def _map_opps(rows: list[dict]) -> list[dict]:
             "forecast_category": o.get("ForecastCategoryName"),
             "amount": o.get("Amount"),
             "close_date": o.get("CloseDate"),
+            "geography": o.get("Geography__c"),
             "next_step": o.get("Next_Step__c"),
             "ais_score": o.get("AIS_Score__c"),
             "ais_status": o.get("AIS_Status__c"),
@@ -432,7 +433,7 @@ def _map_opps(rows: list[dict]) -> list[dict]:
 _OPP_SELECT_FIELDS = (
     "Id, Name, Account.Name, Owner.Name, OwnerId, "
     "Owner.ManagerId, Owner.Manager.Name, StageName, ForecastCategoryName, "
-    "Amount, CloseDate, "
+    "Amount, CloseDate, Geography__c, "
     "Next_Step__c, AIS_Score__c, AIS_Status__c, AIS_Why__c, Products__c, Competitors__c, "
     "Others_Competitors_Please_specify__c, LastModifiedDate, CreatedDate, "
     "LastActivityDate, Qualified_Submission_Date__c"
@@ -718,7 +719,23 @@ def _sweep_facts_block(opp: dict, buyer: dict) -> str:
         f"- Owner: {_f(opp.get('owner_name'))}",
         f"- Owner's manager: {_f(opp.get('manager_name'))}",
         f"- Account: {_f(opp.get('account'))}",
+        f"- Geography: {_f(opp.get('geography'))}",
     ]
+    # Partner-led / APAC routing hint: on these deals the buyer calls run through
+    # the partner and are NOT in Avoma against this opp, and tasks are sparse — the
+    # deal intelligence lives in the Next Step log. Tell the agent up front so it
+    # mines Next_Step__c / Next_Step_History__c hard instead of reporting a dark deal.
+    _geo = (opp.get("geography") or "")
+    _ns_blob = (opp.get("next_step") or "")
+    if str(_geo).strip().upper() == "APAC" or any(
+            k in _ns_blob.lower() for k in ("partner", "atos", "reseller",
+                                            "system integrator", "led by")):
+        lines.append(
+            "- NOTE: this looks PARTNER-LED and/or APAC. Expect few/no Avoma calls and "
+            "sparse tasks (the partner runs the calls). Do NOT call this dark: "
+            "reconstruct the deal from Next_Step__c + Next_Step_History__c + golden "
+            "tasks, name the real buyer-side people/competitors the log mentions, and "
+            "treat the partner as the channel.")
     return (
         "\n\n=== GROUND TRUTH — authoritative Salesforce fields (live, this sweep) ===\n"
         "These values were read directly from Salesforce at sweep time and are "
@@ -1318,6 +1335,96 @@ async def analyze_one(
             print(f"[DEAL-SWEEP] validation gate opp={opp_id} persisted with "
                   f"{result['validation_violations']} sanitized fabrication(s)", flush=True)
         _agent_sf_blank = bool(_meta.get("agent_sf_blank"))
+        # ---- Quality inspector + exploratory recovery -----------------------
+        # The first record is gate-clean but may be THIN: 0 Avoma calls + empty
+        # MEDDPICC / competition / moves. Historically the worker then re-ran the
+        # SAME agent (which changed nothing) and the deal landed in `failed`.
+        # Instead, when the record is thin BUT the deal carries recoverable signal
+        # (contact roles, recent activity, a populated Next Step log/history,
+        # golden-nugget tasks, or a partner-led/APAC motion), exhaust those sources
+        # and re-synthesize ONCE with them injected. Classic case: a partner-led
+        # APAC deal (e.g. Reserve Bank of Australia S2P) where the partner runs every
+        # call, so Avoma + tasks are empty but the whole deal lives in Next_Step__c.
+        # The recovered record goes through the SAME _finalize + anti-fabrication
+        # gate, so it is held to the same no-fabrication bar. Never raises — a
+        # recovery failure leaves the original gate-clean record intact.
+        if os.getenv("DEAL_SWEEP_QUALITY_INSPECTOR", "true").lower() in ("1", "true", "yes"):
+            try:
+                import deal_quality_inspector as _qi
+                _verdict = _qi.assess(parsed, agent_sf_blank=_agent_sf_blank)
+                if not _verdict["good"]:
+                    _rctx = await _qi.gather_recovery_context(
+                        agent_manager, opp_id, opp, buyer)
+                    if _qi.has_recoverable_signal(buyer, _rctx):
+                        print(f"[QUALITY-INSPECTOR] opp={opp_id} thin "
+                              f"(score={_verdict['score']} deficits={_verdict['deficits']}) "
+                              f"-> recovering (apac={_rctx.get('is_apac')} "
+                              f"partner={bool(_rctx.get('partner_signal'))} "
+                              f"golden_tasks={(_rctx.get('tasks') or {}).get('golden_count')})",
+                              flush=True)
+                        _directive = _qi.build_recovery_directive(
+                            _verdict["deficits"], _rctx)
+                        _rec_attempts = max(1, int(
+                            os.getenv("DEAL_SWEEP_RECOVERY_ATTEMPTS", "2")))
+                        _rec_feedback = ""
+                        _best, _best_score = parsed, _verdict["score"]
+                        for _rattempt in range(_rec_attempts):
+                            _rcoro = agent.ainvoke(
+                                {"messages": [{"role": "user",
+                                  "content": user_msg + "\n\n" + _directive + _rec_feedback}]},
+                                config={"recursion_limit": recursion_limit},
+                            )
+                            _rres = await asyncio.wait_for(_rcoro, timeout=timeout_s)
+                            _ru = _sum_usage(_rres.get("messages", [])
+                                             if isinstance(_rres, dict) else [])
+                            for _uk in ("uncached_input", "output", "cache_creation",
+                                        "cache_read", "total"):
+                                usage[_uk] = (usage.get(_uk) or 0) + (_ru.get(_uk) or 0)
+                            usage["seen"] = bool(usage.get("seen")) or bool(_ru.get("seen"))
+                            _rcand = _oa._extract_json(_oa._final_text(_rres))
+                            if not isinstance(_rcand, dict) or _rcand.get("_error"):
+                                _rec_feedback = ("\n\n--- That was not valid JSON. Re-emit "
+                                    "the FULL canonical record as one JSON object. ---")
+                                continue
+                            _rparsed = _finalize(_rcand)
+                            _rviol = _val.validate_record(
+                                _rparsed, sf_facts=opp,
+                                contact_roles=(buyer or {}).get("contacts"),
+                                avoma_attendees=_attendees_of(_rparsed),
+                                active_sf_user_names=_active_users,
+                                prior_names=_val._sourced_names_in_record(existing_record),
+                            )
+                            if _rviol:
+                                _rallow = set(_allowlist)
+                                _rallow |= {_val._norm_name(n) for n in _attendees_of(_rparsed)}
+                                _rallow |= set(_active_users or set())
+                                _rallow |= {_val._norm_name(n)
+                                            for n in _val._sourced_names_in_record(existing_record)}
+                                _rallow.discard("")
+                                _val.sanitize_failed_record(_rparsed, _rviol, opp,
+                                                            allowlist=_rallow)
+                            _rscore = _qi.richness_score(_rparsed)
+                            if _rscore > _best_score:
+                                _best, _best_score = _rparsed, _rscore
+                            if _qi.assess(_rparsed, agent_sf_blank=_agent_sf_blank)["good"]:
+                                break
+                            _rec_feedback = ""
+                        if _best_score > _verdict["score"]:
+                            print(f"[QUALITY-INSPECTOR] opp={opp_id} recovered score "
+                                  f"{_verdict['score']} -> {_best_score}", flush=True)
+                            parsed = _best
+                            result["recovered"] = True
+                            result["recovery_score"] = _best_score
+                        else:
+                            print(f"[QUALITY-INSPECTOR] opp={opp_id} recovery did not "
+                                  f"improve (stayed {_verdict['score']}); keeping original",
+                                  flush=True)
+                    else:
+                        print(f"[QUALITY-INSPECTOR] opp={opp_id} thin but no recoverable "
+                              f"signal — honestly dark, keeping as-is", flush=True)
+            except Exception as _qe:  # noqa: BLE001 — recovery must never block persist
+                print(f"[QUALITY-INSPECTOR] opp={opp_id} recovery error (non-fatal): "
+                      f"{type(_qe).__name__}: {_qe}", flush=True)
         # Build the durable living-memory packets ONCE, AFTER the gate has approved
         # or sanitised the facts — so packets are always derived from gate-clean ai
         # and a stripped fabrication can never survive in the packet store.
@@ -1340,21 +1447,19 @@ async def analyze_one(
         except (TypeError, ValueError):
             calls_read = 0
         result["calls_read"] = calls_read
-        roles_count = int(buyer.get("roles_count") or 0) if isinstance(buyer, dict) else 0
-        recent_activity = (
-            _within_days(buyer.get("last_activity_date"), 45)
-            if isinstance(buyer, dict) else False)
-        reasons = []
+        # A thin record (worth the worker re-running analyze_one) is now ONLY one
+        # whose Salesforce read genuinely failed (no core mechanics) — a transient
+        # MCP/SOQL hiccup a fresh attempt can fix. We DELIBERATELY no longer mark
+        # `calls_read==0 with roles>0` as thin: that was the partner-led/APAC failure
+        # mode — a deal with no Avoma calls (the partner runs them) but a rich
+        # Next_Step__c log was flagged thin, re-run unchanged 3x, and dumped into
+        # `failed`. The quality inspector above now OWNS the calls_read==0 case
+        # (Avoma re-discovery + Next Step + tasks recovery), so a 0-Avoma record is a
+        # COMPLETE record, not a retry candidate.
         if _agent_sf_blank:
-            reasons.append("sf_read_blank")
-        if calls_read == 0 and (roles_count > 0 or recent_activity):
-            reasons.append(
-                f"calls_read=0 with roles={roles_count} recent_activity={recent_activity}")
-        if reasons:
             result["thin"] = True
-            result["thin_reason"] = "; ".join(reasons)
-            print(f"[DEAL-SWEEP] thin record opp={opp_id}: {result['thin_reason']}",
-                  flush=True)
+            result["thin_reason"] = "sf_read_blank"
+            print(f"[DEAL-SWEEP] thin record opp={opp_id}: sf_read_blank", flush=True)
     except asyncio.TimeoutError:
         result["status"] = "failed"
         result["error"] = f"timeout after {timeout_s}s"

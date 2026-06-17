@@ -2089,7 +2089,13 @@ async def discover_and_sweep_new(
                     return {"opp_id": o.get("id"), "status": "already_running"}
                 _trigger_inflight.add(key)
                 try:
-                    return await analyze_one(agent_manager, o, source=source)
+                    # Route through the SAME durable sweep queue as the manual
+                    # sweep so scheduled discovery gets the resilient WORKER flow
+                    # (patient rate-limit retries, backoff, quality inspector)
+                    # instead of an in-process analyze_one on the web process's
+                    # default config. The web only enqueues; the worker sweeps.
+                    await asyncio.to_thread(_queue.enqueue_one, f"{source}-{key}", o)
+                    return {"opp_id": o.get("id"), "status": "enqueued"}
                 finally:
                     _trigger_inflight.discard(key)
 
@@ -2100,7 +2106,9 @@ async def discover_and_sweep_new(
                 out["skipped_inflight"] += 1
                 continue
             out["swept"] += 1
-            if isinstance(r, dict) and r.get("status") == "completed":
+            # "enqueued" = handed to the durable worker queue (the resilient
+            # path); count as success here, the worker reports real completion.
+            if isinstance(r, dict) and r.get("status") in ("completed", "enqueued"):
                 out["completed"] += 1
             else:
                 out["failed"] += 1
@@ -2224,7 +2232,12 @@ async def reconcile_membership(
                             return {"opp_id": o.get("id"), "status": "already_running"}
                         _trigger_inflight.add(key)
                         try:
-                            return await analyze_one(agent_manager, o, source=source)
+                            # Same as discovery: enqueue to the durable queue so the
+                            # resilient worker sweeps it (patient retries + inspector),
+                            # rather than an in-process analyze_one on the web's config.
+                            await asyncio.to_thread(
+                                _queue.enqueue_one, f"{source}-{key}", o)
+                            return {"opp_id": o.get("id"), "status": "enqueued"}
                         finally:
                             _trigger_inflight.discard(key)
 
@@ -2235,7 +2248,7 @@ async def reconcile_membership(
                         out["skipped_inflight"] += 1
                         continue
                     out["swept"] += 1
-                    if isinstance(r, dict) and r.get("status") == "completed":
+                    if isinstance(r, dict) and r.get("status") in ("completed", "enqueued"):
                         out["completed"] += 1
                     else:
                         out["failed"] += 1

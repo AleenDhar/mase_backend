@@ -354,7 +354,12 @@ $workerTaskDefJson = @"
       "command": ["python", "worker.py"],
       "environment": [
         { "name": "DEAL_SWEEP_CONCURRENCY", "value": "2" },
-        { "name": "MCP_SERVER_ALLOWLIST", "value": "salesforce,avoma" }
+        { "name": "MCP_SERVER_ALLOWLIST", "value": "salesforce,avoma" },
+        { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
+        { "name": "LLM_REQUEST_TIMEOUT_S", "value": "600" },
+        { "name": "DEAL_SWEEP_TIMEOUT_S", "value": "2400" },
+        { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
+        { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" }
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {

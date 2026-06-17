@@ -60,6 +60,11 @@ _TRANSIENT_MARKERS = (
     "overloaded", "overload", "529", "520", "502", "503", "504",
     "internalservererror", "service unavailable", "timed out", "timeout",
     "connection", "econnreset", "temporarily", "try again", "too many requests",
+    # Agent-output errors that a fresh attempt usually fixes: a parse_error is
+    # often a one-off malformed/truncated JSON generation (esp. under load), so
+    # re-queue + retry rather than failing the deal. Raising DEAL_SWEEP_MAX_TOKENS
+    # cuts the truncation cause; this covers the residual one-offs.
+    "parse_error", "unparseable", "json_parse", "json parse",
 )
 
 

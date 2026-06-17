@@ -113,7 +113,7 @@ def _value_equal(a: Any, b: Any) -> bool:
 _SIGNIFICANT_FIELDS: dict[str, tuple] = {
     "requirement": ("addressed", "kind"),
     "stakeholder": ("role", "title", "sentiment", "risk"),
-    "competitor": ("sentiment",),
+    "competitor": ("sentiment", "threat_level", "status"),
     "risk": ("status", "category"),
     "commitment": ("status", "due"),
     "champion": ("name", "strength", "at_risk"),
@@ -385,17 +385,14 @@ def reconcile(existing_packets: list, candidate_packets: list,
             e["last_updated"] = today
             deltas.append(_delta(today, e, "resolved", source=c.get("source")))
 
-    # 3) absence policy for packets not seen this sweep.
-    for key, e in by_key.items():
-        if key in seen:
-            continue
-        if e.get("status") in ("superseded", "resolved", "dormant"):
-            continue
-        if e.get("type") in DURABLE_TYPES:
-            e["status"] = "dormant"
-            e["last_updated"] = today
-            deltas.append(_delta(today, e, "dormant", source="absence"))
-        # non-durable absent: leave active, no delta.
+    # 3) absence policy: CARRY FORWARD UNTOUCHED.
+    #    A packet not seen this sweep is retained exactly as-is — no status change,
+    #    no delta. Absence means "not re-mentioned", NEVER "gone": we cannot infer
+    #    that something went obsolete in the deal just because one sweep (which may
+    #    have read 0 calls) didn't surface it. Living-memory facts are retired ONLY
+    #    on an EXPLICIT resolve/supersede signal (handled in step 1) or an explicit
+    #    human retirement. This is the rule that stops a thin sweep from eroding a
+    #    rich record. [Previously: durable packets were auto-marked dormant here.]
 
     return list(by_key.values()), deltas
 
@@ -436,7 +433,7 @@ def _is_obsolete_hygiene(packet: dict) -> bool:
     return any(s in text for s in _OBSOLETE_HYGIENE_SUBSTRINGS)
 
 
-def expire_stale(packets: list, today: str, *, retire_aged: bool = True,
+def expire_stale(packets: list, today: str, *, retire_aged: bool = False,
                  retire_obsolete: bool = True, age_days: int = 45,
                  requirement_unaddressed_age_days: int = 60) -> tuple[list, list]:
     """Retire carried-forward packets that should no longer project as live items.
@@ -525,6 +522,23 @@ def _items(section: Any) -> list:
     return section if isinstance(section, list) else []
 
 
+# Explicit-retirement signal on an ai.* item. Living memory retires ONLY on an
+# explicit signal — NOT on silence. NOTE: "declined"/"faded" are NOT retirement
+# (a priced-out competitor stays visible as history); only a true out-of-the-race
+# marker retires (removes from the live field, kept in history + the change feed).
+_RETIRE_WORDS = {"out", "eliminated", "retired", "lost", "dropped", "withdrawn",
+                 "no longer", "knocked out", "ruled out"}
+
+
+def _is_retire_marker(item: Any) -> bool:
+    if not isinstance(item, dict):
+        return False
+    if item.get("retire") is True or item.get("retired") is True:
+        return True
+    st = str(item.get("status") or "").strip().lower()
+    return st in _RETIRE_WORDS
+
+
 def extract_candidates(ai: dict, hard: Optional[dict] = None) -> list[dict]:
     """Turn the agent's emitted `ai.*` (+ a couple of `hard` facts) into candidate
     packets. Each candidate is {type, subject, value, source}. Keys are derived
@@ -562,15 +576,25 @@ def extract_candidates(ai: dict, hard: Optional[dict] = None) -> list[dict]:
         subj = comp.get("name")
         if not subj:
             continue
-        out.append({"type": "competitor", "subject": subj, "value": comp,
-                    "source": "ai:competitive_position"})
+        if _is_retire_marker(comp):
+            out.append({"resolves": [make_key("competitor", subj)],
+                        "reason": comp.get("retire_reason") or comp.get("reason"),
+                        "source": "ai:competitive_position"})
+        else:
+            out.append({"type": "competitor", "subject": subj, "value": comp,
+                        "source": "ai:competitive_position"})
 
     for v in _items(ai.get("vulnerabilities")):
         subj = v.get("detail") or v.get("category")
         if not subj:
             continue
-        out.append({"type": "risk", "subject": subj, "value": v,
-                    "source": "ai:vulnerabilities"})
+        if _is_retire_marker(v):
+            out.append({"resolves": [make_key("risk", subj)],
+                        "reason": v.get("retire_reason") or v.get("reason"),
+                        "source": "ai:vulnerabilities"})
+        else:
+            out.append({"type": "risk", "subject": subj, "value": v,
+                        "source": "ai:vulnerabilities"})
 
     for d in _items(ai.get("open_deliverables")):
         subj = d.get("commitment")
@@ -669,14 +693,28 @@ def _rank_stakeholders(items: list) -> list:
     return sorted(by_recency, key=_role_rank)
 
 
-def project_into_ai(agent_ai: dict, packets: list) -> dict:
-    """Regenerate the packet-backed `ai.*` item lists from active + dormant
+def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) -> dict:
+    """Regenerate the packet-backed `ai.*` item lists from the live (carried-forward)
     packets, preserving the agent's derived sections and summaries. The result is
-    shape-compatible with what derive_todo / derive_matcha / the frontend read."""
+    shape-compatible with what derive_todo / derive_matcha / the frontend read.
+
+    When `today` (this sweep's date) is passed, each projected item carries a
+    `change` tag — new | updated | carried — plus first_seen / last_confirmed, so the
+    UI can infuse the incremental change inside each section (living memory)."""
     ai = dict(agent_ai or {})
     expl, impl, stake, comps, vulns, deliv, flags = [], [], [], [], [], [], []
     scope = None
     champ = None
+
+    def _chg(p: dict) -> str:
+        # new this sweep / updated this sweep / carried forward from a prior sweep.
+        if not today:
+            return ""
+        if p.get("first_seen") == today:
+            return "new"
+        if p.get("last_updated") == today:
+            return "updated"
+        return "carried"
 
     for p in _live(packets):
         t = p.get("type")
@@ -705,13 +743,21 @@ def project_into_ai(agent_ai: dict, packets: list) -> dict:
                           "sentiment": v.get("sentiment"), "risk": v.get("risk")})
         elif t == "competitor":
             comps.append({"name": v.get("name") or subj, "sentiment": v.get("sentiment"),
-                          "quote": v.get("quote"), "date": v.get("date") or lc})
+                          "threat_level": v.get("threat_level"),
+                          "status": v.get("status"),
+                          "quote": v.get("quote"), "how_we_win": v.get("how_we_win"),
+                          "source": v.get("source") or p.get("source"),
+                          "date": v.get("date") or lc,
+                          "first_seen": p.get("first_seen"), "last_confirmed": lc,
+                          "change": _chg(p)})
         elif t == "risk":
             vulns.append({"category": v.get("category") or "other",
                           "detail": v.get("detail") or subj,
                           "first_raised": v.get("first_raised") or p.get("first_seen"),
                           "date": v.get("date") or lc,
-                          "status": v.get("status") or p.get("status")})
+                          "status": v.get("status") or p.get("status"),
+                          "first_seen": p.get("first_seen"), "last_confirmed": lc,
+                          "change": _chg(p)})
         elif t == "commitment":
             deliv.append({"who": v.get("who"), "commitment": v.get("commitment") or subj,
                           "date": v.get("date"), "due": v.get("due"),

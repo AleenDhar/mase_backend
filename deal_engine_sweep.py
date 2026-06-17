@@ -1137,14 +1137,16 @@ async def analyze_one(
                 if candidates or _prior_packets:
                     merged_packets, new_deltas = packets_mod.reconcile(
                         _prior_packets, candidates, parsed["swept_at"])
-                    # Clean-read expiry: retire aged carried-forward packets the
-                    # agent did not re-confirm (only on a clean read) and obsolete
-                    # pre-v2 hygiene flags (whenever the SF read worked), so stale
-                    # items and wrong-field flags stop projecting. Prepend deltas.
-                    if _sf_ok or _clean_read:
+                    # Living-memory rule: NEVER age-retire carried-forward facts.
+                    # Absence is "not re-mentioned", never "gone" — a fact is retired
+                    # ONLY on an explicit resolve/supersede signal (in reconcile) or an
+                    # explicit human retirement. We still clean obsolete pre-v2 hygiene
+                    # flags (field-missing artifacts, not real insights) when the SF
+                    # read worked. Prepend deltas.
+                    if _sf_ok:
                         merged_packets, _exp_deltas = packets_mod.expire_stale(
                             merged_packets, parsed["swept_at"],
-                            retire_aged=_clean_read, retire_obsolete=_sf_ok)
+                            retire_aged=False, retire_obsolete=_sf_ok)
                         if _exp_deltas:
                             new_deltas = _exp_deltas + new_deltas
                             print(f"[DEAL-SWEEP] expiry opp={opp_id} retired "
@@ -1187,8 +1189,45 @@ async def analyze_one(
                     parsed["packets"] = merged_packets
                     parsed["deltas"] = (new_deltas + prior_deltas)[:delta_cap]
                     parsed["ai"] = packets_mod.project_into_ai(
-                        parsed.get("ai") or {}, merged_packets)
+                        parsed.get("ai") or {}, merged_packets,
+                        today=parsed.get("swept_at"))
                     parsed["schema_version"] = 2
+                    _prior_ai = (existing_record or {}).get("ai") or {}
+                    # A sweep that surfaced NO competitor change must not rewrite the
+                    # competitive_position SUMMARY prose either — carry it forward so a
+                    # thin/0-call run can't replace a good ranked read with a stale one.
+                    if not any(d.get("type") == "competitor" for d in (new_deltas or [])):
+                        _prior_cp = _prior_ai.get("competitive_position") or {}
+                        if _prior_cp.get("summary"):
+                            _cp_now = parsed["ai"].setdefault("competitive_position", {})
+                            _cp_now["summary"] = _prior_cp["summary"]
+                    # Verdict trajectory (living memory): stronger / steady / weaker vs
+                    # the prior sweep, plus a dated verdict_history series. Pulse-tied
+                    # via swept_at so the trajectory stays consistent with engagement.
+                    _RANK = {"On Track": 3, "At Risk": 2, "Off Track": 1}
+                    _nv = parsed["ai"].get("north_star_verdict") or {}
+                    _cur = str(_nv.get("verdict") or "")
+                    _prior_nv = _prior_ai.get("north_star_verdict") or {}
+                    _prior_v = str(_prior_nv.get("verdict") or "")
+                    if _cur:
+                        if not _prior_v:
+                            _traj = "new"
+                        elif _RANK.get(_cur, 0) > _RANK.get(_prior_v, 0):
+                            _traj = "stronger"
+                        elif _RANK.get(_cur, 0) < _RANK.get(_prior_v, 0):
+                            _traj = "weaker"
+                        else:
+                            _cd, _pd = bool(_nv.get("forecast_defensible")), bool(_prior_nv.get("forecast_defensible"))
+                            _traj = "stronger" if (_cd and not _pd) else ("weaker" if (_pd and not _cd) else "steady")
+                        _nv["trajectory"] = _traj
+                        _nv["prior_verdict"] = _prior_v or None
+                        _hist = list(_prior_ai.get("verdict_history")
+                                     or (existing_record or {}).get("verdict_history") or [])
+                        _hist.append({"date": parsed.get("swept_at"), "verdict": _cur,
+                                      "forecast_defensible": bool(_nv.get("forecast_defensible")),
+                                      "trajectory": _traj})
+                        parsed["verdict_history"] = _hist[-20:]
+                        parsed["ai"]["north_star_verdict"] = _nv
                     print(f"[DEAL-SWEEP] living-memory opp={opp_id} "
                           f"packets={len(merged_packets)} new_deltas={len(new_deltas)}",
                           flush=True)

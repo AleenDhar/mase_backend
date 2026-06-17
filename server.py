@@ -2978,10 +2978,21 @@ async def chat_async(request: ChatRequest):
                 detail=f"Server at capacity ({config.MAX_CONCURRENT_SESSIONS} concurrent sessions). Please try again shortly."
             )
 
+        # Admin instruction override (see /api/chat): per-request prompt wins, else
+        # the saved override, else the built-in default. Never blocks the chat path.
+        _base_prompt = request.system_prompt
+        if not (_base_prompt or "").strip():
+            try:
+                import agent_prompt_store as _aps
+                _ov = await _aw(_aps.get_prompt)
+                if (_ov or "").strip():
+                    _base_prompt = _ov
+            except Exception:  # noqa: BLE001
+                pass
         _async_system_prompt = await _lake.inject_lake_context(
             request_messages=request.messages,
             project_id=request.project_id,
-            system_prompt=request.system_prompt,
+            system_prompt=_base_prompt,
             supabase_client=supabase,
         )
         _current_chat_id.set(chat_id)
@@ -3110,10 +3121,22 @@ async def chat(request: ChatRequest):
             f"[SUPABASE STATUS] client={'INITIALIZED' if supabase else 'NOT INITIALIZED'}"
         )
 
+        # Admin instruction override (Admin -> Agent Control 'Instructions'). A
+        # per-request prompt always wins; otherwise fall back to the saved override
+        # (then the built-in default). Never blocks the chat path.
+        _base_prompt = request.system_prompt
+        if not (_base_prompt or "").strip():
+            try:
+                import agent_prompt_store as _aps
+                _ov = await _aw(_aps.get_prompt)
+                if (_ov or "").strip():
+                    _base_prompt = _ov
+            except Exception:  # noqa: BLE001
+                pass
         _chat_system_prompt = await _lake.inject_lake_context(
             request_messages=request.messages,
             project_id=getattr(request, 'project_id', None),
-            system_prompt=request.system_prompt,
+            system_prompt=_base_prompt,
             supabase_client=supabase,
         )
         _current_chat_id.set(chat_id)
@@ -4120,6 +4143,48 @@ async def get_chat_result(chat_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# Cached probe: does the documents table have a doc_type column yet? (The column
+# is added by a Supabase migration the Next.js team applies; until then we fall
+# back to encoding doc_type into the document name so nothing breaks pre-migration.)
+_DOCS_DOC_TYPE_COL: Optional[bool] = None
+
+
+def _extract_text_from_file(file_b64: str, name: str) -> str:
+    """Extract plain text from a base64-encoded uploaded file. PDF via pypdf,
+    DOCX via python-docx (both already in requirements); anything else is decoded
+    as UTF-8 text. Raises on a corrupt/unsupported binary so the caller 400s."""
+    import base64
+    import io
+    raw = base64.b64decode(file_b64)
+    low = (name or "").lower()
+    if low.endswith(".pdf"):
+        import pypdf
+        reader = pypdf.PdfReader(io.BytesIO(raw))
+        return "\n\n".join((p.extract_text() or "") for p in reader.pages).strip()
+    if low.endswith(".docx"):
+        import docx  # python-docx
+        d = docx.Document(io.BytesIO(raw))
+        return "\n".join(p.text for p in d.paragraphs).strip()
+    return raw.decode("utf-8", errors="replace").strip()
+
+
+async def _documents_has_doc_type() -> bool:
+    """True iff the documents table has a doc_type column (cached after first probe).
+    Lets upload_document store doc_type natively once the migration lands, without a
+    redeploy, and fall back to name-encoding before then."""
+    global _DOCS_DOC_TYPE_COL
+    if _DOCS_DOC_TYPE_COL is not None:
+        return _DOCS_DOC_TYPE_COL
+    try:
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(
+            None, lambda: supabase.table("documents").select("doc_type").limit(1).execute())
+        _DOCS_DOC_TYPE_COL = True
+    except Exception:  # noqa: BLE001 — column absent (pre-migration) or transient
+        _DOCS_DOC_TYPE_COL = False
+    return _DOCS_DOC_TYPE_COL
+
+
 @app.post("/api/documents/upload")
 async def upload_document(request_body: dict):
     """Upload a document, chunk it, generate embeddings, and store in Supabase.
@@ -4139,9 +4204,22 @@ async def upload_document(request_body: dict):
     name = request_body.get("name", "Untitled Document")
     project_id = request_body.get("project_id")
     chat_id = request_body.get("chat_id")
+    doc_type = (request_body.get("doc_type") or "").strip() or None
+    file_b64 = request_body.get("file_b64")
+    # `filename` carries the original extension for format detection; `name` is the
+    # admin-chosen display title. Fall back to name when no separate filename given.
+    file_name = request_body.get("filename") or name
+
+    # PDF/DOCX support: when no plain text is supplied but a base64 file is, extract
+    # the text server-side. Plain-text uploads still pass `content` directly.
+    if not content and file_b64:
+        try:
+            content = _extract_text_from_file(file_b64, file_name)
+        except Exception as _e:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail=f"Could not extract text from '{name}': {_e}")
 
     if not content:
-        raise HTTPException(status_code=400, detail="Document content is required")
+        raise HTTPException(status_code=400, detail="Document content is required (text, or a base64 file in file_b64)")
     if not project_id and not chat_id:
         raise HTTPException(status_code=400, detail="At least one of project_id or chat_id is required")
 
@@ -4149,6 +4227,10 @@ async def upload_document(request_body: dict):
         import httpx
 
         doc_id = str(uuid.uuid4())
+        # doc_type: store natively once the column exists; otherwise encode it into
+        # the name so it stays visible/filterable in retrieval results pre-migration.
+        if doc_type and not (await _documents_has_doc_type()) and not name.startswith("["):
+            name = f"[{doc_type}] {name}"
         doc_row = {
             "id": doc_id,
             "name": name,
@@ -4157,6 +4239,8 @@ async def upload_document(request_body: dict):
         }
         if project_id:
             doc_row["project_id"] = project_id
+        if doc_type and await _documents_has_doc_type():
+            doc_row["doc_type"] = doc_type
 
         loop = asyncio.get_event_loop()
         await loop.run_in_executor(
@@ -6660,6 +6744,46 @@ async def deal_engine_team():
     import deal_engine_store as dstore
     try:
         return await _aw(dstore.get_team)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/chat/prompt")
+async def get_chat_prompt():
+    """Return the admin instruction override for the chat/completion agent plus the
+    built-in default, for the Admin -> Agent Control 'Instructions' editor. Admin
+    enforcement lives in the frontend proxy (this path is admin-gated there)."""
+    import agent_prompt_store as aps
+    try:
+        override = await _aw(aps.get_prompt)
+    except Exception:  # noqa: BLE001
+        override = ""
+    return {
+        "prompt": override,
+        # The agent has no MASE-specific hardcoded base prompt — when no override
+        # and no per-request prompt is set it uses the deep-agent built-in. So the
+        # "default" surfaced to the editor is empty with an explanatory note.
+        "default": "",
+        "is_override": bool((override or "").strip()),
+        "note": ("This is the base system prompt for chats that don't supply their "
+                 "own. Per-request prompts (e.g. pipeline phases) still take "
+                 "precedence; leave empty + save to clear."),
+    }
+
+
+@app.post("/api/deal-engine/chat/prompt")
+async def set_chat_prompt(request: Request):
+    """Persist the admin instruction override for the chat/completion agent. Send
+    {"prompt": "..."}; empty clears it. Applies to the next message of every run."""
+    import agent_prompt_store as aps
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    prompt = (body.get("prompt") or "").strip()
+    try:
+        await _aw(aps.set_prompt, prompt)
+        return {"ok": True, "is_override": bool(prompt)}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -9799,7 +9923,10 @@ _API_AUTH_PUBLIC_EXACT = {
     "/api/chat/async",
     "/api/chat/structured/async",
     "/api/config",
-    "/api/documents/upload",
+    # NOTE: /api/documents/upload was REMOVED from the public allowlist
+    # (2026-06-18) — it writes to the knowledge base, so it must require the
+    # API token. The admin-gated frontend proxy (/api/documents/*) supplies it;
+    # direct unauthenticated uploads are now rejected by the global gate.
 }
 _API_AUTH_PUBLIC_PREFIX = (
     "/.well-known/",

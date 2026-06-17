@@ -1134,6 +1134,24 @@ async def analyze_one(
             try:
                 candidates = packets_mod.extract_candidates(
                     parsed.get("ai") or {}, parsed.get("hard") or {})
+                # No-evidence guard: on a sweep that read ZERO buyer calls, the agent
+                # has no real basis to RE-RANK or re-word an existing competitor (the
+                # competitive read lives in the calls). Drop competitor candidates that
+                # match an existing packet — carry those forward UNTOUCHED, preserving
+                # the evidence-based threat ranking — while still allowing genuinely NEW
+                # competitors (new key) and explicit retirements (resolves carry no
+                # competitor key, so they pass through). This stops the threat order
+                # from drifting on a thin run.
+                if _cr_clean == 0 and _prior_packets:
+                    _prior_keys = {p.get("key") for p in _prior_packets}
+                    _kept = [c for c in candidates
+                             if not (c.get("type") == "competitor"
+                                     and packets_mod.make_key("competitor", c.get("subject")) in _prior_keys)]
+                    if len(_kept) != len(candidates):
+                        print(f"[DEAL-SWEEP] no-call guard opp={opp_id}: carried "
+                              f"{len(candidates) - len(_kept)} existing competitor(s) "
+                              f"forward untouched (calls_read=0)", flush=True)
+                    candidates = _kept
                 if candidates or _prior_packets:
                     merged_packets, new_deltas = packets_mod.reconcile(
                         _prior_packets, candidates, parsed["swept_at"])

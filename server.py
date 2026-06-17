@@ -6828,6 +6828,66 @@ async def set_chat_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+from pathlib import Path as _PathTR
+_TODO_RUNNER_PROMPT_PATH = _PathTR(__file__).parent / "prompts" / "todo_runner_system_prompt.md"
+
+
+def _todo_runner_seed_prompt() -> str:
+    """The version-controlled SEED / DEFAULT for the todo-runner (Tactical
+    Fulfillment / 'Run with AI') agent. Mirrors the fallback constant in the
+    frontend AgentRun.tsx; used whenever Supabase has no override."""
+    try:
+        return _TODO_RUNNER_PROMPT_PATH.read_text(encoding="utf-8").strip()
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+@app.get("/api/deal-engine/todo-runner/prompt")
+async def get_todo_runner_prompt():
+    """Return the admin override for the TODO RUNNER agent's system prompt (the
+    Tactical Fulfillment / 'Run with AI' drafting agent), stored in Supabase
+    (agent_prompt_store, key ID_TODO_RUNNER), plus the on-disk seed/default.
+
+    This GET is read by BOTH the Admin editor AND the frontend agent-run panel
+    (so a rep's 'Run with AI' picks up admin edits), so it is NOT admin-gated; the
+    write (POST) is admin-gated at the proxy. Prompts are fetched from Supabase at
+    runtime — the seed below is the version that ships on disk."""
+    import agent_prompt_store as aps
+    try:
+        override = await _aw(aps.get_prompt, aps.ID_TODO_RUNNER)
+    except Exception:  # noqa: BLE001
+        override = ""
+    default = await _aw(_todo_runner_seed_prompt)
+    return {
+        "prompt": override,
+        "default": default,
+        "is_override": bool((override or "").strip()),
+        "note": ("Tactical Fulfillment ('Run with AI') agent system prompt. Stored "
+                 "in Supabase (the runtime source of truth); leave empty + save to "
+                 "fall back to the shipped default shown here. Applies to the next "
+                 "'Run with AI' run, no redeploy needed."),
+    }
+
+
+@app.post("/api/deal-engine/todo-runner/prompt")
+async def set_todo_runner_prompt(request: Request):
+    """Persist the admin override for the TODO RUNNER agent's system prompt to
+    Supabase (key ID_TODO_RUNNER). Send {"prompt": "..."}; empty clears it (falls
+    back to the on-disk seed). Each 'Run with AI' fetches the effective prompt at
+    run time, so there is no agent cache to reset."""
+    import agent_prompt_store as aps
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    prompt = (body.get("prompt") or "").strip()
+    try:
+        await _aw(aps.set_prompt, prompt, aps.ID_TODO_RUNNER)
+        return {"ok": True, "is_override": bool(prompt)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/sweep/prompt")
 async def get_sweep_prompt():
     """Return the admin override for the DEAL SWEEP system prompt (stored in

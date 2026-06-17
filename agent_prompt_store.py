@@ -7,16 +7,19 @@ table / migration is required. Reuses analysis_store's service-role REST helpers
 (same pattern as jarvis_store).
 
 Prompt keys (jarvis_settings.id) — one row per agent:
-  - ID_CHAT       ("mase_chat_agent")  — the chat / completion ("todo runner")
-        agent. Override is OPTIONAL: "" => fall back to the per-request prompt and
-        then the deep-agent built-in.
-  - ID_DEAL_SWEEP ("mase_deal_sweep")  — the Deal Intelligence Engine SWEEP agent
+  - ID_TODO_RUNNER ("mase_todo_runner") — the Tactical Fulfillment / "Run with AI"
+        drafting agent (the to-do runner that drafts an outbound email for a
+        to-do). Override is OPTIONAL: "" => fall back to the version-controlled
+        seed shipped on disk at prompts/todo_runner_system_prompt.md.
+  - ID_DEAL_SWEEP  ("mase_deal_sweep")  — the Deal Intelligence Engine SWEEP agent
         (deal_engine_sweep.py). Override is OPTIONAL: "" => fall back to the
         version-controlled seed shipped on disk at
         prompts/deal_engine_sweep_system_prompt.md.
+  - ID_CHAT        ("mase_chat_agent")  — the generic conversational chat agent
+        (the chat page). Override is OPTIONAL: "" => fall back to the per-request
+        prompt and then the deep-agent built-in.
 
-These two agents are DISTINCT: editing the deal-sweep prompt does NOT touch the
-chat/todo-runner prompt and vice-versa.
+These agents are DISTINCT: editing one prompt never touches another.
 
 All functions are synchronous (httpx); async callers wrap them in
 asyncio.to_thread (see server.py `_aw`). get_prompt() never raises (returns "" if
@@ -32,6 +35,7 @@ T_SETTINGS = "jarvis_settings"
 # Prompt keys (jarvis_settings.id). One row per agent.
 ID_CHAT = "mase_chat_agent"
 ID_DEAL_SWEEP = "mase_deal_sweep"
+ID_TODO_RUNNER = "mase_todo_runner"
 
 # Back-compat alias for the original single-prompt (chat) callers.
 _ID = ID_CHAT

@@ -6828,6 +6828,62 @@ async def set_chat_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.get("/api/deal-engine/sweep/prompt")
+async def get_sweep_prompt():
+    """Return the admin override for the DEAL SWEEP system prompt (stored in
+    Supabase) plus the on-disk seed/default, for the Admin -> Agent Control
+    'Deal Sweep Prompt' editor. This governs the Deal Intelligence Engine SWEEP
+    agent (deal_engine_sweep.py) — NOT the chat / todo-runner agent. Prompts are
+    fetched from the Supabase jarvis_settings table at runtime (see
+    agent_prompt_store, key ID_DEAL_SWEEP); the seed below is the version that
+    ships on disk. Admin enforcement lives in the frontend proxy (admin-gated)."""
+    import agent_prompt_store as aps
+    try:
+        override = await _aw(aps.get_prompt, aps.ID_DEAL_SWEEP)
+    except Exception:  # noqa: BLE001
+        override = ""
+    default = ""
+    try:
+        import deal_engine_sweep as des
+        default = await _aw(des._disk_prompt)
+    except Exception:  # noqa: BLE001 — seed unreadable; editor still works on the override
+        default = ""
+    return {
+        "prompt": override,
+        "default": default,
+        "is_override": bool((override or "").strip()),
+        "note": ("Deal Intelligence Engine sweep system prompt. Stored in Supabase "
+                 "(the runtime source of truth); leave empty + save to fall back to "
+                 "the shipped default shown here. Takes effect on the next "
+                 "opportunity swept, no redeploy needed."),
+    }
+
+
+@app.post("/api/deal-engine/sweep/prompt")
+async def set_sweep_prompt(request: Request):
+    """Persist the admin override for the DEAL SWEEP system prompt to Supabase
+    (key ID_DEAL_SWEEP). Send {"prompt": "..."}; empty clears it (falls back to the
+    on-disk seed). The cached sweep agent is reset so the new prompt rebuilds on the
+    next opportunity in this process; other processes (the worker) pick it up via
+    the TTL re-check in deal_engine_sweep._get_agent."""
+    import agent_prompt_store as aps
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    prompt = (body.get("prompt") or "").strip()
+    try:
+        await _aw(aps.set_prompt, prompt, aps.ID_DEAL_SWEEP)
+        try:
+            import deal_engine_sweep as des
+            des.reset()
+        except Exception:  # noqa: BLE001 — save succeeded; cache clears via TTL anyway
+            pass
+        return {"ok": True, "is_override": bool(prompt)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/opportunities")
 async def deal_engine_opportunities(owner: str = ""):
     import deal_engine_store as dstore

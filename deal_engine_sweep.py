@@ -48,11 +48,28 @@ import sweep_queue as _queue
 disable_write_todos()
 
 _ALLOWED_SERVERS = {"salesforce", "avoma"}
+
+# The deal-sweep system prompt is fetched from SUPABASE at runtime — that is the
+# source of truth (see agent_prompt_store, key ID_DEAL_SWEEP). The on-disk markdown
+# file below is the version-controlled SEED / DEFAULT: it ships in the image, it is
+# what the Admin -> Agent Control editor pre-fills, and it is used verbatim
+# whenever no Supabase override is set. Admins edit the LIVE prompt from the Admin
+# page (which writes the Supabase row); the change is picked up on the next opp
+# without a redeploy because _get_agent re-resolves the prompt (TTL-throttled) and
+# rebuilds the cached agent whenever its fingerprint changes — in BOTH the API
+# process and the separate sweep worker. See _load_prompt() / _get_agent().
 _PROMPT_PATH = Path(__file__).parent / "prompts" / "deal_engine_sweep_system_prompt.md"
 
 _agent_lock = asyncio.Lock()
 _cached_agent = None
 _cached_tool_names: list[str] = []
+# Fingerprint of the prompt the cached agent was built with + when we last
+# re-resolved it from Supabase, so an admin edit takes effect without a restart.
+_cached_prompt_fp: str = ""
+_cached_prompt_checked_at: float = 0.0
+# Don't hit Supabase for the prompt more than once per this window per process
+# (a big concurrent sweep would otherwise re-read the settings row every opp).
+_PROMPT_RECHECK_TTL_S = float(os.getenv("DEAL_SWEEP_PROMPT_RECHECK_TTL_S", "15"))
 
 # ---- run state (process-local; one sweep at a time) ----
 _state_lock = asyncio.Lock()
@@ -104,10 +121,37 @@ def _parse_sf_dt(value: Optional[str]) -> Optional[datetime]:
     return dt
 
 
-def _load_prompt() -> str:
+def _disk_prompt() -> str:
+    """The version-controlled SEED / DEFAULT prompt shipped on disk. This is the
+    fallback used whenever Supabase has no override, and the value the Admin editor
+    shows as the built-in default."""
     if not _PROMPT_PATH.exists():
-        raise FileNotFoundError(f"sweep prompt missing: {_PROMPT_PATH}")
-    return _PROMPT_PATH.read_text()
+        raise FileNotFoundError(f"sweep prompt seed missing: {_PROMPT_PATH}")
+    return _PROMPT_PATH.read_text(encoding="utf-8")
+
+
+def _load_prompt() -> str:
+    """Return the EFFECTIVE deal-sweep system prompt.
+
+    Precedence:
+      1. the Supabase admin override (agent_prompt_store, key ID_DEAL_SWEEP) when
+         set — Supabase is the runtime SOURCE OF TRUTH so admins can edit the
+         prompt live from Admin -> Agent Control;
+      2. otherwise the on-disk seed (prompts/deal_engine_sweep_system_prompt.md),
+         the version-controlled default the file ships with.
+
+    Never raises on a Supabase blip — it degrades to the disk seed so the sweep is
+    never blocked by the settings read. (Sync httpx; callers offload it to a thread
+    via run_in_executor — see _get_agent.)
+    """
+    try:
+        import agent_prompt_store as _aps
+        override = (_aps.get_prompt(_aps.ID_DEAL_SWEEP) or "").strip()
+        if override:
+            return override
+    except Exception as _e:  # noqa: BLE001 — never block the sweep on the settings read
+        print(f"[DEAL-SWEEP] supabase prompt read failed ({_e}); using disk seed", flush=True)
+    return _disk_prompt()
 
 
 def _prompt_fingerprint(text: str) -> str:
@@ -214,22 +258,43 @@ def _build_model():
 
 
 def reset():
-    """Drop the cached agent (call after MCP reload)."""
-    global _cached_agent, _cached_tool_names
+    """Drop the cached agent (call after an MCP reload, or after the admin edits
+    the deal-sweep prompt in Supabase so the new prompt rebuilds immediately)."""
+    global _cached_agent, _cached_tool_names, _cached_prompt_fp, _cached_prompt_checked_at
     _cached_agent = None
     _cached_tool_names = []
+    _cached_prompt_fp = ""
+    _cached_prompt_checked_at = 0.0
     try:
-        print(f"[DEAL-SWEEP] agent cache reset; on-disk prompt: "
-              f"{_prompt_fingerprint(_load_prompt())}", flush=True)
+        # Log the disk seed only (a pure file read) — reset() can run inside the
+        # request loop and we don't want a sync Supabase call here. The EFFECTIVE
+        # prompt (Supabase override or seed) is resolved on the next _get_agent.
+        print(f"[DEAL-SWEEP] agent cache reset; disk seed prompt: "
+              f"{_prompt_fingerprint(_disk_prompt())}", flush=True)
     except Exception as _e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] agent cache reset (prompt read failed: {_e})", flush=True)
 
 
 async def _get_agent(agent_manager):
-    global _cached_agent, _cached_tool_names
+    global _cached_agent, _cached_tool_names, _cached_prompt_fp, _cached_prompt_checked_at
     async with _agent_lock:
-        if _cached_agent is not None:
+        # The system prompt lives in Supabase and is admin-editable, so re-resolve
+        # it (TTL-throttled) and rebuild the cached agent if it changed since we
+        # last built. This makes an admin edit take effect on the next opp in BOTH
+        # the API and the worker process, with no redeploy. The read is offloaded
+        # to a thread (sync httpx) so it never blocks the loop, and _load_prompt
+        # degrades to the on-disk seed on any Supabase error.
+        now = time.time()
+        if _cached_agent is not None and (now - _cached_prompt_checked_at) < _PROMPT_RECHECK_TTL_S:
             return _cached_agent
+        _prompt_text = await asyncio.get_running_loop().run_in_executor(None, _load_prompt)
+        _cached_prompt_checked_at = now
+        _fp = _prompt_fingerprint(_prompt_text)
+        if _cached_agent is not None and _fp == _cached_prompt_fp:
+            return _cached_agent
+        if _cached_agent is not None:
+            print(f"[DEAL-SWEEP] prompt changed ({_cached_prompt_fp} -> {_fp}); "
+                  f"rebuilding agent", flush=True)
         tools = _oa._collect_scoped_tools(agent_manager)
         if not tools:
             raise RuntimeError(
@@ -269,8 +334,12 @@ async def _get_agent(agent_manager):
             f"(servers: {sorted(_ALLOWED_SERVERS)}, middleware: {len(middleware)})",
             flush=True,
         )
-        _prompt_text = _load_prompt()
-        print(f"[DEAL-SWEEP] system prompt loaded: "
+        # _prompt_text + _fp were resolved above (Supabase override else disk seed).
+        try:
+            _src = "supabase-override" if _fp != _prompt_fingerprint(_disk_prompt()) else "disk-seed"
+        except Exception:  # noqa: BLE001 — labelling only; never fail the build on it
+            _src = "unknown"
+        print(f"[DEAL-SWEEP] system prompt loaded ({_src}): "
               f"{_prompt_fingerprint(_prompt_text)}", flush=True)
         _cached_agent = create_deep_agent(
             tools=tools,
@@ -280,6 +349,7 @@ async def _get_agent(agent_manager):
             middleware=middleware,
             debug=False,
         )
+        _cached_prompt_fp = _fp
         return _cached_agent
 
 

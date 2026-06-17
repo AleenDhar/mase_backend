@@ -6888,6 +6888,84 @@ async def set_todo_runner_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+# The seed user-message every TODO RUNNER ('Run with AI') run opens with (see the
+# frontend AgentRun.buildSeedPrompt). We identify todo-runner runs by this prefix —
+# the chat agent's conversations never start with it — so we can list them without a
+# schema change to the shared chats/chat_messages tables.
+_TODO_RUNNER_SEED_PREFIX = "Complete this sales to-do by drafting"
+
+
+def _list_todo_runner_runs(limit: int) -> list:
+    """Recent todo-runner runs, classified from the shared chat tables via the
+    service-role client (bypasses RLS). Sync; called via _aw."""
+    if not supabase:
+        return []
+    import re as _re
+    limit = max(1, min(int(limit or 25), 50))
+    # Recent chats, then their opening user message (the seed) — opening messages
+    # only (sequence<=3) to keep the scan small.
+    chats = supabase.table("chats").select("id,updated_at").order(
+        "updated_at", desc=True).limit(200).execute()
+    ids = [c["id"] for c in (chats.data or []) if c.get("id")]
+    if not ids:
+        return []
+    opens = supabase.table("chat_messages").select(
+        "chat_id,content,created_at").eq("role", "user").lte("sequence", 3).in_(
+        "chat_id", ids).execute()
+    runs = []
+    for m in (opens.data or []):
+        c = m.get("content") or ""
+        if not c.startswith(_TODO_RUNNER_SEED_PREFIX):
+            continue
+        def _field(label: str) -> str:
+            mm = _re.search(rf"^{_re.escape(label)}:\s*(.+)$", c, _re.M)
+            return mm.group(1).strip() if mm else ""
+        todo_m = _re.search(r"TO-DO\s*\(([^)]*)\):\s*(.+)", c)
+        runs.append({
+            "chat_id": m.get("chat_id"),
+            "account": _field("Account"),
+            "opp": _field("Opportunity"),
+            "owner": _field("Deal owner (the rep you draft for)"),
+            "category": (todo_m.group(1).strip() if todo_m else ""),
+            "todo": (todo_m.group(2).strip() if todo_m else c[:120]),
+            "status": "running",
+            "created_at": m.get("created_at"),
+        })
+    runs.sort(key=lambda r: r.get("created_at") or "", reverse=True)
+    runs = runs[:limit]
+    # Terminal messages -> status (draft_ready / needs_human / error).
+    run_ids = [r["chat_id"] for r in runs if r.get("chat_id")]
+    if run_ids:
+        try:
+            terms = supabase.table("chat_messages").select("chat_id,type,content").in_(
+                "chat_id", run_ids).in_("type", ["final", "error"]).execute()
+            st = {}
+            for t in (terms.data or []):
+                cid, ty, tc = t.get("chat_id"), t.get("type"), (t.get("content") or "")
+                if ty == "error":
+                    st[cid] = "error"
+                elif ty == "final" and st.get(cid) != "error":
+                    st[cid] = "needs_human" if _re.match(r"\s*NEEDS HUMAN", tc, _re.I) else "draft_ready"
+            for r in runs:
+                r["status"] = st.get(r["chat_id"], "running")
+        except Exception:  # noqa: BLE001 — status is best-effort
+            pass
+    return runs
+
+
+@app.get("/api/deal-engine/todo-runner/runs")
+async def list_todo_runner_runs(limit: int = 25):
+    """Recent TODO RUNNER ('Run with AI') agent runs for the Admin -> Execution
+    view, kept separate from the deal-sweep runs. Identified by the run's seed
+    user-message; status derived from the run's terminal message. Admin-gated at
+    the proxy."""
+    try:
+        runs = await _aw(_list_todo_runner_runs, limit)
+        return {"runs": runs, "count": len(runs)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e), "runs": []}, status_code=500)
+
+
 @app.get("/api/deal-engine/sweep/prompt")
 async def get_sweep_prompt():
     """Return the admin override for the DEAL SWEEP system prompt (stored in

@@ -4149,23 +4149,47 @@ async def get_chat_result(chat_id: str):
 _DOCS_DOC_TYPE_COL: Optional[bool] = None
 
 
+# Upload extraction caps (defend against memory amplification + adversarial PDFs).
+_MAX_FILE_B64 = 14_000_000   # ~10.5 MB decoded
+_MAX_FILE_BYTES = 10_000_000
+_MAX_PDF_PAGES = 400
+_MAX_EXTRACT_CHARS = 2_000_000
+
+
 def _extract_text_from_file(file_b64: str, name: str) -> str:
     """Extract plain text from a base64-encoded uploaded file. PDF via pypdf,
     DOCX via python-docx (both already in requirements); anything else is decoded
-    as UTF-8 text. Raises on a corrupt/unsupported binary so the caller 400s."""
+    as UTF-8 text. CPU-bound + can be expensive on adversarial input, so the caller
+    runs this in a thread pool with a wall-clock timeout. Bounded on every axis
+    (payload size, decoded size, page count, output length); raises ValueError on a
+    too-large/corrupt/invalid file so the caller 400s."""
     import base64
     import io
-    raw = base64.b64decode(file_b64)
+    if len(file_b64 or "") > _MAX_FILE_B64:
+        raise ValueError("file too large (max ~10 MB)")
+    try:
+        raw = base64.b64decode(file_b64, validate=True)
+    except Exception:
+        raise ValueError("invalid base64 file payload")
+    if len(raw) > _MAX_FILE_BYTES:
+        raise ValueError("file too large (max ~10 MB)")
     low = (name or "").lower()
     if low.endswith(".pdf"):
         import pypdf
         reader = pypdf.PdfReader(io.BytesIO(raw))
-        return "\n\n".join((p.extract_text() or "") for p in reader.pages).strip()
-    if low.endswith(".docx"):
+        parts = []
+        for i, p in enumerate(reader.pages):
+            if i >= _MAX_PDF_PAGES:
+                break
+            parts.append(p.extract_text() or "")
+        text = "\n\n".join(parts).strip()
+    elif low.endswith(".docx"):
         import docx  # python-docx
         d = docx.Document(io.BytesIO(raw))
-        return "\n".join(p.text for p in d.paragraphs).strip()
-    return raw.decode("utf-8", errors="replace").strip()
+        text = "\n".join(p.text for p in d.paragraphs).strip()
+    else:
+        text = raw.decode("utf-8", errors="replace").strip()
+    return text[:_MAX_EXTRACT_CHARS]
 
 
 async def _documents_has_doc_type() -> bool:
@@ -4180,8 +4204,15 @@ async def _documents_has_doc_type() -> bool:
         await loop.run_in_executor(
             None, lambda: supabase.table("documents").select("doc_type").limit(1).execute())
         _DOCS_DOC_TYPE_COL = True
-    except Exception:  # noqa: BLE001 — column absent (pre-migration) or transient
-        _DOCS_DOC_TYPE_COL = False
+    except Exception as e:  # noqa: BLE001
+        # Only CACHE False on a genuine "column does not exist" (Postgres 42703);
+        # a transient REST/network blip returns False WITHOUT caching, so the next
+        # upload re-probes (and picks up the column once the migration lands, no
+        # restart needed).
+        msg = str(e).lower()
+        if "42703" in msg or "does not exist" in msg or "doc_type" in msg:
+            _DOCS_DOC_TYPE_COL = False
+        return False
     return _DOCS_DOC_TYPE_COL
 
 
@@ -4211,12 +4242,21 @@ async def upload_document(request_body: dict):
     file_name = request_body.get("filename") or name
 
     # PDF/DOCX support: when no plain text is supplied but a base64 file is, extract
-    # the text server-side. Plain-text uploads still pass `content` directly.
+    # the text server-side. Extraction is CPU-bound and can be slow on adversarial
+    # input, so run it in a thread (never block the event loop) with a wall-clock
+    # timeout. Plain-text uploads still pass `content` directly.
     if not content and file_b64:
         try:
-            content = _extract_text_from_file(file_b64, file_name)
+            _loop = asyncio.get_event_loop()
+            content = await asyncio.wait_for(
+                _loop.run_in_executor(None, _extract_text_from_file, file_b64, file_name),
+                timeout=120)
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=400, detail=f"Text extraction from '{file_name}' timed out")
+        except HTTPException:
+            raise
         except Exception as _e:  # noqa: BLE001
-            raise HTTPException(status_code=400, detail=f"Could not extract text from '{name}': {_e}")
+            raise HTTPException(status_code=400, detail=f"Could not extract text from '{file_name}': {_e}")
 
     if not content:
         raise HTTPException(status_code=400, detail="Document content is required (text, or a base64 file in file_b64)")

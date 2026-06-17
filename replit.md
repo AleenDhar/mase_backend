@@ -7,6 +7,17 @@ A FastAPI agentic server (port 5000) built on LangGraph's DeepAgents framework. 
 - Iterative development; ask before major changes.
 - Simple language; functional programming; detailed explanations.
 - Do not change folder `Z` or file `Y`.
+- **Read [CHANGELOG.md](CHANGELOG.md) after every `git pull`** — it is the running log
+  of behaviour-changing decisions; append an entry when you change behaviour.
+
+## Conventions (read before changing behaviour)
+- **Agent system prompts live in SUPABASE, not in code.** They are rows in
+  `public.jarvis_settings` (`mase_deal_sweep`, `mase_todo_runner`, `mase_chat_agent`),
+  read via `agent_prompt_store.get_prompt(<id>)` and edited live from **Admin → Agent
+  Control** (no redeploy). Supabase is the SOURCE OF TRUTH and always wins. The
+  `prompts/*.md` files are DEPRECATED cold-start seeds only (leading banner stripped at
+  load); do NOT edit them to change behaviour. See
+  [.agents/memory/prompts-source-of-truth.md](.agents/memory/prompts-source-of-truth.md).
 
 ## System Architecture
 FastAPI app in `server.py` orchestrates LangGraph agents, MCP subprocesses, and external services.

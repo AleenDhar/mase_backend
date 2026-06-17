@@ -64,3 +64,17 @@ def set_prompt(prompt: str, agent_id: str = ID_CHAT) -> str:
         on_conflict="id", returning=False,
     )
     return get_prompt(agent_id)
+
+
+def strip_leading_banner(text: str) -> str:
+    """The on-disk prompt SEED files (prompts/*.md) carry a DEPRECATION banner as a
+    single leading HTML comment (Supabase is the source of truth; the files are only
+    a cold-start fallback). Strip ONE leading `<!-- ... -->` block so that banner can
+    never enter the actual system prompt when a disk seed is used, nor the "default"
+    shown in the admin editor. A comment anywhere else in the file is left untouched."""
+    t = (text or "").lstrip()
+    if t.startswith("<!--"):
+        end = t.find("-->")
+        if end != -1:
+            return t[end + 3:].lstrip()
+    return text

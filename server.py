@@ -6833,11 +6833,18 @@ _TODO_RUNNER_PROMPT_PATH = _PathTR(__file__).parent / "prompts" / "todo_runner_s
 
 
 def _todo_runner_seed_prompt() -> str:
-    """The version-controlled SEED / DEFAULT for the todo-runner (Tactical
-    Fulfillment / 'Run with AI') agent. Mirrors the fallback constant in the
-    frontend AgentRun.tsx; used whenever Supabase has no override."""
+    """The version-controlled cold-start SEED for the todo-runner (Tactical
+    Fulfillment / 'Run with AI') agent.
+
+    DEPRECATED as the source of truth: Supabase (agent_prompt_store ID_TODO_RUNNER)
+    is authoritative — edit the prompt from Admin -> Agent Control -> Todo Runner,
+    NOT this file. Used only when Supabase has no row; mirrors the fallback constant
+    in the frontend AgentRun.tsx. Its leading DEPRECATION banner is stripped so it
+    never enters the prompt."""
     try:
-        return _TODO_RUNNER_PROMPT_PATH.read_text(encoding="utf-8").strip()
+        import agent_prompt_store as _aps
+        return _aps.strip_leading_banner(
+            _TODO_RUNNER_PROMPT_PATH.read_text(encoding="utf-8")).strip()
     except Exception:  # noqa: BLE001
         return ""
 

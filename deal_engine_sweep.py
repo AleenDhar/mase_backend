@@ -122,23 +122,28 @@ def _parse_sf_dt(value: Optional[str]) -> Optional[datetime]:
 
 
 def _disk_prompt() -> str:
-    """The version-controlled SEED / DEFAULT prompt shipped on disk. This is the
-    fallback used whenever Supabase has no override, and the value the Admin editor
-    shows as the built-in default."""
+    """The version-controlled cold-start SEED prompt shipped on disk.
+
+    DEPRECATED as the source of truth: Supabase (agent_prompt_store ID_DEAL_SWEEP)
+    is authoritative. This file is the fallback used only when Supabase has no row,
+    and the value the Admin editor shows as the built-in default. Its leading
+    DEPRECATION banner comment is stripped so it never enters the prompt."""
     if not _PROMPT_PATH.exists():
         raise FileNotFoundError(f"sweep prompt seed missing: {_PROMPT_PATH}")
-    return _PROMPT_PATH.read_text(encoding="utf-8")
+    import agent_prompt_store as _aps
+    return _aps.strip_leading_banner(_PROMPT_PATH.read_text(encoding="utf-8"))
 
 
 def _load_prompt() -> str:
     """Return the EFFECTIVE deal-sweep system prompt.
 
-    Precedence:
-      1. the Supabase admin override (agent_prompt_store, key ID_DEAL_SWEEP) when
-         set — Supabase is the runtime SOURCE OF TRUTH so admins can edit the
-         prompt live from Admin -> Agent Control;
-      2. otherwise the on-disk seed (prompts/deal_engine_sweep_system_prompt.md),
-         the version-controlled default the file ships with.
+    SUPABASE IS THE SOURCE OF TRUTH. Precedence:
+      1. the Supabase value (agent_prompt_store, key ID_DEAL_SWEEP) when set — this
+         is what we run; edit it from Admin -> Agent Control -> Deal Sweep (NOT the
+         on-disk file);
+      2. only if Supabase has no row (cold start / never seeded) do we fall back to
+         the on-disk seed (prompts/deal_engine_sweep_system_prompt.md), which is
+         DEPRECATED as an editing surface and kept solely as that fallback.
 
     Never raises on a Supabase blip — it degrades to the disk seed so the sweep is
     never blocked by the settings read. (Sync httpx; callers offload it to a thread

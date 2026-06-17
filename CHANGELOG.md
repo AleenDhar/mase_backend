@@ -11,6 +11,18 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-18 — Enterprise-readiness audit + roadmap (docs/enterprise-readiness.md)
+
+**What.** Added `docs/enterprise-readiness.md`: a prioritized P0/P1/P2 roadmap (from a
+multi-agent code audit, 53 grounded findings) for scaling to ~1000 concurrent users.
+
+**Why / how to work with it.** MASE is NOT yet ready for 1000 concurrent users. Two
+failure classes dominate: (1) process-local state breaks across multiple ECS tasks
+(duplicate runs, sequence collisions, duplicate crons), and (2) no cluster-wide LLM
+governor → the fleet stampedes Anthropic OTPM 400k. Plus fail-open auth + anon SELECT on
+`deal_records`. **Before adding features at scale, work the P0 list.** Keep the doc updated
+as items land.
+
 ## 2026-06-18 — Agent onboarding: AGENTS.md + CLAUDE.md + auto-surfaced changelog on pull
 
 **What.** Added `AGENTS.md` (the operating guide coding agents auto-load) and a short

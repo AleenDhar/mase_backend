@@ -11,6 +11,19 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-18 — Agent onboarding: AGENTS.md + CLAUDE.md + auto-surfaced changelog on pull
+
+**What.** Added `AGENTS.md` (the operating guide coding agents auto-load) and a short
+`CLAUDE.md` pointer at the repo root, with copy-paste prompts (session catch-up,
+post-pull "what changed", pre-commit wrap-up). Enhanced `scripts/post-merge.sh` to print
+the CHANGELOG.md lines added by a `git pull`.
+
+**Why / how to work with it.** So every agent (and teammate) understands the changes that
+come with each push/commit. **Start every session by reading `AGENTS.md` then
+`CHANGELOG.md`.** Install the hook once: `cp scripts/post-merge.sh .git/hooks/post-merge
+&& chmod +x .git/hooks/post-merge` — then each pull prints what changed. When you make a
+behaviour change, append a CHANGELOG entry (the wrap-up prompt in AGENTS.md reminds you).
+
 ## 2026-06-18 — System prompts now live in Supabase (Supabase is the SOURCE OF TRUTH)
 
 **What.** The two MASE agent system prompts are now stored in, and served from,

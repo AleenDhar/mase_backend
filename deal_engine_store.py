@@ -395,6 +395,78 @@ def slim_record(rec: dict) -> dict:
     }
 
 
+_PAGE_SORT_COLS = {"account_name", "opp_name", "stage", "forecast_category",
+                   "amount", "close_date", "owner_name", "swept_at", "analysis_confidence"}
+
+
+def list_records_page(*, owners: Optional[list[str]] = None, q: str = "",
+                      sort: str = "close_date", direction: str = "asc",
+                      limit: int = 50, offset: int = 0) -> tuple[list[dict], int]:
+    """Server-side PAGINATED + searched + sorted slim list for the Deals table.
+
+    Filters/sorts on the flat indexed columns (owner_name, account_name, opp_name,
+    stage, forecast_category, amount, close_date, …), reads only one page of rows,
+    and returns (slim_records, total_count). The Deals UI hits this so a request
+    returns ONE page instead of the whole book, and search/sort run in Postgres.
+    Excludes inactive (off-report) deals, same as list_records."""
+    _check()
+    if sort == "days_to_close":   # computed in the UI; closest flat proxy
+        sort = "close_date"
+    col = sort if sort in _PAGE_SORT_COLS else "close_date"
+    dirn = "desc" if str(direction).lower() in ("desc", "-1", "-") else "asc"
+    try:
+        limit = max(1, min(int(limit), 200))
+        offset = max(0, int(offset))
+    except Exception:  # noqa: BLE001
+        limit, offset = 50, 0
+
+    params = ["select=opp_id,record", "active=is.true"]
+    if owners:
+        vals = ",".join('"' + str(o).replace('"', "") + '"' for o in owners if str(o).strip())
+        if vals:
+            params.append(f"owner_name=in.({quote(vals, safe='\",()')})")
+    qclean = re.sub(r"[,()*]", " ", q or "").strip()
+    if qclean:
+        pat = "*" + quote(qclean) + "*"   # PostgREST ilike: * is the wildcard
+        params.append(
+            f"or=(account_name.ilike.{pat},opp_name.ilike.{pat},"
+            f"owner_name.ilike.{pat},stage.ilike.{pat})")
+    params.extend([f"order={col}.{dirn}", f"limit={limit}", f"offset={offset}"])
+
+    headers = _headers()
+    headers["Prefer"] = "count=exact"   # -> Content-Range: 0-49/441
+    resp = _request("GET", f"{_url(T_RECORDS)}?{'&'.join(params)}", idempotent=True, headers=headers)
+    _raise_for(resp, "paged select")
+    rows = resp.json() or []
+    total = None
+    cr = resp.headers.get("content-range") or resp.headers.get("Content-Range")
+    if cr and "/" in cr:
+        tail = cr.rsplit("/", 1)[-1]
+        if tail.isdigit():
+            total = int(tail)
+    recs = [slim_record(attach_pulse(r["record"])) for r in rows if r.get("record")]
+    return recs, (total if total is not None else len(recs))
+
+
+def count_records(active_only: bool = True) -> int:
+    """Cheap total count of tracked deals (active by default) for the Admin panel."""
+    _check()
+    params = ["select=opp_id"]
+    if active_only:
+        params.append("active=is.true")
+    params.append("limit=1")
+    headers = _headers()
+    headers["Prefer"] = "count=exact"
+    resp = _request("GET", f"{_url(T_RECORDS)}?{'&'.join(params)}", idempotent=True, headers=headers)
+    _raise_for(resp, "count records")
+    cr = resp.headers.get("content-range") or resp.headers.get("Content-Range")
+    if cr and "/" in cr:
+        tail = cr.rsplit("/", 1)[-1]
+        if tail.isdigit():
+            return int(tail)
+    return len(resp.json() or [])
+
+
 def known_active_map() -> dict[str, bool]:
     """Map of every known deal's 15-char opp id -> its active flag. The diff
     basis for report reconciliation (distinguishes new vs re-entrant)."""

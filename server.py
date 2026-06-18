@@ -7049,10 +7049,33 @@ async def set_sweep_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
-@app.get("/api/deal-engine/opportunities")
-async def deal_engine_opportunities(owner: str = "", slim: bool = False):
+@app.get("/api/deal-engine/deals-count")
+async def deal_engine_deals_count():
+    """Total number of tracked (active) deals — for the Admin panel stat."""
     import deal_engine_store as dstore
     try:
+        return {"count": await _aw(dstore.count_records, True)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e), "count": None}, status_code=500)
+
+
+@app.get("/api/deal-engine/opportunities")
+async def deal_engine_opportunities(owner: str = "", slim: bool = False, paged: bool = False,
+                                    q: str = "", sort: str = "close_date", dir: str = "asc",
+                                    limit: int = 50, offset: int = 0, owners: str = ""):
+    import deal_engine_store as dstore
+    try:
+        if paged:
+            # Server-side one-page slice for the Deals table: scope (owners) + search (q)
+            # + sort + range all run in Postgres, so the request returns ONE page + the
+            # total, instead of the whole book.
+            owner_list = [o.strip() for o in owners.split(",") if o.strip()] if owners else []
+            if owner and not owner_list:
+                owner_list = [owner]
+            recs, total = await _aw(
+                dstore.list_records_page, owners=owner_list or None, q=q,
+                sort=sort, direction=dir, limit=limit, offset=offset)
+            return {"records": recs, "total": total, "count": len(recs)}
         records = await _aw(dstore.list_records, owner or None)
         if slim:
             # LIST/aggregate payload: attach pulse (from the full record) then strip the

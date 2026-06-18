@@ -49,6 +49,12 @@ disable_write_todos()
 
 _ALLOWED_SERVERS = {"salesforce", "avoma"}
 
+# MASE knowledge namespace marker — routes search_knowledge to the isolated MASE
+# knowledge tables (mase_documents/mase_document_chunks), the SAME store the todo-runner
+# uses. Kept in sync with custom_tools.search_knowledge._MASE_KNOWLEDGE_PROJECT_ID and
+# the frontend MASE_KNOWLEDGE_PROJECT_ID.
+MASE_KNOWLEDGE_PROJECT_ID = "7e9b2f48-3c1a-4d6e-8b05-9a2c4f1d7e30"
+
 # The deal-sweep system prompt is fetched from SUPABASE at runtime — that is the
 # source of truth (see agent_prompt_store, key ID_DEAL_SWEEP). The on-disk markdown
 # file below is the version-controlled SEED / DEFAULT: it ships in the image, it is
@@ -306,6 +312,14 @@ async def _get_agent(agent_manager):
                 "deal_engine_sweep: no salesforce/avoma tools loaded yet "
                 "(agent_manager._cached_mcp_tools_by_server empty)"
             )
+        # Give the sweep the search_knowledge tool too, so it can fetch MASE knowledge
+        # docs (playbooks/guides) while analysing a deal — the SAME isolated MASE store
+        # the todo-runner uses. analyze_one sets rag_context to the MASE namespace so
+        # search_knowledge routes to the MASE tables.
+        for _ct in (getattr(agent_manager, "_cached_custom_tools", []) or []):
+            if getattr(_ct, "name", "") == "search_knowledge":
+                tools = tools + [_ct]
+                break
         _cached_tool_names = [t.name for t in tools]
         middleware = []
         if os.getenv("CONTEXT_TRIM_ENABLED", "true").lower() in ("1", "true", "yes"):
@@ -944,6 +958,16 @@ async def analyze_one(
     print(f"[DEAL-SWEEP] analyze_one START opp={opp_id}", flush=True)
     try:
         agent = await _get_agent(agent_manager)
+        # Scope this run's search_knowledge to the MASE knowledge namespace so the sweep
+        # can fetch uploaded docs (playbooks / competitive intel) from the isolated MASE
+        # store. project_id routes search_knowledge to the MASE tables; a per-opp chat_id
+        # gives the per-turn cap/dedupe its own bucket.
+        try:
+            import rag_context as _rag
+            _rag.current_project_id.set(MASE_KNOWLEDGE_PROJECT_ID)
+            _rag.current_chat_id.set(f"sweep:{opp_id}")
+        except Exception:  # noqa: BLE001 — never block the sweep on this
+            pass
         print(f"[DEAL-SWEEP] agent ready, invoking opp={opp_id} "
               f"(tools={len(_cached_tool_names)})", flush=True)
         # Per-deal living memory: load the prior record so we can (a) tell the

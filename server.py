@@ -4207,7 +4207,43 @@ def _extract_text_from_file(file_b64: str, name: str) -> str:
         import docx  # python-docx
         d = docx.Document(io.BytesIO(raw))
         text = "\n".join(p.text for p in d.paragraphs).strip()
+    elif low.endswith((".xlsx", ".xlsm")):
+        # Excel: flatten every sheet to tab-separated rows. read_only + data_only keeps
+        # it memory-light and resolves formulas to values. Bounded by output length.
+        import openpyxl
+        wb = openpyxl.load_workbook(io.BytesIO(raw), read_only=True, data_only=True)
+        parts, total = [], 0
+        for ws in wb.worksheets:
+            parts.append(f"# Sheet: {ws.title}")
+            for row in ws.iter_rows(values_only=True):
+                cells = [str(c) for c in row if c is not None]
+                if not cells:
+                    continue
+                line = "\t".join(cells)
+                parts.append(line)
+                total += len(line) + 1
+                if total > _MAX_EXTRACT_CHARS:
+                    break
+            if total > _MAX_EXTRACT_CHARS:
+                break
+        try:
+            wb.close()
+        except Exception:  # noqa: BLE001
+            pass
+        text = "\n".join(parts).strip()
+    elif low.endswith(".xls"):
+        raise ValueError("legacy .xls is not supported — save it as .xlsx and re-upload")
+    elif low.endswith(".pptx"):
+        from pptx import Presentation
+        prs = Presentation(io.BytesIO(raw))
+        parts = []
+        for slide in prs.slides:
+            for shape in slide.shapes:
+                if getattr(shape, "has_text_frame", False) and shape.text_frame.text.strip():
+                    parts.append(shape.text_frame.text)
+        text = "\n".join(parts).strip()
     else:
+        # Plain-text family: txt, md, markdown, csv, tsv, json, html, xml, yaml, log, etc.
         text = raw.decode("utf-8", errors="replace").strip()
     return text[:_MAX_EXTRACT_CHARS]
 

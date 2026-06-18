@@ -15,11 +15,10 @@ Callers pass the service-role Supabase client (server.supabase).
 from __future__ import annotations
 
 import asyncio
+import os
 import uuid
 
 import httpx
-
-import config
 
 EMBED_MODEL = "text-embedding-ada-002"
 _CHUNK = 1000
@@ -41,7 +40,7 @@ def _chunk_text(content: str) -> list[str]:
 
 
 async def _embed(texts: list[str]) -> list[list[float]]:
-    key = config.OPENAI_API_KEY
+    key = os.environ.get("OPENAI_API_KEY", "")
     if not key:
         raise RuntimeError("OpenAI API key not configured (needed for embeddings)")
     out: list[list[float]] = []

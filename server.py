@@ -8633,7 +8633,20 @@ async def deal_engine_chat_async(request: Request):
         # write a terminal row so the UI stops spinning, and still return {chat_id}.
         try:
             import deal_engine_chat_agent
-            agent = deal_engine_chat_agent.build_chat_agent(agent_manager, sys_text)
+
+            # Live nested trace for the Todo Runner: this callback writes the
+            # Todo Runner's own steps as sub-rows to the SAME chat_id, tagged
+            # group="todo". They share _supabase_seq_counters[chat_id] with the
+            # parent run, so they're sequenced BETWEEN the parent's run_todo
+            # tool_call and tool_result — ordering stays correct. The frontend
+            # renders group="todo" rows as a nested "Todo Runner working…"
+            # sub-accordion. (deal_engine_chat_agent must not import server.py.)
+            async def _emit(t, c, meta):
+                await save_to_supabase(
+                    chat_id, t, c, {**(meta or {}), "group": "todo"})
+
+            agent = deal_engine_chat_agent.build_chat_agent(
+                agent_manager, sys_text, emit=_emit)
         except Exception as e:  # noqa: BLE001
             import traceback
             print(f"[DEAL CHAT ASYNC] build_chat_agent failed: {traceback.format_exc()}")

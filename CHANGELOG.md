@@ -11,6 +11,37 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-19 — RevOps chat goes streaming/realtime (VIBE pattern); fixes the proxy timeout
+
+**What.** The tool-using RevOps chat can run for tens of seconds to minutes (search_knowledge +
+the run_todo sub-agent), which blew past the Vercel proxy's function timeout when run behind the
+blocking `/api/deal-engine/chat` — the UI saw it as "the chat is failing." Fixed by moving the
+chat onto the **streaming/realtime path** that VIBE uses:
+- **New `POST /api/deal-engine/chat/async`** (`server.py`): builds the SAME book + editable prompt
+  (`_CHAT_CAPABILITIES`) as the sync endpoint, builds the tool-using agent
+  (`deal_engine_chat_agent.build_chat_agent`), then spawns `run_agent_and_save(chat_id, conv,
+  agent, model, MASE_KNOWLEDGE_PROJECT_ID)` as a **tracked background task** (`_running_tasks`,
+  slot reservation + cleanup callback — mirrors `/api/chat/async`) and returns **fast JSON
+  `{chat_id}`**. The agent's thinking / tool_call / tool_result / final stream into the shared
+  `chat_messages` table; the browser subscribes over Supabase realtime. Nothing blocks the proxy →
+  no timeout. On agent-build failure it writes an `error` row and still returns `{chat_id}`.
+- The blocking sync `/api/deal-engine/chat` (fast one-shot) stays as a fallback/compat endpoint.
+
+**Why / how to work with it.** This is the correct home for the KB + run_todo delegation — long
+runs stream instead of timing out, and the live thinking/tool trace powers the chat UI's
+"Agent working…" accordion. Note `run_agent_and_save` also fires the verifier hook (advisory,
+background) keyed off project_id; the MASE marker isn't in the lake-diagnosis set so that's
+skipped. Frontend rewired to realtime in the same date's MASE-frontend changelog.
+
+**Nested Todo-Runner trace (follow-up, same day).** `deal_engine_chat_agent.build_chat_agent`
+now takes an optional async `emit(type, content, meta)`; `_run_todo` STREAMS the Todo Runner
+(`agent.astream(stream_mode="values")`, mirroring `_agent_astream_autocontinue`'s
+extraction/dedupe) and emits its own thinking/tool_call/tool_result tagged `{"group":"todo"}`.
+`/api/deal-engine/chat/async` passes `emit = save_to_supabase(chat_id, …, {"group":"todo"})`,
+so the Todo Runner's internal steps stream into the SAME `chat_id` (sequenced between the
+parent's run_todo tool_call/tool_result) and the UI renders them as a nested sub-accordion. With
+no `emit` the cheap blocking `ainvoke` path is kept (tests / non-streaming callers).
+
 ## 2026-06-19 — Chat agent: tool-using (shared knowledge base + Todo Runner delegation)
 
 **What.** `/api/deal-engine/chat` (the RevOps chat over the book) was a tool-less one-shot

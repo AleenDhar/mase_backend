@@ -8555,6 +8555,135 @@ async def deal_engine_chat(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/chat/async")
+async def deal_engine_chat_async(request: Request):
+    """Streaming/realtime RevOps chat. Builds the SAME book + system prompt as the
+    sync /api/deal-engine/chat, but instead of a blocking one-shot completion it
+    spawns the tool-using chat agent (search_knowledge over the MASE KB + run_todo
+    delegation) as a BACKGROUND task that streams its thinking / tool calls / final
+    answer into the shared `chat_messages` table via save_to_supabase. The browser
+    subscribes to that table over Supabase realtime.
+
+    Body: {chat_id?, messages:[{role,content}], owner?, owners?, opp_ids?, model?}.
+    Returns FAST JSON {chat_id} immediately (NOT a long-lived stream) so the
+    buffering proxy returns at once; everything else flows over realtime.
+    """
+    import deal_engine_store as dstore
+    d = await request.json()
+    chat_id = (d.get("chat_id") or "").strip() or str(uuid.uuid4())
+
+    # One run per chat_id (backend backstop against double-submit). Reserved
+    # before the try so the 409 propagates without the finally releasing a slot
+    # owned by another request.
+    _reserve_run_slot(chat_id)
+    try:
+        if not supabase:
+            raise HTTPException(
+                status_code=500,
+                detail="Supabase not configured - realtime chat requires Supabase")
+
+        messages = d.get("messages") or []
+        if not isinstance(messages, list) or not messages:
+            return JSONResponse({"error": "messages required"}, status_code=400)
+        owner = (d.get("owner") or "").strip() or None
+        opp_ids = [str(i).strip() for i in d.get("opp_ids", [])
+                   if str(i).strip()] if isinstance(d.get("opp_ids"), list) else []
+        owners = [str(o).strip() for o in d.get("owners", [])
+                  if str(o).strip()] if isinstance(d.get("owners"), list) else []
+        model_name = (d.get("model") or "").strip() or _deal_engine_model()
+
+        active_count = sum(1 for t in _running_tasks.values() if t and not t.done())
+        if active_count >= config.MAX_CONCURRENT_SESSIONS:
+            global _sessions_rejected
+            _sessions_rejected += 1
+            raise HTTPException(
+                status_code=503,
+                detail=f"Server at capacity ({config.MAX_CONCURRENT_SESSIONS} concurrent sessions). Please try again shortly.")
+
+        # Build the book exactly like the sync endpoint (opp_ids > owners > owner).
+        book = await _aw(dstore.chat_book_context, owner,
+                         owners or None, opp_ids or None)
+        if opp_ids:
+            scope = f" (filtered to {len(book)} selected opps)"
+        elif owners:
+            scope = f" (filtered to {', '.join(owners)})"
+        elif owner:
+            scope = f" (filtered to {owner})"
+        else:
+            scope = ""
+
+        # Editable base prompt (Supabase ID_CHAT) + code-appended capabilities +
+        # the book JSON. The capabilities block tells the agent about its tools so
+        # it knows when to call search_knowledge / delegate run_todo.
+        _base = ""
+        try:
+            import agent_prompt_store as _aps
+            _base = (await _aw(_aps.get_prompt)) or ""
+        except Exception:  # noqa: BLE001
+            _base = ""
+        if not _base.strip():
+            _base = _DEAL_ENGINE_CHAT_SYSTEM
+        sys_text = (
+            f"{_base}\n{_CHAT_CAPABILITIES}\n\n"
+            f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
+            f"specific opp for full detail):\n{json.dumps(book, default=str)}"
+        )
+
+        # Build the tool-using chat agent. If it can't be built (tools not loaded),
+        # write a terminal row so the UI stops spinning, and still return {chat_id}.
+        try:
+            import deal_engine_chat_agent
+            agent = deal_engine_chat_agent.build_chat_agent(agent_manager, sys_text)
+        except Exception as e:  # noqa: BLE001
+            import traceback
+            print(f"[DEAL CHAT ASYNC] build_chat_agent failed: {traceback.format_exc()}")
+            await save_to_supabase(
+                chat_id, "error",
+                f"Could not start the strategist agent: {e}",
+                {"status": "failed", "kind": "agent_build_failed"})
+            return {"chat_id": chat_id}
+
+        # Only the real conversation turns go to the agent.
+        conv = [{"role": m.get("role"), "content": m.get("content")}
+                for m in messages
+                if m.get("role") in ("user", "assistant") and m.get("content")]
+
+        # Spawn the run as a tracked background task — mirror /api/chat/async.
+        # MASE_KNOWLEDGE_PROJECT_ID routes the agent's search_knowledge to the
+        # isolated MASE namespace (it's also the realtime routing marker).
+        consumer_task = asyncio.create_task(
+            run_agent_and_save(chat_id, conv, agent, model_name,
+                               deal_engine_chat_agent.MASE_KNOWLEDGE_PROJECT_ID))
+        _running_tasks[chat_id] = consumer_task
+        _session_start_times[chat_id] = asyncio.get_event_loop().time()
+
+        def _cleanup_session(t, cid=chat_id):
+            _running_tasks.pop(cid, None)
+            _session_start_times.pop(cid, None)
+            _supabase_seq_counters.pop(cid, None)
+            _dedupe_completed.pop(cid, None)
+            _dedupe_inflight.pop(cid, None)
+            _approved_campaigns_cache.pop(cid, None)
+            _starting_chats.discard(cid)
+
+        consumer_task.add_done_callback(_cleanup_session)
+
+        # Fast JSON — the proxy buffers, so do NOT return a long-lived stream.
+        return {"chat_id": chat_id}
+
+    except HTTPException:
+        raise
+    except Exception as e:  # noqa: BLE001
+        import traceback
+        print(f"[DEAL CHAT ASYNC ERROR] {traceback.format_exc()}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+    finally:
+        # Idempotent release on every exit path. Once the task is registered it
+        # owns the slot via _running_tasks, so this discard is harmless; if setup
+        # failed before registration it frees the chat so it isn't 409-blocked.
+        _release_run_slot(chat_id)
+
+
 @app.get("/avoma/reports", response_class=HTMLResponse)
 async def avoma_reports_ui():
     """Lightweight UI for browsing Avoma-triggered SF enrichment reports."""

@@ -191,6 +191,7 @@ $taskDefJson = @"
       "name": "$Container",
       "image": "$ImageUri",
       "essential": true,
+      "stopTimeout": 120,
       "portMappings": [{ "containerPort": $ContainerPort, "protocol": "tcp" }],
       "environment": [
         { "name": "HOST", "value": "0.0.0.0" },
@@ -359,7 +360,8 @@ $workerTaskDefJson = @"
         { "name": "LLM_REQUEST_TIMEOUT_S", "value": "600" },
         { "name": "DEAL_SWEEP_TIMEOUT_S", "value": "2400" },
         { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
-        { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" }
+        { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" },
+        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" }
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {

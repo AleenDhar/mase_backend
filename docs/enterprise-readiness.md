@@ -78,7 +78,11 @@ pattern already proves this); or external EventBridge → one endpoint.
 
 ## P1 — degrades badly / operational pain
 
-- **P1.1 Crash-safe runs + graceful drain (M):** runs live only in `_running_tasks`;
+- **P1.1 Crash-safe runs + graceful drain (M):** 🟡 PARTIAL (2026-06-18) — graceful
+  drain on SIGTERM + `stopTimeout:120` shipped (cancel stragglers → run writes its own
+  terminal row → UI unblocks on deploy). Still TODO: a startup reconciler for hard-SIGKILL
+  (OOM) orphans, since SIGKILL skips the drain. Original:
+  runs live only in `_running_tasks`;
   terminal-row write is in a `finally` a SIGKILL skips; ECS has no `stopTimeout`
   (deploy.ps1) so blue/green flips kill in-flight runs → chats stuck on "Thinking…".
   Add `stopTimeout ~120s` + `minimumHealthyPercent`, a SIGTERM drain that writes an
@@ -95,11 +99,16 @@ pattern already proves this); or external EventBridge → one endpoint.
   fetches the **entire** book with no `?owner=` and filters in-browser (also duplicated in
   /runs + /sync-quality). Pass owner scope to the backend; short-TTL server cache; source
   /runs + /sync-quality from `DashboardContext.records`.
-- **P1.5 Pooled httpx clients + bounded retries + sized thread pool (M):** store modules
+- **P1.5 Pooled httpx clients + bounded retries + sized thread pool (M):** 🟡 PARTIAL
+  (2026-06-18) — shared pooled `httpx.Client` + idempotency-safe bounded retries shipped
+  in `analysis_store.py` + `deal_engine_store.py`. Still TODO: an explicitly sized
+  `ThreadPoolExecutor` (the run_in_executor default pool is still small). Original: store modules
   do per-call `httpx` (fresh TLS each hop) on the default thread pool (~6-8 threads) →
   pool exhaustion under load. One module-level pooled client per store module; jittered
   retries on idempotent verbs; explicit sized `ThreadPoolExecutor` or move to `AsyncClient`.
-- **P1.6 Per-tool-call MCP timeout (S):** `_wrap_mcp_tool` has no `asyncio.wait_for`
+- **P1.6 Per-tool-call MCP timeout (S):** ✅ DONE (2026-06-18) — `_wrap_mcp_tool` wraps
+  the async call in `asyncio.wait_for` (`MCP_TOOL_TIMEOUT_S` 300s API / 600s worker),
+  returning `{status:failed}` on timeout. Original: `_wrap_mcp_tool` has no `asyncio.wait_for`
   (server.py:908) → one hung subprocess pins a session slot for the ~660s watchdog window.
   Wrap in `wait_for(~90s)` returning the existing `{error,status:failed}` shape.
 - **P1.7 Durable idempotency for side-effecting tools + atomic SF push (M):** dedupe

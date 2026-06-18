@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-18 — Reliability batch: MCP tool timeout, pooled store HTTP + retries, graceful drain
+
+**What.** Three reliability hardening changes (from the enterprise-readiness audit;
+adversarially reviewed before ship):
+- **MCP per-tool timeout** (`server.py` `_wrap_mcp_tool`): every async MCP tool call is
+  bounded by `asyncio.wait_for` (`MCP_TOOL_TIMEOUT_S`, default **300s** for API; the
+  worker sets **600s** in `deploy.ps1`). A hung subprocess returns `{status:failed}` so
+  the agent recovers instead of pinning a run to the ~660s watchdog. The default sits
+  above a worst-case legit Avoma call (~180s) so it won't cut valid reads.
+- **Pooled store HTTP + idempotency-safe retries** (`analysis_store.py`,
+  `deal_engine_store.py`): one shared `httpx.Client` (keep-alive) + `_request()` with
+  bounded jittered retries. Connection errors retry on any verb; read/write-timeout /
+  5xx / 429 retry **only** for idempotent verbs (`select`/`upsert`/`patch`/`delete`);
+  `insert` never retries on a maybe-landed error → **no double-writes**. Tune with
+  `STORE_HTTP_RETRIES`.
+- **Graceful shutdown drain** (`server.py` `shutdown_event` + `deploy.ps1`
+  `stopTimeout:120`): on SIGTERM, give in-flight runs a grace window
+  (`SHUTDOWN_DRAIN_GRACE_S=15`) then **cancel** stragglers so each run's OWN finally /
+  cancel handler writes its single terminal row — chats no longer hang on "Thinking…"
+  after a deploy. We do NOT inject a terminal row (that would double-write / violate the
+  one-terminal-row contract).
+
+**Why / how to work with it.** Targets reliability ("all systems working"), not scaling
+or security. No behaviour change intended. The drain depends on graceful SIGTERM +
+`stopTimeout`; a hard SIGKILL (OOM) still needs the cross-instance run reconciler (P1.1
+follow-up in `docs/enterprise-readiness.md`). Adversarial review caught the original drain
+design double-writing terminal rows — fixed to cancel-based.
+
 ## 2026-06-18 — Enterprise-readiness audit + roadmap (docs/enterprise-readiness.md)
 
 **What.** Added `docs/enterprise-readiness.md`: a prioritized P0/P1/P2 roadmap (from a

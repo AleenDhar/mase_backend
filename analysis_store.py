@@ -18,7 +18,9 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
+import time
 from datetime import datetime, timezone
 from typing import Any, Optional
 from urllib.parse import quote
@@ -68,6 +70,51 @@ COLUMN_TYPES = {"data", "ai"}
 
 _TIMEOUT = 30.0
 
+# Reliability: one shared, connection-pooled HTTP client (keep-alive) reused across
+# all calls instead of a fresh TLS handshake per DB hop, plus bounded jittered retries
+# so a transient PostgREST/network blip degrades instead of hard-failing a user run.
+# httpx.Client is safe to share across the run_in_executor worker threads. Tune retries
+# with STORE_HTTP_RETRIES.
+_client = httpx.Client(
+    timeout=httpx.Timeout(_TIMEOUT),
+    limits=httpx.Limits(max_keepalive_connections=20, max_connections=100),
+)
+_RETRY_ATTEMPTS = max(1, int(os.getenv("STORE_HTTP_RETRIES", "3")))
+# request never reached the server -> always safe to retry (even non-idempotent verbs)
+_CONNECT_ERRORS = (httpx.ConnectError, httpx.ConnectTimeout, httpx.PoolTimeout)
+# request may have landed -> retry ONLY for idempotent verbs
+_MAYBE_SENT_ERRORS = (httpx.ReadTimeout, httpx.WriteTimeout, httpx.WriteError, httpx.RemoteProtocolError)
+
+
+def _request(method: str, url: str, *, idempotent: bool, **kw) -> httpx.Response:
+    """Pooled HTTP with bounded jittered retries. Connection errors (request never
+    sent) are always retried; read-timeouts / 5xx / 429 are retried only when the verb
+    is idempotent, so a retried non-idempotent POST can never double-write."""
+    last_exc = None
+    resp = None
+    for attempt in range(_RETRY_ATTEMPTS):
+        retry = False
+        try:
+            resp = _client.request(method, url, **kw)
+        except _CONNECT_ERRORS as e:
+            last_exc, retry = e, True
+        except _MAYBE_SENT_ERRORS as e:
+            last_exc = e
+            if not idempotent:
+                raise
+            retry = True
+        else:
+            if idempotent and resp.status_code in (429, 500, 502, 503, 504):
+                last_exc, retry = None, True
+            else:
+                return resp
+        if not retry or attempt == _RETRY_ATTEMPTS - 1:
+            break
+        time.sleep(min(2.0, 0.25 * (2 ** attempt)) + random.uniform(0, 0.25))
+    if resp is not None:
+        return resp  # exhausted retries on a 5xx -> let _raise_for surface it
+    raise last_exc  # exhausted retries on a transport error
+
 
 class AnalysisError(Exception):
     """Raised on configuration or REST failures (carries a readable message)."""
@@ -107,7 +154,9 @@ def _raise_for(resp: httpx.Response, what: str):
 def _insert(table: str, rows, *, returning: bool = True):
     _check()
     prefer = "return=representation" if returning else "return=minimal"
-    resp = httpx.post(_url(table), headers=_headers(prefer), json=rows, timeout=_TIMEOUT)
+    # NOT idempotent — a retried insert would create duplicate rows, so don't retry
+    # on a maybe-landed error (only pure connect failures are retried internally).
+    resp = _request("POST", _url(table), idempotent=False, headers=_headers(prefer), json=rows)
     _raise_for(resp, f"insert into {table}")
     return resp.json() if returning else None
 
@@ -115,11 +164,10 @@ def _insert(table: str, rows, *, returning: bool = True):
 def _upsert(table: str, rows, on_conflict: str, *, returning: bool = True):
     _check()
     prefer = ("return=representation," if returning else "return=minimal,") + "resolution=merge-duplicates"
-    resp = httpx.post(
-        f"{_url(table)}?on_conflict={on_conflict}",
-        headers=_headers(prefer),
-        json=rows,
-        timeout=_TIMEOUT,
+    # Idempotent (merge-duplicates) -> safe to retry.
+    resp = _request(
+        "POST", f"{_url(table)}?on_conflict={on_conflict}",
+        idempotent=True, headers=_headers(prefer), json=rows,
     )
     _raise_for(resp, f"upsert into {table}")
     return resp.json() if returning else None
@@ -129,8 +177,9 @@ def _patch(table: str, filters: dict, patch: dict, *, returning: bool = True):
     _check()
     params = "&".join(f"{k}=eq.{v}" for k, v in filters.items())
     prefer = "return=representation" if returning else "return=minimal"
-    resp = httpx.patch(
-        f"{_url(table)}?{params}", headers=_headers(prefer), json=patch, timeout=_TIMEOUT
+    # PATCH by eq filter is idempotent (re-applying the same patch is a no-op).
+    resp = _request(
+        "PATCH", f"{_url(table)}?{params}", idempotent=True, headers=_headers(prefer), json=patch,
     )
     _raise_for(resp, f"update {table}")
     return resp.json() if returning else None
@@ -139,7 +188,7 @@ def _patch(table: str, filters: dict, patch: dict, *, returning: bool = True):
 def _delete(table: str, filters: dict) -> None:
     _check()
     params = "&".join(f"{k}=eq.{v}" for k, v in filters.items())
-    resp = httpx.delete(f"{_url(table)}?{params}", headers=_headers(), timeout=_TIMEOUT)
+    resp = _request("DELETE", f"{_url(table)}?{params}", idempotent=True, headers=_headers())
     _raise_for(resp, f"delete from {table}")
 
 
@@ -153,7 +202,7 @@ def _select(table: str, *, select: str = "*", filters: Optional[list[str]] = Non
         params.append(f"order={order}")
     if limit:
         params.append(f"limit={int(limit)}")
-    resp = httpx.get(f"{_url(table)}?{'&'.join(params)}", headers=_headers(), timeout=_TIMEOUT)
+    resp = _request("GET", f"{_url(table)}?{'&'.join(params)}", idempotent=True, headers=_headers())
     _raise_for(resp, f"select from {table}")
     return resp.json()
 

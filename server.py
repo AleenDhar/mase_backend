@@ -904,13 +904,33 @@ class AgentManager:
                         else:
                             args = (_real_cid,) + tuple(args[1:])
                         real_chat_id_for_override = _real_cid
+            # Bound every async MCP tool call so one hung stdio subprocess (e.g. an Avoma
+            # transcript read stuck under contention) can't pin this agent run for the
+            # full ~660s watchdog window and hold a session slot. On timeout we return the
+            # same {error,status:failed} shape so the agent's error-recovery path handles
+            # it instead of hanging. The default (300s) sits ABOVE a worst-case legit Avoma
+            # call (AVOMA_HTTP_TIMEOUT 60s x (retries 2 +1) ~= 180s) so it won't cut valid
+            # slow reads, and BELOW the watchdog so it still frees the slot early. The
+            # sweep worker raises this (MCP_TOOL_TIMEOUT_S=600 in deploy.ps1) for its longer
+            # timeout posture. NOTE: only the async path is time-bounded; a purely
+            # synchronous tool func relies on its own internal timeout (all MCP-adapter
+            # tools here are async coroutines, so this covers them).
+            _tool_timeout = float(os.getenv("MCP_TOOL_TIMEOUT_S", "300"))
             try:
                 if asyncio.iscoroutinefunction(original_func):
-                    result = await original_func(*args, **kwargs)
+                    result = await asyncio.wait_for(original_func(*args, **kwargs), timeout=_tool_timeout)
                 else:
                     result = original_func(*args, **kwargs)
-                if asyncio.iscoroutine(result):
-                    result = await result
+                    if asyncio.iscoroutine(result):
+                        result = await asyncio.wait_for(result, timeout=_tool_timeout)
+            except asyncio.TimeoutError:
+                error_msg = f"MCP tool '{original_tool.name}' timed out after {int(_tool_timeout)}s"
+                print(f"  [MCP TIMEOUT] {error_msg}")
+                return {
+                    "error": error_msg,
+                    "tool": original_tool.name,
+                    "status": "failed"
+                }
             except Exception as tool_err:
                 error_msg = f"MCP tool '{original_tool.name}' error: {str(tool_err)}"
                 print(f"  [MCP ERROR] {error_msg}")
@@ -8552,6 +8572,32 @@ async def startup_event():
 
 @app.on_event("shutdown")
 async def shutdown_event():
+    # Graceful drain on ECS stop (deploy / scale-in): uvicorn runs this on SIGTERM,
+    # before the SIGKILL that follows the task's stopTimeout (120s). Give in-flight agent
+    # runs a short grace to finish naturally; then CANCEL any stragglers and await them so
+    # each run's OWN finally / cancel handler writes its single terminal row. We do NOT
+    # inject a terminal row from here: the run paths already write exactly one terminal on
+    # cancel (chat/agent finally safety-net, structured-async CancelledError handler), so
+    # injecting one would double-write and violate the one-terminal-row contract, and would
+    # also fabricate a row for pure HTTP-streaming runs that have no chat_messages terminal.
+    # The whole drain is bounded (grace + cancel-wait) to stay well under stopTimeout.
+    try:
+        inflight = [t for _, t in list(_running_tasks.items()) if t and not t.done()]
+        if inflight:
+            grace = float(os.getenv("SHUTDOWN_DRAIN_GRACE_S", "15"))
+            print(f"[SHUTDOWN] {len(inflight)} agent run(s) in flight; {grace}s grace to finish")
+            await asyncio.wait(inflight, timeout=grace)
+            still = [t for t in inflight if not t.done()]
+            if still:
+                print(f"[SHUTDOWN] cancelling {len(still)} unfinished run(s) so each writes its own terminal row")
+                for t in still:
+                    t.cancel()
+                # Let each cancelled run's finally / CancelledError path write its single
+                # terminal row (this is what unblocks the chat UI on deploy).
+                await asyncio.wait(still, timeout=float(os.getenv("SHUTDOWN_CANCEL_WAIT_S", "10")))
+    except Exception as _e:  # noqa: BLE001
+        print(f"[SHUTDOWN] drain error: {_e}")
+
     _mcp_lifespan_exit.set()
     if _mcp_lifespan_task and not _mcp_lifespan_task.done():
         try:

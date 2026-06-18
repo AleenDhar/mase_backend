@@ -7208,6 +7208,12 @@ async def mase_knowledge_upload(request_body: dict):
         except Exception as _e:  # noqa: BLE001
             raise HTTPException(status_code=400, detail=f"Could not extract text from '{file_name}': {_e}")
     if not (content or "").strip():
+        if s3_key or file_b64:
+            raise HTTPException(
+                status_code=400,
+                detail=(f"No text could be extracted from '{file_name}'. It may be image-only/"
+                        "scanned, empty, or password-protected. Upload a text-based version, or "
+                        "paste the text directly."))
         raise HTTPException(status_code=400, detail="Document content is required (text, a base64 file in file_b64, or an s3_key)")
     if not name:
         raise HTTPException(status_code=400, detail="Document name/title is required")

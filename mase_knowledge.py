@@ -88,6 +88,31 @@ async def list_docs(supabase) -> list[dict]:
     return res.data or []
 
 
+async def get_doc(supabase, doc_id: str) -> dict | None:
+    """Return one doc's metadata + its full text, reconstructed from the ordered chunks
+    (we store chunks, not the raw doc, so drop the per-chunk overlap on rejoin)."""
+    loop = asyncio.get_event_loop()
+    meta = await loop.run_in_executor(None, lambda: supabase.table(_T_DOCS)
+                                      .select("id,name,doc_type,created_at").eq("id", doc_id).limit(1).execute())
+    rows = meta.data or []
+    if not rows:
+        return None
+    doc = rows[0]
+    ch = await loop.run_in_executor(None, lambda: supabase.table(_T_CHUNKS)
+                                    .select("content,chunk_index").eq("document_id", doc_id)
+                                    .order("chunk_index").execute())
+    chunks = ch.data or []
+    if chunks:
+        content = chunks[0].get("content") or ""
+        for c in chunks[1:]:
+            content += (c.get("content") or "")[_OVERLAP:]
+    else:
+        content = ""
+    doc["content"] = content
+    doc["chunks"] = len(chunks)
+    return doc
+
+
 async def delete_doc(supabase, doc_id: str) -> None:
     loop = asyncio.get_event_loop()
     # chunks cascade on document delete, but delete explicitly too (belt and braces).

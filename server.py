@@ -7134,6 +7134,22 @@ async def mase_knowledge_list():
         return JSONResponse({"error": str(e), "documents": []}, status_code=500)
 
 
+@app.get("/api/deal-engine/knowledge/{doc_id}")
+async def mase_knowledge_get(doc_id: str):
+    """Return one MASE knowledge doc + its full reconstructed text (for the viewer modal).
+    Admin-gated at the proxy."""
+    import mase_knowledge as mk
+    if not supabase:
+        raise HTTPException(status_code=500, detail="Supabase not configured")
+    try:
+        doc = await mk.get_doc(supabase, doc_id)
+        if not doc:
+            return JSONResponse({"error": "not found"}, status_code=404)
+        return doc
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.delete("/api/deal-engine/knowledge/{doc_id}")
 async def mase_knowledge_delete(doc_id: str):
     """Delete a doc (+ its chunks) from MASE's isolated knowledge store. Admin-gated."""

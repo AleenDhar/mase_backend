@@ -36,7 +36,9 @@
 param(
     [int]$DesiredCount = 2,
     [string]$Tag,
-    [switch]$SkipBuild
+    [switch]$SkipBuild,
+    [Alias('m')][string]$Message,   # commit message; required if the tree is dirty (unless -NoPush)
+    [switch]$NoPush                  # skip the commit+push-to-GitHub step
 )
 
 $ErrorActionPreference = 'Stop'
@@ -81,6 +83,38 @@ function Write-Step($msg) { Write-Host "`n=== $msg ===" -ForegroundColor Cyan }
 Write-Step "Preflight"
 & $AWS sts get-caller-identity --query Arn --output text | Out-Host
 # No local Docker required — the image is built in AWS CodeBuild.
+
+# ----------------------------------------------------------------------------
+# 0a. Commit + push the working tree to GitHub (origin main) BEFORE deploying, so
+#     what's on GitHub matches what ships. deploy.ps1 ships the WORKING TREE, so
+#     this is hygiene + an off-machine backup of exactly what we deploy.
+#       - origin = github.com/AleenDhar/mase_backend; current branch tracks origin/main.
+#       - Bitbucket is intentionally NOT pushed here.
+#     Pass -Message "<msg>" to commit a dirty tree; -NoPush to skip entirely.
+# ----------------------------------------------------------------------------
+if (-not $NoPush -and (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Step "Commit + push to GitHub (origin main)"
+    $prevEAP = $ErrorActionPreference; $ErrorActionPreference = 'Continue'
+    $dirty = git status --porcelain
+    if ($dirty) {
+        if (-not $Message) {
+            $ErrorActionPreference = $prevEAP
+            throw "Working tree has uncommitted changes. Re-run with -Message '<commit message>' (or -NoPush to deploy without committing)."
+        }
+        git add -A
+        git commit -m $Message
+    } else {
+        Write-Host "Working tree clean - nothing to commit."
+    }
+    git push origin HEAD:main
+    $pushExit = $LASTEXITCODE
+    $ErrorActionPreference = $prevEAP
+    if ($pushExit -ne 0) {
+        Write-Warning "git push to origin/main failed (exit $pushExit). Continuing with the deploy of the working tree anyway."
+    } else {
+        Write-Host "Pushed working tree to github.com/AleenDhar/mase_backend (main)." -ForegroundColor Green
+    }
+}
 
 if (-not $Tag) {
     $sha = $null

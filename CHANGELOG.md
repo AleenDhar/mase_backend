@@ -11,6 +11,42 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-19 — Knowledge uploads: large files via S3 (no size limit)
+
+**What.** Knowledge-base file uploads no longer go through the Vercel proxy as a
+base64 JSON body (capped at ~4.5 MB on Vercel serverless). The browser now uploads
+the raw file **directly to S3** via a presigned PUT, then registers it with the
+backend, which pulls the object from S3 and extracts the text. Effectively no
+file-size limit (S3 single-PUT supports up to 5 GB).
+- **New endpoint** `POST /api/deal-engine/knowledge/presign` (`server.py`
+  `mase_knowledge_presign`): returns `{url, key}` — a presigned PUT to bucket
+  `mase-knowledge-uploads-022187637784` under `uploads/<uuid>/<safe-name>`. Admin-gated
+  at the proxy (path starts with `knowledge`).
+- **`POST /api/deal-engine/knowledge`** now also accepts `s3_key` (+ `filename`):
+  downloads the object (`_s3_download`), extracts via the new `_extract_text_from_bytes`
+  (refactored out of `_extract_text_from_file` so the inline-base64 and S3 paths share
+  it), then **deletes the temp object** (`_s3_delete`). The old `file_b64` inline path
+  still works for small/legacy callers.
+- **Extraction caps raised + env-configurable** (`server.py`): `MASE_MAX_UPLOAD_BYTES`
+  (default **200 MB**), `MASE_MAX_EXTRACT_CHARS` (4 M), `MASE_MAX_PDF_PAGES` (5000),
+  `MASE_MAX_FILE_B64` (~210 MB). Bucket via `MASE_KNOWLEDGE_S3_BUCKET`, region via
+  `AWS_REGION`/`AWS_DEFAULT_REGION` (fallback `ap-south-1`), presign TTL
+  `MASE_PRESIGN_EXPIRY_S` (900s).
+- **Dependency:** added `boto3` to `requirements.txt`.
+
+**Infra (prod, ap-south-1, acct 022187637784).** New private bucket
+`mase-knowledge-uploads-022187637784` with CORS (PUT/GET, any origin — the presigned
+URL is the gate) and a 1-day lifecycle expiry on `uploads/`. New inline policy
+`mase-knowledge-s3` on `mase-ecs-task-role` granting `s3:PutObject/GetObject/DeleteObject`
+on that bucket only (additive — does not touch existing SQS/secrets perms).
+
+**Why / how to work with it.** The Vercel proxy body cap made multi-MB sales decks
+impossible to upload; routing the bytes around the proxy (browser → S3 → backend) was
+the only way to truly remove the limit (Supabase Storage has its own limits, and the
+ALB is HTTP-only so the HTTPS frontend can't post to it directly — mixed content).
+Frontend: `app/(dashboard)/admin/page.tsx` `DocumentsSection` now PUTs the raw `File`
+to S3 (no client-side base64 read) and removed the 15 MB cap.
+
 ## 2026-06-18 — Reliability batch: MCP tool timeout, pooled store HTTP + retries, graceful drain
 
 **What.** Three reliability hardening changes (from the enterprise-readiness audit;

@@ -4170,29 +4170,39 @@ _DOCS_DOC_TYPE_COL: Optional[bool] = None
 
 
 # Upload extraction caps (defend against memory amplification + adversarial PDFs).
-_MAX_FILE_B64 = 14_000_000   # ~10.5 MB decoded
-_MAX_FILE_BYTES = 10_000_000
-_MAX_PDF_PAGES = 400
-_MAX_EXTRACT_CHARS = 2_000_000
+# Large files now arrive via S3 (browser → presigned PUT → backend pulls), so these
+# are sized for real sales decks, not the old ~4.5 MB Vercel-proxy ceiling. All are
+# env-overridable so we can tune without a redeploy.
+_MAX_FILE_B64 = int(os.getenv("MASE_MAX_FILE_B64", "280000000"))   # ~210 MB decoded (legacy inline path)
+_MAX_FILE_BYTES = int(os.getenv("MASE_MAX_UPLOAD_BYTES", "200000000"))  # 200 MB decoded
+_MAX_PDF_PAGES = int(os.getenv("MASE_MAX_PDF_PAGES", "5000"))
+_MAX_EXTRACT_CHARS = int(os.getenv("MASE_MAX_EXTRACT_CHARS", "4000000"))
 
 
 def _extract_text_from_file(file_b64: str, name: str) -> str:
-    """Extract plain text from a base64-encoded uploaded file. PDF via pypdf,
-    DOCX via python-docx (both already in requirements); anything else is decoded
-    as UTF-8 text. CPU-bound + can be expensive on adversarial input, so the caller
-    runs this in a thread pool with a wall-clock timeout. Bounded on every axis
-    (payload size, decoded size, page count, output length); raises ValueError on a
-    too-large/corrupt/invalid file so the caller 400s."""
+    """Extract text from a base64-encoded uploaded file (legacy inline path: small
+    pastes / direct posts). Decodes then delegates to _extract_text_from_bytes."""
     import base64
-    import io
     if len(file_b64 or "") > _MAX_FILE_B64:
-        raise ValueError("file too large (max ~10 MB)")
+        raise ValueError("file too large")
     try:
         raw = base64.b64decode(file_b64, validate=True)
     except Exception:
         raise ValueError("invalid base64 file payload")
+    return _extract_text_from_bytes(raw, name)
+
+
+def _extract_text_from_bytes(raw: bytes, name: str) -> str:
+    """Extract plain text from raw uploaded file bytes. PDF via pypdf, DOCX via
+    python-docx, XLSX via openpyxl, PPTX via python-pptx; anything else is decoded
+    as UTF-8 text. CPU-bound + can be expensive on adversarial input, so the caller
+    runs this in a thread pool with a wall-clock timeout. Bounded on every axis
+    (decoded size, page count, output length); raises ValueError on a
+    too-large/corrupt/invalid file so the caller 400s. Shared by the inline base64
+    path and the S3 path (browser → presigned PUT → backend downloads → here)."""
+    import io
     if len(raw) > _MAX_FILE_BYTES:
-        raise ValueError("file too large (max ~10 MB)")
+        raise ValueError(f"file too large (max ~{_MAX_FILE_BYTES // 1_000_000} MB)")
     low = (name or "").lower()
     if low.endswith(".pdf"):
         import pypdf
@@ -4246,6 +4256,55 @@ def _extract_text_from_file(file_b64: str, name: str) -> str:
         # Plain-text family: txt, md, markdown, csv, tsv, json, html, xml, yaml, log, etc.
         text = raw.decode("utf-8", errors="replace").strip()
     return text[:_MAX_EXTRACT_CHARS]
+
+
+# ── S3 staging for large knowledge uploads ───────────────────────────────────
+# Big files (sales decks, etc.) can't go through the Vercel proxy (~4.5 MB body
+# cap) or Supabase Storage limits, so the browser uploads them straight to S3 via
+# a presigned PUT, then the backend pulls the object here and extracts the text.
+# Auth is the presigned URL itself (admin-gated when minted at the proxy); the
+# bucket is private and the ECS task role has GetObject/PutObject/DeleteObject on
+# it only (policy mase-knowledge-s3).
+_S3_BUCKET = os.getenv("MASE_KNOWLEDGE_S3_BUCKET", "mase-knowledge-uploads-022187637784")
+_S3_REGION = os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "ap-south-1"
+_PRESIGN_EXPIRY_S = int(os.getenv("MASE_PRESIGN_EXPIRY_S", "900"))  # 15 min
+_s3_client = None
+
+
+def _get_s3():
+    global _s3_client
+    if _s3_client is None:
+        import boto3
+        from botocore.config import Config
+        # Pin the REGIONAL virtual-hosted endpoint + SigV4. Without this, boto3 signs
+        # presigned URLs against the global s3.amazonaws.com host, which 307-redirects
+        # for non-us-east-1 buckets and breaks the (host-bound) signature on PUT.
+        _s3_client = boto3.client(
+            "s3", region_name=_S3_REGION,
+            endpoint_url=f"https://s3.{_S3_REGION}.amazonaws.com",
+            config=Config(signature_version="s3v4", s3={"addressing_style": "virtual"}),
+        )
+    return _s3_client
+
+
+def _s3_presign_put(key: str) -> str:
+    return _get_s3().generate_presigned_url(
+        "put_object", Params={"Bucket": _S3_BUCKET, "Key": key}, ExpiresIn=_PRESIGN_EXPIRY_S)
+
+
+def _s3_download(key: str) -> bytes:
+    obj = _get_s3().get_object(Bucket=_S3_BUCKET, Key=key)
+    raw = obj["Body"].read()
+    if len(raw) > _MAX_FILE_BYTES:
+        raise ValueError(f"file too large (max ~{_MAX_FILE_BYTES // 1_000_000} MB)")
+    return raw
+
+
+def _s3_delete(key: str) -> None:
+    try:
+        _get_s3().delete_object(Bucket=_S3_BUCKET, Key=key)
+    except Exception as _e:  # noqa: BLE001
+        print(f"[KNOWLEDGE] S3 cleanup failed for {key}: {_e}")
 
 
 async def _documents_has_doc_type() -> bool:
@@ -7085,18 +7144,59 @@ async def set_sweep_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/knowledge/presign")
+async def mase_knowledge_presign(request_body: dict):
+    """Mint a short-lived presigned S3 PUT URL so the browser can upload a large file
+    directly to S3 (bypassing the ~4.5 MB Vercel proxy body cap and Supabase Storage
+    limits). The browser then calls POST /knowledge with the returned `key` as `s3_key`.
+    Admin-gated at the proxy (path starts with `knowledge`)."""
+    filename = (request_body.get("filename") or "").strip()
+    if not filename:
+        raise HTTPException(status_code=400, detail="filename is required")
+    safe = re.sub(r"[^A-Za-z0-9._-]", "_", filename)[-180:] or "file"
+    key = f"uploads/{uuid.uuid4().hex}/{safe}"
+    try:
+        _loop = asyncio.get_event_loop()
+        url = await _loop.run_in_executor(None, _s3_presign_put, key)
+    except Exception as _e:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=f"Could not create upload URL: {_e}")
+    return {"url": url, "key": key, "bucket": _S3_BUCKET, "expires_in": _PRESIGN_EXPIRY_S}
+
+
 @app.post("/api/deal-engine/knowledge")
 async def mase_knowledge_upload(request_body: dict):
     """Upload a doc into MASE's ISOLATED knowledge store (mase_documents/mase_document_chunks)
     — completely separate from VIBE's documents/projects. Accepts {name|title, doc_type,
-    content} or a base64 file (file_b64 + filename) for PDF/DOCX. Admin-gated at the proxy."""
+    content}, a base64 file (file_b64 + filename) for small inline uploads, or an
+    `s3_key` (+ filename) for a file the browser already PUT to S3 via /knowledge/presign.
+    Admin-gated at the proxy."""
     import mase_knowledge as mk
     name = (request_body.get("name") or request_body.get("title") or "").strip()
     doc_type = request_body.get("doc_type")
     content = request_body.get("content") or ""
     file_b64 = request_body.get("file_b64")
+    s3_key = request_body.get("s3_key")
     file_name = request_body.get("filename") or name
-    if not content and file_b64:
+    if not content and s3_key:
+        # Large-file path: pull the object from S3, extract text, then delete the temp object.
+        _loop = asyncio.get_event_loop()
+        try:
+            raw = await asyncio.wait_for(_loop.run_in_executor(None, _s3_download, s3_key), timeout=300)
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=400, detail=f"Download of '{file_name}' from storage timed out")
+        except Exception as _e:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail=f"Could not read '{file_name}' from storage: {_e}")
+        try:
+            content = await asyncio.wait_for(
+                _loop.run_in_executor(None, _extract_text_from_bytes, raw, file_name), timeout=180)
+        except asyncio.TimeoutError:
+            _loop.run_in_executor(None, _s3_delete, s3_key)
+            raise HTTPException(status_code=400, detail=f"Text extraction from '{file_name}' timed out")
+        except Exception as _e:  # noqa: BLE001
+            _loop.run_in_executor(None, _s3_delete, s3_key)
+            raise HTTPException(status_code=400, detail=f"Could not extract text from '{file_name}': {_e}")
+        _loop.run_in_executor(None, _s3_delete, s3_key)
+    elif not content and file_b64:
         try:
             _loop = asyncio.get_event_loop()
             content = await asyncio.wait_for(
@@ -7108,7 +7208,7 @@ async def mase_knowledge_upload(request_body: dict):
         except Exception as _e:  # noqa: BLE001
             raise HTTPException(status_code=400, detail=f"Could not extract text from '{file_name}': {_e}")
     if not (content or "").strip():
-        raise HTTPException(status_code=400, detail="Document content is required (text, or a base64 file in file_b64)")
+        raise HTTPException(status_code=400, detail="Document content is required (text, a base64 file in file_b64, or an s3_key)")
     if not name:
         raise HTTPException(status_code=400, detail="Document name/title is required")
     if not supabase:

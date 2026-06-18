@@ -7054,7 +7054,7 @@ async def deal_engine_deals_count():
     """Total number of tracked (active) deals — for the Admin panel stat."""
     import deal_engine_store as dstore
     try:
-        return {"count": await _aw(dstore.count_records, True)}
+        return {"count": await _aw(dstore.count_active_records)}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e), "count": None}, status_code=500)
 

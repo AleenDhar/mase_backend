@@ -449,16 +449,15 @@ def list_records_page(*, owners: Optional[list[str]] = None, q: str = "",
     return recs, (total if total is not None else len(recs))
 
 
-def count_records(active_only: bool = True) -> int:
-    """Cheap total count of tracked deals (active by default) for the Admin panel."""
+def count_active_records() -> int:
+    """Cheap total count of ACTIVE (on-report) tracked deals for the Admin panel —
+    matches the Deals list total. (Distinct from the existing count_records(), which
+    counts every record including off-report ones.)"""
     _check()
-    params = ["select=opp_id"]
-    if active_only:
-        params.append("active=is.true")
-    params.append("limit=1")
     headers = _headers()
     headers["Prefer"] = "count=exact"
-    resp = _request("GET", f"{_url(T_RECORDS)}?{'&'.join(params)}", idempotent=True, headers=headers)
+    resp = _request("GET", f"{_url(T_RECORDS)}?select=opp_id&active=is.true&limit=1",
+                    idempotent=True, headers=headers)
     _raise_for(resp, "count records")
     cr = resp.headers.get("content-range") or resp.headers.get("Content-Range")
     if cr and "/" in cr:

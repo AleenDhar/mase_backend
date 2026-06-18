@@ -8529,35 +8529,17 @@ async def deal_engine_chat(request: Request):
         if not _base.strip():
             _base = _DEAL_ENGINE_CHAT_SYSTEM
         sys_text = (
-            f"{_base}\n{_CHAT_CAPABILITIES}\n"
+            f"{_base}\n\n"
             f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"
         )
-        conv = [{"role": m.get("role"), "content": m.get("content")} for m in messages
-                if m.get("role") in ("user", "assistant") and m.get("content")]
-
-        # Tool-using deep agent: search_knowledge (shared MASE KB) + run_todo (delegate to
-        # the Todo Runner). Falls back to a plain one-shot completion if the agent stack or
-        # its tools aren't available, so the chat never hard-breaks.
-        try:
-            import deal_engine_chat_agent as _dca
-            import opportunity_analyzer as _oa
-            import rag_context as _rag
-            _rag.current_project_id.set(_dca.MASE_KNOWLEDGE_PROJECT_ID)
-            _rag.current_chat_id.set(f"deal-chat:{uuid.uuid4().hex[:8]}")
-            agent = _dca.build_chat_agent(agent_manager, sys_text)
-            result = await asyncio.wait_for(
-                agent.ainvoke({"messages": conv},
-                              config={"recursion_limit": int(os.getenv("DEAL_CHAT_RECURSION_LIMIT", "40"))}),
-                timeout=int(os.getenv("DEAL_CHAT_TIMEOUT_S", "300")))
-            answer = _oa._final_text(result)
-            if (answer or "").strip():
-                return {"answer": answer, "usage": {}}
-            print("[DEAL-CHAT] agent returned empty text; falling back to one-shot", flush=True)
-        except Exception as _e:  # noqa: BLE001
-            print(f"[DEAL-CHAT] agent path failed, falling back to one-shot: {_e}", flush=True)
-
-        # Fallback: original tool-less one-shot completion.
+        # FAST one-shot completion (kept synchronous so it returns well within the
+        # Vercel proxy timeout). The tool-using version (search_knowledge over the
+        # shared MASE KB + run_todo delegation to the Todo Runner) is being rebuilt on
+        # the streaming/realtime path — a synchronous tool loop + nested sub-agent runs
+        # for tens of seconds to minutes and times out at the proxy, so it can't live
+        # behind this blocking endpoint. See deal_engine_chat_agent.py (kept for that
+        # build) and CHANGELOG 2026-06-19.
         from langchain_openai import ChatOpenAI
         llm = ChatOpenAI(model=model_name, temperature=0.2)
         lc_messages = [{"role": "system", "content": sys_text}]

@@ -7049,6 +7049,68 @@ async def set_sweep_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/knowledge")
+async def mase_knowledge_upload(request_body: dict):
+    """Upload a doc into MASE's ISOLATED knowledge store (mase_documents/mase_document_chunks)
+    — completely separate from VIBE's documents/projects. Accepts {name|title, doc_type,
+    content} or a base64 file (file_b64 + filename) for PDF/DOCX. Admin-gated at the proxy."""
+    import mase_knowledge as mk
+    name = (request_body.get("name") or request_body.get("title") or "").strip()
+    doc_type = request_body.get("doc_type")
+    content = request_body.get("content") or ""
+    file_b64 = request_body.get("file_b64")
+    file_name = request_body.get("filename") or name
+    if not content and file_b64:
+        try:
+            _loop = asyncio.get_event_loop()
+            content = await asyncio.wait_for(
+                _loop.run_in_executor(None, _extract_text_from_file, file_b64, file_name), timeout=120)
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=400, detail=f"Text extraction from '{file_name}' timed out")
+        except HTTPException:
+            raise
+        except Exception as _e:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail=f"Could not extract text from '{file_name}': {_e}")
+    if not (content or "").strip():
+        raise HTTPException(status_code=400, detail="Document content is required (text, or a base64 file in file_b64)")
+    if not name:
+        raise HTTPException(status_code=400, detail="Document name/title is required")
+    if not supabase:
+        raise HTTPException(status_code=500, detail="Supabase not configured")
+    try:
+        res = await mk.upload(supabase, name=name, content=content, doc_type=doc_type)
+        return {"status": "success", **res}
+    except HTTPException:
+        raise
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": f"Upload failed: {e}"}, status_code=500)
+
+
+@app.get("/api/deal-engine/knowledge")
+async def mase_knowledge_list():
+    """List docs in MASE's isolated knowledge store. Admin-gated at the proxy."""
+    import mase_knowledge as mk
+    if not supabase:
+        return {"documents": []}
+    try:
+        return {"documents": await mk.list_docs(supabase)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e), "documents": []}, status_code=500)
+
+
+@app.delete("/api/deal-engine/knowledge/{doc_id}")
+async def mase_knowledge_delete(doc_id: str):
+    """Delete a doc (+ its chunks) from MASE's isolated knowledge store. Admin-gated."""
+    import mase_knowledge as mk
+    if not supabase:
+        raise HTTPException(status_code=500, detail="Supabase not configured")
+    try:
+        await mk.delete_doc(supabase, doc_id)
+        return {"status": "deleted", "id": doc_id}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/deals-count")
 async def deal_engine_deals_count():
     """Total number of tracked (active) deals — for the Admin panel stat."""

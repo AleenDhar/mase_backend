@@ -332,6 +332,14 @@ def _search_chunks_in_documents(
     return results[:max_results]
 
 
+# MASE knowledge namespace marker. When a run is scoped to this project_id, the MASE
+# agent's knowledge lives in its OWN isolated tables (mase_documents/mase_document_chunks),
+# completely separate from VIBE's documents/projects — so we route to the MASE match
+# function instead of match_document_chunks. Kept in sync with the frontend
+# MASE_KNOWLEDGE_PROJECT_ID (lib/engine/helpers.ts).
+_MASE_KNOWLEDGE_PROJECT_ID = "7e9b2f48-3c1a-4d6e-8b05-9a2c4f1d7e30"
+
+
 @tool
 def search_knowledge(query: str, max_results: int = 5, document_name: str = "") -> str:
     """Search the knowledge base for relevant documents and information.
@@ -395,6 +403,23 @@ def search_knowledge(query: str, max_results: int = 5, document_name: str = "") 
 
     try:
         embedding = _get_embedding(query)
+
+        # MASE knowledge: isolated tables, routed by the namespace marker. Search the
+        # MASE match function (no project_id — it's a single MASE namespace) and return.
+        if project_id == _MASE_KNOWLEDGE_PROJECT_ID:
+            matches = _supabase_rpc("match_mase_document_chunks", {
+                "query_embedding": embedding,
+                "match_count": max_results,
+                "match_threshold": 0.0,
+            }) or []
+            results = [{
+                "content": m.get("content"),
+                "similarity": m.get("similarity"),
+                "doc_type": m.get("doc_type"),
+                "document_id": m.get("document_id"),
+            } for m in matches]
+            return json.dumps({"query": query, "count": len(results),
+                               "results": results, "source": "mase_knowledge"})
 
         # If document_name filter given, use pre-filter path to avoid the global top-k problem.
         # The global RPC ranks across ALL project chunks (e.g. 535). A small document with

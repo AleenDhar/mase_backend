@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-19 — Chat agent: tool-using (shared knowledge base + Todo Runner delegation)
+
+**What.** `/api/deal-engine/chat` (the RevOps chat over the book) was a tool-less one-shot
+OpenAI completion. It is now a **tool-using deep agent** (`deal_engine_chat_agent.py`,
+`build_chat_agent`) that:
+- **shares the MASE knowledge base** — it has `search_knowledge` routed to the isolated MASE
+  namespace (`MASE_KNOWLEDGE_PROJECT_ID`), the same store the sweep + todo-runner use, and
+- **can delegate to the Todo Runner** — a `run_todo(task, account?, contact?, opportunity_id?)`
+  tool runs the Todo Runner as a SEPARATE deep agent (its own Supabase prompt
+  `mase_todo_runner` + Salesforce/Avoma/Showpad/knowledge tools, MASE rag namespace, own
+  chat_id) and returns the draft (or a `NEEDS HUMAN:` line). Mirrors the sweep's
+  independent-agent pattern (`create_deep_agent` + `_oa._build_model` + `_oa._final_text`).
+- **uses the admin-editable prompt** — the base prompt now comes from Supabase `ID_CHAT`
+  (fallback `_DEAL_ENGINE_CHAT_SYSTEM`); the book + a fixed `_CHAT_CAPABILITIES` block
+  (describing exactly what the Todo Runner can/can't do) are appended by code. Previously the
+  `/chat/prompt` editor wrote a key the chat ignored — now it actually drives the chat.
+
+**Why / how to work with it.** Fulfils "chat shares the KB + can call the Todo Runner + its
+prompt is editable in Admin." The agent path is wrapped in try/except and **falls back to the
+original one-shot completion** if the agent stack/tools aren't available, so the chat can't
+hard-break. Tunables: `DEAL_CHAT_RECURSION_LIMIT` (40), `DEAL_CHAT_TIMEOUT_S` (300),
+`CHAT_TODO_RECURSION_LIMIT` (60), `CHAT_TODO_TIMEOUT_S` (300). Edit the chat prompt at Admin →
+Agent Control → **Chat Agent** (`/api/deal-engine/chat/prompt`, key `mase_chat_agent`).
+
 ## 2026-06-19 — Knowledge uploads: large files via S3 (no size limit)
 
 **What.** Knowledge-base file uploads no longer go through the Vercel proxy as a

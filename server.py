@@ -6841,6 +6841,30 @@ _DEAL_ENGINE_CHAT_SYSTEM = (
     "and who should be in the room."
 )
 
+# Appended (by code, not admin-editable) to the chat system prompt so the chat agent
+# always knows its tools and EXACTLY what the Todo Runner can / cannot do.
+_CHAT_CAPABILITIES = (
+    "\nTOOLS YOU CAN USE:\n"
+    "- search_knowledge(query): retrieve from the MASE knowledge base — the shared, "
+    "isolated store the sweep and Todo Runner also use (uploaded playbooks, Showpad index "
+    "cards, competitive battlecards, capability decks). Use it to ground answers in real "
+    "collateral and cite what you use. Never invent facts that aren't in the book or the "
+    "knowledge base.\n"
+    "- run_todo(task, account?, contact?, opportunity_id?): delegate ONE tactical, "
+    "prospect-facing to-do to the Todo Runner, which DRAFTS a single outbound email to "
+    "complete it. Use this whenever the user asks you to draft / write / follow up with an "
+    "email for a specific to-do — do NOT write that email yourself; delegate it.\n"
+    "  The Todo Runner CAN: draft one outbound email for a to-do that needs no internal "
+    "collaboration; pull real facts from Showpad, Salesforce (real closed-won references) "
+    "and the knowledge base; attach relevant Showpad collateral as shareable links; and it "
+    "never invents customers, prices, or claims.\n"
+    "  The Todo Runner CANNOT / WILL NOT: send the email (a human reviews and sends); handle "
+    "anything needing a manager or exec, legal, security/infosec, the pricing desk, a sales "
+    "engineer, product, or a partner — for those it returns one line 'NEEDS HUMAN: <who and "
+    "why>'. When you call run_todo, present its draft to the user and surface any 'NEEDS "
+    "HUMAN' verbatim with a short note on what's needed.\n"
+)
+
 
 def _deal_engine_model() -> str:
     # Spec default is Claude, but Anthropic is unavailable in this environment,
@@ -6915,14 +6939,15 @@ async def get_chat_prompt():
         override = ""
     return {
         "prompt": override,
-        # The agent has no MASE-specific hardcoded base prompt — when no override
-        # and no per-request prompt is set it uses the deep-agent built-in. So the
-        # "default" surfaced to the editor is empty with an explanatory note.
-        "default": "",
+        # The RevOps chat's built-in base prompt. The book of deals + a fixed
+        # tools/capabilities block (search_knowledge + run_todo delegation) are
+        # appended automatically at runtime, so they are NOT part of this editable text.
+        "default": _DEAL_ENGINE_CHAT_SYSTEM,
         "is_override": bool((override or "").strip()),
-        "note": ("This is the base system prompt for chats that don't supply their "
-                 "own. Per-request prompts (e.g. pipeline phases) still take "
-                 "precedence; leave empty + save to clear."),
+        "note": ("Base 'personality / strategy' prompt for the RevOps chat agent. The "
+                 "book of deals and the tools block (search_knowledge over the shared "
+                 "knowledge base + run_todo delegation to the Todo Runner) are always "
+                 "appended automatically. Leave empty + save to use the built-in default."),
     }
 
 
@@ -8481,8 +8506,6 @@ async def deal_engine_chat(request: Request):
 
         book = await _aw(dstore.chat_book_context, owner,
                          owners or None, opp_ids or None)
-        from langchain_openai import ChatOpenAI
-        llm = ChatOpenAI(model=model_name, temperature=0.2)
 
         # Scope label mirrors the precedence used by the store: opp_ids > owners > owner.
         if opp_ids:
@@ -8493,17 +8516,55 @@ async def deal_engine_chat(request: Request):
             scope = f" (filtered to {owner})"
         else:
             scope = ""
+
+        # Base prompt: admin override (Supabase ID_CHAT) wins, else the built-in default.
+        # Editable from Admin -> Agent Control -> Chat Agent. The capabilities block + book
+        # are appended by code (not editable) so tool-awareness is always present.
+        _base = ""
+        try:
+            import agent_prompt_store as _aps
+            _base = (await _aw(_aps.get_prompt)) or ""
+        except Exception:  # noqa: BLE001
+            _base = ""
+        if not _base.strip():
+            _base = _DEAL_ENGINE_CHAT_SYSTEM
         sys_text = (
-            f"{_DEAL_ENGINE_CHAT_SYSTEM}\n\n"
+            f"{_base}\n{_CHAT_CAPABILITIES}\n"
             f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"
         )
+        conv = [{"role": m.get("role"), "content": m.get("content")} for m in messages
+                if m.get("role") in ("user", "assistant") and m.get("content")]
+
+        # Tool-using deep agent: search_knowledge (shared MASE KB) + run_todo (delegate to
+        # the Todo Runner). Falls back to a plain one-shot completion if the agent stack or
+        # its tools aren't available, so the chat never hard-breaks.
+        try:
+            import deal_engine_chat_agent as _dca
+            import opportunity_analyzer as _oa
+            import rag_context as _rag
+            _rag.current_project_id.set(_dca.MASE_KNOWLEDGE_PROJECT_ID)
+            _rag.current_chat_id.set(f"deal-chat:{uuid.uuid4().hex[:8]}")
+            agent = _dca.build_chat_agent(agent_manager, sys_text)
+            result = await asyncio.wait_for(
+                agent.ainvoke({"messages": conv},
+                              config={"recursion_limit": int(os.getenv("DEAL_CHAT_RECURSION_LIMIT", "40"))}),
+                timeout=int(os.getenv("DEAL_CHAT_TIMEOUT_S", "300")))
+            answer = _oa._final_text(result)
+            if (answer or "").strip():
+                return {"answer": answer, "usage": {}}
+            print("[DEAL-CHAT] agent returned empty text; falling back to one-shot", flush=True)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[DEAL-CHAT] agent path failed, falling back to one-shot: {_e}", flush=True)
+
+        # Fallback: original tool-less one-shot completion.
+        from langchain_openai import ChatOpenAI
+        llm = ChatOpenAI(model=model_name, temperature=0.2)
         lc_messages = [{"role": "system", "content": sys_text}]
         for m in messages:
             role = m.get("role")
             if role in ("user", "assistant") and m.get("content"):
                 lc_messages.append({"role": role, "content": m["content"]})
-
         resp = await llm.ainvoke(lc_messages)
         usage = getattr(resp, "response_metadata", {}).get("token_usage", {}) or \
             getattr(resp, "usage_metadata", {}) or {}

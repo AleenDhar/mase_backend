@@ -7050,15 +7050,22 @@ async def set_sweep_prompt(request: Request):
 
 
 @app.get("/api/deal-engine/opportunities")
-async def deal_engine_opportunities(owner: str = ""):
+async def deal_engine_opportunities(owner: str = "", slim: bool = False):
     import deal_engine_store as dstore
     try:
         records = await _aw(dstore.list_records, owner or None)
-        # Frontend contract: every record carries `pulse`; also stamp each
-        # recommended_move with its todo_key + apply user edit/delete overrides
-        # (read the override table ONCE for the whole list).
-        ovr = await _aw(dstore._overrides_index)
-        records = [dstore.stamp_move_overrides(dstore.attach_pulse(r), ovr) for r in records]
+        if slim:
+            # LIST/aggregate payload: attach pulse (from the full record) then strip the
+            # heavy ai narratives — the Deals list, Matcha and filters only need hard +
+            # verdict + ai-fit + pulse. The full ai is fetched per-deal on drawer open
+            # (GET /opportunities/{opp_id}). ~10-25x smaller -> fast first load.
+            records = [dstore.slim_record(dstore.attach_pulse(r)) for r in records]
+        else:
+            # Frontend contract: every record carries `pulse`; also stamp each
+            # recommended_move with its todo_key + apply user edit/delete overrides
+            # (read the override table ONCE for the whole list).
+            ovr = await _aw(dstore._overrides_index)
+            records = [dstore.stamp_move_overrides(dstore.attach_pulse(r), ovr) for r in records]
         return {"count": len(records), "records": records}
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)

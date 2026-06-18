@@ -370,6 +370,31 @@ def list_records(owner: Optional[str] = None,
     return [r["record"] for r in rows if r.get("record")]
 
 
+def slim_record(rec: dict) -> dict:
+    """A lightweight projection of a canonical record for LIST + aggregate views.
+
+    Keeps `hard` (all the deal mechanics the Deals list, Matcha and the filters use)
+    plus the only two `ai` summary fields the list/filters read — the verdict (chip)
+    and the AI-fit signal (AI-excitement filter) — and `pulse`. It DROPS the heavy ai
+    narratives/arrays (meddpicc, competitive_position, recommended_moves, requirements,
+    stakeholder_map, gaps, …) and evidence_coverage, which are only needed when a deal
+    DRAWER is opened (fetched then via GET /opportunities/{opp_id}). Cuts the list
+    payload ~10-25x, so the book loads fast while every deal stays loaded for search."""
+    ai = rec.get("ai") or {}
+    return {
+        "opp_id": rec.get("opp_id"),
+        "hard": rec.get("hard") or {},
+        "ai": {
+            "north_star_verdict": ai.get("north_star_verdict"),
+            "ai_fit_signal": ai.get("ai_fit_signal"),
+        },
+        "pulse": rec.get("pulse"),
+        "forecast_critical": rec.get("forecast_critical"),
+        "analysis_confidence": rec.get("analysis_confidence"),
+        "swept_at": rec.get("swept_at"),
+    }
+
+
 def known_active_map() -> dict[str, bool]:
     """Map of every known deal's 15-char opp id -> its active flag. The diff
     basis for report reconciliation (distinguishes new vs re-entrant)."""

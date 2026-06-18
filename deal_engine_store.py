@@ -424,7 +424,8 @@ def list_records_page(*, owners: Optional[list[str]] = None, q: str = "",
     if owners:
         vals = ",".join('"' + str(o).replace('"', "") + '"' for o in owners if str(o).strip())
         if vals:
-            params.append(f"owner_name=in.({quote(vals, safe='\",()')})")
+            enc = quote(vals, safe='",()')
+            params.append("owner_name=in.(" + enc + ")")
     qclean = re.sub(r"[,()*]", " ", q or "").strip()
     if qclean:
         pat = "*" + quote(qclean) + "*"   # PostgREST ilike: * is the wildcard

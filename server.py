@@ -6865,6 +6865,25 @@ _CHAT_CAPABILITIES = (
     "HUMAN' verbatim with a short note on what's needed.\n"
 )
 
+# Persona overlays for the Deal chat. The UI's persona tabs send `persona`; the
+# matching directive is appended to the system prompt for that run, switching the
+# agent's lens. "strategist" is the default RevOps voice (no overlay).
+_CHAT_PERSONAS = {
+    "strategist": "",
+    "vp": ("PERSONA — VP OF SALES: Answer as a VP of Sales reviewing the whole book. Lead with "
+           "forecast risk and accuracy, pipeline coverage, where reps should spend time, what to "
+           "inspect/escalate, and the few moves that most change the quarter. Be decisive and "
+           "prioritised; think in roll-ups, not single-deal minutiae."),
+    "coach": ("PERSONA — DEAL COACH: Answer as a hands-on deal coach for the specific deal(s) in "
+              "question. Give concrete next moves, who to involve, how to handle the live "
+              "objection/competition, and the exact next step to advance the deal. Practical and "
+              "per-deal, not strategic generalities."),
+    "qual": ("PERSONA — QUALIFICATION EXPERT: Answer as a qualification expert. Run the 7-point "
+             "drill (engagement, access to power, champion, competition, product fit, risk, value) "
+             "and score MEDDPICC/BANT. Expose what is unproven, what evidence is missing, and "
+             "exactly what to verify next."),
+}
+
 
 def _deal_engine_model() -> str:
     # Spec default is Claude, but Anthropic is unavailable in this environment,
@@ -8623,9 +8642,14 @@ async def deal_engine_chat_async(request: Request):
             _base = ""
         if not _base.strip():
             _base = _DEAL_ENGINE_CHAT_SYSTEM
+        # Persona overlay (from the UI persona tabs) — switches the agent's lens by
+        # appending its directive to the system prompt for this run.
+        _persona = (d.get("persona") or "").strip().lower()
+        _pdir = _CHAT_PERSONAS.get(_persona, "")
         sys_text = (
-            f"{_base}\n{_CHAT_CAPABILITIES}\n\n"
-            f"THE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
+            f"{_base}\n{_CHAT_CAPABILITIES}\n"
+            + (f"\n{_pdir}\n" if _pdir else "")
+            + f"\nTHE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"
         )
 

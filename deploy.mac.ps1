@@ -91,6 +91,19 @@ Write-Step "Preflight"
 & $AWS sts get-caller-identity --query Arn --output text | Out-Host
 # No local Docker required — the image is built in AWS CodeBuild.
 
+# Guard: refuse to deploy a placeholder/broken mcp_config.json. It carries the
+# connector env wiring (+ some hardcoded secrets); shipping the sanitized template
+# blanks them and breaks connectors (the zerobounce incident, 2026-06-19). This does
+# NOT modify any env var — it only verifies the config is intact before we ship it.
+$McpPath = Join-Path $PSScriptRoot "mcp_config.json"
+if (-not (Test-Path $McpPath)) { throw "mcp_config.json is missing - refusing to deploy." }
+$McpRaw = Get-Content -Raw $McpPath
+if ($McpRaw -match 'SET_VIA_ENV_OR_REPLACE') {
+    throw "mcp_config.json has <SET_VIA_ENV_OR_REPLACE> placeholders (sanitized template, not the real config). Restore the canonical config first (e.g. unzip mcp_config.json from the newest good zip in s3://$BuildBucket/sources/). ABORTING - nothing deployed, env untouched."
+}
+try { $null = ($McpRaw | ConvertFrom-Json) } catch { throw "mcp_config.json is not valid JSON - refusing to deploy: $_" }
+Write-Host "mcp_config.json preflight OK - no placeholders, valid JSON." -ForegroundColor Green
+
 # ----------------------------------------------------------------------------
 # 0a. Commit + push the working tree to GitHub (origin main) BEFORE deploying, so
 #     what's on GitHub matches what ships. deploy.ps1 ships the WORKING TREE, so

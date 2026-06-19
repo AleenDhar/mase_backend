@@ -8721,6 +8721,34 @@ async def deal_engine_chat_async(request: Request):
         _release_run_slot(chat_id)
 
 
+@app.post("/api/deal-engine/chat/stop")
+async def deal_engine_chat_stop(chat_id: str = None):
+    """Stop a running MASE strategist chat by chat_id. Mirrors /api/chat/stop but
+    lives under the deal-engine prefix so the frontend proxy can reach it. Marks
+    the chat cancelled and cancels its asyncio task; writes a `cancelled` status
+    row so the UI (realtime + polling) stops the spinner immediately."""
+    if not chat_id:
+        raise HTTPException(status_code=400, detail="chat_id is required")
+    print(f"[DEAL CHAT STOP] stop request chat_id={chat_id}")
+    _cancelled_chats.add(chat_id)
+    task = _running_tasks.get(chat_id)
+    if task and not task.done():
+        try:
+            task.cancel()
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL CHAT STOP] cancel failed (non-fatal): {e}")
+        try:
+            await save_to_supabase(
+                chat_id, "status", "Agent stopped by user.",
+                {"status": "cancelled", "source": "deal_stop_endpoint"})
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL CHAT STOP] supabase save failed (non-fatal): {e}")
+        return {"chat_id": chat_id, "status": "stopped", "message": "Agent stopped."}
+    _running_tasks.pop(chat_id, None)
+    return {"chat_id": chat_id, "status": "not_found",
+            "message": "No running agent task for this chat_id."}
+
+
 @app.get("/avoma/reports", response_class=HTMLResponse)
 async def avoma_reports_ui():
     """Lightweight UI for browsing Avoma-triggered SF enrichment reports."""

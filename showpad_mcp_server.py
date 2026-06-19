@@ -149,75 +149,50 @@ def list_channels(limit: int = 20, offset: int = 0) -> dict:
 
 @mcp.tool
 def create_share_link(asset_id: str, title: str = "") -> dict:
-    """Create a Showpad Shared Space for this asset and return a REAL, PUBLIC,
-    login-free shareable URL (publicUrl) — safe to send to a prospect and to embed
-    in an outbound email. This is the ONLY correct way to get a shareable Showpad
-    link; do NOT hand-construct share URLs from a slug/id.
+    """Create a Showpad SHARE for this asset and return a real, PUBLIC, login-free
+    shareable URL (the https://<org>.showpad.com/share/<token> link a prospect can
+    open with no Showpad account) — safe to embed in an outbound email. This is the
+    ONLY correct way to get a shareable Showpad link; do NOT hand-construct share URLs.
 
-    Flow: creates a Shared Space (external access enabled), adds the asset to it,
-    and returns its public URL (e.g. https://zycus.showpad.com/s/<slug>).
+    Uses POST /v4/shares (the same mechanism as the Showpad "Share" button), which
+    produces a public link-only Share for the asset (no recipient email needed).
 
     Args:
         asset_id: the Showpad asset id from search_assets / query_assets / get_asset.
-        title: optional customer-facing Shared Space title (e.g. "Zycus — eSourcing for <Account>").
+        title: optional customer-facing title for the Share (e.g. "Zycus — eSourcing for <Account>").
 
     Returns:
-        {public_url, shared_space_id, asset_id, asset_added} on success, or a dict
-        with an `error` key (e.g. external Shared Spaces disabled for the org, or
-        the asset is not shareable).
+        {public_url, share_id, asset_id} on success, or a dict with an `error` key
+        (e.g. the asset is not shareable, or sharing is restricted).
     """
     if not API_KEY:
         return {"error": "SHOWPAD_API_KEY is not configured."}
-    # 1. Resolve an owner user id (the create-space API requires owner.userId).
-    owner_id = os.environ.get("SHOWPAD_SHARE_OWNER_USER_ID", "").strip()
-    if not owner_id:
-        try:
-            users = v4_get("users", {"limit": 1})
-            items = users.get("items") if isinstance(users, dict) else None
-            if items:
-                owner_id = items[0].get("id", "")
-        except Exception as exc:  # noqa: BLE001
-            return {"error": f"Could not resolve a Shared Space owner: {exc}"}
-    if not owner_id:
-        return {"error": "No Showpad user available to own the Shared Space."}
-    # 2. Create the Shared Space with external (public) access enabled.
     body = {
-        "owner": {"userId": owner_id},
-        "title": title or "Zycus — shared with you",
-        "isExternalDownloadAllowed": True,
-        "isExternalInviteAllowed": True,
+        "title": (title or "Zycus — shared with you")[:200],
+        "assets": [{"id": asset_id}],
+        "origin": "MASE",
+        "isDownloadAllowed": True,
     }
     try:
-        space = v4_post("shared-spaces", json_body=body)
+        res = v4_post("shares", json_body=body)
     except httpx.HTTPStatusError as exc:
-        return {"error": f"Could not create Shared Space (HTTP {exc.response.status_code}). "
-                         f"External/public Shared Spaces may be disabled for this org.",
-                "detail": (exc.response.text or "")[:300]}
+        return {"error": f"Could not create Share (HTTP {exc.response.status_code}). "
+                         f"The asset may not be shareable, or sharing is restricted.",
+                "detail": (exc.response.text or "")[:300], "asset_id": asset_id}
     except Exception as exc:  # noqa: BLE001
-        return {"error": f"Could not create Shared Space: {exc}"}
-    space_id = space.get("id") if isinstance(space, dict) else None
-    public_url = (space.get("publicUrl") or space.get("publicUri")) if isinstance(space, dict) else None
-    # 3. Add the asset to the Shared Space.
-    added, warning = False, None
-    if space_id:
-        try:
-            res = v4_post(f"shared-spaces/{space_id}/items",
-                          json_body={"items": [{"type": "asset", "assetId": asset_id}]})
-            added = bool(isinstance(res, dict) and (res.get("assetSuccessCount") or 0) >= 1)
-            if not added:
-                warning = (f"asset not added (success={res.get('assetSuccessCount') if isinstance(res, dict) else '?'}, "
-                           f"fail={res.get('assetFailureCount') if isinstance(res, dict) else '?'}) — it may be non-shareable/archived")
-        except httpx.HTTPStatusError as exc:
-            warning = f"add-asset HTTP {exc.response.status_code}: {(exc.response.text or '')[:200]}"
-        except Exception as exc:  # noqa: BLE001
-            warning = f"add-asset failed: {exc}"
-    out = {"public_url": public_url, "shared_space_id": space_id,
-           "asset_id": asset_id, "asset_added": added}
-    if warning:
-        out["warning"] = warning
+        return {"error": f"Could not create Share: {exc}", "asset_id": asset_id}
+    if not isinstance(res, dict):
+        return {"error": "Unexpected Share response.", "raw": str(res)[:300], "asset_id": asset_id}
+    # The prospect-facing public link: prefer the anonymous (untracked, no-login) URL;
+    # fall back to the other URLs Showpad returns.
+    public_url = (res.get("anonymousUrl") or res.get("untrackedUrl")
+                  or res.get("publicUri") or res.get("dynamicUrl")
+                  or res.get("url") or res.get("link"))
+    out = {"public_url": public_url, "share_id": res.get("id"), "asset_id": asset_id}
     if not public_url:
-        out["error"] = ("Shared Space created but no public_url was returned — external "
-                        "public sharing may be disabled for this Showpad org.")
+        out["error"] = "Share created but no public URL was returned."
+        out["url_fields"] = {k: res.get(k) for k in
+                             ("anonymousUrl", "untrackedUrl", "publicUri", "dynamicUrl", "url", "link")}
     return out
 
 # --- Content download & text extraction -------------------------------------

@@ -165,3 +165,164 @@ def create_completed_task_oauth(
             j = {}
         return {"id": j.get("id"), "success": bool(j.get("success", True)), "errors": j.get("errors", [])}
     raise SalesforceWriteError(f"Task create (oauth) failed [{r.status_code}]: {r.text[:300]}")
+
+
+# ---------------------------------------------------------------------------
+# Open-activity Task writers (Status='Planned' — this org's open-task value) and
+# the Next Step append writers. Added for the 3-destination update branching
+# (Next Step / open To-Do activity / Completed). All stay on this sanctioned,
+# human-initiated path so the agent's MCP write lockdown is untouched.
+# ---------------------------------------------------------------------------
+
+def create_open_task(
+    *,
+    subject: str,
+    what_id: str,
+    activity_date: str,
+    description: Optional[str] = None,
+    who_id: Optional[str] = None,
+    owner_id: Optional[str] = None,
+) -> dict:
+    """Create an OPEN Salesforce Task (Status='Planned') on an Opportunity, with
+    activity_date as the DUE date. 'Planned' is this org's open-task picklist value
+    (Planned / In Process / Completed / ...). Same field mapping + shared connection
+    as create_completed_task; left open so it surfaces as a pending activity."""
+    subj = truncate_subject(subject)
+    if not subj:
+        raise SalesforceWriteError("subject is required")
+    if not (what_id or "").strip():
+        raise SalesforceWriteError("what_id (Opportunity id) is required")
+    payload: dict = {
+        "Subject": subj,
+        "Status": "Planned",
+        "Priority": "Normal",
+        "WhatId": what_id.strip(),
+    }
+    if activity_date:
+        payload["ActivityDate"] = activity_date
+    if description:
+        payload["Description"] = description
+    if who_id:
+        payload["WhoId"] = who_id
+    if owner_id:
+        payload["OwnerId"] = owner_id
+    try:
+        return _sf_conn().Task.create(payload)
+    except SalesforceWriteError:
+        raise
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Open Task create failed: {e}")
+
+
+def create_open_task_oauth(
+    *,
+    access_token: str,
+    instance_url: str,
+    subject: str,
+    what_id: str,
+    activity_date: str,
+    description: Optional[str] = None,
+    who_id: Optional[str] = None,
+    owner_id: Optional[str] = None,
+) -> dict:
+    """create_open_task via the rep's OAuth token (CreatedBy + Owner = the rep)."""
+    import requests  # lazy
+    subj = truncate_subject(subject)
+    if not subj:
+        raise SalesforceWriteError("subject is required")
+    if not (what_id or "").strip():
+        raise SalesforceWriteError("what_id (Opportunity id) is required")
+    if not (access_token and instance_url):
+        raise SalesforceWriteError("missing access_token/instance_url for per-user push")
+    payload: dict = {
+        "Subject": subj,
+        "Status": "Planned",
+        "Priority": "Normal",
+        "WhatId": what_id.strip(),
+    }
+    if activity_date:
+        payload["ActivityDate"] = activity_date
+    if description:
+        payload["Description"] = description
+    if who_id:
+        payload["WhoId"] = who_id
+    if owner_id:
+        payload["OwnerId"] = owner_id
+    url = f"{instance_url.rstrip('/')}/services/data/{SF_API_VERSION}/sobjects/Task"
+    try:
+        r = requests.post(
+            url, json=payload,
+            headers={"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"},
+            timeout=30,
+        )
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Open Task create (oauth) request failed: {e}")
+    if r.status_code in (200, 201):
+        try:
+            j = r.json()
+        except Exception:  # noqa: BLE001
+            j = {}
+        return {"id": j.get("id"), "success": bool(j.get("success", True)), "errors": j.get("errors", [])}
+    raise SalesforceWriteError(f"Open Task create (oauth) failed [{r.status_code}]: {r.text[:300]}")
+
+
+def append_next_step(*, opp_id: str, entry: str, existing: Optional[str] = None) -> dict:
+    """Prepend `entry` to Opportunity.Next_Step__c, NEWEST ON TOP, preserving the
+    FULL prior trail (read-modify-write). Next_Step__c is an HTML rich-text long-
+    text-area, so `entry` must already be an HTML fragment (e.g. '<p>...</p>').
+    Reads the current value (unless `existing` is supplied) via the shared
+    connection, prepends, and updates. Returns {id, success}."""
+    oid = (opp_id or "").strip()
+    if not oid:
+        raise SalesforceWriteError("opp_id is required")
+    if not (entry or "").strip():
+        raise SalesforceWriteError("entry is required")
+    try:
+        conn = _sf_conn()
+        if existing is None:
+            recs = conn.query(
+                f"SELECT Next_Step__c FROM Opportunity WHERE Id = '{oid}'"
+            ).get("records", [])
+            existing = (recs[0].get("Next_Step__c") if recs else "") or ""
+        new_val = entry + (existing or "")
+        conn.Opportunity.update(oid, {"Next_Step__c": new_val})
+        return {"id": oid, "success": True}
+    except SalesforceWriteError:
+        raise
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Next Step append failed: {e}")
+
+
+def append_next_step_oauth(
+    *, access_token: str, instance_url: str, opp_id: str, entry: str,
+) -> dict:
+    """append_next_step via the rep's OAuth token (LastModifiedBy = the rep). GETs
+    the current Next_Step__c, prepends `entry`, PATCHes the field."""
+    import requests  # lazy
+    oid = (opp_id or "").strip()
+    if not oid:
+        raise SalesforceWriteError("opp_id is required")
+    if not (entry or "").strip():
+        raise SalesforceWriteError("entry is required")
+    if not (access_token and instance_url):
+        raise SalesforceWriteError("missing access_token/instance_url for per-user push")
+    base = f"{instance_url.rstrip('/')}/services/data/{SF_API_VERSION}/sobjects/Opportunity/{oid}"
+    hdr = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
+    try:
+        g = requests.get(base + "?fields=Next_Step__c", headers=hdr, timeout=30)
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Next Step read (oauth) failed: {e}")
+    if g.status_code != 200:
+        raise SalesforceWriteError(f"Next Step read (oauth) failed [{g.status_code}]: {g.text[:200]}")
+    try:
+        existing = (g.json().get("Next_Step__c") or "")
+    except Exception:  # noqa: BLE001
+        existing = ""
+    new_val = entry + existing
+    try:
+        p = requests.patch(base, json={"Next_Step__c": new_val}, headers=hdr, timeout=30)
+    except Exception as e:  # noqa: BLE001
+        raise SalesforceWriteError(f"Next Step write (oauth) failed: {e}")
+    if p.status_code in (200, 204):
+        return {"id": oid, "success": True}
+    raise SalesforceWriteError(f"Next Step write (oauth) failed [{p.status_code}]: {p.text[:300]}")

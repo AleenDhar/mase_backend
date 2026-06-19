@@ -7601,11 +7601,23 @@ async def deal_engine_todo_override_clear(request: Request):
 
 @app.post("/api/deal-engine/todo/update")
 async def deal_engine_todo_update(request: Request):
-    """Add a manual COMPLETED update on a deal. Logs a completed Salesforce Task on
-    the Opportunity AND stores it for the in-app 'Recently completed' list. The
-    in-app row is saved even if the Salesforce write fails (sf_error is returned),
-    so a manually-logged update is never lost. Body: {opp_id, note, done_date?, by?}."""
+    """Add a manual update on a deal, BRANCHING to one of three destinations. All
+    writes are direct, human-initiated simple-salesforce calls (NOT the agent tool
+    catalog), so the Salesforce write lockdown stays intact. The in-app row is
+    always saved so the update is never lost.
+
+    Body: {opp_id, note, destination?, due_date?, done_date?, by?,
+           sf_access_token?, sf_instance_url?}.
+      destination = 'completed' (default) -> Completed Salesforce Task on the opp.
+                  = 'todo'                -> MASE to-do + OPEN Salesforce Task
+                                             (Status='Planned', ActivityDate=due_date).
+                  = 'next_step'           -> APPEND to Opportunity.Next_Step__c,
+                                             newest on top, full prior trail kept.
+    Every branch carries a due date (completed defaults to today). Per-user OAuth
+    token (sf_access_token/sf_instance_url) makes the rep the author when present.
+    Returns {ok, destination, update, sf_task_id?, next_step_updated?, sf_error?}."""
     from datetime import date as _date
+    import html as _html
     import deal_engine_store as dstore
     import salesforce_task_writer as sfw
     try:
@@ -7616,33 +7628,113 @@ async def deal_engine_todo_update(request: Request):
         return JSONResponse({"error": "body must be a JSON object"}, status_code=400)
     opp_id = str(d.get("opp_id") or "").strip()
     note = str(d.get("note") or "").strip()
+    destination = str(d.get("destination") or "completed").strip().lower()
+    if destination not in ("completed", "todo", "next_step"):
+        return JSONResponse(
+            {"error": "destination must be completed | todo | next_step"},
+            status_code=400)
+    due_date = str(d.get("due_date") or "").strip()
     done_date = str(d.get("done_date") or "").strip() or _date.today().isoformat()
     by = str(d.get("by") or d.get("pushed_by") or "").strip() or None
+    sf_token = str(d.get("sf_access_token") or "").strip() or None
+    sf_instance = str(d.get("sf_instance_url") or "").strip() or None
     if not opp_id:
         return JSONResponse({"error": "opp_id required"}, status_code=400)
     if not note:
         return JSONResponse({"error": "note required"}, status_code=400)
+    if destination in ("todo", "next_step") and not due_date:
+        return JSONResponse(
+            {"error": "due_date required for the todo / next_step destinations"},
+            status_code=400)
+
+    def _fmt(iso: str) -> str:
+        try:
+            return _date.fromisoformat(iso).strftime("%b %d, %Y")
+        except Exception:  # noqa: BLE001
+            return iso or ""
+
+    def _sf_err(e) -> str:
+        return (f"Salesforce write failed — reconnect your Salesforce account: {e}"
+                if sf_token else f"Salesforce write failed: {e}")
+
     try:
         rec = await _aw(dstore.get_record, opp_id)
         what_id = (rec.get("opp_id") if rec else None) or opp_id
         sf_task_id = None
         sf_error = None
-        subject = sfw.truncate_subject(note)
-        description = ("Deal Engine manual update (completed) logged from MASE.\n"
-                       f"Update: {note}\nDone: {done_date}" + (f"\nBy: {by}" if by else ""))
-        try:
-            result = await _aw(sfw.create_completed_task, subject=subject,
-                               what_id=what_id, activity_date=done_date,
-                               description=description, who_id=None)
-            if isinstance(result, dict) and result.get("success") and result.get("id"):
-                sf_task_id = result.get("id")
-            else:
-                sf_error = "Salesforce did not confirm Task creation"
-        except sfw.SalesforceWriteError as e:
-            sf_error = f"Salesforce write failed: {e}"
-        row = await _aw(dstore.insert_manual_update, opp_id=what_id, note=note,
-                        done_date=done_date, sf_task_id=sf_task_id, created_by=by)
-        return {"ok": True, "update": row, "sf_task_id": sf_task_id, "sf_error": sf_error}
+        next_step_updated = False
+
+        if destination == "next_step":
+            # Newest-on-top append to the HTML rich-text Next_Step__c, full prior
+            # trail preserved. Entry is an HTML <p> block matching the field's
+            # existing convention; note text is escaped.
+            stamp = f"{_fmt(done_date)} (due {_fmt(due_date)})"
+            entry = f"<p>{stamp}: {_html.escape(note)}</p>"
+            try:
+                if sf_token and sf_instance:
+                    await _aw(sfw.append_next_step_oauth, access_token=sf_token,
+                              instance_url=sf_instance, opp_id=what_id, entry=entry)
+                else:
+                    await _aw(sfw.append_next_step, opp_id=what_id, entry=entry)
+                next_step_updated = True
+            except sfw.SalesforceWriteError as e:
+                sf_error = _sf_err(e)
+        elif destination == "todo":
+            # MASE to-do (the in-app row below) + an OPEN Salesforce activity.
+            subject = sfw.truncate_subject(note)
+            description = ("Deal Engine to-do (open) logged from MASE.\n"
+                           f"To-do: {note}\nDue: {_fmt(due_date)}"
+                           + (f"\nBy: {by}" if by else ""))
+            try:
+                if sf_token and sf_instance:
+                    result = await _aw(sfw.create_open_task_oauth,
+                                       access_token=sf_token, instance_url=sf_instance,
+                                       subject=subject, what_id=what_id,
+                                       activity_date=due_date, description=description,
+                                       who_id=None)
+                else:
+                    result = await _aw(sfw.create_open_task, subject=subject,
+                                       what_id=what_id, activity_date=due_date,
+                                       description=description, who_id=None)
+                if isinstance(result, dict) and result.get("success") and result.get("id"):
+                    sf_task_id = result.get("id")
+                else:
+                    sf_error = "Salesforce did not confirm Task creation"
+            except sfw.SalesforceWriteError as e:
+                sf_error = _sf_err(e)
+        else:  # 'completed' — unchanged behaviour (a completed Task on the opp)
+            subject = sfw.truncate_subject(note)
+            description = ("Deal Engine manual update (completed) logged from MASE.\n"
+                           f"Update: {note}\nDone: {done_date}"
+                           + (f"\nBy: {by}" if by else ""))
+            act = due_date or done_date
+            try:
+                if sf_token and sf_instance:
+                    result = await _aw(sfw.create_completed_task_oauth,
+                                       access_token=sf_token, instance_url=sf_instance,
+                                       subject=subject, what_id=what_id,
+                                       activity_date=act, description=description,
+                                       who_id=None)
+                else:
+                    result = await _aw(sfw.create_completed_task, subject=subject,
+                                       what_id=what_id, activity_date=act,
+                                       description=description, who_id=None)
+                if isinstance(result, dict) and result.get("success") and result.get("id"):
+                    sf_task_id = result.get("id")
+                else:
+                    sf_error = "Salesforce did not confirm Task creation"
+            except sfw.SalesforceWriteError as e:
+                sf_error = _sf_err(e)
+
+        # Always persist the in-app row so the update is never lost — this is also
+        # the MASE-side record for the 'todo' and 'next_step' destinations.
+        note_for_log = note if destination == "completed" else f"[{destination}] {note}"
+        row = await _aw(dstore.insert_manual_update, opp_id=what_id, note=note_for_log,
+                        done_date=(due_date or done_date), sf_task_id=sf_task_id,
+                        created_by=by)
+        return {"ok": True, "destination": destination, "update": row,
+                "sf_task_id": sf_task_id, "next_step_updated": next_step_updated,
+                "sf_error": sf_error}
     except dstore.DealEngineError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
     except Exception as e:  # noqa: BLE001

@@ -674,6 +674,34 @@ def _domain_of(value: Optional[str]) -> Optional[str]:
     return None if v in _GENERIC else v
 
 
+# Known SI / consultancy / channel-partner domains. When several reps from one of
+# these sit on an account, the dominant-domain cluster MUST NOT absorb their domain
+# as a "buyer alias" — that mis-read RBA as well-threaded when its only contacts
+# were Atos. Backstop alongside the dominant-domain test.
+_SI_DOMAINS = {
+    "atos.com", "atos.net", "accenture.com", "deloitte.com", "pwc.com",
+    "ey.com", "kpmg.com", "wipro.com", "tcs.com", "infosys.com",
+    "cognizant.com", "capgemini.com", "ibm.com", "dxc.com", "hcltech.com",
+    "techmahindra.com", "ltimindtree.com", "wheelsontech.com",
+}
+
+# Name tokens that mark a shared mailbox / meeting room / distribution list posing
+# as a contact. These are NOT people and must not inflate the buyer-side count.
+# Conservative (name-pattern only) to avoid dropping a real contact.
+_NONPERSON_TOKENS = (
+    "meeting room", "conference room", "boardroom", "salle de", "salle ",
+    "mailbox", "distribution list", "shared mailbox", "no-reply", "noreply",
+    "do not reply", " dl ",
+)
+
+
+def _is_nonperson(name: Optional[str], email: Optional[str]) -> bool:
+    """True for room/mailbox/DL 'contacts' that inflate buyer_roles_count with
+    non-people (e.g. 'Victoria Hong Kong Meeting Room', 'Salle De Conference')."""
+    n = (name or "").lower()
+    return any(tok in n for tok in _NONPERSON_TOKENS)
+
+
 async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     """Cheap, AI-free buyer-identity prefetch for Avoma attendee matching.
 
@@ -685,19 +713,23 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     flaky, and reused server-side to decide whether a calls_read==0 record is
     genuinely dark or just a discovery miss worth retrying. Best-effort: any
     failure returns an empty-but-shaped dict so the sweep still runs."""
-    out = {"account_name": None,
-           "website": None, "domains": [], "contacts": [], "task_contacts": [],
-           "roles_count": 0, "last_activity_date": None}
+    out = {"account_name": None, "account_id": None, "self_name": None,
+           "website": None, "domains": [], "contacts": [], "account_contacts": [],
+           "task_contacts": [], "sibling_opps": [], "contact_roles_thin": False,
+           "roles_count": 0, "buyer_roles_count": 0, "partner_count": 0,
+           "nonperson_count": 0, "last_activity_date": None}
     sid = _sql_str(opp_id)
     try:
         head = await _soql(
             agent_manager,
-            f"SELECT Account.Name, Account.Website, LastActivityDate "
+            f"SELECT AccountId, Account.Name, Account.Website, Name, LastActivityDate "
             f"FROM Opportunity WHERE Id = '{sid}'")
         if head:
             h = head[0]
+            out["account_id"] = h.get("AccountId") or _sf_name(h, "Account", "Id")
             out["account_name"] = _sf_name(h, "Account", "Name") or out["account_name"]
             out["website"] = _sf_name(h, "Account", "Website")
+            out["self_name"] = h.get("Name")
             out["last_activity_date"] = h.get("LastActivityDate")
     except Exception as e:  # noqa: BLE001 — prefetch is best-effort
         print(f"[DEAL-SWEEP] buyer-identity head failed opp={opp_id}: "
@@ -705,7 +737,8 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     try:
         roles = await _soql(
             agent_manager,
-            f"SELECT Contact.Name, Contact.Title, Contact.Email, Role, IsPrimary "
+            f"SELECT Contact.Name, Contact.Title, Contact.Email, Contact.Account.Name, "
+            f"Role, IsPrimary "
             f"FROM OpportunityContactRole WHERE OpportunityId = '{sid}'")
         for r in roles or []:
             nm = _sf_name(r, "Contact", "Name")
@@ -715,12 +748,133 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
                 "name": nm,
                 "title": _sf_name(r, "Contact", "Title"),
                 "email": _sf_name(r, "Contact", "Email"),
+                "company": _sf_name(r, "Contact", "Account", "Name"),
+                "domain": _domain_of(_sf_name(r, "Contact", "Email")),
                 "role": r.get("Role"),
             })
         out["roles_count"] = len(out["contacts"])
     except Exception as e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] buyer-identity roles failed opp={opp_id}: "
               f"{type(e).__name__}: {e}", flush=True)
+    # PARTNER EXCEPTION — a contact role can be a partner / SI / reseller (an SI
+    # like ROJO, a channel partner), not a buyer employee. NEVER drop them; they
+    # are real stakeholders (often the channel the deal runs through). We tag each
+    # role buyer-side vs partner, and base the "thin / single-threaded" judgement
+    # on the BUYER-side count so partners can't mask buyer single-threading.
+    #
+    # We do NOT classify on the website domain alone: a buyer employee can sit on a
+    # corporate ALIAS / subsidiary domain that differs from the website (e.g.
+    # Fortive's website is fortive.com but employees use ftvbsllc.com). So we build
+    # a buyer-domain SET = website domain + every domain that CLUSTERS across the
+    # account's own contacts (>=2), and only a domain OUTSIDE that set is a partner.
+    # The extra account-domain query is paid ONLY when a role is off the website
+    # domain (the common all-on-website case stays free). If we end up with no
+    # buyer-domain set at all, we cannot classify -> treat as buyer (never silently
+    # de-weight a real contact).
+    _web = _domain_of(out.get("website"))
+    buyer_domains = {_web} if _web else set()
+    off_domain = any(
+        c.get("domain") and c["domain"] not in buyer_domains
+        for c in out["contacts"])
+    if off_domain and out.get("account_id"):
+        try:
+            rows = await _soql(
+                agent_manager,
+                f"SELECT Email FROM Contact "
+                f"WHERE AccountId = '{_sql_str(out['account_id'])}' "
+                f"AND Email != null LIMIT 200")
+            counts: dict = {}
+            for r in rows or []:
+                d = _domain_of(r.get("Email"))
+                if d:
+                    counts[d] = counts.get(d, 0) + 1
+            # Fold in only the DOMINANT contact domain(s) — the account's real
+            # workforce domain — NOT every domain on >=2 contacts. A flat >=2 is
+            # exploitable: an SI that seats 2+ reps on the account (Atos on RBA)
+            # would be absorbed as a "buyer alias" and mask that the account has
+            # zero employee contacts. Add a domain only if it is within 50% of the
+            # top domain's count, and never if it is a known SI/partner domain.
+            if counts:
+                _top = max(counts.values())
+                _thresh = max(2, _top * 0.5)
+                buyer_domains |= {
+                    d for d, n in counts.items()
+                    if n >= _thresh and d not in _SI_DOMAINS}
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] buyer-identity account-domain cluster failed "
+                  f"opp={opp_id}: {type(e).__name__}: {e}", flush=True)
+    buyer_roles = 0
+    for c in out["contacts"]:
+        cd = c.get("domain")
+        c["is_partner"] = bool(cd and buyer_domains and cd not in buyer_domains)
+        c["is_nonperson"] = _is_nonperson(c.get("name"), c.get("email"))
+        if not c["is_partner"] and not c["is_nonperson"]:
+            buyer_roles += 1
+    out["buyer_roles_count"] = buyer_roles
+    out["partner_count"] = sum(1 for c in out["contacts"] if c.get("is_partner"))
+    out["nonperson_count"] = sum(
+        1 for c in out["contacts"] if c.get("is_nonperson"))
+    # FALLBACK — when the opp is THIN on contact roles (< 3, the multi-thread bar):
+    # recover the account's own contacts directly via Contact WHERE AccountId, and
+    # the sibling open opps on the account. We MUST query the child object by FK;
+    # the gateway never materialises the Account.Contacts child subquery (always
+    # [0 records] even when contacts exist), which is what made multi-threaded
+    # accounts read as single-threaded/dark. account_contacts are ACCOUNT-level
+    # (not opp stakeholders) — used to recover the mailbox-domain set for Avoma
+    # attendee matching, surface multi-thread candidates, and flag that the account
+    # is not genuinely empty. The thin flag drives a downstream "add contact roles"
+    # to-do nudge.
+    out["contact_roles_thin"] = out["buyer_roles_count"] < 3
+    # Sibling OPEN opps — fetched ALWAYS, NOT gated on thin. Scope ambiguity exists
+    # whenever an account runs >1 open deal, regardless of how well-threaded THIS opp
+    # is: a healthy deal (e.g. Austrian Post, 21 roles) still shares its account with
+    # a Certinal opp whose calls must not be mis-attributed here. The agent uses these
+    # to SCOPE-route shared-account calls/stakeholders by call SUBJECT — never by
+    # Avoma's opp association (it dumps everything onto one opp / the wrong account).
+    # Cheap; usually returns 0.
+    if out.get("account_id"):
+        try:
+            sibs = await _soql(
+                agent_manager,
+                f"SELECT Id, Name, StageName FROM Opportunity "
+                f"WHERE AccountId = '{_sql_str(out['account_id'])}' AND Id != '{sid}' "
+                f"AND IsClosed = false ORDER BY CloseDate ASC NULLS LAST LIMIT 15")
+            for s in sibs or []:
+                nm = _sf_name(s, "Name")
+                if not nm:
+                    continue
+                out["sibling_opps"].append({
+                    "id": s.get("Id"),
+                    "name": nm,
+                    "stage": s.get("StageName"),
+                })
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] buyer-identity sibling-opps failed "
+                  f"opp={opp_id}: {type(e).__name__}: {e}", flush=True)
+    # Account-contacts fallback — only when THIN: recover the account's own contacts
+    # directly via Contact WHERE AccountId (the gateway never materialises the
+    # Account.Contacts child subquery). Recovers the bench + mailbox-domain set for
+    # Avoma attendee matching; drives the "add contact roles" to-do nudge.
+    if out["contact_roles_thin"] and out.get("account_id"):
+        acct = _sql_str(out["account_id"])
+        try:
+            acct_contacts = await _soql(
+                agent_manager,
+                f"SELECT Name, Title, Email FROM Contact "
+                f"WHERE AccountId = '{acct}' "
+                f"AND Email != null ORDER BY LastModifiedDate DESC LIMIT 50")
+            for c in acct_contacts or []:
+                nm = _sf_name(c, "Name")
+                if not nm:
+                    continue
+                out["account_contacts"].append({
+                    "name": nm,
+                    "title": _sf_name(c, "Title"),
+                    "email": _sf_name(c, "Email"),
+                })
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] buyer-identity account-contacts fallback failed "
+                  f"opp={opp_id}: {type(e).__name__}: {e}", flush=True)
     try:
         tasks = await _soql(
             agent_manager,
@@ -735,9 +889,10 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     except Exception as e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] buyer-identity tasks failed opp={opp_id}: "
               f"{type(e).__name__}: {e}", flush=True)
-    # Derive the attendee-matching domains: contact emails + account website.
+    # Derive the attendee-matching domains: contact emails (opp roles, then the
+    # account-contacts fallback) + account website.
     domains: list[str] = []
-    for c in out["contacts"]:
+    for c in out["contacts"] + out["account_contacts"]:
         d = _domain_of(c.get("email"))
         if d and d not in domains:
             domains.append(d)
@@ -755,17 +910,71 @@ def _buyer_identity_block(bi: dict) -> str:
     if not bi:
         return ""
     lines: list[str] = []
+    if bi.get("self_name"):
+        lines.append(
+            f"THIS opportunity (scope anchor — attribute calls/stakeholders to it "
+            f"ONLY when the call subject/scope matches): {bi['self_name']}")
     if bi.get("domains"):
         lines.append("Buyer email/website domains (match Avoma attendees on these): "
                      + ", ".join(bi["domains"]))
-    if bi.get("contacts"):
+    contacts = bi.get("contacts") or []
+    buyers = [c for c in contacts
+              if not c.get("is_partner") and not c.get("is_nonperson")]
+    partners = [c for c in contacts if c.get("is_partner")]
+    if buyers:
         people = "; ".join(
             f"{c['name']}"
             + (f" ({c['title']})" if c.get("title") else "")
             + (f" <{c['email']}>" if c.get("email") else "")
             + (f" [{c['role']}]" if c.get("role") else "")
-            for c in bi["contacts"][:20])
-        lines.append(f"Opportunity contact roles ({bi.get('roles_count', 0)}): {people}")
+            for c in buyers[:20])
+        lines.append(
+            f"Buyer-side contact roles ({bi.get('buyer_roles_count', len(buyers))}): "
+            f"{people}")
+    if partners:
+        ppl = "; ".join(
+            f"{c['name']}"
+            + (f" ({c['title']})" if c.get("title") else "")
+            + (f" @{c['company']}" if c.get("company") else "")
+            + (f" <{c['email']}>" if c.get("email") else "")
+            + (f" [{c['role']}]" if c.get("role") else "")
+            for c in partners[:20])
+        lines.append(
+            f"PARTNER / third-party contact roles ({len(partners)}) — already named on "
+            "this opp; RETAIN them in full as real stakeholders (an SI/reseller is often "
+            "the channel the deal runs through, and partner-led calls run through them). "
+            f"Do NOT count them toward buyer multi-threading: {ppl}")
+    if bi.get("account_contacts"):
+        acct_people = "; ".join(
+            f"{c['name']}"
+            + (f" ({c['title']})" if c.get("title") else "")
+            + (f" <{c['email']}>" if c.get("email") else "")
+            for c in bi["account_contacts"][:20])
+        lines.append(
+            f"Opp is thin on contact roles ({bi.get('roles_count', 0)}); "
+            "account-level contacts pulled directly (for domain/mailbox identification "
+            "and multi-thread candidates, NOT confirmed opp stakeholders unless a call "
+            f"or email proves involvement in THIS opp's scope): {acct_people}")
+    if bi.get("sibling_opps"):
+        sibs = "; ".join(
+            f"{s['name']} [{s.get('stage') or '?'}]"
+            for s in bi["sibling_opps"][:15])
+        lines.append(
+            "OTHER OPEN OPPS ON THIS ACCOUNT (distinct scopes): " + sibs + ". "
+            "A shared-account call/stakeholder belongs to THIS opp ONLY if its "
+            "subject/scope matches this opp — route by call SUBJECT, NOT by shared "
+            "domain and NOT by Avoma's opp association (it mis-attributes across "
+            "opps and even across accounts). Calls clearly scoped to a sibling opp "
+            "are NOT evidence for this deal.")
+    if bi.get("contact_roles_thin"):
+        lines.append(
+            f"DATA-HYGIENE GAP: only {bi.get('buyer_roles_count', 0)} BUYER-side "
+            f"contact role(s) on this opp"
+            + (f" (plus {bi.get('partner_count', 0)} partner role(s))"
+               if bi.get("partner_count") else "")
+            + ", below the multi-thread bar. Emit a to-do to add the missing "
+            "buyer-side contact roles to the opportunity (and multi-thread beyond a "
+            "single contact). Treat this as an action item, not housekeeping.")
     if bi.get("task_contacts"):
         lines.append("Recent task contacts: " + ", ".join(bi["task_contacts"][:15]))
     if bi.get("last_activity_date"):

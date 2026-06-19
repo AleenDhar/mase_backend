@@ -16,6 +16,7 @@ reused from opportunity_analyzer (OpenAI by default, same as the sweep).
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 import uuid
 
@@ -146,6 +147,34 @@ async def _run_todo(agent_manager, task: str, *, account: str = "",
             ctx_lines.append(f"Opportunity Id: {opportunity_id}")
         user_msg = task if not ctx_lines else task + "\n\nContext:\n" + "\n".join(ctx_lines)
 
+        # Ground the draft in the Deal Sweep's existing canonical analysis (MEDDPICC,
+        # competitive position, gaps, stakeholders, recommended moves, living-memory
+        # packets, deal mechanics + next steps) — fetched from deal_engine_store. This
+        # is the SAME evidence the Deals/Espresso views show; the Todo Runner should
+        # lean on it FIRST rather than re-deriving everything from scratch.
+        if opportunity_id:
+            try:
+                import deal_engine_store as _store
+                rec = await asyncio.get_running_loop().run_in_executor(
+                    None, _store.get_record, str(opportunity_id)[:15])
+                if rec:
+                    compact = {
+                        "deal_mechanics": rec.get("hard"),
+                        "analysis": rec.get("ai"),
+                        "pulse": rec.get("pulse"),
+                        "living_memory_packets": rec.get("packets"),
+                        "swept_at": rec.get("swept_at"),
+                    }
+                    user_msg += (
+                        "\n\nDEAL SWEEP ANALYSIS (the canonical, evidence-anchored analysis already "
+                        "produced for this opportunity — GROUND YOUR EMAIL IN THIS FIRST: it has the "
+                        "deal mechanics + next steps, MEDDPICC, competitive position, gaps, "
+                        "stakeholders, recommended moves, and living-memory insights. Treat it as the "
+                        "primary source; only go to fresh Salesforce/Avoma reads to fill a gap it "
+                        "doesn't cover):\n" + json.dumps(compact, default=str))
+            except Exception as _e:  # noqa: BLE001 — never block drafting on this
+                print(f"[CHAT-AGENT] deal-sweep analysis load failed for {opportunity_id}: {_e}", flush=True)
+
         cfg = {"recursion_limit": int(os.getenv("CHAT_TODO_RECURSION_LIMIT", "60"))}
         # Headroom for a real multi-search Showpad + Salesforce + draft run. The chat
         # endpoint is async (streams to chat_messages), and the Todo Runner streams a
@@ -270,6 +299,34 @@ def _make_run_todo_tool(agent_manager, emit=None):
     return run_todo
 
 
+def _make_get_deal_analysis_tool(agent_manager):
+    @tool
+    async def get_deal_analysis(opportunity_id: str) -> str:
+        """Return the Deal Sweep's FULL canonical analysis for ONE opportunity — the
+        evidence-anchored record behind the Deals/Espresso views: deal mechanics + next
+        steps, MEDDPICC, competitive position, gaps, stakeholders, recommended moves,
+        pulse, and living-memory insight packets. This is your PRIMARY source for any
+        deal question — consult it BEFORE querying Salesforce or Avoma directly.
+        Args: opportunity_id — the Salesforce opportunity id."""
+        try:
+            import deal_engine_store as _store
+            rec = await asyncio.get_running_loop().run_in_executor(
+                None, _store.get_record, str(opportunity_id)[:15])
+            if not rec:
+                return f"No Deal Sweep analysis on record for opportunity {opportunity_id}."
+            compact = {
+                "deal_mechanics": rec.get("hard"),
+                "analysis": rec.get("ai"),
+                "pulse": rec.get("pulse"),
+                "living_memory_packets": rec.get("packets"),
+                "swept_at": rec.get("swept_at"),
+            }
+            return json.dumps(compact, default=str)
+        except Exception as e:  # noqa: BLE001
+            return f"Could not load Deal Sweep analysis for {opportunity_id}: {e}"
+    return get_deal_analysis
+
+
 def build_chat_agent(agent_manager, system_prompt: str, emit=None):
     """Build the RevOps chat deep agent: search_knowledge (shared MASE KB) + run_todo
     (delegate to the Todo Runner). Raises if neither tool is available so the caller can
@@ -283,6 +340,14 @@ def build_chat_agent(agent_manager, system_prompt: str, emit=None):
     sk = _search_knowledge_tool(agent_manager)
     if sk is not None:
         tools.append(sk)
+    # PRIMARY deal source: the Deal Sweep's analysis on demand.
+    tools.append(_make_get_deal_analysis_tool(agent_manager))
+    # Direct read access to Salesforce + Avoma so the chat can follow the retrieval
+    # hierarchy itself: deal-sweep analysis -> SFDC (tasks / next steps) -> Avoma.
+    # (Drafting + Showpad collateral stays delegated to the Todo Runner via run_todo.)
+    by_server = getattr(agent_manager, "_cached_mcp_tools_by_server", {}) or {}
+    for _srv in ("salesforce", "avoma"):
+        tools.extend(by_server.get(_srv, []) or [])
     tools.append(_make_run_todo_tool(agent_manager, emit=emit))
     return create_deep_agent(
         tools=tools, system_prompt=system_prompt, subagents=[],

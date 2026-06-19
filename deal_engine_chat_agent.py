@@ -147,7 +147,12 @@ async def _run_todo(agent_manager, task: str, *, account: str = "",
         user_msg = task if not ctx_lines else task + "\n\nContext:\n" + "\n".join(ctx_lines)
 
         cfg = {"recursion_limit": int(os.getenv("CHAT_TODO_RECURSION_LIMIT", "60"))}
-        timeout_s = int(os.getenv("CHAT_TODO_TIMEOUT_S", "300"))
+        # Headroom for a real multi-search Showpad + Salesforce + draft run. The chat
+        # endpoint is async (streams to chat_messages), and the Todo Runner streams a
+        # sub-row per step, so a longer run keeps the UI's watchdog alive rather than
+        # blocking a request. Working DIRECTLY (no sub-agents, per the prompt) keeps
+        # most runs well under this.
+        timeout_s = int(os.getenv("CHAT_TODO_TIMEOUT_S", "600"))
 
         # If no callback was passed, keep the cheap blocking path (callers that
         # don't want a live trace, e.g. tests / non-streaming endpoints).

@@ -372,6 +372,76 @@ async def _get_agent(agent_manager):
         return _cached_agent
 
 
+def _load_revops_prompt() -> str:
+    """Effective RevOps Head prompt — Supabase (ID_REVOPS_HEAD) else the on-disk
+    seed (prompts/mase_revops_head.md, from '## Who you are'). Never raises."""
+    try:
+        import agent_prompt_store as _aps
+        override = (_aps.get_prompt(_aps.ID_REVOPS_HEAD) or "").strip()
+        if override:
+            return override
+        import pathlib
+        seed = pathlib.Path(__file__).with_name("prompts") / "mase_revops_head.md"
+        txt = _aps.strip_leading_banner(seed.read_text(encoding="utf-8"))
+        i = txt.find("## Who you are")
+        return txt[i:] if i >= 0 else txt
+    except Exception as _e:  # noqa: BLE001 — never block the sweep on this read
+        print(f"[REVOPS-HEAD] prompt read failed ({_e})", flush=True)
+        return ""
+
+
+async def _revops_head_review(parsed: dict, opp: dict, opp_id: str) -> dict:
+    """RevOps Head strategic review (Deal Sweep January 1.0). Runs LAST, AFTER the
+    compliance QI, on standard+deep deals only, behind REVOPS_HEAD_ENABLED
+    (default OFF — ships dark). Works ONLY from the gate-clean record (no tools,
+    no fetch — it cannot introduce a new name/fact). On ANY error, when disabled,
+    or on a lean deal, returns `parsed` UNCHANGED — never blocks persist."""
+    if os.getenv("REVOPS_HEAD_ENABLED", "false").lower() not in ("1", "true", "yes"):
+        return parsed
+    try:
+        import deal_engine_qi as _qigate
+        fc = opp.get("forecast_category")
+        forecasted = (fc or "").strip().lower() in _qigate.FORECASTED
+        ev = ((parsed.get("ai") or {}).get("evidence_coverage") or {})
+        calls = int(ev.get("calls_read") or ev.get("calls_found") or 0)
+        try:
+            amount = float(opp.get("amount") or 0)
+        except Exception:  # noqa: BLE001
+            amount = 0.0
+        # richness_score scale is not normalised to 0-1, so don't let it drive the
+        # tier — gate staffing on the reliable signals (forecast / amount / calls).
+        plan = _qigate.staffing_plan(calls_read=calls, richness_score=0.0,
+                                     forecasted=forecasted, amount=amount)
+        if not plan.get("revops_head_review"):
+            return parsed  # lean deal — skip the expensive senior review
+        prompt = await asyncio.get_running_loop().run_in_executor(None, _load_revops_prompt)
+        if not prompt:
+            return parsed
+        from langchain_core.messages import SystemMessage, HumanMessage
+        user = ("Here is the gate-clean canonical record for this deal. Review it "
+                "per your remit and return the FULL record as ONE JSON object with "
+                "the `ai` block revised (re-ranked / sharpened moves, tightened "
+                "verdict) and `ai.revops_review` added. Change nothing about the "
+                "hard facts.\n\n" + json.dumps(parsed, ensure_ascii=False))
+        resp = await asyncio.wait_for(
+            _build_model().ainvoke(
+                [SystemMessage(content=prompt), HumanMessage(content=user)]),
+            timeout=float(os.getenv("REVOPS_HEAD_TIMEOUT_S", "150")))
+        revised = _oa._extract_json(getattr(resp, "content", "") or "")
+        new_ai = revised.get("ai") if isinstance(revised, dict) else None
+        if not isinstance(new_ai, dict) or not new_ai:
+            return parsed  # malformed — keep the gate-clean original
+        parsed["ai"] = new_ai
+        # Defense-in-depth: re-run the escalation gate — the RevOps Head must never
+        # reintroduce a VP/manager escalation on a non-forecasted deal.
+        _ev2, parsed = _qigate.check_escalation(parsed, fc)
+        print(f"[REVOPS-HEAD] opp={opp_id} reviewed (tier={plan['tier']})", flush=True)
+    except Exception as _re:  # noqa: BLE001 — the review must never block persist
+        print(f"[REVOPS-HEAD] opp={opp_id} non-fatal: "
+              f"{type(_re).__name__}: {_re}", flush=True)
+    return parsed
+
+
 def _find_tool(agent_manager, server: str, name: str):
     by_server = getattr(agent_manager, "_cached_mcp_tools_by_server", {}) or {}
     for t in by_server.get(server, []) or []:
@@ -1811,6 +1881,12 @@ async def analyze_one(
         except Exception as _ee:  # noqa: BLE001 — the gate must never block persist
             print(f"[QI-ESCALATION] opp={opp_id} non-fatal: "
                   f"{type(_ee).__name__}: {_ee}", flush=True)
+        # RevOps Head — strategic editor-in-chief (Deal Sweep January 1.0). Runs
+        # LAST, after the compliance QI, on standard+deep deals only, behind
+        # REVOPS_HEAD_ENABLED (default OFF — ships dark). Returns `parsed`
+        # unchanged when disabled / lean / on any error, so it can never block a
+        # persist. Re-runs the escalation gate internally as defense-in-depth.
+        parsed = await _revops_head_review(parsed, opp, opp_id)
         # Build the durable living-memory packets ONCE, AFTER the gate has approved
         # or sanitised the facts — so packets are always derived from gate-clean ai
         # and a stripped fabrication can never survive in the packet store.

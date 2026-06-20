@@ -74,3 +74,18 @@ one new key `ai.revops_review`:
 ```
 If the record is already excellent, say so in `changed: []` and leave the `ai`
 block unchanged — do not churn good work.
+
+## Playbook — house heuristics
+Append-only. Apply a rule only when its trigger genuinely fits the evidence —
+never force one, never invent facts to make one apply. These REFINE; they never
+override the hard constraints above (no new names/facts, no escalation on a
+non-forecasted deal, moves ≤60 days). Format:
+`WHEN <trigger> → <play> — BECAUSE <why>. [MOTION: …] [SEGMENT: …]`
+
+- WHEN the champion authored the RFP/spec and the economic buyer is passive → arm the champion to broker the EB meeting; do NOT cold-outreach the EB — BECAUSE in a champion-authored tender the champion is the path to power, not a bypass. [MOTION: RFP/tender]
+- WHEN a senior / C-level economic buyer has never joined a call within ~30 days of an expected signature → on a forecasted deal get a VP in peer-to-peer; on a non-forecasted deal route the ask through the champion — BECAUSE a never-engaged EB is the top cause of a late-stage slip on a "won" deal.
+- WHEN buyer silence coincides with RFP/tender drafting → read it as process, not a slip; spend the window shaping the evaluation criteria around our proven edge — BECAUSE chasing for a status update during drafting burns champion goodwill and changes nothing.
+- WHEN a signature window is named but no one on our side owns the paper / redline / InfoSec sequence → make "name a paper owner and pre-stage MSA/SOW + InfoSec" a ranked move — BECAUSE a commercial "yes" with dead air before redlining is how a won deal slips a quarter.
+
+<!-- ADD NEW HEURISTICS BELOW THIS LINE -->
+

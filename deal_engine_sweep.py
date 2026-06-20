@@ -514,6 +514,35 @@ def _sql_str(v: str) -> str:
     return v.replace("\\", "\\\\").replace("'", r"\'")
 
 
+# --- IDENTIFIER POLICY: a primary key is NEVER truncated for an external lookup ---
+# A Salesforce Id has two forms: 15-char (case-sensitive) and 18-char
+# (case-insensitive = the 15-char + a 3-char checksum). Avoma — and other systems —
+# file records under the 18-char Id, so a 15-char id matches NOTHING and silently
+# returns zero. ALWAYS normalise a Salesforce Id to its canonical 18-char form
+# before any external lookup; never slice it. (Meeting / recording ids are UUIDs —
+# likewise always passed whole, never sliced.)
+_SFID_SUFFIX = "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345"
+
+
+def sf_id_18(oid: str) -> str:
+    """Canonical 18-char Salesforce Id. Converts a 15-char Id to 18-char by
+    appending the checksum; an already-18-char Id (or anything not exactly 15
+    chars) passes through unchanged. NEVER truncates."""
+    if not isinstance(oid, str):
+        return oid
+    oid = oid.strip()
+    if len(oid) != 15:
+        return oid
+    suffix = ""
+    for chunk in (oid[0:5], oid[5:10], oid[10:15]):
+        v = 0
+        for i, ch in enumerate(chunk):
+            if "A" <= ch <= "Z":
+                v |= 1 << i
+        suffix += _SFID_SUFFIX[v]
+    return oid + suffix
+
+
 async def _soql(agent_manager, query: str) -> list[dict]:
     """Run a SOQL query for discovery.
 
@@ -696,14 +725,15 @@ async def _enrich_opp_ids(agent_manager, opp_ids: list[str]) -> list[dict]:
              f"WHERE Id IN ({ids})")
         try:
             for o in _map_opps(await _soql(agent_manager, q)):
-                # Key on the 15-char prefix: Salesforce returns 18-char ids while
-                # report exports are often 15-char. The first 15 chars are identical.
-                found[(o["id"] or "")[:15]] = o
+                # Key on the canonical 18-char Id (never truncate a primary key):
+                # SOQL returns 18-char, report exports are often 15-char; sf_id_18
+                # normalises both to the same 18-char key so they reconcile.
+                found[sf_id_18(o["id"] or "")] = o
         except Exception as e:  # noqa: BLE001 — labels are best-effort
             print(f"[DEAL-SWEEP] enrich chunk failed: {type(e).__name__}: {e}", flush=True)
     out: list[dict] = []
     for oid in opp_ids:
-        m = found.get((oid or "")[:15])
+        m = found.get(sf_id_18(oid or ""))
         if m:
             # Carry every captured SF field; keep the caller's id form (15/18-char).
             o2 = dict(m)
@@ -1218,18 +1248,19 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
             return shaped
 
         frm, to = _avoma_window()
-        # Avoma wants the 15-char opp id for the opp pull (strip the 3-char suffix).
-        opp15 = (opp_id[:15] if isinstance(opp_id, str) and len(opp_id) >= 15 else opp_id)
+        # PRIMARY KEY — never truncate. Avoma files meetings under the FULL 18-char
+        # Salesforce Id; a 15-char id matches NOTHING. Normalise to canonical 18.
+        opp18 = sf_id_18(opp_id)
 
         discovery: list = []
-        if opp15:
+        if opp18:
             discovery.append(_avoma_call_tool(
                 agent_manager, "get_all_meetings_for_opportunity",
-                {"crm_opportunity_id": opp15, "from_date": frm, "to_date": to}))
+                {"crm_opportunity_id": opp18, "from_date": frm, "to_date": to}))
         if account_id:
             discovery.append(_avoma_call_tool(
                 agent_manager, "get_all_meetings_for_account",
-                {"crm_account_id": account_id, "from_date": frm, "to_date": to}))
+                {"crm_account_id": sf_id_18(account_id), "from_date": frm, "to_date": to}))
         # Attendee-email discovery: one pull per buyer contact email (each pull
         # auto-paginates). Bounded so a huge contact list can't fan out unbounded.
         for em in list(buyer_emails)[:12]:

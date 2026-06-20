@@ -1246,6 +1246,67 @@ def _empty_prefetch(err: int = 0) -> dict:
     }
 
 
+# --- Direct Avoma HTTP (self-contained) -------------------------------------
+# The engine talks to the Avoma REST API DIRECTLY (httpx), bypassing the MCP /
+# LangChain adapter whose response truncation silently drops large meeting-list
+# payloads — the root of the long-standing calls_found=0 (proven: the raw API
+# returns 16 BH meetings; the adapter path returns 0). Self-contained on purpose:
+# no dependency on importing the MCP server module (FastMCP), so it can never
+# regress to the broken path and is testable offline. Token mirrors the avoma MCP
+# server's resolution (env first, same fallback). TODO(secrets): the fallback
+# token is a flagged rotation item — move AVOMA_API_TOKEN into Secrets Manager.
+_AVOMA_API_BASE = os.getenv("AVOMA_API_BASE", "https://api.avoma.com/v1").rstrip("/")
+_AVOMA_API_TOKEN = os.getenv("AVOMA_API_TOKEN", "ifi116h6e8:2p7r6khoxqojr5638sld")
+_AVOMA_HTTP_TIMEOUT = float(os.getenv("DEAL_SWEEP_AVOMA_HTTP_TIMEOUT_S", "30"))
+
+
+def _avoma_http() -> bool:
+    """Whether direct Avoma HTTP is usable. True whenever a token is configured —
+    self-contained, so this is the primary path; the MCP-tool fallback only runs
+    if this is somehow disabled."""
+    return bool(_AVOMA_API_TOKEN)
+
+
+def _avoma_http_get(endpoint: str, params: Optional[dict] = None) -> Any:
+    """One Avoma GET (sync; called via asyncio.to_thread). Returns parsed JSON, or
+    {'error': ...} on failure — never raises."""
+    import httpx
+    try:
+        r = httpx.get(_AVOMA_API_BASE + endpoint,
+                      headers={"Authorization": f"Bearer {_AVOMA_API_TOKEN}"},
+                      params=params or {}, timeout=_AVOMA_HTTP_TIMEOUT)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:  # noqa: BLE001
+        return {"error": f"{type(e).__name__}: {e}"}
+
+
+def _avoma_http_pages(params: dict, max_pages: int = 50) -> list:
+    """Paginate /meetings/ to completion (mirrors the server's _get_all_pages), so
+    no calls are missed on a busy account."""
+    out: list = []
+    page = 1
+    while page <= max_pages:
+        d = _avoma_http_get("/meetings/", {**params, "page": page, "page_size": 100})
+        if not isinstance(d, dict) or d.get("error"):
+            break
+        out.extend(d.get("results", []) or [])
+        if len(out) >= (d.get("count", 0) or 0) or not d.get("next"):
+            break
+        page += 1
+    return out
+
+
+async def _avoma_pages(params: dict) -> list:
+    """Paginated /meetings/ list, off the event loop."""
+    return await asyncio.to_thread(_avoma_http_pages, params)
+
+
+async def _avoma_get(endpoint: str):
+    """Single GET, off the event loop."""
+    return await asyncio.to_thread(_avoma_http_get, endpoint)
+
+
 async def _avoma_discover(agent_manager, opp18: str, account18: str,
                           buyer_emails: set, frm: str, to: str) -> tuple[dict, int]:
     """Discover meetings THREE ways for one window; return (by_uuid, errors).
@@ -1253,17 +1314,28 @@ async def _avoma_discover(agent_manager, opp18: str, account18: str,
     precedence so the matcher can trust the opp-direct leg appropriately."""
     legs: list = []
     tags: list = []
+    av = _avoma_http()
+
+    def _dp(extra: dict) -> dict:
+        p = {"from_date": frm, "to_date": to, "o": "-start_at",
+             "include_crm_associations": True}
+        p.update(extra)
+        return p
+
     if opp18:
-        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_opportunity",
-                    {"crm_opportunity_id": opp18, "from_date": frm, "to_date": to}))
+        legs.append(_avoma_pages(_dp({"crm_opportunity_ids": opp18})) if av
+                    else _avoma_call_tool(agent_manager, "get_all_meetings_for_opportunity",
+                         {"crm_opportunity_id": opp18, "from_date": frm, "to_date": to}))
         tags.append("opp")
     if account18:
-        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_account",
-                    {"crm_account_id": account18, "from_date": frm, "to_date": to}))
+        legs.append(_avoma_pages(_dp({"crm_account_ids": account18})) if av
+                    else _avoma_call_tool(agent_manager, "get_all_meetings_for_account",
+                         {"crm_account_id": account18, "from_date": frm, "to_date": to}))
         tags.append("account")
     for em in list(buyer_emails)[:12]:
-        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_attendee",
-                    {"email": em, "from_date": frm, "to_date": to}))
+        legs.append(_avoma_pages(_dp({"attendee_emails": em})) if av
+                    else _avoma_call_tool(agent_manager, "get_all_meetings_for_attendee",
+                         {"email": em, "from_date": frm, "to_date": to}))
         tags.append("attendee")
     if not legs:
         return {}, 0
@@ -1403,35 +1475,57 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
         shaped["coverage"]["readers"] = readers
         sem = asyncio.Semaphore(readers)
         by_mid = {x["meeting_id"]: x for x in manifest}
+        av = _avoma_http()
 
         async def _read_one(mid: str, m: dict) -> None:
             """Ladder: transcript -> notes/summary -> metadata. Always attaches what
-            it gets to the manifest entry; the entry survives even if all reads fail."""
+            it gets to the manifest entry; the entry survives even if all reads fail.
+            Reads go DIRECT to the Avoma HTTP layer (proven), with the MCP-tool path
+            as fallback. The transcription_uuid is already in the discovered meeting,
+            so the transcript is one GET — no extra meeting fetch."""
             async with sem:
                 entry = by_mid.get(mid) or {}
                 transcript_excerpt = ""
                 notes_txt = ""
-                if m.get("transcript_ready") or m.get("transcription_uuid"):
+                tu = m.get("transcription_uuid")
+                if av:
+                    if tu:
+                        try:
+                            tr_obj = await _avoma_get(f"/transcriptions/{tu}/")
+                            if isinstance(tr_obj, dict) and not tr_obj.get("error"):
+                                transcript_excerpt = json.dumps(
+                                    tr_obj.get("transcript", tr_obj),
+                                    ensure_ascii=False)[:_AVOMA_TRANSCRIPT_CHARS]
+                        except Exception:  # noqa: BLE001
+                            shaped["coverage"]["errors"] += 1
                     try:
-                        tr_obj = _coerce_obj(await _avoma_call_tool(
-                            agent_manager, "get_meeting_transcript", {"uuid": mid}))
-                        if isinstance(tr_obj, dict) and not tr_obj.get("error"):
-                            transcript_excerpt = json.dumps(
-                                tr_obj.get("transcript", tr_obj),
-                                ensure_ascii=False)[:_AVOMA_TRANSCRIPT_CHARS]
+                        nt_obj = await _avoma_get(f"/meetings/{mid}/insights/")
+                        if isinstance(nt_obj, dict) and not nt_obj.get("error"):
+                            notes_txt = json.dumps(
+                                nt_obj.get("ai_notes", nt_obj.get("notes", nt_obj)),
+                                ensure_ascii=False)[:_AVOMA_NOTES_CHARS]
                     except Exception:  # noqa: BLE001
                         shaped["coverage"]["errors"] += 1
-                # Notes are the AI SUMMARY — always useful, and the fallback when a
-                # long transcript can't be paged or errors (the "pull the summary" path).
-                try:
-                    notes_obj = _coerce_obj(await _avoma_call_tool(
-                        agent_manager, "get_meeting_notes", {"uuid": mid}))
-                    if isinstance(notes_obj, dict) and not notes_obj.get("error"):
-                        notes_txt = json.dumps(
-                            notes_obj.get("notes", notes_obj),
-                            ensure_ascii=False)[:_AVOMA_NOTES_CHARS]
-                except Exception:  # noqa: BLE001
-                    shaped["coverage"]["errors"] += 1
+                else:
+                    if m.get("transcript_ready") or tu:
+                        try:
+                            tr_obj = _coerce_obj(await _avoma_call_tool(
+                                agent_manager, "get_meeting_transcript", {"uuid": mid}))
+                            if isinstance(tr_obj, dict) and not tr_obj.get("error"):
+                                transcript_excerpt = json.dumps(
+                                    tr_obj.get("transcript", tr_obj),
+                                    ensure_ascii=False)[:_AVOMA_TRANSCRIPT_CHARS]
+                        except Exception:  # noqa: BLE001
+                            shaped["coverage"]["errors"] += 1
+                    try:
+                        notes_obj = _coerce_obj(await _avoma_call_tool(
+                            agent_manager, "get_meeting_notes", {"uuid": mid}))
+                        if isinstance(notes_obj, dict) and not notes_obj.get("error"):
+                            notes_txt = json.dumps(
+                                notes_obj.get("notes", notes_obj),
+                                ensure_ascii=False)[:_AVOMA_NOTES_CHARS]
+                    except Exception:  # noqa: BLE001
+                        shaped["coverage"]["errors"] += 1
                 if transcript_excerpt or notes_txt:
                     entry["has_content"] = True
                     entry["notes"] = notes_txt

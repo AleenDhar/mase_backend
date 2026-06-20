@@ -392,8 +392,9 @@ def _load_revops_prompt() -> str:
 
 async def _revops_head_review(parsed: dict, opp: dict, opp_id: str) -> dict:
     """RevOps Head strategic review (Deal Sweep January 1.0). Runs LAST, AFTER the
-    compliance QI, on standard+deep deals only, behind REVOPS_HEAD_ENABLED
-    (default OFF — ships dark). Works ONLY from the gate-clean record (no tools,
+    compliance QI, on FORECASTED deals only (staffing_plan gates it to Commit /
+    Best Case / Upside Key Deal), behind REVOPS_HEAD_ENABLED. Works ONLY from the
+    gate-clean record (no tools,
     no fetch — it cannot introduce a new name/fact). On ANY error, when disabled,
     or on a lean deal, returns `parsed` UNCHANGED — never blocks persist."""
     if os.getenv("REVOPS_HEAD_ENABLED", "false").lower() not in ("1", "true", "yes"):

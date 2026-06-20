@@ -309,12 +309,12 @@ def staffing_plan(
         "tier": tier,
         "readers": readers,                         # Conversation reader pool size
         "meddpicc_analysts": 2 if deep else 1,      # split MEDDPICC only when deep
-        # The RevOps Head is the EXPENSIVE editor — gate it tightly to the deals
-        # that close the quarter: forecasted (Commit/Best Case/Upside) OR big-$.
-        # NOT standard pipeline (base sweep + the cheap deterministic gate already
-        # cover most of that value). Narrowed 2026-06-20 after the Claire Hudson
-        # 3-deal review showed the marginal lift on pipeline is small vs its cost.
-        "revops_head_review": forecasted or big,
+        # The RevOps Head is the EXPENSIVE editor — gate it to FORECASTED deals
+        # ONLY (ForecastCategory in Commit / Best Case / Upside Key Deal), per Sam
+        # 2026-06-20. NOT big-$ pipeline, NOT standard pipeline — the base sweep +
+        # the cheap deterministic gate cover those. The editor's time goes to the
+        # deals that close the quarter.
+        "revops_head_review": forecasted,
         "qi_panel": deep,                            # 3-vote adversarial QI only on deep/forecasted
         "rationale": (f"tier={tier}: forecasted={forecasted}, big_amount={big}, "
                       f"calls={calls_read}, richness={round(richness_score,2)}, "

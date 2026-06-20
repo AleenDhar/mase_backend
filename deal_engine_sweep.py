@@ -1790,6 +1790,27 @@ async def analyze_one(
             except Exception as _qe:  # noqa: BLE001 — recovery must never block persist
                 print(f"[QUALITY-INSPECTOR] opp={opp_id} recovery error (non-fatal): "
                       f"{type(_qe).__name__}: {_qe}", flush=True)
+        # Escalation gate (deal_engine_qi) — INDEPENDENT of the name-fabrication
+        # sanitiser (_val) above. A VP / manager / exec getting on a call may be
+        # recommended ONLY on a forecasted deal (ForecastCategory in Commit /
+        # Best Case / Upside Key Deal). On a non-forecasted deal this downgrades
+        # any "Executive connect" move owner to "Deal team" (the convention the
+        # clean records already use) and records the audit. Closes the
+        # escalation-on-non-forecasted residual (~14% book-wide as of 2026-06-20).
+        # Must run BEFORE the living-memory packets so a downgrade can never be
+        # re-projected from a packet. Never blocks persist.
+        try:
+            import deal_engine_qi as _qigate
+            _esc_v, parsed = _qigate.check_escalation(
+                parsed, opp.get("forecast_category"))
+            if _esc_v:
+                result["qi_escalation"] = _esc_v
+                print(f"[QI-ESCALATION] opp={opp_id} {len(_esc_v)} escalation "
+                      f"violation(s) on a non-forecasted deal "
+                      f"(owner-downgrades applied)", flush=True)
+        except Exception as _ee:  # noqa: BLE001 — the gate must never block persist
+            print(f"[QI-ESCALATION] opp={opp_id} non-fatal: "
+                  f"{type(_ee).__name__}: {_ee}", flush=True)
         # Build the durable living-memory packets ONCE, AFTER the gate has approved
         # or sanitised the facts — so packets are always derived from gate-clean ai
         # and a stripped fabrication can never survive in the packet store.

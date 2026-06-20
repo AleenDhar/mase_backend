@@ -36,6 +36,10 @@ T_SETTINGS = "jarvis_settings"
 ID_CHAT = "mase_chat_agent"
 ID_DEAL_SWEEP = "mase_deal_sweep"
 ID_TODO_RUNNER = "mase_todo_runner"
+# Deal Sweep January 1.0 — the RevOps Head strategic editor: runs LAST (after the
+# compliance QI), on standard+deep deals only, over the UI-bound record. Seed on
+# disk at prompts/mase_revops_head.md. "" => fall back to that seed.
+ID_REVOPS_HEAD = "mase_revops_head"
 
 # Back-compat alias for the original single-prompt (chat) callers.
 _ID = ID_CHAT

@@ -1435,6 +1435,10 @@ def _sweep_facts_block(opp: dict, buyer: dict) -> str:
         return v if (v is not None and v != "") else "unknown"
     la = buyer.get("last_activity_date") if isinstance(buyer, dict) else None
     lines = [
+        # PRIMARY KEYS for Avoma — use VERBATIM, never truncate (Avoma files
+        # meetings under the FULL 18-char Salesforce Id; a 15-char id matches nothing).
+        f"- Opportunity Id (18-char — pass VERBATIM to get_all_meetings_for_opportunity): {sf_id_18(opp.get('id') or '')}",
+        f"- Account Id (18-char — pass VERBATIM to get_all_meetings_for_account): {sf_id_18((buyer or {}).get('account_id') or '')}",
         f"- StageName: {_f(opp.get('stage'))}",
         f"- ForecastCategory: {_f(opp.get('forecast_category'))}",
         f"- Amount: {_f(opp.get('amount'))}",

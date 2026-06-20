@@ -1114,21 +1114,33 @@ def _buyer_identity_block(bi: dict) -> str:
 #   uuid, title, start_at, attendees:[{email,name,...}], state, transcript_ready.
 # ---------------------------------------------------------------------------
 
-# How far back to discover Avoma calls. Generous default — a Zycus deal can run
+# How far back to discover Avoma calls. Generous floor — a Zycus deal can run
 # 12–15 months, and the cross-wired opp association means we lean on the wide
-# account/attendee pulls. Env-tunable; only consulted when the flag is on.
+# account/attendee pulls. Env-tunable.
 _AVOMA_LOOKBACK_DAYS = int(os.getenv("DEAL_SWEEP_AVOMA_LOOKBACK_DAYS", "540"))
-# Hard cap on how many matched calls we will pre-read, so a noisy account can't
-# blow up token cost / latency. The agent still sees the full discovered count.
+# RECENCY-FIRST discovery (January 2.0 "never-miss" engine): try the most recent
+# window first and widen ONLY if it comes back empty. An actively-moving deal
+# resolves on the small window (fast); a quiet deal keeps widening (covered); we
+# NEVER stop at an absolute zero while older calls still exist. We stop widening
+# the instant a window yields >=1 matched call. The last entry is the floor.
+_AVOMA_WINDOWS = [int(x) for x in (
+    os.getenv("DEAL_SWEEP_AVOMA_WINDOWS", "90,270,540").split(",")) if x.strip()] \
+    or [_AVOMA_LOOKBACK_DAYS]
+# Hard cap on how many matched calls we DEEP-READ (most-recent first), so a noisy
+# account can't blow up token cost / latency. Every matched call still appears in
+# the manifest as a dated touchpoint — the cap bounds depth, never coverage.
 _AVOMA_MAX_READS = int(os.getenv("DEAL_SWEEP_AVOMA_MAX_READS", "12"))
 # Cap transcript excerpt length per call (chars) so the injected block stays sane.
 _AVOMA_TRANSCRIPT_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS", "6000"))
+# Cap for the notes/summary fallback excerpt — used when a transcript is absent,
+# too long to page through, or errors. (The AI notes ARE the meeting summary.)
+_AVOMA_NOTES_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_NOTES_CHARS", "4000"))
 
 
-def _avoma_window() -> tuple[str, str]:
-    """(from_date, to_date) ISO-Z strings for the discovery lookback window."""
+def _avoma_window(days: int) -> tuple[str, str]:
+    """(from_date, to_date) ISO-Z strings for a `days`-day recency lookback."""
     now = datetime.now(timezone.utc)
-    frm = now - timedelta(days=max(1, _AVOMA_LOOKBACK_DAYS))
+    frm = now - timedelta(days=max(1, int(days)))
     # +1 day on the upper bound so calls earlier today are never excluded.
     to = now + timedelta(days=1)
     fmt = "%Y-%m-%dT%H:%M:%SZ"
@@ -1214,91 +1226,168 @@ async def _avoma_call_tool(agent_manager, name: str, args: dict) -> Any:
     return await tool.ainvoke(args)
 
 
-async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
-    """Best-effort PARALLEL Avoma reader prefetch (flag-gated by the caller).
+# Meeting states that are real touchpoints but carry NO readable content. They
+# count as engagement (the buyer met / a session was scheduled) and must NEVER be
+# dropped from the manifest — only flagged as a gap so coverage stays honest.
+_AVOMA_GAP_STATES = {
+    "not_recorded", "bot_denied_entry", "cancelled", "canceled", "no_show",
+    "declined", "abandoned", "failed",
+}
 
-    Discovers the deal's calls THREE ways — opp (15-char id), account (18-char id),
-    and attendee email (buyer contacts) — unions+dedupes by meeting uuid, keeps only
-    meetings matching a buyer domain or known buyer contact (NOT the opp
-    association), sizes a reader pool via deal_engine_qi.staffing_plan, then reads
-    notes (+transcript when present) for the matched calls CONCURRENTLY. Returns a
-    shaped dict the agent can synthesise from; shaped-empty on ANY error so the
-    agent simply falls back to its own sequential Avoma reads."""
-    shaped: dict = {
-        "calls": [],
-        "calls_found": 0,
+
+def _empty_prefetch(err: int = 0) -> dict:
+    return {
+        "calls": [], "manifest": [], "calls_found": 0, "window_days": None,
         "discovery_method": "opp+account+attendee",
+        "match_basis": "none",
         "coverage": {"discovered": 0, "matched": 0, "read": 0, "readers": 0,
-                     "transcripts": 0, "errors": 0},
+                     "transcripts": 0, "notes": 0, "gaps": 0,
+                     "mismatch": 0, "errors": err},
     }
+
+
+async def _avoma_discover(agent_manager, opp18: str, account18: str,
+                          buyer_emails: set, frm: str, to: str) -> tuple[dict, int]:
+    """Discover meetings THREE ways for one window; return (by_uuid, errors).
+    Each meeting is tagged `_src` (opp|account|attendee) with opp>account>attendee
+    precedence so the matcher can trust the opp-direct leg appropriately."""
+    legs: list = []
+    tags: list = []
+    if opp18:
+        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_opportunity",
+                    {"crm_opportunity_id": opp18, "from_date": frm, "to_date": to}))
+        tags.append("opp")
+    if account18:
+        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_account",
+                    {"crm_account_id": account18, "from_date": frm, "to_date": to}))
+        tags.append("account")
+    for em in list(buyer_emails)[:12]:
+        legs.append(_avoma_call_tool(agent_manager, "get_all_meetings_for_attendee",
+                    {"email": em, "from_date": frm, "to_date": to}))
+        tags.append("attendee")
+    if not legs:
+        return {}, 0
+    raw = await asyncio.gather(*legs, return_exceptions=True)
+    _rank = {"opp": 3, "account": 2, "attendee": 1}
+    by_uuid: dict = {}
+    errors = 0
+    for tag, r in zip(tags, raw):
+        if isinstance(r, Exception) or r is None:
+            errors += 1 if isinstance(r, Exception) else 0
+            continue
+        for m in _avoma_meetings_from(r):
+            mid = m.get("uuid") or m.get("id") or m.get("meeting_id")
+            if not mid:
+                continue
+            mid = str(mid)
+            if mid in by_uuid:
+                if _rank.get(tag, 0) > _rank.get(by_uuid[mid].get("_src", ""), 0):
+                    by_uuid[mid]["_src"] = tag
+            else:
+                m = dict(m)
+                m["_src"] = tag
+                by_uuid[mid] = m
+    return by_uuid, errors
+
+
+async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
+    """January 2.0 "never-miss" Avoma retrieval engine (PRIMARY discovery path).
+
+    DISCOVERY = the safety net. Discovers the deal's calls THREE ways — opp + account
+    (both FULL 18-char ids, never truncated) and attendee email — recency-first:
+    the most-recent window first, widening only if empty, so active deals resolve
+    fast and quiet deals are still covered (never an absolute zero while calls
+    exist). MATCHING uses the buyer domain/email as the arbiter (this filters the
+    org's known cross-wired opp association); only when no domain is known at all do
+    we trust the opp/account CRM association directly (flagged low-confidence).
+    Every matched meeting becomes a MANIFEST touchpoint — including no-content gaps
+    (not_recorded / bot_denied / cancelled) — and is NEVER dropped. We then DEEP-READ
+    the most-recent N (cap) concurrently down a ladder: transcript -> notes/summary
+    -> metadata-only. Shaped-empty on hard failure (the engine never raises)."""
     try:
         opp_id = opp.get("id") if isinstance(opp, dict) else None
         buyer = buyer if isinstance(buyer, dict) else {}
         account_id = buyer.get("account_id")
-        # Buyer match set: domains the identity prefetch already derived, plus the
-        # exact contact emails (opp roles + account-level fallback contacts).
         buyer_domains = {d.lower() for d in (buyer.get("domains") or []) if isinstance(d, str)}
         buyer_emails: set = set()
         for c in (buyer.get("contacts") or []) + (buyer.get("account_contacts") or []):
             if isinstance(c, dict) and c.get("email"):
                 buyer_emails.add(str(c["email"]).strip().lower())
-        # If we have no way to match calls to the buyer, do not guess — bail to the
-        # agent's own discovery rather than dumping unrelated account calls.
-        if not buyer_domains and not buyer_emails:
-            return shaped
+        # PRIMARY KEYS — never truncate. Avoma files meetings under the FULL 18-char
+        # Salesforce Id; a 15-char id matches NOTHING and silently returns zero.
+        opp18 = sf_id_18(opp_id) or ""
+        account18 = sf_id_18(account_id) or ""
+        if not opp18 and not account18 and not buyer_emails:
+            return _empty_prefetch()
 
-        frm, to = _avoma_window()
-        # PRIMARY KEY — never truncate. Avoma files meetings under the FULL 18-char
-        # Salesforce Id; a 15-char id matches NOTHING. Normalise to canonical 18.
-        opp18 = sf_id_18(opp_id)
+        shaped = _empty_prefetch()
+        have_domain = bool(buyer_domains or buyer_emails)
+        shaped["match_basis"] = "buyer-domain" if have_domain else "crm-association"
 
-        discovery: list = []
-        if opp18:
-            discovery.append(_avoma_call_tool(
-                agent_manager, "get_all_meetings_for_opportunity",
-                {"crm_opportunity_id": opp18, "from_date": frm, "to_date": to}))
-        if account_id:
-            discovery.append(_avoma_call_tool(
-                agent_manager, "get_all_meetings_for_account",
-                {"crm_account_id": sf_id_18(account_id), "from_date": frm, "to_date": to}))
-        # Attendee-email discovery: one pull per buyer contact email (each pull
-        # auto-paginates). Bounded so a huge contact list can't fan out unbounded.
-        for em in list(buyer_emails)[:12]:
-            discovery.append(_avoma_call_tool(
-                agent_manager, "get_all_meetings_for_attendee",
-                {"email": em, "from_date": frm, "to_date": to}))
-
-        if not discovery:
-            return shaped
-        raw_results = await asyncio.gather(*discovery, return_exceptions=True)
-
-        # Union + dedupe by meeting uuid.
+        # --- Recency-first discovery: widen only until we have a matched call. ---
         by_uuid: dict = {}
-        for r in raw_results:
-            if isinstance(r, Exception) or r is None:
-                if isinstance(r, Exception):
-                    shaped["coverage"]["errors"] += 1
-                continue
-            for m in _avoma_meetings_from(r):
-                mid = m.get("uuid") or m.get("id") or m.get("meeting_id")
-                if mid and mid not in by_uuid:
-                    by_uuid[str(mid)] = m
+        matched: list = []
+        chosen_window = _AVOMA_WINDOWS[-1]
+        for w in _AVOMA_WINDOWS:
+            frm, to = _avoma_window(w)
+            by_uuid, errs = await _avoma_discover(
+                agent_manager, opp18, account18, buyer_emails, frm, to)
+            shaped["coverage"]["errors"] += errs
+            chosen_window = w
+            if have_domain:
+                matched = [(mid, m) for mid, m in by_uuid.items()
+                           if m.get("_src") == "opp"
+                           or _avoma_meeting_matches_buyer(m, buyer_domains, buyer_emails)]
+                # opp-direct calls that fail the domain check = likely mis-association;
+                # count them (honest "found but unverified") without surfacing them.
+                if buyer_domains:
+                    matched = [(mid, m) for mid, m in matched
+                               if m.get("_src") != "opp"
+                               or _avoma_meeting_matches_buyer(m, buyer_domains, buyer_emails)
+                               or not _avoma_attendee_emails(m)]
+            else:
+                matched = [(mid, m) for mid, m in by_uuid.items()
+                           if m.get("_src") in ("opp", "account")]
+            if matched:
+                break
+        shaped["window_days"] = chosen_window
         shaped["coverage"]["discovered"] = len(by_uuid)
-
-        # Keep only buyer-matched meetings.
-        matched = [
-            (mid, m) for mid, m in by_uuid.items()
-            if _avoma_meeting_matches_buyer(m, buyer_domains, buyer_emails)
-        ]
-        # Chronological (oldest first) for a coherent narrative; missing dates last.
-        matched.sort(key=lambda mm: (mm[1].get("start_at") or ""))
         shaped["coverage"]["matched"] = len(matched)
-        shaped["calls_found"] = len(matched)
+        if buyer_domains:
+            shaped["coverage"]["mismatch"] = sum(
+                1 for _mid, m in by_uuid.items()
+                if m.get("_src") in ("opp", "account")
+                and _avoma_attendee_emails(m)
+                and not _avoma_meeting_matches_buyer(m, buyer_domains, buyer_emails))
         if not matched:
             return shaped
 
-        # Cap reads, then size the reader pool off staffing_plan.
-        to_read = matched[:_AVOMA_MAX_READS]
+        # Manifest = ALL matched touchpoints, chronological (oldest first).
+        matched.sort(key=lambda mm: (mm[1].get("start_at") or ""))
+        manifest: list[dict] = []
+        for mid, m in matched:
+            state = (m.get("state") or "").lower()
+            is_gap = (state in _AVOMA_GAP_STATES) or (
+                not m.get("transcript_ready") and not m.get("transcription_uuid")
+                and not m.get("notes_ready"))
+            manifest.append({
+                "meeting_id": mid,
+                "date": m.get("start_at"),
+                "subject": m.get("subject") or m.get("title"),
+                "attendees": _avoma_attendee_emails(m),
+                "state": state or "unknown",
+                "is_gap": bool(is_gap),
+                "has_content": False,
+            })
+        shaped["manifest"] = manifest
+        shaped["calls_found"] = len(manifest)
+        shaped["coverage"]["gaps"] = sum(1 for x in manifest if x["is_gap"])
+
+        # DEEP-READ the most-recent N readable calls (cap bounds depth, not coverage).
+        readable = [(mid, m) for mid, m in matched
+                    if (m.get("state") or "").lower() not in _AVOMA_GAP_STATES]
+        to_read = readable[-_AVOMA_MAX_READS:] if _AVOMA_MAX_READS else readable
+        to_read = list(reversed(to_read))  # newest first
         try:
             import deal_engine_qi as _qi
             try:
@@ -1307,114 +1396,112 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
             except Exception:  # noqa: BLE001
                 forecasted = False
             readers = int(_qi.staffing_plan(
-                calls_read=len(to_read), forecasted=forecasted,
-            ).get("readers") or 1)
+                calls_read=len(to_read), forecasted=forecasted).get("readers") or 1)
         except Exception:  # noqa: BLE001 — never block the prefetch on sizing
             readers = 1
-        readers = max(1, min(readers, len(to_read)))
+        readers = max(1, min(readers, max(1, len(to_read))))
         shaped["coverage"]["readers"] = readers
-
         sem = asyncio.Semaphore(readers)
+        by_mid = {x["meeting_id"]: x for x in manifest}
 
-        async def _read_one(mid: str, m: dict) -> Optional[dict]:
+        async def _read_one(mid: str, m: dict) -> None:
+            """Ladder: transcript -> notes/summary -> metadata. Always attaches what
+            it gets to the manifest entry; the entry survives even if all reads fail."""
             async with sem:
-                notes_txt = ""
+                entry = by_mid.get(mid) or {}
                 transcript_excerpt = ""
-                try:
-                    notes_raw = await _avoma_call_tool(
-                        agent_manager, "get_meeting_notes", {"uuid": mid})
-                    notes_obj = _coerce_obj(notes_raw)
-                    if isinstance(notes_obj, dict) and not notes_obj.get("error"):
-                        notes_txt = json.dumps(
-                            notes_obj.get("notes", notes_obj),
-                            ensure_ascii=False)[:8000]
-                except Exception:  # noqa: BLE001 — per-call best effort
-                    shaped["coverage"]["errors"] += 1
-                # Pull the transcript only when the call is actually transcribed.
-                if m.get("transcript_ready") or m.get("transcription_uuid") \
-                        or m.get("state") in (None, "completed", "ready"):
+                notes_txt = ""
+                if m.get("transcript_ready") or m.get("transcription_uuid"):
                     try:
-                        tr_raw = await _avoma_call_tool(
-                            agent_manager, "get_meeting_transcript", {"uuid": mid})
-                        tr_obj = _coerce_obj(tr_raw)
+                        tr_obj = _coerce_obj(await _avoma_call_tool(
+                            agent_manager, "get_meeting_transcript", {"uuid": mid}))
                         if isinstance(tr_obj, dict) and not tr_obj.get("error"):
                             transcript_excerpt = json.dumps(
                                 tr_obj.get("transcript", tr_obj),
                                 ensure_ascii=False)[:_AVOMA_TRANSCRIPT_CHARS]
                     except Exception:  # noqa: BLE001
                         shaped["coverage"]["errors"] += 1
-                if not notes_txt and not transcript_excerpt:
-                    return None
-                return {
-                    "meeting_id": mid,
-                    "date": m.get("start_at"),
-                    "subject": m.get("title") or m.get("subject"),
-                    "notes": notes_txt,
-                    "transcript_excerpt": transcript_excerpt,
-                    "attendees": _avoma_attendee_emails(m),
-                }
+                # Notes are the AI SUMMARY — always useful, and the fallback when a
+                # long transcript can't be paged or errors (the "pull the summary" path).
+                try:
+                    notes_obj = _coerce_obj(await _avoma_call_tool(
+                        agent_manager, "get_meeting_notes", {"uuid": mid}))
+                    if isinstance(notes_obj, dict) and not notes_obj.get("error"):
+                        notes_txt = json.dumps(
+                            notes_obj.get("notes", notes_obj),
+                            ensure_ascii=False)[:_AVOMA_NOTES_CHARS]
+                except Exception:  # noqa: BLE001
+                    shaped["coverage"]["errors"] += 1
+                if transcript_excerpt or notes_txt:
+                    entry["has_content"] = True
+                    entry["notes"] = notes_txt
+                    entry["transcript_excerpt"] = transcript_excerpt
+                    if transcript_excerpt:
+                        shaped["coverage"]["transcripts"] += 1
+                    elif notes_txt:
+                        shaped["coverage"]["notes"] += 1
 
-        read_results = await asyncio.gather(
-            *[_read_one(mid, m) for mid, m in to_read], return_exceptions=True)
-        calls: list[dict] = []
-        for r in read_results:
-            if isinstance(r, Exception):
-                shaped["coverage"]["errors"] += 1
-                continue
-            if r:
-                calls.append(r)
-                if r.get("transcript_excerpt"):
-                    shaped["coverage"]["transcripts"] += 1
-        shaped["calls"] = calls
-        shaped["coverage"]["read"] = len(calls)
+        await asyncio.gather(*[_read_one(mid, m) for mid, m in to_read],
+                             return_exceptions=True)
+        shaped["calls"] = [x for x in manifest if x.get("has_content")]
+        shaped["coverage"]["read"] = len(shaped["calls"])
         return shaped
-    except Exception as e:  # noqa: BLE001 — prefetch must NEVER raise into the sweep
+    except Exception as e:  # noqa: BLE001 — engine must NEVER raise into the sweep
         print(f"[DEAL-SWEEP] avoma-prefetch failed opp="
               f"{opp.get('id') if isinstance(opp, dict) else '?'}: "
               f"{type(e).__name__}: {e}", flush=True)
-        return {
-            "calls": [],
-            "calls_found": 0,
-            "discovery_method": "opp+account+attendee",
-            "coverage": {"discovered": 0, "matched": 0, "read": 0, "readers": 0,
-                         "transcripts": 0, "errors": 1},
-        }
+        return _empty_prefetch(err=1)
 
 
 def _avoma_prefetch_block(pf: dict) -> str:
-    """Render the pre-read Avoma calls as a verbatim, speaker-attributed,
-    chronological GROUND-TRUTH block for the agent. Empty string if no calls were
-    pre-read (so the agent's own Avoma discovery still governs)."""
+    """Render the never-miss engine's output as the AUTHORITATIVE Avoma manifest for
+    the agent: every matched touchpoint (chronological), deep content where read,
+    and gaps flagged. Empty string ONLY when the engine matched nothing (then the
+    agent's own discovery still governs). When present, this block is the agent's
+    complete Avoma coverage — it must NOT run its own discovery (that is the slow,
+    churn-inducing path this engine replaces)."""
     if not pf or not isinstance(pf, dict):
         return ""
-    calls = pf.get("calls") or []
-    if not calls:
+    manifest = pf.get("manifest") or []
+    if not manifest:
         return ""
     cov = pf.get("coverage") or {}
+    read = cov.get("read", 0)
+    gaps = cov.get("gaps", 0)
+    basis = pf.get("match_basis", "buyer-domain")
     parts: list[str] = [
-        "\n\n=== PRE-READ AVOMA CALLS (parallel reader prefetch — ALREADY READ for "
-        "you) ===",
-        f"These {len(calls)} buyer call(s) for THIS deal were discovered three ways "
-        f"({pf.get('discovery_method', 'opp+account+attendee')}) and READ CONCURRENTLY "
-        "before this run. SYNTHESISE from the verbatim notes/transcript below — do NOT "
-        "re-read these calls one-by-one. You MUST STILL run your normal Avoma discovery "
-        "(opp + account + attendee-email) to confirm nothing is missed and to read any "
-        "call NOT listed above — this prefetch is a head-start, NOT the full manifest, "
-        "and must never shrink your coverage. Quote buyer speakers by name "
-        "with the call date. STILL report evidence_coverage (calls_discovered, "
-        "calls_read, discovery_method) as your prompt requires.",
-        f"Coverage: discovered={cov.get('discovered', 0)}, matched={cov.get('matched', 0)}, "
-        f"pre-read={cov.get('read', 0)} (readers={cov.get('readers', 0)}, "
-        f"transcripts={cov.get('transcripts', 0)}).",
+        "\n\n=== AVOMA MANIFEST (authoritative — discovered + read FOR YOU by the "
+        "never-miss engine) ===",
+        f"This is your COMPLETE Avoma coverage for THIS deal: {len(manifest)} buyer "
+        f"touchpoint(s) discovered three ways (opp + account + attendee, "
+        f"window={pf.get('window_days')}d, match basis={basis}) and {read} deep-read "
+        "concurrently before this run. Do NOT run your own Avoma discovery or re-read "
+        "these one-by-one — SYNTHESISE from what is below.",
+        "RULES: (1) Every line below is a REAL buyer touchpoint — you MUST reflect this "
+        "engagement; with a non-empty manifest you may NEVER write 'no conversation' / "
+        "'no calls' / 'gone dark'. (2) A line marked [GAP] is a real meeting with no "
+        "recording (not_recorded / bot-denied / cancelled) — count it as a touchpoint, "
+        "do not invent its content. (3) Quote buyer speakers by name with the call date. "
+        "(4) Report evidence_coverage with calls_discovered=" + str(len(manifest)) +
+        ", calls_read=" + str(read) + ", discovery_method='never-miss engine "
+        "(opp+account+attendee)'. If the deep content is thinner than the manifest, set "
+        "confidence to reflect partial coverage — do NOT shrink the touchpoint count.",
+        f"Coverage: discovered={cov.get('discovered', 0)}, matched={len(manifest)}, "
+        f"deep-read={read} (transcripts={cov.get('transcripts', 0)}, "
+        f"notes={cov.get('notes', 0)}), gaps={gaps}, "
+        f"unverified-association={cov.get('mismatch', 0)}.",
     ]
-    for i, c in enumerate(calls, 1):
-        hdr = f"\n--- Call {i}: {c.get('subject') or 'untitled'} ({c.get('date') or 'date unknown'})"
+    for i, c in enumerate(manifest, 1):
+        hdr = (f"\n--- Touchpoint {i}: {c.get('subject') or 'untitled'} "
+               f"({c.get('date') or 'date unknown'})")
+        if c.get("is_gap"):
+            hdr += f" [GAP: {c.get('state') or 'no recording'} — touchpoint, no content]"
         att = c.get("attendees") or []
         if att:
             hdr += " — attendees: " + ", ".join(att[:12])
         parts.append(hdr)
         if c.get("notes"):
-            parts.append("Notes (speaker-attributed): " + c["notes"])
+            parts.append("Notes / summary (speaker-attributed): " + c["notes"])
         if c.get("transcript_excerpt"):
             parts.append("Transcript excerpt (verbatim): " + c["transcript_excerpt"])
     return "\n".join(parts)
@@ -1644,19 +1731,29 @@ async def analyze_one(
         # pre-read, speaker-attributed notes so it synthesises instead of fetching
         # one-by-one. With the flag off this block does not run and the agent message
         # below is byte-for-byte unchanged. Best-effort: never raises into the sweep.
+        # January 2.0 never-miss Avoma engine — the PRIMARY discovery path (on by
+        # default; set DEAL_SWEEP_PARALLEL_READERS=false to fall back to the agent's
+        # own slow in-loop discovery). It discovers + reads the deal's calls here and
+        # hands the agent an AUTHORITATIVE manifest so it synthesises (fast) instead
+        # of fetching one-by-one (slow -> lease churn). Best-effort: never raises.
         avoma_prefetch_block = ""
-        if os.getenv("DEAL_SWEEP_PARALLEL_READERS", "false").lower() in (
+        _avoma_pf: dict = {}
+        if os.getenv("DEAL_SWEEP_PARALLEL_READERS", "true").lower() in (
                 "1", "true", "yes"):
             try:
                 _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
                 avoma_prefetch_block = _avoma_prefetch_block(_avoma_pf)
-                print(f"[DEAL-SWEEP] avoma-prefetch opp={opp_id} "
-                      f"calls_found={_avoma_pf.get('calls_found')} "
-                      f"read={(_avoma_pf.get('coverage') or {}).get('read')}", flush=True)
+                _cov = _avoma_pf.get("coverage") or {}
+                print(f"[DEAL-SWEEP] avoma-engine opp={opp_id} "
+                      f"window={_avoma_pf.get('window_days')}d "
+                      f"discovered={_cov.get('discovered')} matched={_avoma_pf.get('calls_found')} "
+                      f"read={_cov.get('read')} gaps={_cov.get('gaps')} "
+                      f"mismatch={_cov.get('mismatch')}", flush=True)
             except Exception as _e:  # noqa: BLE001 — degrade to no-prefetch
-                print(f"[DEAL-SWEEP] avoma-prefetch wrapper failed opp={opp_id}: "
+                print(f"[DEAL-SWEEP] avoma-engine wrapper failed opp={opp_id}: "
                       f"{type(_e).__name__}: {_e}", flush=True)
                 avoma_prefetch_block = ""
+                _avoma_pf = {}
         # Authoritative per-opp Salesforce snapshot (core mechanics + the deal
         # owner's manager). Several entry paths pass only a THIN opp dict (the
         # worker queue carries just id/account/owner_name/name), so without this
@@ -2074,7 +2171,7 @@ async def analyze_one(
         # deterministic last-resort sanitize forces each offending value to the
         # Salesforce truth / a role / null and we persist that honest record ONCE.
         # The sweep is therefore structurally unable to persist an invented fact.
-        _max_attempts = max(1, int(os.getenv("DEAL_SWEEP_GATE_ATTEMPTS", "3")))
+        _max_attempts = max(1, int(os.getenv("DEAL_SWEEP_GATE_ATTEMPTS", "2")))
         _feedback = ""
         _failed_validation = False
         _final_violations: list = []
@@ -2246,6 +2343,40 @@ async def analyze_one(
             except Exception as _qe:  # noqa: BLE001 — recovery must never block persist
                 print(f"[QUALITY-INSPECTOR] opp={opp_id} recovery error (non-fatal): "
                       f"{type(_qe).__name__}: {_qe}", flush=True)
+        # ---- January 2.0 never-miss floor: the engine's manifest is the truth -----
+        # The deterministic Avoma engine already discovered every buyer touchpoint for
+        # this deal. If the model under-reported coverage, force evidence_coverage up
+        # to the engine's count so the output can NEVER read "no conversation" while
+        # real touchpoints exist. We touch ONLY the counts / discovery_method (engine
+        # facts) — never the narrative — so this can never fabricate content. Runs
+        # BEFORE the pulse is recomputed in _apply_living_memory, so the corrected
+        # calls_read drives the engagement pulse too. Never blocks the persist.
+        try:
+            _eng_calls = int((_avoma_pf or {}).get("calls_found") or 0)
+            if _eng_calls > 0 and isinstance(parsed, dict):
+                _ec = parsed.get("evidence_coverage")
+                if not isinstance(_ec, dict):
+                    _ec = {}
+                _engcov = (_avoma_pf or {}).get("coverage") or {}
+                _reported = int(_ec.get("calls_discovered") or 0)
+                if _reported < _eng_calls:
+                    _ec["calls_discovered"] = _eng_calls
+                    _ec["calls_read"] = max(int(_ec.get("calls_read") or 0),
+                                            int(_engcov.get("read") or 0))
+                    _ec.setdefault("discovery_method",
+                                   "never-miss engine (opp+account+attendee)")
+                    _gp = _ec.setdefault("gaps", [])
+                    if isinstance(_gp, list) and int(_engcov.get("gaps") or 0):
+                        _gp.append(f"{_engcov.get('gaps')} touchpoint(s) had no "
+                                   "recording (counted as engagement, no content)")
+                    _ec["engine_floor_applied"] = True
+                    parsed["evidence_coverage"] = _ec
+                    print(f"[DEAL-SWEEP] never-miss floor opp={opp_id} "
+                          f"coverage {_reported} -> {_eng_calls} "
+                          f"(read={_ec['calls_read']})", flush=True)
+        except Exception as _fe:  # noqa: BLE001 — floor must never break the persist
+            print(f"[DEAL-SWEEP] never-miss floor skipped opp={opp_id}: "
+                  f"{type(_fe).__name__}: {_fe}", flush=True)
         # Escalation gate (deal_engine_qi) — INDEPENDENT of the name-fabrication
         # sanitiser (_val) above. A VP / manager / exec getting on a call may be
         # recommended ONLY on a forecasted deal (ForecastCategory in Commit /

@@ -214,7 +214,11 @@ if (-not $SkipBuild) {
 Write-Step "Register task definition"
 $secretString = & $AWS secretsmanager get-secret-value --secret-id $SecretId --query SecretString --output text
 if ($LASTEXITCODE -ne 0) { throw "could not read secret $SecretId" }
-$secretKeys = ($secretString | ConvertFrom-Json).PSObject.Properties.Name
+# Force the never-miss Avoma engine ON: drop DEAL_SWEEP_PARALLEL_READERS from the
+# secret list so the plain task-def env below (=true) wins (ECS forbids the same
+# key in both secrets and environment). Mirrors deploy.ps1 (Aleen, 2261a15).
+$secretKeys = ($secretString | ConvertFrom-Json).PSObject.Properties.Name |
+    Where-Object { $_ -ne 'DEAL_SWEEP_PARALLEL_READERS' }
 $secretsJson = ($secretKeys | ForEach-Object {
     '{"name":"' + $_ + '","valueFrom":"' + $SecretArn + ':' + $_ + '::"}'
 }) -join ','
@@ -238,7 +242,8 @@ $taskDefJson = @"
       "portMappings": [{ "containerPort": $ContainerPort, "protocol": "tcp" }],
       "environment": [
         { "name": "HOST", "value": "0.0.0.0" },
-        { "name": "PORT", "value": "$ContainerPort" }
+        { "name": "PORT", "value": "$ContainerPort" },
+        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" }
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {
@@ -397,7 +402,8 @@ $workerTaskDefJson = @"
       "essential": true,
       "command": ["python", "worker.py"],
       "environment": [
-        { "name": "DEAL_SWEEP_CONCURRENCY", "value": "2" },
+        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
+        { "name": "DEAL_SWEEP_CONCURRENCY", "value": "8" },
         { "name": "MCP_SERVER_ALLOWLIST", "value": "salesforce,avoma" },
         { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
         { "name": "LLM_REQUEST_TIMEOUT_S", "value": "600" },

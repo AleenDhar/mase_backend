@@ -8686,6 +8686,37 @@ async def deal_engine_sweep_one(opp_id: str, request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/sweep/{opp_id}/update-living-memory")
+async def deal_engine_update_living_memory(opp_id: str, request: Request):
+    """'Update Living Memories' — re-sweep ONE opportunity FROM SCRATCH and
+    REPLACE its stored record (no carry-forward). Use this to discard stale
+    living-memory and rebuild a deal from current Salesforce + Avoma reality.
+    Identical to the manual single-opp sweep except source='update_living_memory',
+    which makes analyze_one skip loading the prior record. Synchronous; returns
+    {opp_id, status, duration_ms, error}. Normal sweeps/triggers are unaffected."""
+    import deal_engine_sweep as sweep
+    try:
+        d = {}
+        try:
+            d = await request.json()
+        except Exception:  # noqa: BLE001
+            pass
+        enriched = await sweep._enrich_opp_ids(agent_manager, [opp_id])
+        opp = enriched[0] if enriched else {"id": opp_id}
+        opp.setdefault("name", None)
+        opp.setdefault("account", None)
+        opp.setdefault("owner_name", None)
+        opp.setdefault("owner_id", None)
+        opp["name"] = opp.get("name") or d.get("name")
+        opp["account"] = opp.get("account") or d.get("account")
+        opp["owner_name"] = opp.get("owner_name") or d.get("owner")
+        res = await sweep.analyze_one(agent_manager, opp, source="update_living_memory")
+        code = 200 if res.get("status") == "completed" else 502
+        return JSONResponse(res, status_code=code)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/trigger-logs")
 async def deal_engine_trigger_logs(limit: int = 500):
     """Dashboard list: the latest analysis run per opportunity, newest first.

@@ -1805,12 +1805,24 @@ async def analyze_one(
         # wording and our stable keys line up) and (b) merge this sweep into the
         # durable packets afterwards instead of overwriting.
         import deal_engine_packets as packets_mod
+        # "Update Living Memories" (source="update_living_memory"): a deliberate
+        # FROM-SCRATCH rebuild that REPLACES the stored record. We skip loading the
+        # prior record, so EVERY carry-forward (packets reconcile, requirement /
+        # element carry, suspect-dark guard, _apply_living_memory) becomes a no-op
+        # for lack of prior state — the sweep result stands on its own. Every other
+        # source keeps living memory (the incremental merge used by SF triggers /
+        # automated refreshes), so steady-state behaviour is unchanged.
+        _from_scratch = (source == "update_living_memory")
         existing_record = {}
-        try:
-            existing_record = await asyncio.get_running_loop().run_in_executor(
-                None, store.get_record, opp_id) or {}
-        except Exception as _e:  # noqa: BLE001
-            print(f"[DEAL-SWEEP] prior record load failed opp={opp_id}: {_e}", flush=True)
+        if _from_scratch:
+            print(f"[DEAL-SWEEP] update-living-memory opp={opp_id} — FROM SCRATCH "
+                  f"(no carry-forward; replaces the prior record)", flush=True)
+        else:
+            try:
+                existing_record = await asyncio.get_running_loop().run_in_executor(
+                    None, store.get_record, opp_id) or {}
+            except Exception as _e:  # noqa: BLE001
+                print(f"[DEAL-SWEEP] prior record load failed opp={opp_id}: {_e}", flush=True)
         existing_packets = existing_record.get("packets") or []
         topics_block = packets_mod.known_topics_block(existing_packets)
         # Buyer-identity prefetch (account + contact roles + domains + recent task

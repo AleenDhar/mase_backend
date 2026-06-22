@@ -11,7 +11,7 @@
 # interception, build-certs/ just contains .gitkeep and this is a no-op.
 
 ############################ builder ############################
-FROM python:3.11-slim AS builder
+FROM public.ecr.aws/docker/library/python:3.11-slim AS builder
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -34,7 +34,7 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 ############################ runtime ############################
-FROM python:3.11-slim AS runtime
+FROM public.ecr.aws/docker/library/python:3.11-slim AS runtime
 
 # Minimal runtime libraries (wheels already bundle most native code), plus
 # Node.js 20 — several MCP integration servers are launched via `npx`

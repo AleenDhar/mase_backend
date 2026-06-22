@@ -2133,6 +2133,58 @@ def cancel_running_chat(chat_id: str) -> bool:
     except Exception as exc:  # noqa: BLE001
         print(f"[STOP] cancel_running_chat({chat_id}) — cancel failed: {exc}")
         return False
+
+
+# ── Cross-task stop signal (shared via chats.stop_requested) ─────────────────
+# _running_tasks / _cancelled_chats are PER-PROCESS. Behind the ALB the run can
+# be on a different ECS task than the one serving POST /api/chat/stop, so an
+# in-memory cancel can miss ("No running agent task found"). The running agent
+# therefore ALSO polls a shared DB flag (chats.stop_requested) every few seconds
+# and cancels itself wherever it lives. Every helper here is best-effort and
+# NEVER raises into the agent loop — a DB hiccup must not break a run.
+_db_stop_check_times = {}            # chat_id -> last event-loop time we hit the DB
+_DB_STOP_POLL_INTERVAL_S = 3.0       # poll at most this often, per chat
+
+async def _clear_db_stop_flag(chat_id: str) -> None:
+    """Clear chats.stop_requested at run start so a stale flag from a previous
+    run can't cancel this one. No-op if the row doesn't exist yet."""
+    if not chat_id or supabase is None:
+        return
+    try:
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(
+            None,
+            lambda: supabase.table("chats").update({"stop_requested": False}).eq("id", chat_id).execute(),
+        )
+        _db_stop_check_times.pop(chat_id, None)
+    except Exception as e:  # noqa: BLE001
+        print(f"[STOP] clear db stop flag failed (non-fatal) chat_id={chat_id}: {e}")
+
+async def _maybe_cancel_from_db(chat_id: str) -> None:
+    """Time-gated, fail-safe poll of chats.stop_requested. When set, add chat_id
+    to _cancelled_chats so the existing in-loop cancel handling ends the turn —
+    works no matter which ECS task ran the agent. Polls at most once per
+    _DB_STOP_POLL_INTERVAL_S per chat; never raises."""
+    if not chat_id or supabase is None or chat_id in _cancelled_chats:
+        return
+    try:
+        loop = asyncio.get_event_loop()
+        now = loop.time()
+        if now - _db_stop_check_times.get(chat_id, 0.0) < _DB_STOP_POLL_INTERVAL_S:
+            return
+        _db_stop_check_times[chat_id] = now
+        res = await loop.run_in_executor(
+            None,
+            lambda: supabase.table("chats").select("stop_requested").eq("id", chat_id).limit(1).execute(),
+        )
+        rows = getattr(res, "data", None) or []
+        if rows and rows[0].get("stop_requested"):
+            print(f"[STOP] DB stop flag set for chat_id={chat_id} — cancelling (cross-task)")
+            _cancelled_chats.add(chat_id)
+    except Exception as e:  # noqa: BLE001
+        print(f"[STOP] db stop poll failed (non-fatal) chat_id={chat_id}: {e}")
+
+
 _current_chat_id = contextvars.ContextVar('current_chat_id', default=None)
 _current_project_id = contextvars.ContextVar('current_project_id', default=None)
 # When True, _wrap_mcp_tool skips the gpt-4o-mini LLM summariser for oversized
@@ -2634,6 +2686,10 @@ async def _agent_astream_autocontinue(agent, messages, chat_id, terminal_meta_ou
     last_ai = None
     first = True
 
+    # Clear any stale cross-task stop flag so a previous run's stop can't cancel
+    # this fresh run (the flag is set by POST /api/chat/stop and polled below).
+    await _clear_db_stop_flag(chat_id)
+
     try:
         from custom_tools.search_knowledge import reset_search_knowledge_step
     except Exception:
@@ -2684,6 +2740,10 @@ async def _agent_astream_autocontinue(agent, messages, chat_id, terminal_meta_ou
                 m = chunk["messages"][-1]
                 if type(m).__name__ == "AIMessage":
                     last_ai = m
+            # Cross-task stop: flip _cancelled_chats if the shared DB flag is set
+            # (time-gated, fail-safe). The caller's `if chat_id in _cancelled_chats`
+            # check then ends the turn cleanly — same path as an in-process stop.
+            await _maybe_cancel_from_db(chat_id)
             yield chunk
 
         stop_reason = (
@@ -3586,6 +3646,20 @@ async def stop_chat(chat_id: str = None):
 
     print(f"[STOP] Received stop request for chat_id={chat_id}")
 
+    # Cross-task stop: the run may be on a DIFFERENT ECS task than the one
+    # serving this request (ALB round-robin), so the in-memory _running_tasks
+    # check below can miss. Set a shared DB flag the running agent polls (every
+    # few seconds) and cancels itself wherever it lives. Best-effort; never fatal.
+    try:
+        _loop = asyncio.get_event_loop()
+        await _loop.run_in_executor(
+            None,
+            lambda: supabase.table("chats").update({"stop_requested": True}).eq("id", chat_id).execute(),
+        )
+        print(f"[STOP] set chats.stop_requested=true for chat_id={chat_id}")
+    except Exception as e:
+        print(f"[STOP] set db stop flag failed (non-fatal): {e}")
+
     if chat_id in _running_tasks:
         _cancelled_chats.add(chat_id)
         task = _running_tasks.get(chat_id)
@@ -3612,13 +3686,13 @@ async def stop_chat(chat_id: str = None):
                 "message": "Agent task has already completed."
             }
     else:
+        # No live task in THIS process — but we set the shared DB stop flag
+        # above, so the agent (likely on another ECS task) will pick it up at its
+        # next poll (~3s) and halt. Not an error.
         return {
-            "chat_id":
-            chat_id,
-            "status":
-            "not_found",
-            "message":
-            "No running agent task found for this chat_id. It may have already completed."
+            "chat_id": chat_id,
+            "status": "stop_signalled",
+            "message": "Stop signal recorded; the running agent will halt at its next checkpoint."
         }
 
 

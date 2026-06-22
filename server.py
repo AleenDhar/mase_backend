@@ -2147,7 +2147,10 @@ _DB_STOP_POLL_INTERVAL_S = 3.0       # poll at most this often, per chat
 
 async def _clear_db_stop_flag(chat_id: str) -> None:
     """Clear chats.stop_requested at run start so a stale flag from a previous
-    run can't cancel this one. No-op if the row doesn't exist yet."""
+    run can't cancel this one, AND arm polling for this chat. Polling is armed
+    (key present in _db_stop_check_times) ONLY after a successful clear — so if
+    the clear fails, _maybe_cancel_from_db skips polling and a stale flag can
+    never spuriously cancel a fresh run. No-op if the row doesn't exist yet."""
     if not chat_id or supabase is None:
         return
     try:
@@ -2156,21 +2159,32 @@ async def _clear_db_stop_flag(chat_id: str) -> None:
             None,
             lambda: supabase.table("chats").update({"stop_requested": False}).eq("id", chat_id).execute(),
         )
-        _db_stop_check_times.pop(chat_id, None)
+        # Arm + gate: the flag is now known-false; only a stop DURING this run
+        # flips it. Seeding `now` makes the first poll wait one interval.
+        _db_stop_check_times[chat_id] = loop.time()
     except Exception as e:  # noqa: BLE001
+        # Leave UNARMED on failure so a stale flag can't cancel this run. Worst
+        # case: cross-task stop is unavailable for this one run (rare); never a
+        # spurious stop, never a broken run.
+        _db_stop_check_times.pop(chat_id, None)
         print(f"[STOP] clear db stop flag failed (non-fatal) chat_id={chat_id}: {e}")
 
 async def _maybe_cancel_from_db(chat_id: str) -> None:
-    """Time-gated, fail-safe poll of chats.stop_requested. When set, add chat_id
-    to _cancelled_chats so the existing in-loop cancel handling ends the turn —
-    works no matter which ECS task ran the agent. Polls at most once per
-    _DB_STOP_POLL_INTERVAL_S per chat; never raises."""
+    """Time-gated, fail-safe poll of chats.stop_requested. Polls ONLY once the
+    run's start-clear has armed this chat (key present in _db_stop_check_times);
+    if the clear failed the chat is unarmed and polling is skipped, so a stale
+    flag can't spuriously cancel. When the flag is set, add chat_id to
+    _cancelled_chats so the existing in-loop cancel handling ends the turn —
+    works no matter which ECS task ran the agent. Never raises."""
     if not chat_id or supabase is None or chat_id in _cancelled_chats:
         return
+    last = _db_stop_check_times.get(chat_id)
+    if last is None:
+        return  # not armed (start-clear didn't succeed) — don't risk a stale read
     try:
         loop = asyncio.get_event_loop()
         now = loop.time()
-        if now - _db_stop_check_times.get(chat_id, 0.0) < _DB_STOP_POLL_INTERVAL_S:
+        if now - last < _DB_STOP_POLL_INTERVAL_S:
             return
         _db_stop_check_times[chat_id] = now
         res = await loop.run_in_executor(

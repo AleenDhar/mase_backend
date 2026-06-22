@@ -98,6 +98,13 @@ class Config:
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
     XAI_API_KEY = os.getenv("XAI_API_KEY", "")
+    # Fireworks AI (OpenAI-compatible). Used when a model id is prefixed
+    # "fireworks:" — currently a super-admin-only sandbox surfaced from VIBE.
+    FIREWORKS_API_KEY = os.getenv("FIREWORKS_API_KEY", "")
+    # Dedicated output budget for Fireworks. gpt-oss are reasoning models whose
+    # reasoning tokens count toward the output cap, so the 8192 Anthropic-sized
+    # MAX_OUTPUT_TOKENS truncates long turns. Mirror DEAL_SWEEP_MAX_TOKENS.
+    FIREWORKS_MAX_TOKENS = int(os.getenv("FIREWORKS_MAX_TOKENS", "32000"))
 
     MCP_CONFIG_FILE = os.getenv("MCP_CONFIG_FILE", "mcp_config.json")
     CUSTOM_TOOLS_DIR = os.getenv("CUSTOM_TOOLS_DIR", "custom_tools")
@@ -1831,6 +1838,19 @@ EFFICIENCY RULES (MANDATORY):
                 base_url="https://api.x.ai/v1",
             )
             print(f"Created xAI Grok model: {model_name}")
+        elif selected_model.startswith("fireworks:"):
+            # Fireworks AI is OpenAI-compatible — route through ChatOpenAI with
+            # the Fireworks base URL. model_name is the full Fireworks model path,
+            # e.g. "accounts/fireworks/models/gpt-oss-120b".
+            model_name = selected_model.split(":", 1)[1]
+            from langchain_openai import ChatOpenAI
+            agent_model = ChatOpenAI(
+                model=model_name,
+                api_key=config.FIREWORKS_API_KEY or None,
+                base_url="https://api.fireworks.ai/inference/v1",
+                max_tokens=config.FIREWORKS_MAX_TOKENS,
+            )
+            print(f"Created Fireworks model: {model_name} (max_tokens={config.FIREWORKS_MAX_TOKENS})")
 
         # Intra-run context-trim middleware (cost task #40, 2026-05-22).
         # Shrinks old ToolMessage content before every LLM call once the
@@ -1852,6 +1872,13 @@ EFFICIENCY RULES (MANDATORY):
                 f"keep_recent={config.CONTEXT_TRIM_KEEP_RECENT_MESSAGES}, "
                 f"placeholder_cap={config.CONTEXT_TRIM_PLACEHOLDER_MAX_CHARS})"
             )
+        # Fireworks' OpenAI-compat endpoint rejects LangChain content-block `id`
+        # fields ("Extra inputs are not permitted"), which 400s every multi-step
+        # tool-using run. Normalise message content right before each model call.
+        if selected_model.startswith("fireworks:"):
+            from agent_checklist.fireworks_compat_middleware import FireworksCompatMiddleware
+            middlewares.append(FireworksCompatMiddleware())
+            print("[FIREWORKS-COMPAT] message-normalisation middleware enabled (OpenAI-compat id strip)")
         self.agent = create_deep_agent(tools=tools,
                                        system_prompt=instructions,
                                        subagents=[],

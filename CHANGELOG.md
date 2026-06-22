@@ -11,6 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-22 — Fireworks AI models (super-admin sandbox) routed through the agent backend
+
+**What.** Added a `fireworks:` provider branch in `server.py` (`initialize_agent`, alongside
+anthropic/google/grok): any model id prefixed `fireworks:` (e.g.
+`fireworks:accounts/fireworks/models/gpt-oss-120b`) is built as a `ChatOpenAI` against the
+Fireworks OpenAI-compatible endpoint (`https://api.fireworks.ai/inference/v1`), keyed by
+`Config.FIREWORKS_API_KEY` (env `FIREWORKS_API_KEY`, injected from Secrets Manager `mase/app-env`).
+A dedicated `FIREWORKS_MAX_TOKENS` (default 32000) keeps the 8192 Anthropic-sized
+`MAX_OUTPUT_TOKENS` from truncating gpt-oss reasoning turns. Surfaced from VIBE as a
+super-admin-only model-picker option (normal **and** project chats).
+
+**Why / how to work with it.** Lets us A/B Fireworks-hosted open models (gpt-oss-120b/20b active;
+kimi/deepseek/qwen3 seeded inactive pending account access) without a separate calling path — same
+agent loop, tools, streaming. Keys are **env-only**: the backend never reads the request `api_keys`,
+so the VIBE admin `fireworks_api_key` Supabase row is a record/rotation surface only — to change the
+operative key, update the AWS secret `mase/app-env`. Super-admin gating is enforced **VIBE-side**
+(`/api/chat` provider gate + picker filter); the backend trusts it (no role check). Only `/api/chat`
+(create_deep_agent) understands `fireworks:` — the deal sweep / analyzer / AI-columns resolvers do
+NOT, so never set a fireworks id as their model.
+
+---
+
 ## 2026-06-19 — RevOps chat goes streaming/realtime (VIBE pattern); fixes the proxy timeout
 
 **What.** The tool-using RevOps chat can run for tens of seconds to minutes (search_knowledge +

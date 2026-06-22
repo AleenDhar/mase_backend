@@ -1263,6 +1263,14 @@ def _empty_prefetch(err: int = 0) -> dict:
 _AVOMA_API_BASE = os.getenv("AVOMA_API_BASE", "https://api.avoma.com/v1").rstrip("/")
 _AVOMA_API_TOKEN = os.getenv("AVOMA_API_TOKEN", "ifi116h6e8:2p7r6khoxqojr5638sld")
 _AVOMA_HTTP_TIMEOUT = float(os.getenv("DEAL_SWEEP_AVOMA_HTTP_TIMEOUT_S", "30"))
+# Resilience for the direct-REST path. Bypassing the MCP adapter (which mangles
+# large payloads -> calls_found=0) also dropped avoma_mcp_server._send_with_retry,
+# so concurrent sweep reads that hit Avoma's 429 / a transient timeout silently
+# returned read=0. Mirror that retry posture here (NOT the global _api_lock —
+# concurrency is already bounded by the reader semaphore). Shared env names so
+# ops tunes both the MCP and REST paths with the same knobs.
+_AVOMA_MAX_429_RETRIES = int(os.getenv("AVOMA_MAX_429_RETRIES", "5"))
+_AVOMA_MAX_TIMEOUT_RETRIES = int(os.getenv("AVOMA_MAX_TIMEOUT_RETRIES", "2"))
 
 
 def _avoma_http() -> bool:
@@ -1274,16 +1282,53 @@ def _avoma_http() -> bool:
 
 def _avoma_http_get(endpoint: str, params: Optional[dict] = None) -> Any:
     """One Avoma GET (sync; called via asyncio.to_thread). Returns parsed JSON, or
-    {'error': ...} on failure — never raises."""
+    {'error': ...} on failure — never raises.
+
+    Retries HTTP 429 (honouring Retry-After, else capped exponential backoff:
+    1,2,4,8...s capped at 30, floor 0.5) and transient timeout/transport errors
+    (separate budget), mirroring avoma_mcp_server._send_with_retry. No global lock
+    — the caller's reader semaphore already bounds concurrency, and the backoff
+    sleeps run in the asyncio.to_thread worker so they don't block the event loop."""
+    import time
     import httpx
-    try:
-        r = httpx.get(_AVOMA_API_BASE + endpoint,
-                      headers={"Authorization": f"Bearer {_AVOMA_API_TOKEN}"},
-                      params=params or {}, timeout=_AVOMA_HTTP_TIMEOUT)
-        r.raise_for_status()
-        return r.json()
-    except Exception as e:  # noqa: BLE001
-        return {"error": f"{type(e).__name__}: {e}"}
+    url = _AVOMA_API_BASE + endpoint
+    headers = {"Authorization": f"Bearer {_AVOMA_API_TOKEN}"}
+    rate_retries = 0
+    timeout_retries = 0
+    max_attempts = _AVOMA_MAX_429_RETRIES + _AVOMA_MAX_TIMEOUT_RETRIES + 1
+    for _ in range(max_attempts):
+        try:
+            r = httpx.get(url, headers=headers, params=params or {},
+                          timeout=_AVOMA_HTTP_TIMEOUT)
+        except (httpx.TimeoutException, httpx.TransportError) as exc:
+            # Read/connect timeout or transient transport error: back off and retry
+            # up to the timeout budget, then surface the failure.
+            if timeout_retries >= _AVOMA_MAX_TIMEOUT_RETRIES:
+                return {"error": f"{type(exc).__name__}: {exc}"}
+            time.sleep(float(min(2 ** timeout_retries, 30)))
+            timeout_retries += 1
+            continue
+        except Exception as e:  # noqa: BLE001 — any other client error: don't retry
+            return {"error": f"{type(e).__name__}: {e}"}
+        if r.status_code == 429 and rate_retries < _AVOMA_MAX_429_RETRIES:
+            ra = r.headers.get("Retry-After")
+            try:
+                delay = float(ra) if ra else float(min(2 ** rate_retries, 30))
+            except (TypeError, ValueError):
+                delay = float(min(2 ** rate_retries, 30))
+            delay = max(0.5, min(delay, 30.0))
+            rate_retries += 1
+            print(f"[DEAL-SWEEP] avoma-429 {endpoint} attempt "
+                  f"{rate_retries}/{_AVOMA_MAX_429_RETRIES} — sleeping {delay:.1f}s",
+                  flush=True)
+            time.sleep(delay)
+            continue
+        try:
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:  # noqa: BLE001
+            return {"error": f"{type(e).__name__}: HTTP {r.status_code}"}
+    return {"error": f"429: exhausted {_AVOMA_MAX_429_RETRIES} retries"}
 
 
 def _avoma_http_pages(params: dict, max_pages: int = 50) -> list:

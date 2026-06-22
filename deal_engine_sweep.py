@@ -403,7 +403,8 @@ async def _revops_head_review(parsed: dict, opp: dict, opp_id: str) -> dict:
         import deal_engine_qi as _qigate
         fc = opp.get("forecast_category")
         forecasted = (fc or "").strip().lower() in _qigate.FORECASTED
-        ev = ((parsed.get("ai") or {}).get("evidence_coverage") or {})
+        ev = (parsed.get("evidence_coverage")
+              or (parsed.get("ai") or {}).get("evidence_coverage") or {})
         calls = int(ev.get("calls_read") or ev.get("calls_found") or 0)
         try:
             amount = float(opp.get("amount") or 0)
@@ -432,7 +433,11 @@ async def _revops_head_review(parsed: dict, opp: dict, opp_id: str) -> dict:
         new_ai = revised.get("ai") if isinstance(revised, dict) else None
         if not isinstance(new_ai, dict) or not new_ai:
             return parsed  # malformed — keep the gate-clean original
-        parsed["ai"] = new_ai
+        # MERGE over the projected ai: the RevOps Head's revised fields (re-ranked
+        # moves, tightened verdict) + the new ai.revops_review WIN (latest/greatest
+        # first), but any field the editor omitted falls back to the accurate
+        # living-memory-projected value — so nothing good/accurate is dropped.
+        parsed["ai"] = {**(parsed.get("ai") or {}), **new_ai}
         # Defense-in-depth: re-run the escalation gate — the RevOps Head must never
         # reintroduce a VP/manager escalation on a non-forecasted deal.
         _ev2, parsed = _qigate.check_escalation(parsed, fc)
@@ -2492,16 +2497,21 @@ async def analyze_one(
         except Exception as _ee:  # noqa: BLE001 — the gate must never block persist
             print(f"[QI-ESCALATION] opp={opp_id} non-fatal: "
                   f"{type(_ee).__name__}: {_ee}", flush=True)
-        # RevOps Head — strategic editor-in-chief (Deal Sweep January 1.0). Runs
-        # LAST, after the compliance QI, on standard+deep deals only, behind
-        # REVOPS_HEAD_ENABLED (default OFF — ships dark). Returns `parsed`
-        # unchanged when disabled / lean / on any error, so it can never block a
-        # persist. Re-runs the escalation gate internally as defense-in-depth.
-        parsed = await _revops_head_review(parsed, opp, opp_id)
-        # Build the durable living-memory packets ONCE, AFTER the gate has approved
+        # Build the durable living-memory packets FIRST, AFTER the gate has approved
         # or sanitised the facts — so packets are always derived from gate-clean ai
-        # and a stripped fabrication can never survive in the packet store.
+        # and a stripped fabrication can never survive in the packet store. This also
+        # recomputes the engagement pulse and projects the packet-backed ai.* (moves,
+        # verdict, meddpicc) — the good, accurate, deal-progression facts.
         _apply_living_memory(parsed)
+        # RevOps Head — strategic editor-in-chief (Deal Sweep January 1.0). Runs
+        # ABSOLUTELY LAST, AFTER living-memory, so its review (re-ranked moves +
+        # ai.revops_review) is the FINAL write before persist and actually reaches the
+        # UI — instead of being clobbered by the packet projection (the prior ordering
+        # bug that left revops_review on 0/444 deals). It MERGES over the projected ai
+        # (latest/greatest wins; any field it omits keeps the accurate projected value),
+        # and pulse/hard are top-level so they are never touched. Forecasted-only,
+        # behind REVOPS_HEAD_ENABLED; never blocks persist.
+        parsed = await _revops_head_review(parsed, opp, opp_id)
         await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Surface the stamped engagement state so the dashboard/audit can flag a

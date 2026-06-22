@@ -38,7 +38,8 @@ param(
     [string]$Tag,
     [switch]$SkipBuild,
     [Alias('m')][string]$Message,   # commit message; required if the tree is dirty (unless -NoPush)
-    [switch]$NoPush                  # skip the commit+push-to-GitHub step
+    [switch]$NoPush,                 # skip the commit+push-to-GitHub step
+    [switch]$AllowDirty              # ESCAPE HATCH: deploy a working tree that differs from origin/main
 )
 
 $ErrorActionPreference = 'Stop'
@@ -127,6 +128,37 @@ if (-not $NoPush -and (Get-Command git -ErrorAction SilentlyContinue)) {
     } else {
         Write-Host "Pushed working tree to github.com/AleenDhar/mase_backend (main)." -ForegroundColor Green
     }
+}
+
+# ----------------------------------------------------------------------------
+# 0b. SYNC GUARD — deploy ONLY what is on origin/main.
+#     deploy.ps1 ships the WORKING TREE and tags the image with the LOCAL HEAD,
+#     so a divergent or dirty checkout silently deploys code that ISN'T on
+#     GitHub: a local merge commit created by `git pull`, an uncommitted edit,
+#     or a push that FAILED above (which we only warn about). That is exactly
+#     how prod ended up running a commit (dfabe90) that doesn't exist on GitHub
+#     and 404'd /api/deal-engine/chat/async. Refuse unless the tree is clean AND
+#     HEAD == origin/main. Override with -AllowDirty for a deliberate
+#     working-tree deploy (you accept that GitHub will not match prod).
+# ----------------------------------------------------------------------------
+if (-not $AllowDirty -and (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Step "Sync guard (working tree must match origin/main)"
+    git fetch origin --quiet
+    $dirty = git status --porcelain
+    if ($dirty) {
+        Write-Host $dirty
+        throw "ABORT (sync guard): working tree has uncommitted changes (listed above). deploy.ps1 ships the WORKING TREE, so this would deploy code that is NOT on GitHub. Commit and push, stash, or run git reset --hard origin/main first. Override with -AllowDirty."
+    }
+    $localHead  = (git rev-parse HEAD).Trim()
+    $originMain = (git rev-parse origin/main).Trim()
+    $hp = $localHead.Substring(0,7)
+    if ($localHead -ne $originMain) {
+        $ahead  = (git rev-list --count "origin/main..HEAD").Trim()
+        $behind = (git rev-list --count "HEAD..origin/main").Trim()
+        $op = $originMain.Substring(0,7)
+        throw "ABORT (sync guard): local HEAD $hp does not match origin/main $op (ahead $ahead, behind $behind). deploy.ps1 ships the WORKING TREE, so this would deploy code that differs from GitHub. Run git fetch origin then git reset --hard origin/main (or push your commits), then redeploy. Override with -AllowDirty."
+    }
+    Write-Host "Sync guard OK - clean tree, HEAD matches origin/main ($hp)." -ForegroundColor Green
 }
 
 if (-not $Tag) {

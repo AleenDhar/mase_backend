@@ -7062,6 +7062,39 @@ async def deal_engine_health():
             "model": _deal_engine_model()}
 
 
+@app.get("/api/deal-engine/selfcheck")
+async def deal_engine_selfcheck():
+    """Post-deploy QA: reports which critical ENV + features are wired (BOOLEANS
+    ONLY — never secret values) so the smoke test can confirm a deploy did NOT drop
+    the datalake / SNS / LLM-tuning env or the Anthropic key. `ok=false` with a
+    populated `missing[]` means a required env vanished — DO NOT trust the build,
+    re-add it to the deploy.ps1 template / the secret, redeploy. See docs/API_INVENTORY.md."""
+    def _set(*names):
+        return any(bool(os.environ.get(n)) for n in names)
+    checks = {
+        # required platform creds
+        "anthropic_api_key": _set("ANTHROPIC_API_KEY"),
+        "supabase": _set("SUPABASE_URL") and _set("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SERVICE_KEY"),
+        "avoma_api_token": _set("AVOMA_API_TOKEN"),
+        # datalake (the repointed Avoma source)
+        "datalake_url": _set("DATALAKE_URL"),
+        "datalake_service_key": _set("DATALAKE_SERVICE_KEY"),
+        "avoma_from_datalake": os.getenv("DEAL_SWEEP_AVOMA_FROM_DATALAKE", "").strip().lower() in ("1", "true", "yes", "on"),
+        # webhook (Avoma -> SNS -> datalake)
+        "sns_allowlist": _set("SNS_ALLOWED_TOPIC_ARNS"),
+        # sweep robustness tuning (string values surfaced so a wrong number is visible)
+        "llm_request_timeout_s": os.getenv("LLM_REQUEST_TIMEOUT_S"),
+        "anthropic_max_retries": os.getenv("ANTHROPIC_MAX_RETRIES"),
+        # runtime readiness
+        "agent_initialized": globals().get("agent_manager") is not None,
+    }
+    required = ["anthropic_api_key", "supabase", "avoma_api_token", "datalake_url",
+                "datalake_service_key", "avoma_from_datalake", "sns_allowlist",
+                "agent_initialized"]
+    missing = [k for k in required if not checks.get(k)]
+    return {"ok": not missing, "missing": missing, "checks": checks}
+
+
 @app.get("/api/deal-engine/team")
 async def deal_engine_team():
     import deal_engine_store as dstore

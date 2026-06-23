@@ -11,6 +11,26 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-23 — Deploy QA layer: smoke test + /selfcheck endpoint + API inventory
+
+**What.** A pre/post-deploy QA gate so a build can't silently drop a route (the chat-404
+outages) or an env var (datalake/SNS/LLM tuning):
+- **`scripts/smoke_test.sh`** — probes every critical route with SAFE probes (GETs, and
+  POSTs with `{}` that validate-reject 400/422 so no sweep/chat/write is triggered).
+  PASS = not 404, not 5xx. Exit 1 if any critical route is dead → roll back. Run it
+  **before AND after** every deploy.
+- **`GET /api/deal-engine/selfcheck`** (`server.py`) — returns BOOLEANS (never secret
+  values) for the durable env (Anthropic key, Supabase, Avoma token, `DATALAKE_URL`,
+  `DATALAKE_SERVICE_KEY`, `DEAL_SWEEP_AVOMA_FROM_DATALAKE`, `SNS_ALLOWED_TOPIC_ARNS`,
+  LLM tuning) + `agent_initialized`. `ok:false` + `missing[]` = a deploy dropped env.
+- **`docs/API_INVENTORY.md`** — full endpoint inventory + the deploy QA loop + a
+  failure-triage table.
+
+**Why / how to work with it.** The env is already durable in the `deploy.ps1` template +
+secrets (prevention); the smoke test + `selfcheck` are the seatbelt that *detects* a
+regression immediately instead of a rep finding it in prod. **Every deploy must pass the
+smoke test (pre + post) and `selfcheck.ok` must be true.** See `docs/API_INVENTORY.md`.
+
 ## 2026-06-23 — G8 temporal anchoring: sweep re-anchors all relative time to today
 
 **What.** Added a hard **TEMPORAL ANCHORING** rule to the ground-truth block injected

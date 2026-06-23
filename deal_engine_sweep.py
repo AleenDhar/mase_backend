@@ -1597,6 +1597,68 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
         return _empty_prefetch(err=1)
 
 
+async def _avoma_prefetch_from_datalake(opp: dict) -> dict:
+    """A/B path: build the Avoma manifest from the `datalake` (the deal's WHOLE call
+    history — no 90-day clip, no 12-read cap, no rate-limit) in ONE SQL read, instead
+    of live Avoma. Same shape as _avoma_prefetch so _avoma_prefetch_block renders it
+    unchanged. Shaped-empty on any failure; never raises."""
+    shaped = _empty_prefetch()
+    shaped["discovery_method"] = "datalake"
+    shaped["match_basis"] = "datalake-opp"
+    dl_url = os.getenv("DATALAKE_URL", "").rstrip("/")
+    dl_key = os.getenv("DATALAKE_SERVICE_KEY", "")
+    oid = opp.get("id") if isinstance(opp, dict) else None
+    opp18 = sf_id_18(oid or "") or ""
+    opp15 = (opp18 or (oid or ""))[:15]
+    if not (dl_url and dl_key and opp15):
+        return shaped
+    import httpx
+    url = (f"{dl_url}/rest/v1/avoma_meetings?crm_opportunity_id=like.{opp15}*"
+           "&select=uuid,subject,start_at,state,attendee_emails,transcript_ready,notes_ready,"
+           "avoma_transcripts(transcript_text),avoma_insights(ai_notes_text)&order=start_at")
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            r = await client.get(url, headers={"apikey": dl_key,
+                                               "Authorization": f"Bearer {dl_key}"})
+            rows = r.json() if r.status_code < 300 else []
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] datalake prefetch failed opp={oid}: {type(e).__name__}: {e}", flush=True)
+        return shaped
+    if not isinstance(rows, list) or not rows:
+        return shaped
+
+    def _one(v):
+        return (v[0] if v else {}) if isinstance(v, list) else (v if isinstance(v, dict) else {})
+
+    manifest = []
+    for m in rows:
+        tr_text = _one(m.get("avoma_transcripts")).get("transcript_text")
+        notes = _one(m.get("avoma_insights")).get("ai_notes_text")
+        state = (m.get("state") or "").lower()
+        is_gap = state in _AVOMA_GAP_STATES or (not tr_text and not notes)
+        entry = {"meeting_id": m.get("uuid"), "date": m.get("start_at"),
+                 "subject": m.get("subject"), "attendees": m.get("attendee_emails") or [],
+                 "state": state or "unknown", "is_gap": bool(is_gap),
+                 "has_content": bool(tr_text or notes)}
+        if notes:
+            entry["notes"] = str(notes)[:_AVOMA_NOTES_CHARS]
+        if tr_text:
+            entry["transcript_excerpt"] = str(tr_text)[:_AVOMA_TRANSCRIPT_CHARS]
+        manifest.append(entry)
+    shaped["manifest"] = manifest
+    shaped["calls"] = [x for x in manifest if x.get("has_content")]
+    shaped["calls_found"] = len(manifest)
+    shaped["window_days"] = "all"
+    cov = shaped["coverage"]
+    cov["discovered"] = len(manifest)
+    cov["matched"] = len(manifest)
+    cov["read"] = len(shaped["calls"])
+    cov["transcripts"] = sum(1 for x in manifest if x.get("transcript_excerpt"))
+    cov["notes"] = sum(1 for x in manifest if x.get("notes"))
+    cov["gaps"] = sum(1 for x in manifest if x.get("is_gap"))
+    return shaped
+
+
 def _avoma_prefetch_block(pf: dict) -> str:
     """Render the never-miss engine's output as the AUTHORITATIVE Avoma manifest for
     the agent: every matched touchpoint (chronological), deep content where read,
@@ -1810,6 +1872,8 @@ async def analyze_one(
     recursion_limit: Optional[int] = None,
     timeout_s: Optional[int] = None,
     source: str = "sweep",
+    avoma_from_datalake: bool = False,
+    dry_run: bool = False,
 ) -> dict:
     """Run the sweep agent for one opp and upsert the resulting canonical record.
     Returns {opp_id, status, duration_ms, error}. Every run (success OR failure)
@@ -1897,7 +1961,9 @@ async def analyze_one(
         if os.getenv("DEAL_SWEEP_PARALLEL_READERS", "true").lower() in (
                 "1", "true", "yes"):
             try:
-                _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
+                _avoma_pf = (await _avoma_prefetch_from_datalake(opp)
+                             if avoma_from_datalake
+                             else await _avoma_prefetch(agent_manager, opp, buyer))
                 avoma_prefetch_block = _avoma_prefetch_block(_avoma_pf)
                 _cov = _avoma_pf.get("coverage") or {}
                 print(f"[DEAL-SWEEP] avoma-engine opp={opp_id} "
@@ -2569,7 +2635,11 @@ async def analyze_one(
         # and pulse/hard are top-level so they are never touched. Forecasted-only,
         # behind REVOPS_HEAD_ENABLED; never blocks persist.
         parsed = await _revops_head_review(parsed, opp, opp_id)
-        await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
+        if dry_run:
+            # A/B test mode: return the verdict for comparison, do NOT persist.
+            result["record"] = parsed
+        else:
+            await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Surface the stamped engagement state so the dashboard/audit can flag a
         # regression (a live deal read as dark, or vice versa).
@@ -2614,8 +2684,9 @@ async def analyze_one(
             except Exception:
                 pass
         result["duration_ms"] = int((time.time() - t0) * 1000)
-        await asyncio.get_running_loop().run_in_executor(
-            None, _persist_run_log, opp, source, result, usage, model_name)
+        if not dry_run:
+            await asyncio.get_running_loop().run_in_executor(
+                None, _persist_run_log, opp, source, result, usage, model_name)
     return result
 
 

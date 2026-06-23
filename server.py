@@ -8696,6 +8696,37 @@ async def deal_engine_sweep_one(opp_id: str, request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/sweep/{opp_id}/datalake-test")
+async def deal_engine_sweep_datalake_test(opp_id: str, request: Request):
+    """A/B TEST (no persist): re-run the sweep for one opp using the DATALAKE as the
+    Avoma source (the deal's whole call history, no 90-day clip) instead of live
+    Avoma. Returns the full record (incl. the verdict under res['record']). Does NOT
+    write deal_records or the run log — production data is untouched. For comparing
+    datalake-sourced sweep output against the existing live-Avoma record."""
+    import deal_engine_sweep as sweep
+    try:
+        d = {}
+        try:
+            d = await request.json()
+        except Exception:  # noqa: BLE001
+            pass
+        enriched = await sweep._enrich_opp_ids(agent_manager, [opp_id])
+        opp = enriched[0] if enriched else {"id": opp_id}
+        opp.setdefault("name", None)
+        opp.setdefault("account", None)
+        opp.setdefault("owner_name", None)
+        opp.setdefault("owner_id", None)
+        opp["name"] = opp.get("name") or d.get("name")
+        opp["account"] = opp.get("account") or d.get("account")
+        opp["owner_name"] = opp.get("owner_name") or d.get("owner")
+        res = await sweep.analyze_one(agent_manager, opp, source="datalake_test",
+                                      avoma_from_datalake=True, dry_run=True)
+        code = 200 if res.get("status") == "completed" else 502
+        return JSONResponse(res, status_code=code)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.post("/api/deal-engine/sweep/{opp_id}/update-living-memory")
 async def deal_engine_update_living_memory(opp_id: str, request: Request):
     """'Update Living Memories' — re-sweep ONE opportunity FROM SCRATCH and

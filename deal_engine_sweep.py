@@ -1805,6 +1805,28 @@ def _sweep_facts_block(opp: dict, buyer: dict) -> str:
         "rather than inventing a value.\n"
         + "\n".join(lines)
         + f"\nToday's date is {_today()}.\n"
+        + (
+            "\n=== TEMPORAL ANCHORING (G8 — hard rule, read before writing ANY prose) ===\n"
+            "Re-anchor EVERY time reference in your output to today's date above. A "
+            "relative phrase copied from a Salesforce note/task or from living memory "
+            "('next week', 'this Thursday', 'recently', 'last week', 'tomorrow', "
+            "'soon') was written on an EARLIER date and is almost always STALE as of "
+            "today — you MUST recompute it. For every event you mention:\n"
+            "  1. State its ABSOLUTE date (e.g. '15 May 2026'), never a bare relative "
+            "phrase.\n"
+            "  2. Say whether it is now PAST or UPCOMING vs today, with approximate "
+            "elapsed/remaining time — e.g. 'on-site demo on 15 May (~6 weeks ago)', "
+            "'Horizon event this week (~23 Jun)', 'kickoff 7 Jul (in ~2 weeks)'.\n"
+            "  3. A 'next week' / 'this Thursday' from an older note is very likely in "
+            "the PAST now — convert it; do NOT imply it is still upcoming. If you "
+            "cannot resolve an event to an absolute date, write 'date unclear'.\n"
+            "Compute ALL 'X days ago', overdue, days-to-close and time-in-stage math "
+            "from the ABSOLUTE dates vs today's date — never carry forward a "
+            "previously-computed relative number (that is how '3 days ago' becomes "
+            "wrong on a later sweep). In living memory, store every fact with its "
+            "ABSOLUTE date (YYYY-MM-DD), never a relative phrase, so the next sweep can "
+            "re-anchor it correctly.\n"
+        )
     )
 
 

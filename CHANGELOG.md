@@ -11,6 +11,25 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-23 — G8 temporal anchoring: sweep re-anchors all relative time to today
+
+**What.** Added a hard **TEMPORAL ANCHORING** rule to the ground-truth block injected
+into every sweep (`_sweep_facts_block` in `deal_engine_sweep.py`, right after
+`Today's date is …`). The agent must re-anchor EVERY time reference to today: convert a
+relative phrase copied from a note / living memory (`next week`, `this Thursday`,
+`recently`) to its ABSOLUTE date, state whether it is now PAST or upcoming vs today with
+approx elapsed/remaining time, never echo a bare `next week` (a `next week` from an old
+note is usually now in the past), and compute all `X days ago` / overdue / days-to-close
+math from absolute dates vs today (not carried-forward relative numbers). Living memory
+must store facts with their ABSOLUTE date (YYYY-MM-DD).
+
+**Why / how to work with it.** Sweeps were echoing stale relative time —
+"demo 15 May, Horizon next week" read as future on 23 Jun when the "next week" came from
+a 16 Jun note and is now past. This is in the **ground-truth block** (always injected),
+so it holds regardless of the Supabase system prompt. The matching UI fix (compute
+"X days ago"/overdue labels from the absolute date + today, not echo the agent's number)
+is tracked in the frontend spec (`MASE_Deal_Card_Section_Definitions.md` G8).
+
 ## 2026-06-23 — PRODUCTION sweep repointed to the datalake (env-flagged, live-Avoma fallback)
 
 **What.** The production sweep now reads Avoma from the **datalake** (whole call history,

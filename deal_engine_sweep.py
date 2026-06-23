@@ -1140,6 +1140,18 @@ _AVOMA_TRANSCRIPT_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS", "60
 # Cap for the notes/summary fallback excerpt — used when a transcript is absent,
 # too long to page through, or errors. (The AI notes ARE the meeting summary.)
 _AVOMA_NOTES_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_NOTES_CHARS", "4000"))
+# --- Datalake A/B path budgets (COMPLETE UNITS ONLY — never a sliced transcript) ---
+# A transcript is inlined WHOLE or not at all. Verbatim transcripts are allocated to
+# the most-recent calls until this total char budget is spent; every other call still
+# carries its COMPLETE Avoma AI-notes (a faithful whole-call summary). So a call is
+# always represented completely (full transcript OR full summary) or listed as a bare
+# touchpoint — but NEVER cut in half.
+_AVOMA_DL_TRANSCRIPT_BUDGET = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET", "140000"))
+# Per-call guard: a single transcript larger than this is NOT inlined verbatim (it
+# would crowd out every other call); that call falls back to its complete AI-notes.
+_AVOMA_DL_TRANSCRIPT_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_MAXCHARS", "48000"))
+# Generous guard on the complete-summary notes (these are whole-call summaries, short).
+_AVOMA_DL_NOTES_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_NOTES_MAXCHARS", "12000"))
 
 
 def _avoma_window(days: int) -> tuple[str, str]:
@@ -1630,7 +1642,12 @@ async def _avoma_prefetch_from_datalake(opp: dict) -> dict:
     def _one(v):
         return (v[0] if v else {}) if isinstance(v, list) else (v if isinstance(v, dict) else {})
 
-    manifest = []
+    # COMPLETE UNITS ONLY. First build every touchpoint with its COMPLETE Avoma
+    # AI-notes (a faithful whole-call summary); then allocate VERBATIM transcripts to
+    # the most-recent calls within a total budget — a transcript is inlined WHOLE or
+    # not at all, NEVER sliced mid-call. A call that misses the verbatim budget still
+    # carries its complete notes; one with neither is listed as a bare touchpoint.
+    prepared = []  # [(entry, full_transcript_text_or_None)] in chronological order
     for m in rows:
         tr_text = _one(m.get("avoma_transcripts")).get("transcript_text")
         notes = _one(m.get("avoma_insights")).get("ai_notes_text")
@@ -1641,10 +1658,20 @@ async def _avoma_prefetch_from_datalake(opp: dict) -> dict:
                  "state": state or "unknown", "is_gap": bool(is_gap),
                  "has_content": bool(tr_text or notes)}
         if notes:
-            entry["notes"] = str(notes)[:_AVOMA_NOTES_CHARS]
-        if tr_text:
-            entry["transcript_excerpt"] = str(tr_text)[:_AVOMA_TRANSCRIPT_CHARS]
-        manifest.append(entry)
+            entry["notes"] = str(notes)[:_AVOMA_DL_NOTES_MAXCHARS]  # complete summary
+        prepared.append((entry, str(tr_text) if tr_text else None))
+    # Verbatim transcripts: most-recent first, whole-or-nothing, until budget spent.
+    budget = _AVOMA_DL_TRANSCRIPT_BUDGET
+    full = 0
+    for entry, tr_text in reversed(prepared):  # newest -> oldest
+        if not tr_text:
+            continue
+        n = len(tr_text)
+        if n <= _AVOMA_DL_TRANSCRIPT_MAXCHARS and n <= budget:
+            entry["transcript_excerpt"] = tr_text  # WHOLE transcript — never truncated
+            budget -= n
+            full += 1
+    manifest = [e for (e, _t) in prepared]
     shaped["manifest"] = manifest
     shaped["calls"] = [x for x in manifest if x.get("has_content")]
     shaped["calls_found"] = len(manifest)
@@ -1653,7 +1680,7 @@ async def _avoma_prefetch_from_datalake(opp: dict) -> dict:
     cov["discovered"] = len(manifest)
     cov["matched"] = len(manifest)
     cov["read"] = len(shaped["calls"])
-    cov["transcripts"] = sum(1 for x in manifest if x.get("transcript_excerpt"))
+    cov["transcripts"] = full
     cov["notes"] = sum(1 for x in manifest if x.get("notes"))
     cov["gaps"] = sum(1 for x in manifest if x.get("is_gap"))
     return shaped

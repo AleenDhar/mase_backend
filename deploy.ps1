@@ -257,7 +257,22 @@ $secretKeys = ($secretString | ConvertFrom-Json).PSObject.Properties.Name |
 $secretsJson = ($secretKeys | ForEach-Object {
     '{"name":"' + $_ + '","valueFrom":"' + $SecretArn + ':' + $_ + '::"}'
 }) -join ','
-Write-Host "Injecting $($secretKeys.Count) secret keys"
+
+# Datalake (Avoma transcript store) wiring — kept DURABLE across every deploy so the
+# /webhook real-time sync and the datalake-sourced sweep never lose their config.
+# DATALAKE_SERVICE_KEY lives in its OWN secret (mase/datalake), NOT mase/app-env, so
+# it is appended here explicitly; the URL + SNS allowlist are non-secret plain env
+# injected into both the api and worker task-def templates below via $datalakeEnvJson.
+$DatalakeSecretArn = "arn:aws:secretsmanager:${Region}:${Account}:secret:mase/datalake-kcMH0p"
+$secretsJson = $secretsJson + ',{"name":"DATALAKE_SERVICE_KEY","valueFrom":"' + $DatalakeSecretArn + '"}'
+$datalakeEnvJson = @'
+        { "name": "DATALAKE_URL", "value": "https://upxxvoyngfiblaypluyc.supabase.co" },
+        { "name": "SNS_ALLOWED_REGIONS", "value": "ap-south-1" },
+        { "name": "SNS_ALLOWED_TOPIC_ARNS", "value": "arn:aws:sns:ap-south-1:022187637784:avoma-meeting-events" },
+        { "name": "SNS_ALLOWED_ACCOUNT_IDS", "value": "022187637784" }
+'@
+
+Write-Host "Injecting $($secretKeys.Count) app-env secret keys + DATALAKE_SERVICE_KEY (mase/datalake)"
 
 $taskDefJson = @"
 {
@@ -278,7 +293,8 @@ $taskDefJson = @"
       "environment": [
         { "name": "HOST", "value": "0.0.0.0" },
         { "name": "PORT", "value": "$ContainerPort" },
-        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" }
+        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
+$datalakeEnvJson
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {
@@ -445,7 +461,8 @@ $workerTaskDefJson = @"
         { "name": "DEAL_SWEEP_TIMEOUT_S", "value": "2400" },
         { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
         { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" },
-        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" }
+        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" },
+$datalakeEnvJson
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {

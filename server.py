@@ -8696,20 +8696,39 @@ async def deal_engine_sweep_one(opp_id: str, request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
-@app.post("/api/deal-engine/sweep/{opp_id}/datalake-test")
-async def deal_engine_sweep_datalake_test(opp_id: str, request: Request):
-    """A/B TEST (no persist): re-run the sweep for one opp using the DATALAKE as the
-    Avoma source (the deal's whole call history, no 90-day clip) instead of live
-    Avoma. Returns the full record (incl. the verdict under res['record']). Does NOT
-    write deal_records or the run log — production data is untouched. For comparing
-    datalake-sourced sweep output against the existing live-Avoma record."""
+async def _ab_test_store(opp_id: str, status: str, result, error):
+    """Upsert an A/B datalake-test result into datalake.ab_test_results (key=opp_id).
+    Service-key write (bypasses RLS). The detached sweep writes here so a proxy/idle
+    timeout on the caller can never lose the verdict."""
+    import os
+    import httpx
+    dl_url = os.getenv("DATALAKE_URL", "").rstrip("/")
+    dl_key = os.getenv("DATALAKE_SERVICE_KEY", "")
+    if not (dl_url and dl_key):
+        print("[AB-TEST] no DATALAKE_URL/KEY — cannot store result", flush=True)
+        return
+    try:
+        async with httpx.AsyncClient(timeout=30) as c:
+            r = await c.post(
+                f"{dl_url}/rest/v1/ab_test_results?on_conflict=opp_id",
+                json={"opp_id": opp_id, "status": status, "error": error, "result": result},
+                headers={"apikey": dl_key, "Authorization": f"Bearer {dl_key}",
+                         "Content-Type": "application/json",
+                         "Prefer": "resolution=merge-duplicates"})
+            if r.status_code >= 300:
+                print(f"[AB-TEST] store HTTP {r.status_code} opp={opp_id}: {r.text[:300]}", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"[AB-TEST] store failed opp={opp_id}: {type(e).__name__}: {e}", flush=True)
+
+
+async def _ab_test_run(opp_id: str, d: dict):
+    """Detached A/B sweep: datalake-sourced (whole call history, no 90-day clip), NO
+    persist; the verdict lands in datalake.ab_test_results. Runs independent of the
+    HTTP request — a ~9-min synchronous request is severed by the corporate proxy
+    mid-run (cancelling the sweep), so we never block the caller on it."""
     import deal_engine_sweep as sweep
     try:
-        d = {}
-        try:
-            d = await request.json()
-        except Exception:  # noqa: BLE001
-            pass
+        await _ab_test_store(opp_id, "running", None, None)
         enriched = await sweep._enrich_opp_ids(agent_manager, [opp_id])
         opp = enriched[0] if enriched else {"id": opp_id}
         opp.setdefault("name", None)
@@ -8720,11 +8739,32 @@ async def deal_engine_sweep_datalake_test(opp_id: str, request: Request):
         opp["account"] = opp.get("account") or d.get("account")
         opp["owner_name"] = opp.get("owner_name") or d.get("owner")
         res = await sweep.analyze_one(agent_manager, opp, source="datalake_test",
-                                      avoma_from_datalake=True, dry_run=True)
-        code = 200 if res.get("status") == "completed" else 502
-        return JSONResponse(res, status_code=code)
+                                      avoma_from_datalake=True, dry_run=True,
+                                      timeout_s=1800)
+        st = "completed" if res.get("status") == "completed" else (res.get("status") or "failed")
+        await _ab_test_store(opp_id, st, res, res.get("error"))
+        _cr = (res.get("record") or {}).get("evidence_coverage", {}).get("calls_read")
+        print(f"[AB-TEST] done opp={opp_id} status={st} calls_read={_cr}", flush=True)
     except Exception as e:  # noqa: BLE001
-        return JSONResponse({"error": str(e)}, status_code=500)
+        print(f"[AB-TEST] crash opp={opp_id}: {type(e).__name__}: {e}", flush=True)
+        await _ab_test_store(opp_id, "failed", None, f"{type(e).__name__}: {str(e)[:400]}")
+
+
+@app.post("/api/deal-engine/sweep/{opp_id}/datalake-test")
+async def deal_engine_sweep_datalake_test(opp_id: str, request: Request):
+    """A/B TEST (no persist), ASYNC. Spawns a DETACHED datalake-sourced sweep for one
+    opp and returns immediately; the verdict is written to datalake.ab_test_results
+    (poll by opp_id). Does NOT touch deal_records or the run log. Async because a
+    9-min synchronous request is severed by the corp proxy mid-run, which cancels the
+    sweep. Body (optional): {name?, account?, owner?}."""
+    d = {}
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        pass
+    asyncio.create_task(_ab_test_run(opp_id, d))
+    return {"status": "started", "opp_id": opp_id,
+            "poll": "datalake.ab_test_results?opp_id=eq." + opp_id}
 
 
 @app.post("/api/deal-engine/sweep/{opp_id}/update-living-memory")

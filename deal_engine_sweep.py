@@ -2695,6 +2695,14 @@ async def analyze_one(
         # recomputes the engagement pulse and projects the packet-backed ai.* (moves,
         # verdict, meddpicc) — the good, accurate, deal-progression facts.
         _apply_living_memory(parsed)
+        # Belt-and-suspenders dedup: deterministically collapse homogeneous
+        # open_deliverables + best_practice flags so carried-forward living memory
+        # can never re-bloat the to-do surface even if the model re-lists near-
+        # duplicates (Publicis: 58->11 commitments, 137->12 best-practice themes).
+        # Pure, idempotent, only ever REDUCES; never raises. Runs before RevOps so
+        # the editor re-ranks the already-deduped lists.
+        import todo_grouping
+        todo_grouping.group_todo_lists(parsed)
         # RevOps Head — strategic editor-in-chief (Deal Sweep January 1.0). Runs
         # ABSOLUTELY LAST, AFTER living-memory, so its review (re-ranked moves +
         # ai.revops_review) is the FINAL write before persist and actually reaches the

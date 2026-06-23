@@ -5443,6 +5443,16 @@ async def sns_webhook(request: Request):
             print(f"[SNS-WEBHOOK] ⚠ no meeting_uuid in Notification — skipping enrichment", flush=True)
             return {"status": "received_no_meeting", "message_id": msg_id}
 
+        # Mirror this call into the searchable `datalake` (header + transcript + AI
+        # notes), independent of the SF enrichment below. Best-effort; no-op unless
+        # DATALAKE_URL / DATALAKE_SERVICE_KEY are configured. Never blocks the 200.
+        try:
+            import datalake_sync
+            if datalake_sync.ENABLED:
+                asyncio.create_task(datalake_sync.sync_meeting(meeting_uuid))
+        except Exception as _dle:  # noqa: BLE001
+            print(f"[SNS-WEBHOOK] ⚠ datalake sync spawn failed: {_dle}", flush=True)
+
         # Idempotency: check if we've already processed this SNS MessageId.
         # If status is terminal (completed/completed_with_errors/no_sf_links),
         # return 200 without re-enriching — prevents duplicate SF queries and

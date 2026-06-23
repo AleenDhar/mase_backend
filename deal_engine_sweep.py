@@ -1146,7 +1146,12 @@ _AVOMA_NOTES_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_NOTES_CHARS", "4000"))
 # carries its COMPLETE Avoma AI-notes (a faithful whole-call summary). So a call is
 # always represented completely (full transcript OR full summary) or listed as a bare
 # touchpoint — but NEVER cut in half.
-_AVOMA_DL_TRANSCRIPT_BUDGET = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET", "140000"))
+# Budget kept moderate (~8 full transcripts) so the prompt stays small enough that the
+# agent's LLM call finishes inside the Anthropic client timeout. Inlining EVERY call's
+# full transcript (e.g. 15+) pushed a single generation past 600s -> APITimeoutError.
+# Older calls beyond the budget keep their COMPLETE notes summary (whole-call, faithful),
+# so coverage/quality is preserved while latency stays bounded. Tune via the env var.
+_AVOMA_DL_TRANSCRIPT_BUDGET = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET", "80000"))
 # Per-call guard: a single transcript larger than this is NOT inlined verbatim (it
 # would crowd out every other call); that call falls back to its complete AI-notes.
 _AVOMA_DL_TRANSCRIPT_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_MAXCHARS", "48000"))

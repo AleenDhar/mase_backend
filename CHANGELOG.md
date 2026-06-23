@@ -11,6 +11,37 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-23 — Datalake-sourced Avoma sweep (complete-units, no sliced transcripts) + async A/B endpoint + durable env
+
+**What.**
+- New Avoma source for the sweep: `_avoma_prefetch_from_datalake()` in `deal_engine_sweep.py`
+  reads a deal's **entire** Avoma history from the `datalake` Supabase project in one SQL
+  read (no 90-day clip, no 12-read cap) and builds the **same manifest** the live path
+  produces, so `_avoma_prefetch_block()` renders it to the agent unchanged. Selected when
+  `analyze_one(..., avoma_from_datalake=True)`.
+- **Complete-units rule:** transcripts are inlined **whole or not at all — never sliced
+  mid-call.** Every call carries its **complete Avoma AI-notes** (whole-call summary);
+  verbatim full transcripts go to the most-recent calls within a char budget
+  (`DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET`, default 80000). Every call is listed as a
+  touchpoint, so the agent can never falsely report "gone dark."
+- **Async A/B endpoint** `POST /api/deal-engine/sweep/{opp_id}/datalake-test` — spawns a
+  detached `dry_run` datalake-sourced sweep (no persist) and writes the verdict to
+  datalake `ab_test_results`; returns `started` instantly. Async because a 9-min sync
+  request is killed by the corporate proxy mid-run.
+- **`deploy.ps1` durable env:** the datalake/SNS env + `mase/datalake` secret, and the
+  API sweep tuning (`LLM_REQUEST_TIMEOUT_S=1200`, `ANTHROPIC_MAX_RETRIES=8`,
+  `DEAL_SWEEP_MAX_TRANSIENT_RETRIES=50`, `DEAL_SWEEP_MAX_TOKENS=64000`,
+  `MCP_TOOL_TIMEOUT_S=600`) are now in the task-def template, so they survive every deploy.
+
+**Why / how to work with it.** Live Avoma's 90-day recency clip silently dropped older
+calls (Mair Group: 7 of 14). The datalake gives the agent the **whole, complete** call
+history without fragments. Budget is moderate (not "all transcripts") because inlining
+15+ full transcripts pushed one LLM generation past 600 s → `APITimeoutError`; 80 KB ≈ ~8
+full transcripts + complete notes for the rest. Full operating context (datalake,
+webhook, AWS, deploy hazards) is in **`docs/MASE_CONTEXT.md`** — read it before touching
+prod. Production sweep still uses live Avoma; repoint it to the datalake deliberately
+once the A/B comparison proves quality.
+
 ## 2026-06-22 — Fireworks AI models (super-admin sandbox) routed through the agent backend
 
 **What.** Added a `fireworks:` provider branch in `server.py` (`initialize_agent`, alongside

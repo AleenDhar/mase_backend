@@ -294,6 +294,11 @@ $taskDefJson = @"
         { "name": "HOST", "value": "0.0.0.0" },
         { "name": "PORT", "value": "$ContainerPort" },
         { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
+        { "name": "LLM_REQUEST_TIMEOUT_S", "value": "1200" },
+        { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
+        { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
+        { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" },
+        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" },
 $datalakeEnvJson
       ],
       "secrets": [ $secretsJson ],

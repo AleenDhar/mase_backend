@@ -11,6 +11,26 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-23 — PRODUCTION sweep repointed to the datalake (env-flagged, live-Avoma fallback)
+
+**What.** The production sweep now reads Avoma from the **datalake** (whole call history,
+no 90-day clip) instead of live Avoma. Mechanism: `analyze_one()` resolves
+`avoma_from_datalake` from env `DEAL_SWEEP_AVOMA_FROM_DATALAKE` (now `=true` in both the
+api + worker task-def templates in `deploy.ps1`) when a caller doesn't force it. Per-deal
+**fallback**: if the datalake has no calls for an opp (not yet backfilled / webhook
+missed it), the prefetch falls back to LIVE Avoma so a deal is never falsely read as dark
+(`[DEAL-SWEEP] datalake empty opp=… -> live Avoma fallback`). Worker `LLM_REQUEST_TIMEOUT_S`
+raised 600→1200 for the larger datalake prompts.
+
+**Why / how to work with it.** The A/B test proved it: on 5 already-swept deals the
+datalake materially improved 3 verdicts (two escalated to **critical** — a hidden
+Economic-Buyer gap and an IT-freeze blocker the 90-day clip hid) and rescued 2 deals that
+live Avoma read with **zero** calls. **Roll back** by setting
+`DEAL_SWEEP_AVOMA_FROM_DATALAKE=false` (edit the `deploy.ps1` templates + redeploy) — no
+code change needed. Tell datalake vs live in logs by the avoma-engine line:
+`window=alld` = datalake, `window=90/270/540` = live. The datalake stays current via the
+Avoma AINOTE webhook (tracked-opp gated); see `docs/MASE_CONTEXT.md`.
+
 ## 2026-06-23 — Datalake-sourced Avoma sweep (complete-units, no sliced transcripts) + async A/B endpoint + durable env
 
 **What.**

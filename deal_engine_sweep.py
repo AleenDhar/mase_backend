@@ -1915,6 +1915,14 @@ async def analyze_one(
         recursion_limit = int(os.getenv("DEAL_SWEEP_RECURSION_LIMIT", "80"))
     if timeout_s is None:
         timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "900"))
+    # PRODUCTION Avoma source: when DEAL_SWEEP_AVOMA_FROM_DATALAKE is on, read the
+    # deal's WHOLE call history from the datalake (no 90-day clip) instead of live
+    # Avoma. Callers that pass avoma_from_datalake=True (e.g. the A/B endpoint) force
+    # it regardless; the prefetch below falls back to LIVE Avoma per-deal if the
+    # datalake has nothing for this opp, so a not-yet-synced deal never goes dark.
+    if not avoma_from_datalake:
+        avoma_from_datalake = os.getenv(
+            "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "false").strip().lower() in ("1", "true", "yes", "on")
     opp_id = opp["id"]
     model_name = _selected_model_name()
     usage = {"uncached_input": 0, "output": 0, "cache_creation": 0,
@@ -1993,9 +2001,16 @@ async def analyze_one(
         if os.getenv("DEAL_SWEEP_PARALLEL_READERS", "true").lower() in (
                 "1", "true", "yes"):
             try:
-                _avoma_pf = (await _avoma_prefetch_from_datalake(opp)
-                             if avoma_from_datalake
-                             else await _avoma_prefetch(agent_manager, opp, buyer))
+                if avoma_from_datalake:
+                    _avoma_pf = await _avoma_prefetch_from_datalake(opp)
+                    # Per-deal fallback: if the datalake has NO calls for this opp
+                    # (not yet backfilled / webhook missed it), use LIVE Avoma so the
+                    # deal is never falsely read as dark.
+                    if not (_avoma_pf.get("manifest")):
+                        print(f"[DEAL-SWEEP] datalake empty opp={opp_id} -> live Avoma fallback", flush=True)
+                        _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
+                else:
+                    _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
                 avoma_prefetch_block = _avoma_prefetch_block(_avoma_pf)
                 _cov = _avoma_pf.get("coverage") or {}
                 print(f"[DEAL-SWEEP] avoma-engine opp={opp_id} "

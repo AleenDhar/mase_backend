@@ -8143,9 +8143,13 @@ async def deal_engine_sweep_start(request: Request):
         limit = int(d.get("limit") or 500)
         concurrency = int(d["concurrency"]) if d.get("concurrency") is not None else None
         max_retries = int(d["max_retries"]) if d.get("max_retries") is not None else None
+        # from_scratch=true => enqueue under a "fromscratch-*" run_id so the worker
+        # rebuilds each record with NO carry-forward (purges poisoned living memory).
+        from_scratch = bool(d.get("from_scratch"))
         header = await sweep.start_sweep(agent_manager, owner=owner,
                                          opp_ids=opp_ids, limit=limit,
-                                         concurrency=concurrency, max_retries=max_retries)
+                                         concurrency=concurrency, max_retries=max_retries,
+                                         from_scratch=from_scratch)
         return header
     except RuntimeError as e:
         return JSONResponse({"error": str(e)}, status_code=409)

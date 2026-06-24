@@ -2922,7 +2922,7 @@ def queue_enabled() -> bool:
 
 async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
                            opp_ids: Optional[list[str]] = None,
-                           limit: int = 500) -> dict:
+                           limit: int = 500, from_scratch: bool = False) -> dict:
     """Queue-mode sweep start. Resolve the book (the SAME report-as-book
     membership that is the single source of truth) and enqueue one `waiting` row
     per opp under a fresh run_id, then return immediately — the worker drains the
@@ -2962,7 +2962,10 @@ async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
     else:
         opps = await discover_opps(agent_manager, owner, limit=limit)
 
-    run_id = uuid.uuid4().hex[:12]
+    # from_scratch=True => "fromscratch-*" run_id; the worker sees the prefix and runs
+    # analyze_one(source="update_living_memory") so the record is rebuilt with NO
+    # carry-forward (purges poisoned living memory). Normal runs keep a plain run_id.
+    run_id = ("fromscratch-" if from_scratch else "") + uuid.uuid4().hex[:12]
     enqueued = await asyncio.to_thread(_queue.enqueue_book, run_id, opps)
     print(f"[DEAL-SWEEP] queue enqueue run={run_id} owner={owner or 'ALL'} "
           f"opps={enqueued}", flush=True)
@@ -3013,7 +3016,8 @@ async def enqueue_trigger(agent_manager, opp_id: str) -> str:
 async def start_sweep(agent_manager, *, owner: Optional[str] = None,
                       opp_ids: Optional[list[str]] = None, limit: int = 500,
                       concurrency: Optional[int] = None,
-                      max_retries: Optional[int] = None) -> dict:
+                      max_retries: Optional[int] = None,
+                      from_scratch: bool = False) -> dict:
     """Kick off a sweep. One at a time. Returns the run header.
 
     In queue mode (default) this just enqueues the book and returns; the separate
@@ -3026,7 +3030,8 @@ async def start_sweep(agent_manager, *, owner: Optional[str] = None,
     """
     if queue_enabled():
         return await enqueue_book_run(
-            agent_manager, owner=owner, opp_ids=opp_ids, limit=limit)
+            agent_manager, owner=owner, opp_ids=opp_ids, limit=limit,
+            from_scratch=from_scratch)
     global _run_task
     if concurrency is None:
         concurrency = int(os.getenv("DEAL_SWEEP_CONCURRENCY", "10"))

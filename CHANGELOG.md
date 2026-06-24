@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-24 — Worker from-scratch PURGE mode (bulk living-memory rebuild on the fleet)
+
+**What.** The from-scratch rebuild (drop ALL carry-forward, rebuild a deal record purely
+from current Avoma+SF evidence) used to exist ONLY on the synchronous
+`POST /sweep/{opp_id}/update-living-memory` endpoint — fine for one deal, useless for
+bulk (60+ deals × ~17 min each would hammer the API web tier). Now the **worker** can do
+it too:
+- `POST /api/deal-engine/sweep` accepts **`from_scratch: true`** (with `opp_ids: [...]`).
+- `start_sweep` / `enqueue_book_run` mint the queue rows under a **`fromscratch-*` run_id`**.
+- `worker.py::_process` sees that prefix and calls `analyze_one(source="update_living_memory")`
+  instead of `source="worker"` — i.e. NO carry-forward, record rebuilt from scratch, on the
+  autoscaled fleet (6 workers × 8 = up to 48 concurrent).
+The report-as-book membership gate and the one-sweep-at-a-time guard are UNCHANGED — a
+from-scratch run still can't enqueue a non-member and still refuses while the queue is busy.
+
+**Why.** Living memory accumulated fabrications (McAfee: 349 packets incl. invented "Ariba
+18% gap"/"data residency redlines"). From-scratch purges them (McAfee → 35 packets,
+calls_read 5, fabrications gone). Needed to roll that purge across the whole book without
+melting the API.
+
+**How to work with it going forward.** To purge + rebuild a set of deals clean:
+`POST /api/deal-engine/sweep {"opp_ids": [...], "from_scratch": true}` then poll
+`/sweep/status`. Re-run is safe (idempotent, replaces the record). NOTE: from-scratch
+purges *accumulated* poison but the engine can still over-reach per run (the content-blind
+validation gate) — the durable anti-re-poison fixes (claim-content gate, packet cap,
+calls_read floor) are still pending.
+
 ## 2026-06-23 — Deploy QA layer: smoke test + /selfcheck endpoint + API inventory
 
 **What.** A pre/post-deploy QA gate so a build can't silently drop a route (the chat-404

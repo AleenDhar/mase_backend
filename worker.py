@@ -156,7 +156,12 @@ async def _process(row: dict) -> None:
     }
     t0 = time.time()
     try:
-        res = await sweep.analyze_one(server.agent_manager, opp, source="worker")
+        # A from-scratch PURGE enqueues its rows under a "fromscratch-*" run_id so the
+        # worker rebuilds the record with NO carry-forward (drops poisoned living memory)
+        # — identical to the synchronous /update-living-memory endpoint, but on the
+        # autoscaled fleet. Normal rows keep source="worker" (incremental carry-forward).
+        _src = "update_living_memory" if str(row.get("run_id") or "").startswith("fromscratch") else "worker"
+        res = await sweep.analyze_one(server.agent_manager, opp, source=_src)
         status = (res or {}).get("status")
         thin = bool((res or {}).get("thin"))
         dur = (res or {}).get("duration_ms") or int((time.time() - t0) * 1000)

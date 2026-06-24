@@ -118,6 +118,30 @@ the laptop scripts again.
 
 ---
 
+## Changing the MCP connector config (`mcp_config.json`)
+
+The real `mcp_config.json` is **gitignored** — it is **not** in the repo. The single
+source of truth is the **`mase/mcp-config` Secrets Manager secret**, which the pipeline
+fetches and bakes into every image at build time (with a guard that fails the build
+unless `salesforce` + `avoma` are enabled). So **a code push alone does NOT change the
+MCP config** — you must update the secret, then deploy.
+
+To add a connector, rotate a token, enable/disable a server, etc.:
+
+1. Edit your local `mcp_config.json`.
+2. Push it to the secret (this validates salesforce+avoma first, so a broken config
+   can't reach the secret):
+   ```bash
+   ./scripts/update_mcp_config.sh            # default ./mcp_config.json, or pass a path
+   ```
+3. Deploy so the new config is baked in — push any commit to `main`, or
+   **Actions → deploy → Run workflow**.
+
+Needs AWS creds with `secretsmanager:PutSecretValue` on `mase/mcp-config`. Behind a
+TLS-inspecting proxy (Zscaler), `export AWS_CA_BUNDLE=<corp-ca.pem>` first.
+
+---
+
 ## Copy-paste this to your Claude (teammate onboarding)
 
 > This repo (`mase_backend`) deploys **only** through GitHub Actions. To deploy, I

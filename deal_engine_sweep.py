@@ -2643,17 +2643,29 @@ async def analyze_one(
         # BEFORE the pulse is recomputed in _apply_living_memory, so the corrected
         # calls_read drives the engagement pulse too. Never blocks the persist.
         try:
-            _eng_calls = int((_avoma_pf or {}).get("calls_found") or 0)
+            _engcov = (_avoma_pf or {}).get("coverage") or {}
+            _eng_calls = int((_avoma_pf or {}).get("calls_found")
+                             or _engcov.get("discovered") or 0)
+            _eng_read = int(_engcov.get("read") or 0)
             if _eng_calls > 0 and isinstance(parsed, dict):
                 _ec = parsed.get("evidence_coverage")
                 if not isinstance(_ec, dict):
                     _ec = {}
-                _engcov = (_avoma_pf or {}).get("coverage") or {}
-                _reported = int(_ec.get("calls_discovered") or 0)
-                if _reported < _eng_calls:
+                _model_disc = int(_ec.get("calls_discovered") or 0)
+                _model_read = int(_ec.get("calls_read") or 0)
+                # The ENGINE is the SOURCE OF TRUTH for coverage counts — it fetched the
+                # transcripts from the datalake; the model only echoes them and routinely
+                # MIS-reports (DuBois: engine read=7 but model wrote read=0; Publicis:
+                # discovered=4 yet read=0). The old logic only FLOORED `calls_discovered`
+                # (gated on `reported < engine`), so a correct discovered + wrong read=0
+                # slipped through and poisoned the pulse, staffing, and the UI. Now we
+                # OVERWRITE both counts with the engine's facts whenever they disagree.
+                # Counts / discovery_method only — never the narrative — so this can never
+                # fabricate content. Runs BEFORE the pulse is recomputed in
+                # _apply_living_memory, so the corrected calls_read drives the pulse too.
+                if _model_disc != _eng_calls or _model_read != _eng_read:
                     _ec["calls_discovered"] = _eng_calls
-                    _ec["calls_read"] = max(int(_ec.get("calls_read") or 0),
-                                            int(_engcov.get("read") or 0))
+                    _ec["calls_read"] = _eng_read
                     _ec.setdefault("discovery_method",
                                    "never-miss engine (opp+account+attendee)")
                     _gp = _ec.setdefault("gaps", [])
@@ -2662,9 +2674,9 @@ async def analyze_one(
                                    "recording (counted as engagement, no content)")
                     _ec["engine_floor_applied"] = True
                     parsed["evidence_coverage"] = _ec
-                    print(f"[DEAL-SWEEP] never-miss floor opp={opp_id} "
-                          f"coverage {_reported} -> {_eng_calls} "
-                          f"(read={_ec['calls_read']})", flush=True)
+                    print(f"[DEAL-SWEEP] coverage stamped opp={opp_id} "
+                          f"model(disc={_model_disc},read={_model_read}) -> "
+                          f"engine(disc={_eng_calls},read={_eng_read})", flush=True)
         except Exception as _fe:  # noqa: BLE001 — floor must never break the persist
             print(f"[DEAL-SWEEP] never-miss floor skipped opp={opp_id}: "
                   f"{type(_fe).__name__}: {_fe}", flush=True)

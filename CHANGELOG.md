@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-24 — Coverage counts: engine truth overwrites the model's self-report (calls_read fix)
+
+**What.** `evidence_coverage.calls_read` / `calls_discovered` were taken from the AI agent's
+JSON self-report, which is unreliable — the agent routinely under-reports the calls it was
+handed (DuBois: engine read 7 transcripts, log `avoma-engine read=7`, but the persisted
+record said `calls_read=0`; Publicis: `discovered=4` yet `calls_read=0`). The existing
+"never-miss floor" only corrected `calls_discovered` and was gated on the model UNDER-reporting
+discovered (`_reported < _eng_calls`), so a correct discovered + wrong `read=0` slipped through.
+Now the engine's ground-truth coverage (`_avoma_pf.coverage`) **overwrites both counts whenever
+they disagree** with the model — up or down (`deal_engine_sweep.py` ~2645-2679).
+
+**Why.** A wrong `calls_read=0` poisons the engagement pulse, RevOps staffing (`calls_read==0`
+→ "lean" deal → skips senior review), thin-detection, and the UI — and was the root of the
+false "thin → retry 3× → failed" churn on deals that actually had calls. The datalake HAS the
+calls and the engine reads them; only the stored count was wrong (a model reporting bug, not a
+data/retrieval bug).
+
+**How to work with it going forward.** `evidence_coverage.calls_read/calls_discovered` are now
+ENGINE facts, not model output. The `calls_read=0` thin guard stays intact and finally sees the
+true count. Model-owned only when the engine didn't run (parallel-readers off / empty prefetch).
+Follow-up (separate, planned): stamp `stakeholder_map[].title` from Salesforce `Contact.Title`
+to kill fabricated titles (audit 2026-06-24).
+
 ## 2026-06-24 — Worker from-scratch PURGE mode (bulk living-memory rebuild on the fleet)
 
 **What.** The from-scratch rebuild (drop ALL carry-forward, rebuild a deal record purely

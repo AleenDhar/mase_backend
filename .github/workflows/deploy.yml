@@ -78,8 +78,10 @@ jobs:
       - name: Deploy image to idle colour
         run: |
           set -euo pipefail
+          # --desired-count 2: the idle colour was drained to 0 by the previous deploy's
+          # "drain old colour" step, so we must scale it back up or it never gets healthy.
           aws ecs update-service --cluster "$CLUSTER" --service "mase-api-$IDLE" \
-            --task-definition "$API_TD" >/dev/null
+            --task-definition "$API_TD" --desired-count 2 >/dev/null
           aws ecs wait services-stable --cluster "$CLUSTER" --services "mase-api-$IDLE"
           aws elbv2 wait target-in-service --target-group-arn "$IDLE_TG"
           echo "idle ($IDLE) healthy on new image"

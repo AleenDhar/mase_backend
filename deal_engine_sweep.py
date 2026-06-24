@@ -2714,7 +2714,7 @@ async def analyze_one(
         # Pure, idempotent, only ever REDUCES; never raises. Runs before RevOps so
         # the editor re-ranks the already-deduped lists.
         import todo_grouping
-        todo_grouping.group_todo_lists(parsed)
+        todo_grouping.tidy(parsed)  # within-block grouping + cross-bucket de-collision
         # RevOps Head — strategic editor-in-chief (Deal Sweep January 1.0). Runs
         # ABSOLUTELY LAST, AFTER living-memory, so its review (re-ranked moves +
         # ai.revops_review) is the FINAL write before persist and actually reaches the

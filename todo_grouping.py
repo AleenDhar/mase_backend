@@ -170,3 +170,100 @@ def group_todo_lists(parsed: dict) -> dict:
     except Exception as e:  # noqa: BLE001 — never block persist
         print(f"[TODO-GROUP] skipped: {type(e).__name__}: {e}", flush=True)
     return parsed
+
+
+# ---------------------------------------------------------------------------
+# Cross-bucket de-collision.
+#
+# Within-block grouping (above) collapses *same-block* near-duplicates. But the
+# UI's four buckets draw from THREE different ai.* blocks (recommended_moves +
+# open_deliverables -> "Next phase"/"Waiting on buyer"; best_practice_check ->
+# "Best practices"), and the model legitimately restates the SAME live thread in
+# all three (Publicis: "unstick the technical workshop" appears as a move, a
+# deliverable AND a best-practice flag). No amount of within-block grouping fixes
+# that — it is a *cross*-block collision.
+#
+# MECE rule (the 4-bucket model): best_practice_check is for genuine gaps that
+# carry NO owned action. A flag that merely restates a recommended_move or an
+# open_deliverable already lives in "Next phase"/"Waiting on buyer", so it is
+# dropped here. Flags that have no matching action (a true single-thread /
+# no-EB / no-ROI gap with nothing being done about it) are KEPT.
+# ---------------------------------------------------------------------------
+
+# An action's content core is short (a move/commitment phrase), so a long flag
+# that contains most of that core is the same theme. Require >=2 shared content
+# tokens AND high overlap of the *action's* (smaller) signature.
+_DECOLLIDE_THRESHOLD = 0.55
+
+
+def _move_text(m) -> str:
+    if isinstance(m, str):
+        return m
+    if isinstance(m, dict):
+        return m.get("action") or m.get("move") or m.get("text") or m.get("play") or ""
+    return ""
+
+
+def _action_signatures(ai: dict) -> list:
+    """Token-set signatures of every item that represents an OWNED next action —
+    recommended_moves + open_deliverables. A best-practice flag whose theme
+    matches one of these is a cross-bucket duplicate, not a standalone gap."""
+    sigs = []
+    moves = ai.get("recommended_moves")
+    if isinstance(moves, dict):
+        for m in (moves.get("items") or []):
+            s = _sig(_move_text(m))
+            if s:
+                sigs.append(s)
+    od = ai.get("open_deliverables")
+    if isinstance(od, dict):
+        for d in (od.get("items") or []):
+            txt = d.get("commitment") if isinstance(d, dict) else (d if isinstance(d, str) else "")
+            s = _sig(txt or "")
+            if s:
+                sigs.append(s)
+    return sigs
+
+
+def _restates_action(flag_sig: set, action_sigs: list) -> bool:
+    if not flag_sig:
+        return False
+    for a in action_sigs:
+        if len(flag_sig & a) >= 2 and _overlap(flag_sig, a) >= _DECOLLIDE_THRESHOLD:
+            return True
+    return False
+
+
+def decollide_buckets(parsed: dict) -> dict:
+    """Drop best_practice flags that restate an owned action (move/deliverable).
+    Keeps true action-less gaps. In-place, idempotent, never raises."""
+    try:
+        ai = parsed.get("ai") or {}
+        bp = ai.get("best_practice_check")
+        if not isinstance(bp, dict):
+            return parsed
+        flags = [f for f in (bp.get("flags") or []) if _flag_text(f).strip()]
+        if not flags:
+            return parsed
+        action_sigs = _action_signatures(ai)
+        if not action_sigs:
+            return parsed
+        kept = [f for f in flags if not _restates_action(_sig(_flag_text(f)), action_sigs)]
+        dropped = len(flags) - len(kept)
+        if dropped:
+            bp["flags"] = kept
+            print(f"[TODO-DECOLLIDE] best_practice -{dropped} (restate an owned action; "
+                  f"kept {len(kept)} true gaps)", flush=True)
+    except Exception as e:  # noqa: BLE001 — never block persist
+        print(f"[TODO-DECOLLIDE] skipped: {type(e).__name__}: {e}", flush=True)
+    return parsed
+
+
+def tidy(parsed: dict) -> dict:
+    """Full to-do hygiene in one call: within-block homogeneous grouping THEN
+    cross-bucket de-collision. Idempotent, only ever reduces, never raises.
+    Call this at the projection chokepoint so every sweep yields clean buckets
+    by construction (not as a skippable post-step)."""
+    group_todo_lists(parsed)
+    decollide_buckets(parsed)
+    return parsed

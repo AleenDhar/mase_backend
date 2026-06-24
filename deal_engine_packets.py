@@ -801,6 +801,21 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
                 cs["at_risk"] = bool(champ.get("at_risk"))
             ai["champion_strength"] = cs
 
+    # To-do hygiene AT THE SOURCE OF TRUTH. The packets are durable (one commitment
+    # packet -> one deliverable, one hygiene packet -> one flag), so the model's
+    # carry-forward re-lists the same live thread many times AND across blocks. We
+    # collapse near-duplicates within each block and de-collide cross-bucket
+    # restatements (a best-practice flag that merely repeats a move/deliverable is
+    # dropped) HERE, inside the single projection, so the four UI buckets are clean
+    # BY CONSTRUCTION on every sweep — never dependent on a skippable post-step.
+    # Packets themselves are untouched (full living-memory history is preserved);
+    # only the projected display lists are tidied. Pure, idempotent, only reduces.
+    try:
+        import todo_grouping
+        todo_grouping.tidy({"ai": ai})
+    except Exception as _tg:  # noqa: BLE001 — projection must never fail on hygiene
+        print(f"[PROJECT] todo tidy skipped: {type(_tg).__name__}: {_tg}", flush=True)
+
     return ai
 
 

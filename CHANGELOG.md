@@ -11,6 +11,37 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — To-do hygiene moved INTO the projection + cross-bucket de-collision
+
+**What.** Two changes to how the four to-do buckets (Prospect requirements / Next phase /
+Waiting on the buyer / Best practices) are built:
+1. **Dedup now runs inside `project_into_ai`** (`deal_engine_packets.py`), the single
+   projection chokepoint, instead of only as a post-sweep step in `analyze_one`. Every
+   projection of the packet store now calls `todo_grouping.tidy()` at the end, so the
+   display lists are clean **by construction** on every sweep.
+2. **New cross-bucket de-collision** (`todo_grouping.decollide_buckets` / `tidy`): a
+   `best_practice_check` flag that merely restates a `recommended_move` or `open_deliverable`
+   is dropped (it already lives in "Next phase"/"Waiting on the buyer"). Best-practice now
+   only carries genuine action-less gaps. Conservative: requires ≥2 shared content tokens and
+   ≥0.55 overlap of the action's signature.
+
+**Why.** Served records still showed heavy duplication (Publicis: 12 best-practice flags = 4
+themes, each also a move + a deliverable; ALTRAD: 57 flags). Root causes: (a) the deterministic
+grouper's output never reached the persisted record — `group_key` was `None` on every served
+item, i.e. it wasn't taking effect on the live path; the packets are the source of truth and the
+lists are *projected* from them, so dedup belongs in the projection, not bolted on after. (b)
+The grouper only deduped *within* a block; the duplication users see is *across* the three
+blocks that feed the four UI buckets, and is *semantic* (long, differently-worded restatements
+that lexical token-overlap can't merge within a block but de-collision catches across blocks).
+
+**How to work with it going forward.** Packets are never mutated — full living-memory history is
+preserved; only the projected display lists are tidied, so it's safe and re-runnable. Validated
+before/after on 4 deals: Publicis bp 12→1, Allstate 3→1, ALTRAD 57→14, Ancestry (dark) 17→14
+(de-collision kept all genuine gaps — it does NOT empty buckets). Idempotent. Existing records
+clean up on their next sweep, or via a token-free re-projection pass (load record →
+`project_into_ai(rec['ai'], rec['packets'])` → re-store; no Avoma/SF). Tune knobs:
+`todo_grouping._DECOLLIDE_THRESHOLD` (0.55) and the per-block grouping thresholds.
+
 ## 2026-06-24 — Coverage counts: engine truth overwrites the model's self-report (calls_read fix)
 
 **What.** `evidence_coverage.calls_read` / `calls_discovered` were taken from the AI agent's

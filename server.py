@@ -7088,11 +7088,82 @@ async def deal_engine_selfcheck():
         # runtime readiness
         "agent_initialized": globals().get("agent_manager") is not None,
     }
-    required = ["anthropic_api_key", "supabase", "avoma_api_token", "datalake_url",
+    # NOTE: avoma_api_token is intentionally NOT required — the code carries a working
+    # default (AVOMA_API_TOKEN env overrides it), so an unset env var is not a deploy
+    # regression. It stays in `checks` as an informational/rotation-hygiene signal.
+    required = ["anthropic_api_key", "supabase", "datalake_url",
                 "datalake_service_key", "avoma_from_datalake", "sns_allowlist",
                 "agent_initialized"]
     missing = [k for k in required if not checks.get(k)]
     return {"ok": not missing, "missing": missing, "checks": checks}
+
+
+async def _rerun_forecast_ids(forecast: str) -> list:
+    """Tracked opp_ids whose record.hard.forecast_category matches `forecast`."""
+    if not supabase:
+        return []
+    def _q():
+        res = supabase.table("deal_records").select("opp_id, record").execute()
+        out = []
+        for r in (getattr(res, "data", None) or []):
+            fc = (((r.get("record") or {}).get("hard") or {}).get("forecast_category") or "")
+            if str(fc).strip().lower() == forecast.strip().lower():
+                out.append(r.get("opp_id"))
+        return out
+    return await asyncio.to_thread(_q)
+
+
+@app.post("/api/deal-engine/sweep/rerun")
+async def deal_engine_sweep_rerun(request: Request):
+    """One-shot 'Rerun' for any selection; the worker autoscaler then sizes the
+    fleet, so nobody scales workers by hand. Body (exactly one selector):
+      {"opp_id":"006P7..."}   one deal
+      {"status":"failed"}     every currently-failed opp
+      {"owner":"Jane Rep"}    one owner's book
+      {"forecast":"Commit"}   one forecast category
+      {"all":true}            the whole tracked book
+    Enqueues into the SAME sweep_queue the worker drains (datalake + G8); idempotent
+    per opp. Returns {status:'accepted', mode, count|run_id}. 409 if a book sweep is
+    already in flight (owner/all only)."""
+    import deal_engine_sweep as sweep
+    import sweep_queue as q
+    try:
+        d = await request.json()
+    except Exception:  # noqa: BLE001
+        d = {}
+    opp_id = str(d.get("opp_id") or "").strip()
+    status_f = str(d.get("status") or "").strip().lower()
+    owner = str(d.get("owner") or "").strip()
+    forecast = str(d.get("forecast") or "").strip()
+    do_all = bool(d.get("all"))
+    try:
+        if opp_id:
+            r = await sweep.enqueue_trigger(agent_manager, opp_id)
+            return {"status": "accepted", "mode": "opp", "opp_id": opp_id, "result": r}
+        if owner:
+            res = await sweep.enqueue_book_run(agent_manager, owner=owner)
+            return {"status": "accepted", "mode": f"owner:{owner}", **res}
+        if do_all:
+            res = await sweep.enqueue_book_run(agent_manager)
+            return {"status": "accepted", "mode": "all", **res}
+        if status_f == "failed":
+            ids = await asyncio.to_thread(q.failed_opp_ids)
+            mode = "failed"
+        elif forecast:
+            ids = await _rerun_forecast_ids(forecast)
+            mode = f"forecast:{forecast}"
+        else:
+            return JSONResponse(
+                {"error": "provide one of: opp_id | status='failed' | owner | "
+                          "forecast | all=true"}, status_code=400)
+        ids = [i for i in dict.fromkeys(ids) if i]
+        for oid in ids:
+            await sweep.enqueue_trigger(agent_manager, oid)
+        return {"status": "accepted", "mode": mode, "count": len(ids)}
+    except RuntimeError as e:  # enqueue_book_run refuses while a sweep is in flight
+        return JSONResponse({"error": str(e)}, status_code=409)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 
 @app.get("/api/deal-engine/team")
@@ -9353,6 +9424,55 @@ if GOOGLE_SHEETS_ENABLED and sheets_auth:
 # ============================================================================
 
 
+async def _worker_autoscaler():
+    """Auto-scale the mase-worker ECS service to match the sweep_queue backlog, so
+    NOBODY runs `aws ecs update-service` by hand. Every SWEEP_AUTOSCALE_INTERVAL_S:
+        desired = clamp( ceil(active_depth / per_worker), min .. max )
+    and it only calls UpdateService when the number actually changes. Runs on the API
+    (always up), so the worker can be scaled to 0 and still be revived on the next
+    backlog. Gated by SWEEP_AUTOSCALE_ENABLED (default off). Other env:
+    SWEEP_AUTOSCALE_MAX (6 — the measured-safe cap), _MIN (1), _PER_WORKER (8),
+    _INTERVAL_S (60), _CLUSTER (mase-cluster), _SERVICE (mase-worker)."""
+    import math
+    if os.getenv("SWEEP_AUTOSCALE_ENABLED", "false").strip().lower() not in (
+            "1", "true", "yes", "on"):
+        print("[AUTOSCALE] disabled (SWEEP_AUTOSCALE_ENABLED not true)", flush=True)
+        return
+    interval = max(15, int(os.getenv("SWEEP_AUTOSCALE_INTERVAL_S", "60")))
+    mx = max(1, int(os.getenv("SWEEP_AUTOSCALE_MAX", "6")))
+    mn = max(0, int(os.getenv("SWEEP_AUTOSCALE_MIN", "1")))
+    per = max(1, int(os.getenv("SWEEP_AUTOSCALE_PER_WORKER", "8")))
+    cluster = os.getenv("SWEEP_AUTOSCALE_CLUSTER", "mase-cluster")
+    service = os.getenv("SWEEP_AUTOSCALE_SERVICE", "mase-worker")
+    region = os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "ap-south-1"
+    try:
+        import boto3
+        ecs = boto3.client("ecs", region_name=region)
+    except Exception as e:  # noqa: BLE001
+        print(f"[AUTOSCALE] cannot init ECS client; autoscaler off: {e}", flush=True)
+        return
+    import sweep_queue as q
+    print(f"[AUTOSCALE] ON — every {interval}s, {mn}..{mx} workers, {per}/worker, "
+          f"target={cluster}/{service} ({region})", flush=True)
+    await asyncio.sleep(20)  # let the queue + creds settle before the first action
+    while True:
+        try:
+            depth = await asyncio.to_thread(q.active_depth)
+            want = mn if depth <= 0 else max(mn, min(mx, math.ceil(depth / per)))
+            desc = await asyncio.to_thread(
+                lambda: ecs.describe_services(cluster=cluster, services=[service]))
+            svcs = desc.get("services") or []
+            cur = svcs[0].get("desiredCount") if svcs else None
+            if cur is not None and want != cur:
+                await asyncio.to_thread(
+                    lambda: ecs.update_service(cluster=cluster, service=service,
+                                               desiredCount=want))
+                print(f"[AUTOSCALE] depth={depth} -> workers {cur} -> {want}", flush=True)
+        except Exception as e:  # noqa: BLE001 — the loop must never die
+            print(f"[AUTOSCALE] loop error: {type(e).__name__}: {e}", flush=True)
+        await asyncio.sleep(interval)
+
+
 @app.on_event("startup")
 async def startup_event():
     print("Initializing DeepAgent server...")
@@ -9407,6 +9527,10 @@ async def startup_event():
     # live Salesforce hard facts onto every deal record with no AI cost, keeping
     # the book accurate between paid AI sweeps.
     asyncio.create_task(_nightly_hard_refresh_scheduler())
+
+    # Worker autoscaler — sizes the mase-worker fleet to the sweep_queue backlog so
+    # no one scales workers by hand. No-op unless SWEEP_AUTOSCALE_ENABLED=true.
+    asyncio.create_task(_worker_autoscaler())
 
 
 @app.on_event("shutdown")

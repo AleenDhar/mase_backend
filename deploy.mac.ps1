@@ -252,7 +252,20 @@ $secretKeys = ($secretString | ConvertFrom-Json).PSObject.Properties.Name |
 $secretsJson = ($secretKeys | ForEach-Object {
     '{"name":"' + $_ + '","valueFrom":"' + $SecretArn + ':' + $_ + '::"}'
 }) -join ','
-Write-Host "Injecting $($secretKeys.Count) secret keys"
+
+# Datalake (Avoma transcript store) wiring — kept DURABLE across deploys (mirrors
+# deploy.ps1). DATALAKE_SERVICE_KEY is in its OWN secret (mase/datalake), not
+# mase/app-env, so it's appended explicitly; URL + SNS allowlist are plain env.
+$DatalakeSecretArn = "arn:aws:secretsmanager:${Region}:${Account}:secret:mase/datalake-kcMH0p"
+$secretsJson = $secretsJson + ',{"name":"DATALAKE_SERVICE_KEY","valueFrom":"' + $DatalakeSecretArn + '"}'
+$datalakeEnvJson = @'
+        { "name": "DATALAKE_URL", "value": "https://upxxvoyngfiblaypluyc.supabase.co" },
+        { "name": "SNS_ALLOWED_REGIONS", "value": "ap-south-1" },
+        { "name": "SNS_ALLOWED_TOPIC_ARNS", "value": "arn:aws:sns:ap-south-1:022187637784:avoma-meeting-events" },
+        { "name": "SNS_ALLOWED_ACCOUNT_IDS", "value": "022187637784" }
+'@
+
+Write-Host "Injecting $($secretKeys.Count) app-env secret keys + DATALAKE_SERVICE_KEY (mase/datalake)"
 
 $taskDefJson = @"
 {
@@ -273,7 +286,16 @@ $taskDefJson = @"
       "environment": [
         { "name": "HOST", "value": "0.0.0.0" },
         { "name": "PORT", "value": "$ContainerPort" },
-        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" }
+        { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
+        { "name": "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "value": "true" },
+        { "name": "SWEEP_AUTOSCALE_ENABLED", "value": "true" },
+        { "name": "SWEEP_AUTOSCALE_MAX", "value": "6" },
+        { "name": "LLM_REQUEST_TIMEOUT_S", "value": "1200" },
+        { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
+        { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
+        { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" },
+        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" },
+$datalakeEnvJson
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {
@@ -433,14 +455,16 @@ $workerTaskDefJson = @"
       "command": ["python", "worker.py"],
       "environment": [
         { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
+        { "name": "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "value": "true" },
         { "name": "DEAL_SWEEP_CONCURRENCY", "value": "8" },
         { "name": "MCP_SERVER_ALLOWLIST", "value": "salesforce,avoma" },
         { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
-        { "name": "LLM_REQUEST_TIMEOUT_S", "value": "600" },
+        { "name": "LLM_REQUEST_TIMEOUT_S", "value": "1200" },
         { "name": "DEAL_SWEEP_TIMEOUT_S", "value": "2400" },
         { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },
         { "name": "DEAL_SWEEP_MAX_TOKENS", "value": "64000" },
-        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" }
+        { "name": "MCP_TOOL_TIMEOUT_S", "value": "600" },
+$datalakeEnvJson
       ],
       "secrets": [ $secretsJson ],
       "logConfiguration": {

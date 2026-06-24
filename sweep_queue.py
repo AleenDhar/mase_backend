@@ -357,3 +357,19 @@ def status() -> dict:
         "opps": opps,
         "recent_failed": recent_failed,
     }
+
+
+def active_depth() -> int:
+    """Lightweight count of rows still to process (waiting + working). Used by the
+    worker autoscaler to size the fleet — reads only opp_id, not the whole row."""
+    try:
+        rows = _select(select="opp_id", filters=["status=in.(waiting,working)"])
+        return len(rows)
+    except Exception:  # noqa: BLE001 — autoscaler must never crash on a read blip
+        return 0
+
+
+def failed_opp_ids(limit: int = 5000) -> list[str]:
+    """opp_ids of rows currently in `failed` — for a 'rerun all failed' action."""
+    rows = _select(select="opp_id", filters=["status=eq.failed"], limit=limit)
+    return [r.get("opp_id") for r in rows if r.get("opp_id")]

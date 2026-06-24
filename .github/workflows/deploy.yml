@@ -1,0 +1,130 @@
+name: deploy
+
+# Deploys ONLY what is on origin/main (never a laptop working tree), with a
+# committed task-def env (render_taskdef.py — the single source of truth), and a
+# smoke-test + selfcheck gate that auto-rolls-back. This replaces deploy.ps1 /
+# deploy.mac.ps1. See docs/MASE_CONTEXT.md + docs/API_INVENTORY.md.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '*.md', '.agents/**']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod          # never run two deploys at once
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_REPO: 022187637784.dkr.ecr.ap-south-1.amazonaws.com/mase-service
+  CLUSTER: mase-cluster
+  ALB_DNS: mase-alb-1262623499.ap-south-1.elb.amazonaws.com
+  LISTENER: arn:aws:elasticloadbalancing:ap-south-1:022187637784:listener/app/mase-alb/176c820e3f56b935/c6710f58972ca338
+  TG_BLUE: arn:aws:elasticloadbalancing:ap-south-1:022187637784:targetgroup/mase-blue/71c71534374ec831
+  TG_GREEN: arn:aws:elasticloadbalancing:ap-south-1:022187637784:targetgroup/mase-green/c8b1ab1c4dff2dbf
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build & push image
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_SHA::7}-$(date -u +%Y%m%dT%H%M%SZ)"
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          echo "IMAGE=$ECR_REPO:$TAG" >> "$GITHUB_ENV"
+          docker build -t "$ECR_REPO:$TAG" .
+          docker push "$ECR_REPO:$TAG"
+
+      - name: Render & register task definitions
+        run: |
+          set -euo pipefail
+          python .github/deploy/render_taskdef.py "$IMAGE" api-td.json worker-td.json
+          API_TD=$(aws ecs register-task-definition --cli-input-json file://api-td.json \
+            --query 'taskDefinition.taskDefinitionArn' --output text)
+          WORKER_TD=$(aws ecs register-task-definition --cli-input-json file://worker-td.json \
+            --query 'taskDefinition.taskDefinitionArn' --output text)
+          echo "API_TD=$API_TD" >> "$GITHUB_ENV"
+          echo "WORKER_TD=$WORKER_TD" >> "$GITHUB_ENV"
+          echo "registered $API_TD / $WORKER_TD"
+
+      - name: Determine live/idle colour
+        run: |
+          set -euo pipefail
+          WEIGHTS=$(aws elbv2 describe-rules --listener-arn "$LISTENER" \
+            --query "Rules[?IsDefault].Actions[0].ForwardConfig.TargetGroups" --output json)
+          LIVE_TG=$(echo "$WEIGHTS" | python -c "import json,sys;tg=json.load(sys.stdin)[0];print([t['TargetGroupArn'] for t in tg if t['Weight']==100][0])")
+          if [ "$LIVE_TG" = "$TG_BLUE" ]; then LIVE=blue; IDLE=green; IDLE_TG=$TG_GREEN;
+          else LIVE=green; IDLE=blue; IDLE_TG=$TG_BLUE; fi
+          echo "LIVE=$LIVE"   >> "$GITHUB_ENV"
+          echo "IDLE=$IDLE"   >> "$GITHUB_ENV"
+          echo "IDLE_TG=$IDLE_TG" >> "$GITHUB_ENV"
+          echo "LIVE_TG=$LIVE_TG" >> "$GITHUB_ENV"
+          echo "live=$LIVE idle=$IDLE"
+
+      - name: Deploy image to idle colour
+        run: |
+          set -euo pipefail
+          aws ecs update-service --cluster "$CLUSTER" --service "mase-api-$IDLE" \
+            --task-definition "$API_TD" >/dev/null
+          aws ecs wait services-stable --cluster "$CLUSTER" --services "mase-api-$IDLE"
+          aws elbv2 wait target-in-service --target-group-arn "$IDLE_TG"
+          echo "idle ($IDLE) healthy on new image"
+
+      - name: Flip ALB listener to idle
+        run: |
+          set -euo pipefail
+          cat > flip.json <<EOF
+          [{"Type":"forward","ForwardConfig":{"TargetGroups":[
+            {"TargetGroupArn":"$IDLE_TG","Weight":100},
+            {"TargetGroupArn":"$LIVE_TG","Weight":0}]}}]
+          EOF
+          aws elbv2 modify-listener --listener-arn "$LISTENER" --default-actions file://flip.json >/dev/null
+          echo "FLIPPED=1" >> "$GITHUB_ENV"
+          echo "flipped -> $IDLE"
+
+      - name: Deploy sweep worker
+        run: |
+          set -euo pipefail
+          aws ecs update-service --cluster "$CLUSTER" --service mase-worker \
+            --task-definition "$WORKER_TD" >/dev/null
+          echo "worker rolled to new image (autoscaler manages count)"
+
+      - name: Smoke test + selfcheck (gate)
+        env:
+          BASE_URL: http://mase-alb-1262623499.ap-south-1.elb.amazonaws.com
+          TOKEN: ${{ secrets.DEAL_ENGINE_TOKEN }}
+        run: |
+          set -euo pipefail
+          sleep 10
+          chmod +x scripts/smoke_test.sh
+          ./scripts/smoke_test.sh
+          SC=$(curl -s "$BASE_URL/api/deal-engine/selfcheck" -H "Authorization: Bearer $TOKEN")
+          echo "selfcheck: $SC"
+          echo "$SC" | python -c "import json,sys;d=json.load(sys.stdin);sys.exit(0 if d.get('ok') else 1)"
+
+      - name: Drain old colour (deploy succeeded)
+        run: aws ecs update-service --cluster "$CLUSTER" --service "mase-api-$LIVE" --desired-count 0 >/dev/null
+
+      - name: ROLLBACK on failure
+        if: failure() && env.FLIPPED == '1'
+        run: |
+          set -euo pipefail
+          cat > rb.json <<EOF
+          [{"Type":"forward","ForwardConfig":{"TargetGroups":[
+            {"TargetGroupArn":"$LIVE_TG","Weight":100},
+            {"TargetGroupArn":"$IDLE_TG","Weight":0}]}}]
+          EOF
+          aws elbv2 modify-listener --listener-arn "$LISTENER" --default-actions file://rb.json >/dev/null
+          echo "::error::Deploy failed post-flip — rolled the ALB back to $LIVE."

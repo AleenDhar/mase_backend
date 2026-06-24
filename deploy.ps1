@@ -295,6 +295,8 @@ $taskDefJson = @"
         { "name": "PORT", "value": "$ContainerPort" },
         { "name": "DEAL_SWEEP_PARALLEL_READERS", "value": "true" },
         { "name": "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "value": "true" },
+        { "name": "SWEEP_AUTOSCALE_ENABLED", "value": "true" },
+        { "name": "SWEEP_AUTOSCALE_MAX", "value": "6" },
         { "name": "LLM_REQUEST_TIMEOUT_S", "value": "1200" },
         { "name": "ANTHROPIC_MAX_RETRIES", "value": "8" },
         { "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES", "value": "50" },

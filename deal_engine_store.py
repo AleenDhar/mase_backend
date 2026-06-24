@@ -656,6 +656,71 @@ def backfill_packets(*, dry_run: bool = False) -> dict:
     return stats
 
 
+def regroup_todos(*, opp_id: Optional[str] = None, dry_run: bool = False,
+                  sample: int = 12) -> dict:
+    """Token-free pass that re-tidies the to-do display lists on records ALREADY
+    persisted — collapses within-block near-duplicate open_deliverables +
+    best_practice flags and de-collides cross-bucket restatements via
+    todo_grouping.tidy(). No Avoma / Salesforce / LLM: a pure recompute over the
+    lists already on the record (which are themselves the packet projection), so it
+    cleans the back-catalogue after a projection-logic change without a full
+    re-sweep. Touches ONLY ai.open_deliverables + ai.best_practice_check (+ the
+    group_key it stamps); every other section is left byte-for-byte intact.
+
+    Idempotent and only ever REDUCES. Per-record errors are counted and skipped so
+    one bad record cannot abort the pass. dry_run computes the same stats + a sample
+    of before/after diffs but writes nothing."""
+    import todo_grouping
+    if opp_id:
+        rec = get_record(opp_id)
+        rows = [{"record": rec}] if rec else []
+    else:
+        rows = _select(T_RECORDS, select="record", order="account_name.asc")
+    stats = {"total": len(rows), "regrouped": 0, "unchanged": 0, "skipped": 0,
+             "errors": 0, "deliverables_removed": 0, "flags_removed": 0}
+    samples: list = []
+
+    def _c(ai: dict):
+        return (len(((ai.get("open_deliverables") or {}).get("items")) or []),
+                len(((ai.get("best_practice_check") or {}).get("flags")) or []))
+
+    for row in rows:
+        rec = row.get("record")
+        if not isinstance(rec, dict) or not (rec.get("opp_id") or "").strip():
+            stats["skipped"] += 1
+            continue
+        ai = rec.get("ai")
+        if not isinstance(ai, dict):
+            stats["skipped"] += 1
+            continue
+        try:
+            before = _c(ai)
+            todo_grouping.tidy({"ai": ai})  # mutates ai's two lists in place
+            after = _c(ai)
+            if after == before:
+                stats["unchanged"] += 1
+                continue
+            stats["regrouped"] += 1
+            stats["deliverables_removed"] += max(0, before[0] - after[0])
+            stats["flags_removed"] += max(0, before[1] - after[1])
+            if len(samples) < sample:
+                samples.append({
+                    "opp_id": rec.get("opp_id"),
+                    "account": (rec.get("hard") or {}).get("account_name")
+                    or rec.get("account_name"),
+                    "deliverables": f"{before[0]}->{after[0]}",
+                    "best_practice": f"{before[1]}->{after[1]}",
+                })
+            if not dry_run:
+                upsert_record(rec)
+        except Exception as e:  # noqa: BLE001 — one bad record must not abort the pass
+            stats["errors"] += 1
+            print(f"[REGROUP] failed opp={rec.get('opp_id')}: "
+                  f"{type(e).__name__}: {e}", flush=True)
+    stats["samples"] = samples
+    return stats
+
+
 # ---------- living-memory change feed (deltas) ----------
 
 import deal_engine_packets as _packets  # noqa: E402

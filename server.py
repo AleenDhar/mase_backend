@@ -8125,6 +8125,32 @@ async def deal_engine_backfill_packets(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/todos/regroup")
+async def deal_engine_regroup_todos(request: Request):
+    """Token-free back-catalogue cleanup: re-tidy the to-do display lists on records
+    ALREADY persisted — collapse within-block near-duplicate open_deliverables +
+    best_practice flags and de-collide cross-bucket restatements (todo_grouping.tidy).
+    No Avoma / Salesforce / LLM cost — a pure recompute over the lists already on the
+    record. Use after a projection-logic change to clean every deal at once instead of
+    waiting for each deal's next sweep. Touches ONLY the two to-do lists; idempotent;
+    only ever reduces. Body (optional): {opp_id?: str (one deal), dry_run?: bool}."""
+    import deal_engine_store as dstore
+    try:
+        d = {}
+        try:
+            d = await request.json()
+        except Exception:  # noqa: BLE001
+            pass
+        opp_id = (d.get("opp_id") or "").strip() or None
+        dry_run = bool(d.get("dry_run"))
+        stats = await _aw(dstore.regroup_todos, opp_id=opp_id, dry_run=dry_run)
+        return {"status": "ok", "dry_run": dry_run, "opp_id": opp_id, "stats": stats}
+    except dstore.DealEngineError as e:
+        return JSONResponse({"error": str(e)}, status_code=400)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.post("/api/deal-engine/sweep")
 async def deal_engine_sweep_start(request: Request):
     """Kick off the AI sweep that POPULATES the book. Body (all optional):

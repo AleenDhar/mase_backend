@@ -27,13 +27,15 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write          # OIDC: assume the AWS deploy role — NO stored secrets
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::022187637784:role/mase-github-deploy-role
           aws-region: ${{ env.AWS_REGION }}
 
       - uses: aws-actions/amazon-ecr-login@v2
@@ -104,10 +106,13 @@ jobs:
       - name: Smoke test + selfcheck (gate)
         env:
           BASE_URL: http://mase-alb-1262623499.ap-south-1.elb.amazonaws.com
-          TOKEN: ${{ secrets.DEAL_ENGINE_TOKEN }}
         run: |
           set -euo pipefail
           sleep 10
+          # bearer token from Secrets Manager (the deploy role can read mase/app-env) — no GitHub secret needed
+          TOKEN=$(aws secretsmanager get-secret-value --secret-id mase/app-env --query SecretString --output text \
+            | python -c "import json,sys;d=json.load(sys.stdin);print(d.get('API_AUTH_TOKEN') or d.get('DISPATCH_SECRET') or '')")
+          export TOKEN
           chmod +x scripts/smoke_test.sh
           ./scripts/smoke_test.sh
           SC=$(curl -s "$BASE_URL/api/deal-engine/selfcheck" -H "Authorization: Bearer $TOKEN")

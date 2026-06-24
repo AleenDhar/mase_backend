@@ -40,6 +40,33 @@ jobs:
 
       - uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Fetch real MCP config + guard
+        run: |
+          set -euo pipefail
+          # The real connector config (mcp_config.json) carries secrets and is
+          # gitignored, so a CI checkout only has the sanitized mcp_config.example.json.
+          # Without this, the image ships NO mcp_config.json -> server.py writes a default
+          # with zero enabled MCP servers -> every sweep worker crash-loops on
+          # "MCP tools did not load in time" (the 2026-06-24 incident). Pull the real
+          # config from Secrets Manager and bake it into the build context.
+          aws secretsmanager get-secret-value --secret-id mase/mcp-config \
+            --query SecretString --output text > mcp_config.json
+          # Hard guard: refuse to build unless salesforce + avoma are present AND enabled.
+          # This makes a broken-MCP image impossible to ship, no matter who pushes.
+          python - <<'PY'
+          import json, sys
+          try:
+              servers = (json.load(open("mcp_config.json")).get("mcp_servers") or {})
+          except Exception as e:
+              sys.exit(f"FATAL: mcp_config.json from mase/mcp-config is not valid JSON: {e}")
+          bad = [s for s in ("salesforce", "avoma") if not (servers.get(s) or {}).get("enabled")]
+          if bad:
+              sys.exit(f"FATAL: mcp_config.json is missing/disabled required MCP server(s) {bad} "
+                       "- refusing to build a broken image. Fix the mase/mcp-config secret.")
+          n = sum(1 for s in servers.values() if s.get("enabled"))
+          print(f"mcp_config.json OK: {n} enabled servers incl salesforce + avoma")
+          PY
+
       - name: Build & push image
         run: |
           set -euo pipefail

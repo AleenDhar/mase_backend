@@ -46,6 +46,28 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 # ----------------------------------------------------------------------------
+# DEPRECATED — manual deploy is disabled. Deploys run in GitHub Actions now.
+# This script ships your LOCAL working tree (not origin/main), bypasses the
+# render_taskdef.py env source-of-truth + the post-deploy QA gate, and has dropped
+# the datalake/SNS env before (prod outage). Just push to main instead:
+#     git push origin main      # -> .github/workflows/deploy.yml does the rest
+# See docs/DEPLOYMENT.md. Break-glass only (CI down): set ALLOW_MANUAL_DEPLOY=1.
+# ----------------------------------------------------------------------------
+if (-not $env:ALLOW_MANUAL_DEPLOY) {
+    Write-Host ""
+    Write-Host "  DEPRECATED: manual deploy is OFF - deploys run in GitHub Actions." -ForegroundColor Yellow
+    Write-Host "  Push to main and the pipeline blue-green deploys with a QA gate:" -ForegroundColor Yellow
+    Write-Host "      git push origin main"
+    Write-Host ""
+    Write-Host "  This script ships your LOCAL working tree (not git) and has dropped"
+    Write-Host "  the datalake/SNS env before, taking prod down. See docs/DEPLOYMENT.md."
+    Write-Host ""
+    Write-Host "  Break-glass only (CI is down): `$env:ALLOW_MANUAL_DEPLOY=1 ; .\deploy.ps1" -ForegroundColor DarkGray
+    exit 1
+}
+Write-Host "ALLOW_MANUAL_DEPLOY set - running the DEPRECATED manual deploy. Prefer 'git push origin main'." -ForegroundColor Yellow
+
+# ----------------------------------------------------------------------------
 # Configuration  (resource IDs from the provisioned infra)
 # ----------------------------------------------------------------------------
 $AWS         = "C:\Program Files\Amazon\AWSCLIV2\aws.exe"

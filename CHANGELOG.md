@@ -11,6 +11,16 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — we_promised must be an evidence-backed commitment (not inferred)
+
+**What.** Sweep prompt (§ FOUR HEADS): an `implicit_requirements.we_promised` deliverable is emitted
+ONLY when Zycus actually committed to it on a call / in writing — verbatim quote in `grounding_quote`
+plus a named `source`. Inferred "what we should do next" is a `recommended_move`, not a commitment; an
+empty `we_promised` is correct when we made no commitments.
+
+**Why.** Keeps "Commitments made by Zycus" short and trustworthy. Pairs with the frontend filter that
+drops grounding-less implicit items from that bucket. Applies on re-sweep.
+
 ## 2026-06-25 — Deal health: FOUR-tier verdict (split At Risk → Close Date Risk + Slowing)
 
 **What.** `north_star_verdict.verdict` now emits one of FOUR exact strings — `On Track`,

@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — Deal health: FOUR-tier verdict (split At Risk → Close Date Risk + Slowing)
+
+**What.** `north_star_verdict.verdict` now emits one of FOUR exact strings — `On Track`,
+`Close Date Risk`, `Slowing`, `Off Track` — replacing the three (`At Risk` removed, split in two):
+- **Close Date Risk** — a fundamentally healthy, engaged deal whose ONLY problem is an optimistic
+  close date that will slip (a POSITIVE/light read; frontend colours it light green).
+- **Slowing** — losing momentum: a key action stalled (withheld approval / missing info) or buyer
+  engagement thinning, but not yet cold.
+Precedence: **Off Track (cold) > Slowing (stalled/thinning) > Close Date Risk (healthy but late) >
+On Track.** An indefensible forecast on an otherwise-healthy deal maps to Close Date Risk, not lower.
+
+**Why.** One "At Risk" bucket lumped healthy-but-late deals (a live POC days from a placeholder close)
+with genuinely stalling deals, making the forecast book read alarmingly red. Splitting lets McAfee read
+light-green ("good deal, date slips") instead of amber alarm — fixing the perceived over-stringency
+WITHOUT masking real risk.
+
+**How.** §3 rubric rewritten + §5 schema enum updated in the seed (live prompt — Supabase override is
+empty so the seed ships with deploy); `_RANK` (verdict trajectory) extended to four tiers with legacy
+`At Risk` == `Slowing`. Existing records keep `At Risk` until re-swept; the frontend maps legacy
+`At Risk` → Slowing (amber). Apply to the book via a re-sweep.
+
 ## 2026-06-25 — Verdict definitions locked to three statuses (On Track / At Risk / Off Track)
 
 **What.** Rewrote the `north_star_verdict` guide rails (§3 of the sweep prompt) to three explicit,

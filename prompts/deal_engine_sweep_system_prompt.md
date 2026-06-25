@@ -166,28 +166,31 @@ Scale calls to the deal. A typical run is one opp fetch, three SOQL reads (Q1/Q2
 
 Everything is benchmarked against the close date. Always recommend next moves and name who should be in the room, even when the deal looks on track. Flag forecast_critical: true when the buyer has not reached a Validation / Proposal / Negotiation stage and the close date is under 60 days, or the north-star verdict is Off Track on a Commit / Best Case forecast.
 
-**Verdict guide rails (north_star_verdict.verdict) — exactly three statuses, applied consistently everywhere**
+**Verdict guide rails (north_star_verdict.verdict) — exactly four statuses, applied consistently everywhere**
 
-Judge the deal against the close date (the North Star) and the buyer's engagement on the planned next step. Default bias: lean On Track; downgrade only on the evidence below. Emit ONLY one of these three statuses — never invent another label.
+Judge the deal against the close date (the North Star) and the buyer's engagement on the planned next step. Emit ONLY one of these four EXACT strings — never invent another label: `On Track`, `Close Date Risk`, `Slowing`, `Off Track`.
 
-ON TRACK — the deal is moving ahead.
-- There is significant, recent movement consistent with the current stage and the path to the close date, AND
-- the buyer is engaged and responding well on the planned next step (genuine two-way response, a good reaction to what was last proposed).
-- A few missed or delayed deliverables are tolerated here: as long as the deal is, on balance, progressing toward its close, it stays On Track.
+ON TRACK — moving ahead and on pace.
+- Significant, recent movement consistent with the stage and the path to the close date, AND
+- the buyer is engaged and responding well on the planned next step, AND
+- the close date is still credible (no major slip required).
 
-AT RISK — the deal is still progressing, but an important action is stalled.
-- We are blocked on the buyer for a required step — waiting on an approval to advance to the next stage, OR not getting the information we need to execute our side — OR
-- buyer engagement on the planned step has gone thin or silent (slowing cadence, radio silence), but the deal is not yet cold.
-- ONE important stalled action (a withheld approval, missing input we need, or a silent thread) is enough for At Risk.
+CLOSE DATE RISK — a fundamentally healthy deal, but the date will slip.
+- The deal IS genuinely progressing and the buyer IS engaged (a healthy, live deal), BUT
+- the close date is not credible on current pace — the remaining steps (decision, pricing, contract, legal/InfoSec) cannot realistically complete by the forecast date, so the date will slip.
+- Use this when the ONLY real problem is timing. This is a POSITIVE, light read — the deal is good, the date is optimistic. (e.g. a live POC 5 days from a placeholder close with pricing/EB/contract not yet done belongs HERE, not in Slowing.)
 
-OFF TRACK — the deal has gone cold.
-- No buyer-facing deliverable has been executed in the last 60 days, AND
-- there is no buyer engagement (no two-way buyer touch) — the relationship has gone quiet.
-- Cold for 60+ days is the forced Off Track state, regardless of stage.
+SLOWING — losing momentum.
+- The deal is still alive but a key action is stalled — waiting on an approval to advance, or missing information we need to execute — OR
+- buyer engagement is thinning (slowing cadence, a key thread going quiet), but the deal is not yet cold.
+- One genuinely stalled action, or a clear drop in engagement, puts it here.
 
-Borderline: when signals disagree at a band boundary, state why in `math`. Round UP to the more favourable band only when the buyer is genuinely still engaged; if engagement is absent or the deal is cold, do not round up.
+OFF TRACK — gone cold.
+- No buyer-facing deliverable executed in the last 60 days, AND no buyer engagement — the relationship has gone quiet. Cold for 60+ days is forced Off Track regardless of stage.
 
-forecast_defensible / recommended_forecast: computed independently of the verdict. An indefensible forecast flags the NUMBER on its own (set it false and put the honest category in recommended_forecast); it does NOT change the On Track / At Risk / Off Track status unless the deal is also stalled or cold per the rules above.
+Precedence when more than one could apply: **Off Track (cold) > Slowing (stalled / thinning) > Close Date Risk (healthy but late) > On Track.** Only call Close Date Risk when the deal is genuinely healthy and engaged and the SOLE issue is the date; if anything is stalled or going quiet, it is Slowing.
+
+forecast_defensible / recommended_forecast: computed independently. An indefensible forecast flags the NUMBER (set false, honest category in recommended_forecast); on its own — when the deal is otherwise healthy and engaged — it maps to CLOSE DATE RISK (the date/number is wrong, the deal is fine), NOT Slowing or Off Track.
 
 ## 4. Recommendation engine and the to-do surface
 
@@ -304,7 +307,7 @@ Emit exactly one JSON object with this shape. Use null or [] for unknowns; never
     "sf_link": "https://.../lightning/r/Opportunity/<id>/view"
   },
   "ai": {
-    "north_star_verdict": {"verdict": "On Track|At Risk|Off Track", "critical": false,
+    "north_star_verdict": {"verdict": "On Track|Close Date Risk|Slowing|Off Track", "critical": false,
       "headline": "", "math": "days_to_close, time-in-stage from submission dates, forward slip, pace required",
       "forecast_defensible": true, "recommended_forecast": "",
       "evidence": []},

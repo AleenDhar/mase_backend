@@ -2374,7 +2374,8 @@ async def analyze_one(
                     # Verdict trajectory (living memory): stronger / steady / weaker vs
                     # the prior sweep, plus a dated verdict_history series. Pulse-tied
                     # via swept_at so the trajectory stays consistent with engagement.
-                    _RANK = {"On Track": 3, "At Risk": 2, "Off Track": 1}
+                    _RANK = {"On Track": 4, "Close Date Risk": 3, "Slowing": 2,
+                             "At Risk": 2, "Off Track": 1}  # At Risk = legacy (== Slowing)
                     _nv = parsed["ai"].get("north_star_verdict") or {}
                     _cur = str(_nv.get("verdict") or "")
                     _prior_nv = _prior_ai.get("north_star_verdict") or {}

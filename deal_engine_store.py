@@ -1383,11 +1383,17 @@ def derive_todo(owner: Optional[str] = None) -> dict:
         hard = rec.get("hard") or {}
         ai = rec.get("ai") or {}
         pulse = _pulse_of(rec)
+        # The deal owner's manager, ONLY when it came from the live Salesforce org
+        # chart (Owner.Manager.Name) — never a model guess — so the UI can name them
+        # safely. The frontend substitutes it for the generic "the deal owner's
+        # manager" phrase (display-only; the todo_key stays keyed on the original text).
+        _mgr = hard.get("manager_name") if hard.get("manager_name_source") == "Owner.Manager.Name" else None
         ctx = {
             "opp_id": rec.get("opp_id"),
             "account_name": hard.get("account_name"),
             "opp_name": hard.get("opp_name"),
             "owner_name": hard.get("owner_name"),
+            "manager_name": _mgr,
         }
 
         # Moves: EVERY recommended move on EVERY deal. These fold into the

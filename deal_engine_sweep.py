@@ -1139,7 +1139,7 @@ _AVOMA_MAX_READS = int(os.getenv("DEAL_SWEEP_AVOMA_MAX_READS", "12"))
 # reader pool up to 6 on deep/forecasted deals, but 5-6 wide × ~1MB transcripts
 # throttles the DeepAgent/Avoma gateway -> discovery misses -> heavy deals fail.
 # Cap it lower so heavy deals complete reliably (slower but they finish). Env-tunable.
-_AVOMA_READER_CAP = int(os.getenv("DEAL_SWEEP_AVOMA_READER_CAP", "3"))
+_AVOMA_READER_CAP = int(os.getenv("DEAL_SWEEP_AVOMA_READER_CAP", "2"))
 # Cap transcript excerpt length per call (chars) so the injected block stays sane.
 _AVOMA_TRANSCRIPT_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS", "6000"))
 # Cap for the notes/summary fallback excerpt — used when a transcript is absent,

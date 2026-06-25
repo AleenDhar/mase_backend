@@ -11,6 +11,20 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — Restore interactive MCQ (mase-choice) cards in the deal chat
+
+**What.** The deal-AI chat again emits hidden `<!--mase-choice {...}-->` markers that the
+frontend (`DealAgentPanel`) renders as clickable choice cards. The instruction is now baked into
+the code-appended `_CHAT_CAPABILITIES` block (server.py), always present on the `/api/deal-engine/
+chat/async` deal-chat path.
+
+**Why.** The behaviour lived ONLY in the Supabase `mase_chat_agent` prompt, which was cleared to
+empty on 2026-06-24, so the agent silently stopped emitting markers (the renderer was untouched).
+Moving it into code makes it wipe-proof — an emptied admin prompt can no longer kill the feature.
+
+**How.** Marker schema: `{"question": "...", "options": ["...","..."], "multi": false, "title"?: "..."}`,
+one per question. Ships with the deploy. No Supabase change required.
+
 ## 2026-06-25 — we_promised must be an evidence-backed commitment (not inferred)
 
 **What.** Sweep prompt (§ FOUR HEADS): an `implicit_requirements.we_promised` deliverable is emitted

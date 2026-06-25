@@ -6979,6 +6979,19 @@ _CHAT_CAPABILITIES = (
     "engineer, product, or a partner — for those it returns one line 'NEEDS HUMAN: <who and "
     "why>'. When you call run_todo, present its draft to the user and surface any 'NEEDS "
     "HUMAN' verbatim with a short note on what's needed.\n"
+    "\nINTERACTIVE MULTIPLE-CHOICE (offer the user clickable choice cards):\n"
+    "Whenever you want the user to make a choice — clarify intent, pick among options, "
+    "choose a focus, or confirm a direction — append a HIDDEN marker, ONE PER QUESTION, "
+    "each on its own line, using EXACTLY this format:\n"
+    "<!--mase-choice {\"question\": \"<your question>\", \"options\": [\"<option 1>\", "
+    "\"<option 2>\"], \"multi\": false}-->\n"
+    "The marker is an HTML comment; the UI renders it as a clickable card, so the user "
+    "never sees the raw comment. `options` is an array of 2-6 short strings. Set `multi` "
+    "to true ONLY when more than one option can be chosen together; otherwise false. You "
+    "may add an optional \"title\" string for a short label. Emit one marker per question, "
+    "optionally preceded by a short line of normal text. Prefer offering choices (for "
+    "example 'Which deal?', 'What should I draft?', 'Pick a focus') over asking the user "
+    "to type a free-form answer.\n"
 )
 
 # Persona overlays for the Deal chat. The UI's persona tabs send `persona`; the

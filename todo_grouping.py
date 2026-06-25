@@ -259,26 +259,63 @@ def _restates_action(flag_sig: set, action_sigs: list) -> bool:
     return False
 
 
+def _move_signatures(ai: dict) -> list:
+    """Signatures of the recommended_moves only (the canonical 'next actions',
+    shown as 'The Play')."""
+    sigs = []
+    moves = ai.get("recommended_moves")
+    if isinstance(moves, dict):
+        for m in (moves.get("items") or []):
+            s = _sig(_move_text(m))
+            if s:
+                sigs.append(s)
+    return sigs
+
+
+def _drop_deliverables_restating_moves(ai: dict, move_sigs: list) -> int:
+    """MECE: a Zycus deliverable (we_promised) that restates a recommended_move is
+    the SAME action twice — the move is the canonical next action, so drop the
+    duplicate deliverable. Buyer-owed items are a different actor and untouched."""
+    if not move_sigs:
+        return 0
+    removed = 0
+    impl = ai.get("implicit_requirements")
+    if isinstance(impl, dict) and "we_promised" in impl:
+        blocks = [impl.get("we_promised")]
+    else:
+        blocks = [ai.get("open_deliverables")]
+    for blk in blocks:
+        if not isinstance(blk, dict):
+            continue
+        items = blk.get("items") or []
+        kept = [d for d in items
+                if not _restates_action(_sig(_deliv_text(d) if isinstance(d, dict) else str(d)), move_sigs)]
+        removed += len(items) - len(kept)
+        blk["items"] = kept
+    return removed
+
+
 def decollide_buckets(parsed: dict) -> dict:
-    """Drop best_practice flags that restate an owned action (move/deliverable).
-    Keeps true action-less gaps. In-place, idempotent, never raises."""
+    """Cross-bucket MECE so each action lives in exactly ONE place:
+      (1) drop best_practice flags that restate an owned action (move/deliverable);
+      (2) drop a Zycus deliverable (we_promised) that restates a recommended_move.
+    In-place, idempotent, never raises."""
     try:
         ai = parsed.get("ai") or {}
-        bp = ai.get("best_practice_check")
-        if not isinstance(bp, dict):
-            return parsed
-        flags = [f for f in (bp.get("flags") or []) if _flag_text(f).strip()]
-        if not flags:
-            return parsed
         action_sigs = _action_signatures(ai)
-        if not action_sigs:
-            return parsed
-        kept = [f for f in flags if not _restates_action(_sig(_flag_text(f)), action_sigs)]
-        dropped = len(flags) - len(kept)
-        if dropped:
-            bp["flags"] = kept
-            print(f"[TODO-DECOLLIDE] best_practice -{dropped} (restate an owned action; "
-                  f"kept {len(kept)} true gaps)", flush=True)
+        # (1) best-practice flags that restate any owned action
+        bp = ai.get("best_practice_check")
+        if isinstance(bp, dict) and action_sigs:
+            flags = [f for f in (bp.get("flags") or []) if _flag_text(f).strip()]
+            kept = [f for f in flags if not _restates_action(_sig(_flag_text(f)), action_sigs)]
+            if len(kept) != len(flags):
+                bp["flags"] = kept
+                print(f"[TODO-DECOLLIDE] best_practice -{len(flags) - len(kept)} "
+                      f"(restate an owned action)", flush=True)
+        # (2) Zycus deliverable that restates a recommended_move (same action twice)
+        n2 = _drop_deliverables_restating_moves(ai, _move_signatures(ai))
+        if n2:
+            print(f"[TODO-DECOLLIDE] we_promised -{n2} (restate a recommended_move)", flush=True)
     except Exception as e:  # noqa: BLE001 — never block persist
         print(f"[TODO-DECOLLIDE] skipped: {type(e).__name__}: {e}", flush=True)
     return parsed

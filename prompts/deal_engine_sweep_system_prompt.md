@@ -166,32 +166,28 @@ Scale calls to the deal. A typical run is one opp fetch, three SOQL reads (Q1/Q2
 
 Everything is benchmarked against the close date. Always recommend next moves and name who should be in the room, even when the deal looks on track. Flag forecast_critical: true when the buyer has not reached a Validation / Proposal / Negotiation stage and the close date is under 60 days, or the north-star verdict is Off Track on a Commit / Best Case forecast.
 
-**Verdict guide rails (north_star_verdict.verdict)**
+**Verdict guide rails (north_star_verdict.verdict) — exactly three statuses, applied consistently everywhere**
 
-Default bias: lean On Track. Downgrade only on the evidence below. Math and engagement signals are weighted equally WITHIN a band; the forcing conditions override that balance.
+Judge the deal against the close date (the North Star) and the buyer's engagement on the planned next step. Default bias: lean On Track; downgrade only on the evidence below. Emit ONLY one of these three statuses — never invent another label.
 
-ON TRACK
-- Two-way buyer touch within 14 days (fresh), AND
-- No forcing condition active, AND
-- Fewer than 2 contributors stacked.
-- Also: on a band boundary where math and signals disagree, default to this (the more lenient) band and state why in `math`. [borderline tiebreaker]
+ON TRACK — the deal is moving ahead.
+- There is significant, recent movement consistent with the current stage and the path to the close date, AND
+- the buyer is engaged and responding well on the planned next step (genuine two-way response, a good reaction to what was last proposed).
+- A few missed or delayed deliverables are tolerated here: as long as the deal is, on balance, progressing toward its close, it stays On Track.
 
-OFF TRACK — forced when ANY one of these is true (individually fatal):
-- COLD: no two-way buyer touch in 60+ days.
-- DELIVERABLES: 3+ open AND overdue buyer-owned deliverables.
-- Also forced when 2+ contributors stack (see below).
+AT RISK — the deal is still progressing, but an important action is stalled.
+- We are blocked on the buyer for a required step — waiting on an approval to advance to the next stage, OR not getting the information we need to execute our side — OR
+- buyer engagement on the planned step has gone thin or silent (slowing cadence, radio silence), but the deal is not yet cold.
+- ONE important stalled action (a withheld approval, missing input we need, or a silent thread) is enough for At Risk.
 
-AT RISK — the middle band; something is off but not fatal:
-- Last touch 14–60 days with a shaky signal, OR
-- Exactly ONE contributor present, OR
-- 1–2 overdue deliverables, OR
-- Behind required pace but recoverable.
+OFF TRACK — the deal has gone cold.
+- No buyer-facing deliverable has been executed in the last 60 days, AND
+- there is no buyer engagement (no two-way buyer touch) — the relationship has gone quiet.
+- Cold for 60+ days is the forced Off Track state, regardless of stage.
 
-CONTRIBUTORS (not individually fatal): 1 → At Risk, 2+ → Off Track
-- Indefensible forecast (forecast_defensible = false)
-- Low engagement (thin / single-threaded / decaying cadence)
+Borderline: when signals disagree at a band boundary, state why in `math`. Round UP to the more favourable band only when the buyer is genuinely still engaged; if engagement is absent or the deal is cold, do not round up.
 
-forecast_defensible / recommended_forecast: computed independently of the verdict. An indefensible forecast flags the NUMBER on its own; it only drags the VERDICT when stacked with another contributor.
+forecast_defensible / recommended_forecast: computed independently of the verdict. An indefensible forecast flags the NUMBER on its own (set it false and put the honest category in recommended_forecast); it does NOT change the On Track / At Risk / Off Track status unless the deal is also stalled or cold per the rules above.
 
 ## 4. Recommendation engine and the to-do surface
 

@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — Verdict definitions locked to three statuses (On Track / At Risk / Off Track)
+
+**What.** Rewrote the `north_star_verdict` guide rails (§3 of the sweep prompt) to three explicit,
+canonical definitions:
+- **On Track** — significant recent movement consistent with the stage + close date, AND the buyer is
+  engaged/responsive on the planned next step. A few missed/delayed deliverables are tolerated while the
+  deal is, on balance, progressing toward close.
+- **At Risk** — still progressing, but an important action is stalled: blocked on a buyer approval to
+  advance, OR missing information we need to execute, OR engagement gone thin/silent (not yet cold). One
+  stalled action is enough.
+- **Off Track** — gone cold: no buyer-facing deliverable executed in the last 60 days AND no buyer
+  engagement.
+
+**Why.** The three bands are unchanged (enum stays `On Track|At Risk|Off Track`); the *criteria* are now the
+canonical product definition, applied consistently, replacing the prior contributor/forcing-condition rubric.
+`forecast_defensible` now flags the NUMBER only — it no longer drags the verdict band unless the deal is also
+stalled/cold.
+
+**How to work with it.** Edit is in the on-disk seed (`prompts/deal_engine_sweep_system_prompt.md`) — the live
+`mase_deal_sweep` Supabase override is EMPTY, so prod runs the seed and this ships with the deploy. Takes effect
+per deal on its **next sweep**; existing records keep their last-computed band until re-swept. The frontend
+(MASE) now displays the band identically on every surface via a single `healthLabel()`.
+
 ## 2026-06-25 — 4-head MECE to-do model (consolidate `open_deliverables` into `implicit_requirements`)
 
 **What.** The sweep output's to-do blocks are reduced to **four MECE heads**, so one live

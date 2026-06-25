@@ -11,6 +11,44 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — 4-head MECE to-do model (consolidate `open_deliverables` into `implicit_requirements`)
+
+**What.** The sweep output's to-do blocks are reduced to **four MECE heads**, so one live
+thread appears in exactly one place:
+1. **Moves** = `recommended_moves` (unchanged; a prioritization layer, rendered as "The Play").
+2. **Deliverables / Prospect requirements** = `explicit_requirements` (unchanged).
+3. **Implicit requirements** = now a single head with **two sub-buckets**:
+   `implicit_requirements.we_promised` (Zycus owes — head 3a) and
+   `implicit_requirements.buyer_dependent` (the buyer owes us — head 3b).
+4. **Best practices** = `best_practice_check.flags` (unchanged).
+
+The old flat `implicit_requirements` AND the separate **`open_deliverables`** block both fold
+into head 3 (`who` is the only 3a/3b divider). `open_deliverables` is **removed** from the
+output. Precedence: **explicit beats implicit** (a buyer-demanded item stays in
+`explicit_requirements`, never `we_promised`).
+
+**How it's built.** The output is projected from the durable packets, so the real edit is in
+**`deal_engine_packets.project_into_ai`** (emits the new nested `implicit_requirements`, drops
+`open_deliverables`) + **`extract_candidates`** (reads the new shape too; new-shape items become
+who-tagged `commitment` packets). Packet TYPES are unchanged. Readers updated:
+`deal_engine_store.derive_todo` (new legacy-tolerant readers `_we_promised_items` /
+`_buyer_dependent_items`; **to-do `category` strings kept stable** — `implicit` = head 3a,
+`important` = head 3b — so the Salesforce push/edit/delete ledger keyed by `todo_key` survives),
+`todo_grouping` (group + de-collide on the new shape), `deal_engine_validation`,
+`deal_quality_inspector`, `server.py` (SF-push labels + admin viewer). The prompt seed
+(`prompts/deal_engine_sweep_system_prompt.md`) documents the new contract + the MECE precedence.
+
+**Migration (no re-sweep).** `regroup_todos()` now **re-projects from packets** (AI-free) so the
+back-catalogue migrates to the new shape. Until re-projected, `derive_todo`'s legacy fallback reads
+`open_deliverables` + flat `implicit_requirements` so existing records still render under the four
+new buckets. **The live Supabase `mase_deal_sweep` prompt row is empty → prod runs the on-disk
+seed**, so the prompt change ships with a deploy (or push the seed text into the Supabase override).
+
+**Frontend.** `DealTodoBuckets` now renders **Moves / Prospect requirements / Commitments made by
+Zycus / Waiting on the buyer / Best practices**; `hideMoves` hides the Moves head where "The Play"
+already shows it (the drawer). The deployed inline-bucket drawer (read raw `open_deliverables`) is
+**replaced** by the `DealTodoBuckets`-based `DealDrawerView` (reads `/todo`, has the per-row SF push).
+
 ## 2026-06-25 — To-do hygiene moved INTO the projection + cross-bucket de-collision
 
 **What.** Two changes to how the four to-do buckets (Prospect requirements / Next phase /

@@ -616,10 +616,22 @@ def _iter_action_text_slots(ai: dict):
                         slots.append((it, k, section))
 
     _add_items("recommended_moves", ("action", "trigger", "expected_effect"))
-    _add_items("implicit_requirements", ("inferred_need",))
     _add_items("explicit_requirements", ("requirement",))
-    _add_items("open_deliverables", ("commitment",))
     _add_items("vulnerabilities", ("detail",))
+    # implicit head: the 4-head shape nests two sub-buckets (we_promised /
+    # buyer_dependent); the legacy shape is a flat list + a separate open_deliverables.
+    _impl = ai.get("implicit_requirements")
+    if isinstance(_impl, dict) and ("we_promised" in _impl or "buyer_dependent" in _impl):
+        for _side in ("we_promised", "buyer_dependent"):
+            _blk = _impl.get(_side)
+            for it in (_blk.get("items") or []) if isinstance(_blk, dict) else []:
+                if isinstance(it, dict):
+                    for k in ("deliverable", "commitment", "inferred_need"):
+                        if isinstance(it.get(k), str) and it[k].strip():
+                            slots.append((it, k, "implicit_requirements"))
+    else:
+        _add_items("implicit_requirements", ("inferred_need",))
+        _add_items("open_deliverables", ("commitment",))
     bp = ai.get("best_practice_check")
     if isinstance(bp, dict) and isinstance(bp.get("flags"), list):
         for i, f in enumerate(bp["flags"]):

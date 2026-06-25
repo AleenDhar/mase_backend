@@ -555,13 +555,30 @@ def extract_candidates(ai: dict, hard: Optional[dict] = None) -> list[dict]:
                     "value": {**r, "kind": "explicit"},
                     "source": r.get("said_by") or "ai:explicit_requirements"})
 
-    for r in _items(ai.get("implicit_requirements")):
-        subj = r.get("inferred_need")
-        if not subj:
-            continue
-        out.append({"type": "requirement", "subject": subj,
-                    "value": {**r, "kind": "implicit"},
-                    "source": "ai:implicit_requirements"})
+    # implicit head: the new 4-head shape is {we_promised:{items}, buyer_dependent:{items}}
+    # (each item a Zycus/Buyer-owed deliverable); the legacy shape is a flat
+    # {items:[{inferred_need}]}. Support both. New-shape items become who-tagged
+    # commitment packets so the 3a/3b split round-trips through project_into_ai.
+    _impl = ai.get("implicit_requirements") or {}
+    if isinstance(_impl, dict) and ("we_promised" in _impl or "buyer_dependent" in _impl):
+        for _side in ("we_promised", "buyer_dependent"):
+            for d in _items(_impl.get(_side)):
+                subj = d.get("deliverable") or d.get("commitment") or d.get("inferred_need")
+                if not subj:
+                    continue
+                who = d.get("who") or ("Buyer" if _side == "buyer_dependent" else "Zycus")
+                out.append({"type": "commitment",
+                            "subject": f"{who}:{subj}" if who else subj,
+                            "value": {**d, "commitment": subj, "who": who},
+                            "source": "ai:implicit_requirements"})
+    else:
+        for r in _items(_impl):
+            subj = r.get("inferred_need")
+            if not subj:
+                continue
+            out.append({"type": "requirement", "subject": subj,
+                        "value": {**r, "kind": "implicit"},
+                        "source": "ai:implicit_requirements"})
 
     for s in _items(ai.get("stakeholder_map")):
         subj = s.get("name")
@@ -693,6 +710,18 @@ def _rank_stakeholders(items: list) -> list:
     return sorted(by_recency, key=_role_rank)
 
 
+def _is_buyer_who(who) -> bool:
+    """Side classifier for a commitment's `who` (the 3a/3b sub-split of the implicit
+    head): True when the BUYER owes the item (buyer-side label or account name),
+    False for our (Zycus) side. Empty/unknown defaults to OUR side, so only a
+    clearly buyer-owed item lands under "waiting on the buyer". Mirrors the frontend
+    isBuyerSide so the split is identical on both ends."""
+    w = str(who or "").strip().lower()
+    if not w:
+        return False
+    return not any(t in w for t in ("zycus", "seller", "we ", "us ", "our"))
+
+
 def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) -> dict:
     """Regenerate the packet-backed `ai.*` item lists from the live (carried-forward)
     packets, preserving the agent's derived sections and summaries. The result is
@@ -702,7 +731,11 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
     `change` tag — new | updated | carried — plus first_seen / last_confirmed, so the
     UI can infuse the incremental change inside each section (living memory)."""
     ai = dict(agent_ai or {})
-    expl, impl, stake, comps, vulns, deliv, flags = [], [], [], [], [], [], []
+    # 4-head MECE model: the implicit head has two sub-buckets — we_promised (Zycus
+    # owes: implicit needs/pains + our commitments) and buyer_dependent (the buyer
+    # owes us). The old flat `impl` list and the separate `deliv` (open_deliverables)
+    # both collapse into these two.
+    expl, we_prom, buyer_dep, stake, comps, vulns, flags = [], [], [], [], [], [], []
     scope = None
     champ = None
 
@@ -723,9 +756,11 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
         lc = p.get("last_confirmed")
         if t == "requirement":
             if (v.get("kind") or "explicit") == "implicit":
-                impl.append({"inferred_need": v.get("inferred_need") or subj,
-                             "grounding_quote": v.get("grounding_quote") or v.get("quote"),
-                             "date": v.get("date") or lc})
+                _need = v.get("inferred_need") or subj
+                we_prom.append({"deliverable": _need, "inferred_need": _need, "who": "Zycus",
+                                "grounding_quote": v.get("grounding_quote") or v.get("quote"),
+                                "date": v.get("date") or lc,
+                                "source": v.get("source") or p.get("source")})
             else:
                 expl.append({"requirement": v.get("requirement") or subj,
                              "said_by": v.get("said_by"),
@@ -733,9 +768,11 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
                              "addressed": bool(v.get("addressed")),
                              "quote": v.get("quote")})
         elif t == "pain":
-            impl.append({"inferred_need": v.get("inferred_need") or v.get("detail") or subj,
-                         "grounding_quote": v.get("grounding_quote") or v.get("quote"),
-                         "date": v.get("date") or lc})
+            _need = v.get("inferred_need") or v.get("detail") or subj
+            we_prom.append({"deliverable": _need, "inferred_need": _need, "who": "Zycus",
+                            "grounding_quote": v.get("grounding_quote") or v.get("quote"),
+                            "date": v.get("date") or lc,
+                            "source": v.get("source") or p.get("source")})
         elif t == "stakeholder":
             stake.append({"name": v.get("name") or subj, "title": v.get("title"),
                           "role": v.get("role") or "Unknown",
@@ -759,9 +796,13 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
                           "first_seen": p.get("first_seen"), "last_confirmed": lc,
                           "change": _chg(p)})
         elif t == "commitment":
-            deliv.append({"who": v.get("who"), "commitment": v.get("commitment") or subj,
-                          "date": v.get("date"), "due": v.get("due"),
-                          "status": v.get("status") or "open"})
+            _txt = v.get("commitment") or subj
+            _it = {"deliverable": _txt, "commitment": _txt, "who": v.get("who"),
+                   "grounding_quote": v.get("grounding_quote") or v.get("quote"),
+                   "date": v.get("date"), "due": v.get("due"),
+                   "status": v.get("status") or "open",
+                   "source": v.get("source") or p.get("source")}
+            (buyer_dep if _is_buyer_who(v.get("who")) else we_prom).append(_it)
         elif t == "hygiene":
             flags.append(v.get("flag") or subj)
         elif t == "product_scope":
@@ -770,7 +811,14 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
             champ = v
 
     ai["explicit_requirements"] = {"items": expl}
-    ai["implicit_requirements"] = {"items": impl}
+    # ONE implicit head, two sub-buckets (3a we_promised / 3b buyer_dependent). The
+    # legacy flat `implicit_requirements` AND the separate `open_deliverables` block
+    # both fold in here; `who` is the only divider. open_deliverables is dropped.
+    ai["implicit_requirements"] = {
+        "we_promised": {"items": we_prom},
+        "buyer_dependent": {"items": buyer_dep},
+    }
+    ai.pop("open_deliverables", None)
     ai["stakeholder_map"] = {"items": _rank_stakeholders(stake)[:_stakeholder_cap()]}
 
     cp = dict(ai.get("competitive_position") or {})
@@ -778,7 +826,6 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
     ai["competitive_position"] = cp
 
     ai["vulnerabilities"] = {"items": vulns}
-    ai["open_deliverables"] = {"items": deliv}
 
     bp = dict(ai.get("best_practice_check") or {})
     bp["flags"] = flags

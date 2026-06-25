@@ -234,10 +234,10 @@ ACTION-ITEM QUALITY — every move is judged on whether it MOVES the deal, not w
 
 Brevity is the goal, but before you finalize, scan all of these and surface any that has a live item for the next 14 to 30 days — never skip a category that has one:
 - an explicit requirement the prospect asked for that is still unaddressed,
-- an implicit deliverable WE promised in response to a concern (due or overdue),
+- a deliverable WE owe (implicit_requirements.we_promised, due or overdue),
 - the single next-milestone move for the current stage,
 - a MEDDPICC hole that blocks the next gate (after the synthesis read, not the flags),
-- an overdue commitment (open_deliverables past due),
+- something the buyer owes us that blocks our delivery (implicit_requirements.buyer_dependent, past due),
 - champion-building when the champion is weak / developing.
 
 **Far-future milestones and the soft nudge**
@@ -273,7 +273,7 @@ Still emit the full current picture for this sweep as specified in section 5 —
 
 These four behaviours apply on EVERY run. They make the to-do surface react to what the RSD has actually done and keep the competitive read honest and current.
 
-**(a) Ingest completed work; recommend only net-new moves.** Read completed Tasks/Events (90d) and Next_Step_History__c as the record of what the deal team has ALREADY done. A prior recommended move the RSD has since actioned and logged (a completed Task whose subject matches — even loosely — a prior move; e.g. a logged "AG meeting CPO and CFO for EB validation") is DONE: do NOT re-recommend it. Record each materially-completed action in `deal_movement.items` (change + date), and where it closed a commitment, in `open_deliverables` with status `completed`. Then build FORWARD: every recommended move must be NET-NEW — the next step that follows from what is already done (e.g. once the EB meeting happened, the next move is to capture its outcome and convert it to written sign-off, not to schedule it again). The to-do surface must always reflect current progress, never re-issue closed work.
+**(a) Ingest completed work; recommend only net-new moves.** Read completed Tasks/Events (90d) and Next_Step_History__c as the record of what the deal team has ALREADY done. A prior recommended move the RSD has since actioned and logged (a completed Task whose subject matches — even loosely — a prior move; e.g. a logged "AG meeting CPO and CFO for EB validation") is DONE: do NOT re-recommend it. Record each materially-completed action in `deal_movement.items` (change + date), and where it closed a commitment, in `implicit_requirements.we_promised` (or `.buyer_dependent` if the buyer owed it) with status `completed`. Then build FORWARD: every recommended move must be NET-NEW — the next step that follows from what is already done (e.g. once the EB meeting happened, the next move is to capture its outcome and convert it to written sign-off, not to schedule it again). The to-do surface must always reflect current progress, never re-issue closed work.
 
 **(b) Always plan three rolling horizons (7 / 14 / 30 days).** `recommended_moves.items` must always carry concrete dated moves across THREE rolling windows, with at least one in each: the next 7 days (immediate), the next 14 days, and the next 30 days. Tag every move with `horizon` = `next_7_days` | `next_14_days` | `next_30_days`, consistent with its `act_by`. Because the board is re-planned daily, there must ALWAYS be live action items in all three windows — never leave a horizon empty. Rank still reflects leverage (rank-1 = highest-leverage immediate move); horizon reflects timing.
 
@@ -332,8 +332,9 @@ Emit exactly one JSON object with this shape. Use null or [] for unknowns; never
         "quote": "", "date": "YYYY-MM-DD", "source": ""}]},
     "explicit_requirements": {"items": [{"requirement": "", "said_by": "",
       "date": "YYYY-MM-DD", "addressed": false, "quote": "", "source": ""}]},
-    "implicit_requirements": {"items": [{"inferred_need": "", "grounding_quote": "",
-      "date": "YYYY-MM-DD", "source": ""}]},
+    "implicit_requirements": {
+      "we_promised":     {"items": [{"deliverable": "", "who": "Zycus", "grounding_quote": "", "date": "YYYY-MM-DD", "due": "YYYY-MM-DD", "status": "open|overdue|completed|no due date", "source": ""}]},
+      "buyer_dependent": {"items": [{"deliverable": "", "who": "Buyer", "grounding_quote": "", "date": "YYYY-MM-DD", "due": "YYYY-MM-DD", "status": "open|overdue|completed|no due date", "source": ""}]}},
     "gaps": {"items": [{"area": "", "quote": "",
       "status": "resolved|acknowledged|not addressed", "date": "YYYY-MM-DD",
       "gap_type": "hygiene|knowledge", "source": ""}]},
@@ -347,9 +348,6 @@ Emit exactly one JSON object with this shape. Use null or [] for unknowns; never
     "ai_fit_signal": {"summary": "AIS field read, plus whether calls show it under/over-rated", "tier": "AI Hungry|AI Curious|AI Resistant"},
     "vulnerabilities": {"items": [{"category": "pricing|references|security_review|change_management|partner_support|legal|integration|executive_alignment|timeline|budget|political|other",
       "detail": "", "first_raised": "", "date": "YYYY-MM-DD", "status": "", "source": ""}]},
-    "open_deliverables": {"items": [{"who": "Zycus|Buyer", "commitment": "",
-      "date": "YYYY-MM-DD", "due": "YYYY-MM-DD",
-      "status": "open|overdue|completed|no due date", "source": ""}]},
     "confidence_signals": {"summary": "", "cooling": false, "items": []},
     "recommended_moves": {"items": [{"rank": 1, "action": "",
       "owner": "Executive connect|Partner|Executive sponsor|Product escalation|Deal team",
@@ -376,8 +374,12 @@ Rules for the output:
 - gaps[].gap_type: "hygiene" (known, wrong field — do not lower confidence) vs "knowledge" (genuinely unknown — the only kind that lowers confidence). Never emit "field not present" as a knowledge gap when the fact lives in a call/next-step/field.
 - recommended_moves.items is ALWAYS populated and must cover all THREE rolling horizons with ≥1 dated move each (next_7_days / next_14_days / next_30_days), tagged via `horizon` (section 4.6b). Every move is NET-NEW (never a completed/logged action — section 4.6a), with a FUTURE act_by within ~8 weeks, rank-1 within 14 days. Run the completeness scan before finalizing.
 - best_practice_check.flags carries 2-3 substantive, deal-aware WIN-STRATEGY best practices (section 4.6c), most important first — grounded in competition, deal complexity, multi-thread/power coverage, the discovery so far, and the highest-impact next lever — NOT bare hygiene gaps. Retire stale ones as the deal progresses. Keep explicit_requirements and implicit_requirements to items that still matter for moving the deal forward.
-- Recency: do not emit an explicit_requirement, implicit_requirement, or open_deliverable supported only by evidence older than about three months unless a recent call or activity re-confirmed it (and then date it to that recent mention). Stale items belong in the narrative (deal_movement and the north_star math) as context, and the action they imply belongs in recommended_moves as a dated re-engagement step, not as a year-old open ask.
+- Recency: do not emit an explicit_requirement or an implicit_requirements item (we_promised or buyer_dependent) supported only by evidence older than about three months unless a recent call or activity re-confirmed it (and then date it to that recent mention). Stale items belong in the narrative (deal_movement and the north_star math) as context, and the action they imply belongs in recommended_moves as a dated re-engagement step, not as a year-old open ask.
+- THE FOUR HEADS (MECE — one live thread appears in EXACTLY ONE of these, never restated across them): **(1) recommended_moves** — the day's forward plays (a prioritization layer; a move MAY restate a deliverable as "today's action", that is allowed and does not break MECE among heads 2-4). **(2) explicit_requirements** — what the PROSPECT asked for. **(3) implicit_requirements** — one head, two sub-buckets: `we_promised` (Zycus owes) and `buyer_dependent` (the buyer owes us). **(4) best_practice_check.flags** — advisory levers/gaps with NO owned discrete deliverable.
+- PRECEDENCE: **explicit beats implicit.** If the buyer explicitly asked for something we also promised, it lives in explicit_requirements (#2), NEVER in implicit_requirements.we_promised. A best_practice flag that merely restates a move or a deliverable is a duplicate — drop it from best_practice (it already lives in head 1 or 3).
 - explicit_requirements — things the PROSPECT directly asked for or demanded: a specific document, clarification, or concrete next step. Prospect-initiated, stated out loud. requirement = what they asked for, said_by = the prospect person, quote = their actual ask, addressed = whether we have delivered it.
-- implicit_requirements — a concrete deliverable WE volunteered to provide that the prospect did NOT categorically request: surface ONLY when (1) the prospect raised a concern/question, AND (2) in response WE said we would provide a specific document or deliverable. inferred_need = the underlying need; grounding_quote = their concern PLUS our commitment. Phrase it as the deliverable we owe, imperative, naming the artifact and recipient ("Share the 3 named CPG references we offered Darren on 12 May"). Generic team promises not tied to a prospect concern go in open_deliverables, NOT here. When in doubt, leave it out.
+- implicit_requirements — ONE head with two sub-buckets, `we_promised` and `buyer_dependent`; `who` is the only divider. There is NO LONGER a concern-tied-vs-generic distinction — every deliverable WE owe (whether or not the prospect explicitly raised the concern) goes in `we_promised`, and everything the BUYER owes us goes in `buyer_dependent`.
+  - we_promised — a concrete deliverable WE owe the prospect (who: "Zycus"): an artifact, document, plan, reference, or commitment we said we would provide and have not yet delivered. deliverable = the imperative artifact we owe, naming it and the recipient ("Share the 3 named CPG references we offered Darren on 12 May"); grounding_quote = the prospect concern and/or our commitment; due = when we owe it; status = open|overdue|completed. Items the prospect EXPLICITLY demanded belong in explicit_requirements (#2), not here.
+  - buyer_dependent — something the BUYER must give us to unblock OUR delivery (who: "Buyer"): the BRD ahead of a fit session, an InfoSec questionnaire, a stakeholder intro, sign-off. deliverable = what they owe; status/due as above. This is the only place a buyer-owed item lives.
 - analysis_confidence is High / Medium / Low based on evidence density: matched call count, recency of the latest call, multi-thread breadth, and KNOWLEDGE coverage across all sources (not field-fill). Hygiene gaps do not lower it. State Low plainly.
 - Output the JSON object only. No markdown fences, no commentary before or after.

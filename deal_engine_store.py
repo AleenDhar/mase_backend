@@ -658,18 +658,19 @@ def backfill_packets(*, dry_run: bool = False) -> dict:
 
 def regroup_todos(*, opp_id: Optional[str] = None, dry_run: bool = False,
                   sample: int = 12) -> dict:
-    """Token-free pass that re-tidies the to-do display lists on records ALREADY
-    persisted — collapses within-block near-duplicate open_deliverables +
-    best_practice flags and de-collides cross-bucket restatements via
-    todo_grouping.tidy(). No Avoma / Salesforce / LLM: a pure recompute over the
-    lists already on the record (which are themselves the packet projection), so it
-    cleans the back-catalogue after a projection-logic change without a full
-    re-sweep. Touches ONLY ai.open_deliverables + ai.best_practice_check (+ the
-    group_key it stamps); every other section is left byte-for-byte intact.
+    """Token-free pass that RE-PROJECTS the packet-backed `ai.*` lists on records
+    ALREADY persisted, migrating them to the current projection shape (the 4-head
+    MECE model: implicit_requirements.{we_promised,buyer_dependent}, with the legacy
+    open_deliverables folded in and dropped) and tidying near-duplicates — all via
+    deal_engine_packets.project_into_ai() over the record's own durable packets. No
+    Avoma / Salesforce / LLM, so it migrates the back-catalogue after a
+    projection-logic change without a full re-sweep. Records with no packets fall back
+    to an in-place todo_grouping.tidy(). Derived/server sections (verdict, MEDDPICC,
+    hard.*, pulse, deltas) are preserved.
 
-    Idempotent and only ever REDUCES. Per-record errors are counted and skipped so
-    one bad record cannot abort the pass. dry_run computes the same stats + a sample
-    of before/after diffs but writes nothing."""
+    Per-record errors are counted and skipped so one bad record cannot abort the pass.
+    dry_run computes the same stats + a sample of before/after diffs but writes
+    nothing."""
     import todo_grouping
     if opp_id:
         rec = get_record(opp_id)
@@ -681,8 +682,14 @@ def regroup_todos(*, opp_id: Optional[str] = None, dry_run: bool = False,
     samples: list = []
 
     def _c(ai: dict):
-        return (len(((ai.get("open_deliverables") or {}).get("items")) or []),
-                len(((ai.get("best_practice_check") or {}).get("flags")) or []))
+        impl = ai.get("implicit_requirements") or {}
+        if isinstance(impl, dict) and ("we_promised" in impl or "buyer_dependent" in impl):
+            deliv = len(((impl.get("we_promised") or {}).get("items")) or []) \
+                + len(((impl.get("buyer_dependent") or {}).get("items")) or [])
+        else:
+            deliv = len(((ai.get("open_deliverables") or {}).get("items")) or []) \
+                + len((impl.get("items")) or [])
+        return (deliv, len(((ai.get("best_practice_check") or {}).get("flags")) or []))
 
     for row in rows:
         rec = row.get("record")
@@ -695,7 +702,15 @@ def regroup_todos(*, opp_id: Optional[str] = None, dry_run: bool = False,
             continue
         try:
             before = _c(ai)
-            todo_grouping.tidy({"ai": ai})  # mutates ai's two lists in place
+            packets = rec.get("packets")
+            if isinstance(packets, list) and packets:
+                # Re-project from durable packets: migrates the record to the 4-head
+                # shape (implicit_requirements.{we_promised,buyer_dependent}, drops
+                # open_deliverables) AND tidies — no LLM. Preserves derived sections.
+                rec["ai"] = _packets.project_into_ai(ai, packets, today=rec.get("swept_at"))
+                ai = rec["ai"]
+            else:
+                todo_grouping.tidy({"ai": ai})  # packet-less record: tidy in place
             after = _c(ai)
             if after == before:
                 stats["unchanged"] += 1
@@ -1319,6 +1334,40 @@ def stamp_move_overrides(rec: dict, ovr: Optional[dict] = None) -> dict:
     return out
 
 
+def _is_buyer_side(who: Any) -> bool:
+    """True when a deliverable is owed by the BUYER (the 3b "waiting on the buyer"
+    sub-bucket). Empty/unknown -> our (Zycus) side. Mirrors packets._is_buyer_who and
+    the frontend isBuyerSide so the 3a/3b split is identical end-to-end."""
+    w = str(who or "").strip().lower()
+    if not w:
+        return False
+    return not any(t in w for t in ("zycus", "seller", "we ", "us ", "our"))
+
+
+def _we_promised_items(ai: dict) -> list:
+    """Implicit head 3a — deliverables WE owe (implicit needs + our commitments).
+    New 4-head shape: implicit_requirements.we_promised. Legacy fallback: the flat
+    implicit_requirements list PLUS our-side open_deliverables (so un-re-projected
+    records still render under the new buckets)."""
+    impl = _g(ai, "implicit_requirements", default={})
+    if isinstance(impl, dict) and ("we_promised" in impl or "buyer_dependent" in impl):
+        v = _g(ai, "implicit_requirements", "we_promised", "items", default=[])
+        return v if isinstance(v, list) else []
+    out = list(_items(ai, "implicit_requirements"))
+    out.extend(d for d in _items(ai, "open_deliverables") if not _is_buyer_side(d.get("who")))
+    return out
+
+
+def _buyer_dependent_items(ai: dict) -> list:
+    """Implicit head 3b — what the BUYER owes us, to unblock our delivery. New shape:
+    implicit_requirements.buyer_dependent. Legacy fallback: buyer-side open_deliverables."""
+    impl = _g(ai, "implicit_requirements", default={})
+    if isinstance(impl, dict) and ("we_promised" in impl or "buyer_dependent" in impl):
+        v = _g(ai, "implicit_requirements", "buyer_dependent", "items", default=[])
+        return v if isinstance(v, list) else []
+    return [d for d in _items(ai, "open_deliverables") if _is_buyer_side(d.get("who"))]
+
+
 def derive_todo(owner: Optional[str] = None) -> dict:
     """RSD-filterable action list grouped by impact, computed from the records.
 
@@ -1341,25 +1390,17 @@ def derive_todo(owner: Optional[str] = None) -> dict:
             "owner_name": hard.get("owner_name"),
         }
 
-        # Critical: the single rank-1 recommended move on each key deal
-        # (forecast-critical or north-star critical flag).
-        is_key = bool(rec.get("forecast_critical")) or bool(_g(ai, "north_star_verdict", "critical"))
+        # Moves: EVERY recommended move on EVERY deal. These fold into the
+        # "Commitments made by Zycus" bucket in the UI, so the full ranked plan is
+        # always visible — no forecast-critical gate, no near-term-horizon filter.
+        # (Carried under the `critical` to-do category so existing push/edit state
+        # keyed by todo_key survives.)
         moves = _items(ai, "recommended_moves")
-        if is_key and moves:
-            # Prefer the highest-ranked move that is actionable now. A key deal whose
-            # only moves are far-future legitimately has no near-term critical action,
-            # so it drops off today's list and resurfaces as a move comes into range.
-            # act_by is the near-term date by which to act (set by the sweep agent).
-            # trigger_date is the evidence date (often past), so fall back to it only
-            # when a record predates act_by. Horizon + urgency key off act_by first.
+        if moves:
             def _act_date(m):
                 return m.get("act_by") or m.get("trigger_date")
-            actionable = [m for m in moves if _within_todo_horizon(_act_date(m))]
-            # Emit the rolling plan: every actionable move, ranked, so the UI can group
-            # them into next-7 / next-14 / next-30-day horizons (not just rank-1). A key
-            # deal whose only moves are far-future legitimately has no near-term action.
-            actionable.sort(key=lambda m: _num(m.get("rank")) if m.get("rank") is not None else 99)
-            for top in actionable[:TODO_MAX_CRITICAL]:
+            ranked = sorted(moves, key=lambda m: _num(m.get("rank")) if m.get("rank") is not None else 99)
+            for top in ranked:
                 critical.append(_stamp_todo({**ctx,
                                  "action": top.get("action"),
                                  "intervention_owner": top.get("owner"),
@@ -1371,19 +1412,25 @@ def derive_todo(owner: Optional[str] = None) -> dict:
                                  "expected_effect": top.get("expected_effect")},
                                  "critical", top.get("action"), _act_date(top), pmap))
 
-        # Important: our open/overdue commitments (promised, not delivered).
-        for d in _items(ai, "open_deliverables"):
+        # Waiting on the buyer (implicit head 3b): what the BUYER owes us, to unblock
+        # our delivery. Kept under the `important` to-do category so existing push /
+        # edit state survives. Fed by implicit_requirements.buyer_dependent (legacy:
+        # buyer-side open_deliverables).
+        for d in _buyer_dependent_items(ai):
+            txt = d.get("deliverable") or d.get("commitment")
+            if not txt:
+                continue
             status = (d.get("status") or "").lower()
             # Defer commitments due more than ~2 months out; they resurface daily.
-            if status in ("open", "overdue") and _within_todo_horizon(d.get("due")) \
+            if status in ("", "open", "overdue") and _within_todo_horizon(d.get("due")) \
                     and _within_recency(d.get("date")):
                 important.append(_stamp_todo({**ctx,
-                                  "who": d.get("who"),
-                                  "commitment": d.get("commitment"),
+                                  "who": d.get("who") or "Buyer",
+                                  "commitment": txt, "deliverable": txt,
                                   "due": d.get("due"),
                                   "urgency": _urgency(d.get("due")),
                                   "status": status},
-                                  "important", d.get("commitment"), d.get("due"), pmap))
+                                  "important", txt, d.get("due"), pmap))
 
         # Explicit requirements still open.
         for r in _items(ai, "explicit_requirements"):
@@ -1395,15 +1442,31 @@ def derive_todo(owner: Optional[str] = None) -> dict:
                                  "explicitRequirements", r.get("requirement"),
                                  r.get("date"), pmap))
 
-        # Implicit needs (inferred from call language).
-        for r in _items(ai, "implicit_requirements"):
-            if not _within_recency(r.get("date")):
+        # Commitments made by Zycus (implicit head 3a "we promised"): implicit needs
+        # we owe + our open commitments. Fed by implicit_requirements.we_promised
+        # (legacy: flat implicit_requirements + our-side open_deliverables). A dated
+        # commitment is horizon-gated; a pure need (no due) is recency-gated only.
+        for r in _we_promised_items(ai):
+            txt = r.get("deliverable") or r.get("inferred_need") or r.get("commitment")
+            if not txt:
+                continue
+            if r.get("due"):
+                status = (r.get("status") or "").lower()
+                if status not in ("", "open", "overdue") \
+                        or not _within_todo_horizon(r.get("due")) \
+                        or not _within_recency(r.get("date")):
+                    continue
+            elif not _within_recency(r.get("date")):
                 continue
             implicit.append(_stamp_todo({**ctx,
-                             "inferred_need": r.get("inferred_need"),
+                             "inferred_need": txt, "deliverable": txt,
                              "grounding_quote": r.get("grounding_quote"),
+                             "who": r.get("who") or "Zycus",
+                             "due": r.get("due"),
+                             "urgency": _urgency(r.get("due") or r.get("date")),
+                             "status": (r.get("status") or "").lower(),
                              "date": r.get("date")},
-                             "implicit", r.get("inferred_need"), r.get("date"), pmap))
+                             "implicit", txt, r.get("date"), pmap))
 
         # Best-practice prompts (single-thread, MEDDPICC gaps, ghost risk). The agent
         # emits these ordered most-important-first; cap per deal so the urgent few

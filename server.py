@@ -7622,18 +7622,20 @@ def _build_todo_task_fields(category: str, item: dict) -> tuple[str, str]:
     if primary:
         subject = str(item.get(primary) or "").strip()
     if not subject:
-        for k in ("action", "commitment", "requirement", "inferred_need",
-                  "flag", "subject"):
+        for k in ("action", "deliverable", "commitment", "requirement",
+                  "inferred_need", "flag", "subject"):
             v = str(item.get(k) or "").strip()
             if v:
                 subject = v
                 break
 
+    # 4-head MECE model: the `important` to-do category now carries buyer-owed
+    # dependencies (head 3b) and `implicit` carries our commitments (head 3a).
     _CAT_LABELS = {
-        "critical": "Critical move",
-        "important": "Open commitment",
-        "explicitRequirements": "Explicit requirement",
-        "implicit": "Implicit need",
+        "critical": "Move",
+        "important": "Buyer dependency",
+        "explicitRequirements": "Prospect requirement",
+        "implicit": "Zycus commitment",
         "bestPractice": "Best-practice flag",
     }
     lines: list[str] = []
@@ -8658,11 +8660,11 @@ async def deal_engine_todo_dashboard():
 const $ = id => document.getElementById(id);
 const esc = s => (s==null?'':String(s)).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const CATS = [
-  {key:'critical',             label:'Critical moves',        text:'action',        accent:'#ff8585'},
-  {key:'important',            label:'Open commitments',      text:'commitment',    accent:'#f0c674'},
-  {key:'explicitRequirements', label:'Explicit requirements', text:'requirement',   accent:'#7cc4ff'},
-  {key:'implicit',             label:'Implicit needs',        text:'inferred_need', accent:'#b392f0'},
-  {key:'bestPractice',         label:'Best-practice flags',   text:'flag',          accent:'#7ee787'},
+  {key:'critical',             label:'Moves',                    text:'action',        accent:'#ff8585'},
+  {key:'explicitRequirements', label:'Prospect requirements',    text:'requirement',   accent:'#7cc4ff'},
+  {key:'implicit',             label:'Commitments made by Zycus', text:'deliverable',  accent:'#b392f0'},
+  {key:'important',            label:'Waiting on the buyer',     text:'deliverable',   accent:'#f0c674'},
+  {key:'bestPractice',         label:'Best practices',           text:'flag',          accent:'#7ee787'},
 ];
 const U_LABEL = {overdue:'Overdue', next_14_days:'Next 14 days', next_30_days:'Next 30 days', later:'Later', undated:'Undated'};
 let DATA = {};        // category -> [items]
@@ -8683,7 +8685,7 @@ function chips(it){
 }
 
 function itemHTML(it, cat){
-  const txt = esc(it[cat.text] || it.action || it.commitment || it.requirement || it.inferred_need || it.flag || '—');
+  const txt = esc(it[cat.text] || it.action || it.deliverable || it.commitment || it.requirement || it.inferred_need || it.flag || '—');
   const deal = [it.account_name, it.opp_name].filter(Boolean).map(esc).join(' — ') || '<span class="chip">no deal label</span>';
   let act;
   if(it.pushed){
@@ -8749,7 +8751,7 @@ function findItem(key){
 function openModal(key){
   const f = findItem(key); if(!f) return;
   pending = {item:f.it, category:f.cat.key};
-  $('m-subject').textContent = f.it[f.cat.text] || f.it.action || f.it.commitment || f.it.requirement || f.it.inferred_need || f.it.flag || '—';
+  $('m-subject').textContent = f.it[f.cat.text] || f.it.action || f.it.deliverable || f.it.commitment || f.it.requirement || f.it.inferred_need || f.it.flag || '—';
   $('m-deal').textContent = [f.it.account_name, f.it.opp_name].filter(Boolean).join(' — ') || '(no label)';
   $('m-err').textContent='';
   $('m-confirm').disabled=false;

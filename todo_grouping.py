@@ -94,6 +94,12 @@ def _slug(sig: set, n: int = 3) -> str:
 _STATUS_RANK = {"overdue": 3, "open": 2, "no due date": 1, "completed": 0}
 
 
+def _deliv_text(d: dict) -> str:
+    """Clustering text for a deliverable item. The 4-head shape uses `deliverable`;
+    the legacy open_deliverables used `commitment`; implicit needs use `inferred_need`."""
+    return d.get("commitment") or d.get("deliverable") or d.get("inferred_need") or ""
+
+
 def _group_open_deliverables(block: dict) -> int:
     items = [x for x in (block.get("items") or []) if isinstance(x, dict)]
     if len(items) < 2:
@@ -104,10 +110,10 @@ def _group_open_deliverables(block: dict) -> int:
         by_who.setdefault(_norm_who(it.get("who")), []).append(it)
     merged = []
     for _who, group in by_who.items():
-        clusters = _cluster([g.get("commitment") or "" for g in group], 0.5)
+        clusters = _cluster([_deliv_text(g) for g in group], 0.5)
         for c in clusters:
             members = [group[i] for i in c["idx"]]
-            rep = max(members, key=lambda m: len(str(m.get("commitment") or "")))
+            rep = max(members, key=lambda m: len(_deliv_text(m)))
             statuses = [str(m.get("status") or "").lower() for m in members]
             if statuses and all(s == "completed" for s in statuses):
                 status = "completed"
@@ -157,11 +163,21 @@ def group_todo_lists(parsed: dict) -> dict:
     Never raises — a failure leaves the lists untouched."""
     try:
         ai = parsed.get("ai") or {}
-        od = ai.get("open_deliverables")
-        if isinstance(od, dict):
-            n = _group_open_deliverables(od)
-            if n:
-                print(f"[TODO-GROUP] open_deliverables -{n} (grouped homogeneous)", flush=True)
+        # 4-head shape: group each implicit sub-bucket; legacy: open_deliverables.
+        impl = ai.get("implicit_requirements")
+        if isinstance(impl, dict) and ("we_promised" in impl or "buyer_dependent" in impl):
+            for _side in ("we_promised", "buyer_dependent"):
+                blk = impl.get(_side)
+                if isinstance(blk, dict):
+                    n = _group_open_deliverables(blk)
+                    if n:
+                        print(f"[TODO-GROUP] implicit.{_side} -{n} (grouped homogeneous)", flush=True)
+        else:
+            od = ai.get("open_deliverables")
+            if isinstance(od, dict):
+                n = _group_open_deliverables(od)
+                if n:
+                    print(f"[TODO-GROUP] open_deliverables -{n} (grouped homogeneous)", flush=True)
         bp = ai.get("best_practice_check")
         if isinstance(bp, dict):
             n = _group_best_practice(bp)
@@ -215,13 +231,22 @@ def _action_signatures(ai: dict) -> list:
             s = _sig(_move_text(m))
             if s:
                 sigs.append(s)
-    od = ai.get("open_deliverables")
-    if isinstance(od, dict):
-        for d in (od.get("items") or []):
-            txt = d.get("commitment") if isinstance(d, dict) else (d if isinstance(d, str) else "")
+
+    def _add_block(block):
+        if not isinstance(block, dict):
+            return
+        for d in (block.get("items") or []):
+            txt = _deliv_text(d) if isinstance(d, dict) else (d if isinstance(d, str) else "")
             s = _sig(txt or "")
             if s:
                 sigs.append(s)
+
+    impl = ai.get("implicit_requirements")
+    if isinstance(impl, dict) and ("we_promised" in impl or "buyer_dependent" in impl):
+        _add_block(impl.get("we_promised"))
+        _add_block(impl.get("buyer_dependent"))
+    else:
+        _add_block(ai.get("open_deliverables"))
     return sigs
 
 

@@ -93,11 +93,22 @@ def richness_score(parsed: dict) -> int:
     comp = ai.get("competitive_position") if isinstance(ai.get("competitive_position"), dict) else {}
     comps = comp.get("competitors") if isinstance(comp.get("competitors"), list) else []
     score += min(4, sum(1 for c in comps if isinstance(c, dict) and _s(c.get("name")).strip()))
-    for key in ("explicit_requirements", "implicit_requirements", "vulnerabilities",
-                "open_deliverables", "stakeholder_map"):
+    for key in ("explicit_requirements", "vulnerabilities", "stakeholder_map"):
         block = ai.get(key) if isinstance(ai.get(key), dict) else {}
         items = block.get("items") if isinstance(block.get("items"), list) else []
         score += min(2, len([i for i in items if isinstance(i, dict)]))
+    # implicit head — 4-head shape nests we_promised + buyer_dependent; legacy shape
+    # is the flat implicit_requirements list + a separate open_deliverables. Score each
+    # owed-deliverables bucket up to 2 (same max-4 weight the two legacy blocks had).
+    _impl = ai.get("implicit_requirements") if isinstance(ai.get("implicit_requirements"), dict) else {}
+    if "we_promised" in _impl or "buyer_dependent" in _impl:
+        _blocks = [_impl.get("we_promised"), _impl.get("buyer_dependent")]
+    else:
+        _blocks = [_impl, ai.get("open_deliverables")]
+    for _b in _blocks:
+        _bd = _b if isinstance(_b, dict) else {}
+        _bi = _bd.get("items") if isinstance(_bd.get("items"), list) else []
+        score += min(2, len([i for i in _bi if isinstance(i, dict)]))
     moves = ai.get("recommended_moves") if isinstance(ai.get("recommended_moves"), dict) else {}
     mitems = moves.get("items") if isinstance(moves.get("items"), list) else []
     score += min(3, len([m for m in mitems if isinstance(m, dict) and len(_s(m.get("action")).strip()) > 25]))

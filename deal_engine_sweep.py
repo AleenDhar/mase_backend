@@ -1135,6 +1135,11 @@ _AVOMA_WINDOWS = [int(x) for x in (
 # account can't blow up token cost / latency. Every matched call still appears in
 # the manifest as a dated touchpoint — the cap bounds depth, never coverage.
 _AVOMA_MAX_READS = int(os.getenv("DEAL_SWEEP_AVOMA_MAX_READS", "12"))
+# Hard cap on concurrent Avoma transcript reads per deal. staffing_plan scales the
+# reader pool up to 6 on deep/forecasted deals, but 5-6 wide × ~1MB transcripts
+# throttles the DeepAgent/Avoma gateway -> discovery misses -> heavy deals fail.
+# Cap it lower so heavy deals complete reliably (slower but they finish). Env-tunable.
+_AVOMA_READER_CAP = int(os.getenv("DEAL_SWEEP_AVOMA_READER_CAP", "3"))
 # Cap transcript excerpt length per call (chars) so the injected block stays sane.
 _AVOMA_TRANSCRIPT_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS", "6000"))
 # Cap for the notes/summary fallback excerpt — used when a transcript is absent,
@@ -1538,7 +1543,7 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
                 calls_read=len(to_read), forecasted=forecasted).get("readers") or 1)
         except Exception:  # noqa: BLE001 — never block the prefetch on sizing
             readers = 1
-        readers = max(1, min(readers, max(1, len(to_read))))
+        readers = max(1, min(readers, max(1, len(to_read)), _AVOMA_READER_CAP))
         shaped["coverage"]["readers"] = readers
         sem = asyncio.Semaphore(readers)
         by_mid = {x["meeting_id"]: x for x in manifest}

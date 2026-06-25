@@ -11,6 +11,25 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-25 — Pulse accuracy + heavy-deal sweep reliability
+
+**What.** (1) Engagement pulse (`deal_engine_pulse.py`): `_days_since` clamps a future
+LastActivityDate to 0 (kills the negative "−25 days" display); and a buyer call read this
+sweep only counts toward "live" when SF activity is NOT 90+ days old — so a months-silent deal
+with old calls no longer reads "live" (the "118 days yet live" bug). (2) Sweep
+(`deal_engine_sweep.py`): a hard cap `DEAL_SWEEP_AVOMA_READER_CAP` (default 3) on concurrent
+Avoma transcript reads per deal — `staffing_plan` scaled the reader pool to 6 on deep deals,
+which throttled the DeepAgent/Avoma gateway (≈1MB transcripts) and made heavy deals miss
+discovery and fail.
+
+**Why.** The pulse showed impossible day-counts and false-"live" on stale deals; the heavy
+forecasted deals (the very ones we most need re-swept) kept failing under 5–6-wide Avoma load.
+
+**How to work with it.** Pulse is read-time → applies to every deal immediately. The reader cap
+is env-tunable (`DEAL_SWEEP_AVOMA_READER_CAP`): raise it if sweeps are too slow, lower if Avoma
+still throttles. Validated pulse on 5 cases (future→0/live; 118d+old-calls→dark; recent-lag-
+with-call→live preserved).
+
 ## 2026-06-25 — Restore interactive MCQ (mase-choice) cards in the deal chat
 
 **What.** The deal-AI chat again emits hidden `<!--mase-choice {...}-->` markers that the

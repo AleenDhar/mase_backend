@@ -52,7 +52,10 @@ def _parse_date(v: Any) -> Optional[date]:
 
 
 def _days_since(d: Optional[date], today: date) -> Optional[int]:
-    return (today - d).days if d is not None else None
+    if d is None:
+        return None
+    n = (today - d).days
+    return n if n >= 0 else 0  # a future date is bad data -> treat as today, never negative
 
 
 # ---------------------------------------------------------------------------
@@ -177,10 +180,13 @@ def compute_pulse(
     cr = None if calls_read is None else int(calls_read)
     buyer_calls_seen = bool(cr and cr > 0)
 
-    # Verified-engagement classification, anchored to today. A fresh buyer call
-    # this sweep is itself recent verified engagement even if SF LastActivityDate
-    # lags (Avoma calls do not always stamp LastActivityDate).
-    verified_recent = (days_since is not None and days_since <= LIVE_DAYS) or buyer_calls_seen
+    # Verified-engagement classification, anchored to today. A buyer call read this
+    # sweep counts as recent engagement even if SF LastActivityDate lags (Avoma calls
+    # don't always stamp it) — BUT only when SF activity is not ancient. If the last
+    # activity is 90+ days old, the calls read are almost certainly old too, so a
+    # months-silent deal must NOT read "live" off a stale call.
+    recent_call = buyer_calls_seen and (days_since is None or days_since <= DARK_DAYS)
+    verified_recent = (days_since is not None and days_since <= LIVE_DAYS) or recent_call
     verified_known = days_since is not None or cr is not None
 
     if verified_recent:

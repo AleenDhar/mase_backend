@@ -1186,6 +1186,11 @@ def mine_signals(limit_samples: int = 6) -> dict:
 # as they come into range. The agent decides separately whether a near-term soft
 # nudge is worth recommending (that flows in as a recommended_move).
 TODO_HORIZON_DAYS = int(os.environ.get("DEAL_TODO_HORIZON_DAYS", "60"))
+# A back-planned requirement due date is anchored to the close date and may sit
+# further out than the 60-day action horizon, so a real per-deal deadline shows
+# (not a flat horizon date) — but still bounded so a 12-month deal doesn't show a
+# requirement "due" ~11 months out. ~6 months.
+REQUIREMENT_DUE_CAP_DAYS = int(os.environ.get("DEAL_REQUIREMENT_DUE_CAP_DAYS", "180"))
 # Cap on best-practice flags surfaced per deal so the urgent few aren't buried.
 TODO_MAX_BEST_PRACTICE = int(os.environ.get("DEAL_TODO_MAX_BEST_PRACTICE", "5"))
 # Critical surface = the rolling next-moves plan. Emit several ranked moves (not just
@@ -1339,7 +1344,7 @@ def _requirement_due(text: Any, close_date: Any,
     lead = 30 if _heavy_requirement(text) else 14
     due = cd - timedelta(days=lead)
     floor = today + timedelta(days=3)
-    ceil = today + timedelta(days=TODO_HORIZON_DAYS)
+    ceil = today + timedelta(days=REQUIREMENT_DUE_CAP_DAYS)
     if due < floor:
         due = floor
     if due > ceil:

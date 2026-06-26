@@ -17,7 +17,9 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 `explicit_requirements` item (`due`/`act_by` + `due_source` + `urgency`). The date
 is, in order: a deadline STATED in the ask text ("by 18 Jul", "due 30 June" →
 `due_source="stated"`), else one BACK-PLANNED from the deal close date (heavier
-deliverables get more lead time; clamped to `[today+3, today+60]` →
+deliverables get more lead time; clamped to `[today+3, today+REQUIREMENT_DUE_CAP_DAYS]` — a
+~6-month / 180-day cap decoupled from the 60-day action horizon, so each deal's requirement
+date reflects its own close instead of a flat shared horizon date →
 `due_source="back_planned"`). New helpers: `_requirement_due`, `_stated_due_dates`,
 `_closest_year_date`, `_heavy_requirement`.
 

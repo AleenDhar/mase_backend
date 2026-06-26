@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-26 — Prospect requirements are date-tracked (no re-sweep)
+
+**What.** `derive_todo` now stamps a trackable due date on every open
+`explicit_requirements` item (`due`/`act_by` + `due_source` + `urgency`). The date
+is, in order: a deadline STATED in the ask text ("by 18 Jul", "due 30 June" →
+`due_source="stated"`), else one BACK-PLANNED from the deal close date (heavier
+deliverables get more lead time; clamped to `[today+3, today+60]` →
+`due_source="back_planned"`). New helpers: `_requirement_due`, `_stated_due_dates`,
+`_closest_year_date`, `_heavy_requirement`.
+
+**Why.** RevOps needs to track WHEN a buyer-owed deliverable is due and whether it
+slipped — requirements previously carried no date. Close date is the north-star
+anchor. Date parsing is FUTURE-aware (closest-year inference) — unlike the pulse
+parser's past bias, which was turning "30 June" into last year. Numeric M/D forms
+are ignored to avoid prose false-positives ("24/7").
+
+**How to work with it.** Read-time only: `/todo` recomputes from stored packets, so
+this took effect on deploy with **no re-sweep**. The frontend renders overdue/on-time
+from `due_source` + `act_by`. If a future sweep captures a real `due`/`due_date` on a
+requirement, that wins and is marked `stated`.
+
 ## 2026-06-25 — Pulse accuracy + heavy-deal sweep reliability
 
 **What.** (1) Engagement pulse (`deal_engine_pulse.py`): `_days_since` clamps a future

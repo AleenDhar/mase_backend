@@ -1250,6 +1250,103 @@ def _urgency(date_str: Any, today: Optional[date] = None) -> str:
     return "later"
 
 
+def _heavy_requirement(text: Any) -> bool:
+    """A heavy buyer deliverable needs more lead time before close (security
+    review, RFP/tender response, POC, legal/redline, integration, references)."""
+    return bool(re.search(
+        r"\b(poc|pilot|proof[- ]of[- ]concept|security review|info[- ]?sec|"
+        r"pen[- ]?test|penetration|soc\s?[12]|legal|red[- ]?line|redlin|msa|dpa|\bnda\b|"
+        r"rfp|rfi|rfq|tender|workshop|integration|sandbox|data migration|"
+        r"reference|business case|sign[- ]?off)\b",
+        str(text or ""), re.I))
+
+
+def _closest_year_date(month: int, day: int, year: Optional[int], today: date):
+    """Build a date, inferring an omitted year as the one that puts the date
+    CLOSEST to today (so a bare "30 June"/"18 Jul" reads as this year's upcoming
+    deadline, not last year — and "30 May" still reads as the recent, overdue
+    one). Future-biased counterpart to the pulse parser's past bias."""
+    if year is not None:
+        if year < 100:
+            year += 2000
+        try:
+            return date(year, month, day)
+        except ValueError:
+            return None
+    best = None
+    for y in (today.year - 1, today.year, today.year + 1):
+        try:
+            d = date(y, month, day)
+        except ValueError:
+            continue
+        if best is None or abs((d - today).days) < abs((best - today).days):
+            best = d
+    return best
+
+
+def _stated_due_dates(text: Any, today: date) -> list:
+    """Month-name + ISO dates stated in a requirement, with future-aware year
+    inference. Numeric M/D forms are deliberately ignored to avoid prose false
+    positives ("24/7", "3/4 of")."""
+    s = str(text or "")
+    out = []
+    for m in _pulse._ISO_RE.finditer(s):
+        d = _closest_year_date(int(m.group(2)), int(m.group(3)), int(m.group(1)), today)
+        if d:
+            out.append(d)
+    for m in _pulse._DM_RE.finditer(s):
+        mon = _pulse._MONTHS.get(m.group(2).lower())
+        if mon:
+            yr = int(m.group(3)) if m.group(3) else None
+            d = _closest_year_date(mon, int(m.group(1)), yr, today)
+            if d:
+                out.append(d)
+    for m in _pulse._MD_RE.finditer(s):
+        mon = _pulse._MONTHS.get(m.group(1).lower())
+        if mon:
+            yr = int(m.group(3)) if m.group(3) else None
+            d = _closest_year_date(mon, int(m.group(2)), yr, today)
+            if d:
+                out.append(d)
+    return out
+
+
+def _requirement_due(text: Any, close_date: Any,
+                     today: Optional[date] = None):
+    """Derive a trackable due date for an open prospect requirement, so the team
+    can track WHEN a deliverable is due and whether it slipped.
+
+    1. A date STATED in the requirement text ("by 18 Jul", "due 30 June") is the
+       real deadline -> source "stated" (may be in the past = genuinely overdue).
+    2. Otherwise back-plan from the deal close date: the ask must be resolved a
+       lead time before close (heavier deliverables need more), clamped to a
+       [today+3, today+HORIZON] window so it stays near-term on the
+       daily-replanned board -> source "back_planned".
+    Returns (iso, source); (None, None) when neither a stated date nor a close
+    date is available."""
+    today = today or date.today()
+    try:
+        cands = _stated_due_dates(text, today)
+    except Exception:
+        cands = []
+    if cands:
+        # The latest parsed date is the deadline (a "by/ due X"); an earlier date
+        # in the same text is usually an origin ("raised 1 Jun, due 18 Jul").
+        return max(cands).isoformat(), "stated"
+    cd = _pulse._parse_date(close_date)
+    if cd is None:
+        return None, None
+    lead = 30 if _heavy_requirement(text) else 14
+    due = cd - timedelta(days=lead)
+    floor = today + timedelta(days=3)
+    ceil = today + timedelta(days=TODO_HORIZON_DAYS)
+    if due < floor:
+        due = floor
+    if due > ceil:
+        due = ceil
+    return due.isoformat(), "back_planned"
+
+
 def _stamp_todo(item: dict, category: str, text: Any, date_str: Any,
                 pmap: dict) -> dict:
     """Annotate one derived to-do in place with its deterministic todo_key and
@@ -1438,13 +1535,25 @@ def derive_todo(owner: Optional[str] = None) -> dict:
                                   "status": status},
                                   "important", txt, d.get("due"), pmap))
 
-        # Explicit requirements still open.
+        # Explicit requirements still open. Each carries a trackable due date so a
+        # buyer-owed deliverable can be followed for timeliness: a date stated in the
+        # ask wins, else one back-planned from the close date. `due_source` lets the
+        # UI distinguish a hard stated deadline from an inferred target.
         for r in _items(ai, "explicit_requirements"):
             if not r.get("addressed") and _within_recency(r.get("date")):
+                _due, _due_src = _requirement_due(
+                    r.get("requirement"), hard.get("close_date"))
+                # A due the sweep itself captured is a hard stated deadline.
+                _swept_due = r.get("due") or r.get("due_date")
+                if _swept_due:
+                    _due, _due_src = _swept_due, "stated"
                 explicit.append(_stamp_todo({**ctx,
                                  "requirement": r.get("requirement"),
                                  "said_by": r.get("said_by"),
-                                 "date": r.get("date")},
+                                 "date": r.get("date"),
+                                 "due": _due, "act_by": _due,
+                                 "due_source": _due_src,
+                                 "urgency": _urgency(_due)},
                                  "explicitRequirements", r.get("requirement"),
                                  r.get("date"), pmap))
 

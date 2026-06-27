@@ -2827,6 +2827,22 @@ async def analyze_one(
         # and pulse/hard are top-level so they are never touched. Forecasted-only,
         # behind REVOPS_HEAD_ENABLED; never blocks persist.
         parsed = await _revops_head_review(parsed, opp, opp_id)
+        # Deterministic deal scoring (Deal Sweep January 1.1) — Win Position /
+        # Deal Momentum / Customer Commitment / Deal Risk + Forecast Confidence +
+        # a read label, each with a 2-sentence commentary. Computed AFTER living
+        # memory + RevOps review on the gate-clean record, so it reads accurate,
+        # non-fabricated signals (pulse / north-star verdict / MEDDPICC / competitive
+        # position / packets). Hybrid: factors are derived from the swept record,
+        # with any agent-emitted ai.deal_scores_evidence overlaid. No LLM call,
+        # additive (writes ai.deal_scores), behind DEAL_SCORES_ENABLED, and NEVER
+        # raises — a scoring failure must not fail a sweep.
+        try:
+            import deal_engine_scoring
+            _scores = deal_engine_scoring.compute_deal_scores(parsed)
+            if _scores:
+                parsed.setdefault("ai", {})["deal_scores"] = _scores
+        except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
+            print(f"[DEAL-SCORES] compute failed for {opp_id}: {_se}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

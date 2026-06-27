@@ -11,6 +11,37 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-27 — Deterministic deal scoring inside the sweep (`ai.deal_scores`)
+
+**What.** New module `deal_engine_scoring.py` computes five scores per opportunity —
+**Win Position / Deal Momentum / Customer Commitment / Deal Risk** (each 0–100) plus a
+**Forecast Confidence** roll-up and an evidence-coverage **Read** label (Full/Solid/Partial/
+Early) — each with a 2-sentence plain-English commentary. It runs as a step inside
+`analyze_one()` in `deal_engine_sweep.py` (right after `_revops_head_review`, before persist)
+and writes `parsed["ai"]["deal_scores"]`. Stored in the existing `deal_records.record` JSONB
+(no migration). `GET /api/deal-engine/opportunities/{opp_id}` returns it under `ai.deal_scores`.
+
+**Why.** Give VPs a defensible, evidence-anchored read of every deal — winnability vs timing-
+risk separated, absence treated as low *confidence* not low *score*, recency-weighted — and a
+single forecast-confidence number to rank the book. Mirrors the offline model in
+`~/Downloads/scoreModefiles` (arithmetic is an exact port; reference cases reconcile to the
+decimal — see `tests/test_deal_scoring.py`).
+
+**How to work with it.**
+- **Hybrid factor source.** Factors are DERIVED deterministically from the gate-clean swept
+  signals (pulse state, north-star verdict + trajectory, MEDDPICC statuses, competitive_position,
+  evidence_coverage, stakeholder_map, durable packets, close-date verdict history). If the sweep
+  agent additionally emits `ai.deal_scores_evidence.factors`, those soft judgment factors are
+  overlaid (agent wins on the keys it provides). The agent emission is OPTIONAL — see
+  `docs/DEAL_SCORES_PROMPT_BLOCK.md` for the block to append to the live `mase_deal_sweep`
+  Supabase prompt when ready; the code works without it.
+- **Safety.** No LLM call, additive (touches only `ai.deal_scores`), behind env flag
+  `DEAL_SCORES_ENABLED` (default on), and `compute_deal_scores()` NEVER raises — a scoring
+  failure logs and the sweep continues. Backend populates the field; the frontend renders it
+  separately (score chips + commentary drawer) — so shipping the backend first is low-blast-radius.
+- **Re-score the book:** any re-sweep repopulates `ai.deal_scores`. Tune derivation in
+  `derive_evidence()`; the arithmetic/weights are locked to match the offline model.
+
 ## 2026-06-27 — Sweep reads MEDDPICC custom objects + economic-buyer cache backfill
 
 **What.** Two changes so the economic buyer (and the rest of MEDDPICC) is sourced from

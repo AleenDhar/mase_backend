@@ -1,3 +1,4 @@
+- [Deal scoring (ai.deal_scores)](deal-scoring.md) — deterministic 5-score model in the sweep (deal_engine_scoring.py); hybrid factors derived from swept signals + optional agent overlay; exact port of offline model; additive, guarded, behind DEAL_SCORES_ENABLED.
 - [Terminal-row contract](terminal-row-contract.md) — every chat turn/pipeline run writes EXACTLY ONE final/error row; status isn't terminal; phase_error + skip-advisory are NOT terminal.
 - [asyncio atomic claim](asyncio-atomic-claim.md) — for per-resource mutual exclusion across async paths, check+claim a shared set with NO await between; must be symmetric; process-local only.
 - [Per-chat run guard](per-chat-run-guard.md) — one run per chat_id; reserve before try + release in finally; register task in body not generator; _starting_chats bridges deferred-registration gap.

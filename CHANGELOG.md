@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-27 — Sweep reads MEDDPICC custom objects + economic-buyer cache backfill
+
+**What.** Two changes so the economic buyer (and the rest of MEDDPICC) is sourced from
+the CRM and reflected in the cache, not just the UI:
+1. **New sweep evidence source** (`deal_engine_sweep.py`): `_meddpicc_crm()` pulls the
+   `MEDDPICC__c` (preferred) and `MEDDPICC_2_0__c` custom objects by `Opportunity_Name__c`,
+   merges them (full MEDDPICC: economic buyer, budget, decision criteria/process, pain,
+   champion, competition, blockers, products), and `_meddpicc_crm_block()` injects them into
+   the agent user message as a **CRM hint to corroborate** — with an explicit instruction to
+   drop dated/contradicted items (the block carries the record's last-updated date). Where a
+   named economic buyer is present and uncontradicted, the agent confirms it (no gap). Gated
+   by `DEAL_SWEEP_MEDDPICC_FETCH` (default on); best-effort, never blocks the sweep.
+2. **Economic-buyer backfill** (`deal_engine_store.py` `backfill_economic_buyer` + `EB_BACKFILL`,
+   POST `/api/deal-engine/backfill/economic-buyer`): one-time/idempotent write of the 17
+   confirmed EBs into `ai.meddpicc.economic_buyer` (status=confirmed, source=CRM) on the stored
+   packets, so the cache matches the UI without a re-sweep.
+
+**Why.** The EB was recorded in the SF MEDDPICC objects but the sweep marked it a gap (it never
+read those objects). The UI override (frontend `getEbOverride`) fixed the *display*; this makes
+the *data* right at source (future sweeps) and in the *cache* now (backfill).
+
+**How to work with it.** Future sweeps auto-confirm the EB from the CRM. To refresh the backfill
+list, re-run the SF MEDDPICC scan and update `EB_BACKFILL`. The engagement verdict is unchanged —
+MEDDPICC only fixes visibility; momentum still comes from call evidence.
+
 ## 2026-06-26 — Prospect requirements are date-tracked (no re-sweep)
 
 **What.** `derive_todo` now stamps a trackable due date on every open

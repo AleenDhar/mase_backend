@@ -566,6 +566,92 @@ async def _soql(agent_manager, query: str) -> list[dict]:
     return await asyncio.to_thread(_run)
 
 
+# --- MEDDPICC custom-object pull (CRM-entered) -----------------------------
+# Reps fill MEDDPICC into two SF custom objects: MEDDPICC__c (human-entered,
+# authoritative — clean named economic buyer) and MEDDPICC_2_0__c (auto-synced,
+# sometimes an org-chart in the EB field). We pull both, PREFER __c, and feed the
+# agent a CRM HINT it must corroborate against calls + recent activity, dropping
+# anything dated/contradicted. Flag-gated (on by default). Best-effort; the queries
+# are wrapped so a bad field name / SF blip degrades to "no MEDDPICC" and never
+# blocks the sweep.
+_MEDDPICC_FETCH = os.getenv(
+    "DEAL_SWEEP_MEDDPICC_FETCH", "true").lower() in ("1", "true", "yes", "on")
+# logical label -> (MEDDPICC__c field, MEDDPICC_2_0__c field); None = not on that object.
+_MEDDPICC_FIELDS: list = [
+    ("Economic buyer", "Who_is_the_economic_buyer__c", "Who_is_the_economic_buyer__c"),
+    ("Budget", "What_is_the_budget__c", None),
+    ("Budget owner", "Who_Own_s_the_budget__c", "Who_owns_the_budget__c"),
+    ("Metrics", "Metrics_Important_to_Buyer__c", None),
+    ("Decision criteria", "Decision_Criteria__c", "Decision_criteria__c"),
+    ("Decision process", "Purchase_Process__c", "Purchase_process__c"),
+    ("Identify pain", "What_problem_is_Zycus_solving__c", "What_problem_is_Zycus_solving__c"),
+    ("Champion", "Champion_for_Zycus__c", "Champion_for_Zycus__c"),
+    ("Competition", "Competition_and_our_differentiator__c", "Competition_and_our_differentiator__c"),
+    ("Blockers", "Any_blockers__c", "Any_blockers__c"),
+    ("Products considered", "Products_being_considered__c", "Products_being_considered__c"),
+]
+_MEDDPICC_NULLISH = {"", "n.a.", "na", "n/a", "none", "no", "-", "unknown", "tbd"}
+
+
+async def _meddpicc_crm(agent_manager, opp_id: str) -> dict:
+    """Pull CRM-entered MEDDPICC for the opp (MEDDPICC__c preferred, then 2.0).
+    Returns {"fields": [(label, value, src)], "last_modified": str} or {}."""
+    if not (_MEDDPICC_FETCH and opp_id):
+        return {}
+    sid, sid15 = _sql_str(str(opp_id)), _sql_str(str(opp_id)[:15])
+    where = f"(Opportunity_Name__c = '{sid}' OR Opportunity_Name__c = '{sid15}')"
+    primary: dict = {}
+    secondary: dict = {}
+    try:
+        cols = ", ".join(sorted({f for _, f, _ in _MEDDPICC_FIELDS if f}))
+        rows = await _soql(agent_manager,
+            f"SELECT Id, LastModifiedDate, {cols} FROM MEDDPICC__c "
+            f"WHERE {where} ORDER BY LastModifiedDate DESC LIMIT 1")
+        primary = (rows[0] if rows else {}) or {}
+    except Exception as _e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] MEDDPICC__c read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        cols = ", ".join(sorted({f for _, _, f in _MEDDPICC_FIELDS if f}))
+        rows = await _soql(agent_manager,
+            f"SELECT Id, LastModifiedDate, {cols} FROM MEDDPICC_2_0__c "
+            f"WHERE {where} ORDER BY LastModifiedDate DESC LIMIT 1")
+        secondary = (rows[0] if rows else {}) or {}
+    except Exception as _e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] MEDDPICC_2_0__c read failed opp={opp_id}: {_e}", flush=True)
+    fields: list = []
+    for label, f1, f2 in _MEDDPICC_FIELDS:
+        v1 = str(primary.get(f1) or "").strip() if f1 else ""
+        v2 = str(secondary.get(f2) or "").strip() if f2 else ""
+        if v1 and v1.lower() not in _MEDDPICC_NULLISH:
+            fields.append((label, v1, "MEDDPICC"))
+        elif v2 and v2.lower() not in _MEDDPICC_NULLISH:
+            fields.append((label, v2, "MEDDPICC 2.0"))
+    if not fields:
+        return {}
+    return {"fields": fields,
+            "last_modified": primary.get("LastModifiedDate") or secondary.get("LastModifiedDate")}
+
+
+def _meddpicc_crm_block(data: dict) -> str:
+    """Render CRM-entered MEDDPICC as an agent evidence block — a hint to corroborate,
+    with explicit instruction to drop dated/contradicted items."""
+    if not data or not data.get("fields"):
+        return ""
+    lm = str(data.get("last_modified") or "unknown")[:10]
+    out = [
+        f"\n\n=== MEDDPICC (CRM-entered · last updated {lm}) ===",
+        "Treat as a STARTING HINT from the CRM, not ground truth. Corroborate each item "
+        "against the calls and recent activity above; if a field is contradicted by newer "
+        "evidence or clearly dated/superseded, DOWN-WEIGHT or DROP it. Where a named "
+        "economic buyer is given here and not contradicted, economic_buyer is CONFIRMED "
+        "(not a gap) — cite this CRM source in its narrative.",
+    ]
+    for label, val, src in data["fields"]:
+        v = " ".join(str(val).split())
+        out.append(f"- {label} [{src}]: {v[:600] + ('…' if len(v) > 600 else '')}")
+    return "\n".join(out)
+
+
 def _combine_competitors(picklist, other) -> Optional[str]:
     """Merge the Competitors__c multipicklist (semicolon-delimited) with the
     free-text Others_Competitors_Please_specify__c overflow into one string."""
@@ -2013,6 +2099,16 @@ async def analyze_one(
                   f"{type(_e).__name__}: {_e}", flush=True)
             buyer = {}
         identity_block = _buyer_identity_block(buyer)
+        # MEDDPICC (CRM-entered) prefetch — fed to the agent as a hint to corroborate.
+        # Confirms the economic buyer (and the rest of MEDDPICC) from the SF custom
+        # objects, so a deal where the buyer is logged in the CRM stops reading as an
+        # "economic buyer gap". Best-effort: never blocks the sweep.
+        try:
+            _meddpicc_crm_data = await _meddpicc_crm(agent_manager, opp_id)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] MEDDPICC prefetch failed opp={opp_id}: {_e}", flush=True)
+            _meddpicc_crm_data = {}
+        meddpicc_crm_block = _meddpicc_crm_block(_meddpicc_crm_data)
         # Parallel Avoma reader prefetch (flag-gated; OFF by default). When on, we
         # discover + read the deal's Avoma calls CONCURRENTLY here and hand the agent
         # pre-read, speaker-attributed notes so it synthesises instead of fetching
@@ -2125,6 +2221,7 @@ async def analyze_one(
             # Pre-read Avoma calls (empty string unless DEAL_SWEEP_PARALLEL_READERS
             # is on AND the prefetch found+read matched calls — off-path is unchanged).
             + avoma_prefetch_block
+            + meddpicc_crm_block
             + topics_block
         )
         _meta = {"agent_sf_blank": False}

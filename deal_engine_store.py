@@ -530,6 +530,76 @@ def get_record(opp_id: str) -> Optional[dict]:
     return rows[0]["record"] if rows else None
 
 
+# Confirmed economic buyers recorded in the SF MEDDPICC objects but flagged as a
+# "gap" by an earlier sweep — written into the stored packet so the cache matches the
+# UI (frontend helpers.getEbOverride). 15-char opp_id -> economic buyer. The sweep's
+# new MEDDPICC read keeps this fresh going forward; refresh from the SF MEDDPICC scan.
+EB_BACKFILL: dict = {
+    "006P700000VSLhB": "Gavin Greer",
+    "006P700000RFGL6": "Arnd Christochowitz",
+    "006P700000J71MD": "Barbara Potisk-Eibensteiner (CFO)",
+    "006P700000PlMpu": "Simon Vogelmann",
+    "006P700000Xl06R": "Florence Tinsley Roi",
+    "006P7000009O2Ri": "CPO + Jacques De Villiers",
+    "006P700000KlsBE": "Philippe Pourquéry (Group CFO)",
+    "006P7000001j0JR": "Benoit Thibaudon + M. Grootenbeer (CPO)",
+    "006P700000PtQGP": "Mazin (Head of Procurement)",
+    "006P700000LtIUv": "Bilal; Abraham Mathew",
+    "006P700000MB1SN": "Jason Tranter (VP)",
+    "006P700000FF6Np": "Ahmed Rafat (CPO)",
+    "006P700000Z98IL": "Sameh Bartok (SVP Contracts & Procurement)",
+    "006P700000Y1Ont": "Tarek Ibrahim Youssef (Proc Dir)",
+    "006P700000T0trq": "Kerelos (Head of Procurement)",
+    "006P700000CWvfN": "Dan Lahey (EVP & CFO)",
+    "006P7000009T3v1": "George Andrus (ED, Head of Procurement)",
+}
+
+
+def backfill_economic_buyer(mapping: Optional[dict] = None) -> dict:
+    """Write a confirmed economic_buyer into ai.meddpicc for each opp in `mapping`
+    (15-char opp_id -> buyer name); defaults to EB_BACKFILL. Read -> patch the
+    economic_buyer element -> upsert the full record. Idempotent (re-running is a
+    no-op). Returns a per-opp summary."""
+    mapping = mapping or EB_BACKFILL
+    done: list = []
+    missing: list = []
+    errors: list = []
+    for oid, name in mapping.items():
+        key = canonical_opp_id(oid)
+        if not key:
+            errors.append({"opp_id": oid, "error": "bad opp_id"})
+            continue
+        try:
+            rec = get_record(key)
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": key, "error": str(e)})
+            continue
+        if not rec:
+            missing.append(key)
+            continue
+        ai = rec.get("ai")
+        ai = ai if isinstance(ai, dict) else {}
+        md = ai.get("meddpicc")
+        md = md if isinstance(md, dict) else {}
+        prev = md.get("economic_buyer") if isinstance(md.get("economic_buyer"), dict) else {}
+        md["economic_buyer"] = {
+            "status": "confirmed",
+            "narrative": (f"Economic buyer recorded in CRM MEDDPICC: {name}. "
+                          "Visibility confirmed; engagement to be read from calls."),
+            "sources": [{"type": "crm", "ref": "MEDDPICC__c"}],
+            "crm_backfill": True,
+        }
+        ai["meddpicc"] = md
+        rec["ai"] = ai
+        try:
+            upsert_record(rec)
+            done.append({"opp_id": key, "economic_buyer": name,
+                         "was": (prev or {}).get("status") or "absent"})
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": key, "error": str(e)})
+    return {"updated": len(done), "missing": missing, "errors": errors, "details": done}
+
+
 def delete_record(opp_id: str) -> None:
     _delete(T_RECORDS, {"opp_id": opp_id})
 

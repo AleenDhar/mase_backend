@@ -7605,6 +7605,26 @@ async def deal_engine_opportunity(opp_id: str):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/backfill/economic-buyer")
+async def deal_engine_backfill_eb(request: Request):
+    """Idempotent backfill: write the confirmed economic buyers (from the SF MEDDPICC
+    scan) into ai.meddpicc.economic_buyer for the known opps so the stored cache
+    matches the UI override. Body optional {"mapping": {opp_id15: name}}; default =
+    the built-in EB_BACKFILL list. Bearer-gated like every /api/deal-engine route."""
+    import deal_engine_store as dstore
+    mapping = None
+    try:
+        body = await request.json()
+        if isinstance(body, dict) and isinstance(body.get("mapping"), dict):
+            mapping = body["mapping"]
+    except Exception:  # noqa: BLE001
+        mapping = None
+    try:
+        return await _aw(dstore.backfill_economic_buyer, mapping)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/todo")
 async def deal_engine_todo(owner: str = ""):
     import deal_engine_store as dstore

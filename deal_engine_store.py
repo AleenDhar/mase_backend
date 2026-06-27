@@ -381,12 +381,17 @@ def slim_record(rec: dict) -> dict:
     DRAWER is opened (fetched then via GET /opportunities/{opp_id}). Cuts the list
     payload ~10-25x, so the book loads fast while every deal stays loaded for search."""
     ai = rec.get("ai") or {}
+    # deal_scores: keep ONLY the headline (5 scores + read) for list chips/sort;
+    # the full breakdown + commentary stays in the drawer (full record).
+    _ds = ai.get("deal_scores") or {}
+    _ds_slim = {"headline": _ds.get("headline")} if _ds.get("headline") else None
     return {
         "opp_id": rec.get("opp_id"),
         "hard": rec.get("hard") or {},
         "ai": {
             "north_star_verdict": ai.get("north_star_verdict"),
             "ai_fit_signal": ai.get("ai_fit_signal"),
+            "deal_scores": _ds_slim,
         },
         "pulse": rec.get("pulse"),
         "forecast_critical": rec.get("forecast_critical"),

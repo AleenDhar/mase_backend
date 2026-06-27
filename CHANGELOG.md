@@ -11,6 +11,19 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-27 — Deal-scores backfill endpoint (push scores to the existing book)
+
+**What.** `deal_engine_store.backfill_deal_scores(opp_ids=None)` + POST
+`/api/deal-engine/backfill/deal-scores` compute `ai.deal_scores` for stored records via
+the SAME model the sweep uses (`deal_engine_scoring.compute_deal_scores`) and upsert. Body
+optional `{"opp_ids": [...]}`; omitted = whole book. The 440 deals predate the sweep-side
+scorer (`6070328`) so none carry scores yet; this pushes them now without re-sweeping each.
+Idempotent, additive (only sets `ai.deal_scores`).
+
+**Why.** Light up the frontend Deal Scores UI on the existing book immediately. Because it's
+the identical code path, backfilled scores match the dynamic per-sweep recompute — so when a
+deal is next swept (tracking stage + opp updates) the number stays consistent.
+
 ## 2026-06-27 — Deterministic deal scoring inside the sweep (`ai.deal_scores`)
 
 **What.** New module `deal_engine_scoring.py` computes five scores per opportunity —

@@ -605,6 +605,55 @@ def backfill_economic_buyer(mapping: Optional[dict] = None) -> dict:
     return {"updated": len(done), "missing": missing, "errors": errors, "details": done}
 
 
+def backfill_deal_scores(opp_ids: Optional[list] = None) -> dict:
+    """Compute ai.deal_scores for stored records using the SAME deterministic model the
+    sweep uses (`deal_engine_scoring.compute_deal_scores`), and upsert. This is the
+    TEMPORARY push that scores the existing book NOW without waiting for each deal's
+    next sweep — and because it's the exact same code path, the numbers are consistent
+    with the dynamic per-sweep recompute that tracks stage + opportunity updates going
+    forward. Additive (only sets ai.deal_scores). Idempotent. `opp_ids` None = whole book."""
+    import deal_engine_scoring
+    targets: list = []
+    if opp_ids:
+        for o in opp_ids:
+            k = canonical_opp_id(o)
+            if not k:
+                continue
+            try:
+                r = get_record(k)
+            except Exception:  # noqa: BLE001
+                r = None
+            if r:
+                targets.append((k, r))
+    else:
+        rows = _select(T_RECORDS, select="opp_id,record", limit=100000)
+        targets = [(row.get("opp_id"), row.get("record")) for row in rows
+                   if row.get("record")]
+    updated = 0
+    skipped = 0
+    errors: list = []
+    for key, rec in targets:
+        try:
+            ds = deal_engine_scoring.compute_deal_scores(rec)
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": key, "error": f"score: {e}"})
+            continue
+        if not ds or not isinstance(ds, dict):
+            skipped += 1
+            continue
+        ai = rec.get("ai")
+        ai = ai if isinstance(ai, dict) else {}
+        ai["deal_scores"] = ds
+        rec["ai"] = ai
+        try:
+            upsert_record(rec)
+            updated += 1
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": key, "error": str(e)})
+    return {"updated": updated, "skipped": skipped,
+            "error_count": len(errors), "errors": errors[:50]}
+
+
 def delete_record(opp_id: str) -> None:
     _delete(T_RECORDS, {"opp_id": opp_id})
 

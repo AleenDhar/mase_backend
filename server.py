@@ -7625,6 +7625,26 @@ async def deal_engine_backfill_eb(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/backfill/deal-scores")
+async def deal_engine_backfill_scores(request: Request):
+    """Temporary push: compute ai.deal_scores for stored records via the same model the
+    sweep uses (deal_engine_scoring.compute_deal_scores) so the existing book is scored
+    now without waiting for each deal's next sweep. Body optional {"opp_ids": [...]};
+    omitted/empty = the whole book. Idempotent, additive. Bearer-gated."""
+    import deal_engine_store as dstore
+    opp_ids = None
+    try:
+        body = await request.json()
+        if isinstance(body, dict) and isinstance(body.get("opp_ids"), list):
+            opp_ids = body["opp_ids"]
+    except Exception:  # noqa: BLE001
+        opp_ids = None
+    try:
+        return await _aw(dstore.backfill_deal_scores, opp_ids)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/todo")
 async def deal_engine_todo(owner: str = ""):
     import deal_engine_store as dstore

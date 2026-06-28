@@ -7600,7 +7600,7 @@ async def deal_engine_opportunity(opp_id: str):
             return JSONResponse({"error": "opportunity not found"}, status_code=404)
         # Frontend contract: `record["pulse"]` always present; also stamp
         # recommended_moves with todo_key + apply user edit/delete overrides.
-        return dstore.stamp_move_overrides(dstore.attach_pulse(rec))
+        return dstore.stamp_move_overrides(dstore.attach_deal_scores(dstore.attach_pulse(rec)))
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 

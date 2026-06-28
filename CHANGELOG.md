@@ -11,6 +11,21 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-28 — deal_scores can never render blank (read-time safety net)
+
+**What.** New `attach_deal_scores(rec)` (`deal_engine_store.py`) guarantees `ai.deal_scores`
+on every read: if a sweep/re-sweep left it empty, it computes the scores read-time from the
+record's stored signals via the same `deal_engine_scoring.compute_deal_scores` model (mirrors
+`attach_pulse`). Wired into `slim_record` (the deals list) and the `/opportunities/{id}` drawer
+endpoint (`stamp_move_overrides(attach_deal_scores(attach_pulse(rec)))`). Read-only, never
+persisted over a fresh sweep, never raises.
+
+**Why.** 31 deals showed blank MOM/CMT/Risk/FC — all freshly re-swept; the (likely stale-worker)
+sweep path had dropped `ai.deal_scores`. Backfilling after every sweep is a treadmill; this net
+makes the scores impossible to show blank regardless of what the sweep does. Cheap — only the
+few deals missing scores recompute (pure arithmetic, no LLM, no I/O). Deploying also refreshes
+the worker image, which should restore persistence at source (the score step already runs there).
+
 ## 2026-06-28 — MECE de-duplication of to-dos (one ask = one row)
 
 **What.** `derive_todo` now de-dupes action items, PER OPP, read-time: (1) within each

@@ -380,6 +380,7 @@ def slim_record(rec: dict) -> dict:
     stakeholder_map, gaps, …) and evidence_coverage, which are only needed when a deal
     DRAWER is opened (fetched then via GET /opportunities/{opp_id}). Cuts the list
     payload ~10-25x, so the book loads fast while every deal stays loaded for search."""
+    rec = attach_deal_scores(rec)  # compute scores read-time if a sweep dropped them
     ai = rec.get("ai") or {}
     # deal_scores: keep ONLY the headline (5 scores + read) for list chips/sort;
     # the full breakdown + commentary stays in the drawer (full record).
@@ -1514,6 +1515,34 @@ def attach_pulse(rec: dict) -> dict:
         return rec
     out = dict(rec)
     out["pulse"] = _pulse_of(rec)
+    return out
+
+
+def attach_deal_scores(rec: dict) -> dict:
+    """Return a copy of `rec` with ai.deal_scores GUARANTEED. If a sweep/re-sweep left
+    it empty (or never wrote it), compute it READ-TIME from the record's stored signals
+    via the same deterministic model the sweep uses — so MOM / CMT / Risk / FC can never
+    render blank, regardless of what the sweep did. Mirrors attach_pulse: read-only
+    (never persisted over a fresh sweep), never raises."""
+    if not isinstance(rec, dict):
+        return rec
+    ai = rec.get("ai")
+    ds = ai.get("deal_scores") if isinstance(ai, dict) else None
+    if isinstance(ds, dict) and isinstance(ds.get("headline"), dict) \
+            and ds["headline"].get("forecast_confidence") is not None:
+        return rec  # already present — nothing to do
+    try:
+        import deal_engine_scoring
+        scores = deal_engine_scoring.compute_deal_scores(rec)
+    except Exception as e:  # noqa: BLE001 — a scoring failure must never break a read
+        print(f"[DEAL-SCORES] read-time compute failed opp={rec.get('opp_id')}: {e}", flush=True)
+        return rec
+    if not scores:
+        return rec
+    out = dict(rec)
+    new_ai = dict(out.get("ai") or {})
+    new_ai["deal_scores"] = scores
+    out["ai"] = new_ai
     return out
 
 

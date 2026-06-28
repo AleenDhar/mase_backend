@@ -7662,8 +7662,23 @@ async def deal_engine_recompute_verdict(request: Request):
             concurrency = int(body.get("concurrency", concurrency) or 6)
     except Exception:  # noqa: BLE001
         pass
-    opp_ids = scope if isinstance(scope, list) else None
-    forecasted_only = (scope == "forecasted")
+    # Resolve scope SAFELY: a non-empty id list, the literal "forecasted", or the literal
+    # "all". An empty list or any other value is rejected — it must never silently widen to
+    # "run the LLM over the whole book".
+    if isinstance(scope, list):
+        opp_ids = [s for s in scope if isinstance(s, str) and s.strip()]
+        if not opp_ids:
+            return JSONResponse({"error": "scope=[] is empty; pass a non-empty id list, "
+                                 "\"forecasted\", or \"all\""}, status_code=400)
+        forecasted_only = False
+    elif scope == "forecasted":
+        opp_ids, forecasted_only = None, True
+    elif scope == "all":
+        opp_ids, forecasted_only = None, False
+    else:
+        return JSONResponse({"error": f"unrecognised scope {scope!r}; "
+                             "use \"forecasted\", \"all\", or a non-empty id list"},
+                            status_code=400)
     try:
         return await _aw(dv.recompute_prose, opp_ids,
                          concurrency=concurrency, forecasted_only=forecasted_only)

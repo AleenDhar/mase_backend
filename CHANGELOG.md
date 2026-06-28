@@ -11,6 +11,18 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-28 — swept_at carries a full IST timestamp (date + time)
+
+**What.** `parsed["swept_at"]` is now `_now_ist()` (Asia/Kolkata, UTC+5:30, full ISO with time
+— e.g. `2026-06-28T15:53:13+05:30`) instead of `_today()` (date-only). `_today()` is unchanged
+and still used for the agent prompt's "Today's date" line.
+
+**Why.** Freshness audits (Next Step / SF activity / Avoma meeting vs the sweep) were ambiguous
+on same-calendar-day changes because swept_at had no time. A real timestamp makes "did X happen
+after we swept?" exact. Stored in the JSONB record (the audit/API read it from there); the
+`swept_at` table column truncates to date harmlessly. Additive; only affects deals swept from now
+on (old records stay date-only until re-swept).
+
 ## 2026-06-27 — Deal-scores backfill endpoint (push scores to the existing book)
 
 **What.** `deal_engine_store.backfill_deal_scores(opp_ids=None)` + POST

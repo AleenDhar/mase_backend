@@ -92,6 +92,17 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+# Indian Standard Time (UTC+5:30). swept_at carries a full IST timestamp (date AND
+# time), not just a date, so freshness checks (next-step / activity / meeting vs the
+# sweep) are exact — no same-calendar-day ambiguity.
+_IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def _now_ist() -> str:
+    """Full IST ISO timestamp, e.g. 2026-06-28T15:42:10+05:30."""
+    return datetime.now(_IST).isoformat()
+
+
 def _within_days(date_str: Optional[str], n: int) -> bool:
     """True if `date_str` (a Salesforce date/datetime ISO string) falls within the
     last `n` days (0 <= today - date <= n). Future dates and None/unparseable
@@ -2249,7 +2260,7 @@ async def analyze_one(
             parsed["opp_id"] = opp_id
             # swept_at is owned by the server, not the model: the agent sometimes
             # emits a future or wrong date. Always stamp the real run date.
-            parsed["swept_at"] = _today()
+            parsed["swept_at"] = _now_ist()
             # Snapshot what the AGENT itself read from Salesforce, BEFORE we
             # override hard.* from the live discovery snapshot below. If the
             # agent's own read produced none of the core mechanics, its SOQL almost

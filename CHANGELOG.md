@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-28 — Stage-aware verdict & risk (Myer fix)
+
+**What.** Verdict and risk are now interpreted relative to the deal's STAGE.
+- **Sweep prompt** (live Supabase override): new "STAGE-AWARE VERDICT & RISK" block. Tiers
+  EARLY (Qualified/Formal Eval) / MID (Shortlisted/Vendor Selected) / LATE (Contract*/PO).
+  Risks that count per tier (LATE = only close-date / legal / procurement / budget; champion/EB/
+  pain are NOT risks at LATE and the champion/EB SPOF is suppressed). Verdict labels stage-scaled:
+  LATE can only read On Track or **Close-date risk** (never At Risk/Off Track). Default On Track
+  when no stage-relevant risk; Off Track reserved for hard-kill (lost/disqualified/cancelled) at
+  EARLY/MID — a long stall = At Risk. Forecast category never sets the verdict. Silence in legal ≠
+  slipping. EB: unmapped (early) → not-engaged (mid) → ignore (late). Verdict and risk kept aligned.
+- **Scoring** (`deal_engine_scoring.compute_deal_scores`): at LATE, the deal-risk score is computed
+  from ONLY close-date/budget risk factors (`_LATE_RISK_OK`); competitor/passivity/access/stage-
+  inflation etc. are stripped so a contract-executing deal can't show inflated risk.
+
+**Why.** Myer (contracting executed) was reading "At Risk — biggest risk: no champion", which is
+nonsensical once the contract is signed. Risk must match where the deal actually is.
+
+**Rollout.** Sweep + scoring only (per decision) — existing records update as they're next swept;
+no mass re-sweep. (The read-time score net still guarantees no blank scores meanwhile.)
+
 ## 2026-06-28 — deal_scores can never render blank (read-time safety net)
 
 **What.** New `attach_deal_scores(rec)` (`deal_engine_store.py`) guarantees `ai.deal_scores`

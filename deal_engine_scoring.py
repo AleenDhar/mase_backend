@@ -476,6 +476,22 @@ def _commentary(win, mom, com, rsk, fc, cov, h):
 # ----------------------------------------------------------------------------
 # Top-level entry — guarded, never raises
 # ----------------------------------------------------------------------------
+# Stage-aware risk: once a deal is executing its contract (LATE), only close-date /
+# budget factors are legitimate risks — competitor / passivity / access / stage-
+# inflation etc. are early/mid concerns and must not inflate a contracting deal's
+# risk score (mirrors the stage-aware verdict rules in the sweep prompt).
+_LATE_RISK_OK = {"close_date_pushed_repeatedly", "budget_frozen_or_unclear"}
+
+
+def _stage_tier(record: dict) -> str:
+    s = str(((record.get("hard") or {}).get("stage")) or "").lower()
+    if "contract" in s or "po received" in s or "po-received" in s:
+        return "late"
+    if "shortlist" in s or "vendor select" in s or s.strip() == "selected":
+        return "mid"
+    return "early"
+
+
 def compute_deal_scores(record: dict) -> dict:
     """Return the deal_scores block for one swept record. Never raises."""
     if not ENABLED:
@@ -490,7 +506,12 @@ def compute_deal_scores(record: dict) -> dict:
         win = score_win_position(ev)
         mom = score_momentum(ev, dsl, expected)
         com = score_commitment(ev)
-        rsk = score_risk(ev)
+        # Stage-bound the risk: at LATE (contract executing) only close-date / budget
+        # risk factors count — strip the early/mid ones so they can't inflate it.
+        ev_risk = ev
+        if _stage_tier(record) == "late":
+            ev_risk = {k: v for k, v in ev.items() if k not in RISK or k in _LATE_RISK_OK}
+        rsk = score_risk(ev_risk)
         cov = score_coverage(ev, dsl, expected)
         fc = score_forecast_confidence(win["score"], mom["score"], com["score"], rsk["score"], cov["score"])
         headline = {"win_position": win["score"], "deal_momentum": mom["score"],

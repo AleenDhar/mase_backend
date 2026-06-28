@@ -132,29 +132,69 @@ def _contrib(label, points, evidence):
     return {"factor": label, "points": round(points, 1), "evidence": evidence}
 
 
-def score_win_position(ev):
-    contributions, baseline = [], 50.0
-    for k, w in WIN_BASELINE.items():
+# --- Stage-anchored win probability -------------------------------------------------
+# Win = a STAGE PRIOR (how far through buying = how much is left to close) + a bounded
+# +/-15 adjustment from within-stage signals. Calibrated 2026-06-29 (user-approved
+# "standard enterprise" anchors + Anchored +/-15). The old flat-50 baseline made win
+# nearly flat across stages (Qualified 62 -> Contract 72); this makes the stage drive it.
+WIN_STAGE_ANCHOR = [           # (substring, prior) — checked in order, most specific first
+    ("po received", 98), ("po-received", 98),
+    ("contract signed", 95), ("closed won", 99), ("won", 97),
+    ("contract", 85), ("negotiat", 85),
+    ("vendor select", 72), ("selected", 72),
+    ("shortlist", 55),
+    ("formal eval", 35), ("evaluation", 35),
+    ("qualif", 18),
+    ("initial interest", 8), ("interest", 8),
+]
+WIN_ANCHOR_DEFAULT = 35.0
+WIN_BAND = 15.0                # max points signals can move a deal off its stage anchor
+WIN_HEALTH_SCALE = 4.0        # net signal score that maps to a full +/-band
+# Within-stage POSITIVE drivers (your list: product fit, buyer momentum, we're leading /
+# champion + EB access, milestone success, pricing/commercial comfort, multi-threading).
+# pain_fit / engagement_direction are SIGNED (can pull down); the rest are magnitude-only.
+WIN_POS = {"pain_fit": 1.0, "engagement_direction": 1.0, "champion_strength": 1.0,
+           "exec_access": 1.0, "commercial_motion": 0.9, "stage_advanced_with_evidence": 0.8,
+           "customer_action_items": 0.6, "stakeholder_expansion": 0.5}
+# Within-stage LOSS risk (drags win): a competitor ahead, no-decision drift, stage bluff.
+# NOTE: close-date / budget / paperwork are TIMING risks — they do NOT drag win (you still
+# win the deal, just later); they live in deal_risk / momentum instead.
+WIN_NEG = {"competitor_preferred": 1.2, "open_competitive_rfp": 0.5,
+           "low_buyer_intent": 1.0, "customer_passivity": 0.8, "stage_inflation": 0.8}
+
+
+def _win_anchor(record: dict) -> float:
+    s = str(((record or {}).get("hard") or {}).get("stage") or "").lower()
+    for sub, prior in WIN_STAGE_ANCHOR:
+        if sub in s:
+            return float(prior)
+    return WIN_ANCHOR_DEFAULT
+
+
+def score_win_position(ev, record=None):
+    anchor = _win_anchor(record)
+    contributions, health = [], 0.0
+    for k, w in WIN_POS.items():
         s = _get(ev, k)
         if s is None:
             continue
-        pts = max(-1.0, min(1.0, s.strength)) * w
-        baseline += pts
-        contributions.append(_contrib(k, pts, s.evidence))
-    raw_lift, detail = 0.0, []
-    for k, w in WIN_LIFT.items():
+        v = max(-1.0, min(1.0, s.strength)) * w   # signed for fit/engagement, + for the rest
+        health += v
+        if abs(v) >= 0.05:
+            contributions.append(_contrib(k, v, s.evidence))
+    for k, w in WIN_NEG.items():
         s = _get(ev, k)
         if s is None:
             continue
-        mag = max(0.0, min(1.0, s.strength))
-        raw_lift += mag * w
-        detail.append((k, mag * w, s.evidence))
-    lift = _saturate(raw_lift, WIN_LIFT_CAP, WIN_LIFT_SCALE)
-    if raw_lift > 0:
-        for k, pts, evi in detail:
-            contributions.append(_contrib(k, lift * pts / raw_lift, evi))
-    return {"score": round(_clamp(baseline + lift), 1), "baseline": round(_clamp(baseline), 1),
-            "lift": round(lift, 1), "contributions": contributions}
+        mag = max(0.0, min(1.0, s.strength)) * w
+        health -= mag
+        if mag >= 0.05:
+            contributions.append(_contrib(k, -mag, s.evidence))
+    health_n = max(-1.0, min(1.0, health / WIN_HEALTH_SCALE))
+    adj = round(WIN_BAND * health_n, 1)
+    score = round(_clamp(anchor + adj, 0.0, 99.0), 1)
+    return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
+            "lift": adj, "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):
@@ -523,7 +563,7 @@ def compute_deal_scores(record: dict) -> dict:
         expected = int(agent_cadence.get("expected_cadence_days") or cadence.get("expected_cadence_days") or 14)
         dsl = None if dsl is None else int(dsl)
 
-        win = score_win_position(ev)
+        win = score_win_position(ev, record)
         mom = score_momentum(ev, dsl, expected)
         com = score_commitment(ev)
         # Stage-bound the risk: at LATE (contract executing) only close-date / budget

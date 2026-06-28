@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Stage-anchored win probability
+
+**What.** `score_win_position` no longer starts from a flat 50 baseline. It now starts from a
+STAGE PRIOR (how far through buying = how much is left to close) and lets within-stage signals
+move it by at most +/-15 (`WIN_BAND`). Anchors (user-approved "standard enterprise"):
+Initial Interest 8 · Qualified 18 · Formal Eval 35 · Shortlisted 55 · Vendor Selected 72 ·
+Contract In Progress/Negotiation 85 · Contract Signed 95 · PO 98 (`WIN_STAGE_ANCHOR`).
+Within-stage adjustment = net of POSITIVE drivers (`WIN_POS`: product fit, buyer momentum/
+engagement, champion + EB access = "we're leading", commercial/pricing motion, milestone
+evidence, multi-threading) minus LOSS risk (`WIN_NEG`: competitor preferred, open competitive
+RFP, no-decision drift, stage inflation), normalised to +/-15.
+
+**Why.** Win was nearly flat across the funnel (avg Qualified 62 -> Contract-In-Progress 72,
+~10 pts total) because stage was worth only +/-8. Late deals were under-scored (MAIR, a Commit /
+Contract-In-Progress deal, read 64) and early deals over-scored (Qualified ~62 ≈ coin-flip).
+Now MAIR -> 88.9 and Qualified deals land ~20. Stage drives win; signals refine.
+
+**Key nuance.** Close-date / budget / paperwork are TIMING risks — they do NOT drag *win* (you
+still win, just later); they remain in `deal_risk` / momentum. Only loss-risk drags win.
+
+**Caveat.** "Pricing comfort" and "verbal confirmation we're leading" are approximated today
+(commercial_motion; champion+EB minus competitor). They sharpen once the sweep captures them as
+explicit signals.
+
+**Rollout.** Read-time recompute is automatic (attach_deal_scores); stored deal_scores refreshed
+via POST /api/deal-engine/backfill/deal-scores. Flows into forecast_confidence (win weight 0.30).
+
 ## 2026-06-29 — Surgical verdict/health/risk recompute (no re-sweep) + dogfight-gate fix
 
 **What.** A way to redo Verdict / Health / Risk across the book from STORED data, applying

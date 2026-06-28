@@ -481,6 +481,22 @@ def _commentary(win, mom, com, rsk, fc, cov, h):
 # inflation etc. are early/mid concerns and must not inflate a contracting deal's
 # risk score (mirrors the stage-aware verdict rules in the sweep prompt).
 _LATE_RISK_OK = {"close_date_pushed_repeatedly", "budget_frozen_or_unclear"}
+# A live multi-vendor fight at contracting is still a real loss risk; a stale/settled
+# competitor is not. Re-admit competition at LATE only on a strong, fresh signal.
+_LATE_COMPETE = {"competitor_preferred", "open_competitive_rfp"}
+_LATE_COMPETE_MIN = 0.6
+
+
+def _late_keep_risk(k, sig) -> bool:
+    """At LATE, keep a risk factor if it's close-date/budget, or a competition factor
+    whose signal is strong enough to be a live dogfight (not a stale mention)."""
+    if k not in RISK:
+        return True
+    if k in _LATE_RISK_OK:
+        return True
+    if k in _LATE_COMPETE and isinstance(sig, Signal) and float(sig.strength or 0.0) >= _LATE_COMPETE_MIN:
+        return True
+    return False
 
 
 def _stage_tier(record: dict) -> str:
@@ -508,9 +524,11 @@ def compute_deal_scores(record: dict) -> dict:
         com = score_commitment(ev)
         # Stage-bound the risk: at LATE (contract executing) only close-date / budget
         # risk factors count — strip the early/mid ones so they can't inflate it.
+        # Exception: a LIVE multi-vendor fight (strong, fresh competition) is still a
+        # real loss risk at contracting, so re-admit strong competition signals.
         ev_risk = ev
         if _stage_tier(record) == "late":
-            ev_risk = {k: v for k, v in ev.items() if k not in RISK or k in _LATE_RISK_OK}
+            ev_risk = {k: v for k, v in ev.items() if _late_keep_risk(k, v)}
         rsk = score_risk(ev_risk)
         cov = score_coverage(ev, dsl, expected)
         fc = score_forecast_confidence(win["score"], mom["score"], com["score"], rsk["score"], cov["score"])

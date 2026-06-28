@@ -11,6 +11,20 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-28 — "Commitments made by Zycus" requires evidence (else Best practices)
+
+**What.** In `derive_todo`'s we_promised loop, an item is emitted under the `implicit`
+("Commitments made by Zycus") category ONLY if it carries evidence of an actual commitment —
+a `grounding_quote` or a named `source`. Without that, it's reclassified to `bestPractice`
+(an inferred "we should…" is a best practice, not a commitment). `source` is now carried onto
+the implicit item too.
+
+**Why.** C-level rule: don't claim Zycus committed something unless we actually said so on a
+call / email / channel. Enforcing it at the source (not just the drawer's display gate) means
+EVERY surface agrees — Espresso (which renders the raw categories), Matcha, and the drawer.
+Read-time (no re-sweep); the sweep prompt already demands grounding_quote+source on we_promised,
+so well-swept records are unaffected — this only catches ungrounded inferences.
+
 ## 2026-06-28 — swept_at carries a full IST timestamp (date + time)
 
 **What.** `parsed["swept_at"]` is now `_now_ist()` (Asia/Kolkata, UTC+5:30, full ISO with time

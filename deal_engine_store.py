@@ -1702,15 +1702,30 @@ def derive_todo(owner: Optional[str] = None) -> dict:
                     continue
             elif not _within_recency(r.get("date")):
                 continue
-            implicit.append(_stamp_todo({**ctx,
-                             "inferred_need": txt, "deliverable": txt,
-                             "grounding_quote": r.get("grounding_quote"),
-                             "who": r.get("who") or "Zycus",
-                             "due": r.get("due"),
-                             "urgency": _urgency(r.get("due") or r.get("date")),
-                             "status": (r.get("status") or "").lower(),
-                             "date": r.get("date")},
-                             "implicit", txt, r.get("date"), pmap))
+            # Commitment-evidence gate (C-level rule): an item is a Zycus COMMITMENT
+            # only when Zycus actually committed it on a call / email / channel —
+            # proven by a grounding_quote or a named source. With no such evidence
+            # it's an inferred "we should…", which is a Best practice, NOT a
+            # commitment. Enforced HERE (at the source) so every surface classifies
+            # it identically — Espresso (raw categories), Matcha, and the drawer's
+            # display buckets.
+            _has_commitment_evidence = bool(
+                (r.get("grounding_quote") or "").strip()
+                or (r.get("source") or "").strip())
+            if _has_commitment_evidence:
+                implicit.append(_stamp_todo({**ctx,
+                                 "inferred_need": txt, "deliverable": txt,
+                                 "grounding_quote": r.get("grounding_quote"),
+                                 "source": r.get("source"),
+                                 "who": r.get("who") or "Zycus",
+                                 "due": r.get("due"),
+                                 "urgency": _urgency(r.get("due") or r.get("date")),
+                                 "status": (r.get("status") or "").lower(),
+                                 "date": r.get("date")},
+                                 "implicit", txt, r.get("date"), pmap))
+            else:
+                best_practice.append(_stamp_todo({**ctx, "flag": txt},
+                                     "bestPractice", txt, r.get("date"), pmap))
 
         # Best-practice prompts (single-thread, MEDDPICC gaps, ghost risk). The agent
         # emits these ordered most-important-first; cap per deal so the urgent few

@@ -11,6 +11,24 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — LATE-stage live-dogfight exception
+
+**What.** The stage-aware risk rule no longer blanket-suppresses competition at LATE.
+- **Scoring** (`_late_keep_risk`): at LATE, `competitor_preferred` / `open_competitive_rfp` are
+  re-admitted when the signal is strong/fresh (`strength >= _LATE_COMPETE_MIN = 0.6`) — a live
+  multi-vendor fight at contracting. Weak/stale competition stays stripped (otherwise still only
+  close-date/budget). Verified: LATE + strength 0.3 → risk 0; LATE + 0.6/0.9 → full risk (== mid).
+- **Sweep prompt** (live override): LATE risk rule + verdict labels updated. A LATE deal may now
+  read **At Risk** *only* on a live multi-vendor fight (parallel redlines / comparing final proposals /
+  competitor actively preferred with fresh evidence); absent that, worst case stays Close-date risk
+  and it can never be Off Track. Stale/settled competition must not be re-raised.
+
+**Why.** A contracting-stage deal can still be a genuine 2–3 vendor dogfight (parallel redlines,
+competitor kept warm as leverage). The original Myer fix over-corrected by hiding ALL late
+competition; this restores the real-fight signal while keeping stale-competition noise suppressed.
+
+**How to work with it.** Sweep + scoring only — applies as deals are next swept.
+
 ## 2026-06-28 — Stage-aware verdict & risk (Myer fix)
 
 **What.** Verdict and risk are now interpreted relative to the deal's STAGE.

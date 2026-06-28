@@ -484,7 +484,7 @@ _LATE_RISK_OK = {"close_date_pushed_repeatedly", "budget_frozen_or_unclear"}
 # A live multi-vendor fight at contracting is still a real loss risk; a stale/settled
 # competitor is not. Re-admit competition at LATE only on a strong, fresh signal.
 _LATE_COMPETE = {"competitor_preferred", "open_competitive_rfp"}
-_LATE_COMPETE_MIN = 0.6
+_LATE_COMPETE_MIN = 0.6  # strength gate: only a live, current fight counts at LATE
 
 
 def _late_keep_risk(k, sig) -> bool:

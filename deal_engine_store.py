@@ -1773,6 +1773,65 @@ def derive_todo(owner: Optional[str] = None) -> dict:
     implicit = _apply_overrides(implicit, "inferred_need")
     best_practice = _apply_overrides(best_practice, "flag")
 
+    # ---- MECE de-duplication (one ask = one row) ----
+    # The same ask was landing in multiple buckets: a buyer Requirement re-stated as
+    # a Zycus Commitment AND folded into a Move, plus exact dupes within a bucket.
+    # Collapse them deterministically (read-time, no re-sweep), scoped PER OPP so two
+    # different deals can legitimately share wording.
+    def _todo_text(it: dict) -> str:
+        for k in ("action", "commitment", "requirement", "inferred_need",
+                  "deliverable", "flag", "text"):
+            v = it.get(k)
+            if v:
+                return str(v)
+        return ""
+
+    def _norm_todo(t: str) -> str:
+        s = "".join(c if c.isalnum() else " " for c in str(t or "").lower())
+        return " ".join(s.split())
+
+    def _same_ask(a: str, b: str) -> bool:
+        # exact normalised match, or one clearly contained in the other (guarded by
+        # length so short generic phrases don't over-collapse).
+        if not a or not b:
+            return False
+        if a == b:
+            return True
+        return len(min(a, b, key=len)) > 12 and (a in b or b in a)
+
+    def _dedup_within(items: list) -> list:
+        kept: list = []
+        seen: dict = {}  # opp_id -> [normalised keys kept]
+        for it in items:
+            k = _norm_todo(_todo_text(it))
+            if not k:
+                kept.append(it)
+                continue
+            ks = seen.setdefault(it.get("opp_id"), [])
+            if any(_same_ask(k, ek) for ek in ks):
+                continue
+            kept.append(it)
+            ks.append(k)
+        return kept
+
+    critical = _dedup_within(critical)
+    important = _dedup_within(important)
+    explicit = _dedup_within(explicit)
+    implicit = _dedup_within(implicit)
+    best_practice = _dedup_within(best_practice)
+
+    # Cross-bucket: a Commitment (implicit) that merely restates a Prospect
+    # Requirement (explicit) or a buyer-owed item (important) on the SAME deal is a
+    # duplicate — the buyer-stated ask owns the row; drop the mirrored commitment.
+    _req_keys: dict = {}
+    for it in explicit + important:
+        k = _norm_todo(_todo_text(it))
+        if k:
+            _req_keys.setdefault(it.get("opp_id"), []).append(k)
+    implicit = [it for it in implicit
+                if not any(_same_ask(_norm_todo(_todo_text(it)), rk)
+                           for rk in _req_keys.get(it.get("opp_id"), []))]
+
     # Manually-added completed updates (book-wide; carry opp_id only, so the
     # frontend filters by opp and merges them into 'Recently completed').
     manual = [{

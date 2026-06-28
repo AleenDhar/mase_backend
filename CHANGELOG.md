@@ -11,6 +11,21 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-28 — MECE de-duplication of to-dos (one ask = one row)
+
+**What.** `derive_todo` now de-dupes action items, PER OPP, read-time: (1) within each
+category it collapses exact-normalised and contained near-duplicates (e.g. "book the demo"
+listed 3×); (2) across categories it drops a Commitment (`implicit`) that merely restates a
+Prospect Requirement (`explicit`) or a buyer-owed item (`important`) on the same deal — the
+buyer-stated ask owns the row. Matching is normalise-to-alnum + exact-or-contained (containment
+guarded by length>12 so short generic phrases don't over-collapse).
+
+**Why.** QI review found 85% of sampled deals had duplicated/overlapping items — the same ask
+appearing as a Requirement, a Commitment, AND a Move. This enforces the long-standing MECE rule
+("no repetition in the to-dos") deterministically, no re-sweep, on every surface that reads the
+to-do book. Still TODO (prompt-side, separate): de-essay long Moves/Best-practice text and stop
+Moves restating Requirements.
+
 ## 2026-06-28 — "Commitments made by Zycus" requires evidence (else Best practices)
 
 **What.** In `derive_todo`'s we_promised loop, an item is emitted under the `implicit`

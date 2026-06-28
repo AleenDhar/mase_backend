@@ -381,6 +381,7 @@ def slim_record(rec: dict) -> dict:
     DRAWER is opened (fetched then via GET /opportunities/{opp_id}). Cuts the list
     payload ~10-25x, so the book loads fast while every deal stays loaded for search."""
     rec = attach_deal_scores(rec)  # compute scores read-time if a sweep dropped them
+    rec = attach_verdict_view(rec)  # stage-correct health bucket + risk tag + re-graded label
     ai = rec.get("ai") or {}
     # deal_scores: keep ONLY the headline (5 scores + read) for list chips/sort;
     # the full breakdown + commentary stays in the drawer (full record).
@@ -1544,6 +1545,34 @@ def attach_deal_scores(rec: dict) -> dict:
     new_ai["deal_scores"] = scores
     out["ai"] = new_ai
     return out
+
+
+def attach_verdict_view(rec: dict) -> dict:
+    """Return a copy of `rec` with the deal-drawer verdict view GUARANTEED + stage-correct:
+    ai.north_star_verdict gets a 1-3 word `risk_tag`, a 4-bucket `health_bucket`, and its
+    `verdict` label re-graded under the current stage-aware rules (see deal_engine_verdict).
+    Read-only (never persisted over a sweep), never raises. If a verdict-only LLM recompute
+    already owns this deal (verdict_recomputed_at stamped), its label/headline are LEFT
+    ALONE — we only ensure risk_tag/health_bucket are present."""
+    if not isinstance(rec, dict):
+        return rec
+    try:
+        import deal_engine_verdict as dv
+        out = dict(rec)
+        ai = dict(out.get("ai") or {})
+        nsv = dict(ai.get("north_star_verdict") or {})
+        owned = bool(nsv.get("verdict_recomputed_at"))
+        if not owned:
+            nsv["verdict"] = dv.regrade_label(out)
+        if not nsv.get("risk_tag"):
+            nsv["risk_tag"] = dv.derive_risk_tag(out)
+        nsv["health_bucket"] = nsv.get("verdict")
+        ai["north_star_verdict"] = nsv
+        out["ai"] = ai
+        return out
+    except Exception as e:  # noqa: BLE001 — a view failure must never break a read
+        print(f"[VERDICT-VIEW] read-time compute failed opp={rec.get('opp_id')}: {e}", flush=True)
+        return rec
 
 
 def stamp_move_overrides(rec: dict, ovr: Optional[dict] = None) -> dict:

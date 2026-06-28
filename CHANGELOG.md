@@ -11,6 +11,41 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Surgical verdict/health/risk recompute (no re-sweep) + dogfight-gate fix
+
+**What.** A way to redo Verdict / Health / Risk across the book from STORED data, applying
+the current stage-aware definitions, WITHOUT a re-sweep (no Avoma/SF fetch).
+- **`deal_engine_verdict.py`** (new):
+  - `derive_risk_tag` — a 1-3 word tag for the dominant OPEN risk (stage-aware; uses the
+    same gated risk the scorer uses).
+  - `regrade_label` — re-grades the stored verdict label under the stage rules (the big
+    correction is LATE: never Off Track; champion/EB/pain gaps are not risks; only close-
+    date / paperwork / budget / a LIVE multi-vendor fight count).
+  - `recompute_prose` — optional verdict-only LLM pass over each stored record (bounded
+    concurrency, default 6) that rewrites the **<=40 word** headline + label + risk tag and
+    PERSISTS it (stamps `verdict_recomputed_at`). Default scope = the ~62 forecasted deals.
+- **`deal_engine_store.attach_verdict_view`** — read-time net (mirrors attach_deal_scores):
+  guarantees `north_star_verdict.health_bucket` + `risk_tag` and a stage-corrected `verdict`
+  on every read; defers to a persisted LLM recompute when `verdict_recomputed_at` is set.
+  Wired into `slim_record` (list) and the `/opportunities/{id}` drawer. So the deterministic
+  layer (health bucket + risk tag + label re-grade) is live for ALL deals the moment this
+  deploys — no batch needed.
+- **Endpoint** `POST /api/deal-engine/recompute/verdict` `{scope:"forecasted"|"all"|[ids],
+  concurrency:6}` — runs the LLM prose pass + persists.
+
+**Dogfight-gate fix.** `derive_evidence` emits competition at a FIXED strength 0.5 (no
+recency decay yet) and distinguishes `competitor_preferred` (a rival ahead/incumbent/high-
+threat = a real fight) from `open_competitive_rfp` (merely named rivals). The 2026-06-29
+"live-dogfight exception" used a `>=0.6` strength gate that could never be met → it was dead
+on real data. Fixed: `_LATE_COMPETE = {"competitor_preferred"}`, `_LATE_COMPETE_MIN = 0.5`
+— so a real ongoing fight at contracting now correctly counts; plain named-rivals stays
+suppressed. NOTE: true "stale vs fresh" competition can't be told apart deterministically
+until the recency-weighted signal model lands; the LLM prose pass judges freshness for the
+forecasted deals.
+
+**Rollout.** Deterministic layer = live on deploy (read-time, free, all 440). Prose pass =
+on-demand via the endpoint (forecasted 62, ~1-2 min at concurrency 6, modest cost).
+
 ## 2026-06-29 — LATE-stage live-dogfight exception
 
 **What.** The stage-aware risk rule no longer blanket-suppresses competition at LATE.

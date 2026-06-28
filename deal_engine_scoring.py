@@ -481,10 +481,14 @@ def _commentary(win, mom, com, rsk, fc, cov, h):
 # inflation etc. are early/mid concerns and must not inflate a contracting deal's
 # risk score (mirrors the stage-aware verdict rules in the sweep prompt).
 _LATE_RISK_OK = {"close_date_pushed_repeatedly", "budget_frozen_or_unclear"}
-# A live multi-vendor fight at contracting is still a real loss risk; a stale/settled
-# competitor is not. Re-admit competition at LATE only on a strong, fresh signal.
-_LATE_COMPETE = {"competitor_preferred", "open_competitive_rfp"}
-_LATE_COMPETE_MIN = 0.6  # strength gate: only a live, current fight counts at LATE
+# A live multi-vendor fight at contracting is still a real loss risk; merely having
+# named rivals on file is not. derive_evidence fires `competitor_preferred` ONLY when a
+# competitor is flagged ahead / incumbent / high-threat (a real fight) and
+# `open_competitive_rfp` for plain "named rivals exist". So at LATE we re-admit the
+# former and keep dropping the latter. (Competition strength is a fixed 0.5 today — there
+# is no recency decay yet — so the gate is by-factor, with a 0.5 floor, not a high cutoff.)
+_LATE_COMPETE = {"competitor_preferred"}
+_LATE_COMPETE_MIN = 0.5
 
 
 def _late_keep_risk(k, sig) -> bool:

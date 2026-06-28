@@ -7600,7 +7600,7 @@ async def deal_engine_opportunity(opp_id: str):
             return JSONResponse({"error": "opportunity not found"}, status_code=404)
         # Frontend contract: `record["pulse"]` always present; also stamp
         # recommended_moves with todo_key + apply user edit/delete overrides.
-        return dstore.stamp_move_overrides(dstore.attach_deal_scores(dstore.attach_pulse(rec)))
+        return dstore.stamp_move_overrides(dstore.attach_verdict_view(dstore.attach_deal_scores(dstore.attach_pulse(rec))))
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
@@ -7641,6 +7641,32 @@ async def deal_engine_backfill_scores(request: Request):
         opp_ids = None
     try:
         return await _aw(dstore.backfill_deal_scores, opp_ids)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/recompute/verdict")
+async def deal_engine_recompute_verdict(request: Request):
+    """Surgical verdict / health / risk recompute over STORED records — NO re-sweep.
+    The deterministic layer (health bucket + 1-3 word risk tag + stage-aware label
+    re-grade) is ALWAYS live read-time via attach_verdict_view; this endpoint runs the
+    optional LLM PROSE rewrite (<=40 word headline + label + risk tag) and persists it.
+    Body: {"scope": "forecasted"|"all"|["<opp_id>", ...], "concurrency": 6}.
+    Default scope = forecasted book. Bearer-gated."""
+    import deal_engine_verdict as dv
+    scope, concurrency = "forecasted", 6
+    try:
+        body = await request.json()
+        if isinstance(body, dict):
+            scope = body.get("scope", scope)
+            concurrency = int(body.get("concurrency", concurrency) or 6)
+    except Exception:  # noqa: BLE001
+        pass
+    opp_ids = scope if isinstance(scope, list) else None
+    forecasted_only = (scope == "forecasted")
+    try:
+        return await _aw(dv.recompute_prose, opp_ids,
+                         concurrency=concurrency, forecasted_only=forecasted_only)
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 

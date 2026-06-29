@@ -643,6 +643,116 @@ def _crm_evidence_from(meddpicc_data: dict) -> dict:
     return out
 
 
+# --- Deterministic Win-rubric keyword overlay (playbook "next step") ----------------
+# The MEDDPICC overlay (_crm_evidence_from) only covers factors that have a MEDDPICC custom
+# field filled. The RICHEST rubric evidence — especially customer PREFERENCE (weight 20, no
+# MEDDPICC field) — lives as free text in the Next-Step log + opp narrative. Scan it
+# deterministically (NO LLM) so a champion / EB / preference that appears ONLY there still
+# lifts Win. Presence-based; MAX-merged into crm_evidence so it can never HIDE a factor.
+_RUBRIC_SCAN = os.getenv("DEAL_SWEEP_RUBRIC_SCAN", "true").lower() in ("1", "true", "yes", "on")
+_RUBRIC_KEYWORDS = {
+    "preference": (
+        "favored vendor", "favoured vendor", "preferred vendor", "preferred partner",
+        "front runner", "front-runner", "frontrunner", "leading vendor", "in the lead",
+        "zycus is ahead", "ahead of competition", "ahead of the competition", "selected zycus",
+        "shortlisted zycus", "go with zycus", "going with zycus", "recommend zycus",
+        "chose zycus", "chosen zycus", "prefer zycus", "preference for zycus", "positive feedback",
+        "very impressed", "favourable", "favorable", "leaning toward zycus", "leaning towards zycus",
+        "zycus is the front", "zycus in the lead", "winning the deal",
+    ),
+    "champion": ("champion", "internal sponsor", "advocate for us", "our advocate",
+                 "is sponsoring", "strong supporter", "backing zycus"),
+    "exec_access": (
+        "economic buyer", " cpo", "cpo ", " cfo", "cfo ", " cio", "cio ", " cto", "cto ",
+        "chief procurement", "chief financial", "chief information", "vp procurement",
+        "vp of procurement", "svp", "c-level", "c level", "executive sponsor",
+        "decision maker", "final decision",
+    ),
+    "business_case": (
+        "business case", " roi", "roi ", "return on investment", "cost saving", "cost reduction",
+        "savings", " tco", "total cost of ownership", "payback", "value case", "quantified value",
+    ),
+    "differentiation": (
+        "pain point", "key challenge", "manual process", "inefficien", "consolidat",
+        "ai capabilit", "automation", "differentiat", "only vendor", "stands out",
+        "compelling event", "burning platform",
+    ),
+    "commercial": (
+        "pricing", "commercials", "proposal sent", "sent the proposal", "quote", "contract draft",
+        "procurement process", "paper process", " msa", "redline", "legal review",
+        "purchase order", " sow", "negotiation",
+    ),
+}
+
+
+def _rubric_text_scan(text: str) -> dict:
+    """{factor: matched_phrase} for any rubric keyword found (case-insensitive). Presence-based."""
+    s = " " + str(text or "").lower() + " "
+    hits = {}
+    if len(s) < 5:
+        return hits
+    for fac, phrases in _RUBRIC_KEYWORDS.items():
+        for p in phrases:
+            if p in s:
+                hits[fac] = p.strip()
+                break
+    return hits
+
+
+def _merge_crm_evidence(base: dict, extra: dict) -> dict:
+    """MAX-merge two crm_evidence dicts: a factor is present if EITHER source has it; keep the
+    FRESHER age. Never downgrades a factor already present (MEDDPICC stays authoritative)."""
+    out = dict(base or {})
+    for fac, info in (extra or {}).items():
+        if not (isinstance(info, dict) and info.get("present")):
+            continue
+        cur = out.get(fac)
+        if not (isinstance(cur, dict) and cur.get("present")):
+            out[fac] = info
+        else:
+            a, b = cur.get("age_days"), info.get("age_days")
+            if a is None or (b is not None and b < a):
+                out[fac] = info
+    return out
+
+
+async def _rubric_crm_scan(agent_manager, opp_id: str) -> dict:
+    """Deterministic Win-rubric overlay from the Next-Step log + opp narrative free text
+    (playbook 'next step'). Returns {factor: {present, value, src, age_days}}, MAX-merged into
+    crm_evidence by the caller. Best-effort: one SOQL, fully wrapped, never blocks the sweep."""
+    if not (_RUBRIC_SCAN and opp_id):
+        return {}
+    sid = _sql_str(str(opp_id))
+    try:
+        rows = await _soql(agent_manager,
+            "SELECT Next_Step__c, Next_Step_History__c, Description, "
+            "Customer_Business_Problem__c, Compelling_Event__c, Next_Step_Updated_Date_Time__c "
+            f"FROM Opportunity WHERE Id = '{sid}' LIMIT 1")
+    except Exception as _e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] rubric-scan read failed opp={opp_id}: {_e}", flush=True)
+        return {}
+    o = (rows[0] if rows else {}) or {}
+    age = None
+    nsu = o.get("Next_Step_Updated_Date_Time__c")
+    if nsu:
+        try:
+            from datetime import datetime, timezone
+            d = datetime.fromisoformat(str(nsu).replace("Z", "+00:00"))
+            if d.tzinfo is None:
+                d = d.replace(tzinfo=timezone.utc)
+            age = max(0, int((datetime.now(timezone.utc) - d).total_seconds() // 86400))
+        except Exception:  # noqa: BLE001
+            age = None
+    blob = " || ".join(str(o.get(f) or "") for f in
+                       ("Next_Step__c", "Next_Step_History__c", "Description",
+                        "Customer_Business_Problem__c", "Compelling_Event__c"))
+    out = {}
+    for fac, phrase in _rubric_text_scan(blob).items():
+        out[fac] = {"present": True, "value": f"'{phrase}' in Next-Step/narrative",
+                    "src": "Next-Step/narrative", "age_days": age}
+    return out
+
+
 async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
     """Deterministic engagement/liveness footprints from SF Tasks + Events + opp summary
     fields. Classifies each by buyer-vs-rep direction and engagement DEPTH (POC/workshop/
@@ -2988,6 +3098,10 @@ async def analyze_one(
             # Stored so the Win rubric can broaden its source — a named EB/champion/metrics in
             # MEDDPICC 2.0 lifts the factor even if the LLM under-read it (the HAVI EB case).
             _ce = _crm_evidence_from(_meddpicc_crm_data)
+            # Playbook "next step": ALSO scan the Next-Step log + opp narrative free text for the
+            # rubric factors (esp. PREFERENCE, which has no MEDDPICC field) and MAX-merge — so a
+            # "Zycus is the favoured vendor" noted only in Next-Step lifts Win deterministically.
+            _ce = _merge_crm_evidence(_ce, await _rubric_crm_scan(agent_manager, opp_id))
             if _ce:
                 parsed.setdefault("ai", {})["crm_evidence"] = _ce
         except Exception as _ce_e:  # noqa: BLE001

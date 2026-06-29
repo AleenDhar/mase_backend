@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Win rubric: deterministic Next-Step/narrative scan + PREFERENCE (playbook "next step")
+
+**What.** Implements the playbook's stated next step: the deterministic Win-rubric overlay now
+also keyword-scans the **Next-Step log + opp narrative** (Next_Step__c, Next_Step_History__c,
+Description, Customer_Business_Problem__c, Compelling_Event__c), not just MEDDPICC 2.0. New
+`_rubric_crm_scan` + `_rubric_text_scan` + `_merge_crm_evidence` (deal_engine_sweep.py) MAX-merge
+the hits into `ai.crm_evidence`; one extra SOQL, fully try/except-wrapped (gated
+`DEAL_SWEEP_RUBRIC_SCAN`, default on). Crucially this adds **`preference`** to the overlay
+(`_CRM_FACTOR_KEYS` in deal_engine_scoring.py) — the weight-20 factor that has **no MEDDPICC
+field**, so before this it could only ever read "missing" (−0.30) and silently capped Win. Each
+lifted Win factor's contribution now **cites its source** ("preference — from Next-Step: 'positive
+feedback'"), which powers the per-score "why is it scored this" reason.
+
+**Why.** Hot deals scored low on Win because the LLM under-read the rubric while the real evidence
+(preference, champion, EB, pain, ROI, pricing) sat in the Next-Step log. The overlay rescues it
+deterministically (MAX, never hides). Validated on **real HAVI** Next-Step data: keyword scan hits
+preference/exec_access/business_case/differentiation/commercial → **Win 65 → 70** (its honest
+Shortlisted ceiling), FC 46 → 51; Deal Momentum already 83 via footprints. (Win 80+ still requires
+Vendor-Selected+ per the unchanged stage ceilings — RFP rounds cap at 70 by design.)
+
+**How to work with it going forward.** Takes effect on the next sweep after deploy (re-sweep to
+refresh). Keyword lists live in `_RUBRIC_KEYWORDS`; presence-based, so tune phrases there. The
+overlay only ever LIFTS a factor — MEDDPICC stays authoritative for the factors it covers.
+
 ## 2026-06-29 — Win momentum-drag: the stage anchor falls if its expected motion isn't happening
 
 **What.** Win is now dragged DOWN when Deal Momentum is below the stage's EXPECTED momentum

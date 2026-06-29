@@ -342,7 +342,11 @@ def _rubric_win_strengths(record: dict) -> dict:
     return out
 
 
-_CRM_FACTOR_KEYS = ("differentiation", "champion", "exec_access", "business_case", "commercial")
+# Factors the deterministic CRM/Next-Step overlay can LIFT (presence = favourable). Includes
+# `preference` (playbook weight-20 factor) — it has no MEDDPICC field, so before the Next-Step/
+# narrative keyword scan it could only ever read as "missing" (-0.30) and silently capped Win.
+_CRM_FACTOR_KEYS = ("differentiation", "preference", "champion", "exec_access",
+                    "business_case", "commercial")
 
 
 def _crm_recency(age_days) -> float:
@@ -470,12 +474,17 @@ def score_momentum_v2(record: dict):
 def score_win_position(ev, record=None, momentum=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
+    # CRM/Next-Step source per factor, so each contribution can SAY WHY (the reason feature).
+    _crm = ((record or {}).get("ai") or {}).get("crm_evidence") or {}
     contributions, weighted = [], 0.0
     for f, w in RUBRIC_WIN_WEIGHTS.items():
         s = strengths.get(f, WIN_MISSING)
         weighted += w * s
-        contributions.append(_contrib(f, round(WIN_RUBRIC_BAND * w * s / 100.0, 1),
-                                      f"{f.replace('_', ' ')} strength {s:+.2f} (weight {w})"))
+        why = f"{f.replace('_', ' ')} strength {s:+.2f} (weight {w})"
+        src = _crm.get(f)
+        if isinstance(src, dict) and src.get("present") and s > 0:
+            why += f" — from {src.get('src') or 'CRM'}: {src.get('value') or 'present'}"
+        contributions.append(_contrib(f, round(WIN_RUBRIC_BAND * w * s / 100.0, 1), why))
     net = max(-1.0, min(1.0, weighted / 100.0))   # rubric net in [-1,+1]
 
     # Opportunity-trend nudge (CRM moves are buying/loss signals): blend into the net so

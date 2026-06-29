@@ -335,6 +335,70 @@ def _opp_trend_net(record: dict):
     return max(-1.0, min(1.0, num / den)), detail
 
 
+# --- Deal Momentum v2: PURELY engagement + next-steps + new milestones (user-directed) ----
+# Centered on 50. The dominant pillar is engagement DEPTH (a recent POC ≫ a standard demo),
+# scaled up so engagement drives the score, then next-step freshness + new milestones, minus
+# an asymmetric stall drag. Reads ai.footprints (engagement + buyer recency) which the sweep
+# computes from SF Events/Tasks. Falls back to the signal-based score_momentum when absent.
+MOM_ENG_SCALE = 2.6           # engagement points = top_weight(0-10) * this  -> POC 26, workshop 21
+MOM_ENG_CAP = 30.0
+MOM_NEXTSTEP_CAP = 8.0
+MOM_MILESTONE_CAP = 8.0
+MOM_STALL_CAP = 28.0
+
+
+def score_momentum_v2(record: dict):
+    ai = (record or {}).get("ai") or {}
+    fp = ai.get("footprints") or {}
+    eng = fp.get("engagement") or {}
+    contribs = []
+
+    # 1) ENGAGEMENT (dominant): depth of the best recent engagement + a frequency bump.
+    top = float(eng.get("top_weight") or 0.0)
+    n30 = int(eng.get("events_30d") or 0)
+    eng_pts = min(MOM_ENG_CAP, top * MOM_ENG_SCALE + min(5.0, 1.5 * max(0, n30 - 1)))
+    if eng_pts:
+        contribs.append(_contrib("engagement", round(eng_pts, 1),
+                                 f"{eng.get('top_event') or 'engagement'} (depth {eng.get('raw_top')}, {n30} in 30d)"))
+
+    # 2) NEXT-STEP freshness: recently updated + dated milestones actively logged.
+    hard = (record or {}).get("hard") or {}
+    gla = fp.get("general_last_activity")
+    age = None
+    if gla:
+        try:
+            from datetime import datetime, timezone
+            d = datetime.fromisoformat(str(gla)[:10])
+            age = (datetime.now(timezone.utc).replace(tzinfo=None) - d).days
+        except Exception:  # noqa: BLE001
+            age = None
+    ns_pts = (7.0 if (age is not None and age <= 14) else 4.0 if (age is not None and age <= 30) else 0.0)
+    ns_pts = min(MOM_NEXTSTEP_CAP, ns_pts + min(3.0, _count_dated_milestones(hard.get("next_step"))))
+    if ns_pts:
+        contribs.append(_contrib("next_step_active", round(ns_pts, 1), "Next step fresh + dated milestones"))
+
+    # 3) NEW MILESTONES: a recent stage advance, and a real high-tier session having happened.
+    stage_tr = (ai.get("opp_trends") or {}).get("stage_trend")
+    ms_pts = (6.0 if (isinstance(stage_tr, (int, float)) and stage_tr > 0) else 0.0)
+    if (eng.get("raw_top") or 0) >= 6:
+        ms_pts += 4.0       # a workshop / F2F / POC / diligence session is itself a milestone
+    ms_pts = min(MOM_MILESTONE_CAP, ms_pts)
+    if ms_pts:
+        contribs.append(_contrib("new_milestones", round(ms_pts, 1), "Stage advance / high-tier session reached"))
+
+    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric).
+    dsb = fp.get("days_since_buyer_touch")
+    cad = fp.get("stage_cadence_days") or 30
+    stall = 0.0
+    if isinstance(dsb, (int, float)) and dsb > cad:
+        stall = min(MOM_STALL_CAP, (dsb - cad) * 0.6)
+        contribs.append(_contrib("stall", -round(stall, 1), f"{int(dsb)}d since a buyer touch (cadence {cad}d)"))
+
+    score = round(_clamp(50.0 + eng_pts + ns_pts + ms_pts - stall, 0.0, 99.0), 1)
+    return {"score": score, "pre_decay": score, "decay_note": None,
+            "model": "engagement_v2", "contributions": contribs}
+
+
 def score_win_position(ev, record=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
@@ -821,7 +885,12 @@ def compute_deal_scores(record: dict) -> dict:
         dsl = None if dsl is None else int(dsl)
 
         win = score_win_position(ev, record)
-        mom = score_momentum(ev, dsl, expected)
+        # Prefer the engagement-based v2 model when footprints are available (the sweep
+        # computes them from SF Events/Tasks); else the signal-based model.
+        if ((record.get("ai") or {}).get("footprints") or {}).get("engagement"):
+            mom = score_momentum_v2(record)
+        else:
+            mom = score_momentum(ev, dsl, expected)
         com = score_commitment(ev)
         # Stage-bound the risk: at LATE (contract executing) only close-date / budget
         # risk factors count — strip the early/mid ones so they can't inflate it.

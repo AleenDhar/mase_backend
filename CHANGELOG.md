@@ -11,6 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Deal Momentum v2: pure engagement + next-steps + milestones
+
+**What.** New momentum model (`score_momentum_v2`) reads PURELY three pillars, centered on 50:
+1. **Engagement depth** (dominant) — each meeting/task classified by an engagement TIER
+   (`deal_engine_footprints.classify_engagement`): POC 10 · workshop/ROI/procurement-workshop 8 ·
+   themed diligence calls (InfoSec/reference/legal-redline) 7 · F2F/RFP-submitted 6 · deep-dive
+   demo 5 · standard demo 3 · discovery 1.5. Highest recent tier sets the floor (×2.6), plus a
+   frequency bump. Buyer-attended = full weight; rep-only email of a type ≈ 40%; recency-weighted.
+2. **Next-step freshness** — recently updated + dated milestones logged.
+3. **New milestones** — a recent stage advance + a real high-tier session having happened.
+   minus an **asymmetric stall** drag (quiet beyond stage cadence sinks it).
+The friction that used to drag momentum (pricing, demo failures) is GONE from momentum — it
+lives in Win/Risk now (user-directed). `compute_deal_scores` uses v2 when `ai.footprints` exist.
+
+**Data path.** The sweep computes `ai.footprints` deterministically from SF Tasks + Events +
+opp summary fields (`_footprints_for`): buyer-vs-rep direction (Clari `[Email Received]`/`[In]`
+= buyer; `Sent`/`[Out]`/lemlist = rep), engagement tiers, last-buyer-touch, alive-vs-stage.
+Populates on (re-)sweep; until then a deal keeps the signal-based momentum.
+
+**Validated.** HAVI (recent workshop + F2F + integration + frequent buyer-attended sessions) ->
+momentum 85. Standard Chartered's "72d silent" already fixed via the inbound-email pulse work.
+
 ## 2026-06-29 — Engagement reads inbound email; momentum credits forward close-date + next-step
 
 **What.** Two scoring-accuracy fixes from rep feedback (HAVI, Standard Chartered):

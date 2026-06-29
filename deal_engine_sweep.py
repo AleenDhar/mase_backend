@@ -607,6 +607,46 @@ _MEDDPICC_FIELDS: list = [
 _MEDDPICC_NULLISH = {"", "n.a.", "na", "n/a", "none", "no", "-", "unknown", "tbd"}
 
 
+async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
+    """Deterministic engagement/liveness footprints from SF Tasks + Events + opp summary
+    fields. Classifies each by buyer-vs-rep direction and engagement DEPTH (POC/workshop/
+    F2F/demo...). Feeds Deal Momentum v2. Returns {} on any failure (best-effort)."""
+    if not opp_id:
+        return {}
+    import deal_engine_footprints as _fp
+    sid = _sql_str(str(opp_id))
+    tasks, events, opp = [], [], {}
+    try:
+        rows = await _soql(agent_manager,
+            f"SELECT Subject, ActivityDate, Type FROM Task WHERE WhatId = '{sid}' "
+            f"AND ActivityDate >= LAST_N_DAYS:120 ORDER BY ActivityDate DESC LIMIT 60")
+        tasks = [{"subject": r.get("Subject"), "date": r.get("ActivityDate"),
+                  "type": r.get("Type")} for r in (rows or [])]
+    except Exception as _e:  # noqa: BLE001
+        print(f"[FOOTPRINTS] task read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        rows = await _soql(agent_manager,
+            f"SELECT Subject, ActivityDateTime FROM Event WHERE WhatId = '{sid}' "
+            f"AND ActivityDateTime >= LAST_N_DAYS:120 ORDER BY ActivityDateTime DESC LIMIT 40")
+        events = [{"subject": r.get("Subject"), "date": r.get("ActivityDateTime")}
+                  for r in (rows or [])]
+    except Exception as _e:  # noqa: BLE001
+        print(f"[FOOTPRINTS] event read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        rows = await _soql(agent_manager,
+            "SELECT Last_Email_Received_Date__c, Last_Meeting_Date__c, "
+            "Next_Step_Updated_Date_Time__c, No_activity_in_last_20_30_Days__c, "
+            f"LastActivityDate FROM Opportunity WHERE Id = '{sid}' LIMIT 1")
+        opp = (rows[0] if rows else {}) or {}
+    except Exception as _e:  # noqa: BLE001
+        print(f"[FOOTPRINTS] opp-fields read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        return _fp.derive_footprints(tasks=tasks, opp=opp, events=events, stage=stage)
+    except Exception as _e:  # noqa: BLE001
+        print(f"[FOOTPRINTS] derive failed opp={opp_id}: {_e}", flush=True)
+        return {}
+
+
 async def _meddpicc_crm(agent_manager, opp_id: str) -> dict:
     """Pull CRM-entered MEDDPICC for the opp (MEDDPICC__c preferred, then 2.0).
     Returns {"fields": [(label, value, src)], "last_modified": str} or {}."""
@@ -2897,6 +2937,16 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["opp_trends"] = _tr
         except Exception as _te:  # noqa: BLE001
             print(f"[OPP-TRENDS] sweep compute failed for {opp_id}: {_te}", flush=True)
+        try:
+            # Footprints: deterministic 'is the deal alive + how deep is the engagement' from
+            # SF Tasks + Events (buyer-received vs rep-sent, engagement-depth tiers). Feeds the
+            # engagement-based Deal Momentum v2. Best-effort; never blocks the sweep.
+            _fp = await _footprints_for(agent_manager, opp_id,
+                                        (parsed.get("hard") or {}).get("stage") or "")
+            if _fp:
+                parsed.setdefault("ai", {})["footprints"] = _fp
+        except Exception as _fe:  # noqa: BLE001
+            print(f"[FOOTPRINTS] sweep compute failed for {opp_id}: {_fe}", flush=True)
         try:
             import deal_engine_scoring
             _scores = deal_engine_scoring.compute_deal_scores(parsed)

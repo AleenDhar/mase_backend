@@ -11,6 +11,23 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-30 — Datalake is now the DEFAULT Avoma source (activates the domain match + loss detector)
+
+**What.** Flipped `DEAL_SWEEP_AVOMA_FROM_DATALAKE` default `false`→`true`. The domain-match +
+loss-detector shipped yesterday live in the *datalake* prefetch, but prod still ran the *live*
+Avoma path (flag was unset/false), so the fixes were DORMANT: HAVI re-swept with `calls_read=0`
+(live association broken), came back thin, no scores, no loss detection. The datalake path holds
+the whole call history AND matches opp_id OR account_id OR buyer attendee-DOMAIN, so it catches
+the loss call (`crm_opportunity_id=null`). Verified the exact prod httpx query returns 9 calls
+incl. the Jun-29 loss. Per-deal LIVE fallback remains when the datalake has nothing for an opp.
+
+**Why.** Without this, the Avoma never-miss + decision-detector do nothing in prod. With it, HAVI
+gets all 9 calls → footprints + scores compute → the loss detector fires → Win/Mom 0.
+
+**How to work with it going forward.** Reversible instantly: set `DEAL_SWEEP_AVOMA_FROM_DATALAKE=false`.
+Blast radius is the whole book (every sweep now reads Avoma from the datalake first) — watch for
+deals where the datalake is unbackfilled (they fall back to live, same as before).
+
 ## 2026-06-29 — Never miss the latest call + LOSS detector hard-overrides to 0
 
 **What.** Two trust-critical fixes after HAVI scored Win 70 / Mom 76 while it had **already

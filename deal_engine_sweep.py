@@ -2342,14 +2342,15 @@ async def analyze_one(
         recursion_limit = int(os.getenv("DEAL_SWEEP_RECURSION_LIMIT", "80"))
     if timeout_s is None:
         timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "900"))
-    # PRODUCTION Avoma source: when DEAL_SWEEP_AVOMA_FROM_DATALAKE is on, read the
-    # deal's WHOLE call history from the datalake (no 90-day clip) instead of live
-    # Avoma. Callers that pass avoma_from_datalake=True (e.g. the A/B endpoint) force
-    # it regardless; the prefetch below falls back to LIVE Avoma per-deal if the
-    # datalake has nothing for this opp, so a not-yet-synced deal never goes dark.
+    # PRODUCTION Avoma source: the datalake is now the DEFAULT (was opt-in). It holds the
+    # deal's WHOLE call history AND matches by opp_id OR account_id OR buyer attendee-DOMAIN,
+    # so it catches calls whose Salesforce association is null/cross-wired — the HAVI loss
+    # call (crm_opportunity_id=null) was INVISIBLE to the live-Avoma path and the deal scored
+    # as healthy. The prefetch falls back to LIVE Avoma per-deal when the datalake has nothing
+    # for an opp, so a not-yet-synced deal never goes dark. Override with the env var = false.
     if not avoma_from_datalake:
         avoma_from_datalake = os.getenv(
-            "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "false").strip().lower() in ("1", "true", "yes", "on")
+            "DEAL_SWEEP_AVOMA_FROM_DATALAKE", "true").strip().lower() in ("1", "true", "yes", "on")
     opp_id = opp["id"]
     model_name = _selected_model_name()
     usage = {"uncached_input": 0, "output": 0, "cache_creation": 0,

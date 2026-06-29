@@ -607,6 +607,26 @@ def backfill_economic_buyer(mapping: Optional[dict] = None) -> dict:
     return {"updated": len(done), "missing": missing, "errors": errors, "details": done}
 
 
+def opp_trends_one(opp_id: str) -> dict:
+    """Compute ai.opp_trends for ONE opp from field_history_cache (small per-opp read).
+    Used by the sweep so re-sweeps recompute trends (they'd otherwise wipe the backfilled
+    field). Never raises — returns {} on any problem."""
+    try:
+        import deal_engine_trends as trends
+        k = (opp_id or "")[:15]
+        if not k:
+            return {}
+        rows = _select("field_history_cache",
+                       select="field_name,old_value,new_value,changed_date",
+                       filters=[f"opportunity_id=like.{k}*",
+                                "field_name=in.(Amount,CloseDate,StageName,ForecastCategoryName,ForecastCategory)"],
+                       order="changed_date.desc", limit=200)
+        return trends.derive_opp_trends(rows)
+    except Exception as e:  # noqa: BLE001
+        print(f"[OPP-TRENDS] one failed opp={opp_id}: {e}", flush=True)
+        return {}
+
+
 def backfill_opp_trends() -> dict:
     """Compute ai.opp_trends for every stored record from `field_history_cache` (amount,
     close-date, stage, forecast-category progression/regression) and re-score. Deterministic,
@@ -619,7 +639,11 @@ def backfill_opp_trends() -> dict:
     _fld = "field_name=in.(Amount,CloseDate,StageName,ForecastCategoryName,ForecastCategory)"
     # Supabase caps a response at 1000 rows, so cursor-paginate by changed_date within the
     # trend window (only the last ~130 days matter) until the page is short.
-    cutoff = (datetime.now(timezone.utc) - timedelta(days=130)).isoformat()
+    # NOTE: a '+' in a PostgREST filter value is URL-decoded to a space, which corrupts an
+    # ISO timestamp ("...+00:00" -> "... 00:00"). Use a 'Z' UTC suffix (no '+') everywhere.
+    def _z(ts):
+        return str(ts or "").replace("+00:00", "Z")
+    cutoff = _z((datetime.now(timezone.utc) - timedelta(days=130)).isoformat())
     rows: list = []
     cursor = None
     for _ in range(50):  # hard stop; 50 * 1000 rows is far more than the window holds
@@ -633,7 +657,7 @@ def backfill_opp_trends() -> dict:
         rows.extend(page)
         if len(page) < 1000:
             break
-        cursor = page[-1].get("changed_date")
+        cursor = _z(page[-1].get("changed_date"))
     by_opp: dict = {}
     for r in rows:
         k = (r.get("opportunity_id") or "")[:15]

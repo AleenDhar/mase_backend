@@ -2851,6 +2851,15 @@ async def analyze_one(
         # additive (writes ai.deal_scores), behind DEAL_SCORES_ENABLED, and NEVER
         # raises — a scoring failure must not fail a sweep.
         try:
+            # Opp-trend signals (amount/close/stage/forecast progression-regression) from
+            # field history — recomputed every sweep so a re-sweep keeps them (else the
+            # backfilled ai.opp_trends would be wiped). Feeds Win. Best-effort.
+            _tr = store.opp_trends_one(opp_id)
+            if _tr is not None:
+                parsed.setdefault("ai", {})["opp_trends"] = _tr
+        except Exception as _te:  # noqa: BLE001
+            print(f"[OPP-TRENDS] sweep compute failed for {opp_id}: {_te}", flush=True)
+        try:
             import deal_engine_scoring
             _scores = deal_engine_scoring.compute_deal_scores(parsed)
             if _scores:

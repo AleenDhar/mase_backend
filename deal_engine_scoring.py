@@ -209,7 +209,10 @@ WIN_EXPECTED_MOMENTUM = [       # (substring, expected) — most specific first
     ("qualif", 50),
     ("initial interest", 48), ("interest", 48),
 ]
-WIN_MOMENTUM_DRAG_RATE = 1.0    # points of Win lost per point momentum is below stage-expected
+# Momentum feeds Win BIDIRECTIONALLY (2026-06-29): below stage-expected momentum CHIPS Win off
+# (drastic, x1.0, no floor); above-expected ADDS muscle (modest, x0.5). The ceiling still caps.
+WIN_MOMENTUM_DOWN_RATE = 1.0    # Win lost per point momentum is BELOW stage-expected
+WIN_MOMENTUM_UP_RATE = 0.5      # Win gained per point momentum is ABOVE stage-expected
 
 
 def _expected_momentum(record: dict) -> float:
@@ -453,21 +456,23 @@ def score_win_position(ev, record=None, momentum=None):
 
     adj = round(WIN_RUBRIC_BAND * net, 1)         # signed: strong adds, weak/missing chips off
 
-    # Momentum drag: a deal whose momentum is BELOW its stage's expectation falls fast — the
-    # stage anchor isn't earned if the stage's expected motion isn't happening. Drastic x1.0,
-    # no floor (it can fall all the way). Only drags DOWN (above-expectation = no bonus here).
-    drag = 0.0
+    # Momentum -> Win (BIDIRECTIONAL): the stage anchor isn't earned if the stage's expected
+    # motion isn't happening. BELOW-expected momentum chips Win off fast (x1.0, no floor);
+    # ABOVE-expected adds muscle (x0.5). Ceiling still caps the top.
+    mom_adj = 0.0
     if isinstance(momentum, (int, float)):
         exp = _expected_momentum(record)
-        drag = round(max(0.0, exp - float(momentum)) * WIN_MOMENTUM_DRAG_RATE, 1)
-        if drag:
-            contributions.append(_contrib("momentum_drag", -drag,
-                                          f"momentum {round(float(momentum))} below stage-expected {int(exp)}"))
+        delta = float(momentum) - exp
+        rate = WIN_MOMENTUM_UP_RATE if delta >= 0 else WIN_MOMENTUM_DOWN_RATE
+        mom_adj = round(delta * rate, 1)
+        if abs(mom_adj) >= 0.1:
+            contributions.append(_contrib("momentum_adj", mom_adj,
+                                          f"momentum {round(float(momentum))} vs stage-expected {int(exp)}"))
 
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
-    score = round(min(ceiling, _clamp(anchor + adj - drag, 0.0, 99.0)), 1)
+    score = round(min(ceiling, _clamp(anchor + adj + mom_adj, 0.0, 99.0)), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "ceiling": ceiling, "momentum_drag": drag, "contributions": contributions}
+            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj, "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):

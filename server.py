@@ -6270,6 +6270,50 @@ async def _nightly_hard_refresh_scheduler():
             await asyncio.sleep(300)
 
 
+async def _datalake_reconcile_scheduler():
+    """Periodic datalake reconciliation — the anti-rot safety net behind the Avoma
+    AINOTE webhook (datalake_sync.sync_meeting). The webhook misses late transcripts
+    and failed/undelivered events, leaving content-less meeting headers in the lake
+    forever (the cause of a deal reading calls_read=0 despite real calls). This loop
+    re-pulls the recent window each interval and refills missing transcripts so the
+    lake self-heals; the heavier null-content backfill runs once per day.
+
+    Env overrides:
+      - DATALAKE_RECONCILE_ENABLED        (default "true")  — set false to disable.
+      - DATALAKE_RECONCILE_INTERVAL_MIN   (default 60)       — incremental cadence.
+      - DATALAKE_RECONCILE_LOOKBACK_DAYS  (default 7)        — recent window size.
+      - DATALAKE_RECONCILE_NULL_LIMIT     (default 300)      — nightly null-fill cap.
+    Idempotent (upserts), so a duplicate run across blue/green API tasks is harmless.
+    """
+    if os.getenv("DATALAKE_RECONCILE_ENABLED", "true").strip().lower() in ("false", "0", "no", "off"):
+        print("[DATALAKE-RECONCILE] scheduler disabled via DATALAKE_RECONCILE_ENABLED", flush=True)
+        return
+    try:
+        import datalake_reconcile as dr
+    except Exception as e:  # noqa: BLE001
+        print(f"[DATALAKE-RECONCILE] import failed: {e}", flush=True)
+        return
+    if not dr.ENABLED:
+        print("[DATALAKE-RECONCILE] datalake/Avoma not configured — scheduler idle", flush=True)
+        return
+    interval = max(300, int(os.getenv("DATALAKE_RECONCILE_INTERVAL_MIN", "60")) * 60)
+    import time as _time
+    await asyncio.sleep(120)  # stagger after boot
+    last_null_fill = 0.0
+    while True:
+        try:
+            now = _time.time()
+            do_null = (now - last_null_fill) >= 23 * 3600
+            res = await dr.run_once(do_null_fill=do_null)
+            if do_null and not res.get("skipped"):
+                last_null_fill = now
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:  # noqa: BLE001
+            print(f"[DATALAKE-RECONCILE] scheduler loop error: {e}; retrying in 300s", flush=True)
+        await asyncio.sleep(interval)
+
+
 @app.get("/cron/sf-pull-refresh")
 async def cron_sf_pull_refresh(lookback_hours: int = 72, limit: int = 25, opp_only: bool = True):
     """Re-run the deterministic 3-tier SF pull + cache refresh for recently-seen
@@ -6988,7 +7032,9 @@ _CHAT_CAPABILITIES = (
     "The marker is an HTML comment; the UI renders it as a clickable card, so the user "
     "never sees the raw comment. `options` is an array of 2-6 short strings. Set `multi` "
     "to true ONLY when more than one option can be chosen together; otherwise false. You "
-    "may add an optional \"title\" string for a short label. Emit one marker per question, "
+    "may add an optional \"title\" string for a short label. Each option is PLAIN choice "
+    "text — do NOT number or letter them ('#1 --', '1.', 'a)') and do NOT prefix or wrap "
+    "them in markdown; the UI numbers and styles them. Emit one marker per question, "
     "optionally preceded by a short line of normal text. Prefer offering choices (for "
     "example 'Which deal?', 'What should I draft?', 'Pick a focus') over asking the user "
     "to type a free-form answer.\n"
@@ -9660,6 +9706,11 @@ async def startup_event():
     # Worker autoscaler — sizes the mase-worker fleet to the sweep_queue backlog so
     # no one scales workers by hand. No-op unless SWEEP_AUTOSCALE_ENABLED=true.
     asyncio.create_task(_worker_autoscaler())
+
+    # Datalake reconciliation — refills late/missed Avoma transcripts so the lake
+    # self-heals between webhook events (the fix for deals reading calls_read=0
+    # despite real calls). No-op unless the datalake + Avoma are configured.
+    asyncio.create_task(_datalake_reconcile_scheduler())
 
 
 @app.on_event("shutdown")

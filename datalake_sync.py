@@ -43,6 +43,12 @@ async def _avoma_get(client: httpx.AsyncClient, path: str, params: dict | None =
                 continue
             r.raise_for_status()
             return r.json()
+        except httpx.HTTPStatusError as e:
+            code = e.response.status_code
+            if code in (401, 403):
+                print(f"[DATALAKE-SYNC] AVOMA AUTH FAILED ({code}) — the Avoma token is "
+                      "missing/expired; live sync is dead until it is fixed.", flush=True)
+            return {"error": f"HTTP {code}"}
         except Exception as e:  # noqa: BLE001
             return {"error": f"{type(e).__name__}: {e}"}
 

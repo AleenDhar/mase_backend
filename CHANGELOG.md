@@ -11,6 +11,45 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Datalake self-healing reconciliation + sync hardening
+
+**What.** The Avoma→datalake lake was only filled by (1) a manual day-by-day backfill
+that marks days `done` and never revisits, and (2) the per-event AINOTE webhook
+(`datalake_sync.sync_meeting`). Any meeting whose transcript became ready AFTER its day
+was processed — a header synced before the call, a late transcript, or a missed/failed
+webhook — was left a **content-less header forever**. Because the sweep reads calls from
+the datalake (`DEAL_SWEEP_AVOMA_FROM_DATALAKE=true`), such deals read `calls_read=0`
+→ `buyer_calls_seen=false` → suppressed scores / `Off Track` (the HAVI 2026-06-23 case).
+Three fixes:
+- **`datalake_reconcile.py` (new) + `_datalake_reconcile_scheduler` in server.py** — a
+  recurring pass: re-pulls the last `DATALAKE_RECONCILE_LOOKBACK_DAYS` (7) of meetings
+  each `DATALAKE_RECONCILE_INTERVAL_MIN` (60), filling transcripts/insights via the
+  Avoma DETAIL endpoints; plus a once-daily null-content backfill for tracked-opp rows
+  missing a transcript. Idempotent upserts; no-op unless datalake+Avoma configured.
+- **Backfill hardening** (`scripts/datalake_backfill.py`) — a day is marked `done` ONLY
+  when every expected transcript landed (else `partial`, re-runnable); fetches the
+  transcription_uuid from the meeting DETAIL endpoint when the LIST payload omits it;
+  fails loud (SystemExit) on Avoma 401/403.
+- **Fail-loud on Avoma auth** — `datalake_sync.py` + `scripts/datalake_backfill.py` now
+  surface 401/403 (live path logs LOUD; backfill `SystemExit`s) instead of silently
+  emitting empty rows. Added the missing `avoma_sync_days` table to
+  `scripts/datalake_schema.sql`. Bumped the code-default `DEAL_SWEEP_MAX_TOKENS`
+  32000→64000 to match the prod task-def (helps non-task-def runs like the backfill).
+- **NOT done this round: the committed hardcoded Avoma token removal.** It can't ship
+  yet — committing the token is forbidden, and removing it would disable the live
+  webhook sync + this reconciler because `AVOMA_API_TOKEN` is not yet a `mase/app-env`
+  secret. Deferred (see below); the token line is left exactly as it already was.
+
+**Why.** The lake silently rotted between backfills; deals with real, recent calls read
+as dark. The webhook alone can't guarantee delivery/completeness.
+
+**How to work with it going forward.** This deploy is **non-breaking** (the existing
+token keeps sync alive; the reconciler just adds a healing pass). ⚠️ **Follow-up to
+finish the security fix:** add `AVOMA_API_TOKEN` to the `mase/app-env` Secrets Manager
+secret (`render_taskdef.py` auto-enumerates app-env keys, so it injects on the next
+deploy), THEN delete the hardcoded token from `datalake_sync.py` + `datalake_backfill.py`.
+Toggle the new reconcile loop with `DATALAKE_RECONCILE_ENABLED=false`.
+
 ## 2026-06-29 — Win opportunity-trend signals (deterministic, from field history)
 
 **What.** Win now reflects the deal's CRM MOMENTUM, deterministically (no LLM). New

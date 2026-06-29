@@ -82,6 +82,10 @@ def avoma_get(path, params):
                 time.sleep(max(0.5, min(float(ra) if ra else min(2 ** rate, 30), 30)))
                 rate += 1
                 continue
+            if e.code in (401, 403):
+                # Auth is fatal for the whole backfill — fail loud instead of grinding
+                # out thousands of empty 'error' rows against a dead token.
+                raise SystemExit(f"AVOMA AUTH FAILED (HTTP {e.code}) — fix the Avoma token.")
             return {"error": f"HTTP {e.code}"}
         except Exception as e:  # noqa: BLE001
             if tout < MAX_TIMEOUT:
@@ -187,7 +191,7 @@ def process_day(day):
     de = (datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=timezone.utc)
           + timedelta(days=1)).strftime("%Y-%m-%dT00:00:00Z")
     mark_day(day, "running", 0, 0)
-    page, m, t, page_err = 1, 0, 0, 0
+    page, m, t, page_err, missed = 1, 0, 0, 0, 0
     while True:
         d = avoma_get("/meetings/", {"from_date": ds, "to_date": de, "o": "-start_at",
                                      "page": page, "page_size": 100,
@@ -209,10 +213,18 @@ def process_day(day):
             uuid, tu = x.get("uuid"), x.get("transcription_uuid")
             if not uuid or not (x.get("transcript_ready") or tu or x.get("notes_ready")):
                 continue
+            # The /meetings LIST payload doesn't reliably carry transcription_uuid; if a
+            # transcript is ready but the list omitted the uuid, fetch the DETAIL endpoint
+            # to get it (else we'd silently miss the call's content).
+            if not tu and x.get("transcript_ready"):
+                md = avoma_get(f"/meetings/{uuid}/", {"include_crm_associations": "true"})
+                time.sleep(THROTTLE)
+                if isinstance(md, dict) and not md.get("error"):
+                    tu = md.get("transcription_uuid")
             if tu:
                 tr = avoma_get(f"/transcriptions/{tu}/", {})
                 time.sleep(THROTTLE)
-                if isinstance(tr, dict) and not tr.get("error"):
+                if isinstance(tr, dict) and not tr.get("error") and tr.get("transcript"):
                     supa_upsert("avoma_transcripts", [{
                         "meeting_uuid": uuid, "transcription_uuid": tu,
                         "transcript": tr.get("transcript"),
@@ -220,6 +232,10 @@ def process_day(day):
                         "speakers": tr.get("speakers"),
                         "vtt_url": tr.get("transcription_vtt_url")}], "meeting_uuid")
                     t += 1
+                else:
+                    # Expected a transcript (uuid present) but got none — leave the day
+                    # re-runnable instead of stamping it 'done' with a content-less header.
+                    missed += 1
             ins = avoma_get(f"/meetings/{uuid}/insights/", {})
             time.sleep(THROTTLE)
             if isinstance(ins, dict) and not ins.get("error"):
@@ -229,8 +245,11 @@ def process_day(day):
                     "ai_notes_text": (json.dumps(notes)[:300000] if notes else None),
                     "keywords": ins.get("keywords")}], "meeting_uuid")
         page += 1
-    mark_day(day, "done", m, t)
-    return (day, m, t, "done")
+    # 'done' ONLY when every expected transcript landed; else 'partial' so get_done_days()
+    # (which skips only 'done') revisits the day next run.
+    status = "done" if missed == 0 else "partial"
+    mark_day(day, status, m, t)
+    return (day, m, t, status)
 
 
 def main():

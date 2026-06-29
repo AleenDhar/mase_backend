@@ -79,6 +79,18 @@ create table if not exists avoma_sync_state (
   updated_at         timestamptz default now()
 );
 
+-- Per-day backfill bookkeeping (scripts/datalake_backfill.py). One row per calendar
+-- day processed so the 2-year pull is resumable across restarts. get_done_days() skips
+-- only 'done' days; 'partial' (an expected transcript didn't land yet), 'error' and
+-- 'running' days are revisited on the next run.
+create table if not exists avoma_sync_days (
+  day          text primary key,            -- 'YYYY-MM-DD' (UTC)
+  status       text default 'running',       -- running / done / partial / error
+  meetings     int  default 0,
+  transcripts  int  default 0,
+  updated_at   timestamptz default now()
+);
+
 -- Convenience: search transcripts and get the call header in one go.
 create or replace view avoma_call_search as
   select m.uuid, m.subject, m.start_at, m.crm_account_id, m.crm_opportunity_id,

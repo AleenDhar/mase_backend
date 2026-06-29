@@ -272,7 +272,10 @@ def _build_model():
             api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
             max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "2")),
             timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "180")),
-            max_tokens=int(os.getenv("DEAL_SWEEP_MAX_TOKENS", "32000")),
+            # 64000 = Claude Sonnet 4.5's max output. Evidence-heavy deals produce a
+            # record JSON that overflowed the old 32000 ceiling, truncating mid-object
+            # -> json_parse_failed. Doubling the room lets the full record finish.
+            max_tokens=int(os.getenv("DEAL_SWEEP_MAX_TOKENS", "64000")),
             stop=None,
         )
     from langchain.chat_models import init_chat_model

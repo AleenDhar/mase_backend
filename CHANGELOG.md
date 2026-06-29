@@ -11,6 +11,22 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Win momentum-drag: the stage anchor falls if its expected motion isn't happening
+
+**What.** Win is now dragged DOWN when Deal Momentum is below the stage's EXPECTED momentum
+(`WIN_EXPECTED_MOMENTUM`: Qualified 50 / Formal 52 / Shortlisted 56 / Vendor Selected 60 /
+Contracting 62 / Signed-PO 55). `drag = max(0, expected − momentum) * WIN_MOMENTUM_DRAG_RATE`
+(=1.0, "drastic"), subtracted before the stage ceiling, NO floor. Momentum is now computed
+BEFORE Win in `compute_deal_scores` and passed in (`score_win_position(..., momentum=)`).
+
+**Why.** A high-stage deal shouldn't coast on its anchor if it isn't behaving like its stage
+demands. ACEN (Vendor Selected, base 80): momentum 60 -> 80 (on track); 50 -> 70; 40 -> 60;
+30 -> 50; 20 -> 40. A quiet Vendor-Selected deal collapses instead of reading near-won.
+
+**Note.** Bites fully once engagement-based Momentum v2 is live per deal (re-sweep populates
+ai.footprints); until then a deal's signal-momentum (~50) yields a modest blanket drag at the
+higher stages.
+
 ## 2026-06-29 — Deal Momentum v2: pure engagement + next-steps + milestones
 
 **What.** New momentum model (`score_momentum_v2`) reads PURELY three pillars, centered on 50:

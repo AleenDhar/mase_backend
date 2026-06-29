@@ -193,6 +193,31 @@ def _win_ceiling(record: dict) -> float:
         if sub in s:
             return float(cap)
     return WIN_CEILING_DEFAULT
+
+
+# Stage EXPECTED momentum: later stages should be MORE active (Vendor Selected should be hot
+# with contracting motion). When a deal's momentum falls below its stage expectation, Win is
+# dragged DOWN — the anchor falls fast if the stage's expected motion isn't happening
+# (2026-06-29, user-directed: drastic x1.0, no floor). Signed/PO ease back (quiet legal = ok).
+WIN_EXPECTED_MOMENTUM = [       # (substring, expected) — most specific first
+    ("po received", 55), ("po-received", 55),
+    ("contract signed", 55), ("won", 55),
+    ("contract", 62), ("negotiat", 62),
+    ("vendor select", 60), ("selected", 60),
+    ("shortlist", 56),
+    ("formal eval", 52), ("evaluation", 52),
+    ("qualif", 50),
+    ("initial interest", 48), ("interest", 48),
+]
+WIN_MOMENTUM_DRAG_RATE = 1.0    # points of Win lost per point momentum is below stage-expected
+
+
+def _expected_momentum(record: dict) -> float:
+    s = str(((record or {}).get("hard") or {}).get("stage") or "").lower()
+    for sub, exp in WIN_EXPECTED_MOMENTUM:
+        if sub in s:
+            return float(exp)
+    return 52.0
 # RUBRIC WIN (2026-06-29, user-directed): keep the STAGE ANCHOR as the base, then apply a
 # signed adjustment of up to +/-WIN_RUBRIC_BAND driven by the FULL rubric factor table.
 # Strong rubric evidence ADDS to the stage base; weak/negative evidence CHIPS OFF; MISSING
@@ -399,7 +424,7 @@ def score_momentum_v2(record: dict):
             "model": "engagement_v2", "contributions": contribs}
 
 
-def score_win_position(ev, record=None):
+def score_win_position(ev, record=None, momentum=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
     contributions, weighted = [], 0.0
@@ -422,10 +447,22 @@ def score_win_position(ev, record=None):
                                           f"{k.replace('_', ' ')} {v:+.2f}"))
 
     adj = round(WIN_RUBRIC_BAND * net, 1)         # signed: strong adds, weak/missing chips off
+
+    # Momentum drag: a deal whose momentum is BELOW its stage's expectation falls fast — the
+    # stage anchor isn't earned if the stage's expected motion isn't happening. Drastic x1.0,
+    # no floor (it can fall all the way). Only drags DOWN (above-expectation = no bonus here).
+    drag = 0.0
+    if isinstance(momentum, (int, float)):
+        exp = _expected_momentum(record)
+        drag = round(max(0.0, exp - float(momentum)) * WIN_MOMENTUM_DRAG_RATE, 1)
+        if drag:
+            contributions.append(_contrib("momentum_drag", -drag,
+                                          f"momentum {round(float(momentum))} below stage-expected {int(exp)}"))
+
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
-    score = round(min(ceiling, _clamp(anchor + adj, 0.0, 99.0)), 1)
+    score = round(min(ceiling, _clamp(anchor + adj - drag, 0.0, 99.0)), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "ceiling": ceiling, "contributions": contributions}
+            "lift": adj, "ceiling": ceiling, "momentum_drag": drag, "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):
@@ -884,13 +921,15 @@ def compute_deal_scores(record: dict) -> dict:
         expected = int(agent_cadence.get("expected_cadence_days") or cadence.get("expected_cadence_days") or 14)
         dsl = None if dsl is None else int(dsl)
 
-        win = score_win_position(ev, record)
+        # Momentum FIRST — it feeds Win's momentum-drag, so a high-stage deal that isn't
+        # behaving like its stage demands (low momentum) falls instead of riding the anchor.
         # Prefer the engagement-based v2 model when footprints are available (the sweep
         # computes them from SF Events/Tasks); else the signal-based model.
         if ((record.get("ai") or {}).get("footprints") or {}).get("engagement"):
             mom = score_momentum_v2(record)
         else:
             mom = score_momentum(ev, dsl, expected)
+        win = score_win_position(ev, record, momentum=mom.get("score"))
         com = score_commitment(ev)
         # Stage-bound the risk: at LATE (contract executing) only close-date / budget
         # risk factors count — strip the early/mid ones so they can't inflate it.

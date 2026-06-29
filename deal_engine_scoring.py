@@ -411,11 +411,16 @@ def score_momentum_v2(record: dict):
     if ms_pts:
         contribs.append(_contrib("new_milestones", round(ms_pts, 1), "Stage advance / high-tier session reached"))
 
-    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric).
+    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric). A deal with NO
+    # buyer touch at all in the window is DARK on the buyer side — the heaviest stall (a
+    # Vendor-Selected deal where the buyer has gone silent and only the rep is emailing).
     dsb = fp.get("days_since_buyer_touch")
     cad = fp.get("stage_cadence_days") or 30
     stall = 0.0
-    if isinstance(dsb, (int, float)) and dsb > cad:
+    if dsb is None:
+        stall = round(MOM_STALL_CAP * 0.9, 1)        # no buyer footprint found -> dark
+        contribs.append(_contrib("stall", -stall, "no buyer touch found in window (dark)"))
+    elif isinstance(dsb, (int, float)) and dsb > cad:
         stall = min(MOM_STALL_CAP, (dsb - cad) * 0.6)
         contribs.append(_contrib("stall", -round(stall, 1), f"{int(dsb)}d since a buyer touch (cadence {cad}d)"))
 

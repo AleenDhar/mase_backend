@@ -607,6 +607,54 @@ def backfill_economic_buyer(mapping: Optional[dict] = None) -> dict:
     return {"updated": len(done), "missing": missing, "errors": errors, "details": done}
 
 
+def backfill_opp_trends() -> dict:
+    """Compute ai.opp_trends for every stored record from `field_history_cache` (amount,
+    close-date, stage, forecast-category progression/regression) and re-score. Deterministic,
+    no LLM. One batched read of the history cache; matches 18-char cache ids to 15-char book
+    ids by prefix. Idempotent; safe to re-run (refreshes the trends + scores)."""
+    import deal_engine_trends as trends
+    import deal_engine_scoring
+    fields = "opportunity_id,field_name,old_value,new_value,changed_date"
+    rows = _select("field_history_cache", select=fields,
+                   filters=["field_name=in.(Amount,CloseDate,StageName,ForecastCategoryName,ForecastCategory)"],
+                   order="changed_date.desc", limit=100000)
+    by_opp: dict = {}
+    for r in rows:
+        k = (r.get("opportunity_id") or "")[:15]
+        by_opp.setdefault(k, []).append(r)
+
+    recs = _select(T_RECORDS, select="opp_id,record", limit=100000)
+    updated = 0
+    with_trends = 0
+    errors: list = []
+    for row in recs:
+        rec = row.get("record")
+        if not rec:
+            continue
+        k = (rec.get("opp_id") or "")[:15]
+        try:
+            tr = trends.derive_opp_trends(by_opp.get(k, []))
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": k, "error": f"trends: {e}"})
+            continue
+        ai = rec.get("ai")
+        ai = ai if isinstance(ai, dict) else {}
+        ai["opp_trends"] = tr            # may be {} when the deal has no recent CRM moves
+        rec["ai"] = ai
+        if any(not str(kk).endswith("_detail") for kk in tr):
+            with_trends += 1
+        try:
+            ds = deal_engine_scoring.compute_deal_scores(rec)
+            if ds and isinstance(ds, dict):
+                ai["deal_scores"] = ds
+            upsert_record(rec)
+            updated += 1
+        except Exception as e:  # noqa: BLE001
+            errors.append({"opp_id": k, "error": str(e)})
+    return {"updated": updated, "with_trends": with_trends,
+            "history_rows": len(rows), "error_count": len(errors), "errors": errors[:30]}
+
+
 def backfill_deal_scores(opp_ids: Optional[list] = None) -> dict:
     """Compute ai.deal_scores for stored records using the SAME deterministic model the
     sweep uses (`deal_engine_scoring.compute_deal_scores`), and upsert. This is the

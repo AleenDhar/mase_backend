@@ -270,6 +270,32 @@ def _rubric_win_strengths(record: dict) -> dict:
     return out
 
 
+# Opportunity-trend signals (from field history) nudge Win within its band: stage/forecast
+# moves weigh a bit more than amount/close. TREND_INFLUENCE keeps them MODEST relative to the
+# rubric (a fully-positive trend set shifts Win ~TREND_INFLUENCE x BAND).
+WIN_TREND_WEIGHTS = {"stage_trend": 1.0, "forecast_category_trend": 1.0,
+                     "amount_trend": 0.7, "close_date_trend": 0.7}
+WIN_TREND_INFLUENCE = 0.40
+
+
+def _opp_trend_net(record: dict):
+    """Weighted-average signed trend in [-1,1] from ai.opp_trends; None if no trends."""
+    trends = ((record or {}).get("ai") or {}).get("opp_trends") or {}
+    if not isinstance(trends, dict):
+        return None, []
+    num = den = 0.0
+    detail = []
+    for k, w in WIN_TREND_WEIGHTS.items():
+        v = trends.get(k)
+        if isinstance(v, (int, float)):
+            num += w * float(v)
+            den += w
+            detail.append((k, float(v)))
+    if den == 0:
+        return None, []
+    return max(-1.0, min(1.0, num / den)), detail
+
+
 def score_win_position(ev, record=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
@@ -280,6 +306,18 @@ def score_win_position(ev, record=None):
         contributions.append(_contrib(f, round(WIN_RUBRIC_BAND * w * s / 100.0, 1),
                                       f"{f.replace('_', ' ')} strength {s:+.2f} (weight {w})"))
     net = max(-1.0, min(1.0, weighted / 100.0))   # rubric net in [-1,+1]
+
+    # Opportunity-trend nudge (CRM moves are buying/loss signals): blend into the net so
+    # progression (amount up, close pulled in, stage/category advanced) lifts Win and
+    # regression chips it off — still within the +/-30 band.
+    tnet, tdetail = _opp_trend_net(record or {})
+    if tnet is not None:
+        net = max(-1.0, min(1.0, net + WIN_TREND_INFLUENCE * tnet))
+        for k, v in tdetail:
+            contributions.append(_contrib(k, round(WIN_RUBRIC_BAND * WIN_TREND_INFLUENCE
+                                                    * WIN_TREND_WEIGHTS[k] * v / sum(WIN_TREND_WEIGHTS.values()), 1),
+                                          f"{k.replace('_', ' ')} {v:+.2f}"))
+
     adj = round(WIN_RUBRIC_BAND * net, 1)         # signed: strong adds, weak/missing chips off
     score = round(_clamp(anchor + adj, 0.0, 99.0), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),

@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Win opportunity-trend signals (deterministic, from field history)
+
+**What.** Win now reflects the deal's CRM MOMENTUM, deterministically (no LLM). New
+`deal_engine_trends.derive_opp_trends` reads `field_history_cache` (Amount, CloseDate,
+StageName, ForecastCategory) and emits signed, recency-weighted trends in [-1,1]:
+- amount up = +, down = -; close date pulled IN = +, pushed OUT = -;
+- stage advanced = +, regressed / went dead (No Decision / Qualified Out / Closed Lost /
+  Omitted) = -; forecast category upgraded = +, downgraded = -.
+`score_win_position` blends these (`WIN_TREND_WEIGHTS`, `WIN_TREND_INFLUENCE=0.40`) into the
+Win net — so progression lifts Win and regression chips it off, still inside the +/-30 band
+(stage/forecast weigh a bit more than amount/close; a strong trend set shifts Win up to ~12).
+Populated for the book by `deal_engine_store.backfill_opp_trends` (one batched cache read,
+matches 18-char cache ids to 15-char book ids), endpoint
+`POST /api/deal-engine/backfill/opp-trends`. Validated on real history (e.g. stage
+Formal->Qualified = -0.72; close pushed 286d = -0.95; amount 0->49k = +0.96).
+
+**Why.** User: "if amount increased / close date pulled earlier / forecast category upgraded
+that's a buying signal; stage/forecast/close regression is a loss signal." These CRM moves
+are deterministic and were not feeding Win.
+
+**Phase 1 of 3** (momentum buyer-vs-rep + failed-sweep resilience to follow). Risk/CMT/FC
+unchanged. Refresh trends by re-running the backfill (or wire into the field-history webhook).
+
 ## 2026-06-29 — Rubric Win + 30-60d Momentum (user rubric, phase 1: scoring)
 
 **Win** (`score_win_position`): keeps the STAGE ANCHOR as the base, then applies a SIGNED

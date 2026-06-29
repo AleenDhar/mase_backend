@@ -7686,6 +7686,18 @@ async def deal_engine_recompute_verdict(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/deal-engine/backfill/opp-trends")
+async def deal_engine_backfill_opp_trends(request: Request):
+    """Compute ai.opp_trends (amount / close-date / stage / forecast-category progression
+    or regression) for the whole book from field_history_cache, deterministically, and
+    re-score. No body. Idempotent. Bearer-gated."""
+    import deal_engine_store as dstore
+    try:
+        return await _aw(dstore.backfill_opp_trends)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/todo")
 async def deal_engine_todo(owner: str = ""):
     import deal_engine_store as dstore

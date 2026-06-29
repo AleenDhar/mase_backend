@@ -614,10 +614,26 @@ def backfill_opp_trends() -> dict:
     ids by prefix. Idempotent; safe to re-run (refreshes the trends + scores)."""
     import deal_engine_trends as trends
     import deal_engine_scoring
+    from datetime import datetime, timezone, timedelta
     fields = "opportunity_id,field_name,old_value,new_value,changed_date"
-    rows = _select("field_history_cache", select=fields,
-                   filters=["field_name=in.(Amount,CloseDate,StageName,ForecastCategoryName,ForecastCategory)"],
-                   order="changed_date.desc", limit=100000)
+    _fld = "field_name=in.(Amount,CloseDate,StageName,ForecastCategoryName,ForecastCategory)"
+    # Supabase caps a response at 1000 rows, so cursor-paginate by changed_date within the
+    # trend window (only the last ~130 days matter) until the page is short.
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=130)).isoformat()
+    rows: list = []
+    cursor = None
+    for _ in range(50):  # hard stop; 50 * 1000 rows is far more than the window holds
+        flt = [_fld, f"changed_date=gte.{cutoff}"]
+        if cursor:
+            flt.append(f"changed_date=lt.{cursor}")
+        page = _select("field_history_cache", select=fields, filters=flt,
+                       order="changed_date.desc", limit=1000)
+        if not page:
+            break
+        rows.extend(page)
+        if len(page) < 1000:
+            break
+        cursor = page[-1].get("changed_date")
     by_opp: dict = {}
     for r in rows:
         k = (r.get("opportunity_id") or "")[:15]

@@ -607,6 +607,42 @@ _MEDDPICC_FIELDS: list = [
 _MEDDPICC_NULLISH = {"", "n.a.", "na", "n/a", "none", "no", "-", "unknown", "tbd"}
 
 
+# MEDDPICC label -> rubric factor (presence = good). Competition excluded (a named rival
+# isn't necessarily favourable); preference has no direct CRM field.
+_CRM_LABEL_TO_FACTOR = {
+    "economic buyer": "exec_access",
+    "champion": "champion",
+    "metrics": "business_case",
+    "identify pain": "differentiation",
+    "decision process": "commercial",
+}
+
+
+def _crm_evidence_from(meddpicc_data: dict) -> dict:
+    """Parse _meddpicc_crm() output into {factor: {present, value, src, age_days}} for the
+    deterministic Win-rubric overlay. Recency from the record's last_modified."""
+    if not isinstance(meddpicc_data, dict):
+        return {}
+    fields = meddpicc_data.get("fields") or []
+    age = None
+    lm = meddpicc_data.get("last_modified")
+    if lm:
+        try:
+            from datetime import datetime, timezone
+            d = datetime.fromisoformat(str(lm).replace("Z", "+00:00"))
+            if d.tzinfo is None:
+                d = d.replace(tzinfo=timezone.utc)
+            age = max(0, int((datetime.now(timezone.utc) - d).total_seconds() // 86400))
+        except Exception:  # noqa: BLE001
+            age = None
+    out = {}
+    for label, value, src in fields:
+        fac = _CRM_LABEL_TO_FACTOR.get(str(label or "").strip().lower())
+        if fac and str(value or "").strip():
+            out[fac] = {"present": True, "value": str(value)[:120], "src": src, "age_days": age}
+    return out
+
+
 async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
     """Deterministic engagement/liveness footprints from SF Tasks + Events + opp summary
     fields. Classifies each by buyer-vs-rep direction and engagement DEPTH (POC/workshop/
@@ -2947,6 +2983,15 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["footprints"] = _fp
         except Exception as _fe:  # noqa: BLE001
             print(f"[FOOTPRINTS] sweep compute failed for {opp_id}: {_fe}", flush=True)
+        try:
+            # CRM evidence: deterministic factor presence from MEDDPICC 2.0 (already fetched).
+            # Stored so the Win rubric can broaden its source — a named EB/champion/metrics in
+            # MEDDPICC 2.0 lifts the factor even if the LLM under-read it (the HAVI EB case).
+            _ce = _crm_evidence_from(_meddpicc_crm_data)
+            if _ce:
+                parsed.setdefault("ai", {})["crm_evidence"] = _ce
+        except Exception as _ce_e:  # noqa: BLE001
+            print(f"[CRM-EVIDENCE] sweep compute failed for {opp_id}: {_ce_e}", flush=True)
         try:
             import deal_engine_scoring
             _scores = deal_engine_scoring.compute_deal_scores(parsed)

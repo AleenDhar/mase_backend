@@ -334,6 +334,41 @@ def _rubric_win_strengths(record: dict) -> dict:
                             if isinstance(bc, dict) and (bc.get("status") or bc.get("level"))
                             else _status_strength(mst("metrics")))
     out["commercial"] = _status_strength(mst("paper_process"), present=1.0, partial=0.4)
+    # BROADEN THE SOURCE (2026-06-29, user-directed): overlay deterministic CRM evidence the
+    # sweep stored from MEDDPICC 2.0 / Next-Step / completed Tasks. Take the BEST evidence
+    # across the LLM read and the raw CRM (so a named EB in MEDDPICC 2.0 lifts exec_access even
+    # if the LLM under-read it), recency-weighted (recent evidence counts for more).
+    out = _crm_evidence_overlay(out, ai)
+    return out
+
+
+_CRM_FACTOR_KEYS = ("differentiation", "champion", "exec_access", "business_case", "commercial")
+
+
+def _crm_recency(age_days) -> float:
+    if age_days is None:
+        return 0.7
+    if age_days <= 30:
+        return 1.0
+    if age_days <= 90:
+        return 0.85
+    if age_days <= 180:
+        return 0.6
+    return 0.4
+
+
+def _crm_evidence_overlay(out: dict, ai: dict) -> dict:
+    """Lift 'presence = good' factor strengths from ai.crm_evidence (deterministic, multi-
+    source). Only ever HELPS (max), so a CRM-confirmed factor can't be hidden by an LLM miss.
+    Competition is excluded (a named competitor isn't necessarily favourable)."""
+    ev = ai.get("crm_evidence")
+    if not isinstance(ev, dict):
+        return out
+    for fac in _CRM_FACTOR_KEYS:
+        info = ev.get(fac)
+        if isinstance(info, dict) and info.get("present"):
+            s = round(1.0 * _crm_recency(info.get("age_days")), 3)
+            out[fac] = max(out.get(fac, WIN_MISSING), s)
     return out
 
 

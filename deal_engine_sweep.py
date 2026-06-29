@@ -1095,6 +1095,37 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     except Exception as e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] buyer-identity tasks failed opp={opp_id}: "
               f"{type(e).__name__}: {e}", flush=True)
+    # Latest INBOUND buyer email — the two-way engagement signal the pulse was blind to.
+    # Clari logs incoming emails as Tasks subject "[Clari - Email Received]"; fall back to
+    # EmailMessage(Incoming=true). Salesforce LastActivityDate is unreliable for inbound
+    # (Clari/EAC-captured replies often don't bump it), so this is the load-bearing source
+    # for "the buyer actually replied" — a real two-way touch, not rep outreach.
+    try:
+        rx = await _soql(
+            agent_manager,
+            f"SELECT ActivityDate, Subject FROM Task WHERE WhatId = '{sid}' "
+            f"AND Subject LIKE '%Email Received%' "
+            f"ORDER BY ActivityDate DESC NULLS LAST LIMIT 20")
+        dates = [t.get("ActivityDate") for t in (rx or []) if t.get("ActivityDate")]
+        if dates:
+            out["last_inbound_email_date"] = str(dates[0])[:10]
+            out["inbound_email_count"] = len(dates)
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] buyer-identity inbound-task query failed opp={opp_id}: "
+              f"{type(e).__name__}: {e}", flush=True)
+    if not out.get("last_inbound_email_date"):
+        try:
+            em = await _soql(
+                agent_manager,
+                f"SELECT MessageDate FROM EmailMessage WHERE RelatedToId = '{sid}' "
+                f"AND Incoming = true ORDER BY MessageDate DESC LIMIT 1")
+            em = em or []
+            if em and em[0].get("MessageDate"):
+                out["last_inbound_email_date"] = str(em[0]["MessageDate"])[:10]
+                out["inbound_email_count"] = out.get("inbound_email_count") or 1
+        except Exception as e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] buyer-identity inbound-email fallback failed opp={opp_id}: "
+                  f"{type(e).__name__}: {e}", flush=True)
     # Derive the attendee-matching domains: contact emails (opp roles, then the
     # account-contacts fallback) + account website.
     domains: list[str] = []
@@ -2223,6 +2254,8 @@ async def analyze_one(
             forecast_category=opp.get("forecast_category"),
             qualified_date=opp.get("qualified_date"),
             next_step=opp.get("next_step"),
+            last_inbound_email_date=(buyer.get("last_inbound_email_date")
+                                     if isinstance(buyer, dict) else None),
         )
         user_msg = (
             f"Sweep Salesforce Opportunity Id `{opp_id}`"
@@ -2358,6 +2391,11 @@ async def analyze_one(
                 _cr_pulse = int(_cr_pulse_raw) if _cr_pulse_raw is not None else None
             except (TypeError, ValueError):
                 _cr_pulse = None
+            # Persist the buyer's latest INBOUND email onto hard so the from-hard pulse
+            # here (and every derived view) sees the reply — not just LastActivityDate,
+            # which is unreliable for Clari/EAC-captured incoming email.
+            if isinstance(buyer, dict) and buyer.get("last_inbound_email_date"):
+                hard["last_inbound_email_date"] = buyer["last_inbound_email_date"]
             final_pulse = _pulse.compute_pulse_from_hard(hard, calls_read=_cr_pulse)
             parsed["pulse"] = final_pulse
             # Read-quality gates for living-memory expiry. We only retire carried-

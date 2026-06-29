@@ -167,6 +167,7 @@ def compute_pulse(
     forecast_category: Any = None,
     qualified_date: Any = None,
     next_step: Any = None,
+    last_inbound_email_date: Any = None,
     today: Optional[date] = None,
 ) -> dict:
     """Compute the single authoritative engagement pulse for one opportunity."""
@@ -176,6 +177,12 @@ def compute_pulse(
     cd = _parse_date(close_date)
     qd = _parse_date(qualified_date)
     rep = parse_rep_outreach(next_step, today)
+    # A real INBOUND buyer email (the buyer replied) is a genuine two-way touch —
+    # treated like a buyer call, NOT as rep outreach. Load-bearing because SF
+    # LastActivityDate is unreliable for Clari/EAC-captured incoming email.
+    li = _parse_date(last_inbound_email_date)
+    days_since_inbound = _days_since(li, today)
+    recent_inbound = days_since_inbound is not None and days_since_inbound <= LIVE_DAYS
 
     cr = None if calls_read is None else int(calls_read)
     buyer_calls_seen = bool(cr and cr > 0)
@@ -186,12 +193,13 @@ def compute_pulse(
     # activity is 90+ days old, the calls read are almost certainly old too, so a
     # months-silent deal must NOT read "live" off a stale call.
     recent_call = buyer_calls_seen and (days_since is None or days_since <= DARK_DAYS)
-    verified_recent = (days_since is not None and days_since <= LIVE_DAYS) or recent_call
-    verified_known = days_since is not None or cr is not None
+    verified_recent = (days_since is not None and days_since <= LIVE_DAYS) or recent_call or recent_inbound
+    verified_known = days_since is not None or cr is not None or li is not None
 
     if verified_recent:
         state = "live"
-    elif days_since is not None and days_since <= DARK_DAYS:
+    elif (days_since is not None and days_since <= DARK_DAYS) or (
+            days_since_inbound is not None and days_since_inbound <= DARK_DAYS):
         state = "cooling"
     elif rep["detected"]:
         # Verified dark/unknown, but the rep reached out recently — surface that
@@ -208,6 +216,8 @@ def compute_pulse(
         "state": state,
         "last_activity_date": la.isoformat() if la else None,
         "days_since_activity": days_since,
+        "last_inbound_email_date": li.isoformat() if li else None,
+        "days_since_inbound": days_since_inbound,
         "calls_read": cr,
         "buyer_calls_seen": buyer_calls_seen,
         "stage": stage or None,
@@ -237,6 +247,7 @@ def compute_pulse_from_hard(hard: Optional[dict], today: Optional[date] = None,
         forecast_category=hard.get("forecast_category"),
         qualified_date=hard.get("qualified_date"),
         next_step=hard.get("next_step"),
+        last_inbound_email_date=hard.get("last_inbound_email_date"),
         today=today,
     )
 
@@ -259,6 +270,11 @@ def _summary(p: dict) -> str:
     else:
         base = (f"Dark: no verified buyer engagement in {ds} day(s) (last {la})."
                 if ds is not None else "Dark: no verified buyer engagement on record.")
+    li = p.get("last_inbound_email_date")
+    di = p.get("days_since_inbound")
+    if li:
+        base += (f" Buyer EMAIL RECEIVED {di} day(s) ago ({li}) — a real two-way reply "
+                 "from the buyer (NOT rep outreach); treat as genuine engagement.")
     rep = p.get("rep_outreach") or {}
     if rep.get("detected"):
         base += f" Rep outreach {rep.get('date')} — {REP_OUTREACH_NOTE}."
@@ -286,6 +302,10 @@ _GHOST_MARKERS = (
     "wrong stage", "stage is wrong", "stale stage", "incorrect stage",
     "data quality", "data-quality",
     "no recent activity", "no activity in", "dormant", "stalled out",
+    # Dismissing a live LastActivityDate / buyer reply as "internal only" — the SC
+    # failure mode where the agent re-narrated a live pulse as buyer silence.
+    "internal activity", "internal-only activity", "not buyer engagement",
+    "no buyer engagement", "no buyer-facing", "buyer silence",
 )
 
 
@@ -352,6 +372,14 @@ def render_block(pulse: dict) -> str:
             + (f" ({ds} day(s) ago)" if ds is not None else ""))
     else:
         lines.append("- Last verified Salesforce activity (LastActivityDate): none on record")
+    if pulse.get("last_inbound_email_date"):
+        di = pulse.get("days_since_inbound")
+        lines.append(
+            f"- Buyer EMAIL RECEIVED (incoming reply): {pulse.get('last_inbound_email_date')}"
+            + (f" ({di} day(s) ago)" if di is not None else "")
+            + " — a REAL two-way buyer touch (Clari/EmailMessage incoming), NOT rep "
+            "outreach. Treat as genuine buyer engagement; you may NOT report buyer "
+            "silence/no-contact for any period before this date.")
     if pulse.get("calls_read") is not None:
         lines.append(f"- Buyer calls read this sweep: {pulse.get('calls_read')}")
     if pulse.get("stage"):

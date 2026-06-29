@@ -11,6 +11,35 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Engagement reads inbound email; momentum credits forward close-date + next-step
+
+**What.** Two scoring-accuracy fixes from rep feedback (HAVI, Standard Chartered):
+- **Inbound buyer email is now an engagement signal.** The pulse was blind to incoming
+  email — it only saw Avoma calls + `LastActivityDate` — so a buyer reply that lands as a
+  Clari `[Clari - Email Received]` Task (or `EmailMessage Incoming=true`) was invisible and
+  the deal read falsely cold (Standard Chartered: "72 days silent" while Stuart had replied
+  + nominated Horizon attendees). `_buyer_identity` (deal_engine_sweep.py) now reads the
+  latest inbound-email date; it's threaded into `compute_pulse`/`compute_pulse_from_hard`
+  (deal_engine_pulse.py) as a real two-way touch (treated like a buyer call), stamped onto
+  `hard.last_inbound_email_date`, and surfaced in the pulse summary + ground-truth
+  `render_block`. Also hardened `flag_contradicts_live_pulse` (added "internal activity",
+  "not buyer engagement", "buyer silence") so the agent can't re-narrate a live pulse cold.
+- **Momentum credits a forward-pulled close date + active Next Step.** Added `+close_date_pulled_forward`
+  (reads the already-stored `ai.opp_trends.close_date_trend>0`) and `+next_step_active`
+  (counts dated milestones in the Next_Step log) to `MOMENTUM` (deal_engine_scoring.py), and
+  **guarded the negative** so a date pulled EARLIER can no longer fire `close_date_pushed`
+  (the HAVI bug: accelerating the date lost momentum).
+
+**Why.** The engine under-read genuine engagement (inbound email) and under-credited genuine
+forward motion (date pulled in, milestones logged) — producing false-cold verdicts and
+suppressed momentum on healthy deals.
+
+**How to work with it going forward.** Takes effect on the next sweep (re-sweep affected
+deals to refresh). Limitations: true Next-Step *update cadence* needs SF history-tracking on
+`Next_Step__c` (off today) — we proxy via dated milestones in the current Next_Step text. The
+inbound source is the Clari Task subject `[Clari - Email Received]` (primary) + `EmailMessage
+Incoming=true` (fallback); `LastActivityDate` is NOT reliable for inbound.
+
 ## 2026-06-29 — Datalake self-healing reconciliation + sync hardening
 
 **What.** The Avoma→datalake lake was only filled by (1) a manual day-by-day backfill

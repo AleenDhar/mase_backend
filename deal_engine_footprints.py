@@ -34,20 +34,27 @@ _DEFAULT_CADENCE = 30
 
 
 def _parse_dt(s):
+    """Parse an SF date/datetime to a tz-AWARE datetime. Always normalises to UTC so a
+    date-only Task ActivityDate (naive) and a timed Event ActivityDateTime (aware) can be
+    compared together — mixing the two was crashing derive_footprints with 'can't compare
+    offset-naive and offset-aware datetimes', which silently nulled footprints for EVERY
+    deal and killed Deal Momentum v2 in prod."""
     if not s:
         return None
     s = str(s)
-    for fmt in (None,):
-        try:
-            return datetime.fromisoformat(s.replace("Z", "+00:00"))
-        except Exception:  # noqa: BLE001
-            pass
-    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
-        try:
-            return datetime.strptime(s[:19] if "T" in s else s[:10], fmt)
-        except Exception:  # noqa: BLE001
-            continue
-    return None
+    dt = None
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except Exception:  # noqa: BLE001
+        for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+            try:
+                dt = datetime.strptime(s[:19] if "T" in s else s[:10], fmt)
+                break
+            except Exception:  # noqa: BLE001
+                continue
+    if dt is not None and dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt
 
 
 def _age_days(dt, now=None):

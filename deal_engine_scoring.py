@@ -32,12 +32,24 @@ an empty result and the sweep continues.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from math import exp
 from typing import Optional
 
 ENABLED = os.getenv("DEAL_SCORES_ENABLED", "1").strip().lower() not in ("0", "false", "no", "")
 SCHEMA_VERSION = 1
+
+# Dated milestones embedded in a running Next_Step log (ISO, m/d, or "Jul 24"). Counting
+# distinct dates is our proxy for "the next step is actively worked with real milestones"
+# — Salesforce Next_Step__c history-tracking is off, so true update-cadence isn't available.
+_DATE_RE = re.compile(
+    r"\b(\d{4}-\d{2}-\d{2}|\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?|"
+    r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2})\b", re.I)
+
+
+def _count_dated_milestones(text) -> int:
+    return len(set(m.lower() for m in _DATE_RE.findall(str(text or ""))))
 
 
 @dataclass
@@ -63,6 +75,9 @@ MOMENTUM = {
     "stage_stuck_past_cadence": (-1, 7), "customer_passivity": (-1, 8),
     "attendance_or_cadence_drop": (-1, 7), "generic_demo_only": (-1, 5),
     "competitor_praised": (-1, 6), "buyer_engaged_this_sweep": (+1, 10),
+    # A close date pulled FORWARD is a strong forward-momentum signal (the buyer is
+    # accelerating); frequent dated Next-Step milestones show the deal is being worked.
+    "close_date_pulled_forward": (+1, 8), "next_step_active": (+1, 6),
 }
 MOMENTUM_DECAY_TAU = 14.0
 MOMENTUM_STALL_MAX = 25.0   # a deal far past cadence loses up to this much momentum (sinks below 50)
@@ -93,7 +108,7 @@ READ_DIMENSIONS = {
     "competitive": ["competitive_posture", "competitor_preferred", "competitor_praised", "open_competitive_rfp"],
     "exec_and_champion": ["exec_access", "champion_strength", "exec_access_granted", "access_blocked", "seniority_rising", "stakeholder_expansion"],
     "commercial": ["commercial_motion", "internal_process_shared", "security_or_procurement_review", "budget_frozen_or_unclear", "close_plan_concretizing", "deep_eval_or_reference_request"],
-    "forward_motion": ["customer_requested_next_meeting", "customer_next_meeting_request", "next_meeting_declined", "concrete_dates", "close_date_pushed", "customer_action_items_increasing", "commercial_topics_entering"],
+    "forward_motion": ["customer_requested_next_meeting", "customer_next_meeting_request", "next_meeting_declined", "concrete_dates", "close_date_pushed", "close_date_pulled_forward", "next_step_active", "customer_action_items_increasing", "commercial_topics_entering"],
 }
 COVERAGE_BANDS = [(90, "Full Read"), (75, "Solid Read"), (50, "Partial Read"), (0, "Early Read")]
 
@@ -566,14 +581,29 @@ def derive_evidence(record: dict):
         elif isinstance(_v, (int, float)):
             put(_k, max(0.0, min(1.0, float(_v))), f"{_k.replace('_', ' ')} (from call evidence).")
 
-    # --- close-date risk from verdict + history ---
+    # --- close-date direction & risk ---
+    # A close date pulled FORWARD (opp_trends.close_date_trend > 0) is the buyer
+    # ACCELERATING — credit it as positive momentum, and do NOT let the date-risk
+    # negative fire against it. (Old bug: a forward pull was penalised as a "push",
+    # so a deal accelerating its own date LOST momentum — e.g. HAVI.)
+    ct = _num((ai.get("opp_trends") or {}).get("close_date_trend"))
+    ct_detail = str((ai.get("opp_trends") or {}).get("close_date_trend_detail") or "")
+    pulled_forward = ct is not None and ct > 0
+    if pulled_forward:
+        put("close_date_pulled_forward", min(1.0, ct),
+            ct_detail or "Close date pulled forward — buyer accelerating.")
     cdr_now = verdict == "Close Date Risk"
     cdr_count = sum(1 for h in vh if str(h.get("verdict")) == "Close Date Risk")
-    if cdr_now:
+    if cdr_now and not pulled_forward:
         put("close_date_pushed", 0.5, "Verdict flags close-date risk this sweep.")
-    if cdr_count >= 2:
+    if cdr_count >= 2 and not pulled_forward:
         put("close_date_pushed_repeatedly", min(0.4 + 0.1 * cdr_count, 0.8),
             f"Close-date risk recurred across {cdr_count} sweeps.")
+    # --- Next Step actively worked: dated milestones in the running Next_Step log ---
+    ns_dates = _count_dated_milestones(hard.get("next_step"))
+    if ns_dates >= 1:
+        put("next_step_active", min(0.4 + 0.2 * ns_dates, 0.9),
+            f"Next Step carries {ns_dates} dated milestone(s) — actively worked.")
     # An overdue / imminent close date is ITSELF a close-date risk, independent of the
     # verdict wording — fixes deals (e.g. Mair) whose date has passed reading 0 risk.
     dtc = _num(pulse.get("days_to_close"))

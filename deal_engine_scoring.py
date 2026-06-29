@@ -169,6 +169,30 @@ WIN_STAGE_ANCHOR = [           # (substring, prior) — checked in order, most s
     ("initial interest", 8), ("interest", 8),
 ]
 WIN_ANCHOR_DEFAULT = 35.0
+# Stage CEILINGS on Win (2026-06-29, user-directed): you cannot be highly confident of
+# winning until the buyer is structurally committed to the round / has selected you.
+#   BEFORE RFP (Initial Interest, Qualified)            -> max 30
+#   DURING RFP (Formal Evaluation, Shortlisted)         -> max 70
+#   POST-shortlist (Vendor Selected -> Contract -> PO)  -> up to 100
+WIN_STAGE_CEILING = [          # (substring, ceiling) — most specific first
+    ("po received", 100), ("po-received", 100),
+    ("contract signed", 100), ("won", 100),
+    ("contract", 100), ("negotiat", 100),
+    ("vendor select", 100), ("selected", 100),
+    ("shortlist", 70),
+    ("formal eval", 70), ("evaluation", 70),
+    ("qualif", 30),
+    ("initial interest", 30), ("interest", 30),
+]
+WIN_CEILING_DEFAULT = 70.0
+
+
+def _win_ceiling(record: dict) -> float:
+    s = str(((record or {}).get("hard") or {}).get("stage") or "").lower()
+    for sub, cap in WIN_STAGE_CEILING:
+        if sub in s:
+            return float(cap)
+    return WIN_CEILING_DEFAULT
 # RUBRIC WIN (2026-06-29, user-directed): keep the STAGE ANCHOR as the base, then apply a
 # signed adjustment of up to +/-WIN_RUBRIC_BAND driven by the FULL rubric factor table.
 # Strong rubric evidence ADDS to the stage base; weak/negative evidence CHIPS OFF; MISSING
@@ -334,9 +358,10 @@ def score_win_position(ev, record=None):
                                           f"{k.replace('_', ' ')} {v:+.2f}"))
 
     adj = round(WIN_RUBRIC_BAND * net, 1)         # signed: strong adds, weak/missing chips off
-    score = round(_clamp(anchor + adj, 0.0, 99.0), 1)
+    ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
+    score = round(min(ceiling, _clamp(anchor + adj, 0.0, 99.0)), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "contributions": contributions}
+            "lift": adj, "ceiling": ceiling, "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):

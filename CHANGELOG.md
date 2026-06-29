@@ -39,6 +39,19 @@ deals to refresh). Limitations: true Next-Step *update cadence* needs SF history
 `Next_Step__c` (off today) — we proxy via dated milestones in the current Next_Step text. The
 inbound source is the Clari Task subject `[Clari - Email Received]` (primary) + `EmailMessage
 Incoming=true` (fallback); `LastActivityDate` is NOT reliable for inbound.
+## 2026-06-29 — Win Position stage ceilings + opp-trend signals
+
+**Win ceilings** (`WIN_STAGE_CEILING`, `_win_ceiling`): you can't be highly confident of
+winning before the buyer is structurally committed. Caps applied AFTER anchor+rubric+trend:
+BEFORE RFP (Initial Interest / Qualified) -> max 30; DURING RFP (Formal Evaluation /
+Shortlisted) -> max 70; post-shortlist (Vendor Selected / Contract / PO) -> up to 100.
+So a strongest-possible Qualified deal caps at 30, Shortlisted at 70.
+
+**Opp-trend signals** (`deal_engine_trends`, `opp_trends_one`, backfill_opp_trends): Win now
+blends a modest (±influence 0.4) signed nudge from field-history CRM moves — amount up/down,
+close date pulled-in/pushed-out, stage advance/regress, forecast-category up/down — all
+recency-weighted within the trend window. Durable (sweep recomputes per-opp so re-sweeps keep
+them). Backfill: POST /api/deal-engine/backfill/opp-trends.
 
 ## 2026-06-29 — Datalake self-healing reconciliation + sync hardening
 

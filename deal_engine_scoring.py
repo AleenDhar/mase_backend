@@ -62,9 +62,10 @@ MOMENTUM = {
     "stage_advanced_with_evidence": (+1, 8), "close_date_pushed": (-1, 9),
     "stage_stuck_past_cadence": (-1, 7), "customer_passivity": (-1, 8),
     "attendance_or_cadence_drop": (-1, 7), "generic_demo_only": (-1, 5),
-    "competitor_praised": (-1, 6),
+    "competitor_praised": (-1, 6), "buyer_engaged_this_sweep": (+1, 10),
 }
 MOMENTUM_DECAY_TAU = 14.0
+MOMENTUM_STALL_MAX = 25.0   # a deal far past cadence loses up to this much momentum (sinks below 50)
 
 COMMITMENT = {"customer_action_items": 10, "internal_process_shared": 10,
               "exec_access_granted": 9, "customer_next_meeting_request": 7,
@@ -210,10 +211,12 @@ def score_momentum(ev, dsl, expected):
     pre = _clamp(total)
     note, score = None, pre
     if dsl is not None and dsl > expected:
+        # Silence DRAGS momentum down (a stalled enterprise deal is losing momentum, not
+        # "flat"). The drag grows with how far past cadence the deal is, up to STALL_MAX.
         overdue = dsl - expected
-        f = exp(-overdue / MOMENTUM_DECAY_TAU)
-        score = 50.0 + (pre - 50.0) * f
-        note = f"{overdue}d past expected cadence; momentum eased toward flat (x{f:.2f})"
+        stall = MOMENTUM_STALL_MAX * (1.0 - exp(-overdue / MOMENTUM_DECAY_TAU))
+        score = pre - stall
+        note = f"{overdue}d past expected cadence; momentum down {stall:.0f}pt (stalling)"
     return {"score": round(_clamp(score), 1), "pre_decay": round(pre, 1),
             "decay_note": note, "contributions": contributions}
 
@@ -265,12 +268,22 @@ def score_coverage(ev, dsl, expected):
             "dimensions_total": len(READ_DIMENSIONS), "recency_factor": round(recency, 2)}
 
 
+# FC = forecast confidence = odds this closes in the forecast window. ANCHOR ON WIN (the
+# stage-anchored close probability), then adjust by execution signals: commitment and
+# momentum above/below neutral nudge it, risk drags it. Coverage is a CONFIDENCE FLAG, not
+# a multiplier — a thin read means we know less, not that the deal is less likely to close.
+# Calibrated 2026-06-29 so a clean Commit-in-contracting lands 90+ (user-approved ceiling).
+FC_COM_W = 0.20
+FC_MOM_W = 0.12
+FC_RISK_W = 0.50
+
+
 def score_forecast_confidence(win, mom, com, rsk, cov):
-    core = (FC_WEIGHTS["win"] * win + FC_WEIGHTS["momentum"] * mom
-            + FC_WEIGHTS["commitment"] * com + FC_WEIGHTS["risk_inverse"] * (100.0 - rsk))
-    mult = FC_COVERAGE_FLOOR + (1.0 - FC_COVERAGE_FLOOR) * (cov / 100.0)
-    return {"score": round(_clamp(core * mult), 1), "core": round(core, 1),
-            "coverage_multiplier": round(mult, 2)}
+    fc = win + FC_COM_W * (com - 50.0) + FC_MOM_W * (mom - 50.0) - FC_RISK_W * rsk
+    fc = _clamp(fc, 0.0, 99.0)
+    return {"score": round(fc, 1), "core": round(fc, 1),
+            "coverage": round(cov, 1),
+            "coverage_flag": "partial" if cov < 60 else "full"}
 
 
 # ----------------------------------------------------------------------------
@@ -404,6 +417,8 @@ def derive_evidence(record: dict):
             f"Engagement cadence dropped (pulse {state}).")
     if rep_push and not buyer_calls:
         put("customer_passivity", 0.4, "Rep driving cadence; customer not initiating.")
+    if state == "live" and buyer_calls:
+        put("buyer_engaged_this_sweep", 0.6, "Buyer actively engaged this sweep (live pulse + buyer calls).")
 
     # --- close-date risk from verdict + history ---
     cdr_now = verdict == "Close Date Risk"
@@ -413,6 +428,17 @@ def derive_evidence(record: dict):
     if cdr_count >= 2:
         put("close_date_pushed_repeatedly", min(0.4 + 0.1 * cdr_count, 0.8),
             f"Close-date risk recurred across {cdr_count} sweeps.")
+    # An overdue / imminent close date is ITSELF a close-date risk, independent of the
+    # verdict wording — fixes deals (e.g. Mair) whose date has passed reading 0 risk.
+    dtc = _num(pulse.get("days_to_close"))
+    signed = any(t in stage for t in ("signed", "po received", "po-received", "won", "closed"))
+    if dtc is not None and not signed:
+        if dtc < 0:
+            put("close_date_pushed_repeatedly", min(0.5 + (-dtc) / 120.0, 0.9),
+                f"Close date passed {int(-dtc)}d ago without signature.")
+        elif dtc <= 14 and advanced_stage:
+            put("close_date_pushed_repeatedly", 0.45,
+                f"Close date in {int(dtc)}d with signature not yet secured.")
 
     # --- stage stuck past cadence ---
     if dsq is not None and dsq > 120 and state in ("cooling", "dark"):
@@ -500,12 +526,11 @@ def _commentary(win, mom, com, rsk, fc, cov, h):
     else:
         out["deal_risk"] = (f"Risk {rsk['score']:.0f} is driven by {'; '.join(_trim(c['evidence'], 100) for c in pos[:2])}. "
                             "Only observed negatives count, so these are real warning signs, not gaps.")
-    mult = fc["coverage_multiplier"]
-    s2 = (f"Discounted (×{mult:.2f}) because the read is only {h['read']} — low evidence means trust it less." if mult < 0.85
-          else (f"A light trust discount (×{mult:.2f}) for a {h['read']}." if mult < 0.97 else "Full read, so no trust discount."))
-    out["forecast_confidence"] = (f"Forecast confidence {fc['score']:.0f} rolls up the four scores "
-                                  f"(win {h['win_position']:.0f}, momentum {h['deal_momentum']:.0f}, commitment "
-                                  f"{h['customer_commitment']:.0f}, risk-inverse {100 - h['deal_risk']:.0f}). " + s2)
+    s2 = (f" Read is {h['read']} — a confidence flag (we know less), not a haircut on the score."
+          if fc.get("coverage_flag") == "partial" else "")
+    out["forecast_confidence"] = (f"Forecast confidence {fc['score']:.0f} is anchored on the stage win "
+                                  f"({h['win_position']:.0f}), nudged by commitment {h['customer_commitment']:.0f} "
+                                  f"and momentum {h['deal_momentum']:.0f}, and dragged by risk {h['deal_risk']:.0f}." + s2)
     dims = ", ".join(d.replace("_", " ") for d in cov["dimensions_read"]) or "none"
     s2 = (f"Reduced because the most recent contact is stale (recency ×{cov['recency_factor']:.2f})."
           if cov.get("recency_factor", 1) < 1 else "It labels how much of the picture we have, never the primary scores.")

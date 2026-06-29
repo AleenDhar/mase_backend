@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Enterprise-sales recalibration of momentum / risk / FC
+
+Companion to the stage-anchored win change. All three other scores were flat or mis-shaped
+for an enterprise book.
+
+**Momentum** (`score_momentum` + derive_evidence): was 50 +/- sparse signals with a SYMMETRIC
+decay that pulled stalled deals back UP toward 50 — so the whole book sat ~48 (uninformative).
+Now: silence DRAGS momentum down (asymmetric `MOMENTUM_STALL_MAX=25` stall, grows with overdue
+days), and a live deal with buyer calls this sweep gets a lift (new `buyer_engaged_this_sweep`
+factor). Stalled deals sink below 50, active deals rise — real spread.
+
+**Risk** (derive_evidence close-date block): close-date risk previously fired ONLY from verdict
+wording (`cdr_now`/`cdr_count`), so a deal whose close DATE had simply passed read 0 risk (e.g.
+Mair, a month overdue, showed 0 at LATE). Now an overdue / imminent (<=14d at advanced stage)
+close date fires `close_date_pushed_repeatedly` directly from `pulse.days_to_close`. No baseline
+floor added (user: a genuinely clean deal may read 0).
+
+**FC** (`score_forecast_confidence`): was a weighted avg of win/mom/com/(100-risk) TIMES a
+coverage multiplier (0.5-1.0) — the multiplier crushed "Partial Read" deals (a Commit in
+contracting read ~62). Now FC ANCHORS ON WIN (the stage close-probability) and adjusts:
+`fc = win + 0.20*(com-50) + 0.12*(mom-50) - 0.50*risk`, clamped 0-99. Coverage is a reported
+FLAG (`coverage_flag`), not a haircut. Result (validated): Qualified ~12-17, Shortlisted ~40-60,
+Vendor Selected ~62-85, clean Commit-in-contracting 90+ (Omnia 90.7), overdue contracting
+dampened (Mair 76 — high win, but slipping close window). User-approved 90+ ceiling.
+
+**Rollout.** Read-time recompute automatic; stored refreshed via backfill/deal-scores.
+
 ## 2026-06-29 — Stage-anchored win probability
 
 **What.** `score_win_position` no longer starts from a flat 50 baseline. It now starts from a

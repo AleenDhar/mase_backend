@@ -753,6 +753,60 @@ async def _rubric_crm_scan(agent_manager, opp_id: str) -> dict:
     return out
 
 
+# --- Decision-outcome detector: an explicit WIN/LOSS in the latest call/notes/Next-Step ---
+# A deal can be lost (or won) on a call DAYS before Salesforce is updated. When the most
+# recent transcript/AI-notes say we lost, the deal is over no matter how much activity
+# preceded it — scoring must hard-override to 0, not read "healthy". HIGH-PRECISION phrases
+# only (a false loss is costly): generic words like "other vendor" alone do NOT trigger.
+_LOSS_PHRASES = (
+    "finished as the runner-up", "finished as runner-up", "finished second",
+    "zycus finished as", "second winner", "the second winner",
+    "selected the competing vendor", "selected the other vendor", "selected another vendor",
+    "chose the other vendor", "chose the competitor", "went with the competitor",
+    "went with another vendor", "awarded to the other", "we lost the deal",
+    "lost the deal to", "lost to coupa", "lost to the competitor", "deal is lost",
+    "have not been selected", "were not selected", "not been selected as",
+    "decided against zycus", "decided not to proceed with zycus", "deprioritized zycus",
+    "selected coupa", "chosen coupa", "awarded to coupa", "going with coupa",
+    "selected the incumbent", "zycus came second", "runner-up",
+)
+_WON_PHRASES = (
+    "selected zycus", "awarded to zycus", "chosen zycus", "zycus is the winner",
+    "zycus has been selected", "awarded the deal to zycus", "decided to go with zycus",
+    "we won the deal", "selected us as the vendor", "zycus as the preferred vendor and will",
+    "verbal commitment to zycus", "signed with zycus",
+)
+
+
+def _detect_decision_outcome(prefetch: dict, next_step_text: str = "") -> dict:
+    """Scan the MOST RECENT call notes/transcript (+ Next-Step) for an explicit win/loss.
+    A detected LOSS hard-overrides the score to 0 downstream, so this is high-precision.
+    Returns {status: 'lost'|'won'|'none', confidence, matched, evidence, source}."""
+    out = {"status": "none"}
+    calls = (prefetch or {}).get("calls") or (prefetch or {}).get("manifest") or []
+    recent = sorted([c for c in calls if c.get("date")],
+                    key=lambda c: str(c.get("date") or ""), reverse=True)[:3]
+    blobs = [(c, " ".join(str(c.get(k) or "") for k in
+                          ("notes", "transcript_excerpt", "subject")).lower()) for c in recent]
+    blobs.append(({"subject": "Next Step", "date": None}, str(next_step_text or "").lower()))
+    for c, t in blobs:
+        if not t:
+            continue
+        for p in _LOSS_PHRASES:
+            if p in t:
+                i = t.find(p)
+                return {"status": "lost", "confidence": "high", "matched": p,
+                        "evidence": t[max(0, i - 90):i + 110].strip(),
+                        "source": f"{c.get('subject') or 'call'} ({str(c.get('date') or '')[:10]})"}
+        for p in _WON_PHRASES:
+            if p in t:
+                i = t.find(p)
+                return {"status": "won", "confidence": "high", "matched": p,
+                        "evidence": t[max(0, i - 90):i + 110].strip(),
+                        "source": f"{c.get('subject') or 'call'} ({str(c.get('date') or '')[:10]})"}
+    return out
+
+
 async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
     """Deterministic engagement/liveness footprints from SF Tasks + Events + opp summary
     fields. Classifies each by buyer-vs-rep direction and engagement DEPTH (POC/workshop/
@@ -1936,29 +1990,58 @@ async def _avoma_prefetch(agent_manager, opp: dict, buyer: dict) -> dict:
         return _empty_prefetch(err=1)
 
 
-async def _avoma_prefetch_from_datalake(opp: dict) -> dict:
+_AVOMA_MATCH_EXCLUDE_DOMAINS = {
+    "gmail.com", "googlemail.com", "yahoo.com", "outlook.com", "hotmail.com",
+    "live.com", "icloud.com", "aol.com", "protonmail.com", "me.com", "zycus.com",
+} | _SI_DOMAINS
+
+
+async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
     """A/B path: build the Avoma manifest from the `datalake` (the deal's WHOLE call
     history — no 90-day clip, no 12-read cap, no rate-limit) in ONE SQL read, instead
     of live Avoma. Same shape as _avoma_prefetch so _avoma_prefetch_block renders it
-    unchanged. Shaped-empty on any failure; never raises."""
+    unchanged. Shaped-empty on any failure; never raises.
+
+    Matches THREE ways — opp_id OR account_id OR buyer attendee-DOMAIN — because Avoma's
+    SF association is frequently null/cross-wired: the HAVI loss-announcement call had
+    crm_opportunity_id=null AND a crm_account_id that didn't match the opp's account, so
+    the old opp-id-only match made the single most decisive call INVISIBLE. The attendee
+    domain (e.g. havi.com) is the reliable link. Newest calls are always included."""
     shaped = _empty_prefetch()
     shaped["discovery_method"] = "datalake"
-    shaped["match_basis"] = "datalake-opp"
+    shaped["match_basis"] = "datalake opp+account+domain"
     dl_url = os.getenv("DATALAKE_URL", "").rstrip("/")
     dl_key = os.getenv("DATALAKE_SERVICE_KEY", "")
     oid = opp.get("id") if isinstance(opp, dict) else None
     opp18 = sf_id_18(oid or "") or ""
     opp15 = (opp18 or (oid or ""))[:15]
-    if not (dl_url and dl_key and opp15):
+    buyer = buyer or {}
+    acc_id = buyer.get("account_id") or (opp.get("account_id") if isinstance(opp, dict) else None)
+    acc15 = (sf_id_18(acc_id or "") or (acc_id or ""))[:15]
+    doms = [str(d).lower().strip() for d in (buyer.get("domains") or []) if d]
+    doms = [d for d in doms if d and "." in d and d not in _AVOMA_MATCH_EXCLUDE_DOMAINS]
+    if not (dl_url and dl_key and (opp15 or acc15 or doms)):
         return shaped
     import httpx
-    url = (f"{dl_url}/rest/v1/avoma_meetings?crm_opportunity_id=like.{opp15}*"
-           "&select=uuid,subject,start_at,state,attendee_emails,transcript_ready,notes_ready,"
-           "avoma_transcripts(transcript_text),avoma_insights(ai_notes_text)&order=start_at")
+    ors = []
+    if opp15:
+        ors.append(f"crm_opportunity_id.like.{opp15}*")
+    if acc15:
+        ors.append(f"crm_account_id.like.{acc15}*")
+    for d in doms[:6]:
+        ors.append(f"attendee_domains.cs.{{{d}}}")   # array-contains the buyer domain
+    params = {
+        "select": "uuid,subject,start_at,state,attendee_emails,attendee_domains,"
+                  "crm_opportunity_id,transcript_ready,notes_ready,"
+                  "avoma_transcripts(transcript_text),avoma_insights(ai_notes_text)",
+        "or": "(" + ",".join(ors) + ")",
+        "order": "start_at",
+    }
+    shaped["match_basis"] = f"datalake opp+account+domain ({len(doms)} dom)"
     try:
         async with httpx.AsyncClient(timeout=30) as client:
-            r = await client.get(url, headers={"apikey": dl_key,
-                                               "Authorization": f"Bearer {dl_key}"})
+            r = await client.get(f"{dl_url}/rest/v1/avoma_meetings", params=params,
+                                 headers={"apikey": dl_key, "Authorization": f"Bearer {dl_key}"})
             rows = r.json() if r.status_code < 300 else []
     except Exception as e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] datalake prefetch failed opp={oid}: {type(e).__name__}: {e}", flush=True)
@@ -2356,7 +2439,7 @@ async def analyze_one(
                 "1", "true", "yes"):
             try:
                 if avoma_from_datalake:
-                    _avoma_pf = await _avoma_prefetch_from_datalake(opp)
+                    _avoma_pf = await _avoma_prefetch_from_datalake(opp, buyer)
                     # Per-deal fallback: if the datalake has NO calls for this opp
                     # (not yet backfilled / webhook missed it), use LIVE Avoma so the
                     # deal is never falsely read as dark.
@@ -3106,6 +3189,17 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["crm_evidence"] = _ce
         except Exception as _ce_e:  # noqa: BLE001
             print(f"[CRM-EVIDENCE] sweep compute failed for {opp_id}: {_ce_e}", flush=True)
+        try:
+            # Decision-outcome detector: an explicit WIN/LOSS in the latest call/notes/Next-Step.
+            # MUST run before scoring — a detected loss hard-overrides Win/Momentum to 0 even
+            # while Salesforce still shows the deal open (the HAVI-lost-to-Coupa case).
+            _dec = _detect_decision_outcome(_avoma_pf, (parsed.get("hard") or {}).get("next_step"))
+            if _dec.get("status") in ("lost", "won"):
+                parsed.setdefault("ai", {})["decision_outcome"] = _dec
+                print(f"[DECISION] opp={opp_id} status={_dec['status']} "
+                      f"src={_dec.get('source')} :: matched '{_dec.get('matched')}'", flush=True)
+        except Exception as _de:  # noqa: BLE001
+            print(f"[DECISION] detect failed for {opp_id}: {_de}", flush=True)
         try:
             import deal_engine_scoring
             _scores = deal_engine_scoring.compute_deal_scores(parsed)

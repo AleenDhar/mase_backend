@@ -959,6 +959,24 @@ def compute_deal_scores(record: dict) -> dict:
     """Return the deal_scores block for one swept record. Never raises."""
     if not ENABLED:
         return {}
+    # HARD OVERRIDE — an explicit LOSS detected in the latest call/notes/Next-Step ends the
+    # deal NOW, regardless of CRM stage or how much activity preceded it. A lost deal must
+    # read Win 0 / Momentum 0 instantly — never "healthy" off stale engagement (the HAVI case:
+    # lost to Coupa on the Jun-29 call while SF still showed Shortlisted / Upside Key Deal).
+    dec = (record.get("ai") or {}).get("decision_outcome") or {}
+    if dec.get("status") == "lost":
+        src = dec.get("source") or "the latest call"
+        ev_txt = (dec.get("evidence") or "").strip()
+        why = (f"We lost this deal — detected in {src}"
+               + (f": \"…{ev_txt[:160]}…\"" if ev_txt else "")
+               + ". Win and Momentum are 0; activity before the decision no longer counts.")
+        return {"schema_version": SCHEMA_VERSION, "decision": "lost",
+                "dead": True, "dead_label": f"Lost ({src})",
+                "headline": {"win_position": 0, "deal_momentum": 0, "customer_commitment": 0,
+                             "deal_risk": 100, "forecast_confidence": 0, "read": "Lost",
+                             "decision": "lost", "decision_source": src},
+                "commentary": {k: why for k in ("win_position", "deal_momentum",
+                               "customer_commitment", "deal_risk", "forecast_confidence")}}
     dead = is_dead_deal(record)
     if dead:
         # No live scores for a dead deal — surface a terminal state instead of misleading

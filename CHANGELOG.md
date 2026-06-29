@@ -11,6 +11,32 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Never miss the latest call + LOSS detector hard-overrides to 0
+
+**What.** Two trust-critical fixes after HAVI scored Win 70 / Mom 76 while it had **already
+been lost to Coupa** on that day's "RFP decision announcement" call:
+- **Avoma ingestion now matches opp_id OR account_id OR buyer attendee-DOMAIN.**
+  `_avoma_prefetch_from_datalake` previously queried `crm_opportunity_id` only. The HAVI loss
+  call had `crm_opportunity_id=null` AND a `crm_account_id` that didn't match the opp's account,
+  so the single most decisive call was INVISIBLE. It now also matches the buyer email domain
+  (e.g. `havi.com`) via `attendee_domains.cs.{}`. Verified against the live datalake: old match
+  8 calls (missed the loss), new match 9 calls (loss call included). The caller passes `buyer`.
+- **Decision-outcome detector → instant 0.** `_detect_decision_outcome` scans the 3 most recent
+  call notes/transcripts + Next-Step for high-precision win/loss phrases (`runner-up`,
+  `selected the competing vendor`, `lost to coupa`, …) and stamps `ai.decision_outcome`.
+  `compute_deal_scores` HARD-OVERRIDES a detected loss to **Win 0 / Mom 0 / Cmt 0 / Risk 100 /
+  read "Lost"** with a sourced reason — regardless of CRM stage or prior activity. (Loss only;
+  a `won` flag is stored but does not force the score.)
+
+**Why.** The data existed (transcript in the datalake 1h45m before the sweep) but the agent
+never ingested it because the SF↔Avoma link was broken, then scored a dead deal as healthy.
+A lost deal must read 0 the moment a call says so — not ride stale engagement.
+
+**How to work with it going forward.** Loss phrases live in `_LOSS_PHRASES` (high-precision by
+design — a false loss is costly; generic "other vendor" alone never triggers). Validated on the
+real HAVI loss call: detector → lost; score → 0/0, reason cites the Jun-29 call. The domain
+match also fixes the general "agent doesn't see the newest Avoma call" class of staleness.
+
 ## 2026-06-29 — Win rubric: deterministic Next-Step/narrative scan + PREFERENCE (playbook "next step")
 
 **What.** Implements the playbook's stated next step: the deterministic Win-rubric overlay now

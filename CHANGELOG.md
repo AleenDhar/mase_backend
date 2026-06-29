@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Rubric Win + 30-60d Momentum (user rubric, phase 1: scoring)
+
+**Win** (`score_win_position`): keeps the STAGE ANCHOR as the base, then applies a SIGNED
+adjustment of up to +/-30 (`WIN_RUBRIC_BAND`) driven by the FULL rubric factor table —
+differentiation 20 / customer preference 20 / champion 15 / exec access 15 / competitive 15 /
+business case 10 / commercial 5 (`RUBRIC_WIN_WEIGHTS`). Strong evidence ADDS, weak/negative
+CHIPS OFF, and MISSING evidence is a MILD NEGATIVE (`WIN_MISSING=-0.30`) — "not proven yet".
+Factors map from real structured fields today (`meddpicc.*` status, `champion_strength`,
+`ai_fit_signal`, `competitive_position`); two factors (customer_preference, business_case)
+read sweep fields if present, else proxy. `_rubric_win_strengths` / `_status_strength` /
+`_competitive_strength`. Validated: stage still leads (Omnia 85->95, MAIR ~86), weak early
+deals chip down (ABM ~2).
+
+**Momentum** (`score_momentum`): assessed over a BROADER 30-60 DAY window — only quiet beyond
+~30d (`MOMENTUM_WINDOW`) counts as stalling, scaling across the next 30 (`MOMENTUM_STALL_TAU`).
+The 7 granular rubric signals (seniority rising, commercial topics entering, concrete dates,
+customer asked next meeting, close plan concretizing, generic demo only, competitor praised)
+now fire from `ai.momentum_signals.<key>` — they were dead factors; they stay dormant until
+the sweep extracts them (phase 2), because they're call-level/time-sensitive and can't be
+faked from static MEDDPICC without inflating stalled deals.
+
+**Risk / Commitment / FC unchanged** (per instruction). FC mechanically reflects the new win
+(it is win-anchored) — formula untouched.
+
+**Phase 2 (separate):** extend the sweep prompt to emit `customer_preference`, `business_case`,
+and `momentum_signals` so the rubric runs on real call evidence, not proxies.
+
 ## 2026-06-29 — Dead-deal handling (lost / qualified out / omitted)
 
 **What.** A dead deal is no longer treated as a live opportunity anywhere.

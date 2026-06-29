@@ -66,6 +66,11 @@ MOMENTUM = {
 }
 MOMENTUM_DECAY_TAU = 14.0
 MOMENTUM_STALL_MAX = 25.0   # a deal far past cadence loses up to this much momentum (sinks below 50)
+# Momentum is read over a BROADER 30-60 day window (2026-06-29, user-directed): a deal is
+# only "stalling" once it has been quiet beyond ~30 days, and the drag scales across the
+# next 30 (tau 30 -> meaningful by 60d). Separate from MOMENTUM_DECAY_TAU (coverage recency).
+MOMENTUM_WINDOW = 30.0
+MOMENTUM_STALL_TAU = 30.0
 
 COMMITMENT = {"customer_action_items": 10, "internal_process_shared": 10,
               "exec_access_granted": 9, "customer_next_meeting_request": 7,
@@ -149,19 +154,22 @@ WIN_STAGE_ANCHOR = [           # (substring, prior) — checked in order, most s
     ("initial interest", 8), ("interest", 8),
 ]
 WIN_ANCHOR_DEFAULT = 35.0
-WIN_BAND = 15.0                # max points signals can move a deal off its stage anchor
-WIN_HEALTH_SCALE = 4.0        # net signal score that maps to a full +/-band
-# Within-stage POSITIVE drivers (your list: product fit, buyer momentum, we're leading /
-# champion + EB access, milestone success, pricing/commercial comfort, multi-threading).
-# pain_fit / engagement_direction are SIGNED (can pull down); the rest are magnitude-only.
-WIN_POS = {"pain_fit": 1.0, "engagement_direction": 1.0, "champion_strength": 1.0,
-           "exec_access": 1.0, "commercial_motion": 0.9, "stage_advanced_with_evidence": 0.8,
-           "customer_action_items": 0.6, "stakeholder_expansion": 0.5}
-# Within-stage LOSS risk (drags win): a competitor ahead, no-decision drift, stage bluff.
-# NOTE: close-date / budget / paperwork are TIMING risks — they do NOT drag win (you still
-# win the deal, just later); they live in deal_risk / momentum instead.
-WIN_NEG = {"competitor_preferred": 1.2, "open_competitive_rfp": 0.5,
-           "low_buyer_intent": 1.0, "customer_passivity": 0.8, "stage_inflation": 0.8}
+# RUBRIC WIN (2026-06-29, user-directed): keep the STAGE ANCHOR as the base, then apply a
+# signed adjustment of up to +/-WIN_RUBRIC_BAND driven by the FULL rubric factor table.
+# Strong rubric evidence ADDS to the stage base; weak/negative evidence CHIPS OFF; MISSING
+# evidence is treated as a MILD NEGATIVE ("we haven't proven it yet"). Weights are the
+# rubric's out-of-100 weights.
+WIN_RUBRIC_BAND = 30.0
+RUBRIC_WIN_WEIGHTS = {        # rubric table, sums to 100
+    "differentiation": 20,    # Zycus differentiation fit (AI/S2P/intake/sourcing/AP/contracts…)
+    "preference": 20,         # customer preference for Zycus (says positive, compares favourably)
+    "champion": 15,           # champion strength
+    "exec_access": 15,        # CPO/CFO/CIO/VP procurement involved
+    "competitive": 15,        # ahead / equal / behind named rivals
+    "business_case": 10,      # ROI / savings / automation / compliance quantified
+    "commercial": 5,          # pricing / scope / timeline acceptable
+}
+WIN_MISSING = -0.30           # unknown evidence = mild negative (chip off the base)
 
 
 def _win_anchor(record: dict) -> float:
@@ -172,27 +180,107 @@ def _win_anchor(record: dict) -> float:
     return WIN_ANCHOR_DEFAULT
 
 
+def _status_strength(status, *, present=1.0, partial=0.3, gap=-0.5, missing=WIN_MISSING) -> float:
+    """Map a MEDDPICC-style status string to a signed [-1,1] strength."""
+    s = str(status or "").strip().lower()
+    if not s:
+        return missing
+    if s in ("confirmed", "present", "strong", "yes", "high", "engaged", "identified", "complete"):
+        return present
+    if s in ("partial", "developing", "medium", "moderate", "some", "in_progress", "emerging"):
+        return partial
+    if s in ("gap", "none", "no", "low", "missing", "unknown", "not identified", "unmapped",
+             "weak", "at_risk", "at risk"):
+        return gap
+    return missing
+
+
+def _competitive_strength(ai: dict) -> float:
+    """+ when Zycus is ahead / the only real option (do-nothing rival), - when a real vendor
+    is preferred/ahead, mild-negative when unknown."""
+    comp = ai.get("competitive_position") or {}
+    items = comp.get("competitors") or comp.get("items") or []
+    real_ahead = False
+    has_real = False
+    for c in (items if isinstance(items, list) else []):
+        nm = str(c.get("name") or "").lower()
+        if any(t in nm for t in ("do nothing", "do-nothing", "manual", "status quo", "in-house", "inertia")):
+            continue  # not a vendor threat
+        has_real = True
+        st = str(c.get("status") or "").lower()
+        th = str(c.get("threat_level") or "").lower()
+        if st in ("preferred", "ahead", "incumbent", "winning", "leading") or th in ("high", "critical"):
+            real_ahead = True
+    if real_ahead:
+        return -1.0
+    if items and not has_real:
+        return 0.5            # only do-nothing / manual rival -> we're the wedge
+    if has_real:
+        return 0.2            # real rivals present but none ahead -> roughly even
+    return _status_strength((ai.get("meddpicc") or {}).get("competition", {}).get("status"),
+                            present=0.3, partial=0.1)
+
+
+def _rubric_win_strengths(record: dict) -> dict:
+    """Signed [-1,1] strength per rubric factor, read from the swept record. Sweep-emitted
+    fields (customer_preference, business_case) are used when present; otherwise mapped from
+    the best available structured evidence; absent -> mild negative."""
+    ai = record.get("ai") or {}
+    medd = ai.get("meddpicc") or {}
+    mst = lambda k: (medd.get(k) or {}).get("status")
+    out = {}
+
+    # Differentiation fit — AI-fit tier, else pain identified.
+    tier = str((ai.get("ai_fit_signal") or {}).get("tier") or "").lower()
+    if tier:
+        out["differentiation"] = (1.0 if any(t in tier for t in ("high", "strong", "excellent", "a+", "tier 1", "tier1"))
+                                  else 0.3 if any(t in tier for t in ("med", "moderate", "b", "tier 2"))
+                                  else -0.4)
+    else:
+        out["differentiation"] = _status_strength(mst("identify_pain"))
+
+    # Customer preference for Zycus — sweep field if present, else positioning proxy.
+    pref = ai.get("customer_preference")
+    if isinstance(pref, dict) and (pref.get("level") or pref.get("status")):
+        out["preference"] = _status_strength(pref.get("level") or pref.get("status"),
+                                             present=1.0, partial=0.4)
+    else:
+        pos = ai.get("ai_positioning_strength") or {}
+        sc = pos.get("score")
+        if pos.get("under_positioned") is True:
+            out["preference"] = -0.4
+        elif isinstance(sc, (int, float)):
+            out["preference"] = max(-0.5, min(1.0, (sc - 50.0) / 50.0 if sc > 1 else sc * 2 - 1))
+        else:
+            out["preference"] = WIN_MISSING
+
+    # Champion strength — explicit strength label, else MEDDPICC champion status.
+    cs = str((ai.get("champion_strength") or {}).get("strength") or "").lower()
+    out["champion"] = (_status_strength(cs, present=1.0, partial=0.3) if cs
+                       else _status_strength(mst("champion")))
+
+    out["exec_access"] = _status_strength(mst("economic_buyer"))
+    out["competitive"] = _competitive_strength(ai)
+    # Business case — sweep field if present, else MEDDPICC metrics.
+    bc = ai.get("business_case")
+    out["business_case"] = (_status_strength((bc or {}).get("status") or (bc or {}).get("level"))
+                            if isinstance(bc, dict) and (bc.get("status") or bc.get("level"))
+                            else _status_strength(mst("metrics")))
+    out["commercial"] = _status_strength(mst("paper_process"), present=1.0, partial=0.4)
+    return out
+
+
 def score_win_position(ev, record=None):
     anchor = _win_anchor(record)
-    contributions, health = [], 0.0
-    for k, w in WIN_POS.items():
-        s = _get(ev, k)
-        if s is None:
-            continue
-        v = max(-1.0, min(1.0, s.strength)) * w   # signed for fit/engagement, + for the rest
-        health += v
-        if abs(v) >= 0.05:
-            contributions.append(_contrib(k, v, s.evidence))
-    for k, w in WIN_NEG.items():
-        s = _get(ev, k)
-        if s is None:
-            continue
-        mag = max(0.0, min(1.0, s.strength)) * w
-        health -= mag
-        if mag >= 0.05:
-            contributions.append(_contrib(k, -mag, s.evidence))
-    health_n = max(-1.0, min(1.0, health / WIN_HEALTH_SCALE))
-    adj = round(WIN_BAND * health_n, 1)
+    strengths = _rubric_win_strengths(record or {})
+    contributions, weighted = [], 0.0
+    for f, w in RUBRIC_WIN_WEIGHTS.items():
+        s = strengths.get(f, WIN_MISSING)
+        weighted += w * s
+        contributions.append(_contrib(f, round(WIN_RUBRIC_BAND * w * s / 100.0, 1),
+                                      f"{f.replace('_', ' ')} strength {s:+.2f} (weight {w})"))
+    net = max(-1.0, min(1.0, weighted / 100.0))   # rubric net in [-1,+1]
+    adj = round(WIN_RUBRIC_BAND * net, 1)         # signed: strong adds, weak/missing chips off
     score = round(_clamp(anchor + adj, 0.0, 99.0), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
             "lift": adj, "contributions": contributions}
@@ -210,13 +298,14 @@ def score_momentum(ev, dsl, expected):
         contributions.append(_contrib(k, pts, s.evidence))
     pre = _clamp(total)
     note, score = None, pre
-    if dsl is not None and dsl > expected:
+    if dsl is not None and dsl > MOMENTUM_WINDOW:
         # Silence DRAGS momentum down (a stalled enterprise deal is losing momentum, not
-        # "flat"). The drag grows with how far past cadence the deal is, up to STALL_MAX.
-        overdue = dsl - expected
-        stall = MOMENTUM_STALL_MAX * (1.0 - exp(-overdue / MOMENTUM_DECAY_TAU))
+        # "flat"), assessed over a 30-60d window: only quiet beyond ~30d counts as stalling,
+        # and the drag scales across the next 30 days, up to STALL_MAX.
+        overdue = dsl - MOMENTUM_WINDOW
+        stall = MOMENTUM_STALL_MAX * (1.0 - exp(-overdue / MOMENTUM_STALL_TAU))
         score = pre - stall
-        note = f"{overdue}d past expected cadence; momentum down {stall:.0f}pt (stalling)"
+        note = f"{int(dsl)}d quiet (>30d window); momentum down {stall:.0f}pt (stalling)"
     return {"score": round(_clamp(score), 1), "pre_decay": round(pre, 1),
             "decay_note": note, "contributions": contributions}
 
@@ -419,6 +508,25 @@ def derive_evidence(record: dict):
         put("customer_passivity", 0.4, "Rep driving cadence; customer not initiating.")
     if state == "live" and buyer_calls:
         put("buyer_engaged_this_sweep", 0.6, "Buyer actively engaged this sweep (live pulse + buyer calls).")
+
+    # --- granular RUBRIC momentum signals (2026-06-29) ---
+    # These are CALL-LEVEL, TIME-SENSITIVE signals (a senior joined THIS period, the customer
+    # asked for pricing, praised a competitor, named specific dates). They cannot be faked
+    # from static MEDDPICC status without inflating stalled deals, so they fire ONLY from the
+    # sweep's extracted signals (ai.momentum_signals.<key>); dormant until the sweep emits
+    # them (see the "extract transcript-only signals" sweep-prompt change). Each value may be
+    # a bool (-> 0.6) or a 0-1 strength.
+    msig = ai.get("momentum_signals") if isinstance(ai.get("momentum_signals"), dict) else {}
+    _MOM_GRANULAR = ("seniority_rising", "commercial_topics_entering", "concrete_dates",
+                     "customer_requested_next_meeting", "close_plan_concretizing",
+                     "generic_demo_only", "competitor_praised")
+    for _k in _MOM_GRANULAR:
+        _v = msig.get(_k)
+        if isinstance(_v, bool):
+            if _v:
+                put(_k, 0.6, f"{_k.replace('_', ' ')} (from call evidence).")
+        elif isinstance(_v, (int, float)):
+            put(_k, max(0.0, min(1.0, float(_v))), f"{_k.replace('_', ' ')} (from call evidence).")
 
     # --- close-date risk from verdict + history ---
     cdr_now = verdict == "Close Date Risk"

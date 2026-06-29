@@ -577,10 +577,41 @@ def _stage_tier(record: dict) -> str:
     return "early"
 
 
+# A DEAD deal (lost / qualified out / omitted) is no longer a live opportunity: stop all
+# selling action items, scores, and forecast roll-up. Detected from EITHER the stage OR the
+# forecast category (one field killing it is enough). Closed WON is NOT dead here — it's a
+# different motion (handoff), out of scope for this suppression. Re-opening a deal (stage
+# back to a live value) auto-revives it, because everything here is computed read-time.
+_DEAD_STAGE_MARKERS = ("closed lost", "qualified out", "closed-lost", "qualified-out")
+
+
+def is_dead_deal(record: dict):
+    """Return a label ('Lost' | 'Omitted') if the deal is dead, else None."""
+    hard = (record or {}).get("hard") or {}
+    stage = str(hard.get("stage") or "").lower()
+    fc = str(hard.get("forecast_category") or "").lower()
+    if "qualified out" in stage or "qualified-out" in stage:
+        return "Qualified Out"
+    if "closed lost" in stage or "closed-lost" in stage or stage.strip() == "lost":
+        return "Lost"
+    if fc == "omitted":
+        return "Omitted"
+    return None
+
+
 def compute_deal_scores(record: dict) -> dict:
     """Return the deal_scores block for one swept record. Never raises."""
     if not ENABLED:
         return {}
+    dead = is_dead_deal(record)
+    if dead:
+        # No live scores for a dead deal — surface a terminal state instead of misleading
+        # numbers (a lost deal must not read win 40 / FC 34).
+        return {"schema_version": SCHEMA_VERSION, "dead": True, "dead_label": dead,
+                "headline": {"dead": True, "dead_label": dead, "read": dead,
+                             "win_position": None, "deal_momentum": None,
+                             "customer_commitment": None, "deal_risk": None,
+                             "forecast_confidence": None}}
     try:
         ev, cadence = derive_evidence(record)
         ev, agent_cadence = _overlay_agent_factors(ev, record)

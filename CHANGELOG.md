@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-29 — Dead-deal handling (lost / qualified out / omitted)
+
+**What.** A dead deal is no longer treated as a live opportunity anywhere.
+- **Detection** `deal_engine_scoring.is_dead_deal(record)` -> 'Lost' | 'Qualified Out' | 'Omitted'.
+  EITHER stage (Closed Lost / Qualified Out) OR forecast category (Omitted) triggers it. Closed
+  WON is NOT included. Read-time, so re-opening a deal auto-revives it.
+- **Scores** (`compute_deal_scores`): dead -> terminal block `{dead:true, dead_label, read:<label>,
+  win/mom/cmt/risk/fc = null}` — no misleading numbers. `attach_deal_scores` recomputes a now-dead
+  deal so stale live scores can't linger.
+- **Verdict/Health** (`attach_verdict_view`): dead -> verdict + health_bucket = the label (Lost/
+  Omitted), risk_tag None, `dead:true` — not On Track / Slowing / Off Track.
+- **To-dos** (`derive_todo`): dead -> ONLY the single top play + best practices; prospect
+  requirements, Zycus commitments, and buyer-owed items are suppressed. Best practices come from
+  `_dead_deal_best_practices` = retrospective ("what we didn't do well", grounded in the record:
+  who we lost to, EB never mapped, single-thread) + SPECIFIC SF hygiene (wrong stage, unlogged
+  outcome). No win-back (sponsors locked 3-5 yrs).
+
+**Why.** On a closed-lost deal (e.g. Restaurant Brands) the prospect's open requirements, our
+pending commitments, and buyer-owed items are all irrelevant — they already went with another
+vendor. Generating action items on dead deals is noise.
+
+**Frontend companion** (MASE): Lost/Omitted health tone, scores show the terminal label not
+numbers, and dead deals are EXCLUDED from the weighted-forecast / weighted-pipeline roll-ups.
+
 ## 2026-06-29 — Enterprise-sales recalibration of momentum / risk / FC
 
 Companion to the stage-anchored win change. All three other scores were flat or mis-shaped

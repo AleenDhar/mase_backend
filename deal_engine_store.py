@@ -1527,13 +1527,19 @@ def attach_deal_scores(rec: dict) -> dict:
     (never persisted over a fresh sweep), never raises."""
     if not isinstance(rec, dict):
         return rec
+    import deal_engine_scoring
     ai = rec.get("ai")
     ds = ai.get("deal_scores") if isinstance(ai, dict) else None
-    if isinstance(ds, dict) and isinstance(ds.get("headline"), dict) \
-            and ds["headline"].get("forecast_confidence") is not None:
-        return rec  # already present — nothing to do
+    if isinstance(ds, dict) and isinstance(ds.get("headline"), dict):
+        h = ds["headline"]
+        # Already a terminal (dead) block, or live scores present AND the deal is still
+        # live — nothing to do. But a deal that just went DEAD with stale live scores must
+        # be recomputed to the terminal block (don't keep showing win 40 / FC 34).
+        if h.get("dead"):
+            return rec
+        if h.get("forecast_confidence") is not None and not deal_engine_scoring.is_dead_deal(rec):
+            return rec
     try:
-        import deal_engine_scoring
         scores = deal_engine_scoring.compute_deal_scores(rec)
     except Exception as e:  # noqa: BLE001 — a scoring failure must never break a read
         print(f"[DEAL-SCORES] read-time compute failed opp={rec.get('opp_id')}: {e}", flush=True)
@@ -1558,9 +1564,20 @@ def attach_verdict_view(rec: dict) -> dict:
         return rec
     try:
         import deal_engine_verdict as dv
+        import deal_engine_scoring
         out = dict(rec)
         ai = dict(out.get("ai") or {})
         nsv = dict(ai.get("north_star_verdict") or {})
+        dead = deal_engine_scoring.is_dead_deal(out)
+        if dead:
+            # A dead deal reads a terminal status, not On Track / Slowing / Off Track.
+            nsv["verdict"] = dead              # "Lost" | "Qualified Out" | "Omitted"
+            nsv["health_bucket"] = dead
+            nsv["risk_tag"] = "None"
+            nsv["dead"] = True
+            ai["north_star_verdict"] = nsv
+            out["ai"] = ai
+            return out
         owned = bool(nsv.get("verdict_recomputed_at"))
         if not owned:
             nsv["verdict"] = dv.regrade_label(out)
@@ -1652,6 +1669,52 @@ def _buyer_dependent_items(ai: dict) -> list:
     return [d for d in _items(ai, "open_deliverables") if _is_buyer_side(d.get("who"))]
 
 
+def _dead_deal_best_practices(rec: dict, dead_label: str) -> list:
+    """For a DEAD deal (lost / qualified out / omitted) the only to-dos that make sense are
+    (1) a short RETROSPECTIVE — what we didn't do well — and (2) specific SALESFORCE HYGIENE
+    gaps (right stage, logged outcome). No win-back (sponsors are locked 3-5 yrs). All
+    derived from the stored record, named to the actual gap."""
+    hard = rec.get("hard") or {}
+    ai = rec.get("ai") or {}
+    stage = str(hard.get("stage") or "")
+    stage_l = stage.lower()
+    out: list = []
+
+    # --- Salesforce hygiene (named to the specific gap) ---
+    closed_stage = (any(m in stage_l for m in ("closed lost", "qualified out", "closed-lost",
+                                               "qualified-out")) or stage_l.strip() == "lost")
+    if not closed_stage:  # dead via Omitted forecast but the stage still says it's live
+        out.append(f"SF hygiene: stage still reads '{stage}' but the deal is {dead_label} — "
+                   f"set the stage to Closed Lost / Qualified Out so the record matches reality.")
+    if not (hard.get("close_reason") or hard.get("loss_reason") or hard.get("next_step")):
+        kind = "omit" if dead_label == "Omitted" else "loss"
+        out.append(f"SF hygiene: log the {kind} reason and the winning vendor on the "
+                   f"opportunity so win/loss analysis is accurate.")
+
+    # --- Retrospective: what we didn't do well (grounded in the record) ---
+    comp = ai.get("competitive_position") or {}
+    citems = comp.get("items") if isinstance(comp.get("items"), list) else []
+    winner = next((c.get("name") for c in citems
+                   if str(c.get("status") or "").lower() in ("preferred", "won", "selected", "incumbent")
+                   or str(c.get("threat_level") or "").lower() in ("high", "critical")), None)
+    if winner:
+        out.append(f"Retrospective: lost to {winner} — review why (entered late, single-threaded, "
+                   f"pricing, or product gap) and record the lesson.")
+    medd = ai.get("meddpicc") or {}
+    eb_status = str((medd.get("economic_buyer") or {}).get("status") or "").lower()
+    if eb_status in ("", "unknown", "not identified", "unmapped", "none", "no"):
+        out.append("Retrospective: economic buyer was never mapped/engaged — reach power earlier "
+                   "and multi-thread on similar accounts.")
+    smap = (ai.get("stakeholder_map") or {}).get("items")
+    if isinstance(smap, list) and len(smap) <= 1:
+        out.append("Retrospective: the deal ran effectively single-threaded — build a wider buying "
+                   "coalition next time.")
+    if not any(o.startswith("Retrospective") for o in out):
+        out.append("Retrospective: capture the loss reason and what we'd do differently for "
+                   "win/loss analysis.")
+    return out[:4]
+
+
 def derive_todo(owner: Optional[str] = None) -> dict:
     """RSD-filterable action list grouped by impact, computed from the records.
 
@@ -1659,6 +1722,7 @@ def derive_todo(owner: Optional[str] = None) -> dict:
     plus its current `pushed` / `sf_task_id` state (joined from the
     deal_todo_pushes ledger) so the UI can show which to-dos were already pushed
     to Salesforce, surviving reloads."""
+    import deal_engine_scoring as _scoring
     records = list_records(owner)
     pmap = _pushes_index()
     critical, important, explicit, implicit, best_practice = [], [], [], [], []
@@ -1679,6 +1743,26 @@ def derive_todo(owner: Optional[str] = None) -> dict:
             "owner_name": hard.get("owner_name"),
             "manager_name": _mgr,
         }
+
+        # DEAD deal (lost / qualified out / omitted): no live action items. Keep ONLY the
+        # single top play (retrospective-style) + best practices (retrospective + SF hygiene).
+        # Suppress prospect requirements, Zycus commitments, and buyer-owed items entirely.
+        # Read-time, so a re-opened deal auto-regains its full plan.
+        _dead = _scoring.is_dead_deal(rec)
+        if _dead:
+            _mv = _items(ai, "recommended_moves")
+            if _mv:
+                _top = sorted(_mv, key=lambda m: _num(m.get("rank")) if m.get("rank") is not None else 99)[0]
+                _ad = _top.get("act_by") or _top.get("trigger_date")
+                critical.append(_stamp_todo({**ctx, "action": _top.get("action"),
+                                 "intervention_owner": _top.get("owner"), "horizon": _top.get("horizon"),
+                                 "trigger": _top.get("trigger"), "trigger_date": _top.get("trigger_date"),
+                                 "act_by": _top.get("act_by"), "urgency": _urgency(_ad),
+                                 "expected_effect": _top.get("expected_effect")},
+                                 "critical", _top.get("action"), _ad, pmap))
+            for _bp in _dead_deal_best_practices(rec, _dead):
+                best_practice.append(_stamp_todo({**ctx, "flag": _bp}, "bestPractice", _bp, None, pmap))
+            continue
 
         # Moves: EVERY recommended move on EVERY deal. These fold into the
         # "Commitments made by Zycus" bucket in the UI, so the full ranked plan is

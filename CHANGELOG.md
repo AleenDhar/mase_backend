@@ -11,6 +11,23 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-30 — Sweep model → Opus 4.8 + cleaner win reasons
+
+**What.** (1) `DEAL_ENGINE_SWEEP_MODEL=anthropic:claude-opus-4-8` set in `render_taskdef.py`
+(the durable task-def env source of truth) — the deal sweep/analysis now runs on Claude Opus
+4.8 instead of the hard-pinned Sonnet 4.5 default, for deeper, more accurate reads. (2)
+`deal_engine_cro` win bullets no longer surface cryptic Next-Step keyword fragments
+("Differentiated where it counts — pain point"); a keyword-only hit now shows the clean label
+alone, and the champion bullet pulls the rich `champion_strength.summary` narrative.
+
+**Why.** Reps flagged the win reasons as "full of mistakes" — the fragments ("— preferred
+partner", "— economic buyer") read as filler. And Sonnet 4.5 was leaving qualitative analysis
+(summaries, competitive read) weaker than Opus can do.
+
+**How to work with it going forward.** Reversible: drop the `DEAL_ENGINE_SWEEP_MODEL` line (or
+set another `anthropic:` model) to change the sweep model; per-deal cost rises ~3-5× on Opus.
+`DEAL_SWEEP_MAX_TOKENS` stays 64K (Opus 4.8 caps at 128K, so it's in range).
+
 ## 2026-06-30 — Footprints: dedupe meetings by day (fixes ~9× meeting over-count)
 
 **What.** `derive_footprints` was appending EVERY Event + meeting-Task + Avoma date to the

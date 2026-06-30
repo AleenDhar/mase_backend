@@ -209,12 +209,27 @@ def build_cro_panel(record, pinned_override=None):
         if f == "momentum_adj" or abs(pts) < 0.5:
             continue
         if f in _WIN_FACTOR:
-            body = _strip_evi(c.get("evidence"), (crm.get(f) or {}).get("value"))
-            if not body or body.lower() == f.replace("_", " "):
-                continue  # ungrounded factor — don't assert it on the page
+            crm_e = crm.get(f) or {}
+            src = (crm_e.get("src") or "").lower()
             pos, neg = _WIN_FACTOR[f]
             label = pos if pts >= 0 else neg
-            win_bullets.append({"tone": "good" if pts >= 0 else "warn", "text": f"{label} — {body}"})
+            # Champion: prefer the rich champion-strength narrative over a keyword hit.
+            text = ""
+            if f == "champion" and pts >= 0:
+                cs = _first_sentence((ai.get("champion_strength") or {}).get("summary"), 150)
+                if cs:
+                    text = f"{label} — {cs}"
+            if not text:
+                body = _strip_evi(c.get("evidence"), crm_e.get("value"))
+                # A Next-Step keyword match ("'pain point' in Next-Step/narrative") strips to a
+                # cryptic fragment — the LABEL alone is the real, readable reason; drop the
+                # fragment. Keep the body only when it's grounded MEDDPICC-style prose.
+                keyword_only = ("next-step" in src or "narrative" in src or "next step" in src)
+                if not body or keyword_only or body.lower() == f.replace("_", " ") or len(body) < 14:
+                    text = label
+                else:
+                    text = f"{label} — {body}"
+            win_bullets.append({"tone": "good" if pts >= 0 else "warn", "text": text})
         elif f in TREND:
             detail = _clean(trends.get(TREND[f]))
             if detail:

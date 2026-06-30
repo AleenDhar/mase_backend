@@ -11,6 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-30 — CRO-readable "Scores & reasons" panel (`deal_engine_cro`)
+
+**What.** New `deal_engine_cro.build_cro_panel(record)` assembles a plain-English brief — one read
+per score, ✅/⚠️ bullets, an honest "what could lose it" block (replaces the misleading "Risk 0"),
+and the moves — and the sweep attaches it at `ai.deal_scores.cro_panel`. The frontend
+(`components/deals/DealScores.tsx` → `DealReasonsPanel`) renders this narrative INSTEAD of the
+maths breakdown when present, falling back to the old additive view otherwise. No LLM call: it
+*selects and trims existing prose* the sweep already wrote (`competitive_position.summary`,
+`vulnerabilities[].detail`, `champion_strength.summary`, `recommended_moves[].action`) plus
+footprints/crm_evidence/trends. Two guards: the competitive guard never frames a do-nothing /
+incumbent-inertia threat as "a competitor beating us" when we're preferred or won the eval; the
+risk guard still surfaces the threat block even when `deal_risk == 0`.
+
+**Why.** Reps won't do maths. The old panel showed numeric contribution breakdowns ("differentiation
+strength +1.00 (weight 20)"); reps need the human reason ("buyer prefers Coupa — cheaper for the
+same thing"). The prose already existed on the record; this just puts it on the UI.
+
+**How to work with it going forward.** A hand-authored panel pinned with `cro_panel.pinned: true`
+(Bright Horizons) is preserved verbatim across sweeps — the generator never overwrites a pinned
+panel. To re-pin/edit, set the `cro_panel` object on the record and `pinned: true`. Cosmetic +
+best-effort: a build failure logs `[CRO-PANEL]` and never blocks a sweep.
+
 ## 2026-06-30 — Datalake is now the DEFAULT Avoma source (activates the domain match + loss detector)
 
 **What.** Flipped `DEAL_SWEEP_AVOMA_FROM_DATALAKE` default `false`→`true`. The domain-match +

@@ -3241,6 +3241,24 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
             print(f"[DEAL-SCORES] compute failed for {opp_id}: {_se}", flush=True)
+        try:
+            # CRO-readable "Scores & reasons" panel — assembles the existing human-written
+            # prose (competitive_position / vulnerabilities / champion_strength /
+            # recommended_moves) + footprints + the deterministic scores into a plain-English
+            # narrative the frontend renders INSTEAD of the maths breakdown (one read per
+            # score, ✅/⚠️ bullets, an honest "what could lose it" block, the moves). No LLM
+            # call. A hand-pinned panel (cro_panel.pinned, e.g. Bright Horizons) is preserved.
+            import deal_engine_cro
+            _ds_now = (parsed.get("ai") or {}).get("deal_scores")
+            if isinstance(_ds_now, dict):
+                _prior_panel = (((existing_record.get("ai") or {}).get("deal_scores") or {}).get("cro_panel")
+                                if isinstance(existing_record, dict) else None)
+                _pin = _prior_panel if (isinstance(_prior_panel, dict) and _prior_panel.get("pinned")) else None
+                _panel = deal_engine_cro.build_cro_panel(parsed, pinned_override=_pin)
+                if _panel:
+                    _ds_now["cro_panel"] = _panel
+        except Exception as _cpe:  # noqa: BLE001 — panel is cosmetic, never blocks persist
+            print(f"[CRO-PANEL] build failed for {opp_id}: {_cpe}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

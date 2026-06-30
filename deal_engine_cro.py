@@ -171,6 +171,15 @@ def build_cro_panel(record, pinned_override=None):
     fp = ai.get("footprints") or {}
     trends = ai.get("opp_trends") or {}
     comp_threat = _competitor_threat(ai)
+    # EB-unmapped guard: if the analysis flags the economic buyer as unmapped/unengaged,
+    # don't claim "executive access" / "EB access recorded" off a bare keyword match
+    # (e.g. the words "economic buyer" appearing in a Next-Step note — Allstate).
+    _vuln_txt = " ".join(_clean(v.get("detail")) for v in
+                         ((ai.get("vulnerabilities") or {}).get("items") or [])).lower()
+    eb_unmapped = (("economic buyer" in _vuln_txt or "exec" in _vuln_txt) and
+                   any(w in _vuln_txt for w in ("unmapped", "unengaged", "never", "not confirmed",
+                                                "not identified", "not activated", "not been activated",
+                                                "no cfo", "has not appeared", "no economic buyer")))
 
     # ---- header ----
     acct = hard.get("account_name") or hard.get("opp_name") or "This deal"
@@ -209,6 +218,9 @@ def build_cro_panel(record, pinned_override=None):
         if f == "momentum_adj" or abs(pts) < 0.5:
             continue
         if f in _WIN_FACTOR:
+            # Don't assert exec access / preference off a keyword when the EB is unmapped.
+            if f == "exec_access" and pts >= 0 and eb_unmapped:
+                continue
             crm_e = crm.get(f) or {}
             src = (crm_e.get("src") or "").lower()
             pos, neg = _WIN_FACTOR[f]
@@ -303,7 +315,14 @@ def build_cro_panel(record, pinned_override=None):
             sess = re.sub(r"^\[[^\]]*\]\s*", "", sess)                       # "[Clari - Email Sent] …"
             sess = re.sub(r"^(?:avoma|clari|gong|zoom|teams)\b[\s:–\-]*", "", sess, flags=re.I)  # "Avoma - : …"
             sess = sess.strip(" -:–")
-            if sess:
+            # Guard: the engagement top-event must be a real SESSION — not an email
+            # (Allstate: "Re: Zycus POC discussion") and not an LLM recommended-action
+            # note that leaked in (Metallus: "MULTI-THREAD TO the relevant stakeholder…").
+            _not_session = re.search(
+                r"^(re|fw|fwd)\b|email sent|email received|\[clari - email|"
+                r"multi-thread|single-thread|relevant stakeholder|\(now\)|→|"
+                r"recommend|unmet|not sent|not scheduled", sess, re.I)
+            if sess and not _not_session:
                 mb.append({"tone": "good", "text": "Most significant recent session: " + _first_sentence(sess, 110)})
         elif f == "next_step_active":
             mb.append({"tone": "good", "text": "Live next steps with named dates"})
@@ -360,6 +379,9 @@ def build_cro_panel(record, pinned_override=None):
     cb = []
     for c in (ds.get("customer_commitment") or {}).get("contributions") or []:
         evi = _clean(c.get("evidence"))
+        # Don't claim "economic-buyer access recorded" when the EB is flagged unmapped.
+        if eb_unmapped and re.search(r"economic.buyer access|economic buyer", evi, re.I):
+            continue
         if evi:
             cb.append({"tone": "good", "text": _first_sentence(evi, 120)})
     if cb:

@@ -974,6 +974,7 @@ def compute_deal_scores(record: dict) -> dict:
                 "dead": True, "dead_label": f"Lost ({src})",
                 "headline": {"win_position": 0, "deal_momentum": 0, "customer_commitment": 0,
                              "deal_risk": 100, "forecast_confidence": 0, "read": "Lost",
+                             "dead": True, "dead_label": "Lost",
                              "decision": "lost", "decision_source": src},
                 "commentary": {k: why for k in ("win_position", "deal_momentum",
                                "customer_commitment", "deal_risk", "forecast_confidence")}}

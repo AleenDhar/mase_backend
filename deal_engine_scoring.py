@@ -414,59 +414,109 @@ MOM_MILESTONE_CAP = 8.0
 MOM_STALL_CAP = 28.0
 
 
+def _days_since(iso):
+    if not iso:
+        return None
+    try:
+        from datetime import datetime, timezone
+        d = datetime.fromisoformat(str(iso)[:10])
+        return (datetime.now(timezone.utc).replace(tzinfo=None) - d).days
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def score_momentum_v2(record: dict):
     ai = (record or {}).get("ai") or {}
     fp = ai.get("footprints") or {}
     eng = fp.get("engagement") or {}
     contribs = []
 
-    # 1) ENGAGEMENT (dominant): depth of the best recent engagement + a frequency bump.
+    # BI-DIRECTIONAL GATE — momentum must be EARNED by the buyer, not the rep. A
+    # high-depth event the rep drove (a sent email, an old demo, an unmet ask) that
+    # the buyer hasn't engaged with recently is one-sided outreach, NOT momentum.
+    # Scale the activity pillars by how much the buyer is actually participating:
+    # buyer-side touches in the last 30d, or a genuinely recent meeting (meetings are
+    # inherently two-way). "Are we pitching and they're biting?" — not just pitching.
+    buyer30 = int(fp.get("buyer_touches_30d") or 0)
+    buyer60 = int(fp.get("buyer_touches_60d") or 0)
+    dsb = fp.get("days_since_buyer_touch")
+    lm_days = _days_since(fp.get("last_meeting"))
+    recent_meeting = lm_days is not None and lm_days <= 21
+    if buyer30 >= 3 or (buyer30 >= 1 and recent_meeting):
+        bidir = 1.0
+    elif buyer30 == 2:
+        bidir = 0.85
+    elif buyer30 == 1:
+        bidir = 0.6
+    elif recent_meeting and buyer60 >= 1:
+        bidir = 0.55                      # a recent meeting backed by some buyer history
+    elif recent_meeting:
+        bidir = 0.4                       # a lone recent meeting, no other buyer activity
+    else:
+        bidir = 0.2                       # rep pushing, buyer not biting
+
+    # 1) ENGAGEMENT (dominant): depth of the best recent engagement + a frequency
+    # bump — then GATED by bi-directionality.
     top = float(eng.get("top_weight") or 0.0)
     n30 = int(eng.get("events_30d") or 0)
-    eng_pts = min(MOM_ENG_CAP, top * MOM_ENG_SCALE + min(5.0, 1.5 * max(0, n30 - 1)))
+    eng_pts = min(MOM_ENG_CAP, (top * MOM_ENG_SCALE + min(5.0, 1.5 * max(0, n30 - 1))) * bidir)
     if eng_pts:
         contribs.append(_contrib("engagement", round(eng_pts, 1),
                                  f"{eng.get('top_event') or 'engagement'} (depth {eng.get('raw_top')}, {n30} in 30d)"))
 
-    # 2) NEXT-STEP freshness: recently updated + dated milestones actively logged.
+    # 2) NEXT-STEP freshness — also gated: a next-step the rep logged while the buyer
+    # is silent is planning, not momentum.
     hard = (record or {}).get("hard") or {}
-    gla = fp.get("general_last_activity")
-    age = None
-    if gla:
-        try:
-            from datetime import datetime, timezone
-            d = datetime.fromisoformat(str(gla)[:10])
-            age = (datetime.now(timezone.utc).replace(tzinfo=None) - d).days
-        except Exception:  # noqa: BLE001
-            age = None
+    age = _days_since(fp.get("general_last_activity"))
     ns_pts = (7.0 if (age is not None and age <= 14) else 4.0 if (age is not None and age <= 30) else 0.0)
-    ns_pts = min(MOM_NEXTSTEP_CAP, ns_pts + min(3.0, _count_dated_milestones(hard.get("next_step"))))
+    ns_pts = min(MOM_NEXTSTEP_CAP, ns_pts + min(3.0, _count_dated_milestones(hard.get("next_step")))) * bidir
     if ns_pts:
         contribs.append(_contrib("next_step_active", round(ns_pts, 1), "Next step fresh + dated milestones"))
 
-    # 3) NEW MILESTONES: a recent stage advance, and a real high-tier session having happened.
+    # 3) NEW MILESTONES — a high-tier session only counts if the buyer took part; gate it.
     stage_tr = (ai.get("opp_trends") or {}).get("stage_trend")
     ms_pts = (6.0 if (isinstance(stage_tr, (int, float)) and stage_tr > 0) else 0.0)
     if (eng.get("raw_top") or 0) >= 6:
         ms_pts += 4.0       # a workshop / F2F / POC / diligence session is itself a milestone
-    ms_pts = min(MOM_MILESTONE_CAP, ms_pts)
+    ms_pts = min(MOM_MILESTONE_CAP, ms_pts) * bidir
     if ms_pts:
         contribs.append(_contrib("new_milestones", round(ms_pts, 1), "Stage advance / high-tier session reached"))
 
-    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric). A deal with NO
-    # buyer touch at all in the window is DARK on the buyer side — the heaviest stall (a
-    # Vendor-Selected deal where the buyer has gone silent and only the rep is emailing).
-    dsb = fp.get("days_since_buyer_touch")
+    # Surface the one-sided discount so the reasons SAY WHY momentum is held back.
+    if bidir < 1.0:
+        contribs.append(_contrib("one_sided", 0.0,
+                                 f"engagement scaled ×{bidir:.2f} — buyer not responding "
+                                 f"(buyer touches in 30d: {buyer30})"))
+
+    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric). A buyer
+    # who has gone DARK (no buyer-side touch in the 30d window, no recent meeting) is
+    # the heaviest non-dead stall — a deal where only the rep is still emailing.
     cad = fp.get("stage_cadence_days") or 30
     stall = 0.0
     if dsb is None:
         stall = round(MOM_STALL_CAP * 0.9, 1)        # no buyer footprint found -> dark
         contribs.append(_contrib("stall", -stall, "no buyer touch found in window (dark)"))
-    elif isinstance(dsb, (int, float)) and dsb > cad:
-        stall = min(MOM_STALL_CAP, (dsb - cad) * 0.6)
-        contribs.append(_contrib("stall", -round(stall, 1), f"{int(dsb)}d since a buyer touch (cadence {cad}d)"))
+    else:
+        cad_stall = min(MOM_STALL_CAP, max(0.0, (dsb - cad)) * 0.6) if isinstance(dsb, (int, float)) else 0.0
+        # one-directional: NO buyer-initiated touch in 60d (a lone recent meeting doesn't excuse it).
+        dark_stall = 12.0 if (buyer60 == 0 and buyer30 == 0) else 0.0
+        stall = min(MOM_STALL_CAP, max(cad_stall, dark_stall))
+        if stall:
+            why = (f"{int(dsb)}d since a buyer touch (cadence {cad}d)" if cad_stall >= dark_stall
+                   else "buyer has gone quiet — no buyer-side activity in the last 30 days")
+            contribs.append(_contrib("stall", -round(stall, 1), why))
 
-    score = round(_clamp(50.0 + eng_pts + ns_pts + ms_pts - stall, 0.0, 99.0), 1)
+    # 5) CLOSE-DATE SLIDE: a deal whose close date keeps getting pushed out is sliding
+    # right — anti-momentum ("pushed out is a bad signal"). Full weight when one-sided;
+    # softened for genuinely bi-directional deals (a single slip on a hot deal is minor).
+    cdt = (ai.get("opp_trends") or {}).get("close_date_trend")
+    push = 0.0
+    if isinstance(cdt, (int, float)) and cdt < -0.15:
+        push = min(10.0, abs(cdt) * 12.0) * (0.5 if bidir >= 0.6 else 1.0)
+        det = (ai.get("opp_trends") or {}).get("close_date_trend_detail") or "close date pushed out"
+        contribs.append(_contrib("close_date_slip", -round(push, 1), det))
+
+    score = round(_clamp(50.0 + eng_pts + ns_pts + ms_pts - stall - push, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
             "model": "engagement_v2", "contributions": contribs}
 

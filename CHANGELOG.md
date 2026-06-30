@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-30 — Deal Momentum is now BI-DIRECTIONAL (one-sided outreach no longer inflates it)
+
+**What.** `score_momentum_v2` (`deal_engine_scoring.py`) now gates its activity pillars
+(engagement / next-step / milestone) by how much the BUYER is participating — buyer-side
+touches in 30d, or a genuinely recent meeting (meetings are two-way). A high-depth event the
+REP drove (a sent email, an old demo, an "unmet commitment") that the buyer hasn't engaged
+with is scaled down (×0.2–0.6), a buyer who's gone dark (no buyer touch in 60d) takes a real
+stall, and a close date that keeps sliding right (`opp_trends.close_date_trend`) now drags
+momentum ("pushed out is a bad signal"). A `one_sided` contribution surfaces the discount so
+the reasons say why.
+
+**Why.** Momentum was scoring DEPTH regardless of direction: Allstate read 82 ("accelerating")
+off a single rep-sent POC email with the buyer silent 22d; Cornell read 84 off an "RFI-not-sent"
+unmet-commitment with 0 buyer touches in 60d and the close slid 126d. One-sided pitching isn't
+momentum — bi-directional response is. Validated book-wide: the buyer-silent anomalies drop
+(Cornell 84→44, Allstate 82→46, Amplifon 77→49, Swift 73→42) while genuinely two-way deals are
+untouched (Publicis 91→88, Mair 88→88, McAfee 85→80 — only nudged by real date slips).
+
+**How to work with it going forward.** Tunables are the `bidir` tiers + `dark_stall` (12) + the
+close-date `push` cap (10) in `score_momentum_v2`. Reads `footprints.buyer_touches_30d/60d`,
+`last_meeting`, and `opp_trends.close_date_trend`. Applies to the engagement_v2 model only
+(footprints present); the signal-based fallback `score_momentum` is unchanged.
+
+---
+
 ## 2026-06-30 — CRO-readable "Scores & reasons" panel (`deal_engine_cro`)
 
 **What.** New `deal_engine_cro.build_cro_panel(record)` assembles a plain-English brief — one read

@@ -188,6 +188,16 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
         if dt:
             meet_dts.append(dt)
 
+    # Dedupe meetings by calendar DATE: the SAME session is routinely logged 3× (an
+    # Avoma call + a Clari-synced Event + a "meeting" Task), which was inflating
+    # meetings_60d ~9× (Sabic: 55 meetings for 6 real). One meeting-day counts once.
+    _md_by_day = {}
+    for _dt in meet_dts:
+        k = _dt.date()
+        if k not in _md_by_day or _dt > _md_by_day[k]:
+            _md_by_day[k] = _dt
+    meet_dts = list(_md_by_day.values())
+
     def _latest(dts):
         return max(dts) if dts else None
 
@@ -210,7 +220,9 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     recent = [e for e in eng_events if (e[3] is None or e[3] <= 60)]
     top_eff = max((e[0] for e in recent), default=0.0)
     top = max(recent, key=lambda e: e[0], default=None)
-    n30 = sum(1 for e in eng_events if e[3] is not None and e[3] <= 30 and e[1] >= 3)
+    # Count engagement FREQUENCY by distinct days (not raw rows) so the same session
+    # logged across Avoma/Clari/Task doesn't inflate it (Sabic events_30d 40 -> ~real).
+    n30 = len({e[3] for e in eng_events if e[3] is not None and e[3] <= 30 and e[1] >= 3})
 
     out = {
         "last_buyer_touch": last_buyer.date().isoformat() if last_buyer else None,

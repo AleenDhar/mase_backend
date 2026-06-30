@@ -11,6 +11,20 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-06-30 — Footprints: dedupe meetings by day (fixes ~9× meeting over-count)
+
+**What.** `derive_footprints` was appending EVERY Event + meeting-Task + Avoma date to the
+meeting list, so the same session logged across Avoma + Clari + a Task counted 3×+ —
+`meetings_60d` was ~9× inflated (Sabic: 55 meetings for 6 real). Meetings now dedupe by
+calendar date, and engagement frequency (`events_30d`) counts distinct days, not raw rows.
+
+**Why.** The inflated counts misrepresented engagement on the UI ("55 meetings in 60 days")
+and fed the momentum frequency bump.
+
+**How to work with it going forward.** `deal_engine_footprints.derive_footprints` — `meet_dts`
+deduped by `.date()`; `n30` = distinct engagement-days. One meeting-day = one meeting (a minor
+under-count if two genuinely distinct meetings fall on one day, vs the old 9× over-count).
+
 ## 2026-06-30 — Deal Momentum is now BI-DIRECTIONAL (one-sided outreach no longer inflates it)
 
 **What.** `score_momentum_v2` (`deal_engine_scoring.py`) now gates its activity pillars

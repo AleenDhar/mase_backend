@@ -28,6 +28,22 @@ partner", "— economic buyer") read as filler. And Sonnet 4.5 was leaving quali
 set another `anthropic:` model) to change the sweep model; per-deal cost rises ~3-5× on Opus.
 `DEAL_SWEEP_MAX_TOKENS` stays 64K (Opus 4.8 caps at 128K, so it's in range).
 
+## 2026-06-30 — Meeting count now sourced from the DATALAKE (real Avoma meetings)
+
+**What.** `_footprints_for` now feeds the deal's **datalake Avoma meetings** (the
+`_avoma_pf` manifest — already matched by opp/account/buyer-domain) into `derive_footprints`
+as `meeting_dates`, so `meetings_60d` is the count of REAL meetings (deduped by day), not a
+guess from SF subject keywords. Verified against the datalake: Allstate 4→**0**, SABIC 55→**5-6**,
+Metallus 10→**2**.
+
+**Why.** The count was 100% deterministic SF-keyword matching and ignored the datalake entirely
+— so emails with "POC" in the subject and 3×-logged sessions inflated it. The datalake holds the
+authoritative meetings (dates, opp/account/domain links, internal/external flags).
+
+**How to work with it going forward.** `deal_engine_sweep._footprints_for(... avoma_meeting_dates=)`
+fed from `_avoma_pf["manifest"]`; combined with the email-exclusion + same-day dedupe in
+`deal_engine_footprints`. Takes effect on the next sweep.
+
 ## 2026-06-30 — Footprints: emails no longer counted as meetings
 
 **What.** `_meeting_task` matched loose keywords ("poc"/"demo"/"call with") in ANY subject — so

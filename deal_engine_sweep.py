@@ -807,10 +807,12 @@ def _detect_decision_outcome(prefetch: dict, next_step_text: str = "") -> dict:
     return out
 
 
-async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
+async def _footprints_for(agent_manager, opp_id: str, stage: str, avoma_meeting_dates=None) -> dict:
     """Deterministic engagement/liveness footprints from SF Tasks + Events + opp summary
-    fields. Classifies each by buyer-vs-rep direction and engagement DEPTH (POC/workshop/
-    F2F/demo...). Feeds Deal Momentum v2. Returns {} on any failure (best-effort)."""
+    fields, PLUS the deal's real Avoma meetings from the datalake (authoritative meeting
+    dates — opp/account/domain matched, so the meeting COUNT is real, not guessed from SF
+    subject keywords). Classifies each by buyer-vs-rep direction and engagement DEPTH
+    (POC/workshop/F2F/demo...). Feeds Deal Momentum v2. Returns {} on failure (best-effort)."""
     if not opp_id:
         return {}
     import deal_engine_footprints as _fp
@@ -841,7 +843,8 @@ async def _footprints_for(agent_manager, opp_id: str, stage: str) -> dict:
     except Exception as _e:  # noqa: BLE001
         print(f"[FOOTPRINTS] opp-fields read failed opp={opp_id}: {_e}", flush=True)
     try:
-        return _fp.derive_footprints(tasks=tasks, opp=opp, events=events, stage=stage)
+        return _fp.derive_footprints(tasks=tasks, opp=opp, events=events, stage=stage,
+                                     meeting_dates=avoma_meeting_dates)
     except Exception as _e:  # noqa: BLE001
         print(f"[FOOTPRINTS] derive failed opp={opp_id}: {_e}", flush=True)
         return {}
@@ -3178,8 +3181,13 @@ async def analyze_one(
             # Footprints: deterministic 'is the deal alive + how deep is the engagement' from
             # SF Tasks + Events (buyer-received vs rep-sent, engagement-depth tiers). Feeds the
             # engagement-based Deal Momentum v2. Best-effort; never blocks the sweep.
+            # Real meetings come from the DATALAKE (Avoma) manifest already matched for
+            # this deal (opp/account/domain) — not from guessing at SF subject keywords.
+            _av_dates = [e.get("date") for e in ((_avoma_pf or {}).get("manifest") or [])
+                         if e.get("date")]
             _fp = await _footprints_for(agent_manager, opp_id,
-                                        (parsed.get("hard") or {}).get("stage") or "")
+                                        (parsed.get("hard") or {}).get("stage") or "",
+                                        avoma_meeting_dates=_av_dates)
             if _fp:
                 parsed.setdefault("ai", {})["footprints"] = _fp
         except Exception as _fe:  # noqa: BLE001

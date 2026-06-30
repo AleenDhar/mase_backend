@@ -46,11 +46,11 @@ _SWEEP_TUNING = {
     "DEAL_SWEEP_MAX_TRANSIENT_RETRIES": "50",
     "DEAL_SWEEP_MAX_TOKENS": "64000",
     "MCP_TOOL_TIMEOUT_S": "600",
-    # Sweep/analysis model — Opus 4.8 for the deepest, most accurate deal reads
-    # (128K max output, well above the 64K cap above). Frontier-guarded in
-    # deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
+    # Sweep/analysis model — Sonnet 4.5 (reverted from Opus 4.8: Opus ran ~5x the
+    # cost, ~$4.83/sweep, and exhausted the Anthropic credit balance). Frontier-guarded
+    # in deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
     # MCP tool schemas here).
-    "DEAL_ENGINE_SWEEP_MODEL": "anthropic:claude-opus-4-8",
+    "DEAL_ENGINE_SWEEP_MODEL": "anthropic:claude-sonnet-4-5",
 }
 API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),

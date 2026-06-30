@@ -28,6 +28,20 @@ partner", "— economic buyer") read as filler. And Sonnet 4.5 was leaving quali
 set another `anthropic:` model) to change the sweep model; per-deal cost rises ~3-5× on Opus.
 `DEAL_SWEEP_MAX_TOKENS` stays 64K (Opus 4.8 caps at 128K, so it's in range).
 
+## 2026-06-30 — Footprints: emails no longer counted as meetings
+
+**What.** `_meeting_task` matched loose keywords ("poc"/"demo"/"call with") in ANY subject — so
+emails about a meeting counted as meetings. Allstate read "4 meetings in 60 days" that were all
+4 *emails* with "POC" in the subject (real meeting count: 0). Now an email (Clari/Outreach sync,
+`[Clari - Email …]`, `Email Sent/Received`, `[in]`/`[out]`, lemlist) never counts as a meeting,
+on Tasks or Events; a meeting needs an explicit Meeting/Clari-Meeting/Avoma marker or an
+unambiguous in-person session. Pairs with the same-day dedupe to make `meetings_60d` real.
+
+**Why.** Inflated, misleading "meetings" on the UI; flagged on Allstate/SABIC/Metallus.
+
+**How to work with it going forward.** `deal_engine_footprints._is_email` + `_meeting_task` in
+`deal_engine_footprints.py`. Takes effect on the next sweep (footprints are re-derived from SF).
+
 ## 2026-06-30 — Footprints: dedupe meetings by day (fixes ~9× meeting over-count)
 
 **What.** `derive_footprints` was appending EVERY Event + meeting-Task + Avoma date to the

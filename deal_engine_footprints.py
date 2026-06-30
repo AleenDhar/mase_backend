@@ -108,10 +108,30 @@ def _classify(subject: str):
     return None
 
 
-def _meeting_task(subject: str, ttype: str):
+def _is_email(subject: str, ttype: str = "") -> bool:
+    """An email logged in SF (Clari/Outreach sync) — NOT a meeting, regardless of
+    keywords in the subject. 'Re: Zycus POC discussion' is an email about a POC, not
+    a POC meeting."""
     s = (subject or "").lower() + " " + (ttype or "").lower()
-    return any(w in s for w in ("meeting", "demo", "workshop", "discovery", "call with",
-                                "f2f", "face to face", "poc", "session"))
+    return ("email sent" in s or "email received" in s or "[clari - email" in s
+            or "[clari-email" in s or "[in]" in s or "[out]" in s or "lemlist" in s)
+
+
+def _meeting_task(subject: str, ttype: str):
+    """True only when a record is an ACTUAL meeting — never an email. A loose keyword
+    ('poc'/'demo'/'call with') in an EMAIL subject was inflating meetings_60d (Allstate:
+    4 'meetings' that were all emails about a POC). Count a meeting only on an explicit
+    Meeting type / Clari-Meeting / Avoma marker, or an unambiguous in-person session."""
+    if _is_email(subject, ttype):
+        return False
+    s = (subject or "").lower()
+    t = (ttype or "").lower()
+    if t == "meeting":
+        return True
+    return any(w in s for w in ("[clari - meeting]", "[clari-meeting]", "avoma -", "avoma-",
+                                "[avoma", "face to face", "face-to-face", " f2f", "onsite",
+                                "on-site", "in-person", "workshop", "proof of concept",
+                                "deep dive", "deep-dive"))
 
 
 def _recency_ladder(age_days) -> float:
@@ -170,8 +190,8 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     for e in (events or []):
         dt = _parse_dt(e.get("date") or e.get("ActivityDateTime") or e.get("CreatedDate"))
         subj = e.get("subject") or e.get("Subject") or ""
-        if dt:
-            meet_dts.append(dt)
+        if dt and not _is_email(subj, e.get("type") or e.get("Type") or ""):
+            meet_dts.append(dt)   # SF Events are calendar meetings (email-events excluded)
             _ingest(subj, dt)
 
     # corroborate with SF summary fields + Avoma meetings

@@ -2441,11 +2441,18 @@ async def analyze_one(
             try:
                 if avoma_from_datalake:
                     _avoma_pf = await _avoma_prefetch_from_datalake(opp, buyer)
-                    # Per-deal fallback: if the datalake has NO calls for this opp
-                    # (not yet backfilled / webhook missed it), use LIVE Avoma so the
-                    # deal is never falsely read as dark.
-                    if not (_avoma_pf.get("manifest")):
-                        print(f"[DEAL-SWEEP] datalake empty opp={opp_id} -> live Avoma fallback", flush=True)
+                    # Per-deal fallback: fall back to LIVE Avoma when the datalake has NO
+                    # READABLE CONTENT for this opp — either no meetings at all (not yet
+                    # backfilled / webhook missed it) OR meetings whose transcripts haven't
+                    # synced yet (manifest present but every call is a content-less gap, so
+                    # calls_read=0). Without this a deal with un-synced transcripts reads dark
+                    # even though live Avoma has the content. (If live ALSO has nothing — e.g.
+                    # the meetings were never recorded — calls_read stays 0, which is correct.)
+                    _dl_read = (_avoma_pf.get("coverage") or {}).get("read") or 0
+                    if not (_avoma_pf.get("manifest")) or _dl_read == 0:
+                        print(f"[DEAL-SWEEP] datalake no readable content opp={opp_id} "
+                              f"(manifest={len(_avoma_pf.get('manifest') or [])}, read={_dl_read}) "
+                              f"-> live Avoma fallback", flush=True)
                         _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
                 else:
                     _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
@@ -3204,6 +3211,32 @@ async def analyze_one(
         try:
             import deal_engine_scoring
             _scores = deal_engine_scoring.compute_deal_scores(parsed)
+            # SAFETY NET — a sweep that read NOTHING (zero Avoma calls AND no engagement
+            # footprints AND no CRM evidence) cannot produce a trustworthy score; left alone
+            # it writes a confident-but-wrong LOW score over a good one — the "a strong deal
+            # suddenly reads Slowing 45/47" bug that destroys trust. When the read came back
+            # empty, carry the PRIOR good scores forward instead of clobbering them. A genuinely
+            # dark deal still has footprints (old dates) — all-three-empty means the READ failed,
+            # not that the deal died. A detected LOSS always stands (never carried over).
+            _ai_now = parsed.get("ai") or {}
+            _ec_s = parsed.get("evidence_coverage") or {}
+            try:
+                _cr_s = int(_ec_s.get("calls_read") or 0)
+            except (TypeError, ValueError):
+                _cr_s = 0
+            _no_data = (_cr_s == 0
+                        and not ((_ai_now.get("footprints") or {}).get("engagement"))
+                        and not (_ai_now.get("crm_evidence")))
+            _prior_ds = (existing_record.get("ai") or {}).get("deal_scores") if isinstance(existing_record, dict) else None
+            _prior_hl = (_prior_ds or {}).get("headline") or {}
+            _prior_ok = bool(_prior_ds) and not _prior_hl.get("dead") and _prior_hl.get("win_position") is not None
+            _is_loss = (_ai_now.get("decision_outcome") or {}).get("status") == "lost"
+            if _no_data and _prior_ok and not _is_loss:
+                _scores = dict(_prior_ds)
+                _scores["stale_read"] = True
+                _scores["headline"] = {**_prior_hl, "stale_read": True}
+                print(f"[DEAL-SCORES] no-data sweep opp={opp_id} (calls_read=0, no footprints, "
+                      f"no crm_evidence) — carried prior scores forward instead of overwriting", flush=True)
             if _scores:
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist

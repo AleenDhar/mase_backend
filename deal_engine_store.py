@@ -491,6 +491,30 @@ def active_opp_ids15() -> set[str]:
     return {k for k, v in known_active_map().items() if v}
 
 
+def dead_opp_ids15() -> set[str]:
+    """15-char ids of deals that are DEAD and must be UNTRACKED — terminal by stage or
+    forecast (is_dead_deal: Lost / Qualified Out / Omitted), OR carrying a LOSS SIGNAL
+    (decision_outcome=="lost", or a stored deal_scores.headline.dead). A lost deal is
+    dropped from the book even while it lingers on the MASE report (the rep hasn't flipped
+    SF to Closed Lost yet — the HAVI case) and is never reactivated by report re-entry."""
+    try:
+        from deal_engine_scoring import is_dead_deal
+    except Exception:
+        is_dead_deal = lambda _r: None  # noqa: E731
+    rows = _select(T_RECORDS, select="opp_id,record")
+    out: set[str] = set()
+    for r in rows:
+        rec = r.get("record") or {}
+        ai = rec.get("ai") or {}
+        head = ((ai.get("deal_scores") or {}).get("headline")) or {}
+        dec = ai.get("decision_outcome") or {}
+        if head.get("dead") is True or (dec.get("status") == "lost") or is_dead_deal(rec):
+            oid = (r.get("opp_id") or "").strip()[:15]
+            if oid:
+                out.add(oid)
+    return out
+
+
 def is_active_member(opp_id: str) -> bool:
     """True iff this opp has an active record (membership = the MASE report).
     Accepts a 15- or 18-char id."""

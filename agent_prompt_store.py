@@ -36,6 +36,10 @@ T_SETTINGS = "jarvis_settings"
 ID_CHAT = "mase_chat_agent"
 ID_DEAL_SWEEP = "mase_deal_sweep"
 ID_TODO_RUNNER = "mase_todo_runner"
+# Deal SCORING agent — judges momentum/win/commitment/risk/forecast over the
+# deterministic evidence packet (deal_engine_ai_scoring.py). Override OPTIONAL:
+# "" => fall back to the seed at prompts/deal_engine_scoring_system_prompt.md.
+ID_DEAL_SCORING = "mase_deal_scoring"
 # Deal Sweep January 1.0 — the RevOps Head strategic editor: runs LAST (after the
 # compliance QI), on standard+deep deals only, over the UI-bound record. Seed on
 # disk at prompts/mase_revops_head.md. "" => fall back to that seed.

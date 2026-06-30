@@ -224,6 +224,17 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     last_buyer = _latest(buyer_dts + meet_dts)   # a meeting held IS a buyer touch
     last_meeting = _latest(meet_dts)
     last_rep = _latest(rep_dts)
+
+    # A buyer-attended MEETING is a buyer touch (two-way) just like an inbound email —
+    # count buyer emails/tasks + meeting-days TOGETHER, deduped by calendar day, so a
+    # heavily-met deal is never read as "0 buyer touches" (the old bug: 19 meetings -> 0,
+    # which throttled momentum to "Slowing" on a Vendor-Selected deal).
+    _btouch_by_day = {}
+    for _dt in (buyer_dts + meet_dts):
+        _k = _dt.date()
+        if _k not in _btouch_by_day or _dt > _btouch_by_day[_k]:
+            _btouch_by_day[_k] = _dt
+    _btouch_dts = list(_btouch_by_day.values())
     # general activity floor from the opp summary (covers deals with no parsed tasks)
     gen = _latest([d for d in (_parse_dt(opp.get("LastActivityDate")),
                                _parse_dt(opp.get("Next_Step_Updated_Date_Time__c"))) if d])
@@ -249,8 +260,8 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
         "last_meeting": last_meeting.date().isoformat() if last_meeting else None,
         "last_rep_touch": last_rep.date().isoformat() if last_rep else None,
         "days_since_buyer_touch": None if dsb is None else int(dsb),
-        "buyer_touches_30d": sum(1 for d in buyer_dts if (_age_days(d, now) or 999) <= 30),
-        "buyer_touches_60d": sum(1 for d in buyer_dts if (_age_days(d, now) or 999) <= 60),
+        "buyer_touches_30d": sum(1 for d in _btouch_dts if (_age_days(d, now) or 999) <= 30),
+        "buyer_touches_60d": sum(1 for d in _btouch_dts if (_age_days(d, now) or 999) <= 60),
         "meetings_60d": sum(1 for d in meet_dts if (_age_days(d, now) or 999) <= 60),
         "rep_only": bool(rep_dts and not buyer_dts and not meet_dts),
         "stage_cadence_days": cadence,

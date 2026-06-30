@@ -4029,9 +4029,16 @@ async def reconcile_membership(
         active15 = {k for k, v in known.items() if v}
         inactive15 = {k for k, v in known.items() if not v}
 
-        to_remove = sorted(active15 - report15)
-        reenter = sorted(report15 & inactive15)
-        new15 = sorted(report15 - set(known.keys()))
+        # Dead deals (Lost / Qualified Out / Omitted, or carrying a loss signal) must be
+        # UNTRACKED even while they linger on the report (SF not yet flipped to Closed Lost),
+        # and must NEVER be reactivated by report re-entry.
+        dead15 = await asyncio.to_thread(store.dead_opp_ids15)
+
+        report_remove = active15 - report15           # left the report (sanity-gated)
+        dead_active = active15 & dead15                # on report but dead (always removed)
+        to_remove = sorted(report_remove | dead_active)
+        reenter = sorted((report15 & inactive15) - dead15)
+        new15 = sorted(report15 - set(known.keys()) - dead15)
         unchanged = len(active15 & report15)
 
         # Sanity bound: a healthy report should not shrink the active book by
@@ -4048,9 +4055,16 @@ async def reconcile_membership(
             print(f"[DEAL-RECONCILE] \u26a0 {sanity_alert}", flush=True)
 
         removed_done: list[str] = []
-        if removal_ran and to_remove:
-            await asyncio.to_thread(store.set_active, to_remove, False)
-            removed_done = to_remove
+        # Dead removals are certain (not report-driven) — always run, even on a sanity blip.
+        dead_active_list = sorted(dead_active)
+        if dead_active_list:
+            await asyncio.to_thread(store.set_active, dead_active_list, False)
+            removed_done += dead_active_list
+        # Report-driven removals (left the report) are gated by the sanity bound.
+        report_remove_list = sorted(report_remove - dead_active)
+        if removal_ran and report_remove_list:
+            await asyncio.to_thread(store.set_active, report_remove_list, False)
+            removed_done += report_remove_list
         if reenter:
             await asyncio.to_thread(store.set_active, reenter, True)
 

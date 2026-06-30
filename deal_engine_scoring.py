@@ -407,6 +407,8 @@ def _opp_trend_net(record: dict):
 # scaled up so engagement drives the score, then next-step freshness + new milestones, minus
 # an asymmetric stall drag. Reads ai.footprints (engagement + buyer recency) which the sweep
 # computes from SF Events/Tasks. Falls back to the signal-based score_momentum when absent.
+MOM_EMAIL_CAP = 16.0          # two-way email/thread engagement adds to momentum (buyer-
+                              # initiated touches) — meetings + emails are ONE conversation
 MOM_ENG_SCALE = 2.6           # engagement points = top_weight(0-10) * this  -> POC 26, workshop 21
 MOM_ENG_CAP = 30.0
 MOM_NEXTSTEP_CAP = 8.0
@@ -464,6 +466,19 @@ def score_momentum_v2(record: dict):
         contribs.append(_contrib("engagement", round(eng_pts, 1),
                                  f"{eng.get('top_event') or 'engagement'} (depth {eng.get('raw_top')}, {n30} in 30d)"))
 
+    # 1b) TWO-WAY EMAIL / THREAD engagement — meetings and emails are ONE conversation.
+    # buyer_touches are buyer-INITIATED (inherently bi-directional), so they ADD to
+    # momentum directly rather than only gating the meeting points: a deal kept alive by
+    # genuine back-and-forth between meetings still has momentum. Decays if the last
+    # buyer touch goes stale.
+    email_pts = min(MOM_EMAIL_CAP, buyer30 * 2.5 + min(4.0, max(0, buyer60 - buyer30) * 0.5))
+    if isinstance(dsb, (int, float)) and dsb > 21:
+        email_pts *= max(0.3, 1.0 - (dsb - 21) / 40.0)
+    email_pts = round(email_pts, 1)
+    if email_pts:
+        contribs.append(_contrib("two_way_email", email_pts,
+                                 f"{buyer30} buyer touches in 30d, {buyer60} in 60d (two-way thread)"))
+
     # 2) NEXT-STEP freshness — also gated: a next-step the rep logged while the buyer
     # is silent is planning, not momentum.
     hard = (record or {}).get("hard") or {}
@@ -516,9 +531,76 @@ def score_momentum_v2(record: dict):
         det = (ai.get("opp_trends") or {}).get("close_date_trend_detail") or "close date pushed out"
         contribs.append(_contrib("close_date_slip", -round(push, 1), det))
 
-    score = round(_clamp(50.0 + eng_pts + ns_pts + ms_pts - stall - push, 0.0, 99.0), 1)
+    score = round(_clamp(50.0 + eng_pts + email_pts + ns_pts + ms_pts - stall - push, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
             "model": "engagement_v2", "contributions": contribs}
+
+
+# COMPETITION-AWARE Win adjustment. The competitive picture is a first-class scoring
+# factor: no identified competitor is a GOOD sign (don't penalise); an active rival the
+# buyer is LEANING TO is a strong negative; a contested deal where neither side leads is
+# a moderate negative; a competitive deal we're winning is neutral.
+WIN_COMPETITION_PREF_PENALTY = 28.0     # buyer leaning to a competitor
+WIN_COMPETITION_PRESENT_PENALTY = 12.0  # active rival, contested / no clear lead
+_C_WIN_WORDS = ("best platform", "we are preferred", "zycus is preferred", "selected zycus",
+                "preferred vendor", "in the lead", "chosen vendor", "came out as the best",
+                "won the", "we are the front", "front-runner is zycus", "leaning toward zycus",
+                "leaning to zycus", "advanced based", "zycus ahead", "shortlisted zycus")
+_C_NON_RIVAL = ("do nothing", "do-nothing", "inertia", "renewal", "incumbent", "status quo",
+                "unknown", "landscape", "none", "n/a", "do_nothing", "no competitor", "tbd",
+                # not a CONFIRMED, ACTIVE rival — mentions/benchmarks don't count
+                "benchmark", "not confirmed", "unconfirmed", "not active", "no active",
+                "pricing reference", "reference only", "internal build", "or similar",
+                "not in active", "generic", "others")
+# a competitive_position summary that itself says the field is unclear/unconfirmed -> no penalty
+_C_NO_RIVAL_SUMMARY = ("unclear", "not confirmed", "no confirmed", "no active competitor",
+                       "no competitor", "not identified", "none identified", "no clear competitor",
+                       "benchmark", "no formal competitor")
+
+
+def _competition_adj(record):
+    """(points<=0, label). Penalise only CONFIRMED, ACTIVE competition, and the strong
+    'buyer prefers a rival' penalty ONLY when a preference verb is tied to an actual named
+    rival — never off a loose keyword (an incumbent we're DISPLACING is us winning)."""
+    ai = (record or {}).get("ai") or {}
+    cp = ai.get("competitive_position") or {}
+    sl = str(cp.get("summary") or "").lower()
+    if any(s in sl for s in _C_NO_RIVAL_SUMMARY):
+        return 0.0, None                                   # landscape unclear / unconfirmed
+    comps = []
+    for c in (cp.get("competitors") or []):
+        nm = str((c.get("name") if isinstance(c, dict) else c) or "").strip()
+        nml = nm.lower()
+        if not nm or any(s in nml for s in _C_NON_RIVAL) or nm in comps:
+            continue
+        # the first significant token of the name (e.g. "Coupa" from "Coupa (incumbent)")
+        toks = [t for t in re.split(r"[ ,()/]+", nm) if len(t) > 3]
+        key = (toks[0].lower() if toks else nml)
+        # an incumbent we're DISPLACING is not a threat — it's us winning
+        if key and re.search(rf"{re.escape(key)}[^.]*(incumbent|displac|legacy|negative)|"
+                             rf"(displac|replac|rip.?and.?replace)[^.]*{re.escape(key)}", sl):
+            continue
+        comps.append((nm, key))
+    names = ", ".join(n for n, _ in comps[:3]) or "a competitor"
+    has_comp_text = bool(re.search(r"competitor|compet|rival|versus|\bvs\b|incumbent vendor", sl))
+    if not comps and not has_comp_text:
+        return 0.0, None                                   # no competition identified — GOOD
+    # buyer preference must be tied to an actual rival name (not a stray keyword)
+    pref_rival = None
+    for nm, key in comps:
+        if not key:
+            continue
+        if re.search(rf"(prefer\w*|favou?r\w*|leaning (toward|to)|selected|chosen|"
+                     rf"front.?runner[^.]*\bis\b|going with)[^.]*\b{re.escape(key)}", sl) or \
+           re.search(rf"\b{re.escape(key)}\b[^.]*\bis\b[^.]*(preferred|front.?runner|leading|"
+                     rf"chosen|ahead|favou?red|the winner)", sl):
+            pref_rival = nm
+            break
+    if pref_rival:
+        return -WIN_COMPETITION_PREF_PENALTY, f"buyer leaning to {pref_rival}"
+    if comps:
+        return -WIN_COMPETITION_PRESENT_PENALTY, f"active competitor, no clear lead ({names})"
+    return 0.0, None
 
 
 def score_win_position(ev, record=None, momentum=None):
@@ -564,9 +646,19 @@ def score_win_position(ev, record=None, momentum=None):
                                           f"momentum {round(float(momentum))} vs stage-expected {int(exp)}"))
 
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
-    score = round(min(ceiling, _clamp(anchor + adj + mom_adj, 0.0, 99.0)), 1)
+    base = round(min(ceiling, _clamp(anchor + adj + mom_adj, 0.0, 99.0)), 1)
+
+    # COMPETITION-AWARE adjustment (floored so Win can't go below 0).
+    comp_pen, comp_label = _competition_adj(record)
+    if comp_pen < 0:
+        comp_pen = max(comp_pen, -base)
+        contributions.append(_contrib("competition", round(comp_pen, 1), comp_label))
+    elif comp_label:
+        contributions.append(_contrib("competition", 0.0, comp_label))
+    score = round(max(0.0, base + comp_pen), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj, "contributions": contributions}
+            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj,
+            "competition_adj": round(comp_pen, 1), "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):
@@ -996,9 +1088,13 @@ def is_dead_deal(record: dict):
     hard = (record or {}).get("hard") or {}
     stage = str(hard.get("stage") or "").lower()
     fc = str(hard.get("forecast_category") or "").lower()
-    if "qualified out" in stage or "qualified-out" in stage:
+    # A deal is dead if EITHER its stage OR its forecast category is terminal — the rep
+    # often flips the forecast to "Closed Lost" while the stage lags on its old value
+    # (the HAVI case: forecast Closed Lost, stage still Shortlisted).
+    if "qualified out" in stage or "qualified-out" in stage or "qualified out" in fc:
         return "Qualified Out"
-    if "closed lost" in stage or "closed-lost" in stage or stage.strip() == "lost":
+    if ("closed lost" in stage or "closed-lost" in stage or stage.strip() == "lost"
+            or "closed lost" in fc or "closed-lost" in fc or fc.strip() == "lost"):
         return "Lost"
     if fc == "omitted":
         return "Omitted"

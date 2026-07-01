@@ -60,6 +60,22 @@ _conv_refs: Dict[str, ConversationReference] = {}
 _bg_tasks: "set[asyncio.Task]" = set()
 
 
+def _mentioned_ids(activity) -> "list[str]":
+    """IDs mentioned in the activity. A mention entity's data lives either on a
+    typed .mentioned attr or (from raw Teams JSON) in .additional_properties."""
+    ids = []
+    for e in (TurnContext.get_mentions(activity) or []):
+        md = getattr(e, "mentioned", None)
+        if md is None:
+            md = (getattr(e, "additional_properties", None) or {}).get("mentioned")
+        if md is None:
+            continue
+        mid = md.get("id") if isinstance(md, dict) else getattr(md, "id", None)
+        if mid:
+            ids.append(mid)
+    return ids
+
+
 def _cfg() -> "tuple[str, str, str, str]":
     # Prefer the MS_* creds already present in mase/app-env (the shared Entra app that
     # backs SSO + bot + Outlook), then bot-specific names, then Bot Framework defaults.
@@ -140,6 +156,15 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
 
         # New message -> THE TRIGGER. Strip any @MASE mention, ack now, run in background.
         if activity.type == "message":
+            # In a group chat / channel, Teams delivers EVERY message to the bot. Only
+            # respond when MASE is actually @mentioned; in a 1:1 ("personal") chat every
+            # message is meant for the bot, so no mention is required.
+            conv_type = getattr(activity.conversation, "conversation_type", None)
+            if conv_type and conv_type != "personal":
+                bot_id = activity.recipient.id if activity.recipient else None
+                if bot_id not in _mentioned_ids(activity):
+                    return  # group/channel chatter not addressed to MASE — stay quiet
+
             text = activity.text or ""
             if activity.entities:  # remove the "@MASE " mention prefix if present
                 text = TurnContext.remove_recipient_mention(activity) or text

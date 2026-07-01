@@ -11249,6 +11249,11 @@ _API_AUTH_PUBLIC_EXACT = {
     "/api/chat/async",
     "/api/chat/structured/async",
     "/api/config",
+    # Teams bot messaging endpoint. Public to the MASE token gate because it is
+    # authenticated INTERNALLY by the Bot Framework JWT (CloudAdapter validates the
+    # bot's token in teams_bot.py). Teams sends its own Bearer token, not
+    # API_AUTH_TOKEN, so gating it here would 401 every Teams activity.
+    "/api/messages",
     # NOTE: /api/documents/upload was REMOVED from the public allowlist
     # (2026-06-18) — it writes to the knowledge base, so it must require the
     # API token. The admin-gated frontend proxy (/api/documents/*) supplies it;

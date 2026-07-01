@@ -2096,6 +2096,9 @@ async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
     cov["transcripts"] = full
     cov["notes"] = sum(1 for x in manifest if x.get("notes"))
     cov["gaps"] = sum(1 for x in manifest if x.get("is_gap"))
+    print(f"[DL-DIAG] opp={oid} opp15={opp15!r} acc15={acc15!r} doms={doms[:3]} "
+          f"rows={len(rows)} manifest={len(manifest)} content_read={cov['read']} "
+          f"transcripts={cov['transcripts']} notes={cov['notes']} gaps={cov['gaps']}", flush=True)
     return shaped
 
 

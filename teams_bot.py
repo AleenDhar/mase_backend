@@ -73,15 +73,27 @@ def _cfg() -> "tuple[str, str, str, str]":
     return app_id, app_pw, app_type, tenant
 
 
+class _BotConfig:
+    """botbuilder reads credentials off an OBJECT via getattr with these exact
+    attribute names (APP_ID/APP_PASSWORD/APP_TYPE/APP_TENANTID) — NOT a dict and
+    NOT the MicrosoftApp* names. Passing a dict makes every hasattr() miss, which
+    silently configures a null app id and 401s every Teams token
+    ("Invalid AppId passed on token")."""
+
+    def __init__(self, app_id: str, app_pw: str, app_type: str, tenant: str) -> None:
+        self.APP_ID = app_id
+        self.APP_PASSWORD = app_pw
+        self.APP_TYPE = app_type
+        self.APP_TENANTID = tenant
+
+
 def _build_adapter() -> CloudAdapter:
     app_id, app_pw, app_type, tenant = _cfg()
-    settings = {
-        "MicrosoftAppId": app_id,
-        "MicrosoftAppPassword": app_pw,
-        "MicrosoftAppType": app_type,
-        "MicrosoftAppTenantId": tenant,
-    }
-    return CloudAdapter(ConfigurationBotFrameworkAuthentication(settings))
+    cfg = _BotConfig(app_id, app_pw, app_type, tenant)
+    print(f"[TEAMS BOT] adapter: app_id={'set' if app_id else 'MISSING'} "
+          f"type={app_type} tenant={'set' if tenant else 'MISSING'} "
+          f"secret={'set' if app_pw else 'MISSING'}")
+    return CloudAdapter(ConfigurationBotFrameworkAuthentication(cfg))
 
 
 def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
@@ -102,11 +114,14 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
 
         try:
             await adapter.continue_conversation(reference, _send, bot_app_id)
+            print(f"[TEAMS BOT] proactive reply posted conv={conv_id} ({len(reply or '')} chars)")
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] proactive post failed conv={conv_id}: {e}")
 
     async def on_turn(turn: TurnContext) -> None:
         activity = turn.activity
+        print(f"[TEAMS BOT] activity type={activity.type} conv={activity.conversation.id} "
+              f"text={(activity.text or '')[:80]!r}")
 
         # Remember how to reach this conversation for the proactive follow-up.
         _conv_refs[activity.conversation.id] = TurnContext.get_conversation_reference(activity)

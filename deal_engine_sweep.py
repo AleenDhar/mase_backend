@@ -3358,7 +3358,24 @@ async def analyze_one(
             print(f"[DECISION] detect failed for {opp_id}: {_de}", flush=True)
         try:
             import deal_engine_scoring
-            _scores = deal_engine_scoring.compute_deal_scores(parsed)
+            # AI DEAL-SCORER (flag-gated by DEAL_ENGINE_AI_SCORING). Judges the five scores
+            # over a deterministic evidence packet. score_deal_ai builds the packet itself
+            # (datalake meetings) and already falls back to compute_deal_scores on any internal
+            # failure, but we STILL wrap defensively so an import/scorer problem can never break
+            # the sweep. Emits the SAME _scores shape (headline.win_position/... + per-score
+            # contributions) the carry-forward and build_cro_panel below consume.
+            _scores = None
+            try:
+                import deal_engine_ai_scoring
+                if deal_engine_ai_scoring.ai_scoring_enabled():
+                    _scores = deal_engine_ai_scoring.score_deal_ai(parsed)
+            except Exception as _aie:  # noqa: BLE001 — AI scoring is best-effort
+                print(f"[DEAL-SCORES] AI scorer failed opp={opp_id}, using deterministic: {_aie}", flush=True)
+                _scores = None
+            # Flag OFF, or a degenerate AI return -> deterministic compute (unchanged behaviour).
+            if not (isinstance(_scores, dict)
+                    and (_scores.get("headline") or {}).get("win_position") is not None):
+                _scores = deal_engine_scoring.compute_deal_scores(parsed)
             # SAFETY NET — a sweep that read NOTHING (zero Avoma calls AND no engagement
             # footprints AND no CRM evidence) cannot produce a trustworthy score; left alone
             # it writes a confident-but-wrong LOW score over a good one — the "a strong deal

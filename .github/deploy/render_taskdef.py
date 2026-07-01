@@ -51,6 +51,12 @@ _SWEEP_TUNING = {
     # in deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
     # MCP tool schemas here).
     "DEAL_ENGINE_SWEEP_MODEL": "anthropic:claude-sonnet-4-5",
+    # AI deal-scorer (deal_engine_ai_scoring): one extra Sonnet call per deal over the
+    # deterministic evidence packet -> real Win/Momentum + a non-robotic Scores & Reasons
+    # read. Flag OFF => pure deterministic scoring (no-op). Falls back to deterministic on
+    # any scorer failure. ANTHROPIC_API_KEY + DATALAKE_* already provided above.
+    "DEAL_ENGINE_AI_SCORING": "true",
+    "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-4-5",
 }
 API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),

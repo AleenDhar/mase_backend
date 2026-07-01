@@ -2327,6 +2327,146 @@ def _attendees_of(rec: dict) -> list:
     return [a for a in att if isinstance(a, str) and a.strip()]
 
 
+# --- SFDC-anchored stakeholder roster ---------------------------------------
+# The AI reads call transcripts and can INVENT stakeholder names that aren't real
+# Salesforce contacts (e.g. "Herr Flandorfer") or drop real ones. This rebuilds the
+# roster from the authoritative OpportunityContactRole list (buyer["contacts"]): keep
+# the SFDC contacts the AI referenced (fuzzy match) + a few senior-by-title ones,
+# DROP any AI name with no SFDC match. Capped, never bloats, never invents.
+import re as _rex
+import unicodedata as _udx
+
+_SENIOR_TITLE_TOKENS = (
+    "chief", "cfo", "cio", "ceo", "cto", "coo", "cpo", "cmo", "cdo", "cro",
+    "svp", "evp", "avp", "vp", "vice president", "president",
+    "head", "director", "manager", "lead", "owner",
+    "procurement", "finance", "controller", "treasur",
+    "information technology", "digital",
+)
+_SENIOR_TITLE_RE = _rex.compile(
+    "|".join(_rex.escape(t) for t in _SENIOR_TITLE_TOKENS), _rex.IGNORECASE)
+_ROSTER_CAP = 8
+
+
+def _fold_name_key(name):
+    """Accent-folded, honorific-stripped, token-SORTED identity key for a personal
+    name — tolerant of casing/accents/order so 'Pölki'≈'Polki' and
+    'KOLLER Melissa'≈'Melissa Koller'. Returns '' for pure role placeholders
+    ('The CFO') so they never false-match a real contact."""
+    try:
+        from deal_engine_store import _STK_HONORIFICS, _STK_ROLE_WORDS
+    except Exception:  # noqa: BLE001
+        _STK_HONORIFICS = {"herr", "frau", "herrn", "mr", "mrs", "ms", "dr",
+                           "prof", "mag", "ing", "dipl", "sir", "mme", "m"}
+        _STK_ROLE_WORDS = set()
+    s = name or ""
+    s = _rex.sub(r"\(.*?\)", " ", s)
+    s = "".join(c for c in _udx.normalize("NFKD", s) if not _udx.combining(c))
+    s = s.lower()
+    s = _rex.sub(r"[^0-9a-z\- ]", " ", s)
+    toks = [t for t in s.split() if t and t not in _STK_HONORIFICS]
+    real = [t for t in toks if len(t) >= 3 and t not in _STK_ROLE_WORDS]
+    return " ".join(sorted(set(real))) if real else ""
+
+
+def _is_senior_title(title):
+    return bool(title) and bool(_SENIOR_TITLE_RE.search(str(title)))
+
+
+def _roster_from_sfdc(new_ai, buyer, existing_record):
+    """Rebuild ai.stakeholder_map.items anchored to SFDC OpportunityContactRole.
+
+    Roster = (A) SFDC contacts the AI referenced (fuzzy match, carrying the AI's
+    role/risk/sentiment onto the SFDC canonical name+title) + (B) a few senior-by-
+    title SFDC contacts. AI-invented names with no SFDC match are DROPPED. Capped
+    at ~8. Never raises — a failure returns new_ai untouched."""
+    if not isinstance(new_ai, dict):
+        return new_ai
+    try:
+        import deal_engine_store as _ds
+        sm = new_ai.get("stakeholder_map")
+        sm = sm if isinstance(sm, dict) else {}
+        ai_items = sm.get("items")
+        ai_items = ai_items if isinstance(ai_items, list) else []
+        contacts = buyer.get("contacts") if isinstance(buyer, dict) else []
+        contacts = contacts if isinstance(contacts, list) else []
+
+        pool, index = [], {}
+        for c in contacts:
+            if not isinstance(c, dict):
+                continue
+            nm = (c.get("name") or "").strip()
+            if not nm or c.get("is_nonperson"):
+                continue
+            key = _fold_name_key(nm)
+            if not key:
+                continue
+            pool.append((key, c))
+            index.setdefault(key, c)
+        if not pool:
+            return new_ai  # nothing authoritative to anchor to -> leave AI roster
+
+        def _sfdc_item(c, ai_src=None):
+            it = {"name": (c.get("name") or "").strip(), "_source": "sfdc_contact_role"}
+            if c.get("title"):
+                it["title"] = c["title"]
+            if isinstance(ai_src, dict):
+                for f in ("role", "risk", "sentiment", "relationship", "last_contact_date"):
+                    v = ai_src.get(f)
+                    if v not in (None, "", []):
+                        it[f] = v
+                it["_matched_ai"] = True
+            if c.get("is_partner"):
+                it["_partner"] = True
+            return it
+
+        roster, used = [], set()
+        # (A) AI-referenced SFDC contacts
+        for it in ai_items:
+            if not isinstance(it, dict):
+                continue
+            k = _fold_name_key(it.get("name"))
+            if not k or k in used:
+                continue
+            c = index.get(k)
+            if c is None:
+                continue  # AI-invented name -> DROP
+            used.add(k)
+            roster.append(_sfdc_item(c, ai_src=it))
+        # (B) senior-by-title backfill
+        for k, c in pool:
+            if len(roster) >= _ROSTER_CAP:
+                break
+            if k in used or c.get("is_partner"):
+                continue
+            if _is_senior_title(c.get("title")):
+                used.add(k)
+                roster.append(_sfdc_item(c))
+        # (C) last resort: seed at least one contact so the drawer isn't empty
+        if not roster:
+            for k, c in pool:
+                if not c.get("is_partner"):
+                    roster.append(_sfdc_item(c))
+                    break
+        if not roster:
+            return new_ai
+
+        merged = _ds.dedupe_stakeholder_items(roster)
+        merged = merged if isinstance(merged, list) else roster
+        merged = merged[:_ROSTER_CAP]
+        out = dict(new_ai)
+        out_sm = dict(sm)
+        out_sm["items"] = merged
+        for ck in ("count", "total", "mapped", "num", "n"):
+            if isinstance(out_sm.get(ck), int):
+                out_sm[ck] = len(merged)
+        out["stakeholder_map"] = out_sm
+        return out
+    except Exception as _e:  # noqa: BLE001 — must never break a sweep
+        print(f"[DEAL-SWEEP] SFDC roster build skipped: {type(_e).__name__}: {_e}", flush=True)
+        return new_ai
+
+
 async def analyze_one(
     agent_manager,
     opp: dict,
@@ -3245,6 +3385,19 @@ async def analyze_one(
                 _scores["headline"] = {**_prior_hl, "stale_read": True}
                 print(f"[DEAL-SCORES] no-data sweep opp={opp_id} (calls_read=0, no footprints, "
                       f"no crm_evidence) — carried prior scores forward instead of overwriting", flush=True)
+            # CARRY-FORWARD (broader): a fresh compute that came back EMPTY or missing its
+            # headline (scoring disabled, partial record, internal guard returning {}) must
+            # NOT blank a good prior score. Keep the prior scores unless the deal is a real
+            # terminal loss THIS sweep (a genuine dead/loss result always stands).
+            _fresh_hl = (_scores or {}).get("headline") if isinstance(_scores, dict) else None
+            _fresh_ok = bool(_scores) and isinstance(_fresh_hl, dict) and _fresh_hl.get("win_position") is not None
+            _fresh_dead = isinstance(_fresh_hl, dict) and _fresh_hl.get("dead") is True
+            if (not _fresh_ok) and (not _fresh_dead) and (not _is_loss) and _prior_ok:
+                _scores = dict(_prior_ds)
+                _scores["stale_read"] = True
+                _scores["headline"] = {**_prior_hl, "stale_read": True}
+                print(f"[DEAL-SCORES] degraded/empty compute opp={opp_id} — carried prior "
+                      f"scores forward (fresh headline missing win_position)", flush=True)
             if _scores:
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
@@ -3265,8 +3418,19 @@ async def analyze_one(
                 _panel = deal_engine_cro.build_cro_panel(parsed, pinned_override=_pin)
                 if _panel:
                     _ds_now["cro_panel"] = _panel
+                elif isinstance(_prior_panel, dict) and _prior_panel and not _ds_now.get("cro_panel"):
+                    # Build produced no panel this sweep — keep the prior CRO panel rather
+                    # than render a blank/robotic breakdown over a good one.
+                    _ds_now["cro_panel"] = _prior_panel
         except Exception as _cpe:  # noqa: BLE001 — panel is cosmetic, never blocks persist
             print(f"[CRO-PANEL] build failed for {opp_id}: {_cpe}", flush=True)
+        # SFDC-anchored roster: rebuild ai.stakeholder_map from real OpportunityContactRole
+        # contacts (AI annotates, never invents) at the single persist chokepoint. Defensive.
+        try:
+            if isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
+                parsed["ai"] = _roster_from_sfdc(parsed["ai"], buyer, existing_record)
+        except Exception as _rre:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] roster build skipped opp={opp_id}: {type(_rre).__name__}: {_rre}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed
@@ -3532,7 +3696,7 @@ async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
     }
 
 
-async def enqueue_trigger(agent_manager, opp_id: str) -> str:
+async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual") -> str:
     """Queue-mode single-opp trigger (the Salesforce-update webhook). Enrich the
     opp's display labels cheaply (one SOQL, no agent run) so the dashboard row is
     populated, then enqueue exactly one `waiting` row. Idempotent: an opp already
@@ -3564,8 +3728,11 @@ async def enqueue_trigger(agent_manager, opp_id: str) -> str:
               f"{type(e).__name__}: {e}", flush=True)
         opp = {"id": opp_id}
     opp.setdefault("id", opp_id)
+    # Encode the ORIGIN in the run_id prefix so the worker can stamp the real source
+    # on the run log (the dashboard shows "salesforce" for a CDC trigger, not "worker").
+    _prefix = "sftrig" if source in ("salesforce_trigger", "salesforce") else "trigger"
     return await asyncio.to_thread(
-        _queue.enqueue_one, f"trigger-{opp_id[:15]}", opp)
+        _queue.enqueue_one, f"{_prefix}-{opp_id[:15]}", opp)
 
 
 async def start_sweep(agent_manager, *, owner: Optional[str] = None,

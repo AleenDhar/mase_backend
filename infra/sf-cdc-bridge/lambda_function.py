@@ -91,7 +91,7 @@ def _is_tracked(opp_id):
 
 
 def _post_trigger(opp_id):
-    body = json.dumps({"opportunity_id": opp_id}).encode("utf-8")
+    body = json.dumps({"opportunity_id": opp_id, "source": "salesforce_trigger"}).encode("utf-8")
     req = urllib.request.Request(
         TRIGGER_URL,
         data=body,

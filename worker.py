@@ -160,7 +160,18 @@ async def _process(row: dict) -> None:
         # worker rebuilds the record with NO carry-forward (drops poisoned living memory)
         # — identical to the synchronous /update-living-memory endpoint, but on the
         # autoscaled fleet. Normal rows keep source="worker" (incremental carry-forward).
-        _src = "update_living_memory" if str(row.get("run_id") or "").startswith("fromscratch") else "worker"
+        # The run_id prefix carries the ORIGIN so the dashboard shows the real source
+        # instead of a blanket "worker": sftrig-* = Salesforce CDC trigger,
+        # trigger-* = manual re-run, fromscratch-* = purge rebuild, else = scheduled/book.
+        _rid = str(row.get("run_id") or "")
+        if _rid.startswith("fromscratch"):
+            _src = "update_living_memory"
+        elif _rid.startswith("sftrig"):
+            _src = "salesforce_trigger"
+        elif _rid.startswith("trigger"):
+            _src = "manual"
+        else:
+            _src = "worker"
         res = await sweep.analyze_one(server.agent_manager, opp, source=_src)
         status = (res or {}).get("status")
         thin = bool((res or {}).get("thin"))

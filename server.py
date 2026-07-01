@@ -8374,11 +8374,15 @@ async def deal_engine_sweep_trigger(request: Request):
             return JSONResponse(
                 {"error": "provide an opportunity id (opp_id / id / recordId) "
                           "or opp_ids[]"}, status_code=400)
+        # Origin of this trigger (the CDC Lambda sends source="salesforce_trigger");
+        # flows to the worker's run-log source so the dashboard shows "salesforce".
+        _trg_src = d.get("source")
+        _trg_src = _trg_src.strip() if isinstance(_trg_src, str) and _trg_src.strip() else "manual"
         if sweep.queue_enabled():
             # Queue mode: enqueue a durable `waiting` row per opp; the separate
             # worker.py drains it. The web process does NOT run the analysis, so
             # a burst of Salesforce updates can't starve it.
-            results = {oid: await sweep.enqueue_trigger(agent_manager, oid)
+            results = {oid: await sweep.enqueue_trigger(agent_manager, oid, source=_trg_src)
                        for oid in ids}
         else:
             results = {oid: sweep.trigger_opp_async(agent_manager, oid)

@@ -203,7 +203,7 @@ if (-not $SkipBuild) {
     $excludeDirs = @('.git','mcp_output','exports','attached_assets','__pycache__',
                      '.pytest_cache','.local','.config','.claude','.aws','.canvas',
                      '.agents','.venv','venv','.mypy_cache','.pythonlibs')
-    robocopy $PSScriptRoot $stage /MIR /XD $excludeDirs /XF *.log /NFL /NDL /NJH /NJS /NP | Out-Null
+    robocopy $PSScriptRoot $stage /MIR /XD $excludeDirs /XF *.log *_secrets.env .env .env.* /NFL /NDL /NJH /NJS /NP | Out-Null
     if ($LASTEXITCODE -ge 8) { throw "robocopy staging failed (exit $LASTEXITCODE)" }
 
     $zip = Join-Path $env:TEMP "mase-src-$Tag.zip"

@@ -1641,6 +1641,121 @@ def attach_deal_scores(rec: dict) -> dict:
     return out
 
 
+# --- Stakeholder roster dedup (deterministic, read-time) --------------------
+# The AI sweep lists stakeholders from call/email mentions and often emits the SAME
+# person several times under name variants ("Herr Flandorfer (CFO)", "Herr Flandorfer",
+# "Herr Flandorfer (CFO, also CPO)"). This collapses those variants deterministically so
+# the drawer shows one entry per real person — without a re-sweep or any write.
+_STK_ROLE_WORDS = {
+    "the", "a", "an", "of", "and", "in", "not", "name", "confirmed", "calls", "call",
+    "cfo", "cio", "ceo", "cpo", "coo", "cto", "cmo", "cdo", "cro", "cxo",
+    "vp", "svp", "evp", "avp", "director", "dir", "manager", "mgr", "head", "lead",
+    "chief", "officer", "president", "procurement", "finance", "financial", "information",
+    "operations", "operating", "executive", "sponsor", "buyer", "economic", "decision",
+    "maker", "champion", "user", "stakeholder", "senior", "group", "strategic",
+    "projects", "project", "it", "supply", "chain", "some", "contexts", "context",
+    "also", "titled", "level", "management", "unknown", "tbd", "unnamed", "na",
+}
+_STK_HONORIFICS = {"herr", "frau", "herrn", "mr", "mrs", "ms", "dr", "prof", "mag",
+                   "ing", "dipl", "sir", "mme", "m"}
+_STK_STOP = {"the", "a", "an", "of", "and", "in", "not", "name", "confirmed", "calls",
+             "call", "some", "contexts", "context", "also", "titled", "level", "senior",
+             "group", "management"}
+
+
+def _stk_identity(name):
+    """Merge key for a stakeholder name. ("name", tokens) when a real personal name is
+    present (so variants of one person collapse), else ("role", tokens) for unnamed
+    placeholders like "The CFO" / "CIO (name not confirmed)". Two distinct real names
+    (e.g. Flandorfer vs Potisk-Eibensteiner) never collapse together."""
+    import re
+    s = (name or "").lower()
+    s = re.sub(r"\(.*?\)", " ", s)                    # drop parentheticals
+    s = re.sub(r"[^0-9a-zäöüáéíóúñ\- ]", " ", s)      # keep letters (incl. accents) + hyphen
+    toks = [t for t in s.split() if t and t not in _STK_HONORIFICS]
+    real = [t for t in toks if len(t) >= 3 and t not in _STK_ROLE_WORDS]
+    if real:
+        return ("name", " ".join(sorted(set(real))))
+    roles = [t for t in toks if t in _STK_ROLE_WORDS and t not in _STK_STOP]
+    return ("role", " ".join(sorted(set(roles))) or "unknown")
+
+
+def dedupe_stakeholder_items(items):
+    """Collapse stakeholder entries that refer to the same person. Deterministic: groups
+    by _stk_identity, keeps the cleanest name + richest title + strongest signal per group,
+    preserves first-seen order. Returns the SAME object if nothing merges. Never raises."""
+    if not isinstance(items, list) or len(items) < 2:
+        return items
+    try:
+        order, groups = [], {}
+        for idx, it in enumerate(items):
+            key = _stk_identity(it.get("name")) if isinstance(it, dict) else ("_raw", idx)
+            if key not in groups:
+                groups[key] = []
+                order.append(key)
+            groups[key].append(it)
+        if len(order) == len(items):
+            return items  # nothing to merge
+        merged = []
+        for key in order:
+            grp = groups[key]
+            if len(grp) == 1 or not all(isinstance(g, dict) for g in grp):
+                merged.append(grp[0])
+                continue
+            names = [(g.get("name") or "").strip() for g in grp if (g.get("name") or "").strip()]
+            base = dict(grp[0])
+            if names:
+                base["name"] = min(names, key=len)   # cleanest = shortest real name
+
+            def _richest(field):
+                vals = [(g.get(field) or "").strip() for g in grp
+                        if isinstance(g.get(field), str) and (g.get(field) or "").strip()]
+                return max(vals, key=len) if vals else None
+            for f in ("title", "role"):
+                v = _richest(f)
+                if v:
+                    base[f] = v
+            for f in ("risk", "sentiment", "relationship", "last_contact_date"):
+                for g in grp:
+                    if g.get(f) not in (None, "", []):
+                        base[f] = g.get(f)
+                        break
+            base["_merged_from"] = len(grp)
+            merged.append(base)
+        return merged
+    except Exception as e:  # noqa: BLE001 — a display dedup must never break a read
+        print(f"[STK-DEDUPE] failed: {e}", flush=True)
+        return items
+
+
+def attach_deduped_stakeholders(rec: dict) -> dict:
+    """Read-only copy of `rec` with ai.stakeholder_map.items de-duplicated for display.
+    Fixes the "same person listed Nx" roster at read time for every existing deal without
+    a re-sweep. Never persisted, never raises."""
+    if not isinstance(rec, dict):
+        return rec
+    ai = rec.get("ai")
+    if not isinstance(ai, dict):
+        return rec
+    smap = ai.get("stakeholder_map")
+    if not isinstance(smap, dict):
+        return rec
+    items = smap.get("items")
+    deduped = dedupe_stakeholder_items(items)
+    if deduped is items:
+        return rec
+    out = dict(rec)
+    new_ai = dict(ai)
+    new_smap = dict(smap)
+    new_smap["items"] = deduped
+    for ck in ("count", "total", "mapped", "num", "n"):
+        if isinstance(new_smap.get(ck), int):
+            new_smap[ck] = len(deduped)
+    new_ai["stakeholder_map"] = new_smap
+    out["ai"] = new_ai
+    return out
+
+
 def attach_verdict_view(rec: dict) -> dict:
     """Return a copy of `rec` with the deal-drawer verdict view GUARANTEED + stage-correct:
     ai.north_star_verdict gets a 1-3 word `risk_tag`, a 4-bucket `health_bucket`, and its

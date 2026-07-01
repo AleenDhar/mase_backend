@@ -6159,8 +6159,8 @@ async def _nightly_sf_pull_scheduler():
         (C) global OpportunityFieldHistory delta sync independently.
       - SF_PULL_CRON_DELTA_LOOKBACK_MINUTES     (default 1560 = 26h) — delta window.
     """
-    if os.getenv("SF_PULL_CRON_ENABLED", "true").strip().lower() in ("false", "0", "no", "off"):
-        print("[NIGHTLY-SF-PULL] scheduler disabled via SF_PULL_CRON_ENABLED", flush=True)
+    if os.getenv("SF_PULL_CRON_ENABLED", "false").strip().lower() in ("false", "0", "no", "off"):
+        print("[NIGHTLY-SF-PULL] scheduler disabled (default off; set SF_PULL_CRON_ENABLED=true to re-enable)", flush=True)
         return
     from datetime import datetime, timedelta, timezone
     tz_name = os.getenv("SF_PULL_CRON_TZ", "UTC")
@@ -6220,8 +6220,8 @@ async def _nightly_hard_refresh_scheduler():
         back at 'Initial Interest' (discovery hygiene; off for a pure fact sync).
     """
     import deal_engine_sweep as sweep
-    if os.getenv("DEAL_HARD_REFRESH_CRON_ENABLED", "true").strip().lower() in ("false", "0", "no", "off"):
-        print("[NIGHTLY-HARD-REFRESH] scheduler disabled via DEAL_HARD_REFRESH_CRON_ENABLED", flush=True)
+    if os.getenv("DEAL_HARD_REFRESH_CRON_ENABLED", "false").strip().lower() in ("false", "0", "no", "off"):
+        print("[NIGHTLY-HARD-REFRESH] scheduler disabled (default off; set DEAL_HARD_REFRESH_CRON_ENABLED=true to re-enable)", flush=True)
         return
     from datetime import datetime, timedelta, timezone
     tz_name = os.getenv("DEAL_HARD_REFRESH_CRON_TZ", "UTC")
@@ -7646,7 +7646,7 @@ async def deal_engine_opportunity(opp_id: str):
             return JSONResponse({"error": "opportunity not found"}, status_code=404)
         # Frontend contract: `record["pulse"]` always present; also stamp
         # recommended_moves with todo_key + apply user edit/delete overrides.
-        return dstore.stamp_move_overrides(dstore.attach_verdict_view(dstore.attach_deal_scores(dstore.attach_pulse(rec))))
+        return dstore.attach_deduped_stakeholders(dstore.stamp_move_overrides(dstore.attach_verdict_view(dstore.attach_deal_scores(dstore.attach_pulse(rec)))))
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 

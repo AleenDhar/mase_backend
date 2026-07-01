@@ -49,8 +49,8 @@ from botbuilder.integration.aiohttp import (
 )
 from botbuilder.schema import Activity, ConversationReference
 
-# (user_text, conversation_id) -> reply text. Injected by server.py.
-AgentReply = Callable[[str, str], Awaitable[str]]
+# (user_text, conversation_id, user_name) -> reply text. Injected by server.py.
+AgentReply = Callable[[str, str, str], Awaitable[str]]
 
 # Stored so we can post back proactively after the background run, and (later) push
 # unprompted notifications. In-memory for now — a restart forgets a chat until it
@@ -101,10 +101,11 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
     adapter = _build_adapter()
     bot_app_id, *_ = _cfg()
 
-    async def _run_and_post(reference: ConversationReference, text: str, conv_id: str) -> None:
+    async def _run_and_post(reference: ConversationReference, text: str, conv_id: str,
+                            user_name: str) -> None:
         """Background: run the (slow) agent, then post the result into the chat."""
         try:
-            reply = await agent_reply(text, conv_id)
+            reply = await agent_reply(text, conv_id, user_name)
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] agent_reply failed conv={conv_id}: {e}")
             reply = f"Sorry — MASE hit an error handling that: {e}"
@@ -120,8 +121,11 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
 
     async def on_turn(turn: TurnContext) -> None:
         activity = turn.activity
+        # from_property is the sender; .name is their Teams display name. Give it to
+        # the agent so it greets the real user instead of hallucinating a name.
+        user_name = (activity.from_property.name if activity.from_property else "") or ""
         print(f"[TEAMS BOT] activity type={activity.type} conv={activity.conversation.id} "
-              f"text={(activity.text or '')[:80]!r}")
+              f"user={user_name!r} text={(activity.text or '')[:80]!r}")
 
         # Remember how to reach this conversation for the proactive follow-up.
         _conv_refs[activity.conversation.id] = TurnContext.get_conversation_reference(activity)
@@ -148,7 +152,8 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
 
             # Fire-and-forget the slow work; the proactive post delivers the answer.
             task = asyncio.create_task(
-                _run_and_post(_conv_refs[activity.conversation.id], text, activity.conversation.id)
+                _run_and_post(_conv_refs[activity.conversation.id], text,
+                              activity.conversation.id, user_name)
             )
             _bg_tasks.add(task)
             task.add_done_callback(_bg_tasks.discard)

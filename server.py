@@ -11407,6 +11407,36 @@ try:
 except Exception as _e:  # noqa: BLE001
     print(f"[STARTUP] WARNING: pipeline_runner router NOT included: {_e}")
 
+# Mount the MASE Teams bot: POST /api/messages. Teams pushes every message here;
+# we run the SAME agent path /api/chat uses (non-streaming ainvoke) and reply via
+# the Bot Connector API. Injected as a callable so teams_bot.py stays decoupled from
+# server internals. Mount on the FastAPI instance BEFORE it's wrapped below.
+async def _teams_agent_reply(user_text: str, conversation_id: str) -> str:
+    """Run the MASE agent on one Teams message and return the reply text."""
+    chat_id = f"teams:{conversation_id}"
+    _current_chat_id.set(chat_id)
+    agent = await agent_manager.get_agent()
+    result = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": user_text}]},
+        config={"recursion_limit": _RECURSION_LIMIT},
+    )
+    content = result["messages"][-1].content
+    # Anthropic replies can be a list of content blocks; flatten to text.
+    if isinstance(content, list):
+        content = "\n".join(
+            b.get("text", "") for b in content
+            if isinstance(b, dict) and b.get("type") == "text"
+        ).strip()
+    return str(content)
+
+
+try:
+    import teams_bot as _teams_bot
+    _teams_bot.register_teams_bot(_fastapi_app, _teams_agent_reply)
+    print("[STARTUP] teams_bot router included (POST /api/messages)")
+except Exception as _e:  # noqa: BLE001
+    print(f"[STARTUP] WARNING: teams_bot router NOT included: {_e}")
+
 # Reassign module-level `app` so uvicorn.run("server:app", …) picks up the wrapper.
 app = _AppWithMCP(_fastapi_app, _mcp_gateway)
 

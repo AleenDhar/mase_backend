@@ -2327,6 +2327,60 @@ def _attendees_of(rec: dict) -> list:
     return [a for a in att if isinstance(a, str) and a.strip()]
 
 
+def _reconcile_stakeholder_roster(new_ai, buyer, existing_record):
+    """Deterministic, un-droppable stakeholder roster.
+
+    Unions three sources and dedupes name-variants so the drawer shows one entry per real
+    person and a real contact is never silently dropped between runs:
+      1. SFDC OpportunityContactRole contacts (buyer["contacts"]) — authoritative, every run
+      2. the PRIOR record's stakeholders (carry-forward)
+      3. this run's AI stakeholders (call/email participants)
+    SFDC contacts go first so they anchor identity/role. Returns a shallow copy of new_ai
+    with ai.stakeholder_map.items reconciled. Never raises — a failure leaves the AI roster
+    untouched (no worse than before)."""
+    if not isinstance(new_ai, dict):
+        return new_ai
+    try:
+        import deal_engine_store as _ds
+        sm = new_ai.get("stakeholder_map")
+        sm = sm if isinstance(sm, dict) else {}
+        new_items = sm.get("items")
+        new_items = new_items if isinstance(new_items, list) else []
+        prior_ai = existing_record.get("ai") if isinstance(existing_record, dict) else None
+        prior_sm = prior_ai.get("stakeholder_map") if isinstance(prior_ai, dict) else None
+        prior_items = prior_sm.get("items") if isinstance(prior_sm, dict) else []
+        prior_items = prior_items if isinstance(prior_items, list) else []
+        contacts = buyer.get("contacts") if isinstance(buyer, dict) else []
+        contacts = contacts if isinstance(contacts, list) else []
+        sfdc_items = []
+        for c in contacts:
+            if not isinstance(c, dict):
+                continue
+            nm = (c.get("name") or "").strip()
+            if not nm or c.get("is_nonperson"):
+                continue
+            it = {"name": nm, "_source": "sfdc_contact_role"}
+            if c.get("title"):
+                it["title"] = c["title"]
+            if c.get("role"):
+                it["role"] = c["role"]
+            sfdc_items.append(it)
+        combined = sfdc_items + prior_items + new_items
+        if not combined:
+            return new_ai
+        merged = _ds.dedupe_stakeholder_items(combined)
+        if not isinstance(merged, list):
+            return new_ai
+        out = dict(new_ai)
+        out_sm = dict(sm)
+        out_sm["items"] = merged
+        out["stakeholder_map"] = out_sm
+        return out
+    except Exception as _e:  # noqa: BLE001 — reconciliation must never break a sweep
+        print(f"[DEAL-SWEEP] stakeholder reconcile skipped: {type(_e).__name__}: {_e}", flush=True)
+        return new_ai
+
+
 async def analyze_one(
     agent_manager,
     opp: dict,
@@ -3267,6 +3321,17 @@ async def analyze_one(
                     _ds_now["cro_panel"] = _panel
         except Exception as _cpe:  # noqa: BLE001 — panel is cosmetic, never blocks persist
             print(f"[CRO-PANEL] build failed for {opp_id}: {_cpe}", flush=True)
+        # Deterministic stakeholder roster: anchor to SFDC contact roles + carry forward
+        # prior stakeholders (never drop a real person) + dedupe name-variants, at the
+        # single persist chokepoint so EVERY branch benefits. Runs AFTER the anti-fabrication
+        # gate — its inputs (SFDC contacts, previously-validated prior roster) are real, not
+        # AI-minted. Defensive: a failure leaves the AI roster untouched, never blocks persist.
+        try:
+            if isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
+                parsed["ai"] = _reconcile_stakeholder_roster(parsed["ai"], buyer, existing_record)
+        except Exception as _sre:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] stakeholder reconcile skipped opp={opp_id}: "
+                  f"{type(_sre).__name__}: {_sre}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

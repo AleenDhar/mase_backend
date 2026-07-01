@@ -11423,7 +11423,10 @@ async def _teams_agent_reply(user_text: str, conversation_id: str) -> str:
     agent = await agent_manager.get_agent()
     result = await agent.ainvoke(
         {"messages": [{"role": "user", "content": user_text}]},
-        config={"recursion_limit": _RECURSION_LIMIT},
+        # thread_id is REQUIRED by the agent's checkpointer; keying it on the Teams
+        # conversation id also gives each chat its own persistent memory thread.
+        config={"recursion_limit": _RECURSION_LIMIT,
+                "configurable": {"thread_id": chat_id}},
     )
     content = result["messages"][-1].content
     # Anthropic replies can be a list of content blocks; flatten to text.

@@ -21,6 +21,10 @@ env:
   CLUSTER: mase-cluster
   ALB_DNS: mase-alb-1262623499.ap-south-1.elb.amazonaws.com
   LISTENER: arn:aws:elasticloadbalancing:ap-south-1:022187637784:listener/app/mase-alb/176c820e3f56b935/c6710f58972ca338
+  # HTTPS:443 listener — fronts https://mase-api.zycus.com (the Teams bot messaging
+  # endpoint). MUST be flipped in lockstep with the HTTP listener or a deploy leaves
+  # 443 pointing at the drained colour and the bot's endpoint dies.
+  HTTPS_LISTENER: arn:aws:elasticloadbalancing:ap-south-1:022187637784:listener/app/mase-alb/176c820e3f56b935/900dc459aa97463c
   TG_BLUE: arn:aws:elasticloadbalancing:ap-south-1:022187637784:targetgroup/mase-blue/71c71534374ec831
   TG_GREEN: arn:aws:elasticloadbalancing:ap-south-1:022187637784:targetgroup/mase-green/c8b1ab1c4dff2dbf
 
@@ -122,8 +126,11 @@ jobs:
             {"TargetGroupArn":"$LIVE_TG","Weight":0}]}}]
           EOF
           aws elbv2 modify-listener --listener-arn "$LISTENER" --default-actions file://flip.json >/dev/null
+          # Flip the HTTPS:443 listener too, or https://mase-api.zycus.com (the Teams bot
+          # endpoint) stays pointed at the drained colour after this deploy.
+          aws elbv2 modify-listener --listener-arn "$HTTPS_LISTENER" --default-actions file://flip.json >/dev/null
           echo "FLIPPED=1" >> "$GITHUB_ENV"
-          echo "flipped -> $IDLE"
+          echo "flipped -> $IDLE (HTTP + HTTPS)"
 
       - name: Deploy sweep worker
         run: |
@@ -161,4 +168,5 @@ jobs:
             {"TargetGroupArn":"$IDLE_TG","Weight":0}]}}]
           EOF
           aws elbv2 modify-listener --listener-arn "$LISTENER" --default-actions file://rb.json >/dev/null
-          echo "::error::Deploy failed post-flip — rolled the ALB back to $LIVE."
+          aws elbv2 modify-listener --listener-arn "$HTTPS_LISTENER" --default-actions file://rb.json >/dev/null
+          echo "::error::Deploy failed post-flip — rolled the ALB (HTTP + HTTPS) back to $LIVE."

@@ -3552,13 +3552,26 @@ async def analyze_one(
             _p_at = _prior_ai_full.get("pinned_at") if isinstance(_prior_ai_full, dict) else None
             if _p_at:
                 parsed["ai"]["pinned_at"] = _p_at
-        # Carry forward the CEO-intervention flag. It is written by a SEPARATE CEO-help
-        # pass (not computed in the sweep yet), so a re-sweep must not drop it. Preserve
-        # the prior value whenever this sweep didn't produce one.
-        if isinstance(parsed.get("ai"), dict) and not parsed["ai"].get("ceo_intervention"):
-            _prior_ceo = _prior_ai_full.get("ceo_intervention") if isinstance(_prior_ai_full, dict) else None
-            if _prior_ceo:
-                parsed["ai"]["ceo_intervention"] = _prior_ceo
+        # CEO-intervention — computed NATIVELY each sweep (was a separate pass). The
+        # WHEN is a deterministic gate on the just-computed scores (forecasted AND
+        # win>60 AND mom>60); the WHAT rides the model's own emitted ceo_intervention
+        # (no extra call) and is sanitized with the same title/name guardrails as the
+        # rest of the record. On any failure we fall back to carrying the prior value
+        # forward, so a re-sweep never drops a good CEO read.
+        if isinstance(parsed.get("ai"), dict):
+            try:
+                import deal_engine_ceo as _ceo
+                _ceo.finalize_ceo_intervention(
+                    parsed, opp, buyer,
+                    prior_ai=_prior_ai_full if isinstance(_prior_ai_full, dict) else None,
+                    allowlist=_pkt_allow)
+            except Exception as _cie:  # noqa: BLE001 — never block persist
+                print(f"[DEAL-SWEEP] ceo-intervention finalize skipped opp={opp_id}: "
+                      f"{type(_cie).__name__}: {_cie}", flush=True)
+                if not parsed["ai"].get("ceo_intervention"):
+                    _prior_ceo = _prior_ai_full.get("ceo_intervention") if isinstance(_prior_ai_full, dict) else None
+                    if _prior_ceo:
+                        parsed["ai"]["ceo_intervention"] = _prior_ceo
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-03 — CEO help computed NATIVELY in the sweep (CEO-only, 4 levers, gated + sanitized)
+
+**What.** `ai.ceo_intervention` is now produced on EVERY sweep instead of a separate
+local pass (new `deal_engine_ceo.finalize_ceo_intervention`, wired into
+`deal_engine_sweep.analyze_one` at the persist chokepoint, replacing the old
+carry-forward-only block). Split of responsibility: the **WHEN is a deterministic
+gate** — a deal qualifies only when it is FORECASTED (Commit/Best Case/Upside) AND
+its server-computed scores clear `win_position>60 AND deal_momentum>60` (the model
+never decides the gate); the **WHAT rides the sweep's existing LLM output** (a new
+prompt section has the model emit its CEO read — no extra API call). The finalizer
+overrides `needed` from the gate, clamps `areas` to the four CEO levers (pricing /
+product / presales_resources / exec_connect), stamps real win/mom + `source:"sweep"`,
+and **sanitizes** `ceo_action`/`reason` with the title/name guardrails + verifies
+`buyer_target` against Salesforce (repairs an unbacked name to the MEDDPICC economic
+buyer, else null+role). On any failure it falls back to carrying the prior value
+forward, so a re-sweep never drops a good read.
+
+**Why.** CEO help was (1) a separate manual workflow, not native, and (2) conflated
+"executive help" with "CEO help" — it drifted into "send a VP/SVP/delivery leader."
+Now it is CEO-ONLY (the action is what the CEO personally does) and computed each run.
+Apollo/ZoomInfo are NOT used — buyer authority comes from Salesforce contact roles.
+
+**How to work with it going forward.** Levers + gate live in `deal_engine_ceo.py`
+(`LEVERS`, `WIN_BAR`/`MOM_BAR`); prompt emit-rules in the Supabase `mase_deal_sweep`
+prompt (CEO help section). `source:"sweep"` marks a natively-computed record; older
+`workflow_v2`/`v3` records are overwritten on their next sweep. Requires a backend
+deploy + the prompt section. Unit-tested (`test_ceo_native.py`).
+
 ## 2026-07-02 — Add `Next_Step__c` to CDC meaningful fields (custom next-step field, from live data)
 
 **What.** The CDC Lambda's default `MEANINGFUL_FIELDS` is now

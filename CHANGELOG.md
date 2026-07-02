@@ -18,8 +18,9 @@ local pass (new `deal_engine_ceo.finalize_ceo_intervention`, wired into
 `deal_engine_sweep.analyze_one` at the persist chokepoint, replacing the old
 carry-forward-only block). Split of responsibility: the **WHEN is a deterministic
 gate** — a deal qualifies only when it is FORECASTED (Commit/Best Case/Upside) AND
-its server-computed scores clear `win_position>60 AND deal_momentum>60` (the model
-never decides the gate); the **WHAT rides the sweep's existing LLM output** (a new
+its server-computed **win score clears `win_position>60`** (momentum is intentionally
+NOT gated — a winnable-but-stalling deal is exactly when the CEO must step in; the
+model never decides the gate); the **WHAT rides the sweep's existing LLM output** (a new
 prompt section has the model emit its CEO read — no extra API call). The finalizer
 overrides `needed` from the gate, clamps `areas` to the four CEO levers (pricing /
 product / presales_resources / exec_connect), stamps real win/mom + `source:"sweep"`,

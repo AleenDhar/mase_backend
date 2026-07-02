@@ -47,12 +47,19 @@ def main():
     print(f"[{'PASS' if t2 else 'FAIL'}] 2 non-forecasted -> needed False")
     ok &= t2
 
-    # 3) forecasted but win below bar -> needed False
+    # 3) forecasted but WIN below bar -> needed False (even with high momentum)
     r = rec(58, 80, ci={"areas": ["pricing"], "ceo_action": "x"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
     t3 = r["ai"]["ceo_intervention"]["needed"] is False
-    print(f"[{'PASS' if t3 else 'FAIL'}] 3 win=58 below bar -> needed False")
+    print(f"[{'PASS' if t3 else 'FAIL'}] 3 win=58 below bar -> needed False (momentum ignored)")
     ok &= t3
+
+    # 3b) winnable but STALLING (win>60, low momentum) -> STILL needed (momentum not gated)
+    r = rec(65, 40, ci={"areas": ["exec_connect"], "ceo_action": "CEO steps in to un-stall"})
+    C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER)
+    t3b = r["ai"]["ceo_intervention"]["needed"] is True
+    print(f"[{'PASS' if t3b else 'FAIL'}] 3b win=65 mom=40 (stalling) -> needed True")
+    ok &= t3b
 
     # 4) passes but LLM emitted nothing + prior exists -> carry prior forward
     prior = {"ceo_intervention": {"needed": True, "areas": ["exec_connect"], "priority": "high",

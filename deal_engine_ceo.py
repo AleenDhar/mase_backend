@@ -4,8 +4,11 @@ CEO help (ai.ceo_intervention) is now computed on EVERY sweep instead of a separ
 local pass. The split of responsibility keeps it safe:
 
   WHEN (the gate) is DETERMINISTIC — a deal qualifies only when it is FORECASTED
-  (Commit / Best Case / Upside) AND its server-computed scores clear the bar
-  (win_position > 60 AND deal_momentum > 60). The model never decides the gate.
+  (Commit / Best Case / Upside) AND its server-computed WIN score clears the bar
+  (win_position > 60). Momentum is intentionally NOT gated: a winnable deal that is
+  STALLING (high win, low momentum) is exactly when the CEO must step in to un-stall
+  it — gating on momentum would exclude the deals that most need CEO help. The model
+  never decides the gate.
 
   WHAT (the content) rides the sweep's EXISTING LLM output — the model emits its
   best CEO read (the four CEO levers + a CEO-personal action + a Salesforce-grounded
@@ -26,8 +29,7 @@ from typing import Any, Optional
 import deal_engine_validation as _val
 
 LEVERS = ("pricing", "product", "presales_resources", "exec_connect")
-WIN_BAR = 60.0
-MOM_BAR = 60.0
+WIN_BAR = 60.0   # the ONLY gate threshold — on win_position (momentum is not gated)
 
 
 def _num(v: Any) -> Optional[float]:
@@ -97,9 +99,8 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     forecasted = _is_forecasted((opp or {}).get("forecast_category"))
     gen = date.today().isoformat()
 
-    # --- the DETERMINISTIC gate -------------------------------------------------
-    gate = bool(forecasted and win is not None and mom is not None
-                and win > WIN_BAR and mom > MOM_BAR)
+    # --- the DETERMINISTIC gate (WIN only; momentum is not gated) ----------------
+    gate = bool(forecasted and win is not None and win > WIN_BAR)
     if not gate:
         ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,
                                   "source": "sweep", "generated_at": gen}

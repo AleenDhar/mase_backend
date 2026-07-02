@@ -3506,6 +3506,13 @@ async def analyze_one(
             _p_at = _prior_ai_full.get("pinned_at") if isinstance(_prior_ai_full, dict) else None
             if _p_at:
                 parsed["ai"]["pinned_at"] = _p_at
+        # Carry forward the CEO-intervention flag. It is written by a SEPARATE CEO-help
+        # pass (not computed in the sweep yet), so a re-sweep must not drop it. Preserve
+        # the prior value whenever this sweep didn't produce one.
+        if isinstance(parsed.get("ai"), dict) and not parsed["ai"].get("ceo_intervention"):
+            _prior_ceo = _prior_ai_full.get("ceo_intervention") if isinstance(_prior_ai_full, dict) else None
+            if _prior_ceo:
+                parsed["ai"]["ceo_intervention"] = _prior_ceo
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

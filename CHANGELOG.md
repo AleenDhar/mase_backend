@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — CEO-intervention flag ("CEO help needed") per deal
+
+**What.** A new per-deal field `ai.ceo_intervention` = `{needed, priority, areas[], reason,
+ceo_action, win, mom, source, generated_at}`. `areas` ⊆ {pricing, product, presales_resources,
+exec_connect}. Backend: `slim_record` now keeps `ceo_intervention` so the Deals LIST/column can
+read + filter it without loading the full record; `analyze_one` carries it forward on re-sweep
+(it is written by a separate pass, not computed in the sweep yet).
+
+**Why.** The CEO can move deals via pricing approval, product/roadmap commitment, pre-sales/
+resource allocation, and exec-to-exec connects. Rule: **CEO should be involved when
+win_position > 60 AND deal_momentum > 60.** The UI needs a filterable "CEO help" column.
+
+**How it's computed (for now).** NOT in the sweep and NOT via the AI scorer. A separate
+Claude-Code workflow (`ceo-help-judge`) gates on win>60 & mom>60, then judges the areas +
+reason + concrete `ceo_action` per gate-passing deal, and a scoped `jsonb_set` stamps
+`ai.ceo_intervention` on the deal_records rows. First run (2026-07-02): all 122 forecasted
+deals — 6 gate-passers get needed=true (ARUP, Austrian Post, Robert Bosch, Domino's, Consumer
+Cellular, McAfee), 116 needed=false. Later this can move into the sweep.
+
+**How to work with it going forward.** Re-run the `ceo-help-judge` workflow + apply pass to
+refresh (or extend beyond forecasted). Frontend renders a "CEO help" column + filter mirroring
+the AI-excitement (`ai_fit_signal`) pattern. Requires the backend deploy for the list payload
+to include the field.
+
 ## 2026-07-02 — Pin guard, verbatim AI reasons, never-blank stakeholder role
 
 **What.** Three changes so automated sweeps stop clobbering corrected deals and the

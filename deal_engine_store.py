@@ -393,6 +393,9 @@ def slim_record(rec: dict) -> dict:
         "ai": {
             "north_star_verdict": ai.get("north_star_verdict"),
             "ai_fit_signal": ai.get("ai_fit_signal"),
+            # CEO-intervention flag (needed/areas/reason) — kept slim so the Deals list
+            # can render + filter the "CEO help" column without loading the full record.
+            "ceo_intervention": ai.get("ceo_intervention"),
             "deal_scores": _ds_slim,
         },
         "pulse": rec.get("pulse"),

@@ -11445,6 +11445,150 @@ async def _teams_agent_reply(user_text: str, conversation_id: str, user_name: st
     return str(content)
 
 
+_TEAMS_ADMIN_HTML = r"""<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MASE Teams Bot — Control Room</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;background:#0f1115;color:#e6e8ec;font:14px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+  header{padding:18px 24px;border-bottom:1px solid #23262d;display:flex;align-items:center;gap:10px}
+  header .m{width:28px;height:28px;border-radius:6px;background:#4854EE;display:flex;align-items:center;justify-content:center;font-weight:700}
+  h1{font-size:16px;margin:0}
+  main{padding:20px 24px;max-width:1000px}
+  .card{background:#151821;border:1px solid #23262d;border-radius:10px;padding:16px 18px;margin-bottom:18px}
+  .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#9aa0aa;margin:0 0 12px}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #20242c;font-size:13px;vertical-align:top}
+  th{color:#9aa0aa;font-weight:600}
+  input,button{font:inherit}
+  input[type=text],input[type=email]{background:#0f1115;border:1px solid #2a2e37;color:#e6e8ec;border-radius:6px;padding:7px 9px}
+  button{background:#4854EE;border:0;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid #2a2e37;color:#c7cbd3}
+  button.danger{background:#3a1d22;color:#ff8a8a;border:1px solid #5a2a30}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .pill{padding:2px 8px;border-radius:999px;font-size:12px}
+  .ok{background:#12301f;color:#5fd28a}.denied{background:#3a1d22;color:#ff8a8a}.error{background:#3a2a12;color:#ffce6b}.ignored{background:#23262d;color:#9aa0aa}
+  .muted{color:#9aa0aa}
+  .switch{display:inline-flex;align-items:center;gap:8px;margin-right:20px}
+  .toggle{width:38px;height:22px;border-radius:999px;background:#2a2e37;position:relative;cursor:pointer;transition:.15s}
+  .toggle.on{background:#4854EE}
+  .toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}
+  .toggle.on::after{left:18px}
+</style></head>
+<body>
+<header><div class="m">M</div><h1>MASE Teams Bot — Control Room</h1><span id="err" class="muted"></span></header>
+<main>
+  <div class="card">
+    <h2>Settings</h2>
+    <div class="row">
+      <div class="switch"><div id="tg-enforce" class="toggle" onclick="toggleSetting('enforce_allowlist')"></div> Enforce allowlist</div>
+      <div class="switch"><div id="tg-history" class="toggle" onclick="toggleSetting('history_enabled')"></div> Read group history</div>
+    </div>
+    <p class="muted" id="notes" style="margin:10px 0 0">Enforce OFF = anyone in a chat can use MASE. History reading needs the metered Teams Graph API (pending IT); leave OFF until enabled.</p>
+  </div>
+
+  <div class="card">
+    <h2>Allowlist</h2>
+    <div class="row" style="margin-bottom:12px">
+      <input id="in-email" type="email" placeholder="user@zycus.com" style="min-width:240px">
+      <input id="in-name" type="text" placeholder="Display name (optional)">
+      <button onclick="addUser()">Add user</button>
+    </div>
+    <table><thead><tr><th>Email</th><th>Name</th><th>Enabled</th><th>Added</th><th></th></tr></thead>
+    <tbody id="allow"></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Recent activity <button class="ghost" style="float:right;padding:3px 10px" onclick="loadActivity()">Refresh</button></h2>
+    <table><thead><tr><th>Time</th><th>User</th><th>Type</th><th>Dir</th><th>Status</th><th>Message</th></tr></thead>
+    <tbody id="act"></tbody></table>
+  </div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+function err(m){ $('#err').textContent = m||''; }
+async function api(url,opts){ const r=await fetch(url,Object.assign({credentials:'same-origin',headers:{'Content-Type':'application/json'}},opts||{}));
+  if(r.status===401){ err('Unauthorized — open this page once with ?key=YOUR_TOKEN'); throw new Error('401'); }
+  if(!r.ok){ err('Error: '+r.status); throw new Error(r.status); } err(''); return r.json(); }
+function esc(s){ return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+async function loadAll(){ const d=await api('/api/teams/allowlist'); renderSettings(d.settings); renderAllow(d.rows); loadActivity(); }
+function renderSettings(s){ $('#tg-enforce').classList.toggle('on',!!s.enforce_allowlist); $('#tg-history').classList.toggle('on',!!s.history_enabled); }
+async function toggleSetting(k){ const on=!$('#tg-'+(k==='enforce_allowlist'?'enforce':'history')).classList.contains('on');
+  const d=await api('/api/teams/settings',{method:'POST',body:JSON.stringify({[k]:on})}); renderSettings(d.settings); }
+function renderAllow(rows){ $('#allow').innerHTML = (rows||[]).map(r=>`<tr>
+  <td>${esc(r.email)||'<span class=muted>—</span>'}</td><td>${esc(r.display_name)||'<span class=muted>—</span>'}</td>
+  <td><div class="toggle ${r.enabled?'on':''}" onclick="toggleUser('${r.id}',${!r.enabled})"></div></td>
+  <td class="muted">${(r.added_at||'').slice(0,10)}</td>
+  <td><button class="danger" style="padding:3px 10px" onclick="delUser('${r.id}')">Remove</button></td></tr>`).join('')
+  || '<tr><td colspan=5 class=muted>No users yet — with enforcement ON and an empty list, nobody can use the bot.</td></tr>'; }
+async function addUser(){ const email=$('#in-email').value.trim(); if(!email){err('Enter an email');return;}
+  await api('/api/teams/allowlist',{method:'POST',body:JSON.stringify({email,display_name:$('#in-name').value.trim()})});
+  $('#in-email').value='';$('#in-name').value=''; loadAll(); }
+async function toggleUser(id,on){ await api('/api/teams/allowlist/'+id+'/toggle',{method:'POST',body:JSON.stringify({enabled:on})}); loadAll(); }
+async function delUser(id){ await api('/api/teams/allowlist/'+id,{method:'DELETE'}); loadAll(); }
+async function loadActivity(){ const d=await api('/api/teams/activity?limit=60'); $('#act').innerHTML=(d.rows||[]).map(r=>`<tr>
+  <td class="muted">${(r.ts||'').slice(11,19)}</td><td>${esc(r.user_name)||esc(r.user_email)||'—'}</td>
+  <td class="muted">${esc(r.conversation_type)||'—'}</td><td class="muted">${esc(r.direction)||''}</td>
+  <td><span class="pill ${esc(r.status)}">${esc(r.status)||''}</span></td><td>${esc((r.text||'').slice(0,120))}</td></tr>`).join('')
+  || '<tr><td colspan=6 class=muted>No activity yet.</td></tr>'; }
+loadAll();
+</script>
+</body></html>"""
+
+
+# ── MASE Teams bot control room (admin UI + JSON API). Gated by the API-auth token like
+# the other /api admin surfaces — deliberately NOT in the public allowlist, so only holders
+# of the token (open with ?key=<API_AUTH_TOKEN> once) can manage the bot. ────────────────
+try:
+    import teams_bot_store as _tbs
+
+    @_fastapi_app.get("/api/teams/allowlist")
+    async def _teams_allowlist_list():
+        return JSONResponse({"rows": _tbs.list_allowlist(), "settings": _tbs.all_settings()})
+
+    @_fastapi_app.post("/api/teams/allowlist")
+    async def _teams_allowlist_add(request: Request):
+        b = await request.json()
+        email = (b.get("email") or "").strip()
+        if not email:
+            raise HTTPException(status_code=400, detail="email is required")
+        row = _tbs.add_allowlist(email=email,
+                                 display_name=(b.get("display_name") or "").strip() or None,
+                                 added_by="control-room")
+        return JSONResponse({"ok": True, "row": row})
+
+    @_fastapi_app.post("/api/teams/allowlist/{row_id}/toggle")
+    async def _teams_allowlist_toggle(row_id: str, request: Request):
+        b = await request.json()
+        _tbs.set_allowlist_enabled(row_id, bool(b.get("enabled", True)))
+        return JSONResponse({"ok": True})
+
+    @_fastapi_app.delete("/api/teams/allowlist/{row_id}")
+    async def _teams_allowlist_del(row_id: str):
+        _tbs.remove_allowlist(row_id)
+        return JSONResponse({"ok": True})
+
+    @_fastapi_app.get("/api/teams/activity")
+    async def _teams_activity(limit: int = 50):
+        return JSONResponse({"rows": _tbs.recent_activity(min(int(limit), 200))})
+
+    @_fastapi_app.post("/api/teams/settings")
+    async def _teams_settings_set(request: Request):
+        b = await request.json()
+        for k in ("enforce_allowlist", "history_enabled"):
+            if k in b:
+                _tbs.set_setting(k, "true" if b[k] else "false")
+        return JSONResponse({"ok": True, "settings": _tbs.all_settings()})
+
+    @_fastapi_app.get("/api/teams/admin", response_class=HTMLResponse)
+    async def _teams_admin_page():
+        return HTMLResponse(content=_TEAMS_ADMIN_HTML)
+
+    print("[STARTUP] teams control room mounted (GET /api/teams/admin)")
+except Exception as _e:  # noqa: BLE001
+    print(f"[STARTUP] WARNING: teams control room NOT mounted: {_e}")
+
 try:
     import teams_bot as _teams_bot
     _teams_bot.register_teams_bot(_fastapi_app, _teams_agent_reply)

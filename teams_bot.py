@@ -49,6 +49,19 @@ from botbuilder.integration.aiohttp import (
 )
 from botbuilder.schema import Activity, ConversationReference
 
+try:
+    from botbuilder.core.teams import TeamsInfo
+except Exception:  # noqa: BLE001
+    TeamsInfo = None
+
+# Control-room store (allowlist / activity log / settings). Best-effort: if Supabase
+# is unreachable, allowlist checks fail OPEN so a DB blip never locks users out.
+try:
+    import teams_bot_store as store
+except Exception as _e:  # noqa: BLE001
+    store = None
+    print(f"[TEAMS BOT] store unavailable ({_e}); allowlist + activity log disabled")
+
 # (user_text, conversation_id, user_name) -> reply text. Injected by server.py.
 AgentReply = Callable[[str, str, str], Awaitable[str]]
 
@@ -112,19 +125,52 @@ def _build_adapter() -> CloudAdapter:
     return CloudAdapter(ConfigurationBotFrameworkAuthentication(cfg))
 
 
+async def _resolve_email(turn: TurnContext) -> str:
+    """Best-effort sender email/UPN via the Teams roster. The raw activity only carries
+    a display name + Teams user id, so we ask TeamsInfo for the member's email."""
+    if TeamsInfo is None:
+        return ""
+    a = turn.activity
+    try:
+        m = await TeamsInfo.get_member(turn, a.from_property.id)
+        return (getattr(m, "email", None) or getattr(m, "user_principal_name", None) or "") or ""
+    except Exception as e:  # noqa: BLE001
+        print(f"[TEAMS BOT] email resolve failed: {e}")
+        return ""
+
+
+def _is_allowed(email: str, aad_object_id: str) -> bool:
+    """Allowlist gate. Fails OPEN (allow) if the store is down or unconfigured, so a DB
+    blip never locks users out — enforcement is a deliberate control-room setting."""
+    if store is None:
+        return True
+    try:
+        return store.is_allowed(email=email, aad_object_id=aad_object_id)
+    except Exception as e:  # noqa: BLE001
+        print(f"[TEAMS BOT] allowlist check failed (allowing): {e}")
+        return True
+
+
+def _log(**kw) -> None:
+    if store is not None:
+        store.log_activity(**kw)
+
+
 def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
     """Mount POST /api/messages onto the given FastAPI app."""
     adapter = _build_adapter()
     bot_app_id, *_ = _cfg()
 
     async def _run_and_post(reference: ConversationReference, text: str, conv_id: str,
-                            user_name: str) -> None:
+                            user_name: str, conv_type: str = None, email: str = "") -> None:
         """Background: run the (slow) agent, then post the result into the chat."""
+        status = "ok"
         try:
             reply = await agent_reply(text, conv_id, user_name)
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] agent_reply failed conv={conv_id}: {e}")
             reply = f"Sorry — MASE hit an error handling that: {e}"
+            status = "error"
 
         async def _send(tc: TurnContext) -> None:
             await tc.send_activity(MessageFactory.text(reply or "…"))
@@ -134,6 +180,9 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
             print(f"[TEAMS BOT] proactive reply posted conv={conv_id} ({len(reply or '')} chars)")
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] proactive post failed conv={conv_id}: {e}")
+            status = "error"
+        _log(conversation_id=conv_id, conversation_type=conv_type, user_name=user_name,
+             user_email=email, direction="out", status=status, text=reply)
 
     async def on_turn(turn: TurnContext) -> None:
         activity = turn.activity
@@ -172,13 +221,29 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
             if not text:
                 return
 
+            # Allowlist gate — resolve the sender's email/aad and check the control room.
+            aad = getattr(activity.from_property, "aad_object_id", None) if activity.from_property else None
+            email = await _resolve_email(turn)
+            conv_type_v = getattr(activity.conversation, "conversation_type", None)
+            if not _is_allowed(email, aad):
+                await turn.send_activity(MessageFactory.text(
+                    "You're not on MASE's access list yet. Ask an admin to add you in the MASE control room."))
+                _log(conversation_id=activity.conversation.id, conversation_type=conv_type_v,
+                     user_name=user_name, user_email=email, direction="in", status="denied", text=text)
+                print(f"[TEAMS BOT] denied user={user_name!r} email={email!r}")
+                return
+
+            _log(conversation_id=activity.conversation.id, conversation_type=conv_type_v,
+                 user_name=user_name, user_email=email, direction="in", status="ok", text=text)
+
             # Immediate ack so the activity POST returns well under the Teams timeout.
             await turn.send_activity(MessageFactory.text("On it — MASE is working on this; I'll reply here shortly."))
 
             # Fire-and-forget the slow work; the proactive post delivers the answer.
             task = asyncio.create_task(
                 _run_and_post(_conv_refs[activity.conversation.id], text,
-                              activity.conversation.id, user_name)
+                              activity.conversation.id, user_name,
+                              conv_type_v, email)
             )
             _bg_tasks.add(task)
             task.add_done_callback(_bg_tasks.discard)

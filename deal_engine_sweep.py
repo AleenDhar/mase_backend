@@ -3097,6 +3097,18 @@ async def analyze_one(
                         print(f"[DEAL-SWEEP] meddpicc-gate opp={opp_id} neutralised "
                               f"{_md_fixes} fabrication(s) in MEDDPICC narrative",
                               flush=True)
+                    # TITLE gate: neutralise any executive / economic-buyer title the
+                    # model pinned on a name Salesforce cannot back (e.g. "CFO <name>"
+                    # for someone SF shows as a Deputy CPO). Stakeholder titles are
+                    # server-owned from OpportunityContactRole Contact.Title, exactly
+                    # like manager_name — an unbacked title is dropped, the real name
+                    # kept. Covers moves, requirements, MEDDPICC, competitive read.
+                    _title_fixes = _val.sanitize_title_claims(
+                        parsed["ai"], _val.build_contact_titles(buyer), _pkt_allow, opp)
+                    if _title_fixes:
+                        print(f"[DEAL-SWEEP] title-gate opp={opp_id} neutralised "
+                              f"{_title_fixes} unverified stakeholder title claim(s)",
+                              flush=True)
                 except Exception as _e:  # noqa: BLE001
                     print(f"[DEAL-SWEEP] meddpicc normalize skipped opp={opp_id}: "
                           f"{type(_e).__name__}: {_e}", flush=True)

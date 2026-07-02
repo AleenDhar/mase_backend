@@ -357,6 +357,94 @@ def test_validate_record_rejects_hard_fact_divergence_and_missing_source():
     assert "source" in checks
 
 
+# ---- Part 6: competitor corroboration (the GEP-on-Austrian-Post fabrication) --
+
+def _cp(competitors):
+    rec = _good_record()
+    rec["ai"]["competitive_position"] = {"summary": "", "competitors": competitors}
+    return rec
+
+
+def _gate(rec):
+    return V.validate_record(rec, sf_facts=_sf(), contact_roles=_contacts(),
+                             avoma_attendees=["Sourced Sam"],
+                             active_sf_user_names={"Dana Rep"})
+
+
+def test_validate_record_rejects_unanchored_competitor_GEP():
+    # The real bug: GEP inferred from a "top 4 suppliers" note, named in NO SF
+    # field and in NO verbatim quote, rated an active medium threat. It must FAIL.
+    rec = _cp([{"name": "GEP", "status": "active", "threat_level": "medium",
+                "quote": "this round is a first price comparison between the top 4 "
+                         "suppliers", "source": "SF Next_Step__c 19 Mar",
+                "date": "2026-03-19"}])
+    violations = _gate(rec)
+    assert any(v["check"] == "competitor" and "GEP" in str(v["offending"])
+               for v in violations), "unanchored active GEP must be rejected"
+
+
+def test_validate_record_keeps_competitor_named_in_salesforce_field():
+    # Coupa IS in sf_facts['competitor'] -> traceable -> no violation.
+    rec = _cp([{"name": "Coupa", "status": "active", "threat_level": "high",
+                "quote": "the top 4 suppliers", "source": "Competitors__c"}])
+    assert all(v["check"] != "competitor" for v in _gate(rec))
+
+
+def test_validate_record_keeps_competitor_named_in_its_own_quote():
+    # Zip is in NO SF field, but the entry's own verbatim buyer quote names it —
+    # a legitimately call-named rival the server cannot re-read. It must SURVIVE.
+    rec = _cp([{"name": "Zip", "status": "active", "threat_level": "medium",
+                "quote": "we are also evaluating Zip for intake and orchestration",
+                "source": "Avoma discovery 12 May"}])
+    assert all(v["check"] != "competitor" for v in _gate(rec))
+
+
+def test_validate_record_exempts_declined_competitor_history():
+    # A displaced/declined rival stays as durable history even if its stored quote
+    # no longer names it — history is never deleted on a corroboration miss.
+    rec = _cp([{"name": "Proactis", "status": "declined", "threat_level": "low",
+                "quote": "the incumbent was ruled out", "source": "Task 03 Jun"}])
+    assert all(v["check"] != "competitor" for v in _gate(rec))
+
+
+def test_sanitize_competitors_drops_unanchored_keeps_anchored():
+    ai = {"competitive_position": {"competitors": [
+        {"name": "GEP", "status": "active", "quote": "top 4 suppliers"},        # drop
+        {"name": "Coupa", "status": "active", "quote": "top 4 suppliers"},      # keep (SF field)
+        {"name": "Zip", "status": "active", "quote": "evaluating Zip too"},     # keep (own quote)
+        {"name": "Ariba", "status": "declined", "quote": "top 4 suppliers"}]}}  # keep (history)
+    n = V.sanitize_competitors(ai, _sf())
+    kept = {c["name"] for c in ai["competitive_position"]["competitors"]}
+    assert n == 1
+    assert kept == {"Coupa", "Zip", "Ariba"}
+
+
+def test_sanitize_packets_drops_unanchored_competitor_packet():
+    pkts = [
+        {"type": "competitor", "subject": "GEP",
+         "value": {"name": "GEP", "status": "active", "quote": "top 4 suppliers"}},
+        {"type": "competitor", "subject": "Coupa",
+         "value": {"name": "Coupa", "status": "active", "quote": "top 4 suppliers"}},
+    ]
+    clean, n = V.sanitize_packets(pkts, set(), _sf())
+    subjects = {p["subject"] for p in clean}
+    assert n == 1
+    assert subjects == {"Coupa"}
+
+
+def test_sanitize_failed_record_removes_unanchored_competitor():
+    rec = _cp([{"name": "GEP", "status": "active", "threat_level": "medium",
+                "quote": "top 4 suppliers", "source": "SF Next_Step__c 19 Mar"}])
+    violations = _gate(rec)
+    assert any(v["check"] == "competitor" for v in violations)
+    V.sanitize_failed_record(rec, violations, _sf(),
+                             allowlist=V.build_people_allowlist(
+                                 {"contacts": _contacts(), "task_contacts": []}, {}))
+    # After the last-resort repair the record PASSES the gate clean.
+    assert all(v["check"] != "competitor" for v in _gate(rec))
+    assert rec["ai"]["competitive_position"]["competitors"] == []
+
+
 def test_sanitize_failed_record_makes_a_failing_record_pass():
     """After retries are exhausted, the last-resort sanitizer produces a record
     that the gate accepts — proving the pipeline can ALWAYS persist a safe record."""

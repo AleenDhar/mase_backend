@@ -694,6 +694,143 @@ def _any_placeholder(obj: Any) -> bool:
     return False
 
 
+# ---------------------------------------------------------------------------
+# Part 6 — competitor CORROBORATION.
+#
+# A competitor entry in ai.competitive_position.competitors is a FACT CLAIM: "the
+# buyer named this rival." The model fabricates these to FILL A SHORTLIST — it
+# reads "top 4 suppliers" in Next_Step__c with only one vendor named and invents
+# the rest (the real-world GEP-on-Austrian-Post case: GEP was never named in any
+# call or field, it was inferred to fill an unnamed shortlist slot and then rated a
+# medium threat, which depresses the win score and misleads the rep).
+#
+# Unlike a person, the server has no contact-role list to check a vendor against,
+# but it CAN require the claim to be TRACEABLE. A competitor name must appear in
+# EITHER (a) the Salesforce competition text the server holds (Competitors__c +
+# Others_Competitors_Please_specify__c, combined into sf_facts['competitor'], plus
+# Next_Step__c), OR (b) the entry's OWN verbatim buyer quote — which the sweep
+# prompt (rule d.1) already requires to be the buyer talking ABOUT that competitor.
+# A name that appears in NEITHER — not in any SF field, not even in its own cited
+# quote — is unanchored, and that is the fabrication signature.
+#
+# Deliberately high-precision (the file's doctrine: flag only what we can
+# disprove, never gut a legitimate record):
+#   - Only ACTIVE competitors are policed. Historical statuses (incumbent /
+#     declined / faded / do_nothing) are EXEMPT: the prompt is emphatic that a
+#     priced-out or displaced rival stays in the field as history, and an incumbent
+#     is often named only in server-invisible fields (Existing_vendor__c /
+#     Replacing_What__c). Never delete history on a corroboration miss.
+#   - The entry's own quote counts as evidence, so a competitor named ONLY on an
+#     Avoma call (which the server cannot re-read) still survives via its verbatim
+#     quote — no false drop of a legitimately call-named rival.
+#   - Matching is generous (word-boundary on the full name OR any >=3-char token,
+#     either direction), so "GEP SMART" matches a corpus "GEP" and vice versa. A
+#     too-generous match only KEEPS a competitor (a miss, the safe direction);
+#     it never wrongly drops one.
+
+# Generic non-vendor placeholders that are not a specific fabricated company.
+_COMPETITOR_STOPWORDS: set[str] = {
+    "", "unknown", "n/a", "na", "none", "other", "others", "unnamed", "tbd",
+    "competitor", "competitors", "vendor", "vendors", "incumbent", "the incumbent",
+    "status quo", "do nothing", "no decision", "in-house", "in house", "internal",
+    "internal build", "build", "homegrown", "manual", "manual process",
+}
+# Statuses that mark a competitor as HISTORY, not an active claim. Exempt from
+# corroboration so displaced/declined rivals are never deleted on a name miss.
+_COMPETITOR_HISTORY_STATUSES: set[str] = {
+    "incumbent", "declined", "faded", "do_nothing", "do nothing", "lost", "out",
+}
+
+
+def _competitor_evidence_text(sf_facts: Optional[dict], entry: Optional[dict]) -> str:
+    """The normalised evidence corpus a competitor name must be traceable to: the
+    server-held SF competition text (combined Competitors__c/Others via
+    sf_facts['competitor'], plus Next_Step__c) and THIS entry's own verbatim buyer
+    quote (evidence per prompt rule d.1). The model-authored `source` label and
+    `how_we_win` prose are deliberately NOT included — they can restate a fabricated
+    name and would launder it into its own corroboration."""
+    parts: list[str] = []
+    sf = sf_facts or {}
+    for k in ("competitor", "next_step"):
+        v = sf.get(k)
+        if isinstance(v, str) and v.strip():
+            parts.append(v)
+    if isinstance(entry, dict):
+        q = entry.get("quote")
+        if isinstance(q, str) and q.strip():
+            parts.append(q)
+    return _norm_name(" \n ".join(parts))
+
+
+def _name_in_corpus(name_norm: str, corpus_norm: str) -> bool:
+    """True if a normalised vendor name is traceable in the corpus: a word-boundary
+    hit on the FULL name, any significant token (>=3 chars) appearing as a word, or
+    the name appearing as a bare substring of a corpus word either way (so
+    'GEP SMART' matches a corpus 'GEP' and 'Coupa' matches 'Coupa Software'). Errs
+    toward matching (a false match only KEEPS a competitor, the safe direction)."""
+    if not name_norm or not corpus_norm:
+        return False
+    try:
+        if re.search(r"\b" + re.escape(name_norm) + r"\b", corpus_norm):
+            return True
+        if name_norm in corpus_norm:
+            return True
+        for t in re.split(r"\s+", name_norm):
+            if len(t) >= 3 and re.search(r"\b" + re.escape(t) + r"\b", corpus_norm):
+                return True
+    except re.error:
+        return name_norm in corpus_norm
+    return False
+
+
+def _competitor_corroborated(entry: Any, sf_facts: Optional[dict]) -> bool:
+    """True if a competitor entry is anchored to evidence (name in an SF competition
+    field or its own verbatim quote), a generic non-vendor placeholder, or a
+    historical (incumbent/declined/faded/do_nothing) entry. False == the
+    unanchored-active-competitor fabrication signature. Never raises."""
+    if not isinstance(entry, dict):
+        return True
+    name = _norm_name(entry.get("name"))
+    if name in _COMPETITOR_STOPWORDS:
+        return True
+    if _norm_name(entry.get("status")) in _COMPETITOR_HISTORY_STATUSES:
+        return True
+    if _is_retire_marker_light(entry):
+        return True
+    return _name_in_corpus(name, _competitor_evidence_text(sf_facts, entry))
+
+
+def _is_retire_marker_light(entry: dict) -> bool:
+    """A competitor entry explicitly marked for retirement (retire:true) is a
+    deliberate, evidence-cited removal — pass it through untouched so the packet
+    layer can action the retirement. Kept local (packets owns the richer marker)."""
+    return bool(entry.get("retire") is True or entry.get("retire_reason"))
+
+
+def sanitize_competitors(ai: dict, sf_facts: Optional[dict] = None) -> int:
+    """Drop ACTIVE competitor entries whose NAME is anchored to no evidence (Part 6):
+    not in any SF competition field, not in the entry's own verbatim quote, and not
+    a historical/incumbent entry. Mirrors validate_record's competitor check exactly
+    so a gate-failing record passes on re-validation. Never touches historical
+    (declined/faded/incumbent) entries — the prompt keeps those as durable history.
+    Mutates `ai` in place; returns the drop count."""
+    if not isinstance(ai, dict):
+        return 0
+    cp = ai.get("competitive_position")
+    if not isinstance(cp, dict) or not isinstance(cp.get("competitors"), list):
+        return 0
+    kept: list = []
+    dropped = 0
+    for entry in cp["competitors"]:
+        if isinstance(entry, dict) and not _competitor_corroborated(entry, sf_facts):
+            dropped += 1
+            continue
+        kept.append(entry)
+    if dropped:
+        cp["competitors"] = kept
+    return dropped
+
+
 def sanitize_packets(packets: list, allowlist: set[str],
                      sf_facts: Optional[dict] = None) -> tuple[list, int]:
     """Apply the anti-fabrication gate at the PACKET level, BEFORE the durable
@@ -741,6 +878,15 @@ def sanitize_packets(packets: list, allowlist: set[str],
         if ptype == "champion":
             nm = _norm_name(v.get("name"))
             if nm and nm not in allow and not _has_source(v):
+                touched += 1
+                continue
+        # 2b) Competitor packets: an ACTIVE rival named in no SF competition field
+        #     and no verbatim quote is an unanchored fabrication (the GEP-shortlist
+        #     signature). Drop it so it cannot be re-projected into ai on the next
+        #     sweep. Historical/incumbent/declined entries are exempt (durable
+        #     history) exactly as in validate_record.
+        if ptype == "competitor":
+            if not _competitor_corroborated(v, sf_facts):
                 touched += 1
                 continue
         # 3) Requirement author: blank an unverifiable said_by (the requirement
@@ -882,6 +1028,20 @@ def validate_record(record: dict,
         if not (isinstance(src, str) and src.strip()):
             violations.append({"check": "source", "field": f, "offending": hv,
                                "detail": f"hard.{f} has a value but no {f}_source attributing it to Salesforce"})
+
+    # ---- check 6: an ACTIVE competitor claim not traceable to any evidence -----
+    #      (name in no SF competition field and in no verbatim buyer quote) -------
+    cp = ai.get("competitive_position")
+    for entry in (cp.get("competitors") or []) if isinstance(cp, dict) else []:
+        if isinstance(entry, dict) and not _competitor_corroborated(entry, sf):
+            violations.append({"check": "competitor",
+                               "field": "competitive_position.competitors",
+                               "offending": entry.get("name"),
+                               "detail": ("an active competitor is named in no Salesforce "
+                                          "competition field (Competitors__c / "
+                                          "Others_Competitors_Please_specify__c / Next_Step__c) "
+                                          "and in no verbatim buyer quote — it is unanchored "
+                                          "and was likely inferred to fill a shortlist")})
 
     return violations
 
@@ -1038,6 +1198,213 @@ def sanitize_meddpicc(ai: dict, allowlist: Optional[set] = None,
     return fixes
 
 
+# ---------------------------------------------------------------------------
+# Part 5 — stakeholder TITLE / ROLE verification.
+#
+# The checks above prove a PERSON exists (SF contact role, Avoma attendee, active
+# user, or a source). They do NOT check the TITLE the model attaches to that
+# person. The model routinely fabricates an executive title onto a name it heard
+# in call chatter — "the economic-buyer CFO Flandorfer" — when Salesforce shows
+# that person is a Deputy CPO (or is not a contact at all). A wrong exec title is
+# uniquely harmful: it sends a rep escalating to the wrong person. So an
+# executive / economic-authority title on a name is a FACT CLAIM the server must
+# be able to vouch for (SF Contact.Title), exactly like manager_name — otherwise
+# the title is neutralised (the real name is kept; only the unbacked title drops).
+# Pure, deterministic, no network. The optional per-name enrichment layer (Apollo/
+# ZoomInfo) that can CORRECT a title instead of dropping it slots in via the
+# `contact_titles` map (feed it verified {name: title} pairs).
+# ---------------------------------------------------------------------------
+
+# Claim key -> substrings that would appear in a REAL Salesforce Contact.Title for
+# that role (English + common German, since the book spans EU orgs). "economic
+# buyer"/"decision maker"/"budget owner" are ROLE assignments, not job titles, so
+# they carry no title evidence — they are verified only by the name being a known
+# contact/attendee.
+_TITLE_EVIDENCE: dict[str, tuple[str, ...]] = {
+    "cfo": ("cfo", "chief financial", "finance director", "vp finance",
+            "head of finance", "financ", "finanz", "controller", "treasurer"),
+    "ceo": ("ceo", "chief executive", "managing director", "general director",
+            "generaldirektor", "geschäftsführer", "geschaftsfuhrer", "president"),
+    "coo": ("coo", "chief operating", "operations director", "head of operations"),
+    "cto": ("cto", "chief technolog", "technology director", "head of technology"),
+    "cio": ("cio", "chief information", "it director", "head of it",
+            "information officer", "head of information"),
+    "ciso": ("ciso", "chief information security", "security officer"),
+    "cmo": ("cmo", "chief marketing", "marketing director", "head of marketing"),
+    "cro": ("cro", "chief revenue", "revenue officer"),
+    "cpo": ("cpo", "chief procurement", "procurement director", "head of procurement",
+            "purchasing director", "head of purchasing", "einkaufsleit"),
+}
+_TITLE_ALIASES: dict[str, str] = {
+    "chief financial officer": "cfo", "chief executive officer": "ceo",
+    "chief operating officer": "coo", "chief technology officer": "cto",
+    "chief information officer": "cio", "chief marketing officer": "cmo",
+    "chief revenue officer": "cro", "chief procurement officer": "cpo",
+    "chief information security officer": "ciso", "finance chief": "cfo",
+}
+_ROLE_CLAIMS: set[str] = {"economic buyer", "decision maker", "budget owner",
+                          "budget holder", "budget authority"}
+
+def _flex_claim(t: str) -> str:
+    """Escape a claim token, letting internal spaces match a space OR hyphen so
+    'economic buyer' also catches 'economic-buyer' and 'chief financial officer'
+    catches the hyphenated spelling."""
+    return re.escape(t).replace(r"\ ", r"[\s\-]+")
+
+
+_CLAIM_ALT = "|".join(
+    _flex_claim(t) for t in sorted(
+        list(_TITLE_EVIDENCE) + list(_TITLE_ALIASES) + list(_ROLE_CLAIMS),
+        key=len, reverse=True))
+# A name after/around a title cue: 1-3 capitalised tokens (the title is itself the
+# person cue, so a bare surname like "Flandorfer" is allowed), but its FIRST token
+# may not be a title token (so "economic buyer CFO Flandorfer" resolves to the
+# (CFO, Flandorfer) pair, not (economic buyer, "CFO Flandorfer")). Umlauts allowed.
+_TNAME = (r"(?!(?i:" + _CLAIM_ALT + r")\b)"
+          r"[A-ZÄÖÜ][A-Za-zÄÖÜäöüß.'\-]+(?:\s+[A-ZÄÖÜ][A-Za-zÄÖÜäöüß.'\-]+){0,2}")
+_CLAIM_BEFORE = re.compile(r"(?i:\b(" + _CLAIM_ALT + r"))[\s:/\-]+(" + _TNAME + r")")
+_CLAIM_AFTER = re.compile(r"(" + _TNAME + r")\s*[(\[]\s*(?i:(" + _CLAIM_ALT + r"))\s*[)\]]")
+
+
+def build_contact_titles(buyer: Optional[dict]) -> dict[str, str]:
+    """Normalised contact name -> Salesforce Contact.Title, from the deal's
+    OpportunityContactRole list (buyer['contacts']). The authoritative source for a
+    stakeholder's title. Optionally union in enrichment-verified titles upstream."""
+    out: dict[str, str] = {}
+    for c in (buyer or {}).get("contacts") or []:
+        if isinstance(c, dict):
+            nm = _norm_name(c.get("name"))
+            t = c.get("title")
+            if nm and isinstance(t, str) and t.strip():
+                out[nm] = t.strip()
+    return out
+
+
+def _claim_key(raw: str) -> str:
+    k = re.sub(r"[\s\-]+", " ", _norm_name(raw)).strip()
+    return _TITLE_ALIASES.get(k, k)
+
+
+def _sf_title_for(name_norm: str, contact_titles: dict[str, str]) -> Optional[str]:
+    """The SF Contact.Title for a (possibly partial, e.g. surname-only) name: exact,
+    else the contact whose full name is a superset of the claimed tokens ('chan' ->
+    'jason chan'). None when no contact matches."""
+    if not name_norm:
+        return None
+    if name_norm in contact_titles:
+        return contact_titles[name_norm]
+    toks = set(name_norm.split())
+    if not toks:
+        return None
+    for full, t in contact_titles.items():
+        if toks <= set(full.split()):
+            return t
+    return None
+
+
+def _title_claim_verified(claim_key: str, name_norm: str,
+                          contact_titles: dict[str, str], allow: set) -> bool:
+    """Can the server vouch for this title/role claim on this name?
+    - C-suite title: the name must be an SF contact whose Title carries compatible
+      evidence (claim 'cfo' + Title containing 'finance').
+    - role assignment (economic buyer / decision maker): a softer bar — the name is
+      at least a known contact / attendee / active user."""
+    if claim_key in _ROLE_CLAIMS:
+        return _person_is_known(name_norm, allow, set())
+    ev = _TITLE_EVIDENCE.get(claim_key)
+    if not ev:
+        return True  # unknown token -> never touch
+    sf_title = _sf_title_for(name_norm, contact_titles)
+    if not sf_title:
+        return False  # an exec title on a non-contact -> unverifiable
+    tl = sf_title.casefold()
+    return any(e in tl for e in ev)
+
+
+def _neutralise_title_claims(s: str, contact_titles: dict[str, str],
+                             allow: set) -> tuple[str, int]:
+    """Strip an UNVERIFIED executive title / economic-buyer role bound to a name in
+    one assertion string, keeping the (real) name. 'the economic-buyer CFO
+    Flandorfer' -> 'Flandorfer' when neither the CFO title nor the EB role can be
+    vouched for; a verified claim (SF Title matches) is left intact. Iterates so a
+    stacked claim ('economic buyer CFO X') is fully cleared."""
+    if not isinstance(s, str) or not s:
+        return s, 0
+    total = 0
+
+    def _mk(name_group, title_group):
+        def _sub(m):
+            nonlocal total
+            name = _strip_name_punct(m.group(name_group))
+            key = _claim_key(m.group(title_group))
+            nn = _norm_name(name)
+            # never treat a role/business phrase captured as a name as a person
+            if nn in _NON_PERSON_PHRASES:
+                return m.group(0)
+            if _title_claim_verified(key, nn, contact_titles, allow):
+                return m.group(0)
+            total += 1
+            return name  # drop the unbacked title/role, keep the name
+        return _sub
+
+    prev = None
+    out = s
+    for _ in range(4):  # peel stacked claims ("economic buyer CFO X")
+        if out == prev:
+            break
+        prev = out
+        out = _CLAIM_BEFORE.sub(_mk(2, 1), out)
+        out = _CLAIM_AFTER.sub(_mk(1, 2), out)
+    if total:
+        out = re.sub(r"(?i:\bthe\s+the\b)", "the", out)
+        out = re.sub(r"\s+([,.;:])", r"\1", re.sub(r"\s{2,}", " ", out)).strip()
+    return out, total
+
+
+def sanitize_title_claims(ai: dict, contact_titles: Optional[dict] = None,
+                          allowlist: Optional[set] = None,
+                          sf_facts: Optional[dict] = None) -> int:
+    """Neutralise UNVERIFIED executive-title / economic-buyer claims bound to a name
+    across every model-authored ASSERTION surface (to-do/action arrays, MEDDPICC
+    narratives, competitive_position + north-star summaries). A title survives only
+    when the named person is an SF contact whose Title backs it (or, for a role
+    assignment, is at least a known contact). This makes the sweep structurally
+    unable to persist 'CFO <name>' for someone Salesforce doesn't show as finance —
+    the exact 'CFO Flandorfer' (really Deputy CPO) class of error. Verbatim evidence
+    (sources / quotes) is never touched. Mutates `ai` in place; returns the fix
+    count. Call at the persist chokepoint alongside sanitize_meddpicc."""
+    if not isinstance(ai, dict):
+        return 0
+    ct = contact_titles or {}
+    allow = set(allowlist or set())
+    for k in ("owner_name", "manager_name"):
+        n = _norm_name((sf_facts or {}).get(k))
+        if n:
+            allow.add(n)
+    allow.discard("")
+    fixes = 0
+    for cont, key, _label in _iter_action_text_slots(ai):
+        cont[key], c = _neutralise_title_claims(cont[key], ct, allow)
+        fixes += c
+    md = ai.get("meddpicc")
+    if isinstance(md, dict):
+        for _el, elt in md.items():
+            if isinstance(elt, dict) and isinstance(elt.get("narrative"), str):
+                elt["narrative"], c = _neutralise_title_claims(elt["narrative"], ct, allow)
+                fixes += c
+    cp = ai.get("competitive_position")
+    if isinstance(cp, dict) and isinstance(cp.get("summary"), str):
+        cp["summary"], c = _neutralise_title_claims(cp["summary"], ct, allow)
+        fixes += c
+    nsv = ai.get("north_star_verdict")
+    if isinstance(nsv, dict):
+        for k in ("read", "summary", "rationale"):
+            if isinstance(nsv.get(k), str):
+                nsv[k], c = _neutralise_title_claims(nsv[k], ct, allow)
+                fixes += c
+    return fixes
+
+
 def sanitize_failed_record(record: dict, violations: list[dict],
                            sf_facts: dict,
                            allowlist: Optional[set] = None) -> int:
@@ -1088,6 +1455,11 @@ def sanitize_failed_record(record: dict, violations: list[dict],
 
     # 3. structured people: drop anyone not in the allowlist and not sourced.
     fixes += len(sanitize_people(ai, allowlist or set()))
+
+    # 3b. competitors: drop any ACTIVE rival named in no SF competition field and
+    #     in no verbatim quote (the unanchored-shortlist fabrication). Historical /
+    #     incumbent / declined entries are preserved as durable history.
+    fixes += sanitize_competitors(ai, sf)
 
     # 4. belt-and-braces placeholder scrub of the agent-authored surfaces.
     _, c1 = scrub_placeholders(ai)

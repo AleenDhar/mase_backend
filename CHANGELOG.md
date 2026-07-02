@@ -11,6 +11,70 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — Competitor gate: unanchored active rivals are rejected (kills inferred-GEP)
+
+**What.** New deterministic anti-fabrication check `Part 6` in `deal_engine_validation.py`,
+wired into the persist chokepoint. An entry in `ai.competitive_position.competitors` marked
+`status: active` must have its NAME traceable to evidence the server holds — the combined
+Salesforce competition text (`Competitors__c` + `Others_Competitors_Please_specify__c`,
+plus `Next_Step__c`) OR the entry's OWN verbatim buyer `quote` (which the sweep prompt rule
+d.1 already requires to be the buyer talking about that competitor). A name found in NEITHER
+is unanchored and is rejected. Three surfaces enforce it: `validate_record` (new `competitor`
+violation → retry with feedback), `sanitize_failed_record` (`sanitize_competitors` drops the
+entry on retry-exhaustion so the record persists clean), and `sanitize_packets` (drops a
+carried-forward/this-sweep `competitor` packet so it can never re-project into `ai`).
+
+**Why.** The gate verified person NAMES but never competitor names, so the model could invent
+a rival to "fill a shortlist" and it sailed through — the Austrian Post case: GEP was named in
+NO call and NO field, inferred from a "top 4 suppliers" line in `Next_Step__c`, then rated an
+active **medium** threat. A fabricated competitor is not cosmetic: a high/preferred rival costs
+−1.0 on the win score (`deal_engine_scoring.py`) and misleads the rep about live competition.
+
+**How to work with it going forward.** Deliberately high-precision so it never guts a real
+read: only `status: active` entries are policed; historical statuses (incumbent / declined /
+faded / do_nothing) are EXEMPT (the prompt keeps priced-out/displaced rivals as durable
+history, and incumbents often live only in server-invisible fields). A competitor named only
+on an Avoma call survives via its verbatim quote. Matching is generous (full-name or ≥3-char
+token, either direction) so "GEP SMART" matches a corpus "GEP"; a too-generous match only
+KEEPS a competitor (the safe direction). Pure/no-network; unit-tested in
+`test_sweep_validation_gate.py` (7 new cases). NOTE: the sibling fix — stripping real vendor
+names (GEP/Coupa/Proactis) from the **sweep prompt's own examples** in Supabase, which is what
+primes the model to invent GEP in the first place — is NOT in this change and still stands.
+
+---
+
+## 2026-07-02 — Title gate: stakeholder titles are server-owned (kills "CFO Flandorfer")
+
+**What.** New deterministic anti-fabrication pass `sanitize_title_claims` in
+`deal_engine_validation.py` (Part 5), wired into `deal_engine_sweep.analyze_one` at the
+persist chokepoint (right after `sanitize_meddpicc`). It neutralises any executive /
+economic-authority title the model pins on a name that Salesforce cannot back: for a
+C-suite claim ("CFO/CEO/CIO/CPO/… <Name>", "<Name> (CFO)") the named person must be an
+`OpportunityContactRole` contact whose `Contact.Title` carries compatible evidence
+(claim `cfo` ⇒ Title contains "finance"/"cfo"/…); for a role assignment ("economic
+buyer/decision maker <Name>") the name must at least be a known contact/attendee.
+Otherwise the unbacked **title is dropped and the real name is kept** ("the
+economic-buyer CFO Flandorfer" → "Flandorfer"). Covers moves, requirements, MEDDPICC
+narratives, `competitive_position.summary`, and `north_star_verdict`. Verbatim evidence
+(sources/quotes) is never touched. `build_contact_titles(buyer)` builds the authoritative
+`{name: Contact.Title}` map and also accepts enrichment-verified titles (Apollo/ZoomInfo)
+so a future layer can *correct* a title instead of dropping it.
+
+**Why.** The gate verified person NAMES (allowlist) but never their TITLE, so the model
+could attach a fabricated exec title to a real name and it sailed through — e.g. Austrian
+Post's "the economic-buyer **CFO Flandorfer** has never engaged" when Salesforce/Apollo
+show Mathias Flandorfer is the **Deputy CPO** and the CFO is Barbara Potisk-Eibensteiner.
+A wrong exec title is uniquely harmful: it sends a rep escalating to the wrong person, and
+the CEO-help pass inherited it verbatim. Titles are now server-owned like `manager_name`.
+
+**How to work with it going forward.** Pure/no-network; unit-tested in `test_title_claims.py`
+(7 cases). Runs on every sweep — logs `[DEAL-SWEEP] title-gate opp=… neutralised N …`.
+Existing records keep their old titles until re-swept (or run a one-off backfill applying
+`sanitize_title_claims` over stored `record.ai`). Requires a backend deploy to take effect.
+To *correct* (not just drop) titles, union Apollo/ZoomInfo `{name:title}` into
+`build_contact_titles`. The `sanitize_failed_record` last-resort path does not call it yet
+(main path covers every successful sweep).
+
 ## 2026-07-02 — CDC brakes: meaningful-field filter (Lambda) + per-opp sweep cooldown (backend)
 
 **What.** Two changes so the Salesforce CDC trigger can deliver real-time sweeps WITHOUT the

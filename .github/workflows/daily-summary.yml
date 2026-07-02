@@ -1,0 +1,63 @@
+name: daily-summary
+
+# Regenerates the 24h deal-movement digest (deal_daily_summaries in the prod deal
+# DB) once a day, so the app's "last 24h" cards refresh without anyone running the
+# local batch by hand. This is ISOLATED from the API/worker ECS services: it runs
+# only in this Actions runner, reads mase/app-env via the existing OIDC deploy role
+# (which already has secretsmanager:GetSecretValue on that secret), and writes to
+# Supabase over PostgREST. It never touches the running server or the sweep worker.
+#
+# Movement rules live in daily_summary/extract.py (strategic fields only — stage,
+# amount, close date, forecast; owner/co-owner/type/probability/source are dropped
+# as CRM housekeeping). Narratives are the deterministic ones from extract.py; the
+# richer Claude-authored narratives.json seeds are overlaid only when present.
+#
+# Adjust the schedule or scope below; run on demand via "Run workflow".
+
+on:
+  schedule:
+    - cron: '0 2 * * *'        # 02:00 UTC daily (~07:30 IST) — a morning digest
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: 'forecasted (default) or all'
+        required: false
+        default: 'forecasted'
+      window_hours:
+        description: 'look-back window in hours'
+        required: false
+        default: '24'
+
+concurrency:
+  group: daily-summary
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write           # OIDC: assume the AWS role to read mase/app-env
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::022187637784:role/mase-github-deploy-role
+          aws-region: ap-south-1
+
+      - name: Install deps
+        run: pip install --quiet requests urllib3
+
+      - name: Generate + write 24h summaries
+        env:
+          DS_TLS_VERIFY: '1'    # Linux runner: no TLS interception, verify certs
+        run: |
+          python -m daily_summary.run \
+            --scope "${{ github.event.inputs.scope || 'forecasted' }}" \
+            --window-hours "${{ github.event.inputs.window_hours || '24' }}" \
+            --write

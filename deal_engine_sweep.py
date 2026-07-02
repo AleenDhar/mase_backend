@@ -2376,6 +2376,24 @@ def _is_senior_title(title):
     return bool(title) and bool(_SENIOR_TITLE_RE.search(str(title)))
 
 
+def _role_from_title(title):
+    """Deterministic, conservative role from a job title so the Stakeholders 'Role'
+    column is never blank for a real SFDC contact. Purely title-based — no AI, no
+    invention. Returns None when the title gives no clear signal (leave it blank)."""
+    t = (title or "").lower()
+    if not t:
+        return None
+    if any(w in t for w in ("chief", "cfo", "cio", "ceo", "coo", "cpo", "vp ", "vice president",
+                            "president", "managing director", "head of")):
+        return "Decision Maker"
+    if any(w in t for w in ("director", "manager", "lead", "leiter", "head ")):
+        return "Influencer"
+    if any(w in t for w in ("buyer", "purchasing", "procurement", "einkauf", "sourcing",
+                            "category", "specialist", "analyst", "processes")):
+        return "Evaluator"
+    return None
+
+
 def _roster_from_sfdc(new_ai, buyer, existing_record):
     """Rebuild ai.stakeholder_map.items anchored to SFDC OpportunityContactRole.
 
@@ -2413,12 +2431,28 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
             it = {"name": (c.get("name") or "").strip(), "_source": "sfdc_contact_role"}
             if c.get("title"):
                 it["title"] = c["title"]
+            # email / phone from the SFDC Contact — carried for enrichment (harmless if
+            # the drawer doesn't render them yet).
+            for _cf in ("email", "phone"):
+                if c.get(_cf):
+                    it[_cf] = c[_cf]
             if isinstance(ai_src, dict):
                 for f in ("role", "risk", "sentiment", "relationship", "last_contact_date"):
                     v = ai_src.get(f)
                     if v not in (None, "", []):
                         it[f] = v
                 it["_matched_ai"] = True
+            # Role fallback so the Stakeholders 'Role' column is never blank: prefer the
+            # authoritative SFDC OpportunityContactRole.Role, else a conservative title-based
+            # inference. An AI-annotated role (set above) always wins over both.
+            if not it.get("role"):
+                if c.get("role"):
+                    it["role"] = c["role"]
+                else:
+                    _inf = _role_from_title(c.get("title"))
+                    if _inf:
+                        it["role"] = _inf
+                        it["_role_inferred"] = True
             if c.get("is_partner"):
                 it["_partner"] = True
             return it
@@ -3359,6 +3393,12 @@ async def analyze_one(
                       f"src={_dec.get('source')} :: matched '{_dec.get('matched')}'", flush=True)
         except Exception as _de:  # noqa: BLE001
             print(f"[DECISION] detect failed for {opp_id}: {_de}", flush=True)
+        # PIN GUARD — a hand-corrected deal (existing ai.pinned == true) must survive
+        # re-sweeps: carry its scores/panel + roster forward verbatim so an automated
+        # sweep never clobbers a human correction (the Austrian Post revert). Hard facts
+        # (stage/amount/dates) still refresh; only the AI judgment is frozen.
+        _prior_ai_full = existing_record.get("ai") if isinstance(existing_record, dict) else None
+        _pinned = bool(isinstance(_prior_ai_full, dict) and _prior_ai_full.get("pinned"))
         try:
             import deal_engine_scoring
             # AI DEAL-SCORER (flag-gated by DEAL_ENGINE_AI_SCORING). Judges the five scores
@@ -3418,6 +3458,11 @@ async def analyze_one(
                 _scores["headline"] = {**_prior_hl, "stale_read": True}
                 print(f"[DEAL-SCORES] degraded/empty compute opp={opp_id} — carried prior "
                       f"scores forward (fresh headline missing win_position)", flush=True)
+            if _pinned and isinstance(_prior_ds, dict):
+                # Frozen by a human correction — keep the pinned scores + panel verbatim.
+                _scores = dict(_prior_ds)
+                print(f"[PIN] opp={opp_id} pinned — carried prior scores/panel forward "
+                      f"(sweep did not overwrite)", flush=True)
             if _scores:
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
@@ -3431,7 +3476,7 @@ async def analyze_one(
             # call. A hand-pinned panel (cro_panel.pinned, e.g. Bright Horizons) is preserved.
             import deal_engine_cro
             _ds_now = (parsed.get("ai") or {}).get("deal_scores")
-            if isinstance(_ds_now, dict):
+            if isinstance(_ds_now, dict) and not _pinned:
                 _prior_panel = (((existing_record.get("ai") or {}).get("deal_scores") or {}).get("cro_panel")
                                 if isinstance(existing_record, dict) else None)
                 _pin = _prior_panel if (isinstance(_prior_panel, dict) and _prior_panel.get("pinned")) else None
@@ -3447,10 +3492,20 @@ async def analyze_one(
         # SFDC-anchored roster: rebuild ai.stakeholder_map from real OpportunityContactRole
         # contacts (AI annotates, never invents) at the single persist chokepoint. Defensive.
         try:
-            if isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
+            if _pinned and isinstance(_prior_ai_full, dict) and isinstance(_prior_ai_full.get("stakeholder_map"), dict):
+                # Pinned deal — keep the human-corrected roster verbatim (don't re-anchor,
+                # which would re-admit/rescore names the correction curated).
+                parsed.setdefault("ai", {})["stakeholder_map"] = _prior_ai_full["stakeholder_map"]
+            elif isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
                 parsed["ai"] = _roster_from_sfdc(parsed["ai"], buyer, existing_record)
         except Exception as _rre:  # noqa: BLE001
             print(f"[DEAL-SWEEP] roster build skipped opp={opp_id}: {type(_rre).__name__}: {_rre}", flush=True)
+        # Carry the pin forward so the freeze survives this write (upsert replaces `record`).
+        if _pinned and isinstance(parsed.get("ai"), dict):
+            parsed["ai"]["pinned"] = True
+            _p_at = _prior_ai_full.get("pinned_at") if isinstance(_prior_ai_full, dict) else None
+            if _p_at:
+                parsed["ai"]["pinned_at"] = _p_at
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

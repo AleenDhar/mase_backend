@@ -11,6 +11,36 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — Pin guard, verbatim AI reasons, never-blank stakeholder role
+
+**What.** Three changes so automated sweeps stop clobbering corrected deals and the
+Scores/Stakeholders UI reads right:
+1. **Pin guard** (`deal_engine_sweep.py` `analyze_one`): if the stored record has
+   `ai.pinned == true`, the sweep carries the prior `deal_scores` (headline + cro_panel)
+   and `stakeholder_map` forward **verbatim** — a human correction is frozen against
+   re-sweeps; hard facts (stage/amount/dates) still refresh. The pin is re-stamped so it
+   survives the upsert (which replaces `record`).
+2. **CRO panel uses AI reasons verbatim** (`deal_engine_cro.py` `build_cro_panel`): when
+   `deal_scores.ai_reasons` exists, each score block uses those bullets as-is instead of
+   re-deriving from `contributions` and hard-trimming through `_first_sentence(…,150)`
+   (which chopped them mid-word: "…advocate for Zycus as the…"). New `_ai_bullets(key)`
+   helper. Deterministic deals (no `ai_reasons`) are unchanged.
+3. **Never-blank stakeholder role + email/phone** (`_roster_from_sfdc._sfdc_item`): SFDC
+   contacts carry `email`/`phone`; when neither the AI nor SFDC `OpportunityContactRole.Role`
+   gives a role (senior-by-title backfill contacts had none), a conservative title-based
+   `_role_from_title` fills it (flagged `_role_inferred`). AI/SFDC role always wins.
+
+**Why.** Austrian Post kept reverting: the CDC trigger fires on every activity and each
+re-sweep recomputed + overwrote the hand-applied score + curated roster (the sweep is
+stateless/destructive with no "corrected" marker). AI reason bullets rendered mid-word
+truncated. Backfilled stakeholders showed a blank Role column. (The `worker`→real-source
+audit label was already fixed on main in `7aebccd`.)
+
+**How to work with it going forward.** Set `ai.pinned = true` on a record after a manual
+correction to freeze it; clear it to let sweeps own the deal again. Non-pinned deals behave
+exactly as before. Requires a backend deploy. The CDC EventBridge rule
+`mase-sf-cdc-to-lambda` is currently paused (no cooldown chosen); re-enable when ready.
+
 ## 2026-06-30 — Sweep model → Opus 4.8 + cleaner win reasons
 
 **What.** (1) `DEAL_ENGINE_SWEEP_MODEL=anthropic:claude-opus-4-8` set in `render_taskdef.py`

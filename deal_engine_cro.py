@@ -167,6 +167,23 @@ def build_cro_panel(record, pinned_override=None):
     if win is None and mom is None:
         return None
 
+    # AI-scored deals carry CRO-ready reason bullets (deal_scores.ai_reasons), one
+    # full sentence per point, already written for a CRO/CO. Use them VERBATIM — never
+    # re-derive from contributions or re-trim with _first_sentence (that chopped them
+    # mid-word, e.g. "…advocate for Zycus as the…"). Deterministic deals have no
+    # ai_reasons and fall through to the trimmed prose path below unchanged.
+    ai_reasons = ds.get("ai_reasons") or {}
+
+    def _ai_bullets(key):
+        """AI-authored bullets for one score, verbatim. [] when none stored."""
+        out = []
+        for b in (ai_reasons.get(key) or []):
+            t = _clean(b.get("text"))
+            if not t:
+                continue
+            out.append({"tone": "good" if b.get("tone") == "good" else "warn", "text": t})
+        return out
+
     crm = ai.get("crm_evidence") or {}
     fp = ai.get("footprints") or {}
     trends = ai.get("opp_trends") or {}
@@ -254,6 +271,9 @@ def build_cro_panel(record, pinned_override=None):
             continue
         seen.add(k); wb.append(b)
     win_bullets = wb[:7]
+    _ai_win = _ai_bullets("win_position")
+    if _ai_win:
+        win_bullets = _ai_win
     # Nothing grounded surfaced — fall back to the champion / competitive narrative
     # so the block still says *something* real rather than sitting empty.
     if not win_bullets:
@@ -333,6 +353,9 @@ def build_cro_panel(record, pinned_override=None):
         la = pulse.get("last_activity_date")
         if la:
             mb.append({"tone": "warn", "text": f"Last recorded activity {la}"})
+    _ai_mom = _ai_bullets("deal_momentum")
+    if _ai_mom:
+        mb = _ai_mom
     blocks.append({"kind": "score", "key": "deal_momentum", "score": _r0(mom),
                    "title": "Deal momentum", "sub": "is it moving?",
                    "read": mom_read, "bullets": mb[:6], "how": None})
@@ -351,6 +374,9 @@ def build_cro_panel(record, pinned_override=None):
     cdt = _clean(trends.get("close_date_trend_detail"))
     if cdt and "push" in cdt.lower():
         risk_bullets.append({"tone": "warn", "text": cdt})
+    _ai_risk = _ai_bullets("deal_risk")
+    if _ai_risk:
+        risk_bullets = _ai_risk
     if risk_bullets:
         risk_read = ("The threat is the deal stalling into 'do nothing', not a competitor beating us."
                      if not comp_threat else "There's a live competitive threat plus execution risk — both below.")
@@ -384,6 +410,9 @@ def build_cro_panel(record, pinned_override=None):
             continue
         if evi:
             cb.append({"tone": "good", "text": _first_sentence(evi, 120)})
+    _ai_cmt = _ai_bullets("customer_commitment")
+    if _ai_cmt:
+        cb = _ai_cmt
     if cb:
         blocks.append({"kind": "score", "key": "customer_commitment", "score": _r0(cmt),
                        "title": "Customer commitment", "sub": "how invested are they?",

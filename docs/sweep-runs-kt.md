@@ -17,7 +17,7 @@ comes from, why the money burned, and the exact levers + commands to check and c
 | Thing | State | Meaning |
 |---|---|---|
 | CDC trigger (real-time SFDC → sweep) | **ON** — rule `mase-sf-cdc-to-lambda` **ENABLED** | `salesforce_trigger` runs fire again — but only on *meaningful* Opportunity changes (next row). |
-| CDC meaningful-field filter (Lambda) | **ON** | `mase-sf-cdc-bridge` triggers only when `StageName/Amount/CloseDate/NextStep` change (env `MEANINGFUL_FIELDS`). Task/Event/EmailMessage activity no longer triggers (env `CDC_TRIGGER_ON_ACTIVITY=false`). |
+| CDC meaningful-field filter (Lambda) | **ON** | `mase-sf-cdc-bridge` triggers only when `StageName/Amount/CloseDate/Next_Step__c` (this org's custom next-step field) change — env `MEANINGFUL_FIELDS` (also keeps standard `NextStep`). Next-step METADATA (`Next_Step_History__c` etc.) and rollups (`Revenue__c`, `QIT_Count__c`, `VIBE_Influenced__c`, `Division__c`, `Buyer_Journey__c`…) are noise → filtered. Task/Event/EmailMessage activity no longer triggers (env `CDC_TRIGGER_ON_ACTIVITY=false`). |
 | Per-opp sweep cooldown (backend) | **ON** — 6h | a Salesforce-triggered re-sweep is skipped if the opp was swept within `DEAL_SWEEP_TRIGGER_COOLDOWN_HOURS` (default 6). Manual + from-scratch bypass it. |
 | Worker fleet (`mase-worker`) | **ON** — desiredCount **1** | drains the queue (autoscaler may resize). |
 | Nightly `/cron/nightly-sf-pull` | **CLOSED** — gated on `SF_PULL_CRON_ENABLED` (off) | side-door no longer runs `scheduled_discovery`/`scheduled_reconcile`, even though an external cron still calls it. `SF_PULL_CRON_ENABLED=true` re-opens it. |

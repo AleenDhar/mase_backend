@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — Add `Next_Step__c` to CDC meaningful fields (custom next-step field, from live data)
+
+**What.** The CDC Lambda's default `MEANINGFUL_FIELDS` is now
+`{StageName, Amount, CloseDate, Next_Step__c, NextStep}` — added the org's **custom**
+next-step field `Next_Step__c` (kept standard `NextStep` for safety).
+
+**Why.** Verified against live data: this org stores the deal's next step in the custom
+field `Next_Step__c`, not standard `NextStep` (confirmed rep-edited on opp
+`006P700000S00xaIAB` — FCC / Farm Credit Canada, editor Bailey Erazo — and present in
+~35% of CDC events). The prior default targeted only `NextStep`, so real next-step edits
+were filtered as noise. A rep advancing the next step is a genuine deal signal and should
+re-sweep; the 6h per-opp cooldown collapses edit-bursts (the field's history is
+polling-duplicated at the same timestamp) so this does not reintroduce the burn.
+
+**Field taxonomy (from 62 live CDC events + one opp's full history).** Meaningful =
+StageName / Amount / CloseDate (standard, carry real old→new values) + Next_Step__c.
+Deliberately EXCLUDED as noise: `Revenue__c`, `VIBE_Influenced__c`, `QIT_Count__c` /
+`Last_QIT_Name__c`, `Discount__c`, `Division__c` (territory reassignment), `Buyer_Journey__c`,
+`Shortlist_to_Won_Score__c`, `BD_Manager__c` / `Manager_BD__c`, `Event_Source__c` /
+`Opportunity_Source__c`, and the next-step METADATA companions `Next_Step_History__c` /
+`Next_Step_Updated_By__c` / `Next_Step_Updated_Date_Time__c` (automation churn; exact-match
+so they never collide with `Next_Step__c`). A deal CLOSING is already caught by `StageName`.
+
+**How to work with it.** Still env-tunable (`MEANINGFUL_FIELDS` on the Lambda). Lambda deploys
+SEPARATELY: `aws lambda update-function-code --function-name mase-sf-cdc-bridge` (done +
+verified live 2026-07-02: `Next_Step__c` edit passes the gate; metadata-only churn → filtered).
+
 ## 2026-07-02 — Competitor gate: unanchored active rivals are rejected (kills inferred-GEP)
 
 **What.** New deterministic anti-fabrication check `Part 6` in `deal_engine_validation.py`,

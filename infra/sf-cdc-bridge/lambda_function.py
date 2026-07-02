@@ -50,7 +50,24 @@ OPP_PREFIX = "006"  # Salesforce Opportunity key prefix
 # env-tunable so policy can change without a code redeploy:
 #   - MEANINGFUL_FIELDS: comma-separated API names (default below).
 #   - CDC_TRIGGER_ON_ACTIVITY=true: re-enable Task/Event/EmailMessage triggering.
-_DEFAULT_MEANINGFUL_FIELDS = {"StageName", "Amount", "CloseDate", "NextStep"}
+#
+# Field set derived from LIVE data (2026-07-02): the org's real deal signal is the
+# standard StageName / Amount / CloseDate (they carry real old/new values in this
+# org's CDC + field history) PLUS the CUSTOM next-step field Next_Step__c — confirmed
+# rep-edited on 006P700000S00xaIAB (FCC / Farm Credit Canada, editor Bailey Erazo).
+# This org does NOT use the standard NextStep; we keep both names so it works either
+# way. Deliberately EXCLUDED as noise (seen in 55/62 filtered CDC events): Revenue__c,
+# VIBE_Influenced__c, QIT_Count__c/Last_QIT_Name__c, Discount__c, Division__c (territory
+# reassignment), Buyer_Journey__c, Shortlist_to_Won_Score__c, BD_Manager__c/Manager_BD__c,
+# Event_Source__c/Opportunity_Source__c, and the next-step METADATA companions
+# Next_Step_History__c / Next_Step_Updated_By__c / Next_Step_Updated_Date_Time__c
+# (automation churn, NOT a real next-step edit). A deal CLOSING is already caught by
+# the StageName change, so IsClosed/ForecastCategory are not needed here.
+_DEFAULT_MEANINGFUL_FIELDS = {
+    "StageName", "Amount", "CloseDate",
+    "Next_Step__c",   # this org's custom next-step field (rep-maintained)
+    "NextStep",       # standard field kept for safety / other orgs
+}
 MEANINGFUL_FIELDS = {
     f.strip() for f in os.environ.get("MEANINGFUL_FIELDS", "").split(",") if f.strip()
 } or set(_DEFAULT_MEANINGFUL_FIELDS)

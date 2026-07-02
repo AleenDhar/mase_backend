@@ -11,16 +11,20 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
-## 2026-07-03 — CEO help computed NATIVELY in the sweep (CEO-only, 4 levers, gated + sanitized)
+## 2026-07-03 — CEO help computed NATIVELY in the sweep (win>60 FLOOR + AI discriminator, 4 levers, sanitized)
 
 **What.** `ai.ceo_intervention` is now produced on EVERY sweep instead of a separate
 local pass (new `deal_engine_ceo.finalize_ceo_intervention`, wired into
 `deal_engine_sweep.analyze_one` at the persist chokepoint, replacing the old
-carry-forward-only block). Split of responsibility: the **WHEN is a deterministic
-gate** — a deal qualifies only when it is FORECASTED (Commit/Best Case/Upside) AND
-its server-computed **win score clears `win_position>60`** (momentum is intentionally
-NOT gated — a winnable-but-stalling deal is exactly when the CEO must step in; the
-model never decides the gate); the **WHAT rides the sweep's existing LLM output** (a new
+carry-forward-only block). Two-part decision: (1) a deterministic **eligibility FLOOR**
+— FORECASTED (Commit/Best Case/Upside) AND `win_position>60` (momentum NOT gated: a
+winnable-but-stalling deal is when the CEO may be needed). Clearing the floor does NOT
+tag the CEO. (2) The **real filter is an AI analysis** — for each eligible deal the
+model decides whether the CEO is GENUINELY, SPECIFICALLY required vs. no intervention
+or only a senior/C-level exec (VP/SVP/CRO/CMO); DEFAULT is needed=false. The finalizer
+RESPECTS that decision (never forces needed=true on a floor-pass) — so only the few
+deals where the CEO is irreplaceable get tagged. The **content rides the sweep's LLM
+output** (a new
 prompt section has the model emit its CEO read — no extra API call). The finalizer
 overrides `needed` from the gate, clamps `areas` to the four CEO levers (pricing /
 product / presales_resources / exec_connect), stamps real win/mom + `source:"sweep"`,

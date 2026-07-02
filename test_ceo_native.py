@@ -23,9 +23,9 @@ def rec(win, mom, ci=None, md=None):
 def main():
     ok = True
 
-    # 1) forecasted + passes + LLM wrote "CFO Flandorfer" + real EB in MEDDPICC
+    # 1) eligible + AI says CEO NEEDED + LLM wrote "CFO Flandorfer" + real EB in MEDDPICC
     r = rec(62, 64,
-            ci={"areas": ["exec_connect", "pricing"], "priority": "high",
+            ci={"needed": True, "areas": ["exec_connect", "pricing"], "priority": "high",
                 "reason": "the economic-buyer CFO Flandorfer never engaged",
                 "ceo_action": "CEO connects to CFO Flandorfer to approve pricing",
                 "buyer_target": {"name": "Herr Flandorfer", "title": "CFO", "engaged": False},
@@ -54,12 +54,19 @@ def main():
     print(f"[{'PASS' if t3 else 'FAIL'}] 3 win=58 below bar -> needed False (momentum ignored)")
     ok &= t3
 
-    # 3b) winnable but STALLING (win>60, low momentum) -> STILL needed (momentum not gated)
-    r = rec(65, 40, ci={"areas": ["exec_connect"], "ceo_action": "CEO steps in to un-stall"})
+    # 3b) winnable but STALLING (win>60, low momentum) + AI says CEO needed -> needed True
+    r = rec(65, 40, ci={"needed": True, "areas": ["exec_connect"], "ceo_action": "CEO steps in to un-stall"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER)
     t3b = r["ai"]["ceo_intervention"]["needed"] is True
-    print(f"[{'PASS' if t3b else 'FAIL'}] 3b win=65 mom=40 (stalling) -> needed True")
+    print(f"[{'PASS' if t3b else 'FAIL'}] 3b win=65 stalling + AI-yes -> needed True")
     ok &= t3b
+
+    # 3c) floor PASSES (win 80) but AI says NO CEO (a VP suffices) -> needed False
+    r = rec(80, 80, ci={"needed": False, "reason": "a VP can handle the CFO connect"})
+    C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
+    t3c = r["ai"]["ceo_intervention"]["needed"] is False
+    print(f"[{'PASS' if t3c else 'FAIL'}] 3c win=80 but AI-says-no-CEO -> needed False (the discriminator)")
+    ok &= t3c
 
     # 4) passes but LLM emitted nothing + prior exists -> carry prior forward
     prior = {"ceo_intervention": {"needed": True, "areas": ["exec_connect"], "priority": "high",
@@ -73,7 +80,7 @@ def main():
     ok &= t4
 
     # 5) areas clamped to the 4 CEO levers (drop junk)
-    r = rec(80, 80, ci={"areas": ["pricing", "send_a_vp", "exec_connect"], "ceo_action": "CEO acts"})
+    r = rec(80, 80, ci={"needed": True, "areas": ["pricing", "send_a_vp", "exec_connect"], "ceo_action": "CEO acts"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
     t5 = r["ai"]["ceo_intervention"]["areas"] == ["pricing", "exec_connect"]
     print(f"[{'PASS' if t5 else 'FAIL'}] 5 areas clamped to CEO levers -> {r['ai']['ceo_intervention']['areas']}")

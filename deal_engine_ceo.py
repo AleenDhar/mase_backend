@@ -3,16 +3,22 @@
 CEO help (ai.ceo_intervention) is now computed on EVERY sweep instead of a separate
 local pass. The split of responsibility keeps it safe:
 
-  WHEN (the gate) is DETERMINISTIC — a deal qualifies only when it is FORECASTED
-  (Commit / Best Case / Upside) AND its server-computed WIN score clears the bar
-  (win_position > 60). Momentum is intentionally NOT gated: a winnable deal that is
-  STALLING (high win, low momentum) is exactly when the CEO must step in to un-stall
-  it — gating on momentum would exclude the deals that most need CEO help. The model
-  never decides the gate.
+  ELIGIBILITY (a DETERMINISTIC FLOOR, not the qualifier) — a deal is only ever
+  CONSIDERED when it is FORECASTED (Commit / Best Case / Upside) AND its win score
+  clears win_position > 60. Momentum is NOT gated (a winnable-but-stalling deal is
+  exactly when the CEO might be needed). But clearing the floor does NOT tag the CEO.
 
-  WHAT (the content) rides the sweep's EXISTING LLM output — the model emits its
-  best CEO read (the four CEO levers + a CEO-personal action + a Salesforce-grounded
-  buyer_target). No extra API call.
+  THE REAL FILTER is an AI ANALYSIS — for each eligible deal the model decides
+  whether the CEO (the single most senior Zycus leader) is GENUINELY, SPECIFICALLY
+  required, vs. the deal needing NO intervention or only a senior/C-level exec
+  (VP / SVP / CRO / CMO) who is NOT the CEO. The DEFAULT is needed=false; the CEO is
+  a scarce last-resort lever. This finalizer RESPECTS that decision — it never forces
+  needed=true just because the floor passed. So only the few deals where the CEO is
+  truly the one required get tagged.
+
+  WHAT (the content, when needed) rides the sweep's EXISTING LLM output — the four
+  CEO levers + a CEO-personal action + a Salesforce-grounded buyer_target. No extra
+  API call.
 
   Then this finalizer OVERRIDES needed from the gate, clamps the areas to the four
   CEO levers, stamps the real win/mom + source, and SANITIZES the free text with the
@@ -99,19 +105,30 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     forecasted = _is_forecasted((opp or {}).get("forecast_category"))
     gen = date.today().isoformat()
 
-    # --- the DETERMINISTIC gate (WIN only; momentum is not gated) ----------------
-    gate = bool(forecasted and win is not None and win > WIN_BAR)
-    if not gate:
+    # --- the DETERMINISTIC FLOOR (win only; momentum not gated) ------------------
+    # This is only ELIGIBILITY — it does NOT tag the CEO.
+    eligible = bool(forecasted and win is not None and win > WIN_BAR)
+    prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
+    if not eligible:
         ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,
                                   "source": "sweep", "generated_at": gen}
         return
 
-    # --- passed: take the model's content, else carry a prior, else minimal -----
+    # --- THE FILTER: the AI analysis decides if the CEO is GENUINELY needed ------
+    # Default is NO. The model set needed=true only if the CEO specifically (not a
+    # VP/SVP/CRO) is required. Respect it; an explicit needed=false stays false.
     ci = ai.get("ceo_intervention") if isinstance(ai.get("ceo_intervention"), dict) else {}
-    if not ci.get("ceo_action"):
-        prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
-        if isinstance(prior, dict) and prior.get("needed") and prior.get("ceo_action"):
-            ci = dict(prior)
+    if "needed" in ci:
+        ai_needs_ceo = ci.get("needed") is True
+    elif isinstance(prior, dict) and prior.get("needed") and prior.get("ceo_action"):
+        ci = dict(prior)               # thin/failed read this run -> keep prior decision
+        ai_needs_ceo = True
+    else:
+        ai_needs_ceo = False
+    if not ai_needs_ceo:
+        ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,
+                                  "source": "sweep", "generated_at": gen}
+        return
 
     contact_titles = _val.build_contact_titles(buyer)
     allow = set(allowlist or set())

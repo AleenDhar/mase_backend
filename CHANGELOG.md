@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — CDC brakes: meaningful-field filter (Lambda) + per-opp sweep cooldown (backend)
+
+**What.** Two changes so the Salesforce CDC trigger can deliver real-time sweeps WITHOUT the
+re-sweep storm:
+1. **CDC Lambda** (`infra/sf-cdc-bridge/lambda_function.py`) fires a paid sweep only on a
+   *meaningful* Opportunity change. Task/Event/EmailMessage **activity no longer triggers** (set
+   env `CDC_TRIGGER_ON_ACTIVITY=true` to restore). An Opportunity UPDATE triggers only when a field
+   in `MEANINGFUL_FIELDS` changed (default `StageName,Amount,CloseDate,NextStep`; env-tunable, and
+   checked against `changedFields` + `nulledFields` + present payload values). CREATE/UNDELETE and
+   untracked-but-Qualified+ adoption still trigger, so genuinely new deals still appear.
+2. **Backend** (`enqueue_trigger`, `deal_engine_sweep.py`) adds a per-opp cooldown: a
+   Salesforce-triggered re-sweep returns `skipped_cooldown` if the opp was swept within
+   `DEAL_SWEEP_TRIGGER_COOLDOWN_HOURS` (default 6), read from the record's `swept_at`. **Manual
+   clicks and from-scratch rebuilds bypass the cooldown** — explicit human intent always runs now.
+
+**Why.** The 2026-07-02 burn (~$1,157/48h) was the CDC path with no brakes: the Lambda fired on
+every activity (not just field changes) and nothing debounced repeat triggers → 829 sweeps over
+198 opps, 76% repeat (~$894), one deal 17×. The filter removes the activity volume; the cooldown
+collapses meaningful-change bursts. Together they make re-enabling the CDC rule safe.
+
+**How to work with it going forward.** All three knobs are env-tunable without code:
+`MEANINGFUL_FIELDS`, `CDC_TRIGGER_ON_ACTIVITY`, `DEAL_SWEEP_TRIGGER_COOLDOWN_HOURS`. The Lambda
+deploys SEPARATELY from ECS — it is **not** in the GitHub Actions pipeline; ship it with
+`aws lambda update-function-code --function-name mase-sf-cdc-bridge`. Only after BOTH are live,
+re-enable real-time: worker `--desired-count 1` + `aws events enable-rule --name
+mase-sf-cdc-to-lambda`. Verified: 10-case Lambda filter behavioral test + IST `swept_at` parsing;
+both files `py_compile`. See `docs/sweep-runs-kt.md`.
+
 ## 2026-07-02 — Close the `/cron/nightly-sf-pull` side-door (SFDC CDC is the only automated sweep trigger)
 
 **What.** `GET /cron/nightly-sf-pull` now returns `{"status":"disabled"}` (HTTP 200, no work)

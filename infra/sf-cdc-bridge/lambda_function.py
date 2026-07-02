@@ -42,6 +42,23 @@ SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
 
 OPP_PREFIX = "006"  # Salesforce Opportunity key prefix
 
+# --- Cost guard (2026-07-02): only fire a paid re-sweep on a MEANINGFUL change ---
+# Previously ANY change to a tracked Opportunity, and EVERY related Task / Event /
+# EmailMessage, re-triggered a full AI sweep. Activity churn + trivial field edits
+# drove ~the entire re-sweep burn. Now a tracked-opp UPDATE fires only when a
+# business-meaningful field changed, and activities do not fire at all. Both are
+# env-tunable so policy can change without a code redeploy:
+#   - MEANINGFUL_FIELDS: comma-separated API names (default below).
+#   - CDC_TRIGGER_ON_ACTIVITY=true: re-enable Task/Event/EmailMessage triggering.
+_DEFAULT_MEANINGFUL_FIELDS = {"StageName", "Amount", "CloseDate", "NextStep"}
+MEANINGFUL_FIELDS = {
+    f.strip() for f in os.environ.get("MEANINGFUL_FIELDS", "").split(",") if f.strip()
+} or set(_DEFAULT_MEANINGFUL_FIELDS)
+_MEANINGFUL_LC = {f.lower() for f in MEANINGFUL_FIELDS}
+_ACTIVITY_ENTITIES = {"Task", "Event", "EmailMessage"}
+_TRIGGER_ON_ACTIVITY = os.environ.get(
+    "CDC_TRIGGER_ON_ACTIVITY", "").strip().lower() in ("1", "true", "yes", "on")
+
 # Stages that are Qualified-or-above AND open. An untracked opp whose CDC event
 # shows one of these is auto-adopted into the tracked list. Two stage taxonomies
 # exist in the org (the main Zycus ladder + a numbered set); both are covered.
@@ -69,6 +86,25 @@ _QUALIFIED_PLUS_LC = {s.strip().lower() for s in QUALIFIED_PLUS_STAGES}
 
 def _is_qualified_plus(stage):
     return bool(stage) and stage.strip().lower() in _QUALIFIED_PLUS_LC
+
+
+def _is_meaningful_change(entity, change_type, stage, changed_fields):
+    """True if an Opportunity CDC event warrants a paid re-sweep.
+
+    CREATE / UNDELETE are always meaningful (a new/restored deal). An UPDATE is
+    meaningful only when a field we care about changed (stage / amount / close date
+    / next step) — not an activity rollup, owner reassignment, or description tweak.
+    Non-Opportunity entities are never 'meaningful' here; they go through the
+    activity path in handler()."""
+    if entity != "Opportunity":
+        return False
+    if change_type in ("CREATE", "UNDELETE"):
+        return True
+    if any(str(f).lower() in _MEANINGFUL_LC for f in changed_fields):
+        return True
+    # Some relays omit changedFields but still carry the new StageName on a
+    # stage-change UPDATE — treat a present stage as a meaningful change.
+    return bool(stage)
 
 
 def _is_tracked(opp_id):
@@ -125,6 +161,10 @@ def _extract(detail):
     entity = header.get("entityName", "")
     change_type = header.get("changeType", "")
     record_ids = header.get("recordIds", []) or []
+    # Which fields changed on this event. changedFields lists updated API names;
+    # nulledFields lists fields cleared to null (clearing NextStep still counts).
+    changed_fields = {str(f) for f in (header.get("changedFields") or [])}
+    changed_fields |= {str(f) for f in (header.get("nulledFields") or [])}
 
     opp_ids = set()
     stage = None
@@ -135,13 +175,19 @@ def _extract(detail):
         sv = payload.get("StageName")
         if isinstance(sv, str):
             stage = sv
+        # A CDC update payload carries ONLY the fields that changed, so a meaningful
+        # field present as a non-null value is a reliable "it changed" signal even
+        # if changedFields is absent/awkwardly encoded on this relay.
+        for f in MEANINGFUL_FIELDS:
+            if payload.get(f) is not None:
+                changed_fields.add(f)
     else:
         # Task / Event / EmailMessage relate to an Opportunity via these fields.
         for field in ("WhatId", "RelatedToId"):
             v = payload.get(field)
             if isinstance(v, str) and v.startswith(OPP_PREFIX):
                 opp_ids.add(v)
-    return entity, change_type, opp_ids, stage
+    return entity, change_type, opp_ids, stage, changed_fields
 
 
 def handler(event, context):
@@ -149,12 +195,34 @@ def handler(event, context):
     detail = event.get("detail", {}) or {}
     details = detail if isinstance(detail, list) else [detail]
 
-    triggered, adopted, skipped = {}, [], []
+    triggered, adopted, skipped, filtered = {}, [], [], []
     for d in details:
-        entity, change_type, opp_ids, stage = _extract(d if isinstance(d, dict) else {})
+        entity, change_type, opp_ids, stage, changed_fields = _extract(
+            d if isinstance(d, dict) else {})
+        is_activity = entity in _ACTIVITY_ENTITIES
+        meaningful = _is_meaningful_change(entity, change_type, stage, changed_fields)
         qualifies = entity == "Opportunity" and _is_qualified_plus(stage)
-        print("[event] entity=%s changeType=%s stage=%r opp_ids=%s qualifies=%s"
-              % (entity, change_type, stage, sorted(opp_ids), qualifies))
+        print("[event] entity=%s changeType=%s stage=%r changed=%s opp_ids=%s "
+              "meaningful=%s qualifies=%s"
+              % (entity, change_type, stage, sorted(changed_fields),
+                 sorted(opp_ids), meaningful, qualifies))
+
+        # Cost gate — decide whether THIS event may fire a paid sweep at all.
+        if is_activity and not _TRIGGER_ON_ACTIVITY:
+            for oid in opp_ids:
+                if oid not in triggered:
+                    filtered.append(oid)
+            print("[filter] %s activity on %s -> no sweep (CDC_TRIGGER_ON_ACTIVITY off)"
+                  % (entity, sorted(opp_ids)))
+            continue
+        if entity == "Opportunity" and not meaningful:
+            for oid in opp_ids:
+                if oid not in triggered:
+                    filtered.append(oid)
+            print("[filter] Opportunity %s changed=%s -> non-meaningful, no sweep"
+                  % (sorted(opp_ids), sorted(changed_fields)))
+            continue
+
         for oid in opp_ids:
             if oid in triggered or oid in skipped:
                 continue
@@ -170,11 +238,12 @@ def handler(event, context):
                       % (oid, entity, stage))
                 skipped.append(oid)
 
-    if not triggered and not skipped:
+    if not triggered and not skipped and not filtered:
         print("[event] no related Opportunity id found; nothing to do")
     return {
         "triggered": list(triggered.keys()),
         "adopted": adopted,
         "skipped": skipped,
+        "filtered": filtered,
         "results": triggered,
     }

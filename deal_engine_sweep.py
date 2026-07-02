@@ -103,6 +103,40 @@ def _now_ist() -> str:
     return datetime.now(_IST).isoformat()
 
 
+def _trigger_cooldown_hours() -> float:
+    """Hours an opp is exempt from a NEW Salesforce-triggered re-sweep after its
+    last COMPLETED sweep. 0 or negative disables the cooldown. Env-tunable via
+    DEAL_SWEEP_TRIGGER_COOLDOWN_HOURS (default 6). This is the debounce that stops
+    a burst of CDC triggers (a rep editing stage, then amount, then close date, or
+    activity churn) from firing many paid sweeps of the same deal — the 76%
+    repeat-sweep waste in the 2026-07-02 burn."""
+    try:
+        return float(os.getenv("DEAL_SWEEP_TRIGGER_COOLDOWN_HOURS", "6"))
+    except (TypeError, ValueError):
+        return 6.0
+
+
+def _recent_sweep_age_hours(opp_id: str) -> Optional[float]:
+    """Hours since this opp's last completed sweep, read from the stored record's
+    `swept_at` IST timestamp. None if never swept / no record / unparseable — the
+    caller treats None as "no cooldown" (fail-open, never drop a real trigger on a
+    lookup hiccup). Sync (httpx) — call via asyncio.to_thread."""
+    try:
+        rec = store.get_record(opp_id)
+    except Exception:  # noqa: BLE001 — best-effort; never block enqueue on lookup
+        return None
+    ts = (rec or {}).get("swept_at")
+    if not ts or not isinstance(ts, str):
+        return None
+    try:
+        dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=_IST)
+    return max(0.0, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
+
+
 def _within_days(date_str: Optional[str], n: int) -> bool:
     """True if `date_str` (a Salesforce date/datetime ISO string) falls within the
     last `n` days (0 <= today - date <= n). Future dates and None/unparseable
@@ -3802,6 +3836,18 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
         print(f"[DEAL-SWEEP] trigger opp={opp_id} -> skipped "
               "(hard_refresh_in_progress)", flush=True)
         return "skipped_hard_refresh"
+    # Per-opp cooldown (debounce) — Salesforce/CDC path ONLY. A human clicking sweep
+    # ("manual" / "trigger-") or a from-scratch rebuild always runs now and bypasses
+    # this. For the automated path, collapse repeat triggers of the same opp inside
+    # the cooldown window into a single sweep (see _trigger_cooldown_hours).
+    if source in ("salesforce_trigger", "salesforce"):
+        _cooldown_h = _trigger_cooldown_hours()
+        if _cooldown_h > 0:
+            _age = await asyncio.to_thread(_recent_sweep_age_hours, opp_id)
+            if _age is not None and _age < _cooldown_h:
+                print(f"[DEAL-SWEEP] trigger opp={opp_id} -> skipped_cooldown "
+                      f"(swept {_age:.1f}h ago < {_cooldown_h:g}h window)", flush=True)
+                return "skipped_cooldown"
     try:
         enriched = await _enrich_opp_ids(agent_manager, [opp_id])
         opp = enriched[0] if enriched else {"id": opp_id}

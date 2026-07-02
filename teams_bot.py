@@ -36,9 +36,12 @@ LOCAL TEST WITHOUT A SECRET:
 """
 
 import os
+import re
+import time
 import asyncio
 from typing import Awaitable, Callable, Dict
 
+import httpx
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
@@ -62,8 +65,8 @@ except Exception as _e:  # noqa: BLE001
     store = None
     print(f"[TEAMS BOT] store unavailable ({_e}); allowlist + activity log disabled")
 
-# (user_text, conversation_id, user_name) -> reply text. Injected by server.py.
-AgentReply = Callable[[str, str, str], Awaitable[str]]
+# (user_text, conversation_id, user_name, history) -> reply text. Injected by server.py.
+AgentReply = Callable[[str, str, str, str], Awaitable[str]]
 
 # Stored so we can post back proactively after the background run, and (later) push
 # unprompted notifications. In-memory for now — a restart forgets a chat until it
@@ -87,6 +90,82 @@ def _mentioned_ids(activity) -> "list[str]":
         if mid:
             ids.append(mid)
     return ids
+
+
+# ── Group-chat history reading (Graph, app-only + RSC; behind the history flag) ──────
+_GRAPH = "https://graph.microsoft.com/v1.0"
+HISTORY_MAX = int(os.getenv("TEAMS_HISTORY_MAX", "30"))
+_graph_tok = {"v": "", "exp": 0.0}
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _history_on() -> bool:
+    if store is None:
+        return False
+    try:
+        return store.history_enabled()
+    except Exception:  # noqa: BLE001
+        return False
+
+
+async def _graph_token() -> str:
+    """App-only Graph token (client-credentials on the shared Entra app). Cached."""
+    now = time.time()
+    if _graph_tok["v"] and now < _graph_tok["exp"] - 60:
+        return _graph_tok["v"]
+    app_id, app_pw, _t, tenant = _cfg()
+    async with httpx.AsyncClient(timeout=30) as c:
+        r = await c.post(
+            f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+            data={"client_id": app_id, "client_secret": app_pw,
+                  "scope": "https://graph.microsoft.com/.default",
+                  "grant_type": "client_credentials"},
+        )
+        r.raise_for_status()
+        j = r.json()
+    _graph_tok["v"] = j["access_token"]
+    _graph_tok["exp"] = now + int(j.get("expires_in", 3600))
+    return _graph_tok["v"]
+
+
+def _strip_html(html: str) -> str:
+    return re.sub(r"\s+", " ", _TAG_RE.sub(" ", html or "")).strip()
+
+
+async def fetch_history(chat_id: str, limit: int = HISTORY_MAX) -> str:
+    """Recent messages of a group chat/channel via Graph, as chronological
+    'Name: text' lines. Group chats only (19:…@thread.v2 — the conversation id IS
+    the Graph chat id); 1:1 (a:…) ids aren't chat-message-readable, so skip them.
+    Requires the metered Teams messages Graph API (enabled) + the bot's RSC grant."""
+    if not chat_id or not chat_id.startswith("19:"):
+        return ""
+    try:
+        tok = await _graph_token()
+        async with httpx.AsyncClient(timeout=40) as c:
+            r = await c.get(
+                f"{_GRAPH}/chats/{chat_id}/messages",
+                params={"$top": max(1, min(limit, 50))},
+                headers={"Authorization": f"Bearer {tok}"},
+            )
+        if r.status_code != 200:
+            print(f"[TEAMS BOT] history fetch {chat_id[:24]} -> HTTP {r.status_code} {r.text[:150]}")
+            return ""
+        lines = []
+        for m in r.json().get("value", []):
+            if m.get("messageType") != "message":  # skip system/event rows
+                continue
+            txt = _strip_html((m.get("body") or {}).get("content", ""))
+            if not txt:
+                continue
+            who = (((m.get("from") or {}).get("user") or {}).get("displayName")) or "Unknown"
+            lines.append(f"{who}: {txt[:500]}")
+        lines.reverse()  # Graph returns newest-first → make chronological
+        out = "\n".join(lines[-limit:])
+        print(f"[TEAMS BOT] history fetched conv={chat_id[:24]} ({len(lines)} msgs)")
+        return out
+    except Exception as e:  # noqa: BLE001
+        print(f"[TEAMS BOT] history fetch failed: {e}")
+        return ""
 
 
 def _cfg() -> "tuple[str, str, str, str]":
@@ -165,8 +244,12 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
                             user_name: str, conv_type: str = None, email: str = "") -> None:
         """Background: run the (slow) agent, then post the result into the chat."""
         status = "ok"
+        # Group-chat history context — only when the flag is on and it's a group/channel.
+        history = ""
+        if conv_type and conv_type != "personal" and _history_on():
+            history = await fetch_history(conv_id)
         try:
-            reply = await agent_reply(text, conv_id, user_name)
+            reply = await agent_reply(text, conv_id, user_name, history)
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] agent_reply failed conv={conv_id}: {e}")
             reply = f"Sorry — MASE hit an error handling that: {e}"

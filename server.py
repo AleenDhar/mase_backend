@@ -11442,14 +11442,20 @@ except Exception as _e:  # noqa: BLE001
 # we run the SAME agent path /api/chat uses (non-streaming ainvoke) and reply via
 # the Bot Connector API. Injected as a callable so teams_bot.py stays decoupled from
 # server internals. Mount on the FastAPI instance BEFORE it's wrapped below.
-async def _teams_agent_reply(user_text: str, conversation_id: str, user_name: str = "") -> str:
+async def _teams_agent_reply(user_text: str, conversation_id: str, user_name: str = "",
+                             history: str = "") -> str:
     """Run the MASE agent on one Teams message and return the reply text."""
     chat_id = f"teams:{conversation_id}"
     _current_chat_id.set(chat_id)
     agent = await agent_manager.get_agent()
     # Tell the agent who it's talking to so it greets the real user by name instead
     # of hallucinating one (Teams only sends the message text, not the identity).
-    _content = f"[Teams user: {user_name}]\n{user_text}" if user_name else user_text
+    _content = ""
+    if history:
+        _content += ("Recent messages in this Teams chat (oldest→newest), for context — "
+                     "use them if the user asks to summarize or references the discussion:\n"
+                     f"{history}\n\n")
+    _content += f"[Teams user: {user_name}]\n{user_text}" if user_name else user_text
     result = await agent.ainvoke(
         {"messages": [{"role": "user", "content": _content}]},
         # thread_id is REQUIRED by the agent's checkpointer; keying it on the Teams

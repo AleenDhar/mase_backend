@@ -6410,6 +6410,28 @@ async def cron_nightly_sf_pull():
     """
     if supabase is None:
         return JSONResponse({"error": "supabase not configured"}, status_code=503)
+    # Side-door guard (2026-07-02): this on-demand endpoint runs the SAME combined
+    # nightly job as the in-process scheduler — including sub-job (D), which fires
+    # PAID AI sweeps (reconcile_membership -> scheduled_reconcile and
+    # discover_and_sweep_new -> scheduled_discovery). The scheduler is gated by
+    # SF_PULL_CRON_ENABLED (default OFF), but this endpoint was NOT, so an external
+    # cron kept invoking the full pull even while the nightly job was meant to be
+    # disabled — the side-door behind the scheduled_* runs in the burn investigation.
+    # Gate it on the same flag so the ONLY automated AI-sweep trigger is Salesforce
+    # CDC. Set SF_PULL_CRON_ENABLED=true to deliberately re-open it.
+    if not _env_bool("SF_PULL_CRON_ENABLED", False):
+        print("[NIGHTLY-SF-PULL] on-demand endpoint IGNORED — SF_PULL_CRON_ENABLED is "
+              "off; nightly discovery/reconcile stays disabled (SFDC CDC is the only "
+              "automated sweep source). Set SF_PULL_CRON_ENABLED=true to re-enable.",
+              flush=True)
+        return JSONResponse(
+            {"status": "disabled",
+             "reason": "SF_PULL_CRON_ENABLED is off; the nightly SF pull "
+                       "(scheduled_discovery / scheduled_reconcile AI sweeps) is "
+                       "intentionally disabled so Salesforce CDC is the only automated "
+                       "sweep trigger. Set SF_PULL_CRON_ENABLED=true to re-enable."},
+            status_code=200,
+        )
     try:
         summary = await _run_nightly_sf_pull()
         if summary.get("status") == "skipped_already_running":

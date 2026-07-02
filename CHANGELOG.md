@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-02 — Close the `/cron/nightly-sf-pull` side-door (SFDC CDC is the only automated sweep trigger)
+
+**What.** `GET /cron/nightly-sf-pull` now returns `{"status":"disabled"}` (HTTP 200, no work)
+unless `SF_PULL_CRON_ENABLED` is true — the same flag the in-process `_nightly_sf_pull_scheduler`
+already respects (default off). Previously the endpoint ran the full combined nightly pull
+unconditionally, ignoring the flag.
+
+**Why.** The endpoint was a side-door: an external cron kept invoking it even though the nightly
+scheduler is disabled by default, so sub-job (D) fired **paid AI sweeps** — `reconcile_membership`
+(`source=scheduled_reconcile`) + `discover_and_sweep_new` (`source=scheduled_discovery`). Intent:
+the **only** automated trigger that spends on AI sweeps is the Salesforce CDC path
+(`salesforce_trigger` → `/api/deal-engine/sweep/trigger`). The two cheap, no-AI cache endpoints
+(`/cron/sync-sf-to-cache`, `/cron/sf-pull-refresh`) are intentionally left open — killing them
+would just push hard-fact refresh back onto expensive AI sweeps.
+
+**How to work with it going forward.** Real-time SFDC sweeps still flow via CDC and manual clicks
+still work — both unchanged. To deliberately re-run the nightly combined pull, set
+`SF_PULL_CRON_ENABLED=true` (re-arms both the endpoint and the scheduler). **NOTE:** this does NOT
+address the dominant burn (CDC fires on every Task/Event/EmailMessage with no per-opp cooldown);
+that remains a separate fix (per-opp cooldown in `enqueue_trigger` + meaningful-field CDC filter
+in `lambda_function.py`). The CDC EventBridge rule `mase-sf-cdc-to-lambda` and the worker fleet
+are controlled at the AWS level, not by this code. See `docs/sweep-runs-kt.md`.
+
 ## 2026-07-02 — CEO-intervention flag ("CEO help needed") per deal
 
 **What.** A new per-deal field `ai.ceo_intervention` = `{needed, priority, areas[], reason,

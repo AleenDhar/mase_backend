@@ -40,11 +40,12 @@ def main():
     print(f"[{'PASS' if t1 else 'FAIL'}] 1 gate-pass: strip title + repair buyer_target -> {ci['buyer_target']['name']}")
     ok &= t1
 
-    # 2) NOT forecasted -> needed False regardless of high scores
-    r = rec(90, 90, ci={"areas": ["pricing"], "ceo_action": "x"})
+    # 2) NON-forecasted (Pipeline) but win>60 + AI says CEO needed -> needed True
+    #    (forecast category is NOT gated — any deal is eligible on win alone)
+    r = rec(75, 60, ci={"needed": True, "areas": ["exec_connect"], "ceo_action": "CEO acts on a Pipeline deal"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Pipeline"}, BUYER)
-    t2 = r["ai"]["ceo_intervention"]["needed"] is False
-    print(f"[{'PASS' if t2 else 'FAIL'}] 2 non-forecasted -> needed False")
+    t2 = r["ai"]["ceo_intervention"]["needed"] is True
+    print(f"[{'PASS' if t2 else 'FAIL'}] 2 non-forecasted + win>60 + AI-yes -> needed True (forecast not gated)")
     ok &= t2
 
     # 3) forecasted but WIN below bar -> needed False (even with high momentum)

@@ -4,9 +4,10 @@ CEO help (ai.ceo_intervention) is now computed on EVERY sweep instead of a separ
 local pass. The split of responsibility keeps it safe:
 
   ELIGIBILITY (a DETERMINISTIC FLOOR, not the qualifier) — a deal is only ever
-  CONSIDERED when it is FORECASTED (Commit / Best Case / Upside) AND its win score
-  clears win_position > 60. Momentum is NOT gated (a winnable-but-stalling deal is
-  exactly when the CEO might be needed). But clearing the floor does NOT tag the CEO.
+  CONSIDERED when its win score clears win_position > 60. This applies to ALL deals,
+  not just forecasted ones (forecast category is NOT gated). Momentum is NOT gated
+  either (a winnable-but-stalling deal is exactly when the CEO might be needed). But
+  clearing the floor does NOT tag the CEO.
 
   THE REAL FILTER is an AI ANALYSIS — for each eligible deal the model decides
   whether the CEO (the single most senior Zycus leader) is GENUINELY, SPECIFICALLY
@@ -102,12 +103,12 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     ai = parsed["ai"]
     hl = ((ai.get("deal_scores") or {}).get("headline") or {}) if isinstance(ai.get("deal_scores"), dict) else {}
     win, mom = _num(hl.get("win_position")), _num(hl.get("deal_momentum"))
-    forecasted = _is_forecasted((opp or {}).get("forecast_category"))
     gen = date.today().isoformat()
 
-    # --- the DETERMINISTIC FLOOR (win only; momentum not gated) ------------------
-    # This is only ELIGIBILITY — it does NOT tag the CEO.
-    eligible = bool(forecasted and win is not None and win > WIN_BAR)
+    # --- the DETERMINISTIC FLOOR (win only; ALL deals, momentum not gated) -------
+    # This is only ELIGIBILITY — it does NOT tag the CEO. Any deal (not just
+    # forecasted) with win_position > 60 is considered; the AI decides from there.
+    eligible = bool(win is not None and win > WIN_BAR)
     prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
     if not eligible:
         ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,

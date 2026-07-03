@@ -11,6 +11,36 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-03 — CEO attention = Support + Monitor (ai.ceo_intervention restructured)
+
+**What.** `ai.ceo_intervention` now carries TWO sub-determinations instead of one flat
+"intervention": `support` (the CEO must ACT — the existing 4-lever discriminator:
+pricing/product/presales_resources/exec_connect) and `monitor` (the CEO should WATCH).
+New shape: `{needed, kind: support|monitor|both|none, support{…}, monitor{needed, reason,
+triggers[]}, win, mom, source, generated_at}`. `needed` (top-level) is `support.needed OR
+monitor.needed` so the existing column keeps working. `deal_engine_ceo.finalize_ceo_intervention`
+computes `support` (from the sweep's own output; reads both the new nested and legacy flat
+model emit) and **carries `monitor` forward from the prior record** — the sweep NEVER
+computes or clobbers monitor. Monitor is owned by a SEPARATE, 14-day-surgical
+`ceo_attention` run (`ceo_attention_fetch.py` → judge workflow → `ceo_attention_apply.py`):
+three triggers — **our_slip** (a deliverable the prospect expected from us is still
+outstanding and it's NOT buyer-dependent — buyer waits are softened), **large_slowdown**
+(amount ≥ $250K or forecasted, and slowing / disengaging), **competitor_edge** (a competitor
+out-delivering us, surfaced from our interactions). Eligibility floor = `win_position >= 40`.
+Every monitor trigger MUST be anchored to a signal dated within the **last 14 days**
+(hard deterministic gate in apply drops any trigger whose `as_of` is stale — "don't fetch
+historical SF and let it explode").
+
+**Why.** CEO involvement split into two needs: *intervention* (act/veto — existing) vs
+*oversight* (watch — new: gauge that WE are slipping on a deliverable, a big deal is going
+quiet, or a competitor is out-executing). The oversight signal must be surgical and recent
+(≤14 days) or it misleads.
+
+**How to work with it going forward.** The `ceo_attention` run is standalone/local ($0),
+re-runnable over all win≥40 opps; it writes `source:"attention_v1"`. A CDC sweep refreshes
+`support` and preserves `monitor` (carry-forward). Frontend reads `ceo_intervention.support.*`
+and `ceo_intervention.monitor.*`. Requires a backend deploy for the sweep carry-forward.
+
 ## 2026-07-03 — Win score: competitor drag only on a BUYER-LEANING signal (not mere presence)
 
 **What.** `deal_engine_scoring._competitive_strength` and the `_signals` competitive-posture

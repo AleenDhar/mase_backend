@@ -111,24 +111,48 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     eligible = bool(win is not None and win >= WIN_BAR)
     prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
     if not eligible:
-        ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,
-                                  "source": "sweep", "generated_at": gen}
+        # below the win floor -> not eligible for support OR monitor (the attention
+        # run only covers win>=40), so emit a clean empty attention object.
+        ai["ceo_intervention"] = {"needed": False, "kind": "none",
+                                  "support": {"needed": False},
+                                  "monitor": {"needed": False, "triggers": []},
+                                  "win": win, "mom": mom, "source": "sweep",
+                                  "generated_at": gen}
         return
 
-    # --- THE FILTER: the AI analysis decides if the CEO is GENUINELY needed ------
-    # Default is NO. The model set needed=true only if the CEO specifically (not a
-    # VP/SVP/CRO) is required. Respect it; an explicit needed=false stays false.
-    ci = ai.get("ceo_intervention") if isinstance(ai.get("ceo_intervention"), dict) else {}
-    if "needed" in ci:
-        ai_needs_ceo = ci.get("needed") is True
-    elif isinstance(prior, dict) and prior.get("needed") and prior.get("ceo_action"):
-        ci = dict(prior)               # thin/failed read this run -> keep prior decision
-        ai_needs_ceo = True
-    else:
-        ai_needs_ceo = False
-    if not ai_needs_ceo:
-        ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,
+    # ceo_intervention now carries TWO sub-determinations: `support` (CEO must ACT —
+    # computed here from the sweep's own discriminator) and `monitor` (CEO should
+    # WATCH — a 14-day-surgical analysis owned by the SEPARATE ceo_attention run).
+    # The sweep NEVER computes/clobbers monitor; it carries the prior monitor forward
+    # so a CDC re-sweep can't wipe the attention run's output.
+    prior_ci = prior if isinstance(prior, dict) else {}
+    prior_monitor = prior_ci.get("monitor") if isinstance(prior_ci.get("monitor"), dict) else {"needed": False, "triggers": []}
+
+    def _emit(support: dict) -> None:
+        needed = bool(support.get("needed") or prior_monitor.get("needed"))
+        kind = ("both" if support.get("needed") and prior_monitor.get("needed")
+                else "support" if support.get("needed")
+                else "monitor" if prior_monitor.get("needed") else "none")
+        ai["ceo_intervention"] = {"needed": needed, "kind": kind, "support": support,
+                                  "monitor": prior_monitor, "win": win, "mom": mom,
                                   "source": "sweep", "generated_at": gen}
+
+    # --- THE SUPPORT FILTER: does the CEO GENUINELY need to ACT? (default NO) ----
+    # Read the model's emitted support (new nested OR legacy flat shape), else a
+    # prior support decision on a thin read.
+    ci = ai.get("ceo_intervention") if isinstance(ai.get("ceo_intervention"), dict) else {}
+    ci_support = ci.get("support") if isinstance(ci.get("support"), dict) else ci  # new nested or legacy flat
+    prior_support = prior_ci.get("support") if isinstance(prior_ci.get("support"), dict) else prior_ci
+    if "needed" in (ci.get("support") or ci):
+        ai_needs_ceo = (ci_support.get("needed") is True)
+        src = ci_support
+    elif isinstance(prior_support, dict) and prior_support.get("needed") and prior_support.get("ceo_action"):
+        src = dict(prior_support); ai_needs_ceo = True
+    else:
+        src = {}; ai_needs_ceo = False
+
+    if not ai_needs_ceo:
+        _emit({"needed": False})
         return
 
     contact_titles = _val.build_contact_titles(buyer)
@@ -139,29 +163,22 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
             allow.add(n)
     allow.discard("")
 
-    areas = [a for a in (ci.get("areas") or []) if a in LEVERS]
-    if not areas:
-        areas = ["exec_connect"]
+    areas = [a for a in (src.get("areas") or []) if a in LEVERS] or ["exec_connect"]
     amount = _num((parsed.get("hard") or {}).get("amount")) or 0.0
-    priority = ci.get("priority") if ci.get("priority") in ("high", "medium") else \
+    priority = src.get("priority") if src.get("priority") in ("high", "medium") else \
         ("high" if amount > 400000 else "medium")
-
-    buyer_target = _verify_buyer_target(ci.get("buyer_target") or {}, contact_titles, ai)
-    reason = _sanitize_text(ci.get("reason"), contact_titles, allow)
-    action = _sanitize_text(ci.get("ceo_action"), contact_titles, allow)
+    buyer_target = _verify_buyer_target(src.get("buyer_target") or {}, contact_titles, ai)
+    reason = _sanitize_text(src.get("reason"), contact_titles, allow)
+    action = _sanitize_text(src.get("ceo_action"), contact_titles, allow)
     if not action:
         who = buyer_target.get("name") or buyer_target.get("title") or "the economic buyer / budget owner"
         action = (f"The Zycus CEO personally opens a CEO-to-executive relationship with "
                   f"{who} to unblock this deal on: {', '.join(areas)}.")
+    lower = [e for e in (src.get("lower_execs_engaged") or []) if isinstance(e, dict) and e.get("name")]
 
-    lower = [e for e in (ci.get("lower_execs_engaged") or []) if isinstance(e, dict) and e.get("name")]
-
-    ai["ceo_intervention"] = {
-        "needed": True, "priority": priority, "areas": areas,
-        "reason": reason, "ceo_action": action,
-        "buyer_target": buyer_target,
-        "ceo_not_engaged": bool(ci.get("ceo_not_engaged", True)),
-        "lower_execs_engaged": lower,
-        "evidence": ci.get("evidence") if isinstance(ci.get("evidence"), list) else [],
-        "win": win, "mom": mom, "source": "sweep", "generated_at": gen,
-    }
+    _emit({"needed": True, "priority": priority, "areas": areas, "reason": reason,
+           "ceo_action": action, "buyer_target": buyer_target,
+           "why_not_vp": src.get("why_not_vp"),
+           "ceo_not_engaged": bool(src.get("ceo_not_engaged", True)),
+           "lower_execs_engaged": lower,
+           "evidence": src.get("evidence") if isinstance(src.get("evidence"), list) else []})

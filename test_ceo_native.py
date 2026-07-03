@@ -34,10 +34,11 @@ def main():
     C.finalize_ceo_intervention(r, {"forecast_category": "Upside Key Deal"}, BUYER)
     ci = r["ai"]["ceo_intervention"]
     blob = json.dumps(ci)
-    t1 = (ci["needed"] is True and ci["source"] == "sweep"
+    sup = ci.get("support") or {}
+    t1 = (ci["needed"] is True and ci["source"] == "sweep" and ci["kind"] in ("support", "both")
           and "CFO Flandorfer" not in blob
-          and ci["buyer_target"]["name"] == "Barbara Potisk-Eibensteiner")
-    print(f"[{'PASS' if t1 else 'FAIL'}] 1 gate-pass: strip title + repair buyer_target -> {ci['buyer_target']['name']}")
+          and sup["buyer_target"]["name"] == "Barbara Potisk-Eibensteiner")
+    print(f"[{'PASS' if t1 else 'FAIL'}] 1 gate-pass: nested support + strip title + repair buyer_target -> {sup.get('buyer_target',{}).get('name')}")
     ok &= t1
 
     # 2) NON-forecasted (Pipeline) but win>60 + AI says CEO needed -> needed True
@@ -83,16 +84,28 @@ def main():
     r = rec(70, 70)
     C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER, prior_ai=prior)
     ci = r["ai"]["ceo_intervention"]
-    t4 = ci["needed"] is True and bool(ci["ceo_action"])
-    print(f"[{'PASS' if t4 else 'FAIL'}] 4 no-LLM-content -> carry prior: {ci['ceo_action'][:40]}…")
+    t4 = ci["needed"] is True and bool((ci.get("support") or {}).get("ceo_action"))
+    print(f"[{'PASS' if t4 else 'FAIL'}] 4 no-LLM-content -> carry prior support: {(ci.get('support') or {}).get('ceo_action','')[:40]}…")
     ok &= t4
 
     # 5) areas clamped to the 4 CEO levers (drop junk)
     r = rec(80, 80, ci={"needed": True, "areas": ["pricing", "send_a_vp", "exec_connect"], "ceo_action": "CEO acts"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
-    t5 = r["ai"]["ceo_intervention"]["areas"] == ["pricing", "exec_connect"]
-    print(f"[{'PASS' if t5 else 'FAIL'}] 5 areas clamped to CEO levers -> {r['ai']['ceo_intervention']['areas']}")
+    areas5 = ((r["ai"]["ceo_intervention"].get("support") or {}).get("areas"))
+    t5 = areas5 == ["pricing", "exec_connect"]
+    print(f"[{'PASS' if t5 else 'FAIL'}] 5 support.areas clamped to CEO levers -> {areas5}")
     ok &= t5
+
+    # 6) monitor is carried forward from the prior record, never clobbered by the sweep
+    prior6 = {"ceo_intervention": {"support": {"needed": False},
+              "monitor": {"needed": True, "reason": "our-side slip", "triggers": [{"type": "our_slip", "as_of": "2026-07-01"}]}}}
+    r = rec(80, 80, ci={"needed": False, "reason": "VP suffices"})
+    C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER, prior_ai=prior6)
+    ci6 = r["ai"]["ceo_intervention"]
+    t6 = (ci6["needed"] is True and ci6["kind"] == "monitor"
+          and ci6["monitor"]["needed"] is True and ci6["support"]["needed"] is False)
+    print(f"[{'PASS' if t6 else 'FAIL'}] 6 support=no but prior monitor carried -> kind={ci6.get('kind')}")
+    ok &= t6
 
     print("\nALL PASS" if ok else "\nSOME FAILED")
     sys.exit(0 if ok else 1)

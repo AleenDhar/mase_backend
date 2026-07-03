@@ -11,7 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
-## 2026-07-03 — CEO attention = Support + Monitor (ai.ceo_intervention restructured)
+## 2026-07-03 — CEO attention UNIFIED into one watchlist (support is a reason type)
+
+**What.** Collapsed the earlier Support/Monitor split into ONE determination. `ai.ceo_intervention`
+is now `{needed, severity, needs_action, reasons[], win, mom, source, generated_at}` — a single CEO
+watchlist. `support` (the CEO must ACT — pricing/product/presales_resources/exec_connect) is just one
+reason `type` inside `reasons[]`, auto-included alongside the WATCH reasons (`our_slip`,
+`large_slowdown`, `competitor_edge`). Each reason: `{type, act, severity, summary, evidence, as_of,
++ceo_action/areas/buyer_target for support}`. `needed = len(reasons)>0`; `needs_action = any support
+reason`. No more separate support/monitor objects, no "both". `deal_engine_ceo.finalize_ceo_intervention`
+computes the support reason and CARRIES THE WATCH REASONS FORWARD from the prior record (owned by the
+14-day `ceo_attention` run); frontend renders ONE "🔎 CEO monitor" banner listing all reasons with
+act-items highlighted.
+
+**Why.** Two parallel lists (CEO support + CEO monitor) were redundant — a CEO wants ONE list of deals
+needing his attention, where each entry says whether he must act or just watch. In practice every
+support deal was also on the monitor list, so the split added confusion, not signal.
+
+**How to work with it going forward.** `ceo_attention_apply.build_attention` merges verdicts into the
+unified shape; re-runnable local/$0 over win>=40. Old `.support`/`.monitor` records are read via a
+fallback but overwritten on the next run/sweep. (Superseded the same-day Support+Monitor entry below.)
+
+## 2026-07-03 — CEO attention = Support + Monitor (ai.ceo_intervention restructured, SUPERSEDED)
 
 **What.** `ai.ceo_intervention` now carries TWO sub-determinations instead of one flat
 "intervention": `support` (the CEO must ACT — the existing 4-lever discriminator:

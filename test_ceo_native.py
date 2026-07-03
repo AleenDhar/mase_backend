@@ -11,6 +11,14 @@ BUYER = {"contacts": [{"name": "Engelbert Pölki", "title": "Manager Strategic P
                       {"name": "Karin Eppich", "title": "Purchasing processes"}]}
 
 
+def supreason(ci):
+    """The single support-type reason in the unified reasons[] (or None)."""
+    for r in (ci.get("reasons") or []):
+        if isinstance(r, dict) and r.get("type") == "support":
+            return r
+    return None
+
+
 def rec(win, mom, ci=None, md=None):
     ai = {"deal_scores": {"headline": {"win_position": win, "deal_momentum": mom}}}
     if ci is not None:
@@ -34,11 +42,11 @@ def main():
     C.finalize_ceo_intervention(r, {"forecast_category": "Upside Key Deal"}, BUYER)
     ci = r["ai"]["ceo_intervention"]
     blob = json.dumps(ci)
-    sup = ci.get("support") or {}
-    t1 = (ci["needed"] is True and ci["source"] == "sweep" and ci["kind"] in ("support", "both")
+    sup = supreason(ci)
+    t1 = (ci["needed"] is True and ci["source"] == "sweep" and ci["needs_action"] is True
           and "CFO Flandorfer" not in blob
           and sup["buyer_target"]["name"] == "Barbara Potisk-Eibensteiner")
-    print(f"[{'PASS' if t1 else 'FAIL'}] 1 gate-pass: nested support + strip title + repair buyer_target -> {sup.get('buyer_target',{}).get('name')}")
+    print(f"[{'PASS' if t1 else 'FAIL'}] 1 gate-pass: unified support reason + strip title + repair buyer_target -> {(sup.get('buyer_target') or {}).get('name')}")
     ok &= t1
 
     # 2) NON-forecasted (Pipeline) but win>60 + AI says CEO needed -> needed True
@@ -84,28 +92,42 @@ def main():
     r = rec(70, 70)
     C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER, prior_ai=prior)
     ci = r["ai"]["ceo_intervention"]
-    t4 = ci["needed"] is True and bool((ci.get("support") or {}).get("ceo_action"))
-    print(f"[{'PASS' if t4 else 'FAIL'}] 4 no-LLM-content -> carry prior support: {(ci.get('support') or {}).get('ceo_action','')[:40]}…")
+    t4 = ci["needed"] is True and bool((supreason(ci) or {}).get("ceo_action"))
+    print(f"[{'PASS' if t4 else 'FAIL'}] 4 no-LLM-content -> carry prior support reason: {(supreason(ci) or {}).get('ceo_action','')[:40]}…")
     ok &= t4
 
     # 5) areas clamped to the 4 CEO levers (drop junk)
     r = rec(80, 80, ci={"needed": True, "areas": ["pricing", "send_a_vp", "exec_connect"], "ceo_action": "CEO acts"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
-    areas5 = ((r["ai"]["ceo_intervention"].get("support") or {}).get("areas"))
+    areas5 = (supreason(r["ai"]["ceo_intervention"]) or {}).get("areas")
     t5 = areas5 == ["pricing", "exec_connect"]
-    print(f"[{'PASS' if t5 else 'FAIL'}] 5 support.areas clamped to CEO levers -> {areas5}")
+    print(f"[{'PASS' if t5 else 'FAIL'}] 5 support reason areas clamped to CEO levers -> {areas5}")
     ok &= t5
 
-    # 6) monitor is carried forward from the prior record, never clobbered by the sweep
-    prior6 = {"ceo_intervention": {"support": {"needed": False},
-              "monitor": {"needed": True, "reason": "our-side slip", "triggers": [{"type": "our_slip", "as_of": "2026-07-01"}]}}}
+    # 6) WATCH reasons carried forward from the prior record, never clobbered by the sweep;
+    #    support=no -> needed True (from the watch reason), needs_action False.
+    prior6 = {"ceo_intervention": {"needed": True, "needs_action": False,
+              "reasons": [{"type": "our_slip", "act": False, "severity": "high",
+                           "summary": "our-side slip", "as_of": "2026-07-01"}]}}
     r = rec(80, 80, ci={"needed": False, "reason": "VP suffices"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER, prior_ai=prior6)
     ci6 = r["ai"]["ceo_intervention"]
-    t6 = (ci6["needed"] is True and ci6["kind"] == "monitor"
-          and ci6["monitor"]["needed"] is True and ci6["support"]["needed"] is False)
-    print(f"[{'PASS' if t6 else 'FAIL'}] 6 support=no but prior monitor carried -> kind={ci6.get('kind')}")
+    watch6 = [x for x in ci6["reasons"] if x["type"] != "support"]
+    t6 = (ci6["needed"] is True and ci6["needs_action"] is False
+          and len(watch6) == 1 and not supreason(ci6))
+    print(f"[{'PASS' if t6 else 'FAIL'}] 6 support=no but prior watch reason carried -> needed={ci6['needed']} needs_action={ci6['needs_action']}")
     ok &= t6
+
+    # 7) support + carried watch reason coexist in ONE list (a lapse = act + watch)
+    prior7 = {"ceo_intervention": {"needed": True, "reasons": [
+        {"type": "large_slowdown", "act": False, "severity": "medium", "summary": "slowing", "as_of": "2026-07-02"}]}}
+    r = rec(80, 80, ci={"needed": True, "areas": ["pricing"], "ceo_action": "CEO approves pricing"})
+    C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER, prior_ai=prior7)
+    ci7 = r["ai"]["ceo_intervention"]
+    types7 = sorted(x["type"] for x in ci7["reasons"])
+    t7 = (ci7["needs_action"] is True and types7 == ["large_slowdown", "support"])
+    print(f"[{'PASS' if t7 else 'FAIL'}] 7 support + watch in one list -> reasons={types7}")
+    ok &= t7
 
     print("\nALL PASS" if ok else "\nSOME FAILED")
     sys.exit(0 if ok else 1)

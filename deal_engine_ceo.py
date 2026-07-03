@@ -110,36 +110,40 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     # forecasted) with win_position >= 40 is considered; the AI decides from there.
     eligible = bool(win is not None and win >= WIN_BAR)
     prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
+    prior_ci = prior if isinstance(prior, dict) else {}
+
+    # CEO ATTENTION is a SINGLE watchlist: one `needed` flag + one `reasons[]` list.
+    # A `support` reason (the CEO must ACT — pricing/product/presales_resources/
+    # exec_connect) is just one reason TYPE, auto-included alongside the WATCH reasons
+    # (our_slip / large_slowdown / competitor_edge). The sweep computes the support
+    # reason from its own discriminator and CARRIES THE WATCH REASONS FORWARD from the
+    # prior record (those are owned by the separate 14-day ceo_attention run and must
+    # never be clobbered by a CDC re-sweep).
+    def _prior_watch() -> list:
+        rs = prior_ci.get("reasons")
+        if isinstance(rs, list):
+            return [r for r in rs if isinstance(r, dict) and r.get("type") != "support"]
+        mon = prior_ci.get("monitor") if isinstance(prior_ci.get("monitor"), dict) else {}  # legacy shape
+        return [{**t, "act": False} for t in (mon.get("triggers") or [])
+                if isinstance(t, dict) and t.get("type") != "support"]
+
+    def _emit(support_reason) -> None:
+        reasons = ([support_reason] if support_reason else []) + _prior_watch()
+        needed = bool(reasons)
+        severity = "high" if any(r.get("severity") == "high" for r in reasons) else "medium"
+        ai["ceo_intervention"] = {"needed": needed,
+                                  "severity": severity if needed else None,
+                                  "needs_action": bool(support_reason),
+                                  "reasons": reasons, "win": win, "mom": mom,
+                                  "source": "sweep", "generated_at": gen}
+
     if not eligible:
-        # below the win floor -> not eligible for support OR monitor (the attention
-        # run only covers win>=40), so emit a clean empty attention object.
-        ai["ceo_intervention"] = {"needed": False, "kind": "none",
-                                  "support": {"needed": False},
-                                  "monitor": {"needed": False, "triggers": []},
-                                  "win": win, "mom": mom, "source": "sweep",
+        ai["ceo_intervention"] = {"needed": False, "severity": None, "needs_action": False,
+                                  "reasons": [], "win": win, "mom": mom, "source": "sweep",
                                   "generated_at": gen}
         return
 
-    # ceo_intervention now carries TWO sub-determinations: `support` (CEO must ACT —
-    # computed here from the sweep's own discriminator) and `monitor` (CEO should
-    # WATCH — a 14-day-surgical analysis owned by the SEPARATE ceo_attention run).
-    # The sweep NEVER computes/clobbers monitor; it carries the prior monitor forward
-    # so a CDC re-sweep can't wipe the attention run's output.
-    prior_ci = prior if isinstance(prior, dict) else {}
-    prior_monitor = prior_ci.get("monitor") if isinstance(prior_ci.get("monitor"), dict) else {"needed": False, "triggers": []}
-
-    def _emit(support: dict) -> None:
-        needed = bool(support.get("needed") or prior_monitor.get("needed"))
-        kind = ("both" if support.get("needed") and prior_monitor.get("needed")
-                else "support" if support.get("needed")
-                else "monitor" if prior_monitor.get("needed") else "none")
-        ai["ceo_intervention"] = {"needed": needed, "kind": kind, "support": support,
-                                  "monitor": prior_monitor, "win": win, "mom": mom,
-                                  "source": "sweep", "generated_at": gen}
-
     # --- THE SUPPORT FILTER: does the CEO GENUINELY need to ACT? (default NO) ----
-    # Read the model's emitted support (new nested OR legacy flat shape), else a
-    # prior support decision on a thin read.
     ci = ai.get("ceo_intervention") if isinstance(ai.get("ceo_intervention"), dict) else {}
     ci_support = ci.get("support") if isinstance(ci.get("support"), dict) else ci  # new nested or legacy flat
     prior_support = prior_ci.get("support") if isinstance(prior_ci.get("support"), dict) else prior_ci
@@ -152,7 +156,7 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
         src = {}; ai_needs_ceo = False
 
     if not ai_needs_ceo:
-        _emit({"needed": False})
+        _emit(None)
         return
 
     contact_titles = _val.build_contact_titles(buyer)
@@ -176,9 +180,8 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
                   f"{who} to unblock this deal on: {', '.join(areas)}.")
     lower = [e for e in (src.get("lower_execs_engaged") or []) if isinstance(e, dict) and e.get("name")]
 
-    _emit({"needed": True, "priority": priority, "areas": areas, "reason": reason,
-           "ceo_action": action, "buyer_target": buyer_target,
+    _emit({"type": "support", "act": True, "severity": priority, "areas": areas,
+           "summary": reason, "ceo_action": action, "buyer_target": buyer_target,
            "why_not_vp": src.get("why_not_vp"),
-           "ceo_not_engaged": bool(src.get("ceo_not_engaged", True)),
-           "lower_execs_engaged": lower,
+           "lower_execs_engaged": lower, "as_of": gen,
            "evidence": src.get("evidence") if isinstance(src.get("evidence"), list) else []})

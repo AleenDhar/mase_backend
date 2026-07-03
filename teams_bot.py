@@ -39,6 +39,7 @@ import os
 import re
 import time
 import html
+import uuid
 import asyncio
 from typing import Awaitable, Callable, Dict
 
@@ -75,6 +76,12 @@ AgentReply = Callable[[str, str, str, str], Awaitable[str]]
 _conv_refs: Dict[str, ConversationReference] = {}
 # Hold strong refs to background tasks so the event loop doesn't GC them mid-run.
 _bg_tasks: "set[asyncio.Task]" = set()
+
+# Typing indicator: re-sent every INTERVAL seconds to keep "MASE is typing…" alive
+# (Teams expires a single typing signal in a few seconds). If a run runs past FALLBACK
+# seconds, post one "Still working…" nudge so long tasks don't look stalled.
+TYPING_INTERVAL_S = float(os.getenv("TEAMS_TYPING_INTERVAL_S", "5"))
+TYPING_FALLBACK_S = float(os.getenv("TEAMS_TYPING_FALLBACK_S", "45"))
 
 
 def _mentioned_ids(activity) -> "list[str]":
@@ -329,30 +336,68 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
     adapter = _build_adapter()
     bot_app_id, *_ = _cfg()
 
+    async def _post(reference: ConversationReference, activity) -> None:
+        """Proactively send one activity into the conversation."""
+        async def _cb(tc: TurnContext) -> None:
+            await tc.send_activity(activity)
+        await adapter.continue_conversation(reference, _cb, bot_app_id)
+
     async def _run_and_post(reference: ConversationReference, text: str, conv_id: str,
                             user_name: str, conv_type: str = None, email: str = "") -> None:
-        """Background: run the (slow) agent, then post the result into the chat."""
+        """Background: keep a live 'typing…' status while the (slow) agent runs, then
+        post the answer. Long runs get one 'Still working…' nudge; errors return a
+        friendly message with a log reference id (raw error stays in the logs)."""
         status = "ok"
-        # Group-chat history context — only when the flag is on, it's a group/channel,
-        # AND the message actually needs history (intent-gated to control metered cost).
+
+        # Keep-alive typing indicator + long-run fallback, concurrent with the agent.
+        stop = asyncio.Event()
+
+        async def _keep_typing() -> None:
+            elapsed = 0.0
+            nudged = False
+            while not stop.is_set():
+                try:
+                    await _post(reference, Activity(type="typing"))
+                except Exception:  # noqa: BLE001 — never let the indicator break the run
+                    pass
+                if not nudged and elapsed >= TYPING_FALLBACK_S:
+                    nudged = True
+                    try:
+                        await _post(reference, MessageFactory.text("Still working on it…"))
+                    except Exception:  # noqa: BLE001
+                        pass
+                try:
+                    await asyncio.wait_for(stop.wait(), timeout=TYPING_INTERVAL_S)
+                except asyncio.TimeoutError:
+                    elapsed += TYPING_INTERVAL_S
+
+        typing_task = asyncio.create_task(_keep_typing())
+
+        # Group-chat history context — flag on + group/channel + intent (cost-gated).
         history = ""
         if conv_type and conv_type != "personal" and _history_on():
             intent = _history_intent(text)
             if intent:
                 history = await get_history(conv_id, intent)
+
         try:
             reply = await agent_reply(text, conv_id, user_name, history)
         except Exception as e:  # noqa: BLE001
-            print(f"[TEAMS BOT] agent_reply failed conv={conv_id}: {e}")
-            reply = f"Sorry — MASE hit an error handling that: {e}"
+            ref = uuid.uuid4().hex[:6]
+            print(f"[TEAMS BOT] agent_reply failed conv={conv_id} ref={ref}: {e}")
+            reply = ("Sorry — I couldn't finish that just now. Please try again in a "
+                     f"moment. (ref: {ref})")
             status = "error"
-
-        async def _send(tc: TurnContext) -> None:
-            await tc.send_activity(MessageFactory.text(reply or "…"))
+        finally:
+            stop.set()  # stop the typing loop before we post the answer
+            try:
+                await typing_task
+            except Exception:  # noqa: BLE001
+                pass
 
         try:
-            await adapter.continue_conversation(reference, _send, bot_app_id)
-            print(f"[TEAMS BOT] proactive reply posted conv={conv_id} ({len(reply or '')} chars)")
+            await _post(reference, MessageFactory.text(reply or "…"))
+            print(f"[TEAMS BOT] reply posted conv={conv_id} ({len(reply or '')} chars)")
         except Exception as e:  # noqa: BLE001
             print(f"[TEAMS BOT] proactive post failed conv={conv_id}: {e}")
             status = "error"
@@ -411,8 +456,9 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
             _log(conversation_id=activity.conversation.id, conversation_type=conv_type_v,
                  user_name=user_name, user_email=email, direction="in", status="ok", text=text)
 
-            # Immediate ack so the activity POST returns well under the Teams timeout.
-            await turn.send_activity(MessageFactory.text("On it — MASE is working on this; I'll reply here shortly."))
+            # Immediate typing indicator (fast) so the POST returns under the Teams
+            # timeout; the background loop keeps 'typing…' alive until the answer posts.
+            await turn.send_activity(Activity(type="typing"))
 
             # Fire-and-forget the slow work; the proactive post delivers the answer.
             task = asyncio.create_task(

@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-03 — Win score: competitor drag only on a BUYER-LEANING signal (not mere presence)
+
+**What.** `deal_engine_scoring._competitive_strength` and the `_signals` competitive-posture
+block no longer apply the competitive WIN penalty just because a credible competitor is
+present / high `threat_level`. The full drag (rubric strength −1.0, i.e. the ~−30 band hit,
+plus the `competitor_preferred` risk signal and the −0.4 posture) now fires ONLY when the
+BUYER is leaning toward a competitor — new `_buyer_leans_competitor()` gates on a
+preference / down-select signal in `status` (preferred / ahead / incumbent / winning /
+leading / selected / frontrunner / favored / chosen / recommended / down-selected), an
+explicit `preferred:true` / `buyer_leaning:true` flag, or a leaning phrase in `sentiment` /
+`buyer_preference`. A credible rival merely present in an active eval now scores +0.2
+("roughly even") and is surfaced as the neutral `open_competitive_rfp` signal, not a loss.
+`threat_level` alone NEVER triggers the drag (it measures how dangerous a rival could be,
+not whether the buyer prefers them).
+
+**Why.** Reps flagged that Win dropped ~30 points whenever a competitor was merely
+*mentioned* — Coupa/SAP present in a normal competitive RFP tanked winnable deals even
+with zero signal the buyer favored them. Win should reflect "can we win it," and a named
+competitor in an eval is expected, not a losing signal; only a buyer leaning toward /
+about to buy a competitor should lower Win.
+
+**How to work with it going forward.** Shared constant `_COMPETITOR_LEANING` + helper
+`_buyer_leans_competitor(c)` in `deal_engine_scoring.py`; used by both the win rubric
+(`_competitive_strength`) and the signal scan (`_signals`). Momentum/risk unaffected except
+that `competitor_preferred` now only fires on a genuine leaning. Takes effect on the next
+sweep (deterministic scorer). If the AI deal-scorer is enabled it judges Win from evidence
+directly and is unaffected.
+
 ## 2026-07-03 — CEO help computed NATIVELY in the sweep (win>60 FLOOR + AI discriminator, 4 levers, sanitized)
 
 **What.** `ai.ceo_intervention` is now produced on EVERY sweep instead of a separate

@@ -262,28 +262,54 @@ def _status_strength(status, *, present=1.0, partial=0.3, gap=-0.5, missing=WIN_
     return missing
 
 
+# A competitor only drags the WIN score when the BUYER is leaning toward them (a
+# preference / buying signal) — NOT merely because a credible rival is present in the
+# evaluation. `threat_level` measures how dangerous a competitor COULD be, not whether
+# the buyer prefers them, so it must never by itself trigger the competitive win
+# penalty (2026-07-03, user-directed). These status values ARE a buyer-leaning signal.
+_COMPETITOR_LEANING = (
+    "preferred", "ahead", "incumbent", "winning", "leading", "selected",
+    "frontrunner", "front-runner", "front runner", "favored", "favoured",
+    "chosen", "recommended", "shortlist leader", "down-selected to")
+
+
+def _buyer_leans_competitor(c: dict) -> bool:
+    """True only when a competitor entry shows the BUYER leaning toward them — a real
+    preference / down-select / buying signal in `status` (or an explicit `preferred`
+    flag / a leaning phrase in `sentiment`). A merely high `threat_level` does NOT
+    count: a strong rival that is present but not preferred is not a losing signal."""
+    if not isinstance(c, dict):
+        return False
+    if c.get("preferred") is True or c.get("buyer_leaning") is True:
+        return True
+    for f in ("status", "buyer_preference", "sentiment"):
+        v = str(c.get(f) or "").lower()
+        if any(t in v for t in _COMPETITOR_LEANING):
+            return True
+    return False
+
+
 def _competitive_strength(ai: dict) -> float:
-    """+ when Zycus is ahead / the only real option (do-nothing rival), - when a real vendor
-    is preferred/ahead, mild-negative when unknown."""
+    """+ when Zycus is the only real option (do-nothing rival), STRONG - only when the
+    BUYER is leaning toward a real vendor, roughly even when credible rivals are merely
+    present, mild-negative when unknown."""
     comp = ai.get("competitive_position") or {}
     items = comp.get("competitors") or comp.get("items") or []
-    real_ahead = False
+    real_leaning = False
     has_real = False
     for c in (items if isinstance(items, list) else []):
         nm = str(c.get("name") or "").lower()
         if any(t in nm for t in ("do nothing", "do-nothing", "manual", "status quo", "in-house", "inertia")):
             continue  # not a vendor threat
         has_real = True
-        st = str(c.get("status") or "").lower()
-        th = str(c.get("threat_level") or "").lower()
-        if st in ("preferred", "ahead", "incumbent", "winning", "leading") or th in ("high", "critical"):
-            real_ahead = True
-    if real_ahead:
-        return -1.0
+        if _buyer_leans_competitor(c):
+            real_leaning = True
+    if real_leaning:
+        return -1.0          # buyer is leaning toward a competitor -> real win hit
     if items and not has_real:
         return 0.5            # only do-nothing / manual rival -> we're the wedge
     if has_real:
-        return 0.2            # real rivals present but none ahead -> roughly even
+        return 0.2            # credible rivals present but no leaning -> roughly even
     return _status_strength((ai.get("meddpicc") or {}).get("competition", {}).get("status"),
                             present=0.3, partial=0.1)
 
@@ -734,15 +760,17 @@ def derive_evidence(record: dict):
         put("stage_inflation", 0.5, "Stage is ahead of the engagement/evidence the sweep found.")
 
     # --- competitive posture ---
+    # Only a BUYER-LEANING competitor (preferred / ahead / down-selected) is a negative
+    # posture; a credible rival merely present in the eval is a neutral "open competitive
+    # RFP" signal, NOT a win penalty (threat_level alone never triggers the drag).
     comp = ai.get("competitive_position") or {}
     citems = comp.get("items") or []
-    ahead = [c for c in citems if str(c.get("threat_level") or "").lower() in ("high", "critical")
-             or str(c.get("status") or "").lower() in ("preferred", "ahead", "incumbent")]
-    if ahead:
-        ev["competitive_posture"] = Signal(-0.4, f"A competitor is ahead/incumbent ({len(ahead)} flagged).")
-        put("competitor_preferred", 0.5, "Sweep flags a competitor as preferred/incumbent with momentum.")
+    leaning = [c for c in citems if _buyer_leans_competitor(c)]
+    if leaning:
+        ev["competitive_posture"] = Signal(-0.4, f"Buyer is leaning toward a competitor ({len(leaning)} flagged).")
+        put("competitor_preferred", 0.5, "Sweep flags the buyer leaning toward / preferring a competitor.")
     elif citems:
-        put("open_competitive_rfp", 0.5, "Active competitive evaluation with named rivals.")
+        put("open_competitive_rfp", 0.5, "Active competitive evaluation with named rivals (no buyer leaning).")
 
     # --- exec / champion / stakeholders (MEDDPICC + packets) ---
     medd = ai.get("meddpicc") or {}

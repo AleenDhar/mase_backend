@@ -38,6 +38,7 @@ LOCAL TEST WITHOUT A SECRET:
 import os
 import re
 import time
+import html
 import asyncio
 from typing import Awaitable, Callable, Dict
 
@@ -93,10 +94,39 @@ def _mentioned_ids(activity) -> "list[str]":
 
 
 # ── Group-chat history reading (Graph, app-only + RSC; behind the history flag) ──────
+# Cost control: reading messages via the metered Graph API is billed per message, so we
+#   (1) INTENT-GATE — only fetch when the message actually needs chat context,
+#   (2) CAP the back-scroll for "first message" queries, and
+#   (3) CACHE per conversation with a short TTL so rapid mentions don't re-read/re-bill.
 _GRAPH = "https://graph.microsoft.com/v1.0"
-HISTORY_MAX = int(os.getenv("TEAMS_HISTORY_MAX", "30"))
+HISTORY_MAX = int(os.getenv("TEAMS_HISTORY_MAX", "30"))            # recent-window size
+HISTORY_BACKSCROLL_CAP = int(os.getenv("TEAMS_HISTORY_BACKSCROLL_CAP", "500"))  # max msgs for origin
+_HIST_TTL_RECENT = float(os.getenv("TEAMS_HISTORY_TTL_S", "300"))   # 5 min
+_HIST_TTL_ORIGIN = float(os.getenv("TEAMS_HISTORY_ORIGIN_TTL_S", "3600"))  # first msg is ~immutable
 _graph_tok = {"v": "", "exp": 0.0}
 _TAG_RE = re.compile(r"<[^>]+>")
+_hist_cache: Dict[tuple, tuple] = {}  # (conv_id, mode) -> (text, expiry_epoch)
+
+# Intent detection — decides whether (and how far) to read history.
+_ORIGIN_PAT = re.compile(
+    r"\b(first (?:message|msg|thing)|very first|when (?:was|did) (?:this|the) (?:group|chat)"
+    r"|(?:group|chat) (?:was )?created|start of (?:this|the) (?:group|chat)|who (?:created|started)"
+    r"|originally|from the (?:start|beginning)|beginning of (?:this|the))\b", re.I)
+_RECENT_PAT = re.compile(
+    r"\b(summar|recap|catch (?:me )?up|caught up|brief me|fill me in|so far|earlier|previously"
+    r"|what (?:did|was|were|happened|have)|this (?:chat|group|conversation|thread)"
+    r"|the (?:conversation|discussion|thread)|discuss|context|going on|missed)\b", re.I)
+
+
+def _history_intent(text: str) -> "str | None":
+    """None → don't read history (saves cost). 'origin' → back-scroll to the group
+    start. 'recent' → the last-N window."""
+    t = text or ""
+    if _ORIGIN_PAT.search(t):
+        return "origin"
+    if _RECENT_PAT.search(t):
+        return "recent"
+    return None
 
 
 def _history_on() -> bool:
@@ -128,44 +158,103 @@ async def _graph_token() -> str:
     return _graph_tok["v"]
 
 
-def _strip_html(html: str) -> str:
-    return re.sub(r"\s+", " ", _TAG_RE.sub(" ", html or "")).strip()
+def _strip_html(s: str) -> str:
+    # strip tags, then decode HTML entities (&nbsp; &amp; …), collapse whitespace
+    return re.sub(r"\s+", " ", html.unescape(_TAG_RE.sub(" ", s or ""))).strip()
+
+
+def _fmt_messages(values) -> "list[str]":
+    """Graph message page → 'Name: text' lines (newest-first, as Graph returns).
+    Skips system/event rows and empty bodies."""
+    out = []
+    for m in values:
+        if m.get("messageType") != "message":
+            continue
+        txt = _strip_html((m.get("body") or {}).get("content", ""))
+        if not txt:
+            continue
+        who = (((m.get("from") or {}).get("user") or {}).get("displayName")) or "Unknown"
+        out.append(f"{who}: {txt[:500]}")
+    return out
+
+
+async def _graph_get(url: str) -> "httpx.Response":
+    tok = await _graph_token()
+    async with httpx.AsyncClient(timeout=40) as c:
+        return await c.get(url, headers={"Authorization": f"Bearer {tok}"})
 
 
 async def fetch_history(chat_id: str, limit: int = HISTORY_MAX) -> str:
-    """Recent messages of a group chat/channel via Graph, as chronological
-    'Name: text' lines. Group chats only (19:…@thread.v2 — the conversation id IS
-    the Graph chat id); 1:1 (a:…) ids aren't chat-message-readable, so skip them.
-    Requires the metered Teams messages Graph API (enabled) + the bot's RSC grant."""
+    """Recent window: the last `limit` messages, chronological. Group chats only
+    (19:…@thread.v2 — the conversation id IS the Graph chat id); 1:1 (a:…) skipped."""
     if not chat_id or not chat_id.startswith("19:"):
         return ""
     try:
-        tok = await _graph_token()
-        async with httpx.AsyncClient(timeout=40) as c:
-            r = await c.get(
-                f"{_GRAPH}/chats/{chat_id}/messages",
-                params={"$top": max(1, min(limit, 50))},
-                headers={"Authorization": f"Bearer {tok}"},
-            )
+        r = await _graph_get(f"{_GRAPH}/chats/{chat_id}/messages?$top={max(1, min(limit, 50))}")
         if r.status_code != 200:
             print(f"[TEAMS BOT] history fetch {chat_id[:24]} -> HTTP {r.status_code} {r.text[:150]}")
             return ""
-        lines = []
-        for m in r.json().get("value", []):
-            if m.get("messageType") != "message":  # skip system/event rows
-                continue
-            txt = _strip_html((m.get("body") or {}).get("content", ""))
-            if not txt:
-                continue
-            who = (((m.get("from") or {}).get("user") or {}).get("displayName")) or "Unknown"
-            lines.append(f"{who}: {txt[:500]}")
-        lines.reverse()  # Graph returns newest-first → make chronological
-        out = "\n".join(lines[-limit:])
-        print(f"[TEAMS BOT] history fetched conv={chat_id[:24]} ({len(lines)} msgs)")
-        return out
+        lines = _fmt_messages(r.json().get("value", []))
+        lines.reverse()  # newest-first → chronological
+        print(f"[TEAMS BOT] history recent conv={chat_id[:24]} ({len(lines)} msgs)")
+        return "\n".join(lines[-limit:])
     except Exception as e:  # noqa: BLE001
         print(f"[TEAMS BOT] history fetch failed: {e}")
         return ""
+
+
+async def fetch_history_full(chat_id: str, cap: int = HISTORY_BACKSCROLL_CAP) -> "tuple[str, bool]":
+    """Back-scroll toward the group's start via @odata.nextLink, up to `cap` messages.
+    Returns (chronological text, reached_start). reached_start=True means the first
+    line IS the group's original first message; False means we hit the cap first."""
+    if not chat_id or not chat_id.startswith("19:"):
+        return "", False
+    collected: "list[str]" = []
+    reached_start = False
+    url = f"{_GRAPH}/chats/{chat_id}/messages?$top=50"
+    pages = 0
+    try:
+        while len(collected) < cap and url:
+            r = await _graph_get(url)
+            if r.status_code != 200:
+                print(f"[TEAMS BOT] history full {chat_id[:24]} -> HTTP {r.status_code} {r.text[:120]}")
+                break
+            j = r.json()
+            collected.extend(_fmt_messages(j.get("value", [])))
+            url = j.get("@odata.nextLink")
+            pages += 1
+            if not url:
+                reached_start = True
+        collected = collected[:cap]
+        collected.reverse()  # oldest-first
+        print(f"[TEAMS BOT] history full conv={chat_id[:24]} "
+              f"({len(collected)} msgs, reached_start={reached_start}, pages={pages})")
+        return "\n".join(collected), reached_start
+    except Exception as e:  # noqa: BLE001
+        print(f"[TEAMS BOT] history full failed: {e}")
+        collected.reverse()
+        return "\n".join(collected), False
+
+
+async def get_history(chat_id: str, mode: str) -> str:
+    """Cached history for a conversation. mode='recent' (last window) or 'origin'
+    (back-scroll to the start). Short TTL so repeat mentions don't re-read/re-bill."""
+    now = time.time()
+    key = (chat_id, mode)
+    hit = _hist_cache.get(key)
+    if hit and now < hit[1]:
+        return hit[0]
+    if mode == "origin":
+        text, reached = await fetch_history_full(chat_id)
+        if text and not reached:
+            text = (f"(Note: showing the earliest ~{HISTORY_BACKSCROLL_CAP} messages the bot "
+                    f"could retrieve — the group may have older messages beyond this.)\n{text}")
+        ttl = _HIST_TTL_ORIGIN
+    else:
+        text = await fetch_history(chat_id)
+        ttl = _HIST_TTL_RECENT
+    _hist_cache[key] = (text, now + ttl)
+    return text
 
 
 def _cfg() -> "tuple[str, str, str, str]":
@@ -244,10 +333,13 @@ def register_teams_bot(app: FastAPI, agent_reply: AgentReply) -> None:
                             user_name: str, conv_type: str = None, email: str = "") -> None:
         """Background: run the (slow) agent, then post the result into the chat."""
         status = "ok"
-        # Group-chat history context — only when the flag is on and it's a group/channel.
+        # Group-chat history context — only when the flag is on, it's a group/channel,
+        # AND the message actually needs history (intent-gated to control metered cost).
         history = ""
         if conv_type and conv_type != "personal" and _history_on():
-            history = await fetch_history(conv_id)
+            intent = _history_intent(text)
+            if intent:
+                history = await get_history(conv_id, intent)
         try:
             reply = await agent_reply(text, conv_id, user_name, history)
         except Exception as e:  # noqa: BLE001

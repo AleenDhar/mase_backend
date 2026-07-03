@@ -48,14 +48,21 @@ def main():
     print(f"[{'PASS' if t2 else 'FAIL'}] 2 non-forecasted + win>60 + AI-yes -> needed True (forecast not gated)")
     ok &= t2
 
-    # 3) forecasted but WIN below bar -> needed False (even with high momentum)
-    r = rec(58, 80, ci={"areas": ["pricing"], "ceo_action": "x"})
+    # 3) WIN below the 40 floor -> needed False (ineligible, even with high momentum)
+    r = rec(35, 80, ci={"needed": True, "areas": ["pricing"], "ceo_action": "x"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Commit"}, BUYER)
     t3 = r["ai"]["ceo_intervention"]["needed"] is False
-    print(f"[{'PASS' if t3 else 'FAIL'}] 3 win=58 below bar -> needed False (momentum ignored)")
+    print(f"[{'PASS' if t3 else 'FAIL'}] 3 win=35 below 40 floor -> needed False (ineligible)")
     ok &= t3
 
-    # 3b) winnable but STALLING (win>60, low momentum) + AI says CEO needed -> needed True
+    # 3a) win=40 exactly is ELIGIBLE (>=40) + AI-yes -> needed True (boundary)
+    r = rec(40, 30, ci={"needed": True, "areas": ["exec_connect"], "ceo_action": "CEO acts at the 40 floor"})
+    C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER)
+    t3a = r["ai"]["ceo_intervention"]["needed"] is True
+    print(f"[{'PASS' if t3a else 'FAIL'}] 3a win=40 exactly + AI-yes -> needed True (>=40 floor)")
+    ok &= t3a
+
+    # 3b) winnable but STALLING (low momentum) + AI says CEO needed -> needed True
     r = rec(65, 40, ci={"needed": True, "areas": ["exec_connect"], "ceo_action": "CEO steps in to un-stall"})
     C.finalize_ceo_intervention(r, {"forecast_category": "Best Case"}, BUYER)
     t3b = r["ai"]["ceo_intervention"]["needed"] is True

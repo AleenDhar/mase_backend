@@ -4,7 +4,7 @@ CEO help (ai.ceo_intervention) is now computed on EVERY sweep instead of a separ
 local pass. The split of responsibility keeps it safe:
 
   ELIGIBILITY (a DETERMINISTIC FLOOR, not the qualifier) — a deal is only ever
-  CONSIDERED when its win score clears win_position > 60. This applies to ALL deals,
+  CONSIDERED when its win score clears win_position >= 40. This applies to ALL deals,
   not just forecasted ones (forecast category is NOT gated). Momentum is NOT gated
   either (a winnable-but-stalling deal is exactly when the CEO might be needed). But
   clearing the floor does NOT tag the CEO.
@@ -36,7 +36,7 @@ from typing import Any, Optional
 import deal_engine_validation as _val
 
 LEVERS = ("pricing", "product", "presales_resources", "exec_connect")
-WIN_BAR = 60.0   # the ONLY gate threshold — on win_position (momentum is not gated)
+WIN_BAR = 40.0   # eligibility floor — win_position >= 40 (momentum is not gated)
 
 
 def _num(v: Any) -> Optional[float]:
@@ -107,8 +107,8 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
 
     # --- the DETERMINISTIC FLOOR (win only; ALL deals, momentum not gated) -------
     # This is only ELIGIBILITY — it does NOT tag the CEO. Any deal (not just
-    # forecasted) with win_position > 60 is considered; the AI decides from there.
-    eligible = bool(win is not None and win > WIN_BAR)
+    # forecasted) with win_position >= 40 is considered; the AI decides from there.
+    eligible = bool(win is not None and win >= WIN_BAR)
     prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
     if not eligible:
         ai["ceo_intervention"] = {"needed": False, "win": win, "mom": mom,

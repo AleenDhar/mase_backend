@@ -45,9 +45,9 @@ directly and is unaffected.
 local pass (new `deal_engine_ceo.finalize_ceo_intervention`, wired into
 `deal_engine_sweep.analyze_one` at the persist chokepoint, replacing the old
 carry-forward-only block). Two-part decision: (1) a deterministic **eligibility FLOOR**
-— `win_position>60` for **ANY deal** (forecast category NOT gated; momentum NOT gated —
+— `win_position >= 40` for **ANY deal** (forecast category NOT gated; momentum NOT gated —
 a winnable-but-stalling deal is when the CEO may be needed). Clearing the floor does NOT
-tag the CEO. (2) The **real filter is an AI analysis** — for each eligible deal the
+tag the CEO. (Floor lowered 60 → 40 on 2026-07-03, user-directed.) (2) The **real filter is an AI analysis** — for each eligible deal the
 model decides whether the CEO is GENUINELY, SPECIFICALLY required vs. no intervention
 or only a senior/C-level exec (VP/SVP/CRO/CMO); DEFAULT is needed=false. The finalizer
 RESPECTS that decision (never forces needed=true on a floor-pass) — so only the few

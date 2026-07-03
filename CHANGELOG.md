@@ -11,6 +11,24 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-03 — CRO panel win bullets carry `full` text → "more" expander
+
+**What.** `deal_engine_cro.build_cro_panel` now attaches an optional `full` field to a
+win bullet whose `text` was clipped (the champion narrative + the champion/competitive
+fallback, clipped by `_first_sentence(...,150/170)`). The frontend `CroBullets` renders a
+"more"/"less" toggle when `bullet.full` differs from `bullet.text`, expanding the full
+narrative in place (which often names the competitor / the multi-thread targets — e.g.
+Allstate's champion bullet expands to reveal the "SAP Ariba beta" risk + Mohit Bothra /
+Casey McDowell). Backfilled `ai.deal_scores.cro_panel` across all active deals
+(`cro_panel_backfill.py`, pure/no-LLM, 402 panels; 52 gained a `full` bullet).
+
+**Why.** The win-position "Scores & Reasons" bullets clipped a long champion narrative to a
+cryptic "…and…" with no way to read the rest.
+
+**How to work with it going forward.** `full` is only set when the source was actually
+clipped. Extendable to other blocks (risk/momentum) by carrying `full` at their
+`_first_sentence` sites the same way. Frontend change is in the MASE frontend repo.
+
 ## 2026-07-03 — CEO attention UNIFIED into one watchlist (support is a reason type)
 
 **What.** Collapsed the earlier Support/Monitor split into ONE determination. `ai.ceo_intervention`

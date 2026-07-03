@@ -244,10 +244,15 @@ def build_cro_panel(record, pinned_override=None):
             label = pos if pts >= 0 else neg
             # Champion: prefer the rich champion-strength narrative over a keyword hit.
             text = ""
+            full_txt = None
             if f == "champion" and pts >= 0:
-                cs = _first_sentence((ai.get("champion_strength") or {}).get("summary"), 150)
+                cs_full = _clean((ai.get("champion_strength") or {}).get("summary"))
+                cs = _first_sentence(cs_full, 150)
                 if cs:
                     text = f"{label} — {cs}"
+                    # keep the untrimmed narrative so the UI can offer a "more" expander
+                    if len(cs_full) > len(cs):
+                        full_txt = f"{label} — {cs_full}"
             if not text:
                 body = _strip_evi(c.get("evidence"), crm_e.get("value"))
                 # A Next-Step keyword match ("'pain point' in Next-Step/narrative") strips to a
@@ -258,7 +263,10 @@ def build_cro_panel(record, pinned_override=None):
                     text = label
                 else:
                     text = f"{label} — {body}"
-            win_bullets.append({"tone": "good" if pts >= 0 else "warn", "text": text})
+            bl = {"tone": "good" if pts >= 0 else "warn", "text": text}
+            if full_txt and full_txt != text:
+                bl["full"] = full_txt
+            win_bullets.append(bl)
         elif f in TREND:
             detail = _clean(trends.get(TREND[f]))
             if detail:
@@ -279,9 +287,13 @@ def build_cro_panel(record, pinned_override=None):
     if not win_bullets:
         for src, tone in ((ai.get("champion_strength") or {}).get("summary"), "good"), \
                          ((ai.get("competitive_position") or {}).get("summary"), "warn"):
-            t = _first_sentence(src, 170)
+            full = _clean(src)
+            t = _first_sentence(full, 170)
             if t:
-                win_bullets.append({"tone": tone, "text": t})
+                bl = {"tone": tone, "text": t}
+                if len(full) > len(t):
+                    bl["full"] = full
+                win_bullets.append(bl)
                 break
     # Honest read: a high stage-anchored score with no grounded positive signal
     # underneath isn't really an "edge" — say so rather than imply one.

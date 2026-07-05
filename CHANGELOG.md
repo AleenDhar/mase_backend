@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-05 — Reliable sweep source label (Salesforce triggers no longer mislabeled `worker`)
+
+**What.** The sweep worker now derives a run's `source` from the **authoritative** queue
+`run_id`: if the claimed row reaches `worker.py._process` without a `run_id` (or with one
+lacking a known origin prefix), it re-reads the run_id from the row via new
+`sweep_queue.get_run_id(opp_id)` before mapping the prefix → source. It also logs the
+decision: `[SWEEP-WORKER] source label opp=… run_id=… -> …`.
+
+**Why.** Investigation (2026-07-05, RHB_S2P_2026 traced through the CDC Lambda + ECS logs):
+**100% of recent `worker`-labeled runs were actually Salesforce triggers** — their queue rows
+were `sftrig-…` (e.g. RHB fired on a real `Next_Step__c` change → CDC → HTTP 202). The label
+is derived from the run_id prefix at drain time, and a claimed row occasionally arrived without
+its run_id, so the derivation fell through to the generic `worker`. This made the dashboard
+under-report `salesforce_trigger` and over-report `worker`. The retry/reclaim path was ruled
+out (it preserves run_id); genuine book sweeps (bare-uuid run_id, correctly `worker`) stopped
+2026-07-01. Only the labeling was wrong — no extra sweeps were run by this bug.
+
+**How to work with it going forward.** Correctly-prefixed rows are unchanged (no extra DB read).
+Genuine full-book sweeps still read `worker` (bare-uuid run_id, no prefix — expected). Watch the
+new `source label …` worker log after deploy: the next Salesforce-triggered sweep should print
+`-> salesforce_trigger`. NOTE: the **3× thin-retry** cost (one SF change can bill up to 3 sweeps)
+and the still-firing nightly `scheduled_discovery` are SEPARATE issues, not addressed here.
+
 ## 2026-07-03 — CRO panel win bullets carry `full` text → "more" expander
 
 **What.** `deal_engine_cro.build_cro_panel` now attaches an optional `full` field to a

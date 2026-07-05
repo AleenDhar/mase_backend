@@ -244,6 +244,24 @@ def retry(opp_id: str, *, error: Optional[str] = None) -> None:
            filters=[f"opp_id=eq.{opp_id}"])
 
 
+def get_run_id(opp_id: str) -> Optional[str]:
+    """Authoritative run_id for an opp's current queue row.
+
+    The worker derives the run SOURCE label (salesforce_trigger / manual /
+    update_living_memory / worker) from the run_id PREFIX. A claimed row can reach
+    the worker without its run_id populated, which made a Salesforce/manual trigger
+    get logged under the generic "worker" source (2026-07-05: 100% of recent
+    "worker" runs were actually sftrig- rows). Re-reading the run_id straight from
+    the row by opp_id removes that ambiguity. Returns None if no row / no run_id.
+    """
+    oid = (opp_id or "").strip()
+    if not oid:
+        return None
+    rows = _select(select="run_id",
+                   filters=[f"opp_id=eq.{quote(oid, safe='')}"], limit=1)
+    return (rows[0].get("run_id") if rows else None)
+
+
 # ---------- recovery ----------
 
 def reclaim_stragglers() -> int:

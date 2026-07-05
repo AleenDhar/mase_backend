@@ -64,6 +64,15 @@ API_ENV = {
     # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog
     "SWEEP_AUTOSCALE_ENABLED": "true",
     "SWEEP_AUTOSCALE_MAX": "6",
+    # KILL the nightly scheduled discovery + reconcile AI sweeps — the
+    # `scheduled_discovery` / `scheduled_reconcile` burn. This gates sub-job D of
+    # `_run_nightly_sf_pull` (server.py:6099), the ONLY code that produces those two
+    # run sources, so it stops them no matter how the nightly is invoked (its in-process
+    # scheduler is default-off and the /cron/nightly-sf-pull endpoint is gated, yet the
+    # job still fired ~00:00 UTC on 2026-07-04 and -05, ~50 paid sweeps/night). Manual
+    # discovery via POST /api/deal-engine/discover-new is UNAFFECTED (it doesn't read
+    # this flag). Remove this line to re-enable nightly deal-engine discovery.
+    "DEAL_ENGINE_DISCOVERY_ENABLED": "false",
 }
 WORKER_ENV = {
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,

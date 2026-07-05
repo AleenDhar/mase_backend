@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-05 — Kill the nightly `scheduled_discovery` / `scheduled_reconcile` burn
+
+**What.** Set `DEAL_ENGINE_DISCOVERY_ENABLED=false` in the durable API env
+(`.github/deploy/render_taskdef.py`). This gates **sub-job D of `_run_nightly_sf_pull`**
+(server.py:6099) — the ONLY code that produces the `scheduled_discovery` (discover + sweep new
+opps) and `scheduled_reconcile` (book membership reconcile) run sources.
+
+**Why.** The nightly kept firing ~00:00 UTC and running ~50 paid AI sweeps/night
+(`scheduled_discovery` 00:09–02:28 UTC on 2026-07-05, and again 2026-07-04) even though its
+in-process scheduler is default-off (`SF_PULL_CRON_ENABLED` unset) AND the `/cron/nightly-sf-pull`
+endpoint is gated — i.e. it's being invoked by a path we haven't pinned. Rather than chase the
+invoker, gate the innermost block that emits those two sources, so it stops regardless of how the
+nightly is reached. `scheduled_*` come from exactly one place (server.py:6116/6106), both inside
+this flag's `if`.
+
+**How to work with it going forward.** Manual discovery via `POST /api/deal-engine/discover-new`
+is UNAFFECTED (it doesn't read this flag; it uses `source="manual_discovery"`). Sub-jobs A/B/C of
+the nightly (deterministic SF/cache refresh, no AI sweeps) are unchanged. To re-enable nightly
+deal-engine discovery, remove the `DEAL_ENGINE_DISCOVERY_ENABLED` line from `render_taskdef.py`.
+Takes effect on the next CI deploy (env is baked into the api task-def).
+
 ## 2026-07-05 — Reliable sweep source label (Salesforce triggers no longer mislabeled `worker`)
 
 **What.** The sweep worker now derives a run's `source` from the **authoritative** queue

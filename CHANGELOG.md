@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-06 — Zycus contracting knowledge fed into the sweep prompt (terms + how we operate)
+
+**What.** Added Zycus's new-business contracting paper-trail + terminology to the analysis so
+contracting-stage deals are read correctly. Full reference: `docs/zycus-contracting-reference.md`;
+durable note: `.agents/memory/zycus-contracting-glossary.md`; distilled block appended to the LIVE
+`mase_deal_sweep` Supabase prompt (§2.9, +2.9K chars, backup saved outside the repo). Key rules the
+sweep now applies: (1) **Contract In Progress is NOT one gate** — four independent tracks (legal /
+infosec+compliance / supplier-onboarding / signature) resolve separately, so name WHICH gate a
+stall is on; (2) **the SOW is the choke point + signature predictor** — buyers agree MSA+Order Form
+but won't sign until the SOW closes (signed separately by AVP Delivery), so "won't sign until SOW"
+is NORMAL; (3) **PO is region-conditional** — no PO in much of Europe/US is normal, don't flag it;
+(4) glossary — BAFO/LOI/MSA/OF1-2/SOW/DPA/GDPR+TOM/SOC 1-2/T4C/framework+call-off/AIGC/Zycus SO Form;
+new-business only (single-module Certinal-only = Order Form + SOW, no MSA).
+
+**Why.** The system needs Zycus's language + operating model so it stops mis-reading normal
+contracting signals (a Europe "no PO" or a "won't sign until SOW") as red flags, and can tell
+"in contracting" apart from "blocked on one specific gate."
+
+**How to work with it going forward.** Prompt lives in Supabase (source of truth); re-apply via
+`apply_contracting_knowledge.py --apply` (idempotent). Takes effect on the next sweep — no deploy.
+To give the deal-chat / CEO-attention agents the same knowledge, append the block to
+`mase_chat_agent` / the judge prompt. Code-level stage-modelling (sub-stage Contract-In-Progress,
+SOW-status close predictor, PO-optional gate) is a larger follow-up, not done yet.
+
 ## 2026-07-05 — Kill the nightly `scheduled_discovery` / `scheduled_reconcile` burn
 
 **What.** Set `DEAL_ENGINE_DISCOVERY_ENABLED=false` in the durable API env

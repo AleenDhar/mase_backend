@@ -1,0 +1,811 @@
+{
+  "opp_id": "006P700000ZlQxP",
+  "hard": {
+    "opp_id": "006P700000ZlQxP",
+    "opp_name": "Tata Steel _Merlin AI",
+    "account_name": "Tata Steel Nederland BV",
+    "account_industry": "Oil & Gas",
+    "billing_country": "Netherlands",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": "",
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 350000.0,
+    "close_date": "2027-03-31",
+    "days_to_close": 268,
+    "created_date": "2026-06-19T13:11:19.000+0000",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": "2026-07-01T10:34:35.000+0000",
+    "products": "iContract;iSource;iManage;eProcurement;iRequest;iSaaS;Merlin;iLogix;Merlin Intake",
+    "next_step": "A demo session is planned in July",
+    "ais_score": null,
+    "ais_status": null,
+    "ais_why": null,
+    "dm_identified": false,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZlQxP/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Early-stage $350k full-suite Merlin AI deal (Qualified, close 2027-03-31) that is alive but losing momentum: engagement runs solely through mid-level process lead Lucy Li, the July demo is still undated, and buyer inbound has gone quiet while the rep chases the CPO who has not connected.",
+      "math": "Created 2026-06-19, moved Initial Interest to Qualified on 2026-06-29, so roughly 7 days in Qualified as of 2026-07-06. Close date 2027-03-31 is about 268 days out, so timing is not the problem. The problem is engagement: the last genuine two-way buyer touch was the 2026-06-19 intro meeting with Lucy Li; since then the only movement is rep-side (2026-07-01 outbound call to CPO Elfranco Van Loggerenberg could not connect, 2026-07-01 follow-up email to Lucy) and an account-health flag on 2026-06-29 noting no buyer inbound in 14 days. To hold the March 2027 close the deal must land the July demo, quantify a value case, and reach the economic buyer over the next 90 days.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last Salesforce activity 2026-07-01, but it is rep-side outreach (outbound call to CPO Elfranco Van Loggerenberg could not connect; follow-up email to Lucy Li), not buyer engagement (SF Activities).",
+        "Account-health task on 2026-06-29 flagged prospect gone cold with no inbound in 14 days (SF Task 2026-06-29).",
+        "One intro meeting on 2026-06-19 with Lucy Li (Procurement Process Improvement Lead) scoping AI use cases and a July demo; no transcript available this sweep, facts carried from prior record.",
+        "Three contact roles, all Evaluator: Lucy Li, Elfranco Van Loggerenberg (CPO), Cem Ugur (Director Shipping - Group Strategic Procurement); no Decision Maker role and CPO not yet engaged (SF OpportunityContactRole).",
+        "Next step: demo planned July 2026, still undated (SF Next_Step__c, last modified 2026-07-01).",
+        "Prior RFP halted March 2026 for budget constraints, per Lucy Li on the 2026-06-19 intro (carried from prior record); the $350k amount set at creation remains unvalidated with no EB sign-off.",
+        "SAP is the incumbent procurement stack; Merlin AI is positioned as the differentiation wedge (carried from prior record, 2026-06-19).",
+        "Single-threaded: Lucy Li is the only engaged contact; CPO Elfranco and Director Cem Ugur are contact roles with no call participation."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Lucy Li told Zycus on the 2026-06-19 intro that the prior RFP was halted in March 2026 for budget constraints and that this engagement targets procurement excellence and AI-driven transformation, but no quantified impact (savings, cycle time, headcount, error rate, or ROI) has ever been stated. The pain is real and broad, evidenced by the 9-module full-suite scope (intake, sourcing, contracting, management) and a prior formal RFP attempt, yet it stays qualitative. Without a number the $350k has no anchor and cannot survive another budget review like the one that killed the March RFP. The move is to build a quantified value case with Lucy at or right after the July demo and put it in front of the CPO.",
+        "sources": [
+          "Prior record, Lucy Li on 2026-06-19 intro: 'Previous RFP with Tata was halted in March due to budget constraints.'",
+          "Prior record, Lucy Li on 2026-06-19 intro: procurement excellence and AI-driven transformation focus.",
+          "SF Products__c: 9 modules signalling broad process pain."
+        ]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Elfranco Van Loggerenberg, Chief Procurement Officer, is the economic buyer by title and contact role and is the person the deal team is actively trying to reach: the 2026-07-01 outbound call was placed to him and did not connect (SF Activity 2026-07-01). He is mapped but not engaged, has never joined a call, and has not validated budget or sponsorship. Given the account's history of a budget-cancelled RFP, his sign-off is the single gate that determines whether the $350k is real. The move is to earn a direct CPO conversation, ideally by having Lucy bring him into the July demo, and to confirm the budget line is protected this time.",
+        "sources": [
+          "SF OpportunityContactRole: Elfranco Van Loggerenberg, Chief Procurement Officer, Evaluator.",
+          "SF Activity 2026-07-01: outbound call to Elfranco Van Loggerenberg, could not connect."
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation axis Lucy Li surfaced on 2026-06-19 is AI maturity for procurement: she asked specifically for AI use-case proof points (Heineken, Tata Play) and prior RFP response slides for internal review with procurement excellence leadership (carried from prior record). That tells us AI capability and demonstrated outcomes are the criteria that matter, alongside integration with the incumbent SAP stack. What is not yet documented is the formal weighted criteria set, whether a fresh RFP/RFI will run, or which functional requirements dominate. The move is to draw out the written evaluation criteria and RFP timeline at the July demo.",
+        "sources": [
+          "Prior record, Lucy Li on 2026-06-19: requested Heineken and Tata Play AI use-case materials and prior RFP slides for internal review.",
+          "SF Products__c: Merlin and Merlin Intake in scope, consistent with an AI-led evaluation."
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's actual decision process is not yet visible: only one intro call has happened, no evaluation stages or approval chain are documented, and an account-health task on 2026-06-29 explicitly flagged that the evaluation stages need clarifying and an org chart needs building. What the evidence does show is that Lucy Li is running an internal-review step (gathering AI use-case materials to present to procurement excellence leadership) before the process formalizes, and that a July demo is the next planned gate. The move is to have Lucy walk the deal team through who evaluates, who approves, and the RFP/vendor-selection timeline.",
+        "sources": [
+          "SF Task 2026-06-29: get clarity on the evaluation stages and influence the process; build an org chart and map all key contacts.",
+          "Prior record, Lucy Li on 2026-06-19: materials requested for internal review with procurement excellence leadership."
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in view at this early Qualified stage: no MSA/SOW discussion, no procurement-onboarding or InfoSec thread, and no contract-expiration forcing function has been captured. As a Netherlands (Western Europe) new-business deal, a missing PO later will be normal and should not be flagged, but none of that is live yet. What would create visibility is mapping the buyer's procurement and legal path once the demo confirms mutual interest. The move is to ask, at or after the July demo, how Tata Steel contracts SaaS and who owns legal and InfoSec.",
+        "sources": [
+          "SF StageName: Qualified (no contracting activity expected or observed).",
+          "No paper-process evidence in activities, next steps, or field history."
+        ]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The confirmed pain, articulated by Lucy Li on 2026-06-19, is procurement process inefficiency and the drive to modernise with AI-driven transformation across intake, sourcing, and contracting (carried from prior record). The pain owner is the procurement excellence and strategic sourcing function Lucy leads, escalating to the relevant stakeholder Loggerenberg. Inferred but unconfirmed pain, from the 9-module full-suite scope and the incumbent SAP stack, is fragmented tooling and weak AI/automation in the current environment. It remains qualitative, with no cost of inaction or compelling event named. The move is to pin the compelling event and cost-of-inaction with Lucy to give the CPO a reason to act now.",
+        "sources": [
+          "Prior record, Lucy Li on 2026-06-19: procurement excellence and AI-driven transformation focus.",
+          "SF Products__c: full-suite 9-module scope implying broad process pain."
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Lucy Li (Procurement Process Improvement Lead) is the developing champion and the sole engaged contact: she agreed to an introduction on 2026-06-05, led the 2026-06-19 intro, requested AI use-case proof points for internal review, and is the reason a July demo exists. What has developed is genuine interest and an internal-review effort on our behalf. What is still missing is real advocacy: she has not introduced the deal team to the relevant stakeholder Loggerenberg or any senior stakeholder, has not shared an internal decision framework, and has not defended Zycus against the incumbent. She is mid-level without budget authority, and since 2026-06-19 her side has gone quiet while the rep chases. The move is to activate her access by asking her to bring the CPO into the July demo.",
+        "sources": [
+          "SF Activity 2026-06-05: Lucy Li agreed to a brief introduction conversation with Zycus.",
+          "Prior record, Lucy Li on 2026-06-19: requested Heineken/Tata Play use cases and prior RFP slides for internal review.",
+          "SF Next_Step__c: demo planned July (Lucy driving the process).",
+          "SF OpportunityContactRole: Lucy Li, Evaluator (no Champion role assigned)."
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "SAP is the incumbent procurement stack Tata Steel Netherlands runs, and the competitive frame carried from the 2026-06-19 intro is displacing or coexisting with that install base, where Zycus modular APIs can integrate with SAP/Ariba (prior record). No active bake-off or named rival vendor has surfaced this sweep, and no buyer dissatisfaction with the incumbent has been documented, so the fight today is incumbent inertia plus the risk of another budget-driven no-decision, not a live multi-vendor race. The wedge is Merlin AI agentic procurement positioned as a generational leap over the incumbent's static workflows, with the Heineken and Tata Play proof points Lucy requested as the offset to switching cost. The move is to land that AI wedge at the July demo and probe for incumbent gaps.",
+        "sources": [
+          "Prior record, 2026-06-19 intro: SAP incumbent stack; Zycus modular APIs integrate with SAP/Ariba.",
+          "SF Products__c: Merlin and Merlin Intake as the AI differentiation."
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only genuine buyer engagement is the 2026-06-05 LinkedIn agreement to meet and the 2026-06-19 intro with Lucy Li; since qualification on 2026-06-29 the deal has moved rep-side only (2026-07-01 could-not-connect call to the CPO and a follow-up email to Lucy), with an account-health flag on 2026-06-29 noting no buyer inbound in 14 days.",
+      "items": [
+        {
+          "change": "Stage advanced from Initial Interest to Qualified",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Close date pushed from 2026-06-19 to 2027-03-31",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Type set to New Business",
+          "date": "2026-06-22"
+        },
+        {
+          "change": "Intro meeting held with Lucy Li scoping AI use cases and a July demo",
+          "date": "2026-06-19"
+        },
+        {
+          "change": "Outbound call to CPO Elfranco Van Loggerenberg could not connect",
+          "date": "2026-07-01"
+        },
+        {
+          "change": "Follow-up email sent to Lucy Li on delayed materials",
+          "date": "2026-07-01"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "This is not a live multi-vendor race today; the competitive reality is the incumbent SAP procurement stack Tata Steel Netherlands already runs, plus the do-nothing risk that a budget review kills the project again as the March 2026 RFP was killed. SAP is the single relevant competitor on record (carried from the 2026-06-19 intro): incumbent, neutral sentiment, no buyer dissatisfaction captured yet, so a low current threat that rises only if switching cost or IT integration becomes the buyer's objection. Zycus wins on the Merlin AI agentic wedge against static incumbent workflows, backed by the Heineken and Tata Play proof points Lucy requested.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "Zycus modular APIs can integrate with SAP/Ariba",
+          "date": "2026-06-19",
+          "source": "Prior record, 2026-06-19 intro",
+          "how_we_win": "Lead with Merlin AI agentic sourcing and intake as a generational leap over the incumbent's static workflows; use the Heineken and Tata Play use cases as the offset to switching cost and show SAP integration to de-risk it."
+        },
+        {
+          "name": "Do nothing / budget-driven no-decision",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "do_nothing",
+          "quote": "Previous RFP with Tata was halted in March due to budget constraints",
+          "date": "2026-03-01",
+          "source": "Prior record, Lucy Li on 2026-06-19 intro",
+          "how_we_win": "Quantify a hard savings/ROI case with Lucy and secure CPO Elfranco Van Loggerenberg's budget commitment before the July demo momentum fades, so the project is funded this time."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer's stated expectation is AI-led procurement transformation with demonstrated outcomes; Zycus is well aligned on the AI capability axis but exposed on quantified value and executive budget validation.",
+      "items": [
+        {
+          "criterion": "Demonstrated AI/agentic procurement outcomes",
+          "position": "aligned",
+          "quote": "requested Heineken and Tata Play AI use-case materials for internal review",
+          "date": "2026-06-19",
+          "source": "Prior record, Lucy Li on 2026-06-19 intro"
+        },
+        {
+          "criterion": "Integration with the incumbent SAP stack",
+          "position": "partially aligned",
+          "quote": "Zycus modular APIs can integrate with SAP/Ariba",
+          "date": "2026-06-19",
+          "source": "Prior record, 2026-06-19 intro"
+        },
+        {
+          "criterion": "Fundable, budget-validated business case",
+          "position": "exposed",
+          "quote": "Previous RFP with Tata was halted in March due to budget constraints",
+          "date": "2026-06-19",
+          "source": "Prior record, Lucy Li on 2026-06-19 intro"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Send Heineken and Tata Play AI use-case proof points and prior RFP slides for internal review",
+          "said_by": "Lucy Li",
+          "date": "2026-06-19",
+          "addressed": false,
+          "quote": "requested Heineken and Tata Play AI use-case materials and prior RFP response slides for procurement excellence internal review",
+          "source": "Prior record, Lucy Li on 2026-06-19 intro; SF follow-up email 2026-07-01 apologising for the delay"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Confirm a firm July demo date and the buyer attendees",
+            "who": "Buyer",
+            "grounding_quote": "A demo session is planned in July",
+            "date": "2026-07-01",
+            "due": "2026-07-15",
+            "status": "open",
+            "source": "SF Next_Step__c 2026-07-01"
+          },
+          {
+            "deliverable": "Share the evaluation stages, criteria, and any RFP timeline",
+            "who": "Buyer",
+            "grounding_quote": "get clarity on the evaluation stages and influence the process",
+            "date": "2026-06-29",
+            "due": "2026-07-31",
+            "status": "open",
+            "source": "SF Task 2026-06-29"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "No transcript read this sweep",
+          "quote": "no Avoma calls found for this opp",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery (opp+account+attendee-email), 2026-07-06"
+        },
+        {
+          "area": "Economic buyer not engaged",
+          "quote": "outbound call to Elfranco Van Loggerenberg, could not connect",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "SF Activity 2026-07-01"
+        },
+        {
+          "area": "No quantified value case / metrics",
+          "quote": "procurement excellence and AI-driven transformation",
+          "status": "not addressed",
+          "date": "2026-06-19",
+          "gap_type": "knowledge",
+          "source": "Prior record, 2026-06-19 intro"
+        },
+        {
+          "area": "Decision process and evaluation stages unknown",
+          "quote": "get clarity on the evaluation stages and influence the process",
+          "status": "not addressed",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "SF Task 2026-06-29"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This early full-suite deal turns on three levers: breaking the single thread to the economic buyer, converting AI interest into a fundable number so budget does not kill it a second time, and winning the July demo on the Merlin AI wedge.",
+      "flags": [
+        "Break the single thread: only mid-level Lucy Li is engaged; get CPO Elfranco Van Loggerenberg (economic buyer) and Cem Ugur into the July demo before the process formalizes.",
+        "De-risk budget: the March 2026 RFP died on budget, so quantify a savings/ROI case with Lucy and secure the CPO's budget commitment before pricing.",
+        "Win on AI: land Merlin agentic sourcing and intake at the July demo with the Heineken and Tata Play proof points Lucy requested, and show SAP integration to blunt switching-cost objections."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Elfranco Van Loggerenberg",
+          "_source": "sfdc_contact_role",
+          "title": "Chief Procurement Officer",
+          "email": "elfranco.van-loggerenberg@tatasteeleurope.com",
+          "role": "Economic Buyer",
+          "risk": "Budget owner and economic buyer by title, but never engaged; the 2026-07-01 outbound call to him could not connect. With a prior budget-cancelled RFP on record, his absence means the $350k is unvalidated and the deal has no confirmed authority.",
+          "sentiment": "Unknown (not engaged)",
+          "_matched_ai": true
+        },
+        {
+          "name": "Lucy Li",
+          "_source": "sfdc_contact_role",
+          "title": "Procurement Process Improvement Lead - C&P Projects Excellence & Strategic Sourcing",
+          "email": "lucy.li-leon@tatasteeleurope.com",
+          "role": "Champion",
+          "risk": "Developing champion and sole engaged contact; drove the intro and July demo but has not activated access to the CPO or shown internal advocacy, and her side has gone quiet while the rep chases. If she deprioritizes it, the deal stalls.",
+          "sentiment": "Positive, engaged, but quiet since 2026-06-19",
+          "last_contact_date": "2026-06-19",
+          "_matched_ai": true
+        },
+        {
+          "name": "Cem Ugur",
+          "_source": "sfdc_contact_role",
+          "title": "Director Shipping - Group Strategic Procurement",
+          "email": "cem.ugur@tatasteeleurope.com",
+          "role": "Influencer",
+          "risk": "Contact role Evaluator with strategic sourcing scope, but no call participation or activity; likely surfaces in a later formal evaluation and is currently unmapped.",
+          "sentiment": "Unknown (not engaged)",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Lucy Li (Procurement Process Improvement Lead) is a developing, not yet strong, champion. She agreed to meet on 2026-06-05, led the 2026-06-19 intro, requested AI use-case proof points for internal review, and is the reason a July demo exists, all champion-like behaviors. But she has not introduced the deal team to CPO Elfranco Van Loggerenberg, shared an internal decision framework, or defended Zycus against the incumbent, and her side has gone quiet since 2026-06-19 while the rep chases. She is mid-level without budget authority. To strengthen her, the next demo must convert her interest into activated access to the economic buyer.",
+      "champion": "Lucy Li",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole; SF Activity 2026-06-05 and 2026-06-19; prior record 2026-06-19 intro"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin AI is the core wedge and the deal is literally named for it, with the buyer explicitly pursuing AI-driven procurement transformation, but the agentic story has not yet been demonstrated: the proof points Lucy requested (Heineken, Tata Play) are undelivered and the July demo is the moment to land it. Currently under-positioned against the potential.",
+      "score": "medium",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS field value was provided this sweep, but buyer-side signal is strongly pro-AI: Lucy Li framed the engagement around AI-driven transformation and asked for agentic AI use cases, and the scope includes Merlin and Merlin Intake. Appetite is high; the demonstration is what is missing.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "budget",
+          "detail": "Prior RFP halted March 2026 for budget; the $350k is unvalidated with no EB sign-off, so a repeat budget-driven no-decision is the primary threat.",
+          "first_raised": "2026-06-19",
+          "date": "2026-06-19",
+          "status": "open",
+          "source": "Prior record, Lucy Li on 2026-06-19 intro"
+        },
+        {
+          "category": "executive_alignment",
+          "detail": "Economic buyer CPO Elfranco Van Loggerenberg not engaged; the deal is single-threaded through mid-level Lucy Li.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "SF OpportunityContactRole; SF Activity 2026-07-01"
+        },
+        {
+          "category": "integration",
+          "detail": "Incumbent SAP procurement stack means switching cost and IT integration will be a buyer objection to pre-empt.",
+          "first_raised": "2026-06-19",
+          "date": "2026-06-19",
+          "status": "open",
+          "source": "Prior record, 2026-06-19 intro"
+        },
+        {
+          "category": "timeline",
+          "detail": "July demo is still undated and buyer inbound has gone quiet since 2026-06-19, so momentum is thinning early.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Task 2026-06-29; SF Next_Step__c"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: the last genuine two-way buyer touch was the 2026-06-19 intro, and everything since is rep-side chasing (2026-07-01 could-not-connect call and follow-up email), with an account-health flag on 2026-06-29 for no buyer inbound in 14 days.",
+      "cooling": true,
+      "items": [
+        "Buyer inbound gone quiet since 2026-06-19.",
+        "2026-07-01 outbound call to the CPO could not connect.",
+        "2026-06-29 account-health flag: prospect gone cold, no inbound in 14 days."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Re-engage Lucy Li to lock a firm July demo date and attendees.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "July demo still undated and buyer inbound quiet; 2026-07-01 follow-up email sent",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-10",
+          "expected_effect": "Restarts the two-way thread and converts a vague July plan into a booked event that gates progress."
+        },
+        {
+          "rank": 2,
+          "action": "Deliver the Heineken and Tata Play AI use-case proof points to Lucy Li.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Lucy requested materials for internal review; follow-up email apologised for the delay",
+          "trigger_date": "2026-06-19",
+          "act_by": "2026-07-13",
+          "expected_effect": "Arms the champion for her internal review and keeps the AI wedge in front of procurement excellence leadership."
+        },
+        {
+          "rank": 3,
+          "action": "Ask Lucy to bring CPO Elfranco Van Loggerenberg into the July demo.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Economic buyer never engaged; 2026-07-01 call to him could not connect",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-20",
+          "expected_effect": "Activates the champion's access to power and gives the economic buyer a reason to protect budget."
+        },
+        {
+          "rank": 4,
+          "action": "Draw out the evaluation stages, criteria, and RFP timeline from the buyer.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Decision process unknown; account-health flag to clarify evaluation stages",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-31",
+          "expected_effect": "Maps the real decision process and lets the deal team influence it before it formalizes."
+        },
+        {
+          "rank": 5,
+          "action": "Multi-thread to Cem Ugur to widen coverage beyond a single contact.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Single-threaded through Lucy Li; Cem Ugur is an unengaged Evaluator",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-08-03",
+          "expected_effect": "Reduces single-point-of-failure risk and builds the buying committee ahead of formal evaluation."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "An early-stage $350k full-suite Merlin AI play at Tata Steel Netherlands, engaged only through mid-level process lead Lucy Li; the July demo must convert AI interest into a quantified, funded case and reach absent CPO Elfranco Van Loggerenberg before another budget review kills it like the March 2026 RFP.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "The deal sits low because only one mid-level contact, Lucy Li, is engaged, the economic buyer has not bought in, and this account's prior RFP already died on budget in March 2026."
+          },
+          {
+            "tone": "warn",
+            "text": "CPO and budget owner Elfranco Van Loggerenberg has never engaged, and the 2026-07-01 call placed to him could not connect while buyer inbound has gone quiet since 2026-06-19."
+          },
+          {
+            "tone": "good",
+            "text": "The buyer is explicitly chasing AI-driven procurement transformation and Zycus leads with the Merlin AI agentic wedge against an incumbent SAP stack, a real differentiation lane if the July demo lands."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "Momentum is thin: engagement is one intro on 2026-06-19 plus rep-side chasing, the July demo is still undated, and buyer inbound has gone quiet."
+          },
+          {
+            "tone": "good",
+            "text": "Lucy Li did agree to meet on 2026-06-05 and to a July demo, so the thread is alive rather than dead."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is low: the buyer has only asked for information and internal-review materials, with no dates, pricing, or executive sponsor committed."
+          },
+          {
+            "tone": "good",
+            "text": "Lucy Li requested Heineken and Tata Play AI proof points for internal review, a genuine pull signal worth converting fast."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "The top risk is a repeat budget block: the March 2026 RFP was halted for budget and the $350k remains unvalidated with no CPO sign-off."
+          },
+          {
+            "tone": "warn",
+            "text": "Single-threading through one mid-level lead means the deal stalls if Lucy Li deprioritizes it or the CPO stays absent."
+          }
+        ]
+      },
+      "factors": {
+        "deal_momentum": {
+          "strength": -0.4,
+          "evidence": "One intro on 2026-06-19 then rep-side chasing only; July demo undated; buyer inbound gone quiet."
+        },
+        "customer_commitment": {
+          "strength": -0.4,
+          "evidence": "Only information/material requests; no dates, pricing, or executive sponsor committed."
+        },
+        "deal_risk": {
+          "strength": -0.5,
+          "evidence": "Budget-cancelled prior RFP, unvalidated $350k, absent economic buyer, single-threaded."
+        }
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Full-suite Source-to-Pay plus Merlin AI (9 modules)",
+      "to": "Full-suite Source-to-Pay plus Merlin AI (9 modules)",
+      "detail": "Scope is broad and unchanged this sweep: iContract, iSource, iManage, eProcurement, iRequest, iSaaS, Merlin, iLogix, Merlin Intake. No modules dropped or amount cut versus creation."
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 19 Jun intro with Lucy Li scoped AI use cases and a July demo, but she has since gone quiet and a 1 Jul call to the CPO did not connect.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The $350k is unvalidated and the same buyer halted a prior procurement RFP for budget in March, so funding is the live question, not features.",
+        "tone": "crit"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "CPO Elfranco Van Loggerenberg is the budget owner but has never engaged, leaving the deal single-threaded through one mid-level process lead.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Competition",
+        "text": "There is no live rival race; the real contest is displacing the incumbent SAP stack and beating the do-nothing budget risk with a proven AI case.",
+        "tone": "neu"
+      }
+    ],
+    "expansion_context": {
+      "prior_closed_won": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 4.8,
+      "mom": 43.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "Buyer has only requested information and internal-review materials with no Zycus-specific preference or competitor comparison expressed (2026-06-19 intro)."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative AI-transformation and procurement-efficiency pain articulated by Lucy Li; no savings, cycle-time, or ROI numbers, and the prior RFP was halted on budget (2026-06-19)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 4.8,
+        "deal_momentum": 43.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 4.8,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -7.0,
+        "ceiling": 30.0,
+        "momentum_adj": -6.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": 1.4,
+            "evidence": "exec access strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -6.2,
+            "evidence": "momentum 44 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 43.8,
+        "pre_decay": 43.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 5 is carried by champion strength +0.30 (weight 15); exec access strength +0.30 (weight 15). Offsetting it: momentum 44 vs stage-expected 50.",
+        "deal_momentum": "Momentum 44 (slipping backward): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (5), nudged by commitment 8 and momentum 44, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Tata Steel Nederland BV \u2014 Qualified \u00b7 $350K \u00b7 closes 31 Mar",
+        "intro": "An early-stage $350k full-suite Merlin AI play at Tata Steel Netherlands, engaged only through mid-level process lead Lucy Li; the July demo must convert AI interest into a quantified, funded case and reach absent CPO Elfranco Van Loggerenberg before another budget review kills it like the March 2026 RFP",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 5,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The deal sits low because only one mid-level contact, Lucy Li, is engaged, the economic buyer has not bought in, and this account's prior RFP already died on budget in March 2026"
+              },
+              {
+                "tone": "warn",
+                "text": "CPO and budget owner Elfranco Van Loggerenberg has never engaged, and the 2026-07-01 call placed to him could not connect while buyer inbound has gone quiet since 2026-06-19"
+              },
+              {
+                "tone": "good",
+                "text": "The buyer is explicitly chasing AI-driven procurement transformation and Zycus leads with the Merlin AI agentic wedge against an incumbent SAP stack, a real differentiation lane if the July demo lands"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 44,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Momentum is thin; engagement is one intro on 2026-06-19 plus rep-side chasing, the July demo is still undated, and buyer inbound has gone quiet"
+              },
+              {
+                "tone": "good",
+                "text": "Lucy Li did agree to meet on 2026-06-05 and to a July demo, so the thread is alive rather than dead"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The top risk is a repeat budget block; the March 2026 RFP was halted for budget and the $350k remains unvalidated with no CPO sign-off"
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threading through one mid-level lead means the deal stalls if Lucy Li deprioritizes it or the CPO stays absent"
+              }
+            ],
+            "footer": "Competitive picture: This is not a live multi-vendor race today; the competitive reality is the incumbent SAP procurement stack Tata Steel Netherlands already runs, plus the do-nothing risk that a budget review kills the project again as the March 2026 RFP was\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is low; the buyer has only asked for information and internal-review materials, with no dates, pricing, or executive sponsor committed"
+              },
+              {
+                "tone": "good",
+                "text": "Lucy Li requested Heineken and Tata Play AI proof points for internal review, a genuine pull signal worth converting fast"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Re-engage Lucy Li to lock a firm July demo date and attendees. (by 10 Jul)",
+              "Deliver the Heineken and Tata Play AI use-case proof points to Lucy Li. (by 13 Jul)",
+              "Ask Lucy to bring CPO Elfranco Van Loggerenberg into the July demo. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 0,
+    "calls_omitted": [
+      {
+        "meeting": "Intro Meet Tata steel Netherland X Zycus (2026-06-19)",
+        "reason": "no transcript available this sweep; facts carried from prior canonical record"
+      }
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities last 120d; field history full; contact roles full",
+    "avoma_attendees": [
+      "Lucy Li"
+    ],
+    "gaps": [
+      "No Avoma transcript read this sweep; 2026-06-19 intro facts are carried from the prior record.",
+      "Economic buyer CPO Elfranco Van Loggerenberg never engaged (2026-07-01 call could not connect).",
+      "No quantified value case or metrics stated by the buyer.",
+      "Decision process, evaluation stages, and RFP timeline undocumented."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:07"
+}

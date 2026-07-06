@@ -1,0 +1,750 @@
+{
+  "opp_id": "006P700000a2XJJ",
+  "hard": {
+    "opp_id": "006P700000a2XJJ",
+    "opp_name": "USNH_Intake_Opp_June'26",
+    "account_name": "The University of New Hampshire (UNH)",
+    "account_industry": "Education",
+    "billing_country": "United States",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 75000.0,
+    "close_date": "2027-02-17",
+    "days_to_close": 226,
+    "created_date": "2026-06-25T17:51:58.000+0000",
+    "qualified_date": "2026-06-26",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-03T09:08:52.000+0000",
+    "products": "Merlin Intake",
+    "next_step": "Justin to send showpad material in preparation for a disco call and eventual walkthrough of merlin intake",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 USNH is 'exploring AI capabilities for supplier risk visibility and procurement intake,' with the compelling event framed as 'Exploring AI capabilities to enhance procurement.'\n\u2022 Merlin Intake is scoped and the buyer currently runs Jaggaer and Workday, positioning Zycus AI as an additive layer.\n\u2022 The Agentic-platform-discussed flag is not set and the step is sending Showpad material for a discovery call, so AI interest is genuine but still early.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;JAGGAER",
+    "primary_competitor": "JAGGAER",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a2XJJ/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "USNH_Intake_Opp_June'26 is an 11-day-old, auto-qualified $75k Merlin Intake deal that has not activated: the only contact is Jesse Frink (Director of Contracts and Sourcing, an Evaluator, not a champion), no discovery call has happened, LastActivityDate is null, and opportunity-health flags on 2026-06-29 already note no inbound in 14 days. It was moved Initial Interest to Qualified on 2026-06-26, the day after creation, with no buyer dialogue in between, so 'Qualified' is a data step, not buyer validation. Three competitors were logged at creation (Coupa, GEP Worldwide, JAGGAER) and UNH already runs Jaggaer as its incumbent per AIS_Why, so this has the shape of an RFP courtesy inclusion rather than a championed deal. The runway to the 2027-02-17 close is long (226 days), so the deal is recoverable, but only if the owner lands the first real buyer conversation in the next 7 days. The single blocker most likely to prevent the close is that we have no economic buyer, no champion, and no discovery, and we are an unproven late-add against an incumbent.",
+      "math": "Days to close: 226 (close 2027-02-17, today 2026-07-06). Created 2026-06-25, qualified 2026-06-26; time in Qualified stage: ~11 days. No submission-date series on record (Qualified/Formal_Eval/Shortlisted submission dates null). Field history shows only Initial Interest to Qualified (2026-06-26) and owner/type stamps, no amount or close-date moves. LastActivityDate null: zero buyer-touching Salesforce activity; the eight 2026-06-29 tasks are rep-side opportunity-health prompts, not buyer engagement. For a ~230-day cycle the required pace is a discovery call and multi-thread inside the first 30 days, RFP positioning by day 60, shortlisting by day 120; on day 11 there is no scheduled discovery and no buyer reply, so the deal is off pace but not yet cold.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Created 2026-06-25 and moved to Qualified 2026-06-26 with no discovery or buyer dialogue in between (SF field history: Initial Interest -> Qualified by Justin Ajmo)",
+        "LastActivityDate is null and the only logged tasks are eight rep-side opportunity-health prompts dated 2026-06-29, one of which flags 'Prospect's gone cold? No inbound since last 14 days' (SF Tasks)",
+        "Single contact role: Jesse Frink, Director of Contracts and Sourcing, Evaluator, primary, with no last-contact date and no champion/EB/DM role (SF OpportunityContactRole)",
+        "Three competitors logged at creation with no discovery context (SF Competitors__c: Coupa;GEP Worldwide;JAGGAER, 2026-06-25); AIS_Why confirms UNH already runs Jaggaer as incumbent",
+        "The only next step is rep-side and unfulfilled: 'Justin to send showpad material in preparation for a disco call and eventual walkthrough of merlin intake' with no buyer reply or scheduled meeting (SF Next_Step__c)",
+        "Zero matched Avoma calls after opp + account + attendee-email discovery on usnh.edu / jesse.frink@usnh.edu (Avoma union returned no recorded buyer conversations)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business problem or financial impact has been captured, because no discovery call has occurred. The only signal is AIS_Why (2026-06-25), which frames the driver as 'exploring AI capabilities for supplier risk visibility and procurement intake' and a compelling event of 'Exploring AI capabilities to enhance procurement.' The scoped product (Merlin Intake) implies pain in manual requisition triage and intake routing on top of their Jaggaer/Workday stack, but this is inference from the product, not a buyer-stated or quantified metric (no cycle-time, requisition-volume, compliance, or savings figure exists anywhere). The immediate move is to run the discovery call and anchor it on UNH's current intake pain and a measurable target.",
+        "sources": [
+          "SF AIS_Why__c (2026-06-25)",
+          "SF Products__c: Merlin Intake",
+          "No Avoma calls",
+          "SF Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c null"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer or budget owner is identified. The single contact role is Jesse Frink, Director of Contracts and Sourcing, logged as Evaluator (SF OpportunityContactRole), which is a process/sourcing seat, not budget authority, and there is no EB or executive-sponsor field populated and no call in which anyone controlled a commercial conversation. Because there are zero Avoma calls and no emails, there is no conversation from which to infer who owns the $75k budget at UNH, so we cannot assign the role without inventing a name. The move is to use the first discovery call to ask Jesse who funds and approves this and to secure an introduction to that person.",
+        "sources": [
+          "SF OpportunityContactRole: Jesse Frink, Evaluator",
+          "SF X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c null",
+          "No Avoma calls"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The evaluation criteria are unknown because no discovery, demo, or RFP round has happened yet. The scoped product (Merlin Intake) plus three logged competitors (Coupa, GEP Worldwide, JAGGAER) imply UNH is evaluating an AI-enabled procurement-intake capability, and AIS_Why points to 'supplier risk visibility and procurement intake' as the theme, but no buyer has stated what will actually decide the choice (user experience, integration with Jaggaer/Workday, price, public-sector references). The move is to establish the criteria on the discovery call and, critically, learn whether UNH wants an additive AI layer or a suite replacement.",
+        "sources": [
+          "SF Products__c: Merlin Intake",
+          "SF Competitors__c (2026-06-25)",
+          "SF AIS_Why__c",
+          "SF Business_Requirements__c / Top_Challenges_Priorities__c null",
+          "No Avoma calls"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is undiscovered. Field history shows only that the opportunity was created 2026-06-25 and auto-moved Initial Interest to Qualified 2026-06-26 with no preceding buyer step, and the eight 2026-06-29 opportunity-health tasks explicitly note 'Decision Maker is not identified' and 'Get clarity on the evaluation stages and influence the process.' As a US public university, UNH likely runs a formal or RFP-style sourcing process (consistent with a Director of Contracts and Sourcing owning the relationship), but no timeline, approval chain, or committee is confirmed. The move is to map the evaluation stages and the approval chain on the discovery call.",
+        "sources": [
+          "SF field history (2026-06-25 / 2026-06-26)",
+          "SF Tasks 2026-06-29 (Opportunity Health: 'Decision Maker is not identified')",
+          "SF OpportunityContactRole: Jesse Frink, Director of Contracts and Sourcing",
+          "No Avoma calls"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown at this stage and, for an early Qualified deal, appropriately so. UNH is a US public university, so a $75k single-module (Merlin Intake) purchase would typically run as an Order Form plus SOW rather than a full MSA suite deal, and public-sector procurement may require a formal solicitation or cooperative-contract vehicle, but none of this is confirmed (no Current_Contract_Expiration__c, no procurement channel, no InfoSec signal on record). Nothing is required now; the move is to surface the procurement path and any incumbent-contract expiration once discovery opens.",
+        "sources": [
+          "SF Products__c: Merlin Intake (single module)",
+          "Account is a US public university",
+          "SF Current_Contract_Expiration__c null",
+          "No Avoma calls"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No pain has been confirmed by the buyer. AIS_Why (2026-06-25) records that UNH is 'exploring AI capabilities for supplier risk visibility and procurement intake,' which points to friction in their current Jaggaer/Workday intake experience, but 'exploring' is a curiosity signal, not an articulated operational or financial pain, and there is no owner attached to it. The pain is inferred from the stack and the scoped product, not stated. The move is to have the discovery call convert 'exploring AI' into a specific, owned intake pain (who feels it, how often, what it costs).",
+        "sources": [
+          "SF AIS_Why__c (2026-06-25)",
+          "SF Products__c: Merlin Intake",
+          "SF Pain_points_in_the_current_solution__c null",
+          "No Avoma calls"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. The only contact is Jesse Frink, whose Salesforce role is Evaluator (not Champion or Executive Sponsor) and whose title, Director of Contracts and Sourcing, is a process/procurement seat rather than a business or pain owner. There is zero evidence of advocacy: no Avoma call, no introduction he has made, no internal intel shared, and no reply to the rep's offer to send Showpad material, and the 2026-06-29 health tasks flag single-threading and 'Identify more contact roles.' We do not yet know if Jesse is a coach, a neutral gatekeeper, or simply administering a look. The move is to assess his stance on the first call and, in parallel, find a business/pain owner to develop as champion.",
+        "sources": [
+          "SF OpportunityContactRole: Jesse Frink, Director of Contracts and Sourcing, Evaluator",
+          "SF X10b_Champion_Business_Buyer__c null",
+          "SF Tasks 2026-06-29 (Opportunity Health: 'Keep the engagement multi-threaded')",
+          "No Avoma calls"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Three competitors are logged in Competitors__c at creation (Coupa, GEP Worldwide, JAGGAER, 2026-06-25), and AIS_Why confirms UNH already runs Jaggaer, so Jaggaer is the incumbent and the strongest current threat: it holds the account and can extend its own intake front-end at low switching cost. Coupa and GEP are full-suite alternatives whose bundling advantage (intake inside one platform, one contract) is a real risk against a single-module Merlin Intake sale. Our wedge is that UNH runs Jaggaer and Workday, so Merlin Intake can be positioned as an additive AI intake layer on top of the existing stack rather than a rip-and-replace, which no buyer has yet heard because there has been no discovery call. Nothing here is buyer-stated preference: no competitor is confirmed as leading beyond Jaggaer's incumbency.",
+        "sources": [
+          "SF Competitors__c: Coupa;GEP Worldwide;JAGGAER (2026-06-25)",
+          "SF AIS_Why__c (buyer runs Jaggaer and Workday)",
+          "SF Products__c: Merlin Intake",
+          "No Avoma calls"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The last real buyer touch is none: LastActivityDate is null and there are no Avoma calls or emails on record. All movement is internal/administrative in the first four days after creation, and the sole next step is a rep-side send that has not been fulfilled or answered.",
+      "items": [
+        {
+          "change": "Opportunity created for The University of New Hampshire (UNH), Merlin Intake, $75k",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Reassigned from Jonathan Joseph to Justin Ajmo and division set to Mid-Enterprise",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Stage moved Initial Interest -> Qualified (by Justin Ajmo), one day after creation, with no discovery in between",
+          "date": "2026-06-26"
+        },
+        {
+          "change": "Type set None -> New Business (by Noopur Handa); eight opportunity-health tasks logged flagging no inbound in 14 days, single-threading, and DM not identified",
+          "date": "2026-06-29"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "The strongest current threat is the incumbent, JAGGAER: AIS_Why (2026-06-25) confirms UNH already runs Jaggaer, so it holds the account and can extend its own intake at low switching cost. Coupa and GEP Worldwide (both logged 2026-06-25) are full-suite alternatives whose one-vendor bundling is a real risk against a single-module Merlin Intake sale. No competitor is buyer-confirmed as preferred, because no discovery has happened. Our unactivated wedge: position Merlin Intake as an additive AI layer on the existing Jaggaer/Workday stack, not a rip-and-replace.",
+      "competitors": [
+        {
+          "name": "JAGGAER",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "incumbent",
+          "quote": null,
+          "date": "2026-06-25",
+          "source": "SF Competitors__c + AIS_Why__c (buyer currently runs Jaggaer)",
+          "how_we_win": "Position Merlin Intake as an AI intake layer that sits on top of Jaggaer, adding agentic triage they cannot match, rather than displacing their system of record."
+        },
+        {
+          "name": "Coupa",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": null,
+          "date": "2026-06-25",
+          "source": "SF Competitors__c (2026-06-25)",
+          "how_we_win": "Reframe the choice away from suite-bundling: best-of-breed AI intake that deploys fast on the current stack without a full P2P re-platform."
+        },
+        {
+          "name": "GEP Worldwide",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": null,
+          "date": "2026-06-25",
+          "source": "SF Competitors__c (2026-06-25)",
+          "how_we_win": "Contrast Merlin's AI-native, additive intake and time-to-value against GEP's services-led full-suite implementation."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "No buyer expectations have been captured yet: with no discovery call, we do not know UNH's evaluation criteria, integration requirements, or public-sector procurement constraints. The one inferred fit point (an AI intake layer on their existing Jaggaer/Workday stack) is unvalidated.",
+      "items": [
+        {
+          "criterion": "AI-enabled procurement intake and supplier risk visibility",
+          "position": "partially aligned",
+          "quote": "USNH is 'exploring AI capabilities for supplier risk visibility and procurement intake'",
+          "date": "2026-06-25",
+          "source": "SF AIS_Why__c"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "UNH to accept and schedule the discovery call and Merlin Intake walkthrough",
+            "who": "Buyer",
+            "grounding_quote": "Justin to send showpad material in preparation for a disco call and eventual walkthrough of merlin intake",
+            "date": "2026-06-25",
+            "due": "2026-07-13",
+            "status": "open",
+            "source": "SF Next_Step__c"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "No discovery call held",
+          "quote": "next step is 'Justin to send showpad material in preparation for a disco call' with no scheduled meeting or buyer reply",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c + zero Avoma calls"
+        },
+        {
+          "area": "Economic buyer / budget owner unidentified",
+          "quote": "sole contact Jesse Frink is an Evaluator, not budget authority",
+          "status": "not addressed",
+          "date": "2026-06-26",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "area": "Single-threaded; no champion",
+          "quote": "Opportunity Health: 'Keep the engagement multi-threaded' and 'Identify more contact roles'",
+          "status": "not addressed",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "SF Tasks 2026-06-29"
+        },
+        {
+          "area": "Pain and metrics unquantified",
+          "quote": "'exploring AI capabilities' is a curiosity signal, not an articulated or quantified pain",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF AIS_Why__c"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a fresh, single-threaded, un-discovered deal against an incumbent; the win strategy is to convert a possible courtesy-inclusion into a real evaluation by landing the first buyer conversation, multi-threading past the evaluator, and framing Merlin Intake as additive to the Jaggaer stack.",
+      "flags": [
+        "Land the discovery call now: nothing about pain, criteria, budget, or process is known, and the disco call is the single make-or-break to prove this is a real deal, not a logged look.",
+        "Break single-threading: Jesse Frink is an Evaluator, not a champion or budget owner; reach a business/pain owner and the budget authority above him before positioning price.",
+        "Win against the Jaggaer incumbent by additive positioning: UNH already runs Jaggaer and Workday, so lead with Merlin Intake as an AI layer on top, not a suite rip-and-replace versus Coupa/GEP."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Jesse Frink",
+          "_source": "sfdc_contact_role",
+          "title": "Director of Contracts and Sourcing",
+          "email": "jesse.frink@usnh.edu",
+          "role": "Influencer",
+          "risk": "Sole point of contact and logged as Evaluator, not champion or budget owner. We have never had a two-way conversation with him, so his stance (supportive, neutral, or gatekeeping) and his access to the economic buyer are unknown. If he is only administering a look and we cannot get introductions to a business/pain owner and budget authority, we stay single-threaded in a price-driven look against an incumbent.",
+          "sentiment": "unknown",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion exists. Jesse Frink, the only contact, is an Evaluator with a procurement/sourcing title and zero evidence of advocacy, engagement, or introductions, and he has not responded to the rep's offer of Showpad material and a discovery call. Developing a champion, and finding a business/pain owner to be one, is the top priority for the next 14 days.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (Jesse Frink, Evaluator); no Avoma calls; no advocacy evidence"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story (Merlin Intake as agentic procurement intake) is scoped and matches UNH's stated curiosity about AI for supplier risk and intake, but it is entirely unactivated: no discovery, no demo, and the Agentic-platform-discussed flag is not set. Positioning is weak by default, not because of buyer resistance.",
+      "score": "Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 5.0 / Moderate: AIS_Why records UNH is 'exploring AI capabilities for supplier risk visibility and procurement intake' with Merlin Intake scoped as an additive layer on their Jaggaer/Workday stack. AI interest is genuine but early, and no call yet exists to confirm or over/under-rate it.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer or executive sponsor identified; sole contact is a procurement evaluator.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "SF OpportunityContactRole + Tasks 2026-06-29"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded on one Evaluator with no champion; deal shows the signature of an RFP courtesy inclusion.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Tasks 2026-06-29 (Opportunity Health)"
+        },
+        {
+          "category": "integration",
+          "detail": "Incumbent Jaggaer plus Workday stack; Merlin Intake must prove additive fit rather than replacement to win, unvalidated.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF AIS_Why__c + Competitors__c"
+        },
+        {
+          "category": "budget",
+          "detail": "$75k budget authority unconfirmed; no funding owner discovered.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "SF fields (no budget-owner field populated)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The deal has never activated: no buyer reply, no meeting, no inbound in 14 days per the 2026-06-29 health flag. This is a not-yet-started signal (very young deal) rather than a cooling of an engaged relationship.",
+      "cooling": true,
+      "items": [
+        "LastActivityDate null; no Avoma calls; no buyer email on record",
+        "Opportunity Health 2026-06-29: 'Prospect's gone cold? No inbound since last 14 days' and '10 days without email outbound'"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Justin to call and email Jesse Frink to book the discovery call and Merlin Intake walkthrough.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Next step is a rep-side send with no buyer reply and no scheduled meeting; health flag notes no inbound in 14 days.",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-13",
+          "expected_effect": "Converts a dormant, logged look into a live evaluation and starts the discovery clock against the Feb 2027 close."
+        },
+        {
+          "rank": 2,
+          "action": "On the discovery call, ask Jesse who funds and approves this and request an intro to that owner.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Only contact is an Evaluator; no economic buyer or budget owner identified.",
+          "trigger_date": "2026-06-26",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps the economic buyer and breaks single-threading, the top gate before any commercial step."
+        },
+        {
+          "rank": 3,
+          "action": "Discover UNH's evaluation stages, timeline, and current Jaggaer intake pain in the disco call.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Decision process, criteria, and pain are all unknown; AIS_Why shows only 'exploring AI'.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-20",
+          "expected_effect": "Establishes real criteria and quantified pain so the deal can be qualified in or honestly out."
+        },
+        {
+          "rank": 4,
+          "action": "Frame Merlin Intake as an additive AI layer on the Jaggaer and Workday stack, not a rip-and-replace.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "UNH runs Jaggaer (incumbent) and Workday; Coupa and GEP offer full-suite bundling.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-08-03",
+          "expected_effect": "Neutralizes the incumbent and suite-bundling advantage and gives UNH a low-switching-cost path to the relevant stakeholder."
+        },
+        {
+          "rank": 5,
+          "action": "If no buyer reply by mid-July, decide qualify-out versus watch-list rather than carrying it as pipeline.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "No engagement since creation on 2026-06-25; deal shows courtesy-inclusion signatures.",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-08-05",
+          "expected_effect": "Protects forecast integrity and focuses effort on deals with a real buyer conversation."
+        }
+      ]
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 0.0,
+      "mom": 46.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores_evidence": {
+      "summary": "USNH_Intake is an 11-day-old, auto-qualified $75k Merlin Intake deal with one procurement evaluator (Jesse Frink), no discovery call, no champion, and Jaggaer already the incumbent; the only thing between us and a real deal is landing the first buyer conversation.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "We are an unproven late-add in a three-vendor look at UNH: only Jesse Frink (Director of Contracts and Sourcing, an Evaluator) is on record, no buyer conversation has happened, and Jaggaer is already the incumbent (SF AIS_Why + OpportunityContactRole, 2026-06-25)."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer or budget owner is identified above Jesse, so we cannot yet tie Merlin Intake to a funded UNH priority (SF OpportunityContactRole, 2026-06-26)."
+          },
+          {
+            "tone": "warn",
+            "text": "Coupa and GEP both offer intake inside a full suite, giving UNH a one-vendor bundling path that a single-module Merlin Intake sale does not (SF Competitors__c, 2026-06-25)."
+          },
+          {
+            "tone": "good",
+            "text": "The one real wedge: UNH runs Jaggaer and Workday, so Merlin Intake can be positioned as an additive AI layer rather than a rip-and-replace (SF AIS_Why, 2026-06-25)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The only next step is rep-side and unfulfilled: Justin to send Showpad material and book a discovery call, with no buyer reply logged (SF Next_Step__c, 2026-06-25)."
+          },
+          {
+            "tone": "warn",
+            "text": "Opportunity-health flags on 2026-06-29 note no inbound in 14 days and 10 days without outbound, so the deal has not moved since creation."
+          },
+          {
+            "tone": "warn",
+            "text": "Stage was moved Initial Interest to Qualified on 2026-06-26, one day after creation with no discovery in between, so 'Qualified' reflects a data step, not buyer validation (SF field history)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "The buyer has made no commitment: no meeting accepted, no dates named, no next-meeting requested (no Avoma calls, LastActivityDate null)."
+          },
+          {
+            "tone": "warn",
+            "text": "Jesse Frink is logged as Evaluator, not a champion or sponsor, and there is no evidence he will advocate or open doors (SF OpportunityContactRole)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "This has the signature of an RFP courtesy inclusion: three competitors logged at creation, a procurement evaluator as sole contact, and a long runway with no engagement (SF Competitors__c + OpportunityContactRole, 2026-06-25)."
+          },
+          {
+            "tone": "warn",
+            "text": "If the first buyer conversation does not land in the next two weeks, the honest call is qualify-out or watch-list, not forecast (SF Tasks 2026-06-29: no inbound in 14 days)."
+          }
+        ]
+      },
+      "factors": {
+        "champion": {
+          "strength": -1,
+          "evidence": "No champion; sole contact Jesse Frink is an Evaluator with no advocacy evidence (SF OpportunityContactRole)."
+        },
+        "economic_buyer": {
+          "strength": -1,
+          "evidence": "No economic buyer or budget owner identified (no EB contact role, no budget-owner field)."
+        },
+        "engagement": {
+          "strength": -1,
+          "evidence": "LastActivityDate null, no Avoma calls, no inbound in 14 days per 2026-06-29 health flag."
+        },
+        "competitor": {
+          "strength": -0.6,
+          "evidence": "Jaggaer is the incumbent per AIS_Why; Coupa and GEP add suite-bundling pressure (SF Competitors__c, 2026-06-25)."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer conversation has occurred; no stated preference for or against Zycus (zero Avoma calls, LastActivityDate null)."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, or quantified pain discussed; AIS_Why only records UNH is 'exploring AI capabilities for supplier risk visibility and procurement intake' (2026-06-25)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 0.0,
+        "deal_momentum": 46.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 0.0,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -16.7,
+        "ceiling": 30.0,
+        "momentum_adj": -3.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -3.2,
+            "evidence": "momentum 47 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 46.8,
+        "pre_decay": 46.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 0 reflects a weak position: competitive strength -1.00 (weight 15). Offsetting it: competitive strength -1.00 (weight 15).",
+        "deal_momentum": "Momentum 47 (roughly flat): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (0), nudged by commitment 8 and momentum 47, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (engagement, stage integrity). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "The University of New Hampshire (UNH) \u2014 Qualified \u00b7 $75K \u00b7 closes 17 Feb",
+        "intro": "USNH_Intake is an 11-day-old, auto-qualified $75k Merlin Intake deal with one procurement evaluator (Jesse Frink), no discovery call, no champion, and Jaggaer already the incumbent; the only thing between us and a real deal is landing the first buyer conversation",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 0,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "We are an unproven late-add in a three-vendor look at UNH; only Jesse Frink (Director of Contracts and Sourcing, an Evaluator) is on record, no buyer conversation has happened, and Jaggaer is already the incumbent (SF AIS_Why + OpportunityContactRole, 2026-06-25)"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer or budget owner is identified above Jesse, so we cannot yet tie Merlin Intake to a funded UNH priority (SF OpportunityContactRole, 2026-06-26)"
+              },
+              {
+                "tone": "warn",
+                "text": "Coupa and GEP both offer intake inside a full suite, giving UNH a one-vendor bundling path that a single-module Merlin Intake sale does not (SF Competitors__c, 2026-06-25)"
+              },
+              {
+                "tone": "good",
+                "text": "The one real wedge; UNH runs Jaggaer and Workday, so Merlin Intake can be positioned as an additive AI layer rather than a rip-and-replace (SF AIS_Why, 2026-06-25)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 47,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The only next step is rep-side and unfulfilled; Justin to send Showpad material and book a discovery call, with no buyer reply logged (SF Next_Step__c, 2026-06-25)"
+              },
+              {
+                "tone": "warn",
+                "text": "Opportunity-health flags on 2026-06-29 note no inbound in 14 days and 10 days without outbound, so the deal has not moved since creation"
+              },
+              {
+                "tone": "warn",
+                "text": "Stage was moved Initial Interest to Qualified on 2026-06-26, one day after creation with no discovery in between, so 'Qualified' reflects a data step, not buyer validation (SF field history)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "This has the signature of an RFP courtesy inclusion; three competitors logged at creation, a procurement evaluator as sole contact, and a long runway with no engagement (SF Competitors__c + OpportunityContactRole, 2026-06-25)"
+              },
+              {
+                "tone": "warn",
+                "text": "If the first buyer conversation does not land in the next two weeks, the honest call is qualify-out or watch-list, not forecast (SF Tasks 2026-06-29; no inbound in 14 days)"
+              }
+            ],
+            "footer": "Competitive picture: The strongest current threat is the incumbent, JAGGAER: AIS_Why (2026-06-25) confirms UNH already runs Jaggaer, so it holds the account and can extend its own intake at low switching cost."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The buyer has made no commitment; no meeting accepted, no dates named, no next-meeting requested (no Avoma calls, LastActivityDate null)"
+              },
+              {
+                "tone": "warn",
+                "text": "Jesse Frink is logged as Evaluator, not a champion or sponsor, and there is no evidence he will advocate or open doors (SF OpportunityContactRole)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Justin to call and email Jesse Frink to book the discovery call and Merlin Intake walkthrough. (by 13 Jul)",
+              "On the discovery call, ask Jesse who funds and approves this and request an intro to that owner. (by 20 Jul)",
+              "Discover UNH's evaluation stages, timeline, and current Jaggaer intake pain in the disco call. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "last 120 days (created 2026-06-25 through 2026-07-06)",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls after opp + account + attendee-email discovery on usnh.edu / jesse.frink@usnh.edu",
+      "No discovery call held; pain, metrics, decision criteria, and process all undiscovered",
+      "Economic buyer / budget owner unidentified (sole contact is an Evaluator)",
+      "No champion; single-threaded on Jesse Frink",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Zycus AI')"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:07"
+}

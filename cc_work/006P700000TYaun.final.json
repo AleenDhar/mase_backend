@@ -1,0 +1,979 @@
+{
+  "opp_id": "006P700000TYaun",
+  "hard": {
+    "opp_id": "006P700000TYaun",
+    "opp_name": "Cornell_Opp_Feb'26",
+    "account_name": "Cornell University",
+    "account_industry": "Education",
+    "billing_country": "United States",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": "Michael McCarthy",
+    "stage": "Shortlisted",
+    "forecast_category": "Upside Key Deal",
+    "amount": 450000.0,
+    "close_date": "2026-10-28",
+    "days_to_close": 114,
+    "created_date": "2026-02-10T14:58:53.000+0000",
+    "qualified_date": "2026-02-10",
+    "last_activity_date": "2026-06-22",
+    "last_modified_date": "2026-06-23T16:26:32.000+0000",
+    "products": "iSource;iSave;iSupplier;eProcurement;Merlin;Merlin Intake",
+    "next_step": "JRA 6/23: Invited CPO and director of contracts to Horizon",
+    "ais_score": 7.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 On the 2/26/2026 demo, evaluator Michael Henderson praised Zycus's ability to suggest autonomous sourcing beyond the vendor master and asked that conversational tactical sourcing be enabled for mid-size spends (the example was 50 chairs). Mary Stapleton called catalog-in-chat a big step forward for end users. Both are buyer-driven autonomous sourcing signals.\n\u2022 Collins Farr asked deep orchestration questions, including whether Cornell can upload purchase policies as source documents the AI references when responding to user requests. Michael Henderson asked whether the AI text box could sit in front of SSO and pop up there. These are not check-the-box AI questions; they are deployment-level thinking.\n\u2022 The need spans Merlin Intake, federated AI search, AI-driven RFQ and negotiation via Anna, AI price benchmarking, and AP Smartdesk. A stakeholder demo is set for mid-March and the path to NDA and budget is defined. The 64-minute demo shows real AI hunger, but until budget is confirmed, confidence sits at Medium.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Others",
+    "primary_competitor": "Zip",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000TYaun/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "AI-hungry Cornell evaluation with a real procurement champion in Michael Henderson, but the buyer has gone quiet since the early-March pricing call while a rep-initiated Horizon invite (23 Jun) sits unanswered and the CFO/Provost economic buyer is still unmapped.",
+      "math": "Today 06 Jul 2026; close 28 Oct 2026 = 114 days out. Stage Shortlisted since 18 Mar 2026 (~110 days in stage) with no stage advance. Early velocity was strong (Qualified 10 Feb, Formal Evaluation 24 Feb, Shortlisted 18 Mar), then stalled. Last genuine two-way buyer engagement was the demo/discovery block 24-26 Feb plus the 4 Mar pricing call; the 22 Jun touches are rep 'Call Attempted' tasks that explicitly record 'no buyer conversation' and 'deal in limbo,' and a re-engagement commitment (Mike to message stakeholders) went overdue 11 May. Close date has already slipped four times (28 Feb to 28 Apr to 14 May to 24 Jun to 28 Oct). Remaining gates (final pricing, ROI/business case to the CFO/Provost, references, InfoSec, Workday integration scope) need 12-15 weeks with an engaged economic buyer, none is complete, and the buyer is silent, so momentum, not just the date, is the problem.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline / Upside (not a committed category) until the buyer re-engages, the economic buyer is mapped, and a written business case plus pricing are accepted.",
+      "trajectory": "weaker",
+      "prior_verdict": "Close Date Risk",
+      "evidence": [
+        "Stage Shortlisted since 18 Mar 2026; no stage advance in ~110 days (SF Shortlisted_Submission_Date__c, StageName field history).",
+        "22 Jun 2026 activities are rep 'Call Attempted' best-practice flags recording 'Close date expired... no buyer conversation to re-align timeline. Deal in limbo' (SF Task 22 Jun 2026).",
+        "Re-engagement commitment 'Mike to send a message to the stakeholder team using job posting catalyst to re-engage' went overdue on 11 May 2026 (SF Task, status overdue).",
+        "Michael Henderson: 'Cooper and I are not the sole decision makers, we're probably more gonna influence... figure out who the right internal partners are' (Avoma discovery call, 24 Feb 2026), so the CFO/Provost economic buyer is still unmapped.",
+        "Buyer running parallel evaluations: 'We're talking to Zip. We're talking to Coupa on similar stuff' (Michael Henderson, Avoma demo, 26 Feb 2026)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "confirmed",
+        "narrative": "Cornell carries a hard, quantified target: Michael Henderson said the team has 'a savings goal... of 60,000,000 on a spend of 1,100,000,000' and framed the AI rationale as accelerating that outcome 'without having to burden the p and l' with more staff (Avoma discovery call, 24 Feb 2026). The operational metric underneath it is catalog rationalization: Henderson wants to collapse '140 catalogs' down to '12 to 15' ahead of the Workday go-live (24 Feb 2026), and Collins Farr and Cooper described tactical-sourcing savings of '5, 10, 20% off' on distributed spend (26 Feb 2026 demo). The open work is converting the $60M target into a per-phase savings model tied specifically to the intake-first Zycus scope, which is a ranked move.",
+        "sources": [
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)",
+          "Avoma demo 26 Feb 2026 (Cooper Smith, Collins Farr)",
+          "SF AIS_Why__c"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped in Salesforce (no OpportunityContactRole carries an Economic Buyer / Executive Sponsor role) and none has appeared on a call. Michael Henderson was explicit that budget authority sits above him: 'Cooper and I are not the sole decision makers, we're probably more gonna influence... we gotta figure out who the right internal partners are' (24 Feb 2026). The evidence points to a CFO or Provost-level owner of the $60M savings mandate on Cornell's $1.1B spend, but that person is neither named nor engaged. The highest-leverage move is to have Henderson name the budget owner and broker a proposal meeting; a strong secondary lever is the Zycus CEO (a Cornell alumnus who offered to be executive sponsor, 24 Feb 2026) opening that door.",
+        "sources": [
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)",
+          "SF OpportunityContactRole (no EB role present)",
+          "SF Next_Step__c 23 Jun 2026"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are visible from the demo and discovery sessions even though no formal scorecard is on record. Confirmed criteria: conversational intake/orchestration that routes campus users (catalog first, contract second, sourcing event third, sole-source last per Henderson, 24 Feb 2026); federated search across Cornell's catalogs and punch-outs (Mike Winters, 26 Feb 2026); AI that references uploaded purchase policies as source documents (Collins Farr, 26 Feb 2026); tactical/autonomous sourcing for mid-size spend such as '50 chairs' or '500 boxes of gloves' (Cooper, Jay Porter, 26 Feb 2026); and Workday-aware integration since Cornell will keep Workday for requisition-to-PO. A tone/change-management criterion is explicit: the tool must present as 'human and empathetic,' suggestive not mandatory (Henderson, 26 Feb 2026). What is not yet documented is the weighting between vendors and the formal shortlist scorecard.",
+        "sources": [
+          "Avoma demo 26 Feb 2026 (Michael Winters, Collins Farr, Cooper)",
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Reading the call sequence: an introduction (6 Feb), a discovery call (24 Feb) with Cooper, then a broad stakeholder demo (26 Feb) where Henderson deliberately widened the room ('I added a bunch of them this morning... Mary runs the form-based intake for campus, Collins is our best proxy for the requisition process at Weill Cornell'). Henderson then set the process himself: 'we've got a couple more demos, we're talking to Zip and Coupa... that'll happen over this week... then the goal will be mid-March, I'll find a group of business stakeholders that are not procurement technicians' (26 Feb 2026). So the buyer is running a multi-vendor eval feeding a business-stakeholder validation and a business case. The approval chain above Henderson (who signs off the $450k multi-year commitment) is undefined and is the key process gap. Since March the process has stalled, with no buyer-driven next step logged.",
+        "sources": [
+          "Avoma demo 26 Feb 2026 (Michael Henderson)",
+          "Avoma discovery call 24 Feb 2026",
+          "SF StageName field history"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are not yet in motion, appropriate for a Shortlisted deal. The only paper signal is an NDA: Henderson asked to 'get an NDA in place' and Zycus offered to send Cornell's or Zycus's paper (26 Feb 2026), but there is no record it was executed. As a public university, Cornell will run this through central procurement with InfoSec and, given the Weill Cornell Medicine footprint, likely data-privacy review; none of that has started. The forcing function that would create paper visibility is the Workday rollout timeline Henderson referenced ('we can't wait until 2028... it needs to start in the next 6 months'), so a mutual close/implementation plan tied to that timeline is what would surface the paper track.",
+        "sources": [
+          "Avoma demo 26 Feb 2026 (Michael Henderson)",
+          "Avoma discovery call 24 Feb 2026",
+          "SF Task 22 Jun 2026 (unmet commitments)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is specific and owner-attributed. Michael Henderson: procurement is perceived as 'rigid... bureaucrats,' and the goal is 'sourcing for all' so that spend controls reach distributed campus units without more headcount (24-26 Feb 2026). Mary Stapleton owns the current form-based intake pain: campus users 'are not versed in policy... they fill out a form that just says I want something,' and she praised catalog-in-chat as 'a big step forward' (26 Feb 2026). Michael Winters owns the federated-search pain across '140 catalogs' with fragmented hosted-vs-punch-out content, and Henderson named supplier onboarding as 'my biggest concern about transitioning... without syncing the entire organization for 9 to 12 months' (26 Feb 2026). The pain is real, multi-owner, and quantified against the $60M savings and Workday transition.",
+        "sources": [
+          "Avoma demo 26 Feb 2026 (Mary L Stapleton, Michael Winters, Michael Henderson)",
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+        ]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Michael Henderson is a genuine, active champion: he drove every call, articulated the savings mandate, widened the stakeholder room himself, and is the evaluator named in SF AIS_Why__c praising Zycus's autonomous sourcing. Cooper Smith (Director of Contract Management) is a supporting coach who ran the detailed integration and line-of-credit questions (24-26 Feb 2026). The development gap is upward reach: Henderson openly said he and Cooper 'are not the sole decision makers' and had not yet identified the internal partners or the budget owner (24 Feb 2026), so he has not connected Zycus to the economic buyer. His advocacy is not in doubt; his access to power and his responsiveness since March are. Re-securing his engagement ranks ahead of any commercial step.",
+        "sources": [
+          "SF AIS_Why__c",
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)",
+          "Avoma demo 26 Feb 2026",
+          "SF Next_Step__c 23 Jun 2026"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "This is a live multi-vendor evaluation, not a sole-source. Henderson confirmed parallel demos: 'We're talking to Zip. We're talking to Coupa on similar stuff' (26 Feb 2026), making Zip the primary current rival and Coupa a fading one (the CPO's own view is Coupa's value prop has faded, per SF Next_Step_History__c 26 Feb 2026). The incumbents being displaced are Jaggaer/Jagger on the Ithaca campus (~140 catalogs) and SAP Ariba at Weill Cornell Medicine; Fairmarkit and Globality are sourcing-only point tools the buyer flagged only for standalone bidding. Our wedge is one platform (intake + autonomous sourcing + spend analytics) that is Workday-aware, versus Zip's intake-only strength and the fragmented incumbents; Merlin Intake with conversational tactical sourcing is the hero to land first.",
+        "sources": [
+          "Avoma demo 26 Feb 2026 (Michael Henderson)",
+          "Avoma discovery call 24 Feb 2026 (Michael Henderson)",
+          "SF Next_Step_History__c 26 Feb 2026"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Strong early progression through March then a stall: close date slipped four times to 28 Oct, the stakeholder demo widened the room, a preliminary pricing conversation happened, but the buyer has not driven a step since early March and rep re-engagement attempts (overdue 11 May commitment, 22 Jun call attempts, 23 Jun Horizon invite) have not landed a reply.",
+      "items": [
+        {
+          "change": "Owner invited the CPO and director of contracts to Zycus Horizon (rep-initiated, awaiting buyer reply)",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "Deal Engine flagged close date expired with no buyer conversation to re-align timeline; deal in limbo",
+          "date": "2026-06-22"
+        },
+        {
+          "change": "Close date pushed 24 Jun to 28 Oct 2026 (fourth slip)",
+          "date": "2026-06-01"
+        },
+        {
+          "change": "Re-engagement commitment (Mike to message stakeholder team using job-posting catalyst) went overdue",
+          "date": "2026-05-11"
+        },
+        {
+          "change": "Amount raised 400k to 450k",
+          "date": "2026-04-08"
+        },
+        {
+          "change": "Advanced to Shortlisted; forecast moved to Best Case",
+          "date": "2026-03-18"
+        },
+        {
+          "change": "Broad stakeholder demo (Merlin Intake, autonomous sourcing, spend analytics); next steps set for preliminary budget review and mid-March business-stakeholder demo",
+          "date": "2026-02-26"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "Ranked by current threat: (1) Zip is the live primary rival, in a parallel demo cycle alongside Zycus, strong on intake but per our read weaker on end-to-end completeness (Henderson, 26 Feb 2026). (2) Coupa was evaluated but has faded, the CPO believes its value prop has weakened (26 Feb 2026), now low. (3) Jaggaer (Ithaca, ~140 catalogs) and SAP Ariba (Weill Cornell Medicine) are the incumbents being displaced ahead of the Workday transition. (4) Fairmarkit and Globality are sourcing-only point tools, low integrated threat. No new competitor surfaced this sweep. Our wedge is one Workday-aware platform (intake + autonomous sourcing + spend analytics) with Merlin Intake as the Phase 1 hero.",
+      "competitors": [
+        {
+          "name": "Zip",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "We're talking to Zip. We're talking to Coupa on similar stuff.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson)",
+          "how_we_win": "Out-position on completeness of vision and Workday-aware integration; make Merlin Intake plus autonomous negotiation the Phase 1 hero versus Zip's intake-only strength."
+        },
+        {
+          "name": "Coupa",
+          "sentiment": "negative",
+          "threat_level": "low",
+          "status": "declined",
+          "quote": "We're talking to Coupa on similar stuff (CPO's stated view is Coupa's value prop has faded).",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026; SF Next_Step_History__c 26 Feb 2026",
+          "how_we_win": "Reinforce the CPO's own view that Coupa's value prop has faded; keep the head-to-head focused on Zip."
+        },
+        {
+          "name": "Jaggaer (incumbent ePro, Ithaca)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "With Reba and our Jagger solution on campus we've got close to 140 catalogs, if not more.",
+          "date": "2026-02-24",
+          "source": "Avoma discovery call 24 Feb 2026 (Michael Henderson)",
+          "how_we_win": "Frame Zycus as the unified successor that rationalizes ~140 catalogs to 12-15 and bridges to the Workday go-live."
+        },
+        {
+          "name": "SAP Ariba (incumbent ePro, Weill Cornell Medicine)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "As we do conversion from Ariba and Paymentworks into a singular enterprise system.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson)",
+          "how_we_win": "Position single-platform consolidation across Ithaca and Weill Cornell Medicine ahead of the Workday transition."
+        },
+        {
+          "name": "Fairmarkit",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "faded",
+          "quote": "We're talking to Fairmarket... only because they can basically be totally not integrated... feed them a CSV with our vendor master.",
+          "date": "2026-02-06",
+          "source": "Avoma introduction call 6 Feb 2026 (Michael Henderson)",
+          "how_we_win": "Concede the easy CSV sourcing-only path, then show end-to-end value (intake + sourcing + spend analytics) a point tool cannot deliver."
+        },
+        {
+          "name": "Globality",
+          "sentiment": "neutral",
+          "threat_level": "dormant",
+          "status": "faded",
+          "quote": "We're talking to a Globality on the sourcing piece.",
+          "date": "2026-02-06",
+          "source": "Avoma introduction call 6 Feb 2026 (Michael Henderson)",
+          "how_we_win": "Differentiate on the integrated suite versus a standalone sourcing accelerator."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on conversational intake, autonomous/tactical sourcing, federated search and spend analytics; the main exposure is a supplier-facing chatbot in front of SSO that Zycus could not demonstrate, and the buyer's insistence on a suggestive (not mandatory) tone and low change-management friction.",
+      "items": [
+        {
+          "criterion": "Conversational intake that routes campus users to catalog, contract, sourcing or sole-source and hands off to Workday",
+          "position": "aligned",
+          "quote": "I wanna buy a chair, and it presented the options. That's a big step forward for us.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Mary L Stapleton)"
+        },
+        {
+          "criterion": "Autonomous/tactical sourcing for mid-size spend below strategic-sourcing thresholds",
+          "position": "aligned",
+          "quote": "Tactical sourcing as close to being fully autonomous is what we're trying to get at.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson)"
+        },
+        {
+          "criterion": "AI references uploaded purchase policies and cross-references catalog numbers/line-of-credit limits",
+          "position": "aligned",
+          "quote": "We can upload our purchase policies and procedures... that the AI will reference when responding to end user requests?",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Collins Farr)"
+        },
+        {
+          "criterion": "Supplier-facing assistant in front of SSO so suppliers can self-serve payment status",
+          "position": "exposed",
+          "quote": "Can we put something like that on our division of finance services website where a supplier can talk... We don't have a chatbot.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson / Ronit)"
+        },
+        {
+          "criterion": "Suggestive, human tone and low-friction supplier onboarding to avoid a 9-12 month conversion drag",
+          "position": "partially aligned",
+          "quote": "My biggest concern about transitioning into systems... orchestrate a supplier experience without syncing the entire organization for 9 to 12 months.",
+          "date": "2026-02-26",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Show a supplier-facing assistant that sits in front of SSO for supplier self-service",
+          "said_by": "Michael Henderson",
+          "date": "2026-02-26",
+          "addressed": false,
+          "quote": "Can we put something like that on our division of finance services website where a supplier can basically talk.",
+          "source": "Avoma demo 26 Feb 2026"
+        },
+        {
+          "requirement": "Confirm AI can ingest Cornell purchase policies as source documents guiding user responses",
+          "said_by": "Collins Farr",
+          "date": "2026-02-26",
+          "addressed": true,
+          "quote": "We can upload our purchase policies and procedures... that the AI will reference when responding to end user requests?",
+          "source": "Avoma demo 26 Feb 2026"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {
+            "deliverable": "Send the NDA (Zycus paper) to Michael Henderson to enable deeper commercial detail",
+            "who": "Zycus",
+            "grounding_quote": "Mike, to get an NDA in place... Justin, you wanna? Yep. We'll get you one over there.",
+            "date": "2026-02-26",
+            "due": "2026-03-06",
+            "status": "overdue",
+            "source": "Avoma demo 26 Feb 2026 (Justin Ajmo / Michael Henderson)"
+          },
+          {
+            "deliverable": "Deliver the Higher-Ed reference customers offered to Cornell",
+            "who": "Zycus",
+            "grounding_quote": "Higher Ed references (promised, not delivered).",
+            "date": "2026-02-26",
+            "due": "2026-03-13",
+            "status": "overdue",
+            "source": "SF Task 22 Jun 2026 (unmet commitments)"
+          }
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Provide preliminary budget numbers so Zycus can shape the business case",
+            "who": "Buyer",
+            "grounding_quote": "Mike, you wanna talk about some preliminary budget numbers just so I get them captured... as I'm pulling together a business case.",
+            "date": "2026-02-26",
+            "due": "2026-03-13",
+            "status": "overdue",
+            "source": "Avoma demo 26 Feb 2026 (Michael Henderson)"
+          },
+          {
+            "deliverable": "Name the internal decision partners and the budget owner above Henderson",
+            "who": "Buyer",
+            "grounding_quote": "We gotta figure out in typical higher-ed way who the right internal partners are.",
+            "date": "2026-02-24",
+            "due": "2026-03-31",
+            "status": "overdue",
+            "source": "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer identity and engagement",
+          "quote": "Cooper and I are not the sole decision makers, we're probably more gonna influence.",
+          "status": "not addressed",
+          "date": "2026-02-24",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+        },
+        {
+          "area": "Buyer decision timeline after March stall",
+          "quote": "The goal will be mid-March, I'll find a group of business stakeholders... (no follow-through logged since).",
+          "status": "not addressed",
+          "date": "2026-02-26",
+          "gap_type": "knowledge",
+          "source": "Avoma demo 26 Feb 2026; SF activity history"
+        },
+        {
+          "area": "Named DM/EB not on OpportunityContactRole (knowledge exists in calls that a CFO/Provost owns budget)",
+          "quote": "",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "hygiene",
+          "source": "SF OpportunityContactRole"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is well-positioned on fit and champion but stalled and top-heavy on a single procurement contact; the win levers are re-engagement, mapping power, and converting AI hunger into a costed business case.",
+      "flags": [
+        "Re-open the stalled thread now: the buyer has been silent since early March and the 23 Jun Horizon invite is unanswered, so Justin should re-engage Henderson directly with the job-posting/austerity catalyst before escalating.",
+        "Map power above Henderson: he stated he is not the decision maker, so identify and reach the Provost who owns the $60M savings mandate; the Cornell-alumnus Zycus CEO offer is the strongest door-opener.",
+        "Convert AI hunger into a costed, phased business case: tie Merlin Intake and autonomous tactical sourcing to a per-phase share of the $60M target so the value case survives the business-stakeholder review Henderson planned."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Mary L Stapleton",
+          "_source": "sfdc_contact_role",
+          "title": "Director, Procure-to-Pay",
+          "email": "mls398@cornell.edu",
+          "role": "Influencer",
+          "risk": "Owns the current form-based campus intake pain; engagement not sustained since the demo.",
+          "sentiment": "positive",
+          "last_contact_date": "2026-02-26",
+          "_matched_ai": true
+        },
+        {
+          "name": "Collins Farr",
+          "_source": "sfdc_contact_role",
+          "title": "Strategic Sourcing Manager",
+          "email": "cof4004@med.cornell.edu",
+          "role": "Influencer",
+          "risk": "Weill Cornell Medicine requisition proxy; asked deep orchestration and source-document questions but not a decision maker.",
+          "sentiment": "positive",
+          "last_contact_date": "2026-02-26",
+          "_matched_ai": true
+        },
+        {
+          "name": "Michael Winters",
+          "_source": "sfdc_contact_role",
+          "title": "Director of e-Business",
+          "email": "mgw3@cornell.edu",
+          "role": "Influencer",
+          "risk": "Federated-search and catalog owner; probing but not seen driving the decision.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-02-26",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Michael Henderson is a strong, active procurement champion who drove the whole evaluation, is named as the evaluator in SF AIS_Why__c, and is supported by Cooper Smith on contracts. The development gap is upward reach and recency: he has not connected Zycus to the economic buyer and has gone quiet since early March, so his advocacy needs re-activating.",
+      "champion": "Michael Henderson (Chief Procurement Officer), with Cooper Smith (Director of Contract Management)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF AIS_Why__c; Avoma discovery call 24 Feb 2026; SF Task 22 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin Intake, autonomous tactical sourcing (Anna), federated price benchmarking and AP Smartdesk landed strongly on the 26 Feb demo, drawing deployment-level questions; the agentic story is resonating, so the priority is converting it into a costed business case, not more demos.",
+      "score": "7",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "SF AIS is 7.0 / Moderate. The 64-minute demo shows the field is if anything conservative on appetite: buyers asked about AI referencing uploaded policies, tactical autonomous sourcing, federated search across CDW/Grainger, and AI text-in-front-of-SSO. The check on 'AI Hungry' is that budget is unconfirmed and the buyer has stalled, so appetite has not yet converted to commitment.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer (Provost) mapped or engaged; Henderson explicitly is not the decision maker.",
+          "first_raised": "2026-02-24",
+          "date": "2026-02-24",
+          "status": "open",
+          "source": "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+        },
+        {
+          "category": "timeline",
+          "detail": "Buyer silent since early March; close date slipped four times and the 23 Jun Horizon invite is unanswered.",
+          "first_raised": "2026-05-11",
+          "date": "2026-06-22",
+          "status": "open",
+          "source": "SF Task 22 Jun 2026; field history"
+        },
+        {
+          "category": "change_management",
+          "detail": "Scope narrowed to intake-first with Workday retained for requisition-to-PO; a defensive, phased land that lowers first-order deal size and value proof.",
+          "first_raised": "2026-02-24",
+          "date": "2026-02-24",
+          "status": "open",
+          "source": "Avoma discovery call 24 Feb 2026 (Michael Henderson)"
+        },
+        {
+          "category": "integration",
+          "detail": "No supplier-facing SSO chatbot available; supplier onboarding/conversion named as the buyer's biggest transition concern.",
+          "first_raised": "2026-02-26",
+          "date": "2026-02-26",
+          "status": "open",
+          "source": "Avoma demo 26 Feb 2026 (Michael Henderson)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: two rich Feb calls established strong fit and a real champion, but no buyer-driven step in ~four months and rep outreach unanswered.",
+      "cooling": true,
+      "items": [
+        "Buyer silent since the ~4 Mar pricing conversation; 22 Jun rep tasks record 'no buyer conversation, deal in limbo'.",
+        "Re-engagement commitment overdue since 11 May; 23 Jun Horizon invite unanswered."
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Broad Source-to-Pay suite (intake, sourcing, supplier, spend analytics, PR-to-PO management)",
+      "to": "Intake/orchestration-first (Merlin Intake) plus autonomous sourcing and spend analytics, with Workday retained for requisition-to-PO",
+      "detail": "On the 24 Feb discovery Henderson framed a phased land, 'starting with need-to-haves and then possibly moving to a broader adoption down the road,' declined to show end-to-end PO management ('it'll get folks confused'), and set intake at ~80% and sourcing ~15% of the use case (26 Feb). Defensive, phased scope that de-risks the buyer but narrows first-order value and proof."
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Justin re-engages Henderson directly with the job-posting austerity catalyst to reopen the thread.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Buyer silent since early March; 23 Jun Horizon invite unanswered and 11 May re-engagement commitment overdue.",
+          "trigger_date": "2026-06-23",
+          "act_by": "2026-07-13",
+          "expected_effect": "Restarts momentum and secures the mid-year checkpoint before the deal goes cold."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Henderson to name the Provost budget owner and set a proposal meeting.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Henderson said he and Cooper are not the sole decision makers and the budget owner is unmapped.",
+          "trigger_date": "2026-02-24",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps the economic buyer, the single biggest gate to a defensible forecast and an October close."
+        },
+        {
+          "rank": 3,
+          "action": "Build a phased business case tying Merlin Intake and autonomous sourcing to a share of the $60M savings target.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Buyer owes preliminary budget numbers for the business case Henderson is assembling.",
+          "trigger_date": "2026-02-26",
+          "act_by": "2026-07-24",
+          "expected_effect": "Converts confirmed AI hunger into a costed value case that survives the business-stakeholder review."
+        },
+        {
+          "rank": 4,
+          "action": "If no buyer reply in 10 business days, McCarthy opens an exec-to-exec note to the CPO to re-anchor timeline.",
+          "owner": "Executive connect",
+          "horizon": "next_30_days",
+          "trigger": "Owner-level re-engagement has not landed a reply since May.",
+          "trigger_date": "2026-06-22",
+          "act_by": "2026-08-03",
+          "expected_effect": "Adds executive weight to re-open a marquee stalled account without over-escalating early."
+        },
+        {
+          "rank": 5,
+          "action": "Clear the two overdue commitments: send the NDA and the Higher-Ed references to Henderson.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "NDA offered 26 Feb and Higher-Ed references promised but not delivered per 22 Jun flag.",
+          "trigger_date": "2026-02-26",
+          "act_by": "2026-07-27",
+          "expected_effect": "Removes friction and gives a concrete reason to re-contact the buyer."
+        }
+      ]
+    },
+    "ceo_intervention": {
+      "needed": true,
+      "severity": "high",
+      "needs_action": true,
+      "reasons": [
+        {
+          "type": "support",
+          "act": true,
+          "severity": "medium",
+          "areas": [
+            "exec_connect"
+          ],
+          "summary": "On the 24 Feb call the Zycus VP disclosed the founder-CEO is a Cornell graduate who 'expressed a keen interest in being executive sponsor' and would 'reach out and say hello'; on a stalled marquee academic account with no mapped economic buyer, that alumni CEO-to-executive tie is a make-or-break door-opener a subordinate cannot replicate.",
+          "ceo_action": "The Zycus CEO personally sends a Cornell-alumnus note to Cornell's procurement/finance leadership offering executive sponsorship, to re-open the stalled evaluation and reach the economic buyer.",
+          "buyer_target": {
+            "name": null,
+            "title": "CFO or Provost (economic buyer)",
+            "engaged": false
+          },
+          "why_not_vp": "The VP of Sales is already engaged and cannot manufacture the personal Cornell-alumnus relationship; only the CEO can offer that peer alumni sponsorship, which is what would open the unmapped CFO/Provost economic buyer.",
+          "lower_execs_engaged": [
+            {
+              "name": "Michael McCarthy",
+              "title": "VP of Sales"
+            }
+          ],
+          "as_of": "2026-07-06",
+          "evidence": []
+        },
+        {
+          "type": "scope_shrink",
+          "act": false,
+          "severity": "high",
+          "summary": "Scope shrinking vs prior \u2014 On the 24 Feb discovery Henderson framed a phased land, 'starting with need-to-haves and then possibly moving to a broader adoption down the road,' declined to show end-to-end PO management ('it'll ge. Buyer likely getting defensive on cost or implementation/integration (phased over big-bang) \u2014 watch.",
+          "detail": "On the 24 Feb discovery Henderson framed a phased land, 'starting with need-to-haves and then possibly moving to a broader adoption down the road,' declined to show end-to-end PO management ('it'll get folks confused'), and set intake at ~80% and sourcing ~15% of the use case (26 Feb). Defensive, phased scope that de-risks the buyer but narrows first-order value and proof.",
+          "from": "Broad Source-to-Pay suite (intake, sourcing, supplier, spend analytics, PR-to-PO management)",
+          "to": "Intake/orchestration-first (Merlin Intake) plus autonomous sourcing and spend analytics, with Workday retained for requisition-to-PO",
+          "as_of": "2026-07-06"
+        },
+        {
+          "act": false,
+          "type": "our_slip",
+          "as_of": "2026-06-22",
+          "owner": "Justin Ajmo",
+          "detail": "A 22 Jun deal review logged that our own commitments are outstanding: the RFI response (due early Feb) was never sent, the requested demo was never scheduled, and the sample MSA + implementation pricing (due 14 Apr) remain open. These are OUR deliverables, not buyer-dependent, on a $450k Upside Key Deal. If they keep sitting, Cornell reads Zycus as unresponsive versus Zip and we lose the head-to-head by default.",
+          "metric": "RFI response ~4 months overdue (due early Feb, 0 sent); MSA/pricing open since 14 Apr",
+          "ceo_ask": "Ask Justin why Cornell's RFI response, demo and implementation pricing are still unsent months later and when each lands.",
+          "summary": "Our RFI, demo and pricing to Cornell all still unsent months late",
+          "evidence": "6/22 meeting note: 'Unmet commitments: RFI response (due early Feb, not sent), demo (requested late Jan/early Feb, not scheduled)'; open deliverable 'Provide the sample MSA and implementation pricing' due 2026-04-14.",
+          "severity": "high"
+        },
+        {
+          "act": false,
+          "type": "large_slowdown",
+          "as_of": "2026-06-22",
+          "owner": "Justin Ajmo",
+          "detail": "This large ($450k) forecasted Upside Key Deal has disengaged: the 28 Feb close date passed with no slip recorded and no buyer conversation to re-align, and there are zero buyer calls in the last 14 days. It is single-threaded to just 2 contacts (Michael Winters, Mary Stapleton) with no executive sponsor mapped. Momentum is 38. If nothing re-engages the buyer, a forecasted six-figure deal quietly rots off the pipeline.",
+          "metric": "Close date 2026-02-28 expired with no re-align; 0 buyer calls in 14d; momentum 38",
+          "ceo_ask": "Ask Justin what actually happened after the 28 Feb close date expired and what real buyer engagement exists beyond the 2 mapped contacts.",
+          "summary": "$450k forecasted deal in limbo - close date expired, buyer gone quiet",
+          "evidence": "6/22 task: 'Close date expired: 2026-02-28 passed, no slip recorded, no buyer conversation to re-align timeline. Deal in limbo.'; 6/22 task: 'Single-threaded: only 2 active buyer contacts... no C-level or executive sponsor mapped.'",
+          "severity": "high"
+        }
+      ],
+      "win": 44.1,
+      "mom": 55.2,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Deep, deployment-level Zycus questions on the 26 Feb demo (autonomous sourcing, federated search, source-document AI) but no declared lean and parallel demos with Zip and Coupa (Henderson, 26 Feb 2026)."
+    },
+    "business_case": {
+      "status": "confirmed",
+      "evidence": "Quantified $60M savings goal on ~$1.1B spend, with AI positioned to hit it without adding headcount (Henderson, 24 Feb 2026)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "AI-hungry Cornell evaluation with a real champion in Michael Henderson and a $60M savings mandate, but the win is being held back by four months of buyer silence, an unmapped CFO/Provost economic buyer, and a defensive scope-narrowing to intake-first.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Shortlisted caps confidence near 70; the deal earns on strong AI fit and an active procurement champion but we hold it in the mid-50s because the economic buyer is unmapped, the buyer has stalled, and scope narrowed to an intake-first land."
+          },
+          {
+            "tone": "good",
+            "text": "Fit is strong: Merlin Intake, autonomous tactical sourcing and federated benchmarking drew deployment-level questions on the 26 Feb demo, and the $60M savings goal gives a hard value anchor."
+          },
+          {
+            "tone": "warn",
+            "text": "Risk: Henderson said he and Cooper 'are not the sole decision makers' (24 Feb) and no CFO/Provost has been named or engaged, so there is no path to sign-off on a $450k multi-year commitment yet."
+          },
+          {
+            "tone": "warn",
+            "text": "Risk: it is a live three-way with Zip and Coupa still in parallel demos (26 Feb), and the buyer has narrowed scope to intake-first with Workday kept for requisition-to-PO, shrinking first-order value."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "Momentum has stalled: no buyer-driven step since the early-March pricing call, the close date has slipped four times to 28 Oct, and the 23 Jun Horizon invite is unanswered."
+          },
+          {
+            "tone": "warn",
+            "text": "The only recent activity is rep-side 'Call Attempted' tasks that explicitly record 'no buyer conversation... deal in limbo' (22 Jun)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is soft: the buyer owes preliminary budget numbers and internal-partner names promised on 26 Feb and has delivered neither, and the NDA was never executed."
+          },
+          {
+            "tone": "good",
+            "text": "Henderson did widen the room to Mary Stapleton, Collins Farr and Michael Winters on the 26 Feb demo and planned a business-stakeholder validation, showing genuine intent before the stall."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "The single biggest risk is executive alignment: no economic buyer mapped or engaged on a $450k mandate owned above the procurement team."
+          },
+          {
+            "tone": "warn",
+            "text": "Secondary risk is a cooling clock: four close-date slips and four months of buyer silence mean the deal tips to cold if the next re-engagement gets no reply."
+          }
+        ]
+      },
+      "factors": {
+        "deal_momentum": {
+          "strength": -0.5,
+          "evidence": "No buyer-driven step in ~4 months; four close-date slips; rep outreach unanswered (22-23 Jun 2026)."
+        },
+        "customer_commitment": {
+          "strength": -0.2,
+          "evidence": "Budget numbers and NDA promised on 26 Feb never delivered; buyer still comparing Zip and Coupa."
+        },
+        "deal_risk": {
+          "strength": -0.4,
+          "evidence": "Unmapped economic buyer plus a stalled clock and a defensive scope-narrowing."
+        }
+      }
+    },
+    "critical_signals": [
+      {
+        "lens": "Competition",
+        "text": "Zycus is in a live three-way with Zip as the main rival and Coupa fading, with the incumbents Jaggaer and SAP Ariba being displaced ahead of Cornell's Workday transition.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Last meeting",
+        "text": "The 26 Feb demo landed strongly on autonomous sourcing and intake, but the buyer went quiet afterward and never returned the promised budget numbers.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "The CFO or Provost who owns the $60M savings mandate is still unmapped and never met, and Henderson has said he cannot decide alone.",
+        "tone": "crit"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The $60M savings target gives a strong value anchor, but pricing is unconfirmed and the buyer owes preliminary budget numbers before a business case can close.",
+        "tone": "warn"
+      }
+    ],
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 44.1,
+        "deal_momentum": 55.2,
+        "customer_commitment": 8.0,
+        "deal_risk": 31.6,
+        "forecast_confidence": 20.5,
+        "read": "Partial Read"
+      },
+      "win_position": {
+        "score": 44.1,
+        "baseline": 55.0,
+        "anchor": 55.0,
+        "lift": -3.1,
+        "ceiling": 70.0,
+        "momentum_adj": -0.8,
+        "scope_adj": -7.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 3.0,
+            "evidence": "business case strength +1.00 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -0.8,
+            "evidence": "momentum 55 vs stage-expected 56"
+          },
+          {
+            "factor": "scope_reduced",
+            "points": -7.0,
+            "evidence": "scope narrowed vs prior \u2014 On the 24 Feb discovery Henderson framed a phased land, 'starting with need-to-haves and then possibly moving to a broader adoption down the road,' declined to  (buyer likely defensive on cost or phased implementation)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 55.2,
+        "pre_decay": 55.2,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "commercial_topics_entering",
+            "points": 4.8,
+            "evidence": "commercial topics entering (from call evidence)."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 3.6,
+            "evidence": "Next Step carries 1 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 31.6,
+        "contributions": [
+          {
+            "factor": "stage_inflation",
+            "points": 19.4,
+            "evidence": "Stage is ahead of the engagement/evidence the sweep found."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": 12.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 20.5,
+        "core": 20.5,
+        "coverage": 57.1,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 57.1,
+        "label": "Partial Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 44 is carried by business case strength +1.00 (weight 10); preference strength +0.40 (weight 20). Offsetting it: scope narrowed vs prior \u2014 On the 24 Feb discovery Henderson framed a phased land, 'starting with need-to-haves and then possibly moving to\u2026.",
+        "deal_momentum": "Momentum 55 (moving forward): commercial topics entering (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 32 is driven by Stage is ahead of the engagement/evidence the sweep found; Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 20 is anchored on the stage win (44), nudged by commitment 8 and momentum 55, and dragged by risk 32. Read is Partial Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Partial Read: 4 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Cornell University \u2014 Shortlisted \u00b7 $450K \u00b7 closes 28 Oct",
+        "intro": "AI-hungry Cornell evaluation with a real champion in Michael Henderson and a $60M savings mandate, but the win is being held back by four months of buyer silence, an unmapped CFO/Provost economic buyer, and a defensive scope-narrowing to intake-first.",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 44,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're behind.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Shortlisted caps confidence near 70; the deal earns on strong AI fit and an active procurement champion but we hold it in the mid-50s because the economic buyer is unmapped, the buyer has stalled, and scope narrowed to an intake-first land."
+              },
+              {
+                "tone": "good",
+                "text": "Fit is strong: Merlin Intake, autonomous tactical sourcing and federated benchmarking drew deployment-level questions on the 26 Feb demo, and the $60M savings goal gives a hard value anchor."
+              },
+              {
+                "tone": "warn",
+                "text": "Risk: Henderson said he and Cooper 'are not the sole decision makers' (24 Feb) and no CFO/Provost has been named or engaged, so there is no path to sign-off on a $450k multi-year commitment yet."
+              },
+              {
+                "tone": "warn",
+                "text": "Risk: it is a live three-way with Zip and Coupa still in parallel demos (26 Feb), and the buyer has narrowed scope to intake-first with Workday kept for requisition-to-PO, shrinking first-order value."
+              }
+            ],
+            "how": "A deal at 'Shortlisted' anchors near 55. Thin signals pull the read to 44.",
+            "how_label": "Why this number"
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 55,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Momentum has stalled: no buyer-driven step since the early-March pricing call, the close date has slipped four times to 28 Oct, and the 23 Jun Horizon invite is unanswered."
+              },
+              {
+                "tone": "warn",
+                "text": "The only recent activity is rep-side 'Call Attempted' tasks that explicitly record 'no buyer conversation... deal in limbo' (22 Jun)."
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 32,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The single biggest risk is executive alignment: no economic buyer mapped or engaged on a $450k mandate owned above the procurement team."
+              },
+              {
+                "tone": "warn",
+                "text": "Secondary risk is a cooling clock: four close-date slips and four months of buyer silence mean the deal tips to cold if the next re-engagement gets no reply."
+              }
+            ],
+            "footer": "Competitive picture: Ranked by current threat: (1) Zip is the live primary rival, in a parallel demo cycle alongside Zycus, strong on intake but per our read weaker on end-to-end completeness (Henderson, 26 Feb 2026). (2) Coupa was evaluated but has faded, the\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is soft: the buyer owes preliminary budget numbers and internal-partner names promised on 26 Feb and has delivered neither, and the NDA was never executed."
+              },
+              {
+                "tone": "good",
+                "text": "Henderson did widen the room to Mary Stapleton, Collins Farr and Michael Winters on the 26 Feb demo and planned a business-stakeholder validation, showing genuine intent before the stall."
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Justin re-engages Henderson directly with the job-posting austerity catalyst to reopen the thread. (by 13 Jul)",
+              "Ask Henderson to name the Provost budget owner and set a proposal meeting. (by 20 Jul)",
+              "Build a phased business case tying Merlin Intake and autonomous sourcing to a share of the $60M savings target. (by 24 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 3,
+    "calls_read": 2,
+    "calls_omitted": [
+      "Cornell University/Zycus Introduction 6 Feb 2026 \u2014 no transcript available (notes only; competitive shortlist carried from prior record)"
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities 120d; field history 365d; contact roles and Q1-Q3 fields",
+    "avoma_attendees": [
+      "Michael Henderson",
+      "Cooper Smith",
+      "Mary L Stapleton",
+      "Michael Winters",
+      "Collins Farr",
+      "Jay Porter"
+    ],
+    "gaps": [
+      "No buyer call in the last ~4 months, so all call evidence is from 24-26 Feb 2026; current engagement state is inferred from activities and next steps.",
+      "Economic buyer (CFO/Provost) not named on any Salesforce Contact Role or call.",
+      "Post-March decision timeline unconfirmed."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T00:18:31"
+}

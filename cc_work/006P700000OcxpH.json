@@ -1,0 +1,293 @@
+{
+  "opp_id": "006P700000OcxpH",
+  "hard": {
+    "opp_id": "006P700000OcxpH",
+    "opp_name": "Consumer Cellular__2025",
+    "account_name": "Consumer Cellular, Inc",
+    "account_industry": "Telecom and Communication",
+    "billing_country": "United States",
+    "owner_name": "Karson Keogh",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Shortlisted",
+    "forecast_category": "Upside Key Deal",
+    "amount": 191000.0,
+    "close_date": "2026-07-31",
+    "days_to_close": 0,
+    "created_date": "2025-10-17",
+    "qualified_date": null,
+    "last_activity_date": "2026-07-09",
+    "last_modified_date": "2026-07-02",
+    "products": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing;iSaaS;Merlin;Merlin Intake",
+    "next_step": null,
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Coupa;SAP Ariba",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000OcxpH/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Close Date Risk",
+      "critical": false,
+      "headline": "Zycus is the confirmed front-runner in active contracting, but the 31 Jul close is not credible: legal has MSA/OF/SOW backlogged (a legal rep departed), the SOW scoping deep-dive is not yet run, updated pricing and privacy answers are still owed, and Jason Chan's budget sign-off is not in writing.",
+      "math": "Close 31 Jul 2026, roughly 25 days out. Created 17 Oct 2025 (262 days old). Stage Shortlisted but the deal is running a contracting motion (InfoSec + AP completed 8 Jun, Legal/CLM deep-dive 18 Jun, Implementation Readiness 9 Jul). CloseDate was pushed 30 Jun -> 31 Jul on 25 Jun, the second slip after 31 May -> 30 Jun on 27 May. Remaining path: privacy sub-processor/AI answers (this week), updated pricing + Certinal signature pricing (1 week), SOW scoping + finalize PS cost (1-2 weeks), legal redlines with a backlogged team ('a few weeks' per Abe 25 Jun), signature (1 week) = 4-5 weeks minimum against 3.6 weeks remaining. Realistic signature: late Aug 2026. Deal is healthy and engaged; the sole problem is the date.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Upside Key Deal (date slips to Aug 2026)",
+      "evidence": [
+        "Abe Comarow confirmed 'we are the front runner and need to continue hitting the mark' (Next Step, 25 Jun 2026).",
+        "CloseDate pushed twice by Karson Keogh: 31 May -> 30 Jun (27 May) then 30 Jun -> 31 Jul (25 Jun), signalling the date is a moving placeholder, not a buyer-committed signature date (field history).",
+        "Legal has MSA, Order Form and draft SOW in review since 20 May, backlogged and 'impacted by a recent legal rep leaving... should take a few weeks' (Next Step, 25 Jun 2026).",
+        "SOW scoping deep-dive to scope roles/resources for accurate PS costs was only being 'set up' as of 25 Jun; the Implementation Readiness session ran 9 Jul to refine it (event 9 Jul 2026).",
+        "Privacy team raised a sub-processor list request and Merlin AI training-data questions on 1 Jul; Abe said 2 Jul 'we have what we need for now other than these' (Task, 2 Jul 2026).",
+        "Coupa and Zip 'still in running due to dropping their costs significantly which could be a slight risk'; Abe requested updated list-vs-CC pricing to defend internally (Next Step, 25 Jun 2026).",
+        "No written budget/signature sign-off from Economic Buyer Jason Chan (Controller) is logged, though he asked to join all implementation meetings going forward (email, 24 Jun 2026)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "confirmed",
+        "narrative": "The value case is procurement-transformation and cycle-time driven: replacing a NetSuite procurement module Abe Comarow (Senior Strategic Sourcing Manager) deemed unfit, to gain spend visibility, contract control and AP automation across a full source-to-pay scope (iContract, iSource, iSupplier, eProcurement, eInvoicing, Merlin Intake per Products__c). A business-case readout to finance ran 8 May 2026 (Next Step 28 Apr: 'CC business case readout with CFO May 8') showing cycle-time reduction and savings (echoed in AIS_Why). On the 5 Jun InfoSec call, Michael welcomed the user-based, module pricing as 'far more transparent' than consumption billing, reinforcing a defensible cost story. No single verbatim savings figure is quoted by the buyer in the transcripts read, so the quantified ROI is corroborated by the readout artifact rather than a buyer quote; re-confirming the accepted savings number in writing with Jason Chan is the move.",
+        "sources": ["Next Step 28 Apr 2026", "Avoma InfoSec call 5 Jun 2026 (Michael)", "SF Products__c", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "confirmed",
+        "narrative": "The economic buyer is Jason Chan, Controller (OpportunityContactRole), who received the 8 May business-case readout and, per Abe's 24 Jun email, 'told me he wants to be in the implementation meetings going forward' - a direct signal the budget owner is now engaging personally rather than passively. Abe Comarow controls the commercial thread day-to-day (requested list-vs-CC pricing 25 Jun, envelope counts for signature pricing 18 Jun), but final budget authority sits with Jason and, above him, finance. Jason's rising attendance is positive; the gap is that no written budget or signature sign-off from him is logged. The move is to convert his implementation-meeting presence into an explicit budget/timeline commitment before the close date.",
+        "sources": ["OpportunityContactRole: Jason Chan, Controller", "Email 24 Jun 2026 (Abe Comarow)", "Next Step 25 Jun 2026"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "Criteria are explicit from the deep-dives. Legal (18 Jun CLM) tested AI-assisted authoring, fallback-clause libraries, Instareview risk scoring, parallel Word redlining without check-in/check-out locking (Abe: 'is there a way that we don't lock the document... clearly redline'), click-through/online-terms ingestion (Joseph Reiber), and a future Claude/LLM integration with tokenization-cost transparency (Abe). Procurement/IT (5 Jun) prioritized supplier onboarding (iSupplier), supplier risk (iRisk vs incumbent Upguard), NetSuite integration lift, and transparent, non-consumption pricing (Michael). Signature handling is a criterion in its own right: internal HR volume must stay on Adobe Sign (30k, committed to 10/8/2028) while Zycus covers procurement signatures. Fit is strong on classical CLM/P2P; the exposed criterion is AI/agentic depth (see competition and AI-fit).",
+        "sources": ["Avoma CLM call 18 Jun 2026 (Abe, Joseph Reiber, Walter)", "Avoma InfoSec call 5 Jun 2026 (Michael, Colin Taira)", "Email 18 Jun 2026 (Abe, signature volumes)"]
+      },
+      "decision_process": {
+        "status": "confirmed",
+        "narrative": "The call sequence maps a committee moving from evaluation into contracting: business case to finance (8 May) -> AP/Finance + InfoSec/IT-Asset-Management demos (5 Jun) -> Legal/CLM deep-dive (18 Jun, adding new counsel Joseph Reiber and Privacy VP) -> Implementation Readiness session (9 Jul, with Jason Chan asking to join). Approvals run in parallel across procurement (Abe, Colin Taira, Garry Hill), legal (Bobbie Reyes GC, Joseph Reiber, Kane Christianson), InfoSec/GRC (Marques Johnson), AP (Heather Williams) and finance (Jason Chan). The signature choke point is the SOW (roles/resources still being scoped) plus legal redlines on a backlogged team; MSA + Order Form are progressing. The process is buyer-led and healthy, the risk is throughput, not direction.",
+        "sources": ["Events 5 Jun / 18 Jun / 9 Jul 2026", "Next Step 8 Jun-25 Jun 2026", "OpportunityContactRole roster"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Contracting is live: Abe requested MSA, Order Form and draft SOW for legal review on 20 May; legal has held them since, backlogged and slowed by a departed legal rep ('should take a few weeks' - Abe, 25 Jun). InfoSec and AP sessions completed 8 Jun. The SOW is the predictor and remains open - roles/resources being scoped via the 9 Jul Implementation Readiness session before PS cost can finalize. Signature mechanics were discussed on 18 Jun: Zycus offers native Adobe Sign and DocuSign integration plus its own e-signature, but Consumer Cellular must retain Adobe Sign for internal HR volume (committed to 10/8/2028). Open paper items: finalized SOW scope, legal redlines back from counsel, and the privacy team's sub-processor/DPA and Merlin AI training questions (raised 1 Jul). As a US deal, no PO is required to invoice - do not treat a missing PO as a gap.",
+        "sources": ["Next Step 20 May / 8 Jun / 25 Jun 2026", "Avoma CLM call 18 Jun 2026", "Task 1-2 Jul 2026 (privacy questions)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Confirmed operational pain: the incumbent NetSuite procurement module is unfit (missing contract hierarchy, weak approval flows, AP limitations), leaving fragmented tooling, poor spend visibility and manual contract handling. On 18 Jun Walter voiced a concrete legal pain: mandatory-clause libraries in prior tools became stale and untrusted ('you tell me this is a mandatory clause. But the last 15 contracts you've done, you haven't included it'), and the manual step of uploading signed contracts off the desktop ('I'm somewhat behind right now'). Lisa (Privacy) raised DPA-modification tracking and post-termination data-destruction as unmet needs. Pain owners: Abe (procurement fragmentation), Walter/Joseph (contract lifecycle burden), Garry Hill (P2P/PO-to-contract linkage). Pain is well-articulated and current.",
+        "sources": ["Avoma CLM call 18 Jun 2026 (Walter, Lisa)", "Avoma InfoSec call 5 Jun 2026", "Prior record discovery 20 Oct 2025 (Abe)"]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Abe Comarow (Senior Strategic Sourcing Manager) is a strong, active champion: he drove the business-case readout, coordinated every validation session (InfoSec, AP, Legal, Implementation Readiness), submitted the MSA/OF/SOW to his own legal team, confirmed 'we are the front runner' (25 Jun) and is orchestrating pricing and SOW next steps. His advocacy is concrete - he pulls Zycus into internal scheduling and defends the choice while asking for pricing ammunition against Coupa/Zip. Last contact 2 Jul 2026 (privacy-questions email). A supporting coach is Colin Taira (Director of Procurement), engaged and positive since 5 Jun. The only champion risk is load: Abe is single-threading the commercial defence against two rivals cutting price, so reinforcing him with a total-cost story and a direct Jason Chan touch protects him.",
+        "sources": ["Next Step 25 Jun 2026", "OpportunityContactRole: Abe Comarow", "Email 2 Jul 2026", "Avoma calls 5 Jun / 18 Jun 2026 (Colin Taira)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "Zycus is the front-runner in a narrowing field. The live threat is price: Coupa and Zip 'dropped their costs significantly' and remain in the running (Abe, 25 Jun), pressuring Abe to justify Zycus internally with list-vs-CC pricing. SAP Ariba sits on Competitors__c but has no active 2026 buyer evidence (faded). NetSuite is the incumbent being displaced (deemed unfit). Adobe Sign is a signature-only incumbent that must be retained for internal HR volume. We win on classical CLM/P2P depth (parallel Word redlining, clause/fallback libraries, Instareview, NetSuite integration, PO-to-contract linkage) and transparent user-based pricing (Michael called it 'far more transparent', 5 Jun); the wedge against price-cutters is total cost of ownership plus the CLM/search-genie and NetSuite-integration proof they cannot match. The exposed flank is AI/agentic: AIS is Negative and the buyer showed little agentic appetite, so do not lead with Merlin.",
+        "sources": ["Next Step 25 Jun 2026", "SF Competitors__c", "Avoma InfoSec call 5 Jun 2026 (Michael)", "Avoma CLM call 18 Jun 2026 (Adobe Sign)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal accelerated into contracting through June and is engaged today: InfoSec/AP completed, a strong Legal/CLM deep-dive, the Economic Buyer asking to join implementation meetings, and an Implementation Readiness session on 9 Jul. The date, not the direction, is the issue - CloseDate has been pushed twice and legal is backlogged.",
+      "items": [
+        {"change": "Implementation Readiness session held to refine the SOW; Jason Chan (Controller) joining implementation meetings going forward", "date": "2026-07-09"},
+        {"change": "Privacy team raised sub-processor list and Merlin AI training-data questions; Abe: 'we have what we need for now other than these'", "date": "2026-07-02"},
+        {"change": "CloseDate pushed 30 Jun -> 31 Jul by Karson Keogh (second slip)", "date": "2026-06-25"},
+        {"change": "Abe confirmed 'we are the front runner' and requested updated list-vs-CC pricing; Coupa and Zip still in running on price", "date": "2026-06-25"},
+        {"change": "Legal/CLM deep-dive: strong engagement on AI authoring, fallback clauses, click-through terms and signature module; Certinal signature pricing and Claude/LLM integration raised", "date": "2026-06-18"},
+        {"change": "InfoSec and AP demos completed", "date": "2026-06-08"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Zycus is the front-runner in a two-to-three-vendor field, but Coupa and Zip are the live current threat: both 'dropped their costs significantly' and remain in the running as of 25 Jun 2026, forcing Abe to defend Zycus pricing internally. NetSuite is the incumbent being displaced (unfit for purpose); SAP Ariba is on the CRM field with no active 2026 evidence (faded); Adobe Sign is a signature-only incumbent Consumer Cellular will retain for internal HR volume. Win path: total-cost-of-ownership pricing plus CLM/search-genie and NetSuite-integration proof the price-cutters cannot match.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "negative", "threat_level": "medium", "status": "active", "quote": "Coupa and zip still in running due to dropping their costs significantly which could be a slight risk", "date": "2026-06-25", "source": "Next Step 25 Jun 2026", "how_we_win": "Frame list-vs-CC pricing on total cost of ownership (3-yr SaaS + PS + integration) vs Coupa's lower headline SaaS but higher change cost; anchor on the accepted savings case."},
+        {"name": "Zip", "sentiment": "negative", "threat_level": "medium", "status": "active", "quote": "Coupa and zip still in running due to dropping their costs significantly which could be a slight risk", "date": "2026-06-25", "source": "Next Step 25 Jun 2026", "how_we_win": "Out-scope Zip on true CLM authoring, supplier risk (iRisk) and NetSuite PO-to-contract linkage that an intake-first tool cannot deliver."},
+        {"name": "NetSuite Procurement (incumbent being displaced)", "sentiment": "negative", "threat_level": "dormant", "status": "incumbent", "quote": "NetSuite procurement module unfit for purpose: missing contract hierarchy, limited approval flows, AP challenges", "date": "2025-10-20", "source": "Prior record discovery 20 Oct 2025 (Abe Comarow)", "how_we_win": "Prove the live NetSuite integration (recorded PO/GR/invoice sync video Abe requested) so replacement feels low-risk before the Spring 2027 renewal."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "low", "status": "faded", "quote": null, "date": "2026-06-25", "source": "SF Competitors__c", "how_we_win": "No active 2026 buyer signal; keep the transparent user-based pricing contrast ready if Ariba resurfaces."},
+        {"name": "Adobe Sign (signature incumbent)", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "we have 30k now with AdobeSign. We are also committed on that order until 10/8/2028", "date": "2026-06-18", "source": "Email 18 Jun 2026 (Abe Comarow)", "how_we_win": "Do not fight the internal-HR volume; position Zycus e-signature only for procurement contracts via native Adobe Sign/DocuSign integration and price the envelope split accordingly."},
+        {"name": "Do-nothing / status quo", "sentiment": "neutral", "threat_level": "low", "status": "do_nothing", "quote": "Expressed comfort with the current situation and acknowledged the need for better visibility into spending", "date": "2026-04-06", "source": "Prior record 6 Apr 2026", "how_we_win": "The NetSuite renewal (Spring 2027) and a departed legal rep make inertia costly; hold the mutual close plan to the implementation runway."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on classical CLM/P2P and pricing transparency; exposed on AI/agentic depth and on signatures where Adobe Sign must be retained for internal HR volume.",
+      "items": [
+        {"criterion": "CLM authoring and legal control (parallel redlining, fallback clauses, risk scoring)", "position": "aligned", "quote": "is there a way that we don't lock the document... allow for the vendor to kinda clearly redline", "date": "2026-06-18", "source": "Avoma CLM call 18 Jun 2026 (Abe)"},
+        {"criterion": "Transparent, non-consumption pricing", "position": "aligned", "quote": "Far more transparent, Michael... it's just user based", "date": "2026-06-05", "source": "Avoma InfoSec call 5 Jun 2026 (Michael)"},
+        {"criterion": "Live NetSuite integration proof", "position": "partially aligned", "quote": "netsuite live integration and search genie recorded videos", "date": "2026-06-18", "source": "Next Step 18 Jun 2026"},
+        {"criterion": "AI/LLM (Claude) integration and tokenization-cost transparency", "position": "exposed", "quote": "is there any, like, tokenization cost on our side, specifically when those models are being used?", "date": "2026-06-18", "source": "Avoma CLM call 18 Jun 2026 (Abe); Zycus to confirm"},
+        {"criterion": "Signature module fit (internal HR vs procurement volume)", "position": "exposed", "quote": "most of our volume is actually, like, internal HR signatures. So we probably still need to retain Adobe Sign either way", "date": "2026-06-18", "source": "Avoma CLM call 18 Jun 2026 (Abe)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide Zycus sub-processor list with locations and Merlin AI training-data handling answers", "said_by": "Privacy team (via Abe Comarow)", "date": "2026-07-01", "addressed": false, "quote": "Can you provide a full list of Zycus's sub-processors and their locations? Merlin AI - Training...", "source": "Task 1 Jul 2026"},
+        {"requirement": "Deliver updated pricing showing list cost and Consumer Cellular pricing", "said_by": "Abe Comarow", "date": "2026-06-25", "addressed": false, "quote": "Abe requested updated pricing showcasing list cost and CC pricing", "source": "Next Step 25 Jun 2026"},
+        {"requirement": "Send signature-module pricing on a cost-per-envelope basis", "said_by": "Colin Taira", "date": "2026-06-18", "addressed": false, "quote": "Can you also please send pricing on the signature module... on a cost per envelope or signature package structure", "source": "Avoma CLM call 18 Jun 2026"},
+        {"requirement": "Confirm handling of click-through/hyperlinked online terms (Google/AWS ToS) in the repository", "said_by": "Joseph Reiber", "date": "2026-06-18", "addressed": false, "quote": "their terms are hyperlinked usually... How do you treat those agreements?", "source": "Avoma CLM call 18 Jun 2026"},
+        {"requirement": "Confirm external Claude/LLM API query capability into Zycus contracts and spend, with geo-guarding", "said_by": "Abe Comarow", "date": "2026-06-18", "addressed": false, "quote": "Would we have the ability without actually going into Zycus to be able to search from Claude on our side with the your API", "source": "Avoma CLM call 18 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Record and share the search-genie clause/keyword-search video for Lisa and legal", "who": "Zycus", "grounding_quote": "I can record a small video and I can also share it with you... I will try to get it by tomorrow itself", "date": "2026-06-18", "due": "2026-06-19", "status": "overdue", "source": "Avoma CLM call 18 Jun 2026 (Ronit)"},
+          {"deliverable": "Share the live NetSuite integration recording (PO/GR/invoice sync) for Abe and IT", "who": "Zycus", "grounding_quote": "netsuite live integration and search genie recorded videos", "date": "2026-06-18", "due": "2026-06-26", "status": "overdue", "source": "Next Step 18 Jun 2026"},
+          {"deliverable": "Come back with a confirmed answer on click-through/online-terms handling", "who": "Zycus", "grounding_quote": "I can take that as an action item, and I can come back on this one... I can check, and I can confirm that", "date": "2026-06-18", "due": "2026-06-25", "status": "overdue", "source": "Avoma CLM call 18 Jun 2026 (Ronit)"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Provide internal/external signature envelope counts to finalize Certinal signature pricing", "who": "Buyer", "grounding_quote": "waiting on abe to provide internal / external envelope count", "date": "2026-06-18", "due": "2026-06-30", "status": "open", "source": "Next Step 18 Jun 2026"},
+          {"deliverable": "Return legal redlines on the MSA, Order Form and draft SOW from counsel", "who": "Buyer", "grounding_quote": "They have all contracts with legal - said they are backlogged and impacted by a recent legal rep leaving", "date": "2026-06-25", "due": "2026-07-17", "status": "open", "source": "Next Step 25 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Written EB budget/signature sign-off from Jason Chan", "quote": "Jason Chan told me he wants to be in the implementation meetings going forward", "status": "not addressed", "date": "2026-06-24", "gap_type": "knowledge", "source": "Email 24 Jun 2026 (Abe)"},
+        {"area": "Zycus answer on external Claude/LLM API querying and tokenization cost", "quote": "How will that be interfaced back with Claude is something which I'll have to check", "status": "acknowledged", "date": "2026-06-18", "gap_type": "knowledge", "source": "Avoma CLM call 18 Jun 2026 (Ronit)"},
+        {"area": "Certinal internal/external envelope count needed for signature pricing", "quote": "waiting on abe to provide internal / external envelope count", "status": "not addressed", "date": "2026-06-18", "gap_type": "knowledge", "source": "Next Step 18 Jun 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Front-runner in contracting; the win now hinges on locking the EB in writing, neutralizing the Coupa/Zip price cut, and resetting the date to a credible plan.",
+      "flags": [
+        "Convert Jason Chan's (Controller) new implementation-meeting attendance into a written budget and signature commitment before 31 Jul.",
+        "Neutralize Coupa/Zip price cuts with a total-cost-of-ownership package: list-vs-CC pricing plus the per-envelope signature quote in one view for Abe.",
+        "De-risk the date with a mutual close plan sequencing privacy answers, legal redlines and SOW scope to a realistic late-Aug signature."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Jason Chan", "title": "Controller", "role": "Economic Buyer", "last_contact_date": "2026-07-09", "sentiment": "Positive and rising: received the 8 May business-case readout and asked to join all implementation meetings going forward (24 Jun); now engaging directly.", "risk": "No written budget/signature sign-off logged; price pressure from Coupa/Zip could reopen the number if not anchored on total cost.", "source": "OpportunityContactRole; Email 24 Jun 2026"},
+        {"name": "Abe Comarow", "title": "Senior Strategic Sourcing Manager", "role": "Champion", "last_contact_date": "2026-07-02", "sentiment": "Strong active champion: confirmed 'we are the front runner' (25 Jun), coordinates every session, defends pricing internally.", "risk": "Single-threading the commercial defence against two price-cutting rivals; needs pricing ammunition and an EB touch to stay strong.", "source": "OpportunityContactRole; Next Step 25 Jun 2026"},
+        {"name": "Bobbie Reyes", "title": "General Counsel", "role": "Decision Maker", "last_contact_date": "2026-06-18", "sentiment": "Positive: legal/CLM session went well; owns MSA/OF/SOW approval.", "risk": "Legal backlog plus a departed legal rep may push redlines past mid-Jul, compressing signature.", "source": "OpportunityContactRole; Next Step 25 Jun 2026"},
+        {"name": "Colin Taira", "title": "Director of Procurement", "role": "Coach", "last_contact_date": "2026-06-18", "sentiment": "Positive and engaged since 5 Jun; asked for signature-module pricing.", "risk": "Not the budget owner; a supporting voice rather than the decision.", "source": "Task/activity contact; email signature 15 Jun 2026"},
+        {"name": "Joseph Reiber", "title": "Senior Corporate Counsel", "role": "Influencer", "last_contact_date": "2026-06-18", "sentiment": "Engaged and detail-oriented on click-through terms and authoring; clarifications, not objections.", "risk": "None material; part of the legal review team gating redlines.", "source": "OpportunityContactRole; Avoma CLM call 18 Jun 2026"},
+        {"name": "Marques Johnson", "title": "Senior Manager Governance, Risk and Compliance", "role": "Influencer", "last_contact_date": "2026-06-08", "sentiment": "Attended InfoSec/ITAM demos (28 May, 5 Jun); no formal InfoSec sign-off documented.", "risk": "InfoSec clearance not confirmed in writing; new privacy sub-processor/AI questions (1 Jul) route through GRC.", "source": "OpportunityContactRole; events 5 Jun 2026"},
+        {"name": "Garry Hill", "title": "Procurement Operations Manager", "role": "Influencer", "last_contact_date": "2026-06-22", "sentiment": "Engaged on supplier setup, PO-to-contract linkage and requisition flow.", "risk": "None material; operational stakeholder.", "source": "OpportunityContactRole; email signature 22 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Abe Comarow (Senior Strategic Sourcing Manager) is a strong, active champion: he confirmed 'we are the front runner' (25 Jun), drove the business-case readout and every validation session, submitted the contract set to his own legal team, and is orchestrating pricing and SOW next steps (last contact 2 Jul). The one caution is load: he is single-threading the commercial defence against Coupa and Zip cutting price, so reinforce him with a total-cost story and a direct Jason Chan touch. Colin Taira (Director of Procurement) is a secondary coach.",
+      "champion": "Abe Comarow, Senior Strategic Sourcing Manager",
+      "strength": "strong",
+      "at_risk": false,
+      "source": "Next Step 25 Jun 2026; Email 2 Jul 2026; OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is Negative (2.0): the 8 Jan exec session produced 16 action items, none touching AI/Merlin/Agentic, and the account is slow to adopt AI. Legal did show narrow curiosity on 18 Jun (Claude/LLM integration, tokenization cost) but those threads are unresolved. The deal is won on classical CLM/P2P value, not agentic - do not over-index the Merlin story.",
+      "score": "2.0 / Negative",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 2.0, Status Negative. Across 11+ discovered calls no Consumer Cellular stakeholder requested an AI demo block; the exec session's 16 action items are all classical procurement (pricing, ROI, eProcurement, CLM). The only AI pull is legal's interest in a future Claude/LLM authoring integration and its token-cost transparency (18 Jun), which Zycus still owes an answer on. Read as AI Resistant with a thin legal-integration curiosity, not agentic appetite.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "31 Jul close not credible: legal redlines backlogged (departed rep), SOW scope not finalized, pricing and privacy answers owed; CloseDate already pushed twice.", "first_raised": "2026-05-27", "date": "2026-06-25", "status": "open", "source": "Field history; Next Step 25 Jun 2026"},
+        {"category": "pricing", "detail": "Coupa and Zip dropped costs significantly and remain in the running; Abe needs updated list-vs-CC pricing to defend Zycus internally.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "Next Step 25 Jun 2026"},
+        {"category": "legal", "detail": "MSA/OF/SOW in legal review since 20 May, backlogged and slowed by a departed legal rep, 'a few weeks' to approval.", "first_raised": "2026-05-20", "date": "2026-06-25", "status": "open", "source": "Next Step 25 Jun 2026"},
+        {"category": "security_review", "detail": "Privacy team's sub-processor list and Merlin AI training-data questions (1 Jul) plus no documented InfoSec/GRC sign-off from Marques Johnson.", "first_raised": "2026-07-01", "date": "2026-07-02", "status": "open", "source": "Task 1-2 Jul 2026"},
+        {"category": "executive_alignment", "detail": "Economic Buyer Jason Chan is engaging but has given no written budget/signature commitment.", "first_raised": "2026-06-24", "date": "2026-06-24", "status": "open", "source": "Email 24 Jun 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live and broadening (finance, legal, IT, privacy all active in the last 30 days; Implementation Readiness 9 Jul). No cooling.",
+      "cooling": false,
+      "items": [
+        "Jason Chan (Controller) asked to join implementation meetings going forward (24 Jun).",
+        "Buyer-initiated 'Finalizing Agreements' scheduling thread through late Jun into Jul.",
+        "Privacy VP and additional counsel joined the 18 Jun CLM deep-dive."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send the privacy team the sub-processor list and Merlin AI training-data answers.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Privacy team raised sub-processor and Merlin AI training questions; Abe said they need these to proceed.", "trigger_date": "2026-07-01", "act_by": "2026-07-10", "expected_effect": "Clears the last open privacy gate blocking legal/DPA sign-off and keeps the contracting track moving."},
+        {"rank": 2, "action": "Deliver Abe list-vs-CC pricing plus the per-envelope signature quote in one total-cost view.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Abe requested updated pricing to defend Zycus vs Coupa/Zip price cuts; Colin asked for signature-module pricing.", "trigger_date": "2026-06-25", "act_by": "2026-07-13", "expected_effect": "Arms the champion to neutralize the price threat and protects the deal value ahead of EB sign-off."},
+        {"rank": 3, "action": "Run the SOW scoping deep-dive to finalize roles, resources and PS cost.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "SOW deep-dive only being set up as of 25 Jun; Implementation Readiness session ran 9 Jul to refine scope.", "trigger_date": "2026-07-09", "act_by": "2026-07-17", "expected_effect": "Unblocks the signature-predictor SOW so the contract can move to signature."},
+        {"rank": 4, "action": "Co-author a mutual close plan with Abe resetting signature to a credible late-August date.", "owner": "Executive sponsor", "horizon": "next_14_days", "trigger": "CloseDate pushed twice; legal backlogged; multiple parallel tracks against a 31 Jul date.", "trigger_date": "2026-06-25", "act_by": "2026-07-20", "expected_effect": "Replaces the placeholder date with a sequenced plan and secures Jason Chan's timeline commitment."},
+        {"rank": 5, "action": "Get written legal approval on MSA/OF/SOW redlines and confirm the Adobe Sign signature sequence.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Legal backlogged and slowed by a departed rep; native Adobe Sign integration discussed 18 Jun.", "trigger_date": "2026-06-25", "act_by": "2026-07-31", "expected_effect": "Removes the paper choke point and readies the deal for signature."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Zycus is the confirmed front-runner in active contracting with a strong CPO-adjacent champion in Abe and the budget owner Jason Chan now joining implementation meetings; the only things between us and the win are a compressed 31 Jul date on a backlogged legal team and Coupa/Zip cutting price.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Held at a Shortlisted-tier score near 72: fit and champion earn more, but we cap it below Vendor Selected because the award is not yet contractually locked and two rivals just cut price."},
+          {"tone": "good", "text": "Abe Comarow confirmed 'we are the front runner and need to continue hitting the mark' (25 Jun) while legal holds the MSA, Order Form and draft SOW - buyer behaviour consistent with a chosen vendor."},
+          {"tone": "warn", "text": "Coupa and Zip 'dropped their costs significantly' and remain in the running (25 Jun), so a price-only reopening is the main way this slips backward if we do not land total cost of ownership."},
+          {"tone": "warn", "text": "Economic Buyer Jason Chan is engaging but has given no written budget or signature commitment, leaving the number exposed to late renegotiation."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Seniority is rising: Controller Jason Chan asked to join all implementation meetings (24 Jun) and a Privacy VP joined the 18 Jun CLM deep-dive."},
+          {"tone": "good", "text": "Commercial and legal tracks are all live in the last 30 days: InfoSec/AP completed 8 Jun, CLM deep-dive 18 Jun, Implementation Readiness 9 Jul."},
+          {"tone": "warn", "text": "Momentum is throughput-limited: CloseDate was pushed twice (31 May -> 30 Jun -> 31 Jul) and legal is backlogged after a rep departure."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Buyer-initiated the 'Finalizing Agreements' scheduling thread and requested updated pricing, signature pricing and a SOW deep-dive - all pull, not push."},
+          {"tone": "good", "text": "Full committee engaged (finance, legal, InfoSec/GRC, AP, IT, procurement), and Adobe Sign envelope commitments were shared to scope signature pricing."},
+          {"tone": "warn", "text": "No signed SOW or written EB sign-off yet; commitment is strong behaviourally but not yet on paper."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The 31 Jul date is not credible against 4-5 weeks of remaining legal, SOW, pricing and privacy work on a backlogged legal team."},
+          {"tone": "warn", "text": "Price pressure from Coupa/Zip could reopen the commercials if the total-cost case is not delivered to Abe this week."},
+          {"tone": "warn", "text": "AIS is Negative and agentic appetite is thin, so the Merlin/AI upsell narrative should not be leaned on to justify price."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": 0.7, "evidence": "Controller Jason Chan asked to join implementation meetings (24 Jun); Privacy VP joined CLM deep-dive (18 Jun)."},
+        "timeline_slipping": {"strength": -0.6, "evidence": "CloseDate pushed twice and legal backlogged after a rep departure (field history; Next Step 25 Jun)."},
+        "price_pressure": {"strength": -0.4, "evidence": "Coupa and Zip dropped costs significantly and remain in the running (Next Step 25 Jun)."}
+      }
+    },
+    "customer_preference": {"level": "high", "evidence": "Abe Comarow: 'we are the front runner and need to continue hitting the mark' (25 Jun); buyer requesting Zycus-specific pricing, signature pricing, SOW scoping and finalizing agreements."},
+    "business_case": {"status": "confirmed", "evidence": "Business-case readout to finance 8 May 2026 showing cycle-time reduction and savings (Next Step 28 Apr; AIS_Why); user-based pricing welcomed as 'far more transparent' (Michael, 5 Jun)."},
+    "momentum_signals": {
+      "seniority_rising": true,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": true,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "Full source-to-pay suite (iContract, iSource, iSupplier, eProcurement, eInvoicing, Merlin, Merlin Intake)", "to": "Full source-to-pay suite unchanged", "detail": "No narrowing evidenced this sweep; product scope in Products__c is intact and all modules remain in play across the 5 Jun and 18 Jun sessions."},
+    "expansion_context": {"prior_closed_won": false, "prior_opp": null, "note": "No prior Zycus Closed-Won on Consumer Cellular; incumbent is NetSuite (being displaced). This is a net-new source-to-pay win, so executive/seat access is not inherited and EB confirmation must be earned on this deal."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 12,
+    "calls_read": 2,
+    "calls_omitted": [
+      {"call": "Legal - New Procure to Pay tool Demo (2026-06-16)", "reason": "no transcript available this sweep"},
+      {"call": "AP and Finance - Procure to Pay sessions (2026-06-05)", "reason": "no transcript available this sweep"},
+      {"call": "External - Consumer Cellular | Zycus Business Case Connect (2026-04-20)", "reason": "no transcript available this sweep"},
+      {"call": "Sample business case (2026-04-06)", "reason": "no transcript available this sweep"},
+      {"call": "External - Consumer Cellular Business Case Review (2026-03-27)", "reason": "no transcript available this sweep"},
+      {"call": "External - Consumer Cellular | Zycus CLM (2026-03-12)", "reason": "no transcript available this sweep"},
+      {"call": "Consumer Cellular | Zycus Follow Up Demonstration (2026-01-14)", "reason": "no transcript available this sweep"},
+      {"call": "Consumer Cellular | Zycus Demonstration (2026-01-08)", "reason": "no transcript available this sweep; AIS exec-session context carried"},
+      {"call": "Consumer Cellular x Zycus Discovery (2025-12-09)", "reason": "no transcript available this sweep"},
+      {"call": "Introductory Call: Consumer Cellular x Zycus (2025-10-20)", "reason": "no transcript available this sweep; discovery findings carried from prior record"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "120-day activities; 365-day field history",
+    "avoma_attendees": ["Abe Comarow", "Joseph Reiber", "Colin Taira", "Garry Hill", "Walter", "Lisa Rapp", "Michael"],
+    "gaps": [
+      "No verbatim buyer quote naming the exact ROI/savings figure in the transcripts read; business case corroborated by the 8 May readout artifact.",
+      "Two June transcripts (16 Jun Legal, 5 Jun AP) and all pre-June calls were notes/transcript-unavailable this sweep; read leans on the 18 Jun CLM and 5 Jun InfoSec transcripts plus the activity trail.",
+      "No documented InfoSec/GRC or EB written sign-off."
+    ]
+  },
+  "analysis_confidence": "High",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

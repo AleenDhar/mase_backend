@@ -1,0 +1,178 @@
+{
+  "opp_id": "006P700000aAeM5",
+  "hard": {
+    "opp_id": "006P700000aAeM5", "opp_name": "DEPARTMENT_OF_HEALTH - SA_2026",
+    "account_name": "DEPARTMENT OF HEALTH - SA", "account_industry": "Healthcare & Hospitals Services",
+    "billing_country": "South Africa", "owner_name": "John Woodcock", "owner_title": null, "manager_name": null,
+    "stage": "Qualified", "forecast_category": "Pipeline", "amount": 150000, "close_date": "2027-01-20",
+    "days_to_close": 198, "created_date": "2026-06-29", "qualified_date": "2026-06-29",
+    "last_activity_date": null, "last_modified_date": null,
+    "products": "iContract;eInvoicing;iRisk", "next_step": "Justice Mudau came at Zycus booth and had an extended demo with Caroline and Brice.Following this up a detailed demo to be conducted with the extended team.",
+    "ais_score": null, "ais_status": "", "ais_why": "",
+    "dm_identified": false, "eb_identified": false, "champion_identified": false,
+    "pain_identified": false, "metrics_identified": false, "competitor": "", "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aAeM5/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing", "critical": false,
+      "headline": "Positive booth interest from GM Justice Mudau on 29 Jun, but the promised extended-team demo is still unbooked and no buyer touch has landed since.",
+      "math": "Created 29 Jun 2026, 7 days old as of 06 Jul. Close 2027-01-20 is 198 days out. Stage Qualified reached day-one (Initial Interest to Qualified, 29 Jun). LastActivityDate null; no submission-date series (Qualified_Submission_Date__c, Formal_Eval_Submission_Date__c null) so no time-in-stage velocity yet. The single dated signal is the booth conversation with Justice Mudau (Next_Step__c, 29 Jun); the follow-up demo has no scheduled date and no buyer reply is logged. Close date 2027-01-20 is a placeholder unanchored to any stated Department budget or tender calendar.",
+      "forecast_defensible": true, "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Deal created 29 Jun 2026 off a booth conversation where GM Justice Mudau took an extended demo with Caroline and Brice and asked to bring his extended team (Next_Step__c, 29 Jun).",
+        "The promised extended-team demo has no scheduled date and no buyer-side response is logged; LastActivityDate is null.",
+        "Zero Avoma calls discovered via opportunity, account, or attendee-email pull (all three methods run; no buyer calls exist yet).",
+        "Nine Salesforce Opportunity-Health nudges fired 29 Jun (Decision Maker not identified, keep multi-threaded, prospect gone cold); these are system health prompts, not completed buyer work.",
+        "Close date 2027-01-20 is unanchored to any Department procurement, tender, or budget-cycle date; forecast Pipeline is the honest category for a booth-stage lead."
+      ],
+      "trajectory": "steady", "prior_verdict": "Off Track"
+    },
+    "meddpicc": {
+      "metrics": {"status": "gap", "sources": ["Next_Step__c (booth conversation 29 Jun)", "Products__c (iContract;eInvoicing;iRisk)", "SF pain/value fields null"], "narrative": "No business problem or quantified impact has been captured. The 29 Jun booth demo with Justice Mudau covered iContract, eInvoicing, and iRisk at a high level but surfaced no cost, cycle-time, headcount, error-rate, or savings figure, and Customer_Business_Problem__c, Business_Objectives__c, and Value_to_Customer__c are all null. The product mix implies the Department is feeling manual contract administration, slow invoice processing, and compliance-audit exposure, but none of that is buyer-stated. Quantifying the pain with the operational owners in the extended-team demo is the move."},
+      "economic_buyer": {"status": "gap", "sources": ["OpportunityContactRole (Justice Mudau, GM, Influencer, primary)", "SF EB fields null (Who_will_approve_budget__c, Purchase_approvals_Required_from__c)"], "narrative": "No economic buyer is engaged. Justice Mudau is the primary contact but sits as a GM / Influencer, and a GM in a provincial supply-chain function does not typically control a R/$150k multi-module budget. For a South African provincial Department of Health the budget authority most likely sits with the Head of Department or the CFO under delegated procurement thresholds, but no such person is named in any field or contact role. Identifying and getting the budget owner into the room is a prerequisite before any commercial conversation."},
+      "decision_criteria": {"status": "gap", "sources": ["Next_Step__c (booth demo 29 Jun)", "SF criteria fields null (Business_Requirements__c, Top_Challenges_Priorities__c)"], "narrative": "No evaluation criteria or business-requirement document has been shared. The booth demo touched the three modules but did not surface mandatory versus nice-to-have features, integration needs, or any weighted scoring, and Business_Requirements__c and AI_Needs_in_RFP_Rating__c are null. There are no calls to extract criteria from. The extended-team demo is the opportunity to map what the Department will actually evaluate on for contract management, e-invoicing, and risk."},
+      "decision_process": {"status": "gap", "sources": ["Field history (Initial Interest to Qualified, 29 Jun)", "SF process fields null (What_is_the_decision_process__c, Mandate__c)"], "narrative": "No decision or approval process is documented. What_is_the_decision_process__c and Mandate__c are null, and it is unknown whether this will be sole-sourced or run as a formal public tender. As a South African government entity the Department may be obliged to run a competitive tender under PPPFA / public-procurement regulations, which would introduce multi-vendor scoring and Treasury approval above delegated limits; this is unconfirmed. Clarifying the procurement path is a top discovery question for the next meeting."},
+      "paper_process": {"status": "gap", "sources": ["SF paper fields null (Current_Contract_Expiration__c)", "Government-procurement inference"], "narrative": "No contracting mechanics are known: MSA, SOW, legal review, and InfoSec requirements are all undiscussed and Current_Contract_Expiration__c is null, so there is no incumbent-contract forcing function. A public health department will likely carry standard-terms paper, B-BBEE / supplier-registration requirements, and a security questionnaire, none of which is yet visible. Surfacing the Department's standard contracting and vendor-onboarding path is a later-stage discovery item once the demo confirms fit."},
+      "identify_pain": {"status": "gap", "sources": ["Next_Step__c (booth interest in iContract/eInvoicing/iRisk, 29 Jun)", "SF pain fields null (Pain_points_in_the_current_solution__c)"], "narrative": "No specific operational or financial pain has been articulated by the buyer. Justice Mudau's booth interest in iContract, eInvoicing, and iRisk (29 Jun) implies contract-administration, invoice-approval, and risk-monitoring friction, but no pain owner, volume, delay, or compliance impact has been stated, and Pain_points_in_the_current_solution__c is null. The extended-team demo, with the supply-chain operational owners (Mariam Kozain, Franklin Barnes), is where the real pain and its owner must be pinned down."},
+      "champion": {"status": "gap", "sources": ["OpportunityContactRole (Justice Mudau, GM, Influencer, primary)", "Next_Step__c (booth 29 Jun)", "X10b_Champion_Business_Buyer__c null"], "narrative": "No champion is yet established. Justice Mudau showed genuine pull at the booth, taking an extended demo and asking to bring his wider team (Next_Step__c, 29 Jun), which is a promising coach signal, but there is no evidence of internal advocacy, access to the budget owner, or engagement since creation seven days ago. Whether he can carry Zycus internally or is only a discovery coordinator is unproven. The extended-team demo is the test of whether he will open doors to the decision authority."},
+      "competition": {"status": "gap", "sources": ["SF competition fields null (Competitors__c, Existing_vendor__c, How_are_you_addressing_your_problem_toda__c)", "Next_Step__c (no rival named)", "Zero calls"], "narrative": "No competitor intelligence exists. Competitors__c, Others_Competitors_Please_specify__c, Existing_vendor__c, and How_are_you_addressing_your_problem_toda__c are all null, and the booth conversation named no rival, incumbent, or current tool. It is unknown whether the Department runs a manual/status-quo process, has an incumbent system, or will issue a competitive tender. For a government buyer the most probable path is a formal tender bringing multiple vendors in, so the absence of a named rival reflects an immature process, not a sole-source win. Asking how they manage contracts, invoicing, and risk today is the first competitive-discovery question."}
+    },
+    "deal_movement": {
+      "summary": "The only real development is the 29 Jun booth conversation that created the opportunity; since then the record shows CRM edits (stage, amount, close-date, owner reassignment) and system health nudges, but no buyer-side movement.",
+      "items": [
+        {"change": "Opportunity created off a Zycus-booth extended demo with GM Justice Mudau (Caroline and Brice presenting).", "date": "2026-06-29"},
+        {"change": "Stage advanced Initial Interest to Qualified on day one.", "date": "2026-06-29"},
+        {"change": "Amount corrected from 15,000 to 150,000 and close date reset to 2027-01-20.", "date": "2026-06-29"},
+        {"change": "Owner reassigned from Krina Shah to John Woodcock and Division set to New Markets.", "date": "2026-06-29"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor, incumbent, or current solution has been named in any field, next step, task, or call, so the competitive field is genuinely unknown rather than sole-sourced. Competitors__c, Existing_vendor__c, and How_are_you_addressing_your_problem_toda__c are all null and zero buyer calls exist. As a South African provincial health department the likeliest path is a formal public tender under PPPFA rules, which would bring rivals such as full-suite source-to-pay vendors into contention, but that is unconfirmed. The first discovery task is to learn how the Department manages contracts, invoicing, and risk today and whether a tender is planned.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is unproven. Justice Mudau's booth interest points to a need across contract management (iContract), e-invoicing (eInvoicing), and risk (iRisk), but no stated requirement or evaluation criterion exists yet to test alignment against.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Run a detailed demo for the extended supply-chain team.", "said_by": "Justice Mudau", "date": "2026-06-29", "addressed": false, "quote": "Following this up a detailed demo to be conducted with the extended team.", "source": "Next_Step__c, 29 Jun"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Confirm the extended-team attendees and a date for the detailed demo.", "who": "Buyer", "grounding_quote": "detailed demo to be conducted with the extended team", "date": "2026-06-29", "due": null, "status": "open", "source": "Next_Step__c, 29 Jun"}
+      ]}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "Only GM Justice Mudau (Influencer) is on the record; no budget owner named.", "status": "not addressed", "date": "2026-06-29", "gap_type": "knowledge", "source": "OpportunityContactRole + SF EB fields null"},
+        {"area": "Procurement path (sole-source vs public tender)", "quote": "No decision-process or competition field populated.", "status": "not addressed", "date": "2026-06-29", "gap_type": "knowledge", "source": "SF What_is_the_decision_process__c / Competitors__c null"},
+        {"area": "Buyer pain and metrics", "quote": "Booth interest in three modules but no stated pain or numbers.", "status": "not addressed", "date": "2026-06-29", "gap_type": "knowledge", "source": "SF pain/value fields null"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "A fresh booth lead with one interested GM and a wide but unengaged influencer roster; the win-strategy priority is converting the booth interest into a scheduled, multi-threaded demo and finding who owns the budget.",
+      "flags": [
+        "Lock the extended-team demo within days: Justice Mudau's booth pull (29 Jun) cools fast if there is no date, and that meeting is the only path to real discovery.",
+        "Map the budget owner early: no economic buyer exists in the roster, so identify the Head of Department or CFO before proposing anything commercial.",
+        "Clarify the procurement path up front: as a provincial health department this may require a formal tender, which reshapes timeline, competition, and the close date."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Justice Mudau", "title": "GM at Department of Health", "role": "Coach", "last_contact_date": "2026-06-29", "sentiment": "Positive (took an extended booth demo, asked to bring his team)", "risk": "Single point of contact and only an Influencer; no proven access to budget authority and no engagement since 29 Jun.", "source": "OpportunityContactRole (primary) + Next_Step__c 29 Jun"},
+        {"name": "Mariam Kozain", "title": "Director Supply Chain Sourcing", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (not yet engaged)", "risk": "Most senior supply-chain authority in the roster and a likely decision influencer; must be in the extended-team demo.", "source": "OpportunityContactRole"},
+        {"name": "Franklin Barnes", "title": "Supply Chain Manager", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (not yet engaged)", "risk": "Probable operational pain owner for contract and invoice processes; never engaged.", "source": "OpportunityContactRole"},
+        {"name": "Rafeeqah Isaacs", "title": "Supply Chain Management Clerk", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (not yet engaged)", "risk": "Operational user; never engaged.", "source": "OpportunityContactRole"},
+        {"name": "Bronwyn Linnert", "title": "Procurement Clerk", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (not yet engaged)", "risk": "Operational user; never engaged.", "source": "OpportunityContactRole"},
+        {"name": "Aniswa Mfana", "title": "Senior Administrative Officer", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (not yet engaged)", "risk": "Operational support contact; never engaged.", "source": "OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion is secured. Justice Mudau (GM, Influencer) is a promising coach after taking an extended booth demo and asking to bring his team on 29 Jun, but he has shown no internal advocacy, no access to the budget owner, and no engagement in the seven days since creation. He needs to be developed into a champion at the extended-team demo, and the deal has no continuity if he goes quiet.",
+      "champion": "Justice Mudau", "strength": "developing", "at_risk": false,
+      "source": "OpportunityContactRole (primary) + Next_Step__c 29 Jun"
+    },
+    "ai_positioning_strength": {"summary": "No AIS score is populated and no call evidence exists, so AI appetite cannot yet be read; iRisk and the contract/invoice automation angle offer a Merlin story to test once the extended-team demo is booked.", "score": "", "under_positioned": false},
+    "ai_fit_signal": {"summary": "AIS_Score__c and AIS_Status__c are null and there are no calls to gauge AI appetite; the module mix (contract, invoicing, risk automation) suggests openness to automation but nothing is buyer-confirmed.", "tier": "AI Curious"},
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker is engaged; the only contact is a GM-level influencer.", "first_raised": "2026-06-29", "date": "2026-06-29", "status": "open", "source": "OpportunityContactRole + SF EB fields null"},
+        {"category": "political", "detail": "Government procurement may mandate a formal tender under PPPFA rules, reshaping the process, timeline, and competition.", "first_raised": "2026-06-29", "date": "2026-06-29", "status": "open", "source": "Government-procurement inference"},
+        {"category": "timeline", "detail": "Close date 2027-01-20 is an unanchored placeholder with no buyer-stated budget or tender calendar behind it.", "first_raised": "2026-06-29", "date": "2026-06-29", "status": "open", "source": "SF CloseDate; submission-date fields null"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Only seven days old with a single positive booth touch and no follow-up scheduled; the deal is early rather than cooling, but momentum depends entirely on booking the extended-team demo.",
+      "cooling": false, "items": [
+        "Positive: GM Justice Mudau took an extended booth demo and asked to bring his wider team (29 Jun).",
+        "Watch: no demo date set and no buyer reply logged since creation; LastActivityDate null.",
+        "Watch: budget authority and procurement path both unknown."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Book the detailed extended-team demo with Justice Mudau and Mariam Kozain.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Justice Mudau asked at the booth for a detailed demo with his extended team.", "trigger_date": "2026-06-29", "act_by": "2026-07-13", "expected_effect": "Converts booth interest into a real qualification meeting before it cools and starts multi-threading beyond a single contact."},
+        {"rank": 2, "action": "Identify the Department's budget owner (Head of Department or CFO) and a route to them.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Only a GM-level influencer is on the record; no economic buyer exists.", "trigger_date": "2026-06-29", "act_by": "2026-07-20", "expected_effect": "Maps the power line so the deal can progress past discovery toward a commercial decision."},
+        {"rank": 3, "action": "At the demo, quantify pain across contracts, invoicing and risk and confirm sole-source versus tender.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No stated pain, criteria, or procurement path exists for the three scoped modules.", "trigger_date": "2026-06-29", "act_by": "2026-08-05", "expected_effect": "Establishes metrics, criteria, and the true buying process to anchor the forecast and the close date."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A seven-day-old booth lead: GM Justice Mudau showed real interest in iContract, eInvoicing, and iRisk on 29 Jun, but there is no economic buyer, no confirmed pain, no scheduled follow-up, and the whole deal rests on a single influencer.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This is a booth-stage lead resting on one GM-level influencer (Justice Mudau, 29 Jun) with no economic buyer engaged and no confirmed buying process, so the win position is low despite the positive first touch."},
+          {"tone": "good", "text": "Justice Mudau took an extended booth demo and asked to bring his wider supply-chain team, a genuine pull signal rather than a cold inbound (Next_Step__c, 29 Jun)."},
+          {"tone": "warn", "text": "No budget owner is named anywhere and the six other contacts are all clerks and administrators, so we have no line to the authority that would approve a 150k spend."},
+          {"tone": "warn", "text": "As a South African provincial health department this may be forced to a formal public tender, which could open the field to full-suite rivals we have not yet even identified."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "The deal was created straight off a positive 29 Jun booth conversation and advanced to Qualified the same day."},
+          {"tone": "warn", "text": "Seven days on, the promised extended-team demo still has no date and no buyer reply is logged, so momentum has stalled at the first step."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The only commitment on record is a verbal booth ask for a follow-up demo; no attendees, date, requirements, or budget have been shared."},
+          {"tone": "warn", "text": "No pain, ROI, or business case has been articulated by the buyer, so their commitment to change is still unproven."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded on Justice Mudau with no economic buyer and no decision maker mapped; the deal has no continuity if he goes quiet."},
+          {"tone": "warn", "text": "The 2027-01-20 close date is an unanchored placeholder with no buyer-stated budget or tender timeline behind it."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.4, "evidence": "Only a verbal booth ask for a demo; no date, requirements, or budget shared (29 Jun)."},
+        "deal_risk": {"strength": -0.5, "evidence": "Single-threaded on a GM-level influencer; no EB or DM mapped; unanchored close date."}
+      }
+    },
+    "customer_preference": {"level": "medium", "evidence": "Justice Mudau took an extended booth demo and asked to bring his wider team (29 Jun); positive interest but no Zycus-specific decisive lean or commercial next step."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, cycle-time, or compliance impact discussed; pain fields null and no calls."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0, "calls_read": 0, "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "created 29 Jun 2026 through 06 Jul 2026 (7 days); activities and field history last 120d",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero buyer calls exist across opportunity, account, and attendee-email discovery; no transcript evidence for MEDDPICC.",
+      "No economic buyer or decision maker identified in contact roles or fields.",
+      "No pain, metrics, decision criteria, decision process, or competition captured in any source.",
+      "Procurement path (sole-source vs formal PPPFA tender) is unconfirmed."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

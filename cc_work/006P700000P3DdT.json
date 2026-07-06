@@ -1,0 +1,258 @@
+{
+  "opp_id": "006P700000P3DdT",
+  "hard": {
+    "opp_id": "006P700000P3DdT",
+    "opp_name": "Refresco_Spend, CLM, Sourcing",
+    "account_name": "Refresco Group",
+    "account_industry": "Food, Bev & FMCG",
+    "billing_country": "Netherlands",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2026-10-28",
+    "days_to_close": 114,
+    "created_date": "2025-10-28",
+    "qualified_date": "2025-10-29",
+    "last_activity_date": "2026-03-30",
+    "last_modified_date": "2026-03-30",
+    "products": "iContract;iSource;iSave;Merlin;Merlin Intake",
+    "next_step": "30/10/2025 Discovery Call with Coert: invite procurement controller and Europe procurement director for ROI assessment and focused demo; deploy Zycus intake manager via MS Teams to raise PR-to-PO adoption from 70% to 95%.",
+    "ais_score": 8.0,
+    "ais_status": "Moderate",
+    "ais_why": "Oct 2025 Avoma notes capture CSCO Coert Michielsen framing AI and data lakes as the way to overcome 35-ERP integration barriers; explicit interest in the autonomous negotiation agent and MS-Teams Merlin Intake. Held below 9-10 because no RFP or POC is committed and Coert voiced scope skepticism ('do we really have to implement the complete software').",
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Status quo (do-nothing)",
+    "primary_competitor": "Status quo (do-nothing)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000P3DdT/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "A CPO-sponsored EUR 3.5B AI/intake vision that has gone dark: Coert Michielsen engaged strongly on the 30 Oct 2025 discovery call but has not replied to two rep follow-ups since, the promised controller and Europe-director demo never happened, and the deal has sat in Qualified for eight months.",
+      "math": "Created 28 Oct 2025, qualified 29 Oct 2025, and unmoved in Qualified for ~251 days. Close date pushed 7 months (31 Mar 2026 to 28 Oct 2026) on 6 Dec 2025. Last verified buyer engagement was the 30 Oct 2025 discovery call (~250 days ago); the only touches since are two unanswered rep emails on 20 and 30 Mar 2026. With 114 days to close and zero stage progression, a Qualified deal cold for 60+ days is forced Off Track.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Qualified stage since 29 Oct 2025 with zero advancement in ~251 days (SF StageName history)",
+        "Close date slipped 7 months from 31 Mar 2026 to 28 Oct 2026 on 6 Dec 2025 with no buyer-documented reason (SF CloseDate history)",
+        "Last buyer-facing interaction was the 30 Oct 2025 discovery call; only rep-side touches since are two 'Call Attempted / Email Sent' follow-ups on 20 and 30 Mar 2026 with no buyer reply (SF activities)",
+        "Coert committed on 30 Oct 2025 to invite his procurement controller and Europe procurement director for an ROI assessment and focused demo; that never occurred (SF Next_Step__c)",
+        "Single-threaded on Coert Michielsen; no other buyer contact engaged in this deal (SF activity contacts, Avoma)",
+        "Buyer voiced scope skepticism on the discovery call ('do we really have to implement the complete software') and contentment with current coverage, signalling do-nothing risk (Avoma 30 Oct 2025)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "confirmed",
+        "narrative": "Coert Michielsen quantified the opportunity in volumetric terms on the 30 Oct 2025 discovery call: EUR 3.5B total spend across three regions (Europe, North America, Australia), roughly 70% direct, with indirect around EUR 1B of which EUR 700M is covered and EUR 300M is not. He set an explicit operational target to lift PR-to-PO adoption from 70% to 95% using the intake agent, and named the pain of 'too many people doing jobs that are not really adding much value' in decentralized Europe. The gap is that no savings, ROI, or FTE-reduction figure has ever been built: the free business-case assessment Caroline offered was accepted verbally but the questionnaire was never returned, so the value case is quantified in spend but not in dollars saved. Move: convert his own EUR 3.5B and 70%-to-95% numbers into a costed ROI model.",
+        "sources": ["Avoma discovery call 30 Oct 2025 (Coert Michielsen)", "SF Next_Step__c 30 Oct 2025"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Coert Michielsen, who introduced himself on the 30 Oct 2025 call as 'chief supply chain officer' at Refresco, is the budget and scope authority for this initiative: he unilaterally set scope ('I rather focus myself on the other 3.2 billion'), declined supplier management and indirect leased-car categories, and noted that broadening centralization would require 'the authority in the group'. He is therefore the economic buyer by conversation evidence even though no OpportunityContactRole names him as such. However he is not yet a committed sponsor and the funding path is unconfirmed, he asked whether Zycus could help him 'go to the board to get funding', implying budget is not signed off. Move: confirm his budget authority and whether board funding is required before commercials.",
+        "sources": ["Avoma discovery call 30 Oct 2025 (Coert Michielsen)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria surfaced on the 30 Oct 2025 call are: embedded, core-native AI rather than a bolt-on layer (Caroline contrasted Zycus's built-in Gen AI with 'Coupa has Navi... on top of the system'), out-of-box S4HANA integration across many non-unified SAP instances (Coert: 'we have S4HANA in almost all the cases'), a low-disruption MS-Teams intake experience to drive PR-to-PO adoption, and modular/phased adoption ('do we really have to implement the complete package'). Coert probed integration depth ('even when the S4HANA clients are set up differently') and the Teams workflow ('is that a workflow in MS Teams instead of in SAP'). These are inferred interest criteria from one discovery call, not a formal scored RFP; no decision scorecard or weighting exists yet. Move: co-define written selection criteria at the ROI/demo session.",
+        "sources": ["Avoma discovery call 30 Oct 2025 (Coert Michielsen, Caroline Lacocque, Varun Kukreja)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "No formal decision or buying process is defined. The only process signal is Coert's 30 Oct 2025 statement that he would invite his procurement controller and his Europe procurement director to a follow-up ROI assessment and focused demo, implying a small committee would form around a value review, but that meeting never happened and neither person has been engaged. There is no RFP, no stated evaluation timeline, and no articulated approval chain beyond his reference to needing 'authority in the group'. What would create visibility: securing the multi-stakeholder ROI session Coert himself proposed, and asking directly how a spend-suite investment gets approved at Refresco.",
+        "sources": ["SF Next_Step__c 30 Oct 2025", "Avoma discovery call 30 Oct 2025"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in play, which is appropriate for a Qualified-stage deal with no commercials started. As a new-business full-suite motion (iContract, iSource, iSave, Merlin, Merlin Intake), a signature would ultimately require an MSA plus Order Form plus a separately signed SOW, with InfoSec/DPA review given the AI modules, but none of this has been initiated. Current_Contract_Expiration is not populated, so there is no contractual forcing function. Visibility will only come once a demo and ROI review move the deal to commercials.",
+        "sources": ["SF (no legal/InfoSec tasks logged)", "Products__c"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is specific, confirmed, and owned by Coert Michielsen. Refresco was 'built up from 35 different acquisitions, and therefore also many different ERP systems', which he called a long-standing 'excuse' for being 'behind on automation'; the decentralized European landscape leaves 'too many people doing jobs that are not really adding much value'. Systemically, the contract database (Ledgesway), DocuSign signing workflow, and a standalone e-auction tool are 'basically separate... we don't have anything integrated', and PR-to-PO discipline is weak because buyers 'immediately go to purchase order' with no material numbers, leaving indirect spend without grip (EUR 300M of EUR 1B uncovered). Pain owner is Coert, the supply-chain/procurement executive accountable for regional efficiency and headcount.",
+        "sources": ["Avoma discovery call 30 Oct 2025 (Coert Michielsen)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no proven internal champion. Coert Michielsen engaged genuinely on the 30 Oct 2025 discovery call and is the pain owner and budget authority, but he functions as the senior buyer rather than an advocate selling Zycus internally, and he has been dark for ~250 days with two rep follow-ups unanswered. What is missing to develop a champion: he never delivered the stakeholder introductions he promised (procurement controller, Europe procurement director), has not returned the ROI questionnaire, and has shown no evidence of advancing Zycus with peers. The deal is single-threaded on a cooling executive with no second relationship to sustain momentum. Move: re-engage Coert with a value-led reason, then multi-thread to the two contacts he named.",
+        "sources": ["SF Next_Step__c 30 Oct 2025", "SF activities 20 and 30 Mar 2026", "Avoma discovery call 30 Oct 2025"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No competitor has been named by the buyer in any source; this reads as a sole-source conversation where the real contest is against inaction. Coert repeatedly signalled do-nothing risk ('do we really have to implement the complete software', 'I'm not unhappy with the value we cover on indirect spend', 'we have a lean and mean team'). The displaced incumbents are disconnected point tools, the Ledgesway contract database, DocuSign, and a standalone e-auction tool, which Zycus counters with one unified codebase and out-of-box S4HANA integration. Caroline pre-empted Coupa by contrasting embedded Gen AI with 'Coupa has Navi... on top of the system', but the buyer never raised Coupa, so it is not an active rival. How we win: quantify ROI on his own numbers and offer a narrow, phased Merlin Intake start to defuse the scope objection.",
+        "sources": ["Avoma discovery call 30 Oct 2025", "SF Competitors__c (null)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal peaked at the 30 Oct 2025 discovery call and has coasted since: a 7-month close-date push on 6 Dec 2025, then two unanswered rep follow-up emails in March 2026, and no buyer engagement for ~250 days. The ball is with the Deal team to manufacture a value-led reason for Coert to re-engage.",
+      "items": [
+        {"change": "Discovery call held with Coert Michielsen; pain, EUR 3.5B spend scope, and AI/intake interest captured", "date": "2025-10-30"},
+        {"change": "Close date pushed 7 months from 31 Mar 2026 to 28 Oct 2026 with no buyer-documented reason", "date": "2025-12-06"},
+        {"change": "Rep follow-up email sent to Coert referencing Horizon 2026 conference takeaways; no reply", "date": "2026-03-20"},
+        {"change": "Second rep follow-up email to Coert; call attempted, no reply", "date": "2026-03-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No rival was named by the buyer; the single strongest current threat is do-nothing / status quo, which Coert voiced directly on 30 Oct 2025 ('I'm not unhappy with the value we cover on indirect spend'). The displaced field is disconnected incumbent point tools (Ledgesway, DocuSign, a standalone e-auction tool) that Zycus counters with one unified codebase and OOB S4HANA integration. Coupa and SAP Ariba appear in the prior record with fabricated, unsourced quotes and are retired here; Coupa was only referenced by Zycus (Caroline) as a bolt-on contrast, not evaluated by the buyer.",
+      "competitors": [
+        {"name": "Status quo / do-nothing", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "But in order for us to improve our process and get more grip on our indirect spend that we already buy, do we really have to implement Zycus as a software tool?", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Coert Michielsen)", "how_we_win": "Convert his EUR 3.5B / 70%-to-95% PR-to-PO numbers into a costed ROI case and offer a narrow Merlin Intake start on direct spend to lower the perceived disruption."},
+        {"name": "Incumbent point tools (Ledgesway, DocuSign, standalone e-auction)", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "We have a contract database, Ledgesway. We are using DocuSign... We have an e-auction tool, but it's basically separate. We don't have anything integrated.", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Coert Michielsen)", "how_we_win": "Lead with the single-source-code suite and out-of-box S4HANA integration to replace disconnected tools and enable end-to-end automation."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Zycus only: 'Coupa has Navi. Navi is actually on top of the system' (Caroline Lacocque positioning embedded AI); buyer never raised Coupa.", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Zycus positioning, not buyer)", "how_we_win": "Keep the embedded-vs-bolt-on AI contrast in reserve; do not treat as an active rival.", "retire": true, "retire_reason": "Not a buyer-evaluated competitor; only Zycus mentioned it. Prior record's Coupa/RFP quote ('Coupa was in the RFP but their CLM is weak') is unsourced and unsupported by any evidence."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "No buyer or field evidence names SAP Ariba on this deal.", "date": "2025-10-30", "source": "None (fabricated in prior record)", "how_we_win": "N/A", "retire": true, "retire_reason": "Prior record's SAP Ariba entry and its 2026-02-20 quote are fabricated with no call, field, task, or next-step backing."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus is well aligned on the two criteria Coert cares about most, embedded AI and S4HANA integration, but exposed on the modular/low-disruption expectation because he openly questioned whether he needs the full suite.",
+      "items": [
+        {"criterion": "Core-native, embedded AI (not a bolt-on layer)", "position": "aligned", "quote": "So every single one of our modules has an element of generative AI... because we started really early, it's embedded into the system.", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Caroline Lacocque, engaged by Coert)"},
+        {"criterion": "Out-of-box integration with many non-unified S4HANA instances", "position": "aligned", "quote": "Yes, we have S4HANA in almost all the cases, so that will be the most logical one for us.", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Coert Michielsen)"},
+        {"criterion": "Phased, modular adoption without full-suite disruption", "position": "partially aligned", "quote": "Do we really have to implement the complete set, the complete package in order to achieve the goal we have?", "date": "2025-10-30", "source": "Avoma discovery call 30 Oct 2025 (Coert Michielsen)"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No costed ROI / savings case built", "quote": "If you would like to have a free assessment, please involve your colleagues, and I will send you the metrics.", "status": "not addressed", "date": "2025-10-30", "gap_type": "knowledge", "source": "Avoma discovery call 30 Oct 2025"},
+        {"area": "Decision process and evaluation timeline undefined", "quote": "I would like to invite our procurement controller and our procurement director for Europe.", "status": "not addressed", "date": "2025-10-30", "gap_type": "knowledge", "source": "SF Next_Step__c 30 Oct 2025"},
+        {"area": "Single-threaded; no second buyer relationship", "quote": "Only Coert Michielsen has engaged; the two stakeholders he named were never brought in.", "status": "not addressed", "date": "2026-03-30", "gap_type": "knowledge", "source": "SF activity contacts, Avoma"},
+        {"area": "Budget authority / board funding path unconfirmed", "quote": "Do you also need any sort of support in budgeting process internally at Refresco, or is it something that's already signed off?", "status": "not addressed", "date": "2025-10-30", "gap_type": "knowledge", "source": "Avoma discovery call 30 Oct 2025"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a cold, single-threaded early-stage deal whose main enemy is inertia, not a rival. The win levers are a value-led re-engagement, multi-threading off Coert's own named contacts, and a costed ROI case that makes acting now cheaper than doing nothing.",
+      "flags": [
+        "Break the ~250-day silence with a specific, value-led reason to re-engage Coert, not another generic chase; the last two follow-ups went unanswered.",
+        "Multi-thread beyond one dark executive: secure the procurement controller and Europe procurement director Coert himself named, so the deal survives his inertia.",
+        "Neutralise do-nothing by turning his EUR 3.5B / 70%-to-95% PR-to-PO numbers into a costed ROI case and offering a narrow Merlin Intake start on direct spend."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Coert Michielsen", "title": "Chief Supply Chain Officer", "role": "Economic Buyer", "last_contact_date": "2026-03-30", "sentiment": "cooling", "risk": "Single point of contact and budget/scope authority who engaged well on 30 Oct 2025 but has been dark ~250 days, ignored two March 2026 follow-ups, and never delivered the stakeholder introductions he promised. Deal cannot progress or survive his inertia while single-threaded.", "source": "SF activity contact; Avoma discovery call 30 Oct 2025 (self-introduced as chief supply chain officer)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No true internal champion exists. Coert Michielsen is the engaged senior buyer and budget authority, but he acts as the executive customer rather than an internal advocate, and he has cooled to silence for ~250 days without delivering the stakeholder intros he promised. What developed: strong initial interest in the AI/intake story on 30 Oct 2025. What is missing: any advocacy, multi-threading, or responsiveness since. The deal is single-threaded on a dormant executive.",
+      "champion": "Coert Michielsen",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF Next_Step__c 30 Oct 2025, SF activities 20 and 30 Mar 2026, Avoma discovery call 30 Oct 2025"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story landed well: Coert framed AI and data lakes as the way to overcome 35-ERP fragmentation and leaned into the autonomous negotiation agent and MS-Teams Merlin Intake ('I'd like to hear more about that... that could speed up the implementation of the complete source to pay process'). Zycus is positioned strongly, not under-positioned; the risk is not the AI narrative but re-engaging the buyer to act on it.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8 / Moderate. Calls show genuine, buyer-spoken AI appetite: Coert personally framed AI and data lakes as the integration solution across 35 ERPs and probed the intake agent and autonomous negotiation agent. The Moderate label is slightly conservative versus the enthusiasm, tempered only by his scope skepticism ('do we really have to implement the complete software').",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Buyer resists full-suite adoption and internal disruption with a 'lean and mean team'; wants to start narrow and questioned needing the complete package.", "first_raised": "2025-10-30", "date": "2025-10-30", "status": "open", "source": "Avoma discovery call 30 Oct 2025"},
+        {"category": "budget", "detail": "No ROI/savings case built and funding may not be signed off; Coert is content with current indirect-spend coverage, weakening urgency to invest.", "first_raised": "2025-10-30", "date": "2025-10-30", "status": "open", "source": "Avoma discovery call 30 Oct 2025"},
+        {"category": "political", "detail": "Single-threaded on one executive; the procurement controller and Europe procurement director he named have never been engaged, and broader centralization needs 'authority in the group'.", "first_raised": "2025-10-30", "date": "2026-03-30", "status": "open", "source": "SF Next_Step__c 30 Oct 2025; SF activities"},
+        {"category": "timeline", "detail": "7-month close-date slip (6 Dec 2025) and ~251 days stalled in Qualified with no progression signal deprioritization.", "first_raised": "2025-12-06", "date": "2025-12-06", "status": "open", "source": "SF CloseDate and StageName history"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement has cooled from a strong single discovery call to complete silence. The buyer has not responded to two rep-initiated follow-ups (20 and 30 Mar 2026) and the deal has been dark ~250 days.",
+      "cooling": true,
+      "items": [
+        "No buyer reply to rep follow-ups on 20 and 30 Mar 2026 (SF activities)",
+        "Promised multi-stakeholder ROI demo never scheduled since 30 Oct 2025 (SF Next_Step__c)",
+        "Close date pushed 7 months with no buyer justification (SF CloseDate history)"
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The only substantive contact, the 30 Oct 2025 discovery call, ended with Coert agreeing to a demo, an ROI review, and stakeholder introductions, none of which happened, and two later follow-ups went unanswered.", "tone": "warn"},
+      {"lens": "Competition", "text": "No rival has been named; the real threat is Coert choosing to keep managing indirect spend manually with his lean team rather than buy.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Coert named a procurement controller and a Europe procurement director to bring into an ROI review, but neither has ever been engaged and we remain single-threaded.", "tone": "warn"},
+      {"lens": "Commercials", "text": "Coert asked how pricing is built up, but no quote, ROI model, or confirmed funding exists against the EUR 3.5B spend.", "tone": "warn"}
+    ],
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Caroline re-engages Coert with the free AI/ROI assessment he accepted, tied to his 70%-to-95% PR-to-PO goal.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Two rep follow-ups (20 and 30 Mar 2026) went unanswered after ~250 days of silence.", "trigger_date": "2026-03-30", "act_by": "2026-07-13", "expected_effect": "Restarts a dead conversation with a value hook, testing whether the deal is alive before further investment."},
+        {"rank": 2, "action": "Offer Coert a tightly-scoped Merlin Intake demo on direct-spend PR-to-PO via MS Teams.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Coert questioned needing the full suite and asked to 'hear more' about the intake agent.", "trigger_date": "2025-10-30", "act_by": "2026-07-17", "expected_effect": "Defuses the do-nothing/scope objection by proving value on one module, lowering perceived disruption."},
+        {"rank": 3, "action": "Ask Coert to bring his procurement controller and Europe procurement director into the ROI session.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Coert named both stakeholders for an ROI assessment on 30 Oct 2025 but never introduced them.", "trigger_date": "2025-10-30", "act_by": "2026-07-20", "expected_effect": "Breaks single-threading and builds a committee that can carry the deal past Coert's inertia."},
+        {"rank": 4, "action": "Build and send a costed ROI case using the EUR 3.5B spend and 70%-to-95% PR-to-PO figures.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Rich volumetric pain captured but no savings figure ever quantified for the buyer.", "trigger_date": "2025-10-30", "act_by": "2026-08-03", "expected_effect": "Turns qualitative interest into a fundable business case, arming Coert to seek board funding."},
+        {"rank": 5, "action": "If Coert stays silent 10 business days, send a Food & Bev proof point from Horizon 2026 to re-open dialogue.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "March Horizon 2026 outreach drew no reply; a relevant peer reference may re-earn attention.", "trigger_date": "2026-03-20", "act_by": "2026-08-05", "expected_effect": "A low-pressure value touch that keeps the relationship warm without another generic chase."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A CPO-sponsored EUR 3.5B AI/intake vision that has gone dark: Coert Michielsen engaged strongly on one 30 Oct 2025 discovery call but has ignored two follow-ups over ~250 days, the promised controller/Europe-director demo never happened, and the only thing between us and any progress is re-earning his attention with a costed ROI case.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We sit at the bottom of the funnel: one strong discovery call surfaced real pain (35-ERP fragmentation, 70%-to-95% PR-to-PO across EUR 3.5B spend) but nothing has advanced it in eight months (Avoma 30 Oct 2025; SF stage unchanged since 29 Oct 2025)."},
+          {"tone": "warn", "text": "The buyer is narrowing, not expanding: Coert asked 'do we really have to implement the complete software' and declined supplier management and indirect leased-car categories (Avoma, 30 Oct 2025)."},
+          {"tone": "warn", "text": "Single-threaded on one executive who has gone silent: two Zycus emails on 20 and 30 Mar 2026 drew no reply and the promised controller/Europe-director demo never occurred (SF activities; Next_Step 30 Oct 2025)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-facing progress since the 30 Oct 2025 intro call; the only touches since are two unanswered rep emails on 20 and 30 Mar 2026 (SF activities)."},
+          {"tone": "warn", "text": "Close date was pushed 7 months (31 Mar 2026 to 28 Oct 2026) on 6 Dec 2025 with no buyer-documented reason (SF CloseDate history)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Coert agreed to answer the ROI questionnaire, set demo dates, and invite his controller and Europe procurement director, but none of it materialised in the eight months since (Avoma / Next_Step 30 Oct 2025)."},
+          {"tone": "good", "text": "He did lean into the AI story, asking to hear more on the MS-Teams intake agent and how pricing is built up (Avoma, 30 Oct 2025)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Primary threat is do-nothing, not a competitor: Coert said 'I'm not unhappy with the value we cover on indirect spend' and prefers to avoid internal disruption with a lean team (Avoma, 30 Oct 2025)."},
+          {"tone": "warn", "text": "No economic-buyer sign-off, no ROI model, and no decision process or timeline mapped; the EUR 3.5B vision has never been converted to a costed business case."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "Zero stage movement in ~251 days, 7-month close slip, and two unanswered follow-ups; the only recent touches are rep-side (SF stage/CloseDate history, activities)."},
+        "customer_commitment": {"strength": -0.6, "evidence": "All committed next steps (ROI questionnaire, demo dates, stakeholder intros) went undelivered over eight months (Avoma / Next_Step 30 Oct 2025)."},
+        "deal_risk": {"strength": -0.7, "evidence": "Do-nothing inertia plus scope skepticism, single-threading, and no funded business case (Avoma 30 Oct 2025)."}
+      }
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full Source-to-Pay suite across EUR 3.5B spend (iContract, iSource, iSave, Merlin, Merlin Intake)",
+      "to": "Buyer wants a narrow, phased start on direct-spend PR-to-PO / Merlin Intake, questioning the need for the full suite and declining supplier management and several indirect categories",
+      "detail": "Coert pushed to limit scope on 30 Oct 2025: 'do we really have to implement the complete set, the complete package', plus explicit declines of supplier relationship management ('I would like to let it gradually grow') and indirect leased-car / consultant categories ('there are areas that I prefer not to touch'). A defensive, cost-and-disruption-averse posture, not a competitive loss."
+    },
+    "customer_preference": {"level": "low", "evidence": "Coert stayed neutral and scope-skeptical ('do we really have to implement the complete software', 'I'm not unhappy with the value we cover on indirect spend') and then went silent for eight months (Avoma 30 Oct 2025; SF activities)."},
+    "business_case": {"status": "partial", "evidence": "Rich volumetric pain (EUR 3.5B spend, 70% direct, EUR 300M uncovered indirect, PR-to-PO 70%-to-95%) but no savings or ROI figure was ever built with the buyer (Avoma 30 Oct 2025)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [{"title": "Exclusive Invite: Agentic AI in Procurement Roundtable | Zycus | Amsterdam", "date": "2026-05-28", "reason": "Event invitation with no transcript available; not a buyer deal call for this opportunity."}],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history full; contact roles; Q1/Q2/Q3 fields per authoritative facts block",
+    "avoma_attendees": ["Coert Michielsen"],
+    "gaps": [
+      "Only one buyer call exists (30 Oct 2025 discovery), ~250 days old; latest engagement is stale which lowers recency confidence.",
+      "No competitor named in any source; unknown whether this is genuinely sole-source or a dark evaluation.",
+      "No costed ROI / savings case built with the buyer.",
+      "Decision process, evaluation timeline, and board-funding path undefined.",
+      "Single-threaded: procurement controller and Europe procurement director named by Coert have never been engaged."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

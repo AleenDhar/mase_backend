@@ -1,0 +1,212 @@
+{
+  "opp_id": "006P700000aAHu5IAF",
+  "hard": {
+    "opp_id": "006P700000aAHu5IAF",
+    "opp_name": "Bundesdruckerei iSupplier, iContract",
+    "account_name": "Bundesdruckerei GmbH",
+    "account_industry": "Federal",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2027-06-22",
+    "days_to_close": null,
+    "created_date": "2026-06-29",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": null,
+    "last_modified_date": "2026-06-30",
+    "products": "iContract;iSupplier;Merlin",
+    "next_step": "",
+    "ais_score": 8.5,
+    "ais_status": "Strong",
+    "ais_why": "AI is explicitly called out as a hard requirement in Section 3.1 (Usability and Benutzeroberflaeche) of the Leistungsbeschreibung. The tender mandates an embedded digital AI procurement assistant (chatbot) across all modules capable of answering natural language queries from procurement users, covering supplier contract details (terms, clauses, duration), supplier qualification status, and supplier research. This is a must-have, not a nice-to-have. Section 1.1 also calls out AI-based solutions as part of the strategic data foundation goal. Merlin maps directly to both requirements. 8-year contract horizon, ~1,000 users, EUR 1B revenue.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aAHu5IAF/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "A 7-day-old data shell on a live 8-year German federal tender: real compelling event (the Leistungsbeschreibung mandates an embedded AI procurement assistant per SF AIS_Why__c) but ZERO buyer engagement. No contact roles, no discovery call, no MEDDPICC foundation. The tender is the opening, not proof of a qualified deal. This needs immediate contact-mapping and tender-timeline confirmation or it is a speculative lead.",
+      "math": "Created 29 Jun 2026, qualified 30 Jun 2026, close date 22 Jun 2027 (about 351 days out as of 06 Jul 2026). Zero elapsed working time in Qualified with any buyer engagement. A federal, government-owned buyer at Bundesdruckerei scale (~1,000 users, EUR 1B revenue, 8-year term) runs a formal 9-12 month public-tender motion (tender response, evaluation, shortlist, technical/InfoSec review, award, contracting). The long runway is credible on paper, but the clock has not started: no LastActivityDate, no contacts, no calls. Engagement pulse: DARK.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Created 29 Jun 2026, qualified 30 Jun 2026, last modified 30 Jun 2026 (SF)",
+        "No LastActivityDate on record (SF)",
+        "No contact roles (SF OpportunityContactRole query returned zero rows)",
+        "Only auto-generated Opportunity Health 'Call Attempted' nudge tasks on 30 Jun 2026, no buyer-facing touch (SF Task)",
+        "No field history beyond creation, stage set Initial Interest -> Qualified by Rashi Varma on 30 Jun 2026 (SF OpportunityFieldHistory)",
+        "No Avoma calls discovered via opp, account or attendee-email pull",
+        "No next step defined (SF Next_Step__c null)",
+        "Live public tender documented: mandatory embedded AI procurement assistant, Section 3.1, 8-year horizon (SF AIS_Why__c)",
+        "Products scope defined: iContract, iSupplier, Merlin (SF Products__c) but no engagement to validate fit",
+        "Engagement pulse: DARK, no verified buyer engagement"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The tender documents the SCALE of the opportunity but no quantified value case has been built with the buyer. Per SF AIS_Why__c the Leistungsbeschreibung covers ~1,000 procurement users, a group of EUR 1B revenue and an 8-year contract horizon, which frames the size of the prize. But no buyer has articulated cost of the current state, cycle-time pain, or a target ROI, because there has been no discovery call (no Avoma calls; Customer_Business_Problem__c, Value_to_Customer__c null). The move is to run a discovery call and quantify what the manual/legacy supplier-contract process costs Bundesdruckerei today and what the 8-year AI-enabled target state is worth.",
+        "sources": ["SF AIS_Why__c", "SF Products__c", "No Avoma calls", "SF Customer_Business_Problem__c: null"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is unmapped. SF OpportunityContactRole returned zero rows, and the EB synthesis fields (X10a_Sponsor__c, Who_will_approve_budget__c, Executive_Sponsor_Identified__c) are null, with no calls to reveal who controls the budget. For a federal, government-owned entity a six-figure, 8-year SaaS commitment typically requires a procurement director plus a division head or board/supervisory sign-off. The move is to identify the procurement owner running the tender on the first contact and map the approval chain explicitly.",
+        "sources": ["SF OpportunityContactRole: zero rows", "SF X10a_Sponsor__c: null", "SF Who_will_approve_budget__c: null", "No Avoma calls"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The core evaluation criterion is documented by the buyer's own tender rather than by a call: per SF AIS_Why__c, Section 3.1 of the Leistungsbeschreibung makes an embedded, natural-language AI procurement assistant (spanning supplier contract terms, qualification status and supplier research) a mandatory functional requirement, and Section 1.1 requires a unified, centralized data foundation for AI-driven procurement. That is a hard gate any vendor without native AI fails. What is still unknown is the weighting, the security/compliance criteria (BSI IT-Grundschutz, GDPR, data sovereignty are likely for a federal ID/systems provider) and the integration expectations, none of which have been confirmed with a buyer contact. The move is to obtain the full tender criteria and confirm how heavily AI, security and integration are scored.",
+        "sources": ["SF AIS_Why__c", "SF Business_Requirements__c: null", "No Avoma calls"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unknown beyond the strong inference that a formal public tender is running (a Leistungsbeschreibung exists per SF AIS_Why__c). No approval-chain fields are populated (What_is_the_decision_process__c, Purchase_approvals_Required_from__c, Multiple_approvals__c all null) and there is no call sequence to read as a process map. For a federal buyer, expect internal needs assessment, formal tender evaluation, technical and InfoSec review, and board or supervisory approval. The move is to confirm the tender submission deadline, the evaluation stages and the award timeline directly with procurement.",
+        "sources": ["SF AIS_Why__c", "SF What_is_the_decision_process__c: null", "No Avoma calls", "No next-step history"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown. No Current_Contract_Expiration__c and no fields or activity reference legal, InfoSec, procurement channel or SI involvement. A federal, government-owned buyer procuring an 8-year, ~1,000-user platform will almost certainly impose GDPR/DPA terms, BSI IT-Grundschutz security evidence, and possibly data-residency or sovereign-cloud constraints, and may procure via a public framework. As a full-suite new-business deal (iContract + iSupplier + Merlin) this is an MSA + Order Form + SOW motion, not a single-module order form. The move is to ask early whether they procure on their own paper and what security and data-protection gates apply.",
+        "sources": ["SF Current_Contract_Expiration__c: null", "SF Products__c: iContract;iSupplier;Merlin", "No Avoma calls"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The buyer's pain is visible through the tender, not yet confirmed on a call. The tender requires a unified, centralized procurement data foundation and a natural-language AI assistant across supplier contracts, qualification and research (SF AIS_Why__c), which points to fragmented supplier-contract and supplier-management processes and a strategic push toward AI-driven procurement. The named product scope (iContract for contract management, iSupplier for supplier management) corroborates that. What is inferred versus confirmed: no Bundesdruckerei stakeholder has articulated the operational pain, its cost, or the consequence of inaction (Pain_points_in_the_current_solution__c, What_if_this_is_not_done__c null). The move is to confirm and own the pain with the process owner on a first call.",
+        "sources": ["SF AIS_Why__c", "SF Products__c", "SF Pain_points_in_the_current_solution__c: null", "No Avoma calls"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. There are zero contact roles on the opportunity (SF OpportunityContactRole), no champion-flagged contact (X10b_Champion_Business_Buyer__c null), and no call history showing advocacy or internal navigation. For a risk-averse federal buyer running a formal tender, a champion is essential to guide us through the process and advocate when we are not in the room. The move is to identify a process owner with a stake in the AI-enabled target state on the first contact and begin building that relationship deliberately.",
+        "sources": ["SF OpportunityContactRole: zero rows", "SF X10b_Champion_Business_Buyer__c: null", "No Avoma calls"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive field is unknown. Competitors__c and the free-text competition fields (Existing_vendor__c, How_are_you_addressing_your_problem_toda__c, Replacing_What__c) are null, and no call or task names a rival. Because this is a formal government tender it is very likely a multi-vendor evaluation open to the usual suite players (SAP Ariba, Coupa, Ivalua, GEP), but nothing in the evidence names them, so none are asserted. The mandatory embedded-AI requirement (Section 3.1) is a potential wedge that could thin the field to vendors with native AI. The move is to confirm on first contact whether an incumbent is being replaced and which vendors are shortlisted.",
+        "sources": ["SF Competitors__c: null", "SF Existing_vendor__c: null", "SF AIS_Why__c", "No Avoma calls"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The record is a fresh shell. It was created 29 Jun 2026 by Mona Schreyer and reassigned the same day to Dirk Fischbach, then moved Initial Interest -> Qualified and typed New Business by Rashi Varma on 30 Jun 2026. The only activity is seven auto-generated Opportunity Health 'Call Attempted' nudges on 30 Jun 2026, which are system prompts to the rep, not buyer touches. No buyer engagement of any kind is on record.",
+      "items": [
+        {"change": "Opportunity created and reassigned to owner Dirk Fischbach", "date": "2026-06-29"},
+        {"change": "Stage moved Initial Interest -> Qualified and typed New Business by Rashi Varma", "date": "2026-06-30"},
+        {"change": "Seven auto Opportunity Health nudge tasks logged (no buyer contact reached)", "date": "2026-06-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any source (Competitors__c null, no calls, no tasks). Because this is a formal federal public tender at Bundesdruckerei scale, a competitive multi-vendor evaluation is the most likely shape, but no rival is identified in the evidence, so none is asserted. The single most useful competitive fact is a wedge, not a threat: the tender's mandatory embedded-AI-assistant requirement (Section 3.1, SF AIS_Why__c) can disqualify vendors without native AI and favors Merlin. Confirm the shortlist and any incumbent on first contact.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer's stated tender requirements map cleanly onto the proposed scope, but fit is documented only from the tender text, not validated with a buyer.",
+      "items": [
+        {"criterion": "Embedded natural-language AI procurement assistant across all modules (mandatory)", "position": "aligned", "quote": "The tender mandates an embedded digital AI procurement assistant (chatbot) across all modules capable of answering natural language queries", "date": "2026-06-30", "source": "SF AIS_Why__c (Leistungsbeschreibung Section 3.1)"},
+        {"criterion": "Unified, centralized data foundation for AI-driven procurement", "position": "aligned", "quote": "the client wants a unified and centralized data basis to power further AI-driven procurement decisions", "date": "2026-06-30", "source": "SF AIS_Why__c (Leistungsbeschreibung Section 1.1)"},
+        {"criterion": "Supplier contract and supplier management platform (8-year, ~1,000 users)", "position": "aligned", "quote": "covering supplier contract details (terms, clauses, duration), supplier qualification status, and supplier research", "date": "2026-06-30", "source": "SF AIS_Why__c + SF Products__c (iContract, iSupplier)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide an embedded natural-language AI procurement assistant across all modules", "said_by": "Bundesdruckerei tender", "date": "2026-06-30", "addressed": false, "quote": "The tender mandates an embedded digital AI procurement assistant (chatbot) across all modules ... This is a must-have, not a nice-to-have", "source": "SF AIS_Why__c (Leistungsbeschreibung Section 3.1)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No buyer engagement", "quote": "No LastActivityDate; no Avoma calls via opp, account or attendee-email pull", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF LastActivityDate: null + Avoma discovery"},
+        {"area": "No contact roles / stakeholders", "quote": "OpportunityContactRole returned zero rows", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Economic buyer and decision maker unmapped", "quote": "EB and DM synthesis fields null, no contacts", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Q3 fields null"},
+        {"area": "Decision process and tender timeline unknown", "quote": "No submission deadline or evaluation stages on record", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF What_is_the_decision_process__c: null"},
+        {"area": "Competitive shortlist unknown", "quote": "No competitor named in any field or call", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c: null"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a live federal tender with zero buyer contact. The win path is entirely about starting the relationship fast and leading with the AI mandate.",
+      "flags": [
+        "Zero contacts on a live 8-year tender: identify and engage the procurement lead running the Leistungsbeschreibung and confirm the submission deadline before the window closes.",
+        "The tender makes an embedded AI procurement assistant mandatory (Section 3.1): lead with Merlin as the qualifying differentiator, since vendors without native AI fail the functional requirement.",
+        "Federal, government-owned buyer: expect BSI IT-Grundschutz, GDPR/DPA and data-sovereignty gates, line up InfoSec and sovereign-cloud proof points early rather than at contracting."
+      ]
+    },
+    "stakeholder_map": {"items": []},
+    "champion_strength": {
+      "summary": "No champion exists. Zero contact roles, no buyer engagement, no relationship foundation on a 7-day-old record.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole zero rows, no Avoma calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin maps directly to the tender's mandatory embedded-AI-assistant and unified-data-foundation requirements (SF AIS_Why__c), so the fit is strong, but the AI story has not yet been put in front of any Bundesdruckerei stakeholder.",
+      "score": "high",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8.5 / Strong: the buyer's own tender makes an embedded AI procurement assistant a hard functional requirement and calls out AI-driven procurement as a strategic goal (SF AIS_Why__c, Sections 3.1 and 1.1). No calls exist yet to corroborate or temper this, but the field signal is unusually strong and buyer-documented.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker mapped; no access to the tender's decision-making authority.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole zero rows"},
+        {"category": "political", "detail": "Single-thread to nobody: zero contacts on a multi-stakeholder federal buying committee.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole zero rows"},
+        {"category": "timeline", "detail": "Tender submission deadline and evaluation timeline unknown; risk of missing the formal window.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c null"},
+        {"category": "security_review", "detail": "Federal buyer likely to require BSI IT-Grundschutz, GDPR/DPA and data-sovereignty evidence not yet scoped.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "Inference from Federal account industry + SF Products__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No engagement to cool: the deal is 7 days old with no buyer touch. This is a cold-start shell, not a deal that lost momentum.",
+      "cooling": false,
+      "items": []
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Reach the procurement lead running the tender and confirm the submission deadline.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Live public tender documented but no buyer contact identified (SF AIS_Why__c; OpportunityContactRole zero rows)", "trigger_date": "2026-06-30", "act_by": "2026-07-13", "expected_effect": "Starts the relationship and anchors every next step to the real tender clock instead of a placeholder close date."},
+        {"rank": 2, "action": "Identify and multi-thread the procurement, IT and InfoSec owners on the tender.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Zero contact roles on a multi-stakeholder federal buying committee (SF OpportunityContactRole)", "trigger_date": "2026-06-30", "act_by": "2026-07-20", "expected_effect": "Builds the stakeholder map and creates the coverage needed to find a champion and the economic buyer."},
+        {"rank": 3, "action": "Run a discovery call to confirm the business problem, tender criteria and decision process.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Pain and decision process only inferred from the tender text, never confirmed with a buyer (SF AIS_Why__c; process fields null)", "trigger_date": "2026-06-30", "act_by": "2026-07-24", "expected_effect": "Converts a paper shell into a qualified deal with owned pain, criteria weighting and an approval chain."},
+        {"rank": 4, "action": "Position Merlin against the mandatory embedded AI assistant requirement in the tender response.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Section 3.1 makes a native AI procurement assistant a must-have functional requirement (SF AIS_Why__c)", "trigger_date": "2026-06-30", "act_by": "2026-08-04", "expected_effect": "Uses the AI mandate as the wedge to clear the functional gate and thin the competitive field."}
+      ]
+    }
+  },
+  "customer_preference": {"level": "none", "evidence": "No buyer engagement of any kind on record 7 days after creation; no call, email, or stated preference."},
+  "business_case": {"status": "partial", "evidence": "Tender documents the need (unified AI-driven procurement data foundation, ~1,000 users, 8-year term per SF AIS_Why__c) but no ROI or savings quantified with the buyer."},
+  "momentum_signals": {
+    "seniority_rising": false,
+    "commercial_topics_entering": false,
+    "concrete_dates": false,
+    "customer_requested_next_meeting": false,
+    "close_plan_concretizing": false,
+    "generic_demo_only": false,
+    "competitor_praised": false
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "created 29 Jun 2026 through 06 Jul 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls discovered via opp, account or attendee-email pull",
+      "No OpportunityContactRole rows (no known buyer contacts or emails to seed attendee discovery)",
+      "No economic buyer, decision maker or champion identified",
+      "Competitive shortlist and any incumbent unknown",
+      "Tender submission deadline and evaluation timeline not on record"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

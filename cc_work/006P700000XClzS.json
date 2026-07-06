@@ -1,0 +1,236 @@
+{
+  "opp_id": "006P700000XClzS",
+  "hard": {
+    "opp_id": "006P700000XClzS",
+    "opp_name": "CMWA_Sourcing&Proc_Opp_April'26",
+    "account_name": "Central Motor Wheel Of America, Inc.",
+    "account_industry": "Auto & Transport",
+    "billing_country": "United States",
+    "owner_name": "Michael McCarthy",
+    "owner_title": "",
+    "manager_name": "",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 70000,
+    "close_date": "2027-04-16",
+    "days_to_close": 284,
+    "created_date": "2026-04-24",
+    "qualified_date": "2026-04-24",
+    "last_activity_date": "2026-05-21",
+    "last_modified_date": "2026-05-21",
+    "products": "iSource;eProcurement;Merlin",
+    "next_step": "Sent resources and following up in 2 weeks time.",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "Chris Burris engaged on Zycus's AI-driven sourcing and autonomous negotiation pitch, but the customer is early-stage with no formal initiative, no budget, and administrative burden as the real pain; AI interest is reactive, not mandated.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+    "primary_competitor": "Status quo (manual/no-decision)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XClzS/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Deal has gone cold: no buyer contact in 75 days after the single 22 Apr intro call. Bailey Erazo's promised 2-week follow-up is ~11 weeks overdue, the buyer is doing solo early research across multiple vendors, and the close date sits 284 days out with zero progression.",
+      "math": "Days to close: 284 (close 2027-04-16 vs today 2026-07-06). Time in Qualified: ~73 days (created/qualified 24 Apr 2026), zero stage progression. Last verified BUYER engagement: 22 Apr 2026 introductory call (75 days ago). Last Salesforce activity: 21 May 2026 (rep-side Clari 'bump' email, not buyer-facing). Rep committed on 22 Apr to send resources and follow up in ~2 weeks (early May); no buyer reply logged since. 75 days of buyer silence exceeds the 60-day cold threshold and is far beyond the deal's own 2-week promised cadence, so this is Off Track (cold) rather than merely Slowing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last buyer engagement was the 22 Apr 2026 introductory call (75 days ago): Chris Burris (Purchasing Manager) engaged positively, corrected focus to eSourcing and eProcurement, and asked about pricing and next steps, but nothing has advanced since (source: Avoma intro call 22 Apr 2026).",
+        "Rep's own committed follow-up is ~11 weeks overdue: Bailey Erazo said 'I can check back in like two weeks' time' on 22 Apr; the only trace since is a one-way Clari 'bump' email on 21 May with no buyer response (source: Avoma 22 Apr 2026; SF Task 21 May 2026).",
+        "Buyer is early and unsponsored: Chris said 'we're kind of just in the investigation and research stage and really haven't even had any internal discussions about it, more of just me doing it on my own so far' (source: Avoma 22 Apr 2026).",
+        "Buyer is shopping in parallel: 'I've just started my research, so maybe you were just the second company' — Zycus is one of several early looks, with Coupa, GEP Worldwide, JAGGAER and SAP Ariba logged as competitors (source: Avoma 22 Apr 2026; SF Competitor field).",
+        "No second meeting, discovery call, or demo has been booked or delivered; the deal is single-threaded on one purchasing manager with no executive access."
+      ],
+      "trajectory": "weaker",
+      "prior_verdict": "Slowing"
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Chris Burris (Purchasing Manager) articulated clear qualitative pain but no numbers on the 22 Apr 2026 call: 'we are spending a lot of time on administrative and paperwork duties that are a little bit of a time waste when we could be using that time for more strategic procurement items', and separately that his team 'manually sending emails to suppliers with purchase orders' and rarely runs competitive quotes, 'because our department is not huge, we're not able to spend the time analyzing that, and we really just order.' No time saved, headcount, spend-under-management, or savings target was ever quantified. Bailey Erazo offered to build a 5-year savings business case from prior case studies but nothing was co-developed, so the value case is entirely qualitative. Quantifying the manual-PO hours and the leakage from non-competitive ordering is the move.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)", "Avoma intro call 22 Apr 2026 (Bailey Erazo, business-case offer)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged. Chris Burris is the only contact and holds no budget authority: he said on 22 Apr 2026 that securing 'the big wigs or the higher ups up top to actually go ahead and sign off on a project like this' is required and that he 'hasn't even had any internal discussions about it' yet. There is no OpportunityContactRole for an Economic Buyer or Executive Sponsor, and no finance or C-level name surfaced on the call. The evidence shows budget authority sits above Chris with an unnamed leadership group he has not yet approached, so mapping and reaching that owner is a ranked move; asserting a name now would be fabrication.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)", "SF OpportunityContactRole (no EB/Exec Sponsor role present)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are early and buyer-implied rather than formally documented. On 22 Apr 2026 Chris Burris signalled the modules that matter, correcting the rep: 'I actually am more interested in the esourcing and eProcurement than the contract management and supplier risk management', driven by reducing repetitive manual work and getting competitive quotes his small team currently skips. Plex ERP integration is an implicit criterion ('we are using Plex'), and cost sensitivity is explicit ('I don't want to waste your time if the cost is prohibitive'). No RFP, RFI, scorecard, or written requirement set exists yet, so these are inferred from one discovery conversation and must be confirmed in a scoped discovery/demo.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no defined decision process. The call sequence is a single introductory call with one attendee (Chris Burris) and Zycus reps Bailey Erazo and Divya Kumar; no second stakeholder, no procurement or legal contact, and no evaluation stages have appeared. Chris described a self-directed, pre-committee state on 22 Apr 2026 ('more of just me doing it on my own so far') and named only a rough personal timeline ('hoping to get it going within this year... within our fiscal year, which we just started April 1'). The approval chain, buying committee, and evaluation steps are all unknown; reading the process requires a discovery call and an org-map that has not yet happened.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)", "SF activities (single intro meeting, no follow-on)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in view, which is expected at Qualified this early. The only paper reference is Bailey Erazo's standard note on 22 Apr 2026 that a business case typically starts with 'we'll sign an NDA' before exchanging spend data. No MSA/SOW, legal, procurement channel, or InfoSec path has been discussed, and Central Motor Wheel of America's contract terms are unknown. Visibility here will only come once a discovery call and value case create a reason for procurement and legal to engage.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Bailey Erazo, NDA/business-case reference)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clearly owned by Chris Burris (Purchasing Manager) and stated in his own words on 22 Apr 2026: excessive time on administrative and paperwork tasks, manually emailing purchase orders to suppliers, and rarely running competitive quotes so the team 'just keeps ordering from the same supplier over and over without really doing a quote comparison.' He also flagged growing supplier-risk survey burden ('we're constantly having to answer surveys regarding risk... conflict minerals') that his team handles by surveying suppliers and taking their word for it. The pain is genuine and specific but currently a personal frustration, not an organization-mandated initiative, which is why it has not translated into internal urgency or budget.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Chris Burris (Purchasing Manager) is a developing, at-risk champion. What has developed: he sought Zycus out ('that's why I looked you guys up'), engaged warmly across a 39-minute call, sharpened the scope to eSourcing/eProcurement, and asked unprompted about a demo, pricing, and next steps on 22 Apr 2026. What is missing: he has no executive access, has started no internal conversations ('just me doing it on my own so far'), has introduced no other stakeholder, and has gone silent for 75 days with the rep's follow-up never landing. He is a single thread with real interest but no organizational traction, so he is at risk of fading unless re-engaged and given a reason to socialize internally.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)", "SF activities (no buyer re-engagement since 22 Apr; single contact)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The real competitor here is inaction, not a named rival. Four competitors are logged in Salesforce (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) but NONE was named or discussed by the buyer; Chris Burris said only 'I've just started my research, so maybe you were just the second company... I don't know if I had anything in mind' (22 Apr 2026), so the shortlist is unformed and no rival is preferred. The dominant risk is status-quo drift: an early, unsponsored, budget-less buyer doing solo research who quietly deprioritizes. Our wedge if he re-engages is AI-native automation for a small team, the eSourcing autonomous negotiation agents and OCR invoice-to-Plex flow he reacted to, plus Microsoft Teams-based ease of use, but that only matters if we restart the conversation.",
+        "sources": ["Avoma intro call 22 Apr 2026 (Chris Burris)", "SF Competitor field (Coupa; GEP Worldwide; JAGGAER; SAP Ariba, none buyer-confirmed)"]
+      }
+    },
+    "critical_signals": {
+      "items": [
+        {"lens": "Last meeting", "text": "The 22 Apr intro call went well, Chris Burris narrowed interest to eSourcing and eProcurement and asked about a demo and pricing, but nothing was booked and it is now the last real contact.", "tone": "warn"},
+        {"lens": "Commercials", "text": "A rough $70k-$110k annual range was floated on 22 Apr, but the buyer has no budget, no internal approval, and admitted he had no figure in mind.", "tone": "warn"},
+        {"lens": "Competition", "text": "Four rivals are logged but the buyer named none and is only on his second vendor look, so the field is wide open and the true threat is a no-decision.", "tone": "neu"},
+        {"lens": "New stakeholder", "text": "Still single-threaded on Chris Burris, a purchasing manager with no executive access and no internal sponsor yet engaged.", "tone": "crit"}
+      ]
+    },
+    "deal_movement": {
+      "summary": "One introductory call on 22 Apr 2026 created the deal; it moved to Qualified the same week and has not progressed since. The only touch after the call is a one-way rep 'bump' email on 21 May; the buyer has been silent for 75 days and the promised 2-week follow-up never materialized.",
+      "items": [
+        {"change": "Introductory call held; buyer sharpened interest to eSourcing/eProcurement and asked about demo and pricing", "date": "2026-04-22"},
+        {"change": "Stage set to Qualified; opportunity created as New Business", "date": "2026-04-24"},
+        {"change": "Ownership transferred from Divya Kumar to Michael McCarthy", "date": "2026-05-12"},
+        {"change": "Rep-side Clari follow-up email sent ('bump this in case it got lost'); no buyer reply", "date": "2026-05-21"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is buyer-confirmed and none is preferred; the single strongest CURRENT threat is the status quo / no-decision, not a rival. Chris Burris said on 22 Apr 2026 he had 'just started research' and Zycus was 'maybe the second company', so the shortlist is unformed. Coupa, GEP Worldwide, JAGGAER and SAP Ariba are logged in the Salesforce Competitor field (as of deal creation ~24 Apr 2026) but were never named or engaged by the buyer, so all are dormant with no buyer lean. Recency: all evidence traces to the single 22 Apr call and the creation-date field; there is no 2026 signal elevating any named rival above the do-nothing risk.",
+      "competitors": [
+        {"name": "Status quo (manual process / no decision)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "we're kind of just in the investigation and research stage and really haven't even had any internal discussions about it, more of just me doing it on my own so far", "date": "2026-04-22", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)", "how_we_win": "Give Chris a quantified 'cost of doing nothing' on manual PO emailing and non-competitive ordering, plus a short scoped demo, so he has an internal case to escalate before the initiative dies of inertia."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "Logged in the Salesforce Competitor field at deal creation; the buyer never named or discussed Coupa on the 22 Apr call.", "date": "2026-04-24", "source": "SF Competitor field", "how_we_win": "AI-native automation embedded since 2016 (Merlin negotiation agents, AI RFP grading) and low-training Microsoft Teams UX for a small procurement team, versus Coupa's heavier, costlier suite."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "Logged in the Salesforce Competitor field at deal creation; not mentioned by the buyer, who runs Plex ERP (not SAP).", "date": "2026-04-24", "source": "SF Competitor field", "how_we_win": "Organically built single-code platform with 1,200 integration touchpoints into Plex versus Ariba's SAP-centric architecture and slower deployment for a small team."},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "Logged in the Salesforce Competitor field at deal creation; never surfaced in the buyer conversation.", "date": "2026-04-24", "source": "SF Competitor field", "how_we_win": "Mature embedded AI and faster time-to-value for a lean team versus GEP's consulting-led enterprise deployments."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "Logged in the Salesforce Competitor field at deal creation; not raised by the buyer.", "date": "2026-04-24", "source": "SF Competitor field", "how_we_win": "AI-first automation and stronger Gartner/Forrester Leader positioning versus JAGGAER's thinner AI story."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Chris Burris's stated expectations map well to Zycus's core sourcing and procurement automation, with cost sensitivity and Plex integration as the open questions. Fit is promising on capability but unproven on price and organizational readiness.",
+      "items": [
+        {"criterion": "Reduce manual administrative and paperwork burden in purchasing", "position": "aligned", "quote": "we are spending a lot of time on administrative and paperwork duties that are a little bit of a time waste", "date": "2026-04-22", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"},
+        {"criterion": "Enable competitive quoting the small team currently skips (eSourcing/eProcurement)", "position": "aligned", "quote": "I actually am more interested in the esourcing and eProcurement than the contract management and supplier risk management", "date": "2026-04-22", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"},
+        {"criterion": "Integrate with Plex ERP", "position": "partially aligned", "quote": "We are using Plex", "date": "2026-04-22", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"},
+        {"criterion": "Affordable / not cost-prohibitive for a small department", "position": "exposed", "quote": "I don't want this to be like a sticking point... if the cost is like prohibitive, are you able to give me a rough range", "date": "2026-04-22", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "See a product demo of eSourcing and eProcurement", "said_by": "Chris Burris", "date": "2026-04-22", "addressed": false, "quote": "are we able to view a demo, or what are kind of the next steps?", "source": "Avoma intro call 22 Apr 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Chris short demo videos and information decks on eSourcing/eProcurement", "who": "Zycus", "grounding_quote": "What I can do is I can shoot over some information, whether it be if you wanna see some short demo videos... or just a couple of decks", "date": "2026-04-22", "due": "2026-05-06", "status": "overdue", "source": "Avoma intro call 22 Apr 2026 (Bailey Erazo)"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unidentified", "quote": "trying to get the big wigs or the higher ups up top to actually go ahead and sign off", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"},
+        {"area": "Single-threaded on one purchasing manager; no other buyer contacts mapped", "quote": "more of just me doing it on my own so far", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma intro call 22 Apr 2026; SF OpportunityContactRole"},
+        {"area": "No quantified value case (savings, hours, spend under management)", "quote": "we can show you the formulas behind it... you'll save x amount of dollars year one", "status": "acknowledged", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma intro call 22 Apr 2026 (Bailey Erazo)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, single-threaded, cold deal; the win levers are re-engaging the one interested contact, giving him an internal case, and broadening beyond him before it dies of inertia.",
+      "flags": [
+        "Re-engage now: the buyer has been silent 75 days and our own promised follow-up never landed, so the rank-1 lever is the owner restarting the thread with the demo Chris asked for.",
+        "Arm Chris to sell internally: he admitted no internal discussions have happened, so hand him a one-page cost-of-inaction and savings case he can take to leadership.",
+        "Break single-thread: map and reach at least one leader above Chris (the budget owner he referenced) before the initiative stalls with a lone, unsponsored contact."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Chris Burris", "title": "Purchasing Manager", "role": "Champion", "last_contact_date": "2026-04-22", "sentiment": "Positive but passive: engaged warmly and asked for a demo and pricing on 22 Apr, but has not responded in 75 days and is researching alone.", "risk": "At risk of fading. Single-threaded, no executive access, no internal discussions started, and cold since the intro call. If not re-engaged with a demo and an internal case, he may quietly deprioritize.", "source": "Avoma intro call 22 Apr 2026; SF task/activity contact"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Chris Burris (Purchasing Manager) is a developing, at-risk champion. He sought Zycus out, engaged genuinely on 22 Apr 2026, sharpened the scope to eSourcing/eProcurement, and asked unprompted about a demo, pricing and next steps. But he has no executive access, has started no internal conversations ('just me doing it on my own so far'), has introduced no one else, and has gone quiet for 75 days with our follow-up never delivered. Real interest, zero organizational traction, single thread.",
+      "champion": "Chris Burris (Purchasing Manager)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma intro call 22 Apr 2026 (Chris Burris); SF activities (no re-engagement since 22 Apr, single contact)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus led hard on AI (Merlin assist, autonomous negotiation agents, AI RFP grading, OCR invoice capture) and Chris reacted with interest, but the AI story landed as a capability tour rather than a mandated need; he has no AI initiative or budget behind it.",
+      "score": "moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 5.0 / Moderate is accurate. Chris engaged on the AI-driven sourcing and autonomous negotiation pitch and asked good questions, but interest is reactive and Zycus-driven, with no formal AI initiative, no budget, and administrative burden (not AI) as the true pain.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Deal cold 75 days after a single intro call; promised 2-week follow-up ~11 weeks overdue and no next step booked.", "first_raised": "2026-05-06", "date": "2026-07-06", "status": "open", "source": "Avoma intro call 22 Apr 2026; SF LastActivityDate 21 May 2026"},
+        {"category": "executive_alignment", "detail": "No economic buyer mapped or engaged; the only contact holds no budget authority and has not raised the project internally.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"},
+        {"category": "political", "detail": "Single-threaded on one purchasing manager with no sponsor; loss of this contact ends the deal.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma intro call 22 Apr 2026; SF OpportunityContactRole"},
+        {"category": "budget", "detail": "No budget and no internal case; buyer flagged cost sensitivity for a small department and had no figure in mind.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma intro call 22 Apr 2026 (Chris Burris)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement has gone dark. One positive intro call followed by 75 days of buyer silence and an unanswered rep email signals cooling, not momentum.",
+      "cooling": true,
+      "items": [
+        "75-day buyer silence since the 22 Apr intro call",
+        "Rep's 21 May follow-up email drew no reply",
+        "No second meeting, discovery call, or demo booked"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Owner re-engages Chris Burris directly to book the eSourcing/eProcurement demo he requested.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Chris asked 'are we able to view a demo, or what are the next steps?' on 22 Apr but 75 days have passed with no reply.", "trigger_date": "2026-04-22", "act_by": "2026-07-13", "expected_effect": "Restarts a dead thread and converts stated interest into a scheduled next step before the deal is lost to inertia."},
+        {"rank": 2, "action": "Send Chris a one-page cost-of-inaction and savings estimate for manual PO and non-competitive ordering.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Chris admitted no internal discussions have happened and needs to convince 'the higher ups'.", "trigger_date": "2026-04-22", "act_by": "2026-07-20", "expected_effect": "Gives the champion an internal business case to raise the project and create sponsorship."},
+        {"rank": 3, "action": "Ask Chris to introduce his manager or the leader who signs off on procurement software.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Single-threaded on a purchasing manager with no budget authority or exec access.", "trigger_date": "2026-04-22", "act_by": "2026-07-24", "expected_effect": "Breaks single-thread risk and starts mapping the economic buyer needed to fund the deal."},
+        {"rank": 4, "action": "Run a scoped discovery call on Plex integration and the eSourcing quote-comparison workflow.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer runs Plex ERP and skips competitive quoting; fit is promising but unvalidated.", "trigger_date": "2026-04-22", "act_by": "2026-08-05", "expected_effect": "Validates technical fit and deepens the use case, advancing from Qualified toward a real evaluation."}
+      ]
+    },
+    "customer_preference": {"level": "low", "evidence": "Chris Burris was neutral and information-gathering on 22 Apr 2026: 'I've just started my research, so maybe you were just the second company... I don't know if I had anything in mind.' No Zycus lean or competitor comparison."},
+    "business_case": {"status": "partial", "evidence": "Only qualitative pain (manual admin burden, no competitive quoting). No savings, hours, or spend figures quantified; the rep offered to build a 5-year savings case but nothing was co-developed."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 2026-04-24",
+    "avoma_attendees": ["Chris Burris"],
+    "gaps": [
+      "No economic buyer / budget owner named in any source (Contact Role, fields, or call).",
+      "Only one buyer contact (Chris Burris) exists; no other stakeholders mapped.",
+      "No value case quantified; no confirmed decision process, criteria, or timeline beyond a vague 'this fiscal year'."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

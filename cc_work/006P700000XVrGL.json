@@ -1,0 +1,296 @@
+{
+  "opp_id": "006P700000XVrGLQA0",
+  "hard": {
+    "opp_id": "006P700000XVrGLQA0",
+    "opp_name": "Stratasys_EProc+EInvoicing_April26",
+    "account_name": "Stratasys Inc",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "United States",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2026-09-01",
+    "days_to_close": 57,
+    "created_date": "2026-05-01",
+    "qualified_date": "2026-05-01",
+    "last_activity_date": "2026-05-01",
+    "last_modified_date": "2026-05-20",
+    "products": "eProcurement;eInvoicing;Merlin;Merlin Intake",
+    "next_step": "JRA 5/20: Email to Daniel to discuss next steps with his team.",
+    "ais_score": 7.0,
+    "ais_status": "Moderate",
+    "ais_why": "Prospect is actively pitching Merlin Intake and AP Smart Desk internally, planning to present the concept to CFO/CEO as part of his recommendation. Customer asked for the deck plus screenshots, specifically calling out Merlin Intake and supplier risk radar examples. Pain points center on reducing manual, email-based AP/invoice approvals and automating small/tail spend sourcing.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Status quo (Oracle ERP + Mailbox CLM + Microsoft Copilot)",
+    "primary_competitor": "Do-nothing / status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XVrGLQA0/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "A strong 1 May discovery call had Daniel Tzegay excited about Merlin Intake and AP Smartdesk, but he has gone silent for 66 days despite a 20 May rep email. Single-threaded through an influencer with no budget authority, no economic buyer mapped, and zero stage progression since creation.",
+      "math": "Created and Qualified 1 May 2026; 66 days in the Qualified stage as of today 6 Jul with no stage advance. Close date 1 Sep 2026 is 57 days out. Last verified two-way buyer engagement was the 1 May discovery call (66 days ago); the only touch since is a rep-initiated 20 May email (Next Step) with no logged buyer reply in 47 days. Cold for 60+ days forces Off Track. Reaching Vendor Selected, pricing, CFO sign-off, legal and close by 1 Sep is not credible on a deal that has not moved past intro discovery.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "The 1 May discovery call showed genuine interest: Daniel Tzegay asked twenty-plus detailed questions on Merlin Intake, AP Smartdesk two/three-way matching, supplier risk radar and autonomous negotiation, and said 'this is something that will streamline a lot of our services that we currently do within Stratasys' (Avoma, 1 May 2026)",
+        "Daniel is an influencer without commercial authority: 'ultimately I can make recommendations, those decisions come from CFO and CEO' (Avoma, 1 May 2026); no CFO, CEO or director has ever been contacted",
+        "The only touch since discovery is the rep's own 20 May email per Next Step ('JRA 5/20: Email to Daniel to discuss next steps with his team'); no buyer reply or activity is logged in the 47 days since, and LastActivityDate is still 1 May",
+        "Deal is single-threaded on one contact role (Daniel Tzegay, Senior Commodity Manager Indirect, Influencer, primary); no Economic Buyer, Decision Maker or Executive Sponsor is mapped",
+        "No field-history movement on StageName, Amount or CloseDate since the 1 May creation; the 20 May Next Step edit is the last record change",
+        "A $100k Pipeline forecast with no budget-owner access and no buyer engagement in over eight weeks is indefensible; keep Omitted until Daniel re-engages and a power sponsor surfaces"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Daniel Tzegay articulated clear operational pain on the 1 May discovery call but never quantified it. He described invoice approval as 'too many approval process' and 'time consuming back and forth of emails': a supplier emails Daniel or an internal user, who reviews and forwards to AP by email, AP reviews and approves in Oracle, and only then is the invoice paid (Avoma, 1 May 2026). He said 'I'd rather just have one ERP system where we could put all of our data and information so that everyone has visibility' and praised Workday's timestamped approval trail he had used before. No dollar figure, invoice volume, cycle-time target or headcount cost was put on any of it. Quantifying the cost of the email rework and the tailspin (sub-$5,000 PO) leakage is the move that turns this into a fundable business case.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay (buyer): 'too many approval process... time consuming back and forth of emails... I'd rather just have a streamline'",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'we've spent a lot of POs that are under 5,000 as most companies do... how do we make sure that we are actually getting the best pricing'"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or named. Daniel Tzegay stated plainly that the money decision sits above him: 'ultimately I can make recommendations, those decisions come from CFO and CEO' (Avoma, 1 May 2026), and 'I have to present this out to them and see what their thoughts are before we connect again.' The conversation therefore reveals WHERE budget authority lives (the CFO, with the CEO as final approver) but names no individual, and Salesforce carries no CFO/CEO contact role. So the economic buyer is a known role with an unknown person and zero access. Identifying the CFO by name through Daniel, and getting Daniel to carry a value story up to them, is the single gate this deal must clear.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'ultimately I can make recommendations, those decisions come from CFO and CEO'",
+          "Salesforce OpportunityContactRole: only Daniel Tzegay (Influencer) on record; no Economic Buyer role"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Daniel surfaced his personal evaluation criteria on the 1 May call even though nothing is formalised. He wants: consolidation and single-source visibility ('one ERP system where we could put all of our data... everyone has visibility'); a Workday-style timestamped approval trail with role-based view/reject rights; a human-in-the-loop stop-gap before any invoice routes to AP ('a stop gap to make sure that everything is checked off'); supplier risk screening at onboarding and continuously (cyber, financial, litigation, lien) given Stratasys's DOD/government contracts; multi-language support for a global company; and best-price capture on sub-$5,000 tail spend without losing the human negotiation touch. These are confirmed as Daniel's own asks, not a documented committee BRD; the criteria of the CFO/CEO who actually decide are unknown.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'we have a lot of governmental contracts... make sure that they haven't had any cyber attacks in the last 12 months... does it pull their financial statements'",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'does this offer in multiple languages as we are a global company'"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is described only from Daniel's side and is not mapped. His stated path: review the deck internally with his team, present to his director, then socialise with CFO and CEO before reconnecting ('let me connect to my team and my director and a few other people, and then based on that conversation I'll connect to Prashant', Avoma, 1 May 2026). No evaluation stages, timeline, procurement process or approval sequence beyond that intent has been confirmed, and none of those internal conversations have surfaced back to Zycus in 66 days. Reading the call sequence as the process map, the deal is stuck at the very first internal hand-off: Daniel never came back after the intro. Getting clarity on the evaluation stages and building the org chart are open tasks flagged on the record itself.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'let me connect to my team and my director... based on that conversation I'll connect to Prashant and Justin'",
+          "Salesforce Task 1 May 2026: 'Get clarity on the evaluation stages and influence the process'; 'Build an org chart and map all the key contacts'"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No paper process exists yet; the deal has not reached commercials. This is new business at Qualified stage, so there is no MSA, Order Form, SOW, legal review, InfoSec questionnaire or procurement channel in motion. One adjacent contracting fact did surface: Stratasys just signed a 10-year contract for its Mailbox CLM platform ('that is something new that we just signed up for 10 years, so I don't see us moving away from that', Avoma, 1 May 2026), which removes contract lifecycle management from Zycus scope and narrows the deal to eProcurement, eInvoicing and Merlin. What would create visibility is a confirmed next meeting where Daniel names the director/CFO and the internal buying and procurement process.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'we just signed up for 10 years, so I don't see us moving away from that'",
+          "Salesforce Opportunity: Stage Qualified, Products eProcurement;eInvoicing;Merlin;Merlin Intake"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is confirmed, specific and owned by Daniel Tzegay (Senior Commodity Manager Indirect, covering facilities, operations, R&D, finance, global logistics and North America IT). Primary pain: manual, email-based invoice approval that bounces between suppliers, business users and AP ('there's just too many too many approval process... a lot of time consuming back and forth of emails', Avoma, 1 May 2026). Second: no efficient way to capture best price on high-frequency sub-$5,000 tail-spend POs without tying up his team's manual negotiation. Third: supplier risk exposure at onboarding and on an ongoing basis, sharpened by DOD/government contract compliance needs. Daniel also carries a personal mandate: 'I've been pushing for something like this for quite some time' (Avoma, 1 May 2026). Pain is real; it is the quantification and the executive ownership that are missing.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'there's just too many too many approval process... it's just time consuming'",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'I've been pushing for something like this for quite some time'"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Daniel Tzegay is a developing champion, currently at risk of fading. On 1 May he was visibly enthusiastic, asked deep hands-on questions, said the platform 'will streamline a lot of our services', and volunteered to socialise it internally and present to his director and the CFO/CEO, and asked for the deck and screenshots specifically so he could pitch it ('please send this over... I'll help them out too', Avoma, 1 May 2026). What has developed: genuine personal conviction and a stated intent to advocate up. What is still missing and unproven: any actual advocacy action logged, any pull-through of his director or another stakeholder, and any reply to the rep's 20 May follow-up in 47 days. He also holds no commercial authority. Until he re-engages and brings a second person, he is an interested influencer, not yet a working champion.",
+        "sources": [
+          "Salesforce OpportunityContactRole: Daniel Tzegay, Senior Commodity Manager Indirect, Influencer, primary",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'I do need to assess some stuff with my team... I have to present this out to them'",
+          "Salesforce Next Step 20 May 2026 (rep email); no buyer reply logged in 47 days"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "There is no external procurement-suite competitor in the evaluation; the real contest is against the status quo and inertia. Stratasys runs Oracle (two instances, operational and financial) as its transactional ERP, Mailbox as its CLM on a fresh 10-year contract, and Microsoft Copilot for contract AI, and Daniel voiced platform fatigue ('there are just so many platforms of AI right now... it's a team effort', Avoma, 1 May 2026). The winning wedge, which Daniel himself endorsed, is to position Zycus as the AI-native intelligence layer ON TOP of Oracle, not a replacement: Merlin Intake as the Teams-native front door, AP Smartdesk for invoice matching, autonomous negotiation for tail spend, and a real-time supplier risk radar that Oracle and Copilot do not provide. CLM is out of scope given the Mailbox lock-in. The gravest threat is a no-decision, not a rival win.",
+        "sources": [
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'our ERP system is Oracle... we use Oracle for pretty much everything'",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'we implemented Copilot last year or so... Copilot does that for us also'",
+          "Avoma discovery call 1 May 2026, Daniel Tzegay: 'we just signed up for 10 years' (Mailbox CLM)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The pulse is dark. The deal was created and moved Initial Interest to Qualified on 1 May 2026, had one real discovery call the same day, then went quiet. The only subsequent event is the rep's own 20 May email (Next Step); no buyer activity has been logged in the 47 days since, and LastActivityDate remains 1 May. No stage, amount or close-date movement has occurred.",
+      "items": [
+        {"change": "Stage advanced Initial Interest to Qualified (by Justin Ajmo)", "date": "2026-05-01"},
+        {"change": "Discovery call held: Daniel Tzegay engaged, asked for the deck and screenshots to socialise internally", "date": "2026-05-01"},
+        {"change": "Rep sent follow-up email to Daniel per Next Step; no buyer reply logged since", "date": "2026-05-20"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No external procurement-suite vendor is in play; three status-quo/substitution threats rank by current risk. (1) Do-nothing / status quo (Oracle ERP + fresh 10-year Mailbox CLM + Copilot) is the strongest current threat: 66 days of buyer silence, a just-signed decade-long Mailbox lock-in, and Daniel's platform-fatigue remark all point to inertia winning. (2) Oracle, the incumbent ERP running all transactional procurement, is a medium threat via do-more-in-what-we-own, but lacks the agentic sourcing, conversational intake and external supplier-risk depth Zycus offers. (3) Microsoft Copilot is a low current threat, scoped today only to contract AI in the CLM domain, and could rise only if Microsoft pushed a broader Dynamics 365 procurement story, of which there is no evidence. No Coupa, SAP Ariba, Ivalua, GEP or Zip appeared in any call or field. The wedge Daniel himself endorsed: an AI-native layer on top of Oracle with quantified ROI.",
+      "competitors": [
+        {
+          "name": "Do-nothing / status quo (Oracle + Mailbox + Copilot)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "There are just so many platforms of AI right now... it's a team effort. (Daniel Tzegay, 1 May 2026); We just signed up for 10 years, so I don't see us moving away from that. (Daniel Tzegay, 1 May 2026)",
+          "date": "2026-05-01",
+          "source": "Avoma discovery call 1 May 2026",
+          "how_we_win": "Quantify the operational cost of the invoice email ping-pong, sub-$5,000 tail-spend leakage and supplier-risk blind spots that Oracle, Mailbox and Copilot together do not solve; give Daniel a one-page ROI model and a concrete next meeting date so the internal review does not die of inertia."
+        },
+        {
+          "name": "Oracle (incumbent ERP, potential Procurement Cloud expansion)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "Our ERP system is Oracle. We do that for all of our raw goods and finished goods and all of our acquisitions, PO, you name it... we use Oracle for pretty much everything. (Daniel Tzegay, 1 May 2026)",
+          "date": "2026-05-01",
+          "source": "Avoma discovery call 1 May 2026",
+          "how_we_win": "Concede Oracle owns the transactional record and position Zycus as the AI/intelligence layer on top: Merlin Intake as the conversational Teams front door, autonomous negotiation for tail spend, and a live supplier-risk radar scanning D&B, government and cyber data Oracle does not touch; lead with the 95%-of-customers-run-an-ERP-alongside-Zycus proof point."
+        },
+        {
+          "name": "Microsoft Copilot (potential Dynamics 365 procurement bundle)",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "We implemented Copilot last year or so... Copilot does that for us also. What's the difference between that platform versus Copilot? (Daniel Tzegay, 1 May 2026)",
+          "date": "2026-05-01",
+          "source": "Avoma discovery call 1 May 2026",
+          "how_we_win": "Concede Copilot's contract-AI overlap in the CLM domain, then differentiate Merlin Intake as a purpose-built procurement agent (conversational requisition, catalog buying, supplier onboarding, duplicate-PO flagging, approval routing) versus Copilot's horizontal assistant; offer a low-risk Merlin Intake pilot in Daniel's North America indirect org."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus fits Daniel's stated expectations well on invoice automation, supplier risk and single-source visibility, and rides alongside Oracle rather than replacing it. It is exposed only on CLM, which is out of scope after the 10-year Mailbox signing, and on the human-touch concern for tail-spend negotiation, which the human-in-the-loop design addresses.",
+      "items": [
+        {"criterion": "Single-source consolidation and visibility over procurement/invoice data", "position": "aligned", "quote": "I'd rather just have one ERP system where we could put all of our data and information so that everyone has visibility", "date": "2026-05-01", "source": "Avoma discovery call 1 May 2026"},
+        {"criterion": "Streamline manual, email-based invoice approvals with an audit trail", "position": "aligned", "quote": "AP Smartdesk... that song and dance you mentioned over email on the AP and invoicing side is exactly what it is built to combat", "date": "2026-05-01", "source": "Avoma discovery call 1 May 2026"},
+        {"criterion": "Supplier risk screening at onboarding and continuously (cyber, financial, litigation) for DOD/government contracts", "position": "aligned", "quote": "part of our supply risk assessment is cyber attack... does it pull their financial statements... it is a real time live feed... ongoing scan through your entire supplier network", "date": "2026-05-01", "source": "Avoma discovery call 1 May 2026"},
+        {"criterion": "Best price on sub-$5,000 tail spend without losing the human negotiation touch", "position": "partially aligned", "quote": "there's a human interaction that's missing... how do we make sure that is applied", "date": "2026-05-01", "source": "Avoma discovery call 1 May 2026"},
+        {"criterion": "Contract lifecycle / redlining", "position": "exposed", "quote": "we just signed up for 10 years, so I don't see us moving away from that", "date": "2026-05-01", "source": "Avoma discovery call 1 May 2026"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Share the overview deck with the Merlin Intake and supplier-risk-radar screenshots", "said_by": "Daniel Tzegay", "date": "2026-05-01", "addressed": true, "quote": "Is there any way you could share this presentation to me... especially the one with the screenshot", "source": "Avoma discovery call 1 May 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Put Daniel, Prashant and Justin on an email thread with the overview slides and screenshots", "who": "Zycus", "grounding_quote": "I'll put us all on an email thread with these slides, and feel free to just respond back there if you have any questions", "date": "2026-05-01", "due": "2026-05-02", "status": "completed", "source": "Avoma discovery call 1 May 2026, Justin Ajmo"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Daniel to review the deck with his team and director and come back to schedule the next meeting", "who": "Buyer", "grounding_quote": "let me connect to my team and my director and a few other people, and then based on that conversation I'll connect to Prashant and Justin, and then we'll go from there", "date": "2026-05-01", "due": "2026-05-22", "status": "overdue", "source": "Avoma discovery call 1 May 2026, Daniel Tzegay"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unnamed and unengaged", "quote": "ultimately I can make recommendations, those decisions come from CFO and CEO", "status": "not addressed", "date": "2026-05-01", "gap_type": "knowledge", "source": "Avoma discovery call 1 May 2026"},
+        {"area": "Daniel's director / decision maker not identified or contacted", "quote": "let me connect to my team and my director... a few other people", "status": "not addressed", "date": "2026-05-01", "gap_type": "knowledge", "source": "Avoma discovery call 1 May 2026"},
+        {"area": "Single-threaded: only one buyer contact role on the deal", "quote": "Daniel Tzegay, Senior Commodity Manager Indirect, Influencer, primary", "status": "not addressed", "date": "2026-05-01", "gap_type": "knowledge", "source": "Salesforce OpportunityContactRole"},
+        {"area": "No quantified value case: pain is qualitative only", "quote": "there's just too many too many approval process... time consuming", "status": "not addressed", "date": "2026-05-01", "gap_type": "knowledge", "source": "Avoma discovery call 1 May 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage, single-threaded deal that has gone dark; the win levers are re-engaging Daniel, multi-threading to power, and arming him with a quantified value story.",
+      "flags": [
+        "Break the single thread: get Daniel to introduce his director and one AP/Finance stakeholder before the 1 Sep date, so the deal no longer lives or dies on one influencer.",
+        "Arm Daniel to sell up: hand him a one-page ROI model on invoice-rework hours and tail-spend leakage he can put in front of the CFO/CEO he named as the deciders.",
+        "Kill the inertia risk: lock a concrete next-meeting date now, because 66 days of silence against a fresh 10-year Mailbox lock-in points to a no-decision, not a competitor loss."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Daniel Tzegay", "title": "Senior Commodity Manager Indirect", "role": "Champion", "last_contact_date": "2026-05-01", "sentiment": "Positive on 1 May (asked twenty-plus detailed questions, said it 'will streamline a lot of our services', asked for the deck to pitch internally), but silent for 66 days since, so current engagement is passive/unknown", "risk": "Single point of contact with no commercial authority ('those decisions come from CFO and CEO'); if he stays disengaged the deal dies", "source": "Salesforce OpportunityContactRole (Influencer); Avoma discovery call 1 May 2026"},
+        {"name": null, "title": "CFO", "role": "Economic Buyer", "last_contact_date": null, "sentiment": "Unknown; never engaged", "risk": "Named by Daniel as the budget decider but unidentified and unmapped; deal cannot close without CFO sign-off on budget and ROI", "source": "Avoma discovery call 1 May 2026, Daniel Tzegay: 'those decisions come from CFO and CEO'"},
+        {"name": null, "title": "Director (Daniel's manager)", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown; never engaged", "risk": "The gate between Daniel's recommendation and C-level approval; Daniel said he would present to his director but no follow-up occurred", "source": "Avoma discovery call 1 May 2026, Daniel Tzegay: 'before I presented it to my director'"},
+        {"name": null, "title": "CEO", "role": "Executive Sponsor", "last_contact_date": null, "sentiment": "Unknown; never engaged", "risk": "Named alongside the CFO as a final approver; unclear whether the CEO personally approves a $100k purchase or delegates to the CFO; zero contact", "source": "Avoma discovery call 1 May 2026, Daniel Tzegay: 'those decisions come from CFO and CEO'"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Daniel Tzegay is a developing champion at risk of fading. On 1 May he showed real conviction, drove the questions, said he had 'been pushing for something like this for quite some time', and volunteered to socialise Zycus with his team, his director and the CFO/CEO, asking for the deck specifically to pitch it. What is still missing: any logged advocacy action, any pull-through of a second stakeholder, and any reply to the rep's 20 May email in 47 days. He holds no commercial authority. Until he re-engages and brings one more person to the table, he is an enthusiastic influencer, not a proven champion.",
+      "champion": "Daniel Tzegay (Senior Commodity Manager Indirect)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Salesforce OpportunityContactRole (Influencer); Avoma discovery call 1 May 2026; Salesforce Next Step 20 May 2026 with no buyer reply in 47 days"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story landed strongly on the 1 May call: Daniel was most animated on Merlin Intake as a Teams-native front door, AP Smartdesk invoice matching, autonomous tail-spend negotiation and the supplier-risk radar, and said he would pitch the concept internally. The positioning is well matched to the buyer; the risk is not under-positioning but a dark buyer.",
+      "score": "moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 7 / Moderate. The calls corroborate real AI appetite: Daniel volunteered that he is pitching Merlin Intake and AP Smartdesk internally and wants to present the concept to the CFO/CEO, and he engaged deeply on agentic negotiation and proactive supplier risk. Appetite is genuine but tempered by his platform-fatigue remark and the 66-day silence, so the field rating reads fair.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker mapped; the CFO/CEO who decide have never been contacted and the deal is single-threaded through an influencer with no authority", "first_raised": "2026-05-01", "date": "2026-05-01", "status": "open", "source": "Avoma discovery call 1 May 2026, Daniel Tzegay: 'those decisions come from CFO and CEO'"},
+        {"category": "timeline", "detail": "66 days of buyer silence with zero stage progression makes the 1 Sep close date and the full path to it not credible", "first_raised": "2026-05-20", "date": "2026-07-06", "status": "open", "source": "Salesforce field history and Next Step; LastActivityDate 1 May 2026"},
+        {"category": "change_management", "detail": "Platform fatigue and a fresh 10-year Mailbox CLM lock-in raise inertia/no-decision risk; Daniel noted 'so many platforms of AI right now'", "first_raised": "2026-05-01", "date": "2026-05-01", "status": "open", "source": "Avoma discovery call 1 May 2026"},
+        {"category": "budget", "detail": "No confirmed budget, no ROI case quantified, and no budget owner engaged on a $100k Pipeline forecast", "first_raised": "2026-05-01", "date": "2026-05-01", "status": "open", "source": "Avoma discovery call 1 May 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The deal has gone cold. One strong discovery call on 1 May, then no buyer response to a 20 May rep email and no activity for 47 days; engagement is dark, not merely cooling.",
+      "cooling": true,
+      "items": [
+        "Last two-way buyer engagement was 66 days ago (1 May discovery call)",
+        "Rep-initiated 20 May email drew no logged buyer reply in 47 days",
+        "Zero stage, amount or close-date movement since 1 May creation",
+        "Single buyer contact with no commercial authority"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Re-engage Daniel by phone and email referencing his consolidation vision and the deck sent.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "No buyer reply to the 20 May rep email; last two-way contact was the 1 May discovery call", "trigger_date": "2026-05-20", "act_by": "2026-07-13", "expected_effect": "Restarts a dark deal and tests whether Daniel is still willing to advocate before the 1 Sep date"},
+        {"rank": 2, "action": "Ask Daniel to introduce his director and one AP or Finance stakeholder for a scoped follow-up.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Deal is single-threaded through an influencer who said the CFO and CEO decide", "trigger_date": "2026-05-01", "act_by": "2026-07-20", "expected_effect": "Breaks the single thread and opens a path toward the budget owner"},
+        {"rank": 3, "action": "Send Daniel a one-page ROI model on invoice-rework hours and tail-spend leakage to pitch internally.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Daniel articulated qualitative pain but no quantified value case exists", "trigger_date": "2026-05-01", "act_by": "2026-07-22", "expected_effect": "Arms Daniel to sell up to the CFO/CEO and converts interest into a fundable case"},
+        {"rank": 4, "action": "Book a Merlin Intake and AP Smartdesk focused demo for Daniel's team.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Daniel asked for screenshots to socialise Merlin Intake and supplier risk radar internally", "trigger_date": "2026-05-01", "act_by": "2026-08-05", "expected_effect": "Moves the deal from generic intro to a scoped evaluation of the two lead modules"},
+        {"rank": 5, "action": "Confirm the decision process and identify the CFO budget owner through Daniel.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Economic buyer and evaluation stages are unmapped", "trigger_date": "2026-05-01", "act_by": "2026-08-04", "expected_effect": "Establishes whether a defensible path to a 1 Sep or realistic revised close exists"}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": "eProcurement, eInvoicing, Merlin, Merlin Intake", "to": "eProcurement, eInvoicing, Merlin, Merlin Intake", "detail": "Product scope is unchanged since creation; CLM was never in scope after Daniel confirmed a fresh 10-year Mailbox contract, so the deal is intentionally scoped to intake, procurement and invoicing rather than a full suite."},
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 1 May intro demo landed well, with Daniel excited about Merlin Intake and AP Smartdesk and asking for the deck to pitch internally, but he has gone silent for 66 days since.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "No new stakeholder has engaged; the director and the CFO and CEO Daniel named as the deciders have never been met.", "tone": "crit"},
+      {"lens": "Competition", "text": "No external suite is competing; the real threat is status-quo inertia across Oracle, a fresh 10-year Mailbox CLM and Copilot, which points to a no-decision.", "tone": "warn"},
+      {"lens": "Commercials", "text": "A $100k forecast sits with no budget owner engaged and no ROI quantified, so the number is not yet justifiable.", "tone": "warn"}
+    ],
+    "customer_preference": {"level": "low", "evidence": "Daniel was positive on the concept ('this will streamline a lot of our services') but closed with 'please send this over, let me review, I'll talk to my team' and then went dark for 66 days with no Zycus-specific commercial next step (Avoma, 1 May 2026)"},
+    "business_case": {"status": "partial", "evidence": "Clear qualitative pain on invoice email rework, tail-spend price capture and supplier risk, but no dollar, volume or cycle-time figure was ever put on it (Avoma, 1 May 2026)"},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [
+      {"call": "Introductory Call Between Zycus | Stratasys (2026-04-30)", "reason": "Buyer no-show; Daniel never joined, so no buyer content (internal rep dial-in only)"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since creation 1 May 2026",
+    "avoma_attendees": ["Daniel Tzegay"],
+    "gaps": [
+      "Economic buyer (CFO) named by role but no individual identified in Salesforce or any call",
+      "Daniel's director / decision maker not identified or contacted",
+      "No quantified value case; pain is qualitative only",
+      "Only one buyer call with real content; deal single-threaded"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

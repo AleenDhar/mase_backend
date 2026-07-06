@@ -1,0 +1,683 @@
+{
+  "opp_id": "006P700000Zb0eQ",
+  "hard": {
+    "opp_id": "006P700000Zb0eQ",
+    "opp_name": "NYCreates_iSupplier+iRisk+eProc_Opp_June'26",
+    "account_name": "NY Creates",
+    "account_industry": "Business Services",
+    "billing_country": "United States",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 125000.0,
+    "close_date": "2027-03-17",
+    "days_to_close": 254,
+    "created_date": "2026-06-15T19:22:46.000+0000",
+    "qualified_date": "2026-06-16",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-03T09:08:51.000+0000",
+    "products": "iSupplier;eProcurement;Merlin;iRisk",
+    "next_step": "JRA 7/1: Crowdsourcing feedback from Joe on demo videos.",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "\u2022 NY CREATES runs a 'currently reactive' centralized procurement 'with limited visibility'; the driver is basic process and visibility, not AI.\n\u2022 Only Merlin is scoped and the Agentic-platform-discussed flag is not set.\n\u2022 The next step is 'crowdsourcing feedback... on demo videos,' an early, low-intent activity with no AI enthusiasm captured.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "JAGGAER",
+    "primary_competitor": "JAGGAER",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Zb0eQ/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "21-day-old $125k Qualified deal with one intro call (no recording) and no buyer follow-up. Rep reached out 01 Jul for Joe Schell's feedback on demo videos, but the discovery call promised around 21 Jun is unscheduled. With JAGGAER named and no pain, metrics, or power-role access mapped, the deal is stalled at the gate.",
+      "math": "Created 15 Jun 2026 (21 days ago), close 17 Mar 2027 (254 days out). Time in Qualified: about 20 days. One buyer touchpoint (15 Jun intro, no recording) and no genuine buyer engagement since. Next_Step 01 Jul is rep-initiated outreach for demo-video feedback, not buyer engagement. Discovery promised around 21 Jun was never scheduled. 254 days is ample to run discovery, multi-thread to the CFO or COO, build MEDDPICC, and reach commercials, but only if the buyer re-engages this week. Slowing because the key action (schedule discovery) is stalled and buyer engagement has been silent since day one.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Pipeline forecast is indefensible: no Economic Buyer mapped, no champion, no pain or metrics documented, single-threaded into a mid-level procurement contact (Joe Schell, Assistant VP), and zero buyer engagement since the 15 Jun intro call. A $125k deal forecast for Mar 2027 requires power-role sponsorship, a validated business case, and forward momentum, and none exist yet. Recommended forecast: Omitted until discovery completes and CFO or COO access is secured (source: Salesforce contact roles; Next_Step 01 Jul; Avoma manifest showing the 15 Jun intro had no recording)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No business problem or quantified impact has been captured. The intro call on 15 Jun had no recording, so we hold no buyer-stated pain, cost-savings target, cycle-time reduction, or ROI expectation. AIS_Why notes NY Creates runs a currently reactive centralized procurement with limited visibility, which points at basic process and visibility as the driver, but nothing is quantified. The discovery call (promised around 21 Jun, still unscheduled) is the gate to uncovering headcount, savings percentage, or error-rate targets. The move: book discovery this week and extract the procurement pain and any numbers.",
+        "sources": [
+          "Avoma manifest: 15 Jun intro call, no recording",
+          "SF AIS_Why__c",
+          "Next_Step 01 Jul"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No Economic Buyer is mapped. Joe Schell (Assistant VP, Procurement) is the sole contact and holds the Decision Maker role, but at $125k a budget of this size on a US public-sector-adjacent account almost certainly needs sign-off from a CFO or COO above him. Neither has been engaged, and the 15 Jun intro (no recording) surfaced no approval chain or budget owner. Without power-role access we cannot validate budget, secure commercial sign-off, or de-risk the forecast. The move: use discovery to map the approval process and multi-thread to the budget owner within 14 days.",
+        "sources": [
+          "SF OpportunityContactRole: Joe Schell (Decision Maker only)",
+          "No EB or Executive Sponsor contact role on the opp"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria are documented. We do not know how NY Creates will weigh iSupplier, eProcurement, iRisk, and Merlin, whether AI or agentic capability matters to them, or what would separate Zycus from JAGGAER in their eyes. The 15 Jun intro had no recording and the Business_Requirements fields are blank. The move: in discovery, draw out their must-have requirements (supplier onboarding, spend visibility, risk monitoring, ERP fit) and mark confirmed versus inferred so we can align the demo videos to what they actually score on.",
+        "sources": [
+          "Avoma manifest: no recorded calls with content",
+          "SF Business_Requirements__c blank"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unmapped. We do not know whether NY Creates is running a formal RFP, how many vendors they are weighing, who sits on the evaluation committee, or what gates (legal, InfoSec, procurement, board) exist. The 15 Jun intro (no recording) surfaced none of it, and the Mar 2027 close is placeholder-quality with no process milestones to anchor it. The move: use discovery to map the buying committee, the approval chain, and the timeline (RFI, demos, shortlist, commercials, contract).",
+        "sources": [
+          "Avoma manifest: 15 Jun intro, no recording",
+          "SF What_is_the_decision_process__c blank"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have been discussed. With iSupplier and eProcurement in scope, an MSA, an Order Form, a SOW, an InfoSec questionnaire, and ERP integration scoping are all likely, but we do not yet know NY Creates's procurement channel, who leads legal and InfoSec, or whether an SI is involved. The intro call did not cover it and no Current_Contract_Expiration is on record as a forcing function. The move: ask in discovery what their contracting and security-review process looks like and who owns each step.",
+        "sources": [
+          "Avoma manifest: no recorded calls with content",
+          "SF paper-process fields blank"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No operational or financial pain has been articulated by the buyer. AIS_Why infers a currently reactive procurement with limited visibility, but that is our read, not a buyer-owned statement, and no pain owner is named. Without confirmed pain we cannot build urgency or justify the investment against JAGGAER. The move: in discovery, extract the specific pain (manual purchase-order processing, supplier-risk blind spots, compliance gaps, no spend visibility) and name whether Joe Schell, the CFO, or the COO owns it.",
+        "sources": [
+          "SF AIS_Why__c (inferred pain)",
+          "Avoma manifest: 15 Jun intro, no recording",
+          "SF Customer_Business_Problem__c blank"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion has been identified. Joe Schell (Assistant VP, Procurement, Decision Maker per the contact role) is the sole contact, but there is no evidence of advocacy, internal navigation, or power-role access. The 15 Jun intro (no recording) and the 21 days since have produced no champion-building activity, no shared internal docs, and no introductions to a CFO, COO, or CIO. Engagement is thin: as of 01 Jul the rep is still awaiting his feedback on demo videos. The move: gauge Schell's willingness to champion during discovery, and if he stays passive or gatekeeps, multi-thread to a CFO or COO to find a power sponsor.",
+        "sources": [
+          "SF OpportunityContactRole: Joe Schell only, no Champion role",
+          "Next_Step 01 Jul: rep awaiting feedback"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "JAGGAER is the named competitor (SF Competitors__c, set at opp creation 15 Jun), but we hold zero intelligence on their position: incumbent, parallel evaluator, or buyer-preferred is all unknown, as is their pricing and their relative strength in iSupplier, eProcurement, and iRisk. The 15 Jun intro (no recording) did not surface it and no discovery has run. The move: use discovery to extract JAGGAER's role and perceived strengths, then activate our wedge, Merlin AI-driven sourcing and negotiation plus deeper iRisk supplier intelligence, against their more traditional workflow automation.",
+        "sources": [
+          "SF Competitors__c: JAGGAER",
+          "Avoma manifest: no recorded calls with competitive intelligence"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Since creation on 15 Jun the only movement is administrative and rep-side: the 15 Jun intro call (no recording), a set of auto-generated Opportunity Health flags on 16 Jun, and on 01 Jul a Division re-tag plus rep outreach for Joe Schell's feedback on demo videos. No buyer-driven progress has occurred.",
+      "items": [
+        {
+          "change": "Opportunity created and moved Initial Interest to Qualified",
+          "date": "2026-06-16"
+        },
+        {
+          "change": "Introductory call held with NY Creates (no recording)",
+          "date": "2026-06-15"
+        },
+        {
+          "change": "Division re-tagged Zycus to Mid-Enterprise; rep opened outreach for demo-video feedback from Joe Schell",
+          "date": "2026-07-01"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "JAGGAER is the sole named competitor (SF Competitors__c, set at opp creation 15 Jun) and the competitive picture is entirely unvalidated: we do not know whether they are the incumbent, a parallel evaluator, or already preferred, nor their scope or pricing. No call or field carries competitive depth because the 15 Jun intro was not recorded and discovery has not run. With no new evidence this sweep, JAGGAER is carried forward unranked. Our differentiation wedge (Merlin AI negotiation on supplier price history plus iRisk real-time supplier intelligence) has not been activated.",
+      "competitors": [
+        {
+          "name": "JAGGAER",
+          "sentiment": "neutral",
+          "threat_level": null,
+          "status": null,
+          "quote": null,
+          "date": "2026-06-15",
+          "source": "SF Competitors__c (opp creation)",
+          "how_we_win": "Position Merlin AI-driven sourcing and negotiation on supplier price history plus iRisk real-time supplier intelligence as the Phase 2 AI centerpiece in the discovery call, and contrast it with JAGGAER's traditional workflow automation."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "No expectation-fit evidence exists yet. The 15 Jun intro had no recording and no requirements have been stated, so alignment on iSupplier, eProcurement, iRisk, or Merlin is unknown and must be established in discovery.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Joe Schell to return feedback on the Zycus demo videos",
+            "who": "Buyer",
+            "grounding_quote": "JRA 7/1: Crowdsourcing feedback from Joe on demo videos.",
+            "date": "2026-07-01",
+            "due": "2026-07-15",
+            "status": "open",
+            "source": "SF Next_Step__c 01 Jul"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic Buyer / budget owner",
+          "quote": "Only contact role is Joe Schell (Assistant VP, Procurement, Decision Maker)",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "area": "Business pain and metrics",
+          "quote": "15 Jun intro call had no recording; Customer_Business_Problem__c blank",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Avoma manifest + SF fields"
+        },
+        {
+          "area": "Competitive intelligence on JAGGAER",
+          "quote": "JAGGAER named, no position, pricing, or scope known",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF Competitors__c"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three win-strategy levers matter most now: convert the unrecorded intro into a real discovery, multi-thread past a single mid-level contact, and validate the JAGGAER picture.",
+      "flags": [
+        "Book the discovery call now: the 15 Jun intro was unrecorded and there is zero documented pain, metrics, or process to anchor a $125k forecast.",
+        "Multi-thread beyond Joe Schell (Assistant VP): the deal is single-threaded into a non-budget-owner, so reach a CFO or COO to find the Economic Buyer.",
+        "Validate JAGGAER and activate the Merlin plus iRisk wedge: competitive position is entirely unvalidated and our AI differentiation is unspoken."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Joe Schell",
+          "_source": "sfdc_contact_role",
+          "title": "Assistant VP, Procurement",
+          "email": "jschell@ny-creates.org",
+          "role": "Decision Maker",
+          "risk": "Single point of contact with no follow-up engagement since the 15 Jun intro; as of 01 Jul he has not returned feedback on the demo videos. At Assistant VP level he likely lacks autonomy to approve $125k without CFO or COO sign-off, and there is no evidence of advocacy, urgency, or internal sponsorship. Risk: passive evaluator, single-threaded, and no mapped path to power.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-06-15",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. Joe Schell (Assistant VP, Procurement, Decision Maker) is the sole contact, but there is no evidence of advocacy, internal navigation, or power-role access. The 15 Jun intro (no recording) and the 21 days since produced no champion-building activity, and the rep is still awaiting his demo-video feedback as of 01 Jul. The move: assess Schell's willingness to champion during discovery, and if he stays passive, multi-thread to a CFO or COO for a power sponsor.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole (Joe Schell, Decision Maker only); Avoma manifest (1 touchpoint, no recording); Next_Step 01 Jul"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story is unspoken. Merlin is in scope but AIS reads Negative (3.0) because the buyer's driver is basic process and visibility, not AI, and the agentic-platform flag is unset. Our Merlin and iRisk AI wedge has not been put in front of the buyer.",
+      "score": "3.0",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 3.0, AIS_Status Negative: the driver is basic procurement process and visibility, only Merlin is scoped, and no AI enthusiasm was captured. No call evidence exists to revise this, so the negative read stands.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No Economic Buyer engaged; budget authority for $125k sits above Joe Schell with an unengaged CFO or COO.",
+          "first_raised": "2026-06-15",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded into one Assistant-VP procurement contact with no other stakeholders mapped.",
+          "first_raised": "2026-06-15",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "category": "timeline",
+          "detail": "Mar 2027 close is placeholder-quality with no process milestones, no pain, and no metrics to anchor it.",
+          "first_raised": "2026-06-15",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF CloseDate + field history"
+        },
+        {
+          "category": "other",
+          "detail": "JAGGAER named as competitor with no intelligence on their position or pricing; our differentiation is unactivated.",
+          "first_raised": "2026-06-15",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Competitors__c"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is thin and rep-driven. The buyer has been silent since the 15 Jun intro; the only recent touch is Justin Ajmo's 01 Jul outreach for demo-video feedback. Not yet cold (21 days), but cooling.",
+      "cooling": true,
+      "items": [
+        "One buyer touchpoint (15 Jun intro, no recording) and no buyer-initiated follow-up",
+        "Discovery call promised around 21 Jun never scheduled",
+        "Latest activity is rep-side outreach on 01 Jul, awaiting buyer reply"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Call Joe Schell to lock a discovery date this week.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Rep awaiting demo-video feedback since 01 Jul; no buyer engagement since the 15 Jun intro.",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-13",
+          "expected_effect": "Restarts momentum and creates the first real discovery to capture pain, metrics, and process."
+        },
+        {
+          "rank": 2,
+          "action": "In discovery, extract procurement pain and any quantified targets.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "No business problem, metrics, or ROI documented; AIS reads Negative on process-driven demand.",
+          "trigger_date": "2026-06-15",
+          "act_by": "2026-07-20",
+          "expected_effect": "Builds a defensible business case and urgency to justify $125k against JAGGAER."
+        },
+        {
+          "rank": 3,
+          "action": "Map the approval chain and request an intro to the budget owner.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Only Joe Schell (Assistant VP) is engaged; no Economic Buyer mapped on a $125k deal.",
+          "trigger_date": "2026-06-15",
+          "act_by": "2026-07-24",
+          "expected_effect": "Reaches the CFO or COO to validate budget and de-risk the forecast."
+        },
+        {
+          "rank": 4,
+          "action": "Probe JAGGAER's role and present the Merlin plus iRisk wedge.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "JAGGAER named at opp creation with no competitive intelligence gathered.",
+          "trigger_date": "2026-06-15",
+          "act_by": "2026-08-05",
+          "expected_effect": "Establishes our differentiation and surfaces how the buyer is scoring the field."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A 21-day-old $125k Qualified deal with a single mid-level procurement contact (Joe Schell), no economic buyer, no documented pain, and JAGGAER in the mix; the only thing keeping it alive is booking the stalled discovery call before the buyer goes cold.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "We are barely on the board: one 15 Jun intro call with no recording, a single Assistant-VP contact, and no business case, so nothing yet shows NY Creates prefers Zycus (Avoma manifest; SF contact roles, 06 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer is engaged and budget authority for the $125k sits above Joe Schell with a CFO or COO we have not reached (SF OpportunityContactRole, 06 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "JAGGAER is named as a competitor with zero intelligence on their position, so our Merlin and iRisk wedge is completely unactivated (SF Competitors__c, 15 Jun)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The buyer has been silent since the 15 Jun intro and the discovery call promised around 21 Jun never happened (Avoma manifest)."
+          },
+          {
+            "tone": "warn",
+            "text": "The only recent touch is rep-side: Justin Ajmo reaching out on 01 Jul for Joe Schell's feedback on demo videos, not a buyer pull (SF Next_Step, 01 Jul)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "No commitment beyond agreeing to review demo videos, with no dates and no next meeting requested by the buyer (SF Next_Step, 01 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "AIS reads Negative (3.0) because the driver is basic process and visibility and only Merlin is scoped, so AI enthusiasm is not carrying the deal (SF AIS_Why)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single-threaded into one Assistant-VP procurement contact with no CFO or COO access on a $125k, 254-day-out deal (SF contact roles, 06 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "Placeholder Mar 2027 close with no process milestones, no pain, and no metrics to anchor it (SF, 06 Jul)."
+          }
+        ]
+      },
+      "factors": {
+        "champion": {
+          "strength": -1,
+          "evidence": "No champion; sole contact Joe Schell shows no advocacy and has not returned demo-video feedback since 01 Jul."
+        },
+        "economic_buyer": {
+          "strength": -1,
+          "evidence": "No EB mapped or engaged; budget owner above Joe Schell not reached."
+        },
+        "engagement": {
+          "strength": -0.7,
+          "evidence": "No buyer-initiated activity since the 15 Jun intro; latest touch is rep-side outreach on 01 Jul."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer preference expressed; the 15 Jun intro had no recording and the buyer has only been asked to review demo videos (Next_Step 01 Jul)."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, automation, or compliance impact discussed; AIS_Why infers reactive procurement with limited visibility but nothing is quantified."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "iSupplier, eProcurement, iRisk, Merlin",
+      "to": "iSupplier, eProcurement, iRisk, Merlin",
+      "detail": "Scope unchanged since creation on 15 Jun; no narrowing or expansion evidence."
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 4.2,
+      "mom": 47.4,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 4.2,
+        "deal_momentum": 47.4,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 4.2,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -11.2,
+        "ceiling": 30.0,
+        "momentum_adj": -2.6,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 0.9,
+            "evidence": "competitive strength +0.20 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -2.6,
+            "evidence": "momentum 47 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 47.4,
+        "pre_decay": 47.4,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 3.6,
+            "evidence": "Next Step carries 1 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 4 is carried by competitive strength +0.20 (weight 15). Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum 47 (roughly flat): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (4), nudged by commitment 8 and momentum 47, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (engagement, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "NY Creates \u2014 Qualified \u00b7 $125K \u00b7 closes 17 Mar",
+        "intro": "A 21-day-old $125k Qualified deal with a single mid-level procurement contact (Joe Schell), no economic buyer, no documented pain, and JAGGAER in the mix; the only thing keeping it alive is booking the stalled discovery call before the buyer goes cold",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 4,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "We are barely on the board; one 15 Jun intro call with no recording, a single Assistant-VP contact, and no business case, so nothing yet shows NY Creates prefers Zycus (Avoma manifest; SF contact roles, 06 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer is engaged and budget authority for the $125k sits above Joe Schell with a CFO or COO we have not reached (SF OpportunityContactRole, 06 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "JAGGAER is named as a competitor with zero intelligence on their position, so our Merlin and iRisk wedge is completely unactivated (SF Competitors__c, 15 Jun)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 47,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The buyer has been silent since the 15 Jun intro and the discovery call promised around 21 Jun never happened (Avoma manifest)"
+              },
+              {
+                "tone": "warn",
+                "text": "The only recent touch is rep-side; Justin Ajmo reaching out on 01 Jul for Joe Schell's feedback on demo videos, not a buyer pull (SF Next_Step, 01 Jul)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single-threaded into one Assistant-VP procurement contact with no CFO or COO access on a $125k, 254-day-out deal (SF contact roles, 06 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "Placeholder Mar 2027 close with no process milestones, no pain, and no metrics to anchor it (SF, 06 Jul)"
+              }
+            ],
+            "footer": "Competitive picture: JAGGAER is the sole named competitor (SF Competitors__c, set at opp creation 15 Jun) and the competitive picture is entirely unvalidated: we do not know whether they are the incumbent, a parallel evaluator, or already preferred, nor their\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No commitment beyond agreeing to review demo videos, with no dates and no next meeting requested by the buyer (SF Next_Step, 01 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "AIS reads Negative (3.0) because the driver is basic process and visibility and only Merlin is scoped, so AI enthusiasm is not carrying the deal (SF AIS_Why)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Call Joe Schell to lock a discovery date this week. (by 13 Jul)",
+              "In discovery, extract procurement pain and any quantified targets. (by 20 Jul)",
+              "Map the approval chain and request an intro to the budget owner. (by 24 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 0,
+    "calls_omitted": [
+      {
+        "meeting": "Introductory Call: NY Creates X Zycus",
+        "date": "2026-06-15",
+        "reason": "no recording / transcript not available"
+      }
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 15 Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "15 Jun intro call was not recorded, so no buyer-stated pain, metrics, criteria, process, or competitive intelligence exists",
+      "Economic Buyer / budget owner unmapped; only Joe Schell (Assistant VP, Procurement) on the opp",
+      "No competitive intelligence on JAGGAER beyond the field name"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:59"
+}

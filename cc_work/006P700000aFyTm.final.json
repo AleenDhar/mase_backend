@@ -1,0 +1,769 @@
+{
+  "opp_id": "006P700000aFyTm",
+  "hard": {
+    "opp_id": "006P700000aFyTm",
+    "opp_name": "PremiStar_P2P_June '26",
+    "account_name": "PremiStar",
+    "account_industry": "Real Estate & Infra",
+    "billing_country": "United States",
+    "owner_name": "Bailey Erazo",
+    "owner_title": "",
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2027-08-30",
+    "days_to_close": 420,
+    "created_date": "2026-06-30T17:36:35.000+0000",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-07-03T09:08:52.000+0000",
+    "products": "iSave;eProcurement;eInvoicing;Merlin;Merlin Intake",
+    "next_step": null,
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 PremiStar is at Qualified on a P2P motion with Merlin and Merlin Intake scoped and no discovery description recorded.\n\u2022 The Agentic-platform-discussed flag is not set and no pain points or AI-requirement are captured.\n\u2022 Evidence is limited to product scope, insufficient to place AI appetite above exploratory.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": null,
+    "primary_competitor": "Do-nothing / status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aFyTm/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "One strong 30 Jun discovery with prior Zycus advocate George Reimann, but he has parked any purchase ('no appetite for new platforms right now') and reconnects end of Q3, with no economic buyer, no process, and two product-fit gaps open.",
+      "math": "Swept 2026-07-06; deal created 2026-06-30 (6 days in Qualified, no stage slip). Close date 2027-08-30 is ~420 days out, a comfortable runway for a 12-15 month enterprise motion. One rich discovery held 30 Jun; buyer explicitly deferred to end of Q3 with a 22 Sept reconnect he set himself. The risk is not the date, it is inertia: buyer told to hold on new platforms, no EB mapped, no buying process, single thread.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "One buyer call read: Intro Call 30 Jun with George Reimann, who leads procurement at PremiStar (self-described; no Salesforce title on record)",
+        "Buyer parked the purchase: 'there is no appetite for new platforms, new fees, or anything of that such right now' (George, 30 Jun)",
+        "George cannot yet escalate: 'I'm not even at the point where I could take it up the chain' (30 Jun)",
+        "Rich, volume-quantified pain: 27 companies, 13 ERPs, ~$200M annual material spend, 5,400 vendors (George, 30 Jun)",
+        "Prior advocacy: George recommended Zycus at his previous company EMCOR but was overruled (30 Jun)",
+        "Next step is a distant pull: George set an end-of-Q3 reconnect, 22 Sept call booked",
+        "Two fit gaps: Zycus lacks real-time field inventory and payment processing, George's two stated priorities",
+        "Pipeline forecast appropriate: no EB, no validation, no commercials"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "George Reimann quantified the SCALE of the problem richly on 30 Jun: '$200,000,000 a year in material spend', bought from '5,400 vendors last year', across '27 different companies' on '13 different ERP platforms' and '40 brick and mortar locations' in 20 states, with '24 different accounts' at some vendors. He also named a concrete AI outcome he wants: move from tier-1 spend (by vendor) to tier-3 spend (by manufacturer, 'how much Milwaukee, how much DEWALT... Carrier... York') to renegotiate with distributors, and cited a prior track record of '40% to 85% compliance over 3 years' at EMCOR. What is NOT yet quantified is a Zycus-specific savings or ROI target, so the value case in dollars is the move.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named or reachable. George told us plainly 'I'm not even at the point where I could take it up the chain' and, on a prior corporate travel-program ask, 'I've been told to hold... there is no appetite for new platforms, new fees' (30 Jun) \u2014 so budget authority clearly sits above him at the private-equity corporate level (HQ in Deerfield, Chicago), but no person is named. No OpportunityContactRole, sponsor, or budget-approver field is populated. The move is to have George name the corporate finance/accounting leader who would fund a platform once his preferred-vendor program matures.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)",
+          "SF OpportunityContactRole (empty)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "There is no formal scorecard yet, but George revealed his real criteria through the SDI post-mortem (his failed rollout at EMCOR): (1) end-user ADOPTION above all ('our technicians would not use it' is what killed SDI), (2) reliable invoice/vendor communication ('SDI would not pay their bills... we were constantly on credit hold'), (3) real-time field inventory (which Zycus does NOT offer, a flagged exposure), and (4) AI spend categorization to tier-3 by manufacturer. Confirmed criteria are adoption and AI spend intelligence; ERP-integration robustness is inferred from his 13-ERP, Microsoft-Mosaic-bound estate (30 Jun).",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "No evaluation process exists yet. George is pre-process, 'on step 3 of the 1st Floor' of a self-described multi-year, phased transformation, and is sequencing the Microsoft Mosaic ERP consolidation ('phased... over the next 30 months', Chicago outward) before any procurement platform. He set the only process marker himself: reconnect end of Q3, with a 22 Sept call booked (30 Jun). No buying committee, RFP round, or approval chain has been named.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Nothing on contracting has surfaced (no MSA/SOW, procurement channel, or InfoSec) and it is far too early to expect it at Qualified. Two commercial constraints to carry forward: the buyer is fee-sensitive ('no appetite for... new fees'), and he just onboarded Bank of America Paymode with vendors allowed to opt out, which will shape how we frame any Zycus pricing and payment story later. Visibility will come only once an economic buyer and a post-Mosaic budget window exist.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is concrete and owner-stated by George Reimann (30 Jun): procurement is 'scattered all over the place' across 27 companies and 13 ERPs; he buys from 5,400 vendors with '24 different accounts' at some; he has only tier-1 spend visibility and no way to map spend by category or manufacturer; invoice payment is fragmented (Paymode opt-outs, ACH, physical checks); and there is no compliance mechanism (his planned 'stick' ties compliance-spend to general-manager bonuses). He wants preferred-vendor consolidation, national accounts/rebates, and AI-driven spend categorization. Confirmed pain, owned by George.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "George Reimann is a genuine prior advocate: 'when I was part of the evaluation at EMCOR... I actually recommended your platform, but I was overruled' (30 Jun), and he engaged warmly across the full call, so the relationship and disposition are strong. What has NOT developed: he is not selling Zycus internally, has no current mandate ('told to hold' on new platforms), and cannot yet reach power. This is a developing coach, not an active champion. Build it by arming him with the AI spend-intelligence and adoption proof he can carry when his program matures.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)"
+        ]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No procurement-suite rival has surfaced. PremiStar runs no incumbent suite (13 ERPs plus spreadsheets), so the live threat is do-nothing/status-quo, reinforced by George's explicit hold on new platforms and fees (30 Jun). SDI is only his cautionary tale from EMCOR (a failed catalog/eInvoicing rollout), not a bidder here; Microsoft Mosaic (CMMS/ERP) and Bank of America Paymode (payments) are adjacent systems, not competing procurement suites. We win by making inertia costly: tie Zycus to the Mosaic milestone and beat the SDI adoption failure with Merlin Assist in Microsoft Teams.",
+        "sources": [
+          "Avoma intro call 30 Jun (George Reimann)",
+          "SF Competitors__c (empty)"
+        ]
+      }
+    },
+    "critical_signals": {
+      "items": [
+        {
+          "lens": "Last meeting",
+          "text": "The 30 Jun intro landed well: George, a prior Zycus advocate from EMCOR, mapped a $200M-spend, 27-company consolidation and said Zycus is 'in the right place', but parked buying to end of Q3.",
+          "tone": "pos"
+        },
+        {
+          "lens": "Competition",
+          "text": "No procurement-suite rival is in play; the deal's real opponent is inertia, with George told there is no appetite for new platforms or fees right now.",
+          "tone": "warn"
+        },
+        {
+          "lens": "New requirement",
+          "text": "George's two priorities, real-time field inventory and payment processing, sit outside Zycus, a fit gap to pre-empt before the September reconnect.",
+          "tone": "warn"
+        },
+        {
+          "lens": "New stakeholder",
+          "text": "Still single-threaded to George; his operations counterpart, new IT lead, and corporate finance at the Deerfield headquarters are unengaged and unnamed.",
+          "tone": "neu"
+        },
+        {
+          "lens": "Commercials",
+          "text": "No pricing or budget discussed and George cannot yet take Zycus up his chain, so no economic buyer or budget is confirmed.",
+          "tone": "neu"
+        }
+      ]
+    },
+    "deal_movement": {
+      "summary": "Brand-new opportunity: created and qualified 30 Jun, owner reassigned to Bailey Erazo 01 Jul. One strong discovery held 30 Jun, then the buyer parked the purchase to end of Q3 (22 Sept reconnect). Last real two-way buyer touch was that 30 Jun call; no inbound since.",
+      "items": [
+        {
+          "change": "Opportunity created and stage moved Initial Interest to Qualified",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "First discovery call held with procurement lead George Reimann; strong pain map, buyer deferred purchase to end of Q3",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Division moved Zycus to Mid-Enterprise",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Owner reassigned Rickson Castelino to Bailey Erazo",
+          "date": "2026-07-01"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitive procurement platform has surfaced; PremiStar runs no incumbent suite (13 ERPs plus spreadsheets), so the single live threat is do-nothing/status-quo: George was told there is 'no appetite for new platforms, new fees' right now (30 Jun) and is mid-way through a manual preferred-vendor program. SDI is only a cautionary tale from George's prior company EMCOR, not a bidder here; Bank of America Paymode (payments) and Microsoft Mosaic (CMMS/ERP) are adjacent systems, not procurement-suite rivals.",
+      "competitors": [
+        {
+          "name": "Do-nothing / status quo (manual + ERP-native procurement)",
+          "sentiment": "negative",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "there is no appetite for new platforms, new fees, or anything of that such right now",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun (George Reimann)",
+          "how_we_win": "Tie Zycus phase-in to the Microsoft Mosaic rollout milestone and George's compliance-spend bonus program so doing nothing has a cost; land Merlin Assist in Teams as the anti-SDI adoption wedge."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "George's expectations are shaped by the SDI failure at EMCOR: adoption and reliable invoice handling are non-negotiable, and he explicitly wants real-time field inventory and AI spend categorization. Zycus aligns on adoption (Merlin Assist in Teams) and AI spend intelligence, but is exposed on real-time inventory and payments.",
+      "items": [
+        {
+          "criterion": "End-user adoption / ease of use",
+          "position": "aligned",
+          "quote": "our technicians would not use it",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "criterion": "AI spend categorization to tier-3 (by manufacturer)",
+          "position": "aligned",
+          "quote": "I wanna get to what I call tier 3 data, spend by manufacturer",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "criterion": "Real-time field inventory",
+          "position": "exposed",
+          "quote": "we don't do... real time inventory into inventory within, like, our warehouses",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun (Bailey Erazo, confirming a Zycus gap)"
+        },
+        {
+          "criterion": "Payment processing / vendor fee model",
+          "position": "exposed",
+          "quote": "Unfortunately, we don't have any payment processing abilities",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun (Bailey Erazo)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Confirm whether Zycus integrates with the relevant stakeholder.",
+          "said_by": "George Reimann",
+          "date": "2026-06-30",
+          "addressed": false,
+          "quote": "have you guys integrated with Microsoft Mosaic?",
+          "source": "Avoma intro call 30 Jun"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {
+            "deliverable": "Refer George to the payment-processing partners Zycus has worked with, for his Paymode vendor-fee opt-out problem.",
+            "who": "Zycus",
+            "grounding_quote": "I can point you maybe in the the the right direction for some that we have worked with in the past.",
+            "date": "2026-06-30",
+            "due": null,
+            "status": "open",
+            "source": "Bailey Erazo, Avoma intro call 30 Jun"
+          }
+        ]
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget authority",
+          "quote": "I'm not even at the point where I could take it up the chain",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "area": "Decision process / buying committee",
+          "quote": "let me get through the... preferred vendor program... let's do towards the end of Q3",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "area": "Microsoft Mosaic integration confirmation",
+          "quote": "have you guys integrated with Microsoft Mosaic?",
+          "status": "acknowledged",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "Avoma intro call 30 Jun"
+        },
+        {
+          "area": "George Reimann's Salesforce title/role",
+          "quote": "",
+          "status": "acknowledged",
+          "date": "2026-06-30",
+          "gap_type": "hygiene",
+          "source": "SF contact roles (title not on record)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early, single-threaded, buyer-parked deal with strong pain but no power access. The three highest-impact levers now are multi-threading to the budget owner, managing two product-fit gaps, and manufacturing a compelling event around the Mosaic rollout.",
+      "flags": [
+        "Multi-thread now: George is the only contact and cannot escalate; get named intros to Deerfield corporate finance (budget owner) and the new IT lead before September.",
+        "Manage the fit gap: pre-frame Zycus ERP-integration and partner ecosystem for real-time inventory and payments so George's two hot buttons do not sink credibility.",
+        "Manufacture a compelling event: anchor Zycus phase-in to his Microsoft Mosaic rollout and compliance-spend bonus program so do-nothing has a deadline."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "George Reimann",
+          "title": "",
+          "role": "Coach",
+          "last_contact_date": "2026-06-30",
+          "sentiment": "positive",
+          "risk": "Single point of contact and prior Zycus advocate, but cannot yet take it up the chain and has no current mandate to buy; leads procurement (self-described; no Salesforce title on record).",
+          "source": "SF task/activity contact; Avoma intro call 30 Jun"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "George Reimann is a warm, informed developing coach who recommended Zycus at his prior company EMCOR and engaged fully on 30 Jun, but he is not selling internally, has no mandate ('told to hold' on new platforms), and cannot reach power. What developed: a strong relationship and prior advocacy; what is missing: internal selling, EB access, and an active buying mandate.",
+      "champion": "George Reimann",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma intro call 30 Jun (George Reimann)"
+    },
+    "ai_positioning_strength": {
+      "summary": "The Merlin story landed: Bailey walked George through Merlin Assist in Teams and AI spend analysis, and George leaned in with specific asks (AI receipt-scan, tier-3 spend categorization). AI is well positioned for an intro call.",
+      "score": "moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 4.0 / Moderate, flagged exploratory on product scope alone. The 30 Jun call shows more real appetite than the field implies: George asked 'talk to me about the AI', wants AI receipt-scan and AI spend categorization to tier-3, so the appetite is slightly under-rated by the field.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "change_management",
+          "detail": "Do-nothing/inertia is the primary risk: 'no appetite for new platforms, new fees right now'; PremiStar continues on 13 ERPs and spreadsheets and George is mid-way through a manual preferred-vendor program.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "category": "executive_alignment",
+          "detail": "Economic buyer unmapped and unreachable: George is 'not even at the point where I could take it up the chain'; budget authority sits at the Deerfield corporate HQ.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        },
+        {
+          "category": "integration",
+          "detail": "Zycus lacks real-time field inventory (why George's prior SDI rollout failed) and payment processing (his Paymode fee fight) - two of his stated priorities.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "Avoma intro call 30 Jun"
+        },
+        {
+          "category": "political",
+          "detail": "Single thread to George; no operations, IT, or corporate-finance counterparts engaged despite a defined corporate org.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "Avoma intro call 30 Jun (George Reimann)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "One strong, very recent discovery (30 Jun) but single-threaded and buyer-parked to Q3; opportunity-health tasks already flag cooling and no decision maker.",
+      "cooling": true,
+      "items": [
+        "Buyer parked the purchase to end of Q3 (30 Jun)",
+        "Single thread to George Reimann",
+        "Opportunity Health task 01 Jul: 'Prospect's gone cold? No inbound since last 14 days'",
+        "Opportunity Health task 01 Jul: 'Decision Maker is not identified'"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Send George the payment-processor partner referrals and a tier-3 spend-visibility one-pager he asked about.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "George raised the Paymode vendor-fee opt-out problem and asked for AI spend categorization by manufacturer",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-13",
+          "expected_effect": "Closes our on-call commitment and keeps George warm through the Q3 pause with tangible value."
+        },
+        {
+          "rank": 2,
+          "action": "Confirm Zycus integrates with the relevant stakeholder and send George the integration note.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "George asked 'have you guys integrated with the relevant stakeholder?' and the answer was unconfirmed on the call",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Removes a technical unknown before the September reconnect; Mosaic is the backbone of his 30-month consolidation."
+        },
+        {
+          "rank": 3,
+          "action": "Ask George to name the Deerfield corporate finance and new IT leads to start mapping the committee.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "George is single-threaded and 'can't take it up the chain'; corporate authority sits at the Deerfield HQ",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-08-05",
+          "expected_effect": "Begins multi-threading to the budget owner while respecting his end-of-Q3 timing."
+        },
+        {
+          "rank": 4,
+          "action": "Reconfirm the 22 Sept session and align its agenda to his preferred-vendor program progress.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "George set an end-of-Q3 reconnect and a 22 Sept call is booked",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-08-25",
+          "expected_effect": "Keeps the buyer-set pull alive and frames the next call around his live milestone, not a generic follow-up."
+        }
+      ]
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Source-to-Pay scope (iSave, eProcurement, eInvoicing, Merlin, Merlin Intake)",
+      "to": "Source-to-Pay scope (unchanged)",
+      "detail": "Brand-new opportunity created 30 Jun with no prior scope to compare; product set is unchanged this sweep."
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 20.6,
+      "mom": 52.2,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "George is a prior Zycus advocate (recommended it at EMCOR) and engaged warmly ('you're in the right place'), but took only information and deferred to Q3 with no Zycus-specific next step beyond a check-in (30 Jun)."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Strong qualitative pain and volume metrics ($200M spend, 5,400 vendors, 27 companies, 13 ERPs) but no Zycus-specific ROI or savings quantified (George, 30 Jun)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "Brand-new $100k P2P land at PremiStar (a 27-company PE rollup) off one strong 30 Jun discovery with procurement lead George Reimann, a prior Zycus advocate from EMCOR; but he has explicitly parked any purchase ('no appetite for new platforms right now'), reconnects end of Q3, and there is no economic buyer, no process, and two product-fit gaps open.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "One good 30 Jun discovery: George Reimann, who championed Zycus at his prior company EMCOR, mapped PremiStar's $200M-spend, 27-company, 13-ERP consolidation and said Zycus is 'in the right place' - a warm, informed single contact."
+          },
+          {
+            "tone": "warn",
+            "text": "George explicitly parked it - 'there is no appetite for new platforms, new fees right now' and 'I'm not even at the point where I could take it up the chain' (30 Jun) - so this is a do-nothing/inertia risk, not an active buy."
+          },
+          {
+            "tone": "warn",
+            "text": "Two of George's hot buttons fall outside Zycus - real-time field inventory (why his prior SDI rollout failed) and payment processing (his Paymode fee fight) - leaving a fit gap to manage."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer, no buying process, and a single thread to George; corporate authority sits at the Deerfield HQ he cannot yet escalate to."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "Momentum is buyer-parked to end of Q3: the only forward marker is a 22 Sept reconnect George set himself on 30 Jun, and nothing advances before then."
+          },
+          {
+            "tone": "good",
+            "text": "George pulled the timing himself ('let's do towards the end of Q3... mid-September') and a 22 Sept call is booked - a real, if distant, pull."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "No commitment beyond taking information and a September check-in; George cannot yet take Zycus up his chain and must land his internal preferred-vendor program first."
+          },
+          {
+            "tone": "good",
+            "text": "Genuine intent: George recommended Zycus at EMCOR and said he 'would want to ask for' it here once his Microsoft Mosaic consolidation matures (30 Jun)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Do-nothing is the real competitor: PremiStar keeps running 13 ERPs and spreadsheets and George was told to hold on all new platforms and fees, so the deal dies to inertia, not a rival, if no compelling event forms."
+          },
+          {
+            "tone": "warn",
+            "text": "Product-fit exposure: Zycus does not do real-time inventory or payment processing, George's two stated priorities (30 Jun)."
+          }
+        ]
+      },
+      "factors": {
+        "deal_risk": {
+          "strength": -0.5,
+          "evidence": "Do-nothing/inertia is the dominant risk plus two open product-fit gaps (George, 30 Jun)."
+        },
+        "customer_commitment": {
+          "strength": -0.3,
+          "evidence": "Buyer parked purchase to end of Q3 and cannot escalate (George, 30 Jun)."
+        }
+      }
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 20.6,
+        "deal_momentum": 52.2,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 5.7,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 20.6,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": 1.5,
+        "ceiling": 30.0,
+        "momentum_adj": 1.1,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 2.2,
+            "evidence": "competitive strength +0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 1.1,
+            "evidence": "momentum 52 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 52.2,
+        "pre_decay": 52.2,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "concrete_dates",
+            "points": 3.6,
+            "evidence": "concrete dates (from call evidence)."
+          },
+          {
+            "factor": "customer_requested_next_meeting",
+            "points": 4.8,
+            "evidence": "customer requested next meeting (from call evidence)."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 5.7,
+        "core": 5.7,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 21 is carried by preference strength +0.40 (weight 20); competitive strength +0.50 (weight 15). Offsetting it: differentiation strength -0.40 (weight 20).",
+        "deal_momentum": "Momentum 52 (roughly flat): customer requested next meeting (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 6 is anchored on the stage win (21), nudged by commitment 8 and momentum 52, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "PremiStar \u2014 Qualified \u00b7 $100K \u00b7 closes 30 Aug",
+        "intro": "Brand-new $100k P2P land at PremiStar (a 27-company PE rollup) off one strong 30 Jun discovery with procurement lead George Reimann, a prior Zycus advocate from EMCOR; but he has explicitly parked any purchase ('no appetite for new platforms right now'), reconnects end of Q3, and there is no economic buyer, no process, and two product-fit gaps open",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 21,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "One good 30 Jun discovery; George Reimann, who championed Zycus at his prior company EMCOR, mapped PremiStar's $200M-spend, 27-company, 13-ERP consolidation and said Zycus is 'in the right place'; a warm, informed single contact"
+              },
+              {
+                "tone": "warn",
+                "text": "George explicitly parked it; 'there is no appetite for new platforms, new fees right now' and 'I'm not even at the point where I could take it up the chain' (30 Jun); so this is a do-nothing/inertia risk, not an active buy"
+              },
+              {
+                "tone": "warn",
+                "text": "Two of George's hot buttons fall outside Zycus; real-time field inventory (why his prior SDI rollout failed) and payment processing (his Paymode fee fight); leaving a fit gap to manage"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer, no buying process, and a single thread to George; corporate authority sits at the Deerfield HQ he cannot yet escalate to"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 52,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Momentum is buyer-parked to end of Q3; the only forward marker is a 22 Sept reconnect George set himself on 30 Jun, and nothing advances before then"
+              },
+              {
+                "tone": "good",
+                "text": "George pulled the timing himself ('let's do towards the end of Q3... mid-September') and a 22 Sept call is booked; a real, if distant, pull"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Do-nothing is the real competitor; PremiStar keeps running 13 ERPs and spreadsheets and George was told to hold on all new platforms and fees, so the deal dies to inertia, not a rival, if no compelling event forms"
+              },
+              {
+                "tone": "warn",
+                "text": "Product-fit exposure; Zycus does not do real-time inventory or payment processing, George's two stated priorities (30 Jun)"
+              }
+            ],
+            "footer": "Competitive picture: No competitive procurement platform has surfaced; PremiStar runs no incumbent suite (13 ERPs plus spreadsheets), so the single live threat is do-nothing/status-quo: George was told there is 'no appetite for new platforms, new fees' right\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No commitment beyond taking information and a September check-in; George cannot yet take Zycus up his chain and must land his internal preferred-vendor program first"
+              },
+              {
+                "tone": "good",
+                "text": "Genuine intent; George recommended Zycus at EMCOR and said he 'would want to ask for' it here once his Microsoft Mosaic consolidation matures (30 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Send George the payment-processor partner referrals and a tier-3 spend-visibility one-pager he asked about. (by 13 Jul)",
+              "Confirm Zycus integrates with the relevant stakeholder and send George the integration note. (by 20 Jul)",
+              "Ask George to name the Deerfield corporate finance and new IT leads to start mapping the committee. (by 5 Aug)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "120d activities; 365d field history",
+    "avoma_attendees": [
+      "George Reimann"
+    ],
+    "gaps": [
+      "Economic buyer / budget owner unidentified - authority sits above George at the Deerfield corporate HQ",
+      "No buying process, committee, or approval chain established (pre-process, buyer deferred to Q3)",
+      "Single thread: only George Reimann engaged; operations, IT, and corporate finance counterparts unnamed",
+      "George Reimann's Salesforce title not on record (hygiene)",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Microsoft Mosaic')",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Microsoft Mosaic')",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Microsoft Mosaic')"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:53"
+}

@@ -1,0 +1,246 @@
+{
+  "opp_id": "006P700000Zskw9",
+  "hard": {
+    "opp_id": "006P700000Zskw9",
+    "opp_name": "Skjodt-Barrett Foods_S2C+Spend_June26",
+    "account_name": "Skjodt-Barrett Foods Inc",
+    "account_industry": "Food, Bev & FMCG",
+    "billing_country": "Canada",
+    "owner_name": "Michael McCarthy",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2027-06-25",
+    "days_to_close": 354,
+    "created_date": "2026-06-22",
+    "qualified_date": "2026-06-25",
+    "last_activity_date": "2026-06-22",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;Merlin",
+    "next_step": "Mike Send follow up email with materials on contract management, spend analysis, supplier management, and sourcing events. Share collateral through a Digital Sales Room if needed. Offer support in building a business case for budget planning. Abeerah Follow up on next steps.",
+    "ais_score": 7.0,
+    "ais_status": "Moderate",
+    "ais_why": "At Skjodt-Barrett the Merlin Agentic Platform was discussed, with interest from MD in AI capabilities and supplier portal features and highlighted autonomous negotiation agent and proactive risk management. The Agentic-platform-discussed flag is set to Yes and the MD engaged directly on AI capabilities, a senior-level positive signal. Evaluation is 6-8 months out with questions on Microsoft D365 integration.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Zskw9/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Brand-new Qualified deal with genuine AI interest from the intro, but engagement is thinning: three rep call attempts on 2026-06-25 went unanswered and there has been no buyer inbound in 14 days, on a single thread with the budget owner still unmapped.",
+      "math": "Created 2026-06-22, qualified 2026-06-25, roughly 14 days in Qualified. Close date 2027-06-25 is about 354 days out, giving ample runway for a 12-15 month enterprise motion, so pace against the close date is NOT the problem. The issue is engagement depth: after the 2026-06-22 Introduction to Zycus the rep logged three Call Attempted tasks on 2026-06-25 (no connect) and an Opportunity Health flag that the prospect has gone cold with no inbound in 14 days. One clearly stalled action (buyer not responding to follow-up) plus thinning cadence puts this in Slowing, not Off Track (well under the 60-day cold threshold) and not Close Date Risk (the date is not the issue).",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Single engaged contact: MD Saidur Khan (Strategic Sourcing Manager, role Evaluator, primary). No Economic Buyer, Decision Maker, or Champion is mapped on the record. (Source: Salesforce OpportunityContactRole)",
+        "The 2026-06-22 Introduction to Zycus surfaced real AI appetite: Merlin agentic platform, autonomous negotiation agent, proactive risk management, supplier-portal features, plus a Microsoft D365 integration question, with evaluation flagged 6-8 months out. (Source: SF AIS_Why__c, Event 'Introduction to Zycus' 2026-06-22)",
+        "Zycus logged a plan to send contract, spend, supplier and sourcing collateral and to help build a budget business case, but the three follow-up call attempts on 2026-06-25 did not connect and no buyer reply has landed since. (Source: Next_Step__c, Tasks 'Call Attempted' 2026-06-25)",
+        "No competitor, incumbent, or evaluation alternative is named anywhere; the only environment signal is that Skjodt-Barrett runs Microsoft D365 and asked about integrating with it. (Source: AIS_Why__c 2026-06-22, SF Competitors__c blank)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "No quantified value case exists yet: there is no stated cost, cycle-time, headcount, savings, or maverick-spend number on the record. The qualitative driver captured at the 2026-06-22 introduction is interest in AI-led sourcing (Merlin autonomous negotiation agent), proactive supplier risk management, and supplier-portal features, which implies today's process is manual and low-visibility, though the buyer did not articulate the pain in numbers. The logged next step explicitly calls out helping the buyer build a business case for budget planning, so quantification is a known, still-open task. The move is to co-build an FMCG-benchmarked ROI model with Khan before the interest cools.",
+        "sources": ["SF AIS_Why__c 2026-06-22", "Event 'Introduction to Zycus' 2026-06-22", "Next_Step__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. The only contact role is MD Saidur Khan, a Strategic Sourcing Manager marked Evaluator, who is an influencer rather than a budget owner. The record itself shows budget is not yet secured: the logged next step is to help build a business case for budget planning, meaning approval sits with an unnamed leader above Khan. No senior supply-chain or finance sponsor appears in any field, activity, or event, so the economic buyer is a genuine gap, not a hygiene gap. The move is to ask Khan directly who owns the procurement budget and secure a warm introduction.",
+        "sources": ["Salesforce OpportunityContactRole", "Next_Step__c", "Task 'Decision Maker is not identified' 2026-06-25"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Emerging criteria are visible from the introduction but not yet confirmed through a structured evaluation. The buyer engaged specifically on AI capabilities (Merlin agentic platform, autonomous negotiation agent, proactive risk management), supplier-portal functionality, and Microsoft D365 integration, which signal that AI depth, supplier collaboration, and fit with their existing ERP will be weighted. These are inferred from the intro discussion rather than a documented business-requirement set or RFP. The move is to convert them into a written requirements list during the first working demo.",
+        "sources": ["SF AIS_Why__c 2026-06-22", "Event 'Introduction to Zycus' 2026-06-22"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is not yet mapped. The only timing signal is that evaluation is 6-8 months out per the introduction, and the deal is 354 days from its close date, so the buyer has not committed to a formal evaluation sequence, shortlist, or approval chain. No decision-process, mandate, or approval field is populated and no buyer has named steps or dates. The move is to ask Khan how procurement software gets evaluated and approved at Skjodt-Barrett and who signs off.",
+        "sources": ["SF AIS_Why__c 2026-06-22", "Salesforce field history / opportunity fields (decision-process fields blank)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics (MSA, SOW, legal, procurement channel, InfoSec) have not been discussed and are not expected at this Qualified stage roughly 354 days from close. No contract-expiration or paper-process field is populated to act as a forcing function. Given Skjodt-Barrett runs Microsoft D365, an ERP/systems-integration and security review will eventually matter, but none of that is live yet. Visibility would come from a later commercial conversation once a fit is established.",
+        "sources": ["Salesforce opportunity fields (paper-process fields blank)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Pain is implied but not yet explicitly articulated by the buyer on a recorded call. The interest in AI-led autonomous negotiation, proactive supplier risk management, and a supplier portal points to manual, low-visibility sourcing and supplier management as the underlying problem, and the pain owner is most plausibly Khan as the Strategic Sourcing Manager. No dedicated pain, compelling-event, or business-problem field is populated with the buyer's own words. The move is to run a discovery session that turns this interest into a documented, owner-attributed pain statement.",
+        "sources": ["SF AIS_Why__c 2026-06-22", "Salesforce OpportunityContactRole"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "MD Saidur Khan (Strategic Sourcing Manager, Evaluator) is the only engaged contact and the sole potential champion, and he showed positive intent at the 2026-06-22 introduction by engaging on AI capabilities and supplier-portal features. He is not yet advocating: he has not introduced a budget owner, shared a timeline or competitive context, or responded to the three follow-up call attempts on 2026-06-25. His champion strength is weak-to-developing, with domain influence likely but not yet activated on Zycus's behalf. The move is to re-engage him with the promised collateral within a week and ask for an internal sponsor introduction.",
+        "sources": ["Salesforce OpportunityContactRole", "SF AIS_Why__c 2026-06-22", "Next_Step__c", "Tasks 'Call Attempted' 2026-06-25"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor, incumbent vendor, or alternative platform has been named by the buyer or logged in Salesforce. The only environmental signal is that Skjodt-Barrett runs Microsoft D365 and asked about integrating with it, which means the realistic near-term alternative is the status quo (D365-native procurement plus spreadsheets and email) rather than a named rival, though an undisclosed evaluation cannot be ruled out this early. This is a visibility gap: Zycus does not yet know the true comparison anchor. The move is to ask Khan what they use today and whether other platforms are in the mix.",
+        "sources": ["SF AIS_Why__c 2026-06-22 (Microsoft D365)", "SF Competitors__c (blank)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "A freshly created deal that qualified quickly and then went quiet. The intro landed real AI interest, but the follow-up has not connected and there has been no buyer inbound in 14 days.",
+      "items": [
+        {"change": "Opportunity created", "date": "2026-06-22"},
+        {"change": "Introduction to Zycus meeting held; Merlin agentic AI, supplier portal, and D365 integration discussed", "date": "2026-06-22"},
+        {"change": "Ownership reassigned to Michael McCarthy", "date": "2026-06-24"},
+        {"change": "Stage advanced Initial Interest to Qualified", "date": "2026-06-24"},
+        {"change": "Three rep Call Attempted tasks logged with no connect; Opportunity Health flags prospect cold, no inbound in 14 days", "date": "2026-06-25"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any source, so there is no live rival to rank. The realistic near-term alternative for THIS deal is inertia: Skjodt-Barrett continuing on Microsoft D365-native procurement plus spreadsheets, which they flagged only as an integration target at the 2026-06-22 intro, not as a competing platform. This is a do-nothing / status-quo risk and a visibility gap rather than a competitive loss risk; an undisclosed evaluation cannot be ruled out at this early stage. The single next step is to surface what they use today and whether other vendors are being considered.",
+      "competitors": [
+        {"name": "Status quo / Microsoft D365 native procurement + spreadsheets", "sentiment": "neutral", "threat_level": "medium", "status": "do_nothing", "quote": "Merlin Agentic Platform was discussed ... questions on Microsoft D365 integration", "date": "2026-06-22", "source": "SF AIS_Why__c 2026-06-22", "how_we_win": "Position Merlin autonomous negotiation and supplier risk on top of a clean D365 integration story so the ROI beats keeping manual, spreadsheet-based sourcing."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Early fit signals are positive on AI and supplier collaboration, with one open integration expectation (Microsoft D365) still to be proven.",
+      "items": [
+        {"criterion": "AI-led / agentic sourcing (Merlin, autonomous negotiation, proactive risk)", "position": "aligned", "quote": "interest from MD in AI capabilities ... autonomous negotiation agent and proactive risk management", "date": "2026-06-22", "source": "SF AIS_Why__c 2026-06-22"},
+        {"criterion": "Supplier portal / supplier management", "position": "aligned", "quote": "interest ... in ... supplier portal features", "date": "2026-06-22", "source": "SF AIS_Why__c 2026-06-22"},
+        {"criterion": "Integration with Microsoft D365 ERP", "position": "exposed", "quote": "questions on Microsoft D365 integration", "date": "2026-06-22", "source": "SF AIS_Why__c 2026-06-22"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Md Saidur Khan the contract, spend, supplier, and sourcing collateral (via a Digital Sales Room).", "who": "Zycus", "grounding_quote": "Mike Send follow up email with materials on contract management, spend analysis, supplier management, and sourcing events. Share collateral through a Digital Sales Room if needed.", "date": "2026-06-22", "due": "2026-07-10", "status": "overdue", "source": "Next_Step__c"},
+          {"deliverable": "Help Khan build a business case for budget planning.", "who": "Zycus", "grounding_quote": "Offer support in building a business case for budget planning.", "date": "2026-06-22", "due": "2026-07-24", "status": "open", "source": "Next_Step__c"}
+        ]
+      },
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "Offer support in building a business case for budget planning", "status": "not addressed", "date": "2026-06-22", "gap_type": "knowledge", "source": "Next_Step__c, OpportunityContactRole"},
+        {"area": "Competitive / current-state context", "quote": "questions on Microsoft D365 integration", "status": "not addressed", "date": "2026-06-22", "gap_type": "knowledge", "source": "SF AIS_Why__c 2026-06-22, Competitors__c blank"},
+        {"area": "Quantified business case / metrics", "quote": "no cost, cycle-time, or savings figure stated", "status": "not addressed", "date": "2026-06-22", "gap_type": "knowledge", "source": "Salesforce metric fields blank"},
+        {"area": "Single-threaded on one Evaluator", "quote": "Keep the engagement multi-threaded", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "Task 'Keep the engagement multi-threaded' 2026-06-25"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a thin, single-threaded, early deal with real AI interest and a long runway; the win levers are re-establishing contact, mapping power, and converting curiosity into a scoped demo.",
+      "flags": [
+        "Multi-thread beyond Md Saidur Khan: he is the only contact and a mere Evaluator, so map and reach the procurement budget owner before the business-case step.",
+        "Convert the Merlin agentic AI curiosity into a scoped working demo tied to their Microsoft D365 environment before the 14-day silence hardens into a cold deal.",
+        "Surface the current-state and competitive picture: ask what they use today so positioning and the ROI case anchor to the real alternative, not guesswork."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "MD Saidur Khan", "title": "Strategic Sourcing Manager", "role": "Influencer", "last_contact_date": "2026-06-22", "sentiment": "Positive but unresponsive: engaged on AI and supplier-portal features at the intro, then did not answer three follow-up call attempts on 2026-06-25.", "risk": "Weak, developing champion and the sole thread. If he does not re-engage or open a path to the budget owner, the deal stalls.", "source": "Salesforce OpportunityContactRole; SF AIS_Why__c 2026-06-22"},
+        {"name": null, "title": null, "role": "Economic Buyer", "last_contact_date": null, "sentiment": "Unknown: not yet identified or engaged.", "risk": "Budget owner is unmapped; approval cannot progress until this leader above Khan is named and engaged.", "source": "Next_Step__c (business case for budget planning); Task 'Decision Maker is not identified' 2026-06-25"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "MD Saidur Khan (Strategic Sourcing Manager, Evaluator) is the only buyer contact and showed genuine interest in Merlin agentic AI and supplier-portal features at the 2026-06-22 introduction, but has not advocated: no budget-owner introduction, no timeline, and no response to the three follow-up call attempts on 2026-06-25. His strength is weak-to-developing. The immediate move is to re-engage him with the promised collateral within a week and request an introduction to the procurement budget owner; if he cannot open that door within 30 days he is an evaluator, not a champion.",
+      "champion": "MD Saidur Khan",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Salesforce OpportunityContactRole; SF AIS_Why__c 2026-06-22; Next_Step__c; Tasks 'Call Attempted' 2026-06-25"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story landed at the intro: the buyer engaged directly on the Merlin agentic platform, autonomous negotiation agent, and proactive risk management. Positioning is solid for this stage; the risk is losing that momentum, not under-positioning.",
+      "score": "7",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 7.0 / Moderate, and the AIS_Why confirms the Merlin agentic platform was discussed with direct interest in AI capabilities plus a D365 integration question. No calls exist to test whether this is under or over-rated, but the field-level signal is genuine early AI appetite paired with a 6-8 month timeline.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "Single-threaded on one Evaluator (Khan) with no economic buyer or decision maker mapped.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "OpportunityContactRole; Task 'Keep the engagement multi-threaded' 2026-06-25"},
+        {"category": "budget", "detail": "No budget secured and no quantified business case; approval owner unidentified.", "first_raised": "2026-06-22", "date": "2026-06-22", "status": "open", "source": "Next_Step__c"},
+        {"category": "change_management", "detail": "Do-nothing / status-quo risk: buyer could stay on Microsoft D365-native procurement plus spreadsheets rather than decide.", "first_raised": "2026-06-22", "date": "2026-06-22", "status": "open", "source": "SF AIS_Why__c 2026-06-22"},
+        {"category": "timeline", "detail": "Evaluation flagged 6-8 months out and engagement already cooling after 14 days of buyer silence.", "first_raised": "2026-06-22", "date": "2026-06-25", "status": "open", "source": "SF AIS_Why__c 2026-06-22; Tasks 'Call Attempted' 2026-06-25"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: after the 2026-06-22 intro the buyer did not answer three call attempts on 2026-06-25 and has sent no inbound in 14 days.",
+      "cooling": true,
+      "items": [
+        "No buyer inbound since the 2026-06-22 introduction (14 days).",
+        "Three rep Call Attempted tasks on 2026-06-25 did not connect.",
+        "Opportunity Health flag: prospect gone cold, no inbound in last 14 days."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Re-engage Md Saidur Khan with the promised procurement collateral in a Digital Sales Room.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Collateral promised after the 2026-06-22 intro; three call attempts on 2026-06-25 went unanswered with no inbound in 14 days.", "trigger_date": "2026-06-25", "act_by": "2026-07-10", "expected_effect": "Restarts a cooling thread and gives Khan a reason to respond before the deal goes cold."},
+        {"rank": 2, "action": "Ask Khan who owns the procurement budget and request a warm introduction.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Budget business case is owed but the approval owner above Khan is unmapped.", "trigger_date": "2026-06-22", "act_by": "2026-07-17", "expected_effect": "Maps the economic buyer so budget approval and the business case can actually progress."},
+        {"rank": 3, "action": "Offer a scoped Merlin agentic sourcing demo tied to their Microsoft D365 environment.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Direct AI interest and a D365 integration question raised at the 2026-06-22 intro.", "trigger_date": "2026-06-22", "act_by": "2026-07-24", "expected_effect": "Converts early AI curiosity into a working evaluation and proves the integration fit."},
+        {"rank": 4, "action": "Multi-thread into a supply-chain or finance leader beyond Khan.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Single-threaded on one Evaluator; Opportunity Health flags multi-thread and decision-maker gaps.", "trigger_date": "2026-06-25", "act_by": "2026-08-05", "expected_effect": "Reduces single-point-of-failure risk and builds a path to the decision maker."}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "deal_scores_evidence": {
+      "summary": "A brand-new Qualified deal with real Merlin agentic-AI interest from Md Saidur Khan at the 2026-06-22 intro, but it is single-threaded on an Evaluator, the budget owner is unmapped, and the buyer has gone silent for 14 days after three unanswered call attempts.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is modest: the only engaged contact is Md Saidur Khan, a Strategic Sourcing Manager marked Evaluator, and no economic buyer or decision maker is mapped, so there is no path to budget approval yet (OpportunityContactRole; Next_Step__c)."},
+          {"tone": "good", "text": "The Merlin agentic platform, autonomous negotiation agent, and proactive risk management landed at the 2026-06-22 intro, giving Zycus a differentiated AI wedge with a moderate AIS of 7 (SF AIS_Why__c 2026-06-22)."},
+          {"tone": "warn", "text": "No competitor is named and the realistic alternative is the buyer staying on Microsoft D365-native procurement plus spreadsheets, a do-nothing risk that is easy to lose to by default (AIS_Why__c 2026-06-22)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum has stalled: after the 2026-06-22 introduction, three rep Call Attempted tasks on 2026-06-25 did not connect and there has been no buyer inbound in 14 days (Tasks 'Call Attempted' 2026-06-25)."},
+          {"tone": "warn", "text": "The buyer flagged evaluation as 6-8 months out and named no concrete dates, so there is no near-term forcing event (SF AIS_Why__c 2026-06-22)."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Khan engaged directly on AI capabilities and supplier-portal features at the intro, a positive early intent signal (SF AIS_Why__c 2026-06-22)."},
+          {"tone": "warn", "text": "Commitment is shallow: the buyer has not requested a next meeting, shared a timeline, or responded to Zycus's follow-up, and the engagement is still generic top-of-funnel (Next_Step__c; Tasks 2026-06-25)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-thread and unmapped economic buyer are the headline early-stage risks; Opportunity Health explicitly flags multi-thread and decision-maker gaps (Task 2026-06-25)."},
+          {"tone": "warn", "text": "No quantified business case exists and the buyer has gone quiet, so the deal could quietly go dark before a formal evaluation ever starts (Next_Step__c; confidence signals 2026-06-25)."}
+        ]
+      },
+      "factors": {
+        "customer_engagement": {"strength": -0.4, "evidence": "No buyer inbound in 14 days; three unanswered call attempts 2026-06-25."},
+        "power_access": {"strength": -0.6, "evidence": "Only an Evaluator engaged; economic buyer and decision maker unmapped."},
+        "ai_fit": {"strength": 0.4, "evidence": "Merlin agentic AI interest and AIS 7 at the 2026-06-22 intro."}
+      }
+    },
+    "customer_preference": {"level": "medium", "evidence": "MD engaged directly on Merlin agentic AI, autonomous negotiation, and supplier-portal features at the 2026-06-22 intro, but no Zycus-specific next step was requested (SF AIS_Why__c 2026-06-22)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative AI and supplier-management interest only; no ROI, savings, or cycle-time numbers, and the business case is still to be built per Next_Step__c."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120 days; field history since 2026-06-22 creation",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls exist for this opportunity (opp, account, and attendee-email discovery all empty); the prior canonical record's quoted 'discovery call 2026-06-22' quotes are unsupported and were dropped.",
+      "Economic buyer / budget owner unidentified.",
+      "No competitor or current-state solution named beyond a Microsoft D365 integration reference.",
+      "No quantified business case or metrics."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,722 @@
+{
+  "opp_id": "006P700000aAex9",
+  "hard": {
+    "opp_id": "006P700000aAex9",
+    "opp_name": "WESTERN_CAPE_GOVERNMENT_2026",
+    "account_name": "WESTERN CAPE GOVERNMENT",
+    "account_industry": "Federal",
+    "billing_country": "South Africa",
+    "owner_name": "John Woodcock",
+    "owner_title": "",
+    "manager_name": "Shekhar Varma",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2027-02-28",
+    "days_to_close": 237,
+    "created_date": "2026-06-29T09:40:25.000+0000",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2025-07-10",
+    "last_modified_date": "2026-07-01T12:48:26.000+0000",
+    "products": "iContract;iSupplier;eInvoicing;Merlin;iRisk",
+    "next_step": null,
+    "ais_score": null,
+    "ais_status": null,
+    "ais_why": null,
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aAex9/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "A week-old Western Cape Government suite opportunity was auto-promoted to Qualified on 29 Jun 2026 with zero discovery, no economic buyer, and no champion. Eight contacts are on record but all Influencer/Evaluator, and no two-way buyer conversation has happened yet. The move is to open a senior discovery call before the public-sector cycle formalizes.",
+      "math": "Created 2026-06-29 and promoted Initial Interest -> Qualified the SAME day (0 days in stage to qualify, a placeholder promotion, not earned progress). As of today 2026-07-06 the opportunity is 7 days old, so it is NOT a cold/dark deal, it is an un-worked new one: the only recorded touches are nine automated opportunity-health 'Call Attempted' tasks on 29 Jun 2026 and internal owner/amount/division edits. LastActivityDate 2025-07-10 predates creation by 354 days and is a data anomaly, not evidence of engagement. Close date 2027-02-28 is 237 days out. South African public-sector source-to-pay cycles typically run 9-15 months through discovery, tender/RFP, evaluation, Treasury/budget approvals and contracting, so ~8 months from a standing start with no discovery is tight but not yet indefensible. Forecast is Pipeline, which is the honest category for this evidence, so the forecast number is defensible even though the deal itself needs urgent discovery to become real.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Opportunity created 2026-06-29 and promoted Initial Interest -> Qualified the same day with 0 days in stage, a placeholder qualification with no discovery behind it (source: SF OpportunityFieldHistory 2026-06-29)",
+        "No Avoma calls exist for this opp across opp, account and attendee-email discovery, and no Next_Step is set, so there is zero recorded two-way buyer engagement (source: Avoma search 0 matched calls, SF Next_Step__c empty)",
+        "Eight contact roles are all Influencer or Evaluator; no Economic Buyer, Decision Maker, Champion or Executive Sponsor is mapped (source: SF OpportunityContactRole)",
+        "The only activity is nine automated opportunity-health 'Call Attempted' tasks on 2026-06-29, including 'Decision Maker is not identified' and 'Prospect's gone cold, no inbound since last 14 days' (source: SF Tasks 2026-06-29)",
+        "LastActivityDate 2025-07-10 predates the 2026-06-29 creation by 354 days, confirming the activity stamp is a data anomaly rather than real engagement (source: SF LastActivityDate, CreatedDate)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No business problem or quantified impact is documented. Customer_Business_Problem__c, Value_to_Customer__c, Compelling_Event__c and Pain_points_in_the_current_solution__c are all empty, the Description is empty, and there is no Avoma call to surface even qualitative pain. For a five-module suite (iContract, iSupplier, eInvoicing, Merlin, iRisk) at a South African provincial government, the funded pain is usually manual contract and invoice handling, slow supplier onboarding, or audit/compliance exposure under Treasury rules, but none of that is confirmed with Western Cape Government. The move is a discovery call with a senior stakeholder (Chief Director Isac Smith or Director Nadia Ebrahim) to name the operational pain and put a number on the cost of doing nothing.",
+        "sources": [
+          "SF Customer_Business_Problem__c empty",
+          "SF Value_to_Customer__c empty",
+          "SF Compelling_Event__c empty",
+          "SF Description empty",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped and none can be inferred, because there is no call or email evidence of anyone controlling budget or pricing. The only structural clue is Malcolm Booysen, Senior Manager: the deal owner's manager Management, whose title sits near budget authority, but he has never engaged and cannot be asserted as the EB without evidence. In a provincial government the real budget sign-off typically sits with a CFO or Head of Department not yet on the record. Identifying and reaching that person is a ranked move; the nearest senior contacts to start from are Chief Director Isac Smith and Director Nadia Ebrahim (source: SF OpportunityContactRole).",
+        "sources": [
+          "SF OpportunityContactRole (all Influencer/Evaluator, no EB role)",
+          "SF X10a_Sponsor__c / Who_will_approve_budget__c not evidenced",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria are documented. Business_Requirements__c, Top_Challenges_Priorities__c and What_is_the_decision_process__c carry no evidenced content, and no use-case review, RFP round or workshop has occurred. Public-sector buyers usually anchor criteria to a formal tender specification, B-BBEE and local-support requirements, and Treasury value-for-money tests, so whether a tender/RFP will define the criteria is the first thing to learn. The move is to ask, on the discovery call, whether this will run as a formal tender and to obtain any draft requirement document before criteria are locked.",
+        "sources": [
+          "SF Business_Requirements__c not evidenced",
+          "SF What_is_the_decision_process__c not evidenced",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buying process is unknown. There is no call sequence to read the process from, no What_is_the_decision_process__c content, and no Mandate__c or approval-chain field populated. Western Cape Government procurement will almost certainly involve a multi-layer approval chain (departmental sign-off, Supply Chain Management, and Provincial Treasury thresholds) and quite possibly a public tender, but none of that is confirmed. The move is to map the procurement route (direct award vs tender), the approval gates, and the expected timeline directly with a senior contact.",
+        "sources": [
+          "SF What_is_the_decision_process__c not evidenced",
+          "SF Multiple_approvals__c / Purchase_approvals_Required_from__c not evidenced",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible. There is no MSA/SOW discussion, no InfoSec or legal thread, no Current_Contract_Expiration__c value, and no SI/partner named. As a new-business public-sector suite deal this will eventually require Zycus SaaS paper (MSA + Order Form + separately signed SOW), a security/compliance pack, and possibly a local partner for B-BBEE and in-country support, but the deal is far from that. What would create visibility is a first discovery call establishing whether an existing contract is expiring and whether a partner is expected.",
+        "sources": [
+          "SF Current_Contract_Expiration__c not evidenced",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No operational or financial pain has been articulated by the buyer. Compelling_Event__c, What_if_this_is_not_done__c and Pain_points_in_the_current_solution__c are empty and there is no discovery call. The likely pain owner is a CFO, Head of Supply Chain or Chief Director of Finance, but none is engaged, and the nearest senior contacts on record are Chief Director Isac Smith (Asset Management) and Director Nadia Ebrahim. Until a compelling event is confirmed (an audit finding, a budget-cycle mandate, or an expiring system), this remains a speculative placeholder. The move is to surface the trigger and the pain owner on the first discovery call.",
+        "sources": [
+          "SF Compelling_Event__c empty",
+          "SF What_if_this_is_not_done__c empty",
+          "SF Pain_points_in_the_current_solution__c empty",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. The eight contacts are one Evaluator (Jabriel Small, Assistant Manager) and seven Influencers (Chief Director, Director, budget senior manager, office manager, personal assistant), and none has shown any advocacy, EB access, or internal steering, because no two-way conversation has happened. Jabriel Small is the only evaluator-tagged contact and is the natural first test for coaching, but there is no evidence yet of his influence or access to power. The move is to engage Jabriel Small and a senior sponsor (Isac Smith or Nadia Ebrahim) and assess who can carry Zycus internally through the government approval maze.",
+        "sources": [
+          "SF OpportunityContactRole (1 Evaluator, 7 Influencers, no Champion role)",
+          "SF X10b_Champion_Business_Buyer__c not evidenced",
+          "Avoma 0 matched calls"
+        ]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor is named in any source. Competitors__c, Others_Competitors_Please_specify__c and How_are_you_addressing_your_problem_toda__c are all empty, and there is no call or task referencing a rival or the buyer's current tooling. It is unknown whether this is a sole-source direct engagement or a future competitive tender, and per living-memory discipline no rival is asserted on zero evidence. The wedge, once discovery confirms fit, is Merlin AI for contract negotiation and risk plus integrated suite breadth across five modules, but it cannot be activated until we learn what Western Cape Government uses today and whether a tender will run. The move is to ask, on the discovery call, how they manage contracts, suppliers and invoices now and whether other vendors are in scope.",
+        "sources": [
+          "SF Competitors__c empty",
+          "SF Others_Competitors_Please_specify__c empty",
+          "SF How_are_you_addressing_your_problem_toda__c empty",
+          "Avoma 0 matched calls"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement since creation on 2026-06-29 is internal setup and automated hygiene: same-day promotion to Qualified, an amount raise to $150k, a division change to New Markets, an owner reassignment to John Woodcock, and nine opportunity-health nudge tasks. No buyer-facing step has been executed and no next step is set.",
+      "items": [
+        {
+          "change": "Opportunity created and promoted Initial Interest -> Qualified the same day (0 days in stage)",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Amount raised $15k -> $150k; Type set to New Business; Division moved Zycus -> New Markets",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Ownership reassigned Krina Shah -> John Woodcock",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Nine automated opportunity-health 'Call Attempted' tasks logged (cold-prospect, multi-thread, DM-not-identified nudges)",
+          "date": "2026-06-29"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor or incumbent has been named in any source and no current-state tooling is known, so the competitive picture is genuinely unmapped rather than sole-sourced. Per living-memory discipline no rival is asserted on zero evidence. Learning what Western Cape Government uses today and whether a public tender will run is a top-three discovery priority; the eventual wedge is Merlin AI contract negotiation/risk plus five-module suite breadth.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "No decision criteria or expectations have been stated by the buyer; there is no discovery call or requirement document on record, so fit cannot yet be assessed.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Identify Pain / Metrics",
+          "quote": "Customer_Business_Problem__c, Value_to_Customer__c and Compelling_Event__c empty; no discovery call",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF Q3 fields empty + Avoma 0 calls"
+        },
+        {
+          "area": "Economic Buyer",
+          "quote": "No EB/DM/Exec Sponsor contact role; budget owner unknown",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "area": "Competition / current tooling",
+          "quote": "Competitors__c and How_are_you_addressing_your_problem_toda__c empty; no rival named",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF Q3 fields + Avoma 0 calls"
+        },
+        {
+          "area": "Decision process / tender route",
+          "quote": "What_is_the_decision_process__c empty; unknown if a formal tender will run",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF What_is_the_decision_process__c"
+        },
+        {
+          "area": "Activity-date hygiene",
+          "quote": "LastActivityDate 2025-07-10 predates CreatedDate 2026-06-29 by 354 days",
+          "status": "acknowledged",
+          "date": "2026-06-29",
+          "gap_type": "hygiene",
+          "source": "SF LastActivityDate vs CreatedDate"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a standing-start public-sector deal: the win levers are opening a senior discovery conversation, learning the procurement route before criteria lock, and mapping the budget owner.",
+      "flags": [
+        "Power is unmapped: get a two-way discovery call with the relevant stakeholder Smith or Director Nadia Ebrahim before the government cycle formalizes.",
+        "Learn the procurement route early: confirm whether this runs as a formal tender/RFP, which decides whether Zycus can still shape the criteria.",
+        "Zero discovery on a five-module suite: confirm the funded pain and compelling event before positioning Merlin AI and the integrated platform."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Isac Smith",
+          "_source": "sfdc_contact_role",
+          "title": "Chief Director Asset Management",
+          "email": "isac.smith@westerncape.gov.za",
+          "role": "Influencer",
+          "risk": "Most senior contact and a plausible executive sponsor, but never engaged; priority target to reach power and confirm the funded initiative.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        },
+        {
+          "name": "Nadia Ebrahim",
+          "_source": "sfdc_contact_role",
+          "title": "Director",
+          "email": "nadia.ebrahim@westerncape.gov.za",
+          "role": "Influencer",
+          "risk": "Director-level, potential decision maker or sponsor, but never engaged; key discovery and process-mapping target.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        },
+        {
+          "name": "Malcolm Booysen",
+          "_source": "sfdc_contact_role",
+          "title": "Senior Manager: Local Government Budget Management",
+          "email": "malcolm.booysen@westerncape.gov.za",
+          "role": "Influencer",
+          "risk": "Budget-management title sits near the economic buyer, but never engaged; include in any commercials/ROI conversation.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        },
+        {
+          "name": "Jabriel Small",
+          "_source": "sfdc_contact_role",
+          "title": "Asisstant Manager",
+          "email": "jabriel.small@westerncape.gov.za",
+          "role": "Evaluator",
+          "risk": "Only Evaluator on record and the natural first coaching test, but influence and EB access are unproven.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        },
+        {
+          "name": "Wafihqa Sadan",
+          "_source": "sfdc_contact_role",
+          "title": "Office Manager",
+          "email": "wafihqa.sadan@westerncape.gov.za",
+          "role": "Influencer",
+          "risk": "Primary contact but an administrative gatekeeper, not a decision maker; useful to route to senior stakeholders.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        },
+        {
+          "name": "Lesley-Anne Smith",
+          "_source": "sfdc_contact_role",
+          "title": "Personal Assistant",
+          "email": "lesley-anne.smith@westerncape.gov.za",
+          "role": "Influencer",
+          "risk": "Administrative support contact; low decision influence, potential scheduling path to senior leaders.",
+          "sentiment": "Unknown",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified or developed. Eight contacts are on record (one Evaluator, seven Influencers) but none has shown advocacy or EB access, because no two-way conversation has occurred. Jabriel Small (Evaluator) is the natural first coaching test; a senior sponsor (Isac Smith or Nadia Ebrahim) must be built from scratch.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (no Champion role), Avoma 0 matched calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and iRisk are in the proposed scope but the AI/agentic value story has never been put to the buyer, because no discovery or demo has happened. The suite is under-positioned by default: no AIS field and no buyer AI conversation exist yet.",
+      "score": "low",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS_Score__c or AIS_Status__c was provided and there are no buyer calls, so AI appetite cannot be confirmed. Merlin and iRisk sitting in the proposed scope reflect a Zycus-side inclusion, not a buyer-stated AI demand; treat the tier as unconfirmed until discovery.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer, decision maker or executive sponsor mapped; all eight contacts are Influencer/Evaluator.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "category": "political",
+          "detail": "South African provincial government multi-layer approvals (departmental, Supply Chain Management, Provincial Treasury) and likely tender route are unmapped.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Account.Industry Federal + public-sector norms"
+        },
+        {
+          "category": "timeline",
+          "detail": "Close 2027-02-28 gives ~8 months for a 9-15 month public-sector cycle with zero discovery done.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF CloseDate, StageName"
+        },
+        {
+          "category": "budget",
+          "detail": "$150k with no confirmed funded initiative or budget owner; the amount was raised from $15k on 2026-06-29 without documented pain.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityFieldHistory Amount, Q3 fields empty"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No buyer engagement on record; the deal is a week-old placeholder awaiting first discovery rather than a cooling live deal.",
+      "cooling": false,
+      "items": [
+        "No Avoma calls, no emails, no Next_Step, no inbound (source: Avoma 0 calls, SF Next_Step__c empty)",
+        "Opportunity-health task flags 'prospect gone cold, no inbound in 14 days' as of 2026-06-29 (source: SF Task 2026-06-29)"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "John Woodcock to email the relevant stakeholder Smith and Director Nadia Ebrahim to book a discovery call.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Placeholder qualification with no discovery; opportunity-health flag 'prospect gone cold, no inbound in 14 days'",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-13",
+          "expected_effect": "Opens the first two-way buyer conversation and tests whether this is a real, funded initiative."
+        },
+        {
+          "rank": 2,
+          "action": "On the discovery call, surface the funded pain, compelling event, and any tender or RFP timeline.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Customer_Business_Problem__c, Compelling_Event__c and decision-process fields all empty",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Establishes MEDDPICC pain and process and confirms whether the close date is achievable."
+        },
+        {
+          "rank": 3,
+          "action": "Engage Evaluator Jabriel Small to obtain the org chart and the budget owner's name.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "No economic buyer or decision maker mapped; eight contacts all Influencer/Evaluator",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-22",
+          "expected_effect": "Starts multi-threading to power and identifies the economic buyer to sponsor the deal."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm current contracts/invoicing tooling and whether other vendors are in scope.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Competitors__c and current-state fields empty; competitive landscape unmapped",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-08-05",
+          "expected_effect": "Reveals the competitive field so Merlin and suite breadth can be positioned before criteria lock."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A week-old Western Cape Government suite opportunity (iContract, iSupplier, eInvoicing, Merlin, iRisk, $150k) was auto-qualified with no discovery, no economic buyer, and no champion; the only path forward is a senior discovery conversation before the public-sector cycle formalizes.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "Brand-new opportunity created 29 Jun 2026 and promoted to Qualified the same day with no discovery: eight contacts are on record but all Influencer/Evaluator, and no economic buyer, champion, pain or competitor is confirmed (SF OpportunityFieldHistory + OpportunityContactRole, 29 Jun 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "No senior stakeholder has engaged; Chief Director Isac Smith and Director Nadia Ebrahim are on the record but have never been in a two-way conversation (SF OpportunityContactRole; no activity since the 29 Jun 2026 placeholder tasks)."
+          },
+          {
+            "tone": "warn",
+            "text": "Close date 28 Feb 2027 leaves about 8 months for a South African public-sector cycle that typically runs 9-15 months, and no tender/RFP route or compelling event is documented (SF CloseDate + empty Compelling_Event__c)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The only movement since creation is internal: nine automated 'Call Attempted' opportunity-health tasks and an owner/amount/division edit on 29 Jun 2026, with no buyer-facing step executed (SF Tasks + OpportunityFieldHistory, 29 Jun 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "No next step is set and no meeting is booked; an opportunity-health task flags 'prospect gone cold, no inbound in 14 days' as of 29 Jun 2026 (SF Task, 29 Jun 2026)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Zero buyer commitment of any kind: no Avoma calls, no emails, no requested next meeting, and no named decision criteria or timeline from Western Cape Government (Avoma 0 matched calls; SF Next_Step__c empty)."
+          },
+          {
+            "tone": "warn",
+            "text": "The primary contact is Wafihqa Sadan, an Office Manager gatekeeper rather than a budget owner, so the path to commitment from power is unproven (SF OpportunityContactRole, PRIMARY)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single-threaded to junior and administrative roles with the economic buyer unmapped, and a possible public-sector tender could formalize criteria before Zycus influences them (SF OpportunityContactRole; public-sector norms)."
+          },
+          {
+            "tone": "warn",
+            "text": "Placeholder qualification (0 days in stage) with zero MEDDPICC coverage means this may not be real pipeline until discovery confirms a funded initiative (SF OpportunityFieldHistory, 29 Jun 2026)."
+          }
+        ]
+      },
+      "factors": {
+        "seniority_rising": {
+          "strength": -1,
+          "evidence": "No senior stakeholder has joined any conversation; no calls exist (Avoma 0 matched calls)."
+        },
+        "customer_commitment": {
+          "strength": -1,
+          "evidence": "No buyer-requested next step, no named timeline, no inbound since the 29 Jun 2026 placeholder tasks."
+        },
+        "deal_risk": {
+          "strength": -1,
+          "evidence": "EB unmapped, single-threaded to admin roles, no discovery on a 9-15 month public-sector cycle."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer conversation on record; no Avoma calls and no inbound since the 29 Jun 2026 placeholder tasks."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "Customer_Business_Problem__c, Value_to_Customer__c and Compelling_Event__c all empty; no discovery call to surface pain or ROI."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 0.4,
+      "mom": 46.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 0.4,
+        "deal_momentum": 46.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 0.4,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -14.4,
+        "ceiling": 30.0,
+        "momentum_adj": -3.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -3.2,
+            "evidence": "momentum 47 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 46.8,
+        "pre_decay": 46.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 0 reflects a weak position: momentum 47 vs stage-expected 50. Offsetting it: momentum 47 vs stage-expected 50.",
+        "deal_momentum": "Momentum 47 (roughly flat): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (0), nudged by commitment 8 and momentum 47, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "WESTERN CAPE GOVERNMENT \u2014 Qualified \u00b7 $150K \u00b7 closes 28 Feb",
+        "intro": "A week-old Western Cape Government suite opportunity (iContract, iSupplier, eInvoicing, Merlin, iRisk, $150k) was auto-qualified with no discovery, no economic buyer, and no champion; the only path forward is a senior discovery conversation before the public-sector cycle formalizes",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 0,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Brand-new opportunity created 29 Jun 2026 and promoted to Qualified the same day with no discovery; eight contacts are on record but all Influencer/Evaluator, and no economic buyer, champion, pain or competitor is confirmed (SF OpportunityFieldHistory + OpportunityContactRole, 29 Jun 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "No senior stakeholder has engaged; Chief Director Isac Smith and Director Nadia Ebrahim are on the record but have never been in a two-way conversation (SF OpportunityContactRole; no activity since the 29 Jun 2026 placeholder tasks)"
+              },
+              {
+                "tone": "warn",
+                "text": "Close date 28 Feb 2027 leaves about 8 months for a South African public-sector cycle that typically runs 9-15 months, and no tender/RFP route or compelling event is documented (SF CloseDate + empty Compelling_Event__c)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 47,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The only movement since creation is internal; nine automated 'Call Attempted' opportunity-health tasks and an owner/amount/division edit on 29 Jun 2026, with no buyer-facing step executed (SF Tasks + OpportunityFieldHistory, 29 Jun 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "No next step is set and no meeting is booked; an opportunity-health task flags 'prospect gone cold, no inbound in 14 days' as of 29 Jun 2026 (SF Task, 29 Jun 2026)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single-threaded to junior and administrative roles with the economic buyer unmapped, and a possible public-sector tender could formalize criteria before Zycus influences them (SF OpportunityContactRole; public-sector norms)"
+              },
+              {
+                "tone": "warn",
+                "text": "Placeholder qualification (0 days in stage) with zero MEDDPICC coverage means this may not be real pipeline until discovery confirms a funded initiative (SF OpportunityFieldHistory, 29 Jun 2026)"
+              }
+            ],
+            "footer": "Competitive picture: No competitor or incumbent has been named in any source and no current-state tooling is known, so the competitive picture is genuinely unmapped rather than sole-sourced."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Zero buyer commitment of any kind; no Avoma calls, no emails, no requested next meeting, and no named decision criteria or timeline from Western Cape Government (Avoma 0 matched calls; SF Next_Step__c empty)"
+              },
+              {
+                "tone": "warn",
+                "text": "The primary contact is Wafihqa Sadan, an Office Manager gatekeeper rather than a budget owner, so the path to commitment from power is unproven (SF OpportunityContactRole, PRIMARY)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "John Woodcock to email the relevant stakeholder Smith and Director Nadia Ebrahim to book a discovery call. (by 13 Jul)",
+              "On the discovery call, surface the funded pain, compelling event, and any tender or RFP timeline. (by 20 Jul)",
+              "Engage Evaluator Jabriel Small to obtain the org chart and the budget owner's name. (by 22 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "created 2026-06-29 through 2026-07-06; tasks last 120d; field history since 2026-06-29",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero buyer calls across opp, account and attendee-email Avoma discovery (genuine knowledge gap)",
+      "No documented pain, metrics, compelling event or business case",
+      "No economic buyer, decision maker or champion mapped",
+      "No competitive intelligence or current-state tooling known",
+      "Decision process and tender/RFP route unknown",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Chief Director Isac')",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Chief Director Isac')"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:16"
+}

@@ -1,0 +1,246 @@
+{
+  "opp_id": "006P700000a5fH7",
+  "hard": {
+    "opp_id": "006P700000a5fH7",
+    "opp_name": "ABB_Intake+ANA_Jun'26",
+    "account_name": "ABB",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "United States",
+    "owner_name": "Marc Quessenberry",
+    "owner_title": "Regional Sales Director - Mid-Atlantic",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-26",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-06-30",
+    "products": "Merlin Intake;Agentic AI;ANA",
+    "next_step": "Follow up to get NDA/mNDA for legal review. Provide ABB with Zycus security/data-isolation documentation. Schedule a deep-dive discovery session with a Solution Consultant focused on ANA (autonomous negotiation) and Merlin Intake, tailored around Infor LX integration questions.",
+    "ais_score": 8.0,
+    "ais_status": "Strong",
+    "ais_why": "ABB is exploring AI-driven procurement transformation, currently running ad hoc AI pilots without a structured framework; stated objective is to automate maverick/tail spend negotiation first, aligning with Autonomous Negotiation (ANA), Agentic AI and Merlin Intake; compelling event framed as ABB seeking a structured approach to AI in supply chain.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a5fH7/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Six-day-old Qualified deal with strong AI fit and an actively engaged buyer on the NDA; the work now is to multi-thread past a single technical manager to an economic buyer.",
+      "math": "Created 26 Jun 2026, moved Initial Interest to Qualified on 30 Jun; 6 days in Qualified as of 6 Jul. Close date 30 Jun 2027 = ~359 days out, so pacing is not the constraint at this distance. No submission-date fields (Formal Eval / Shortlisted) populated. Last genuine two-way buyer touch 30 Jun 2026 (Dillan Patel replied same-day on the NDA), 6 days ago, so the deal is live and warm. Momentum is real but narrow: single-threaded through a supply-chain and data-analytics manager with no budget authority, and no economic buyer or decision maker engaged. Forecast Pipeline is honest for a Qualified deal with no commercial conversation.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Stage moved Initial Interest to Qualified on 30 Jun 2026 (field history, Marc Quessenberry).",
+        "Last real buyer touch 30 Jun 2026: Dillan Patel replied same-day on the NDA thread ('Great thanks Marc'); deal is live and warm.",
+        "Single-threaded through Dillan Patel (Supply Chain and Data Analytics Manager) with no shown budget authority; no economic buyer or decision maker engaged across contact roles, tasks, or the one meeting.",
+        "Strong AI fit: AIS 8/Strong; ANA, Agentic AI and Merlin Intake are scoped to ABB's stated objective to automate maverick/tail-spend negotiation (AIS_Why__c).",
+        "Paperwork advancing but pre-evaluation: ABB routed the NDA through its legal team and prefers Zycus sign ABB's standard mutual NDA (Dillan Patel, 30 Jun); no discovery deep-dive, demo, or dates booked yet.",
+        "Infor LX ERP integration and security/data-isolation flagged as evaluation gates in the 30 Jun next step; neither validated yet.",
+        "Coupa is named as a competitor in Salesforce (26 Jun) but no buyer context exists on whether it is incumbent or a peer."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "ABB's objective is stated at the account level but not quantified by the buyer. AIS_Why__c records that ABB wants to 'automate maverick/tail spend negotiation first' and is 'seeking a structured approach to AI in supply chain,' which maps cleanly to ANA and Merlin Intake. However, no cost, cycle-time, headcount, or savings target has been articulated by anyone at ABB, and no value-discovery session has run. The pain is real but unmonetized; quantifying maverick/tail-spend leakage with an ABB finance or procurement leader is the move that turns this into a business case an economic buyer can approve.",
+        "sources": ["SF AIS_Why__c (AIS 8/Strong)", "SF Products__c: Merlin Intake;Agentic AI;ANA", "SF Next_Step__c 30 Jun 2026"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or named. The only person in contact is Dillan Patel (Supply Chain and Data Analytics Manager per his 26 Jun email signature), an analytics/technical role with no evidence of budget ownership. No OpportunityContactRole is populated, no MEDDPICC field names a budget owner, and the single 12 Jun 'ABB X Zycus: Connect' meeting has no transcript to infer authority from. The evidence does not reveal who signs for a $100k AI-procurement purchase, so the highest-leverage move is to ask Dillan directly who owns the AI-procurement budget and request an introduction. Do not assume a name where the record has none.",
+        "sources": ["SF OpportunityContactRole (none populated)", "SF task/email contact: Dillan Patel, 26-30 Jun 2026"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Early criteria are emerging from the rep's next step rather than from a buyer requirements document: ANA (autonomous negotiation) and Merlin Intake capability fit, Infor LX ERP integration, and data-isolation/security are the themes ABB will evaluate against (Next_Step__c, 30 Jun). These are inferred from the planned discovery scope and the AIS framing, not yet confirmed by a buyer-stated evaluation rubric or an RFP. Confirming ABB's real decision criteria in the planned Solution Consultant deep-dive is required before positioning can be sharpened.",
+        "sources": ["SF Next_Step__c 30 Jun 2026", "SF AIS_Why__c"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's evaluation process is not yet mapped. What is visible is a single 12 Jun 'ABB X Zycus: Connect' meeting followed by NDA logistics over email (26-30 Jun), during which ABB introduced its legal team into the paperwork ('After talking with our legal team, we would prefer for you to sign our standard Mutual NDA'). No evaluation stages, timeline, approvers, or committee have been described. Reading the sequence, the deal is at the very front of the funnel: get the NDA done, then run structured discovery. Getting Dillan to lay out ABB's evaluation stages and who influences the decision is a ranked move.",
+        "sources": ["SF Task/email 26-30 Jun 2026 (Dillan Patel, Marc Quessenberry)", "SF Event 12 Jun 2026: ABB X Zycus : Connect"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Paper process has genuinely started with the NDA and it is the clearest live thread. On 30 Jun 2026 Dillan Patel confirmed ABB's preference to use its own paper: 'After talking with our legal team, we would prefer for you to sign our standard Mutual NDA (attached).' Marc Quessenberry committed the same day: 'That shouldn't be an issue. I'll have it reviewed by legal. If/when it's approved I'll have it executed and returned to you.' Beyond the NDA, ABB will require Zycus security and data-isolation documentation (Next_Step, 30 Jun) before deeper engagement, and Infor LX integration scoping will factor into any implementation. Current_Contract_Expiration__c is blank, so there is no external forcing date; the NDA turnaround is the near-term gate.",
+        "sources": ["SF Task/email 30 Jun 2026 (Dillan Patel; Marc Quessenberry)", "SF Next_Step__c 30 Jun 2026"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The pain is articulated at the organizational level and is credible, but not yet in the buyer's own detailed words on a transcribed call. Per AIS_Why__c, ABB is 'running ad hoc AI pilots without a structured framework' and wants to 'automate maverick/tail spend negotiation first' as part of a broader push to 'a structured approach to AI in supply chain.' The pain owner is ABB's supply-chain/procurement organization; Dillan Patel is the analytics liaison surfacing it, not necessarily the person who feels the budget impact. Confirmed at field level (AIS Strong) and consistent with the scoped products; a discovery deep-dive is needed to hear the pain quantified from the operators who own it.",
+        "sources": ["SF AIS_Why__c (AIS 8/Strong)", "SF Products__c: Merlin Intake;Agentic AI;ANA"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Dillan Patel (Supply Chain and Data Analytics Manager) is the sole engaged contact and behaves as a responsive coach, not yet a champion. He initiated and sustained the NDA exchange, replied same-day, and is helpful on logistics ('Same issue. Can you just send as a pdf?', 26 Jun; 'Great thanks Marc', 30 Jun). What has developed: consistent, fast, cooperative engagement and clear ownership of the initial workstream. What is missing: any evidence of upward access, an internal introduction to a procurement or budget leader, or advocacy against Coupa on Zycus's behalf. His title is analytics/supply-chain, not procurement leadership or finance, so he is unlikely to carry a commercial decision alone. Building him into a true champion means getting him to map ABB's stakeholders and open a door to the economic buyer.",
+        "sources": ["SF Task/email 26-30 Jun 2026 (Dillan Patel)", "SF Event 12 Jun 2026: ABB X Zycus : Connect"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Coupa is named in Salesforce Competitors__c (26 Jun 2026) and carried in the prior record, but there is zero buyer-side context: no call, task, next step, or email mentions Coupa, and no transcript exists to test whether ABB runs Coupa today, is evaluating it as a peer, or simply listed it as a category alternative. It is unknown whether this is a displacement (high risk) or a greenfield AI-procurement play (neutral). The wedge if Coupa becomes live is Zycus's agentic autonomous-negotiation (ANA) and Merlin Intake against Coupa's workflow-automation model. First step is intelligence, not positioning: confirm on the next call how ABB handles intake and negotiation today and whether Coupa is actually in the evaluation.",
+        "sources": ["SF Competitors__c: Coupa (26 Jun 2026)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Fresh deal with real early motion: qualified 30 Jun and the buyer engaged same-day on the NDA. Last genuine two-way buyer touch was 30 Jun 2026 (Dillan Patel). Engagement is warm but narrow and pre-evaluation.",
+      "items": [
+        {"change": "Stage advanced Initial Interest to Qualified (Marc Quessenberry).", "date": "2026-06-30"},
+        {"change": "ABB legal reviewed the NDA and asked Zycus to sign ABB's standard mutual NDA; Marc committed to legal review and return.", "date": "2026-06-30"},
+        {"change": "Ownership moved to Marc Quessenberry (Regional Sales Director, Mid-Atlantic); deal reclassified New Business under New Markets.", "date": "2026-06-26"},
+        {"change": "ABB X Zycus initial connect meeting held.", "date": "2026-06-12"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Coupa is the only named competitor (SF Competitors__c, 26 Jun 2026) and remains a name without buyer context: no call, email, or field describes whether Coupa is ABB's incumbent, a live peer, or a category placeholder. With no new call evidence this run, Coupa's threat is carried at low/dormant pending discovery. The current 'competitor' is really the status quo and speed of ABB's own internal AI-procurement decision, not a proven rival.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "low", "status": "active", "quote": "", "date": "2026-06-26", "source": "SF Competitors__c", "how_we_win": "Lead with agentic autonomous negotiation (ANA) and Merlin Intake on ABB's maverick/tail-spend use case versus Coupa's workflow-automation model; confirm incumbency first, then run a head-to-head on AI maturity and speed to value."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Product scope matches ABB's stated AI objective, but the two concrete evaluation expectations (Infor LX integration and data isolation/security) are unproven and the buyer has not yet validated fit on a deep-dive.",
+      "items": [
+        {"criterion": "Autonomous negotiation for maverick/tail spend (ANA + Merlin Intake)", "position": "aligned", "quote": "automate maverick/tail spend negotiation first", "date": "2026-06-30", "source": "SF AIS_Why__c / Products__c"},
+        {"criterion": "Infor LX ERP integration", "position": "exposed", "quote": "tailored around Infor LX integration questions", "date": "2026-06-30", "source": "SF Next_Step__c"},
+        {"criterion": "Data isolation and security", "position": "exposed", "quote": "Provide ABB with Zycus security/data-isolation documentation", "date": "2026-06-30", "source": "SF Next_Step__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Sign ABB's standard mutual NDA and return it to Dillan Patel", "said_by": "Dillan Patel", "date": "2026-06-30", "addressed": false, "quote": "After talking with our legal team, we would prefer for you to sign our standard Mutual NDA (attached).", "source": "SF Task/email 30 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / decision maker", "quote": "no OpportunityContactRole populated; only Dillan Patel (analytics manager) engaged", "status": "not addressed", "date": "2026-06-30", "gap_type": "knowledge", "source": "SF OpportunityContactRole / tasks"},
+        {"area": "Transcribed buyer discovery", "quote": "12 Jun ABB X Zycus connect held but no transcript available; buyer words limited to NDA email logistics", "status": "not addressed", "date": "2026-06-12", "gap_type": "knowledge", "source": "SF Event 12 Jun 2026 / Avoma (no transcript)"},
+        {"area": "Competitive context on Coupa", "quote": "Coupa named as competitor with no incumbent-vs-peer intel", "status": "not addressed", "date": "2026-06-26", "gap_type": "knowledge", "source": "SF Competitors__c"},
+        {"area": "Contact roles hygiene", "quote": "Dillan Patel is a task/email contact but not added as an OpportunityContactRole", "status": "acknowledged", "date": "2026-06-30", "gap_type": "hygiene", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage, single-threaded, strong AI fit. The win-strategy priorities are to multi-thread to power, convert strong AI intent into a differentiated ANA/Merlin narrative in front of a leader, and get real competitive intel on Coupa before positioning.",
+      "flags": [
+        "Multi-thread past Dillan Patel: he is a supply-chain/analytics manager with no shown budget authority, so identify and reach an economic buyer before discovery can convert.",
+        "Convert the strong AI signal (AIS 8) into a differentiated ANA and Merlin Intake story delivered to a procurement leader, not only a technical contact.",
+        "Get competitive intel on Coupa early: it is currently a name with zero buyer context, so confirm incumbent-versus-peer before shaping positioning."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Dillan Patel", "title": "Supply Chain and Data Analytics Manager", "role": "Champion", "last_contact_date": "2026-06-30", "sentiment": "Positive, responsive, cooperative on logistics", "risk": "Developing, not yet a true champion: analytics/technical role with no shown budget authority and no demonstrated upward access; deal risks stalling at technical interest without an executive sponsor.", "source": "SF Task/email 26-30 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Dillan Patel is engaged and responsive over the 26-30 Jun NDA exchange and behaves as a helpful coach, but he holds a supply-chain/analytics role with no evidence of budget authority or upward access. Developing: cooperation and single-workstream ownership are present; internal advocacy and a path to the economic buyer are missing.",
+      "champion": "Dillan Patel (Supply Chain and Data Analytics Manager)",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "SF Task/email 26-30 Jun 2026; SF Event 12 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "The Merlin/ANA agentic story is an excellent match for ABB's stated objective to automate maverick/tail-spend negotiation, but it has not yet been delivered to a decision-maker; engagement to date is an initial connect plus NDA logistics.",
+      "score": "medium",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8/Strong. ABB is running ad hoc AI pilots without a structured framework and wants a structured approach to AI in supply chain, starting with autonomous maverick/tail-spend negotiation. Scoped products (ANA, Agentic AI, Merlin Intake) directly match. No transcribed call exists to corroborate or contradict, but the field-level AI intent is strong.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker engaged; single-threaded through Dillan Patel, a manager with no shown budget authority.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "SF OpportunityContactRole / tasks"},
+        {"category": "security_review", "detail": "Security and data-isolation documentation owed to ABB and an NDA pending legal on both sides before deeper engagement.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "SF Next_Step__c / Task 30 Jun 2026"},
+        {"category": "integration", "detail": "Infor LX ERP integration raised as an evaluation question; feasibility not yet validated with a Solution Consultant.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "SF Next_Step__c"},
+        {"category": "budget", "detail": "No budget or commercial conversation has occurred; the $100k amount is unvalidated with the buyer.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "SF Amount / no commercial evidence"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is warm and recent (same-day NDA replies on 30 Jun) but narrow and pre-evaluation. Not cooling, but not yet broadened beyond one technical contact.",
+      "cooling": false,
+      "items": [
+        "Buyer replied same-day on the NDA thread on 30 Jun 2026.",
+        "Engagement confined to a single contact and to paperwork logistics, not yet product evaluation."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Ask Dillan Patel who owns the AI-procurement budget and request an intro.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Single-threaded through an analytics manager; no economic buyer engaged.", "trigger_date": "2026-06-30", "act_by": "2026-07-13", "expected_effect": "Opens a second thread to power and de-risks the Qualified-stage economic-buyer gap."},
+        {"rank": 2, "action": "Send ABB the Zycus security and data-isolation documentation.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Security/data-isolation flagged as an evaluation gate in the 30 Jun next step.", "trigger_date": "2026-06-30", "act_by": "2026-07-12", "expected_effect": "Clears a stated evaluation blocker and keeps momentum in parallel with NDA legal review."},
+        {"rank": 3, "action": "Book the ANA and Merlin Intake deep-dive with a Solution Consultant, scoped to Infor LX.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Deep-dive discovery tied to Infor LX is the planned next step.", "trigger_date": "2026-06-30", "act_by": "2026-07-18", "expected_effect": "Converts qualified interest into a validated, integration-aware use case."},
+        {"rank": 4, "action": "Confirm with Dillan how ABB handles intake and negotiation today and whether Coupa is in play.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Coupa named as competitor with no buyer context.", "trigger_date": "2026-06-26", "act_by": "2026-07-20", "expected_effect": "Builds real competitive intelligence and a positioning wedge before an evaluation forms."},
+        {"rank": 5, "action": "Run a value-discovery session to quantify maverick and tail-spend savings for the ANA case.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "AI objective stated but no ROI quantified.", "trigger_date": "2026-06-30", "act_by": "2026-08-01", "expected_effect": "Creates a monetized business case an economic buyer can approve."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Freshly qualified ABB AI-procurement deal with strong product fit (AIS 8, ANA plus Merlin Intake matched to automating maverick/tail-spend negotiation), but single-threaded through Dillan Patel, a supply-chain and analytics manager with no budget authority and no economic buyer engaged; the win hinges on multi-threading to a procurement leader before Coupa or the status quo hardens.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "We are early but well matched: ABB scoped ANA, Agentic AI and Merlin Intake against a stated objective to automate maverick and tail-spend negotiation (AIS 8/Strong), and the buyer is actively engaged on the NDA (Dillan Patel, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Single-threaded through Dillan Patel, a supply-chain and data-analytics manager with no shown budget authority, and no economic buyer or decision maker is engaged (SF contact roles, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Coupa is named as a competitor but we hold zero buyer intel on whether it is the incumbent or a peer (SF Competitors__c, 26 Jun 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Stage moved Initial Interest to Qualified on 30 Jun and the buyer replied same-day on the NDA, so paperwork is genuinely advancing (field history plus email, 30 Jun 2026)."},
+          {"tone": "warn", "text": "No discovery deep-dive, demo, or buyer-named dates exist yet; engagement is still NDA logistics rather than product evaluation (Next_Step__c, 30 Jun 2026)."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "ABB is spending legal cycles this early, routing the NDA through its own legal team, a mild positive-intent signal (Dillan Patel, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Commitment is procedural only: ABB voiced no product preference, timeline, or budget, and prefers its own mutual NDA over Zycus paper (Dillan Patel, 30 Jun 2026)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "No economic buyer mapped and a single technical thread at the Qualified stage is the primary risk to progression (SF, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Infor LX integration and data-isolation/security remain unproven gates raised in the 30 Jun next step."}
+        ]
+      },
+      "factors": {
+        "executive_alignment": {"strength": -0.6, "evidence": "No economic buyer engaged; single-thread through an analytics manager (30 Jun 2026)."},
+        "product_fit": {"strength": 0.7, "evidence": "AIS 8/Strong; ANA and Merlin Intake match the stated maverick/tail-spend objective."},
+        "engagement": {"strength": 0.2, "evidence": "Same-day NDA replies from the buyer (30 Jun 2026)."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Buyer engaged only on NDA logistics and prefers ABB's own mutual NDA; no Zycus-specific praise, product preference, or Zycus-specific next step voiced (Dillan Patel, 30 Jun 2026)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative AI objective to automate maverick/tail-spend negotiation stated at field level (AIS_Why__c), but no numbers, ROI, or savings target from the buyer."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 0,
+    "calls_omitted": [{"meeting": "ABB X Zycus : Connect (12 Jun 2026)", "reason": "no transcript available in this sweep"}],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "last 120 days (activities); field history to 26 Jun 2026 opp creation",
+    "avoma_attendees": ["Dillan Patel"],
+    "gaps": [
+      "No transcribed buyer call: the 12 Jun ABB X Zycus connect has no readable transcript, so buyer evidence is limited to the 26-30 Jun NDA email thread and Salesforce fields.",
+      "Economic buyer and decision maker unidentified; no OpportunityContactRole populated.",
+      "Coupa competitive context unknown (incumbent vs peer).",
+      "Prior canonical record contained an unverifiable 18 Jun call and three unsourced stakeholder names (Marco Talassio, Christy Lingenfelter, Nikhil Kapur); dropped as fabrication with no Salesforce or attendee source."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

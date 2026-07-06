@@ -1,0 +1,227 @@
+{
+  "opp_id": "006P700000aAxBp",
+  "hard": {
+    "opp_id": "006P700000aAxBp",
+    "opp_name": "Farplas_AS_2026",
+    "account_name": "Farplas AS",
+    "account_industry": "Auto & Transport",
+    "billing_country": "Turkey",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-01-31",
+    "days_to_close": 209,
+    "created_date": "2026-06-29",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-06-29",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iManage;eProcurement;iRequest;iSaaS;Merlin;iLogix;iCompliance",
+    "next_step": "Demo scheduled with Farplas and EY team on 9th July",
+    "ais_score": null,
+    "ais_status": "",
+    "ais_why": "",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aAxBp/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Brand-new partner-sourced Qualified deal, seven days old, with no direct Farplas contact and only an EY advisor on record. Everything hinges on the Farplas plus EY demo set for 9 July 2026 landing a real buyer stakeholder.",
+      "math": "Created 2026-06-29 and moved Initial Interest to Qualified the same day (Rashi Varma, field history). Close date 2027-01-31 is 209 days out from 06 Jul 2026, and was pushed from 2026-12-29 to 2027-01-31 at creation. Qualified_Submission_Date 2026-06-29, so 7 days in stage. Zero buyer Avoma calls across all three discovery pulls, one OpportunityContactRole (an EY partner, not a Farplas buyer), and no buyer inbound. The one forward signal is the 9 July 2026 demo (in 3 days). Not cold enough to be Off Track (deal is 7 days old); engagement is genuinely thin, so Slowing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "StageName Qualified, ForecastCategory Pipeline, moved Initial Interest to Qualified 2026-06-29 (SF field history, by Rashi Varma).",
+        "Opportunity_Source__c set to Partners on 2026-06-30 and Type set to New Business (SF field history) - this is an EY partner referral.",
+        "Only one OpportunityContactRole: Arda Karacelebi, Partner - Supply Chain at EY (arda.karacelebi@tr.ey.com), role Influencer - an advisor, not a Farplas buyer.",
+        "No buyer calls found across opp, account, and buyer attendee-email Avoma pulls (Avoma discovery, no meetings returned).",
+        "Next_Step__c: demo with Farplas and EY scheduled 9 July 2026 (SF Next_Step__c)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No business problem or quantified impact is captured anywhere on this deal. Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c and Compelling_Event__c are all empty, and there is not a single buyer call to read the pain from. The deal was auto-progressed from Initial Interest to Qualified on 2026-06-29 (field history, Rashi Varma) as a partner referral, without any discovery content on record. The 9 July 2026 demo is the first chance to surface and quantify the procurement pain (sourcing cycle time, spend under management, contract leakage) directly with a Farplas owner.",
+        "sources": ["SF Customer_Business_Problem__c (empty)", "SF Business_Objectives__c (empty)", "Avoma discovery (no calls)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped on this opportunity. X10a_Sponsor__c, Who_will_approve_budget__c, Purchase_approvals_Required_from__c and Executive_Sponsor_Identified__c are empty or false, and the only OpportunityContactRole is an EY advisor (Arda Karacelebi), not a Farplas budget owner. Because the deal arrived through an EY partner referral rather than direct buyer engagement, no Farplas finance or procurement authority has been reached. Identifying the Farplas budget owner (likely a procurement or finance executive) and securing access is a ranked discovery move for the 9 July demo.",
+        "sources": ["SF X10a_Sponsor__c (empty)", "SF Executive_Sponsor_Identified__c=false", "SF OpportunityContactRole (only EY advisor)"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria are documented. Business_Requirements__c, Top_Challenges_Priorities__c and Shoe_Fit_Criteria_Met__c carry nothing, and no demo or workshop has yet occurred to read criteria from. EY's presence on the 9 July demo suggests a structured, advisor-guided evaluation may be forming, which usually comes with an explicit requirement set. Capturing what Farplas and EY will weigh (suite fit, AI/Merlin capability, automotive supply-chain fit, total cost) at that demo is the first real qualification step.",
+        "sources": ["SF Business_Requirements__c (empty)", "SF Shoe_Fit_Criteria_Met__c=false", "SF Next_Step__c (EY joins 9 July demo)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unknown: What_is_the_decision_process__c, Mandate__c, Multiple_approvals__c and Does_the_Buyer_need_approval__c are all empty. The strongest process clue is that EY joins the 9 July 2026 demo alongside Farplas, which signals an advisor or systems integrator may be steering or scoping the evaluation. An open Opportunity Health task from 2026-06-29 explicitly flags 'Get clarity on the evaluation stages and influence the process'. Clarifying EY's mandate (neutral advisor, evaluator, or future implementer) is essential, as it determines who really decides and how.",
+        "sources": ["SF What_is_the_decision_process__c (empty)", "SF Next_Step__c (EY in 9 July demo)", "SF Task 'Get clarity on the evaluation stages and influence the process' 2026-06-29"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are on record and none are expected yet: Current_Contract_Expiration__c is empty, and there is no MSA, SOW, InfoSec or procurement-channel detail on a deal that is seven days into Qualified. The one structural factor worth noting early is EY's potential role: if EY becomes the implementation partner, it will shape the eventual SOW and scoping path. Paper visibility will only come once the evaluation structure is understood after the 9 July demo.",
+        "sources": ["SF Current_Contract_Expiration__c (empty)"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific pain is articulated anywhere. Pain_points_in_the_current_solution__c and What_if_this_is_not_done__c are empty and there is no call to quote a pain owner from. The broad product scope selected (iContract, iSource, eProcurement, iRequest, iSaaS, Merlin, iLogix, iCompliance) implies Farplas is being positioned for a full source-to-pay footprint, but that is an inference from the products chosen at deal creation, not confirmed pain. Confirming the operational pain owner at Farplas and their specific problem at the 9 July demo is the first genuine qualification step.",
+        "sources": ["SF Pain_points_in_the_current_solution__c (empty)", "SF Products__c full-suite scope (inference only)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no champion inside Farplas. The only person on the opportunity is Arda Karacelebi, an EY Partner in Supply Chain, logged as an Influencer - an external advisor who can open doors but cannot be a Zycus champion for a Farplas purchase. X10b_Champion_Business_Buyer__c is empty and there is no direct Farplas contact of any kind, so single-thread risk is at its maximum and runs entirely through a third party. Converting the 9 July demo into at least one named, engaged Farplas procurement or transformation owner is the highest-priority relationship move.",
+        "sources": ["SF X10b_Champion_Business_Buyer__c (empty)", "SF OpportunityContactRole (only EY advisor Arda Karacelebi)"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive landscape is completely unmapped. Competitors__c, Others_Competitors_Please_specify__c, Existing_vendor__c and Replacing_What__c are all empty, and no call has surfaced who else Farplas is evaluating or what the current-state solution is. EY's involvement is the key wildcard: if EY has an incumbent relationship or a preferred vendor shortlist from prior Farplas work, that is a live threat; if EY is a neutral advisor, it is not. Mapping the competitive field (and any incumbent procurement/ERP tooling) is a ranked discovery move for the 9 July demo.",
+        "sources": ["SF Competitors__c (empty)", "SF Existing_vendor__c (empty)", "SF Next_Step__c (EY advisory role unclear)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement is administrative and dated 2026-06-29 to 2026-06-30 at deal creation: owner reassigned to Caroline Lacocque, stage set Initial Interest to Qualified, source set to Partners (EY referral), Type set New Business, and close date pushed to 2027-01-31. There has been no buyer-side movement - no calls, no inbound, no direct Farplas contact. The one forward event on the calendar is the 9 July 2026 Farplas plus EY demo.",
+      "items": [
+        {"change": "Deal created and auto-progressed Initial Interest to Qualified (partner referral).", "date": "2026-06-29"},
+        {"change": "Owner reassigned from Krina Shah to Caroline Lacocque.", "date": "2026-06-29"},
+        {"change": "Close date pushed from 2026-12-29 to 2027-01-31.", "date": "2026-06-29"},
+        {"change": "Opportunity source set to Partners (EY referral) and Type set to New Business.", "date": "2026-06-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competitive landscape is unmapped. No competitor is documented in Salesforce (Competitors__c empty), no free-text field names a rival or incumbent, and no Avoma call exists to surface who else Farplas is considering. The single structural uncertainty is EY: as the referring advisor on the 9 July demo, EY could be a neutral guide or could carry a preferred vendor shortlist from prior automotive engagements. Until the 9 July demo reveals the current-state solution and any rival evaluation, there is no basis to rank a threat - closing that blind spot is the priority.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is unknown: Farplas has stated no expectations or requirements on record. The broad source-to-pay product scope selected at deal creation implies Zycus is being positioned as a full-suite fit, but no buyer has confirmed a single criterion.",
+      "items": []
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No buyer engagement", "quote": "No buyer calls found across opp, account and attendee-email Avoma pulls.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma discovery (no calls)"},
+        {"area": "No direct Farplas contact", "quote": "Only OpportunityContactRole is an EY advisor (Arda Karacelebi).", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Economic buyer unmapped", "quote": "X10a_Sponsor__c empty; no Farplas budget owner on record.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF X10a_Sponsor__c (empty)"},
+        {"area": "Competition unknown", "quote": "Competitors__c empty; no rival or incumbent named anywhere.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c (empty)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a seven-day-old partner referral with a single external thread and no discovery. The win-strategy priorities are all about the 9 July demo converting a third-party lead into real, direct Farplas engagement.",
+      "flags": [
+        "Single-threaded through EY advisor Arda Karacelebi with zero direct Farplas contact - use the 9 July demo to secure a named Farplas procurement or transformation owner.",
+        "No discovery on record - capture Farplas's quantified procurement pain and evaluation criteria live at the 9 July demo, not after.",
+        "EY's mandate is unknown - clarify with Arda Karacelebi whether EY steers vendor selection or will implement, as it reshapes the decision and paper path."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Arda Karacelebi", "title": "Partner - Supply Chain", "role": "Influencer", "last_contact_date": null, "sentiment": "neutral", "risk": "External EY advisor and the sole contact on the deal - a referral gateway, not a Farplas buyer; the deal is single-threaded through a third party until a Farplas stakeholder is engaged.", "source": "SF OpportunityContactRole (PRIMARY, arda.karacelebi@tr.ey.com)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. The only contact is an EY advisor (Arda Karacelebi), who is an external referral partner rather than an internal Farplas advocate. There is currently no named Farplas individual pushing for Zycus, so single-thread risk is at maximum and depends entirely on a third party.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF X10b_Champion_Business_Buyer__c (empty); SF OpportunityContactRole (only EY advisor)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Full-suite scope including Merlin, iLogix and iCompliance implies an AI-forward positioning, but with no buyer call the AI story has not been tested or landed with any Farplas stakeholder. Under-positioned by default until the 9 July demo.",
+      "score": "",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is not populated on this deal. Merlin, iLogix and iCompliance in the selected product scope suggest AI appetite is being assumed, but there is no call evidence to confirm Farplas has expressed any AI interest. Tier is an inference from product scope, not a buyer signal.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No Farplas stakeholder of any kind is engaged; the only contact is an external EY advisor, so there is no line to the economic buyer or decision maker.", "first_raised": "2026-06-29", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "political", "detail": "The deal is single-threaded through EY; if EY's interest cools or EY favours a rival, Zycus has no independent relationship inside Farplas to fall back on.", "first_raised": "2026-06-29", "date": "2026-07-06", "status": "open", "source": "SF Opportunity_Source__c=Partners"},
+        {"category": "change_management", "detail": "No pain, metrics, or compelling event is confirmed, so there is no proven reason for Farplas to change - a no-decision / status-quo risk until discovery lands.", "first_raised": "2026-06-29", "date": "2026-07-06", "status": "open", "source": "SF Customer_Business_Problem__c (empty)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No buyer engagement to read. The deal is too new (7 days) to be cold, but there is zero direct Farplas signal - the 9 July demo is the first opportunity to generate any.",
+      "cooling": false,
+      "items": []
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Run the 9 July demo to land a named Farplas procurement owner and their top pain.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Demo with Farplas and EY scheduled 9 July 2026, with no direct Farplas contact yet on record.", "trigger_date": "2026-07-09", "act_by": "2026-07-09", "expected_effect": "Converts a partner referral into direct buyer engagement and creates the first real discovery signal."},
+        {"rank": 2, "action": "Ask Arda Karacelebi to confirm EY's role: advisor, evaluator, or implementer.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "EY joins the 9 July demo and open Opportunity Health task flags 'get clarity on the evaluation stages'.", "trigger_date": "2026-06-29", "act_by": "2026-07-15", "expected_effect": "Reveals who actually decides and whether EY steers vendor selection, shaping the whole path."},
+        {"rank": 3, "action": "Multi-thread into Farplas: get names of procurement and finance owners and an org chart.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Sole contact is an external EY advisor; open task flags 'build an org chart and map key contacts'.", "trigger_date": "2026-06-29", "act_by": "2026-07-20", "expected_effect": "Breaks single-thread-through-partner risk and creates a path to the economic buyer."},
+        {"rank": 4, "action": "Confirm Farplas's evaluation timeline and budget owner against the 31 Jan 2027 close.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Close date 2027-01-31 with no confirmed decision process or budget authority.", "trigger_date": "2026-06-29", "act_by": "2026-08-03", "expected_effect": "Tests whether the forecast date is real and identifies the person who can fund the deal."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A seven-day-old EY partner referral into Farplas with a full source-to-pay scope on paper but no direct buyer contact, no discovery, and no confirmed pain - the entire deal rides on the 9 July demo turning a third-party lead into a real Farplas stakeholder.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low: the deal is a brand-new partner referral (source set to Partners 2026-06-30) with no direct Farplas contact, no discovery, and no confirmed pain or economic buyer."},
+          {"tone": "warn", "text": "The single thread runs through EY advisor Arda Karacelebi, not a Farplas buyer, so if EY cools or favours a rival there is no independent relationship inside the account."},
+          {"tone": "warn", "text": "No competitor or incumbent is mapped, so the true competitive risk (including EY carrying its own preferred shortlist) is unknown, not absent."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is administrative only: the sole activity is deal-creation field changes on 2026-06-29 and 2026-06-30, with no buyer call or inbound since."},
+          {"tone": "good", "text": "The one live forward signal is the Farplas plus EY demo scheduled for 9 July 2026, the first buyer-facing event on the deal."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Customer commitment is unproven: Farplas has named no requirement, no criterion, no date, and no budget owner - the only committed party so far is the EY advisor who referred the deal."},
+          {"tone": "warn", "text": "The demo date was set by Zycus and EY rather than pulled by Farplas, so there is no evidence of buyer-side urgency yet."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Highest risk is a no-decision / status-quo outcome: with no confirmed pain, metrics, or compelling event, Farplas has no proven reason to change."},
+          {"tone": "warn", "text": "Single-thread-through-partner risk: zero direct Farplas contacts means no line to the economic buyer or decision maker until the 9 July demo produces one."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.7, "evidence": "No Farplas stakeholder engaged; only an external EY advisor on record, demo pushed by seller/partner not pulled by buyer."},
+        "deal_risk": {"strength": -0.6, "evidence": "No confirmed pain/metrics/EB; single-threaded through a third party; competition unmapped."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer call or statement exists; Farplas has expressed no preference for or against Zycus."},
+    "business_case": {"status": "gap", "evidence": "No business problem, savings, or ROI discussed anywhere; Customer_Business_Problem__c and Value_to_Customer__c are empty and there is no call."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "created 2026-06-29 to sweep 2026-07-06; activities 2026-06-29; field history 2026-06-29 to 2026-06-30",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero buyer Avoma calls across opp, account, and attendee-email pulls.",
+      "No direct Farplas contact; only an EY advisor is on the opportunity.",
+      "Economic buyer, decision maker, champion, pain, metrics, decision process, criteria, and competition all unknown - genuine knowledge gaps on a 7-day-old deal."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

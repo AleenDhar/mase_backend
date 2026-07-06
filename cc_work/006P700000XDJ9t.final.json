@@ -1,0 +1,642 @@
+{
+  "opp_id": "006P700000XDJ9t",
+  "hard": {
+    "opp_id": "006P700000XDJ9tQAH",
+    "opp_name": "Nippon Life Insurance Company_ Opp - April '26",
+    "account_name": "Nippon Life Insurance Company",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Grace Kim",
+    "owner_title": null,
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2026-11-24",
+    "days_to_close": 141,
+    "created_date": "2026-04-24T18:21:06.000+0000",
+    "qualified_date": "2026-04-28",
+    "last_activity_date": "2026-05-27",
+    "last_modified_date": "2026-06-05T10:50:57.000+0000",
+    "products": "iContract;iSource;iSupplier;Merlin;Agentic AI;ANA",
+    "next_step": "Tailored demo focused only on iSource, iSupplier, iContract, and Autonomous Negotiation Agent in a Nippon-like workflow Deep dive on AI especially how negotiation agent works with real scenarios and controls Share use cases relevant to insurance or services firms with similar scale Map current process \u2192 future state (light workshop style) Include procurement + IT stakeholder for integration confidence",
+    "ais_score": 7.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 SF description captures direct prospect-side ANA interest: Nippon is exploring how AI, particularly the Autonomous Negotiation Agent, can enhance cost savings and consistency in supplier negotiations.\n\u2022 Customer is asking for an ANA-specific deep dive with real scenarios and controls \u2014 the strongest AI-pull signal short of a transcript.\n\u2022 No Avoma calls tied to this opp yet despite recent activity, so confidence stays Medium because evidence is SF-only.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XDJ9tQAH/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Early-stage qualified deal has stalled ~40 days: the tailored ANA demo and process workshop planned in the Next Step never executed, the only buyer contact (Derrick Staat, Decision Maker) has gone quiet since 27 May, and no Economic Buyer, champion, or competitive read exists yet.",
+      "math": "Created 2026-04-24 (73 days ago), qualified 2026-04-28; 141 days to close (2026-11-24, pushed out from 2026-09-25 on 11 May by Grace Kim). Last activity 2026-05-27 (40 days ago) was an unconnected outbound call attempt, not a buyer touch. Time in Qualified stage: ~69 days with no stage progression. Zero Avoma buyer calls discovered via opp+account+attendee pulls. The planned tailored demo + AI deep-dive + process workshop is unexecuted for 40+ days. Runway is ample but there is no forward movement to defend the Pipeline forecast.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Stage Qualified with 141 days to close leaves ample runway, but the only logged buyer-directed activity since late April is a string of failed outbound call attempts to Derrick Staat (Nooks, 27 Apr / 6 May / 27 May, all 'Could Not Connect'), so there is no two-way engagement to defend the forecast.",
+        "Single Decision Maker contact role (Derrick Staat, Global Supply Chain Director); no Economic Buyer, no champion, and no multi-threading despite an Opportunity Health task on 29 Apr explicitly flagging 'Decision Maker is not identified' and 'Keep the engagement multi-threaded'.",
+        "Product scope is ambitious (iSource, iSupplier, iContract, Merlin, Agentic AI, ANA) and the SF description shows genuine ANA pull, but no discovery call, pain quantification, or buyer-articulated business case exists yet.",
+        "The tailored ANA demo and light process-mapping workshop written into the Next Step have not been delivered in 40+ days, and the close date was already pushed two months (25 Sep to 24 Nov) on 11 May without a corresponding stage advance.",
+        "Recommend Omitted from the forecast until the demo executes and Derrick Staat (or another Nippon stakeholder) re-engages in a live two-way conversation."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c",
+          "SF description (ANA interest)",
+          "Avoma discovery: 0 calls found"
+        ],
+        "narrative": "No quantified business problem, savings target, cycle-time, or ROI figure has been stated by the relevant stakeholder only value signal on record is the SF description note that Nippon is 'exploring how AI, particularly the Autonomous Negotiation Agent, can enhance cost savings and consistency in supplier negotiations', which is a qualitative interest, not a measured business case. The Next Step's 'Map current process to future state (light workshop style)' shows metrics discovery is planned but has not run. Until that workshop executes and Derrick Staat (or a finance/procurement owner) names cycle time, negotiation-savings leakage, or spend under management, Metrics stays a gap. The move is to run the process-mapping workshop and quantify the supplier-negotiation savings ANA would unlock."
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "sources": [
+          "OpportunityContactRole (Derrick Staat = Decision Maker)",
+          "SF X10a_Sponsor__c / Who_will_approve_budget__c (empty)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No Economic Buyer is identified. The single contact role is Derrick Staat, Global Supply Chain Director, carried as Decision Maker, a functional procurement leader rather than the budget authority for a $100k enterprise SaaS commitment at a large insurer. No Avoma call, email, or Next Step reveals who controls budget or pricing, so there is no conversational evidence to infer an EB from. The account may hold senior finance/operations authority, but no such person is on a contact role, task, or call for this opportunity, so naming one would be a fabrication. The move is to have Derrick Staat confirm who signs off on budget and pricing and secure a warm introduction, then add that person as an Economic Buyer contact role."
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "sources": [
+          "SF description + Next_Step__c",
+          "SF Business_Requirements__c / Top_Challenges_Priorities__c (empty)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No formal evaluation criteria or scorecard are documented. The only directional signal is the Next Step's request for a tailored demo of iSource, iSupplier, iContract, and the Autonomous Negotiation Agent 'in a Nippon-like workflow' with 'real scenarios and controls', which implies the buyer will judge on AI-negotiation capability, insurance/services-sector fit, and integration confidence with procurement + IT. These are inferred from the seller-drafted Next Step, not confirmed by the buyer on a call. The move is to convert that Next Step into a buyer-validated requirements list during the demo, capturing which controls and integration points Nippon will actually score."
+      },
+      "decision_process": {
+        "status": "gap",
+        "sources": [
+          "SF What_is_the_decision_process__c / Mandate__c (empty)",
+          "OpportunityFieldHistory (no stage moves since 28 Apr)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "Nippon Life's vendor-selection process, approval chain, and timeline gates are unknown. There have been no stage moves since the 28 Apr jump from the relevant stakeholder to Qualified, and the 29 Apr Opportunity Health task explicitly flags 'Get clarity on the evaluation stages and influence the process' as still open. With only Derrick Staat mapped and no EB, champion, or influencers, the approval path is invisible. The close date was pushed from 25 Sep to 24 Nov on 11 May with no accompanying process milestone, which reads as a placeholder move rather than a buyer-driven timeline. The move is to have Derrick Staat walk through Nippon's evaluation steps, required approvals, and target dates, then map the committee."
+      },
+      "paper_process": {
+        "status": "gap",
+        "sources": [
+          "Next_Step__c",
+          "SF Current_Contract_Expiration__c (empty)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "Contracting mechanics (MSA, Order Form, SOW, legal redline cadence, InfoSec/security review, procurement channel, ERP integration) are entirely undocumented. As a new-business full-suite deal (iSource, iSupplier, iContract plus Merlin/ANA) it will need the full MSA + Order Form + SOW path once it advances, but at Qualified stage none of that has begun and there is no contract-expiration forcing function. The Next Step's 'Include procurement + IT stakeholder for integration confidence' is the earliest paper-process signal. The move is to add Nippon's IT/security stakeholder early so integration and InfoSec scoping do not become a late surprise; no paper-process action is warranted before the demo lands."
+      },
+      "identify_pain": {
+        "status": "gap",
+        "sources": [
+          "SF description (ANA / supplier-negotiation interest)",
+          "SF Customer_Business_Problem__c / Pain_points_in_the_current_solution__c (empty)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No specific operational or financial pain has been articulated by the buyer on a call. The SF description points to interest in AI-driven 'cost savings and consistency in supplier negotiations', which implies pain around manual, inconsistent supplier negotiation and missed savings, but this is inferred from a rep-authored description, not stated by a named Nippon stakeholder. The dedicated pain fields (Customer_Business_Problem__c, Compelling_Event__c, Pain_points_in_the_current_solution__c) are empty and there is no compelling event on record. The pain owner is likely Derrick Staat's supply-chain organisation. The move is to run the process-mapping workshop, get Derrick to describe current supplier-negotiation and contract friction in his own words, and capture a compelling event."
+      },
+      "champion": {
+        "status": "gap",
+        "sources": [
+          "OpportunityContactRole (Derrick Staat only)",
+          "SF activities 27 Apr / 6 May / 27 May (all 'Could Not Connect')",
+          "Avoma: 0 calls",
+          "LastActivityDate 2026-05-27"
+        ],
+        "narrative": "No champion exists. Derrick Staat is the single mapped contact (Decision Maker) and shows no advocacy behaviour: he has not introduced other stakeholders, shared internal materials, or driven an agenda, and three outbound attempts to reach him (27 Apr, 6 May, 27 May via Nooks) all logged 'Could Not Connect', so even basic engagement is unproven. A Shared Space was created and an invite sent to derrick.staat@outlook.com on 28 Apr, but there is no evidence he acted on it. The 29 Apr Opportunity Health tasks already flag 'Low Prospect Inbound Communication' and 'Prospect's gone cold - No inbound since last 14 days'. The move is for Grace Kim to re-establish a live conversation with Derrick, deliver value via the tailored ANA demo, and test his willingness to champion internally and open a second thread."
+      },
+      "competition": {
+        "status": "gap",
+        "sources": [
+          "SF Competitors__c (blank)",
+          "SF competition synthesis fields (empty)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "The competitive landscape is unknown, not confirmed absent. No competitor is named in Competitors__c, the free-text competition fields, the Next Step, tasks, or any call, and with zero discovery calls there is no buyer statement about how Nippon solves supplier negotiation and contracting today. It is genuinely unclear whether Nippon is running a competitive RFP, evaluating incumbents (for example SAP Ariba, Coupa, Ivalua, GEP), or comparing Zycus to a manual/do-nothing baseline, so no rival is asserted here. The move is to ask Derrick Staat directly during the demo how they manage sourcing and supplier negotiation today and whether other vendors are in the evaluation, then lead with the Merlin/ANA autonomous-negotiation story as the differentiator if peer SaaS suites appear."
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement since qualification is a close-date push (25 Sep to 24 Nov on 11 May) and three failed outbound call attempts to Derrick Staat; the last genuine activity is 27 May, and the deal has had no forward progression in the ~40 days since. There is no buyer-initiated touch on record at all.",
+      "items": [
+        {
+          "change": "Close date pushed from 2026-09-25 to 2026-11-24 by Grace Kim with no stage advance",
+          "date": "2026-05-11"
+        },
+        {
+          "change": "Outbound call to Derrick Staat logged 'Could Not Connect' (Nooks / Outreach cadence)",
+          "date": "2026-05-27"
+        },
+        {
+          "change": "Stage advanced Initial Interest to Qualified by Grace Kim",
+          "date": "2026-04-28"
+        },
+        {
+          "change": "Zycus Source-to-Pay Shared Space created and invite sent to derrick.staat@outlook.com",
+          "date": "2026-04-28"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competition is unknown, not sole-source. No competitor has been named in any Salesforce field, Next Step, task, or call, and with zero discovery calls the field is invisible rather than empty. It is unclear whether Nippon Life is running a competitive process, weighing incumbents such as SAP Ariba, Coupa, Ivalua, or GEP, or comparing Zycus to a manual status quo. This is a knowledge gap to close on the first live call, not evidence that Zycus is running unopposed.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "The only expectations on record come from the seller-drafted Next Step: a tailored demo of iSource, iSupplier, iContract, and the Autonomous Negotiation Agent in a Nippon-like insurance workflow, with real scenarios, controls, and procurement + IT integration confidence. These are unconfirmed by the buyer and need validation on the first live call.",
+      "items": [
+        {
+          "criterion": "AI/autonomous supplier-negotiation capability (ANA) with real scenarios and controls",
+          "position": "partially aligned",
+          "quote": "Deep dive on AI especially how negotiation agent works with real scenarios and controls",
+          "date": "2026-04-28",
+          "source": "SF Next_Step__c"
+        },
+        {
+          "criterion": "Insurance/services-sector fit at Nippon's scale",
+          "position": "partially aligned",
+          "quote": "Share use cases relevant to insurance or services firms with similar scale",
+          "date": "2026-04-28",
+          "source": "SF Next_Step__c"
+        },
+        {
+          "criterion": "Integration confidence with procurement + IT",
+          "position": "exposed",
+          "quote": "Include procurement + IT stakeholder for integration confidence",
+          "date": "2026-04-28",
+          "source": "SF Next_Step__c"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "No live two-way buyer engagement",
+          "quote": "Prospect's gone cold ? No inbound since last 14 days",
+          "status": "not addressed",
+          "date": "2026-04-29",
+          "gap_type": "knowledge",
+          "source": "SF Opportunity Health task 2026-04-29"
+        },
+        {
+          "area": "Economic Buyer / budget authority unmapped",
+          "quote": "Decision Maker is not identified",
+          "status": "not addressed",
+          "date": "2026-04-29",
+          "gap_type": "knowledge",
+          "source": "SF Opportunity Health task 2026-04-29"
+        },
+        {
+          "area": "Single-threaded through one contact",
+          "quote": "Keep the engagement multi-threaded",
+          "status": "not addressed",
+          "date": "2026-04-29",
+          "gap_type": "knowledge",
+          "source": "SF Opportunity Health task 2026-04-29"
+        },
+        {
+          "area": "Competitive landscape and current-state stack unknown",
+          "quote": "Get clarity on the evaluation stages and influence the process",
+          "status": "not addressed",
+          "date": "2026-04-29",
+          "gap_type": "knowledge",
+          "source": "SF Opportunity Health task 2026-04-29"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, single-threaded deal that has gone quiet; the win-strategy priority is to re-open a live conversation, deliver the ANA demo that is the deal's real pull, and expand beyond one contact.",
+      "flags": [
+        "Re-establish live contact with Derrick Staat: three outbound attempts since 27 Apr all failed to connect, so the first task is a booked, confirmed conversation, not another cold dial.",
+        "Lead with the Autonomous Negotiation Agent: the SF description shows genuine ANA pull, so make the tailored Merlin/ANA demo the wedge that converts curiosity into a qualified evaluation.",
+        "Break single-threading and find budget authority: only Derrick Staat is mapped and no Economic Buyer exists, so use the demo to earn an introduction to the finance/operations sponsor who owns the $100k decision."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Derrick Staat",
+          "_source": "sfdc_contact_role",
+          "title": "Global Supply Chain Director",
+          "email": "derrick.staat@nninc.com",
+          "role": "Decision Maker",
+          "risk": "Single point of contact who has not connected on three outbound attempts since 27 Apr; no evidence of advocacy, no second thread, and no Economic Buyer behind him.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-05-27",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion exists. Derrick Staat (Global Supply Chain Director, Decision Maker) is the only buyer-side contact and shows no advocacy, internal selling, or active engagement: three outbound attempts since 27 Apr all logged 'Could Not Connect', a Shared Space invite from 28 Apr went unactioned, and Opportunity Health flagged the prospect cold on 29 Apr. He has not introduced other stakeholders, shared internal docs, or driven the agenda. Until a live conversation resumes, there is no one carrying Zycus internally.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "OpportunityContactRole; SF activities 2026-04-27 / 2026-05-06 / 2026-05-27; LastActivityDate 2026-05-27"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story is the deal's strongest asset but is not yet landing: Nippon explicitly asked for an Autonomous Negotiation Agent deep-dive with real scenarios and controls, yet the tailored Merlin/ANA demo that would carry it has not been delivered. Positioning is under-leveraged because the demo remains unexecuted.",
+      "score": "7/10",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 7.0 (Moderate). The pull is real and prospect-side: Nippon is exploring the Autonomous Negotiation Agent for supplier-negotiation savings and consistency and requested an ANA-specific deep dive. Confidence is held at Medium because the evidence is SF-only with no Avoma call to corroborate the buyer's AI appetite.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No Economic Buyer or executive sponsor mapped; only a Global Supply Chain Director is engaged on a $100k enterprise decision.",
+          "first_raised": "2026-04-29",
+          "date": "2026-04-29",
+          "status": "open",
+          "source": "OpportunityContactRole; SF Opportunity Health task 2026-04-29"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded through Derrick Staat with no second contact; the whole deal depends on one unresponsive person.",
+          "first_raised": "2026-04-29",
+          "date": "2026-04-29",
+          "status": "open",
+          "source": "SF Opportunity Health task 2026-04-29"
+        },
+        {
+          "category": "timeline",
+          "detail": "Close date pushed 25 Sep to 24 Nov with no stage progression and a 40-day engagement gap, so the Pipeline forecast date is a placeholder.",
+          "first_raised": "2026-05-11",
+          "date": "2026-05-11",
+          "status": "open",
+          "source": "SF OpportunityFieldHistory"
+        },
+        {
+          "category": "change_management",
+          "detail": "Primary threat is inertia: Nippon may keep managing supplier negotiations manually and never advance, a no-decision risk rather than a loss to a named rival.",
+          "first_raised": "2026-04-29",
+          "date": "2026-04-29",
+          "status": "open",
+          "source": "SF description; Opportunity Health task 2026-04-29"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling toward cold: last genuine activity was 40 days ago, all recent outbound attempts failed to connect, and there is no buyer-initiated touch on record. The deal is not yet 60-day dark but is trending that way.",
+      "cooling": true,
+      "items": [
+        "Three consecutive 'Could Not Connect' outbound attempts to Derrick Staat (27 Apr, 6 May, 27 May)",
+        "Opportunity Health flagged 'Low Prospect Inbound Communication' and prospect cold on 29 Apr",
+        "No stage progression in ~69 days in Qualified"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Grace Kim personally emails Derrick Staat to book the tailored ANA demo.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Three outbound calls since 27 Apr all logged 'Could Not Connect'; last activity 27 May.",
+          "trigger_date": "2026-05-27",
+          "act_by": "2026-07-13",
+          "expected_effect": "Re-opens a live two-way thread and revives a deal that is 40 days quiet and trending cold."
+        },
+        {
+          "rank": 2,
+          "action": "Deliver the Merlin and Autonomous Negotiation Agent demo in a Nippon insurance workflow.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Prospect asked for an ANA deep dive with real scenarios and controls; AIS 7.0.",
+          "trigger_date": "2026-04-28",
+          "act_by": "2026-07-20",
+          "expected_effect": "Converts documented AI curiosity into a qualified evaluation and gives Derrick a reason to advocate."
+        },
+        {
+          "rank": 3,
+          "action": "During the demo, ask Derrick Staat who approves the budget and request an intro.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Only a Global Supply Chain Director is mapped; no Economic Buyer on a $100k decision.",
+          "trigger_date": "2026-04-29",
+          "act_by": "2026-07-24",
+          "expected_effect": "Maps the Economic Buyer and breaks single-threading, unblocking the path to a real decision."
+        },
+        {
+          "rank": 4,
+          "action": "Ask Derrick to add a procurement and IT stakeholder for the integration walkthrough.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Next Step calls for procurement + IT stakeholder for integration confidence.",
+          "trigger_date": "2026-04-28",
+          "act_by": "2026-08-05",
+          "expected_effect": "Adds a second thread and de-risks the integration objection before commercials."
+        },
+        {
+          "rank": 5,
+          "action": "On the demo, ask Nippon how they run sourcing today and who else they are evaluating.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "No competitor or current-state stack is known across any source.",
+          "trigger_date": "2026-04-29",
+          "act_by": "2026-08-05",
+          "expected_effect": "Surfaces the competitive landscape and current-state pain so positioning can be tailored."
+        }
+      ]
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer call or two-way exchange on record; the only AI-interest signal is a rep-authored SF description, and three outbound attempts failed to connect."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, or cost figure stated by the buyer; only a qualitative rep-noted interest in ANA-driven supplier-negotiation savings."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 0.0,
+      "mom": 43.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 0.0,
+        "deal_momentum": 43.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 0.0,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -14.4,
+        "ceiling": 30.0,
+        "momentum_adj": -6.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -6.2,
+            "evidence": "momentum 44 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 43.8,
+        "pre_decay": 43.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 14.3,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 14.3,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 0 reflects a weak position: momentum 44 vs stage-expected 50. Offsetting it: momentum 44 vs stage-expected 50.",
+        "deal_momentum": "Momentum 44 (slipping backward): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (0), nudged by commitment 8 and momentum 44, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 1 of 7 evidence dimensions seen (engagement). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Nippon Life Insurance Company \u2014 Qualified \u00b7 $100K \u00b7 closes 24 Nov",
+        "intro": "One read per score, in language a CRO/CO can act on. We're behind on this one \u2014 the reads below say why and what would change it.",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 0,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Buyer is leaning elsewhere \u2014 No buyer call or two-way exchange on record; the only AI-interest signal is a rep-authored SF description, and three outbound attempts failed to connect."
+              },
+              {
+                "tone": "warn",
+                "text": "Losing on capability fit \u2014 AIS is 7.0 (Moderate).",
+                "full": "Losing on capability fit \u2014 AIS is 7.0 (Moderate). The pull is real and prospect-side: Nippon is exploring the Autonomous Negotiation Agent for supplier-negotiation savings and consistency and requested an ANA-specific deep dive. Confidence is held at Medium because the evidence is SF-only with no Avoma call to corroborate the buyer's AI appetite."
+              },
+              {
+                "tone": "warn",
+                "text": "No real champion yet \u2014 No champion exists.",
+                "full": "No real champion yet \u2014 No champion exists. Derrick Staat (Global Supply Chain Director, Decision Maker) is the only buyer-side contact and shows no advocacy, internal selling, or active engagement: three outbound attempts since 27 Apr all logged 'Could Not Connect', a Shared Space invite from 28 Apr went unactioned, and Opportunity Health flagged the prospect cold on 29 Apr. He has not introduced other stakeholders, shared internal docs, or driven the agenda. Until a live conversation resumes, there is no one carrying Zycus internally."
+              },
+              {
+                "tone": "warn",
+                "text": "No executive access yet \u2014 No Economic Buyer is identified.",
+                "full": "No executive access yet \u2014 No Economic Buyer is identified. The single contact role is Derrick Staat, Global Supply Chain Director, carried as Decision Maker, a functional procurement leader rather than the budget authority for a $100k enterprise SaaS commitment at a large insurer. No Avoma call, email, or Next Step reveals who controls budget or pricing, so there is no conversational evidence to infer an EB from. The account may hold senior finance/operations authority, but no such person is on a contact role, task, or call for this opportunity, so naming one would be a fabrication. The move is to have Derrick Staat confirm who signs off on budget and pricing and secure a warm introduction, then add that person as an Economic Buyer contact role."
+              },
+              {
+                "tone": "warn",
+                "text": "A competitor is pushing back \u2014 Competition is unknown, not sole-source.",
+                "full": "A competitor is pushing back \u2014 Competition is unknown, not sole-source. No competitor has been named in any Salesforce field, Next Step, task, or call, and with zero discovery calls the field is invisible rather than empty. It is unclear whether Nippon Life is running a competitive process, weighing incumbents such as SAP Ariba, Coupa, Ivalua, or GEP, or comparing Zycus to a manual status quo. This is a knowledge gap to close on the first live call, not evidence that Zycus is running unopposed."
+              },
+              {
+                "tone": "warn",
+                "text": "No quantified business case \u2014 No quantified business problem, savings target, cycle-time, or ROI figure has been stated by the relevant stakeholder only value signal on record is the SF\u2026",
+                "full": "No quantified business case \u2014 No quantified business problem, savings target, cycle-time, or ROI figure has been stated by the relevant stakeholder only value signal on record is the SF description note that Nippon is 'exploring how AI, particularly the Autonomous Negotiation Agent, can enhance cost savings and consistency in supplier negotiations', which is a qualitative interest, not a measured business case. The Next Step's 'Map current process to future state (light workshop style)' shows metrics discovery is planned but has not run. Until that workshop executes and Derrick Staat (or a finance/procurement owner) names cycle time, negotiation-savings leakage, or spend under management, Metrics stays a gap. The move is to run the process-mapping workshop and quantify the supplier-negotiation savings ANA would unlock."
+              },
+              {
+                "tone": "warn",
+                "text": "Commercial talks stalled \u2014 Contracting mechanics (MSA, Order Form, SOW, legal redline cadence, InfoSec/security review, procurement channel, ERP integration) are entirely undocumented.",
+                "full": "Commercial talks stalled \u2014 Contracting mechanics (MSA, Order Form, SOW, legal redline cadence, InfoSec/security review, procurement channel, ERP integration) are entirely undocumented. As a new-business full-suite deal (iSource, iSupplier, iContract plus Merlin/ANA) it will need the full MSA + Order Form + SOW path once it advances, but at Qualified stage none of that has begun and there is no contract-expiration forcing function. The Next Step's 'Include procurement + IT stakeholder for integration confidence' is the earliest paper-process signal. The move is to add Nippon's IT/security stakeholder early so integration and InfoSec scoping do not become a late surprise; no paper-process action is warranted before the demo lands."
+              },
+              {
+                "tone": "warn",
+                "text": "No Economic Buyer or executive sponsor mapped; only a Global Supply Chain Director is engaged on a $100k enterprise decision."
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 44,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No Economic Buyer or executive sponsor mapped; only a Global Supply Chain Director is engaged on a $100k enterprise decision."
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threaded through Derrick Staat with no second contact; the whole deal depends on one unresponsive person."
+              },
+              {
+                "tone": "warn",
+                "text": "Close date pushed 25 Sep to 24 Nov with no stage progression and a 40-day engagement gap, so the Pipeline forecast date is a placeholder."
+              },
+              {
+                "tone": "warn",
+                "text": "Primary threat is inertia: Nippon may keep managing supplier negotiations manually and never advance, a no-decision risk rather than a loss to a named rival."
+              }
+            ],
+            "footer": "Competitive picture: Competition is unknown, not sole-source."
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Grace Kim personally emails Derrick Staat to book the tailored ANA demo. (by 13 Jul)",
+              "Deliver the Merlin and Autonomous Negotiation Agent demo in a Nippon insurance workflow. (by 20 Jul)",
+              "During the demo, ask Derrick Staat who approves the budget and request an intro. (by 24 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities last 120d; field history full; contact roles full",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls exist for this opportunity across opp, account, and attendee-email discovery, so all MEDDPICC reads are SF-only.",
+      "No Economic Buyer, champion, decision process, criteria, pain quantification, or competitive read is confirmed by any buyer conversation.",
+      "The only buyer contact (Derrick Staat) has not connected on three outbound attempts since 27 Apr."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:43"
+}

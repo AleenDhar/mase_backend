@@ -1,0 +1,250 @@
+{
+  "opp_id": "006P7000009T3v1",
+  "hard": {
+    "opp_id": "006P7000009T3v1",
+    "opp_name": "Mizuho Americas [S2P] 2024",
+    "account_name": "Mizuho Bank, Ltd.",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Edward Dlugosz",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Shortlisted",
+    "forecast_category": "Best Case",
+    "amount": 859260,
+    "close_date": "2026-09-22",
+    "days_to_close": 78,
+    "created_date": "2024-05-24",
+    "qualified_date": "2024-05-31",
+    "last_activity_date": "2026-06-22",
+    "last_modified_date": "2026-06-22",
+    "products": "iContract;iSource;ML iAnalyze;iManage;iSupplier;eProcurement;iSaaS;Merlin Intake",
+    "next_step": "July 20 - follow up Procurement Strategy Update Meeting: Lee Tenny informed the team that Mizuho management asked for a longer pause on the initiative (at least six months) pending a global procurement framework; team treating the project as on hold with monthly check-ins.",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "AI interest is real but tactical: Tavannie Perez asked for the AI functionality list on 9 Dec 2025, the AP Smartdesk / AP Compass agentic demo resonated, but David Wong (CFO) approval gates any process change and the deal is now paused.",
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;iValua;JAGGAER;Oracle;SAP Ariba;Sirion Labs;DocuSign",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P7000009T3v1/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Mizuho management ordered a 6-month+ pause of the whole S2P initiative on 17 Jun pending a global procurement framework; a final-3 vendor kept warm by monthly rep check-ins, but no buyer-driven evaluation is live.",
+      "math": "78 days to the 22 Sep close. Shortlisted stage; created 24 May 2024 (774 days old), qualified 31 May 2024, so the deal has run far past a normal cycle. No submission-date fields populated to measure true stage velocity. Close date slipped three times in 2026 (20 Feb->30 Apr->29 May->23 Jul->22 Sep). Last two-way buyer touch 17 Jun (pause announced); since then only rep-initiated Horizon invites, declined 18-22 Jun. A self-declared 6-month management pause running into at least Dec 2026 makes the 22 Sep close impossible; the deal is not cold (relationship warm, monthly check-ins agreed) so this is Slowing, not Off Track.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Lee Tenny: management asked for a longer pause, at least six months, project treated as on hold (SF Next_Step__c / call 17 Jun 2026)",
+        "George Andrus and Lee Tenny declined the Horizon US 2026 invitation, out that week (Tasks 18-22 Jun 2026)",
+        "Close date pushed 23 Jul -> 22 Sep on 21 May 2026, the third 2026 slip (OpportunityFieldHistory)",
+        "Best Case forecast unsupported: the economic buyer on the global framework decision is unmapped, no champion is advocating, and no active evaluation step is scheduled"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The pain is well articulated but never quantified. On the 9 Dec 2025 AP demo Tavannie Perez confirmed invoices are 'very manual', duplicate checks run only 'on a monthly basis, part of our month end close', vendors arrive without payment terms, tax self-assessment is manual, and David Wong wants aging deep-dives he cannot get today ('where's the bottleneck?'). No dollar figure, headcount, cycle-time, or ROI target has been stated on any call or captured in Customer_Business_Problem__c / Value_to_Customer__c. Because value is only qualitative, executive approval and budget stay abstract, which partly explains the buyer's willingness to pause. The move is to quantify manual AP workload and regional procurement cost leakage into a savings model tied to Zycus deployment when re-engagement begins.",
+        "sources": ["Avoma AP module demo 9 Dec 2025 (Tavannie Perez)", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "For the AP process change the economic buyer is clear: Tavannie Perez stated on 9 Dec 2025 'the decision of making anything that large wouldn't come from me, that is something David Wong would have to approve because that is a huge change in the process' - David Wong is Managing Director & CFO (SF Contact Role) and personally joined that demo. However the deal-level decision now sits ABOVE the US team: Lee Tenny relayed on 17 Jun 2026 that Mizuho management ordered the pause for a global framework, so the true budget owner for the global initiative is unmapped (Takashi Minowa, Deputy CFO & Managing Director, is a candidate but unengaged). We hold US CFO authority but not access to the global decision-owner. The move is to map who owns the global procurement framework decision and its timeline.",
+        "sources": ["Avoma AP module demo 9 Dec 2025 (Tavannie Perez naming David Wong)", "SF Next_Step__c 17 Jun 2026 (Lee Tenny)", "SF OpportunityContactRole (David Wong MD & CFO; Takashi Minowa Deputy CFO)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The AP evaluation criteria are concrete and confirmed from the 9 Dec 2025 use-case demo: agentic invoice ingestion across mixed channels (70-invoice emails, p-card, portal), upfront duplicate and fraud checks, AP Compass anomaly/compliance detection, international bank-account validation (a stated gap Zycus must confirm), Vertex tax integration, and Teams-based approvals. A decisive open criterion is architecture: the team repeatedly asked to see 'what it looks like if we maintain everything in SAP' versus moving processing into Zycus (Tavannie and Venu, 9 Dec). Global/native-Japanese deployment capability surfaced as a criterion on 17 Jun 2026. Criteria for the full S2P suite were validated in earlier sourcing/contract demos but are not documented in Business_Requirements__c. The move is to deliver the SAP-retain vs Zycus-move comparison the buyer requested.",
+        "sources": ["Avoma AP module demo 9 Dec 2025", "SF Next_Step__c 17 Jun 2026 (Japan capability)"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is readable from the call sequence: an 8-vendor RFP narrowed to a shortlist, then down-selected to a final three ('we have 3 excellent options in front of us... we have a tight selection' - Alex Jaffee, 29 Dec 2025), followed by deep use-case demos (AP module 9 Dec with David Wong and the AP team) and multiple pricing rounds (Aug-Dec 2025, proposal v13a). An executive call was set for 6 Jan 2026 with John Modesto (RVP) and the buyer's senior stakeholders. The process then stalled: on 17 Jun 2026 Lee Tenny relayed that global management paused it pending a worldwide procurement framework 'which varies by region'. Approval chain: David Wong approves the AP process change; the global framework decision sits with Mizuho corporate/Japan management. The move is to obtain the framework decision timeline and re-engagement checkpoint in writing.",
+        "sources": ["Avoma pricing clarification 29 Dec 2025 (Alex Jaffee)", "Avoma AP demo 9 Dec 2025", "SF Next_Step__c 17 Jun 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are largely undefined. Commercials were exchanged - proposal v13a with a 3-year and 5-year option, day-one subscription start, net-30 discussed on 29 Dec 2025 - but no MSA, SOW, legal redlines, or InfoSec review has begun, and no Current_Contract_Expiration__c forcing function exists. Ed Dlugosz was explicit that meaningful pricing flexibility only opens 'once we're made the selected vendor', so paper cannot advance until the pause lifts and Zycus is selected. A global framework will likely add multi-jurisdiction legal (US and Japan) and enterprise data-governance requirements not yet scoped. The move that would create visibility is to agree a mutual close/paper plan (MSA template, data-residency options, InfoSec pack) conditioned on vendor selection.",
+        "sources": ["Avoma pricing call 29 Dec 2025 (Ed Dlugosz / Alex Jaffee)", "SF stage Shortlisted"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Operational pain is confirmed and owned by Tavannie Perez and the AP team: invoices arrive through many manual channels including single emails carrying up to 70 invoices, duplicate checks are done manually at month-end 'post the fact', there is no ability to validate international bank accounts (an explicitly requested capability), tax is self-assessed manually, allocation spans ~10 fields keyed by hand, and David Wong cannot get aging/bottleneck visibility today. The pain is genuine but not acute enough to force urgency, which is why the buyer tolerates a 6-month pause. Strategic pain is governance-level: the need for a consistent 'global framework for procurement and cost management, which varies by region' (17 Jun 2026). The move is to convert this pain into a quantified, region-specific cost case.",
+        "sources": ["Avoma AP module demo 9 Dec 2025 (Tavannie Perez, Peter Leung)", "SF Next_Step__c 17 Jun 2026"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No internal advocate is driving the deal. Amit Saraff, the procurement project manager who runs the evaluation day-to-day, is a contractor/consultant and acts as a neutral facilitator, not a Zycus advocate. Alex Jaffee (Global Strategic Sourcing) is the main rep contact but engages transactionally. George Andrus and Lee Tenny, the two US decision-makers, communicated the pause decision without pushing back or advocating for acceleration, and Scott Buckleton (mapped Executive Sponsor) has been absent from recent calls. What is missing is anyone selling Zycus internally against the pause or surfacing the framework timeline. The move is to convert Amit Saraff or Alex Jaffee into a coach by arming them with the Japan-penetration proof and BFSI references so they carry Zycus into the framework discussion.",
+        "sources": ["SF OpportunityContactRole (no Champion role)", "SF Next_Step__c 17 Jun 2026 (George/Lee relaying the pause)", "Avoma calls 9-29 Dec 2025 (Amit Saraff facilitating)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Mizuho ran a broad field of eight named vendors (Coupa, GEP Worldwide, iValua, JAGGAER, Oracle, SAP Ariba, Sirion Labs, DocuSign per Competitors__c) and down-selected to a final three that includes Zycus ('we have 3 excellent options... a tight selection' - Alex Jaffee, 29 Dec 2025); the two remaining rivals were not disclosed. No fresh head-to-head intelligence exists because the pause froze positioning. Zycus's wedge is the organically-built agentic S2P suite (AP Smartdesk, AP Compass, Merlin) and proven BFSI references (Broadridge, Maybank, BDO Unibank, MUFG) plus Japan/native-language deployment, which the buyer flagged as a differentiator on 17 Jun 2026. The move is to reconfirm Zycus's standing and identify the other two finalists when re-engagement begins.",
+        "sources": ["SF Competitors__c", "Avoma pricing call 29 Dec 2025 (Alex Jaffee, final three)", "Avoma AP demo 9 Dec 2025 (references)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Deep evaluation through late 2025 (AP use-case demo with the CFO, pricing rounds, down-select to final three) gave way to a buyer-declared 6-month+ pause on 17 Jun 2026; since then only cordial rep nurture and declined event invites. Last genuine two-way exchange was the 17 Jun pause call.",
+      "items": [
+        {"change": "Buyer announced management-ordered 6-month+ pause of the S2P initiative pending a global procurement framework", "date": "2026-06-17"},
+        {"change": "George Andrus and Lee Tenny declined the Horizon US 2026 invitation; monthly check-ins with Alex/Emmett agreed", "date": "2026-06-22"},
+        {"change": "Close date pushed 23 Jul -> 22 Sep, the third 2026 slip", "date": "2026-05-21"},
+        {"change": "Amount finalized at $859,260 (up from $659,250)", "date": "2026-01-13"},
+        {"change": "Pricing clarified on proposal v13a: 3 vs 5 year term, day-one subscription, net-30; flexibility only once selected vendor", "date": "2025-12-29"},
+        {"change": "Full AP module use-case demo delivered with David Wong (CFO) and the AP team; AP Smartdesk / AP Compass resonated", "date": "2025-12-09"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Zycus is a confirmed member of the final three after an 8-vendor RFP (Coupa, GEP, iValua, JAGGAER, Oracle, SAP Ariba, Sirion Labs, DocuSign); the other two finalists were not disclosed (Alex Jaffee, 29 Dec 2025). The dominant threat on this deal is NOT a rival but inertia: the buyer paused the whole initiative for a global framework, so no competitor is actively winning. Coupa is the carried-forward inferred primary given its enterprise S2P and APAC footprint, but there is no fresh 2026 head-to-head evidence. Zycus's wedge is the agentic AP suite (Smartdesk/Compass/Merlin), BFSI references, and Japan/native-language deployment flagged by the buyer on 17 Jun.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward; no fresh 2026 evidence)", "how_we_win": "Lead with organically-built agentic AP (Smartdesk/Compass) and Merlin intake vs Coupa's bolt-on AI; anchor on BFSI references (Broadridge, Maybank, MUFG)"},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward)", "how_we_win": "Mizuho runs SAP today; position Zycus's seamless SAP integration (okay-to-pay file, inbound invoice sync) so they keep SAP for payments while gaining agentic AP"},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward)", "how_we_win": "Differentiate on native single-data-core suite and Merlin cognitive analytics for AP bottleneck prediction"},
+        {"name": "iValua", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward)", "how_we_win": "Emphasize BFSI-specific compliance depth (OFAC enforcement, fraud/duplicate checks upfront)"},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward)", "how_we_win": "Position unified S2P plus Teams-native intake over point-suite integration overhead"},
+        {"name": "Oracle", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward)", "how_we_win": "Contrast agentic AP time-to-value against a heavy ERP-suite implementation"},
+        {"name": "Sirion Labs", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward; likely a CLM point player outside the final three)", "how_we_win": "Full S2P scope vs a contract-lifecycle point solution"},
+        {"name": "DocuSign", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": "2026-06-17", "source": "SF Competitors__c (carried forward; e-signature adjacency, not a suite rival)", "how_we_win": "Suite breadth vs a signature point tool; Zycus integrates e-sign rather than competing on it"}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus fits the AP-automation and agentic-AI expectations well; the open exposure is the buyer's demand to see a like-for-like SAP-retain option and the unresolved international bank-validation capability.",
+      "items": [
+        {"criterion": "Agentic AP automation (touchless ingestion, upfront duplicate/fraud checks, AP Compass compliance)", "position": "aligned", "quote": "I definitely do see adding value since most of the stuff we do today that you described is very manual", "date": "2025-12-09", "source": "Avoma AP demo (Tavannie Perez)"},
+        {"criterion": "SAP-retain vs move-to-Zycus architecture comparison", "position": "exposed", "quote": "I think we need to know what it looks like if we maintain everything in SAP to give us the true color of what our options are", "date": "2025-12-09", "source": "Avoma AP demo (Tavannie Perez)"},
+        {"criterion": "International bank-account validation", "position": "partially aligned", "quote": "we do not have the ability to check or validate international bank accounts, and we'd like to be able to do that moving forward", "date": "2025-12-09", "source": "Avoma AP demo (buyer AP team)"},
+        {"criterion": "Japan / native-Japanese deployment capability", "position": "partially aligned", "quote": "Research Zycus's penetration into the Japanese market and clients using the platform in native Japanese-based environments", "date": "2026-06-17", "source": "SF Next_Step__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide proof of Zycus penetration in Japan and native-Japanese-language deployments", "said_by": "George Andrus", "date": "2026-06-17", "addressed": false, "quote": "updates on company and product news, especially new clients in Asia", "source": "SF Next_Step__c 17 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Share the global procurement framework decision timeline and a firm re-engagement checkpoint", "who": "Buyer", "grounding_quote": "management has asked for a longer pause... estimated to last at least six months", "date": "2026-06-17", "due": "2026-07-20", "status": "open", "source": "SF Next_Step__c 17 Jun 2026 (Lee Tenny)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Global framework decision-owner and timeline", "quote": "management has asked for a longer pause... a global framework for procurement and cost management, which varies by region", "status": "not addressed", "date": "2026-06-17", "gap_type": "knowledge", "source": "SF Next_Step__c 17 Jun 2026"},
+        {"area": "Identity of the other two finalists in the final three", "quote": "we have 3 excellent options in front of us... a tight selection", "status": "not addressed", "date": "2025-12-29", "gap_type": "knowledge", "source": "Avoma pricing call 29 Dec 2025 (Alex Jaffee)"},
+        {"area": "Quantified ROI / savings business case", "quote": "most of the stuff we do today that you described is very manual", "status": "acknowledged", "date": "2025-12-09", "gap_type": "knowledge", "source": "Avoma AP demo 9 Dec 2025"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is frozen by a global-management pause the US team does not own; winning depends on reaching the framework decision-maker, recruiting an internal advocate, and staying warm without a rival taking the lead.",
+      "flags": [
+        "The pause is owned by Mizuho global/Japan management, not the US buyers: identify and reach the framework decision-owner (via Takashi Minowa / global finance) or the deal stays dark.",
+        "No one is advocating internally during the pause: recruit Amit Saraff or Alex Jaffee as a coach with Japan-penetration proof and BFSI references to keep Zycus in the framework discussion.",
+        "Final-3 standing but no fresh competitive intel since Dec 2025: reconfirm Zycus's position and surface the other two finalists at re-engagement so no rival quietly takes the lead."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "David Wong", "title": "Managing Director & CFO", "role": "Economic Buyer", "last_contact_date": "2025-12-09", "sentiment": "Neutral; joined the AP demo, holds approval authority for any major process change", "risk": "Approval-gate for the AP change; not directly engaged since Dec 2025 and not the owner of the global framework pause", "source": "SF OpportunityContactRole + Avoma AP demo 9 Dec 2025 (Tavannie: 'David Wong would have to approve')"},
+        {"name": "George Andrus", "title": "Executive Director - Head of Procurement", "role": "Decision Maker", "last_contact_date": "2026-06-22", "sentiment": "Cordial but passive; communicated the pause, praised Zycus technology and team, declined Horizon", "risk": "A US decision-maker who accepted the global pause without advocating for acceleration", "source": "SF OpportunityContactRole + Tasks 17-22 Jun 2026"},
+        {"name": "Lee Tenny", "title": "Head of Procurement and Third Party Risk Management", "role": "Decision Maker", "last_contact_date": "2026-06-22", "sentiment": "Cordial; relayed the pause, expressed gratitude, requested Asia client updates", "risk": "Co-decision-maker bound by the management pause directive; no urgency behavior", "source": "SF OpportunityContactRole + SF Next_Step__c 17 Jun 2026"},
+        {"name": "Amit Saraff", "title": "Project Manager - Procurement", "role": "Coach", "last_contact_date": "2026-04-22", "sentiment": "Neutral facilitator; runs the evaluation day-to-day", "risk": "Contractor/consultant, not a Mizuho employee; facilitates but does not advocate for Zycus", "source": "SF OpportunityContactRole + Avoma calls 9-29 Dec 2025"},
+        {"name": "Tavannie Perez", "title": "Vice President", "role": "Influencer", "last_contact_date": "2025-12-09", "sentiment": "Engaged; drove the AP use-case discussion and raised the AI functionality ask", "risk": "Owns AP pain but defers all large-change decisions to David Wong", "source": "SF OpportunityContactRole + Avoma AP demo 9 Dec 2025"},
+        {"name": "Takashi Minowa", "title": "Deputy Chief Financial Officer, Managing Director", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; no direct engagement", "risk": "Possible owner of the global framework / budget decision behind the pause but entirely unmapped", "source": "SF OpportunityContactRole"},
+        {"name": "Alex Jaffee", "title": "Global Strategic Sourcing Professional", "role": "Influencer", "last_contact_date": "2026-04-22", "sentiment": "Neutral; primary rep contact, confirmed final-three status", "risk": "Evaluator-level engagement only; candidate to develop into a coach", "source": "SF OpportunityContactRole + Avoma pricing call 29 Dec 2025"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No advocate is driving the deal. Amit Saraff runs the evaluation but is a contractor acting as a neutral facilitator, and Alex Jaffee is a transactional rep contact; neither pushed back on the pause. George Andrus and Lee Tenny relayed the management hold without advocating. Converting Amit or Alex into a coach who surfaces the framework timeline is the highest-priority relationship gap.",
+      "champion": "Amit Saraff",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (no Champion role) + Avoma calls 9-29 Dec 2025 + SF Next_Step__c 17 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "The agentic AP story (AP Smartdesk inbox agent, AP Compass anomaly detection, Merlin cognitive analytics, Teams-native intake) was demoed in depth on 9 Dec 2025 and resonated with the AP team's manual pain; the broader agentic-procurement narrative beyond AP is not yet the buying driver.",
+      "score": "5.0 / Moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 5.0 / Moderate reads accurately: Tavannie Perez pulled for the AI functionality list on 9 Dec 2025 and the AP Smartdesk / AP Compass agentic demo landed, but interest is tactical (AP automation) rather than a transformational agentic-procurement mandate, and any change is CFO-gated.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "The whole initiative is paused by Mizuho global/Japan management for a regional procurement framework; the engaged US team cannot restart it", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "SF Next_Step__c 17 Jun 2026 (Lee Tenny)"},
+        {"category": "timeline", "detail": "22 Sep close is impossible against a self-declared 6-month+ pause; the date has slipped three times in 2026", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "SF Next_Step__c + OpportunityFieldHistory"},
+        {"category": "change_management", "detail": "Moving AP processing out of SAP is a 'huge change in the process' requiring David Wong's approval; AP team wants to see a SAP-retain option first", "first_raised": "2025-12-09", "date": "2025-12-09", "status": "open", "source": "Avoma AP demo 9 Dec 2025"},
+        {"category": "budget", "detail": "No quantified ROI/savings case; without acute financial pain the project is a strategic nice-to-have, enabling the pause", "first_raised": "2025-12-09", "date": "2025-12-09", "status": "open", "source": "Avoma AP demo 9 Dec 2025"},
+        {"category": "executive_alignment", "detail": "US decision-makers George Andrus and Lee Tenny are cordial but passive; no exec is sponsoring acceleration and Scott Buckleton (Exec Sponsor) is absent", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "SF OpportunityContactRole + Tasks 17-22 Jun 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: the last genuine two-way exchange was the 17 Jun pause call, followed only by declined event invites; monthly check-ins keep the relationship warm but no evaluation is live.",
+      "cooling": true,
+      "items": [
+        "Buyer declared a 6-month+ pause and is treating the project as on hold (17 Jun 2026)",
+        "George Andrus and Lee Tenny declined Horizon US 2026 (18-22 Jun 2026)",
+        "Close date slipped three times in 2026; last buyer-driven evaluation step was the 9 Dec 2025 AP demo"
+      ]
+    },
+    "customer_preference": {"level": "low", "evidence": "Down-selected to the final three but no explicit lean to Zycus: 'we have 3 excellent options in front of us... everyone's got their own pros' (Alex Jaffee, 29 Dec 2025), and the whole initiative is now paused."},
+    "business_case": {"status": "partial", "evidence": "Qualitative AP pain confirmed (manual ingestion, month-end-only duplicate checks, no international bank validation, manual tax/allocation) but no ROI, savings, or cycle-time numbers quantified (9 Dec 2025)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "expanded", "from": "$659,250 (Dec 2025)", "to": "$859,260 (13 Jan 2026)", "detail": "Amount rose and the full S2P suite scope (iContract, iSource, ML iAnalyze, iManage, iSupplier, eProcurement, iSaaS, Merlin Intake) held; no module drop or defensive narrowing, so scope is not a downside signal here."},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Lee and George the Zycus Japan-market and native-Japanese deployment proof summary.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Edward's committed action item and George's request for Asia client updates", "trigger_date": "2026-06-17", "act_by": "2026-07-13", "expected_effect": "Delivers the proof the global framework concern hinges on and keeps Zycus credible during the pause."},
+        {"rank": 2, "action": "Ask Amit Saraff to name the global framework decision-owner and its timeline.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Lee Tenny: management ordered a pause pending a global procurement framework", "trigger_date": "2026-06-17", "act_by": "2026-07-20", "expected_effect": "Surfaces the real decision path and the earliest credible re-engagement date."},
+        {"rank": 3, "action": "Open a thread to Takashi Minowa or global finance on the framework's procurement priorities.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Global pause owned above the US team; Deputy CFO unmapped", "trigger_date": "2026-06-17", "act_by": "2026-07-24", "expected_effect": "Multi-threads to the pause owner so Zycus is shaping the framework, not waiting on it."},
+        {"rank": 4, "action": "Share a BFSI AP-automation proof point (Broadridge or Maybank) with Tavannie and Alex.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "AP Smartdesk/Compass resonated but no quantified value case exists", "trigger_date": "2025-12-09", "act_by": "2026-08-01", "expected_effect": "Keeps the AP champion armed and nudges a quantified savings conversation."},
+        {"rank": 5, "action": "Reconfirm the six-month checkpoint with George and Lee to book a re-engagement review.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Pause estimated at least six months from Jun 2026", "trigger_date": "2026-06-17", "act_by": "2026-08-04", "expected_effect": "Locks a concrete return date so the deal does not drift into an indefinite hold."}
+      ]
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 16,
+    "calls_read": 4,
+    "calls_omitted": [
+      {"call": "Mizuho Procurement Platform - Zycus discussion (2025-11-18)", "reason": "no transcript available this run"},
+      {"call": "Clarification of Scenarios with Mizuho (2025-11-10)", "reason": "no transcript available this run"},
+      {"call": "Zycus Catch-up [Mizuho] Alex & Amit (2025-10-28)", "reason": "no transcript available this run"},
+      {"call": "John - George 1:1 (2025-10-24)", "reason": "no transcript available this run"},
+      {"call": "Mizuho | Zycus - Executive Alignment Call (2025-10-23)", "reason": "no transcript available this run"},
+      {"call": "Technical Integration Follow-up Session with Zycus (2025-09-26)", "reason": "no transcript available this run"},
+      {"call": "Zycus / Mizuho (discuss updated pricing) (2025-09-23)", "reason": "no transcript available this run"},
+      {"call": "Zycus - Technology Integration Discussion (Mizuho RFP) (2025-09-12)", "reason": "no transcript available this run"},
+      {"call": "Zycus - Proposal Commercials Walk-through for Mizuho RFP (2025-09-08)", "reason": "no transcript available this run"},
+      {"call": "Zycus Pricing Discussion (Mizuho Americas) (2025-08-12)", "reason": "no transcript available this run"},
+      {"call": "Zycus executive connect (2025-06-09)", "reason": "no transcript available this run"},
+      {"call": "Mizuho Sourcing / Zycus Touch base (2026-01-20)", "reason": "partial transcript only (logistics, no evaluation content)"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Tasks/Events 120d; field history 365d; contact roles full",
+    "avoma_attendees": ["George Andrus", "Lee Tenny", "Amit Saraff", "Alex Jaffee", "Tavannie Perez", "David Wong", "Abhishek Kumar", "Peter Leung"],
+    "gaps": [
+      "Global procurement framework decision-owner and timeline unknown (pause owned above the US team)",
+      "The other two finalists in the final three were not disclosed by the buyer",
+      "No quantified ROI/savings business case captured on any call or field"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,807 @@
+{
+  "opp_id": "006P700000ZIaFN",
+  "hard": {
+    "opp_id": "006P700000ZIaFN",
+    "opp_name": "DPWorld_Spend+Intake_June'26",
+    "account_name": "DP World",
+    "account_industry": "Auto & Transport",
+    "billing_country": "United States",
+    "owner_name": "Marc Quessenberry",
+    "owner_title": null,
+    "manager_name": "Alexa Bradley",
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 250000.0,
+    "close_date": "2026-12-10",
+    "days_to_close": 157,
+    "created_date": "2026-06-08T22:57:11.000+0000",
+    "qualified_date": "2026-06-09",
+    "last_activity_date": "2026-06-29",
+    "last_modified_date": "2026-07-03T09:08:44.000+0000",
+    "products": "ML iAnalyze;Merlin;Merlin Intake",
+    "next_step": "Jun 23, 2026 (due Jun 23, 2026): Test 6/22/26 MQ Presented initial demo to Danny and group. Merlin Intake for validation and Spend Analysis with Ask Merlin for advanced analytics. Danny asked for initial pricing and implementation timeline. Gathering metrics for pricing for tentative proposal presentation 6/29. 6/9/26 MQ Schedule deep\u2011dive / solution\u2011validation session for Friday (preferred) or the earliest available slot that works for Danny, Himanshu, and Hamed.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 The DP World contact is 'leading process-improvement/AI initiatives' and looking to 'drive more efficiency rather than add headcount,' indicating an AI-oriented internal champion.\n\u2022 Pain points are concrete and automation-friendly: validating Maximo PRs before Oracle, manual vendor follow-up on open POs, and manual analysis work.\n\u2022 Merlin and Merlin Intake are scoped at Formal Evaluation, but the framing is efficiency-through-AI rather than explicit demand for autonomous agents, so appetite is solidly curious.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZIaFN/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Live, champion-driven and sole-sourced, but the buyer narrowed scope on 29 Jun to open-PO follow-up, and that top ask is a custom build, not out-of-box.",
+      "math": "Deal age 28 days (created 08 Jun) vs 157 days to close (10 Dec). Stage velocity: Initial Interest to Qualified in 1 day (09 Jun), Qualified to Formal Evaluation in 13 days (22 Jun); time-in-Formal-Evaluation is 14 days, normal for an initial demo + pricing-scoping phase. Close date was pulled forward 21 days on 09 Jun (31 Dec to 10 Dec), early optimism. Path to close: pricing proposal (owed since 29 Jun) then head-office budget + data-lake approval (unmapped) then contracting. 157 days is plausible only if the re-scoped proposal reopens the gate and the head-office approver is engaged within the next 30 days.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last two-way buyer touch: 29 Jun email thread. Hamed Zaeima gave the $88M annual opex figure for pricing but also said the demoed intake solution will not streamline their process and asked to focus on the open-PO follow-up (scope narrowing).",
+        "Champion Danny Espinoza (Terminal Procurement Manager, Canada) is active: drove the 22 Jun demo, requested pricing and implementation timeline, and delivered scope metrics on 24 and 29 Jun. On 22 Jun he said he must double-check with head office for data-lake access and internal sign-off, signaling a gate above him.",
+        "Sole-sourced: no competitor named across the 08, 12 and 22 Jun calls or any field. The real alternative is status quo (keep manual buyer PR review and manual vendor follow-up).",
+        "Pipeline is the honest category: the economic buyer at head office (Dubai) is unmapped, budget is unconfirmed, and the buyer's highest-priority capability (autonomous vendor follow-up) is not a current offering and would need a custom agent (Braden, 22 Jun)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Danny Espinoza quantified operational volume on the 12 Jun discovery call: buyers review 20 to 25 PRs each per day across 4 buyers (80 to 100/day) with 85 to 88% of requirements originating from maintenance. On 24 Jun he sized the scope at 1,200 PRs/month across 5 terminals with 60 users, and on 29 Jun Hamed Zaeima gave $88M annual opex spend as the pricing-tier anchor. What is missing is a financial impact case: no hours-saved, cycle-time-reduction, or savings target has been agreed, so value today is time-to-value (less manual review, faster vendor follow-up), not a dollar ROI. Co-building that value case on the re-scoped proposal is the move.",
+        "sources": [
+          "Avoma discovery call 12 Jun (Danny Espinoza, is_rep:false)",
+          "SF Task 24 Jun email (Danny Espinoza)",
+          "SF Task 29 Jun email ($88M opex, Hamed Zaeima)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named in Salesforce (Danny Espinoza is the only contact role) and none is engaged. The evidence points to authority sitting at DP World head office in Dubai: on 22 Jun Danny said he must double-check with head office to grant data-lake access and confirm internal feasibility, and on 08 Jun the team noted DP World signs global agreements centrally (for example the Sirion CLM deal). Hamed Zaeima is exerting decision influence over scope (he cut the intake module on 29 Jun and prioritizes email addressed directly to him), but he presented himself as a purchasing coordinator, not a budget owner. The prior record's named EBs (Daren Farrell, Marcelo Felberg) have no source in any call, email or contact role and are dropped as unverified. Move: ask Danny to name and introduce the head-office approver for the $250k budget and data-lake request.",
+        "sources": [
+          "SF OpportunityContactRole (only Danny Espinoza)",
+          "Avoma demo call 22 Jun (Danny Espinoza: double-check with head office)",
+          "Avoma intro call 08 Jun (DP World global agreements signed centrally)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria the buyer has voiced are operational fit, not a formal scorecard: (1) automatically validate Maximo purchase-request fields before they interface to Oracle without changing the requester experience (Danny, 12 Jun); (2) an AI analytics tool that is faster and more intelligent than exporting Oracle Fusion reports to Excel or Tableau (Danny, 12 Jun); and (3) autonomous vendor follow-up on open POs that emails vendors and updates the promised delivery date in Oracle Fusion (Danny and Ahmed, 12 Jun). Two hard constraints surfaced as criteria: the shared-cluster Maximo allows no configuration or customization (Himanshu, 22 Jun), and analytics must ideally run on their data lake in real time rather than batch after data is copied into Zycus (Himanshu, 22 Jun). No RFP or weighted criteria exist yet.",
+        "sources": [
+          "Avoma discovery call 12 Jun (Danny Espinoza, Ahmed)",
+          "Avoma demo call 22 Jun (Himanshu Sharma: shared-cluster Maximo, data-lake real-time question)"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Read from the call sequence: an intro/discovery on 08 Jun (Danny + Himanshu), a deeper discovery on 12 Jun that added Emerson Azevedo and Ahmed/Hamed and the Zycus product-strategy lead Bikash, then a tailored demo on 22 Jun. The buyer is running an internal solution-evaluation, not a procurement bake-off, and closed the 22 Jun demo with we will review it internally and get back to you (Danny). A clear gate sits above the Canada team: Danny must take pricing and data-access to head office for approval, and Hamed Zaeima has appointed himself a scope gatekeeper (29 Jun). The approval chain (who signs the $250k, whether head office demands competing quotes) is not yet mapped.",
+        "sources": [
+          "Avoma calls 08, 12 and 22 Jun (attendee escalation)",
+          "Avoma demo call 22 Jun (Danny: review internally and get back to you)",
+          "SF Task 22 Jun (double-check with head office)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible yet, consistent with an early Formal Evaluation deal that has not reached pricing agreement. As a new-business single-region deal it would run as an Order Form plus SOW (Merlin/iAnalyze subscription plus the custom vendor-follow-up agent build); no MSA, legal, InfoSec or procurement channel has been discussed. The one paper-relevant fact is that DP World contracts key platforms centrally at head office (the Sirion CLM global agreement, 08 Jun), so the $250k will likely need head-office paper authority, not just Canada. Visibility would come from asking Danny who owns vendor onboarding and contracting for a Canada IT-procurement purchase of this size.",
+        "sources": [
+          "Avoma intro call 08 Jun (Himanshu: Sirion CLM global agreement signed by DP World head office)",
+          "SF stage: Formal Evaluation (pre-commercials)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Three concrete pains are confirmed by the buyer. (1) Maximo-to-Oracle PR validation: because two ERPs (Maximo for maintenance, Oracle Fusion for procurement) sync every 15 minutes, incomplete or mismatched PR fields get stuck in the interface, so 4 buyers manually review 80 to 100 PRs/day (Danny and Ahmed, 12 Jun); Danny wants to replace that manual review with automated validation. (2) Manual open-PO vendor follow-up: buyers pull a report of undelivered POs and chase vendors by email one by one, and Danny said I only have one buyer per terminal, that is not enough (12 Jun). (3) Spend analysis is possible in Oracle/Excel but not fast or intelligent enough (Danny, 12 Jun). The pain owner is Danny (operational efficiency for his buyer team). The RFX/template pain from the intro call was resolved via an Oracle Fusion workaround (Danny/Emerson, 12 Jun) and is off the table.",
+        "sources": [
+          "Avoma discovery call 12 Jun (Danny Espinoza, Ahmed)",
+          "Avoma intro call 08 Jun (Danny Espinoza: three bottlenecks)"
+        ]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Danny Espinoza, Terminal Procurement Manager for Canada, is a strong operational champion. Evidence of advocacy: he initiated the engagement, set and attended all three calls (08, 12, 22 Jun), articulated the pain in depth, brought in Himanshu (IT/integration), Emerson (contracts) and Ahmed/Hamed (buying), requested pricing and implementation timeline on 22 Jun, and delivered scope metrics on 24 and 29 Jun. His access is to the operational buyer team and to Himanshu, but NOT to the economic buyer: on 22 Jun he deferred budget and data-lake access to head office. What is still missing to make him a decision-level champion is an EB introduction, and he is going on vacation (noted 12 Jun), so continuity risk is real. He is active as of 29 Jun.",
+        "sources": [
+          "Avoma calls 08, 12 and 22 Jun (Danny drove agenda)",
+          "SF Tasks 24 and 29 Jun (Danny delivered metrics)",
+          "Avoma demo call 22 Jun (Danny requested pricing + timeline)"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "This is a sole-sourced operational-efficiency buy, not a competitive bake-off. No competitor is named across the 08, 12 and 22 Jun calls, all email threads, or any Salesforce field (Competitors__c and the free-text competition fields are blank). The buyer's stack (Oracle Fusion ERP, IBM Maximo, Oracle Integration Cloud, Oracle Negotiations for RFX, and a rolling-out Sirion CLM) is not being replaced; Zycus overlays Merlin as intelligent automation on top. The genuine threat is inertia: DP World can keep manually reviewing PRs and manually chasing vendors and simply not sign. How we win: land Ask Merlin spend analytics as the Day-1 quick win while committing to build the autonomous open-PO vendor-follow-up agent as the differentiated Phase-2 centerpiece. Watch: if head office demands competing quotes when Danny escalates pricing, competition could enter late.",
+        "sources": [
+          "Avoma calls 08, 12 and 22 Jun (no competitor named)",
+          "SF Competitors__c null",
+          "Avoma intro call 08 Jun (Oracle Fusion, Maximo, OIC, Oracle Negotiations, Sirion CLM stack)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Live and moving through initial evaluation, but the 29 Jun touch narrowed scope rather than advancing to a clean pricing proposal. Champion active; EB and budget still unopened.",
+      "items": [
+        {
+          "change": "Stage advanced Qualified to Formal Evaluation after the tailored demo",
+          "date": "2026-06-22"
+        },
+        {
+          "change": "Delivered tailored demo of Merlin Intake (guided PR validation) and Ask Merlin spend analytics; Danny requested pricing + implementation timeline",
+          "date": "2026-06-22"
+        },
+        {
+          "change": "Danny provided scope metrics: 1,200 PRs/month across 5 terminals, 60 users",
+          "date": "2026-06-24"
+        },
+        {
+          "change": "Hamed Zaeima gave $88M annual opex for pricing but de-scoped the intake solution, asking to focus on open-PO follow-up",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Close date pulled forward 21 days (31 Dec to 10 Dec), early optimism",
+          "date": "2026-06-09"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "Sole-sourced as of 29 Jun: no rival named in three calls, all emails or any field. Zycus overlays the existing Oracle/Maximo stack rather than replacing it. The single strongest current threat is status-quo inertia (DP World keeps manual PR review and manual vendor follow-up and defers a decision), plus a latent risk that head office demands competing quotes when pricing escalates.",
+      "competitors": [
+        {
+          "name": "Status quo (manual buyer PR review and manual vendor follow-up)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "do_nothing",
+          "quote": "I only have one buyer per terminal. That's not enough. So I don't want the buyers to spend time reaching out to each vendor for all the open POs manually.",
+          "date": "2026-06-12",
+          "source": "Avoma discovery call 12 Jun (Danny Espinoza)",
+          "how_we_win": "Quantify the manual hours across 80 to 100 PRs/day and open-PO chasing, then show Ask Merlin analytics live as the Day-1 quick win so doing nothing has a visible cost."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on AI spend analytics and guided intake; exposed on the buyer's top ask (autonomous vendor follow-up is a custom build) and on real-time analytics against their data lake under a locked shared-cluster Maximo.",
+      "items": [
+        {
+          "criterion": "Automated validation of Maximo PR fields before the Oracle interface, without changing the requester experience",
+          "position": "aligned",
+          "quote": "we want reinforce the training with requesters... but if I'm going to replace the buyer from the process, I want at least to have some process in place that will catch any discrepancy",
+          "date": "2026-06-12",
+          "source": "Avoma discovery call 12 Jun (Danny Espinoza)"
+        },
+        {
+          "criterion": "Faster, more intelligent AI spend analysis than exporting Oracle reports to Excel/Tableau",
+          "position": "aligned",
+          "quote": "some kind of AI agent to help us improve the analysis, make it faster, more intelligent",
+          "date": "2026-06-12",
+          "source": "Avoma discovery call 12 Jun (Danny Espinoza)"
+        },
+        {
+          "criterion": "Autonomous vendor follow-up that emails vendors and updates the promised delivery date in Oracle Fusion",
+          "position": "exposed",
+          "quote": "I don't have a way to automate the note right now... it's not a current offering... but I think it's definitely a tomorrow yes",
+          "date": "2026-06-22",
+          "source": "Avoma demo call 22 Jun (Braden, Zycus)"
+        },
+        {
+          "criterion": "Analytics that run in real time on their data lake, not batch after copying data into Zycus, under a shared-cluster Maximo that allows no customization",
+          "position": "exposed",
+          "quote": "we use the shared cluster Maximo... we are not allowed to make any configuration or customization on the Maximo side",
+          "date": "2026-06-22",
+          "source": "Avoma demo call 22 Jun (Himanshu Sharma)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Send tiered pricing and implementation timeline for both solutions",
+          "said_by": "Danny Espinoza",
+          "date": "2026-06-22",
+          "addressed": false,
+          "quote": "So what could be the timeline for both implementations, and how much it would be for each one? Can you send me that breakdown, Mark?",
+          "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+        },
+        {
+          "requirement": "Refocus the solution on the open-PO vendor follow-up; the demoed intake will not streamline their process",
+          "said_by": "Hamed Zaeima",
+          "date": "2026-06-29",
+          "addressed": false,
+          "quote": "We would like to focus on a solution for the Open POs follow up. Based on the information that we reviewed last time, we don't think the intake solution that was presented will streamline the current process",
+          "source": "SF Task 29 Jun email (Hamed Zaeima)"
+        },
+        {
+          "requirement": "Provide the list of system and data requirements Zycus needs from DP World to confirm feasibility",
+          "said_by": "Danny Espinoza",
+          "date": "2026-06-22",
+          "addressed": false,
+          "quote": "All the requirements that you will need from us from a system perspective to make sure that we check the boxes internally, see if it's doable or not",
+          "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Confirm head-office approval for Zycus data-lake / data-source access needed to run iAnalyze on their data",
+            "who": "Buyer",
+            "grounding_quote": "We need to double check with head office, to make sure that we can give you access to the data lake or any other part of the system so this can be implemented",
+            "date": "2026-06-22",
+            "due": "2026-07-31",
+            "status": "open",
+            "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget authority at head office is unmapped and unengaged",
+          "quote": "double check with head office",
+          "status": "not addressed",
+          "date": "2026-06-22",
+          "gap_type": "knowledge",
+          "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+        },
+        {
+          "area": "Decision process and approval chain for the $250k (whether head office requires competing quotes) is undefined",
+          "quote": "we'll review it internally and get back to you",
+          "status": "not addressed",
+          "date": "2026-06-22",
+          "gap_type": "knowledge",
+          "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+        },
+        {
+          "area": "No financial ROI / savings case agreed; only volume metrics captured",
+          "quote": "Last year we spend $88M in Opex requirements",
+          "status": "acknowledged",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "SF Task 29 Jun email (Hamed Zaeima)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Sole-sourced and champion-led, but the win now hinges on de-risking the top requirement, opening the head-office budget gate, and holding scope while the champion is out.",
+      "flags": [
+        "De-risk the differentiator: get Product to confirm in writing whether the autonomous open-PO vendor-follow-up agent will be built and by when, since Braden called it a tomorrow yes and not a current offering (22 Jun).",
+        "Open the power gate: the economic buyer sits at head office in Dubai and is unmapped; ask Danny to name and introduce the $250k / data-lake approver before pricing escalates.",
+        "Protect scope and continuity: Hamed cut the intake module on 29 Jun and Danny is on vacation, so multi-thread to Hamed and re-anchor the value of the retained open-PO + analytics scope."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Danny Espinoza",
+          "title": "Terminal Procurement Manager, Canada",
+          "role": "Champion",
+          "last_contact_date": "2026-06-29",
+          "sentiment": "positive",
+          "risk": "Strong on engagement and scope, but has no economic-buyer access (defers to head office) and is going on vacation; deal stalls if he cannot facilitate the EB introduction before pricing escalates.",
+          "source": "SF Task/activity contact; Avoma calls 08, 12 and 22 Jun"
+        },
+        {
+          "name": "Hamed Zaeima",
+          "title": "Purchasing Coordinator (self-stated, 12 Jun)",
+          "role": "Decision Maker",
+          "last_contact_date": "2026-06-29",
+          "sentiment": "neutral",
+          "risk": "Emerging scope gatekeeper: de-scoped the intake module on 29 Jun and states he prioritizes email addressed directly to him; cooler on the solution than Danny and must be engaged directly.",
+          "source": "SF Task 29 Jun email; Avoma discovery call 12 Jun; invite list 18 Jun (Hamed.Zaeima@dpworld.com)"
+        },
+        {
+          "name": "Himanshu Sharma",
+          "title": "Contract Specialist (IT procurement projects, 2026)",
+          "role": "Influencer",
+          "last_contact_date": "2026-06-22",
+          "sentiment": "neutral",
+          "risk": "Technical gatekeeper: flagged the shared-cluster Maximo allows no customization and questioned real-time data-lake analytics; can constrain integration scope.",
+          "source": "Avoma calls 08, 12 and 22 Jun (himanshu@dpworld.com)"
+        },
+        {
+          "name": "Emerson Azevedo",
+          "title": "Capital Contract Specialist",
+          "role": "Influencer",
+          "last_contact_date": "2026-06-22",
+          "sentiment": "neutral",
+          "risk": "Contracts-side participant, lower engagement; resolved the RFX template need via an Oracle Fusion workaround, removing one use case from scope.",
+          "source": "Avoma calls 12 and 22 Jun (Emerson.Azevedo@dpworld.com)"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Danny Espinoza is a strong operational champion who initiated the deal, drove all three calls, delivered metrics and requested pricing, but his access stops at the operational team and Himanshu; he defers budget and data-lake to head office and is going on vacation. Strong on engagement, developing on economic-buyer access.",
+      "champion": "Danny Espinoza, Terminal Procurement Manager, Canada",
+      "strength": "strong",
+      "at_risk": false,
+      "source": "Avoma calls 08, 12 and 22 Jun; SF Tasks 24 and 29 Jun email threads"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin/agentic AI is the whole thesis of the buy: guided intake validation, Ask Merlin spend analytics, and an autonomous vendor-follow-up agent. It is well positioned but partly ahead of what is out-of-box, since the top-priority vendor-follow-up agent must be custom built.",
+      "score": "6/10",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 (Moderate) is accurate. Danny is AI-curious and efficiency-driven (drive more efficiency rather than add headcount) and responded positively to Merlin/Ask Merlin, but Hamed's 29 Jun pushback that the intake tool will not streamline their process shows appetite is curious, not hungry.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "other",
+          "detail": "The buyer's highest-priority capability, autonomous open-PO vendor follow-up, is not a current Zycus offering and would require a custom agent build (Braden, 22 Jun).",
+          "first_raised": "2026-06-22",
+          "date": "2026-06-22",
+          "status": "open",
+          "source": "Avoma demo call 22 Jun (Braden, Zycus)"
+        },
+        {
+          "category": "change_management",
+          "detail": "Scope narrowed on 29 Jun: Hamed Zaeima cut the demoed Merlin Intake module, a defensive move toward a smaller open-PO-only footprint.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Task 29 Jun email (Hamed Zaeima)"
+        },
+        {
+          "category": "integration",
+          "detail": "Shared-cluster Maximo allows no configuration/customization, and real-time analytics on the buyer's data lake is unconfirmed (may be batch after copying data into Zycus).",
+          "first_raised": "2026-06-22",
+          "date": "2026-06-22",
+          "status": "open",
+          "source": "Avoma demo call 22 Jun (Himanshu Sharma)"
+        },
+        {
+          "category": "executive_alignment",
+          "detail": "Economic buyer at head office (Dubai) is unmapped and unengaged; the $250k budget and data-lake access both need approval above Danny.",
+          "first_raised": "2026-06-22",
+          "date": "2026-06-22",
+          "status": "open",
+          "source": "Avoma demo call 22 Jun (Danny Espinoza)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live (29 Jun) but the last touch narrowed scope and questioned the demoed solution, and the champion is heading into vacation, so watch for cadence thinning through July.",
+      "cooling": false,
+      "items": [
+        "29 Jun: buyer gave pricing metrics but de-scoped the intake module.",
+        "Danny noted upcoming vacation (12 Jun); Hamed asked to be added to all future meetings, a continuity signal."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Send the re-scoped pricing and implementation-timeline proposal for open-PO follow-up plus Ask Merlin analytics.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Danny asked for the pricing/timeline breakdown (22 Jun) and Hamed narrowed scope to open-PO follow-up (29 Jun)",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-10",
+          "expected_effect": "Reopens the commercial gate on the scope the buyer actually wants and keeps momentum before Danny's vacation."
+        },
+        {
+          "rank": 2,
+          "action": "Confirm in writing whether the autonomous vendor-follow-up agent will be built and its delivery timeline.",
+          "owner": "Product escalation",
+          "horizon": "next_7_days",
+          "trigger": "Braden called the vendor-follow-up automation a tomorrow yes and not a current offering",
+          "trigger_date": "2026-06-22",
+          "act_by": "2026-07-13",
+          "expected_effect": "De-risks the buyer's top requirement so the proposal is credible and the differentiator holds."
+        },
+        {
+          "rank": 3,
+          "action": "Ask Danny to name and introduce the head-office approver for the $250k budget and data-lake access.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Danny deferred budget and data-lake access to head office",
+          "trigger_date": "2026-06-22",
+          "act_by": "2026-07-17",
+          "expected_effect": "Maps and opens the economic-buyer gate, the single biggest unknown blocking the Dec close."
+        },
+        {
+          "rank": 4,
+          "action": "Multi-thread to Hamed Zaeima to re-anchor the value of the retained open-PO and analytics scope.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Hamed de-scoped the intake module and prioritizes direct email; Danny is on vacation",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Protects scope and continuity while the champion is out, preventing further shrink."
+        },
+        {
+          "rank": 5,
+          "action": "Co-build the ROI case: buyer hours saved on 80-100 PRs/day and open-PO chasing against the $88M opex.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Only volume metrics captured; no financial case agreed",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-08-03",
+          "expected_effect": "Gives head office a defensible savings justification for the $250k and lifts the deal toward Best Case."
+        }
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Merlin Intake (guided PR validation) + Ask Merlin spend analytics + automated open-PO vendor follow-up",
+      "to": "Automated open-PO vendor follow-up + Ask Merlin spend analytics (Merlin Intake dropped)",
+      "detail": "On 29 Jun Hamed Zaeima emailed that the intake solution demoed on 22 Jun will not streamline their current process and asked to focus on the open-PO follow-up; the RFX/template use case was already resolved via an Oracle Fusion workaround (12 Jun). The buyer is trimming to the highest-pain, lowest-footprint capability."
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 36.8,
+      "mom": 60.2,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "critical_signals": [
+      {
+        "lens": "New requirement",
+        "text": "On 29 Jun the buyer said the demoed intake tool will not streamline their process and asked to refocus purely on open-PO vendor follow-up, trimming the deal's footprint.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Last meeting",
+        "text": "The 22 Jun demo landed the Ask Merlin analytics story, but the buyer's top ask, autonomous vendor follow-up, was flagged as not a current offering that would need a custom agent build.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Competition",
+        "text": "Sole-sourced with no rival named in any call; the real contest is status-quo inertia, DP World continuing to review PRs and chase vendors manually rather than signing.",
+        "tone": "pos"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Hamed Zaeima has emerged as a scope gatekeeper who prioritizes email addressed directly to him and is cooler on the solution than champion Danny, and we have engaged him only lightly.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "Pricing is tiered on $88M annual opex but the proposal is still owed and the budget sits with an unengaged head-office approver in Dubai.",
+        "tone": "neu"
+      }
+    ],
+    "deal_scores_evidence": {
+      "summary": "We are the sole-sourced, champion-led choice for a $250k Canada procurement-AI deal, but the buyer just narrowed scope to open-PO follow-up, that top ask is a custom build, and the head-office budget owner is still unopened.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Zycus is sole-sourced with an active champion in Danny Espinoza, who drove all three calls and asked for pricing, and no competitor has surfaced across the 08, 12 and 22 Jun calls or any field."
+          },
+          {
+            "tone": "warn",
+            "text": "The buyer's highest-priority capability, autonomous open-PO vendor follow-up, is not a current offering and would need a custom agent, so the differentiator is a promise, not a proven demo (Braden, 22 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "On 29 Jun Hamed Zaeima cut the demoed intake module and no economic buyer above Danny is mapped, so the win is exposed to scope shrink and an unopened head-office budget gate."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "The deal moved Qualified to Formal Evaluation on 22 Jun and stayed live through a 29 Jun email exchange where the buyer supplied $88M opex for pricing."
+          },
+          {
+            "tone": "warn",
+            "text": "The 29 Jun touch narrowed scope rather than advancing to a clean proposal, and Danny is heading into vacation, so cadence could thin through July."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "Danny delivered detailed scope metrics on 24 and 29 Jun (1,200 PRs/month, 60 users, 5 terminals, $88M opex) and requested a pricing and implementation timeline, a genuine buyer pull."
+          },
+          {
+            "tone": "warn",
+            "text": "Commitment stops at the operational team: no head-office approver is engaged, no decision date is set, and the buyer closed the demo with we will review internally and get back to you."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Scope narrowed on 29 Jun (intake module dropped) and the retained top requirement is a custom build, raising delivery and value risk."
+          },
+          {
+            "tone": "warn",
+            "text": "The economic buyer at head office in Dubai is unmapped, the $250k budget is unconfirmed, and shared-cluster Maximo plus data-lake access add integration constraints."
+          }
+        ]
+      },
+      "factors": {
+        "scope_shrink": {
+          "strength": -0.6,
+          "evidence": "Hamed Zaeima de-scoped the Merlin Intake module on 29 Jun, focusing on open-PO follow-up only."
+        },
+        "economic_buyer_unmapped": {
+          "strength": -0.5,
+          "evidence": "Budget and data-lake access deferred to unengaged head office in Dubai (22 Jun)."
+        },
+        "product_gap": {
+          "strength": -0.4,
+          "evidence": "Top-priority autonomous vendor follow-up is not out-of-box and needs a custom agent (Braden, 22 Jun)."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Danny is AI-curious and asked Zycus-specific next steps (pricing + implementation timeline, 22 Jun), but Hamed pushed back on 29 Jun that the demoed intake tool will not streamline their process, so the lean is positive-but-qualified."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Volume and spend quantified (80-100 PRs/day, 1,200 PRs/month, 60 users, $88M annual opex) but no ROI, savings or hours-saved case agreed; value framed as efficiency, not dollars."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 36.8,
+        "deal_momentum": 60.2,
+        "customer_commitment": 8.0,
+        "deal_risk": 0.0,
+        "forecast_confidence": 29.6,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 36.8,
+        "baseline": 35.0,
+        "anchor": 35.0,
+        "lift": 4.7,
+        "ceiling": 70.0,
+        "momentum_adj": 4.1,
+        "scope_adj": -7.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 4.5,
+            "evidence": "champion strength +1.00 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 2.2,
+            "evidence": "competitive strength +0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 4.1,
+            "evidence": "momentum 60 vs stage-expected 52"
+          },
+          {
+            "factor": "scope_reduced",
+            "points": -7.0,
+            "evidence": "scope narrowed vs prior \u2014 On 29 Jun Hamed Zaeima emailed that the intake solution demoed on 22 Jun will not streamline their current process and asked to focus on the open-PO follow-up;  (buyer likely defensive on cost or phased implementation)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 60.2,
+        "pre_decay": 60.2,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "commercial_topics_entering",
+            "points": 4.8,
+            "evidence": "commercial topics entering (from call evidence)."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 5.4,
+            "evidence": "Next Step carries 4 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 0.0,
+        "contributions": []
+      },
+      "forecast_confidence": {
+        "score": 29.6,
+        "core": 29.6,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 37 is carried by champion strength +1.00 (weight 15); momentum 60 vs stage-expected 52. Offsetting it: scope narrowed vs prior \u2014 On 29 Jun Hamed Zaeima emailed that the intake solution demoed on 22 Jun will not streamline their current\u2026.",
+        "deal_momentum": "Momentum 60 (moving forward): Next Step carries 4 dated milestone(s) \u2014 actively worked. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 0: no break-risk was observed in the swept evidence. Coverage is thin, so read this as 'nothing seen yet,' not 'nothing there.'",
+        "forecast_confidence": "Forecast confidence 30 is anchored on the stage win (37), nudged by commitment 8 and momentum 60, and dragged by risk 0. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "DP World \u2014 Formal Evaluation \u00b7 $250K \u00b7 closes 10 Dec",
+        "intro": "We are the sole-sourced, champion-led choice for a $250k Canada procurement-AI deal, but the buyer just narrowed scope to open-PO follow-up, that top ask is a custom build, and the head-office budget owner is still unopened",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 37,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're behind.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Zycus is sole-sourced with an active champion in Danny Espinoza, who drove all three calls and asked for pricing, and no competitor has surfaced across the 08, 12 and 22 Jun calls or any field"
+              },
+              {
+                "tone": "warn",
+                "text": "The buyer's highest-priority capability, autonomous open-PO vendor follow-up, is not a current offering and would need a custom agent, so the differentiator is a promise, not a proven demo (Braden, 22 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "On 29 Jun Hamed Zaeima cut the demoed intake module and no economic buyer above Danny is mapped, so the win is exposed to scope shrink and an unopened head-office budget gate"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 60,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Moving \u2014 steady forward motion.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "The deal moved Qualified to Formal Evaluation on 22 Jun and stayed live through a 29 Jun email exchange where the buyer supplied $88M opex for pricing"
+              },
+              {
+                "tone": "warn",
+                "text": "The 29 Jun touch narrowed scope rather than advancing to a clean proposal, and Danny is heading into vacation, so cadence could thin through July"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 0,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Scope narrowed on 29 Jun (intake module dropped) and the retained top requirement is a custom build, raising delivery and value risk"
+              },
+              {
+                "tone": "warn",
+                "text": "The economic buyer at head office in Dubai is unmapped, the $250k budget is unconfirmed, and shared-cluster Maximo plus data-lake access add integration constraints"
+              }
+            ],
+            "footer": "Competitive picture: Sole-sourced as of 29 Jun: no rival named in three calls, all emails or any field."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Danny delivered detailed scope metrics on 24 and 29 Jun (1,200 PRs/month, 60 users, 5 terminals, $88M opex) and requested a pricing and implementation timeline, a genuine buyer pull"
+              },
+              {
+                "tone": "warn",
+                "text": "Commitment stops at the operational team; no head-office approver is engaged, no decision date is set, and the buyer closed the demo with we will review internally and get back to you"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Send the re-scoped pricing and implementation-timeline proposal for open-PO follow-up plus Ask Merlin analytics. (by 10 Jul)",
+              "Confirm in writing whether the autonomous vendor-follow-up agent will be built and its delivery timeline. (by 13 Jul)",
+              "Ask Danny to name and introduce the head-office approver for the $250k budget and data-lake access. (by 17 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 3,
+    "calls_read": 3,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history through 29 Jun 2026",
+    "avoma_attendees": [
+      "Danny Espinoza",
+      "Himanshu Sharma",
+      "Emerson Azevedo",
+      "Hamed Zaeima"
+    ],
+    "gaps": [
+      "Economic buyer / budget approver at DP World head office (Dubai) is unmapped and unengaged.",
+      "Decision process and approval chain for the $250k spend (including whether head office requires competing quotes) is undefined.",
+      "No financial ROI / savings case agreed; only operational volume metrics captured.",
+      "Prior record named EBs Daren Farrell and Marcelo Felberg have no source in any call, email or contact role and were dropped as unverified."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:41"
+}

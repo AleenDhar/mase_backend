@@ -1,0 +1,742 @@
+{
+  "opp_id": "006P700000a2ibg",
+  "hard": {
+    "opp_id": "006P700000a2ibg",
+    "opp_name": "ZS_S2P_2026",
+    "account_name": "ZS",
+    "account_industry": "Business Services",
+    "billing_country": "United States",
+    "owner_name": "Mario Castro",
+    "owner_title": "Regional Director Enterprise Sales",
+    "manager_name": "Alexa Bradley",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 400000.0,
+    "close_date": "2026-12-11",
+    "days_to_close": 158,
+    "created_date": "2026-06-25T19:24:14.000+0000",
+    "qualified_date": "2026-06-26",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-03T09:08:48.000+0000",
+    "products": "iSource;iSupplier;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI;iCompliance;ANA",
+    "next_step": "6/25mc - Completed initial ZS alignment call with Artana Skereli regarding their upcoming Source-to-Pay evaluation tied to the broader SAP ECC to S/4HANA transformation. ZS is actively preparing an RFP and confirmed Zycus is one of the shortlisted vendors. Ariba remains in the running, but ZS intentionally wants to evaluate alternatives and is open to vendor input before the RFP is finalized. Immediate next step is a 30-minute meeting with Joe Carolina, who is spearheading the S/4HANA program and supervising the related procurement/S2P initiative. Artana wants Zycus to provide a concise company overview, relevant professional services/pharma customer examples, high-level S2P platform overview, AI capabilities/roadmap, SAP S/4HANA integration approach, and implementation model. RFP is expected to be finalized after the Joe meeting and new procurement executive review. Responses likely to have a 2 to 3 week window, followed by 4 to 5 hour demos, ideally onsite in Chicago. Project is approved, but no defined budget yet. Pricing will be evaluated based on ROI and market benchmarking. Phase 1 is expected to complement existing CLM, third-party risk, ESG, and SAP systems, with potential to expand the S2P footprint over time. Key risks include Ariba\u2019s natural advantage due to SAP, other vendors influencing the RFP, new procurement executive starting July 6, lack of confirmed budget, and no direct CFO access yet. Next actions: schedule and prepare for Joe meeting, send Artana RFP consideration points, align internal Zycus team around SAP/S4 integration and AI roadmap, identify strongest professional services/pharma references, and push for a pre-RFP discovery session with finance, procurement, and IT.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 ZS is 'evaluating S2P platforms alongside SAP migration' with the RFP 'focusing on integration, AI capabilities, and ROI' \u201a\u00c4\u00ee AI is explicitly one of three evaluation pillars.\n\u2022 The full agentic suite (ANA, Agentic AI, Merlin, Merlin Intake) is scoped on a $400K deal, signaling AI capability is genuinely in the assessment.\n\u2022 Agentic-platform-discussed is not yet set and the next step is scheduling a stakeholder meeting, so AI is a stated criterion but enthusiasm is not yet demonstrated.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a2ibg/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Confirmed shortlisted vendor on a $400K full-suite S2P RFP tied to ZS's SAP ECC-to-S/4HANA migration, but 11 days after the 25 Jun alignment call the stated next step (the Joe Carolina meeting) is still unscheduled and health flags already show no inbound in 14 days, so the window to shape the RFP before it finalizes is slipping.",
+      "math": "Close 2026-12-11 is 158 days out. Deal created 2026-06-25 (11 days old); time in Qualified about 10 days. Only logged interaction is the 25 Jun alignment call; LastActivityDate is empty and no follow-up task or event is recorded. For a Dec close from Qualified the first 30-60 days should build discovery depth and RFP positioning, but the immediate next step (Joe meeting) that gates RFP finalization has not moved. Not cold enough (11 days) to be Off Track; the stalled key action and thinning early cadence put it at Slowing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Only one logged interaction: the 25 Jun alignment call with Artana Skereli (SF Next_Step__c, 25 Jun)",
+        "The stated immediate next step, a 30-minute meeting with S/4HANA program lead Joe Carolina, is not yet scheduled or logged (SF Next_Step__c, 25 Jun)",
+        "Opportunity-health tasks on 26 Jun flag no inbound in 14 days and no outbound follow-up (SF Tasks, 26 Jun)",
+        "No economic buyer, no confirmed budget, and no direct CFO access (SF Next_Step__c, 25 Jun)",
+        "No Avoma calls discovered and no OpportunityContactRole records exist on the deal"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "ZS articulated the business problem as an SAP ECC to S/4HANA transformation that forces a re-evaluation of their Source-to-Pay stack, with Phase 1 expected to complement existing CLM, third-party risk, ESG, and SAP systems and potential to expand the S2P footprint over time (SF Next_Step__c, 25 Jun). No impact is quantified: no savings target, spend under management, transaction volume, or cycle-time figure. The record notes the project is approved but has no defined budget and that pricing will be evaluated on ROI and market benchmarking, so the business case exists qualitatively but lacks a measurable value anchor. Immediate move: use the Joe Carolina meeting to extract spend under management, transaction volume, and the current process cost baseline.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified; the record explicitly flags no direct CFO access yet as a key risk (SF Next_Step__c, 25 Jun). Artana Skereli is coordinating the RFP and Joe Carolina is named as the S/4HANA program lead supervising the S2P initiative, so Joe may influence budget, but neither is confirmed as the commercial decision-maker, and a new procurement executive starting 6 Jul may be the budget owner or the gatekeeper to them. The project is approved but budget is undefined and pricing will be benchmarked, so budget authority is distributed and unconfirmed. Immediate move: use the Joe meeting to map the approval chain and confirm who controls the S2P budget (CFO, CIO, the incoming procurement executive, or Joe himself).",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The RFP is being built around three stated pillars, integration, AI capabilities, and ROI, and Artana asked Zycus for a company overview, pharma/professional-services references, a high-level S2P overview, AI capabilities/roadmap, the SAP S/4HANA integration approach, and the implementation model (SF Next_Step__c, 25 Jun; AIS_Why__c). Those are the criteria the buyer signalled, but the RFP is not yet finalized (it follows the Joe meeting and the new procurement executive review), so the weighting and formal requirements are still open to influence. This is the live opening to embed AI/Merlin and best-of-breed S/4HANA integration as scored criteria before Ariba shapes them. Immediate move: send Artana RFP consideration points that weight AI, integration depth, and flexibility ahead of finalization.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)",
+          "SF AIS_Why__c"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "ZS is running a formal RFP with a clear sequence: Zycus is confirmed shortlisted, the RFP finalizes after the Joe Carolina meeting and the new procurement executive review, vendors then get a 2-3 week response window, followed by 4-5 hour demos ideally onsite in Chicago, then selection (SF Next_Step__c, 25 Jun). A procurement leadership change lands mid-process (new executive starting 6 Jul) and could reset priorities or criteria, and Joe Carolina supervises the S2P initiative under the broader S/4HANA program, signalling IT/ERP governance over the choice. The financial approval chain is not yet mapped (no confirmed budget, no CFO access). Immediate move: confirm the approval chain and decision timeline in the Joe meeting and secure a path to finance.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics (MSA, SOW, legal review, procurement channel, InfoSec) are entirely unknown at this Qualified stage; the only paper-process signal is the structured RFP itself, which will likely carry the SOW and commercials, and the buyer's stated interest in Zycus's implementation model (SF Next_Step__c, 25 Jun). ZS operates in professional-services/pharma, which typically requires InfoSec and data-privacy review, but none is yet discussed, and no SI or implementation partner has been defined. There is no Current_Contract_Expiration__c forcing function on record. This is a normal gap for an early Qualified deal, not a red flag. Move to create visibility: in a follow-up with procurement, map the contract and InfoSec approval path and typical cycle time.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is the SAP ECC to S/4HANA transformation, which is forcing ZS to re-evaluate their Source-to-Pay stack and to avoid single-vendor lock-in, evidenced by their explicit intent to evaluate alternatives to Ariba and to keep Phase 1 complementary to existing CLM, risk, ESG, and SAP systems (SF Next_Step__c, 25 Jun). The pain owner is Joe Carolina, who is spearheading the S/4HANA program and supervising the S2P initiative. The pain is operational (ERP migration, fragmented procurement tooling) and strategic (avoiding an all-SAP lock-in), but it is rep-paraphrased and not yet quantified or quoted from the buyer directly. Immediate move: in the Joe meeting, get Joe or Artana to state the pain in their own words and quantify the cost of staying on ECC or continuing with fragmented S2P tools.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Artana Skereli is the only engaged contact; she completed the 25 Jun alignment call, confirmed Zycus is shortlisted, is arranging the Joe Carolina meeting, and is open to vendor input before the RFP finalizes, which shows access and baseline coordination but not proven advocacy (SF Next_Step__c, 25 Jun). What has developed: she is a working coach with a clear next-step path. What is missing: no evidence she is selling Zycus internally, pushing back on Ariba, or influencing the RFP in our favour, and she is not confirmed as an economic buyer or decision-maker. Joe Carolina, the program lead, could become a champion if the pending meeting goes well but has not yet engaged, and the incoming procurement executive is an unknown. Immediate move: use the Joe meeting to test his openness and convert Artana or Joe into an active advocate by co-authoring RFP criteria that favour Zycus.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "SAP Ariba is the named competitor and carries a structural advantage because ZS is migrating to SAP S/4HANA and Ariba is the SAP-native S2P option; the record flags Ariba's natural advantage due to SAP as a key risk and also notes other vendors influencing the RFP without naming them (SF Next_Step__c, 25 Jun). Critically, ZS intentionally wants to evaluate alternatives and is open to vendor input before finalizing the RFP, signalling they are not sold on Ariba and are looking for a defensible reason to choose best-of-breed. The wedge is Zycus's AI/Merlin and Agentic capabilities that Ariba cannot match, a deep S/4HANA integration story that rivals native convenience, strong pharma/professional-services references, and the ability to complement (not replace) ZS's existing CLM/risk/ESG stack. How we win: make the Joe meeting and a pre-RFP discovery session the venues to embed AI and integration criteria before Ariba shapes the RFP.",
+        "sources": [
+          "SF Next_Step__c (25 Jun initial-call summary)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Freshly created on 25 Jun as New Business and moved Initial Interest to Qualified the same day with the amount raised 150K to 400K; a 2 Jul owner/co-owner reshuffle settled Mario Castro back as owner. The only buyer touch is the 25 Jun alignment call; no follow-through logged since.",
+      "items": [
+        {
+          "change": "Stage moved Initial Interest to Qualified",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Amount raised from 150,000 to 400,000 (full agentic suite scoped)",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Type set to New Business; Division moved to New Markets",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Owner/co-owner reshuffle by Kasturi Talukdar; Mario Castro settled as owner",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba is the single strongest current threat: as ZS migrates to SAP S/4HANA, Ariba holds a native-integration advantage the buyer itself flags as a key risk (SF Next_Step__c, 25 Jun). The offset is that ZS deliberately wants to evaluate alternatives and is open to pre-RFP vendor input, so the RFP is not pre-decided. Other unnamed vendors are noted as influencing the RFP but none is identified. No competitor is buyer-preferred on merit; Ariba leads only on structural SAP convenience.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "Ariba remains in the running, but ZS intentionally wants to evaluate alternatives and is open to vendor input before the RFP is finalized.",
+          "date": "2026-06-25",
+          "source": "SF Next_Step__c (25 Jun initial-call summary)",
+          "how_we_win": "Neutralize Ariba's SAP-native edge with a concrete S/4HANA integration story plus Merlin/Agentic AI differentiation Ariba cannot match, and pharma references, embedded as scored RFP criteria before finalization."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "ZS's RFP rests on three pillars, integration, AI capabilities, and ROI (SF Next_Step__c, 25 Jun; AIS_Why__c). Zycus aligns strongly on AI (full agentic suite scoped) but is exposed on proving S/4HANA integration depth against Ariba's native edge and on quantifying ROI, neither of which we have demonstrated yet.",
+      "items": [
+        {
+          "criterion": "AI capabilities in the S2P platform",
+          "position": "aligned",
+          "quote": "RFP focusing on integration, AI capabilities, and ROI; full agentic suite (ANA, Agentic AI, Merlin, Merlin Intake) scoped",
+          "date": "2026-06-25",
+          "source": "SF AIS_Why__c + Next_Step__c"
+        },
+        {
+          "criterion": "SAP S/4HANA integration approach",
+          "position": "exposed",
+          "quote": "Artana wants Zycus to provide the SAP S/4HANA integration approach; Ariba's natural advantage due to SAP is a key risk",
+          "date": "2026-06-25",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "criterion": "ROI / value justification",
+          "position": "exposed",
+          "quote": "Pricing will be evaluated based on ROI and market benchmarking; project approved but no defined budget yet",
+          "date": "2026-06-25",
+          "source": "SF Next_Step__c (25 Jun)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Deliver the pre-Joe briefing pack: company overview, pharma/professional-services references, S2P overview, AI roadmap, S/4HANA integration approach, implementation model.",
+          "said_by": "Artana Skereli",
+          "date": "2026-06-25",
+          "addressed": false,
+          "quote": "Artana wants Zycus to provide a concise company overview, relevant professional services/pharma customer examples, high-level S2P platform overview, AI capabilities/roadmap, SAP S/4HANA integration approach, and implementation model.",
+          "source": "SF Next_Step__c (25 Jun initial-call summary)"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "ZS to confirm the Joe Carolina meeting and share the RFP timeline after the new procurement executive review.",
+            "who": "Buyer",
+            "grounding_quote": "RFP is expected to be finalized after the Joe meeting and new procurement executive review. Responses likely to have a 2 to 3 week window.",
+            "date": "2026-06-25",
+            "due": "2026-07-20",
+            "status": "open",
+            "source": "SF Next_Step__c (25 Jun initial-call summary)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget authority",
+          "quote": "no direct CFO access yet; project is approved, but no defined budget yet",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "area": "Quantified business case / ROI",
+          "quote": "Pricing will be evaluated based on ROI and market benchmarking",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "area": "Stakeholder contact roles",
+          "quote": "No OpportunityContactRole records exist; Artana and Joe are named only in Next_Step__c",
+          "status": "acknowledged",
+          "date": "2026-06-25",
+          "gap_type": "hygiene",
+          "source": "SF OpportunityContactRole (empty)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified deal on a time-sensitive RFP window: the highest-leverage work is shaping the RFP and multi-threading power before Ariba's native advantage and a procurement leadership change lock the criteria.",
+      "flags": [
+        "Influence the RFP criteria before it finalizes: embed AI/Merlin, S/4HANA integration depth, and best-of-breed flexibility as scored requirements via Artana and the Joe meeting.",
+        "Multi-thread beyond Artana into finance, IT, and the incoming procurement executive to build power coverage and open a path to the budget owner.",
+        "Neutralize Ariba's SAP-native edge with a concrete S/4HANA integration story and pharma/professional-services proof before the demo round."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Artana Skereli",
+          "title": null,
+          "role": "Coach",
+          "last_contact_date": "2026-06-25",
+          "sentiment": "Neutral-to-positive: coordinating the RFP, confirmed Zycus shortlisted, open to vendor input",
+          "risk": "Role and authority unproven; likely RFP coordinator without budget power",
+          "source": "SF Next_Step__c (25 Jun initial-call summary)"
+        },
+        {
+          "name": "Joe Carolina",
+          "title": null,
+          "role": "Influencer",
+          "last_contact_date": null,
+          "sentiment": "Unknown: 30-minute meeting pending, not yet engaged",
+          "risk": "Has not met Zycus; the meeting gating RFP finalization is unscheduled",
+          "source": "SF Next_Step__c (25 Jun initial-call summary)"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No secured champion. Artana Skereli is a developing coach with access and a clear next-step path (she confirmed the shortlist and is arranging the Joe meeting) but no proven internal advocacy, no push-back on Ariba, and no confirmed influence over the RFP. Joe Carolina, the program lead, is the higher-value champion target but has not yet engaged.",
+      "champion": "Artana Skereli (developing)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF Next_Step__c (25 Jun initial-call summary)"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is one of three explicit RFP pillars and the full agentic suite (ANA, Agentic AI, Merlin, Merlin Intake) is scoped on the $400K deal, but Zycus has not yet put the Merlin/Agentic narrative in front of the buyer, so the AI advantage is under-leveraged going into a pending RFP.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 / Moderate: AI is a stated evaluation criterion (integration, AI, ROI) and the full agentic stack is scoped, but agentic-platform-discussed is not set and enthusiasm is not yet demonstrated on any call. Curious, not yet hungry.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer mapped and no direct CFO access on a Qualified deal with undefined budget.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "category": "integration",
+          "detail": "Ariba's SAP-native advantage as ZS migrates to S/4HANA; Zycus must prove integration depth.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "category": "political",
+          "detail": "New procurement executive starts 6 Jul mid-process and could reset RFP priorities before Zycus builds influence.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "category": "timeline",
+          "detail": "RFP influence window closes at finalization (after the Joe meeting); the gating meeting is still unscheduled.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Next_Step__c (25 Jun)"
+        },
+        {
+          "category": "budget",
+          "detail": "Project approved but no defined budget; pricing to be ROI/benchmark-driven with no value case yet quantified.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Next_Step__c (25 Jun)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Early cooling: a single 25 Jun interaction, no logged follow-up, and 26 Jun health flags citing no inbound in 14 days and no outbound. Signal exists but engagement is thin and rep-side only.",
+      "cooling": true,
+      "items": [
+        "No LastActivityDate and no completed follow-up task since the 25 Jun call",
+        "Opportunity-health flags on 26 Jun: no inbound in 14 days, 10 days without outbound email"
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Competition",
+        "text": "Ariba holds a SAP-native advantage as ZS migrates to S/4HANA and the buyer flags it as a key risk, but ZS deliberately wants to evaluate alternatives and will take vendor input before finalizing the RFP.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "A new procurement executive starts 6 Jul, will help review the RFP, and Zycus has never met them.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Last meeting",
+        "text": "The 25 Jun alignment call with Artana Skereli confirmed Zycus is shortlisted and produced a concrete briefing-pack ask, but no follow-through has been logged since.",
+        "tone": "neu"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The project is approved but has no defined budget, pricing will be ROI-and-benchmark driven, and there is no direct CFO access yet.",
+        "tone": "warn"
+      }
+    ],
+    "deal_scores_evidence": {
+      "summary": "Zycus is a confirmed shortlisted vendor on a $400K full-suite S2P RFP tied to ZS's SAP-to-S/4HANA migration, but with no economic buyer, no budget, and a developing-only coach, the one thing between us and a real shot is securing the Joe Carolina meeting to shape the RFP before Ariba's SAP-native advantage sets the criteria.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Zycus is a confirmed shortlisted vendor on ZS's $400K full-suite Source-to-Pay RFP tied to their SAP ECC-to-S/4HANA migration, with the full agentic stack (ANA, Agentic AI, Merlin, Merlin Intake) in scope (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Ariba carries a structural advantage because ZS is migrating to SAP S/4HANA and Ariba is SAP-native, and ZS itself flags this as a key risk even while wanting to evaluate alternatives (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer or budget is confirmed, ZS has no direct CFO access, and a new procurement executive starts 6 Jul who could reset the RFP criteria (SF Next_Step__c, 25 Jun)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The only logged interaction is the 25 Jun alignment call with Artana Skereli, and the stated immediate next step, a 30-minute meeting with S/4HANA program lead Joe Carolina, is still unscheduled (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Opportunity-health flags on 26 Jun already show no inbound in 14 days and no outbound follow-up, so early momentum to influence the RFP before it finalizes is slipping (SF Tasks, 26 Jun)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "ZS confirmed Zycus as shortlisted and requested a company overview, pharma references, AI roadmap, and S/4HANA integration approach, a real but still information-gathering level of engagement (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "No contact roles exist and only Artana is engaged; the buyer has not requested the next meeting or named a decision date (SF OpportunityContactRole empty; Next_Step__c, 25 Jun)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Ariba's SAP-native advantage plus a mid-process procurement leadership change (new exec 6 Jul) could shape the RFP against Zycus before we secure influence (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Single-threaded through Artana with no economic buyer, no champion, and no confirmed budget on a Qualified deal 158 days from an 11 Dec close (SF Next_Step__c, 25 Jun; StageName=Qualified)."
+          }
+        ]
+      },
+      "factors": {
+        "competitor_pressure": {
+          "strength": -0.4,
+          "evidence": "Ariba SAP-native advantage flagged by ZS as a key risk (SF Next_Step__c, 25 Jun)"
+        },
+        "engagement": {
+          "strength": -0.3,
+          "evidence": "One logged touch, gating Joe meeting unscheduled, 26 Jun health flags show no inbound in 14 days"
+        },
+        "power_access": {
+          "strength": -0.4,
+          "evidence": "No economic buyer, no CFO access, no confirmed budget (SF Next_Step__c, 25 Jun)"
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "ZS is open to vendor input and wants Zycus to send a company overview and materials, but expresses no explicit Zycus preference; they want to evaluate alternatives to Ariba (SF Next_Step__c, 25 Jun)."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative pain (SAP ECC-to-S/4HANA migration, avoid Ariba lock-in) is clear, but no savings, spend-under-management, or ROI figure is quantified; pricing to be benchmarked (SF Next_Step__c, 25 Jun)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 13.0,
+      "mom": 50.4,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Schedule and prep the 30-minute Joe Carolina meeting on Zycus's S/4HANA integration and AI roadmap.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Next_Step names the Joe meeting as the immediate next step that gates RFP finalization; still unscheduled 11 days later.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-13",
+          "expected_effect": "Opens the highest-value stakeholder and the venue to shape the RFP before it finalizes."
+        },
+        {
+          "rank": 2,
+          "action": "Send Artana RFP consideration points weighting AI, S/4HANA integration depth, and best-of-breed flexibility.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Artana is open to vendor input before the RFP is finalized.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-15",
+          "expected_effect": "Embeds Zycus-favouring criteria before Ariba's SAP-native convenience sets the requirements."
+        },
+        {
+          "rank": 3,
+          "action": "Open a relationship with the incoming procurement executive before they review the RFP.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "New procurement executive starts 6 Jul and will review the RFP mid-process.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-20",
+          "expected_effect": "Prevents a leadership change from resetting criteria against Zycus and builds power coverage."
+        },
+        {
+          "rank": 4,
+          "action": "Request a pre-RFP discovery session with ZS finance, procurement, and IT.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "No economic buyer or budget confirmed; RFP not yet finalized.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-24",
+          "expected_effect": "Multi-threads to power, surfaces the budget owner, and lets Zycus quantify ROI early."
+        },
+        {
+          "rank": 5,
+          "action": "Line up pharma and professional-services references and a draft ROI model for the demo round.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Buyer asked for pharma references and will benchmark pricing on ROI.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-08-05",
+          "expected_effect": "Neutralizes Ariba's fit claims and anchors the value case ahead of the 4-5 hour demos."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 13.0,
+        "deal_momentum": 50.4,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 13.0,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -5.2,
+        "ceiling": 30.0,
+        "momentum_adj": 0.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 0.9,
+            "evidence": "competitive strength +0.20 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 0.2,
+            "evidence": "momentum 50 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 50.4,
+        "pre_decay": 50.4,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 3.6,
+            "evidence": "Next Step carries 1 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 13 is carried by champion strength +0.30 (weight 15); competitive strength +0.20 (weight 15). Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum 50 (roughly flat): Next Step carries 1 dated milestone(s) \u2014 actively worked. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (13), nudged by commitment 8 and momentum 50, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "ZS \u2014 Qualified \u00b7 $400K \u00b7 closes 11 Dec",
+        "intro": "Zycus is a confirmed shortlisted vendor on a $400K full-suite S2P RFP tied to ZS's SAP-to-S/4HANA migration, but with no economic buyer, no budget, and a developing-only coach, the one thing between us and a real shot is securing the Joe Carolina meeting to shape the RFP before Ariba's SAP-native advantage sets the criteria",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 13,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Zycus is a confirmed shortlisted vendor on ZS's $400K full-suite Source-to-Pay RFP tied to their SAP ECC-to-S/4HANA migration, with the full agentic stack (ANA, Agentic AI, Merlin, Merlin Intake) in scope (SF Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Ariba carries a structural advantage because ZS is migrating to SAP S/4HANA and Ariba is SAP-native, and ZS itself flags this as a key risk even while wanting to evaluate alternatives (SF Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer or budget is confirmed, ZS has no direct CFO access, and a new procurement executive starts 6 Jul who could reset the RFP criteria (SF Next_Step__c, 25 Jun)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 50,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The only logged interaction is the 25 Jun alignment call with Artana Skereli, and the stated immediate next step, a 30-minute meeting with S/4HANA program lead Joe Carolina, is still unscheduled (SF Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Opportunity-health flags on 26 Jun already show no inbound in 14 days and no outbound follow-up, so early momentum to influence the RFP before it finalizes is slipping (SF Tasks, 26 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Ariba's SAP-native advantage plus a mid-process procurement leadership change (new exec 6 Jul) could shape the RFP against Zycus before we secure influence (SF Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threaded through Artana with no economic buyer, no champion, and no confirmed budget on a Qualified deal 158 days from an 11 Dec close (SF Next_Step__c, 25 Jun; StageName=Qualified)"
+              }
+            ],
+            "footer": "Competitive picture: SAP Ariba is the single strongest current threat: as ZS migrates to SAP S/4HANA, Ariba holds a native-integration advantage the buyer itself flags as a key risk (SF Next_Step__c, 25 Jun)."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "ZS confirmed Zycus as shortlisted and requested a company overview, pharma references, AI roadmap, and S/4HANA integration approach, a real but still information-gathering level of engagement (SF Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "No contact roles exist and only Artana is engaged; the buyer has not requested the next meeting or named a decision date (SF OpportunityContactRole empty; Next_Step__c, 25 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Schedule and prep the 30-minute Joe Carolina meeting on Zycus's S/4HANA integration and AI roadmap. (by 13 Jul)",
+              "Send Artana RFP consideration points weighting AI, S/4HANA integration depth, and best-of-breed flexibility. (by 15 Jul)",
+              "Open a relationship with the incoming procurement executive before they review the RFP. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history full; contact roles (none); Next_Step__c 25 Jun",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls associated to this opp, account, or known attendee emails; all buyer signal comes from the 25 Jun Next_Step__c summary",
+      "No OpportunityContactRole records: Artana Skereli and Joe Carolina are named only in Next_Step__c, with no titles or emails on record",
+      "Economic buyer, budget owner, and quantified business case genuinely unknown"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:13"
+}

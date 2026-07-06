@@ -1,0 +1,260 @@
+{
+  "opp_id": "006P700000ZUcri",
+  "hard": {
+    "opp_id": "006P700000ZUcri",
+    "opp_name": "IntuSurg_June 26'",
+    "account_name": "Intuitive Surgical Operations Inc",
+    "account_industry": "Healthcare & Hospitals Services",
+    "billing_country": "United States",
+    "owner_name": "Rick Taranek",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 250000.0,
+    "close_date": "2026-11-24",
+    "days_to_close": null,
+    "created_date": "2026-06-12",
+    "qualified_date": "2026-07-01",
+    "last_activity_date": "2026-07-08",
+    "last_modified_date": null,
+    "products": "iSource;iManage;iSupplier;eProcurement;Merlin;Agentic AI;ANA",
+    "next_step": "June 15 Rick: Direct Procurement deal, already has Coupa for P2P, Jaggeur for CLM. Seeking direct procurement case study. Need SC for qualifying us out, so I proposed a Discovery. Wants us to tie into SAP's suppliers and Jaggeur for contracts. Using SAP for Direct Proc today, but wants AI for Direct - need to get advanced.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "Intuitive Surgical is seeking automation for direct procurement, supplier collaboration, and exception handling above SAP, with an executive champion confirmed with budget urgency. ANA, Agentic AI and Merlin are scoped, aligning the automation ask with agentic capability. The Agentic-platform-discussed flag is not yet set and the immediate step is a discovery session to pinpoint pains, so the automation appetite is clear but AI-specific enthusiasm is still to be confirmed.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP",
+    "primary_competitor": "SAP",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZUcri/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Close Date Risk",
+      "critical": false,
+      "headline": "Early Direct Procurement play against entrenched SAP with a 2026-07-08 demo booked, but single-threaded on Siva Paturi with no economic buyer mapped and a 2026-11-24 close that a 12-15 month enterprise motion cannot realistically hit from Qualified.",
+      "math": "Created 2026-06-12, moved Initial Interest to Qualified on 2026-06-30, qualified_date 2026-07-01. Close 2026-11-24 is ~141 days out from today (2026-07-06). Enterprise Direct Procurement motion from Qualified to close typically runs 12-15 months; reaching close in under 5 months requires the 2026-07-08 demo to prove Direct fit, then rapid discovery, SAP/Jaggaer integration validation, commercials and contracting to compress into one quarter. The deal is genuinely live (demo scheduled 2026-07-08, last activity 2026-07-08) but the November date is optimistic on current pace, so the sole real problem is timing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline (accurate: the deal is genuinely early, unproven, and single-threaded)",
+      "evidence": [
+        "A product demo is scheduled for 2026-07-08 (event: IntuSurg X Zycus Demo) following the 2026-06-12 discovery meeting, so engagement is live after the 2026-07-01 health task flagged no inbound in the prior 14 days.",
+        "Buyer wants to 'qualify us out' and is seeking a Direct Procurement case study before committing (Next Step 2026-06-15), so Zycus must prove Direct fit early or be disqualified.",
+        "SAP is the incumbent for Direct Procurement today; the buyer wants AI on top of it rather than a confirmed rip-and-replace (Next Step 2026-06-15: 'Using SAP for Direct Proc today, but wants AI for Direct - need to get advanced').",
+        "Integration requirement: tie into SAP suppliers and Jaggaer CLM (Next Step 2026-06-15); feasibility is unproven and could block advancement.",
+        "Single-threaded on Siva Paturi (only activity contact on the opportunity); no Economic Buyer, Decision Maker, or champion is named in a contact role despite AIS_Why claiming an 'executive champion with budget urgency'."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Intuitive Surgical is seeking automation for direct procurement, supplier collaboration, and exception handling above their current SAP process (AIS_Why), and Rick's note records they want AI for Direct materials and to 'get advanced' beyond SAP (Next Step 2026-06-15). The pain is operational and clearly articulated, but no dollar impact, cycle-time, headcount, or savings figure has been quantified, so the business case is qualitative and not yet CFO-grade. Quantifying the cost of the current manual direct-procurement process is a required move before commercials.",
+        "sources": ["SF AIS_Why__c", "Next Step 2026-06-15 (Rick Taranek)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named in any OpportunityContactRole (there are none) and the only person on the opportunity is activity contact Siva Paturi, a technical/product influencer. AIS_Why asserts an 'executive champion confirmed with budget urgency', which signals a budget owner exists, but that person is unnamed and unverified in Salesforce, so the EB is effectively unmapped. The move is to have Siva introduce the direct-procurement executive sponsor referenced in AIS_Why and confirm who controls the budget.",
+        "sources": ["SF OpportunityContactRole (0 roles)", "SF AIS_Why__c", "Task contact: Siva Paturi"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The buyer's stated evaluation criteria are: proven Direct Procurement fit (they asked for a Direct Procurement case study), AI/automation for Direct materials beyond what SAP offers, and integration into SAP's supplier base and Jaggaer for contracts (Next Step 2026-06-15). These are the yardsticks the 2026-07-08 demo will be measured against. Criteria are inferred from Rick's note rather than a documented buyer scorecard, so confirming them in writing at the demo is the next step.",
+        "sources": ["Next Step 2026-06-15 (Rick Taranek)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer wants a solution consultant engagement to test whether Zycus is relevant ('Need SC for qualifying us out') and Rick proposed a Discovery in response (Next Step 2026-06-15), with a demo now booked for 2026-07-08. Beyond that discovery-to-demo sequence, the formal evaluation stages, approval chain, and who signs off are unknown, and a 2026-07-01 health task explicitly flags 'Get clarity on the evaluation stages and influence the process'. Mapping the evaluation stages and approvers is a required move.",
+        "sources": ["Next Step 2026-06-15 (Rick Taranek)", "Task 2026-07-01 (Opportunity Health)", "Event 2026-07-08 IntuSurg X Zycus Demo"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting, legal, MSA/SOW, procurement, or InfoSec discussion has surfaced, which is normal at Qualified stage. The buyer uses Jaggaer for CLM (Next Step 2026-06-15), so contract execution may eventually route through Jaggaer, but the mechanics are unconfirmed and there is no current-contract-expiration forcing function on record. Visibility will come from the discovery and demo follow-up surfacing the buyer's procurement and security process.",
+        "sources": ["Next Step 2026-06-15 (Rick Taranek)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is specific and confirmed: Intuitive wants automation for direct procurement, supplier collaboration, and exception handling that their current SAP direct-procurement process does not provide, and they want AI/agentic capability for Direct materials (AIS_Why; Next Step 2026-06-15). The pain owner engaged today is Siva Paturi, a Supply Chain product/technical role, not a senior executive. The pain is real and operational but has not been elevated to a strategic executive priority with a quantified cost of inaction.",
+        "sources": ["SF AIS_Why__c", "Next Step 2026-06-15 (Rick Taranek)", "Task contact: Siva Paturi"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. Siva Paturi is the sole engaged contact and is a technical/product influencer whose posture is exploratory (the team wants to 'qualify us out' first), not advocacy; he has not introduced Zycus to a senior sponsor or driven the agenda. AIS_Why references an 'executive champion with budget urgency' but that person is unnamed in Salesforce and cannot be treated as a confirmed champion. Building a champion with executive access ranks second only to mapping the economic buyer.",
+        "sources": ["SF OpportunityContactRole (0 roles)", "SF AIS_Why__c", "Next Step 2026-06-15 (Rick Taranek)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "SAP is the incumbent for Direct Procurement today and the primary competitive reality: the buyer is not running a multi-vendor RFP, they are deciding whether to add AI/automation on top of SAP or move to Zycus (Next Step 2026-06-15: 'Using SAP for Direct Proc today, but wants AI for Direct'). Coupa (P2P) and Jaggaer (CLM) are in the stack but out of scope as integration targets, not rival bids for this Direct use case. The wedge is Merlin and Agentic AI for direct-materials sourcing and autonomous supplier communications where SAP is weak; winning requires proving SAP-supplier and Jaggaer integration feasibility so 'stay on SAP' (do-nothing) does not win by inertia.",
+        "sources": ["Next Step 2026-06-15 (Rick Taranek)", "SF Products__c (Merlin; Agentic AI; ANA)"]
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "Intuitive runs SAP for direct procurement today and wants AI layered on top, so the real contest is displacing an entrenched incumbent rather than winning a live bake-off.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "A product demo is set for July 8 after the June 12 discovery, and it has to prove Direct Procurement fit or Siva's team keeps looking for a reason to qualify Zycus out.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Engagement is still one-deep on Siva Paturi, a technical influencer, with no economic buyer or budget owner named despite an executive sponsor with budget urgency being claimed but unverified.", "tone": "crit"},
+      {"lens": "Commercials", "text": "The 250k scope spans seven modules including Merlin and Agentic AI, but there is no pricing, quantified ROI, or confirmed budget owner behind it.", "tone": "neu"}
+    ],
+    "deal_movement": {
+      "summary": "Deal was created 2026-06-12 with a discovery meeting the same day, moved Initial Interest to Qualified on 2026-06-30, and a 2026-07-01 health task flagged it going cold; a product demo was then booked for 2026-07-08, reviving engagement. Last real buyer interaction is the 2026-06-12 discovery, with the 2026-07-08 demo as the next live touch.",
+      "items": [
+        {"change": "Stage moved Initial Interest to Qualified (by Alexa Bradley)", "date": "2026-06-30"},
+        {"change": "Discovery meeting held: Intuitive Surgical X Zycus", "date": "2026-06-12"},
+        {"change": "Product demo scheduled: IntuSurg X Zycus Demo", "date": "2026-07-08"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP is the incumbent and the single strongest current threat: Intuitive uses SAP for Direct Procurement today and is deciding whether to add AI on top of it or move to Zycus (Next Step 2026-06-15), so the real fight is displacement plus a do-nothing/stay-on-SAP inertia risk, not a multi-vendor RFP. Coupa (P2P) and Jaggaer (CLM) sit in the stack but are out of scope as integration targets, not competing bids. Zycus wins by proving direct-materials AI value and SAP/Jaggaer integration feasibility at and after the 2026-07-08 demo.",
+      "competitors": [
+        {"name": "SAP", "sentiment": "negative", "threat_level": "high", "status": "incumbent", "quote": "Using SAP for Direct Proc today, but wants AI for Direct - need to get advanced.", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek)", "how_we_win": "Lead the 2026-07-08 demo with Merlin/Agentic AI for direct-materials sourcing and autonomous supplier communications, and prove clean integration with SAP supplier data and Jaggaer CLM so 'stay on SAP' does not win by inertia."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "already has Coupa for P2P", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek)", "how_we_win": "Coupa is the P2P/indirect tool and out of scope for this Direct Procurement use case; position Zycus Direct alongside it, not against it."},
+        {"name": "Jaggaer", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "Jaggeur for CLM ... wants us to tie into ... Jaggeur for contracts", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek)", "how_we_win": "Jaggaer is the incumbent CLM and an integration target, not a rival bid; prove Zycus contracts data flows into Jaggaer to remove it as a blocker."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer expects proof of Direct Procurement fit, agentic AI beyond SAP, and integration into SAP suppliers and Jaggaer contracts; Zycus is aligned on the AI/agentic ask (Merlin, Agentic AI, ANA scoped) but exposed on unproven integration feasibility and an as-yet-undemonstrated Direct fit.",
+      "items": [
+        {"criterion": "Proven Direct Procurement fit (case study)", "position": "exposed", "quote": "Seeking direct procurement case study", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"criterion": "AI/agentic capability for Direct materials", "position": "aligned", "quote": "wants AI for Direct - need to get advanced", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek); SF Products__c (Merlin; Agentic AI; ANA)"},
+        {"criterion": "Integration with SAP suppliers and Jaggaer CLM", "position": "exposed", "quote": "Wants us to tie into SAP's suppliers and Jaggeur for contracts", "date": "2026-06-15", "source": "Next Step 2026-06-15 (Rick Taranek)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide a Direct Procurement case study proving fit for a comparable manufacturer", "said_by": "Intuitive Surgical (via Rick's account of the ask)", "date": "2026-06-15", "addressed": false, "quote": "Seeking direct procurement case study", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"requirement": "Show integration into SAP's supplier base and Jaggaer for contracts", "said_by": "Intuitive Surgical (via Rick's account of the ask)", "date": "2026-06-15", "addressed": false, "quote": "Wants us to tie into SAP's suppliers and Jaggeur for contracts", "source": "Next Step 2026-06-15 (Rick Taranek)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Buyer to name the direct-procurement executive sponsor and budget owner and grant access", "who": "Buyer", "grounding_quote": "executive champion confirmed with budget urgency", "date": "2026-06-12", "due": "2026-07-20", "status": "open", "source": "SF AIS_Why__c; Task 2026-07-01 (Opportunity Health)"},
+          {"deliverable": "Buyer to share their evaluation stages and decision timeline", "who": "Buyer", "grounding_quote": "Get clarity on the evaluation stages and influence the process", "date": "2026-07-01", "due": "2026-07-20", "status": "open", "source": "Task 2026-07-01 (Opportunity Health)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "executive champion confirmed with budget urgency", "status": "not addressed", "date": "2026-06-12", "gap_type": "knowledge", "source": "SF AIS_Why__c; SF OpportunityContactRole (0 roles)"},
+        {"area": "No champion secured", "quote": "Need SC for qualifying us out", "status": "not addressed", "date": "2026-06-15", "gap_type": "knowledge", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"area": "SAP/Jaggaer integration feasibility unproven", "quote": "Wants us to tie into SAP's suppliers and Jaggeur for contracts", "status": "not addressed", "date": "2026-06-15", "gap_type": "knowledge", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"area": "No quantified value case / ROI", "quote": "seeking automation for direct procurement, supplier collaboration, and exception handling above SAP", "status": "not addressed", "date": "2026-06-12", "gap_type": "knowledge", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Highest-leverage win levers for an early, single-threaded Direct Procurement deal against incumbent SAP.",
+      "flags": [
+        "Multi-thread beyond Siva Paturi to the direct-procurement executive sponsor AIS_Why claims exists; single-thread on one technical contact is the top risk at Qualified.",
+        "Win the 2026-07-08 demo on Direct Procurement fit and agentic AI to neutralize the buyer's stated intent to qualify Zycus out.",
+        "De-risk SAP-supplier and Jaggaer CLM integration early; it is the technical gate that decides whether Zycus can displace SAP for Direct."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Siva Paturi", "title": null, "role": "Influencer", "last_contact_date": "2026-06-12", "sentiment": "Neutral and exploratory: engaged on scoping and seeking proof, wants to test relevance before committing, no advocacy yet.", "risk": "Single point of contact and a technical/product role, not a power sponsor; if this thread stalls the deal stalls, and he cannot approve budget or drive the decision.", "source": "SF activity/task contact"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Siva Paturi is the sole engaged contact, a technical/product influencer whose posture is exploratory ('qualify us out') rather than advocacy; he has not introduced a senior sponsor or driven the agenda. AIS_Why references an executive champion with budget urgency but that person is unnamed and unverified in Salesforce.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (0 roles); SF AIS_Why__c; Next Step 2026-06-15 (Rick Taranek)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin, Agentic AI, and ANA are scoped and match the buyer's stated appetite for AI on Direct materials, but the agentic story has not yet been put in front of the buyer (AIS_Why notes the Agentic-platform-discussed flag is not set). The 2026-07-08 demo is the moment to land the I2O/Merlin narrative.",
+      "score": "medium",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 6.0 / Moderate: the automation appetite is clear (seeking automation above SAP, wants AI for Direct) but AI-specific enthusiasm is unconfirmed because no agentic demo has happened yet. Merlin, Agentic AI, and ANA are scoped.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or executive sponsor is named in Salesforce; the deal is single-threaded on one technical influencer.", "first_raised": "2026-06-12", "date": "2026-07-01", "status": "open", "source": "SF OpportunityContactRole (0 roles); Task 2026-07-01"},
+        {"category": "integration", "detail": "SAP-supplier and Jaggaer CLM integration feasibility is unproven and could block advancement.", "first_raised": "2026-06-15", "date": "2026-06-15", "status": "open", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"category": "change_management", "detail": "Do-nothing / stay-on-SAP inertia: the buyer may keep SAP for Direct and add AI on its roadmap rather than switch to Zycus.", "first_raised": "2026-06-15", "date": "2026-06-15", "status": "open", "source": "Next Step 2026-06-15 (Rick Taranek)"},
+        {"category": "timeline", "detail": "A 2026-11-24 close is aggressive for a Qualified enterprise deal that still needs discovery, proof of fit, commercials, and contracting.", "first_raised": "2026-06-12", "date": "2026-07-06", "status": "open", "source": "SF CloseDate; StageName"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "A 2026-07-01 health task flagged the prospect going cold with no inbound in 14 days, but a demo was then booked for 2026-07-08, so engagement is currently live though thin and one-deep.",
+      "cooling": false,
+      "items": [
+        "Health task 2026-07-01 flagged low inbound communication and prospect going cold.",
+        "Demo scheduled 2026-07-08 revived the engagement (last activity 2026-07-08)."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Run the July 8 demo on Direct Procurement fit and Merlin agentic AI.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Buyer wants an SC to test relevance and is seeking a Direct Procurement proof before committing.", "trigger_date": "2026-06-15", "act_by": "2026-07-08", "expected_effect": "Proves Direct fit, neutralizes the qualify-us-out intent, and keeps the deal advancing toward evaluation."},
+        {"rank": 2, "action": "Ask Siva to introduce the direct-procurement executive sponsor to map the economic buyer.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "AIS_Why cites an executive champion with budget urgency, but no economic buyer is named in Salesforce.", "trigger_date": "2026-06-12", "act_by": "2026-07-15", "expected_effect": "Breaks the single-thread and identifies who owns the budget, unblocking commercials later."},
+        {"rank": 3, "action": "Scope SAP-supplier and Jaggaer CLM integration feasibility with a Zycus SE.", "owner": "Product escalation", "horizon": "next_14_days", "trigger": "Buyer requires Zycus to tie into SAP suppliers and Jaggaer for contracts.", "trigger_date": "2026-06-15", "act_by": "2026-07-20", "expected_effect": "De-risks the technical gate that determines whether Zycus can displace SAP for Direct."},
+        {"rank": 4, "action": "Quantify the cost of the current manual direct-procurement process into an ROI model.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Pain is articulated (automation above SAP, exception handling) but no dollar impact is quantified.", "trigger_date": "2026-06-12", "act_by": "2026-08-03", "expected_effect": "Elevates operational pain to a CFO-grade case needed before commercials and EB sign-off."},
+        {"rank": 5, "action": "Multi-thread into a Supply Chain VP or CPO to build a power sponsor beyond Siva.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Engagement is one-deep on a technical influencer with no decision-making authority.", "trigger_date": "2026-07-01", "act_by": "2026-08-05", "expected_effect": "Creates decision-level access and reduces the single-point-of-failure risk."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "This is an early Direct Procurement play against entrenched SAP: Rick has a 2026-07-08 demo booked but only one technical contact (Siva Paturi), no economic buyer, and the buyer is explicitly looking for a reason to qualify Zycus out.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Zycus is early and unproven here: SAP is the entrenched Direct Procurement incumbent, the buyer wants AI on top of it rather than a committed switch, and they explicitly need a solution consultant 'for qualifying us out' (Next Step 2026-06-15)."},
+          {"tone": "good", "text": "The AI appetite is a genuine wedge: the buyer wants AI for Direct materials and Merlin, Agentic AI and ANA are already scoped (AIS 6.0 Moderate; SF Products__c), giving the 2026-07-08 demo a real hook."},
+          {"tone": "warn", "text": "No economic buyer or champion is named in Salesforce despite AIS_Why claiming an executive sponsor with budget urgency, so the deal rides on a single technical contact who cannot approve budget."},
+          {"tone": "warn", "text": "Success hinges on unproven SAP-supplier and Jaggaer CLM integration; if it cannot be shown, the buyer can default to SAP's roadmap and do nothing."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Momentum resumed after a 2026-07-01 cold-flag: a product demo is booked for 2026-07-08 (last activity 2026-07-08), and the stage advanced Initial Interest to Qualified on 2026-06-30."},
+          {"tone": "warn", "text": "All dates are Zycus-driven (our proposed Discovery and demo); the buyer has not named their own evaluation timeline or requested the next meeting."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is exploratory: the buyer is testing relevance and seeking a case study before they will engage further, not asking Zycus-specific next steps like a proposal or a CPO review (Next Step 2026-06-15)."},
+          {"tone": "warn", "text": "Only Siva Paturi is engaged and no contact roles exist on the opportunity, so there is no senior buy-in behind the $250k, seven-module scope."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The 2026-11-24 close is optimistic for a Qualified enterprise deal that still needs discovery, proof of fit, commercials, and contracting."},
+          {"tone": "warn", "text": "Do-nothing / stay-on-SAP inertia plus unproven integration are the main ways this deal quietly dies, more than losing to an active rival."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.8, "evidence": "No champion; sole contact Siva Paturi is a technical influencer with exploratory posture (Next Step 2026-06-15)."},
+        "economic_buyer": {"strength": -0.7, "evidence": "No EB named in any contact role; AIS_Why's 'executive champion with budget urgency' is unnamed and unverified."},
+        "customer_preference": {"strength": -0.4, "evidence": "Buyer wants to 'qualify us out' and is neutral/exploratory, not favouring Zycus (Next Step 2026-06-15)."}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Scope is unchanged versus the prior record: seven modules (iSource, iManage, iSupplier, eProcurement, Merlin, Agentic AI, ANA) at $250k."},
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "low", "evidence": "Buyer is neutral and exploratory, seeking a Direct Procurement case study and an SC 'for qualifying us out' before committing (Next Step 2026-06-15); no favourable comparison or Zycus-specific ask."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only (automation for direct procurement, supplier collaboration, exception handling above SAP); no ROI, savings, or cost-of-inaction quantified (AIS_Why)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history to 2026-06-12 (opp creation)",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma buyer-call transcripts available this sweep (a 2026-06-12 discovery meeting exists but no transcript was read).",
+      "Economic buyer and decision maker unmapped; no OpportunityContactRole on the opportunity.",
+      "No champion secured; engagement is single-threaded on Siva Paturi.",
+      "SAP-supplier and Jaggaer CLM integration feasibility unproven.",
+      "No quantified ROI / value case."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

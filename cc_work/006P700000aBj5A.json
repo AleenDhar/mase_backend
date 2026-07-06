@@ -1,0 +1,237 @@
+{
+  "opp_id": "006P700000aBj5A",
+  "hard": {
+    "opp_id": "006P700000aBj5A",
+    "opp_name": "Quadient_2026",
+    "account_name": "Quadient",
+    "account_industry": "IT & Consulting",
+    "billing_country": "France",
+    "owner_name": "Pierre Meraud",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-02-28",
+    "days_to_close": 237,
+    "created_date": "2026-06-29",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-04-17",
+    "last_modified_date": null,
+    "products": "iSource;iSupplier;eProcurement;eInvoicing;Merlin",
+    "next_step": "June'26 : Conduct the follow-up discovery call with Bertrand Lagache on 5 August 2026. Review the material shared after NDA execution, understand the current ERP and procurement landscape, validate business priorities, identify additional stakeholders and buying committee members, and discuss potential scope, licensing, and evaluation timeline.",
+    "ais_score": null,
+    "ais_status": "Strong",
+    "ais_why": "",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "iValua;SAP Ariba",
+    "primary_competitor": "iValua",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aBj5A/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Early-stage deal cooling: last buyer touch was the 17 Apr 2026 discovery call (about 80 days ago), the next discovery is deferred to 5 Aug 2026, and the economic buyer plus quantified pain are still unmapped.",
+      "math": "Stage Qualified; opp record created 29 Jun 2026 but real engagement dates to the 17 Apr 2026 discovery call. Days to close ~237 (close 2027-02-28). Last verified activity 17 Apr 2026, about 80 days ago. Next planned step (discovery with Bertrand Lagache) is set for 5 Aug 2026, roughly 30 days out, producing a ~110-day gap between meaningful buyer touchpoints. Pace is slow for early stage, but the close date is far out, so timing is not yet the binding constraint; the binding constraint is stalled qualification (no EB, no confirmed pain, no criteria).",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Pulse: COOLING; LastActivityDate 2026-04-17, about 80 days ago (source: SF LastActivityDate)",
+        "Next step defers the follow-up discovery to 5 Aug 2026, roughly 30 days out (source: SF Next_Step__c)",
+        "Stage Qualified, Forecast Pipeline, no economic buyer or confirmed champion advocacy on record (source: SF StageName/ForecastCategory + SF OpportunityContactRole)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "sources": ["Avoma discovery call 17 Apr 2026 (prior sweep)"],
+        "narrative": "No quantified value case exists. On the 17 Apr 2026 discovery call the conversation was scoping-level: the Zycus rep framed his role as understanding the needs and pain points to build a customized demo, and only about 8 minutes remained to probe pain. No cost, cycle-time, headcount, error-rate, or savings figure was articulated by the buyer. Quantifying the procurement pain (current source-to-pay process cost, ERP fragmentation impact) is a primary objective for the 5 Aug 2026 discovery call."
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "sources": ["SF OpportunityContactRole", "Avoma discovery call 17 Apr 2026 (prior sweep)"],
+        "narrative": "No economic buyer is mapped. The two buyer-side contact roles are Bertrand Lagache (Manager Production Purchasing, Evaluator) and Myriam Alcaraz (Global Manager, Procurement & Legal Operations, Influencer, primary) (source: SF OpportunityContactRole), both operational and neither a budget owner. On the 17 Apr 2026 call Myriam signalled she must check internally on budget, saying she would follow up to gather detailed information from peers in other departments regarding their projects and available budget, confirming that budget authority sits elsewhere and is currently unknown. Identifying and reaching the economic buyer is a ranked move for the 5 Aug discovery."
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "sources": ["Avoma discovery call 17 Apr 2026 (prior sweep)"],
+        "narrative": "Criteria are only partially visible. One concrete, repeated requirement surfaced: integration of the new procurement tool with Quadient's retained AI contract-review tool, which Myriam Alcaraz said she would follow up on (source: Avoma 17 Apr 2026). The rep's discovery questions also flagged the ERP landscape and module fit as evaluation axes, asking how many ERPs they run and which module manages source-to-pay today. Beyond integration and module fit, the full weighted criteria set is undocumented; pin it down at the 5 Aug 2026 discovery."
+      },
+      "decision_process": {
+        "status": "partial",
+        "sources": ["Avoma discovery call 17 Apr 2026 (prior sweep)", "SF Next_Step__c"],
+        "narrative": "The process is partly visible from the call itself: this is an early evaluation where Quadient/Neopost intends to issue an RFP, with a 17 Apr 2026 action item to send the RFP to three or four suppliers, indicating a competitive multi-vendor process rather than sole-source. Myriam Alcaraz is acting as internal coordinator, gathering peer input and budget data before advancing. The formal approval chain (who signs, procurement gating) is not yet established. Mapping the buying committee and approval steps is explicitly part of the planned 5 Aug 2026 discovery agenda (source: SF Next_Step__c)."
+      },
+      "paper_process": {
+        "status": "partial",
+        "sources": ["SF Next_Step__c"],
+        "narrative": "Contracting mechanics are immature. An NDA is in play: the planned next step is to review the material shared after NDA execution, implying an NDA has been or is being executed to enable document sharing (source: SF Next_Step__c). No MSA/SOW, legal review path, procurement channel, or InfoSec process has been discussed on the recorded call. As a new-business full-suite deal (iSource, iSupplier, eProcurement, eInvoicing, Merlin), expect an InfoSec review and MSA/Order Form/SOW track later; visibility will come once discovery defines scope. There is no contract-expiration forcing function on record."
+      },
+      "identify_pain": {
+        "status": "gap",
+        "sources": ["Avoma discovery call 17 Apr 2026 (prior sweep)"],
+        "narrative": "Specific pain is not yet confirmed. The 17 Apr 2026 call was a Zycus introduction and ran short on discovery, with only about 8 minutes for pain probing, and Myriam's stated intent was to understand the solution first before sharing problems. Inferred pain, not yet confirmed by the buyer, is fragmented source-to-pay tooling across multiple ERPs: the rep asked how many ERPs they run and which modules manage source-to-pay today. No pain owner has confirmed urgency or a compelling event. Surfacing and owning the pain is the central goal of the 5 Aug 2026 discovery."
+      },
+      "champion": {
+        "status": "partial",
+        "sources": ["Avoma discovery call 17 Apr 2026 (prior sweep)", "SF OpportunityContactRole", "SF Next_Step__c"],
+        "narrative": "No confirmed champion; Myriam Alcaraz (Global Manager, Procurement & Legal Operations) is a developing coach. On 17 Apr 2026 she was the host who scheduled the meeting and took the internal follow-up action items (sharing documents with colleagues, checking budget with peers). That is genuine facilitation, which is what has developed; what is missing is evidence she will advocate for Zycus over iValua and SAP Ariba or carry us to the economic buyer. Bertrand Lagache (Manager Production Purchasing) is the named evaluator for the 5 Aug 2026 discovery but has no recorded advocacy yet. Convert Myriam from coordinator to champion and test her access to power."
+      },
+      "competition": {
+        "status": "partial",
+        "sources": ["SF Competitors__c", "Avoma discovery call 17 Apr 2026 (prior sweep)"],
+        "narrative": "Confirmed competitive, not sole-source: Salesforce names iValua and SAP Ariba as competitors (source: SF Competitors__c), and the buyer's intent to send the RFP to three or four suppliers (Avoma 17 Apr 2026) confirms a multi-vendor field. On the call the rep probed the current state, asking whether they were still using Ariba, suggesting Ariba may be part of the incumbent or evaluated stack, though this was not resolved. We cannot yet articulate the win wedge (Merlin agentic AI, integration depth) because the preferred vendor, the incumbent system, and Quadient's top criteria are still unknown. Establishing the competitive shortlist and what they value most is a priority at the 5 Aug discovery."
+      }
+    },
+    "deal_movement": {
+      "summary": "Record was formally created and qualified on 29 Jun 2026: stage moved Initial Interest to Qualified, amount corrected from a 15,000 placeholder to 150,000, products and close date (to 28 Feb 2027) set, ownership moved to Pierre Meraud, and division set to New Markets. The real engagement signal remains the 17 Apr 2026 discovery call; no buyer touch has occurred since.",
+      "items": [
+        {"change": "Stage advanced Initial Interest to Qualified", "date": "2026-06-29"},
+        {"change": "Amount corrected from 15,000 placeholder to 150,000", "date": "2026-06-30"},
+        {"change": "Close date pushed 30 Dec 2026 to 28 Feb 2027", "date": "2026-06-29"},
+        {"change": "Ownership moved to Pierre Meraud; Division set to New Markets", "date": "2026-06-29"},
+        {"change": "Discovery call held with Quadient/Neopost buyers", "date": "2026-04-17"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Multi-vendor RFP confirmed: iValua and SAP Ariba are named competitors per Salesforce, and Quadient plans to send the RFP to three or four suppliers per the 17 Apr 2026 call. Threat levels are unrankable, because there is no intelligence on incumbent, preferred vendor, or competitive positioning: discovery has not progressed beyond first-touch introduction. iValua and Ariba are both active in the RFP (status active, threat_level medium by default absent disqualifying evidence), but no buyer sentiment, pricing comparison, or differentiation discussion has occurred. Current positioning is blind: without pain, EB access, or criteria discovery we cannot articulate why Zycus wins. The wedge (Merlin AI negotiation agent, rapid deployment, deep ERP integration) has not been activated because the buyer's priorities are unknown.",
+      "competitors": [
+        {
+          "name": "iValua",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "Send the RFP to the 3 or 4 suppliers",
+          "date": "2026-04-17",
+          "source": "SF Competitors__c + Avoma discovery call 17 Apr 2026",
+          "how_we_win": "Lead with Merlin agentic AI and integration to their retained contract-review tool; quantify implementation speed once discovery scopes the ERP landscape"
+        },
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "Is this still the case, or you were using Ariba, at least?",
+          "date": "2026-04-17",
+          "source": "SF Competitors__c + Avoma discovery call 17 Apr 2026",
+          "how_we_win": "Position depth-of-fit and faster time-to-value vs SAP complexity; confirm whether Ariba is incumbent before framing the displacement case"
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Only one concrete expectation is on record: the new procurement tool must integrate with Quadient's retained AI contract-review tool. Broader fit criteria (ERP integration, module coverage) are inferred from discovery questions, not yet confirmed by the buyer.",
+      "items": [
+        {"criterion": "Integrate the new procurement platform with the retained AI contract-review tool", "position": "partially aligned", "quote": "Myriam Alcaraz will follow up to discuss the integration of the new tool with the existing contract review AI tool", "date": "2026-04-17", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"},
+        {"criterion": "Fit across the current ERP landscape and source-to-pay modules", "position": "exposed", "quote": "how many ERP do you have? Which one; what module do you use today to manage your S2P processes?", "date": "2026-04-17", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Confirm the new platform integrates with the retained AI contract-review tool", "said_by": "Myriam Alcaraz", "date": "2026-04-17", "addressed": false, "quote": "Myriam Alcaraz will follow up to discuss the integration of the new tool with the existing contract review AI tool", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Share the current ERP and procurement landscape and confirm the buying committee ahead of the 5 Aug discovery", "who": "Buyer", "grounding_quote": "understand the current ERP and procurement landscape, validate business priorities, identify additional stakeholders and buying committee members", "date": "2026-06-29", "due": "2026-08-05", "status": "open", "source": "SF Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "gather detailed information from peers in other departments regarding their projects and available budget", "status": "not addressed", "date": "2026-04-17", "gap_type": "knowledge", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"},
+        {"area": "Quantified pain and business case", "quote": "I'm going to use these 8 minutes to ask questions regarding what you have today, what are your pain points", "status": "not addressed", "date": "2026-04-17", "gap_type": "knowledge", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"},
+        {"area": "Decision criteria and RFP shortlist detail", "quote": "Send the RFP to the 3 or 4 suppliers", "status": "acknowledged", "date": "2026-04-17", "gap_type": "knowledge", "source": "Avoma discovery call 17 Apr 2026 (prior sweep)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage deal that must convert coordination into qualification: pin the economic buyer, quantify the pain, and multi-thread before the RFP framing hardens.",
+      "flags": [
+        "Map and reach the economic buyer: both known contacts are operational and Myriam Alcaraz says budget sits with peers in other departments, so identifying the budget owner is the gate to advancing past Qualified.",
+        "Multi-thread beyond Myriam Alcaraz and Bertrand Lagache: the deal is single-threaded through a coordinator with no confirmed advocate, so add a finance or IT stakeholder before the 5 Aug discovery.",
+        "Shape the RFP before it is written: with iValua and SAP Ariba in a three-to-four-vendor field, land the Merlin agentic-AI and integration wedge into Quadient's criteria while requirements are still forming."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Myriam Alcaraz", "title": "Global Manager, Procurement & Legal Operations", "role": "Coach", "last_contact_date": "2026-04-17", "sentiment": "positive", "risk": "Facilitator/coordinator, not a confirmed advocate; no proven access to budget authority", "source": "SF OpportunityContactRole (primary) + Avoma discovery call 17 Apr 2026"},
+        {"name": "Bertrand Lagache", "title": "Manager Production Purchasing", "role": "Influencer", "last_contact_date": "2026-04-17", "sentiment": "neutral", "risk": "Operational evaluator and the named contact for the 5 Aug discovery; advocacy unproven and single-thread", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Myriam Alcaraz is a developing coach who reliably schedules and facilitates and took internal follow-up actions, but there is no evidence yet of advocacy for Zycus over iValua or SAP Ariba, nor of access to the economic buyer.",
+      "champion": "Myriam Alcaraz",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma discovery call 17 Apr 2026 (prior sweep) + SF OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is Strong and the scope includes Merlin, signalling real AI appetite, but the agentic story has not been put in front of the buyer because discovery has not surfaced their priorities; the Merlin/I2O narrative is under-positioned.",
+      "score": "Strong",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Status is Strong and Merlin is in the product scope, indicating AI appetite; no call this sweep confirms or contradicts it, so the field read stands.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer mapped; both known contacts are operational and budget is held by peers in other departments per the 17 Apr call.", "first_raised": "2026-04-17", "date": "2026-04-17", "status": "open", "source": "Avoma discovery call 17 Apr 2026 (prior sweep) + SF OpportunityContactRole"},
+        {"category": "political", "detail": "Single-threaded through a developing coordinator (Myriam Alcaraz) with no confirmed advocate for Zycus.", "first_raised": "2026-04-17", "date": "2026-04-17", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "timeline", "detail": "About 80 days since the last buyer touch (17 Apr 2026) and the next discovery deferred to 5 Aug 2026, leaving a ~110-day engagement gap in early stage.", "first_raised": "2026-06-29", "date": "2026-06-29", "status": "open", "source": "SF LastActivityDate + SF Next_Step__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: the only real buyer touch is the 17 Apr 2026 discovery call and the next step is deferred to 5 Aug 2026, with no inbound since.",
+      "cooling": true,
+      "items": [
+        "No buyer inbound since the 17 Apr 2026 discovery call",
+        "Next discovery deferred to 5 Aug 2026",
+        "Qualification stalled: no EB, no confirmed pain, no criteria set"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Myriam Alcaraz to reconfirm the 5 Aug discovery and request the buying-committee org chart.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Next step defers discovery to 5 Aug with buying committee still unmapped", "trigger_date": "2026-06-29", "act_by": "2026-07-13", "expected_effect": "Re-warms a cooling thread and secures the stakeholder map needed to advance past Qualified."},
+        {"rank": 2, "action": "Build a discovery agenda to quantify procurement pain and identify the budget owner on 5 Aug.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No quantified pain or economic buyer after the 17 Apr call", "trigger_date": "2026-04-17", "act_by": "2026-07-24", "expected_effect": "Turns the 5 Aug session into real qualification, unlocking a defensible business case and EB path."},
+        {"rank": 3, "action": "Add a second buyer thread in finance or IT to reach budget authority beyond Myriam.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Budget sits with peers in other departments per Myriam on 17 Apr", "trigger_date": "2026-04-17", "act_by": "2026-08-05", "expected_effect": "Breaks single-thread risk and creates a route to the economic buyer before the RFP hardens."}
+      ]
+    },
+    "customer_preference": {"level": "low", "evidence": "Buyer wanted to understand the solution first and to gather budget input from peers; no Zycus-specific lean or preference stated on 17 Apr 2026."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or quantified pain discussed; the 17 Apr 2026 call left only about 8 minutes for pain probing and no figures were articulated."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "expansion_context": {"prior_closed_won": false},
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Amount moved from a 15,000 placeholder to 150,000 on 30 Jun 2026 as a data correction on the newly created record, not a scope reduction; full-suite scope (iSource, iSupplier, eProcurement, eInvoicing, Merlin) is intact."}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 0,
+    "calls_omitted": [{"reason": "No Avoma transcript returned for this opp this sweep; the 17 Apr 2026 discovery call was read in a prior sweep and is carried as living memory", "call": "Discovery Call: Quadient x Zycus, 17 Apr 2026"}],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "last 120d activities + 365d field history",
+    "avoma_attendees": ["Myriam Alcaraz", "Bertrand Lagache"],
+    "gaps": [
+      "No Avoma transcript available this sweep; narratives rely on prior-sweep reads of the 17 Apr 2026 discovery call",
+      "Economic buyer / budget owner unidentified",
+      "Quantified pain and business case not established"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

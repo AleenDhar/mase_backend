@@ -1,0 +1,261 @@
+{
+  "opp_id": "006P700000ZdMkT",
+  "hard": {
+    "opp_id": "006P700000ZdMkT",
+    "opp_name": "Deutsche Telekom/ BuyIn eProc, iSource, iSupplier, iContract",
+    "account_name": "Deutsche Telekom AG",
+    "account_industry": "Telecom and Communication",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": "",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2027-06-09",
+    "days_to_close": 338,
+    "created_date": "2026-06-16",
+    "qualified_date": "2026-06-24",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": "2026-07-01",
+    "products": "iContract;iSource;iSupplier;eProcurement",
+    "next_step": "NDA completed, signed by all parties. Follow-up email sent regarding RFP release date, expected by 2026-06-20. Initial phone call took place between prospect and Mona Schreyer; rest of Zycus and owner Dirk Fischbach yet to be introduced. Trilateral NDA signed by BuyIn (Orange and DT), Deutsche Telekom, and Zycus.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "they expect that their new provider will provide all AI capabilities that are market-ready.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZdMkT/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "The RFP is 16 days overdue with no buyer explanation, and a partner-intermediated motion through BuyIn still blocks any direct Deutsche Telekom access or discovery.",
+      "math": "338 days to close (2027-06-09). Created 2026-06-16, stage Qualified since 2026-06-24 (12 days). RFP expected 2026-06-20 per Next Step, now 16 days overdue as of 2026-07-06. Rep follow-up sent 2026-07-01 to Jean-Francois Winkler requesting the RFP release date, no buyer reply. Trilateral NDA completed and signed by all parties 2026-07-01. Only the BuyIn intermediary has engaged; no Deutsche Telekom Decision Maker or Evaluator touch to date.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "trajectory": "steady",
+      "prior_verdict": "Slowing",
+      "evidence": [
+        "RFP expected 2026-06-20 per Next Step, now 16 days overdue as of 2026-07-06",
+        "Rep follow-up email sent 2026-07-01 to Jean-Francois Winkler requesting the RFP release date, no buyer reply (source: Task 2026-07-01, Next Step 2026-07-01)",
+        "Trilateral NDA completed and signed by BuyIn (Orange/DT), Deutsche Telekom and Zycus 2026-07-01 (source: Next Step 2026-07-01)",
+        "Initial phone call took place between the prospect and Mona Schreyer (Zycus); owner Dirk Fischbach and the rest of the Zycus team not yet introduced (source: Next Step 2026-07-01)",
+        "Positive outbound call with Jean-Francois Winkler 2026-06-11 flagged the RFP was coming (source: Task 2026-06-11)",
+        "Zero engagement from Deutsche Telekom Decision Makers (Ozlem Seidler, Carsten Nazet) or the primary Evaluator (Guevenc Oezer); only BuyIn intermediary Jean-Francois Winkler has been contacted (source: SF OpportunityContactRole, activities through 2026-07-01)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No Deutsche Telekom stakeholder has articulated a business problem or any quantified impact (cost, headcount, cycle time, savings, ROI). The only value-adjacent signal is the AIS note that the buyer expects their new provider to deliver all market-ready AI capabilities (source: SF AIS_Why__c), which is an expectation, not a quantified pain or savings target. The initial phone call between the prospect and Mona Schreyer (source: Next Step 2026-07-01) has not been followed by discovery with owner Dirk Fischbach or the broader Zycus team, and there are no Avoma calls on record. The move is to secure the RFP and, once shortlisted, run a pain-and-ROI discovery session with the Deutsche Telekom procurement and IT leads to quantify what a four-module procurement suite must fix.",
+        "sources": ["SF AIS_Why__c", "SF Next Step 2026-07-01", "SF Products__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The Economic Buyer is unmapped. Salesforce names Ozlem Seidler (Category & Stakeholder Management IT, telekom.de) and Carsten Nazet (Head of BSS - OSS Sourcing, buyin.pro) as Decision Maker contact roles, so decision authority is identified, but neither has engaged with Zycus and no field or conversation names who owns the budget (X10a_Sponsor__c, Who_will_approve_budget__c and Purchase_approvals_Required_from__c are not populated). The only responsive contact is Jean-Francois Winkler, a BuyIn intermediary and Evaluator who is not the budget authority (source: SF OpportunityContactRole). The move is to map budget ownership through Winkler now and, once shortlisted, secure a direct line to the Deutsche Telekom sponsor before pricing.",
+        "sources": ["SF OpportunityContactRole (Seidler, Nazet: Decision Maker)", "SF Next Step 2026-07-01"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The formal criteria will sit in the RFP document, which is still outstanding as of 2026-07-06, so they are not yet confirmed. One criterion is inferred with reasonable confidence: the buyer expects the new provider to deliver all AI capabilities that are market-ready (source: SF AIS_Why__c), signalling AI maturity will be scored. The four-module scope (iContract, iSource, iSupplier, eProcurement) implies an integrated full-suite requirement rather than point tools (source: SF Products__c). The move is to obtain the RFP and its evaluation matrix from BuyIn to confirm the weighting before drafting the response.",
+        "sources": ["SF AIS_Why__c", "SF Products__c", "SF Next Step 2026-07-01"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running a formal RFP through BuyIn, the Orange and Deutsche Telekom procurement joint venture, with a trilateral NDA (BuyIn/Orange/DT, Deutsche Telekom, Zycus) signed by all parties 2026-07-01 as the first procedural gate (source: Next Step 2026-07-01). The RFP was expected 2026-06-20 and is 16 days overdue. Two Decision Makers span both organisations, one at Deutsche Telekom (Ozlem Seidler) and one at BuyIn (Carsten Nazet), indicating a joint-venture approval chain, but the evaluation stages and shortlist timeline are not yet documented. The move is to ask Winkler to lay out the RFP stages, shortlist date, and who scores the response.",
+        "sources": ["SF Next Step 2026-07-01", "SF OpportunityContactRole", "SF Task 2026-06-24 (get clarity on evaluation stages)"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "The paper process is only partially visible and, for Germany, follows Western European norms (direct invoicing, no mandatory PO). A three-party NDA between BuyIn/Orange/DT, Deutsche Telekom and Zycus has been completed and signed via DocuSign 2026-07-01, the first formal contracting step, executed by Zycus signatory routed through Winkler (source: Task 2026-06-17, Next Step 2026-07-01). No information exists yet on MSA, Order Form, SOW, InfoSec, or ERP integration scope, and Current_Contract_Expiration__c is not populated so no incumbent-renewal forcing function is known. The move is to ask BuyIn for the contracting and InfoSec requirements the RFP will impose.",
+        "sources": ["SF Task 2026-06-17 (NDA DocuSign)", "SF Next Step 2026-07-01"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific operational or financial pain has been articulated by any Deutsche Telekom stakeholder, and there are no Avoma calls on record. The RFP motion itself implies a procurement transformation need across sourcing, supplier, contract, and procurement operations (source: SF Products__c), and the AIS note that they expect market-ready AI (source: SF AIS_Why__c) hints the current stack lacks modern AI capability, but neither names a pain owner or a cost of inaction. Fields Customer_Business_Problem__c, Compelling_Event__c and Pain_points_in_the_current_solution__c are not populated. The move is to run pain discovery with the Deutsche Telekom procurement and IT leads once the RFP unlocks direct access.",
+        "sources": ["SF Products__c", "SF AIS_Why__c", "SF Next Step 2026-07-01"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. The only active contact is Jean-Francois Winkler (Senior Strategic Sourcer at BuyIn, Evaluator role), who has been responsive on the NDA and RFP logistics through 2026-07-01 but is a procurement intermediary, not a Deutsche Telekom employee, and gives no access to the economic buyer or business sponsor (source: SF OpportunityContactRole, activities). The two Decision Makers (Ozlem Seidler, Carsten Nazet) and the primary Evaluator (Guevenc Oezer) have not engaged, and X10b_Champion_Business_Buyer__c is not populated. The move is to convert Winkler into a process coach and, post-shortlist, develop a genuine champion inside Deutsche Telekom who will advocate for Zycus in RFP scoring.",
+        "sources": ["SF OpportunityContactRole", "SF activities through 2026-07-01"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "Competition is unknown. Competitors__c is blank, and no rival, incumbent, or shortlist has been named in any activity, next step, or field. The BuyIn-gated RFP process provides zero competitive intelligence to Zycus, which is bidding blind: no visibility into who else is invited, the shortlist size, or the incumbent being replaced. A full four-module European procurement RFP of this type would typically draw suite vendors such as SAP Ariba, Coupa, Jaggaer, Ivalua or GEP, but none is confirmed on this deal and none is asserted as a competitor here. The move is to ask BuyIn who else is bidding and what the incumbent is before shaping differentiation.",
+        "sources": ["SF Competitors__c (empty)", "SF Next Step 2026-07-01"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal advanced procedurally in the last three weeks: it was qualified and re-sized 2026-06-24, ownership moved to Dirk Fischbach 2026-06-16, and the trilateral NDA completed 2026-07-01. But the substantive next milestone, the RFP release, is overdue, so momentum is procedural rather than commercial.",
+      "items": [
+        {"change": "Trilateral NDA (BuyIn/Orange/DT, Deutsche Telekom, Zycus) completed and signed by all parties", "date": "2026-07-01"},
+        {"change": "Rep follow-up sent to Jean-Francois Winkler requesting the overdue RFP release date, awaiting buyer reply", "date": "2026-07-01"},
+        {"change": "Stage moved Initial Interest to Qualified and amount corrected from placeholder 100 to 200000; Type set to New Business", "date": "2026-06-24"},
+        {"change": "Ownership transferred from Mona Schreyer to Dirk Fischbach", "date": "2026-06-16"},
+        {"change": "Positive outbound call with Jean-Francois Winkler confirming the RFP was coming", "date": "2026-06-11"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competitive set unknown as of 2026-07-06. Competitors__c is blank and no rival or incumbent has been named in any call, next step, or task. The partner-intermediated RFP motion (BuyIn as gatekeeper) gives Zycus no competitive intelligence, so this is a blind bid with no insight into the shortlist, its size, or the incumbent. A full four-module European procurement RFP of this type typically attracts SAP Ariba, Coupa, Jaggaer, Ivalua or GEP, but that is market context only, not confirmed competition on this deal. The wedge in the blind: position the integrated four-module suite plus Merlin AI market-readiness as the RFP differentiation, and request the competitive shortlist from BuyIn post-submission.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "One expectation is visible: the buyer wants their new provider to deliver all market-ready AI capabilities. Zycus has not yet presented its Merlin/agentic story, so the fit is asserted but unproven.",
+      "items": [
+        {"criterion": "New provider must deliver all AI capabilities that are market-ready", "position": "partially aligned", "quote": "they expect that their new provider will provide all AI capabilities that are market-ready", "date": "2026-07-01", "source": "SF AIS_Why__c"},
+        {"criterion": "Integrated full-suite procurement (sourcing, supplier, contract, procurement)", "position": "aligned", "quote": "iContract;iSource;iSupplier;eProcurement", "date": "2026-07-01", "source": "SF Products__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide the Zycus signatory name and email to start the NDA signature", "said_by": "Jean-Francois Winkler", "date": "2026-06-16", "addressed": true, "quote": "Could you please send me the name and email address of your signatory? I'll start the signature process.", "source": "SF Task 2026-06-16 (inbound email from Winkler)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Release the RFP to Zycus (expected 2026-06-20, still outstanding)", "who": "Buyer", "grounding_quote": "follow up email sent regarding RFP release date as it was expected by June 20 2026", "date": "2026-07-01", "due": "2026-06-20", "status": "overdue", "source": "SF Next Step 2026-07-01, Task 2026-07-01"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer", "quote": "Decision Makers Seidler and Nazet mapped but not engaged; no budget owner named", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Buyer pain / metrics", "quote": "No business problem, quantified impact, or ROI case articulated by any Deutsche Telekom stakeholder", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF fields empty; no Avoma calls"},
+        {"area": "Competitive set", "quote": "Competitors__c blank; blind, BuyIn-gated RFP with no shortlist visibility", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c (empty)"},
+        {"area": "Direct Deutsche Telekom engagement", "quote": "Only BuyIn intermediary Winkler contacted; no DT Decision Maker or Evaluator touch", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF activities through 2026-07-01"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is early, single-threaded through a BuyIn intermediary, and bidding blind. The three highest-leverage levers are to break into Deutsche Telekom directly, lead with AI market-readiness, and extract competitive intel before shortlisting.",
+      "flags": [
+        "Break the single-thread through BuyIn: open a direct line to Deutsche Telekom Decision Maker Ozlem Seidler (telekom.de) so Zycus can influence RFP scoring before shortlisting.",
+        "Lead with AI market-readiness: the buyer expects a provider that delivers all market-ready AI, so make Merlin/agentic proof the centrepiece of the RFP response and name who carries it.",
+        "Extract competitive intel from BuyIn: ask Winkler who else is bidding and what the incumbent is, since the blind bid prevents any tailored differentiation."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Ozlem Seidler", "title": "Category & Stakeholder Management IT", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown", "risk": "No engagement to date; buyer defers vendor meetings to post-shortlist, so decision authority is unmapped in practice", "source": "SF OpportunityContactRole"},
+        {"name": "Carsten Nazet", "title": "Head of BSS - OSS Sourcing", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown", "risk": "No engagement to date; BuyIn-side decision maker with no direct Zycus contact", "source": "SF OpportunityContactRole"},
+        {"name": "Guevenc Oezer", "title": "Category Management IT Hardware/Software", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown", "risk": "Primary contact role at Deutsche Telekom but not yet engaged", "source": "SF OpportunityContactRole (primary Evaluator)"},
+        {"name": "Jean-Francois Winkler", "title": "Senior Strategic Sourcer", "role": "Coach", "last_contact_date": "2026-07-01", "sentiment": "Neutral", "risk": "BuyIn intermediary, not a Deutsche Telekom employee; responsive on logistics but gives no access to the economic buyer or business sponsor", "source": "SF OpportunityContactRole, activities through 2026-07-01"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. The only active relationship is with Jean-Francois Winkler, a BuyIn procurement intermediary who has been helpful on the NDA and RFP logistics but cannot advocate inside Deutsche Telekom or reach the economic buyer. What is missing: a Deutsche Telekom insider who will push Zycus in the RFP scoring. Securing one is a top move but is deferred by the buyer to post-shortlist.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole, Next Step 2026-07-01"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is the natural wedge here: the buyer explicitly expects a provider that delivers all market-ready AI capabilities, yet Zycus has not presented its Merlin/agentic story on any call. The AI narrative is under-positioned relative to a stated buyer expectation.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS reads 6.0 / Moderate: the buyer expects their new provider to deliver all AI capabilities that are market-ready (AIS_Why__c). No Avoma calls exist to corroborate or contradict, so the field is the sole read. The expectation is real and un-serviced, making the Merlin story a scoring lever.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer engaged; BuyIn gatekeeps access and both Deutsche Telekom Decision Makers are unmapped in practice", "first_raised": "2026-06-24", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole, Task 2026-06-24"},
+        {"category": "political", "detail": "Single-threaded through a BuyIn intermediary with no champion inside Deutsche Telekom", "first_raised": "2026-06-24", "date": "2026-07-06", "status": "open", "source": "SF activities, OpportunityContactRole"},
+        {"category": "budget", "detail": "No business case, pain, or ROI articulated to justify the 200000 four-module scope", "first_raised": "2026-06-24", "date": "2026-07-06", "status": "open", "source": "SF fields empty; no Avoma calls"},
+        {"category": "timeline", "detail": "RFP expected 2026-06-20 is 16 days overdue with no buyer explanation, delaying every downstream milestone", "first_raised": "2026-06-20", "date": "2026-07-06", "status": "open", "source": "SF Next Step 2026-07-01"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The deal is procedurally live (NDA signed 2026-07-01) but the substantive milestone, the RFP, is overdue and the rep's 2026-07-01 follow-up is unanswered. Not cold, but waiting on the buyer.",
+      "cooling": false,
+      "items": [
+        "Trilateral NDA completed 2026-07-01 keeps the deal procedurally alive",
+        "RFP overdue since 2026-06-20; rep follow-up 2026-07-01 awaiting buyer reply",
+        "No Deutsche Telekom Decision Maker or Evaluator has engaged directly"
+      ]
+    },
+    "customer_preference": {"level": "none", "evidence": "No preference expressed; the buyer is running a formal RFP through BuyIn and defers vendor meetings to post-shortlist."},
+    "business_case": {"status": "gap", "evidence": "No business problem or ROI discussed; only the AIS note that they expect their new provider to deliver market-ready AI capabilities."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "A blind, partner-gated RFP for a four-module procurement suite at Deutsche Telekom: the trilateral NDA is signed, but the RFP is overdue, no Deutsche Telekom decision maker has engaged, and Zycus has no champion and no competitive read.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Zycus is an early qualified bidder into a BuyIn-run RFP for Deutsche Telekom; the NDA is signed but the field is blind, no economic buyer or champion is engaged, and the RFP is 16 days overdue as of 6 Jul."},
+          {"tone": "warn", "text": "No Deutsche Telekom stakeholder has stated a business problem or savings target, so there is no anchored value case to score the four-module bid on (as of 1 Jul)."},
+          {"tone": "warn", "text": "The only responsive contact is Jean-Francois Winkler, a BuyIn intermediary who is not a Deutsche Telekom employee and gives no line to the budget owner."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "The trilateral NDA between BuyIn, Deutsche Telekom and Zycus was completed and signed by all parties on 1 Jul, clearing the first procedural gate."},
+          {"tone": "warn", "text": "The RFP expected on 20 Jun is overdue and the rep's 1 Jul follow-up to Winkler asking for the release date is still unanswered."},
+          {"tone": "good", "text": "A positive outbound call with Winkler on 11 Jun confirmed the RFP was coming, keeping the intermediary channel warm."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "The buyer signed the trilateral NDA on 1 Jul, a procedural commitment to run the process, though not a preference for Zycus."},
+          {"tone": "warn", "text": "The buyer defers all vendor meetings to post-shortlist, so Zycus has had no discovery access to Deutsche Telekom to date."},
+          {"tone": "warn", "text": "No Deutsche Telekom Decision Maker (Seidler, Nazet) or the primary Evaluator (Oezer) has engaged the deal team through 1 Jul."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The motion is partner-intermediated: BuyIn gatekeeps access, blocking direct Deutsche Telekom discovery and all competitive intelligence."},
+          {"tone": "warn", "text": "There is no champion inside Deutsche Telekom to influence RFP scoring before shortlisting."},
+          {"tone": "warn", "text": "The RFP is overdue with no buyer explanation, and the close date sits nearly a year out on 9 Jun 2027."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": -0.8, "evidence": "No champion inside Deutsche Telekom; only a BuyIn intermediary engaged (source: SF OpportunityContactRole)."},
+        "economic_buyer": {"strength": -0.7, "evidence": "EB unmapped; Decision Makers Seidler and Nazet not engaged (source: SF OpportunityContactRole)."},
+        "competition": {"strength": -0.3, "evidence": "Blind bid; no competitive intel from the BuyIn-gated RFP (source: SF Competitors__c empty)."}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "Zycus is bidding blind: the evaluation runs through the BuyIn procurement joint venture and no rival, incumbent, or shortlist size has surfaced.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The last real exchange was the 1 July follow-up asking BuyIn for the RFP release date, which was due 20 June and remains unanswered.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "The trilateral NDA between BuyIn, Deutsche Telekom and Zycus is signed, but no Deutsche Telekom decision maker has yet spoken with the deal team.", "tone": "neu"},
+      {"lens": "Commercials", "text": "The 200,000 scope covers four modules, yet no buyer pain or savings target has been stated to justify the price.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Have Dirk Fischbach get introduced to Winkler and confirm the RFP release date in writing.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "RFP expected 2026-06-20 is overdue and the 2026-07-01 follow-up is unanswered; owner and rest of Zycus not yet introduced", "trigger_date": "2026-07-01", "act_by": "2026-07-10", "expected_effect": "Establishes a direct owner-level channel and unblocks the overdue RFP, restarting the milestone clock."},
+        {"rank": 2, "action": "Ask Winkler for the RFP evaluation stages, shortlist date, and scoring criteria.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Evaluation stages and timeline undocumented; health task 2026-06-24 flagged the need for clarity on the process", "trigger_date": "2026-06-24", "act_by": "2026-07-17", "expected_effect": "Maps the decision process and shortlist timing so the response can be planned and threaded before scoring."},
+        {"rank": 3, "action": "Open a direct line to Deutsche Telekom Decision Maker Ozlem Seidler beyond the BuyIn intermediary.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Single-threaded through BuyIn; no Deutsche Telekom Decision Maker or Evaluator has engaged", "trigger_date": "2026-07-01", "act_by": "2026-07-31", "expected_effect": "Breaks the single-thread and creates a chance to influence RFP scoring and build a champion inside the buyer."},
+        {"rank": 4, "action": "Draft RFP-ready positioning of the integrated four-module suite and Merlin AI market-readiness.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer expects a provider delivering all market-ready AI capabilities (AIS_Why__c); full four-module scope", "trigger_date": "2026-07-01", "act_by": "2026-08-03", "expected_effect": "Prepares a differentiated response to the stated AI expectation so Zycus scores well the moment the RFP lands."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history to 2026-06-16 (opp created)",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls found for this opportunity across opp, account, and attendee-email discovery; all evidence is from Salesforce fields, activities, and next-step text",
+      "No buyer-articulated pain, metrics, or business case on record",
+      "Economic buyer unmapped and no direct Deutsche Telekom stakeholder engagement",
+      "Competitive set unknown; blind, BuyIn-gated RFP"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

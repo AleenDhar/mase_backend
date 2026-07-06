@@ -1,0 +1,742 @@
+{
+  "opp_id": "006P700000Syn49",
+  "hard": {
+    "opp_id": "006P700000Syn49IAB",
+    "opp_name": "Coursera_contract+eproc+intake_Mar26",
+    "account_name": "Coursera Inc",
+    "account_industry": "Education",
+    "billing_country": "United States",
+    "owner_name": "Michael McCarthy",
+    "owner_title": "Vice President of Sales, Americas",
+    "manager_name": "Shekhar Varma",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 130000.0,
+    "close_date": "2027-03-17",
+    "days_to_close": 254,
+    "created_date": "2026-01-29T19:22:32.000+0000",
+    "qualified_date": "2026-03-27",
+    "last_activity_date": "2026-03-17",
+    "last_modified_date": "2026-06-05T10:50:45.000+0000",
+    "products": "iContract;eProcurement;Merlin;Merlin Intake",
+    "next_step": "Send Gartner Magic Quadrant report Send NDA Arrange demo session in March Provide post-call reading materials for review",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 The 19-minute intro covered Zycus's 'AI-driven automation' pitch, and Coursera's team asked how intake integrates with purchase requests via Teams or Slack - interest in orchestration, not specifically AI.\n\u2022 Coursera flagged misalignment on the call purpose (expected a demo) and is gating ERP details behind an NDA; questions stayed mechanical rather than aspirational on AI.\n\u2022 One recorded intro plus a cancelled follow-up; next demo deferred to March - engagement is steady but AI excitement is Zycus-led, so Curious.",
+    "dm_identified": false,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "Status quo / no-decision",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Syn49IAB/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Dark for 111 days since the last buyer touch on 17 Mar 2026. A single 29 Jan intro call (buyer expected a demo, got slides) produced four Zycus commitments (Gartner report, NDA, demo, reading materials), none delivered, and the March demo was never booked. This is a kicking-the-tires deal that stalled on inertia.",
+      "math": "Created 29 Jan 2026, moved to Qualified 27 Mar 2026 (148 days in Qualified stage). Close date 2027-03-17 is 254 days out, a placeholder that has already slipped twice (2026-06-30 to 2027-03-26 to 2027-03-17). Last genuine buyer touch was Sumesh Yoganath's 17 Mar 2026 note; 111 days of silence with no buyer-facing deliverable executed forces Off Track regardless of the distant close date.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Single recorded discovery/intro call on 29 Jan 2026 where Zycus VP Michael McCarthy walked slides; the buyer (Sumesh) flagged wires crossed because they had expected a live demo",
+        "Zycus committed on that call to four follow-ups: Gartner Magic Quadrant report, an NDA, a March demo, and post-call reading materials (all logged in Next_Step__c); no evidence any were delivered",
+        "AIS_Why notes a cancelled follow-up and the demo deferred to March, and no demo was ever booked",
+        "Sumesh Yoganath's 17 Mar 2026 note ('I have requested stakeholder responses on this and hence would require some time to respond') is the last genuine buyer touch; the 27 Mar 2026 tasks are all internal Opportunity-Health call-attempts, not buyer engagement",
+        "Elaine Gu (Procurement Director, owner of the procure-to-pay tool under finance) deflected the Coupa-status question on 29 Jan and has not re-engaged in 111 days",
+        "Zero OpportunityContactRole entries on the opp despite three named buyer participants on the call (hygiene gap)",
+        "Close date has slipped from 2026-06-30 to a placeholder 2027-03-17; Pipeline is the appropriate conservative category on a dormant early-stage deal"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Coursera articulated qualitative procurement pain but never quantified it. On 29 Jan 2026 the Coursera side, describing current state, said 'We have systems now, ways of doing things, but it is not always the most elegant' and framed the engagement as 'kicking the tires' with no active project. Elaine Gu surfaced the operational problem as orchestration: 'I do a contract and then automatically create like an intake, or is it intake first, contract then and then PO? How do you orchestrate all these pieces?' There is no cost, headcount, cycle-time, or savings baseline, no compelling event, and no financial pain owner named. The move is to quantify the intake-to-contract-to-PO friction (approval cycle time, maverick spend, FTE burden) into a number a finance sponsor would fund.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026 (Coursera team)",
+          "Avoma intro call 29 Jan 2026, Elaine Gu"
+        ]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "No economic buyer is formally mapped (zero OpportunityContactRole entries), but the conversation points to Elaine Gu as the budget authority: on 29 Jan 2026 she introduced herself as 'procurement director at Coursera, I lead the central procurement organization under finance... high dollar value contract sourcing... and my team is the business owner of the procure to pay tool.' She owns the tool decision and sits under finance, so she is the inferred economic buyer for this purchase. However she has been passive since the intro call and deflected the Coupa-contract question, so her sponsorship is unconfirmed. The move is to re-engage Elaine specifically and, through her, reach the finance approver for a $130k platform spend.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Elaine Gu",
+          "Salesforce OpportunityContactRole (empty)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "One real criterion surfaced and it is Elaine Gu's, stated on 29 Jan 2026: unified orchestration of intake, contract management, and purchase requests in a single platform, with intake driven from the buyer's collaboration tool. She asked 'How does your intake integrate with the purchase request? I want to see that piece' and 'show how that is also related or integrated with the contract management.' No formal evaluation criteria, RFP, scorecard, or use-case list exists yet because the deal never progressed past the intro. Criteria are inferred from Elaine's questions, not confirmed through a structured evaluation. The move is to run the orchestration demo she asked for and let it define the formal criteria.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Elaine Gu"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "No decision process is defined. The 29 Jan 2026 call itself was misaligned: Sumesh Yoganath said 'I think we got our wires crossed here Michael, because Abhinav reached out and he said he wanted to do a demo... but this looks like just a preliminary conversation.' Sumesh then stated he was 'not available at least till March' and asked Zycus to 'send any reading material... Emily and I will take a look and then figure out how to work with Elaine and move forward.' There is no RFP, no shortlist, no named approval chain, and no timeline the buyer committed to. The read on the call sequence is a single intro with no follow-through. The move is to qualify whether a funded project and timeline actually exist before investing SE time.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Sumesh Yoganath"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are untouched because the deal is pre-evaluation. The only paper signal is that Coursera gated basic discovery behind an NDA: on 29 Jan 2026, asked about their ERP, Elaine Gu said 'I think for those information we probably need to sign an NDA,' and Zycus agreed to send one ('we will get an NDA out'). That NDA was never delivered. No MSA, Order Form, SOW, legal, procurement channel, or InfoSec track has started. The move is to send the NDA as the low-friction re-open step and use it to unlock ERP and integration discovery.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Elaine Gu",
+          "SF Next_Step__c (NDA committed)"
+        ]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Confirmed pain is fragmented, inelegant procurement workflow and orchestration gaps across intake, contracting, and purchasing. On 29 Jan 2026 Coursera described current systems as 'not always the most elegant' and Elaine Gu, who owns the procure-to-pay tool, pressed on how a single platform would orchestrate intake, contract, and PO in sequence, signalling that today those steps are stitched together manually. The pain owner is Elaine's central procurement team under finance, supported by Sumesh Yoganath and Emily on vendor management. Inferred (not stated) pain is Coupa's modular architecture forcing that stitching. The pain is real but low-urgency ('kicking the tires'), so the move is to raise urgency by tying it to a cost or compliance consequence.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Coursera team",
+          "Avoma intro call 29 Jan 2026, Elaine Gu"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Elaine Gu showed the sharpest engagement on 29 Jan 2026, driving the orchestration questions, but gave no advocacy behaviour (no internal selling, no EB introduction, no competitive blocking) and went silent for 111 days. Sumesh Yoganath, the sole Salesforce activity contact, characterised the engagement as 'kicking the tires,' said he was unavailable until March, and last posted a holding note on 17 Mar 2026 ('I have requested stakeholder responses... would require some time to respond'). Emily participated but did not drive. No one internally is selling for Zycus, which is why the deal stalled. The move is to re-engage Elaine with the exact orchestration demo she asked for and earn a champion, starting from her stated interest.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, attendee behaviour",
+          "Task/activity 17 Mar 2026, Sumesh Yoganath",
+          "Salesforce OpportunityContactRole (empty)"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The real threat is no-decision, not a named rival. Coupa is the incumbent procure-to-pay tool ('you said you are currently using Coupa? Yes,' 29 Jan 2026, Elaine Gu), and Zycus VP Michael McCarthy noted he spent four years at Coupa and recognised Elaine from there. Asked whether there was Coupa fatigue or a contract coming up, Elaine deflected: 'I do not think we have any. There is can't share other things yet,' which signals procurement sensitivity, not a live replacement mandate. No RFP, shortlist, or second vendor was named. The competitive picture is Coupa incumbency plus status-quo inertia (a kicking-the-tires exploration that went dark). The wedge, when re-engaged, is unified intake-to-contract-to-PO orchestration on one platform versus Coupa's modular stitching.",
+        "sources": [
+          "Avoma intro call 29 Jan 2026, Elaine Gu",
+          "SF Competitors__c (empty)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "One recorded intro call on 29 Jan 2026, a cancelled follow-up, the demo deferred to March and never booked, the opportunity re-owned to Michael McCarthy and moved to Qualified on 27 Mar 2026, then 111 days of silence. The close date slid from 2026-06-30 to a 2027-03-17 placeholder. Last genuine buyer touch: Sumesh Yoganath's 17 Mar 2026 holding note.",
+      "items": [
+        {
+          "change": "Introductory call held; buyer expected a demo, received a slide walkthrough (wires crossed)",
+          "date": "2026-01-29"
+        },
+        {
+          "change": "Sumesh Yoganath posted a positive holding note requesting time for stakeholder responses (last buyer touch)",
+          "date": "2026-03-17"
+        },
+        {
+          "change": "Opportunity re-owned from Abeerah Fazil to Michael McCarthy and stage moved Initial Interest to Qualified; close date set 2027-03-17",
+          "date": "2026-03-27"
+        },
+        {
+          "change": "Eight internal Opportunity-Health call-attempt tasks logged (cold-prospect, no decision maker, single-thread flags); no buyer response",
+          "date": "2026-03-27"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is no-decision / status quo: Coursera framed this as 'kicking the tires' on 29 Jan 2026, cancelled the follow-up, and has been dark for 111 days, so inertia (they keep running procurement on their current stack and never sign) is what loses this deal, not a rival. Coupa is the incumbent procure-to-pay tool but there is no evidence of a funded replacement mandate; Elaine Gu deflected the Coupa-contract question, so Coupa is a passive incumbent, not an active competitor. No second vendor has been named in any source.",
+      "competitors": [
+        {
+          "name": "Status quo / no-decision",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "Kicking the tires. We have systems now, ways of doing things, but it is not always the most elegant.",
+          "date": "2026-01-29",
+          "source": "Avoma intro call 29 Jan 2026, Coursera team",
+          "how_we_win": "Convert the qualitative 'not elegant' pain into a quantified cost of inaction (approval cycle time, maverick spend, FTE burden) tied to a finance-fundable outcome, and give Elaine a reason to run a real project rather than keep exploring."
+        },
+        {
+          "name": "Coupa",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "You said you are currently using Coupa? Yes. Is contract coming up or is there a little Coupa fatigue? I do not think we have any. There is can't share other things yet.",
+          "date": "2026-01-29",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu",
+          "how_we_win": "Win on unified intake-to-contract-to-PO orchestration and native Teams/Slack intake on a single platform versus Coupa's modular stitching; demonstrate the end-to-end flow Elaine asked to see and expose the Coupa contract-renewal window as the compelling event."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Coursera's stated expectation is a single platform that orchestrates intake, contract management, and purchase requests, with intake driven from their collaboration tool. Zycus is positioned to meet this but has never demonstrated it, so fit is asserted, not proven.",
+      "items": [
+        {
+          "criterion": "Unified orchestration of intake to contract to PO on one platform",
+          "position": "partially aligned",
+          "quote": "I do a contract and then automatically create like an intake, or is it intake first, contract then and then PO? How do you orchestrate all these pieces?",
+          "date": "2026-01-29",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu"
+        },
+        {
+          "criterion": "Intake driven from the buyer's collaboration tool (Teams/Slack)",
+          "position": "aligned",
+          "quote": "How does your intake integrate with the purchase request? I want to see that piece.",
+          "date": "2026-01-29",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Contact roles",
+          "quote": "Three named buyer participants (Elaine Gu, Sumesh Yoganath, Emily) attended the 29 Jan call, but the opportunity carries zero OpportunityContactRole entries",
+          "status": "not addressed",
+          "date": "2026-01-29",
+          "gap_type": "hygiene",
+          "source": "Salesforce OpportunityContactRole (empty) vs Avoma intro call 29 Jan 2026"
+        },
+        {
+          "area": "Compelling event / project",
+          "quote": "Kicking the tires... it is the first demo or anything we are looking at",
+          "status": "not addressed",
+          "date": "2026-01-29",
+          "gap_type": "knowledge",
+          "source": "Avoma intro call 29 Jan 2026, Coursera team"
+        },
+        {
+          "area": "Coupa contract timing",
+          "quote": "I do not think we have any. There is can't share other things yet.",
+          "status": "acknowledged",
+          "date": "2026-01-29",
+          "gap_type": "knowledge",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a cold, early, kicking-the-tires deal that died on inertia after a misaligned intro. The win levers are re-opening with the exact value hook that got engagement, reaching the budget owner, and qualifying whether a real project exists before spending SE time.",
+      "flags": [
+        "Re-open with the specific intake-to-contract-to-PO orchestration demo Elaine Gu asked to see, not a generic check-in; that ask is the only engagement signal on the deal.",
+        "Multi-thread to Elaine Gu, the procure-to-pay tool owner under finance and inferred budget authority, who has been passive since 29 Jan; the deal currently rests on Sumesh Yoganath alone.",
+        "Qualify hard before re-investing: confirm a funded project, a timeline, and the Coupa contract-renewal window so there is a compelling event rather than tire-kicking."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Elaine Gu",
+          "title": "Procurement Director",
+          "role": "Economic Buyer",
+          "last_contact_date": "2026-01-29",
+          "sentiment": "neutral",
+          "risk": "Inferred budget owner: leads central procurement under finance and owns the procure-to-pay tool, drove the orchestration questions on 29 Jan, but deflected the Coupa-status question and has been silent 111 days. Sponsorship unconfirmed; not re-engaged.",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu"
+        },
+        {
+          "name": "Sumesh Yoganath",
+          "title": "Director, Data Management & Global Sourcing",
+          "role": "Influencer",
+          "last_contact_date": "2026-03-17",
+          "sentiment": "neutral",
+          "risk": "Sole Salesforce activity contact and last buyer touch (17 Mar holding note), but called it 'kicking the tires,' said unavailable until March, and did not drive momentum. Low urgency, not a champion.",
+          "source": "SF task/activity contact + Avoma intro call 29 Jan 2026"
+        },
+        {
+          "name": "Emily",
+          "title": "Senior Vendor Manager",
+          "role": "Influencer",
+          "last_contact_date": "2026-01-29",
+          "sentiment": "neutral",
+          "risk": "On Sumesh's team, articulated current-state pain ('not always the most elegant') but did not drive the agenda; surname not verified in Salesforce, so referenced by first name only. No subsequent engagement.",
+          "source": "Avoma intro call 29 Jan 2026"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Elaine Gu showed the sharpest interest on 29 Jan 2026 (drove the orchestration questions) but gave no advocacy behaviour and went dark for 111 days. Sumesh Yoganath is the only Salesforce contact but framed the deal as tire-kicking and low-urgency. No one is selling internally for Zycus, which is why the deal stalled.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "Avoma intro call 29 Jan 2026; task/activity 17 Mar 2026, Sumesh Yoganath; Salesforce OpportunityContactRole (empty)"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS 4.0 / Moderate. Zycus led with the AI-driven automation and intake story (autonomous negotiation, contract, and invoice agents), but Coursera's questions stayed mechanical (how does intake integrate with purchase requests via Teams/Slack) rather than aspirational on AI, so the Merlin/agentic narrative has not yet landed with the buyer.",
+      "score": "4.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 Moderate reads as AI Curious: interest is in orchestration (intake-to-contract-to-PO across Teams/Slack), not specifically in AI. The AI excitement on the 29 Jan call was Zycus-led; the buyer asked integration questions, not AI-capability questions, so appetite is unproven.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "timeline",
+          "detail": "No-decision / status-quo inertia: 'kicking the tires' with no funded project, cancelled follow-up, and 111 days dark; the deal loses to Coursera continuing on their current stack, not to a rival.",
+          "first_raised": "2026-01-29",
+          "date": "2026-06-29",
+          "status": "active",
+          "source": "Avoma intro call 29 Jan 2026, Coursera team"
+        },
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer engaged and no champion: Elaine Gu (inferred budget owner) is passive and Sumesh Yoganath is low-urgency; the deal rests on a single, quiet thread.",
+          "first_raised": "2026-01-29",
+          "date": "2026-03-27",
+          "status": "active",
+          "source": "Avoma intro call 29 Jan 2026; SF OpportunityContactRole (empty)"
+        },
+        {
+          "category": "change_management",
+          "detail": "Coupa is the entrenched procure-to-pay incumbent; switching cost and Elaine's deflection on Coupa status raise displacement risk and hint at undisclosed procurement context.",
+          "first_raised": "2026-01-29",
+          "date": "2026-01-29",
+          "status": "active",
+          "source": "Avoma intro call 29 Jan 2026, Elaine Gu"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: one intro call, a cancelled follow-up, no demo booked, and 111 days since the last buyer note. The cadence has collapsed.",
+      "cooling": true,
+      "items": [
+        "Last genuine buyer touch 17 Mar 2026 (111 days ago); all activity since is internal Opportunity-Health call-attempts",
+        "Four 29 Jan commitments (Gartner report, NDA, demo, materials) never delivered",
+        "The March demo the buyer expected was never scheduled"
+      ]
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "iContract, eProcurement, Merlin, Merlin Intake",
+      "to": "iContract, eProcurement, Merlin, Merlin Intake",
+      "detail": "Scope has not narrowed; the intake + contract + eProcurement bundle named at creation is unchanged. No modules dropped and amount steady at $130k."
+    },
+    "deal_scores_evidence": {
+      "summary": "A kicking-the-tires early deal that died on inertia: one misaligned intro call on 29 Jan 2026 produced four undelivered commitments and no demo, and it has been dark for 111 days with no champion and only an inferred, passive budget owner in Elaine Gu.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "Weak position: Coursera called this 'kicking the tires' on 29 Jan 2026 with no funded project, and the strongest interest (Elaine Gu's orchestration questions) never converted before the deal went silent."
+          },
+          {
+            "tone": "warn",
+            "text": "The real threat is no-decision, not a rival: Coupa is the entrenched procure-to-pay incumbent and Elaine deflected the contract-status question, so there is no compelling event forcing a change."
+          },
+          {
+            "tone": "warn",
+            "text": "No champion and no engaged economic buyer: the deal rests on Sumesh Yoganath's single low-urgency thread and zero OpportunityContactRole coverage."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "Momentum has collapsed: 111 days since the last buyer touch (Sumesh's 17 Mar 2026 note), a cancelled follow-up, and the March demo never booked."
+          },
+          {
+            "tone": "warn",
+            "text": "The buyer never pulled the next meeting; Zycus committed four follow-ups on 29 Jan 2026 and delivered none, so there is no forward motion to build on."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "No commitment signals: the buyer asked only to receive reading materials and review with Elaine 'in the upcoming future,' with no dates, no scope, and no procurement process named."
+          },
+          {
+            "tone": "warn",
+            "text": "Coursera gated even basic ERP discovery behind an NDA on 29 Jan 2026, and that NDA was never sent, so the relationship has not deepened past an intro."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "High no-decision risk from status-quo inertia plus Coupa incumbency; the deal loses to Coursera doing nothing rather than to a competitor."
+          },
+          {
+            "tone": "warn",
+            "text": "Placeholder close date 2027-03-17 has already slipped twice and does not reflect any buyer-committed timeline."
+          }
+        ]
+      },
+      "factors": {
+        "customer_preference": {
+          "strength": -0.6,
+          "evidence": "Neutral 'kicking the tires' read; buyer asked only for reading materials and went dark (Avoma 29 Jan 2026)."
+        },
+        "champion_strength": {
+          "strength": -0.8,
+          "evidence": "No champion; sole contact Sumesh Yoganath is low-urgency and quiet since 17 Mar 2026."
+        },
+        "deal_momentum": {
+          "strength": -0.9,
+          "evidence": "111 days dark, cancelled follow-up, March demo never booked."
+        },
+        "deal_risk": {
+          "strength": -0.7,
+          "evidence": "No-decision / status-quo inertia plus Coupa incumbency; no compelling event."
+        }
+      }
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The only real interaction was a 29 Jan 2026 intro where Coursera expected a demo and got slides; they asked for materials and then went silent for over three months.",
+        "tone": "crit"
+      },
+      {
+        "lens": "Competition",
+        "text": "The deal is not being lost to a rival but to inertia: Coursera is exploring while running on incumbent Coupa, with no funded project or compelling event.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Elaine Gu, the procurement director who owns the procure-to-pay tool under finance, is the budget authority but has stayed passive and never re-engaged since 29 Jan 2026.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "No value case exists: the $130k has no ROI, savings, or cycle-time baseline, and the pain is only qualitative ('not always the most elegant').",
+        "tone": "warn"
+      }
+    ],
+    "expansion_context": {
+      "prior_closed_won": false,
+      "prior_opp": null,
+      "note": "New-business pursuit into a Coupa-incumbent account; no prior Zycus Closed-Won, so no inherited executive or seat access. Early-stage EB-unmapped risk applies."
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Email Elaine Gu and Sumesh Yoganath the Gartner report and NDA to reopen the thread.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Four 29 Jan commitments (Gartner report, NDA, demo, materials) never delivered; dark since 17 Mar 2026",
+          "trigger_date": "2026-01-29",
+          "act_by": "2026-07-13",
+          "expected_effect": "Removes the broken-promise blocker and creates a low-friction reason for the buyer to respond, restarting the conversation."
+        },
+        {
+          "rank": 2,
+          "action": "Book the intake-to-contract-to-PO orchestration demo Elaine Gu asked to see.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Elaine Gu asked to see intake integrate with purchase requests and contract management (29 Jan 2026), then the demo was deferred to March and never held",
+          "trigger_date": "2026-01-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Delivers the one thing that earned engagement and defines real evaluation criteria, converting tire-kicking into a project."
+        },
+        {
+          "rank": 3,
+          "action": "Ask Sumesh Yoganath whether a funded project and timeline actually exist.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Buyer described the effort as 'kicking the tires' with no active project on 29 Jan 2026",
+          "trigger_date": "2026-01-29",
+          "act_by": "2026-07-22",
+          "expected_effect": "Qualifies the deal in or out before spending SE time, and surfaces or kills the compelling event."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm the Coupa contract-renewal window with Elaine Gu to find a compelling event.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Elaine deflected the Coupa contract-status question on 29 Jan 2026",
+          "trigger_date": "2026-01-29",
+          "act_by": "2026-08-04",
+          "expected_effect": "Locates a forcing date that turns a passive exploration into a time-bound evaluation."
+        },
+        {
+          "rank": 5,
+          "action": "Multi-thread into Coursera finance to map the budget owner for the $130k spend.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "No OpportunityContactRole entries and no engaged economic buyer beyond inferred budget owner Elaine Gu",
+          "trigger_date": "2026-03-27",
+          "act_by": "2026-08-06",
+          "expected_effect": "Reduces single-thread risk and identifies who signs, so the deal can advance past qualification."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 7.9,
+        "deal_momentum": 50.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 16.8,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 7.9,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -10.1,
+        "ceiling": 30.0,
+        "momentum_adj": 0.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -2.4,
+            "evidence": "preference strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": 1.4,
+            "evidence": "exec access strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 50.0,
+        "pre_decay": 50.0,
+        "decay_note": null,
+        "contributions": []
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 16.8,
+        "contributions": [
+          {
+            "factor": "low_buyer_intent",
+            "points": 16.8,
+            "evidence": "Verdict 'Off Track' \u2014 weak forward intent."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 8 is carried by exec access strength +0.30 (weight 15); business case strength +0.30 (weight 10). Offsetting it: competitive strength -1.00 (weight 15).",
+        "deal_momentum": "Momentum is flat at 50: no forward or backward motion was observed.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 17 is driven by Verdict 'Off Track' \u2014 weak forward intent. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (8), nudged by commitment 8 and momentum 50, and dragged by risk 17. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Coursera Inc \u2014 Qualified \u00b7 $130K \u00b7 closes 17 Mar",
+        "intro": "A kicking-the-tires early deal that died on inertia; one misaligned intro call on 29 Jan 2026 produced four undelivered commitments and no demo, and it has been dark for 111 days with no champion and only an inferred, passive budget owner in Elaine Gu",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 8,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Weak position; Coursera called this 'kicking the tires' on 29 Jan 2026 with no funded project, and the strongest interest (Elaine Gu's orchestration questions) never converted before the deal went silent"
+              },
+              {
+                "tone": "warn",
+                "text": "The real threat is no-decision, not a rival; Coupa is the entrenched procure-to-pay incumbent and Elaine deflected the contract-status question, so there is no compelling event forcing a change"
+              },
+              {
+                "tone": "warn",
+                "text": "No champion and no engaged economic buyer; the deal rests on Sumesh Yoganath's single low-urgency thread and zero OpportunityContactRole coverage"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 50,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Momentum has collapsed; 111 days since the last buyer touch (Sumesh's 17 Mar 2026 note), a cancelled follow-up, and the March demo never booked"
+              },
+              {
+                "tone": "warn",
+                "text": "The buyer never pulled the next meeting; Zycus committed four follow-ups on 29 Jan 2026 and delivered none, so there is no forward motion to build on"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 17,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "High no-decision risk from status-quo inertia plus Coupa incumbency; the deal loses to Coursera doing nothing rather than to a competitor"
+              },
+              {
+                "tone": "warn",
+                "text": "Placeholder close date 2027-03-17 has already slipped twice and does not reflect any buyer-committed timeline"
+              }
+            ],
+            "footer": "Competitive picture: The single strongest current threat is no-decision / status quo: Coursera framed this as 'kicking the tires' on 29 Jan 2026, cancelled the follow-up, and has been dark for 111 days, so inertia (they keep running procurement on their\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No commitment signals; the buyer asked only to receive reading materials and review with Elaine 'in the upcoming future,' with no dates, no scope, and no procurement process named"
+              },
+              {
+                "tone": "warn",
+                "text": "Coursera gated even basic ERP discovery behind an NDA on 29 Jan 2026, and that NDA was never sent, so the relationship has not deepened past an intro"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Email Elaine Gu and Sumesh Yoganath the Gartner report and NDA to reopen the thread. (by 13 Jul)",
+              "Book the intake-to-contract-to-PO orchestration demo Elaine Gu asked to see. (by 20 Jul)",
+              "Ask Sumesh Yoganath whether a funded project and timeline actually exist. (by 22 Jul)"
+            ]
+          }
+        ]
+      }
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 7.9,
+      "mom": 50.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [
+      {
+        "call": "Follow-up/demo session (Feb 2026)",
+        "reason": "cancelled / not recorded per AIS_Why ('a cancelled follow-up'); no transcript"
+      }
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities 120d, field history to 2026-01-29",
+    "avoma_attendees": [
+      "Elaine Gu",
+      "Sumesh Yoganath",
+      "Emily"
+    ],
+    "gaps": [
+      "Zero OpportunityContactRole entries despite three named buyer participants (hygiene, not knowledge)",
+      "No quantified business case, compelling event, or committed timeline (knowledge gap)",
+      "Coupa contract-renewal status withheld by the buyer (knowledge gap)",
+      "Emily's surname not verified in Salesforce; referenced by first name only",
+      "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Sumesh Yoganath')"
+    ]
+  },
+  "customer_preference": {
+    "level": "low",
+    "evidence": "Neutral 'kicking the tires' engagement; buyer asked only for reading materials to review 'in the upcoming future' and went dark for 111 days (Avoma 29 Jan 2026)."
+  },
+  "business_case": {
+    "status": "partial",
+    "evidence": "Qualitative pain only ('we have systems now... not always the most elegant'; orchestration questions); no cost, savings, cycle-time, or ROI figure (Avoma 29 Jan 2026)."
+  },
+  "momentum_signals": {
+    "seniority_rising": false,
+    "commercial_topics_entering": false,
+    "concrete_dates": false,
+    "customer_requested_next_meeting": false,
+    "close_plan_concretizing": false,
+    "generic_demo_only": true,
+    "competitor_praised": false
+  },
+  "ceo_intervention": {
+    "needed": false
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:38"
+}

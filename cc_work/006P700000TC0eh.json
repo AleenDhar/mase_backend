@@ -1,0 +1,269 @@
+{
+  "opp_id": "006P700000TC0eh",
+  "hard": {
+    "opp_id": "006P700000TC0eh",
+    "opp_name": "NewBalance_SourcingANA_Feb2026",
+    "account_name": "New Balance",
+    "account_industry": "Retail",
+    "billing_country": "United States",
+    "owner_name": "Richard Hunsinger",
+    "owner_title": "Regional Director",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 250000,
+    "close_date": "2026-12-18",
+    "days_to_close": 165,
+    "created_date": "2026-02-03",
+    "qualified_date": "2026-05-13",
+    "last_activity_date": "2026-03-11",
+    "last_modified_date": "2026-05-21",
+    "products": "iSource;ANA",
+    "next_step": "3/10/26 RH Demo with Damiano Grillo. ANA stood out as key differentiator. Intake is less important as tool will be used by sourcing team. 3/06/26 RH Submitted RFI. Offered to provide a value engineering study to promote the business case.",
+    "ais_score": 5.2,
+    "ais_status": "Moderate",
+    "ais_why": "Damiano Grillo asked about autonomous negotiation agent capabilities and AI-generated RFP questions across the 03 Feb and 11 Mar calls, mapping to Merlin ANA, but tempered by his own words that New Balance is far from autonomous sourcing today.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba",
+    "primary_competitor": "SAP Ariba (incumbent) / status-quo do-nothing",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000TC0eh/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "The 11 Mar sourcing demo landed well, but Damiano Grillo took the findings to New Balance leadership and has gone silent for nearly four months, with no RFI feedback, no named budget owner, and no forward step despite 165 days to close.",
+      "math": "Created 03 Feb 2026, entered Formal Evaluation 21 May 2026 (rep-side stage move). Last genuine buyer touch 11 Mar 2026 demo, roughly 117 days ago as of 06 Jul. The only activity since is rep-side 'Call Attempted' health tasks on 12 May and internal stage/forecast edits, not buyer engagement. Close date 18 Dec 2026 is 165 days out. A Formal Evaluation this early normally moves demo to RFI-feedback to shortlist in 60 to 90 days; this one stalled after the demo, so the date is not a schedule, it is a placeholder.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Last real buyer exchange: 11 Mar 2026 demo workshop with Damiano Grillo; nothing buyer-side since.",
+        "Correcting prior memory: Zycus DID submit the RFI response on 06 Mar and Damiano acknowledged it on 09 Mar ('Thank you for your submission, I will be in touch') before the 11 Mar demo, so the RFI is delivered, not outstanding.",
+        "On 11 Mar Damiano closed with 'I'll definitely pass it to leadership the findings of this demo, and that's with them to evaluate, and I'll be in touch with any next steps or feedback' - that feedback never came.",
+        "No named economic buyer or decision maker; the evaluation was a request 'that came down from procurement leadership' and Damiano is the only contact.",
+        "Buyer repeatedly framed the effort as early and exploratory: 'this is a very early stage evaluation' and 'we're far away from that' on autonomous capabilities.",
+        "Pipeline forecast on a deal dark ~117 days with no business case funded overstates the number; Omitted is the honest category until Damiano re-engages."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The pain is confirmed but never quantified. On the 03 Feb discovery call Damiano Grillo (Indirect Category Manager, New Balance) said the biggest problems are internal and supplier ease of use and that with Ariba 'we're just utilizing Ariba to send out an RFP and collect information, then we're doing a lot of the work outside the tool', pointing to manual offline negotiation. On the 11 Mar demo he tied the strain to global headcount growth: 'as the team is getting larger across the globe, having a solution that allows us to onboard associates and get them off the ground relatively quickly is imperative.' When Rick Hunsinger asked directly whether the impact was quantitative, Damiano answered 'it's tough to say quantitative right now.' No cost-per-event, cycle-time, savings, or onboarding-time figure exists in any call or field. Converting this qualitative pain into a numbers-based value case is the gating step to reach leadership, and Rick already offered a value-engineering study (Next_Step__c, 06 Mar) to do exactly that.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo", "SF Next_Step__c 06 Mar 2026"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named, but the calls reveal where budget authority sits. On 11 Mar Damiano said the initiative 'will require a business case' and that the whole evaluation 'was a request that came down from procurement leadership to say, well, what's really out there.' On 03 Feb he described the reporting line: two other sourcing managers and himself report into a 'director of global sourcing for indirect.' That global indirect sourcing director (unnamed in Salesforce) is the most likely budget owner and sponsor of the exploration. No OpportunityContactRole, task, or MEDDPICC field names this person, so they cannot be asserted as a named stakeholder. Mapping and reaching the global indirect sourcing director, with a business case Damiano can carry up, is the single highest-value gap to close.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are clear from the buyer's own words even though no scorecard is on record. Damiano's stated criteria across both calls are: internal ease of use for a growing team, supplier-side ease of use to reduce vendor friction, advanced and autonomous negotiation capability (he referenced Jaggaer's expressive-feedback and ASO optimizer as the bar), scalability to onboard associates quickly across EMEA and APAC, and flexible taxonomy that respects New Balance's own schema ('New Balance kinda has their own definitions of schema... what Ariba defines things is one of the biggest challenges we have'). Best-in-class fit for the sourcing module is the frame: 'is this what we have best in class? Is it not?' These are prospect-confirmed criteria; what is not yet defined is a formal weighted RFP scoring model, which would surface only if leadership funds the next round.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process the buyer is actually running is a leadership-sponsored market scan, read directly from the call sequence: procurement leadership asked Damiano to survey the sourcing-tool market, Zycus responded to a formal RFI (submitted 06 Mar, acknowledged by Damiano 09 Mar), and delivered a walkthrough demo on 11 Mar. Damiano's own close describes the next step: 'I'll pass it to leadership the findings of this demo, and that's with them to evaluate.' So the process gate is an internal leadership review of RFI plus demo findings, followed by a business case, before any shortlist or budget decision. The chain has stalled at that internal review with no visibility for nearly four months. No formal timeline, no committee, and no decision date have been shared, which is itself the risk: the process is entirely inside New Balance and single-threaded through Damiano.",
+        "sources": ["Avoma demo workshop 11 Mar 2026, Damiano Grillo", "SF activity 09 Mar 2026 (Clari email, Damiano Grillo acknowledging RFI)", "SF Next_Step__c 06 Mar 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics exist yet, which is normal for an early Formal Evaluation that has not reached shortlist or commercials. There is no MSA, SOW, order form, pricing, legal, or InfoSec activity in any field or call. The one adjacent signal is that at New Balance 'contract management lives with the legal group as of today' (Damiano, 03 Feb), so legal is a separate function the deal has not yet touched. Paper process will only become visible after leadership funds a real evaluation and a commercial round begins; the move that would create that visibility is securing the business case and an executive sponsor, not chasing paperwork now.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is well articulated and consistent across both calls, owned by Damiano and his indirect sourcing team. Core pain: Ariba's sourcing module is hard to use internally and for suppliers ('utilizing our sourcing tool today becomes a bit of a pain point and causes friction with our supplier base'), the team does 'a lot of the work outside the tool', negotiations are still 'traditional face to face, potentially dabbling in reverse auctions', and provider support is weak. A second, forward-looking pain is scale: the team is growing across EMEA and APAC and needs a tool that onboards new associates fast. A third is spend-analytics inflexibility, where Ariba cannot match New Balance's custom category schema. What keeps this at confirmed-pain rather than compelling-event is that Damiano twice stressed the org is 'far away' from autonomous sourcing and needs internal maturity and change management first, so the pain is real but not yet urgent enough to force a purchase.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Damiano Grillo (Indirect Category Manager) is a developing champion who has cooled. What developed: he initiated the engagement, sat a formal RFI, drove a substantive 11 Mar demo asking sharp questions on autonomous negotiation, Excel bid-sheet upload, multi-round events, and taxonomy flexibility, and gave positive read-outs ('definitely looks easier to use and more robust than what we have today'). What is missing: he has introduced no other stakeholder, has not shared a draft RFI or internal document, controls no budget, and explicitly defers the decision to leadership ('that's with them to evaluate'). Most critically he has been silent since 11 Mar, roughly 117 days, and never returned the feedback he promised. He is a genuine coach but not yet a mobilizing champion; his access to the budget owner is unconfirmed. Re-engaging him, diagnosing the silence, and co-building the business case so he can champion upward is the path to strengthen this.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo", "SF LastActivityDate 11 Mar 2026 (no buyer touch since)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "SAP Ariba is the incumbent, but the real fight is against status-quo inertia, not a rival vendor. New Balance runs Ariba across P2P (a committed, entrenched global rollout Damiano is explicit about NOT replacing: 'that is a long term commitment on that side') and for the eRFX sourcing module plus spend analytics, and only sourcing and analytics are in play. Damiano's dissatisfaction with Ariba sourcing is clear (ease of use, supplier friction, weak support, inflexible schema, no advanced negotiation), yet he framed the whole effort as 'a very early stage evaluation' driven by curiosity from procurement leadership, and repeatedly said the org is 'far away' and needs internal maturity. Jaggaer surfaces only as Damiano's positive prior-life reference for autonomous sourcing (a benchmark, not an active bidder here). No other vendor (Coupa, GEP, Ivalua, Zip, Keelvar) was named. The wedge over both Ariba and do-nothing is Merlin autonomous negotiation for tail spend plus ease-of-use and flexible taxonomy; the way we win is to make the sourcing-only value undeniable and quantified so leadership funds a move rather than defaulting to the incumbent.",
+        "sources": ["Avoma discovery call 03 Feb 2026, Damiano Grillo", "Avoma demo workshop 11 Mar 2026, Damiano Grillo", "SF Next_Step__c 10 Mar 2026 (ANA stood out as key differentiator)"]
+      }
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 11 Mar sourcing and spend-analytics demo landed well, with Damiano calling it easier to use and more robust than Ariba, yet he handed the findings to leadership and has not responded since.", "tone": "warn"},
+      {"lens": "Competition", "text": "Ariba stays committed on P2P and only the sourcing module is contestable, so the threat is New Balance keeping the status quo and doing nothing, not another vendor.", "tone": "warn"},
+      {"lens": "Commercials", "text": "A business case is the stated gate to advance, but Damiano said the impact is tough to quantify right now and no budget or budget owner is confirmed.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "Procurement leadership sponsored the exploration and a global indirect sourcing director owns the team, but neither has been met and the deal rides entirely on Damiano.", "tone": "warn"}
+    ],
+    "deal_movement": {
+      "summary": "Two substantive calls in Feb and Mar built real interest, then the deal went dark. Correcting the prior record: the RFI response was submitted (06 Mar) and acknowledged by Damiano (09 Mar), and the demo was delivered (11 Mar); it did not fail to happen. Since 11 Mar the only movement is rep-side (health-check call attempts on 12 May, internal stage move to Formal Evaluation on 21 May, forecast edits), not buyer engagement. The ball is with Damiano and New Balance leadership to return demo feedback.",
+      "items": [
+        {"change": "Introductory discovery call held; Ariba sourcing pain and autonomous-negotiation interest surfaced", "date": "2026-02-03"},
+        {"change": "Zycus submitted the sourcing-technology RFI response", "date": "2026-03-06"},
+        {"change": "Damiano acknowledged the RFI submission and confirmed the upcoming demo workshop", "date": "2026-03-09"},
+        {"change": "Demo workshop delivered; ANA and spend analytics well received, Damiano to take findings to leadership", "date": "2026-03-11"},
+        {"change": "Rep logged 'Call Attempted' opportunity-health tasks flagging the prospect had gone cold and no decision maker mapped", "date": "2026-05-12"},
+        {"change": "Internal stage moved Qualified to Formal Evaluation (rep-side, not a buyer event)", "date": "2026-05-21"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba is the incumbent, entrenched on P2P (committed rollout, not being replaced) and under evaluation only for the eRFX sourcing module and spend analytics. The single strongest CURRENT threat is not a rival vendor but status-quo do-nothing: as of 11 Mar 2026 Damiano called this 'a very early stage evaluation' and said New Balance is 'far away' from acting, with no business case funded and no decision date. Jaggaer appears only as Damiano's favourable prior-role reference for autonomous sourcing, a benchmark rather than an active competitor. No other vendor is named in any source.",
+      "competitors": [
+        {"name": "Status quo / do-nothing (keep Ariba for sourcing)", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "It was more of a request that came down from procurement leadership to say, well, what's really out there... this is a very early stage evaluation.", "date": "2026-03-11", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo", "how_we_win": "Quantify the sourcing-only value (negotiation savings on tail spend, onboarding-time and supplier-friction reduction) into a leadership-ready business case, and make the Dec close a forcing function for FY2027 planning."},
+        {"name": "SAP Ariba", "sentiment": "negative", "threat_level": "medium", "status": "incumbent", "quote": "We utilize Ariba today, and we're looking to evaluate what other platforms can do for that space... we're just utilizing Ariba to send out an RFP and collect information, then we're doing a lot of the work outside the tool.", "date": "2026-02-03", "source": "Avoma discovery call 03 Feb 2026 and demo 11 Mar 2026, Damiano Grillo", "how_we_win": "Lead with Merlin autonomous negotiation and drag-and-drop ease of use that Ariba's eRFX lacks, plus flexible taxonomy that respects New Balance's own schema; keep scope to sourcing so the P2P commitment is not a battle."},
+        {"name": "Jaggaer", "sentiment": "positive", "threat_level": "dormant", "status": "faded", "quote": "I know back when I was utilizing Jaggaer, they had expressive feedback capabilities, which was super impactful for our negotiations and drove a lot of value.", "date": "2026-02-03", "source": "Avoma discovery call 03 Feb 2026, Damiano Grillo", "how_we_win": "Reference is Damiano's prior-life experience, not an active bidder; match the expressive-feedback and optimizer capability he valued with Merlin ANA so Zycus becomes the successor, not the challenger."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus fits New Balance's stated sourcing criteria well on product, but is exposed on the readiness and business-case front the buyer keeps raising.",
+      "items": [
+        {"criterion": "Internal and supplier ease of use for a growing global team", "position": "aligned", "quote": "definitely looks easier to use and more robust than what we have today", "date": "2026-03-11", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"criterion": "Advanced / autonomous negotiation capability", "position": "aligned", "quote": "the tailspin ones, the autonomous is interesting, I've never seen anything like it", "date": "2026-03-11", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"criterion": "Flexible taxonomy that respects New Balance's own schema", "position": "aligned", "quote": "New Balance kinda has their own definitions of schema... what Ariba defines things is one of the biggest challenges we have", "date": "2026-03-11", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"criterion": "Organizational readiness and a funded business case to act now", "position": "exposed", "quote": "this is a very early stage evaluation... we're far away from that as an organization", "date": "2026-03-11", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Include Zycus in the formal sourcing-technology RFI", "said_by": "Damiano Grillo", "date": "2026-02-03", "addressed": true, "quote": "we internally would like to do a more formal RFI, and we'd love to have Zycus participate in that", "source": "Avoma discovery call 03 Feb 2026; RFI submitted 06 Mar, acknowledged 09 Mar"},
+        {"requirement": "Deliver a demo of the iSource sourcing module", "said_by": "Damiano Grillo", "date": "2026-02-03", "addressed": true, "quote": "I would love to see a demo of that just for me because I've never had a chance", "source": "Avoma discovery call 03 Feb 2026; demo delivered 11 Mar"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Deliver the value-engineering study to build the business case for leadership", "who": "Zycus", "grounding_quote": "Offered to provide a value engineering study to promote the business case.", "date": "2026-03-06", "due": "2026-07-20", "status": "overdue", "source": "SF Next_Step__c 06 Mar 2026, Richard Hunsinger"},
+          {"deliverable": "Schedule the deeper category-specific demo including the autonomous-sourcing walkthrough Ronit offered", "who": "Zycus", "grounding_quote": "I would love to schedule a demonstration which is a little more in depth... I'll keep aside 15 minutes just to give you a proper walk through.", "date": "2026-03-11", "due": "2026-07-31", "status": "overdue", "source": "Avoma demo workshop 11 Mar 2026, Ronit Vadva"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Return New Balance leadership's feedback and next steps on the RFI and demo", "who": "Buyer", "grounding_quote": "I'll definitely pass it to leadership the findings of this demo... I'll be in touch with any next steps or feedback.", "date": "2026-03-11", "due": "2026-07-13", "status": "overdue", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unnamed", "quote": "It was a request that came down from procurement leadership", "status": "not addressed", "date": "2026-03-11", "gap_type": "knowledge", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"area": "Deal single-threaded on one category manager", "quote": "Damiano Grillo is the only New Balance contact across all calls and activities", "status": "not addressed", "date": "2026-03-11", "gap_type": "knowledge", "source": "SF OpportunityContactRole / activity contacts"},
+        {"area": "No quantified business case", "quote": "It's tough to say quantitative right now", "status": "not addressed", "date": "2026-03-11", "gap_type": "knowledge", "source": "Avoma discovery call 03 Feb 2026, Damiano Grillo"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, dark, single-threaded deal where the buyer's own gate is a business case that reaches leadership; the win-strategy levers all point at restarting motion around the narrow sourcing scope.",
+      "flags": [
+        "Break the single thread: map and reach the global indirect sourcing director who owns the team and budget, because the entire deal currently rests on one category manager who has gone quiet.",
+        "Convert Damiano's qualitative pain into a quantified, leadership-ready value case (tail-spend savings, onboarding-time and supplier-friction reduction), the exact gate he named for advancing.",
+        "Anchor on the sourcing-plus-ANA scope and name the do-nothing risk directly: make Merlin autonomous negotiation and flexible taxonomy the undeniable wedge Ariba cannot match, so status quo becomes the costly option."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Damiano Grillo", "title": "Indirect Category Manager", "role": "Champion", "last_contact_date": "2026-03-11", "sentiment": "positive but cooling", "risk": "Sole engaged contact, silent ~117 days, no budget authority and defers to leadership; advocacy is real but has not mobilized upward.", "source": "Avoma calls 03 Feb and 11 Mar 2026; SF activity contact"},
+        {"name": "Richard Hunsinger", "title": "Regional Director, Zycus", "role": "Influencer", "last_contact_date": "2026-03-11", "sentiment": "positive", "risk": "Zycus deal owner; no logged buyer follow-up since the demo, must personally restart the relationship.", "source": "Avoma calls 03 Feb and 11 Mar 2026; SF Owner.Name"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Damiano Grillo is a developing champion who has cooled to at-risk. He initiated the deal, sat the RFI, drove the 11 Mar demo with sharp questions, and gave positive read-outs, but he has introduced no other stakeholder, holds no budget, defers the decision to leadership, and has been silent for nearly four months without returning the feedback he promised.",
+      "champion": "Damiano Grillo, Indirect Category Manager",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Avoma calls 03 Feb and 11 Mar 2026; SF LastActivityDate 11 Mar 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin ANA (autonomous negotiation) and Merlin Insight were positioned strongly on 11 Mar and drew genuine curiosity ('the autonomous is interesting, I've never seen anything like it'), but Damiano capped the appetite by saying New Balance is organizationally far from autonomous sourcing today, so the AI story is landing as future vision, not near-term buy.",
+      "score": "Moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 5.2 (Moderate) matches the calls: real interest in autonomous negotiation and AI-generated RFP content, but repeatedly tempered by Damiano saying the org needs process maturity and change management before it can use autonomous capabilities. AI is a differentiator here, not yet a driver.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Buyer repeatedly says New Balance is 'far away' from autonomous sourcing, runs relationship-driven intake, and needs internal maturity first; the primary threat is inertia and no-decision, not a rival.", "first_raised": "2026-02-03", "date": "2026-03-11", "status": "open", "source": "Avoma calls 03 Feb and 11 Mar 2026, Damiano Grillo"},
+        {"category": "budget", "detail": "A business case is required and no budget is allocated; Damiano could not quantify impact ('tough to say quantitative right now').", "first_raised": "2026-03-11", "date": "2026-03-11", "status": "open", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"category": "executive_alignment", "detail": "No economic buyer or executive sponsor mapped; the evaluation is a leadership request but leadership has never been met, and the deal is single-threaded on Damiano.", "first_raised": "2026-03-11", "date": "2026-03-11", "status": "open", "source": "Avoma demo workshop 11 Mar 2026, Damiano Grillo"},
+        {"category": "timeline", "detail": "No buyer-side activity since 11 Mar; the promised leadership feedback never arrived, leaving the Dec close date unsupported.", "first_raised": "2026-05-12", "date": "2026-05-12", "status": "open", "source": "SF LastActivityDate; opportunity-health tasks 12 May 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement has cooled to dark. Two strong calls in Feb and Mar, then ~117 days of buyer silence with only rep-side health-check attempts and internal edits since.",
+      "cooling": true,
+      "items": [
+        "Zero buyer-initiated contact since the 11 Mar demo.",
+        "Promised leadership feedback (11 Mar) never returned.",
+        "12 May health tasks explicitly flag prospect gone cold and decision maker not identified."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Richard emails Damiano to surface leadership's read on the RFI and demo and revive the sourcing evaluation.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Damiano promised feedback on 11 Mar and has been silent ~117 days.", "trigger_date": "2026-03-11", "act_by": "2026-07-13", "expected_effect": "Reopens the dormant relationship and tests whether the evaluation is alive or dead before writing off the deal."},
+        {"rank": 2, "action": "Co-author a quantified sourcing value case with Damiano for him to take to procurement leadership.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Damiano said a business case is required and could not quantify impact himself.", "trigger_date": "2026-03-11", "act_by": "2026-07-22", "expected_effect": "Gives the champion the leadership-ready artifact he needs to unblock budget and a decision date."},
+        {"rank": 3, "action": "Deliver the offered value-engineering study framed on tail-spend negotiation savings and onboarding time.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Rick offered a value-engineering study in Next_Step on 06 Mar that was never delivered.", "trigger_date": "2026-03-06", "act_by": "2026-07-31", "expected_effect": "Turns qualitative pain into numbers and makes doing nothing the visibly costly choice."},
+        {"rank": 4, "action": "Ask Damiano to introduce the global indirect sourcing director to map the budget owner.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Evaluation was sponsored by procurement leadership but no economic buyer is mapped or met.", "trigger_date": "2026-03-11", "act_by": "2026-08-05", "expected_effect": "Breaks the single-thread and puts the value case in front of the person who can fund it."}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": "iSource (sourcing) plus ANA autonomous negotiation, sourcing module only", "to": "iSource (sourcing) plus ANA autonomous negotiation, sourcing module only", "detail": "Scope has been narrow and sourcing-focused since creation; buyer explicitly excludes P2P, intake, and contract management. Amount rose 100k to 250k on 04 Feb, no reduction."},
+    "deal_scores_evidence": {
+      "summary": "A strong 11 Mar sourcing demo won Damiano's interest, but the deal is now dark for nearly four months with no funded business case, no named budget owner, and the org itself saying it is far from ready, so the real contest is against status-quo inertia, not a rival.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This sits weak: the only engaged contact, category manager Damiano Grillo, went silent after the 11 Mar demo and the evaluation is a leadership curiosity request with no budget behind it."},
+          {"tone": "good", "text": "Product fit is genuinely strong: Damiano called Zycus sourcing and spend analytics easier to use and more robust than Ariba and was intrigued by Merlin autonomous negotiation (Avoma, 11 Mar)."},
+          {"tone": "warn", "text": "No economic buyer is mapped; the initiative came down from unnamed procurement leadership Zycus has never met, so there is no one funded to say yes (Avoma, 11 Mar)."},
+          {"tone": "warn", "text": "The buyer capped urgency himself, saying New Balance is far away from autonomous capability and needs process maturity first, which points at a no-decision outcome (Avoma, 11 Mar)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-side activity since 11 Mar; the promised leadership feedback never came and only rep-side health-check calls were logged on 12 May."},
+          {"tone": "warn", "text": "The 21 May stage move to Formal Evaluation was an internal edit by the rep, not a buyer milestone, so it overstates real progress."},
+          {"tone": "good", "text": "Earlier momentum was real: RFI submitted 06 Mar, acknowledged by Damiano 09 Mar, and a full demo delivered 11 Mar."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Damiano committed only to pass findings to leadership and be in touch, then never did, so there is no forward commitment on record."},
+          {"tone": "warn", "text": "No dates, no next meeting requested, and no Zycus-specific next step were secured on 11 Mar."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Status-quo inertia is the primary risk: Ariba stays for P2P, the org is not ready, and doing nothing is the default path (Avoma, 11 Mar)."},
+          {"tone": "warn", "text": "Single-thread and no economic buyer mean one silent contact can stall the deal indefinitely, which is exactly what has happened for ~117 days."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.6, "evidence": "No forward commitment; promised feedback never returned; dark ~117 days."},
+        "deal_momentum": {"strength": -0.7, "evidence": "No buyer activity since 11 Mar; only rep-side health tasks and internal edits."},
+        "deal_risk": {"strength": -0.6, "evidence": "Do-nothing inertia, no EB, single-thread, org self-described as far from ready."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Positive product read ('easier to use and more robust than what we have today', 11 Mar) but no decisive lean and no Zycus-specific next step; he deferred entirely to leadership and went silent."},
+    "business_case": {"status": "partial", "evidence": "Clear qualitative pain (ease of use, supplier friction, scaling, manual negotiation) but no numbers; Damiano said 'it's tough to say quantitative right now' (11 Mar)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "expansion_context": {"prior_closed_won": false, "note": "Net-new business (Type set to New Business 03 Feb 2026); no sibling Closed-Won on New Balance, so executive and stakeholder access is NOT inherited and the unmapped economic buyer is a genuine early-stage gap."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 2,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history full; contact roles + tasks reviewed",
+    "avoma_attendees": ["Damiano Grillo"],
+    "gaps": [
+      "Economic buyer / budget owner unnamed: evaluation sponsored by 'procurement leadership' and a global indirect sourcing director, but no named contact in Salesforce.",
+      "Deal single-threaded: Damiano Grillo is the only buyer contact across all calls, tasks, and contact roles.",
+      "No buyer engagement since 11 Mar 2026 (~117 days); latest evidence is four months old, lowering recency confidence."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

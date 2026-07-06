@@ -1,0 +1,677 @@
+{
+  "opp_id": "006P700000YnXX7",
+  "hard": {
+    "opp_id": "006P700000YnXX7",
+    "opp_name": "Seminole County_P2P_Opp - May '26",
+    "account_name": "Seminole County Government",
+    "account_industry": "Federal",
+    "billing_country": "United States",
+    "owner_name": "Grace Kim",
+    "owner_title": null,
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2026-10-13",
+    "days_to_close": 99,
+    "created_date": "2026-05-28T15:17:44.000+0000",
+    "qualified_date": "2026-05-28",
+    "last_activity_date": null,
+    "last_modified_date": "2026-06-18T08:59:13.000+0000",
+    "products": "ML iAnalyze;iSupplier;eProcurement;Merlin",
+    "next_step": "Align with Gladys on what Seminole County wants to improve across purchasing, supplier access, and spend visibility. Review the current request to PO process and identify where approvals, controls, and user adoption need improvement. Understand how suppliers currently register, update information, share documents, and communicate with the county. Define the exact reporting views needed across spend, suppliers, categories, compliance, and department level activity. Run a tailored walkthrough showing how eProcurement, iSupplier,",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "* Seminole County needs a structured procurement platform to \"improve request handling, supplier access, and spend visibility\" - a foundational public-sector procurement requirement.\n* The driver is structuring the request-to-PO process and reporting, not AI capability.\n* Next step is to \"review current request to PO process and define reporting views\"; Merlin and ML iAnalyze are in scope but AI is not part of the stated requirement. Qualified at 10%.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YnXX7/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "Created 28 May, this inbound P2P deal never started: no buyer conversation has taken place, the only named contact (Gladys Marrozos) has not answered any outreach, and the 13 Oct close is a placeholder with no discovery, pain, budget owner, or procurement path established.",
+      "math": "99 days to close (13 Oct 2026); created 28 May 2026, 39 days ago. Stage moved Initial Interest to Qualified on 28 May and has not moved since. Zero time-in-stage progression: no submission dates, no field-history movement beyond creation, and LastActivityDate is null across the full 39-day lifecycle. Five rep call attempts logged 29 May went unanswered. A US county-government P2P purchase must still run discovery, likely a formal RFP, vendor shortlisting, evaluation, InfoSec, funding approval, and contracting, none of which has begun, so 99 days is not credible.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "LastActivityDate is null: no logged buyer activity across the 39-day lifecycle (SF LastActivityDate)",
+        "No Avoma calls exist for this opportunity via opp, account, or attendee-email discovery (Avoma discovery, 06 Jul 2026)",
+        "Field history shows only the 28 May Initial Interest to Qualified flip and a 01 Jun Next_Step None-to-None edit; no Stage, Amount, CloseDate, or Forecast movement since (OpportunityFieldHistory)",
+        "All nine 29 May tasks are 'Call Attempted' Opportunity-Health items, including 'Prospect's gone cold - no inbound since last 14 days' and 'Decision Maker is not identified' (SF Tasks 29 May)",
+        "Single contact role, Gladys Marrozos, with no engagement date and no call history (OpportunityContactRole)",
+        "Next_Step__c carries the original discovery agenda, unexecuted (SF Next_Step__c)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No business problem or quantified impact has been articulated by the buyer, because no discovery conversation has occurred since the deal was created 28 May. The only signal is the rep-authored Next_Step__c and AIS_Why__c, which infer a foundational public-sector need to 'improve request handling, supplier access, and spend visibility' and to structure the request-to-PO process, but no cost, headcount, cycle-time, or savings target has been stated by anyone at Seminole County. Customer_Business_Problem__c, Business_Objectives__c, and Value_to_Customer__c are all empty. The move is to secure a live discovery call with Gladys Marrozos and quantify the request-to-PO and spend-visibility pain in the county's own numbers.",
+        "sources": [
+          "SF Next_Step__c (discovery agenda, unexecuted)",
+          "SF AIS_Why__c (Negative, 3.0)",
+          "No Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c (SOQL Q3)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged. Gladys Marrozos is tagged Decision Maker but her title is the deal owner's manager (Manager), a procurement-operations manager rather than the budget authority for a $100k platform investment in county government. No call, task, or field (Who_will_approve_budget__c, Purchase_approvals_Required_from__c, Does_the_Buyer_need_approval__c are all empty) shows who controls the funding, and there is no conversation to infer it from. A US county P2P purchase of this size typically needs Finance and IT sign-off and possibly Board or County-Administrator approval on a fiscal cycle. Identifying and reaching the budget owner is a ranked move.",
+        "sources": [
+          "OpportunityContactRole: Gladys Marrozos, Decision Maker",
+          "No Who_will_approve_budget__c / Purchase_approvals_Required_from__c / Does_the_Buyer_need_approval__c (SOQL Q3)",
+          "Task 29 May: 'Decision Maker is not identified'"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The county's evaluation criteria are unknown because no discovery, demo, RFI, or workshop has taken place. Business_Requirements__c, Top_Challenges_Priorities__c, and AI_Needs_in_RFP_Rating__c are unpopulated, and there is no call content to read criteria from. The only inferred priorities are those in the rep's Next_Step__c agenda (approvals, controls, user adoption, supplier registration, and reporting views across spend, suppliers, categories, compliance, and department activity), which are hypotheses, not confirmed buyer criteria. Confirming these against the county's stated requirements is the first discovery objective.",
+        "sources": [
+          "SF Next_Step__c (inferred agenda only)",
+          "No Business_Requirements__c / Top_Challenges_Priorities__c / AI_Needs_in_RFP_Rating__c (SOQL Q3)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no observable decision process because there has been no call sequence to read it from: no meetings, no stakeholders joining or escalating, no approval chain surfaced. What_is_the_decision_process__c, Multiple_approvals__c, and Does_the_Buyer_need_approval__c are empty. For a Florida county government the likely path is a formal solicitation (RFP or piggyback contract) with cross-departmental review and possibly Board approval, but none of this has been confirmed with the buyer. Mapping the county's procurement path and approval chain is a required early move.",
+        "sources": [
+          "No What_is_the_decision_process__c / Multiple_approvals__c (SOQL Q3)",
+          "OpportunityFieldHistory (no movement since 28 May)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are entirely unknown. No MSA, order form, SOW, legal, or InfoSec discussion exists on any call or field, and Current_Contract_Expiration__c is empty, so there is no incumbent-renewal forcing function. County technology purchases usually require formal procurement (solicitation or cooperative contract, vendor registration, insurance certificates, W-9, and possibly Board approval), none of which is scoped. Visibility here starts only once a first buyer conversation establishes whether the county will buy via RFP, an existing cooperative vehicle, or sole source.",
+        "sources": [
+          "No Current_Contract_Expiration__c (SOQL Q2)",
+          "No contracting/legal/InfoSec Tasks (Task query)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific operational or financial pain has been voiced by the relevant stakeholder inferred pain, structuring the request-to-PO process and improving supplier access and spend visibility, comes only from the rep's Next_Step__c and AIS_Why__c, not from a buyer statement, and Pain_points_in_the_current_solution__c, Compelling_Event__c, and What_if_this_is_not_done__c are all empty. The pain owner is also unmapped: whether Gladys owns the pain or is a messenger for Finance, IT, or county leadership is unknown. Validating the pain and its owner directly with the county is prerequisite to any business case.",
+        "sources": [
+          "SF Next_Step__c / AIS_Why__c (inferred pain)",
+          "No Pain_points_in_the_current_solution__c / Compelling_Event__c / What_if_this_is_not_done__c (SOQL Q3)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Gladys Marrozos is the sole contact and is tagged Decision Maker, but there is zero evidence of engagement, let alone advocacy: no call, no email exchange, no task completion, and five 'Call Attempted' logs on 29 May that went unanswered. There is no sign she has introduced other stakeholders, shared internal context, or is aware Zycus is pursuing this. The deal is single-threaded into a non-responsive contact; the first move is for Grace Kim to convert Gladys from a name on the record into an engaged coach through a live discovery conversation.",
+        "sources": [
+          "OpportunityContactRole: Gladys Marrozos, Decision Maker (no engagement date)",
+          "SF Tasks 29 May (five 'Call Attempted', 'Prospect's gone cold')",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive picture is unknown because discovery never happened, not because the deal is confirmed sole-source. Competitors__c and the free-text competition fields (How_are_you_addressing_your_problem_toda__c, Existing_vendor__c, Replacing_What__c, Why_not_Zycus__c) are all empty, and there is no call content naming a rival or an incumbent. For a US county-government P2P purchase this is likely to become a formal multi-vendor evaluation (or a piggyback off an existing cooperative contract), so what the county runs today and who else they may consider is a first-call discovery objective, not a settled advantage.",
+        "sources": [
+          "No Competitors__c / Existing_vendor__c / Replacing_What__c / How_are_you_addressing_your_problem_toda__c (SOQL Q3)",
+          "No competitive Tasks (Task query)",
+          "No Avoma calls (discovery 06 Jul 2026)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "No genuine buyer movement since creation. The record shows only the 28 May Initial-Interest-to-Qualified stage flip by Grace Kim, a 01 Jun no-op Next_Step edit, and a Type-to-New-Business change on 29 May; every 29 May task is a rep-side 'Call Attempted' health flag, and no buyer has responded on any channel through 06 Jul.",
+      "items": [
+        {
+          "change": "Stage moved Initial Interest to Qualified (rep-set, no qualification call behind it)",
+          "date": "2026-05-28"
+        },
+        {
+          "change": "Type set to New Business",
+          "date": "2026-05-29"
+        },
+        {
+          "change": "Nine 'Call Attempted' Opportunity-Health tasks logged; none connected",
+          "date": "2026-05-29"
+        },
+        {
+          "change": "Next_Step__c edited None-to-None; discovery agenda still unexecuted",
+          "date": "2026-06-01"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitive picture exists yet because no discovery conversation has happened. As of 06 Jul it is unknown what Seminole County runs today, whether this becomes a formal multi-vendor RFP or a cooperative-contract piggyback, and who else may be evaluated. This is an information gap to close on the first call, not a sole-source advantage; treating it as 'no competition' would be a misread.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "The county's expectations are inferred only from the rep's Next_Step__c agenda (structuring request-to-PO, supplier self-service, and cross-category reporting) and have not been confirmed by any buyer statement. AIS is Negative because the stated driver is process structuring and reporting, not AI, so the Merlin and ML iAnalyze content is exposed unless the county later expresses AI appetite.",
+      "items": [
+        {
+          "criterion": "Structure the request-to-PO process (approvals, controls, adoption)",
+          "position": "exposed",
+          "quote": "Review the current request to PO process and identify where approvals, controls, and user adoption need improvement",
+          "date": "2026-05-28",
+          "source": "SF Next_Step__c (rep-inferred, unconfirmed by buyer)"
+        },
+        {
+          "criterion": "Supplier self-service and spend/compliance reporting views",
+          "position": "exposed",
+          "quote": "Define the exact reporting views needed across spend, suppliers, categories, compliance, and department level activity",
+          "date": "2026-05-28",
+          "source": "SF Next_Step__c (rep-inferred, unconfirmed by buyer)"
+        },
+        {
+          "criterion": "AI / Merlin capability",
+          "position": "exposed",
+          "quote": "The driver is structuring the request-to-PO process and reporting, not AI capability",
+          "date": "2026-05-28",
+          "source": "SF AIS_Why__c (Negative)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "No buyer engagement",
+          "quote": "Prospect's gone cold ? No inbound since last 14 days",
+          "status": "not addressed",
+          "date": "2026-05-29",
+          "gap_type": "knowledge",
+          "source": "SF Task 29 May"
+        },
+        {
+          "area": "Economic buyer / budget owner unmapped",
+          "quote": "Decision Maker is not identified",
+          "status": "not addressed",
+          "date": "2026-05-29",
+          "gap_type": "knowledge",
+          "source": "SF Task 29 May + OpportunityContactRole"
+        },
+        {
+          "area": "No confirmed pain or business case",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "No Customer_Business_Problem__c / Avoma calls"
+        },
+        {
+          "area": "Competitive landscape and procurement path unknown",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "No Competitors__c / Existing_vendor__c / Avoma calls"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a cold, single-threaded early deal that never got a first conversation; the win-strategy priorities are to restart engagement, break single-thread into Finance and IT, and reframe the value away from AI.",
+      "flags": [
+        "Re-engage the buyer first: Gladys Marrozos has ignored five 29 May call attempts, so a fresh owner-led outreach with a value-specific reason to meet is the only thing that creates signal.",
+        "Break single-thread before demoing: only Gladys is mapped and unengaged, so identify and reach the Finance budget owner and an IT stakeholder to find real power for a $100k county purchase.",
+        "Lead with request-to-PO structuring value, not Merlin: AIS is Negative because the county's driver is process and reporting, so an AI-forward pitch misfires."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Gladys Marrozos",
+          "_source": "sfdc_contact_role",
+          "title": "Lead Procurement Administrator (Manager)",
+          "email": "gmarrozos@seminolecountyfl.gov",
+          "role": "Decision Maker",
+          "risk": "Single-threaded dependency: sole mapped contact, tagged Decision Maker, but has not responded to any outreach since the deal was created 28 May. No advocacy and no confirmed budget authority.",
+          "sentiment": "unknown",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion exists. Gladys Marrozos is the only contact and is tagged Decision Maker, but there is zero engagement (no calls, no emails, no task completions) since 28 May, so there is no evidence of advocacy or internal selling. The deal is single-threaded into a non-responsive contact.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "OpportunityContactRole (Gladys Marrozos, Decision Maker, no engagement); SF Tasks 29 May; no Avoma calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is not landing and should not lead. AIS is Negative (3.0) because the county's stated driver is structuring the request-to-PO process and reporting, not AI, yet Merlin and ML iAnalyze are in the product scope. Until the buyer expresses AI appetite, the Merlin/I2O story is over-positioned relative to the actual need.",
+      "score": "3.0 (Negative)",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Status__c is Negative at 3.0; AIS_Why__c states the driver is process structuring and reporting, not AI capability. No buyer call exists to corroborate or revise this, so the field stands as the ground truth: low AI appetite on the stated need.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer or budget owner mapped for a $100k county purchase; only a procurement-operations manager is on record.",
+          "first_raised": "2026-05-29",
+          "date": "2026-05-29",
+          "status": "open",
+          "source": "SF Task 29 May 'Decision Maker is not identified' + OpportunityContactRole"
+        },
+        {
+          "category": "timeline",
+          "detail": "13 Oct close has no forcing function and no discovery behind it; the date is an internal placeholder.",
+          "first_raised": "2026-05-28",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF CloseDate + OpportunityFieldHistory (no movement)"
+        },
+        {
+          "category": "political",
+          "detail": "US county-government purchase will likely require a formal solicitation or cooperative contract and cross-departmental funding approval that is not yet scoped.",
+          "first_raised": "2026-07-06",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "Account.Industry Federal + no What_is_the_decision_process__c"
+        },
+        {
+          "category": "budget",
+          "detail": "No budget conversation has occurred; funding source and fiscal-cycle timing are unknown.",
+          "first_raised": "2026-07-06",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "No Who_will_approve_budget__c / Avoma calls"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: no two-way buyer contact on any channel since creation, an unanswered 29 May outreach batch, and a health flag that the prospect had already gone cold. This is a no-decision risk, not a competitive loss.",
+      "cooling": true,
+      "items": [
+        "No inbound from Seminole County since before 29 May (SF Task 29 May)",
+        "Five rep call attempts on 29 May, none connected (SF Tasks)",
+        "LastActivityDate null across the full lifecycle (SF)"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Grace Kim emails and calls Gladys Marrozos to book a 30-minute request-to-PO discovery.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Five 'Call Attempted' health tasks went unanswered and the prospect was flagged cold; the owner has not yet landed a live conversation.",
+          "trigger_date": "2026-05-29",
+          "act_by": "2026-07-13",
+          "expected_effect": "Creates the first real signal on a dark deal; without a live call there is no path to close."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Gladys for, or independently identify, the Finance budget owner and an IT stakeholder to multi-thread.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Only Gladys is mapped and no economic buyer is identified for a $100k county spend.",
+          "trigger_date": "2026-05-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Breaks single-thread and surfaces real budget authority, without which the deal cannot advance past discovery."
+        },
+        {
+          "rank": 3,
+          "action": "In the discovery call, confirm the county's procurement path, funding cycle, and realistic decision timeline.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "13 Oct close has no forcing function and no procurement process is documented.",
+          "trigger_date": "2026-05-28",
+          "act_by": "2026-08-05",
+          "expected_effect": "Establishes whether an RFP or cooperative contract applies and resets the forecast to an evidence-based date."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A 39-day-old inbound P2P deal that never started: zero buyer engagement, no discovery call, single-threaded to a Decision Maker (Gladys Marrozos) who has not answered any outreach, an AI-Negative fit, and a placeholder 13 Oct close with no procurement path.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "There is nothing yet proving the county will buy: created 28 May, the deal has no discovery call, no confirmed pain, no budget owner, and no competitive or procurement picture (SF, no activity through 06 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "It is single-threaded into Gladys Marrozos (Lead Procurement Administrator, Decision Maker) who has not answered any of the five call attempts logged 29 May, so today there is no path forward (SF Tasks 29 May)."
+          },
+          {
+            "tone": "warn",
+            "text": "AIS is Negative (3.0): the stated driver is structuring request-to-PO and reporting, not AI, so the Merlin and ML iAnalyze scope is over-weighted and the value story is unproven (SF AIS_Why__c)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "No movement since the 28 May stage flip to Qualified; Next_Step__c still holds the original unexecuted discovery agenda and a 01 Jun edit was a no-op (SF field history 28 May to 01 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "No buyer-named dates, no requested meeting, and no commercial or security discussion; the only activity is rep-side call attempts that went unanswered (SF Tasks 29 May)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "The county has committed nothing: no call taken, no document requested, no timeline shared, so the $100k and 13 Oct close are internal placeholders (SF, 06 Jul)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "The dominant risk is a no-decision: an inbound that went cold before any two-way conversation, with the health system already flagging 'prospect gone cold, no inbound in 14 days' on 29 May (SF Task 29 May)."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer is mapped for a $100k public-sector spend that will likely need a formal RFP and cross-departmental funding approval (SF OpportunityContactRole, only Gladys)."
+          }
+        ]
+      },
+      "factors": {
+        "seniority_rising": {
+          "strength": -1,
+          "evidence": "No senior stakeholder has joined; only a procurement-operations manager is on record and unengaged (SF)."
+        },
+        "customer_commitment": {
+          "strength": -1,
+          "evidence": "No buyer-owned commitment of any kind since 28 May creation (SF)."
+        },
+        "no_decision_risk": {
+          "strength": -1,
+          "evidence": "Cold inbound, five unanswered call attempts, health-flagged as gone cold (SF Task 29 May)."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer conversation has occurred; the county has expressed no preference or Zycus-specific interest since creation (SF, 06 Jul 2026)."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, or quantified impact discussed; the inferred need in Next_Step__c/AIS_Why__c is unconfirmed by any buyer statement."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 3.6,
+      "mom": 50.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "No buyer conversation has ever happened; five call attempts on 29 May went unanswered and the prospect was flagged cold, so there is no engagement to build on.",
+        "tone": "crit"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "The account is single-threaded to Gladys Marrozos, the procurement administrator, and we have never actually engaged her, with no Finance or IT contact mapped.",
+        "tone": "crit"
+      },
+      {
+        "lens": "Competition",
+        "text": "There is no competitive read because discovery never ran; whether this becomes a formal county RFP or a cooperative-contract piggyback is unknown as of 06 Jul.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The $100k value and 13 Oct close are internal placeholders with no budget owner confirmed and no funding-cycle discussion.",
+        "tone": "warn"
+      }
+    ],
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 3.6,
+        "deal_momentum": 50.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 16.8,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 3.6,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -14.4,
+        "ceiling": 30.0,
+        "momentum_adj": 0.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 50.0,
+        "pre_decay": 50.0,
+        "decay_note": null,
+        "contributions": []
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 16.8,
+        "contributions": [
+          {
+            "factor": "low_buyer_intent",
+            "points": 16.8,
+            "evidence": "Verdict 'Off Track' \u2014 weak forward intent."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 14.3,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 14.3,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 4 reflects a weak position: preference strength -0.50 (weight 20). Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum is flat at 50: no forward or backward motion was observed.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 17 is driven by Verdict 'Off Track' \u2014 weak forward intent. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (4), nudged by commitment 8 and momentum 50, and dragged by risk 17. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 1 of 7 evidence dimensions seen (engagement). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Seminole County Government \u2014 Qualified \u00b7 $100K \u00b7 closes 13 Oct",
+        "intro": "A 39-day-old inbound P2P deal that never started; zero buyer engagement, no discovery call, single-threaded to a Decision Maker (Gladys Marrozos) who has not answered any outreach, an AI-Negative fit, and a placeholder 13 Oct close with no procurement path",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 4,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "There is nothing yet proving the county will buy; created 28 May, the deal has no discovery call, no confirmed pain, no budget owner, and no competitive or procurement picture (SF, no activity through 06 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "It is single-threaded into Gladys Marrozos (Lead Procurement Administrator, Decision Maker) who has not answered any of the five call attempts logged 29 May, so today there is no path forward (SF Tasks 29 May)"
+              },
+              {
+                "tone": "warn",
+                "text": "AIS is Negative (3.0); the stated driver is structuring request-to-PO and reporting, not AI, so the Merlin and ML iAnalyze scope is over-weighted and the value story is unproven (SF AIS_Why__c)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 50,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No movement since the 28 May stage flip to Qualified; Next_Step__c still holds the original unexecuted discovery agenda and a 01 Jun edit was a no-op (SF field history 28 May to 01 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "No buyer-named dates, no requested meeting, and no commercial or security discussion; the only activity is rep-side call attempts that went unanswered (SF Tasks 29 May)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 17,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The dominant risk is a no-decision; an inbound that went cold before any two-way conversation, with the health system already flagging 'prospect gone cold, no inbound in 14 days' on 29 May (SF Task 29 May)"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer is mapped for a $100k public-sector spend that will likely need a formal RFP and cross-departmental funding approval (SF OpportunityContactRole, only Gladys)"
+              }
+            ],
+            "footer": "Competitive picture: No competitive picture exists yet because no discovery conversation has happened."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The county has committed nothing; no call taken, no document requested, no timeline shared, so the $100k and 13 Oct close are internal placeholders (SF, 06 Jul)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Grace Kim emails and calls Gladys Marrozos to book a 30-minute request-to-PO discovery. (by 13 Jul)",
+              "Ask Gladys for, or independently identify, the Finance budget owner and an IT stakeholder to multi-thread. (by 20 Jul)",
+              "In the discovery call, confirm the county's procurement path, funding cycle, and realistic decision timeline. (by 5 Aug)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "2026-05-28 to 2026-07-06",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls exist after opp, account, and attendee-email (gmarrozos@seminolecountyfl.gov) discovery, so there is no buyer voice on pain, criteria, competition, or process.",
+      "No economic buyer or budget owner identified in Salesforce or any call.",
+      "No competitive or incumbent-vendor information in any field or call.",
+      "No confirmed pain, business case, or quantified metrics from the buyer."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:26:19"
+}

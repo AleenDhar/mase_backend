@@ -1,0 +1,291 @@
+{
+  "opp_id": "006P700000aEbPZIA0",
+  "hard": {
+    "opp_id": "006P700000aEbPZIA0",
+    "opp_name": "Marquardt S2P",
+    "account_name": "Marquardt Management SE",
+    "account_industry": "Auto & Transport",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-30",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-01",
+    "products": "iContract;iSource;iSupplier;eProcurement;Merlin;ANA",
+    "next_step": "Secure a discovery/demo call focused on Marquardt's €60M indirect spend, digitalization roadmap, automation objectives, and evaluation criteria for replacing Jaggaer. Position Zycus as an AI-first procurement transformation platform rather than a like-for-like S2P replacement, demonstrating how Merlin AI and ANA can deliver additional savings, automate tactical sourcing, and improve procurement efficiency.",
+    "ais_score": null,
+    "ais_status": "",
+    "ais_why": "",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Jaggaer",
+    "primary_competitor": "Jaggaer",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aEbPZIA0/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Fresh Jaggaer-displacement deal that has not made buyer contact yet: created 30 Jun 2026, all eight rep call attempts on 30 Jun went unanswered, and no buyer has ever engaged. The 30 Jun 2027 close is a placeholder a full year out, so this is not a date-risk deal, it is a deal that still has to START, and the single move that matters is getting Dirk Fischbach a first live conversation with Ralf Vorwalder.",
+      "math": "Today 06 Jul 2026. Days to close: 359 (close 30 Jun 2027). Time in Qualified stage: 6 days (Qualified 30 Jun 2026). No stage progression since creation. No LastActivityDate on record and zero Avoma calls discovered (opp+account+attendee search returned no meetings), so there is no verified two-way buyer engagement. Runway is ample (a year), so the number is not at date risk; the constraint is that discovery has not begun and rep outreach on 30 Jun 2026 got no reply.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "No buyer engagement yet: zero Avoma calls found via opp+account+attendee search and no LastActivityDate in Salesforce. The eight tasks on 30 Jun 2026 are all 'Call Attempted' (rep tried, no connection), not completed buyer conversations.",
+        "Deal is 6 days old (created 30 Jun 2026, Qualified same day). This is a not-yet-started deal, not a 60-day-cold deal, so the honest read is Slowing at the starting line, not Off Track.",
+        "Jaggaer is the incumbent Marquardt wants to replace (Next_Step__c, 01 Jul 2026: 'evaluation criteria for replacing Jaggaer'). Why they are leaving Jaggaer, and whether any other vendor is in the frame, is unknown.",
+        "Three purchasing/supply-chain stakeholders are tagged (Ralf Vorwalder VP Corporate Purchasing, Christian Stern Decision Maker, Ciprian Pomarac Head of Supply Chain) but none has been contacted; no champion and no confirmed economic buyer.",
+        "Close date 30 Jun 2027 has no buyer-anchored forcing function on record (no Jaggaer contract-expiration date, no budget-cycle or project deadline), so it is a placeholder rather than a real timeline.",
+        "Product scope (iContract, iSource, iSupplier, eProcurement, Merlin, ANA) and the €60M indirect-spend figure are Zycus-asserted in Next_Step__c / Products__c and have never been validated with the buyer."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists yet. Next_Step__c (01 Jul 2026) names '€60M indirect spend' as the addressable base and 'automation objectives' as the theme, but this is a Zycus-authored plan, not a buyer statement: there is no baseline (spend under management, maverick-spend %, sourcing cycle time, supplier count) and no target outcome or ROI the buyer has confirmed. With zero calls and no Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c evidence, the financial impact of leaving Jaggaer is entirely unarticulated. The move is to elicit, on a first discovery call, Marquardt's current indirect-spend baseline and the specific savings, cycle-time and automation targets that justify a platform switch.",
+        "sources": ["SF Next_Step__c (01 Jul 2026)", "Products__c", "No Avoma calls; no LastActivityDate"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is confirmed and none has been engaged. No OpportunityContactRole carries an Economic Buyer or Executive Sponsor tag, and the budget/approval fields are silent. The org-chart clue is Ralf Vorwalder, VP Corporate Purchasing (primary contact, Evaluator role) whose seniority makes him the most likely budget owner or the direct report of the CFO/CPO who would sign a €150k S2P platform, but there is no call or email in which anyone showed commercial authority, so this stays inference, not fact. The move is to confirm on the first conversation who owns the procurement-transformation budget and whether Vorwalder signs or escalates to a CFO/CPO.",
+        "sources": ["SF OpportunityContactRole (Ralf Vorwalder, VP Corporate Purchasing, Evaluator, primary)", "Budget/approval fields blank; no calls"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The buyer's evaluation criteria are unknown. Next_Step__c references 'evaluation criteria for replacing Jaggaer' as something still to be discovered, and no ShoeFit/BRD, RFP round, use-case review or workshop has happened, so nothing tells us what Marquardt will weigh (AI/automation depth, indirect-spend fit, integration to their ERP, price, implementation speed). Because this is a Jaggaer displacement, the wedge criteria are almost certainly framed against Jaggaer's gaps, but those gaps have not been stated. The move is to run structured discovery that surfaces the ranked decision criteria and where Jaggaer falls short, then map Merlin AI and ANA to the top two or three.",
+        "sources": ["SF Next_Step__c (01 Jul 2026)", "No Avoma calls; no Business_Requirements__c evidence"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is not mapped. There is no call sequence to read (zero meetings), no stated evaluation stages, and no approval chain on record (Does_the_Buyer_need_approval__c / Purchase_approvals_Required_from__c not populated). Three named stakeholders sit across corporate purchasing and supply chain, which hints at a committee spanning indirect procurement and supply chain, but who leads the evaluation, who joins at commercials, and who signs is unknown. One of the 30 Jun 2026 Opportunity-Health tasks explicitly flags 'Get clarity on the evaluation stages and influence the process'. The move is to ask, on the first call, how Marquardt is running this evaluation and what the approval path to signature looks like.",
+        "sources": ["SF Task 'Get clarity on the evaluation stages' (30 Jun 2026)", "SF OpportunityContactRole", "No calls"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are entirely unknown and, at Qualified with no buyer contact, appropriately so. There is no Current_Contract_Expiration__c for Jaggaer to act as a forcing function, no discussion of MSA/SOW, German-entity legal, DPA/GDPR data-residency (relevant for a Germany-based automotive supplier), InfoSec, or ERP-integration scope, and no implementation partner named. This is not a risk to raise now, it is simply future work. What would create visibility is capturing, during discovery, the Jaggaer contract end date and Marquardt's procurement/legal/InfoSec approval gates so the eventual timeline has a real anchor.",
+        "sources": ["Current_Contract_Expiration__c blank", "No tasks/events on contracting; no calls"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "The operational pain driving the Jaggaer replacement is unconfirmed. Next_Step__c cites a 'digitalization roadmap' and 'automation objectives' as generic motivators, but the buyer has not said what is broken with Jaggaer (adoption, weak AI/automation, high manual effort on indirect tail spend, poor spend visibility, slow cycle times) or who owns that pain. No Pain_points_in_the_current_solution__c, Compelling_Event__c or What_if_this_is_not_done__c evidence exists. Likely pain owners by title are Christian Stern (Director Purchasing Non-Production Material, i.e. indirect/tail spend) and Ralf Vorwalder (VP Corporate Purchasing, procurement efficiency), but that is inference from role, not a stated quote. The move is to make the first call a pain-discovery call that names the concrete Jaggaer failure and its business cost.",
+        "sources": ["SF Next_Step__c (01 Jul 2026)", "SF OpportunityContactRole (titles)", "No calls; pain fields blank"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists and none can, because no one at Marquardt has spoken with Zycus. Christian Stern is tagged Decision Maker and Ralf Vorwalder and Ciprian Pomarac are tagged Evaluators, but these are CRM role tags with zero interaction behind them, so their willingness to advocate is unknown. In a Jaggaer displacement the incumbent already holds the internal relationships and switching-cost inertia, so Zycus needs an internal advocate early or the deal loses to do-nothing. The 30 Jun 2026 Opportunity-Health tasks even flag 'Keep the engagement multi-threaded' and 'Decision Maker is not identified' as open. The move is to earn a first conversation and test which of Stern, Vorwalder or Pomarac is receptive enough to develop into a coach.",
+        "sources": ["SF OpportunityContactRole (3 contacts, no engagement)", "SF Tasks (30 Jun 2026)", "No calls"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Jaggaer is the incumbent Marquardt is evaluating alternatives to, confirmed by Next_Step__c (01 Jul 2026): 'evaluation criteria for replacing Jaggaer.' It is not a rival the buyer prefers, it is the system they want to leave, so the real competitive risk at this stage is inertia (renew Jaggaer / do nothing) rather than a named challenger. Competitors__c is blank and no other vendor (Coupa, SAP Ariba, GEP, Ivalua) appears in any field, task or call, so whether this is a sole-source look at Zycus or a wider RFP is unknown. The wedge is AI-first transformation: Merlin AI and ANA delivering savings and tactical-sourcing automation beyond a like-for-like S2P swap. The move is to confirm the Jaggaer displacement rationale and whether other vendors are in the frame before positioning differentiation.",
+        "sources": ["SF Next_Step__c (01 Jul 2026)", "SF Competitors__c blank", "No calls; no competitive intel in tasks"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Newly created and immediately stalled at the front door. Created and Qualified 30 Jun 2026; the only movement since is administrative (Products__c and Next_Step__c touches on 30 Jun / 01 Jul by ops users, owner reassigned to Dirk Fischbach). The eight 30 Jun 2026 'Call Attempted' tasks show the rep tried to reach the buyer and got no connection. No buyer-side touch has landed.",
+      "items": [
+        {"change": "Owner reassigned from Neha Borawake to Dirk Fischbach", "date": "2026-06-30"},
+        {"change": "Stage moved Initial Interest → Qualified; Type set to New Business", "date": "2026-06-30"},
+        {"change": "Eight 'Call Attempted' outreach tasks logged, all unanswered", "date": "2026-06-30"},
+        {"change": "Next_Step__c set to secure a Jaggaer-replacement discovery call (ops edit)", "date": "2026-07-01"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The only named competitor is Jaggaer, and it is the incumbent Marquardt intends to replace (Next_Step__c, 01 Jul 2026), not a rival the buyer favours, so the strongest CURRENT threat on this deal is do-nothing / Jaggaer renewal by inertia rather than another vendor. No other vendor (Coupa, SAP Ariba, GEP, Ivalua) is named in any field, task or call, so the field may be a Zycus sole-source look or an undiscovered multi-vendor RFP. Zycus holds zero engagement, so the immediate competitive job is to establish contact and learn why Jaggaer is being displaced before a challenger emerges or the buyer defaults to renewing.",
+      "competitors": [
+        {"name": "Jaggaer", "sentiment": "neutral", "threat_level": "medium", "status": "incumbent", "quote": "Next_Step__c (01 Jul 2026): 'evaluation criteria for replacing Jaggaer.'", "date": "2026-07-01", "source": "SF Next_Step__c", "how_we_win": "Position AI-first transformation (Merlin AI negotiation + ANA analytics automating tactical indirect sourcing) as beyond what Jaggaer delivers; surface Jaggaer's specific gaps in discovery and anchor the switch to €60M indirect-spend savings."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "No buyer-stated expectations are on record yet. The only expressed intent is the Zycus-authored plan to replace Jaggaer with an AI-first platform across indirect spend; fit cannot be assessed until discovery surfaces what Marquardt actually requires.",
+      "items": []
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No buyer engagement / discovery not started", "quote": "Eight 'Call Attempted' tasks on 30 Jun 2026, no connection; no LastActivityDate; zero Avoma calls.", "status": "not addressed", "date": "2026-06-30", "gap_type": "knowledge", "source": "SF Tasks + no calls"},
+        {"area": "Economic buyer unconfirmed", "quote": "No EB/Exec-Sponsor contact role; VP Corporate Purchasing Ralf Vorwalder is the likely budget owner but unengaged.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Jaggaer displacement rationale unknown", "quote": "Next_Step__c cites 'replacing Jaggaer' but no pain, criteria, or reason for the switch is recorded.", "status": "not addressed", "date": "2026-07-01", "gap_type": "knowledge", "source": "SF Next_Step__c"},
+        {"area": "No forcing function / timeline", "quote": "Current_Contract_Expiration__c blank; close 30 Jun 2027 is a placeholder with no buyer-anchored deadline.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Current_Contract_Expiration__c blank"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a not-yet-started Jaggaer-displacement deal with a full year of runway; the win-strategy levers are all about getting a first real conversation and mapping the buyer before inertia or a challenger sets in.",
+      "flags": [
+        "Get Dirk Fischbach a first live discovery call: eight rep call attempts on 30 Jun 2026 went unanswered, so a personalised, value-led outreach to Ralf Vorwalder is the highest-impact next lever.",
+        "Multi-thread from the start: three purchasing/supply-chain leaders are tagged but unengaged; reach Christian Stern (Decision Maker) and Ciprian Pomarac alongside Vorwalder rather than single-threading.",
+        "Frame against Jaggaer, not around it: learn why Marquardt is leaving Jaggaer and lead with the Merlin AI / ANA automation wedge on €60M indirect spend, so the switch is worth the change effort."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Ralf Vorwalder", "title": "VP Corporate Purchasing", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown: never engaged", "risk": "Primary contact and most senior tagged; likely budget owner or reports to the CFO/CPO who signs, but Evaluator tag may understate his influence. Never contacted, so authority is inferred from title only. Top priority for the first discovery call.", "source": "SF OpportunityContactRole (primary, Evaluator)"},
+        {"name": "Christian Stern", "title": "Director Purchasing Non-Production Material", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown: never engaged", "risk": "Tagged Decision Maker and owns indirect / non-production material (the €60M spend area), so likely central to the evaluation. No interaction yet, so decision authority is unvalidated. Engage early to confirm the DM role and test champion potential.", "source": "SF OpportunityContactRole (Decision Maker)"},
+        {"name": "Ciprian Pomarac", "title": "Head Of Supply Chain", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown: never engaged", "risk": "Evaluator whose supply-chain remit widens the buying committee beyond procurement. Never contacted; influence and pain ownership unknown until discovery.", "source": "SF OpportunityContactRole (Evaluator)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion, because no one at Marquardt has engaged Zycus. Christian Stern (Decision Maker) and Ralf Vorwalder (VP Corporate Purchasing) are the natural candidates given role and seniority, but neither has been contacted, so no advocacy, no internal coaching, and no economic-buyer access exist yet. Developing a champion is the first-order job of discovery in this Jaggaer displacement, where the incumbent already holds the relationships.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (3 tagged, zero engagement); no calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus intends to lead with an AI-first transformation story (Merlin AI, ANA) rather than a like-for-like S2P swap, per Next_Step__c (01 Jul 2026), and Merlin + ANA are in the product scope. The narrative is credible but wholly unpositioned: it has never been put in front of the buyer, so its resonance is untested.",
+      "score": "",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS field value is on record for this opportunity and there are no calls to gauge AI appetite. The Zycus-side intent (Merlin AI, ANA on €60M indirect spend) signals an AI-led pitch, but the buyer's actual AI appetite is unknown until discovery.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Do-nothing / renew-Jaggaer inertia: Marquardt could keep Jaggaer rather than absorb a platform switch. With zero engagement, this no-decision risk outweighs any named challenger.", "first_raised": "2026-07-01", "date": "2026-07-01", "status": "open", "source": "SF Next_Step__c (Jaggaer incumbent) + no engagement"},
+        {"category": "executive_alignment", "detail": "No economic buyer confirmed or engaged; VP Corporate Purchasing Ralf Vorwalder is the likely budget owner but unmapped for authority.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "timeline", "detail": "Close 30 Jun 2027 has no buyer-anchored forcing function (no Jaggaer contract-expiration, no project deadline), so the date is a placeholder that cannot be forecast reliably.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF Current_Contract_Expiration__c blank"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The deal has never generated a buyer signal: no calls, no LastActivityDate, and the only rep outreach (30 Jun 2026) went unanswered. This is a cold start, not a cooling of an active relationship.",
+      "cooling": false,
+      "items": [
+        "Eight 'Call Attempted' tasks on 30 Jun 2026, none connected.",
+        "No Avoma calls discovered across opp+account+attendee search.",
+        "No LastActivityDate recorded in Salesforce."
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "Jaggaer is the incumbent Marquardt wants to replace, not a preferred rival, so the live threat is a do-nothing renewal by inertia while no other vendor has been named.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "No buyer conversation has happened yet: all eight rep call attempts on 30 June 2026 went unanswered and no meeting is on record.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Three purchasing and supply-chain leaders are tagged, led by VP Corporate Purchasing Ralf Vorwalder, but none has ever been engaged.", "tone": "neu"},
+      {"lens": "Commercials", "text": "The €150k full-suite scope and the €60M indirect-spend savings thesis are Zycus-asserted and unvalidated, with no budget owner confirmed.", "tone": "warn"}
+    ],
+    "deal_scores_evidence": {
+      "summary": "A brand-new Jaggaer-displacement deal that has not yet made buyer contact: eight rep call attempts on 30 June 2026 went unanswered, no stakeholder is engaged, and the one thing between us and momentum is a first live discovery call with VP Corporate Purchasing Ralf Vorwalder.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low because Zycus has zero engagement: no buyer call or email has landed, no champion or economic buyer is confirmed, and the Jaggaer replacement rationale is still unknown (SF, 06 Jul 2026)."},
+          {"tone": "warn", "text": "The biggest risk is inertia, not a rival: Jaggaer is the incumbent Marquardt wants to replace, so unless discovery surfaces real pain, the buyer can default to renewing (Next_Step__c, 01 Jul 2026)."},
+          {"tone": "warn", "text": "No economic buyer is mapped for authority; VP Corporate Purchasing Ralf Vorwalder is the likely budget owner but has never been contacted (SF OpportunityContactRole)."},
+          {"tone": "good", "text": "The upside is a clean AI-first wedge: Marquardt wants to leave Jaggaer for a digitalization and automation push, which Merlin AI and ANA on €60M indirect spend can lead once we get a conversation (Next_Step__c, 01 Jul 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "There is no momentum yet: the deal was created and Qualified on 30 June 2026 and has not moved since, with only administrative field edits on record."},
+          {"tone": "warn", "text": "The rep's only outreach, eight call attempts on 30 June 2026, got no connection, and there is no LastActivityDate or scheduled next meeting."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The customer has made no commitment: no meeting booked, no requirement stated, and no buyer-named date, so commitment is effectively nil (SF, 06 Jul 2026)."},
+          {"tone": "warn", "text": "All three tagged stakeholders (Vorwalder, Stern, Pomarac) are unengaged, so even the decision-maker relationship is untested."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Do-nothing / Jaggaer-renewal inertia is the primary loss path given no engagement and no confirmed pain (Next_Step__c, 01 Jul 2026)."},
+          {"tone": "warn", "text": "The 30 June 2027 close has no forcing function (no Jaggaer contract-expiration date on record), so the timeline is a placeholder that cannot be forecast."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.9, "evidence": "No meeting, no stated requirement, no buyer-named date; all three stakeholders unengaged as of 06 Jul 2026."},
+        "deal_momentum": {"strength": -0.8, "evidence": "No progression since creation 30 Jun 2026; only rep call attempts (unanswered) and admin edits."},
+        "deal_risk": {"strength": -0.6, "evidence": "Do-nothing / renew-Jaggaer inertia plus a placeholder close date with no forcing function."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer conversation on record; no stated lean toward Zycus or any vendor."},
+    "business_case": {"status": "gap", "evidence": "The €60M indirect-spend savings thesis is Zycus-asserted in Next_Step__c (01 Jul 2026); the buyer has articulated no ROI, savings or automation target."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Dirk Fischbach personally emails Ralf Vorwalder to book a Jaggaer-replacement discovery call.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Eight rep call attempts on 30 Jun 2026 went unanswered; no buyer contact has landed.",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-13",
+          "expected_effect": "Creates the first live buyer signal and starts the clock on an otherwise dark deal."
+        },
+        {
+          "rank": 2,
+          "action": "Multi-thread to Christian Stern and Ciprian Pomarac to map the evaluation and decision authority.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Decision Maker (Stern) and supply-chain lead (Pomarac) are tagged but never engaged; Opportunity-Health task flags 'Decision Maker is not identified' (30 Jun 2026).",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Removes single-thread risk and confirms who leads the evaluation and who owns budget."
+        },
+        {
+          "rank": 3,
+          "action": "In discovery, elicit why Marquardt is leaving Jaggaer and its indirect-spend baseline metrics.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Next_Step__c cites 'replacing Jaggaer' and '€60M indirect spend' with no buyer-stated pain or numbers (01 Jul 2026).",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-20",
+          "expected_effect": "Turns the Zycus thesis into a buyer-owned pain and a quantified value case."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm the evaluation timeline, Jaggaer contract-expiration date, and whether other vendors are in the RFP.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Close 30 Jun 2027 has no forcing function and Competitors__c is blank (06 Jul 2026).",
+          "trigger_date": "2026-07-06",
+          "act_by": "2026-08-05",
+          "expected_effect": "Anchors the close date to a real deadline and reveals the true competitive field."
+        },
+        {
+          "rank": 5,
+          "action": "Put the Merlin AI and ANA automation wedge on indirect spend in front of the buyer.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Next_Step__c positions Zycus as AI-first transformation, not a like-for-like S2P swap (01 Jul 2026).",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-08-05",
+          "expected_effect": "Differentiates from a Jaggaer renewal and justifies the change effort with AI-led savings."
+        }
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Tasks/Events + field history through 06 Jul 2026; opp created 30 Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls found across opp+account+attendee-email discovery; no two-way buyer engagement exists to analyse.",
+      "No LastActivityDate on record; rep outreach on 30 Jun 2026 was unanswered call attempts only.",
+      "Economic buyer, Jaggaer displacement rationale, decision criteria, decision process, pain, and paper process are all genuinely unknown pending a first discovery call.",
+      "Close-date forcing function unknown (Current_Contract_Expiration__c blank)."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

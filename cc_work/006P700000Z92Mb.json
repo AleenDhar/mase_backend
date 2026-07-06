@@ -1,0 +1,258 @@
+{
+  "opp_id": "006P700000Z92Mb",
+  "hard": {
+    "opp_id": "006P700000Z92Mb",
+    "opp_name": "Parsons_S2P_2026",
+    "account_name": "PARSONS INTERNATIONAL LIMITED",
+    "account_industry": "Real Estate & Infra",
+    "billing_country": "United Arab Emirates",
+    "owner_name": "Mohamad Alhakim",
+    "owner_title": "Regional Vice President",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2026-09-30",
+    "days_to_close": null,
+    "created_date": "2026-06-05",
+    "qualified_date": "2026-06-05",
+    "last_activity_date": null,
+    "last_modified_date": null,
+    "products": "iContract;iSource;ML iAnalyze;iSupplier;Merlin;Merlin Intake;iCompliance;ANA",
+    "next_step": null,
+    "ais_score": 9.0,
+    "ais_status": "Strong",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba;Coupa;Proc360",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Z92Mb/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Positive 1 Jul demo but budget is unfunded and the deal is single-threaded on Mohammed Kefaya with the economic buyer never engaged.",
+      "math": "Created 05 Jun 2026, ~31 days old, in Qualified stage its entire life. Close date 30 Sep 2026 is ~86 days out. A demo led by Tanya was held 01 Jul with strong feedback, so the deal is engaged (not cold), but the rep self-rates confidence at 20% and notes the customer is still not budgeting the project. The VP intro Mohammed promised on 03 Jun for the following week is now ~4 weeks overdue. A full S2C/P suite replacing SAP Ariba across a 7-ERP landscape, with a ME pilot then global expansion, realistically needs 9 to 12 months from discovery: VP sponsorship, quantified ROI, pricing, pilot SOW, InfoSec, 7-ERP integration scoping and legal all remain. The 30 Sep date is not credible and will slip; the live problem right now is a stalled budget decision and an unmapped economic buyer, which is why this reads Slowing rather than merely a date risk.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline (Omitted)",
+      "evidence": [
+        "Demo led by Tanya held 01 Jul with strong feedback, but the customer is still not budgeting the project and rep confidence is self-rated at 20%. (SF Next Step 01 Jul)",
+        "Single-threaded: Mohammed Kefaya (Procurement, DOP ME Region) is the only mapped buyer contact and the only Contact Role (Decision Maker); no VP, finance, or IT stakeholder is engaged. (SF Contact Roles; SF Next Step)",
+        "The VP introduction Mohammed promised on 03 Jun for 'next week' has not occurred ~4 weeks later, so the economic buyer remains unmapped. (SF Next Step 03 Jun)",
+        "No pricing, quantified ROI, or budget authority is established; the $200k amount was set at qualification on 05 Jun and reads as a placeholder. (SF Amount history 05 Jun; SF Next Step 01 Jul)",
+        "Partner Apar Technologies (Adil) introduced the deal and is coaching to disqualify Coupa, but the teaming contract is still unsigned, leaving the commercial and delivery model open. (SF Next Step 01 Jul)",
+        "Solution depends on integrating across 7 ERPs, yet no IT stakeholder, feasibility check, or InfoSec engagement exists. (SF Next Step 03 Jun)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Mohammed Kefaya articulated strong qualitative pain but no quantified value case exists. Per the 03 Jun discovery note, Parsons ME suffers poor Ariba user adoption from an outdated UI, slow Ariba ticket resolution, hidden supplier and network fees, value leakage from unmanaged tail and tactical spend, and compliance risk from decentralised buying across project teams. None of this is dollarised: annual Ariba fees, tail-spend leakage, or compliance exposure were never sized, and the 01 Jul note confirms the customer is still not budgeting the project. The next step is to co-build a quantified ROI model with Mohammed (Ariba fee elimination plus tail-spend recovery) so the economic buyer can fund it.",
+        "sources": ["SF Next Step 03 Jun", "SF Next Step 01 Jul", "SF AIS_Why"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or verified. Mohammed Kefaya is the Decision Maker on the Contact Roles but holds a central governance and compliance role in a decentralised model where individual project managers own procurement spend, so he is unlikely to own the budget. Mohammed committed on 03 Jun to introduce Zycus to his VP the following week, and the 01 Jul note references bringing in 'his manager' to convince him, but that senior person is not a Salesforce contact and their name and title are unverified, so we cannot yet name the budget owner. Until the VP intro happens and budget authority is confirmed, this factor stays a gap; securing that introduction is the rank-1 move.",
+        "sources": ["SF Contact Roles", "SF Next Step 03 Jun", "SF Next Step 01 Jul"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria emerge from the Ariba-replacement thesis rather than a formal RFP. Per the 03 Jun discovery note the buyer weighs modern UI and user adoption, elimination of supplier network fees, AI and agentic sourcing capability, and the ability to integrate across a 7-ERP landscape (Salesforce, Neltech, SAP-connected, Prism, Postpoint and others). These are inferred from stated pain, not confirmed in a documented evaluation scorecard, and no ShoeFit or BRD exercise has run. Validating and prioritising these criteria with the buyer, especially the multi-ERP integration bar, is needed before commercials.",
+        "sources": ["SF Next Step 03 Jun", "SF Products", "SF AIS_Why"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buying process is only partially understood. Parsons ME runs a highly decentralised procurement model: project managers own procurement activity while Mohammed's team handles central governance and compliance, per the 03 Jun note. Zycus is positioned on a three-vendor shortlist (Coupa, Proc360, Zycus) as a ME pilot with a global-expansion path if successful. Approval clearly requires VP-level sponsorship that Mohammed has not yet unlocked, and central IT or corporate procurement could impose a standardisation mandate. The approval chain, timeline, and who signs off remain undocumented, so mapping the process with the VP is a priority.",
+        "sources": ["SF Next Step 03 Jun", "SF Next Step 01 Jul"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unstarted, which is stage-appropriate at Qualified. As a new-business full-suite S2C/P deal this will eventually need an MSA, Order Form, and a separately signed SOW, plus InfoSec review and DPA given the ERP integrations. The nearest paper item is upstream: a teaming contract with partner Apar Technologies is still unsigned per the 01 Jul note, which must be resolved to fix the commercial and delivery model before customer paper begins. No legal, procurement channel, or InfoSec contact is identified yet.",
+        "sources": ["SF Next Step 01 Jul", "SF Products"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is well-articulated and owner-attributed. Mohammed Kefaya described widely disliked SAP Ariba as the incumbent tool, citing outdated UI and poor adoption, slow ticket resolution, hidden supplier fees, tail-spend value leakage, and compliance risk from decentralised project buying, and noted colleagues proactively warn him away from Ariba (03 Jun discovery note). The pain owner is Mohammed's central governance and compliance team plus the project managers living with Ariba daily. This is genuine displacement pain; the gap is that it has not been quantified or carried to a budget owner.",
+        "sources": ["SF Next Step 03 Jun", "SF AIS_Why"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Mohammed Kefaya (Procurement, DOP ME Region) is a developing champion, enthusiastic but unproven on execution. The 03 Jun note records an extremely positive discovery reaction and states he 'will clearly be our champion', having placed Zycus as the best option on the shortlist. What is still missing is delivery: the VP introduction he promised for the following week has not happened ~4 weeks on, no budget has been secured, and the 01 Jul note downgrades confidence to 20%. Partner Adil (Apar Technologies) is coaching alongside him, but neither has demonstrated executive reach. To harden this champion, Zycus must arm Mohammed with a quantified ROI one-pager and secure the VP meeting directly.",
+        "sources": ["SF Next Step 03 Jun", "SF Next Step 01 Jul", "SF Contact Roles"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "This is an incumbent-displacement play against SAP Ariba, which is widely disliked internally per the 03 Jun note, giving Zycus a genuine replace-the-incumbent wedge. Two named challengers sit on the shortlist: Coupa, which partner Adil is actively coaching to disqualify per the 01 Jul note, and Proc360, which shows no activity. The sharper current threat is not a rival vendor but inertia: with budget unfunded and buying decentralised, Parsons ME can simply keep tolerating Ariba and not decide. Zycus wins on modern Teams-based intake, agentic AI sourcing, no supplier network fees, and iSaaS connectors across the 7-ERP estate, but none of that wedge has been activated with the economic buyer.",
+        "sources": ["SF Competitor field", "SF Next Step 03 Jun", "SF Next Step 01 Jul"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Fresh but shallow. A positive discovery call on 03 Jun produced a champion in Mohammed and shortlist positioning; a Tanya-led demo on 01 Jul drew strong feedback but no budget. Ownership moved to RVP Mohamad Alhakim on 29 Jun. Momentum is now stalled on the unfunded budget and the overdue VP introduction.",
+      "items": [
+        {"change": "Positive discovery call with Mohammed Kefaya and partner Adil (Apar Technologies); Zycus placed as best option on the Coupa/Proc360/Zycus shortlist", "date": "2026-06-05"},
+        {"change": "Opportunity qualified: stage Initial Interest to Qualified, amount set to $200k, close date pulled in from 31 Dec to 30 Sep 2026", "date": "2026-06-05"},
+        {"change": "Ownership reassigned from Dan Quinn to RVP Mohamad Alhakim by manager Carl Kimball", "date": "2026-06-29"},
+        {"change": "Demo led by Tanya held with strong feedback, but customer still not budgeting the project; confidence self-rated 20%", "date": "2026-07-01"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is inertia and no budget, not a rival: with buying decentralised and the project unfunded (01 Jul), Parsons ME can keep tolerating the disliked incumbent SAP Ariba rather than decide. Among vendors, SAP Ariba is the incumbent being displaced (negative internal sentiment, but a corporate standardisation mandate remains a risk); Coupa is being actively disqualified with partner Adil's help; Proc360 is on the shortlist but shows no activity.",
+      "competitors": [
+        {"name": "SAP Ariba", "sentiment": "negative", "threat_level": "medium", "status": "incumbent", "quote": "Currently using SAP Ariba as the procurement tool, widely disliked internally: poor user adoption due to outdated UI, slow ticket resolution, hidden supplier fees; colleagues proactively warn Mohammed away from Ariba.", "date": "2026-06-05", "source": "SF Next Step 03 Jun; SF Competitor field", "how_we_win": "Lead the VP demo with modern Teams-based intake and no supplier network fees to convert internal Ariba frustration into a funded replacement decision."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "low", "status": "declined", "quote": "They are already considering us as the best option on their shortlist (Coupa, Proc360 & Zycus); the partner Adil is already supported to disqualify Coupa.", "date": "2026-07-01", "source": "SF Next Step 03 Jun; SF Next Step 01 Jul", "how_we_win": "Reinforce Adil's disqualification case with agentic AI sourcing and multi-ERP integration depth Coupa cannot match."},
+        {"name": "Proc360", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "They are already considering us as the best option on their shortlist (Coupa, Proc360 & Zycus).", "date": "2026-06-05", "source": "SF Next Step 03 Jun", "how_we_win": "Differentiate on enterprise-grade AI and iSaaS 7-ERP connectivity against a lighter-weight point competitor."},
+        {"name": "Do nothing / keep Ariba", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "The feedback from meeting was great but the customer is still not budgeting the project.", "date": "2026-07-01", "source": "SF Next Step 01 Jul", "how_we_win": "Quantify Ariba fee and tail-spend leakage into a funded pilot business case so status quo becomes the costlier option."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on the adoption, fee, and AI drivers that make Ariba disliked; the exposed area is proving iSaaS integration across the 7-ERP estate, which is unvalidated.",
+      "items": [
+        {"criterion": "Modern UI and user adoption to replace disliked Ariba experience", "position": "aligned", "quote": "Poor user adoption of Ariba due to outdated UI; modern UI to drive adoption", "date": "2026-06-05", "source": "SF Next Step 03 Jun"},
+        {"criterion": "Eliminate supplier network / hidden fees", "position": "aligned", "quote": "Hidden costs and supplier fees causing friction; no supplier network fees", "date": "2026-06-05", "source": "SF Next Step 03 Jun"},
+        {"criterion": "AI / agentic sourcing and Teams-based intake", "position": "aligned", "quote": "AI-driven intake (Teams-based), Agentic AI for autonomous sourcing", "date": "2026-06-05", "source": "SF Next Step 03 Jun; SF AIS_Status Strong"},
+        {"criterion": "Integrate across 7-ERP decentralised landscape", "position": "exposed", "quote": "iSaaS connectors to integrate across the 7-ERP landscape (Salesforce, Neltech, SAP-connected, Prism, Postpoint)", "date": "2026-06-05", "source": "SF Next Step 03 Jun"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Mohammed to introduce Zycus to his VP to establish credibility and unlock budget authority", "who": "Buyer", "grounding_quote": "Mohammed will arrange an intro to VP next week... establish Zycus credibility with a conceptual overview, then run a live demo", "date": "2026-06-03", "due": "2026-06-10", "status": "overdue", "source": "SF Next Step 03 Jun"},
+          {"deliverable": "Parsons to allocate budget for the S2P pilot project", "who": "Buyer", "grounding_quote": "The feedback from meeting was great but the customer is still not budgeting the project", "date": "2026-07-01", "due": null, "status": "open", "source": "SF Next Step 01 Jul"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "Mohammed will arrange an intro to VP next week", "status": "not addressed", "date": "2026-06-03", "gap_type": "knowledge", "source": "SF Next Step 03 Jun"},
+        {"area": "No quantified business case / budget unfunded", "quote": "The customer is still not budgeting the project", "status": "not addressed", "date": "2026-07-01", "gap_type": "knowledge", "source": "SF Next Step 01 Jul"},
+        {"area": "7-ERP integration feasibility and IT stakeholder", "quote": "iSaaS connectors to integrate across the 7-ERP landscape", "status": "not addressed", "date": "2026-06-05", "gap_type": "knowledge", "source": "SF Next Step 03 Jun"},
+        {"area": "No recorded buyer calls to corroborate the rep's narrative", "quote": "", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma discovery (opp+account+attendee-email) returned zero matched calls"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three levers raise win probability now: quantify the case to fund it, reach the VP economic buyer, and lock the partner and integration path.",
+      "flags": [
+        "Build a quantified ROI case (Ariba fee elimination plus tail-spend recovery) with Mohammed to move budget from 20% confidence to funded.",
+        "Multi-thread beyond Mohammed: secure the promised VP economic-buyer meeting and engage Parsons IT to de-risk the single thread.",
+        "Sign the Apar Technologies teaming agreement to fix the commercial and delivery model before commercials open."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Mohammed Kefaya", "title": "Procurement (DOP ME Region)", "role": "Champion", "last_contact_date": "2026-07-01", "sentiment": "Very positive; placed Zycus as best option on the shortlist and offered a VP intro, but has not delivered it and holds a governance role without budget authority", "risk": "Developing/weak champion: enthusiastic but no proven executive access, VP intro overdue, no budget secured; if he cannot reach his VP the deal stalls", "source": "SF Contact Roles (Decision Maker); SF Next Step 03 Jun & 01 Jul"},
+        {"name": null, "title": null, "role": "Economic Buyer", "last_contact_date": null, "sentiment": "Unknown; never engaged", "risk": "Budget owner (Mohammed's VP, referenced but not a Salesforce contact and unverified) is unmapped; the promised intro is ~4 weeks overdue and no budget exists", "source": "SF Next Step 03 Jun & 01 Jul"},
+        {"name": "Adil", "title": "Partner contact, Apar Technologies", "role": "Coach", "last_contact_date": "2026-07-01", "sentiment": "Positive; introduced Zycus and is coaching to disqualify Coupa", "risk": "Partner role undefined and teaming contract unsigned; commercial and delivery model unresolved until Apar's role is fixed", "source": "SF Next Step 03 Jun & 01 Jul"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Mohammed Kefaya is a developing champion: strong initial advocacy (placed Zycus as best option on the shortlist, offered a VP intro on 03 Jun) but weak execution, with the VP intro ~4 weeks overdue, no budget secured, and a governance role that lacks direct budget authority. What has developed is genuine enthusiasm and shortlist preference; what is missing is executive reach and a funded budget.",
+      "champion": "Mohammed Kefaya",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF Next Step 03 Jun; SF Next Step 01 Jul; SF Contact Roles"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is Strong (9.0) and the AI story (agentic sourcing, Teams-based Merlin Intake) is the core wedge versus Ariba, but it has only been shown in the 01 Jul demo to Mohammed, not to the economic buyer, so it is under-leveraged where budget is decided.",
+      "score": "9.0 (Strong)",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 9.0 / Strong: Parsons' enterprise AI and digital-transformation posture plus complex project-based procurement make agentic S2P highly relevant. No recorded buyer call exists to confirm or temper this, but the stated demand for AI-driven intake and autonomous sourcing corroborates a genuine AI appetite.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "Project is unfunded; customer still not budgeting despite a positive demo", "first_raised": "2026-07-01", "date": "2026-07-01", "status": "open", "source": "SF Next Step 01 Jul"},
+        {"category": "executive_alignment", "detail": "Economic buyer unmapped and deal single-threaded on Mohammed; promised VP intro overdue", "first_raised": "2026-06-03", "date": "2026-06-03", "status": "open", "source": "SF Next Step 03 Jun"},
+        {"category": "partner_support", "detail": "Apar Technologies teaming contract unsigned; commercial and delivery model undefined", "first_raised": "2026-07-01", "date": "2026-07-01", "status": "open", "source": "SF Next Step 01 Jul"},
+        {"category": "integration", "detail": "Solution depends on integrating across 7 ERPs with no IT stakeholder or feasibility check", "first_raised": "2026-06-05", "date": "2026-06-05", "status": "open", "source": "SF Next Step 03 Jun"},
+        {"category": "political", "detail": "Decentralised buying (project managers own spend) and possible central-IT Ariba standardisation mandate could override a ME pilot", "first_raised": "2026-06-05", "date": "2026-06-05", "status": "open", "source": "SF Next Step 03 Jun"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engaged but thinning: a strong demo on 01 Jul was not converted to budget, the VP intro is overdue, and the rep self-rates confidence at 20%. The relationship is live but momentum has stalled on funding.",
+      "cooling": true,
+      "items": [
+        "Rep-stated confidence 20% (SF Next Step 01 Jul)",
+        "Positive demo feedback not converted to budget (SF Next Step 01 Jul)",
+        "VP introduction promised 03 Jun still not delivered (SF Next Step 03 Jun)"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Co-build a quantified ROI case with Mohammed to unlock project budget.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Positive demo but customer still not budgeting the project", "trigger_date": "2026-07-01", "act_by": "2026-07-13", "expected_effect": "Converts a warm demo into a funded pilot and moves confidence off 20%."},
+        {"rank": 2, "action": "Secure the VP economic-buyer meeting Mohammed promised to validate budget authority.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "VP intro promised for the week of 08 Jun never happened", "trigger_date": "2026-06-03", "act_by": "2026-07-15", "expected_effect": "Maps the economic buyer and breaks the single-thread that is blocking every gate."},
+        {"rank": 3, "action": "Sign the Apar Technologies teaming agreement to fix the commercial and delivery model.", "owner": "Partner", "horizon": "next_14_days", "trigger": "Need to sign teaming contract with the partner", "trigger_date": "2026-07-01", "act_by": "2026-07-20", "expected_effect": "Locks partner access and delivery ownership before commercials and integration scoping."},
+        {"rank": 4, "action": "Engage a Parsons IT contact to scope iSaaS feasibility across the 7 ERPs.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Solution hinges on integrating 7 ERPs with no IT stakeholder mapped", "trigger_date": "2026-06-05", "act_by": "2026-08-04", "expected_effect": "De-risks the biggest technical objection and multi-threads into IT."},
+        {"rank": 5, "action": "Deliver a Merlin agentic-sourcing use-case demo to the VP to activate the AI wedge.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "AIS Strong and AI is the differentiator versus disliked Ariba", "trigger_date": "2026-07-01", "act_by": "2026-08-05", "expected_effect": "Puts the winning AI story in front of the budget owner, not just the champion."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A brand-new incumbent-displacement play where Mohammed loves us and put us top of a three-vendor shortlist, but the whole deal rests on one governance contact, the budget is unfunded, and the VP who owns the money has never been met.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "We are the buyer-stated best option on a Coupa/Proc360/Zycus shortlist and the incumbent SAP Ariba is widely disliked, giving us a real replace-the-incumbent wedge (SF Next Step 03 Jun)."},
+          {"tone": "good", "text": "Partner Adil (Apar Technologies) is actively coaching Parsons to disqualify Coupa, narrowing the vendor field in our favour (SF Next Step 01 Jul)."},
+          {"tone": "warn", "text": "The economic buyer is unmapped and the deal is single-threaded on Mohammed, whose promised VP intro is roughly four weeks overdue (SF Next Step 03 Jun)."},
+          {"tone": "warn", "text": "Even after a strong 01 Jul demo the customer is still not budgeting the project, so the biggest threat is no-decision inertia, not a rival (SF Next Step 01 Jul)."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "A Tanya-led demo on 01 Jul drew strong feedback, keeping the deal engaged and warm (SF Next Step 01 Jul)."},
+          {"tone": "warn", "text": "The deal has sat in Qualified its entire ~31-day life with no advance to Formal Evaluation and no customer-named dates (SF field history)."},
+          {"tone": "warn", "text": "No pricing, security, or legal topics have entered the conversation and no senior buyer has joined a call (SF Next Step)."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Mohammed offered to introduce Zycus to his VP and positioned us as the preferred vendor, signaling genuine intent (SF Next Step 03 Jun)."},
+          {"tone": "warn", "text": "That VP introduction has not been delivered and the customer has not allocated budget, so commitment is verbal only (SF Next Step 01 Jul)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded on a governance contact with no budget authority; if Mohammed cannot reach his VP the deal stalls (SF Contact Roles; SF Next Step)."},
+          {"tone": "warn", "text": "The 7-ERP integration dependency is unscoped with no IT stakeholder or InfoSec engagement (SF Next Step 03 Jun)."},
+          {"tone": "warn", "text": "Decentralised buying and a possible central-IT Ariba mandate could override a Middle East pilot (SF Next Step 03 Jun)."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": -0.3, "evidence": "Enthusiastic but has not delivered the VP intro or budget; governance role without budget authority (SF Next Step 03 Jun & 01 Jul)."},
+        "economic_buyer": {"strength": -0.6, "evidence": "Budget owner unmapped and never engaged; intro ~4 weeks overdue (SF Next Step 03 Jun)."},
+        "budget": {"strength": -0.6, "evidence": "Customer still not budgeting the project after a positive demo (SF Next Step 01 Jul)."}
+      }
+    },
+    "customer_preference": {"level": "medium", "evidence": "Mohammed placed Zycus as the best option on the Coupa/Proc360/Zycus shortlist and reacted very positively, but preference is not decisive and the buyer has not committed budget (SF Next Step 03 Jun & 01 Jul)."},
+    "business_case": {"status": "partial", "evidence": "Rich qualitative pain (Ariba adoption, hidden fees, tail-spend leakage, compliance risk) but no quantified ROI or savings figures (SF Next Step 03 Jun)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "Full S2C/P suite (iContract, iSource, ML iAnalyze, iSupplier, Merlin, Merlin Intake, iCompliance, ANA)", "to": "Same full suite as a Middle East pilot with global-expansion path", "detail": "Scope is unchanged; the deal is framed as a ME pilot first, then global expansion if successful, not a reduction (SF Products; SF Next Step 03 Jun)."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history from 05 Jun 2026 creation",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls matched via opp, account, or attendee-email (mohammed.kefaya@parsons.com); the entire read rests on the rep's Next Step notes and Salesforce fields.",
+      "Economic buyer (Mohammed's VP) is referenced but is not a Salesforce contact; name and title are unverified.",
+      "No quantified business case, pricing, or budget authority established.",
+      "No IT stakeholder or InfoSec engagement for the 7-ERP integration dependency."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

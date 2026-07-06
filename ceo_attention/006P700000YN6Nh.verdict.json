@@ -1,0 +1,36 @@
+{
+  "opp_id": "006P700000YN6Nh",
+  "needed": true,
+  "kind": "monitor",
+  "support": {
+    "needed": false,
+    "priority": "medium",
+    "areas": [],
+    "summary": "",
+    "detail": "",
+    "metric": "",
+    "owner": "Carl Kimball",
+    "ceo_action": "",
+    "ceo_ask": "",
+    "buyer_target": { "name": "", "title": "" },
+    "why_not_vp": "Economic Buyer is not yet even identified (CFO David Fan / Head of Strategic Procurement Jacqueline Lam Chu Wan not engaged) and the deal is single-threaded at Formal Evaluation on a developing champion. No CEO-irreplaceable act is in play: mapping and opening exec levels is standard rep/RSD multi-threading a VP or CRO can drive; there is no blocked discount, roadmap veto, or peer-CEO relationship required."
+  },
+  "monitor": {
+    "needed": true,
+    "reason": "$350K deal has gone silent for 22 days with no next-step update while the Economic Buyer is still unmapped.",
+    "triggers": [
+      {
+        "type": "large_slowdown",
+        "severity": "high",
+        "summary": "$350K Hong Kong Jockey Club gone quiet 22 days, next step stale",
+        "detail": "This $350K Formal-Evaluation deal (win 44, mom 58) has had zero activities, movements, or calls in the last 14 days and 22 days since any touch, with the next step unchanged since 6 June. The RFI was submitted and a F2F with Decision Maker Mona Chiu in Hong Kong was the plan, but momentum has stalled and the Economic Buyer (likely CFO David Fan or Head of Strategic Procurement Jacqueline Lam Chu Wan) is still unmapped. If the silence continues, Coupa can close the exec gap first and we risk slipping a $350K deal that rests on a single-threaded developing champion.",
+        "metric": "22 days no activity on a $350K deal; next step unchanged since 6 Jun",
+        "owner": "Carl Kimball",
+        "ceo_ask": "Ask Carl why HKJC ($350K) has gone dark for 22 days, whether the Mona F2F in Hong Kong happened, and who is mapping the CFO/Head of Strategic Procurement before Coupa closes the exec gap.",
+        "evidence": "days_since_last_activity=22 (>14 = gone quiet); recent_activities_14d, recent_calls_14d, recent_movements_14d all empty; amount 350000 (is_large=true); Economic Buyer status 'gap', champion single-threaded on Mona C Y Chiu; next_step_updated_in_window=false",
+        "as_of": "2026-07-06"
+      }
+    ]
+  },
+  "source": "attention_v1"
+}

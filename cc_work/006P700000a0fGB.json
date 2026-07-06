@@ -1,0 +1,265 @@
+{
+  "opp_id": "006P700000a0fGB",
+  "hard": {
+    "opp_id": "006P700000a0fGB",
+    "opp_name": "Kromberg & Schubert_ S2C",
+    "account_name": "Kromberg & Schubert",
+    "account_industry": "Auto & Transport",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-25",
+    "qualified_date": "2026-06-25",
+    "last_activity_date": null,
+    "last_modified_date": null,
+    "products": "iSupplier;eProcurement;Merlin;Merlin Intake",
+    "next_step": "25-06-2026 : RFI received from Kromberg team. 23-06-2026 : Demo done, to be shared recording, presentation, and requested integration details (including supported risk providers such as Coface), then schedule a solution-fit workshop to validate procurement workflows, integration requirements, and key use cases before preparing a tailored proposal.",
+    "ais_score": null,
+    "ais_status": "",
+    "ais_why": "",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a0fGB/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Fresh Qualified S2C deal at Kromberg & Schubert stalled ~2 weeks after a strong pull: the buyer took a 23-Jun demo and issued an RFI on 25-Jun and asked for the recording, presentation and Coface integration details, but Zycus has logged no follow-through and the four requested items are still undelivered.",
+      "math": "Today 06-Jul-2026. Created and qualified same day 25-Jun-2026 (11 days ago). Demo delivered 23-Jun (13 days ago); RFI received 25-Jun (11 days ago). Close date 2027-06-30 is 359 days out, so the cycle itself is long and early, but the four buyer-requested deliverables are now ~2 weeks overdue with no logged Zycus outreach and no buyer re-engagement. The stall is at the qualification-to-evaluation handoff, driven by our own missed follow-up rather than the calendar.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Demo delivered 23-Jun-2026 to the Kromberg & Schubert evaluation team; the buyer requested the demo recording, the presentation, integration details for supported risk providers including Coface, and a solution-fit workshop (Next_Step__c, 23-Jun-2026).",
+        "RFI received from the Kromberg team 25-Jun-2026, two days after the demo (Next_Step__c, 25-Jun-2026) - a genuine buyer pull confirming a multi-vendor evaluation.",
+        "No Avoma calls were matched to this opportunity or account this sweep, and no Salesforce activity is logged since creation (LastActivityDate null); the nine 25-Jun Opportunity Health tasks are automated hygiene prompts (Call Attempted), not buyer engagement.",
+        "Stage moved Initial Interest -> Qualified and Type -> New Business on 25-Jun-2026 (field history); ownership moved to Dirk Fischbach the same day - this is a newly handed-over deal.",
+        "Economic buyer is unmapped: no OpportunityContactRole, MEDDPICC field, or verified call names a budget owner for the EUR 200k scope; the three engaged contacts sit in supplier development and procurement.",
+        "Competitive field is not yet surfaced: no rival is named in any Salesforce field or call, though the 25-Jun RFI confirms rivals exist."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is well articulated but not yet quantified. Kromberg & Schubert is modernizing procurement onto an end-to-end Source-to-Contract platform to standardize process, improve user experience, consolidate supplier risk data, and automate manual steps, surfaced on the 23-Jun-2026 demo and captured in Customer_Business_Problem__c. Named pains include fragmented supplier-risk data held across Excel files, manual presourcing-committee approval snapshots, and a need to consolidate roughly 1,500 suppliers with their risk scorecards. No cost-saving target, cycle-time baseline, headcount figure, or ROI model has been stated, so the value case is qualitative only. Co-authoring a quantified ROI model before commercials is the move.",
+        "sources": ["SF Customer_Business_Problem__c", "23-Jun-2026 demo (Next_Step__c)", "SF Next_Step__c 25-Jun-2026"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified anywhere: no OpportunityContactRole carries an Economic Buyer or Executive Sponsor role, no MEDDPICC field names a budget owner, and no verified call reveals who controls the EUR 200k spend. The three engaged contacts are Decision Maker Martina Winkler (Head of Advanced Supplier Development) and evaluators Daniel Quaschnok (Global Category Manager) and Katrin Hertle (Projekteinkauferin), all in supplier development or procurement rather than budget-holding finance leadership. Prior speculation naming a specific CFO was unverified and is dropped. The move is to ask Winkler to name and introduce the budget owner for the digitalization investment before a proposal is built.",
+        "sources": ["OpportunityContactRole (Winkler, Quaschnok, Hertle)", "Field history 25-Jun-2026"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are emerging from the 23-Jun demo and the 25-Jun RFI: a configurable end-to-end S2C platform, integration with supported supplier-risk providers (Coface named explicitly), AI-driven automation, and validation of procurement workflows and key use cases in a solution-fit workshop (Next_Step__c, 23 and 25-Jun-2026). These are confirmed as evaluation themes, but the formal scored criteria live in the RFI document Zycus has not yet obtained or responded to. Securing the written RFI criteria and weighting is the step that converts this from inferred to confirmed.",
+        "sources": ["SF Next_Step__c 23-Jun and 25-Jun-2026", "23-Jun-2026 demo"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running a structured, RFI-led evaluation: a demo on 23-Jun was followed two days later by an issued RFI, with a solution-fit workshop positioned as the next gate before a tailored proposal (Next_Step__c, 25-Jun-2026). The program is described as part of a broader EY-led digital transformation, so an advisor is shaping the process, but EY's role (advisor versus implementer versus reseller) is undefined and no EY individual is verified in Salesforce. The internal approval chain and who signs off the investment are unknown. Mapping the process owner and the approval path is a priority as the workshop is scheduled.",
+        "sources": ["SF Next_Step__c 25-Jun-2026", "23-Jun-2026 demo"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible at this early Qualified stage and none should be yet. As a full-suite new-business deal (iSupplier, eProcurement, Merlin, Merlin Intake), a close would eventually require an MSA, Order Form, and SOW on Zycus paper, plus InfoSec and (for the Merlin AI modules) any buyer AI-governance review. There is no current contract expiration to act as a forcing function. Visibility here is created downstream once the solution-fit workshop and proposal define scope; flagging it as a risk now would be out of tier.",
+        "sources": ["SF Products__c", "Stage = Qualified"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clearly owned and articulated: fragmented supplier-risk data spread across Excel files and disconnected systems, manual presourcing-committee approval snapshots, ad-hoc demand-submission channels, and the burden of consolidating roughly 1,500 suppliers with their risk scorecards (23-Jun-2026 demo; Customer_Business_Problem__c). The pain owner is the supplier-development and procurement function represented by Martina Winkler and Daniel Quaschnok. The pain is confirmed and specific; what remains is to attach numbers to it (see Metrics).",
+        "sources": ["SF Customer_Business_Problem__c", "23-Jun-2026 demo"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "There is no confirmed champion yet. Martina Winkler (Head of Advanced Supplier Development) holds the primary Decision Maker contact role and owns the digitalization project, but shows coordination rather than advocacy: no introduction to a budget owner, no competitor pushback, and no follow-up in the ~2 weeks since she requested materials. Daniel Quaschnok (Global Category Manager, Evaluator) engaged heavily on the demo with detailed questions on presourcing automation, configurability, and risk integration, making him the strongest champion candidate, but he has shown no advocacy yet. The solution-fit workshop is the venue to convert Quaschnok by equipping him with the ROI narrative and the internal argument for Zycus.",
+        "sources": ["OpportunityContactRole (Winkler DM primary, Quaschnok Evaluator)", "23-Jun-2026 demo"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor is named in Competitors__c, any free-text field, or any matched call, so the competitive field is genuinely unsurfaced this sweep rather than sole-sourced. The 25-Jun RFI confirms this is a multi-vendor evaluation, so rivals exist and simply have not been captured yet. Typical automotive Tier-1 S2C rivals (SAP Ariba, Coupa, Ivalua, Jaggaer) are plausible to probe but must not be asserted as fact. Surfacing the shortlist and the RFI evaluation criteria is the move; the wedge to build is Merlin agentic AI plus supplier-risk depth against providers like Coface.",
+        "sources": ["SF Competitors__c (null)", "SF Next_Step__c 25-Jun-2026 (RFI)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Newly created and qualified 25-Jun-2026 with ownership handed to Dirk Fischbach; a 23-Jun demo and a 25-Jun RFI are the only real buyer touches, and no Zycus follow-up has been logged in the ~2 weeks since.",
+      "items": [
+        {"change": "Demo delivered to the Kromberg & Schubert evaluation team; buyer requested recording, presentation, Coface integration details and a solution-fit workshop", "date": "2026-06-23"},
+        {"change": "RFI received from the Kromberg team, a buyer pull two days post-demo", "date": "2026-06-25"},
+        {"change": "Stage moved Initial Interest -> Qualified and Type -> New Business", "date": "2026-06-25"},
+        {"change": "Ownership moved to Dirk Fischbach and Division set to New Markets", "date": "2026-06-25"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The competitive field is not yet surfaced: no rival is named in any Salesforce field or matched call. The 25-Jun RFI confirms a multi-vendor evaluation, so competitors exist but are unknown, making this a knowledge gap rather than a sole-source win. Do not assume a front-runner; the priority is to obtain the RFI shortlist and evaluation criteria, then build the wedge on Merlin agentic AI and automotive supplier-risk depth (including Coface integration).",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer expects a configurable, AI-driven end-to-end S2C platform with supplier-risk integration and validated fit to their procurement workflows; Zycus's suite plus Merlin aligns to this, with integration to risk providers like Coface as the key proof point still to be demonstrated.",
+      "items": [
+        {"criterion": "Configurable end-to-end Source-to-Contract platform", "position": "aligned", "quote": "schedule a solution-fit workshop to validate procurement workflows, integration requirements, and key use cases", "date": "2026-06-25", "source": "SF Next_Step__c"},
+        {"criterion": "Integration with supported supplier-risk providers (Coface)", "position": "partially aligned", "quote": "requested integration details (including supported risk providers such as Coface)", "date": "2026-06-23", "source": "SF Next_Step__c"},
+        {"criterion": "AI-driven automation across procurement", "position": "aligned", "quote": "Products in scope: iSupplier, eProcurement, Merlin, Merlin Intake", "date": "2026-06-25", "source": "SF Products__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Share integration details for supported risk providers including Coface", "said_by": "Kromberg & Schubert evaluation team", "date": "2026-06-23", "addressed": false, "quote": "requested integration details (including supported risk providers such as Coface)", "source": "SF Next_Step__c 23-Jun-2026"},
+        {"requirement": "Respond to the RFI issued by the Kromberg team", "said_by": "Kromberg & Schubert evaluation team", "date": "2026-06-25", "addressed": false, "quote": "RFI received from Kromberg team", "source": "SF Next_Step__c 25-Jun-2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send the 23-Jun demo recording and presentation to the Kromberg team", "who": "Zycus", "grounding_quote": "Demo done, to be shared recording, presentation", "date": "2026-06-23", "due": "2026-07-10", "status": "overdue", "source": "SF Next_Step__c 23-Jun-2026"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm solution-fit workshop dates and share the RFI evaluation criteria and timeline", "who": "Buyer", "grounding_quote": "schedule a solution-fit workshop to validate procurement workflows, integration requirements, and key use cases", "date": "2026-06-25", "due": "2026-07-20", "status": "open", "source": "SF Next_Step__c 25-Jun-2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unmapped", "quote": "no OpportunityContactRole or field names a budget owner for the EUR 200k scope", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "OpportunityContactRole"},
+        {"area": "Competitive shortlist unknown despite a live RFI", "quote": "RFI received from Kromberg team", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "SF Next_Step__c"},
+        {"area": "Value case not quantified (no ROI / savings figure)", "quote": "reduce manual effort, improve visibility and cycle times (no number stated)", "status": "not addressed", "date": "2026-06-23", "gap_type": "knowledge", "source": "23-Jun-2026 demo"},
+        {"area": "EY's role in the program undefined (advisor vs implementer vs reseller)", "quote": "EY-led digital transformation, role undefined", "status": "not addressed", "date": "2026-06-23", "gap_type": "knowledge", "source": "23-Jun-2026 demo"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a fresh, single-threaded Qualified deal with a real RFI pull that Zycus has left unanswered for two weeks; the win levers are speed of re-engagement, mapping power, and surfacing the competition.",
+      "flags": [
+        "Re-engage now: deliver the outstanding recording, presentation and Coface integration details before the RFI window narrows and a faster vendor sets the pace.",
+        "Multi-thread to power: only procurement evaluators are engaged, so map and reach the EUR 200k budget owner via Martina Winkler.",
+        "Surface the competition: the 25-Jun RFI is multi-vendor, so obtain the rival shortlist and scored criteria and build the Merlin plus supplier-risk wedge."
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 23-Jun demo drew a strong pull (an RFI two days later plus requests for the recording, presentation and Coface integration details), but two weeks on those four items are still undelivered.", "tone": "warn"},
+      {"lens": "Competition", "text": "The 25-Jun RFI confirms this is a multi-vendor evaluation, yet no rival has been named, so the field we are competing against is still unknown.", "tone": "warn"},
+      {"lens": "New requirement", "text": "The buyer specifically wants integration with supported supplier-risk providers including Coface, which is the key proof point to demonstrate.", "tone": "neu"},
+      {"lens": "Commercials", "text": "A EUR 200k full-suite scope has no confirmed budget owner and no quantified ROI, so the investment has no sponsor to approve it yet.", "tone": "warn"}
+    ],
+    "stakeholder_map": {
+      "items": [
+        {"name": "Martina Winkler", "title": "Head of Advanced Supplier Development", "role": "Decision Maker", "last_contact_date": "2026-06-23", "sentiment": "Neutral to positive (owns the project, requested deliverables, no advocacy shown)", "risk": "Coordinates the evaluation but shows no advocacy and has not introduced a budget owner; single point of contact to power.", "source": "OpportunityContactRole (primary)"},
+        {"name": "Daniel Quaschnok", "title": "Global Category Manager", "role": "Influencer", "last_contact_date": "2026-06-23", "sentiment": "Positive (highly engaged on the demo with detailed workflow and risk-integration questions)", "risk": "Strongest champion candidate but not yet converted; must be equipped with the ROI story at the workshop.", "source": "OpportunityContactRole (Evaluator)"},
+        {"name": "Katrin Hertle", "title": "Projekteinkauferin", "role": "Influencer", "last_contact_date": "2026-06-23", "sentiment": "Neutral", "risk": "Evaluator likely contributing to RFI scoring; no advocacy or detraction evidence.", "source": "OpportunityContactRole (Evaluator)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No confirmed champion. Martina Winkler owns the project as Decision Maker but behaves as a coordinator (no budget-owner intro, no advocacy, no follow-up in ~2 weeks). Daniel Quaschnok is the strongest candidate after a highly engaged demo but is unconverted. Building Quaschnok at the solution-fit workshop, armed with a quantified ROI, ranks ahead of any commercial step.",
+      "champion": "Daniel Quaschnok (Global Category Manager, engaged champion candidate); Martina Winkler (Decision Maker, project coordinator)",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "OpportunityContactRole; 23-Jun-2026 demo; ~2-week post-demo silence"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and Merlin Intake are in scope and the buyer frames this as an AI-driven transformation, but the agentic-AI story has not been centered in front of the evaluators; it should anchor the solution-fit workshop.",
+      "score": "",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS field value was provided this sweep. Products in scope include Merlin and Merlin Intake, and the buyer describes an AI-driven, automation-focused S2C transformation, so AI appetite is present but not yet validated against call evidence.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or executive sponsor is mapped for the EUR 200k investment; only procurement evaluators are engaged.", "first_raised": "2026-06-25", "date": "2026-07-06", "status": "open", "source": "OpportunityContactRole"},
+        {"category": "timeline", "detail": "Zycus has left four buyer-requested items undelivered for ~2 weeks, and the 2027-06-30 close is a placeholder with no customer-named date.", "first_raised": "2026-06-23", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c; LastActivityDate null"},
+        {"category": "budget", "detail": "The value case is unquantified (no savings, cycle-time, or ROI figure), so there is no numeric basis for the EUR 200k ask.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "open", "source": "23-Jun-2026 demo"},
+        {"category": "partner_support", "detail": "EY leads the digital-transformation program but its role (advisor vs implementer vs reseller) is undefined, creating potential channel friction.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "open", "source": "23-Jun-2026 demo"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is thinning: a strong initial pull (demo plus RFI) has met a ~2-week Zycus silence with no buyer re-engagement, and the relationship is single-threaded through one Decision Maker.",
+      "cooling": true,
+      "items": [
+        "Four buyer-requested deliverables outstanding ~2 weeks after the 23-Jun demo",
+        "No Salesforce activity logged since creation (LastActivityDate null)",
+        "Single-threaded to Martina Winkler; no budget owner engaged"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send the demo recording, presentation and Coface integration details, and propose two solution-fit workshop dates.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Four buyer-requested items outstanding since the demo and RFI", "trigger_date": "2026-06-25", "act_by": "2026-07-10", "expected_effect": "Restarts momentum within the RFI window and converts the pull into a scheduled evaluation gate."},
+        {"rank": 2, "action": "Ask Martina Winkler to name and introduce the budget owner for the S2C investment.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No economic buyer mapped for the EUR 200k scope", "trigger_date": "2026-07-06", "act_by": "2026-07-17", "expected_effect": "Maps power early so the eventual proposal reaches a sponsor who can approve."},
+        {"rank": 3, "action": "Request the RFI evaluation criteria, timeline and the vendor shortlist in scope.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "RFI received but criteria and competitors unknown", "trigger_date": "2026-06-25", "act_by": "2026-07-20", "expected_effect": "Surfaces the competitive field and the scored criteria so Zycus can position to win, not guess."},
+        {"rank": 4, "action": "Equip Daniel Quaschnok with a quantified ROI model to carry Zycus internally.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No quantified value case; Quaschnok is the strongest champion candidate", "trigger_date": "2026-06-23", "act_by": "2026-07-31", "expected_effect": "Converts an engaged evaluator into an advocate and gives the budget owner a numeric basis to fund."},
+        {"rank": 5, "action": "Run the solution-fit workshop validating procurement workflows, Coface integration and supplier-risk consolidation.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Workshop is the buyer's next agreed gate before a proposal", "trigger_date": "2026-06-25", "act_by": "2026-08-07", "expected_effect": "Proves fit on the buyer's own use cases and advances the deal toward proposal and commercials."}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "deal_scores_evidence": {
+      "summary": "A fresh Qualified S2C new-business deal at automotive Tier-1 Kromberg & Schubert: a 23-Jun demo and a 25-Jun RFI show real pull, but Zycus has gone quiet for two weeks with four items undelivered, no budget owner mapped, and the competitive field unnamed.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Early Qualified new-business deal with one delivered demo and an RFI in hand, but only procurement evaluators are engaged and no budget owner is mapped for the EUR 200k scope."},
+          {"tone": "good", "text": "Real pull exists: the Kromberg team issued an RFI two days after the demo and asked for the recording, presentation and Coface risk-provider integration details (Next_Step__c, 25-Jun)."},
+          {"tone": "warn", "text": "No rival is named yet, but the 25-Jun RFI confirms a multi-vendor field, so the position is unproven until the shortlist and scored criteria are surfaced."},
+          {"tone": "warn", "text": "Champion is unconfirmed: Daniel Quaschnok engaged heavily on the demo but shows no advocacy, and Decision Maker Martina Winkler has introduced no budget owner."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum has stalled: no Zycus follow-up is logged in the ~2 weeks since the 23-Jun demo and 25-Jun RFI, leaving four buyer-requested items undelivered."},
+          {"tone": "warn", "text": "No customer-named decision date exists, the 2027-06-30 close is a placeholder, and no pricing, security or legal topic has entered the conversation."},
+          {"tone": "good", "text": "The buyer's RFI submission and workshop request are forward pulls that can be converted quickly if Zycus re-engages this week."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is shallow: engagement is still a single demo plus an RFI, with no economic buyer, no quantified ROI, and no agreed evaluation plan."},
+          {"tone": "warn", "text": "The evaluation is advisor-influenced (EY runs the transformation program) and EY's role as advisor versus implementer is undefined, adding channel risk."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "A two-week silence after a buyer-requested demo risks ceding responsiveness to a faster RFI respondent."},
+          {"tone": "warn", "text": "Budget authority is unmapped and value is unquantified, so a EUR 200k ask has no confirmed sponsor to approve it."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.5, "evidence": "No rep follow-up logged in the ~2 weeks since the 23-Jun demo / 25-Jun RFI; four buyer-requested deliverables outstanding."},
+        "customer_commitment": {"strength": -0.4, "evidence": "Single demo plus RFI; no economic buyer, no quantified ROI, placeholder 2027 close date."},
+        "deal_risk": {"strength": -0.4, "evidence": "Unmapped budget owner, unquantified value, and a multi-vendor RFI with rivals unnamed."}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": "iSupplier;eProcurement;Merlin;Merlin Intake", "to": "iSupplier;eProcurement;Merlin;Merlin Intake", "detail": "No prior-scope narrowing evidenced; full-suite S2C scope is intact at this Qualified stage."},
+    "customer_preference": {"level": "low", "evidence": "The buyer requested materials and issued an RFI but showed no Zycus-specific lean or favourable comparison versus any named rival; engagement reads as neutral information-gathering."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain articulated (fragmented supplier-risk data, manual presourcing approvals, ~1,500 suppliers to consolidate) but no savings, cycle-time, or ROI figure quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history at creation 25-Jun-2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls matched to this opportunity or account this sweep (the 23-Jun demo exists per Next_Step__c but no transcript was retrievable).",
+      "Economic buyer / budget owner identity unknown.",
+      "Competitive shortlist and RFI scored criteria not yet obtained.",
+      "No quantified ROI / savings figure.",
+      "EY's commercial role (advisor vs implementer vs reseller) undefined."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

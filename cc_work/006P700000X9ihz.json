@@ -1,0 +1,283 @@
+{
+  "opp_id": "006P700000X9ihzIAB",
+  "hard": {
+    "opp_id": "006P700000X9ihzIAB",
+    "opp_name": "DWG_Opp - April '26",
+    "account_name": "DWG LLC",
+    "account_industry": "Architecture, Engineering & Design",
+    "billing_country": "United States",
+    "owner_name": "Grace Kim",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 75000,
+    "close_date": "2026-12-15",
+    "days_to_close": 162,
+    "created_date": "2026-04-23",
+    "qualified_date": "2026-04-23",
+    "last_activity_date": "2026-05-07",
+    "last_modified_date": null,
+    "products": "iContract;iSupplier;eProcurement;Merlin;Agentic AI",
+    "next_step": "Send focused demo content for contract management supplier management and procurement and ask them to review internally with the partner. Schedule next call with demo including both decision makers to align on how they handle contracts, suppliers and purchasing. Deep dive into current workflow and quantify volume, processes and inefficiencies to anchor real use cases.",
+    "ais_score": 3.0,
+    "ais_status": "Strong",
+    "ais_why": "DWG's David Martin asked 'What is an RFI?' during the intro, placing the conversation at procurement-101 rather than AI maturity. Zycus introduced the Merlin intake chatbot and Teams integration, but the prospect focused on a broken supplier-portal profile link and basic contract-lifecycle education. One 22-minute call with a 5-10 user deployment scope; too sparse and too early to read as anything but resistant.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Do-nothing / status quo; GEP; Coupa; JAGGAER",
+    "primary_competitor": "Do-nothing / status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000X9ihzIAB/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "One 22 Apr discovery call with David Martin, then silence: the buyer went dark 75+ days after asking for demo videos and pricing. No champion, no economic buyer, single-threaded, and inertia (David uses no software today) is the deal, not a rival.",
+      "math": "Close date 2026-12-15 (162 days out). Created and qualified 23 Apr 2026 (74 days ago). Time in Qualified: ~74 days. One buyer touchpoint: introductory call 22 Apr 2026 (75 days ago). Last Salesforce activity 7 May 2026 (60 days ago) was a one-way rep summit-invite email (Nikita Bayas to David Martin), not a buyer reply. No genuine two-way buyer exchange since 22 Apr = 75+ days cold, which crosses the 60-day cold threshold. Pace would be healthy IF re-engaged (162 days to close), but the deal is currently dark with no next step booked and no reply to the video/pricing follow-up.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Single buyer touchpoint: introductory call 22 Apr 2026 with David Martin, 75 days ago; no follow-on buyer engagement since.",
+        "Last Salesforce activity 7 May 2026 (60 days ago) was a rep-sent Agentic AI Summit invite from Nikita Bayas to David Martin, with no logged buyer reply.",
+        "David requested demo videos and ballpark pricing on the 22 Apr call and went dark; no next meeting scheduled.",
+        "No champion, no economic buyer engaged, single-threaded on David Martin; his unnamed business partner never engaged.",
+        "Forecast Pipeline is indefensible on the evidence: one exploratory call, 60+ day silence, no confirmed process or urgency.",
+        "Recommended forecast: Omitted until David or his partner re-engages with a booked next step."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "David Martin quantified volume but not value on the 22 Apr 2026 call: he manages 'maybe two to 3 [contracts] depending on the size', mixed with individual job-based work in construction/remodeling (6-month full remodels plus per-job contracts). He articulated qualitative pain that many tools 'turn into a lot more work using the software... you're just logging data', citing Slack and CRM experience, and cares that Zycus does the job 'efficiently'. No cost, cycle-time, error-rate, or savings figure was stated, and Grace positioned AI clause-risk flagging and exec summaries as time-savers without anchoring a number David confirmed. The move on re-engagement is to quantify his current contract and procurement hours, turnaround, and rework to build a savings model he owns.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'I would say maybe two to 3 depending on the size... mixed in with other individual jobs'",
+          "Avoma call 22 Apr 2026, David Martin: 'a lot of the times, these softwares, it turns into a lot more work using the software... you're just logging data'"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged. DWGS USA is a new business entity David Martin started for this venture ('I had started it specifically for this business venture'), so David likely owns or heavily influences the budget himself, but he never named a budget authority, approval chain, or spend ceiling on the 22 Apr 2026 call. No OpportunityContactRole marks an Economic Buyer or Executive Sponsor, and the synthesis-map budget fields are blank. He referenced an unnamed 'partner' he wanted to loop in ('send the videos to both of us'), who is the most likely co-decision-maker on spend but has never engaged. The move is to confirm on the next call whether David controls the budget or the partner does, and get the partner into the room.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'I had started it specifically for this business venture'",
+          "Avoma call 22 Apr 2026, David Martin: 'send the videos to both of us... my partner'",
+          "OpportunityContactRole: only David Martin (Decision Maker); no Economic Buyer / Executive Sponsor role on record"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "David's stated criteria on 22 Apr 2026 are ease-of-use and efficiency over feature breadth: 'it does a lot... but more importantly, how efficiently does it do it', and his explicit fear that software 'turns into a lot more work'. He named the three modules that resonated: 'the contract management, the supplier risk and performance management, and the eProcurement... those are right around my alley'. He also flagged price as a gating question ('what's the pricing like? I guess, let's start there'). No formal requirements document, weighted scorecard, or RFP criteria exist; the evaluation is informal and exploratory. The confirmed criteria are intuitive workload reduction and modular pricing fit for a 5-10 user deployment; everything else is inferred.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'it does a lot... more importantly, how efficiently does it do it'",
+          "Avoma call 22 Apr 2026, David Martin: 'the contract management, the supplier risk and performance management, and the eProcurement... those stood out to me'",
+          "Avoma call 22 Apr 2026, David Martin: 'what's the pricing like? I guess, let's start there'"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no defined decision process. The 22 Apr 2026 call was a single, curiosity-driven discovery session David booked while setting up a Zycus supplier account for a customer (Balfour Beatty), not a structured evaluation ('I'm not really even sure what the point of Zycus is... just curious'). The only forward step he committed to was reviewing demo videos internally and sharing them with his unnamed partner. No timeline, no approval steps, no procurement or legal path was discussed, and no next meeting was booked. Reading the call sequence itself, the process has not started: one contact, one call, then silence. The move is to co-define a simple evaluation path (deeper demo, workflow deep-dive, scoped pricing) with a named next date.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'I'm not really even sure what the point of Zycus is... just curious'",
+          "Avoma call 22 Apr 2026, David Martin: 'I could send you an email... send the videos to both of us, we'll continue on'",
+          "No follow-on activity or booked next step logged since 7 May 2026"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced. This is an early-stage Qualified deal with a single exploratory call; there is no MSA, Order Form, SOW, legal, InfoSec, or procurement conversation on record, and no contract-expiration forcing function because David runs no incumbent tool. For a modular 5-10 user deployment this would eventually be a light Order Form plus SOW motion rather than a full-suite MSA, but that is far downstream. What would create visibility is reaching a scoped-pricing and next-steps conversation; none exists yet.",
+        "sources": [
+          "Avoma call 22 Apr 2026: no legal, InfoSec, procurement, or contracting topic raised",
+          "Salesforce stage Qualified; no Current_Contract_Expiration or paper fields populated"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is confirmed and clear. David Martin uses no software at all to manage contracts, suppliers, or procurement for DWGS USA ('nothing at all'), handling everything manually across 2-3 contracts a month plus per-job architecture/remodel work. He became 'quite intrigued' after Grace's walkthrough but voiced the specific pain that tools often add work rather than remove it ('you're just logging data... that's kinda not what I'm looking for'). The pain owner is David Martin, Procurement Manager and founder of the new entity. The pain is genuine (fully manual, ad-hoc operations for a growing business) but the urgency is low: he framed the call as exploratory browsing, not a mandate to fix a burning problem.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'nothing at all' (no current software)",
+          "Avoma call 22 Apr 2026, David Martin: 'these softwares, it turns into a lot more work... that's kinda not what I'm looking for'"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. David Martin is the sole buyer contact and, while interested on 22 Apr 2026 ('now I'm kinda interested... let's keep it going'), he has shown no advocacy: no internal introductions, no shared documents, no pushing Zycus to a decision-maker, and he went dark for 60+ days after the call. He is an engaged early contact who wanted to explore, not an internal seller. His unnamed 'partner' is a potential co-evaluator but has never engaged. What is missing to build a champion: a second, higher-value interaction that gives David a reason to advocate internally, plus access to his partner. Champion development has not begun.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'now I'm kinda interested... let's keep it going'",
+          "No introductions, shared docs, or internal advocacy; no buyer reply since 7 May 2026"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The real competition on this deal is do-nothing / status quo: David Martin runs zero procurement software today ('nothing at all'), so the battle is against manual habit and inertia, evidenced by his 75-day silence. GEP, Coupa, and JAGGAER appear only in Grace's own positioning ('we're up there with the GEPs and the Coopas and the Jaggers... pretty established players in the US market'), not because David is evaluating them; he named no rival and is running no formal bake-off. Those three are latent/dormant peers who would surface only if David launches a structured evaluation. We win by proving Zycus reduces workload rather than adding it (David's explicit fear) and by converting exploratory curiosity into a scoped, easy first step before inertia settles back in.",
+        "sources": [
+          "Avoma call 22 Apr 2026, David Martin: 'nothing at all' (no current software)",
+          "Avoma call 22 Apr 2026, Grace Kim (rep positioning): 'we're up there with the GEPs and the Coopas and the Jaggers'",
+          "Salesforce Competitors__c: not populated"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Movement stalled after a single 22 Apr 2026 discovery call. Rep-side follow-through happened (Showpad Shared Space created 28 Apr, summit invite emailed 7 May) but the buyer never replied, so there is no forward progress and the deal has gone cold for 60+ days.",
+      "items": [
+        {"change": "Introductory discovery call held with David Martin; three modules of interest identified (contract, supplier risk, eProcurement)", "date": "2026-04-22"},
+        {"change": "Stage moved Initial Interest -> Qualified by Grace Kim", "date": "2026-04-23"},
+        {"change": "Showpad Shared Space 'DWGS USA' created and shared with dmartin@dwgsusa.com for demo content", "date": "2026-04-28"},
+        {"change": "Rep-sent Agentic AI Procurement Summit invite emailed to David Martin (Nikita Bayas); no buyer reply", "date": "2026-05-07"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is do-nothing / status quo (high): David Martin uses no software today and has been silent 75+ days, so inertia, not a rival, is what loses this deal. GEP, Coupa, and JAGGAER (all dormant) were named only by the Zycus rep as US-market peers on 22 Apr 2026, with zero evidence David is evaluating them; they would become real only if he runs a formal evaluation. No active competitor and no incumbent tool exist on this deal.",
+      "competitors": [
+        {"name": "Do-nothing / status quo", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "Are you guys using any technology right now... or nothing at all? David: nothing at all.", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026", "how_we_win": "Quantify the cost of manual contract and procurement work on David's 2-3 contracts/month, then land one scoped, low-effort first step so ease-of-use beats habit before the interest cools."},
+        {"name": "GEP", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Grace: we're up there with the GEPs and the Coopas and the Jaggers... pretty established players in the US market.", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026 (rep positioning, not buyer-evaluated)", "how_we_win": "Position Merlin AI (intake chatbot, clause-risk flagging, exec summaries) and modular pricing as faster time-to-value for a small, growing entity; avoid triggering a formal RFP that pulls GEP in."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Grace: we're up there with the GEPs and the Coopas and the Jaggers.", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026 (rep positioning, not buyer-evaluated)", "how_we_win": "Coupa is enterprise-scale and costly; frame Zycus as the right-sized, AI-first modular fit for a 5-10 user DWGS deployment."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Grace: we're up there with the GEPs and the Coopas and the Jaggers.", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026 (rep positioning, not buyer-evaluated)", "how_we_win": "Differentiate on AI ease-of-use (Merlin chatbot, contract AI), David's stated priority, and modular pricing over a peer-scale suite."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "David's expectations are ease-of-use, efficiency, and modular pricing for a small deployment. Zycus is aligned on modularity and AI-led automation but exposed on whether it can prove low-effort adoption, which is his core fear.",
+      "items": [
+        {"criterion": "Software must reduce work, not add it", "position": "exposed", "quote": "these softwares, it turns into a lot more work using the software... that's kinda not what I'm looking for", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026, David Martin"},
+        {"criterion": "Modular scope (contract, supplier risk, eProcurement) not full suite", "position": "aligned", "quote": "we are modular... if you wanted to just go with that contract, supplier and eProcurement, that's absolutely an option", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026, Grace Kim"},
+        {"criterion": "Ballpark pricing for a 5-10 user deployment", "position": "partially aligned", "quote": "what's the pricing like? I guess, let's start there", "date": "2026-04-22", "source": "Avoma call 22 Apr 2026, David Martin"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Send prerecorded demo videos of contract, supplier and procurement modules via Showpad", "said_by": "David Martin", "date": "2026-04-22", "addressed": true, "quote": "can you send over some prerecorded demonstration videos of those specific modules... send the videos to both of us", "source": "Avoma call 22 Apr 2026; Showpad Shared Space 'DWGS USA' created 28 Apr 2026"},
+        {"requirement": "Provide ballpark pricing once module scope for a 5-10 user deployment is narrowed", "said_by": "David Martin", "date": "2026-04-22", "addressed": false, "quote": "what's the pricing like? I guess, let's start there", "source": "Avoma call 22 Apr 2026, David Martin"},
+        {"requirement": "Share the call recording so David can show his business partner", "said_by": "David Martin", "date": "2026-04-22", "addressed": true, "quote": "also maybe this recorded one so I could show my partner", "source": "Avoma call 22 Apr 2026, David Martin"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "David reviews the demo content internally with his partner and reverts with module scope of interest", "who": "Buyer", "grounding_quote": "ask them to review internally with the partner... send the videos to both of us, we'll continue on", "date": "2026-04-22", "due": "2026-05-15", "status": "overdue", "source": "Avoma call 22 Apr 2026; Next_Step__c"},
+          {"deliverable": "David confirms his business partner's identity and gets them into the next call", "who": "Buyer", "grounding_quote": "I put the email of my partner on the chat... you could send the videos to both of us", "date": "2026-04-22", "due": "2026-05-15", "status": "overdue", "source": "Avoma call 22 Apr 2026, David Martin"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "no budget owner or approval chain named on the only call; new entity, likely David or his partner", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma call 22 Apr 2026; OpportunityContactRole"},
+        {"area": "Champion", "quote": "David interested but no advocacy; went dark 60+ days", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma call 22 Apr 2026; no buyer reply since 7 May 2026"},
+        {"area": "Multi-threading", "quote": "single contact only; unnamed partner never engaged", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma call 22 Apr 2026, David Martin"},
+        {"area": "Decision process / timeline", "quote": "exploratory browsing, no timeline or next step booked", "status": "not addressed", "date": "2026-04-22", "gap_type": "knowledge", "source": "Avoma call 22 Apr 2026, David Martin"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage, single-threaded, cold deal. The highest-impact levers are re-opening the relationship, converting exploratory interest into a scoped next step, and pulling in the second decision-maker before inertia wins.",
+      "flags": [
+        "Re-engage David Martin directly: he went dark 60+ days after asking for videos and pricing, so the owner must reopen the thread before this is a dead exploratory deal.",
+        "Beat inertia, not a rival: David uses no software today, so lead with a low-effort scoped first step and a workload-reduction proof, his explicit fear, not a full-suite pitch.",
+        "Multi-thread to the partner: the deal rests entirely on one interested-but-passive contact, so getting David's unnamed business partner into the next call is the key to any real evaluation."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "David Martin", "title": "Procurement Manager", "role": "Decision Maker", "last_contact_date": "2026-04-22", "sentiment": "positive", "risk": "Interested but passive and cold: requested videos and pricing on 22 Apr then went silent 60+ days; single point of contact with no internal advocacy.", "source": "OpportunityContactRole (Primary, Decision Maker); Avoma call 22 Apr 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. David Martin is the sole contact and, while intrigued on 22 Apr 2026, he provided no internal advocacy, no introductions, and went dark for 60+ days. His unnamed business partner, a potential co-evaluator, has never engaged. Champion development has not started.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "Avoma call 22 Apr 2026; no buyer engagement since 7 May 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus led with AI heavily (Merlin intake chatbot, AI contract authoring, clause-risk flagging, exec-summary Genie), but it landed on a procurement-101 buyer who asked 'What is an RFI?' and does not use Teams or Slack, so the agentic story outran the buyer's maturity. The AI narrative is present but over-positioned relative to where David is.",
+      "score": "3.0",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 3.0 / Status Strong per Salesforce, but the single 22 Apr call reads lower: David asked 'What is an RFI?', focused on a broken supplier-portal link and basic contract education, and declined Teams/Slack. AI appetite is nominal, not demonstrated; the field over-rates it versus the call.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Buyer uses no procurement software and fears tools 'turn into a lot more work'; adoption risk and inertia are the core threat.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma call 22 Apr 2026, David Martin"},
+        {"category": "political", "detail": "Single-threaded on one interested-but-passive contact; unnamed partner co-decision-maker never engaged.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma call 22 Apr 2026, David Martin"},
+        {"category": "budget", "detail": "No economic buyer, spend ceiling, or approval path identified for the new DWGS entity.", "first_raised": "2026-04-22", "date": "2026-04-22", "status": "open", "source": "Avoma call 22 Apr 2026; OpportunityContactRole"},
+        {"category": "timeline", "detail": "60+ day buyer silence with no next step booked; deal cold and at risk of dying exploratory.", "first_raised": "2026-05-07", "date": "2026-05-07", "status": "open", "source": "Last activity 7 May 2026; no buyer reply"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement has gone cold: one call 75 days ago, no buyer reply to the 28 Apr Showpad share or the 7 May summit invite. Interest was real but shallow and has decayed.",
+      "cooling": true,
+      "items": [
+        "No buyer reply since the 22 Apr 2026 call; 60+ days silent.",
+        "Rep-side touches (Showpad share 28 Apr, summit invite 7 May) drew no response.",
+        "No next meeting booked; single-threaded on a passive contact."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email and call David Martin to reopen the thread and book a workflow deep-dive.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "David asked for demo videos and pricing on 22 Apr then went silent 60+ days.", "trigger_date": "2026-04-22", "act_by": "2026-07-13", "expected_effect": "Restarts a cold deal and tests whether real interest survives; without it the deal dies exploratory."},
+        {"rank": 2, "action": "Ask David to bring his business partner into the next call as co-evaluator.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "David shared his partner's email and wanted the videos sent to both.", "trigger_date": "2026-04-22", "act_by": "2026-07-20", "expected_effect": "Breaks single-threading and surfaces the likely budget co-owner for the new entity."},
+        {"rank": 3, "action": "Quantify David's manual contract and procurement volumes to anchor a savings model.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "David manages 2-3 contracts/month manually with no software and fears added workload.", "trigger_date": "2026-04-22", "act_by": "2026-08-05", "expected_effect": "Converts qualitative pain into a value case that justifies a scoped first purchase."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "One exploratory discovery call with David Martin on 22 Apr, then 60+ days of silence: this is a cold, single-threaded early deal where inertia (David runs no software today), not a rival, is what we have to beat.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This deal is cold and shallow: a single 22 Apr 2026 discovery call, no champion, no economic buyer, and one passive contact who went dark 60+ days after asking for videos and pricing."},
+          {"tone": "warn", "text": "The main threat is do-nothing: David Martin uses no procurement software today and fears tools 'turn into a lot more work', so inertia, not GEP/Coupa/JAGGAER, is the risk."},
+          {"tone": "warn", "text": "The buyer never replied to the 28 Apr Showpad demo share or the 7 May summit invite, so there is no evidence interest survived the first call."},
+          {"tone": "good", "text": "David was genuinely intrigued on 22 Apr ('now I'm kinda interested... let's keep it going') and named three modules of interest, so a re-engagement has a real hook."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No momentum: no next meeting booked, no buyer reply for 60+ days, and the only recent touches were rep-initiated (Showpad 28 Apr, summit invite 7 May)."},
+          {"tone": "warn", "text": "No senior stakeholders, no customer-named dates, and no close plan; engagement is still a single generic discovery call."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is thin: David agreed to review videos with his partner and 'continue on' but has not acted in 60+ days, and never named a budget owner or timeline."},
+          {"tone": "good", "text": "David did volunteer his partner's email and asked for pricing on 22 Apr, small pull signals worth reactivating."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "High change-management risk: a procurement-101 buyer ('What is an RFI?') with no current tooling and an explicit fear of software adding work."},
+          {"tone": "warn", "text": "Single-thread and budget risk: everything rests on one passive contact with no economic buyer, approval chain, or engaged partner mapped."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.6, "evidence": "Interested on 22 Apr but dark 60+ days; no booked next step, no budget owner named."},
+        "deal_momentum": {"strength": -0.7, "evidence": "One call then silence; only rep-side touches since; no dates, no senior stakeholders."},
+        "deal_risk": {"strength": -0.6, "evidence": "No-software buyer fearing added workload; single-threaded; no EB or timeline."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Exploratory throughout ('just curious', 'initial browsing for tools'); asked for videos and pricing to review internally, then went silent 60+ days. No Zycus-specific lean or decisive preference."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: no software today, 2-3 contracts/month managed manually, fear that tools add work. No ROI, savings, or cycle-time quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 2026-04-23 (creation)",
+    "avoma_attendees": ["David Martin"],
+    "gaps": [
+      "Only one buyer call exists (22 Apr 2026); no further transcripts to read.",
+      "Economic buyer / budget authority genuinely unknown across all sources.",
+      "David Martin's business partner is unnamed and unengaged; identity and role unknown.",
+      "No decision process, timeline, or competitive evaluation confirmed; deal is exploratory and cold."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

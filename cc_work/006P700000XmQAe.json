@@ -1,0 +1,269 @@
+{
+  "opp_id": "006P700000XmQAe",
+  "hard": {
+    "opp_id": "006P700000XmQAe",
+    "opp_name": "Fragua_S2P_May'26",
+    "account_name": "Corporativo Fragua SAB de CV",
+    "account_industry": "Chemical, Pharma & Biotech Mfg",
+    "billing_country": "Mexico",
+    "owner_name": "Karson Keogh",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2026-09-30",
+    "days_to_close": 86,
+    "created_date": "2026-05-07",
+    "qualified_date": "2026-05-07",
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": "2026-07-02",
+    "products": "iSource;ML iAnalyze;iSave;iSupplier;eProcurement;iRequest;iSaaS;Merlin;iRisk;Merlin Intake;AppXtend;iCompliance",
+    "next_step": "6/22 MC - Confirmed meeting with Miroslava, Christian, Olivia, and Jorge for Tuesday at 11:00 AM MT for an initial business discovery session. Discussion kept high-level pending full NDA execution; NDA review in progress with the signed agreement expected imminently.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "AIS 4.0 Moderate reflects a data-quality artifact more than a stance: the buyer never discussed AI or Merlin, but the 23 Jun discovery surfaced a strong automation appetite (automate KPI calculation, cut manual Excel bidding, remove human error) that is a natural Merlin/agentic wedge once past the NDA.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Coupa; SAP; Microsoft Dynamics (status quo ERP)",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XmQAe/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Live LATAM S2P discovery with real procurement pain and an RFP on deck, but stalled behind an NDA unsigned since 13 May and a fresh owner handoff after Mario Castro left the deal.",
+      "math": "Created 7 May 2026 (60 days old); moved Qualified to Formal Evaluation 13 Jun, ~23 days in stage; close 30 Sep 2026 is 86 days out. Discovery cadence every 7-10 days (5 May, 15 Jun, 17 Jun, 23 Jun) shows live buyer interest, and last activity 2 Jul. But the buyer's own goal to close evaluations by end of June (Crystian, 23 Jun) has already slipped, the NDA has been 'imminent' since 13 May and is still unsigned on 2 Jul, and the founding rep Mario Castro handed the deal to Karson Keogh on 26 Jun. A full enterprise S2P cycle typically runs 12-15 months while this deal is still pre-demo, so the 30 Sep date is optimistic. One genuinely stalled action (NDA) plus an owner transition put this in Slowing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "NDA execution has been 'in firmas' since 13 May and remained unsigned as of the 2 Jul buyer follow-up asking for status; it blocks the RFP, use cases and any technical demo (Avoma 23 Jun; email tasks 13 May and 2 Jul).",
+        "Owner changed from Mario Castro to Karson Keogh on 26 Jun, and the 2 Jul Zycus email told the buyer Mario 'ha tomado una nueva oportunidad profesional' - the director who built every relationship has left the deal.",
+        "Buyer wanted to close evaluations by end of June ('cerrar con este mes... ya vamos ahi lentos', Crystian, 23 Jun); it is now past that date with the demo not yet delivered.",
+        "Genuine discovery depth on 23 Jun: Crystian Panduro (Subgerente Compras Institucionales) articulated the pain, the RFP (~80 points), a 13-tab SaaS evaluation and a ~20-question security RFI, all releasable once the NDA is countersigned.",
+        "No confirmed budget owner above subgerente level and no pricing or ROI figure yet; the initiative originates from Compras (Jorge and Crystian named Compras as the sponsor on 23 Jun)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Crystian Panduro laid out the value drivers on 23 Jun in priority order: (1) visibility and traceability of the full procurement cycle, (2) reduction of manual/operational tasks, (3) supplier collaboration. He quantifies internally today - fill rate, delivery times by category, cycle/attention times, and savings percentage - but does it all manually in Excel and wants those KPIs automated to cut operator load and human error. No hard financial target exists yet: when pressed he said his expectation is unknown and suggested anchoring to market benchmarks ('han incrementado su nivel de ahorro en un 2 y un 7 por ciento', 23 Jun). Mario offered a dedicated business-case workshop to build a Fragua-specific savings model and the buyer agreed ('veamoslo, si tiene sentido'). The move is to run that workshop to convert qualitative pain into a quantified ROI before pricing.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro)", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "The initiative is owned by Compras (institutional procurement), not IT: when Mario asked who sponsors the initiative and signs the check on 23 Jun, Jorge Ortiz answered 'Compras... Crystian.' Crystian Panduro (Subgerente Compras Institucionales) is the business sponsor who drives requirements and success criteria, but a subgerente is a deputy manager, so the actual budget owner - the Gerente or Director de Compras above him - is not yet named or engaged. No OpportunityContactRole, X10a_Sponsor__c or Who_will_approve_budget__c value confirms an economic buyer. The evidence clearly places budget authority inside Compras, so the move is to have Crystian introduce his procurement leadership before any commercial conversation, rather than leaving EB blank.",
+        "sources": ["Avoma 23 Jun 2026 (Jorge Ortiz, Crystian Panduro)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The buyer runs a structured, multi-track evaluation described on 23 Jun: a business/technical RFP of roughly 80 requirement points, a separate SaaS platform evaluation in Excel (about 13 tabs of ~30 questions each, owned by IT infrastructure and telecom), and a security RFI of roughly 20 questions. Miroslava and Crystian confirmed the scored criteria will be shared once the NDA is signed ('una vez que ya este firmado el NDA, ya se las hacemos llegar'). Functionally the buyer explicitly weighted visibility/traceability first, manual-process reduction second, supplier collaboration third, plus ERP integration as a make-or-break, supplier-evaluation/ranking as a 'plus', and change-management maturity. Criteria structure is confirmed; the point-level detail stays behind the NDA.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro, Miroslava Sarahi)"]
+      },
+      "decision_process": {
+        "status": "confirmed",
+        "narrative": "The process is well mapped from the 23 Jun call: an NDA gate, then Zycus receives the RFP + SaaS eval + security RFI, then a first functional (Spanish) demo for Compras, then a more technical demo/POC once use cases are shared, evaluated jointly by Compras (functional), IT infrastructure, security, telecom, database and server teams, with Jorge Ortiz as project lead coordinating and Miroslava as business analyst. The buyer's POC concept is a guided technical demo where their team explores the platform, not a build. The buyer pushed an aggressive timeline (close evaluations end of June) that has since slipped; Mario set realistic expectations that responding to an ~80-point RFP plus a scoped demo needs 4-7 days from NDA. Approval sits inside Compras. The process is clear and multi-area; the risk is the NDA gate and the compressed timeline, not process ambiguity.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro, Jorge Ortiz)"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "This is a new-business S2P pursuit in Mexico, so the near-term paper is the mutual NDA, which has been in the buyer's legal (juridico/Qdoc) since 13 May and is still pending on 2 Jul. Mariana Garcia (intern coordinating legal) requested three original copies signed in blue ink and mailed to a physical address; on 23 Jun the buyer floated accepting a signed PDF first to unblock RFP sharing while originals travel by courier. Zycus has already agreed to the NDA terms and committed to countersign same-day and return overnight. Downstream MSA/Order Form/SOW contracting is not yet in view. Current_Contract_Expiration__c is not populated. The forcing function is simply getting the NDA countersigned, since it gates everything.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro, Jorge Ortiz, Mariana Garcia)", "Email tasks 13 May, 25 Jun, 2 Jul 2026"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Crystian Panduro articulated concrete operational pain on 23 Jun: tenders (licitaciones) are run in Excel with files saved on the buyer's machine or a drive, so a purchase from a year or two ago cannot be traced back ('andar buscando donde quedo la licitacion, la cotizacion, de donde viene el requerimiento'). Supplier communication runs on email and phone calls with no traceability of when an order was sent, received or confirmed. KPI reporting (fill rate, delivery times, attention times, savings) is fully manual, creating operator load and human error. The current ERP (Microsoft Dynamics, ~8-9 years old, recently moved to cloud) handles catalog and requisitions but lacks these sourcing, traceability and supplier-onboarding functions 'de caja'. The pain owner is Compras; the trigger is a broader digitalization push and audit/compliance needs. This is confirmed, first-hand pain, not inferred.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Miroslava Sarahi Cabrera Navarro (Analista de Negocios TI) is the developing champion: she is the consistent coordinator, scheduled and confirmed the 23 Jun discovery session with four stakeholders, and has driven the calendar and email cadence since May. What has developed is reliable access and multi-stakeholder facilitation; what is missing is seniority and evidence of internal advocacy (no EB introduction, no shared internal docs beyond process, no pushing back on Coupa/SAP for Zycus). The stronger business voice is Crystian Panduro (Subgerente Compras Institucionales), who owns the pain and the success criteria and is the more valuable champion to cultivate. The relationship risk is real: the champion was built by Mario Castro, who has now left Zycus, so Karson Keogh must re-earn that trust. The move is to convert Crystian into the active internal advocate and secure his introduction upward into Compras leadership.",
+        "sources": ["Avoma 23 Jun 2026 (Miroslava Sarahi, Crystian Panduro)", "SF task/email activities May-Jul 2026"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The buyer named the field once, on 23 Jun: they found Zycus through the Gartner Magic Quadrant and are 'compitiendo con Coupa, SAP y varias' vendors, deciding Zycus is 'un proveedor fuerte.' Neither Coupa nor SAP is stated as preferred - this is an early, open, RFP-driven bake-off, not a settled shortlist. The most concrete alternative is the status quo: the incumbent Microsoft Dynamics ERP already runs catalog and requisitions, so 'extend the ERP and keep working in Excel' is the real do-nothing threat. Mario himself surfaced the sharpest risk by asking whether Zycus is a genuine contender or just another benchmark ('estan estimando a Zycus como una posibilidad o necesitan solamente otro benchmark'). The wedge is Zycus being 100% purpose-built and code-owned for procurement with configurable, deep ERP integration, positioned against Coupa's packaged model and SAP's complexity/cost, delivered in Spanish for LATAM.",
+        "sources": ["Avoma 23 Jun 2026 (Crystian Panduro, Miroslava Sarahi, Mario Castro)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Live but stalling. Real discovery landed on 23 Jun with Compras and IT, but the NDA gate has not moved since 13 May, the buyer's end-June evaluation deadline slipped, and ownership changed from Mario Castro to Karson Keogh on 26 Jun with Mario now off the deal.",
+      "items": [
+        {"change": "Stage moved Qualified to Formal Evaluation", "date": "2026-06-13"},
+        {"change": "Business discovery session held with Crystian, Miroslava, Olivia, Jorge; pain, RFP structure and timeline surfaced", "date": "2026-06-23"},
+        {"change": "Ownership transferred from Mario Castro to Karson Keogh", "date": "2026-06-26"},
+        {"change": "Zycus notified buyer that Mario has left; Karson to follow up", "date": "2026-07-02"},
+        {"change": "Buyer still chasing NDA signature status; document unsigned", "date": "2026-07-02"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Open, early RFP field. The buyer found Zycus via Gartner and on 23 Jun named Coupa and SAP as the vendors it is evaluating alongside Zycus, with none stated as preferred. The strongest CURRENT threat is the status quo: the incumbent Microsoft Dynamics ERP already covers catalog and requisitions, so 'extend the ERP and stay in Excel' is the do-nothing risk to beat, and Mario flagged the buyer may be using Zycus as a benchmark. Coupa and SAP are active but unranked; win by quantifying the manual-process pain and proving purpose-built, code-owned configurability and deep Dynamics integration in Spanish.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "tambien estan compitiendo con Coupa, SAP y varias", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)", "how_we_win": "Position Zycus as 100% purpose-built and code-owned for procurement with configurable, deep Dynamics integration vs Coupa's packaged model."},
+        {"name": "SAP", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "tambien estan compitiendo con Coupa, SAP y varias", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)", "how_we_win": "Contrast modular, fast custom development and Spanish-language LATAM delivery against SAP's complexity and cost."},
+        {"name": "Microsoft Dynamics (status quo ERP)", "sentiment": "neutral", "threat_level": "medium", "status": "do_nothing", "quote": "si tenemos ya un ERP... acabamos de actualizar la version en la nube... las licitaciones actualmente llevan a cabo en Excel", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)", "how_we_win": "Quantify the manual Excel-bidding and lost-traceability cost so 'extend Dynamics' stops being good enough; make Merlin-driven KPI automation the wedge."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong functional fit against the buyer's stated priorities, with ERP integration and change-management as the make-or-break dimensions.",
+      "items": [
+        {"criterion": "End-to-end visibility and traceability of the procurement cycle", "position": "aligned", "quote": "la parte de visibilidad y trazabilidad del estatus de los procesos, eso lo veo en primera parte", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)"},
+        {"criterion": "Automated KPI calculation (fill rate, delivery times, savings)", "position": "aligned", "quote": "buscamos que el calculo de los KPIs sea automatizado... disminuir la carga operativa, evitar el error humano", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)"},
+        {"criterion": "Deep integration with the incumbent ERP (Microsoft Dynamics)", "position": "partially aligned", "quote": "una de las cosas que van a querer ver como organizacion la integracion con el ERP... donde estan los hoyos mas grandes", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Mario Castro)"},
+        {"criterion": "Supplier onboarding, collaboration portal and supplier evaluation/ranking", "position": "aligned", "quote": "seria un plus si se puede tener algun tema de evaluacion de proveedores... rankeadas", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Crystian Panduro)"},
+        {"criterion": "Modularity (buyer may keep own CLM / add only needed modules)", "position": "aligned", "quote": "la solucion de Zycus es 100 por 100 modular", "date": "2026-06-23", "source": "Avoma 23 Jun 2026 (Mario Castro)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Deliver a functional demo in Spanish focused on Fragua's procurement priorities", "said_by": "Crystian Panduro", "date": "2026-06-23", "addressed": false, "quote": "estamos solicitando como una demo a alto nivel... Espanol, de preferencia", "source": "Avoma 23 Jun 2026"},
+        {"requirement": "Show supplier evaluation/ranking capability during the demo", "said_by": "Crystian Panduro", "date": "2026-06-23", "addressed": false, "quote": "algun tema de evaluacion de proveedores... rankeadas aqui del uno al 10", "source": "Avoma 23 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Run the half-day business-case workshop to build a Fragua-specific savings model", "who": "Zycus", "grounding_quote": "es como un taller, literalmente para crear un business case, y lo hacemos acotado a su realidad... eso les interesaria hacer con nosotros?", "date": "2026-06-23", "due": "2026-08-05", "status": "open", "source": "Avoma 23 Jun 2026 (Mario Castro; buyer agreed 'veamoslo, si tiene sentido')"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Countersign the NDA (or send a signed PDF) and release the RFP, SaaS evaluation and security RFI plus use cases", "who": "Buyer", "grounding_quote": "una vez que ya este firmado el NDA, ya se las hacemos llegar... con que firmen ustedes, ya podemos compartirles", "date": "2026-06-23", "due": "2026-07-13", "status": "overdue", "source": "Avoma 23 Jun 2026 (Crystian Panduro); email 2 Jul 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Budget owner above subgerente level in Compras", "quote": "Compras... Crystian", "status": "not addressed", "date": "2026-06-23", "gap_type": "knowledge", "source": "Avoma 23 Jun 2026 (Jorge Ortiz)"},
+        {"area": "Scored RFP/evaluation criteria detail (held behind NDA)", "quote": "una vez que ya este firmado el NDA, ya se las hacemos llegar", "status": "acknowledged", "date": "2026-06-23", "gap_type": "knowledge", "source": "Avoma 23 Jun 2026 (Miroslava Sarahi)"},
+        {"area": "Buyer stakeholders exist in emails/calls but not as OpportunityContactRoles", "quote": "task/activity contact only: Miraslava Sarahi", "status": "not addressed", "date": "2026-07-02", "gap_type": "hygiene", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three levers matter now: survive the owner handoff, unblock the NDA gate, and find the real budget owner.",
+      "flags": [
+        "Reset the relationship fast: Karson Keogh must personally re-anchor with Crystian and Miroslava this week, since Mario Castro built every relationship and has left Zycus.",
+        "Treat the NDA as the single gate: RFP, use cases and any technical demo are frozen behind it, so drive the signed-PDF-first path the buyer offered on 23 Jun.",
+        "Multi-thread above Crystian into Gerencia de Compras to confirm the budget owner before pricing; today's committee tops out at subgerente and analyst level."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Crystian Jesus Panduro Morales", "title": "Subgerente Compras Institucionales", "role": "Economic Buyer", "last_contact_date": "2026-06-23", "sentiment": "Engaged; owns the pain and success criteria, named by Jorge as the initiative sponsor from Compras. Budget authority above him unconfirmed.", "risk": "Deputy-manager level; true check-signer in Compras leadership not yet mapped.", "source": "Avoma 23 Jun 2026"},
+        {"name": "Miroslava Sarahi Cabrera Navarro", "title": "Analista de Negocios TI", "role": "Champion", "last_contact_date": "2026-07-02", "sentiment": "Consistent coordinator; scheduled the 23 Jun session and drives the cadence. Developing, not yet a senior advocate.", "risk": "Analyst-level authority; single-threaded coordination and the relationship was built by the departed Mario.", "source": "SF task/email activities; Avoma 23 Jun 2026"},
+        {"name": "Jorge Luis Ortiz Herrera", "title": "Lider de Proyectos TI", "role": "Decision Maker", "last_contact_date": "2026-06-23", "sentiment": "Project lead coordinating the RFP, technical evaluation and multi-area committee; pragmatic and responsive.", "risk": "IT-side gatekeeper; can slow or redirect on integration/security concerns.", "source": "Avoma 23 Jun 2026; email 11 May 2026"},
+        {"name": "Olivia Guzman Parra", "title": "Lider de Analistas de Negocio", "role": "Influencer", "last_contact_date": "2026-06-23", "sentiment": "Miroslava's direct manager; joined the discovery session, supportive but not yet vocal.", "risk": "Influence over the analyst team but authority beyond that unconfirmed.", "source": "Avoma 23 Jun 2026"},
+        {"name": "Mariana Cristina Garcia Barajas", "title": "Becario (Legal/NDA coordination)", "role": "Coach", "last_contact_date": "2026-07-02", "sentiment": "Coordinates the NDA with the buyer's legal team; cooperative on process.", "risk": "Intern-level; NDA has stalled in legal since May, gating the whole deal.", "source": "SF email tasks 11 May-2 Jul 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Miroslava Sarahi Cabrera Navarro (Analista de Negocios TI) is a developing champion who reliably coordinates access and scheduled the 23 Jun session, but lacks seniority and has not yet advocated internally against Coupa/SAP. Crystian Panduro (Subgerente Compras Institucionales) is the stronger business voice to cultivate. Relationship continuity is the live risk: the champion was built by Mario Castro, who has now left Zycus.",
+      "champion": "Miroslava Sarahi Cabrera Navarro",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma 23 Jun 2026; SF activities; owner change 26 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin/agentic story has not been put in front of the buyer, yet their explicit appetite to automate KPI calculation, cut manual Excel bidding and remove human error is a direct Merlin wedge. Under-positioned; land the I2O/Merlin narrative in the functional demo.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 Moderate is a data artifact: no AI/Merlin discussion occurred, but the buyer's automation-of-manual-work and KPI-automation pain (23 Jun) signals real latent appetite once discovery deepens.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "Founding rep Mario Castro left Zycus and the owner changed to Karson Keogh on 26 Jun; every buyer relationship must be re-earned mid-cycle.", "first_raised": "2026-06-26", "date": "2026-07-02", "status": "active", "source": "Field history 26 Jun; email 2 Jul 2026"},
+        {"category": "timeline", "detail": "NDA in the buyer's legal since 13 May, still unsigned on 2 Jul, blocking RFP/use cases/demo; the buyer's own end-June evaluation deadline has slipped.", "first_raised": "2026-05-13", "date": "2026-07-02", "status": "active", "source": "Avoma 23 Jun 2026; email tasks 13 May, 2 Jul"},
+        {"category": "budget", "detail": "No confirmed budget owner above Crystian (Subgerente); initiative sits in Compras but the check-signer is unmapped and no pricing or ROI figure exists.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "active", "source": "Avoma 23 Jun 2026"},
+        {"category": "change_management", "detail": "Transformation-scale change from Excel/ERP-only procurement; Mario flagged change management as a make-or-break the buyer must weight in evaluation.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "acknowledged", "source": "Avoma 23 Jun 2026 (Mario Castro)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement was live and two-way through 23 Jun, but has narrowed to rep-side touches since, with the NDA stuck and an owner handoff in flight.",
+      "cooling": true,
+      "items": [
+        "Last genuine two-way buyer exchange was the 23 Jun call and 22 Jun scheduling thread; the 2 Jul touch was a Zycus transition email.",
+        "Buyer still chasing NDA status on 2 Jul indicates intent, but the gate has not moved."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A live LATAM S2P discovery at Fragua (Farmacias Guadalajara) where Crystian in institutional procurement owns a clear traceability-and-automation pain and an RFP is queued, but everything is frozen behind an NDA stuck since mid-May and the founding rep Mario Castro has just left the deal.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "This stands mid-pack early: Crystian Panduro (Subgerente Compras Institucionales) laid out strong procurement pain and called Zycus a 'proveedor fuerte' found via Gartner on the 23 Jun discovery call, but no budget owner is confirmed and the buyer is openly benchmarking Coupa and SAP."},
+          {"tone": "warn", "text": "Mario Castro, the director who built every relationship, handed the deal to Karson Keogh on 26 Jun and told the buyer on 2 Jul he has left Zycus, risking a trust reset with no NDA signed."},
+          {"tone": "warn", "text": "The NDA has been 'imminent' since 13 May and is still unsigned on 2 Jul, freezing the RFP, use cases and demo, so the buyer's own end-June evaluation deadline has already slipped."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Discovery cadence held every 7-10 days through June (5 May, 15 Jun, 17 Jun, 23 Jun) and Miroslava confirmed the 23 Jun session with four buyer stakeholders across Compras and IT."},
+          {"tone": "warn", "text": "Momentum is now rep-side only: the 2 Jul touch was a Zycus transition email while the buyer's last real two-way exchange was 23 Jun."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Crystian committed to move fast and release the ~80-point RFP, a 13-tab SaaS evaluation and a ~20-question security RFI the moment the NDA is countersigned (Avoma, 23 Jun)."},
+          {"tone": "warn", "text": "Commitment is procedural, not commercial: no budget owner, pricing or ROI figure exists yet, and Mario openly asked whether Zycus is a real contender or just another benchmark."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded through an analyst-level coordinator (Miroslava) with the true Compras check-signer unmapped, compounded by the owner change from Mario Castro to Karson Keogh."},
+          {"tone": "warn", "text": "The 30 Sep close is optimistic: a 12-15 month enterprise S2P motion is still at pre-demo discovery with the NDA unsigned."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.3, "evidence": "Developing analyst-level champion built by the departed Mario Castro; no senior advocacy yet."},
+        "relationship_continuity": {"strength": -0.4, "evidence": "Owner change 26 Jun and Mario's exit announced to the buyer 2 Jul mid-discovery."},
+        "timeline": {"strength": -0.3, "evidence": "NDA stalled since 13 May; buyer's end-June deadline slipped with demo not delivered."}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Full Source-to-Pay suite (iSource, iSupplier, eProcurement, iRequest, ML iAnalyze, iSave, Merlin, iRisk, Merlin Intake, iCompliance, AppXtend, iSaaS)",
+      "to": "Full Source-to-Pay suite unchanged; buyer signalled supplier discovery is lower priority and may retain its own CLM, but no modules formally dropped",
+      "detail": "No scope reduction in the record. On 23 Jun the buyer deprioritized new-supplier sourcing ('la busqueda de proveedores no es como la prioridad') and noted modularity may let them keep an existing CLM, but the deal still carries the full S2P suite."
+    },
+    "customer_preference": {"level": "medium", "evidence": "Found Zycus via Gartner and called it 'un proveedor fuerte' with deep, engaged discovery, but is evaluating Coupa and SAP and Mario flagged Zycus may just be a benchmark (23 Jun)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain fully articulated (manual Excel bidding, no traceability, manual KPIs) but no quantified savings target; buyer suggested anchoring to a 2-7% market benchmark (23 Jun)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Karson Keogh personally re-introduces to Crystian and Miroslava to steady the relationship after Mario's exit.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Owner changed to Karson Keogh 26 Jun; buyer told 2 Jul that Mario has left Zycus.", "trigger_date": "2026-07-02", "act_by": "2026-07-10", "expected_effect": "Prevents a trust reset that could stall the deal during the NDA gate."},
+        {"rank": 2, "action": "Confirm Zycus countersigns the NDA same-day and ask the buyer to release the RFP on a signed PDF.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Buyer offered the signed-PDF-first path on 23 Jun; NDA still unsigned on 2 Jul.", "trigger_date": "2026-06-23", "act_by": "2026-07-13", "expected_effect": "Unblocks the RFP, use cases and demo, restarting evaluation momentum."},
+        {"rank": 3, "action": "Ask Crystian to introduce his Compras leadership to confirm the budget owner.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Jorge named Compras as sponsor but only Subgerente-level Crystian is engaged (23 Jun).", "trigger_date": "2026-06-23", "act_by": "2026-07-17", "expected_effect": "Maps the economic buyer before pricing and de-risks approval."},
+        {"rank": 4, "action": "Book the functional Spanish demo on traceability, KPI automation and supplier onboarding.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Buyer requested a Spanish functional demo and wanted to move this week (23 Jun).", "trigger_date": "2026-06-23", "act_by": "2026-07-20", "expected_effect": "Delivers the awaited demo and lets Zycus lead the evaluation narrative."},
+        {"rank": 5, "action": "Schedule the business-case workshop to quantify Fragua-specific savings versus the 2-7% benchmark.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Mario offered the workshop and the buyer agreed on 23 Jun; no ROI figure exists.", "trigger_date": "2026-06-23", "act_by": "2026-08-05", "expected_effect": "Builds the ROI anchor needed to justify the $200K investment and beat the status quo."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 5,
+    "calls_read": 3,
+    "calls_omitted": [
+      {"call": "Entendimiento alto nivel - Proveedor ZYCUS (2026-06-17)", "reason": "No transcript content available in the record."},
+      {"call": "RE: PRUEBAS DE CONCEPTO - ZYCUS (2026-05-05)", "reason": "No transcript content available in the record."}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history full series",
+    "avoma_attendees": ["Crystian Jesus Panduro Morales", "Miroslava Sarahi Cabrera Navarro", "Jorge Luis Ortiz Herrera", "Olivia Guzman Parra", "Ana Karen"],
+    "gaps": [
+      "Budget owner / economic buyer above Crystian (Subgerente Compras Institucionales) not yet named.",
+      "Scored RFP, SaaS evaluation and security criteria not yet shared (gated by the pending NDA).",
+      "No pricing or quantified ROI discussed; business case still qualitative."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

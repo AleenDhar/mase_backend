@@ -1,0 +1,849 @@
+{
+  "opp_id": "006P700000XjBcE",
+  "hard": {
+    "opp_id": "006P700000XjBcE",
+    "opp_name": "Metallus_eInvoicing_May'26",
+    "account_name": "Metallus",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "United States",
+    "owner_name": "Marc Quessenberry",
+    "owner_title": "",
+    "manager_name": "Alexa Bradley",
+    "stage": "Shortlisted",
+    "forecast_category": "Best Case",
+    "amount": 127400.0,
+    "close_date": "2027-08-06",
+    "days_to_close": 396,
+    "created_date": "2026-05-06T15:08:03.000+0000",
+    "qualified_date": "2026-05-06",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-06-19T20:57:38.000+0000",
+    "products": "eInvoicing;Merlin",
+    "next_step": "6/19/26 MQ Initial presentation presented. Feedback was positive, pricing is in line with other vendors. Nick said they would evaluate vendor proposals over the next 2 weeks. They will announce shortlisted vendors by July 4th. 6/18/26 MQ Initial proposal presentation scheduled for 6/19/26 6/5/26 MQ Demonstration presented to 4 primary stakeholders. Developing proposal to present 6/12. Decision targeted for June EOM. PS scope to be scheduled. 5/21/26 MQ Deep dive discovery / invoicing overview scheduled for 5/22. Nicholas was interested in eInvoicing. Will schedule a demo call with the solutions consultant for eInvoicing.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 Next step notes Nicholas was 'interested in eInvoicing' and a demo will be scheduled with the eInvoicing solutions consultant \u2014 narrow scope, no AI, Merlin, ANA, or agentic mention.\n\u2022 Zero Avoma meetings or transcripts tied to the opp across the date range.\n\u2022 Description is blank; last activity 5/22/26 shows it's active but still pre-discovery. No customer-voiced AI signal anywhere \u2014 defaulting to mild curiosity.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": null,
+    "primary_competitor": "Undisclosed RFP bidders (multiple)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XjBcE/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Live, champion-driven RFP now sitting on its own down-select: positive 19 Jun proposal feedback and competitive pricing, but the buyer's promised 4 Jul shortlist announcement is 2 days overdue with no word, and the deal is single-threaded to a manager-level contact with no mapped budget owner.",
+      "math": "Today 6 Jul 2026. Created 6 May 2026, ~61 days old. Shortlisted since 5 Jun (~31 days in stage). Close date 6 Aug 2027 = ~396 days out, a placeholder not a real timeline. Cadence was tight: discovery 22 May, demo 5-6 Jun, proposal 19 Jun. Buyer said on 19 Jun they would evaluate over 2 weeks and announce the shortlist by 4 Jul; last real two-way touch was the buyer email 29-30 Jun ('reviewing all bidders proposals, share feedback soon'). The 4 Jul gate has now passed with no recorded outcome, so the deal is awaiting the buyer's own decision, still within days of a stated milestone, not stalled.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Next Step (19 Jun 2026): 'Feedback was positive, pricing is in line with other vendors. Nick said they would evaluate vendor proposals over the next 2 weeks. They will announce shortlisted vendors by July 4th.' (source: SF Next_Step__c)",
+        "Buyer email 29 Jun 2026: 'We have begun the process of reviewing all of our bidders proposals for this project and we are expecting to share feedback on who we will be pursuing soon.' (source: Clari Email Received 29 Jun 2026)",
+        "The 4 Jul shortlist-announcement date the buyer set on 19 Jun is now 2 days overdue with no recorded outcome, so the near-term watch is the down-select result, not a slip (source: SF Next_Step__c 19 Jun 2026).",
+        "Best Case on a Shortlisted deal with no mapped Economic Buyer, an unverified budget owner, and a 19 Jun amount cut ($146,880 to $127,400) is not defensible; honest category is Pipeline until the shortlist clears and the budget owner is confirmed (source: SF field history 19 Jun 2026 + 0 buyer-side OpportunityContactRole)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "sources": [
+          "Avoma demo 5 Jun 2026 (Marc Quessenberry / Metallus)",
+          "Avoma discovery 22 May 2026 (Nicholas Galbincea)",
+          "Clari Email Sent 19 Jun 2026 (Zycus Proposal)"
+        ],
+        "narrative": "The buyer has quantified volume but not dollar value. On the 5 Jun demo Metallus confirmed 'approximately 90 to 100,000 invoices a year' as the processing volume, and the goal to 'reduce errors, eliminate manual receipt entries, and improve monthly accuracy and financial visibility'. On the 22 May discovery Nicholas Galbincea described today's state as 'a manual and error-prone process' needing automation for PO-based demand across Maximo, SAP and OnBase for three-way matching and exception handling. The 19 Jun proposal scoped 'automating PO-based invoice processing for ~90k' invoices. The qualitative pain and the volume are clear, but no hard cost, FTE, or savings figure has been put on the table, which is why the forecast can not yet be defended on ROI. Quantifying the cost of staying manual (error rework, FTE hours, late-payment exposure) is the move to harden the business case."
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "sources": [
+          "Clari Email Received 29 Jun 2026 (Nicholas Galbincea)",
+          "SF Next_Step__c 19 Jun 2026",
+          "0 buyer-side OpportunityContactRole on opp"
+        ],
+        "narrative": "No Economic Buyer is mapped or verifiable in Salesforce: the opportunity carries zero OpportunityContactRole entries and no Avoma call was matched this sweep. The only SF-verified buyer contact is Nicholas Galbincea (Manager, Commodity and Supply Chain Modeling per his 30 Jun email signature), who himself asked the pricing-clarification question on 29 Jun and speaks for the evaluation team ('we have begun reviewing all of our bidders proposals'), but a manager-level contact fielding pricing is not evidence of budget ownership. The evidence shows commercial authority sits above Nicholas and is still unnamed. Naming and reaching the budget owner, brokered through Nicholas's live thread rather than a cold approach, is the highest-leverage MEDDPICC move before contracting."
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "sources": [
+          "Avoma demo 5 Jun 2026",
+          "Avoma discovery 22 May 2026 (Nicholas Galbincea)",
+          "SF Next_Step__c 19 Jun 2026"
+        ],
+        "narrative": "The criteria are functional-fit plus price. From discovery and demo the buyer weighs native integration with Maximo, SAP and OnBase, automated three-way matching and exception handling, and a unified flow for both physical-good receipts and service invoices to eliminate dual entry (22 May, 5 Jun). Commercially, the buyer explicitly benchmarked price: on 19 Jun our pricing was reported 'in line with other vendors', so price is a scored criterion and we are competitive but not differentiated on it. What is not yet confirmed is the weighting the buyer applies across fit, price, and implementation cost, and whether AI/Merlin capability is a scored criterion at all (the AIS read shows no customer-voiced AI signal). Confirming the scoring weights with Nicholas is the way to sharpen the finalist pitch."
+      },
+      "decision_process": {
+        "status": "partial",
+        "sources": [
+          "SF Next_Step__c 19 Jun 2026",
+          "Clari Email Received 29 Jun 2026",
+          "SF field history (Stage moves)"
+        ],
+        "narrative": "The process is a formal multi-bidder RFP running to the buyer's own clock. The sequence is visible in the trail: discovery 22 May, demo to '4 primary stakeholders' 5 Jun, proposal delivered 19 Jun, then a stated 2-week evaluation window with a shortlist announcement targeted for 4 Jul. On 29 Jun the buyer confirmed they are 'reviewing all of our bidders proposals' and will 'share feedback on who we will be pursuing soon'. The down-select gate has now passed (6 Jul) with no recorded outcome, so we are inside the buyer's decision window awaiting the result. The gap is the internal approval chain above the evaluation team: who signs off on the shortlist and who authorizes budget is undocumented, and mapping it is the process move once the shortlist lands."
+      },
+      "paper_process": {
+        "status": "partial",
+        "sources": [
+          "Clari Email Received 29 May 2026 (executed NDA)",
+          "SF Next_Step__c 5 Jun 2026 (PS scope)",
+          "Clari Email Sent 29 Jun 2026 (implementation cost)"
+        ],
+        "narrative": "Early contracting mechanics are moving. A mutual NDA is executed: on 29 May the buyer returned 'the attached executed NDA', clearing the path to sample data for integration scoping. A Professional Services scoping session is to be scheduled to define implementation scope and timeline, and Zycus owes a firm implementation cost after that exercise (Marc, 29 Jun: 'The implementation cost estimate is separate from the SaaS fees... I may be able to get a reduction on the implementation costs after project is '). Beyond the NDA and the pending PS scoping there is no visibility yet into MSA/SOW path, legal review, procurement channel, or InfoSec, and as net-new automation (not a renewal) there is no contract-expiration forcing function. Confirming the buyer's contracting and security steps once the shortlist is announced would create that visibility."
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "sources": [
+          "Avoma discovery 22 May 2026 (Nicholas Galbincea)",
+          "Avoma demo 5 Jun 2026"
+        ],
+        "narrative": "The pain is specific and owner-attributed. Nicholas Galbincea described the current invoice processing through Maximo as 'a manual and error-prone process' requiring automation that integrates with Maximo, SAP and OnBase for three-way matching and exception handling (22 May). On 5 Jun the buyer confirmed the goals to 'reduce errors, eliminate manual receipt entries, and improve monthly accuracy and financial visibility' across ~90-100k invoices a year, and to 'centralize both physical good receipts and service invoice processing in a unified solution to eliminate dual entry'. The pain owners are the AR/AP function (Robert Rummer, per prior stakeholder record) and the procurement / commodity team (Nicholas). Confirmed pain, though its dollar cost has not been quantified."
+      },
+      "champion": {
+        "status": "partial",
+        "sources": [
+          "Clari Email Received 29-30 Jun 2026 (Nicholas Galbincea)",
+          "SF Next_Step__c",
+          "SF Tasks 22 May - 30 Jun 2026"
+        ],
+        "narrative": "Nicholas Galbincea is the working champion and the single most engaged buyer thread: he opened the discovery, set the original decision target, is the named point of contact on every proposal touchpoint (22 May, 5 Jun, 17 Jun, 19 Jun), executed the NDA turnaround, and proactively emailed in on 29-30 Jun to keep the pricing dialogue live. He shows advocacy by keeping cadence tight and coordinating internal scheduling. The limitation is seniority and breadth: he is a Manager (Commodity and Supply Chain Modeling), the deal is single-threaded around him at the decision layer with zero OpportunityContactRole entries, and there is no evidence he has access to or has sold internally to the budget owner. 'Developing' because the relationship is real and active but there is no second senior advocate and no confirmation he can carry the shortlist decision. Leaning on his live thread to get the budget-owner intro and to broaden to the Director of Procurement is the next champion move."
+      },
+      "competition": {
+        "status": "partial",
+        "sources": [
+          "SF Next_Step__c 19 Jun 2026",
+          "Clari Email Received 29 Jun 2026",
+          "Avoma discovery 22 May 2026 (Maximo incumbent)"
+        ],
+        "narrative": "This is a contested, formal RFP with multiple bidders whose names are undisclosed. The buyer confirmed a shortlisting process (22 May), reported our 'pricing is in line with other vendors' (19 Jun), and on 29 Jun said they are 'reviewing all of our bidders proposals' and will announce who they pursue, so several competitors are confirmed but none are named. The incumbent alternative is the manual status quo (Maximo + OnBase + SAP); Metallus will not leave Maximo, so we must integrate with and automate around it rather than displace it. eInvoicing is table-stakes across all bidders, so Merlin (negotiation agent, supplier price-history intelligence, contract-anomaly detection) is the wedge. The live risk is that we do not yet know who else is shortlisted or the criteria weighting; capturing that from Nicholas before the finalist pitch is the competitive move."
+      }
+    },
+    "deal_movement": {
+      "summary": "Reads the pulse from Next_Step_History, field history, and the 29-30 Jun buyer email: proposal delivered 19 Jun with positive feedback and competitive pricing, amount cut $146,880 to $127,400 the same day, and the buyer now in a self-run 2-week evaluation whose 4 Jul shortlist date has just passed without an announced outcome.",
+      "items": [
+        {
+          "change": "Proposal presented to the evaluation group; Showpad shared site with the demo recording created as requested",
+          "date": "2026-06-19"
+        },
+        {
+          "change": "Amount revised down from $146,880 to $127,400 as scope narrowed to PO-based invoice processing",
+          "date": "2026-06-19"
+        },
+        {
+          "change": "Buyer confirmed a 2-week proposal evaluation and a 4 Jul shortlist-announcement date",
+          "date": "2026-06-19"
+        },
+        {
+          "change": "Buyer emailed in: 'reviewing all of our bidders proposals, share feedback on who we will be pursuing soon'",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Zycus clarified implementation cost is separate from SaaS fees and flagged a possible implementation-cost reduction after scoping",
+          "date": "2026-06-29"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "Contested RFP with the field still undisclosed and now at its down-select: as of 19 Jun our pricing is 'in line with other vendors', so we are commercially competitive but not differentiated on price. The strongest current threat is the set of undisclosed rival bidders the buyer is actively choosing among (confirmed 29 Jun); the incumbent manual stack (Maximo + OnBase + SAP) is the status-quo alternative Metallus will not fully leave, so we win by integrating with it. The highest-leverage unknown is the identity and criteria weighting of the other shortlisted vendors, and Nicholas's live thread is the opening to ask now that the 4 Jul gate has passed.",
+      "competitors": [
+        {
+          "name": "Undisclosed RFP competitors (multiple bidders confirmed)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "We have begun the process of reviewing all of our bidders proposals for this project and we are expecting to share feedback on who we will be pursuing soon.",
+          "date": "2026-06-29",
+          "source": "Clari Email Received 29 Jun 2026",
+          "how_we_win": "Use Nicholas's live thread to learn who else is shortlisted and the criteria weighting; lead the finalist case with Merlin's negotiation agent, supplier price-history intelligence and contract-anomaly detection plus the unified physical-plus-service invoice flow, not price."
+        },
+        {
+          "name": "Incumbent manual process (Maximo / OnBase / SAP, manual AP)",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "The current invoice processing through Maximo is a manual and error-prone process, necessitating automation for efficient three-way matching and exception handling.",
+          "date": "2026-05-22",
+          "source": "Avoma discovery 22 May 2026 (Nicholas Galbincea)",
+          "how_we_win": "Position as the AI three-way-match and exception engine that integrates with (not replaces) Maximo and SAP and only replaces OnBase approval routing; quantify the error and rework cost of staying manual."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Metallus expects native integration with its Maximo/SAP/OnBase stack, automated three-way matching and exception handling, a unified physical-plus-service invoice flow, and pricing competitive with the other bidders. We are aligned on fit and competitive on price; the exposure is that we are not yet differentiated commercially and the AI/Merlin value is not yet a buyer-scored criterion.",
+      "items": [
+        {
+          "criterion": "Native integration with Maximo, SAP and OnBase (keep Maximo, automate around it)",
+          "position": "aligned",
+          "quote": "necessitating automation for the PO-based demand that integrates with Maximo, SAP, and Onbase workflows",
+          "date": "2026-05-22",
+          "source": "Avoma discovery 22 May 2026 (Nicholas Galbincea)"
+        },
+        {
+          "criterion": "Automated three-way matching and exception handling at ~90-100k invoices/year",
+          "position": "aligned",
+          "quote": "approximately 90 to 100,000 invoices a year ... reduce errors, eliminate manual receipt entries, and improve monthly accuracy",
+          "date": "2026-06-05",
+          "source": "Avoma demo 5 Jun 2026"
+        },
+        {
+          "criterion": "Competitive commercials",
+          "position": "partially aligned",
+          "quote": "pricing is in line with other vendors",
+          "date": "2026-06-19",
+          "source": "SF Next_Step__c 19 Jun 2026"
+        },
+        {
+          "criterion": "AI / Merlin value as a scored differentiator",
+          "position": "exposed",
+          "quote": "no customer-voiced AI signal anywhere, defaulting to mild curiosity",
+          "date": "2026-06-30",
+          "source": "SF AIS_Why__c"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Clarify whether implementation cost is included in or separate from the SaaS fees",
+          "said_by": "Nicholas Galbincea",
+          "date": "2026-06-29",
+          "addressed": true,
+          "quote": "The implementation cost estimate is separate from the SaaS fees. The first year would be a combination of the two.",
+          "source": "Clari Email Sent 29 Jun 2026"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {
+            "deliverable": "Provide a firm implementation / Professional Services cost after the PS scoping exercise",
+            "who": "Zycus",
+            "grounding_quote": "The implementation cost estimate is separate from the SaaS fees... I may be able to get a reduction on the implementation costs after project is.",
+            "date": "2026-06-29",
+            "due": "2026-07-17",
+            "status": "open",
+            "source": "Clari Email Sent 29 Jun 2026"
+          }
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Announce the vendor shortlist / feedback on who Metallus will pursue",
+            "who": "Buyer",
+            "grounding_quote": "They will announce shortlisted vendors by July 4th ... we are expecting to share feedback on who we will be pursuing soon.",
+            "date": "2026-06-29",
+            "due": "2026-07-04",
+            "status": "overdue",
+            "source": "SF Next_Step__c 19 Jun 2026 + Clari Email 29 Jun 2026"
+          },
+          {
+            "deliverable": "Provide sample invoice data for integration scoping (post-NDA)",
+            "who": "Buyer",
+            "grounding_quote": "Please see the attached executed NDA.",
+            "date": "2026-05-29",
+            "due": "2026-07-15",
+            "status": "open",
+            "source": "Clari Email Received 29 May 2026"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget owner unmapped",
+          "quote": "0 buyer-side OpportunityContactRole; pricing questions fielded by a manager-level contact",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole (empty) + Clari Email 29 Jun 2026"
+        },
+        {
+          "area": "Identity and criteria weighting of the other shortlisted bidders",
+          "quote": "reviewing all of our bidders proposals",
+          "status": "not addressed",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "Clari Email Received 29 Jun 2026"
+        },
+        {
+          "area": "Four primary demo stakeholders (5 Jun) not captured as contact roles",
+          "quote": "Demonstration presented to 4 primary stakeholders",
+          "status": "acknowledged",
+          "date": "2026-06-05",
+          "gap_type": "hygiene",
+          "source": "SF Next_Step__c 5 Jun 2026"
+        },
+        {
+          "area": "Quantified ROI / dollar cost of the manual process",
+          "quote": "approximately 90 to 100,000 invoices a year",
+          "status": "not addressed",
+          "date": "2026-06-05",
+          "gap_type": "knowledge",
+          "source": "Avoma demo 5 Jun 2026"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three win levers now that the deal sits on its own down-select: break out of the single-thread to reach power, make Merlin the differentiator over table-stakes eInvoicing, and read the 19 Jun scope/amount cut as a defensiveness signal to manage.",
+      "flags": [
+        "Multi-thread now: single-threaded to Nicholas (manager, non-EB) with zero contact roles; map the four 5 Jun demo stakeholders and reach the budget owner before the finalist pitch.",
+        "Differentiate on Merlin: eInvoicing is table-stakes across all bidders, so lead the finalist case with the Merlin negotiation agent, supplier price-history intelligence and contract-anomaly detection.",
+        "Manage the scope-shrink: the 19 Jun cut ($146,880 to $127,400, PO-based focus) signals cost-containment; confirm phasing intent and protect the Merlin module from being dropped."
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 19 Jun proposal review landed well: feedback was positive and pricing came back in line with the other vendors, keeping us alive into the down-select.",
+        "tone": "pos"
+      },
+      {
+        "lens": "Competition",
+        "text": "Metallus is actively choosing among several undisclosed bidders and the promised 4 Jul shortlist call is now two days late with no word.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The deal was cut from about $147k to $127k on 19 Jun as scope narrowed to PO-based invoice processing, a cost-containment signal to watch.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "We remain single-threaded to Nicholas, a manager-level contact who fields pricing himself, with no budget owner identified or reached.",
+        "tone": "crit"
+      }
+    ],
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Nicholas Galbincea",
+          "title": "Manager, Commodity and Supply Chain Modeling",
+          "role": "Champion",
+          "last_contact_date": "2026-06-30",
+          "sentiment": "positive",
+          "risk": "Single point of contact at the decision layer; manager-level, no confirmed access to the budget owner, but actively engaged (inbound 29-30 Jun).",
+          "source": "Clari Email Received 30 Jun 2026 (nicholas.galbincea@metallus.com signature) + SF Tasks"
+        },
+        {
+          "name": "Stephen Murphy",
+          "title": "Director, General Procurement",
+          "role": "Influencer",
+          "last_contact_date": "2026-06-19",
+          "sentiment": "neutral",
+          "risk": "Most senior known contact; underdeveloped as a sponsor and the natural path toward budget authority.",
+          "source": "Avoma discovery 22 May 2026 (living memory)"
+        },
+        {
+          "name": "Robert Rummer",
+          "title": "Sr. Manager, AR/AP and Credit",
+          "role": "Influencer",
+          "last_contact_date": "2026-06-19",
+          "sentiment": "neutral",
+          "risk": "Pain owner for AP; advocacy not yet evidenced; key for the ROI case.",
+          "source": "Avoma discovery 22 May 2026 (living memory)"
+        },
+        {
+          "name": "Valerie Johnson",
+          "title": "Lead Commodity Manager",
+          "role": "Influencer",
+          "last_contact_date": "2026-06-19",
+          "sentiment": "neutral",
+          "risk": "Evaluation-group member; engagement light.",
+          "source": "Avoma discovery 22 May 2026 (living memory)"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Nicholas Galbincea is an active, engaged champion who drives the agenda, keeps cadence, executed the NDA turnaround, and proactively emailed in on 29-30 Jun, but he is manager-level and the sole decision-layer thread with no confirmed access to the budget owner and no second senior advocate.",
+      "champion": "Nicholas Galbincea",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Clari Email Received 29-30 Jun 2026; SF Next_Step__c; SF Tasks 22 May - 30 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in scope but not yet positioned as a scored differentiator; the buyer has voiced no AI requirement (AIS 4.0 Moderate), so the AI value story is under-leveraged into a table-stakes eInvoicing RFP.",
+      "score": "4.0",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 (Moderate): Merlin is in scope but no customer-voiced AI or agentic signal appears in any call, email, or next step, so appetite is mild curiosity rather than active pull. No call evidence this sweep to revise it up or down.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No Economic Buyer mapped; zero buyer-side contact roles and pricing handled by a manager-level contact, so budget authority is unknown.",
+          "first_raised": "2026-05-06",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "SF OpportunityContactRole (empty) + Clari Email 29 Jun 2026"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded to Nicholas; the four 5 Jun demo stakeholders and the Director of Procurement remain unengaged as named contacts.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Task 25 Jun 2026 (MULTI-THREAD best-practice flag)"
+        },
+        {
+          "category": "budget",
+          "detail": "Amount cut $146,880 to $127,400 on 19 Jun with scope narrowed to PO-based invoicing, a cost-containment / defensive signal.",
+          "first_raised": "2026-06-19",
+          "date": "2026-06-19",
+          "status": "open",
+          "source": "SF field history 19 Jun 2026"
+        },
+        {
+          "category": "pricing",
+          "detail": "Our pricing is only 'in line with other vendors', so we are competitive but not differentiated commercially.",
+          "first_raised": "2026-06-19",
+          "date": "2026-06-19",
+          "status": "open",
+          "source": "SF Next_Step__c 19 Jun 2026"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live but rep-led into a buyer decision window: the last genuine two-way touch was the buyer email 29-30 Jun, and the buyer's own 4 Jul shortlist date has passed without an announced outcome, so the read is 'awaiting the down-select', not cooling.",
+      "cooling": false,
+      "items": [
+        "Buyer proactively emailed in on 29-30 Jun (pricing clarification and bidder-review update).",
+        "The 4 Jul shortlist-announcement date the buyer set has passed with no recorded outcome as of 6 Jul."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "We are a live finalist in a multi-bidder eInvoicing RFP that has just hit its own 4 Jul down-select: the 19 Jun proposal landed well and pricing is competitive, but the deal is single-threaded to a manager-level contact, no budget owner is mapped, and the amount was cut $19k the same day, so the win hangs on reaching power and differentiating on Merlin before the finalist call.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Scores in the mid-50s and held below the Shortlisted cap because, while the 19 Jun proposal drew positive feedback and competitive pricing, no Economic Buyer is mapped, the deal is single-threaded to a manager, and the amount was just cut $19k."
+          },
+          {
+            "tone": "good",
+            "text": "We are a confirmed live bidder with strong functional fit: Nicholas Galbincea called the feedback positive and pricing 'in line with other vendors' on 19 Jun, and the NDA is executed."
+          },
+          {
+            "tone": "warn",
+            "text": "We are competitive but not differentiated on price against undisclosed rivals, and Merlin's AI value is not yet a buyer-scored criterion (AIS 4.0, no customer-voiced AI signal)."
+          },
+          {
+            "tone": "warn",
+            "text": "The 19 Jun cut from $146,880 to $127,400 with scope narrowed to PO-based invoicing is a cost-containment signal that could shrink or slow the deal."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "Tight cadence held from discovery (22 May) to demo (5 Jun) to proposal (19 Jun), and the buyer named concrete dates (2-week eval, 4 Jul shortlist)."
+          },
+          {
+            "tone": "warn",
+            "text": "The buyer's promised 4 Jul shortlist announcement is now 2 days overdue with no recorded outcome, so momentum depends on a decision we do not yet control."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "Metallus executed the NDA (29 May), attended a 4-stakeholder demo, and Nicholas proactively emailed in on 29-30 Jun on pricing."
+          },
+          {
+            "tone": "warn",
+            "text": "Commitment is concentrated in one manager-level contact with no budget-owner sponsorship and no second senior advocate."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "No Economic Buyer is mapped and the opportunity carries zero buyer-side contact roles, so we cannot yet reach or align the person who authorizes spend."
+          },
+          {
+            "tone": "warn",
+            "text": "A multi-bidder RFP where we are only price-competitive, plus a fresh scope/amount cut, means the award could flip on differentiation we have not yet landed."
+          }
+        ]
+      },
+      "factors": {
+        "customer_preference": {
+          "strength": 0.2,
+          "evidence": "Positive proposal feedback and competitive pricing (19 Jun), but no explicit preference for Zycus over the other bidders."
+        },
+        "competitive_pressure": {
+          "strength": -0.4,
+          "evidence": "Active multi-bidder RFP with us only 'in line' on price and undisclosed rivals (29 Jun)."
+        },
+        "scope_trend": {
+          "strength": -0.4,
+          "evidence": "Amount cut $146,880 to $127,400 on 19 Jun as scope narrowed to PO-based invoicing."
+        }
+      }
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Broader eInvoicing scope at ~$146,880 (18 Jun proposal draft)",
+      "to": "PO-based invoice processing automation at $127,400 (19 Jun revised proposal)",
+      "detail": "On 19 Jun the amount was cut from $146,880 to $127,400 and the 19 Jun proposal narrowed the scope to 'automating PO-based invoice processing for ~90k' invoices/year. The buyer appears to be containing cost and may want a phased entry rather than a full-suite deployment; protect the Merlin AI module from being dropped as scope tightens."
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Feedback was positive and pricing 'in line with other vendors' (19 Jun), and Nicholas kept the dialogue live, but no explicit preference for Zycus over rivals was stated."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Volume quantified (~90-100k invoices/year) and pain clear (manual, error-prone, dual entry), but no dollar cost, FTE, or savings figure articulated by the customer."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Ask Nicholas for the shortlist result, the other finalists, and the criteria weighting.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Buyer's 4 Jul shortlist-announcement date passed with no recorded outcome; 29 Jun email said feedback coming 'soon'.",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-10",
+          "expected_effect": "Confirms we advanced and reveals the competitive field so the finalist pitch can be sharpened."
+        },
+        {
+          "rank": 2,
+          "action": "Multi-thread to the Director of Procurement and the AP owner to reach the budget owner.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Single-threaded to a manager-level contact with zero contact roles and no mapped Economic Buyer.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-17",
+          "expected_effect": "Opens a path to budget authority and reduces single-thread risk before contracting."
+        },
+        {
+          "rank": 3,
+          "action": "Run the PS scoping session and deliver the firm implementation cost to Nicholas.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "We committed a firm implementation cost separate from SaaS fees after scoping (29 Jun email).",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-17",
+          "expected_effect": "Closes the open commercial question and de-risks the buyer's total-cost view."
+        },
+        {
+          "rank": 4,
+          "action": "Build the Merlin differentiation case and quantify the cost of staying manual for the finalist pitch.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "eInvoicing is table-stakes and pricing is only 'in line'; ~90-100k invoices/year quantified but no dollar ROI.",
+          "trigger_date": "2026-06-19",
+          "act_by": "2026-08-01",
+          "expected_effect": "Moves us from price-parity to differentiated value and hardens the business case."
+        }
+      ]
+    },
+    "ceo_intervention": {
+      "needed": true,
+      "severity": "medium",
+      "needs_action": false,
+      "reasons": [
+        {
+          "type": "scope_shrink",
+          "act": false,
+          "severity": "medium",
+          "summary": "Scope shrinking vs prior \u2014 On 19 Jun the amount was cut from $146,880 to $127,400 and the 19 Jun proposal narrowed the scope to 'automating PO-based invoice processing for ~90k' invoices/year. The buyer appears to be containing. Buyer likely getting defensive on cost or implementation/integration (phased over big-bang) \u2014 watch.",
+          "detail": "On 19 Jun the amount was cut from $146,880 to $127,400 and the 19 Jun proposal narrowed the scope to 'automating PO-based invoice processing for ~90k' invoices/year. The buyer appears to be containing cost and may want a phased entry rather than a full-suite deployment; protect the Merlin AI module from being dropped as scope tightens.",
+          "from": "Broader eInvoicing scope at ~$146,880 (18 Jun proposal draft)",
+          "to": "PO-based invoice processing automation at $127,400 (19 Jun revised proposal)",
+          "as_of": "2026-07-06"
+        }
+      ],
+      "win": 55.8,
+      "mom": 68.6,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 55.8,
+        "deal_momentum": 68.6,
+        "customer_commitment": 8.0,
+        "deal_risk": 20.8,
+        "forecast_confidence": 39.2,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 55.8,
+        "baseline": 55.0,
+        "anchor": 55.0,
+        "lift": 1.5,
+        "ceiling": 70.0,
+        "momentum_adj": 6.3,
+        "scope_adj": -7.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 0.9,
+            "evidence": "competitive strength +0.20 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": 0.6,
+            "evidence": "commercial strength +0.40 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 6.3,
+            "evidence": "momentum 69 vs stage-expected 56"
+          },
+          {
+            "factor": "scope_reduced",
+            "points": -7.0,
+            "evidence": "scope narrowed vs prior \u2014 On 19 Jun the amount was cut from $146,880 to $127,400 and the 19 Jun proposal narrowed the scope to 'automating PO-based invoice processing for ~90k' invoices/ (buyer likely defensive on cost or phased implementation)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 68.6,
+        "pre_decay": 68.6,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "commercial_topics_entering",
+            "points": 4.8,
+            "evidence": "commercial topics entering (from call evidence)."
+          },
+          {
+            "factor": "concrete_dates",
+            "points": 3.6,
+            "evidence": "concrete dates (from call evidence)."
+          },
+          {
+            "factor": "customer_requested_next_meeting",
+            "points": 4.8,
+            "evidence": "customer requested next meeting (from call evidence)."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 5.4,
+            "evidence": "Next Step carries 6 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 20.8,
+        "contributions": [
+          {
+            "factor": "stage_inflation",
+            "points": 20.8,
+            "evidence": "Stage is ahead of the engagement/evidence the sweep found."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 39.2,
+        "core": 39.2,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 56 is carried by momentum 69 vs stage-expected 56; preference strength +0.40 (weight 20). Offsetting it: scope narrowed vs prior \u2014 On 19 Jun the amount was cut from $146,880 to $127,400 and the 19 Jun proposal narrowed the scope to 'automating\u2026.",
+        "deal_momentum": "Momentum 69 (moving forward): Next Step carries 6 dated milestone(s) \u2014 actively worked. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 21 is driven by Stage is ahead of the engagement/evidence the sweep found. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 39 is anchored on the stage win (56), nudged by commitment 8 and momentum 69, and dragged by risk 21. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Metallus \u2014 Shortlisted \u00b7 $127K \u00b7 closes 6 Aug",
+        "intro": "We are a live finalist in a multi-bidder eInvoicing RFP that has just hit its own 4 Jul down-select: the 19 Jun proposal landed well and pricing is competitive, but the deal is single-threaded to a manager-level contact, no budget owner is mapped, and the amount was cut $19k the same day, so the win hangs on reaching power and differentiating on Merlin before the finalist call.",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 56,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're in it, with a slight edge.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Scores in the mid-50s and held below the Shortlisted cap because, while the 19 Jun proposal drew positive feedback and competitive pricing, no Economic Buyer is mapped, the deal is single-threaded to a manager, and the amount was just cut $19k."
+              },
+              {
+                "tone": "good",
+                "text": "We are a confirmed live bidder with strong functional fit: Nicholas Galbincea called the feedback positive and pricing 'in line with other vendors' on 19 Jun, and the NDA is executed."
+              },
+              {
+                "tone": "warn",
+                "text": "We are competitive but not differentiated on price against undisclosed rivals, and Merlin's AI value is not yet a buyer-scored criterion (AIS 4.0, no customer-voiced AI signal)."
+              },
+              {
+                "tone": "warn",
+                "text": "The 19 Jun cut from $146,880 to $127,400 with scope narrowed to PO-based invoicing is a cost-containment signal that could shrink or slow the deal."
+              }
+            ],
+            "how": "A deal at 'Shortlisted' anchors near 55. Win signals and momentum lift the read to 56.",
+            "how_label": "Why this number"
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 69,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Moving \u2014 steady forward motion.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Tight cadence held from discovery (22 May) to demo (5 Jun) to proposal (19 Jun), and the buyer named concrete dates (2-week eval, 4 Jul shortlist)."
+              },
+              {
+                "tone": "warn",
+                "text": "The buyer's promised 4 Jul shortlist announcement is now 2 days overdue with no recorded outcome, so momentum depends on a decision we do not yet control."
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 21,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No Economic Buyer is mapped and the opportunity carries zero buyer-side contact roles, so we cannot yet reach or align the person who authorizes spend."
+              },
+              {
+                "tone": "warn",
+                "text": "A multi-bidder RFP where we are only price-competitive, plus a fresh scope/amount cut, means the award could flip on differentiation we have not yet landed."
+              }
+            ],
+            "footer": "Competitive picture: Contested RFP with the field still undisclosed and now at its down-select: as of 19 Jun our pricing is 'in line with other vendors', so we are commercially competitive but not differentiated on price."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Metallus executed the NDA (29 May), attended a 4-stakeholder demo, and Nicholas proactively emailed in on 29-30 Jun on pricing."
+              },
+              {
+                "tone": "warn",
+                "text": "Commitment is concentrated in one manager-level contact with no budget-owner sponsorship and no second senior advocate."
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Ask Nicholas for the shortlist result, the other finalists, and the criteria weighting. (by 10 Jul)",
+              "Multi-thread to the Director of Procurement and the AP owner to reach the budget owner. (by 17 Jul)",
+              "Run the PS scoping session and deliver the firm implementation cost to Nicholas. (by 17 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "2026-05-06 to 2026-06-30 (activities last 120d; field history to date)",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls were matched to this opportunity, account, or buyer attendee emails this sweep; MEDDPICC narratives referencing the 22 May discovery and 5 Jun demo are carried from living memory, not re-read this run.",
+      "Zero OpportunityContactRole entries: only Nicholas Galbincea is SF-verifiable this sweep (email + tasks); Stephen Murphy, Robert Rummer, and Valerie Johnson are carried from the prior record.",
+      "Economic buyer / budget owner unidentified.",
+      "Identity and criteria weighting of the other shortlisted bidders unknown.",
+      "No quantified dollar ROI / cost of the manual process.",
+      "validation gate: an active competitor is named in no Salesforce competition field (Competitors__c / Others_Competitors_Please_specify__c / Next_Step__c) and in no verbatim buyer quote \u2014 it is unanchored and was likely inferred to fill a shortlist (offending: 'Undisclosed competitor(s) on price')"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T00:19:01"
+}

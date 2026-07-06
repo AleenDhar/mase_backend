@@ -1,0 +1,255 @@
+{
+  "opp_id": "006P700000QyBpe",
+  "hard": {
+    "opp_id": "006P700000QyBpe",
+    "opp_name": "Sunrun S2P",
+    "account_name": "Sunrun, Inc.",
+    "account_industry": "Oil & Gas",
+    "billing_country": "United States",
+    "owner_name": "Rick Taranek",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 500000.0,
+    "close_date": "2026-11-27",
+    "days_to_close": 144,
+    "created_date": "2025-12-12",
+    "qualified_date": "2025-12-12",
+    "last_activity_date": "2026-06-25",
+    "last_modified_date": "2026-06-26",
+    "products": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing;iSaaS;Merlin;iRisk;Merlin Intake;Agentic AI;ANA",
+    "next_step": "6/23mc- Reached out to Tim Crane to introduce myself as the new Zycus point of contact taking over from Kevin Cipollaro. Sent a 45-minute meeting placeholder for Thursday June 25th. Next step is to secure the meeting, include a Solutions Consultant, validate Sunrun's 2026 procurement priorities, and determine the path for a solution discussion focused on Oracle Cloud integration, Merlin Intake, and measurable business value.",
+    "ais_score": 8.0,
+    "ais_status": "Strong",
+    "ais_why": "Customer states a strategic goal to leverage AI in 2026, with a recent mandate to freeze Supply Chain headcount and reduce costs. Urgency-driven voice: 'don't spend the time doing our due diligence now we'll be left behind.' Plan is to re-engage and leverage ANA insights and AI-driven automation for the supplier interface.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Oracle Procurement Cloud (incumbent); do-nothing / delay",
+    "primary_competitor": "Do-nothing / delay",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000QyBpe/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "The last genuine two-way buyer exchange was the 12 Dec 2025 discovery call, where Tim Crane said Sunrun was in 'investigation mode' and it was 'too early' for an RFP. Everything since is Zycus-side: three owner handoffs (Kevin to Mario to Rick), a 23 Jun re-intro email and a 25 Jun placeholder with no confirmed buyer reply. Cold for ~7 months, single-threaded, no economic buyer mapped, a 144-day runway against a 12-15 month enterprise motion.",
+      "math": "Created and Qualified 2025-12-12, 206 days in Qualified with zero stage progression. 144 days to close 2026-11-27 (today 2026-07-06). Last verified BUYER engagement was the discovery call 2025-12-12 (~206 days ago); the 2026-06-23 email and 2026-06-25 placeholder are rep-initiated with no confirmed buyer response, so the deal is cold well beyond the 60-day threshold. Enterprise Qualified-to-close motion is typically 12-15 months; 144 days with no EB, no RFP, and a buyer who said 'too early' cannot credibly reach a 27 Nov close.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Buyer's own words on the only discovery call: 'I don't think we even know what we wanna ask yet... it's probably too early for us to say we're gonna have an RFP... we're in the investigation mode right now' (Avoma, Tim Crane, 2025-12-12)",
+        "206 days in Qualified with zero stage movement (SF field history, 2025-12-12 to 2026-07-06)",
+        "Three owner handoffs in June alone: Kevin Cipollaro to Mario Castro (2026-06-08) to Rick Taranek (2026-06-26) (SF field history)",
+        "Rep-initiated re-intro email to Tim Crane 2026-06-23 and a 45-minute placeholder for 2026-06-25; no buyer reply confirmed in activities (SF Next_Step__c + tasks)",
+        "Single-threaded on Tim Crane (Director, Strategic Sourcing); no economic buyer or peer director engaged since 2025-12-12 (SF OpportunityContactRole)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Tim Crane articulated a clear strategic driver on 2025-12-12: 'we have very clear goals to reduce our supply chain cost center as a percentage of revenue... we are not gonna grow headcount, we gotta figure out how to leverage technology.' He named concrete process pain in PR-to-PO automation and invoice matching, describing staff as 'keyboard jockeys' who 'spend all day long keying information.' The direction is strong but nothing is quantified: no baseline spend, cycle-time, headcount, or error-rate number was captured, and Zycus's own 4-9% ANA savings range was rep-stated, not validated against Sunrun data. The move is to build a quantified ROI model anchored to Sunrun's procurement spend and headcount baseline (source: Avoma, Tim Crane, 2025-12-12).",
+        "sources": ["Avoma Intro Call 2025-12-12, Tim Crane", "SF Next_Step__c 2026-06-23 (priorities re-confirmed by rep)", "SF AIS_Why__c: headcount freeze mandate"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named in Salesforce (Tim Crane is the only OpportunityContactRole, titled Director, Strategic Sourcing). On the 2025-12-12 call Tim placed himself inside a director-level supply chain team ('myself, our director of planning and procurement, our director of warehouse and logistics') and pointed to a budget-holding layer above via a cost-reduction mandate, but named no VP/SVP or CFO. The publicly-traded, cost-cut framing implies the real budget owner sits at SVP Supply Chain or CFO level, yet none has appeared in any call, task, or field in 206 days. The move is to have Tim introduce the budget owner before any further solution work, so a $500k platform decision has a sponsor.",
+        "sources": ["SF OpportunityContactRole: Tim Crane only", "Avoma 2025-12-12, Tim Crane (director-level team, no EB named)", "SF tasks/events: no EB-level activity"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Directional criteria emerged on 2025-12-12: PR-to-PO automation, invoice matching, compliance/controls (heightened because Sunrun is publicly traded and reliant on government tax credits), integration with Oracle Cloud P2P and their Google Workspace stack, and agentic AI as a 'force multiplier' rather than a buzzword. Tim explicitly asked for ROI modeling and 'adjacent industry customer examples... before and after... how are they able to leverage the tool.' These are stated priorities, not a codified scorecard: no RFP/RFI, no weighted criteria, and no use-case validation have run. The move is a scoping session to translate these into a formal evaluation framework (source: Avoma, Tim Crane, 2025-12-12).",
+        "sources": ["Avoma 2025-12-12, Tim Crane", "SF Next_Step__c 2026-06-23"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "No decision process is running. Tim said on 2025-12-12 he would take the deck to 'other stakeholders on the broader supply chain team' and that 'mid January before we can circle back' was realistic, but that session never happened and no multi-stakeholder meeting has occurred in the six months since. The 2026-01-22 internal Zycus call confirms the follow-up stalled ('Tim has not responded to me... I've sent him multiple emails'). No approval chain, no RFP decision, and no procurement/legal gate is visible. The single genuine call plus 206 days of silence shows the buyer is not yet running an active evaluation; the move is to pin the timeline and whether Sunrun sole-sources or runs an RFP.",
+        "sources": ["Avoma 2025-12-12, Tim Crane", "Avoma internal call 2026-01-22 (buyer non-responsive)", "SF field history: no stage progression"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No paper-process visibility exists. No MSA/SOW, legal review, procurement channel, InfoSec, or contract-expiration discussion occurred on the 2025-12-12 call or in any subsequent activity. As a publicly-traded company Sunrun will impose legal, InfoSec, and procurement gates on a $500k SaaS-plus-services contract, but no owner from those functions has engaged and the deal has not reached a stage where contracting matters. This is expected for an early, pre-RFP Qualified deal, not a red flag. Visibility only becomes relevant once the buyer commits to an evaluation; the move is to map the contracting owners and typical cycle time at that point.",
+        "sources": ["Avoma 2025-12-12 (no contracting discussion)", "SF OpportunityContactRole / tasks: no legal/procurement/InfoSec contacts"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clearly articulated and owned by Tim Crane. On 2025-12-12 he said Sunrun runs Oracle Cloud P2P (live since the start of the prior year) but is 'not leveraging technology as much as I think we could be on the whole source to contract and procure to pay activity,' and framed the anxiety sharply: 'if we don't spend the time now... we're gonna wake up 6 months from now, a year from now, and find that we missed the starting gun.' The pain is process inefficiency and manual keying in PR-to-PO and invoice matching, tied to a mandate to hold headcount flat while cutting supply-chain cost. It is real and named, but not yet quantified and not yet elevated to an executive P&L owner.",
+        "sources": ["Avoma 2025-12-12, Tim Crane", "SF AIS_Why__c: headcount freeze mandate", "SF Next_Step__c 2026-06-23"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Tim Crane (Director, Strategic Sourcing) is the sole contact and shows genuine intellectual interest in AI and automation, but he is a weak, passive champion, not an advocate. He was engaged and curious on 2025-12-12 ('ROI modeling would be great', asked for the deck to share internally), yet he never convened the mid-January stakeholder session he promised, went dark on Kevin's follow-ups (confirmed on the 2026-01-22 internal call: 'Tim has not responded to me... this meeting may not be happening'), and has not been verified to reply to the 2026-06-23 re-intro or attend the 2026-06-25 placeholder. He has demonstrated no access to the economic buyer and no advocacy against Oracle or inertia. What is missing: a confirmed re-engagement, an EB introduction, and any internally-driven next step. The move is to test his commitment on the reconnect and, if he re-engages, have him sponsor a value session with his peers.",
+        "sources": ["Avoma 2025-12-12, Tim Crane", "Avoma internal call 2026-01-22 (Tim non-responsive)", "SF OpportunityContactRole: Tim Crane, Director", "SF Next_Step__c 2026-06-23 (reply unconfirmed)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The real contest on this deal is inertia, not a named rival. Oracle Procurement Cloud is the incumbent P2P system (Tim: 'we manage the procure to pay through Oracle Cloud... went live at the beginning of this past year'), and Zycus's wedge is to layer Merlin Intake, ANA, and agentic AI on top of Oracle rather than rip-and-replace ('how do we enhance what you've already done... backfill or gap fill'). No competing S2P vendor was raised by the buyer; Coupa and GEP were named only by the Zycus rep as generic market peers ('other leading end to end like a Coupa, like a GEP'), not as evaluated alternatives, so they are dormant, not active threats. The dominant competitor is do-nothing: Tim's 'too early for an RFP' plus 206 days of silence make status-quo the thing Zycus must beat. How we win: quantify PR-to-PO and invoice-matching ROI on Sunrun's own spend and make Merlin the AI differentiator Oracle cannot match.",
+        "sources": ["Avoma 2025-12-12, Tim Crane (Oracle incumbent)", "Avoma 2025-12-12, Kevin (Coupa/GEP named by rep as peers)", "SF field history: 206-day stall = inertia"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement in 2026 is Zycus-side churn, not buyer progression: three owner reassignments in June (Kevin Cipollaro to Mario Castro on 06-08, Mario to Rick Taranek on 06-26), a Division re-tag to New Markets (06-23), a close-date push from 2026-09-18 to 2026-11-27 (06-17), and a rep re-intro email plus 25 Jun placeholder. No buyer-facing milestone has been executed since the 2025-12-12 discovery call; Next_Step has cycled None-to-None repeatedly all year.",
+      "items": [
+        {"change": "Owner reassigned Mario Castro to Rick Taranek (third owner in a month)", "date": "2026-06-26"},
+        {"change": "Rep re-intro email sent to Tim Crane and 45-min placeholder booked for 25 Jun; buyer reply unconfirmed", "date": "2026-06-23"},
+        {"change": "Close date pushed from 2026-09-18 to 2026-11-27 by the rep with no buyer commitment", "date": "2026-06-17"},
+        {"change": "Owner reassigned Kevin Cipollaro to Mario Castro", "date": "2026-06-08"},
+        {"change": "Buyer went dark after the discovery call; internal Zycus note confirms 'Tim has not responded to me'", "date": "2026-01-22"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Inertia is the strongest current threat: Tim Crane said on 2025-12-12 it was 'too early' for an RFP and Sunrun has sat in 'investigation mode' for 206 days, so do-nothing outranks any vendor. Oracle Procurement Cloud is the confirmed incumbent P2P platform that Zycus would augment (Merlin/ANA on top), not replace. Coupa and GEP were named only by the Zycus rep as generic end-to-end peers, never evaluated or preferred by the buyer, so both are dormant. No competing vendor has been shortlisted.",
+      "competitors": [
+        {"name": "Do-nothing / delay", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "I don't think we even know what we wanna ask yet... it's probably too early for us to say we're gonna have an RFP... we're in the investigation mode right now", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane", "how_we_win": "Quantify PR-to-PO and invoice-matching ROI on Sunrun's own spend and tie it to their headcount-freeze mandate to create a compelling event"},
+        {"name": "Oracle Procurement Cloud", "sentiment": "neutral", "threat_level": "medium", "status": "incumbent", "quote": "we manage the procure to pay through Oracle Cloud... we are not leveraging technology as much as I think we could be", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane", "how_we_win": "Position Merlin Intake, ANA, and agentic AI as the intelligence layer that enhances Oracle rather than a rip-and-replace"},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "other leading end to end like a Coupa, like a GEP, like some of these other companies that are better known", "date": "2025-12-12", "source": "Avoma 2025-12-12, Kevin (rep-named market peer, not buyer-evaluated)", "how_we_win": "Lead with mature, natively-built agentic AI and Gartner leadership positioning before the buyer benchmarks against better-known brands"},
+        {"name": "GEP", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "other leading end to end like a Coupa, like a GEP", "date": "2025-12-12", "source": "Avoma 2025-12-12, Kevin (rep-named market peer, not buyer-evaluated)", "how_we_win": "Differentiate on native single-codebase architecture and depth of AI maturity versus GEP's positioning"}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong thematic fit on AI-led procurement automation and Oracle/Google integration, but every expectation is 7 months old and unvalidated: no ROI model, no reference examples, and no formal criteria have been delivered or confirmed since the discovery call.",
+      "items": [
+        {"criterion": "AI/automation as a force multiplier to hold headcount flat", "position": "aligned", "quote": "we have very clear goals to reduce our supply chain cost center as a percentage of revenue... we are not gonna grow headcount", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane"},
+        {"criterion": "PR-to-PO automation, invoice matching, compliance controls", "position": "aligned", "quote": "both PR to PO process and the invoice matching... how do we better automate, better control, ensure compliance, and take head count out", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane"},
+        {"criterion": "Integrate with Oracle Cloud P2P and Google Workspace, not replace", "position": "partially aligned", "quote": "end to end procure to pay we're in Oracle... our internal tools for communication are Google based", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane"},
+        {"criterion": "Quantified ROI plus adjacent-industry before/after proof", "position": "exposed", "quote": "ROI modeling would be great... adjacent industry customer examples too of before and after... what is the actual", "date": "2025-12-12", "source": "Avoma 2025-12-12, Tim Crane"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer identity", "quote": "myself, our director of planning and procurement, our director of warehouse and logistics", "status": "not addressed", "date": "2025-12-12", "gap_type": "knowledge", "source": "Avoma 2025-12-12, Tim Crane; SF OpportunityContactRole (Tim only)"},
+        {"area": "Confirmed buyer re-engagement after owner handoff", "quote": "Reached out to Tim Crane to introduce myself as the new Zycus point of contact... reply unconfirmed", "status": "not addressed", "date": "2026-06-23", "gap_type": "knowledge", "source": "SF Next_Step__c 2026-06-23; no buyer reply in tasks/events"},
+        {"area": "Quantified ROI / value baseline", "quote": "ROI modeling would be great", "status": "not addressed", "date": "2025-12-12", "gap_type": "knowledge", "source": "Avoma 2025-12-12, Tim Crane"},
+        {"area": "Decision process and RFP intent", "quote": "too early for us to say we're gonna have an RFP", "status": "not addressed", "date": "2025-12-12", "gap_type": "knowledge", "source": "Avoma 2025-12-12, Tim Crane"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Cold, single-threaded, pre-RFP Qualified deal with a strong AI fit but no sponsor and no buyer momentum. The highest-leverage levers are re-establishing a live buyer conversation after the owner churn, quantifying the value case, and mapping the budget owner.",
+      "flags": [
+        "Re-establish a live buyer conversation: after three owner handoffs, Rick must confirm the 25 Jun reconnect happened and lock a scoping session with Tim Crane before the deal decays further.",
+        "Break single-threading: Tim named a director of planning/procurement and a director of warehouse/logistics on 12 Dec; get them and the budget owner into a value session to build a coalition.",
+        "Convert AIS-Strong appetite into a quantified case: pair Merlin Intake and ANA with a Sunrun-specific ROI model on PR-to-PO and invoice matching, tied to the headcount-freeze mandate as the compelling event."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Tim Crane", "title": "Director, Strategic Sourcing", "role": "Champion", "last_contact_date": "2025-12-12", "sentiment": "Curious about AI and automation but passive: went dark after the discovery call, never convened the promised January session, reply to the June reconnect unconfirmed.", "risk": "Weak, single point of contact with no demonstrated EB access or advocacy; may lack authority to drive a $500k platform decision.", "source": "SF OpportunityContactRole; Avoma 2025-12-12"},
+        {"name": null, "title": "SVP Supply Chain / CFO (budget owner)", "role": "Economic Buyer", "last_contact_date": null, "sentiment": "Unknown; never engaged. Cost-reduction and headcount-freeze mandate implies a budget owner above Tim, but no such person is named in Salesforce.", "risk": "No economic buyer identified or engaged after 206 days; fatal gap for a $500k platform deal at a publicly-traded company.", "source": "Inference from Avoma 2025-12-12 cost mandate; no SF contact role"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Weak. Tim Crane (Director, Strategic Sourcing) is genuinely curious about AI-led procurement but has shown no advocacy: he did not convene the mid-January stakeholder session he promised, went dark on repeated follow-ups (confirmed on the 2026-01-22 internal call), and his reply to the 2026-06-23 reconnect is unconfirmed. No access to the economic buyer has been demonstrated.",
+      "champion": "Tim Crane",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Avoma 2025-12-12; Avoma internal call 2026-01-22; SF OpportunityContactRole; SF Next_Step__c 2026-06-23"
+    },
+    "ai_positioning_strength": {
+      "summary": "The Merlin Intake, ANA, and agentic-AI story landed well on 12 Dec (Tim framed AI as a needed 'force multiplier' and welcomed ROI modeling), but positioning has not been advanced since: no demo, no ROI model, and no agentic use-case session in 206 days. The strong narrative is stalling for lack of a live buyer thread, not for lack of fit.",
+      "score": "8",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8.0 Strong is well supported by the buyer's own voice: an explicit 2026 AI mandate, a headcount-freeze cost directive, and urgency ('if we don't spend the time now... we missed the starting gun'). Calls corroborate rather than contradict the field. This is a high AI-appetite account whose limiter is engagement, not interest.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer mapped or engaged; single-threaded on a Director who has shown no EB access.", "first_raised": "2025-12-12", "date": "2025-12-12", "status": "open", "source": "SF OpportunityContactRole; Avoma 2025-12-12"},
+        {"category": "change_management", "detail": "Do-nothing / status-quo is the primary threat; buyer said it was 'too early' for an RFP and stayed silent for 206 days.", "first_raised": "2025-12-12", "date": "2025-12-12", "status": "open", "source": "Avoma 2025-12-12, Tim Crane"},
+        {"category": "timeline", "detail": "144-day runway to a 27 Nov close against a 12-15 month enterprise motion with no RFP and no EB; close date already pushed once by the rep.", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "SF field history; SF CloseDate"},
+        {"category": "political", "detail": "Three owner handoffs in June (Kevin to Mario to Rick) risk further relationship reset and continuity loss with the buyer.", "first_raised": "2026-06-26", "date": "2026-06-26", "status": "open", "source": "SF field history"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: the only genuine buyer touch is the 2025-12-12 discovery call; all 2026 activity is Zycus-side (owner churn, a re-intro email, a placeholder) with no confirmed buyer response.",
+      "cooling": true,
+      "items": [
+        "No buyer reply confirmed to the 2026-06-23 re-intro or the 2026-06-25 placeholder",
+        "Internal Zycus call 2026-01-22 confirms the buyer stopped responding after December",
+        "206 days in Qualified with zero stage progression"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Rick emails Tim Crane to confirm the reconnect and lock a 45-minute scoping session.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "23 Jun re-intro and 25 Jun placeholder sent after three owner handoffs, no buyer reply confirmed", "trigger_date": "2026-06-25", "act_by": "2026-07-13", "expected_effect": "Re-establishes a live buyer thread after 7 months of silence; without it the deal stays cold and unforecastable."},
+        {"rank": 2, "action": "Ask Tim to bring his planning/procurement and logistics director peers into a value session.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Tim named a director of planning/procurement and a director of warehouse/logistics on the discovery call", "trigger_date": "2025-12-12", "act_by": "2026-07-20", "expected_effect": "Breaks single-threading and starts a buying coalition that can carry a $500k decision."},
+        {"rank": 3, "action": "Build a Sunrun-specific ROI model on PR-to-PO automation and invoice matching for Tim.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Tim asked for ROI modeling and adjacent-industry before/after examples on the discovery call", "trigger_date": "2025-12-12", "act_by": "2026-08-03", "expected_effect": "Converts qualitative AI interest into a quantified case tied to the headcount-freeze mandate, creating a compelling event."},
+        {"rank": 4, "action": "Have Tim introduce the SVP Supply Chain or CFO who owns the cost-reduction budget.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer named in Salesforce after 206 days; cost mandate implies a budget owner above Tim", "trigger_date": "2025-12-12", "act_by": "2026-08-05", "expected_effect": "Maps the economic buyer so the deal has a sponsor and a defensible path to close."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "AI-Strong, full-suite $500k opportunity that has gone cold: the only real buyer conversation was the 12 Dec 2025 discovery call, and after three June owner handoffs the deal is single-threaded on a passive Director with no economic buyer and no RFP in sight. The one thing between us and momentum is getting Tim Crane back on a live call.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We are behind our own close date: 206 days stalled in Qualified, single-threaded on Tim Crane, with no economic buyer and the buyer's own 'too early for an RFP' still standing (Avoma, 2025-12-12)."},
+          {"tone": "good", "text": "The fit is real and the appetite is high: Tim named an explicit 2026 AI mandate and headcount freeze, and the Merlin/ANA automation story landed cleanly on 12 Dec (Avoma, Tim Crane, 2025-12-12)."},
+          {"tone": "warn", "text": "Inertia, not a rival, is beating us: Sunrun runs Oracle Cloud P2P and has sat in 'investigation mode' for seven months with no RFP and no committed quarter (Avoma, 2025-12-12)."},
+          {"tone": "warn", "text": "Continuity risk is compounding it: three owner handoffs in June (Kevin to Mario to Rick) and no confirmed buyer reply to the June reconnect (SF field history + Next_Step__c, 2026-06-23)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "All 2026 activity is Zycus-side: owner churn, a re-intro email, and a 25 Jun placeholder with no confirmed buyer response (SF field history + tasks)."},
+          {"tone": "warn", "text": "The mid-January stakeholder session Tim promised never happened, and the internal 22 Jan call confirms he stopped responding (Avoma, 2026-01-22)."},
+          {"tone": "warn", "text": "The close date was pushed from 18 Sep to 27 Nov by the rep with no buyer commitment behind it (SF field history, 2026-06-17)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer made no commitment: Tim said 'we're in the investigation mode' and 'too early to say we're gonna have an RFP' and named no date or budget (Avoma, 2025-12-12)."},
+          {"tone": "warn", "text": "No economic buyer has ever engaged; the deal is single-threaded on a Director with unproven authority over a $500k spend (SF OpportunityContactRole)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Cold for ~7 months against a 144-day runway and a 12-15 month enterprise motion, with no RFP, no EB, and no active process (SF + Avoma)."},
+          {"tone": "warn", "text": "Do-nothing is the dominant competitor: a publicly-traded buyer that can keep optimizing Oracle manually and simply not decide (Avoma, 2025-12-12)."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.6, "evidence": "Tim Crane curious but passive; never convened promised session, went dark, reconnect reply unconfirmed (Avoma 2025-12-12; internal 2026-01-22)."},
+        "economic_buyer": {"strength": -0.7, "evidence": "No EB named in Salesforce after 206 days; single-threaded on a Director."},
+        "engagement": {"strength": -0.8, "evidence": "Last genuine buyer touch 2025-12-12; all 2026 activity rep-initiated with no confirmed reply."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Neutral and non-committal: 'if you'll send me the deck... let me have some internal conversations'; 'we're in the investigation mode'; 'too early to say we're gonna have an RFP' (Avoma, Tim Crane, 2025-12-12). No Zycus-specific lean or next step requested."},
+    "business_case": {"status": "partial", "evidence": "Clear qualitative pain (reduce supply-chain cost-center % of revenue, freeze headcount, automate PR-to-PO and invoice matching) but no customer-quantified numbers; Zycus's 4-9% ANA savings was rep-stated, not validated (Avoma, 2025-12-12)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The last genuine buyer conversation was the 12 Dec 2025 discovery call; the 25 Jun reconnect was rep-initiated after three owner handoffs and no buyer reply is confirmed.", "tone": "crit"},
+      {"lens": "Competition", "text": "The real contest is inertia, not a vendor: Sunrun runs Oracle Cloud P2P and Tim Crane said it was 'too early' for an RFP, keeping the account in investigation mode for seven months.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Still single-threaded on Tim Crane (Director, Strategic Sourcing); the budget owner and his director peers have never been engaged.", "tone": "warn"},
+      {"lens": "Commercials", "text": "AI appetite is strong (explicit 2026 mandate, headcount freeze) but no ROI has been quantified and no budget owner is engaged to justify a $500k spend.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [
+      {"call": "Placeholder: Zycus S2P/Agentic AI Discovery (2026-01-22)", "reason": "Internal Zycus-only call (Kevin and Merlin); buyer Tim Crane never joined. Read for context (confirms buyer non-responsiveness) but not a buyer call."}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history full; contact roles; provided Avoma transcripts",
+    "avoma_attendees": ["Tim Crane"],
+    "gaps": [
+      "No economic buyer named in Salesforce; budget owner above Tim Crane is inferred from the cost mandate but unnamed.",
+      "No confirmed buyer response to the 2026-06-23 re-intro or 2026-06-25 placeholder; buyer engagement status post-owner-handoff is unverified.",
+      "Only one genuine buyer call exists (2025-12-12); no demo, ROI session, or RFP has occurred, so decision process and criteria remain thinly evidenced."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

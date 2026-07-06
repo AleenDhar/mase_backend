@@ -1,0 +1,781 @@
+{
+  "opp_id": "006P700000aDZcj",
+  "hard": {
+    "opp_id": "006P700000aDZcj",
+    "opp_name": "NPCI_S2P_Jun'26",
+    "account_name": "National Payments Corporation of India (NPCI)",
+    "account_industry": "BFSI",
+    "billing_country": "India",
+    "owner_name": "Tanmay Srivastava",
+    "owner_title": null,
+    "manager_name": "Carl Kimball",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-30T04:37:33.000+0000",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": "2026-07-03",
+    "last_modified_date": "2026-07-01T07:39:48.000+0000",
+    "products": "iSource;iSave;iSupplier;eProcurement",
+    "next_step": "Confidence level: 10% 30th June: Had a meeting with the procurement team, entire S2P Requirement. Meeting with the IT team and Lead Procurement for platform demo, Solutions teams to get back on the time slot",
+    "ais_score": 8.0,
+    "ais_status": "Strong",
+    "ais_why": "Management has issued a directive to implement AI in procurement/payment processes. Aishwarya specifically identified invoicing automation as the easiest AI entry point and wants to see an AI agent in action. NPCI also wants to schedule a dedicated call with senior management to evaluate Zycus's AI capabilities.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "Undisclosed limited-RFP shortlist (no S2P rival named yet)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aDZcj/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Fresh, live BFSI S2P deal at NPCI with a management AI mandate and the buyer pulling for a demo (Pallavi Sonawane, 3 Jul); the win hinges on nailing that demo on D365 integration plus a working AI agent while we still have no economic buyer or champion mapped.",
+      "math": "Created and qualified 30 Jun 2026 (6 days ago); 6 days in Qualified, no slip history. Last buyer touch 3 Jul 2026 (Pallavi Sonawane emailed asking for an S2P demo next week) and an introductory meeting 29 Jun 2026, so the deal is engaged today. Close date 30 Jun 2027 is 359 days out and is a placeholder; the realistic near-term milestone is winning the platform demo and the requested senior-management AI review over the next 2-4 weeks. Forecast Pipeline is defensible for a 6-day-old Qualified deal with no economic buyer engaged yet.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Pallavi Sonawane emailed Tanmay Srivastava and Jeevitha SG on 3 Jul 2026 asking to see an actual demo of the Zycus S2P solution and to share availability for next week (source: Task 03 Jul 2026, inbound email).",
+        "Introductory meeting held 29 Jun 2026 where the full S2P requirement was scoped with the procurement team (source: Event 29 Jun 2026; Next_Step__c).",
+        "Management has issued a directive to implement AI in procurement/payment; Aishwarya Shirgaonkar named invoicing automation as the easiest AI entry point and wants to see an AI agent in action (source: SF AIS_Why__c).",
+        "Stage moved Initial Interest to Qualified on 30 Jun 2026; Type set to New Business; Division moved to New Markets (source: OpportunityFieldHistory 30 Jun 2026).",
+        "Stage Qualified, ForecastCategory Pipeline, Amount $100k, close 30 Jun 2027, LastActivityDate 3 Jul 2026 (authoritative Salesforce)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "NPCI has a top-down mandate to bring AI into procurement and payments, and Aishwarya Shirgaonkar has singled out invoicing automation as the easiest first win (source: SF AIS_Why__c). The pain is real and management-sponsored, but no cost, headcount, cycle-time, or savings number has been put on it yet, so the value case is qualitative only. Quantifying the invoicing-automation and sourcing-cycle impact with NPCI's own volumes is the move before any pricing conversation.",
+        "sources": [
+          "SF AIS_Why__c",
+          "Next_Step__c 30 Jun 2026"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped. All three Salesforce contact roles (Ashwani Solanki, Pallavi Sonawane, Aishwarya Shirgaonkar) sit in IT Procurement, and none controls budget on the evidence available. The one clue is NPCI's own request for a dedicated call with senior management to evaluate Zycus's AI capabilities (source: SF AIS_Why__c), which points to an unnamed senior sponsor behind the AI mandate. Identifying and getting into that senior-management review is the highest-value move; no budget owner should be named until Salesforce or a call reveals one (the prior record's CFO name was unsupported and has been dropped).",
+        "sources": [
+          "OpportunityContactRole",
+          "SF AIS_Why__c"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Two criteria are visible. First, D365 integration: NPCI runs Microsoft Dynamics 365 as its ERP and its opening question at the 29 Jun introductory meeting was whether Zycus has done a D365 integration, making proven PR/PO/invoice sync with D365 a gating criterion (source: prior record, 29 Jun 2026 introductory-meeting notes). Second, demonstrable AI: management wants to see an AI agent in action, with invoicing automation as the litmus test (source: SF AIS_Why__c). Full S2P breadth across iSource, iSave, iSupplier and eProcurement is also in scope (source: SF Products__c). These are inferred from field content and prior notes, not yet re-confirmed on a call this sweep.",
+        "sources": [
+          "Prior record 29 Jun 2026",
+          "SF AIS_Why__c",
+          "SF Products__c"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The evaluation is procurement-led inside IT Procurement: the 29 Jun introductory meeting scoped the entire S2P requirement, and the agreed next step is a platform demo to the IT team and Lead Procurement, with Zycus solutions team to confirm a time slot (source: Next_Step__c; Event 29 Jun 2026). NPCI also wants a separate senior-management call to assess AI (source: SF AIS_Why__c), so there is a two-track process: a procurement/IT demo track and a senior AI-sponsor track. The prior record noted a limited RFP was expected, implying a shortlist step, but no RFP document or formal approval chain has been confirmed this sweep.",
+        "sources": [
+          "Next_Step__c",
+          "Event 29 Jun 2026",
+          "SF AIS_Why__c"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Nothing on contracting mechanics is known yet: no MSA, SOW, legal, InfoSec, or procurement-channel signal has surfaced on a 6-day-old Qualified deal. As a Reserve Bank of India-promoted BFSI entity, NPCI will almost certainly run a formal, security-heavy procurement (InfoSec review, data-residency and DPA scrutiny), but that is inferred from the account type, not stated. Visibility will come from asking NPCI, once the demo lands, how they buy: RFP versus direct, security-review requirements, and their standard contracting path.",
+        "sources": [
+          "Account.Industry BFSI",
+          "OpportunityContactRole"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is concrete: NPCI uses Dynamics 365 only for PR/PO while sourcing, RFQ, approvals and financial-accounting notes are handled offline and manually, and management has ordered AI to be brought into procurement and payments (source: prior record 29 Jun 2026; SF AIS_Why__c). The pain owner is IT Procurement, with Aishwarya Shirgaonkar articulating invoicing automation as the priority entry point. This is confirmed, management-backed pain; what is missing is the quantified cost of the status quo.",
+        "sources": [
+          "SF AIS_Why__c",
+          "Prior record 29 Jun 2026"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists yet. Pallavi Sonawane and Aishwarya Shirgaonkar are engaged and responsive (they scoped requirements on 29 Jun and Pallavi proactively asked for a demo on 3 Jul), which is a strong base, but neither has yet advocated internally, introduced an economic buyer, or shared internal documents. They are cooperative Decision-Maker-tier contacts, not proven champions. Converting Pallavi or Aishwarya into a champion by arming them for the internal senior-management AI review is a ranked move.",
+        "sources": [
+          "Task 03 Jul 2026",
+          "Event 29 Jun 2026",
+          "OpportunityContactRole"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No S2P competitor is named in any current source. Microsoft Dynamics 365 is the incumbent ERP and the integration target, not an S2P rival to displace, and NPCI's dissatisfaction with D365 for end-to-end procurement is the opening (source: prior record 29 Jun 2026). The prior sweep noted NPCI expected to float a limited RFP, which implies a multi-vendor shortlist, but no specific rival has been identified, so the true competitive field is unknown. The wedge is proving D365 integration plus a live AI/invoicing-automation agent; the move is to ask NPCI directly who else is on the RFP and the criteria weighting.",
+        "sources": [
+          "Prior record 29 Jun 2026",
+          "Next_Step__c"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Brand-new deal: created and moved Initial Interest to Qualified on 30 Jun 2026, Type set to New Business, Division moved to New Markets, and reassigned to Tanmay Srivastava. Introductory S2P scoping meeting on 29 Jun, followed by a buyer-initiated demo request on 3 Jul. The deal is live and the buyer is pulling.",
+      "items": [
+        {
+          "change": "Stage moved Initial Interest to Qualified",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Type set to New Business; Division moved to New Markets; owner reassigned to Tanmay Srivastava",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Introductory meeting held with NPCI procurement; full S2P requirement scoped",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Pallavi Sonawane emailed requesting an actual S2P demo next week",
+          "date": "2026-07-03"
+        }
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 29 Jun introductory meeting scoped the entire S2P requirement and led Pallavi Sonawane to ask for a full product demo next week, so momentum is with us going into that demo.",
+        "tone": "pos"
+      },
+      {
+        "lens": "New requirement",
+        "text": "NPCI wants to see a live AI agent, with invoicing automation named as the first use case, and proven Dynamics 365 integration as the gating question.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "An unnamed senior-management group behind NPCI's AI mandate must review Zycus's AI capabilities, and we have never met them.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Competition",
+        "text": "No S2P rival is named yet, but NPCI signalled a limited RFP is coming, so the real field is still hidden and needs to be uncovered before the shortlist.",
+        "tone": "neu"
+      }
+    ],
+    "competitive_position": {
+      "summary": "No S2P competitor is currently named in any source, so the field is effectively unknown rather than sole-source. Microsoft Dynamics 365 is the incumbent ERP that NPCI keeps and Zycus integrates with (not a rival to displace); NPCI's dissatisfaction with D365 for end-to-end procurement is the entry point. The one forward-looking signal is the prior-recorded expectation that NPCI would float a limited RFP, which implies a 2-4 vendor shortlist we have not yet seen. The single most useful competitive action is to get NPCI to name the shortlist and criteria weighting on or right after the demo; until then no specific rival should be asserted.",
+      "competitors": [
+        {
+          "name": "Microsoft Dynamics 365 (incumbent ERP / integration target)",
+          "sentiment": "negative",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "NPCI uses Dynamics 365 only for PR/PO while sourcing, RFQ, approvals and FA notes are handled offline; opening question was whether Zycus has done a D365 integration.",
+          "date": "2026-06-29",
+          "source": "Prior record, 29 Jun 2026 introductory meeting",
+          "how_we_win": "Keep D365 as the system of record and position Zycus as the best-of-breed S2P layer on top; make end-to-end PR/PO/invoice sync with D365 the centerpiece of the demo and bring a named D365-integration reference."
+        },
+        {
+          "name": "Undisclosed limited-RFP shortlist (no vendor named yet)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "Prior record noted NPCI expected to float a limited RFP; no specific S2P vendor has been named in any source.",
+          "date": "2026-06-29",
+          "source": "Prior record, 29 Jun 2026",
+          "how_we_win": "Ask NPCI directly during or right after the demo who else is on the RFP and how criteria are weighted, then position D365-integration proof plus a live agentic-AI invoicing agent against the named rivals; do not guess vendor names."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "NPCI's expectations cluster on three things: seamless Dynamics 365 integration, demonstrable agentic AI starting with invoicing automation, and full S2P breadth. Zycus is well aligned on AI and S2P scope; D365 integration is the area we must actively prove.",
+      "items": [
+        {
+          "criterion": "Proven Dynamics 365 integration (PR/PO/invoice sync)",
+          "position": "exposed",
+          "quote": "Opening question was whether Zycus has done a D365 integration anywhere.",
+          "date": "2026-06-29",
+          "source": "Prior record 29 Jun 2026"
+        },
+        {
+          "criterion": "Live AI agent, invoicing automation first",
+          "position": "aligned",
+          "quote": "Aishwarya identified invoicing automation as the easiest AI entry point and wants to see an AI agent in action.",
+          "date": "2026-06-30",
+          "source": "SF AIS_Why__c"
+        },
+        {
+          "criterion": "Full S2P suite coverage",
+          "position": "aligned",
+          "quote": "Entire S2P requirement scoped; products in scope iSource, iSave, iSupplier, eProcurement.",
+          "date": "2026-06-30",
+          "source": "SF Products__c / Next_Step__c"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Deliver a live demo of the Zycus S2P solution to the IT team and Lead Procurement.",
+          "said_by": "Pallavi Sonawane",
+          "date": "2026-07-03",
+          "addressed": false,
+          "quote": "We wanted to see an actual demo of the S2P solution of Zycus, please share the availability of coming next week.",
+          "source": "Task 03 Jul 2026 (inbound email)"
+        },
+        {
+          "requirement": "Show a working AI agent, with invoicing automation as the first use case.",
+          "said_by": "Aishwarya Shirgaonkar",
+          "date": "2026-06-30",
+          "addressed": false,
+          "quote": "Aishwarya specifically identified invoicing automation as the easiest AI entry point and wants to see an AI agent in action.",
+          "source": "SF AIS_Why__c"
+        },
+        {
+          "requirement": "Set up a dedicated call with NPCI senior management to evaluate Zycus's AI capabilities.",
+          "said_by": "NPCI",
+          "date": "2026-06-30",
+          "addressed": false,
+          "quote": "NPCI also wants to schedule a dedicated call with senior management to evaluate Zycus's AI capabilities.",
+          "source": "SF AIS_Why__c"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer unmapped",
+          "quote": "No budget owner in the contact roles; NPCI wants a senior-management AI review but that sponsor is unnamed.",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "OpportunityContactRole / SF AIS_Why__c"
+        },
+        {
+          "area": "Competitive shortlist unknown",
+          "quote": "Limited RFP expected but no S2P rival named in any source.",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Prior record 29 Jun 2026"
+        },
+        {
+          "area": "No quantified value case",
+          "quote": "AI/invoicing pain is stated qualitatively; no cost, cycle-time, or savings figure captured.",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF AIS_Why__c"
+        },
+        {
+          "area": "No buyer calls read this sweep",
+          "quote": "No Avoma calls were found or read this run; read is built on SF fields, activities, and prior memory.",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery (opp+account+attendee-email) returned none"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified deal with strong AI pull but no power access and an unknown competitive field; win probability rises most by owning the demo and reaching the AI mandate's sponsor.",
+      "flags": [
+        "Win the demo on NPCI's two stated tests: end-to-end Dynamics 365 sync and a live invoicing-automation AI agent, not a generic S2P walkthrough.",
+        "Multi-thread past IT Procurement into the senior-management group behind the AI mandate before the limited RFP locks the shortlist.",
+        "Uncover the limited-RFP field: ask NPCI who else is invited and how criteria are weighted, so we position against real rivals rather than assumptions."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Aishwarya Shirgaonkar",
+          "_source": "sfdc_contact_role",
+          "title": "IT Procurement Associate",
+          "email": "aishwarya.s@npci.org.in",
+          "role": "Decision Maker",
+          "risk": "Primary contact and most AI-motivated (named invoicing automation as the entry point), but junior and with no confirmed access to the budget owner. Best candidate to develop into a champion.",
+          "sentiment": "positive",
+          "last_contact_date": "2026-06-29",
+          "_matched_ai": true
+        },
+        {
+          "name": "Pallavi Sonawane",
+          "_source": "sfdc_contact_role",
+          "title": "Information Technology Procurement",
+          "email": "pallavi.sonawane@npci.org.in",
+          "role": "Decision Maker",
+          "risk": "Engaged and pulling (requested the demo on 3 Jul), but no evidence yet of internal advocacy or economic-buyer access. Compressed timeline leaves little runway to build championship.",
+          "sentiment": "positive",
+          "last_contact_date": "2026-07-03",
+          "_matched_ai": true
+        },
+        {
+          "name": "Ashwani Solanki",
+          "_source": "sfdc_contact_role",
+          "title": "National Payments Corporation of India",
+          "email": "ashwani.solanki@npci.org.in",
+          "role": "Decision Maker",
+          "risk": "Listed as a Decision Maker but has not engaged and did not attend the introductory meeting; current involvement and title unknown.",
+          "sentiment": "neutral",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion yet. Aishwarya Shirgaonkar and Pallavi Sonawane are engaged, responsive, and personally invested in the AI agenda, and Pallavi proactively asked for the demo on 3 Jul, but neither has advocated internally, opened access to a budget owner, or helped position us against alternatives. They are cooperative Decision-Maker contacts on the cusp of championship; arming Aishwarya for the internal senior-management AI review is the fastest path to convert one.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "OpportunityContactRole; Task 03 Jul 2026; SF AIS_Why__c"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is 8/10 Strong on a management AI directive and an explicit request to see an AI agent, so appetite is high and Zycus's agentic story (Merlin, invoicing automation) fits squarely. The story has not yet been delivered in front of the buyer, so the positioning is strong on paper but unproven in the room until the demo.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 8, Status Strong: NPCI management has mandated AI in procurement/payments and asked to see an AI agent in action, with invoicing automation as the first use case, plus a dedicated senior-management AI review. This is a top-of-funnel AI-led entry, not AI-curious.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer mapped; the senior-management AI sponsor is unnamed and unreached on a deal moving toward a limited RFP.",
+          "first_raised": "2026-06-30",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "OpportunityContactRole / SF AIS_Why__c"
+        },
+        {
+          "category": "integration",
+          "detail": "Dynamics 365 integration is the buyer's gating question and is unproven to NPCI; a weak integration story on the demo could sink the deal.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "Prior record 29 Jun 2026"
+        },
+        {
+          "category": "political",
+          "detail": "Undisclosed limited-RFP shortlist means an unseen competitor could already be favored; the field must be uncovered before the shortlist locks.",
+          "first_raised": "2026-06-29",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "Prior record 29 Jun 2026"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Deal is live and the buyer is pulling: last touch 3 Jul was a buyer-initiated demo request, three days ago. No cooling signal, but power access and competitive visibility are thin.",
+      "cooling": false,
+      "items": [
+        "Buyer-initiated demo request 3 Jul 2026 (pull, not push).",
+        "Introductory S2P scoping meeting 29 Jun 2026.",
+        "Management AI directive with explicit AI-agent request (SF AIS_Why__c)."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Run the S2P demo for IT and Lead Procurement, leading with D365 integration and a live invoicing-automation AI agent.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Pallavi Sonawane asked for an actual S2P demo next week.",
+          "trigger_date": "2026-07-03",
+          "act_by": "2026-07-13",
+          "expected_effect": "Converts stated interest into an evaluated fit and directly answers NPCI's two gating tests, holding pole position before any RFP."
+        },
+        {
+          "rank": 2,
+          "action": "Secure the senior-management AI review NPCI requested and identify the budget owner behind the mandate.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "NPCI wants a dedicated senior-management call to evaluate Zycus's AI capabilities.",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-17",
+          "expected_effect": "Maps the economic buyer and reaches the AI mandate sponsor, closing the biggest early-stage power gap."
+        },
+        {
+          "rank": 3,
+          "action": "Ask NPCI who else is on the limited RFP and how evaluation criteria are weighted.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Prior record noted a limited RFP was expected but no rival is named.",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Uncovers the real competitive field so we can position against named rivals instead of assumptions."
+        },
+        {
+          "rank": 4,
+          "action": "Arm Aishwarya Shirgaonkar to carry the Zycus AI case internally and quantify the invoicing-automation savings.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Aishwarya named invoicing automation as the AI entry point but no value figure exists.",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-08-03",
+          "expected_effect": "Builds a champion and a quantified business case ahead of pricing and the shortlist decision."
+        }
+      ]
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "",
+      "to": "",
+      "detail": "Deal is 6 days old; full S2P scope (iSource, iSave, iSupplier, eProcurement) intact with no prior scope to compare."
+    },
+    "expansion_context": {
+      "prior_closed_won": false,
+      "prior_opp": null,
+      "note": "New-business deal (Type New Business, Division New Markets); no sibling Closed-Won on NPCI in evidence, so executive/seat access is not inherited and unmapped economic buyer is a genuine early-stage gap."
+    },
+    "deal_scores_evidence": {
+      "summary": "A fresh, AI-hungry BFSI S2P deal at NPCI where the buyer is pulling for a demo, but we hold no economic buyer, no champion, and no view of the limited-RFP field, so the win rests on nailing the demo on D365 integration and a live AI agent.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Live and management-sponsored: NPCI has an AI directive, scoped the full S2P requirement on 29 Jun, and Pallavi Sonawane proactively asked for a demo on 3 Jul, so buyer intent is real and Zycus-specific."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer is mapped and the senior-management AI sponsor is unnamed and unreached, leaving us without power access as a limited RFP approaches."
+          },
+          {
+            "tone": "warn",
+            "text": "Dynamics 365 integration is the buyer's gating question and remains unproven to NPCI, and the competitive shortlist is still hidden."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "Buyer-initiated demo request on 3 Jul 2026 (pull, not push) three days after an introductory scoping meeting shows fast, two-way cadence."
+          },
+          {
+            "tone": "good",
+            "text": "Stage advanced Initial Interest to Qualified on 30 Jun 2026 with the deal owned by Tanmay Srivastava and actively worked."
+          },
+          {
+            "tone": "warn",
+            "text": "Engagement is still pre-demo and single-tracked through IT Procurement, with no senior or commercial stakeholder yet in the room."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "NPCI committed time to a full S2P requirements scoping session and requested both a product demo and a dedicated senior-management AI evaluation call."
+          },
+          {
+            "tone": "warn",
+            "text": "Commitment is exploratory: no RFP document shared, no dates from the buyer beyond 'next week,' and no budget confirmed."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Economic buyer unmapped and no champion secured; the two responsive contacts are Decision-Maker tier but have not advocated internally."
+          },
+          {
+            "tone": "warn",
+            "text": "An undisclosed limited-RFP shortlist could already favor an unseen rival, and a weak D365-integration demo would surrender NPCI's stated top criterion."
+          }
+        ]
+      },
+      "factors": {
+        "champion_strength": {
+          "strength": -0.6,
+          "evidence": "No champion; Pallavi and Aishwarya engaged but no internal advocacy or EB access yet."
+        },
+        "economic_buyer": {
+          "strength": -0.7,
+          "evidence": "No budget owner mapped; senior-management AI sponsor unnamed and unreached."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "NPCI asked specifically for a Zycus S2P demo and to see a Zycus AI agent in action, but interest is exploratory with no favorable comparison against any rival yet."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Management AI mandate and invoicing-automation pain are clearly articulated, but no cost, cycle-time, or savings figure has been quantified."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 11.9,
+      "mom": 55.4,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 11.9,
+        "deal_momentum": 55.4,
+        "customer_commitment": 8.0,
+        "deal_risk": 0.0,
+        "forecast_confidence": 4.1,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 11.9,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -8.8,
+        "ceiling": 30.0,
+        "momentum_adj": 2.7,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 2.7,
+            "evidence": "momentum 55 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 55.4,
+        "pre_decay": 55.4,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "concrete_dates",
+            "points": 3.6,
+            "evidence": "concrete dates (from call evidence)."
+          },
+          {
+            "factor": "customer_requested_next_meeting",
+            "points": 4.8,
+            "evidence": "customer requested next meeting (from call evidence)."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 0.0,
+        "contributions": []
+      },
+      "forecast_confidence": {
+        "score": 4.1,
+        "core": 4.1,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 12 is carried by momentum 55 vs stage-expected 50; preference strength +0.40 (weight 20). Offsetting it: competitive strength -1.00 (weight 15).",
+        "deal_momentum": "Momentum 55 (moving forward): customer requested next meeting (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 0: no break-risk was observed in the swept evidence. Coverage is thin, so read this as 'nothing seen yet,' not 'nothing there.'",
+        "forecast_confidence": "Forecast confidence 4 is anchored on the stage win (12), nudged by commitment 8 and momentum 55, and dragged by risk 0. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "National Payments Corporation of India (NPCI) \u2014 Qualified \u00b7 $100K \u00b7 closes 30 Jun",
+        "intro": "A fresh, AI-hungry BFSI S2P deal at NPCI where the buyer is pulling for a demo, but we hold no economic buyer, no champion, and no view of the limited-RFP field, so the win rests on nailing the demo on D365 integration and a live AI agent",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 12,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Live and management-sponsored; NPCI has an AI directive, scoped the full S2P requirement on 29 Jun, and Pallavi Sonawane proactively asked for a demo on 3 Jul, so buyer intent is real and Zycus-specific"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer is mapped and the senior-management AI sponsor is unnamed and unreached, leaving us without power access as a limited RFP approaches"
+              },
+              {
+                "tone": "warn",
+                "text": "Dynamics 365 integration is the buyer's gating question and remains unproven to NPCI, and the competitive shortlist is still hidden"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 55,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Buyer-initiated demo request on 3 Jul 2026 (pull, not push) three days after an introductory scoping meeting shows fast, two-way cadence"
+              },
+              {
+                "tone": "good",
+                "text": "Stage advanced Initial Interest to Qualified on 30 Jun 2026 with the deal owned by Tanmay Srivastava and actively worked"
+              },
+              {
+                "tone": "warn",
+                "text": "Engagement is still pre-demo and single-tracked through IT Procurement, with no senior or commercial stakeholder yet in the room"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 0,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Economic buyer unmapped and no champion secured; the two responsive contacts are Decision-Maker tier but have not advocated internally"
+              },
+              {
+                "tone": "warn",
+                "text": "An undisclosed limited-RFP shortlist could already favor an unseen rival, and a weak D365-integration demo would surrender NPCI's stated top criterion"
+              }
+            ],
+            "footer": "Competitive picture: No S2P competitor is currently named in any source, so the field is effectively unknown rather than sole-source."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "NPCI committed time to a full S2P requirements scoping session and requested both a product demo and a dedicated senior-management AI evaluation call"
+              },
+              {
+                "tone": "warn",
+                "text": "Commitment is exploratory; no RFP document shared, no dates from the buyer beyond 'next week,' and no budget confirmed"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Run the S2P demo for IT and Lead Procurement, leading with D365 integration and a live invoicing-automation AI agent. (by 13 Jul)",
+              "Secure the senior-management AI review NPCI requested and identify the budget owner behind the mandate. (by 17 Jul)",
+              "Ask NPCI who else is on the limited RFP and how evaluation criteria are weighted. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history from 30 Jun 2026 (deal created)",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls found or read this sweep via opp, account, or attendee-email discovery; the read relies on Salesforce fields (AIS_Why__c, Next_Step__c), activities, and prior living memory.",
+      "Economic buyer / budget owner not named in Salesforce contact roles or fields.",
+      "Competitive shortlist for the expected limited RFP is not named in any source.",
+      "No quantified business case captured yet."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:46"
+}

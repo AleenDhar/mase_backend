@@ -1,0 +1,256 @@
+{
+  "opp_id": "006P7000008n5Bd",
+  "hard": {
+    "opp_id": "006P7000008n5Bd",
+    "opp_name": "Capitec_2024 - S2C",
+    "account_name": "Capitec Bank",
+    "account_industry": "BFSI",
+    "billing_country": "South Africa",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": "RVP",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 218000.0,
+    "close_date": "2026-12-31",
+    "days_to_close": 178,
+    "created_date": "2024-05-03",
+    "qualified_date": "2024-05-31",
+    "last_activity_date": "2026-06-12",
+    "last_modified_date": "2026-06-26",
+    "products": "iContract;eProcurement",
+    "next_step": "Mar 27, 2026: Capitec confirmed the decision not to proceed with signing the solution portion (driven by the CIO's broader SaaS and internal-build strategy) and pivoted to a technology-agnostic design engagement; contracting the design SOW/MSA is now with Adrian Jacobs.",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "Apr 2026 Avoma notes from a BPMN process-redesign workshop capture Capitec asking Zycus to outline the process design methodology and include design principles (start/end points, AI/bot considerations) in the proposal. AI is one of multiple design principles, not a primary buying driver. Deal scope is core S2C (eProcurement, iContract) without Merlin/ANA/Merlin Intake, so AI is not a product-scope headline. Formal Evaluation with very high meeting cadence (17 Avoma meetings) and engaged stakeholders; the project has pivoted to a technology-agnostic process design phase with a June 2026 start, explicitly delaying direct tool/AI selection in favour of process redesign first.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Internal build (Capitec in-house development)",
+    "primary_competitor": "Internal build (Capitec in-house development)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P7000008n5Bd/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "The design-engagement contract is stalled on Adrian Jacobs, who is sitting on the SOW and MSA past the late-June signature target while Lynn Dudley-Owen drives kickoff and workshop scheduling; the original 218k solution remains paused since March behind Capitec's CIO-sponsored internal-build strategy.",
+      "math": "Close date 2026-12-31 is 178 days out but reflects the paused 218k solution, not the live scope. Solution paused Mar 2026; the live deal is a 10-week technology-agnostic design engagement (kickoff July 7, workshops July 21-Aug 11, blueprint by ~week 10). In Formal Evaluation since created May 2024 (over 790 days) because the stage label still tracks the paused solution. Last two-way buyer touch 2026-06-12 (24 days ago). Design-engagement signature was targeted for late June and is now overdue with the SOW un-returned by Adrian; a key action is stalled on him, so this reads Slowing.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline (or Omit): the 218k solution is paused; only the smaller technology-agnostic design engagement is live, so the current amount and category overstate committed value.",
+      "evidence": [
+        "Avoma S2C Review Workshop Schedule 2026-06-12: Hrishikesh: 'both SOW and MSA are with Adrian... hasn't come back with any red lines... what concerns me is SOW, I don't have visibility. Adrian hasn't updated me on that.'",
+        "Avoma 15 Min touchbase 2026-06-01: Hrishikesh: 'thinking we'll all close the contracts by then' (mid-June kickoff placeholder), signature since slipped.",
+        "SF Next_Step__c 2026-03-27: 'confirmed the decision not to proceed with signing the solution portion at this time, driven by the CIO's broader SaaS and internal build strategy... pivot toward a design-focused engagement.'",
+        "Avoma S2C Contract/Scoping discussion 2026-04-28: Adrian Jacobs: 'the solution is out of scope for now, hence the brief mentions that the design would be technology agnostic.'",
+        "SF Next_Step__c 2025-12-12: LOI received naming Zycus the chosen vendor; standard approval flow (internal review, supplier + Capitec review, IT review, Delegation of Authority, signature).",
+        "SF field history 2026-06-26: CloseDate 2026-09-30 -> 2026-12-31 (owner-adjusted); SF LastActivityDate 2026-06-12."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists on any call or Salesforce field. Capitec articulated qualitative pain only: on the 2026-04-28 scoping call Kamen (Letsema) sized procurement at roughly 18 first-line staff plus about 30 more being centralized on PO creation, and said processes had 'gone through the most changes we have in the last 5 years' with 'documentation probably outdated' and the end-to-end map 'outdated already.' No cycle-time, cost-per-transaction, FTE-hour, error-rate, or savings figure has ever been stated. The 10-week design engagement is itself scoped to surface current-state metrics, so the move is to use its discovery workshops to quantify baseline pain and build an ROI/TCO case against the internal-build alternative.",
+        "sources": ["Avoma S2C Contract/Scoping discussion 2026-04-28", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The true budget authority is Capitec's CIO, who has never appeared on a call and who paused the 218k solution on a 'broader SaaS and internal build strategy' (SF Next_Step__c 2026-03-27); he remains unengaged with Zycus and is unnamed in Salesforce, so he cannot be promoted to a named stakeholder. For the design engagement the business sponsor is still unnamed: on 2026-06-12 Lynn Dudley-Owen said 'we would need a sponsor... it's gotta be the bigwigs' and floated Grant Hardy (top, not attending) and 'Amelia/Emilia' as transcript-only possibilities, none confirmed in Salesforce. Adrian Jacobs (Decision Maker, Contract and Commercial Management Specialist) controls the contract but not the budget decision. The move is to get Lynn to formally name the design-engagement sponsor and to build a buy-vs-build case aimed at the CIO.",
+        "sources": ["Avoma S2C Review Workshop Schedule 2026-06-12", "SF Next_Step__c 2026-03-27", "SF OpportunityContactRole"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "For the live design engagement the criteria are explicit: a technology-agnostic, system-agnostic view of the to-be S2C processes and operating model, with regulatory third-party-risk controls embedded (Isabella Rankine, Legal Manager, 2026-04-28: 'we have a lot of responsibilities... from a regulatory point of view for third party risk management... a lot of these risk controls can be embedded in the process'), coverage of the payment/invoicing tail beyond source-to-contract (Johan Kotze, 2026-04-28), and local South African financial-services expertise paired with Zycus global-bank process depth (Kamen, Letsema, 2026-04-28). For the paused solution, the underlying criterion has shifted to buy-vs-build: Capitec must be convinced a bought platform beats internal build. Criteria are confirmed for the design phase and inferred for the eventual solution decision.",
+        "sources": ["Avoma S2C Contract/Scoping discussion 2026-04-28", "SF Next_Step__c 2026-03-27"]
+      },
+      "decision_process": {
+        "status": "confirmed",
+        "narrative": "The process is well mapped from the LOI onward. The 2025-12-12 LOI laid out Capitec's approval flow: internal contract review, supplier + Capitec contract review (multiple rounds), IT review (done in parallel), then Delegation of Authority approval, then signature. Reading the call sequence, the March 2026 escalation to an internal AI/CTO vetting board and the CIO's SaaS/internal-build strategy overrode that flow and paused the solution (Next_Step__c 2026-03-02, 2026-03-17, 2026-03-27). The deal then re-formed as a design engagement whose own process is a 10-week Letsema/Zycus plan (kickoff July 7-8, eight workshops July 21-Aug 11, blueprint and validation by ~week 10; Jitesh, 2026-06-12), governed by fortnightly steer-co check-ins with Lynn. Signature on the design SOW/MSA is the current gate and it is stalled on Adrian.",
+        "sources": ["SF Next_Step__c 2025-12-12", "Avoma S2C Review Workshop Schedule 2026-06-12", "SF Next_Step__c 2026-03-27"]
+      },
+      "paper_process": {
+        "status": "confirmed",
+        "narrative": "Contracting mechanics are advanced but bottlenecked. As of 2026-06-12 the MSA has completed two rounds of redlining, the SOW plus a detailed scope document were sent and sit with Adrian Jacobs with no redlines returned, and an Order Form is in play; Zycus legal (Zoheb Amin, with Hrishikesh coordinating) had the SOW under final review, expected done by early June (Hrishikesh, 2026-06-05: 'our legal team is already on the contract to review... completed today or by max Monday'). Signature was targeted for late June, with Zycus wanting delivery staff onboarded by July 13 citing 7-10 day India visa and yellow-fever-vaccination lead times (Hrishikesh, 2026-06-05); it is now overdue. As a bank, Capitec requires regulatory third-party-risk and InfoSec review (Isabella Rankine, 2026-04-28; Fahiem Jattiem, Information Security Specialist, on the roster). The visibility gap is that Zycus does not know who at Capitec is actually reviewing the SOW.",
+        "sources": ["Avoma S2C Review Workshop Schedule 2026-06-12", "Avoma 15 Min touchbase 2026-06-01", "SF OpportunityContactRole"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Pain is confirmed qualitatively: fragmented and under-documented procurement processes in constant flux ('the team's in a constant change management cycle, and that documentation is probably outdated'; end-to-end map 'outdated already', Kamen, 2026-04-28), regulatory third-party-risk controls that must be embedded in contracting given Capitec is a bank (Isabella Rankine, 2026-04-28), and a missing payment/invoicing tail beyond source-to-contract (Johan Kotze, 2026-04-28). The pain owner is the procurement function led by Carmen Marais (Procurement Manager), described as the workshop lead on the 2026-06-05 call. The pain is real and articulated but never quantified, which is precisely why the buyer chose a design-first path and why a numbers-based case is still missing.",
+        "sources": ["Avoma S2C Contract/Scoping discussion 2026-04-28", "Avoma Touchbase 2026-06-05", "SF OpportunityContactRole"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Lynn Dudley-Owen is a developing champion for the design engagement: she drives the schedule, coordinates stakeholders, pushes the kickoff into diaries, arranges Teams access, and set a weekly touch-base cadence ('we can touch base once a week', 2026-06-12). What has developed is strong operational momentum and access to Capitec's project machinery; what is still missing is executive reach, because she is delivery-side and said plainly the sponsor 'wouldn't be any of us... it's gotta be the bigwigs.' Adrian Jacobs (Decision Maker) is a transparent coach who executes the CIO's pause and now holds the contract, not an advocate pushing Zycus over an internal build. No champion yet carries the buy-vs-build case to the CIO, which is the single biggest gap.",
+        "sources": ["Avoma S2C Review Workshop Schedule 2026-06-12", "SF Next_Step__c 2026-03-27", "SF OpportunityContactRole"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The live competitive dynamic is Zycus versus a Capitec internal-build strategy sponsored by the CIO, which paused the solution deal in March 2026 (SF Next_Step__c 2026-03-27). There is no named external SaaS rival (Coupa, Ariba, GEP, Ivalua) in any call, field, or task, so this is a build-vs-buy fight, not a vendor bake-off. Letsema (heard on calls as 'Letsima'/'CEMA', led by Kamen and Jitesh) is Zycus's co-delivery partner on the design engagement, not a competitor. Zycus wins by using the technology-agnostic design engagement to prove domain depth and platform maturity, embedding AI/Merlin value into the to-be blueprint, and quantifying the internal-build TCO and time-to-production disadvantage before the post-September solution decision.",
+        "sources": ["SF Next_Step__c 2026-03-27", "Avoma S2C Contract/Scoping discussion 2026-04-28", "SF Next_Step__c 2026-03-02"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The pulse is live but rep-led: Lynn Dudley-Owen actively drives design-engagement scheduling on weekly Avoma touch-bases (2026-06-01, 06-05, 06-12), while the contract signature is stalled on Adrian Jacobs, who is sitting on the SOW/MSA past the late-June target. The 218k solution has been paused since March behind Capitec's CIO-sponsored internal-build strategy.",
+      "items": [
+        {"change": "Kickoff locked for July 7 (remote) with eight workshops scheduled July 21-Aug 11 and a fortnightly steer-co cadence agreed with Lynn.", "date": "2026-06-12"},
+        {"change": "SOW and detailed scope document sent to Adrian Jacobs; MSA at two rounds of redlining; no SOW redlines returned.", "date": "2026-06-12"},
+        {"change": "Zycus legal (Zoheb Amin) completed SOW review and sent it across; Zycus 'on track from the contract's perspective'.", "date": "2026-06-05"},
+        {"change": "CloseDate pushed 2026-09-30 -> 2026-12-31 by owner, reflecting the paused solution scope.", "date": "2026-06-26"},
+        {"change": "Deal pivoted from a full 218k S2C solution to a technology-agnostic process-design engagement; solution put out of scope by Capitec's CIO/internal-build strategy.", "date": "2026-03-27"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "This is a build-vs-buy contest, not a vendor bake-off. The single strongest current threat is Capitec's internal-build strategy, sponsored by a newly influential CIO who paused the 218k solution in March 2026 on a broader SaaS/internal-build direction and remains unengaged with Zycus. No external SaaS rival is named in any source. Letsema is Zycus's co-delivery partner, not a competitor. Zycus's live wedge is the technology-agnostic design engagement, which keeps it inside the account and builds the platform-value and TCO proof needed to re-open the solution conversation post-September.",
+      "competitors": [
+        {
+          "name": "Internal build (Capitec in-house development)",
+          "sentiment": "negative",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "confirmed the decision not to proceed with signing the solution portion at this time, driven by the CIO's broader SaaS and internal build strategy",
+          "date": "2026-03-27",
+          "source": "SF Next_Step__c 2026-03-27",
+          "how_we_win": "Quantify internal-build TCO and time-to-production disadvantage during the design engagement and hand the CIO a buy-vs-build case anchored to Capitec's own baseline."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Capitec expects a technology-agnostic, regulator-aware process-design engagement covering the full procurement landscape (not just S2C), delivered jointly by Zycus and Letsema; Zycus is well aligned on delivery but exposed on the commercial/solution decision, which the buyer has deferred.",
+      "items": [
+        {"criterion": "Technology-agnostic, system-agnostic to-be process and operating-model design", "position": "aligned", "quote": "the solution is out of scope for now, hence why the the brief mentions that the design would be technology agnostic", "date": "2026-04-28", "source": "Avoma S2C Contract/Scoping discussion 2026-04-28"},
+        {"criterion": "Embed regulatory third-party-risk and legal controls into the contracting process", "position": "aligned", "quote": "we have a lot of responsibilities... from a regulatory point of view for third party risk management, and the contracting process is where a lot of these risk controls can be embedded", "date": "2026-04-28", "source": "Avoma S2C Contract/Scoping discussion 2026-04-28"},
+        {"criterion": "Cover the payment/invoicing tail beyond source-to-contract", "position": "partially aligned", "quote": "typically where now you need to action on the payment side... if we just put on blinkers for source to contract and we ignore that part, we'll miss an opportunity", "date": "2026-04-28", "source": "Avoma S2C Contract/Scoping discussion 2026-04-28"},
+        {"criterion": "Buy-vs-build: a purchased platform must beat internal development", "position": "exposed", "quote": "driven by the CIO's broader SaaS and internal build strategy", "date": "2026-03-27", "source": "SF Next_Step__c 2026-03-27"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Deliver the design-workshop information request pack for Capitec to circulate to stakeholders", "said_by": "Lynn Dudley-Owen", "date": "2026-06-12", "addressed": false, "quote": "we have an email drafted which we'll send to you requesting certain information, and if you can pass that on to everybody", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"},
+        {"requirement": "Send the kickoff deck first draft for Capitec review ahead of the July 7 kickoff", "said_by": "Lynn Dudley-Owen", "date": "2026-06-05", "addressed": false, "quote": "just don't forget that we'll need a kickoff deck", "source": "Avoma Touchbase 2026-06-05"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Lynn the workshop information-request pack for circulation to stakeholders", "who": "Zycus", "grounding_quote": "we have an email drafted which we'll send to you requesting certain information", "date": "2026-06-12", "due": "2026-07-04", "status": "overdue", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"},
+          {"deliverable": "Deliver the first-draft kickoff deck for Capitec review", "who": "Zycus", "grounding_quote": "we have already started working on it. You can expect... first draft maybe mid of next week", "date": "2026-06-05", "due": "2026-07-04", "status": "open", "source": "Avoma Touchbase 2026-06-05"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Adrian Jacobs to return the SOW and MSA redlines to unblock signature", "who": "Buyer", "grounding_quote": "both SOW and MSA are with Adrian... hasn't come back with any red lines... what concerns me is SOW, I don't have visibility", "date": "2026-06-12", "due": "2026-07-08", "status": "overdue", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"},
+          {"deliverable": "Capitec to provide existing procurement policies and process maps for pre-kickoff review", "who": "Buyer", "grounding_quote": "we're looking at receiving some of your information, that is the policies, your existing processes by the July one", "date": "2026-06-12", "due": "2026-07-08", "status": "overdue", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"},
+          {"deliverable": "Lynn to confirm the named Capitec business sponsor to open the kickoff", "who": "Buyer", "grounding_quote": "we would need a sponsor, right, for the project... let me speak to Adrian and see", "date": "2026-06-12", "due": "2026-07-07", "status": "overdue", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unnamed and unengaged", "quote": "driven by the CIO's broader SaaS and internal build strategy", "status": "not addressed", "date": "2026-03-27", "gap_type": "knowledge", "source": "SF Next_Step__c 2026-03-27"},
+        {"area": "No quantified business case / baseline metrics for procurement pain", "quote": "documentation is probably outdated... end to end design process map... is outdated already", "status": "acknowledged", "date": "2026-04-28", "gap_type": "knowledge", "source": "Avoma S2C Contract/Scoping discussion 2026-04-28"},
+        {"area": "No visibility into who at Capitec is reviewing the SOW", "quote": "I don't have visibility. Adrian hasn't updated me on that", "status": "not addressed", "date": "2026-06-12", "gap_type": "knowledge", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The win is now about converting the design engagement into buy-vs-build proof and reaching the budget owner, while de-risking the stalled contract.",
+      "flags": [
+        "Turn the July design workshops into the buy-vs-build proof: quantify Capitec's current-state baseline and build a TCO case for the CIO.",
+        "Multi-thread to the design-engagement business sponsor and the CIO; Lynn Dudley-Owen is delivery-side only and cannot carry the budget decision.",
+        "De-risk the stalled SOW by opening a parallel legal contact (Isabella Rankine) instead of single-threading signature through Adrian Jacobs."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Adrian Jacobs", "title": "Contract and Commercial Management Specialist", "role": "Decision Maker", "last_contact_date": "2026-06-12", "sentiment": "Neutral; sees Zycus value but executes the CIO's pause and now holds the contract review", "risk": "Single-threaded contract owner gone quiet on the SOW/MSA redlines, blocking signature", "source": "SF OpportunityContactRole (PRIMARY)"},
+        {"name": "Lynn Dudley-Owen", "title": "NA", "role": "Champion", "last_contact_date": "2026-06-12", "sentiment": "Positive; actively drives scheduling, coordination, and weekly cadence", "risk": "Delivery-side project manager only, no budget or executive authority and no line to the CIO", "source": "SF OpportunityContactRole"},
+        {"name": "Carmen Marais", "title": "Procurement Manager", "role": "Influencer", "last_contact_date": "2026-06-05", "sentiment": "Unknown; named as the workshop lead who must attend", "risk": "Pain owner and procurement lead but no direct advocacy evidence yet", "source": "SF OpportunityContactRole"},
+        {"name": "Isabella Rankine", "title": "Legal Manager", "role": "Influencer", "last_contact_date": "2026-04-28", "sentiment": "Neutral to positive; engaged on regulatory risk and legal scope", "risk": "Legal/risk gatekeeper; a viable parallel legal contact to de-risk the stalled contract", "source": "SF OpportunityContactRole"},
+        {"name": "Zubair Dinath", "title": "Product Head: Business Improvement", "role": "Influencer", "last_contact_date": "2026-04-28", "sentiment": "Positive; substantive on operating-model and tech-stack scope", "risk": "Engaged influencer, no decision authority", "source": "SF OpportunityContactRole"},
+        {"name": "Werner Carstens", "title": "SAP Architect", "role": "Influencer", "last_contact_date": "2026-03-12", "sentiment": "Neutral; technical owner of the SAP S/4HANA integration surface", "risk": "Integration dependency; not engaged on the design engagement itself", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Lynn Dudley-Owen is a developing champion for the design engagement, driving scheduling, stakeholder coordination, and a weekly cadence, but she is delivery-side with no budget or executive authority and no line to the CIO. Adrian Jacobs is a coach, not an advocate. No champion currently carries the buy-vs-build case to power.",
+      "champion": "Lynn Dudley-Owen",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma S2C Review Workshop Schedule 2026-06-12; SF OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is present only as one of several design principles Capitec asked to see in the proposal; the buyer explicitly de-prioritised tool and AI selection in favour of technology-agnostic process redesign, so Merlin/agentic value is currently under-positioned and parked for a post-design solution decision.",
+      "score": "5.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 5.0 Moderate matches the calls: Capitec asked for AI/bot design principles in the proposal but put the solution (including Merlin) out of scope for now, choosing process redesign first. AI is a future consideration, not the buying driver.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "Scope reduced from a 218k S2C SaaS solution to a small technology-agnostic design engagement; the buyer is getting defensive and phasing spend, deferring the platform buy.", "first_raised": "2026-03-27", "date": "2026-03-27", "status": "active", "source": "SF Next_Step__c 2026-03-27"},
+        {"category": "executive_alignment", "detail": "The budget owner (Capitec CIO) sponsors an internal-build strategy, has never been on a call, and paused the solution; no Zycus champion reaches him.", "first_raised": "2026-03-27", "date": "2026-03-27", "status": "active", "source": "SF Next_Step__c 2026-03-27"},
+        {"category": "legal", "detail": "Design-engagement signature is overdue with the SOW/MSA sitting un-returned with Adrian Jacobs and no visibility into who is reviewing it.", "first_raised": "2026-06-12", "date": "2026-06-12", "status": "active", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"},
+        {"category": "timeline", "detail": "The July 7 kickoff and July 21-Aug 11 workshops are being scheduled ahead of an unsigned contract, risking a slip if signature is not secured this week.", "first_raised": "2026-06-12", "date": "2026-06-12", "status": "active", "source": "Avoma S2C Review Workshop Schedule 2026-06-12"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live but rep-led on the design engagement (weekly Lynn touch-bases through 2026-06-12); the deciding thread, the solution buy-vs-build decision, is cold and controlled by an unengaged CIO.",
+      "cooling": false,
+      "items": [
+        "Weekly two-way cadence with Lynn Dudley-Owen sustained June 1, 5, 12.",
+        "Contract signature overdue and stalled on Adrian since mid-June.",
+        "Solution decision paused since March and parked to post-September."
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "218k full S2C SaaS solution (eProcurement + iContract), on an LOI naming Zycus the chosen vendor",
+      "to": "10-week technology-agnostic process-design engagement (solution and tool selection out of scope), co-delivered with Letsema",
+      "detail": "In March 2026 Capitec's CIO paused the solution on a broader SaaS/internal-build strategy and the deal re-formed as a smaller design-first engagement; the buyer is defensively phasing spend and deferring the platform buy, so the 218k amount overstates committed value."
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Confirm the SOW reviewer and secure Adrian's redlines before the July 7 kickoff.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "SOW/MSA sitting un-returned with Adrian with no visibility into the reviewer", "trigger_date": "2026-06-12", "act_by": "2026-07-08", "expected_effect": "Unblocks signature and protects the July 7 kickoff and workshop dates."},
+        {"rank": 2, "action": "Get Lynn to name the design-engagement business sponsor and bring them into the kickoff.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Lynn: 'we would need a sponsor... it's gotta be the bigwigs'", "trigger_date": "2026-06-12", "act_by": "2026-07-15", "expected_effect": "Establishes an accountable executive owner and a path toward the budget authority."},
+        {"rank": 3, "action": "Use the design workshops to quantify Capitec's baseline and build a buy-vs-build TCO case for the CIO.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Solution paused on the CIO's internal-build strategy with no quantified case on record", "trigger_date": "2026-03-27", "act_by": "2026-08-05", "expected_effect": "Creates the evidence to re-open the 218k solution conversation post-September."}
+      ]
+    },
+    "customer_preference": {"level": "low", "evidence": "Capitec de-prioritised tool and AI selection and put the solution out of scope: Adrian, 'the solution is out of scope for now... the design would be technology agnostic' (2026-04-28)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only (fragmented, under-documented, constantly-changing procurement processes; ~18 first-line staff); no cost, cycle-time, or savings figures quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": true,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 17,
+    "calls_read": 5,
+    "calls_omitted": [
+      {"call": "Quick Catch Up on Contract (2026-03-26)", "reason": "no transcript body provided in this sweep"},
+      {"call": "Assessment of the Zycus AI offering (2026-03-12)", "reason": "no transcript body provided"},
+      {"call": "Discussion: Zycus Merlin for Contract (2026-02-20)", "reason": "no transcript body provided"},
+      {"call": "Capitec_Zycus Contracting Call (2026-02-13)", "reason": "no transcript body provided"},
+      {"call": "Zycus Capitec Review Meeting (2026-01-29)", "reason": "no transcript body provided"},
+      {"call": "Earlier 2025 discovery/costing/workshop calls (Nov 2025-Mar 2025)", "reason": "older than the 90d narrative window; no transcript body provided"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities 120d; field history 365d; contact roles full",
+    "avoma_attendees": ["Lynn Dudley-Owen", "Adrian Jacobs", "Johan Kotze", "Sandra Harris", "Zubair Dinath", "Isabella Rankine", "Kamen (Letsema partner)", "Jitesh (Letsema partner)"],
+    "gaps": [
+      "Economic buyer (Capitec CIO) unnamed in Salesforce and never on a call; cannot be promoted to a named stakeholder.",
+      "Design-engagement business sponsor named only in transcript ('Amelia/Emilia', Grant Hardy), unconfirmed in Salesforce.",
+      "No quantified business case or baseline metrics for the procurement pain."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

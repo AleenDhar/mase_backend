@@ -1,0 +1,36 @@
+{
+  "opp_id": "006P700000Vo3iP",
+  "needed": true,
+  "kind": "monitor",
+  "support": {
+    "needed": false,
+    "priority": "medium",
+    "areas": [],
+    "summary": "No CEO action required; deal needs EB mapping, not exec air cover",
+    "detail": "This $360K DFI Retail Group deal is stalled on a missing Economic Buyer, not on any blocked lever the CEO controls. No pricing approval, roadmap commitment, presales guarantee, or CEO-to-CEO peer connection is being requested, and the EB is not even identified yet. Standard field/RSD work (asking Jay Taylor who owns the $360K budget and securing that intro) resolves this.",
+    "metric": "$360K deal, Economic Buyer status = gap",
+    "owner": "Carl Kimball",
+    "ceo_action": "",
+    "ceo_ask": "",
+    "buyer_target": { "name": "Jay Taylor", "title": "Group Non-Trade Procurement Director (Decision Maker)" },
+    "why_not_vp": "EB identification, POV scheduling, and multi-threading are core RSD/CRO motions; nothing here requires the CEO's personal authority or relationships."
+  },
+  "monitor": {
+    "needed": true,
+    "reason": "Large $360K deal in Formal Evaluation has gone quiet for 22 days with next step unrefreshed.",
+    "triggers": [
+      {
+        "type": "large_slowdown",
+        "severity": "high",
+        "summary": "$360K DFI deal silent 22 days mid-evaluation, next step not updated",
+        "detail": "DFI Retail Group ($360K, Formal Evaluation, replacing incumbent GEP with Zycus S2C + Agentic AI) shows zero activities, calls, or movements in the 14-day window and 22 days since any touch as of Jul 6. The next step has not been refreshed in the window and no Economic Buyer is mapped. If this drift continues, an active evaluation cools into a no-decision and the AI-roadmap momentum built through Apr-Jun exec engagement is lost before the Aug-Sep proof-of-value is even locked.",
+        "metric": "22 days no activity; 0 activities/calls/movements in 14-day window",
+        "owner": "Carl Kimball",
+        "ceo_ask": "Ask Carl why DFI ($360K, Formal Evaluation) has gone dark for 22 days and whether the Aug-Sep proof-of-value dates and an Economic Buyer intro are actually secured.",
+        "evidence": "days_since_last_activity=22; recent_movements_14d/recent_activities_14d/recent_calls_14d all empty; next_step_updated_in_window=false as of 2026-07-06",
+        "as_of": "2026-07-06"
+      }
+    ]
+  },
+  "source": "attention_v1"
+}

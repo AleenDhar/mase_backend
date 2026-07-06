@@ -1,0 +1,146 @@
+{
+  "opp_id": "006P700000IR002",
+  "hard": {
+    "opp_id": "006P700000IR002", "opp_name": "ZS S2P 2025", "account_name": "ZS", "account_industry": "Business Services",
+    "billing_country": "United States", "owner_name": "Rick Taranek", "owner_title": null, "manager_name": null,
+    "stage": "Qualified", "forecast_category": "Pipeline", "amount": 250000, "close_date": "2027-01-29",
+    "days_to_close": null, "created_date": "2025-04-01", "qualified_date": "2026-06-30",
+    "last_activity_date": "2026-07-06", "last_modified_date": null,
+    "products": "eProcurement;eInvoicing;Merlin", "next_step": "Dec 8 Rick: Assigned the pursuit to BD/Amaan, Rick will pursue higher priority Opps within pipeline. Low priority initiative picks up in mid-January (according to champion)",
+    "ais_score": 0.0, "ais_status": "Negative",
+    "ais_why": "Reviewed 4 calls spanning 4/1/25-1/21/26. Zero AI signals detected across all transcripts. Calls focused on procurement process modernization, ERP upgrades, decentralized purchasing challenges, but no AI mentioned.",
+    "dm_identified": false, "eb_identified": false,
+    "champion_identified": true, "pain_identified": true,
+    "metrics_identified": false, "competitor": "", "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000IR002/view"
+  },
+  "ai": {
+    "north_star_verdict": {"verdict": "On Track", "critical": false,
+      "headline": "Deal re-ignited: new owner Rick Taranek engaged, NDA cleared 'okay to execute', and the buyer is standing up a formal S2P RFP with their finance director joining.",
+      "math": "210 days to a 2027-01-29 close; created 2025-04-01, moved Initial Interest to Qualified on 2026-06-29 (qualified 2026-06-30). The stale 'paused to mid-January' Next Step is superseded by heavy fresh activity: a 2026-06-25 buyer meeting on the S/4HANA timeline and upcoming RFP, an NDA reviewed 'okay to execute' 2026-07-02, and a 2026-07-06 meeting. Last activity 2026-07-06. For an early-stage deal with a buyer-driven RFP forming and legal cycles opening, the long runway to Jan 2027 is comfortably credible.",
+      "forecast_defensible": true, "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Buyer email 2026-06-22 (Artana Skreli-Fitzgerald): 'We are gearing up to sending out a S2P RFP and I am looking to schedule a quick call with you beforehand. I will be bringing our finance director in the call.'",
+        "NDA reviewed 'okay to execute' with Zycus signer Alexa Bradley (VP Sales) returned 2026-07-02",
+        "Stage Initial Interest -> Qualified on 2026-06-29 (by Alexa Bradley)",
+        "Owner reassigned Mario Castro -> Rick Taranek on 2026-06-26 after a Zycus personnel change",
+        "2026-06-25 follow-up email referenced 'the context around the S/4HANA timeline, the upcoming RFP process'",
+        "Last activity 2026-07-06; deal is live, not paused",
+        "AIS score 0 / Negative: zero AI signals across prior calls despite Merlin in scope"]},
+    "meddpicc": {
+      "metrics": {"status": "gap", "narrative": "No quantified value case is on record. The pain is qualitative: procurement process modernization, an S/4HANA ERP migration, and decentralized purchasing (AIS_Why__c call review of 4 prior calls; the 2026-06-25 follow-up email citing 'the context around the S/4HANA timeline'). No spend-under-management, invoice-volume, cycle-time, or headcount figure has been captured, and no Avoma transcripts were discovered this sweep to mine for numbers. Quantifying the procurement baseline with Artana Skreli-Fitzgerald and the incoming finance director before the RFP scoring is written is the highest-leverage metrics move.", "sources": ["AIS_Why__c", "SF activity 2026-06-25 follow-up email", "No Avoma transcripts this sweep"]},
+      "economic_buyer": {"status": "partial", "narrative": "Budget authority is approaching but not yet named. On 2026-06-22 Artana Skreli-Fitzgerald wrote 'I will be bringing our finance director in the call', signalling finance is entering the evaluation, but that person is in no Salesforce contact role and cannot be named or titled yet. Artana (Global Procurement Manager, Evaluator) drives the procurement process but does not control a $250k multi-year budget alone. A 'Joe' surfaced when Artana suggested Zycus connect with him on procurement initiatives (email 2026-06-29), but he matches no Salesforce contact, so he is unverified and left unmapped. Converting the incoming finance director into a named, mapped budget owner is the top EB action.", "sources": ["Buyer email 2026-06-22 (bringing finance director)", "Buyer email 2026-06-29 (Joe referral, unverified)", "OpportunityContactRole: Artana Skreli-Fitzgerald (Evaluator)"]},
+      "decision_criteria": {"status": "partial", "narrative": "Criteria are forming around the formal S2P RFP the buyer is 'gearing up to send' (Artana, 2026-06-22) and an S/4HANA migration that will make ERP integration a scored requirement (2026-06-25 email). The product scope on record (eProcurement, eInvoicing, Merlin per Products__c) frames the functional fit, but the buyer has not yet shared written evaluation criteria or a scoring model. Securing the RFP requirements document early, before criteria harden, is what lets Zycus shape the scorecard.", "sources": ["Buyer email 2026-06-22 (upcoming S2P RFP)", "SF Products__c", "SF activity 2026-06-25 (S/4HANA timeline)"]},
+      "decision_process": {"status": "partial", "narrative": "The buyer is running a structured path: a pre-RFP alignment call (requested 2026-06-22, met 2026-06-25), a formal S2P RFP to follow, and a legal/NDA cycle already open (NDA received 2026-07-01, cleared to execute 2026-07-02) with a further meeting on 2026-07-06. Finance is being pulled in, indicating a multi-function committee (procurement plus finance). The full approval chain, the RFP issue-and-response timeline, and a target decision date remain unstated and should be captured in writing at the next call.", "sources": ["Buyer emails 2026-06-22 / 2026-07-01", "NDA activity 2026-07-02", "Meeting event 2026-07-06", "Stage move to Qualified 2026-06-29"]},
+      "paper_process": {"status": "partial", "narrative": "Paper mechanics are moving unusually early for the stage, a strong signal. The buyer sent an NDA on 2026-07-01 asking Zycus to 'review, redline if appropriate, complete the required information and return'; Zycus reviewed it 'okay to execute' with signer Alexa Bradley (VP Sales) on 2026-07-02, and the thread references 'working on Legal cycles'. The MSA/SOW, InfoSec review, and the S/4HANA integration scope are not yet defined and become live once the RFP lands.", "sources": ["Buyer NDA email 2026-07-01", "Zycus NDA response 2026-07-02 (okay to execute, signer Alexa Bradley)"]},
+      "identify_pain": {"status": "partial", "narrative": "Confirmed pain centres on procurement modernization tied to an S/4HANA ERP migration and decentralized purchasing (AIS_Why__c call review; 2026-06-25 email on the S/4HANA timeline). The pain owner is procurement, championed by Artana Skreli-Fitzgerald, with finance about to weigh in. The compelling event is the S/4HANA program: aligning the S2P selection to that migration window is the wedge. The pain is real and current but not yet quantified or tied to a dollar impact.", "sources": ["AIS_Why__c (procurement modernization, ERP upgrades, decentralized purchasing)", "SF activity 2026-06-25 (S/4HANA timeline)"]},
+      "champion": {"status": "partial", "narrative": "Artana Skreli-Fitzgerald (Global Procurement Manager, Evaluator) is a developing but genuinely active champion: she re-engaged Zycus, suggested Zycus connect with 'Joe' on procurement initiatives (2026-06-29), is bringing her finance director into the pre-RFP call (2026-06-22), and is coordinating the NDA and RFP cadence (2026-07-01/02). What is still missing is proof she has direct economic-buyer access and will defend Zycus inside a competitive RFP rather than run a neutral process. Deepening her sponsorship and confirming her reach to the budget owner is the next champion step.", "sources": ["Buyer emails 2026-06-22 / 2026-06-29", "OpportunityContactRole: Artana Skreli-Fitzgerald (Evaluator)", "NDA coordination 2026-07-01/02"]},
+      "competition": {"status": "gap", "narrative": "No competitor is named in any source: Competitors__c is blank and no call, email, task, or Next Step names a rival. A formal S2P RFP is imminent (Artana, 2026-06-22), so a competitive field is highly likely to open, and the S/4HANA migration makes an SAP-adjacent evaluation plausible, but nothing in the evidence names SAP Ariba, Coupa, GEP, Ivalua, or any other vendor, so none is asserted. This is genuinely unknown rather than sole-sourced. Surfacing the vendor shortlist during pre-RFP discovery, before criteria harden, is the priority.", "sources": ["SF Competitors__c: null", "No Avoma/tasks/Next Step naming a competitor"]}
+    },
+    "deal_movement": {"summary": "After a long dormant stretch (Next Step paused to mid-January), the deal re-ignited across late June and early July 2026: new owner, buyer-driven RFP forming, NDA cleared, and two fresh meetings.",
+      "items": [
+        {"change": "Stage moved Initial Interest -> Qualified (by Alexa Bradley)", "date": "2026-06-29"},
+        {"change": "Owner reassigned Mario Castro -> Rick Taranek after a Zycus personnel change", "date": "2026-06-26"},
+        {"change": "Buyer announced a formal S2P RFP and offered to bring their finance director to a pre-RFP call", "date": "2026-06-22"},
+        {"change": "Buyer/Zycus meeting on S/4HANA timeline and upcoming RFP process", "date": "2026-06-25"},
+        {"change": "NDA received from buyer; Zycus reviewed 'okay to execute', signer Alexa Bradley returned", "date": "2026-07-02"},
+        {"change": "Further ZS & Zycus meeting held", "date": "2026-07-06"}]},
+    "competitive_position": {"summary": "No competitor is named in any Salesforce field, email, task, or meeting note as of this sweep, so the field is genuinely unknown rather than sole-sourced. A formal S2P RFP is forming (Artana, 2026-06-22) and will almost certainly introduce rivals; the S/4HANA migration makes an SAP-adjacent evaluation plausible, but no vendor is named in the evidence, so none is asserted. The single highest-value competitive action is to surface the buyer's vendor shortlist during pre-RFP discovery before the criteria lock.",
+      "competitors": []},
+    "customer_expectations_fit": {"summary": "Expectations are early and centre on an S2P suite that fits the S/4HANA migration; functional fit (eProcurement, eInvoicing) looks aligned but written criteria are not yet shared and AI appetite is absent (AIS Negative).",
+      "items": [
+        {"criterion": "S2P suite aligned to the S/4HANA ERP migration timeline", "position": "partially aligned", "quote": "the context around the S/4HANA timeline, the upcoming RFP process", "date": "2026-06-25", "source": "SF activity 2026-06-25 follow-up email"},
+        {"criterion": "Formal S2P RFP requirements", "position": "exposed", "quote": "We are gearing up to sending out a S2P RFP", "date": "2026-06-22", "source": "SF activity 2026-06-22 buyer email"}]},
+    "explicit_requirements": {"items": [
+      {"requirement": "Review and return the NDA with signer details", "said_by": "Artana Skreli-Fitzgerald", "date": "2026-07-01", "addressed": true, "quote": "Please see attached our NDA. Kindly review, redline if appropriate, complete the required information and return", "source": "SF task 2026-07-01 (Clari email received)"},
+      {"requirement": "Hold a pre-RFP alignment call before the S2P RFP goes out", "said_by": "Artana Skreli-Fitzgerald", "date": "2026-06-22", "addressed": true, "quote": "I am looking to schedule a quick call with you beforehand. I will be bringing our finance director in the call.", "source": "SF task 2026-06-22 (Clari email received)"}]},
+    "implicit_requirements": {
+      "we_promised":     {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Share the S2P RFP requirements document and response timeline", "who": "Buyer", "grounding_quote": "We are gearing up to sending out a S2P RFP", "date": "2026-06-22", "due": null, "status": "open", "source": "SF task 2026-06-22 buyer email"},
+        {"deliverable": "Introduce the finance director as the budget owner on a call", "who": "Buyer", "grounding_quote": "I will be bringing our finance director in the call", "date": "2026-06-22", "due": null, "status": "open", "source": "SF task 2026-06-22 buyer email"}]}},
+    "gaps": {"items": [
+      {"area": "Economic buyer", "quote": "I will be bringing our finance director in the call", "status": "acknowledged", "date": "2026-06-22", "gap_type": "knowledge", "source": "SF task 2026-06-22 buyer email"},
+      {"area": "Competitive shortlist", "quote": "We are gearing up to sending out a S2P RFP", "status": "not addressed", "date": "2026-06-22", "gap_type": "knowledge", "source": "SF task 2026-06-22 buyer email"},
+      {"area": "Quantified value case / metrics", "quote": "", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "AIS_Why__c + SF activity 2026-06-25"},
+      {"area": "No Avoma transcripts discovered for this opp this sweep", "quote": "", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma opp+account+attendee-email discovery returned no matched buyer calls"}]},
+    "best_practice_check": {"summary": "Early-stage deal re-igniting around a buyer-owned RFP; win depends on shaping criteria, mapping the finance budget owner, and landing an AI story where AIS is currently zero.",
+      "flags": [
+        "Get the RFP requirements early and co-shape the scorecard with Artana before it locks; a buyer-written S2P RFP that we did not influence favours whichever incumbent the criteria are drawn around.",
+        "Map and meet the unnamed finance director; a $250k multi-year S2P sale will not clear on a Global Procurement Manager alone, and the budget owner is currently a name we do not have.",
+        "Put a Merlin / agentic-procurement proof point in front of the buyer: AIS is 0 / Negative with zero AI signals across four prior calls despite Merlin in scope, so our AI differentiation is currently invisible in this evaluation."]},
+    "stakeholder_map": {"items": [
+      {"name": "Artana Skreli-Fitzgerald", "title": "Global Procurement Manager", "role": "Champion", "last_contact_date": "2026-07-02", "sentiment": "Positive (driving NDA, RFP cadence, and finance introduction)", "risk": "Advocacy is developing; economic-buyer access unproven inside a competitive RFP", "source": "sfdc_contact_role; SF tasks 2026-06-22 / 2026-06-29 / 2026-07-01/02"},
+      {"name": "Tamerlan Saidov", "title": "Decision Analytics Manager, Supply Chain, Manufacturing, and CMC", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown", "risk": "No engagement evidence this cycle", "source": "sfdc_contact_role"},
+      {"name": "Karan Dhawal", "title": "Adjunct Faculty", "role": "Unknown", "last_contact_date": null, "sentiment": "Unknown", "risk": "Role in the S2P evaluation unclear; no engagement evidence", "source": "sfdc_contact_role"}]},
+    "champion_strength": {"summary": "Artana Skreli-Fitzgerald is a developing but genuinely active champion: she re-engaged Zycus, is coordinating the NDA and RFP, and is bringing her finance director in. Still unproven: direct economic-buyer access and willingness to defend Zycus in a competitive RFP.", "champion": "Artana Skreli-Fitzgerald", "strength": "developing", "at_risk": false, "source": "OpportunityContactRole (Evaluator); SF tasks 2026-06-22, 2026-06-29, 2026-07-01/02"},
+    "ai_positioning_strength": {"summary": "AI story is absent: AIS_Score 0 / Negative, zero AI signals across four prior calls despite Merlin in scope. We are under-positioned on the agentic angle and must introduce it before the RFP criteria are set.", "score": "0", "under_positioned": true},
+    "ai_fit_signal": {"summary": "AIS_Score__c 0 / AIS_Status__c Negative: reviewer found zero AI signals across four calls (4/1/25-1/21/26); procurement modernization and ERP topics only, no AI discussed. No Avoma calls this sweep to add nuance. Merlin is in scope but the buyer has shown no AI appetite yet.", "tier": "AI Resistant"},
+    "vulnerabilities": {"items": [
+      {"category": "executive_alignment", "detail": "Economic buyer (finance director) named on a call but not yet mapped, met, or added as a contact role", "first_raised": "2026-06-22", "date": "2026-06-22", "status": "open", "source": "SF task 2026-06-22 buyer email"},
+      {"category": "other", "detail": "Buyer-owned S2P RFP forming; competitive field will open and criteria may be shaped by a rival if we do not engage pre-RFP", "first_raised": "2026-06-22", "date": "2026-06-22", "status": "open", "source": "SF task 2026-06-22 buyer email"},
+      {"category": "budget", "detail": "No quantified value case; a $250k multi-year spend has no ROI model to defend against finance scrutiny", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "AIS_Why__c + SF activity 2026-06-25"}]},
+    "confidence_signals": {"summary": "Engagement is rising, not cooling: buyer-initiated RFP, finance being pulled in, NDA cleared, two meetings in the last two weeks. Thin transcript evidence keeps confidence moderate.", "cooling": false, "items": [
+      "Buyer requested the pre-RFP call (pull, not push), 2026-06-22",
+      "NDA cleared 'okay to execute' 2026-07-02",
+      "Two meetings on 2026-06-25 and 2026-07-06"]},
+    "recommended_moves": {"items": [
+      {"rank": 1, "action": "Ask Artana for the S2P RFP requirements and response timeline in writing.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Buyer said 'We are gearing up to sending out a S2P RFP' and offered a pre-RFP call", "trigger_date": "2026-06-22", "act_by": "2026-07-13", "expected_effect": "Lets Zycus shape the evaluation criteria before they harden, protecting win rate against unnamed rivals."},
+      {"rank": 2, "action": "Get the finance director named and booked onto the next call as budget owner.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Buyer said 'I will be bringing our finance director in the call' but the person is unnamed and unmapped", "trigger_date": "2026-06-22", "act_by": "2026-07-20", "expected_effect": "Maps the economic buyer early so a $250k multi-year proposal has a confirmed sign-off path."},
+      {"rank": 3, "action": "Run a pre-RFP discovery to surface the buyer's vendor shortlist and S/4HANA integration needs.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Formal S2P RFP forming and an S/4HANA migration in flight with no competitor yet named", "trigger_date": "2026-06-25", "act_by": "2026-08-05", "expected_effect": "Reveals the competitive field and the ERP-integration scoring so we can position before criteria lock."},
+      {"rank": 4, "action": "Put a Merlin agentic-procurement proof point in front of Artana ahead of the RFP.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "AIS 0 / Negative: zero AI signals across four calls despite Merlin in scope", "trigger_date": "2026-07-06", "act_by": "2026-08-05", "expected_effect": "Introduces AI differentiation into the evaluation where it is currently invisible."}]},
+    "deal_scores_evidence": {
+      "summary": "A freshly re-ignited early-stage S2P deal at ZS: Global Procurement Manager Artana Skreli-Fitzgerald is driving a buyer-owned RFP and cleared our NDA, but no economic buyer is named, no competitor or value case is on record, and AI appetite reads zero, so this is a promising-but-unproven Qualified deal, not a leader.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "This is an early, genuinely live deal we do not yet lead: Artana Skreli-Fitzgerald re-engaged Zycus, is standing up an S2P RFP (email 2026-06-22) and cleared our NDA 'okay to execute' (2026-07-02), but the evaluation is buyer-owned and still forming."},
+          {"tone": "warn", "text": "No economic buyer is mapped: the finance director Artana offered to bring (2026-06-22) is unnamed and in no contact role, so a $250k multi-year spend has no confirmed sign-off path."},
+          {"tone": "warn", "text": "No competitor is named and the RFP has not issued, so criteria could be shaped around a rival before we engage; the S/4HANA migration makes an SAP-adjacent evaluation plausible."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Momentum turned sharply positive in the last two weeks: stage moved to Qualified (2026-06-29), the buyer requested a pre-RFP call, and two meetings ran on 2026-06-25 and 2026-07-06."},
+          {"tone": "good", "text": "Commercial/legal topics entered early: the buyer sent an NDA and Zycus cleared it 'okay to execute' with signer Alexa Bradley (2026-07-02), referencing open legal cycles."},
+          {"tone": "warn", "text": "The close date is 2027-01-29 and the RFP has not yet issued, so despite the burst of activity the substantive evaluation is still ahead."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "The buyer is pulling, not being pushed: Artana requested the pre-RFP call and offered to bring finance (2026-06-22), a buyer-initiated next step."},
+          {"tone": "warn", "text": "Commitment is procedural, not preferential: there is no evidence the buyer prefers Zycus over any alternative, and the RFP signals an open, competitive process."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "AIS is 0 / Negative with zero AI signals across four prior calls despite Merlin in scope, so our AI differentiation is invisible in this evaluation."},
+          {"tone": "warn", "text": "No quantified value case exists; the pain (procurement modernization, S/4HANA migration, decentralized purchasing) is qualitative only, leaving no ROI model for finance to defend."},
+          {"tone": "warn", "text": "No Avoma buyer calls were discovered this sweep, so the read leans on emails and field history and the competitive and metrics picture is thin."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": 0.2, "evidence": "Artana Skreli-Fitzgerald is active and driving the RFP/NDA but her economic-buyer access is unproven and she may be running a neutral process."},
+        "economic_buyer": {"strength": -0.3, "evidence": "Finance director named on a call (2026-06-22) but unnamed, unmapped, and not yet met."},
+        "ai_fit": {"strength": -0.5, "evidence": "AIS 0 / Negative; zero AI signals across four calls despite Merlin in scope."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "No preference stated; buyer is running an open S2P RFP ('We are gearing up to sending out a S2P RFP', 2026-06-22) with no comparison favouring Zycus."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: procurement modernization, S/4HANA ERP migration, decentralized purchasing (AIS_Why__c; 2026-06-25 email). No cost, savings, or cycle-time figures."},
+    "momentum_signals": {
+      "seniority_rising": true,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Scope is unchanged at eProcurement, eInvoicing, and Merlin (Products__c); no narrowing or expansion versus the prior record."}
+  },
+  "evidence_coverage": {"calls_discovered": 0, "calls_read": 0, "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email", "salesforce_window": "activities last 120d; field history to 2025-06",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma buyer calls matched this opp via opp+account+attendee-email discovery; the read leans on Salesforce activities, emails, and field history.",
+      "Economic buyer (finance director) named on a call but not in any contact role, so cannot be named or titled.",
+      "No competitor named in any source; the competitive field is genuinely unknown ahead of the forming RFP.",
+      "No quantified value case captured."]},
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

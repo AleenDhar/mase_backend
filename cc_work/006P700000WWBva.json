@@ -1,0 +1,261 @@
+{
+  "opp_id": "006P700000WWBva",
+  "hard": {
+    "opp_id": "006P700000WWBva",
+    "opp_name": "Future Fund_CLM_eSourcing",
+    "account_name": "Future Fund",
+    "account_industry": "BFSI",
+    "billing_country": "Australia",
+    "owner_name": "Luke Dougherty",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 350000,
+    "close_date": "2026-09-17",
+    "days_to_close": 73,
+    "created_date": "2026-04-09",
+    "qualified_date": "2026-06-22",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": "2026-07-01",
+    "products": "iContract;iSource;iSupplier;Merlin;Merlin Intake;iCompliance",
+    "next_step": "Confidence 25% 31st Jul - email to Chris Stevenson, will follow up with outreach to meet F2F. Book a prep session to confirm the 3 target workflows (Renewal, Panel-based buy, Non-panel exception), lock the decision-tree gates, and send a 1-page Future Fund Orchestration Blueprint plus a tailored demo agenda.",
+    "ais_score": 8.0,
+    "ais_status": "Strong",
+    "ais_why": "Future Fund operates in a technology-driven investment environment where automation, data-driven decision-making, and operational efficiency are strategic priorities. Procurement organizations in similar public investment and financial institutions are increasingly evaluating AI for intake management, sourcing, contract lifecycle management, supplier risk, spend analytics, and autonomous procurement workflows. Given the broader adoption of AI across enterprise functions, Future Fund is likely to have a strong interest in AI-enabled procurement transformation, particularly if it aligns with governance, compliance, and productivity objectives. While there is no public confirmation of a specific AI procurement initiative, the organization's digital transformation focus indicates a favorable environment for AI-powered Source-to-Pay (S2P) solutions.",
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Omnia;Zip;SAP Ariba;Build in-house",
+    "primary_competitor": "Omnia",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000WWBva/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Single-threaded, market-scanning deal that has gone cold: Chris Stevenson's last genuine two-way exchange was the 7 Apr intro call, and a demo planned in the 19 May next step is still unbooked 90 days later while the rep chases (last touch 1 Jul, no buyer reply). Chris praised rival Omnia's Teams demo as 'the future' and is weighing building in-house with Future Fund's own AI team. The 17 Sep 2026 close is a placeholder; Chris's stated plan is to have vendors lined up by 30 Jun 2027 for a Jul 2027 implementation start.",
+      "math": "Days to close: 73 (close 17 Sep 2026, from today 6 Jul 2026). Time in Qualified: 14 days (stage moved Initial Interest to Qualified on 22 Jun 2026); opp created 9 Apr 2026, so 88 days in pipeline. No submission dates populated (Formal_Eval / Shortlisted blank), so stage velocity is unmeasurable from the date series. Last genuine BUYER two-way engagement: 7 Apr 2026 intro call, 90 days ago; every touch since (19 May, 9 Jun, 11 Jun, 1 Jul) is rep-initiated email with no logged buyer reply, and a 22 Jun Opportunity Health task explicitly flags 'Prospect's gone cold, no inbound since last 14 days'. Cold for 60+ days forces Off Track. Close-date misalignment: Chris stated on 7 Apr he wants providers 'lined up before 30 Jun next year' to 'implement from the start of July 27', so a realistic vendor selection is mid-2027, roughly 9-12 months beyond the 17 Sep 2026 close.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last buyer-facing two-way exchange was the 7 Apr 2026 Avoma intro call (Chris Stevenson); all activity since is rep-side email with no logged buyer reply.",
+        "Demo planned in the 19 May 2026 next step remains unbooked as of the 1 Jul 2026 next step, 6+ weeks and then 90+ days later.",
+        "22 Jun 2026 Opportunity Health task: 'Prospect's gone cold, no inbound since last 14 days', plus 'Decision Maker is not identified' and 'Keep the engagement multi-threaded'.",
+        "Single-threaded on Chris Stevenson (Director, Procurement, Executive Sponsor); the CFO he reports to (budget authority) is unnamed and unengaged.",
+        "Competitive: Chris praised Omnia's Teams-based demo as 'the future' on 7 Apr, has looked at Zip, and is weighing building in-house with Future Fund's large AI team.",
+        "Close date 17 Sep 2026 is a placeholder; Chris's stated timeline is vendor selection by 30 Jun 2027 and implementation start Jul 2027."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Chris Stevenson framed the driver as compliance and reputational risk, not hard savings, on the 7 Apr 2026 call: 'the scrutiny isn't rarely about the technicalities of procurement, it's generally about what can you put on the front of the newspaper', and he was explicit that procurement is 'a tiny, tiny, tiny role' against an agency that 'returned something like $30 billion in investments', so cost savings 'wouldn't even be a rounding error'. He did quantify the operational shape (765 contract initiatives in FY25, of which ~50% renewals and much of the rest routed through 21 mandatory government panels) and a headcount target ('we've got 10 now, but ideally I wanna build something that we can bring that number down to 6'), but no baseline cycle time, error rate, compliance-breach count, or dollar ROI was stated. The value case is real but qualitative (compliance-by-design, modernization, customer experience); quantifying the cost of the manual Smartsheet/ServiceNow process and the FTE redeployment is the move to harden it against a build-in-house alternative.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson", "SF Products__c (full-suite scope)"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Chris Stevenson stated on the 7 Apr 2026 call that procurement reports to the CFO ('Yeah. CFO. Reports to finance.'), so the CFO is the budget authority and the economic buyer for the FY27 funding Chris is seeking ('next year I will hope there's funding for two things: a project to replace Smartsheet and another around contract lifecycle management'). The CFO is not named in any Salesforce contact role, did not join the 7 Apr call, and appears in no activity, so the economic buyer is mapped by role but not by name and has zero engagement, which the 22 Jun 2026 Opportunity Health task echoes ('Decision Maker is not identified'). The move is to have Chris introduce the finance sponsor once a demo lands, before a rival multi-threads to the CFO first.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson", "SF OpportunityContactRole (no EB role present)", "Opportunity Health task 22 Jun 2026"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Chris was specific about what Future Fund is evaluating on: intake and orchestration over traditional sourcing ('I'm really big on the notion of intake and orchestration, that's gonna be what's of more benefit to us as a federal government rather than a traditional sourcing tool'), a single auditable compliance record ('that single record of information is far more important than sourcing and catalogs'), and government-panel workflow handling (mandatory panels, indigenous-supplier prompt-and-evidence capture, conflict-of-interest forms, value-threshold approvals). Microsoft Teams-native intake is a stated preference (he praised Omnia's Teams, low-code experience as 'the future'), and integration into Workday, ServiceNow, and DocuSign is a criterion he probed directly ('how does Merlin get that information? our spend is in Workday'). These are confirmed from the discovery call but not yet formalized in an RFP or scored requirements document; the 1 Jul next step's three target workflows (Renewal, Panel-based buy, Non-panel exception) are the criteria to validate in a tailored demo.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson", "SF Next_Step__c 1 Jul 2026"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "Only one buyer meeting has occurred (7 Apr 2026 intro call), attended solely by Chris Stevenson from the buyer side, so the buying committee and formal evaluation process are largely unread. Chris described his own timeline ('all being well before June 30 next year I would like to have got some technology providers lined up to implement from the start of July 27') and signalled a possible dual go-to-market ('it may well be that we go to market for two things, or there is one thing capable of both', i.e. Smartsheet replacement and CLM), but the approval chain, procurement channel, and whether a formal government tender is required are unconfirmed. Given Future Fund is a Commonwealth entity, a public RFP/tender is likely; mapping the process and confirming whether an open tender is mandated is the near-term move.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced yet: this is an early Qualified deal with no MSA, order form, SOW, legal, or InfoSec conversation on record, and no contract-expiration forcing function (Future Fund has no incumbent procurement platform to displace, running today on Smartsheet and ServiceNow forms per Chris on 7 Apr). As a Commonwealth government buyer, expect government procurement rules, panel/tender obligations, and a security/compliance review to gate any purchase. Visibility will only come after a demo and the FY27 funding decision Chris referenced; the move is to learn the funding and procurement pathway (open tender vs panel purchase) once engagement restarts.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Chris articulated the pain in detail on 7 Apr 2026: a manual, unmodernized function ('we don't have any procurement technology, we've got to make a big leap from a beefed-up spreadsheet or Smartsheet 30 years into the future') running requests through ServiceNow forms into Smartsheet with no catalogs and no automated compliance checks. The specific compliance exposure is that panel rules, indigenous-supplier checks, and conflict-of-interest capture are done ad hoc with 'no checks in our process to say that we've asked that question each time', creating public-scrutiny risk ('any kind of significant area of non-compliance or risk is disruptive and goes a long way to derailing the confidence the government and public has in the agency'). The pain owner is Chris himself as the Director, Procurement chartered to move the team 'from centralized to center-led' with 'compliance by process design rather than compliance by team'. This is confirmed, first-person, and specific; the gap is quantification, not existence.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Chris Stevenson (Director, Procurement, Salesforce role Executive Sponsor) is the sole engaged contact and a developing, not yet strong, champion. What has developed: he initiated and ran the 7 Apr 2026 discovery call, laid out his requirements and workflows in depth, owns the FY27 transformation mandate, and reports directly to the economic buyer (the CFO). What is still missing: he has not introduced Zycus to the CFO or any IT/integration stakeholder, has provided no internal documents or RFP, has not booked the demo he asked for despite 6+ weeks of rep follow-up, and is openly comparing us unfavourably against Omnia ('this is the future'). His engagement is cooling, confirmed by the 22 Jun Opportunity Health 'gone cold' flag. He is a genuine sponsor of the initiative but not yet an advocate for Zycus specifically; converting him requires a tailored demo, the Victorian-government references he was offered, and integration clarity that beats build-in-house.",
+        "sources": ["SF OpportunityContactRole: Chris Stevenson, Executive Sponsor", "Avoma intro call 7 Apr 2026", "SF Next_Step__c 19 May and 1 Jul 2026", "Opportunity Health task 22 Jun 2026"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The strongest current threat is Omnia, which Chris praised without prompting on 7 Apr 2026 ('when I first had a demo of Omnia, and that's Teams based and low-code, I was like, this is the future'), positioning its Teams-native, guided-buying experience as the benchmark for the intake-and-orchestration outcome Chris cares about most. Build-in-house is a serious parallel threat given Future Fund's large internal AI team ('a big question for me is do I pick something off the shelf or could I build something internally with our own AI capability'), particularly for CLM contract-comparison tasks he believes he 'can probably do in house'. Zip is a lighter, earlier-look alternative ('I've looked a little bit at Zip'), and SAP Ariba appears only in the Salesforce Competitors__c field with no buyer evidence and is deprioritized by Chris's explicit rejection of traditional sourcing tools. The wedge is Zycus's Merlin intake through Microsoft Teams plus embedded agentic AI across modules and Victorian-government references, positioned as faster and lower-risk than building, but that story has not yet been demonstrated live.",
+        "sources": ["Avoma intro call 7 Apr 2026, Chris Stevenson", "SF Competitors__c: SAP Ariba;Others"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Deal advanced administratively (Initial Interest to Qualified on 22 Jun 2026, ownership reassigned to Luke Dougherty on 1 Jul 2026 with Carl Kimball, ANZ director, engaging) but has not advanced with the buyer since the 7 Apr 2026 intro call. Every touch since is rep-initiated email with no logged buyer reply; the planned demo has not been booked.",
+      "items": [
+        {"change": "Ownership reassigned Adam Hasan to Luke Dougherty; Carl Kimball (ANZ) emailed Chris offering a Melbourne F2F", "date": "2026-07-01"},
+        {"change": "Opportunity Health flagged deal gone cold, decision-maker not identified, single-threaded", "date": "2026-06-22"},
+        {"change": "Stage moved Initial Interest to Qualified", "date": "2026-06-22"},
+        {"change": "Rep re-initiated outreach referencing prior conversation with Manu and Adam Hasan", "date": "2026-06-11"},
+        {"change": "Intro/discovery call held with Chris Stevenson (only buyer meeting on record)", "date": "2026-04-07"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Omnia is the single strongest current threat: Chris Stevenson praised its Teams-based, low-code demo as 'the future' on 7 Apr 2026, setting it as the benchmark for the intake-and-orchestration outcome he values most. Build-in-house is the second live threat given Future Fund's large internal AI team and Chris's stated doubt about buying CLM off the shelf. Zip is an early, lightly-evaluated alternative; SAP Ariba sits only in the Salesforce field with no buyer signal and is undercut by Chris's rejection of traditional sourcing tools. Status quo (manual Smartsheet + ServiceNow) is a real no-decision risk because procurement is a low-stakes function for the agency and FY27 funding is not yet secured.",
+      "competitors": [
+        {"name": "Omnia", "sentiment": "negative", "threat_level": "high", "status": "active", "quote": "when I first had a demo of Omnia, and that's Teams based, and it's kinda low code stuff, and I was like, this is the future", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson", "how_we_win": "Demo Merlin intake live inside Microsoft Teams with agentic orchestration across all modules and Victorian-government references, so Zycus matches Omnia's Teams experience and outreaches it on breadth and compliance depth."},
+        {"name": "Build in-house (Future Fund AI team)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "a big question for me is, in this project, do I pick something off the shelf or could I build something internally with our own AI capability", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson", "how_we_win": "Land total-cost-and-risk of building/maintaining panel-compliance workflows and 4 upgrades a year vs a proven S2P; position build-focus on their investment AI, not procurement plumbing."},
+        {"name": "Zip", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "I've looked a little bit at Zip. I've looked a little bit at Omnia.", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson", "how_we_win": "Contrast Zip's intake-only scope against Zycus's full source-to-pay plus CLM covering both of Chris's FY27 initiatives in one platform."},
+        {"name": "Status quo (manual Smartsheet + ServiceNow)", "sentiment": "neutral", "threat_level": "medium", "status": "do_nothing", "quote": "we don't have any procurement technology, we've got to make a big leap from having a beefed up spreadsheet or Smartsheet", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson", "how_we_win": "Tie the move to the CEO's stated compliance mandate and senate-scrutiny risk so inaction is framed as an unmanaged reputational exposure, not a saved cost."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Listed in Salesforce Competitors__c; no buyer mention, and Chris deprioritized traditional sourcing tools", "date": "2026-04-09", "source": "SF Competitors__c: SAP Ariba;Others", "how_we_win": "If Ariba surfaces, position Merlin intake and Teams-native orchestration against Ariba's sourcing-heavy, complex footprint that Chris has already said he does not need."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong thematic fit on intake, orchestration, compliance-by-design, and Teams-native experience, but every fit point is asserted, not yet proven in a demo; the biggest exposures are live Workday/ServiceNow data integration and matching Omnia's Teams experience.",
+      "items": [
+        {"criterion": "Intake and orchestration over traditional sourcing", "position": "aligned", "quote": "I'm really big on the notion of intake and orchestration, that's gonna be what's of more benefit to us as a federal government rather than a traditional sourcing tool", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"criterion": "Microsoft Teams-native, low-code buying experience", "position": "partially aligned", "quote": "that's Teams based, and it's kinda low code stuff, and I was like, this is the future", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"criterion": "Single auditable compliance record (panels, indigenous-supplier checks, COI)", "position": "aligned", "quote": "that single record of information is far more important than sourcing and catalogs, so how we capture those things in a compliant way is important", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"criterion": "Integration into Workday spend/PO/contract data, ServiceNow, DocuSign", "position": "exposed", "quote": "how does Merlin get that information? Because currently our spend is in Workday, and let's say we're not gonna use catalogs", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"criterion": "Beats building in-house for CLM contract analysis", "position": "exposed", "quote": "I look at some CLMs that have contract analysis capability with AI, I would question, well, we can probably do that in house and build that", "date": "2026-04-07", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Deliver a demo tailored to the three target workflows (renewal, panel-based buy, non-panel exception)", "said_by": "Chris Stevenson", "date": "2026-07-01", "addressed": false, "quote": "the main purpose was to get a demonstration of Zycus", "source": "Avoma intro call 7 Apr 2026, re-confirmed SF Next_Step__c 1 Jul 2026"},
+        {"requirement": "Show how Merlin ingests Workday spend, PO, and contract data without catalogs", "said_by": "Chris Stevenson", "date": "2026-04-07", "addressed": false, "quote": "how does Merlin get that information? Because currently our spend is in Workday", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Return with how Victorian government departments use Zycus with panels, indigenous suppliers, and tender portals", "who": "Zycus", "grounding_quote": "I'll take all this back, I'll speak with my solution consulting team... and I'll come back with some answers, Chris", "date": "2026-04-07", "due": "2026-04-21", "status": "overdue", "source": "Avoma intro call 7 Apr 2026, Zycus rep"},
+          {"deliverable": "Offer Victorian-government reference-customer introductions when the evaluation reaches that point", "who": "Zycus", "grounding_quote": "majority of these are all referenceable... we're happy to introduce you to a bunch of these existing clients within the government", "date": "2026-04-07", "due": null, "status": "no due date", "source": "Avoma intro call 7 Apr 2026, Zycus rep"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm availability and lock a demo/prep session date with two proposed time options", "who": "Buyer", "grounding_quote": "I'm keen to find out more, I'm sure we can do it in the coming weeks", "date": "2026-07-01", "due": "2026-07-20", "status": "open", "source": "Avoma intro call 7 Apr 2026, re-confirmed SF Next_Step__c 1 Jul 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer not named or engaged", "quote": "procurement reports to the CFO (Chris on 7 Apr), but the CFO is unnamed, absent from all calls and activities", "status": "not addressed", "date": "2026-04-07", "gap_type": "knowledge", "source": "Avoma intro call 7 Apr 2026 + SF OpportunityContactRole"},
+        {"area": "No IT / integration stakeholder identified", "quote": "Workday, ServiceNow, DocuSign integration is a stated criterion but no tech owner is on record", "status": "not addressed", "date": "2026-04-07", "gap_type": "knowledge", "source": "Avoma intro call 7 Apr 2026"},
+        {"area": "Decision process and whether a public tender is mandated", "quote": "Chris described his own timeline but not the approval chain or procurement channel", "status": "acknowledged", "date": "2026-04-07", "gap_type": "knowledge", "source": "Avoma intro call 7 Apr 2026"},
+        {"area": "Build-vs-buy unresolved", "quote": "do I pick something off the shelf or could I build something internally with our own AI capability", "status": "not addressed", "date": "2026-04-07", "gap_type": "knowledge", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early, cold, single-threaded deal against a buyer-praised rival and a build-in-house alternative; the win path is to restart engagement with a tailored demo, then multi-thread to the CFO and IT.",
+      "flags": [
+        "Book the demo now: the entire deal hinges on a demo planned since 19 May but never delivered, and every cold week cedes ground to Omnia.",
+        "Beat build-in-house: Future Fund has a large internal AI team, so land Merlin intake plus agentic S2P as faster and lower-risk than building panel-compliance workflows themselves.",
+        "Multi-thread beyond Chris: he is the sole contact and reports to the unengaged CFO who owns FY27 funding, so map the CFO and an IT/integration lead before a rival does."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Chris Stevenson", "title": "Director, Procurement", "role": "Champion", "last_contact_date": "2026-04-07", "sentiment": "Positive on the initiative but cooling on Zycus; ran the 7 Apr discovery call and owns the transformation mandate, yet has not booked the demo in 90 days and praised rival Omnia.", "risk": "Single point of contact and a developing, not strong, champion; if he disengages or Omnia demos to him first, the deal has no other thread. He praised Omnia as 'the future' and is weighing build-in-house.", "source": "SF OpportunityContactRole (Executive Sponsor) + Avoma intro call 7 Apr 2026"},
+        {"name": null, "title": "Chief Financial Officer", "role": "Economic Buyer", "last_contact_date": null, "sentiment": "Unknown, never engaged", "risk": "Procurement reports to the CFO who owns the FY27 funding Chris needs, but the CFO is unnamed, absent from every call, and Zycus has no access; a rival reaching the CFO first would take commercial control.", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson ('Yeah, CFO, reports to finance')"},
+        {"name": null, "title": "IT / integration lead", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown, never engaged", "risk": "Workday, ServiceNow, and DocuSign integration feasibility is a stated criterion and central to the build-vs-buy question, but no technical owner is identified; unvalidated integration effort weakens the business case.", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Chris Stevenson (Director, Procurement, Executive Sponsor) is a developing champion who owns the FY27 transformation mandate and ran the 7 Apr 2026 discovery call, but he has not booked the demo in 90 days, has not introduced Zycus to the CFO or IT, provided no RFP or internal documents, and openly praised rival Omnia as 'the future'. What has developed is his clear sponsorship of the initiative and detailed requirements sharing; what is missing is any Zycus-specific advocacy, multi-threading, or forward motion. He is at risk of cooling into a passive coach.",
+      "champion": "Chris Stevenson",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole + Avoma intro call 7 Apr 2026 + SF Next_Step__c 19 May and 1 Jul 2026 + Opportunity Health task 22 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is 8.0/Strong and the buyer has a genuine, stated appetite for AI ('we've got a big appetite for it, we'll be rolling a lot out next year'), but Zycus has not yet put the Merlin agentic story in front of Chris in a live demo, and his AI enthusiasm currently fuels a build-in-house temptation rather than a Zycus preference. The AI story is under-positioned relative to the appetite.",
+      "score": "8.0",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 8.0, AIS_Status__c Strong, corroborated directly by the buyer on 7 Apr 2026: Chris said Future Fund built its own investment AI tool and has 'a big appetite' for AI in procurement, though that same appetite feeds a build-in-house risk. Field and call agree: high AI hunger.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "The CFO economic buyer is unnamed and unengaged; Zycus is single-threaded on Chris with no line to the budget owner of the FY27 funding.", "first_raised": "2026-04-07", "date": "2026-04-07", "status": "open", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"category": "political", "detail": "Do-nothing / no-decision risk: procurement is a low-stakes function for the agency and FY27 funding is not yet secured, so the initiative can stall indefinitely (deal has been cold 90 days).", "first_raised": "2026-04-07", "date": "2026-06-22", "status": "active", "source": "Avoma intro call 7 Apr 2026 + Opportunity Health task 22 Jun 2026"},
+        {"category": "integration", "detail": "Merlin pulling Workday spend/PO/contract data with no catalogs is unproven and was answered vaguely on the 7 Apr call; a weak integration story strengthens build-in-house.", "first_raised": "2026-04-07", "date": "2026-04-07", "status": "open", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"},
+        {"category": "timeline", "detail": "The 17 Sep 2026 close is 9-12 months ahead of Chris's stated vendor-selection (30 Jun 2027) and implementation (Jul 2027) plan, so the forecast date is not credible.", "first_raised": "2026-04-07", "date": "2026-04-07", "status": "open", "source": "Avoma intro call 7 Apr 2026, Chris Stevenson"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement has cooled: one buyer call 90 days ago, a demo planned since 19 May and never booked, and a 22 Jun 'gone cold' health flag, with all subsequent touches rep-initiated and unanswered.",
+      "cooling": true,
+      "items": [
+        "No buyer reply logged to the 19 May, 9 Jun, 11 Jun, or 1 Jul rep emails.",
+        "Demo unbooked 6+ weeks after first being planned.",
+        "22 Jun Opportunity Health: 'Prospect's gone cold, no inbound since last 14 days'."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Chris two demo dates tailored to his renewal, panel-buy, and exception workflows.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Demo planned since 19 May still unbooked; 1 Jul next step has the rep drafting outreach for 31 Jul", "trigger_date": "2026-07-01", "act_by": "2026-07-13", "expected_effect": "Restarts a 90-day-cold thread and converts stated intent into a booked buyer-facing event."},
+        {"rank": 2, "action": "Send the one-page Future Fund Orchestration Blueprint and Victorian-government reference examples.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Zycus promised on 7 Apr to return with Victorian-government panel/tender answers and reference intros, still undelivered", "trigger_date": "2026-04-07", "act_by": "2026-07-20", "expected_effect": "Closes an overdue commitment, proves government fit, and gives Chris internal ammunition to justify funding."},
+        {"rank": 3, "action": "In the demo, show Merlin intake live in Microsoft Teams pulling Workday and ServiceNow data.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Chris praised Omnia's Teams experience as 'the future' and questioned how Merlin gets Workday spend data", "trigger_date": "2026-04-07", "act_by": "2026-07-27", "expected_effect": "Neutralizes Omnia's Teams advantage and undercuts the build-in-house case with proven integration."},
+        {"rank": 4, "action": "Ask Chris to bring an IT/integration lead to validate the Workday and ServiceNow data path.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Integration feasibility is a stated criterion and central to build-vs-buy, with no tech owner mapped", "trigger_date": "2026-04-07", "act_by": "2026-08-05", "expected_effect": "Adds a second thread and removes the integration doubt that fuels build-in-house."},
+        {"rank": 5, "action": "Ask Chris for a warm intro to the finance sponsor to align on FY27 funding after the demo.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Chris reports to the CFO who owns FY27 funding but the CFO is unnamed and unengaged", "trigger_date": "2026-04-07", "act_by": "2026-08-10", "expected_effect": "Maps the economic buyer and protects commercial control before a rival multi-threads."}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": null, "to": null, "detail": "Full-suite scope unchanged since creation (iContract, iSource, iSupplier, Merlin, Merlin Intake, iCompliance); Chris signals intake/orchestration and CLM as the priority modules but no formal scope reduction has occurred."},
+    "customer_preference": {"level": "low", "evidence": "Chris is market-scanning and neutral on Zycus ('I'm keen to just learn about Zycus, I'm learning about a few products out there'), and leans to a rival's approach ('Omnia... this is the future') and to building in-house."},
+    "business_case": {"status": "partial", "evidence": "Qualitative compliance-and-modernization case (senate-scrutiny/reputational risk, 765 FY25 contract initiatives, target team cut 10 to 6) but no ROI, savings, or cost figures; Chris explicitly said procurement savings are 'not even a rounding error'."},
+    "momentum_signals": {"seniority_rising": false, "commercial_topics_entering": false, "concrete_dates": true, "customer_requested_next_meeting": false, "close_plan_concretizing": false, "generic_demo_only": true, "competitor_praised": true},
+    "deal_scores_evidence": {
+      "summary": "Future Fund is an early, market-scanning intake and orchestration play that has gone cold: Chris Stevenson (Director, Procurement) has not engaged in 90 days after praising rival Omnia's Teams demo as 'the future', and the one thing between us and momentum is booking the tailored demo he asked for and reaching the CFO who owns FY27 funding.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We sit behind on this deal: Chris is still scanning the market, called Omnia's Teams demo 'the future' on 7 Apr, and is weighing building in-house with Future Fund's own AI team, so no buyer preference for Zycus exists yet."},
+          {"tone": "warn", "text": "The deal has been cold for 90 days with a demo planned since 19 May still unbooked and a 22 Jun 'gone cold' health flag, so engagement, not just position, is the immediate risk."},
+          {"tone": "warn", "text": "We are single-threaded on Chris with the CFO economic buyer unnamed and unengaged, so we have no line to the budget owner of the FY27 funding this depends on."},
+          {"tone": "good", "text": "The fit is genuinely strong on the outcome Chris values most, intake and orchestration with compliance-by-design, and his AI appetite (AIS 8.0, own investment AI tool) matches the Merlin agentic story once we demo it."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: the only buyer meeting was 7 Apr, every touch since (19 May, 9 Jun, 11 Jun, 1 Jul) is rep-initiated email with no logged reply, and the demo remains unbooked."},
+          {"tone": "warn", "text": "No senior stakeholders have joined and no commercial, pricing, or security topics have entered; engagement is still pre-demo and generic."},
+          {"tone": "good", "text": "Chris did name concrete timelines on 7 Apr (providers lined up by 30 Jun 2027, implementation Jul 2027), giving a real forcing calendar to plan against."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is thin: Chris asked for a demo but has not booked it in 90 days, shared no RFP or internal documents, and has not introduced anyone else."},
+          {"tone": "warn", "text": "FY27 funding for the project is not yet secured ('I will hope there's funding for two things next year'), so there is no confirmed budget behind the initiative."},
+          {"tone": "good", "text": "He owns the transformation mandate and articulated detailed requirements and workflows, showing the underlying intent is real even if the near-term action has stalled."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Do-nothing / no-decision is the top risk: procurement is a low-stakes function for a $30bn-return agency, so the initiative can stall indefinitely, which it has."},
+          {"tone": "warn", "text": "Build-in-house is a live threat because Chris believes his own AI team could handle CLM contract analysis, so the integration and TCO story must beat building."},
+          {"tone": "warn", "text": "The 17 Sep 2026 close is a placeholder 9-12 months ahead of Chris's stated mid-2027 selection timeline, so the forecast date is not credible."}
+        ]
+      },
+      "factors": {
+        "customer_preference": {"strength": -0.5, "evidence": "Chris praised rival Omnia as 'the future' and is weighing build-in-house; no Zycus preference (7 Apr)."},
+        "engagement": {"strength": -0.7, "evidence": "Cold 90 days, demo unbooked since 19 May, 22 Jun 'gone cold' flag."},
+        "competitor_pressure": {"strength": -0.4, "evidence": "Omnia buyer-praised and build-in-house both active alternatives (7 Apr)."}
+      }
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history full; contact roles; Q1/Q2/Q3 fields per authoritative facts block",
+    "avoma_attendees": ["Chris Stevenson"],
+    "gaps": [
+      "Only one buyer call exists (7 Apr 2026 intro); no demo, use-case, or commercial call, so decision process and paper process are largely unread.",
+      "Economic buyer (CFO) named by role only, never engaged; no IT/integration stakeholder identified.",
+      "No quantified business case (savings, ROI, cycle time) on record; pain is qualitative."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

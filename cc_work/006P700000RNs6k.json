@@ -1,0 +1,265 @@
+{
+  "opp_id": "006P700000RNs6kUAB",
+  "hard": {
+    "opp_id": "006P700000RNs6kUAB",
+    "opp_name": "Starbucks_S2P",
+    "account_name": "Starbucks Coffee Company",
+    "account_industry": "Retail",
+    "billing_country": "United States",
+    "owner_name": "Arthur Raguette",
+    "owner_title": "Vice President",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 500000,
+    "close_date": "2027-02-15",
+    "days_to_close": 224,
+    "created_date": "2025-12-22",
+    "qualified_date": "2025-12-23",
+    "last_activity_date": "2026-06-25",
+    "last_modified_date": "2026-06-25",
+    "products": "iContract;iSource;iSupplier;Merlin;Merlin Intake;Agentic AI",
+    "next_step": "New leadership check-in: re-open RFI with a new Nashville-based VP of indirect procurement once named; keep in touch with Ben Simek before his paternity leave.",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "AIS Negative (3.0): the buyer asked zero AI/Merlin/Agentic questions across the whole RFI cycle; every AI product in scope is Zycus-pushed. The RFI is retail-fitment (merchandise ordering, gross margin/discounts, QSR references, Oracle on-premise integration), not AI. Nashville relocation slowed the team and the seller flagged the deal would slide.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000RNs6kUAB/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Starbucks has kept this in Formal Evaluation for ~6 months since the 19 Jan 2026 RFI with no shortlist decision, but it is not dead: on 17 Jun 2026 Ben Simek confirmed the RFI will re-open 'with an accelerated timeline'. The catch is a leadership vacuum: a brand-new Nashville-based VP of indirect procurement (never met) will own the restart, our only cordial contact Ben is heading into paternity leave, and SAP Ariba remains the entrenched incumbent, so status-quo inertia is the real risk.",
+      "math": "224 days to the 2027-02-15 close, so timeline runway is not the problem. ~196 days in Formal Evaluation (entered 12 Jan 2026) with zero stage progression; enterprise RFI-to-shortlist is typically 4-8 weeks, so 6+ months signals a stall. Close date was pushed 60 days (16 Dec 2026 to 15 Feb 2027) on 17 Jun 2026 with no buyer-confirmed milestone behind it. Buyer engagement is real but thin and rep-initiated (last two-way exchange: Ben's 17 Jun 2026 email); the restart has no named date, owner, or scope, so the deal is stalled on a leadership vacuum, not cold.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Buyer re-engaged: Ben Simek emailed on 17 Jun 2026 'I do think that we are going to be re-opening the RFI with an accelerated timeline... I don't fully know who is leading / when that will start' (SF task, 17 Jun 2026)",
+        "New economic-buyer-shaped stakeholder surfaced: a new Nashville-based VP of indirect procurement, named in industry news and never met by Zycus (SF task email, 17 Jun 2026)",
+        "Champion continuity at risk: Ben Simek is heading into paternity leave just as the RFI restarts, and his connection is 'cordial' with no advocacy evidence (SF task, 18 Jun 2026; SF Next_Step, 1 May 2026)",
+        "6+ months in Formal Evaluation with no shortlist since the 19 Jan 2026 RFI submission (SF field history; SF Next_Step)",
+        "Zero buyer calls exist across opp, account, and starbucks.com attendee pulls for a $500K deal, consistent with an Ariba-managed, arm's-length RFI dialogue (Avoma: none found; AIS_Why)",
+        "Economic buyer unmapped; all three named contacts are mid-level sourcing managers (Scott Wicke, Ben Simek, Nikhila Anand); no VP Procurement or CFO sponsor engaged (SF OpportunityContactRole)",
+        "SAP Ariba is the entrenched incumbent run by an outsourced team; buyer is 'still looking at swapping out' but not committed (SF Next_Step, 23 Mar / 1 May 2026)",
+        "Fitment exposed: 'weak with POS (Point of Sale) inventory management for non-food retail' and Oracle on-premise integration required; possible scope waiver of POS components (SF Next_Step, 1 May 2026)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified value case exists. The RFI scope (SF Next_Step, Dec 2025-Jan 2026) names retail-specific needs: 'Retail related questions for Merchandise ordering and Gross Margin / Discounts' and 'limited merchandise in eProc / Ordering and pass through data for QOH, Alternate Products, and possibly non-food merchandising', which point to procurement automation and merchandise-inventory visibility as the use cases. But no buyer ever stated a savings target, cycle-time reduction, headcount impact, or stockout/overstock cost, and there are zero buyer calls to mine. The move is to co-build a QSR/retail-merchandise ROI model with the sourcing team on the RFI restart, anchoring to spend under management and merchandise-ordering accuracy.",
+        "sources": ["SF Next_Step__c (RFI scope, Dec 2025-Jan 2026)", "AIS_Why__c", "Avoma: no calls found"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is unmapped and just changed. On 17 Jun 2026 Arthur Raguette wrote 'I saw an article... that Starbucks had announced a new VP of indirect procurement based in Nashville', and Ben confirmed the RFI restart will be led by that yet-unnamed leadership ('I don't fully know who is leading'). All three Salesforce contacts (Scott Wicke, senior group manager sourcing; Ben Simek, SR Sourcing Manager Technology; Nikhila Anand, Manager Supply Chain Planning) are mid-level with no budget authority shown. The evidence points to the new Nashville indirect-procurement VP as the true budget owner, but Salesforce names no such person, so the EB stays a role, not a name. Rank-1 move: get Ben (or Scott) to introduce Zycus to that new VP before the RFI re-issues.",
+        "sources": ["SF task email, 17 Jun 2026", "SF OpportunityContactRole", "SF Next_Step__c, 1 May 2026"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are visible from the RFI, not from a workshop. Starbucks is evaluating on retail fitment: merchandise ordering, gross margin/discount handling, QOH and alternate-product pass-through, non-food merchandising, plus 'Reference accounts in Coffee Shop or QSR segment' and 'Oracle On-Premise integrations' (SF Next_Step, Jan 2026). These are confirmed asks in the RFI. Two are exposure points for Zycus: POS inventory management for non-food retail ('weak with POS', 1 May 2026) and Oracle on-prem integration. The buyer has articulated no AI or agentic criteria at all, which is why AIS reads Negative. The move is to line up QSR/coffee references and a crisp Oracle on-prem integration answer for the restart.",
+        "sources": ["SF Next_Step__c (RFI scope), Jan 2026", "SF Next_Step__c, 1 May 2026", "AIS_Why__c"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is a formal Ariba-run RFx that stalled and is now resetting. Zycus had to register as a supplier in Starbucks' Ariba instance to submit (Jan-May 2026 registration saga), the response was submitted and confirmed matching by Ben on 5 May 2026, and the team was 'assessing how we would proceed with the formal RFP'. Then the Nashville relocation disrupted the buying team (announced 3 Mar 2026), and on 17 Jun 2026 Ben signalled the RFI would re-open 'with an accelerated timeline' under new, unnamed leadership. So the near-term process gate is: new VP named, formal RFP re-issued. No demo, workshop, or shortlist step has occurred. The move is to pin the restart date and confirm who owns it.",
+        "sources": ["SF tasks, Apr-Jun 2026 (Ariba registration + RFI restart)", "SF task, 5 May 2026", "SF Next_Step__c, 3 Mar 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are not yet in view because the deal is pre-shortlist. The only paper touched so far is procedural: an updated NDA was completed (SF Next_Step, 23 Mar 2026) and Zycus supplier registration in Starbucks' Ariba was cleared in Apr-May 2026. No MSA, Order Form, SOW, InfoSec review, or legal channel has been discussed, which is normal at Formal Evaluation. Visibility here will only come after the RFI restart produces a shortlist; the move now is to advance the evaluation, not chase paper.",
+        "sources": ["SF Next_Step__c, 23 Mar 2026 (NDA completed)", "SF tasks, Apr-May 2026 (Ariba registration)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Pain is inferred from RFI scope and never quantified or owned by a named executive. Starbucks is evaluating replacing/augmenting its Ariba-managed procurement for retail merchandise: the RFI asks for merchandise ordering, gross margin/discount handling, and QOH/alternate-product visibility (SF Next_Step, Jan 2026), and the current Ariba estate is run by an 'outsourced team' (23 Mar 2026), which suggests friction and limited internal control. But no buyer quote states the operational or financial cost, and the pain owner is unclear, likely the new Nashville indirect-procurement VP. The Nashville relocation itself is a distraction rather than a compelling event. The move is to convert the RFI's implied pains into a validated, named-owner problem statement on the restart.",
+        "sources": ["SF Next_Step__c (RFI scope), Jan 2026", "SF Next_Step__c, 23 Mar 2026", "AIS_Why__c"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "No true champion yet; Ben Simek (SR Sourcing Manager, Technology) is the strongest but developing relationship. Next_Step notes 'personal connection with Ben seems cordial' (1 May 2026) and 'connection to Ben Zemke is solid' (23 Mar 2026; 'Zemke' is a transcription slip for Simek). Ben behaves like a helpful coach, not an advocate: he confirmed the RFI restart, verified Zycus' submission matched (5 May 2026), and asked Arthur to 'keep me in the loop as we approach the restart' (18 Jun 2026), but there is no evidence he has sold Zycus internally, introduced an executive, or pushed against Ariba. What has developed is trust and access to information; what is missing is advocacy and a path to power, made worse by Ben's imminent paternity leave. Scott Wicke (primary influencer) has been quiet since Feb 2026 and the rep once asked 'is this a real opp?' about him. Building a durable champion, and a backup while Ben is out, is a top move.",
+        "sources": ["SF Next_Step__c, 1 May 2026 and 23 Mar 2026", "SF task, 5 May 2026", "SF task, 18 Jun 2026", "SF OpportunityContactRole"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "SAP Ariba is the incumbent and the real competitor is inertia, not a named rival. Starbucks runs procurement on Ariba through an 'outsourced team' and required Zycus to register in that Ariba instance to even submit (Apr-May 2026), which signals deep entrenchment and switching cost. The buyer is 'still looking at swapping out' (1 May 2026) but has not committed, and the 6-month stall plus Nashville disruption makes do-nothing (keep Ariba, defer the RFP) the most likely outcome. No other vendor is named anywhere in the evidence, and there are no buyer calls that would reveal a wider shortlist. The wedge is retail-merchandise procurement depth plus QSR references; but it has never been activated with a demo. The move is to force a differentiated proof point on the restart rather than compete inside a paper RFI Ariba administers.",
+        "sources": ["SF Next_Step__c, 23 Mar / 1 May 2026", "SF tasks, Apr-May 2026 (Ariba registration)", "Avoma: no calls found"]
+      }
+    },
+    "deal_movement": {
+      "summary": "After a March-to-May slide (Nashville relocation, 'this is going to slide', rep twice questioning viability), the deal partially re-engaged in June: on 17 Jun 2026 Ben Simek confirmed the RFI will re-open with an accelerated timeline, though leadership and dates are unset and a new Nashville VP of indirect procurement has entered the picture. Last genuine two-way exchange was Ben's 17 Jun 2026 email; Arthur's 25 Jun outreach is rep-side and awaiting reply.",
+      "items": [
+        {"change": "Ben Simek confirmed the RFI will re-open 'with an accelerated timeline' under new, unnamed leadership", "date": "2026-06-17"},
+        {"change": "New Nashville-based VP of indirect procurement discovered via industry news; not yet met", "date": "2026-06-17"},
+        {"change": "Ben Simek heading into paternity leave; asked to be kept in the loop on the restart", "date": "2026-06-18"},
+        {"change": "Close date pushed 16 Dec 2026 to 15 Feb 2027 with no buyer-confirmed milestone", "date": "2026-06-17"},
+        {"change": "Ariba supplier registration cleared and Zycus RFP submission confirmed matching by Ben", "date": "2026-05-07"},
+        {"change": "Stage moved Qualified to Formal Evaluation; RFI submitted 19 Jan 2026", "date": "2026-01-12"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba is the entrenched incumbent and the single strongest current threat, but the dominant risk is do-nothing/status-quo, not a competing bid. Ariba runs Starbucks procurement via an outsourced team and gatekeeps the RFI itself (Zycus had to register in it to submit, Apr-May 2026). The buyer is 'still looking at swapping out' (1 May 2026) yet uncommitted, and the 6-month stall plus Nashville relocation make deferral the likeliest path. No other vendor is named in any source and there are zero buyer calls to reveal a wider shortlist.",
+      "competitors": [
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "medium", "status": "incumbent", "quote": "back and forth with the outsourced team running Ariba... Starbucks is still looking at swapping out", "date": "2026-05-01", "source": "SF Next_Step__c, 23 Mar / 1 May 2026", "how_we_win": "Out-fit Ariba on retail merchandise procurement (QOH, alternate products, non-food ordering) with live QSR/coffee references; expose that Ariba's outsourced-team model limits Starbucks' internal control."},
+        {"name": "Status quo / do nothing (defer the RFP, keep Ariba)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "need to re-evaluate if this is going to close... Per news post on 3rd March... This is going to slide", "date": "2026-05-01", "source": "SF Next_Step__c, Feb-May 2026", "how_we_win": "Give the new Nashville VP a low-effort reason to restart now: a fixed-scope RFP proof point and a dated fitment demo that make deferral costlier than deciding."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Starbucks is testing retail-procurement fitment, and Zycus is aligned on the core S2P scope but exposed on the two things they probed hardest: POS inventory for non-food merchandise and Oracle on-premise integration. QSR/coffee reference proof is required and not yet supplied.",
+      "items": [
+        {"criterion": "Merchandise ordering, gross margin/discounts, QOH and alternate-product pass-through", "position": "aligned", "quote": "Retail related questions for Merchandise ordering and Gross Margin / Discounts... limited merchandise in eProc / Ordering and pass through data for QOH, Alternate Products", "date": "2026-01-12", "source": "SF Next_Step__c (RFI scope)"},
+        {"criterion": "POS inventory management for non-food retail items", "position": "exposed", "quote": "note this is weak with POS (Point of Sale) inventory management for non-food retail items", "date": "2026-05-01", "source": "SF Next_Step__c, 1 May 2026"},
+        {"criterion": "Oracle on-premise integration", "position": "partially aligned", "quote": "Chalneges in fitment - SBucks looking for referenes in QSR/Coffee Shop and Oracle On-Premise integrations", "date": "2026-01-12", "source": "SF Next_Step__c"},
+        {"criterion": "Reference accounts in Coffee Shop or QSR segment", "position": "exposed", "quote": "Looking for Reference accounts in Coffee Shop or QSR segment", "date": "2026-01-12", "source": "SF Next_Step__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide QSR/coffee-shop reference accounts for the RFI restart", "said_by": "Starbucks sourcing team (RFI)", "date": "2026-01-12", "addressed": false, "quote": "Looking for Reference accounts in Coffee Shop or QSR segment", "source": "SF Next_Step__c (RFI scope)"},
+        {"requirement": "Answer Oracle on-premise integration fitment", "said_by": "Starbucks sourcing team (RFI)", "date": "2026-01-12", "addressed": false, "quote": "Oracle On-Premise integrations", "source": "SF Next_Step__c (RFI scope)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Resend the Zycus RFP package for Ben to verify against the Ariba submission", "who": "Zycus", "grounding_quote": "Thank you, here its the package we submitted earlier.", "date": "2026-05-07", "due": "2026-05-07", "status": "completed", "source": "SF task, 5-7 May 2026 (Ben confirmed 'matching the submission')"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Name who is leading the re-opened RFI and confirm the restart timeline", "who": "Buyer", "grounding_quote": "I don't fully know who is leading / when that will start", "date": "2026-06-17", "due": "2026-07-20", "status": "open", "source": "SF task, 17 Jun 2026"},
+          {"deliverable": "Introduce Zycus to the new Nashville VP of indirect procurement", "who": "Buyer", "grounding_quote": "Can you introduce me to your replacement and or point me in the right direction?", "date": "2026-06-25", "due": "2026-07-18", "status": "open", "source": "SF task, 25 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer identity", "quote": "I don't fully know who is leading / when that will start", "status": "not addressed", "date": "2026-06-17", "gap_type": "knowledge", "source": "SF task, 17 Jun 2026"},
+        {"area": "Quantified business case / ROI", "quote": "RFI scope names process/merchandise needs but no cost, savings, or cycle-time metric", "status": "not addressed", "date": "2026-01-12", "gap_type": "knowledge", "source": "SF Next_Step__c; Avoma: no calls found"},
+        {"area": "No buyer calls for a $500K deal", "quote": "zero calls at opportunity, account or starbucks.com domain across a multi-month RFI cycle", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma discovery (opp+account+attendee-email)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This deal will be won or lost on relationships during the RFI restart, not on the paper response. The three highest-impact levers now are reaching the new power sponsor, securing continuity while Ben is out, and forcing a differentiated proof point instead of competing inside an Ariba-administered RFI.",
+      "flags": [
+        "Map and reach the new Nashville VP of indirect procurement before the RFI re-issues; they own budget and the restart, and Zycus has never met them.",
+        "Secure a second thread (Scott Wicke or Ben's coverage) now, because the only cordial contact, Ben Simek, is going on paternity leave as the RFI restarts.",
+        "Break out of the paper RFI with a live retail-merchandise fitment demo plus QSR/coffee references, directly countering the 'weak with POS' and status-quo risks."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Scott Wicke", "title": "Senior Group Manager, Sourcing", "role": "Influencer", "last_contact_date": "2026-02-12", "sentiment": "Neutral; primary contact who shared RFI details but has gone quiet since Feb 2026", "risk": "Cooling: no contact since Feb 2026; rep questioned 'is this a real opp?' about his engagement", "source": "SF OpportunityContactRole (Primary); SF Next_Step__c, Feb 2026"},
+        {"name": "Ben Simek", "title": "SR Sourcing Manager, Technology", "role": "Champion", "last_contact_date": "2026-06-18", "sentiment": "Warm/cordial; helpful coach who confirmed the RFI restart and verified our submission, but no internal advocacy shown", "risk": "At risk: developing not durable, no path to power, and heading into paternity leave as the RFI restarts", "source": "SF OpportunityContactRole; SF tasks, 17-18 Jun 2026; SF Next_Step__c, 1 May 2026"},
+        {"name": "Nikhila Anand", "title": "Manager, Supply Chain Planning", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; listed as Evaluator but absent from all Next Step and activity narrative", "risk": "Unengaged; a potential evaluator on the supply-chain/merchandise fit questions but never worked", "source": "SF OpportunityContactRole (Evaluator)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Ben Simek is a developing, at-risk champion: cordial and helpful (confirmed the RFI restart, verified the submission, asked to stay in the loop), but with no evidence of internal advocacy or access to power, and about to go on paternity leave. Scott Wicke, the primary contact, has been silent since Feb 2026. There is real access but no true advocate, and no backup while Ben is out.",
+      "champion": "Ben Simek",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF Next_Step__c, 1 May 2026 and 23 Mar 2026; SF tasks, 17-18 Jun 2026; SF OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is over-positioned by Zycus, not under-positioned. Merlin, Merlin Intake, and Agentic AI are all in scope, but the buyer asked zero AI questions across the RFI and the evaluation is a retail-fitment exercise. Leading with the agentic story now would misread the buyer; win the retail S2P fitment first and hold AI as a later differentiator.",
+      "score": "low",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 3.0 / AIS_Status Negative, corroborated by the evidence: no buyer AI ask anywhere, RFI is retail/POS/Oracle-focused, all AI products are Zycus-pushed. Nothing in the (nonexistent) call record contradicts the field.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "Status-quo/do-nothing: Starbucks keeps running Ariba via its outsourced team and may never issue the formal RFP, a no-decision risk rather than a loss to a named rival.", "first_raised": "2026-03-03", "date": "2026-05-01", "status": "active", "source": "SF Next_Step__c, Mar-May 2026"},
+        {"category": "executive_alignment", "detail": "No economic buyer mapped; the likely budget owner is a brand-new Nashville VP of indirect procurement Zycus has never met.", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "SF task, 17 Jun 2026; SF OpportunityContactRole"},
+        {"category": "change_management", "detail": "Nashville relocation disrupted the buying team and Ben Simek is going on paternity leave, threatening continuity through the RFI restart.", "first_raised": "2026-03-03", "date": "2026-06-18", "status": "active", "source": "SF Next_Step__c, 3 Mar 2026; SF task, 18 Jun 2026"},
+        {"category": "integration", "detail": "Fitment exposed on POS inventory for non-food retail merchandise ('weak with POS') and Oracle on-premise integration.", "first_raised": "2026-01-12", "date": "2026-05-01", "status": "open", "source": "SF Next_Step__c, 12 Jan / 1 May 2026"},
+        {"category": "budget", "detail": "Possible scope reduction if the Point of Sale components are waived to salvage a smaller deal.", "first_raised": "2026-05-01", "date": "2026-05-01", "status": "open", "source": "SF Next_Step__c, 1 May 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is thin and rep-driven but not dead. The buyer re-engaged on 17 Jun 2026 confirming the RFI restart, then went quiet to Arthur's 25 Jun follow-up. With zero buyer calls, a cooling primary contact, and a champion about to go on leave, confidence in near-term progress is low.",
+      "cooling": true,
+      "items": [
+        "Buyer confirmed RFI restart 17 Jun 2026 but no reply to Arthur's 25 Jun outreach",
+        "Zero buyer calls across all Avoma pulls; all substance sits in emails and Next Step",
+        "Champion (Ben) heading into paternity leave; primary (Scott) silent since Feb 2026"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Ask Ben and Scott to introduce Arthur to the new Nashville indirect-procurement VP.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Ben confirmed new leadership will own the re-opened RFI but is unnamed to Zycus", "trigger_date": "2026-06-17", "act_by": "2026-07-13", "expected_effect": "Maps the real economic buyer and gives Zycus a voice before the RFP re-issues."},
+        {"rank": 2, "action": "Confirm the RFI restart date and scope with Ben before his paternity leave.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Ben: 're-opening the RFI with an accelerated timeline' but no date or owner set", "trigger_date": "2026-06-17", "act_by": "2026-07-20", "expected_effect": "Turns a vague 'accelerated timeline' into a dated milestone and warm handoff for continuity."},
+        {"rank": 3, "action": "Re-open Scott Wicke to validate the opportunity is live and secure a second thread.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Scott silent since Feb 2026; rep previously asked 'is this a real opp?'", "trigger_date": "2026-02-12", "act_by": "2026-07-24", "expected_effect": "Reduces single-thread risk while Ben is on leave and re-confirms deal viability."},
+        {"rank": 4, "action": "Prepare QSR/coffee references and an Oracle on-prem integration answer for the restart.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "RFI fitment asks: QSR/coffee references and Oracle on-premise integration", "trigger_date": "2026-01-12", "act_by": "2026-08-04", "expected_effect": "Closes the two exposed fitment criteria and strengthens the differentiated response."},
+        {"rank": 5, "action": "Offer a live retail-merchandise fitment demo covering QOH, alternate products, and non-food ordering.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "'weak with POS' fitment gap and no demo delivered in the whole cycle", "trigger_date": "2026-05-01", "act_by": "2026-08-05", "expected_effect": "Breaks out of the paper RFI, counters the POS gap, and creates a reason not to defer."}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": "Full retail S2P: iContract, iSource, iSupplier plus Merlin/Agentic AI at $500K", "to": "Unchanged at $500K; a POS-component waiver is being contemplated, not yet enacted", "detail": "Amount rose 100k to 500k in Dec 2025 and has held. The 1 May 2026 note floats waiving the Point of Sale components ('whether we can get a good piece in case we wave the Point of Sale components') as a possible fallback, a downside watch rather than a booked reduction."},
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "low", "evidence": "Buyer runs this as an RFI (not an RFP), asked zero Zycus- or AI-specific questions, requested no demo or next meeting, and keeps Ariba as incumbent (SF Next_Step; AIS_Why)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative retail-procurement pain implied by RFI scope (merchandise ordering, QOH, non-food), but no cost, savings, or cycle-time figure stated by the buyer."},
+    "momentum_signals": {"seniority_rising": false, "commercial_topics_entering": false, "concrete_dates": false, "customer_requested_next_meeting": false, "close_plan_concretizing": false, "generic_demo_only": false, "competitor_praised": false},
+    "deal_scores_evidence": {
+      "summary": "This is a stalled retail S2P RFI where SAP Ariba is the entrenched incumbent, no economic buyer is engaged, and a Nashville relocation plus a brand-new indirect-procurement VP have reset the buying team; the one thing between us and a real shot is getting introduced to that new VP before the accelerated RFI restarts.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We sit low here: Starbucks is running this as an RFI rather than a decision, SAP Ariba is the entrenched incumbent managing procurement through an outsourced team, and no economic buyer is engaged, so momentum depends on a buying team that just got disrupted (SF Next_Step, 1 May 2026)."},
+          {"tone": "warn", "text": "The likely budget owner is a brand-new VP of indirect procurement in Nashville we have never met, and our only cordial contact, Ben Simek, is heading into paternity leave just as the RFI is set to restart (SF task emails, 17-18 Jun 2026)."},
+          {"tone": "warn", "text": "Fitment is exposed on retail POS/non-food merchandise inventory ('weak with POS', SF Next_Step 1 May 2026) and Oracle on-premise integration, and the rep has twice questioned whether the deal is real (SF Next_Step, Feb and May 2026)."},
+          {"tone": "good", "text": "The relationship is not dead: Ben confirmed on 17 Jun 2026 that Starbucks will re-open the RFI 'with an accelerated timeline', a genuine re-engagement signal after the March-May slide (SF task, 17 Jun 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Six-plus months in Formal Evaluation since the 19 Jan 2026 RFI with no shortlist; the only forward motion is rep-side, and the 'accelerated timeline' has no named date or owner yet (SF task, 17 Jun 2026)."},
+          {"tone": "warn", "text": "The close date was pushed from 16 Dec 2026 to 15 Feb 2027 on 17 Jun 2026 with no buyer-confirmed milestone behind it (SF field history)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is thin: the buyer treats this as an RFI, asked zero AI/Merlin questions across the whole cycle, and has requested no demo, workshop, or next meeting (SF Next_Step; AIS_Why)."},
+          {"tone": "good", "text": "Ben did keep the door open, asking Arthur to 'keep me in the loop as we approach the restart' (SF task, 18 Jun 2026)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Status-quo is the biggest threat: Starbucks keeps running Ariba through its outsourced team and may never issue the formal RFP, a no-decision risk rather than a loss to a named rival (SF Next_Step, 23 Mar / 1 May 2026)."},
+          {"tone": "warn", "text": "Team continuity is at risk from the Nashville relocation and Ben's paternity leave, and scope could shrink if the POS components are waived (SF Next_Step, 1 May 2026)."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.6, "evidence": "6+ months in Formal Evaluation, no shortlist, close date pushed 60 days with no buyer milestone"},
+        "customer_commitment": {"strength": -0.5, "evidence": "RFI not RFP, zero AI/Zycus-specific asks, no demo or next meeting requested"},
+        "deal_risk": {"strength": -0.6, "evidence": "Incumbent Ariba plus status-quo inertia, Nashville team disruption, Ben on leave, POS/Oracle fitment gaps"}
+      }
+    },
+    "critical_signals": [
+      {"lens": "New stakeholder", "text": "A new Nashville-based VP of indirect procurement will own the re-opened RFI, and Zycus has never met them, so the real budget owner is unmapped at the worst moment.", "tone": "crit"},
+      {"lens": "Competition", "text": "SAP Ariba is the entrenched incumbent run by an outsourced team, and with the RFP deferred the biggest threat is Starbucks simply keeping Ariba and never deciding.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "In the last real exchange on 17 Jun 2026 Ben confirmed the RFI would re-open 'with an accelerated timeline' but could not say who leads it or when, and flagged he is about to go on paternity leave.", "tone": "warn"},
+      {"lens": "Commercials", "text": "At $500K there is still no quantified ROI or business case, and the buyer has shown zero interest in the AI/Merlin scope Zycus is pushing.", "tone": "warn"}
+    ],
+    "expansion_context": {"prior_closed_won": false},
+    "verdict_trajectory": {"direction": "strengthening", "note": "Improved from the prior Off Track read: the June emails show real re-engagement (RFI to re-open with an accelerated timeline), moving the deal from cold to stalled-but-alive. The single biggest blocker to the close is the leadership vacuum, an unmapped, unmet new Nashville VP who owns the restart, compounded by Ben's leave and Ariba's incumbency."}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d (Apr-Jun 2026); field history since creation 22 Dec 2025; Next_Step__c full narrative Dec 2025-Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls across opp, account (Starbucks Coffee Company), and starbucks.com attendee-email pulls; all evidence is Salesforce Next Step, tasks, and field history",
+      "Economic buyer unnamed: the new Nashville VP of indirect procurement is known only as a role from a news reference, not a Salesforce contact",
+      "No quantified business case or ROI stated by the buyer"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

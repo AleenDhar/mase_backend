@@ -1,0 +1,247 @@
+{
+  "opp_id": "006P700000OIJw1",
+  "hard": {
+    "opp_id": "006P700000OIJw1",
+    "opp_name": "Santam S2C",
+    "account_name": "Santam Limited",
+    "account_industry": "BFSI",
+    "billing_country": "South Africa",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2026-09-30",
+    "days_to_close": 86,
+    "created_date": "2025-10-09",
+    "qualified_date": "2026-07-01",
+    "last_activity_date": "2026-03-31",
+    "last_modified_date": "2026-07-01",
+    "products": "iContract;iSupplier;eProcurement;Merlin",
+    "next_step": "Feb 20, 2026: POC in progress. Jan 22, 2026: POC being planned, Caroline proposed an onsite meeting while in SA. Nov 25, 2025 Santam shared their NDA and Menachem forwarded it to Zycus legal; Nov 27 follow-up sent to Legal. Next: after NDA review, book a follow-up discussion with the prospect.",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "Mar 2026 Avoma notes focus on a custom claims-excess processing application built on the Zycus platform; AI is not a topic in any captured conversation. Merlin is in scope alongside eProcurement, iContract and iSupplier but is not driving the discussion, which is anchored in insurance-claims workflow configuration. High meeting cadence (14 calls Oct 2025 to Mar 2026) with stable Santam stakeholders, but topics centre on functional gaps rather than AI use cases.",
+    "dm_identified": false,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000OIJw1/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Santam has gone dark: the last real buyer touch was the 31 Mar 2026 POC reschedule, the stage was pushed back to Initial Interest on 26 May before a 1 Jul requalification, and the 30 Sep close is 86 days out with no engaged economic buyer.",
+      "math": "Created 2025-10-09, 270 days old. Stage Qualified (early tier), re-set on 2026-07-01. Last Salesforce activity 2026-03-31, ~97 days ago. The 10/17/24 Mar POC checkpoints were the last genuine buyer touches; the 31 Mar note only rescheduled and no meeting followed. Stage regressed Formal Evaluation to Initial Interest on 26 May, then Initial Interest to Qualified on 1 Jul, so the evaluation was effectively restarted, not advanced. With 86 days to a $200K close and roughly three months of buyer silence, the deal needs re-qualification and a compressed eval before the close date is credible.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Last Salesforce activity 2026-03-31 (~97 days ago); no buyer-facing deliverable executed since",
+        "Stage regressed Formal Evaluation -> Initial Interest on 2026-05-26 (Caroline Lacocque), then -> Qualified on 2026-07-01",
+        "POC was 'in progress' per the 20 Feb 2026 next step but has no recorded completion or outcome",
+        "1 Jul 2026 Opportunity Health tasks flag 'Decision Maker is not identified' and 'Low Prospect Inbound Communication'",
+        "No Avoma transcripts retrieved this sweep and no competitor named in any source"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case is on record. The functional pain is real and specific: the Mar 2026 Avoma notes (per AIS_Why__c) centre on a custom claims-excess processing application built on the Zycus platform, which points to insurance-claims workflow automation as the driver. But no cost, cycle-time, headcount or savings figure has been captured in any field or activity, and the Description is empty. For a $200K S2C deal (iContract, iSupplier, eProcurement, Merlin) the buyer would normally state contract-leakage, supplier-onboarding-time or maverick-spend targets; none exist. The move is to reconvene the procurement team and quantify the claims-excess and S2C pain in writing.",
+        "sources": ["SF AIS_Why__c (Mar 2026 Avoma notes reference)", "SF Description: empty", "SF Products__c: iContract;iSupplier;eProcurement;Merlin", "No Avoma transcript read this sweep"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Johan Human (Executive Head: Group Sourcing & Transformation) is on the opportunity contact roles and his title makes him the natural budget owner for a group-sourcing transformation, so the economic buyer is mapped by name and seniority. What is missing is engagement: there is no recorded call, email or next step showing Johan Human personally in the commercial conversation, and the 1 Jul 2026 health task explicitly flags 'Decision Maker is not identified.' Aslam Higgins (Head of Procurement) is the likely decision maker alongside him. The move is to earn a direct working session with Johan Human and Aslam Higgins to reconfirm sponsorship and budget.",
+        "sources": ["SF OpportunityContactRole: Johan Human, Executive Head: Group Sourcing & Transformation", "SF OpportunityContactRole: Aslam Higgins, Head of Procurement", "SF Task 2026-07-01 'Decision Maker is not identified — Opportunity Health'"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are inferred from the POC scope, not confirmed by a quoted buyer statement this sweep. The Mar 2026 checkpoints were POC checkpoints on a custom claims-excess processing application, so the buyer is clearly validating fit for insurance-specific claims workflow on the Zycus platform, plus the standard S2C footprint (contract, supplier, procurement). No formal BRD, use-case scorecard or weighting has been captured, and no Avoma transcript was available to quote the buyer's stated must-haves. The move is to retrieve the POC success criteria and confirm them in writing with the procurement team.",
+        "sources": ["SF Activities: 'SANTAM POC Checkpoint' meetings 2026-03-10, 2026-03-17, 2026-03-24", "SF AIS_Why__c (claims-excess processing focus)", "No Avoma transcript read this sweep"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is only partly visible and has recently gone backwards. The call sequence shows a series of POC checkpoints through March 2026, then the stage was pushed from Formal Evaluation back to Initial Interest on 26 May and re-qualified on 1 Jul, which signals the evaluation stalled and was reset rather than progressing toward a decision. No approval chain, evaluation timeline or committee structure is documented, and the 1 Jul health tasks include 'Get clarity on the evaluation stages and influence the process.' The move is to map the evaluation stages and the approval path with Marcel Rose and Aslam Higgins.",
+        "sources": ["SF Field History: StageName Formal Evaluation -> Initial Interest 2026-05-26; Initial Interest -> Qualified 2026-07-01", "SF Task 2026-07-01 'Get clarity on the evaluation stages and influence the process'"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "There is early paper-process signal but no forward motion. Santam shared their NDA on 25 Nov 2025 and Zycus legal was engaged (follow-up to Legal 27 Nov 2025), which shows Santam runs a formal legal gate before contracting. There is no record of the NDA outcome, no MSA/SOW scoping, and no InfoSec or data-privacy review, all of which a BFSI SaaS procurement deal will require. As a new-business full-suite S2C deal this will need an MSA plus Order Form and a separately-signed SOW. The move is to confirm the NDA status and outline the contracting path once the eval restarts.",
+        "sources": ["SF Next_Step__c: NDA shared 2025-11-25; legal follow-up 2025-11-27", "No Avoma transcript read this sweep"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The pain is identified qualitatively but not owned or quantified. The March POC targeted a custom claims-excess processing application on the Zycus platform (per AIS_Why__c), so the operational pain is insurance-claims processing and broader source-to-contract inefficiency across contract, supplier and procurement management. What is missing is a named pain owner tying the pain to a KPI (for example Aslam Higgins owning maverick-spend or Johan Human owning transformation targets) and any cost-of-inaction figure. The move is to confirm the pain owner and the business consequence of not solving it.",
+        "sources": ["SF AIS_Why__c (claims-excess processing application, Mar 2026)", "SF Products__c: iContract;iSupplier;eProcurement;Merlin"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion has been secured. Marcel Rose (Procurement Manager) was the working contact through NDA and POC planning (Nov 2025 to Feb 2026) and is the most frequently referenced Santam name, but there is no evidence of champion behaviour: no advocacy, no facilitation of access to Johan Human or Aslam Higgins, no competitive push-back, and no engagement since 31 Mar 2026. Daphney Mvelase (Non-Motor Desktop Assessing Manager) appears as an operational/end-user stakeholder, not a sponsor. The ~97-day silence means any early relationship has cooled. The move is to re-engage Marcel Rose to test his disposition and, through him, build a sponsor with access to the economic buyer.",
+        "sources": ["SF OpportunityContactRole: Marcel Rose, Procurement Manager", "SF Next_Step__c (Marcel Rose during NDA/POC phase)", "SF LastActivityDate 2026-03-31", "No Champion role flagged on any contact"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor is named in any source: Competitors__c is empty, the free-text competition fields carry nothing, no Avoma transcript was read this sweep, and no next step or task references a rival, RFP round or shortlist. On a 270-day BFSI deal that has already run a POC this is a genuine knowledge gap, not evidence of sole-sourcing; a South African group insurer of Santam's size would typically benchmark alternatives before contracting. The move is to ask Marcel Rose or Aslam Higgins directly whether other vendors are in the evaluation and what the current stack is, so the field stops being a blind spot.",
+        "sources": ["SF Competitors__c: empty", "SF free-text competition fields: no value", "No Avoma transcript read this sweep", "SF Next_Step__c / Tasks: no competitor reference"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Momentum peaked with the March POC checkpoints, then reversed: the stage was regressed to Initial Interest on 26 May and re-qualified on 1 Jul with no fresh buyer engagement, so the deal is effectively restarting from cold rather than advancing.",
+      "items": [
+        {"change": "Santam shared their NDA; Zycus legal engaged for review", "date": "2025-11-25"},
+        {"change": "POC planning underway; onsite meeting proposed", "date": "2026-01-22"},
+        {"change": "POC in progress per Next Step", "date": "2026-02-20"},
+        {"change": "SANTAM POC Checkpoint meetings held (10/17/24 Mar)", "date": "2026-03-24"},
+        {"change": "POC checkpoint rescheduled by Zycus; no follow-up meeting recorded", "date": "2026-03-31"},
+        {"change": "Stage regressed Formal Evaluation -> Initial Interest (Caroline Lacocque)", "date": "2026-05-26"},
+        {"change": "Stage re-set Initial Interest -> Qualified; Opportunity Health flags raised (DM not identified, low inbound)", "date": "2026-07-01"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any source this sweep or on the prior record, so the competitive field is genuinely unknown rather than sole-sourced. On a 270-day BFSI S2C deal that has already run a POC, that absence is a critical blind spot: a group insurer of Santam's scale usually benchmarks alternatives (SAP Ariba, Coupa, Ivalua, GEP and Jaggaer are the common South African enterprise field) before contracting. The dominant current threat is not a named rival but no-decision inertia, given ~97 days of silence and a reset evaluation. Discovering the true competitive context is a top requalification move; no rival is asserted without evidence.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is centred on insurance-specific claims workflow: Santam is validating a custom claims-excess processing application on the Zycus platform alongside the standard source-to-contract suite. Alignment is unconfirmed this sweep because no POC outcome or buyer quote was captured.",
+      "items": [
+        {"criterion": "Custom claims-excess processing workflow on the Zycus platform", "position": "partially aligned", "quote": "Mar 2026 Avoma notes focus on a custom claims-excess processing application built on the Zycus platform", "date": "2026-03-24", "source": "SF AIS_Why__c"},
+        {"criterion": "Full source-to-contract footprint (contract, supplier, procurement)", "position": "partially aligned", "quote": "iContract;iSupplier;eProcurement;Merlin", "date": "2026-07-01", "source": "SF Products__c"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Competitive landscape", "quote": "No competitor named in any field, next step, task or call", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c empty + no Avoma transcript this sweep"},
+        {"area": "Quantified business case", "quote": "No cost, savings or cycle-time figure captured for the claims-excess or S2C pain", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Description empty + synthesis-map metrics fields empty"},
+        {"area": "POC outcome", "quote": "POC 'in progress' 20 Feb 2026 but no recorded result or decision", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Next_Step__c + Activities"},
+        {"area": "Economic buyer engagement", "quote": "Johan Human mapped by title but no recorded personal touch", "status": "acknowledged", "date": "2026-07-01", "gap_type": "knowledge", "source": "SF OpportunityContactRole + Task 'Decision Maker is not identified'"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early-stage BFSI deal that has cooled and reset; the win levers are re-engagement, power access and discovering the unknown competitive field before the 30 Sep close loses credibility.",
+      "flags": [
+        "Rebuild the thread beyond Marcel Rose: pull Johan Human and Aslam Higgins into a reset session, since the eval cannot advance without engaged power.",
+        "Discover the competitive field you have never captured; on a 270-day BFSI S2C deal, unknown alternatives are the single biggest blind spot.",
+        "Reconfirm the POC outcome and secure a buyer-owned date; without a compelling event the 30 Sep close is a placeholder, not a plan."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Johan Human", "title": "Executive Head: Group Sourcing & Transformation", "role": "Economic Buyer", "last_contact_date": "2026-03-31", "sentiment": "Unknown", "risk": "Mapped by title but no recorded personal engagement; sponsorship unproven after ~97 days of silence.", "source": "SF OpportunityContactRole"},
+        {"name": "Aslam Higgins", "title": "Head of Procurement", "role": "Decision Maker", "last_contact_date": "2026-03-31", "sentiment": "Unknown", "risk": "Likely co-owns the decision but no engagement visible; 1 Jul health flag says DM not identified.", "source": "SF OpportunityContactRole"},
+        {"name": "Marcel Rose", "title": "Procurement Manager", "role": "Influencer", "last_contact_date": "2026-03-31", "sentiment": "Neutral", "risk": "Working contact during NDA and POC but no advocacy evidence and cold since March; not yet a champion.", "source": "SF OpportunityContactRole + Next_Step__c"},
+        {"name": "Daphney Mvelase", "title": "Non-Motor Desktop Assessing Manager", "role": "Influencer", "last_contact_date": "2026-03-31", "sentiment": "Unknown", "risk": "Operational/end-user stakeholder tied to claims processing; not a buying-authority contact.", "source": "SF OpportunityContactRole + task contacts"},
+        {"name": "Johan Human", "title": "Executive Head: Group Sourcing & Transformation", "role": "Economic Buyer", "last_contact_date": "2026-03-31", "sentiment": "Unknown", "risk": "Access to this exec is the deal's gating dependency; earn a direct session before re-forecasting.", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion is secured. Marcel Rose (Procurement Manager) was the working contact through NDA and POC planning but shows no advocacy behaviour, no facilitation of access to Johan Human or Aslam Higgins, and no engagement since 31 Mar 2026. Any early relationship has cooled with the deal, so a champion must be built from re-engagement.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole + Next_Step__c + LastActivityDate 2026-03-31"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in scope but AI is not landing: every captured March conversation was about claims-excess workflow configuration, not agentic value. The Merlin / intake-to-orchestrate narrative is under-positioned and could be a wedge once the eval restarts.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 5.0 (Moderate). Merlin is in the product scope but no buyer AI language appears in any captured conversation; the discussion is anchored in insurance-claims workflow, so appetite is latent rather than expressed.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Deal dark ~97 days with a reset evaluation; the 30 Sep 2026 close is 86 days out and not credible without immediate re-engagement.", "first_raised": "2026-03-31", "date": "2026-07-06", "status": "open", "source": "SF LastActivityDate + Field History"},
+        {"category": "executive_alignment", "detail": "Economic buyer Johan Human mapped by title but never personally engaged; the decision maker is flagged unidentified.", "first_raised": "2026-07-01", "date": "2026-07-01", "status": "open", "source": "SF OpportunityContactRole + Task 'Decision Maker is not identified'"},
+        {"category": "change_management", "detail": "Primary threat is no-decision inertia: Santam can keep processing claims-excess manually and never sign, a status-quo risk rather than a competitive loss.", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "open", "source": "SF Field History (stage regression) + no buyer momentum"},
+        {"category": "political", "detail": "Single-threaded through Marcel Rose; eight contacts exist but only one was ever the working relationship and it has cooled.", "first_raised": "2026-03-31", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole + Activities"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cold: the last genuine buyer touch was the 31 Mar 2026 POC reschedule, the stage was regressed in May, and the 1 Jul activity is internal health flags plus 'Call Attempted', not buyer inbound.",
+      "cooling": true,
+      "items": [
+        "No buyer-facing meeting since 24 Mar 2026",
+        "Stage regressed Formal Evaluation -> Initial Interest on 26 May 2026",
+        "1 Jul 2026 activity is Opportunity Health flags and Call Attempted, not buyer engagement"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Santam went dark after the March POC checkpoints: the stage was pushed back to Initial Interest on 26 May then re-qualified on 1 Jul with no buyer contact since 31 Mar, and neither the economic buyer Johan Human nor any champion is engaged on a $200K S2C deal 86 days from its 30 Sep close.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Weak position: no buyer contact since 31 Mar 2026, and the stage was reset from Formal Evaluation back to Initial Interest on 26 May before a 1 Jul requalification, so momentum has to be rebuilt from scratch."},
+          {"tone": "warn", "text": "No power is engaged: Johan Human (Executive Head: Group Sourcing & Transformation) is on the contact roles but has no recorded personal touch, and the 1 Jul health flag itself reads 'Decision Maker is not identified'."},
+          {"tone": "warn", "text": "No competitor is named anywhere, which on a 270-day BFSI deal is an unmeasured blind spot rather than a sole-source win."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "The POC marked 'in progress' on 20 Feb 2026 has no recorded outcome; the last touches were the 10/17/24 Mar checkpoints and a 31 Mar reschedule, then silence."},
+          {"tone": "warn", "text": "Stage regressed Formal Evaluation to Initial Interest on 26 May 2026 (Caroline Lacocque), the opposite of forward motion."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Santam shared an NDA on 25 Nov 2025 (an early positive), but nothing since has been committed: no signed POC result, no buyer-named date, and no buyer-requested next meeting."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "No-decision risk dominates: the deal has been dark ~97 days and the 30 Sep 2026 close is 86 days out with the evaluation effectively reset, so status-quo inertia, not a rival, is the main threat."},
+          {"tone": "warn", "text": "Single-threaded and power-blind: eight contacts exist but only Marcel Rose was ever the working contact, and neither Johan Human nor Aslam Higgins shows engagement."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": -0.5, "evidence": "No senior buyer has joined a call; the exec sponsor Johan Human remains unengaged."},
+        "engagement": {"strength": -0.8, "evidence": "~97 days since the last buyer touch (31 Mar 2026); July activity is internal health flags only."},
+        "deal_risk": {"strength": -0.7, "evidence": "Stage regressed in May and the eval was reset; no-decision inertia is the primary risk."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer call read this sweep and no stated preference on record; last engagement 31 Mar 2026 left no lean for or against Zycus."},
+    "business_case": {"status": "gap", "evidence": "Functional claims-excess pain is referenced (AIS_Why__c, Mar 2026) but never quantified; no ROI, savings or cycle-time figure exists in any field."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Caroline re-engages Marcel Rose to confirm the POC outcome and restart the evaluation.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "No buyer contact since the 31 Mar 2026 POC reschedule; stage reset on 1 Jul", "trigger_date": "2026-03-31", "act_by": "2026-07-13", "expected_effect": "Reopens the dormant relationship and tests whether the deal is still live before the close date slips further."},
+        {"rank": 2, "action": "Request a working session with Johan Human and Aslam Higgins to reconfirm sponsorship.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Economic buyer mapped by title but unengaged; 1 Jul flag 'Decision Maker is not identified'", "trigger_date": "2026-07-01", "act_by": "2026-07-20", "expected_effect": "Establishes power access and validates whether budget and mandate still exist for the S2C project."},
+        {"rank": 3, "action": "Ask Santam directly which alternatives they are evaluating and their current stack.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No competitor named in any source on a 270-day BFSI deal", "trigger_date": "2026-07-06", "act_by": "2026-07-24", "expected_effect": "Closes the competitive blind spot so positioning and pricing can be shaped to the real field."},
+        {"rank": 4, "action": "Quantify the claims-excess and S2C business case in writing with the pain owner.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Functional pain referenced in Mar 2026 notes but no quantified value case", "trigger_date": "2026-03-24", "act_by": "2026-08-05", "expected_effect": "Anchors urgency and ROI so the deal has a defensible reason to close before 30 Sep."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 3,
+    "calls_read": 0,
+    "calls_omitted": [
+      {"meeting": "SANTAM POC Checkpoint", "date": "2026-03-10", "reason": "transcript not retrieved to this sweep"},
+      {"meeting": "SANTAM POC Checkpoint", "date": "2026-03-17", "reason": "transcript not retrieved to this sweep"},
+      {"meeting": "SANTAM POC Checkpoint", "date": "2026-03-24", "reason": "transcript not retrieved to this sweep"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history to 2025-10-09",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma transcript retrieved this sweep; March POC checkpoint content not read",
+      "Competitive landscape unknown across all sources",
+      "No quantified business case for the claims-excess or S2C pain",
+      "Economic buyer Johan Human mapped by title but engagement unconfirmed"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

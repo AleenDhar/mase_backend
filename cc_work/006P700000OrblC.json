@@ -1,0 +1,222 @@
+{
+  "opp_id": "006P700000OrblC",
+  "hard": {
+    "opp_id": "006P700000OrblC",
+    "opp_name": "Carhartt_S2P_2025",
+    "account_name": "Carhartt, Inc",
+    "account_industry": "Retail",
+    "billing_country": "United States",
+    "owner_name": "Rick Taranek",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2026-11-12",
+    "days_to_close": null,
+    "created_date": "2025-10-23",
+    "qualified_date": "2026-01-29",
+    "last_activity_date": "2026-06-17",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;eProcurement;eInvoicing;iSaaS;Merlin;iRisk;Merlin Intake;Agentic AI;ANA",
+    "next_step": "June 17 Rick: Gartner engaged, then strongly recommended implementing a new procurement solution. However, we face an internal hurdle with their IT department, which heavily favors building custom software over buying established vendor solutions.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "AIS 4.0 (Moderate): no transcribed buyer calls confirm prospect-side AI excitement; the only recent signal is the 17 Jun 2026 Next Step, which names Gartner's buy recommendation and IT build-vs-buy resistance but no AI language. Committee-led requirements gathering at Qualified is too early and too quiet on AI to read higher than Curious.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Internal IT build preference (build vs buy); status quo / do-nothing; SAP Ariba",
+    "primary_competitor": "Internal IT build preference (build vs buy)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000OrblC/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "Dark for months in Qualified: no two-way buyer engagement despite four rep-only Clari touches since Mar 2026; Gartner now recommends buying but IT's build-vs-buy preference blocks progress and no Economic Buyer is engaged, leaving the 12 Nov close date indefensible.",
+      "math": "Today 6 Jul 2026, close 12 Nov 2026 (about 129 days out). In Qualified since the 29 Jan 2026 qualified stamp; created 23 Oct 2025, so roughly 5 months in Qualified with no stage progression. Close date was pushed from 19 Jun to 12 Nov on 6 Apr 2026 (and earlier from 30 Apr to 19 Jun). Last Salesforce activity 17 Jun 2026 is a rep-initiated Clari email (Call Attempted, awaiting buyer reply), not buyer engagement; the last four activities (17 Jun, 12 May, 21 Apr, 17 Mar) are all rep outreach with no logged buyer response. To close by 12 Nov the deal must clear Formal Evaluation, Shortlist, Vendor Selected, Negotiation and Contract in about 129 days with zero current buyer momentum.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "No genuine two-way buyer engagement recorded recently: the last four Salesforce activities (17 Jun, 12 May, 21 Apr, 17 Mar 2026) are all rep-initiated Clari emails logged as Call Attempted, awaiting a buyer reply (source: Salesforce Tasks 2026-03-17 through 2026-06-17).",
+        "Stage has held at Qualified since the 29 Jan 2026 qualified stamp with no forward progression (source: Salesforce StageName field history, qualified_date 2026-01-29).",
+        "Close date was pushed out on 6 Apr 2026 from 19 Jun 2026 to 12 Nov 2026, and earlier from 30 Apr to 19 Jun, showing repeated slip without stage movement (source: Salesforce CloseDate field history 2026-04-06, 2026-01-12).",
+        "Gartner engaged Carhartt and strongly recommended implementing a new procurement solution, a third-party pull toward buying (source: Next Step, 17 Jun 2026).",
+        "IT heavily favors building custom software over buying established vendor solutions, an unresolved organizational blocker to any vendor purchase (source: Next Step, 17 Jun 2026).",
+        "Economic Buyer for the IT-owned technology investment is unmapped and unengaged; Decision Maker Kimberly Blair (Senior Director, Corporate Procurement) has never appeared on a logged activity (source: Salesforce Contact Roles, activity history).",
+        "Close date 12 Nov 2026 is indefensible on a Pipeline forecast at Qualified with no engaged champion, no engaged Economic Buyer, and a known IT build-vs-buy blocker (source: Salesforce forecast category, stage, Next Step 17 Jun 2026)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists. The qualitative pain on record is a fragmented, manual procurement stack (sourcing, contracts, supplier onboarding, eProcurement, AP) that Carhartt wants to modernize, but no baseline cost, cycle time, error rate, headcount burden, or projected savings has been captured in any field or activity. The one recent value signal is external: Gartner engaged Carhartt and strongly recommended implementing a new procurement solution (source: Next Step, 17 Jun 2026), which validates the need but is not a quantified Zycus ROI case. Quantifying the build-vs-buy economics (what Carhartt would spend and how long it would take IT to build equivalent capability) is the move that turns the Gartner endorsement into a fundable case.",
+        "sources": ["Next Step 17 Jun 2026 (Gartner recommendation)", "Products__c full S2P scope"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The Economic Buyer for this purchase is not engaged and effectively not mapped. The 17 Jun 2026 Next Step establishes that IT owns and controls the procurement-technology investment decision (they favor building over buying), so real budget authority sits in IT, yet no IT leader has been named or contacted in any Salesforce record. Within Procurement, Kimberly Blair (Senior Director, Corporate Procurement) is the primary Decision Maker contact and the most plausible procurement-side budget owner, but she has never appeared on a logged call or replied to outreach, so her authority is unconfirmed (source: Salesforce Contact Roles; activity history 2026-03 to 2026-06). Naming and engaging the IT budget owner who can approve a buy decision is the single highest-value gap to close.",
+        "sources": ["Next Step 17 Jun 2026 (IT owns the technology investment)", "Salesforce Contact Roles (Kimberly Blair, Decision Maker, Primary)"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria have been documented from any use-case review, RFP round, or workshop, because the deal has not progressed past requirements gathering. The implicit criterion surfaced by the 17 Jun 2026 Next Step is build-vs-buy: IT will weigh Zycus against building custom software in-house, so the decisive criteria will be capabilities IT cannot cheaply or quickly build (agentic AI, Merlin negotiation and intake, breadth of an integrated S2P suite) plus total cost and speed to value. Gartner's involvement suggests an analyst-informed criteria set is forming (source: Next Step, 17 Jun 2026). Running a criteria-definition working session with Procurement and IT is required to make these explicit.",
+        "sources": ["Next Step 17 Jun 2026"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buying process is committee-led requirements gathering that has not advanced: the AIS note records that Carhartt's Procurement Committee continues to develop requirements, and no formal evaluation, shortlist, or submission dates are stamped (source: AIS_Why, field history). The one process fact known is that IT holds a gate on the technology decision and currently leans to building rather than buying (source: Next Step, 17 Jun 2026), so the real approval chain runs Procurement plus IT rather than Procurement alone. Because no buyer has walked us through their steps, the sequence, timeline, and sign-off owners are unknown; mapping the committee and the IT gate is the process move.",
+        "sources": ["AIS_Why (Procurement Committee developing requirements)", "Next Step 17 Jun 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible: there is no MSA, Order Form, SOW, legal, InfoSec, or procurement-channel activity on record, which is consistent with an early Qualified deal that has not reached commercials. Current_Contract_Expiration is not populated, so there is no external forcing function on paper. A mutual NDA was requested very early in the relationship but was never finalized and is now stale context rather than a live item. Visibility here will only come once the deal reaches vendor selection and IT's build-vs-buy stance is resolved in favor of buying.",
+        "sources": ["Salesforce field history (no contracting-stage fields populated)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The confirmed pain is a fragmented, largely manual procurement operation that Carhartt wants to modernize across sourcing, contracts, supplier management, eProcurement and invoicing, reinforced by Gartner engaging and strongly recommending Carhartt implement a new procurement solution (source: Next Step, 17 Jun 2026). What is missing is quantification and a clear pain owner: the pain has never been sized (no cycle-time, cost, or error metrics), and it is unclear whether Procurement (Kimberly Blair) or IT feels enough operational pain to fund a buy, since IT believes it can build. The inferred deeper pain is that manual processes are constraining a 3,500-employee operation, but that must be confirmed and owned by an engaged stakeholder to become a compelling event.",
+        "sources": ["Next Step 17 Jun 2026 (Gartner recommendation)", "Products__c full S2P scope"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no champion. Ryan Murphy (Director, Indirect Procurement, Evaluator) was the initial point of contact but has not engaged on any recent logged activity, and the rep's 12 May 2026 email explicitly notes Ryan has gone quiet (source: Salesforce Task, 2026-05-12). Kimberly Blair (Senior Director, Corporate Procurement, Decision Maker and primary contact) has never appeared on a logged interaction, so she is a title on the record, not an advocate. No one inside Procurement or IT is currently driving the deal, pushing back on IT's build preference for us, or giving us access to power. Developing an engaged champion, most realistically Kimberly Blair given her seniority and Decision Maker role, is the precondition for any progress.",
+        "sources": ["Salesforce Tasks 2026-05-12 (Ryan gone quiet), 2026-06-17", "Salesforce Contact Roles"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The primary competitor is not another vendor but Carhartt's own IT organization, which heavily favors building custom software over buying an established solution (source: Next Step, 17 Jun 2026). Reinforcing that is status-quo inertia: Carhartt has previously handled pieces of this with internal tooling, so do-nothing / incremental internal build is a live alternative. SAP Ariba was noted earlier as a possible vendor alternative but has no recent confirming evidence and is a dormant, unconfirmed threat. The wedge is agentic AI: position Merlin (Agentic AI, ANA, Merlin Intake, negotiation) and the integrated S2P suite as capabilities IT cannot build quickly or cost-effectively, and use Gartner's buy recommendation as external air cover to reframe the decision from build-vs-buy on basic P2P to speed-to-value on AI.",
+        "sources": ["Next Step 17 Jun 2026 (IT build-vs-buy)", "Prior sweep memory (status quo / internal tooling; SAP Ariba)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Rep-side motion only: four Clari email attempts since Mar 2026 with no logged buyer reply, the close date pushed to 12 Nov on 6 Apr, and a 17 Jun Next Step surfacing Gartner's buy recommendation against IT's build-vs-buy resistance. No stage progression since the 29 Jan qualified stamp.",
+      "items": [
+        {"change": "Gartner engaged Carhartt and strongly recommended implementing a new procurement solution; IT build-vs-buy resistance surfaced as the internal hurdle", "date": "2026-06-17"},
+        {"change": "Rep logged a fourth Clari outreach to Kimberly Blair noting Ryan Murphy has gone quiet", "date": "2026-06-17"},
+        {"change": "Close date pushed from 19 Jun 2026 to 12 Nov 2026 with no stage progression", "date": "2026-04-06"},
+        {"change": "Stage settled at Qualified after a Jan bounce between Formal Evaluation, Qualified and Initial Interest", "date": "2026-01-29"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The strongest current threat is internal: Carhartt IT heavily favors building custom procurement software over buying, an active blocker confirmed on 17 Jun 2026 and reinforced by status-quo inertia. Gartner's simultaneous recommendation to buy is the counter-lever in our favor. SAP Ariba remains a dormant, unconfirmed vendor alternative from earlier in the cycle with no recent evidence, so it ranks below the build-vs-buy and do-nothing threats.",
+      "competitors": [
+        {"name": "Internal IT build preference (build vs buy)", "sentiment": "negative", "threat_level": "high", "status": "active", "quote": "IT department heavily favors building custom software over buying established vendor solutions.", "date": "2026-06-17", "source": "Next Step 17 Jun 2026", "how_we_win": "Lead with Merlin agentic AI (ANA, Intake, negotiation) as un-buildable in a reasonable time or cost, and use Gartner's buy recommendation as external air cover to reframe build-vs-buy toward speed-to-value."},
+        {"name": "Status quo / do-nothing (internal tooling)", "sentiment": "negative", "threat_level": "medium", "status": "do_nothing", "quote": null, "date": "2026-06-17", "source": "Next Step 17 Jun 2026; prior sweep memory", "how_we_win": "Make inaction expensive by quantifying the cost and risk of the fragmented manual stack and tying a compelling event to Gartner's recommendation."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": "2025-10-23", "source": "Prior sweep memory", "how_we_win": "Differentiate on integrated agentic AI and time-to-value; confirm on a live call whether Ariba is actually being evaluated before treating it as a real threat."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is inferred, not validated on a call: Carhartt's stated intent to modernize a fragmented procurement stack maps to the full Zycus S2P suite plus Merlin, but no buyer has confirmed criteria or evaluated the fit, and IT's build stance is the open question.",
+      "items": [
+        {"criterion": "Modernize and automate a fragmented, manual procurement operation", "position": "partially aligned", "quote": "Gartner engaged, then strongly recommended implementing a new procurement solution.", "date": "2026-06-17", "source": "Next Step 17 Jun 2026"},
+        {"criterion": "Solution must beat an in-house build on cost and speed to value", "position": "exposed", "quote": "IT department heavily favors building custom software over buying established vendor solutions.", "date": "2026-06-17", "source": "Next Step 17 Jun 2026"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic Buyer / IT budget owner", "quote": "IT department heavily favors building custom software over buying established vendor solutions.", "status": "not addressed", "date": "2026-06-17", "gap_type": "knowledge", "source": "Next Step 17 Jun 2026"},
+        {"area": "Quantified business case / ROI", "quote": null, "status": "not addressed", "date": "2026-06-17", "gap_type": "knowledge", "source": "No metrics in any field or activity"},
+        {"area": "Engaged champion", "quote": "Ryan's been quiet.", "status": "not addressed", "date": "2026-06-17", "gap_type": "knowledge", "source": "Salesforce Task 2026-06-17"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Win-strategy levers for a stalled, single-threaded, power-blind Qualified deal that just gained a third-party buy endorsement.",
+      "flags": [
+        "Convert Gartner's buy recommendation into a live procurement-committee working session before the endorsement goes cold.",
+        "Neutralize IT build-vs-buy by leading with Merlin agentic AI as un-buildable and quantifying build cost and time.",
+        "Multi-thread beyond two dark Procurement contacts: engage Kimberly Blair directly and secure a named IT budget owner."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Kimberly Blair", "title": "Senior Director, Corporate Procurement", "role": "Decision Maker", "last_contact_date": null, "sentiment": "unknown", "risk": "Primary Decision Maker and most senior Procurement contact, but has never appeared on a logged call or replied to outreach; her support and budget authority are unconfirmed and she is the best candidate to develop into a champion.", "source": "Salesforce Contact Roles (Primary, Decision Maker)"},
+        {"name": "Ryan Murphy", "title": "Director, Indirect Procurement", "role": "Evaluator", "last_contact_date": null, "sentiment": "neutral", "risk": "Original point of contact who has gone quiet; the rep noted 'Ryan's been quiet' on 17 Jun 2026, so he is not currently advancing the deal or providing access to power.", "source": "Salesforce Contact Roles; Task 2026-06-17"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion is engaged. Ryan Murphy has gone quiet (rep note 17 Jun 2026) and Kimberly Blair, the senior Decision Maker, has never appeared on a logged interaction. Nobody is currently driving the deal internally or countering IT's build preference for us; Kimberly Blair is the most realistic champion to develop given her seniority and Decision Maker role.",
+      "champion": "Kimberly Blair",
+      "strength": "none",
+      "at_risk": true,
+      "source": "Salesforce Contact Roles; Tasks 2026-05-12 and 2026-06-17"
+    },
+    "ai_positioning_strength": {
+      "summary": "The agentic-AI story is the natural wedge against IT's build-vs-buy stance (Merlin ANA, Intake, negotiation are hard to build in-house), but it has not been put in front of the buyer on any call, so it is currently under-positioned.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 (Moderate) read straight from Salesforce; no transcribed buyer calls exist to confirm or contradict AI appetite, and the 17 Jun Next Step carries no AI language, so appetite is unproven though the buy is analyst-endorsed.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "IT heavily favors building custom software over buying vendor solutions, a de facto veto on a purchase.", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "Next Step 17 Jun 2026"},
+        {"category": "executive_alignment", "detail": "No Economic Buyer / IT budget owner is named or engaged; Decision Maker Kimberly Blair has never interacted.", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "Salesforce Contact Roles; Next Step 17 Jun 2026"},
+        {"category": "change_management", "detail": "Status-quo inertia and internal tooling make do-nothing a live alternative.", "first_raised": "2026-06-17", "date": "2026-06-17", "status": "open", "source": "Next Step 17 Jun 2026"},
+        {"category": "timeline", "detail": "Close date pushed to 12 Nov 2026 with no stage movement; forecast indefensible.", "first_raised": "2026-04-06", "date": "2026-04-06", "status": "open", "source": "Salesforce CloseDate field history"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer-side engagement is dark: four consecutive rep-only Clari attempts since Mar 2026 with no logged buyer reply. The Gartner buy recommendation is the one positive external pull.",
+      "cooling": true,
+      "items": [
+        "Four rep-initiated outreach attempts (17 Mar, 21 Apr, 12 May, 17 Jun 2026) with no logged buyer response.",
+        "Rep explicitly notes both contacts have gone quiet ('Ryan's been quiet')."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Rick to email Kimberly Blair directly proposing a Gartner-aligned working session.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Gartner recommended a buy while both Procurement contacts have gone quiet.", "trigger_date": "2026-06-17", "act_by": "2026-07-13", "expected_effect": "Restarts two-way buyer engagement and rides the analyst endorsement to re-open the deal."},
+        {"rank": 2, "action": "Secure an intro to the IT budget owner to address build-vs-buy head-on.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "IT favors building custom software over buying, blocking any purchase.", "trigger_date": "2026-06-17", "act_by": "2026-07-20", "expected_effect": "Maps the real Economic Buyer and lets us confront the build objection with the decider."},
+        {"rank": 3, "action": "Build a build-vs-buy cost and time model centered on Merlin agentic AI.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No quantified case exists and Merlin is the un-buildable differentiator.", "trigger_date": "2026-06-17", "act_by": "2026-08-03", "expected_effect": "Gives Procurement ammunition to counter IT and justify the $200k buy."},
+        {"rank": 4, "action": "Run a competitive review to confirm whether SAP Ariba is actually in play.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "SAP Ariba noted earlier with no recent confirmation.", "trigger_date": "2025-10-23", "act_by": "2026-08-03", "expected_effect": "Clears a dormant threat or exposes a live one before commercials."}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": null, "to": null, "detail": "Product scope remains the full S2P suite plus Merlin and Agentic AI (Products__c); no narrowing evidenced this sweep."},
+    "critical_signals": [
+      {"lens": "Competition", "text": "The real rival is Carhartt's own IT, which favors building custom procurement software over buying, confirmed 17 Jun 2026.", "tone": "crit"},
+      {"lens": "Last meeting", "text": "No genuine buyer exchange in months: the last four touches are rep-only Clari email attempts with no reply, the latest on 17 Jun 2026.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "Gartner has entered as an external advisor recommending Carhartt buy a new procurement solution, a pull in our favor we have not yet activated.", "tone": "pos"},
+      {"lens": "Commercials", "text": "No quantified ROI or budget owner exists; the $200k buy cannot be justified until we size the build-vs-buy economics.", "tone": "warn"}
+    ],
+    "customer_preference": {"level": "none", "evidence": "No buyer preference expressed on any call; both Procurement contacts are unresponsive and the only recent signal is IT leaning to build in-house (Next Step, 17 Jun 2026)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative modernization need plus Gartner's buy recommendation, but no quantified ROI, savings, or cost baseline (Next Step, 17 Jun 2026)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities and field history through 17 Jun 2026; swept 6 Jul 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero transcribed buyer calls available this sweep; all recent activity is rep-initiated Clari email.",
+      "Economic Buyer / IT budget owner unnamed and unengaged.",
+      "No quantified business case or ROI on record.",
+      "Decision Maker Kimberly Blair has never appeared on a logged interaction."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

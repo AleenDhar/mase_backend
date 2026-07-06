@@ -1,0 +1,809 @@
+{
+  "opp_id": "006P700000a4lJl",
+  "hard": {
+    "opp_id": "006P700000a4lJl",
+    "opp_name": "Crusoe_Intake/Source/Eproc/SRPM_June'26",
+    "account_name": "Crusoe Energy Systems",
+    "account_industry": "IT & Consulting",
+    "billing_country": "United States",
+    "owner_name": "Steve Ovadje",
+    "owner_title": "Account Executive (Mid Market)",
+    "manager_name": "Michael McCarthy",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2026-11-30",
+    "days_to_close": 147,
+    "created_date": "2026-06-26T11:24:01.000+0000",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-07-09",
+    "last_modified_date": "2026-07-03T09:08:54.000+0000",
+    "products": "iSource;iSupplier;eProcurement;Merlin;iRisk;Merlin Intake",
+    "next_step": "6/25 Steve Ovadje : Schedule discovery call with solutions consultant on 7/1 '26 4pm Central",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 At Crusoe there was 'notable interest in the platform's capabilities, particularly its AI-driven features that streamline procurement processes,' including a Slack-integrated intake/orchestration need and 'conversational' features.\n\u2022 The Agentic-platform-discussed flag is set to Yes and current tool Coupa is described as 'convoluted, manual, and not scalable,' motivating an AI-forward alternative.\n\u2022 Budget is not discussed and the buyer (Ben) is evaluator without confirmed authority, so the clear AI interest is not yet backed by commercial commitment.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a4lJl/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Brand-new mid-market deal (10 days old) in early Qualified stage: Ben Slaugh ran a strong intake-focused discovery on 1 July and self-booked a tailored demo for 9 July, so engagement is live, but he is a single-threaded, self-declared non-decision-maker and the primary threat is do-nothing (reconfigure Coupa) rather than a rival.",
+      "math": "Created 26 Jun 2026, moved Initial Interest -> Qualified 29 Jun 2026, swept 6 Jul 2026 (10 days old, 7 days in Qualified). Days to close: 147 (close 30 Nov 2026). Last real two-way buyer touch: 1 Jul 2026 discovery call; demo scheduled 9 Jul 2026 (LastActivityDate). No forward slip. Pace: enterprise/mid-market motion allows 60-90 days for discovery, demos and RFI/RFP positioning before Shortlisted; at 7 days in with 147 remaining the deal is early and on schedule.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Deal created 26 Jun 2026, qualified 29 Jun 2026, 10 days old at 6 Jul 2026 sweep.",
+        "Stage Qualified, forecast Pipeline, amount $150k, close 30 Nov 2026 (147 days out).",
+        "Live two-way discovery call 1 Jul 2026 with buyer Ben Slaugh; intake/orchestration scope defined.",
+        "Ben self-selected a demo slot: Thursday 9 Jul 2026, 10am Central, 1 hour (Avoma, 1 Jul).",
+        "Single-thread and early: Ben confirmed 'it'll just be me' for the 9 Jul demo; no EB, budget, or timeline yet.",
+        "Pipeline forecast is appropriate for a 10-day-old Qualified deal in active discovery."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "On the 1 July 2026 discovery call Ben Slaugh (Business Relationship Management) framed the problem operationally, not financially: roughly 70% of his team's requests are non-catalog, non-onboarded-supplier intake handled today through Jira, which he called 'more of a workaround than a solution.' The sharpest stake he cited was manual goods receipt: 'an order for $60,000,000 worth of GPUs comes in' and the invoice, not a receipt process, is 'the tickler' for someone to confirm delivery by hand. No cost, cycle-time, headcount, or savings figure was attached to the intake pain, and budget was never discussed. Move: on the 9 July demo, convert the manual-workaround pain into numbers (monthly non-catalog request volume, hours lost, rework/error cost) to build a defensible case for a $150k platform.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "SF AIS_Why__c"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged as of 6 July 2026. Ben Slaugh is explicit that he lacks authority: 'I'm not the final decision maker here by any means... I understand what the problem is on the ground level' (1 July call). The person actually steering the evaluation is Mohammad Rasheed, Director of Procurement, Corporate Services, whom Ben named as the source of the strategy ('the feedback I got from Mohammad is that we're taking a two-pronged approach'), but Mohammad has never joined a call and his budget authority is unconfirmed. Budget was not discussed at all on either call. Move: get Ben to name who owns the intake budget and secure Mohammad (or a VP above him) into the next session.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "OpportunityContactRole: Ben Slaugh (Evaluator), Mohammad Rasheed (Director of Procurement)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Ben stated the core buying criterion plainly on 1 July: 'Zycus is not a bolt on alternative. It's a full rip and replace of Coupa, and to make that argument persuasive, I need to see that you can do the orchestration better than Coupa.' The specific criteria are AI-driven exception management for non-catalog / non-onboarded-supplier requests ('give me a reason why you wanna go outside of that supplier base, and then when do I get a real human involved'), orchestration across the existing stack, integration with Ironclad (contract repository) and whatever P2P remains, and ideally Slack-embedded intake. These are confirmed from the call; there is no formal RFP or scorecard yet ('we aren't using an RFP tool of any formal knowledge'). Move: turn Ben's stated criteria into an explicit fit-checklist he can carry internally.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running an informal, bottom-up build-the-case process, not a structured RFP. Ben positioned himself as the ground-level scout: 'I'm here as a kind of first early look at what you guys do to then tell others internally, like, we should take a stronger look at Zycus.' The strategy is two-pronged and set by Mohammad Rasheed: replace the Jira intake bolt-on now, or, longer term and 'a bigger project,' rip and replace Coupa entirely, but only 'if we really see a marked improvement.' No approval chain, evaluation timeline, or committee has surfaced. Move: map the internal path (who Ben reports the demo to, who signs off on scope, when) on the 9 July call.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics (MSA, SOW, legal review, procurement channel, InfoSec) are unknown as of 6 July 2026, which is expected for a 10-day-old Qualified deal in discovery. No paper-process, security-review, or implementation-partner discussion has occurred. What we do know about the buyer's environment: they use Ironclad as their contract repository and route legal reviews through it, so any solution 'would ideally be integrating with that.' Visibility will come once the deal moves past demo into commercials; the move is to ask Ben to walk through Crusoe's typical software-procurement and security-review process at that point.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is well-articulated and confirmed by Ben on 1 July. Intake for non-catalog / non-onboarded-supplier requests (about 70% of his team's volume) is run through Jira as a poor workaround; contract workflows started from Coupa 'don't work' for pre-approved vendors because 'they're not in Coupa'; supplier onboarding uses a form that is 'too broad and intimidating' with no way to tag a simple-vs-long form; and goods receipt is fully manual (the $60M GPU example). Ben also wants AI to filter requests and decide when to pull in humans (sourcing, IT, legal). The pain owner is Ben in his strategic-sourcing capacity, with the onboarding team as a secondary owner ('I'm aware of their headache'). This is a genuine, multi-symptom pain, not a vague dissatisfaction.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "SF AIS_Why__c"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Ben Slaugh is a developing champion, not a confirmed one. What has developed: he initiated the evaluation, invested two calls, framed the internal narrative, and stated intent to advocate ('to then tell others internally, like, we should take a stronger look at Zycus'). What is missing: he is explicitly not the decision maker, he has not introduced us to Mohammad Rasheed or any budget owner, he will attend the 9 July demo alone ('it'll just be me'), and he hedges on the case ('we might just be configured wrong in the way we're doing that' with Coupa). So he is an engaged, honest evaluator with advocacy intent but no proven advocacy yet. Move: earn a Zycus preference and an introduction to Mohammad by making the 9 July demo land hard on his exact exception-management pain.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "OpportunityContactRole: Ben Slaugh (Evaluator, PRIMARY)"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Coupa is the incumbent platform (procurement, expense, invoicing, punch-outs, onboarding), with Jira bolted on for intake; both are what Zycus would displace. But the single strongest current threat is do-nothing / reconfigure-Coupa-in-place, not a rival vendor. Ben conceded on 1 July that replacing Coupa 'might be a bigger project' because of 'other tag on integrations,' that 'we might just be configured wrong,' and that 'even our own policies of the way we're set up with Coupa could need to change, and we might alleviate some of this.' No third-party competitor (SAP Ariba, Ivalua, GEP, Zip) was named; the buyer even uses Claude and Gemini only to draft RFPs, not as procurement tools. How we win: prove Merlin Intake orchestration and exception management deliver a 'marked improvement' Coupa cannot reach by reconfiguration, and de-risk the switch with an intake-first phased path.",
+        "sources": [
+          "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "SF Competitors__c: Coupa"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "A brand-new deal that stood up fast: created 26 Jun, owner reassigned from Angela DSouza to Steve Ovadje and qualified 29 Jun, two discovery calls (25 Jun, 1 Jul), and a demo self-scheduled by the buyer for 9 Jul. Engagement is live and rep-led; the buyer is responsive but single-threaded and pre-budget.",
+      "items": [
+        {
+          "change": "Opportunity created by Angela DSouza",
+          "date": "2026-06-26"
+        },
+        {
+          "change": "Owner reassigned Angela DSouza -> Steve Ovadje; stage Initial Interest -> Qualified",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "First discovery call: Discussion with Zycus + Crusoe Energy (Angela DSouza, Steve Ovadje)",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Second discovery call with solutions consultant Srishti; scope defined as intake/orchestration-first",
+          "date": "2026-07-01"
+        },
+        {
+          "change": "Buyer self-booked a tailored intake demo for Thursday 10am Central",
+          "date": "2026-07-09"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is do-nothing: reconfiguring Coupa in place rather than switching, which Ben openly floated on 1 Jul ('we might just be configured wrong'). Coupa is the incumbent platform being evaluated for replacement (medium threat, high switching friction from expense/invoicing/punch-out integrations), and Jira is the incumbent intake tool Zycus would displace. No third-party rival vendor has been named as of 6 Jul 2026, so this is a Coupa-replacement-vs-status-quo evaluation, not a multi-vendor bake-off.",
+      "competitors": [
+        {
+          "name": "Status quo (reconfigure Coupa in place)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "even our own policies of the way we're set up with Coupa could need to change, and we might alleviate some of this",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "how_we_win": "Prove Merlin Intake exception-management and AI orchestration deliver a 'marked improvement' a Coupa reconfiguration cannot, so inertia is not the cheaper default."
+        },
+        {
+          "name": "Coupa",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "the work to replace Coupa because of other tag on integrations, and we currently do expense with Coupa, might be a bigger project than if we were just looking at intake alone",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh); SF Competitors__c",
+          "how_we_win": "Lead intake-first to sidestep the rip-and-replace risk, then show Merlin orchestrating across Coupa/remaining P2P before proposing full displacement."
+        },
+        {
+          "name": "Jira (incumbent intake tool)",
+          "sentiment": "negative",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "we're currently managing our intake through Jira, and it's not really the best tool for that",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)",
+          "how_we_win": "Position Merlin Intake as the purpose-built orchestration layer Jira was never meant to be."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on the core ask (AI-driven intake orchestration and exception management) and on stack integration in principle, with one real exposure: Slack-embedded intake is a stated need but only a future Zycus capability today.",
+      "items": [
+        {
+          "criterion": "Orchestrate non-catalog / exception intake and route to the right humans",
+          "position": "aligned",
+          "quote": "It's just orchestrating that whole workflow rather than the current workflows we have through Coupa",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "criterion": "AI intelligence to filter requests and decide when to involve humans",
+          "position": "aligned",
+          "quote": "how do I get some better... AI intelligence... give me a reason why you wanna go outside of that supplier base, and then when do I get a real human involved",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "criterion": "Slack-embedded intake",
+          "position": "exposed",
+          "quote": "We have Slack coming up as a future capability. We do not have that as of yet",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Srishti, Zycus SC); SF AIS_Why__c"
+        },
+        {
+          "criterion": "Integrate with existing stack (Ironclad contract repo, remaining P2P)",
+          "position": "partially aligned",
+          "quote": "anything that we do do would be ideally integrating with that",
+          "date": "2026-07-01",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Demo Merlin Intake orchestration and non-catalog exception management, proving it beats Coupa",
+          "said_by": "Ben Slaugh",
+          "date": "2026-07-01",
+          "addressed": false,
+          "quote": "I need to see that you can do the orchestration better than Coupa",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "requirement": "Show how the intake tool connects into sourcing and purchase-request flows and the existing stack",
+          "said_by": "Ben Slaugh",
+          "date": "2026-07-01",
+          "addressed": false,
+          "quote": "would you also like to look into the other tools and how that intake tool is connecting the other Zycus tools",
+          "source": "Avoma discovery call 1 Jul 2026 (Srishti/Ben Slaugh)"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Ben to introduce the scope owner Mohammad Rasheed and confirm who holds the intake budget",
+            "who": "Buyer",
+            "grounding_quote": "I'm not the final decision maker here by any means... the feedback I got from Mohammad is that we're taking a two pronged approach",
+            "date": "2026-07-01",
+            "due": "2026-07-31",
+            "status": "open",
+            "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget owner unidentified",
+          "quote": "I'm not the final decision maker here by any means",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "area": "Budget not discussed",
+          "quote": "Budget is not discussed and the buyer (Ben) is evaluator without confirmed authority",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "SF AIS_Why__c; Avoma discovery call 1 Jul 2026"
+        },
+        {
+          "area": "Decision process / evaluation timeline informal and unmapped",
+          "quote": "we aren't using an RFP tool of any formal knowledge",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "area": "Scope owner Mohammad Rasheed never engaged on a call",
+          "quote": "the feedback I got from Mohammad",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Win-strategy levers for an early, single-threaded, do-nothing-exposed discovery deal.",
+      "flags": [
+        "Multi-thread to Mohammad Rasheed (Director of Procurement), who owns the scope and strategy; Ben is a single-threaded, self-declared non-decision-maker.",
+        "Neutralize do-nothing: prove Merlin Intake beats a Coupa reconfiguration, since Ben floated 'we might just be configured wrong' as the cheaper alternative.",
+        "Win the 9 Jul demo on Ben's exact pain (non-catalog exception routing, AI human-in-the-loop), not a broad product tour, and give him internal proof to advocate."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Ben Slaugh",
+          "_source": "sfdc_contact_role",
+          "title": "Business Relationship Management",
+          "email": "bslaugh@crusoe.ai",
+          "role": "Champion",
+          "risk": "Single-thread; self-declared non-decision-maker; hedges that Coupa may just be misconfigured.",
+          "sentiment": "neutral-positive; dissatisfied with Coupa intake, exploratory, advocacy intent unproven",
+          "last_contact_date": "2026-07-01",
+          "_matched_ai": true
+        },
+        {
+          "name": "Mohammad Rasheed",
+          "_source": "sfdc_contact_role",
+          "title": "Director of Procurement, Corporate Services",
+          "email": "mrasheed@crusoe.ai",
+          "role": "Decision Maker",
+          "risk": "Owns the scope/strategy and likely the decision, but never engaged; never met.",
+          "sentiment": "unknown; never on a call",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Ben Slaugh is a developing champion: engaged, initiated the evaluation, and states intent to advocate internally, but he is not the decision maker, has made no introduction to the budget owner, will attend the 9 Jul demo alone, and hedges on the case. Advocacy intent is present; proof is not.",
+      "champion": "Ben Slaugh (developing)",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma discovery call 1 Jul 2026; OpportunityContactRole (Evaluator, PRIMARY)"
+    },
+    "ai_positioning_strength": {
+      "summary": "The agentic Merlin Intake / AI-orchestration story is the exact wedge Ben asked for (AI to filter requests and decide when to involve humans), but it has not yet been demonstrated and Slack embedding is not yet available. Lead the 9 Jul demo with Merlin's agentic orchestration to land the differentiation.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 / Moderate is corroborated by the calls: Ben explicitly wants AI intelligence in intake orchestration and already uses Claude and Gemini to draft RFPs, but he has not tied AI to a quantified outcome or budget, so appetite is real but early.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "political",
+          "detail": "Single-thread on Ben, who explicitly is not the decision maker; the scope owner Mohammad Rasheed has never engaged.",
+          "first_raised": "2026-07-01",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "category": "change_management",
+          "detail": "Do-nothing / reconfigure-Coupa is the primary threat; Ben floated fixing Coupa's configuration and policies instead of switching.",
+          "first_raised": "2026-07-01",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "Avoma discovery call 1 Jul 2026 (Ben Slaugh)"
+        },
+        {
+          "category": "budget",
+          "detail": "No budget discussed and no economic buyer identified for a $150k platform decision.",
+          "first_raised": "2026-07-01",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "SF AIS_Why__c; Avoma discovery call 1 Jul 2026"
+        },
+        {
+          "category": "integration",
+          "detail": "Buyer wants Slack-embedded intake; Zycus offers Teams today with Slack only on the roadmap.",
+          "first_raised": "2026-07-01",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "Avoma discovery call 1 Jul 2026 (Srishti, Zycus SC)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live and rep-led (call 1 Jul, demo 9 Jul), but thin: single-threaded, pre-budget, and scope has narrowed to intake-first.",
+      "cooling": false,
+      "items": [
+        "Buyer responsive and self-booked the next demo (1 Jul).",
+        "Single-thread on a non-decision-maker (1 Jul).",
+        "Scope narrowed from full suite to intake-first, phased posture (1 Jul)."
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Competition",
+        "text": "The real contest is inertia, not a rival: Ben conceded Coupa may just be misconfigured and a full replacement is a 'bigger project,' so the status quo can win by default.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Last meeting",
+        "text": "The 1 July discovery reframed the deal to intake-first orchestration and produced a buyer-booked demo for 9 July, but Ben will attend alone.",
+        "tone": "neu"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Mohammad Rasheed, Director of Procurement, is directing the scope from behind the scenes but has never joined a call and remains unmet.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New requirement",
+        "text": "Slack-embedded intake surfaced as a buyer need, and Zycus offers only Teams today with Slack on the roadmap.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "No budget, price, or authority discussed; Ben lacks buying authority and could not point to a budget owner.",
+        "tone": "warn"
+      }
+    ],
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Run the 9 July demo on non-catalog exception routing and AI human-in-the-loop, mapping each Coupa gap Ben named.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Ben self-booked a tailored intake demo and needs proof to advocate internally",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-09",
+          "expected_effect": "Converts exploratory interest into a Zycus preference and gives Ben internal ammunition, advancing toward Shortlisted."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Ben to bring Mohammad Rasheed into the next session and name who owns the intake budget.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Ben is a non-decision-maker; Mohammad sets scope but has never engaged",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps the decision maker and budget authority, breaking single-thread risk."
+        },
+        {
+          "rank": 3,
+          "action": "Quantify the intake pain with Ben: monthly non-catalog request volume, hours lost, and rework cost.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Pain is confirmed but unquantified; no business case for a $150k spend",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-22",
+          "expected_effect": "Builds a defensible ROI case the economic buyer will need to fund the project."
+        },
+        {
+          "rank": 4,
+          "action": "Propose an intake-first Phase 1 that coexists with Coupa to de-risk the rip-and-replace concern.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Ben called full Coupa replacement a 'bigger project' and floated reconfiguring Coupa instead",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-08-05",
+          "expected_effect": "Neutralizes the do-nothing threat and lowers the barrier to a first commercial commitment."
+        },
+        {
+          "rank": 5,
+          "action": "Map Crusoe's evaluation path and timeline with Ben: who reviews the demo, who signs off on scope.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Process is informal with no RFP, timeline, or approval chain surfaced",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-08-05",
+          "expected_effect": "Creates a mutual plan so the deal has a path to a decision rather than drifting."
+        }
+      ]
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "Neutral and exploratory: Ben is here for a 'first early look,' hedges that Coupa 'might just be configured wrong,' and needs to see orchestration beat Coupa before advocating; no Zycus-specific preference stated (1 Jul)."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative pain only: ~70% non-catalog intake via a Jira workaround, manual goods receipt on a $60M GPU order, intimidating onboarding form; no cost, savings, or ROI figure and no budget (1 Jul)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "A 10-day-old mid-market deal where Ben Slaugh, a ground-level evaluator who says he is not the decision maker, is scoping an intake/orchestration replacement for Coupa+Jira; the only thing standing up the deal is his own internal pitch, and the field has already narrowed to intake-first with the budget owner Mohammad Rasheed never on a call.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "We are early but genuinely in the game: Ben brought us in for a 'first early look' at whether Zycus can orchestrate intake better than Coupa, and a tailored intake demo is booked for 9 July (Avoma, 1 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "Ben is not the buyer: he said 'I'm not the final decision maker here by any means' on 1 July, and the person shaping scope, Mohammad Rasheed, has never joined a call."
+          },
+          {
+            "tone": "warn",
+            "text": "The primary threat is do-nothing: Ben conceded Coupa 'might just be configured wrong' and a full replacement is a 'bigger project,' so status quo can win by inertia (1 Jul)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "Momentum is real for a 10-day-old deal: two discovery calls (25 Jun, 1 Jul) and a demo Ben self-selected for Thursday 9 July at 10am Central (Avoma, 1 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "It is still single-thread, generic-demo stage: Ben confirmed 'it'll just be me' for the 9 July demo and no pricing, security, or timeline topics have opened."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is thin: no budget, no decision timeline, and no economic buyer named; Ben is exploring 'to then tell others internally' rather than driving a purchase (Avoma, 1 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "Scope narrowed to intake-first, a phased, cost-conscious posture ('replace Jira intake' now, full Coupa displacement a 'bigger project' later), signalling caution not conviction (1 Jul)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single-thread on a non-decision-maker: if Ben's internal pitch to Mohammad and leadership does not land, the deal has no other advocate (Avoma, 1 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "Do-nothing / reconfigure-Coupa is the competitor, not another vendor: Ben openly questioned whether the intake problem is just a Coupa misconfiguration (1 Jul)."
+          }
+        ]
+      },
+      "factors": {
+        "seniority": {
+          "strength": -0.5,
+          "evidence": "Single-threaded on Ben, a self-declared non-decision-maker; Mohammad Rasheed (Director of Procurement) never on a call."
+        },
+        "commitment": {
+          "strength": -0.4,
+          "evidence": "No budget, no EB, exploratory 'first early look'; buyer defers a purchase decision to others."
+        },
+        "do_nothing_risk": {
+          "strength": -0.6,
+          "evidence": "Ben floated reconfiguring Coupa in place instead of switching; full replacement called a 'bigger project.'"
+        }
+      }
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full source-to-pay suite implied by the opportunity name and product list (iSource, iSupplier, eProcurement, Merlin, iRisk, Merlin Intake)",
+      "to": "Intake / orchestration first, with sourcing, eProc and the rest phased later",
+      "detail": "On 1 July Ben narrowed the live scope to intake: 'the main focus is intake,' those other products are 'things we'd get into later.' Mohammad's 'two-pronged approach' replaces the Jira intake bolt-on now and defers full Coupa displacement as 'a bigger project.' A defensive, cost-conscious, phased posture."
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 1.3,
+      "mom": 51.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 1.3,
+        "deal_momentum": 51.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 0.0,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 1.3,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -10.6,
+        "ceiling": 30.0,
+        "momentum_adj": 0.9,
+        "scope_adj": -7.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 0.9,
+            "evidence": "momentum 52 vs stage-expected 50"
+          },
+          {
+            "factor": "scope_reduced",
+            "points": -7.0,
+            "evidence": "scope narrowed vs prior \u2014 On 1 July Ben narrowed the live scope to intake: 'the main focus is intake,' those other products are 'things we'd get into later.' Mohammad's 'two-pronged appr (buyer likely defensive on cost or phased implementation)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 51.8,
+        "pre_decay": 51.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 4.8,
+            "evidence": "Next Step carries 2 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 0.0,
+        "contributions": []
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "stage_integrity",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 1 is carried by champion strength +0.30 (weight 15); business case strength +0.30 (weight 10). Offsetting it: scope narrowed vs prior \u2014 On 1 July Ben narrowed the live scope to intake: 'the main focus is intake,' those other products are 'things\u2026.",
+        "deal_momentum": "Momentum 52 (roughly flat): Next Step carries 2 dated milestone(s) \u2014 actively worked. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 0: no break-risk was observed in the swept evidence. Coverage is thin, so read this as 'nothing seen yet,' not 'nothing there.'",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (1), nudged by commitment 8 and momentum 52, and dragged by risk 0. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (stage integrity, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Crusoe Energy Systems \u2014 Qualified \u00b7 $150K \u00b7 closes 30 Nov",
+        "intro": "A 10-day-old mid-market deal where Ben Slaugh, a ground-level evaluator who says he is not the decision maker, is scoping an intake/orchestration replacement for Coupa+Jira; the only thing standing up the deal is his own internal pitch, and the field has already narrowed to intake-first with the budget owner Mohammad Rasheed never on a call",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 1,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "We are early but genuinely in the game; Ben brought us in for a 'first early look' at whether Zycus can orchestrate intake better than Coupa, and a tailored intake demo is booked for 9 July (Avoma, 1 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "Ben is not the buyer; he said 'I'm not the final decision maker here by any means' on 1 July, and the person shaping scope, Mohammad Rasheed, has never joined a call"
+              },
+              {
+                "tone": "warn",
+                "text": "The primary threat is do-nothing; Ben conceded Coupa 'might just be configured wrong' and a full replacement is a 'bigger project,' so status quo can win by inertia (1 Jul)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 52,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Momentum is real for a 10-day-old deal; two discovery calls (25 Jun, 1 Jul) and a demo Ben self-selected for Thursday 9 July at 10am Central (Avoma, 1 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "It is still single-thread, generic-demo stage; Ben confirmed 'it'll just be me' for the 9 July demo and no pricing, security, or timeline topics have opened"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 0,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single-thread on a non-decision-maker; if Ben's internal pitch to Mohammad and leadership does not land, the deal has no other advocate (Avoma, 1 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "Do-nothing / reconfigure-Coupa is the competitor, not another vendor; Ben openly questioned whether the intake problem is just a Coupa misconfiguration (1 Jul)"
+              }
+            ],
+            "footer": "Competitive picture: The single strongest current threat is do-nothing: reconfiguring Coupa in place rather than switching, which Ben openly floated on 1 Jul ('we might just be configured wrong')."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is thin; no budget, no decision timeline, and no economic buyer named; Ben is exploring 'to then tell others internally' rather than driving a purchase (Avoma, 1 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "Scope narrowed to intake-first, a phased, cost-conscious posture ('replace Jira intake' now, full Coupa displacement a 'bigger project' later), signalling caution not conviction (1 Jul)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Run the 9 July demo on non-catalog exception routing and AI human-in-the-loop, mapping each Coupa gap Ben named. (by 9 Jul)",
+              "Ask Ben to bring Mohammad Rasheed into the next session and name who owns the intake budget. (by 20 Jul)",
+              "Quantify the intake pain with Ben: monthly non-catalog request volume, hours lost, and rework cost. (by 22 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [
+      {
+        "meeting": "Discussion with Zycus + Crusoe Energy (25 Jun 2026)",
+        "reason": "Referenced in activities and recapped on the 1 Jul call; transcript not in the evidence package, read via the 1 Jul recap only."
+      }
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "120 days",
+    "avoma_attendees": [
+      "Ben Slaugh"
+    ],
+    "gaps": [
+      "Economic buyer / budget owner unidentified; budget never discussed.",
+      "Scope owner Mohammad Rasheed (Director of Procurement) has never engaged on a call.",
+      "Decision process, evaluation criteria formality, and timeline are informal and unmapped.",
+      "25 Jun 2026 first discovery call transcript not available; read only via the 1 Jul recap."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:00"
+}

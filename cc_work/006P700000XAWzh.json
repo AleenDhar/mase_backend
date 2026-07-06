@@ -1,0 +1,254 @@
+{
+  "opp_id": "006P700000XAWzh",
+  "hard": {
+    "opp_id": "006P700000XAWzh",
+    "opp_name": "Orano_RFP_April26",
+    "account_name": "Orano",
+    "account_industry": "Utilities",
+    "billing_country": "Canada",
+    "owner_name": "Mike Flowers",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2026-12-15",
+    "days_to_close": 162,
+    "created_date": "2026-04-23",
+    "qualified_date": "2026-04-27",
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": "2026-07-02",
+    "products": "iContract;iSource;iSupplier;eProcurement;eInvoicing;Merlin",
+    "next_step": "5/27 - RFP deadline extended to June 26th from June 5th per email from Chris Chovin. Working with Ritika, Jordan and Vishal on submission with weekly check ins. 5/12MF - RFP received, need to submit intent to respond by 5/20 with submission due June 5th.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "April 23 call (Chris Chovin) described a blank-slate S2C need to replace outdated Excel/Outlook tools, with heavy data-security and slow-adoption constraints from French ownership and nuclear regulations; zero AI/Merlin mentions across the conversation.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XAWzh/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": true,
+      "headline": "We are answering Orano's formal S2P RFP (submission due 17 Jul) with no champion, no economic buyer, and a single procurement coordinator as our only contact. The RFP is genuinely live, but with zero relationship inside the committee this is a column-fodder risk on a French-owned, security-gated nuclear account.",
+      "math": "162 days to close from 2026-07-06 (close 2026-12-15). Deal created 2026-04-23, 74 days old, all of it in Formal Evaluation since the 2026-05-28 stage move from Qualified. The RFP is in flight: the submission deadline was pushed 5 Jun to 26 Jun (Next Step 2026-05-27) and again to 17 Jul, with Orano sending additional clarifications on 2026-07-02, so the process is active, not dead. But the motion is one-directional RFP paperwork: no discovery session, no demo, no NDA executed, and no buyer-side stakeholder mapped in 74 days. To close by 15 Dec the deal must run shortlist, demos, workshops, commercials, ROI, EB approval, and contracting in ~5 months from a zero-relationship base, which is optimistic. Forecast Pipeline is correct.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "RFP submission is live and was extended to 17 Jul with additional clarifications received on 2026-07-02 (SF Task 2026-07-02), so the buyer is engaged on the process",
+        "74 days in Formal Evaluation with no discovery session, no demo, and no NDA executed despite these being open next steps since 2026-05-12 (SF Next Step)",
+        "Zero buyer-side OpportunityContactRoles; Chris Chovin is the only named contact and reads as an RFP/procurement coordinator, role and influence unconfirmed",
+        "No Economic Buyer or Decision Maker engaged; the April 23 discussion put decision authority behind the French parent's data-security governance (AIS rationale, SF Description)",
+        "No champion advocating internally and no competitive intel: incumbent, vendor count, and evaluation criteria all unknown"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "On the 23 April discussion with Zycus, Chris Chovin described Orano's current state as manual Excel and Outlook workflows and a desire for a blank-slate source-to-contract platform to replace outdated tools (SF AIS rationale, Description). That establishes a qualitative digitisation pain, but no quantified impact has been captured anywhere: no spend under management, cycle-time, headcount, compliance-risk, or savings figures are on record, and no MEDDPICC value fields are populated. Quantifying the business case with a named finance or procurement sponsor is a ranked move; until then the value story is scope-inferred (full S2P suite) rather than buyer-confirmed.",
+        "sources": ["SF AIS_Why (23 Apr call, Chris Chovin)", "SF Description", "SF Products__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No Economic Buyer is named in any source: there are zero OpportunityContactRoles, no EB MEDDPICC fields populated, and Chris Chovin (our only contact) reads as an RFP/procurement coordinator rather than budget authority. The one directional clue is the 23 April call, where Chris Chovin flagged that data-security and adoption constraints flow down from Orano's French parent and nuclear regulation, which suggests real decision and sign-off authority sits with the French ownership's security/IT governance, not the Canadian procurement desk we are talking to. Identifying and reaching that budget owner is a top move before the RFP scoring locks positioning.",
+        "sources": ["SF OpportunityContactRole (zero roles)", "SF Next Step 2026-05-27 (Chris Chovin)", "SF AIS_Why (23 Apr call)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation is a formal RFP, and the 23 April call surfaced the criteria that will actually decide it: nuclear-grade data security, compliance with French-parent governance, and ease/speed of adoption given a workforce moving off Excel and Outlook (SF AIS rationale). Breadth also matters, given the full S2P scope requested (iContract, iSource, iSupplier, eProcurement, eInvoicing, Merlin). These criteria are inferred from a single early call and the RFP scope rather than confirmed line-by-line against the RFP scoring sheet; obtaining the weighted RFP criteria from Chris Chovin would convert this from partial to confirmed.",
+        "sources": ["SF AIS_Why (23 Apr call, Chris Chovin)", "SF Products__c", "SF Next Step (RFP process)"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Orano is running a structured RFP: intent-to-respond was due 20 May, and the submission deadline has been formally extended twice (5 Jun to 26 Jun per Chris Chovin's 27 May email, then to 17 Jul with additional clarifications issued on 2 Jul). That cadence tells us there is a governed evaluation with a real timeline, managed through Chris Chovin. What is missing is the shape after submission: no shortlist criteria, demo/workshop plan, or approval chain is documented, and the French-parent security gating means final approval likely routes through ownership governance we have not accessed. Mapping the post-submission stages is the process move.",
+        "sources": ["SF Next Step 2026-05-27", "SF Task 2026-07-02", "SF AIS_Why (23 Apr call)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Paper process is early and largely dark. The only mechanic visible is the NDA: 'Execute NDA for formal engagement' has been an open next step since 12 May and is still not executed 74 days in, which blocks deeper discovery, roadmap and technical sharing. No MSA, Order Form, SOW, legal-review, InfoSec-questionnaire, or procurement-channel detail is on record, and Current_Contract_Expiration__c is empty so there is no contractual forcing function. Given nuclear-sector security, expect a heavy InfoSec/DPA track once engaged; getting the NDA signed and the RFP's security requirements in writing is what would create visibility here.",
+        "sources": ["SF Next Step 2026-05-12 (NDA open)", "SF Current_Contract_Expiration__c (empty)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The confirmed pain from the 23 April discussion is operational: Orano runs sourcing and contracting on manual Excel and Outlook and wants a modern, unified source-to-contract platform (SF AIS rationale). Chris Chovin also articulated constraint-pain: heavy data-security requirements and slow adoption risk stemming from French ownership and nuclear regulation, which is as much a risk to solve as a benefit to sell. The pain owner is not yet named beyond Chris Chovin, and the financial/operational cost of the status quo is unquantified. This is genuine, but confirmed by one early call rather than multi-threaded discovery.",
+        "sources": ["SF AIS_Why (23 Apr call, Chris Chovin)", "SF Description"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Chris Chovin is the only named contact and the sole evidence of him is transactional: emailing RFP deadline extensions and clarifications (Next Step 2026-05-27, Task 2026-07-02). There is no advocacy signal, no introductions to other stakeholders, no coaching on criteria or competitors, and no evidence he is a business sponsor rather than a procurement coordinator. In an RFP with no relationship, the absence of a champion is the single biggest structural risk, because our Merlin/security differentiation will not be argued for us inside the committee. Earning a coach who will map the committee is the priority.",
+        "sources": ["SF Next Step 2026-05-27 (Chris Chovin)", "SF Task 2026-07-02", "SF OpportunityContactRole (zero roles)"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive picture is entirely dark: Competitors__c and the free-text competition fields are empty, no incumbent tool is named beyond generic Excel/Outlook manual workflows, and there is no read on how many vendors are in the RFP. We do not know whether this is a displacement of a legacy suite, a consolidation of point tools, or a net-new build, which means we cannot yet aim the Zycus wedge (unified S2P plus nuclear-grade security). Because the shortlist is usually named once in early discovery, extracting the vendor field and incumbent from Chris Chovin is a required move before we can position to win rather than merely comply.",
+        "sources": ["SF Competitors__c (empty)", "SF Next Step / Tasks (no competitor named)", "SF AIS_Why (manual Excel/Outlook current state)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal is an active but thin RFP: real process motion (two deadline extensions, fresh clarifications on 2 Jul) against a flat relationship (single contact, no discovery, no NDA). Last genuine buyer touch is Orano's 2 Jul RFP clarifications and deadline push to 17 Jul.",
+      "items": [
+        {"change": "Orano extended the RFP submission deadline to 17 Jul and sent additional responses and clarifications that do not materially change the Zycus response", "date": "2026-07-02"},
+        {"change": "RFP submission deadline extended from 5 Jun to 26 Jun per Chris Chovin email; Zycus working submission with weekly check-ins", "date": "2026-05-27"},
+        {"change": "Stage advanced from Qualified to Formal Evaluation", "date": "2026-05-28"},
+        {"change": "Deal reassigned to Mike Flowers and moved Initial Interest to Qualified", "date": "2026-04-27"},
+        {"change": "Discovery discussion with Zycus: Chris Chovin described a blank-slate S2C need to replace Excel/Outlook under French-parent security constraints", "date": "2026-04-23"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competitive landscape is completely dark. No competitor, incumbent, or RFP vendor count is named in any Salesforce field, next step, task, or call, so we cannot yet tell whether this is a displacement, a consolidation of manual point tools, or a net-new build. The nearest thing to an incumbent is Orano's manual Excel/Outlook state (23 Apr call). The single most important competitive action is not ranking rivals but discovering them: extract the vendor shortlist and any incumbent from Chris Chovin before RFP scoring, or we risk positioning blind.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Orano's stated expectations center on nuclear-grade data security, French-parent compliance, and low-friction adoption off manual tools; Zycus fits the S2P breadth but the security/governance bar is unproven and our AI story is a poor lead here.",
+      "items": [
+        {"criterion": "Nuclear-grade data security and French-parent governance compliance", "position": "exposed", "quote": "heavy data-security and slow-adoption constraints from French ownership and nuclear regulations", "date": "2026-04-23", "source": "SF AIS_Why (23 Apr call, Chris Chovin)"},
+        {"criterion": "Unified source-to-pay to replace manual Excel/Outlook workflows", "position": "aligned", "quote": "blank-slate S2C platform to replace outdated tools", "date": "2026-04-23", "source": "SF AIS_Why (23 Apr call, Chris Chovin)"},
+        {"criterion": "Ease and speed of user adoption", "position": "partially aligned", "quote": "slow-adoption constraints", "date": "2026-04-23", "source": "SF AIS_Why (23 Apr call, Chris Chovin)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Submit the Zycus RFP response and clarifications by 17 Jul.", "said_by": "Chris Chovin", "date": "2026-07-02", "addressed": false, "quote": "RFP deadline has been extended to 7/17. Add'l responses and clarifications received which doesn't materially change the Zycus response.", "source": "SF Task 2026-07-02"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Orano to execute the NDA and grant a detailed discovery/demo session with the solution consulting team.", "who": "Buyer", "grounding_quote": "Execute NDA for formal engagement. Plan detailed discovery session with solution consulting team", "date": "2026-05-12", "due": "2026-07-17", "status": "overdue", "source": "SF Next Step 2026-05-12"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "No OpportunityContactRole or EB field; authority implied to sit with French parent governance", "status": "not addressed", "date": "2026-04-23", "gap_type": "knowledge", "source": "SF Contact Roles + AIS_Why (23 Apr)"},
+        {"area": "Champion", "quote": "Chris Chovin only, role/influence unconfirmed; no advocacy evidence", "status": "not addressed", "date": "2026-07-02", "gap_type": "knowledge", "source": "SF Next Step / Task"},
+        {"area": "Competitive field / incumbent", "quote": "No competitor or incumbent named in any source", "status": "not addressed", "date": "2026-07-02", "gap_type": "knowledge", "source": "SF Competitors__c (empty)"},
+        {"area": "Discovery depth", "quote": "No discovery session held; NDA still open since 12 May", "status": "not addressed", "date": "2026-05-12", "gap_type": "knowledge", "source": "SF Next Step"},
+        {"area": "Contact roles / org chart", "quote": "Build an org chart and map all the key contacts; Identify more contact roles", "status": "not addressed", "date": "2026-04-27", "gap_type": "hygiene", "source": "SF Task 2026-04-27 (Opportunity Health)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a live formal RFP where Zycus holds zero relationship. Winning depends on breaking single-threading, positioning on security over AI, and getting a read on the competitive field before scoring locks.",
+      "flags": [
+        "Break single-threading now: Chris Chovin is a process coordinator, not a sponsor, so get to the S2P business owner and the French-parent IT/security lead before RFP scoring.",
+        "Win on security and adoption, not AI: lead the response with nuclear-grade data-security and change-management support given the French-ownership constraints; hold Merlin as a later proof point.",
+        "Close the competitive blind spot: find out who else is bidding and whether a legacy tool is being displaced so the wedge can be aimed rather than generic."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Chris Chovin", "title": null, "role": "Unknown", "last_contact_date": "2026-07-02", "sentiment": "neutral", "risk": "Single-threaded contact of unconfirmed influence, appears to be an RFP/procurement coordinator; no advocacy and no route yet to business sponsors or budget authority.", "source": "SF Next Step 2026-05-27, SF Task 2026-07-02, 23 Apr discussion"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified or developed. Chris Chovin is the only named contact and his role reads as RFP/procurement coordination, with no evidence of internal advocacy, introductions, or criteria coaching. In an RFP with zero relationship, the missing champion is the single biggest structural risk to the win.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole (zero roles), SF Next Step 2026-05-27, SF Task 2026-07-02"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in the product scope but AI is the wrong lead for this buyer: the 23 April call recorded zero AI interest and explicit data-security/adoption caution from French ownership and nuclear regulation. Positioning strength is low here by design; leading with AI would hurt, so keep Merlin as a Phase 2 proof point behind security and unified S2P.",
+      "score": "low",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 4/Moderate, but the rationale is explicit that the buyer showed no AI appetite: no mention of Merlin, ANA, agentic, GenAI, or intake, and security gating from the French nuclear parent constrains AI adoption. Treat this as security-first, not AI-led.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "Decision and sign-off authority appears to sit with Orano's French parent governance, remote from the Canadian procurement contact we are talking to.", "first_raised": "2026-04-23", "date": "2026-04-23", "status": "open", "source": "SF AIS_Why (23 Apr call)"},
+        {"category": "executive_alignment", "detail": "No economic buyer or executive sponsor engaged 74 days in; we have no access to power.", "first_raised": "2026-04-27", "date": "2026-07-02", "status": "open", "source": "SF Contact Roles + Task 2026-04-27 (Decision Maker not identified)"},
+        {"category": "change_management", "detail": "Slow-adoption risk flagged for a workforce moving off manual Excel/Outlook under nuclear-sector constraints.", "first_raised": "2026-04-23", "date": "2026-04-23", "status": "open", "source": "SF AIS_Why (23 Apr call)"},
+        {"category": "security_review", "detail": "Nuclear-grade data-security requirements are a stated gate; a heavy InfoSec/DPA track is likely once engaged and is currently unproven.", "first_raised": "2026-04-23", "date": "2026-04-23", "status": "open", "source": "SF AIS_Why (23 Apr call)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The RFP is active (clarifications 2 Jul, deadline 17 Jul), so the process is not cooling, but confidence is low because we are single-threaded to a coordinator with no champion, EB, or competitive read.",
+      "cooling": false,
+      "items": [
+        "Positive: buyer sent additional RFP clarifications and extended the deadline to 17 Jul (Task 2026-07-02)",
+        "Negative: single contact, no discovery session, NDA unsigned since 12 May"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Ask Chris Chovin to introduce the S2P project owner and IT security lead.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Single-threaded to an RFP coordinator with no route to business sponsors or budget authority", "trigger_date": "2026-05-27", "act_by": "2026-07-13", "expected_effect": "Creates a coach and access to power before scoring, lifting win probability from column-fodder odds."},
+        {"rank": 2, "action": "Get the NDA executed and book a security-focused discovery and demo session.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "NDA and detailed discovery open since 12 May, still not done", "trigger_date": "2026-05-12", "act_by": "2026-07-16", "expected_effect": "Unblocks deeper discovery and lets us prove nuclear-grade security fit ahead of shortlist."},
+        {"rank": 3, "action": "Submit an RFP response that leads on data security and adoption support, not AI.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "French-parent security and slow-adoption constraints stated on the 23 Apr call", "trigger_date": "2026-04-23", "act_by": "2026-07-17", "expected_effect": "Aligns the response to Orano's real criteria and avoids an AI-led pitch that would misfire."},
+        {"rank": 4, "action": "Ask Chris Chovin for the RFP evaluation criteria and the vendor shortlist.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No competitive intel, incumbent, or weighted criteria on record", "trigger_date": "2026-07-02", "act_by": "2026-07-20", "expected_effect": "Lets us position the wedge against the real field instead of bidding blind."},
+        {"rank": 5, "action": "Map the evaluation committee and identify the economic buyer at the French parent.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer engaged; authority implied to sit with French ownership", "trigger_date": "2026-04-27", "act_by": "2026-08-04", "expected_effect": "Surfaces budget authority so a value case can be aimed at a real sponsor."}
+      ]
+    },
+    "customer_preference": {"level": "low", "evidence": "Orano has shared an RFP and set submission dates but made no Zycus-specific ask, granted no discovery access, and named no sponsor; this reads as a compliance evaluation, not a lean toward Zycus (Next Step 2026-05-27, Task 2026-07-02)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: replace manual Excel/Outlook with a unified S2C platform (23 Apr call); no ROI, savings, spend-under-management, or cycle-time figures quantified anywhere."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "Full source-to-pay suite (iContract, iSource, iSupplier, eProcurement, eInvoicing, Merlin)", "to": "Full source-to-pay suite (unchanged)", "detail": "No scope narrowing observed; the RFP scope remains the full S2P suite. Division reclassified Mid-Enterprise to New Markets on 2026-05-26, an internal segmentation change, not a scope cut."},
+    "deal_scores_evidence": {
+      "summary": "We are responding to Orano's formal S2P RFP (submission due 17 Jul) but with no champion, no economic buyer, and a single procurement coordinator as our only contact, a serious column-fodder risk on a French-owned, security-gated nuclear account.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low: we are one of several vendors answering Orano's formal RFP with no relationship inside the committee, with Chris Chovin, an RFP coordinator, as our only contact (Next Step 27 May; discovery call 23 Apr)."},
+          {"tone": "warn", "text": "No economic buyer or budget owner is engaged and decision authority appears to sit with the French parent's security governance, which we have not reached (23 Apr call, AIS rationale)."},
+          {"tone": "warn", "text": "No champion is coaching us on criteria or the competitor set, so our security and Merlin differentiation risks going unheard on an AI-cautious nuclear account (SF Contact Roles, zero roles)."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "The RFP is genuinely live: Orano extended the deadline twice (5 Jun to 26 Jun to 17 Jul) and sent additional clarifications on 2 Jul, so the process is active (Task 2026-07-02)."},
+          {"tone": "warn", "text": "But the motion is one-directional RFP paperwork: no discovery session, no demo, and no NDA executed despite these being open since 12 May (SF Next Step)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is minimal: Orano shared an RFP and set submission dates but made no Zycus-specific ask, granted no discovery access, and named no sponsor (Next Step 27 May)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The core risk is being column fodder on a compliance RFP: single-threaded to a coordinator, no champion, no economic buyer, and no competitive intel on a 150k, security-constrained nuclear account."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": -0.8, "evidence": "No champion; only Chris Chovin, an RFP coordinator (Next Step 27 May)"},
+        "economic_buyer": {"strength": -0.7, "evidence": "No EB engaged; authority implied at French parent security governance (23 Apr call)"},
+        "customer_commitment": {"strength": -0.5, "evidence": "RFP shared but no Zycus-specific ask or discovery access (Task 2026-07-02)"},
+        "deal_momentum": {"strength": 0.1, "evidence": "RFP active, deadline extended to 17 Jul, clarifications 2 Jul"}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "No competitor or incumbent has surfaced yet; we are answering a formal RFP with no read on the field or whether a legacy tool is being displaced.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Chris Chovin, a procurement/contracts coordinator, is our only contact and we have never reached a business sponsor or the budget owner at the French parent.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The last real exchange was Orano's 2 Jul RFP clarifications and a deadline push to 17 Jul, active process but still paperwork, not a discovery conversation.", "tone": "neu"},
+      {"lens": "Commercials", "text": "The deal is 150k but with no budget owner engaged and no ROI discussion, the price cannot yet be justified or defended.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history full; contact roles (zero); Next Step + AIS rationale referencing the 23 Apr discussion",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma transcripts discovered via opp+account+attendee; the only call signal is the 23 Apr discussion summarized in the AIS rationale (Chris Chovin), not a full transcript",
+      "No buyer-side OpportunityContactRoles; economic buyer, decision maker, and champion all unidentified",
+      "No competitive intel: incumbent, vendor count, and RFP evaluation criteria unknown",
+      "No NDA executed and no discovery session held, so pain is confirmed only at a single early-call level"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,679 @@
+{
+  "opp_id": "006P700000Zw9Rl",
+  "hard": {
+    "opp_id": "006P700000Zw9Rl",
+    "opp_name": "Lincon Fin Jun'26",
+    "account_name": "Lincoln Financial",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Edward Dlugosz",
+    "owner_title": "Regional Sales Director",
+    "manager_name": "Alexa Bradley",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 250000.0,
+    "close_date": "2026-12-01",
+    "days_to_close": 148,
+    "created_date": "2026-06-23T18:31:54.000+0000",
+    "qualified_date": "2026-06-24",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-07-03T09:08:42.000+0000",
+    "products": "iSource;iSupplier;eProcurement;Agentic AI",
+    "next_step": "Received NDA for a RFP, executed and awaiting fully executed NDA and then RFP",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "\u2022 Lincoln Financial engagement is at the paperwork stage: 'RFP received on 23 Jun'26, NDA executed,' with next step to await the fully executed NDA and RFP.\n\u2022 Agentic AI is tagged as a scoped product, signaling AI could enter the evaluation, but no agentic discussion has occurred yet.\n\u2022 No discovery detail, pain points, or AI sentiment are captured, so evidence is too thin to place appetite above exploratory.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Zw9Rl/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "At Risk",
+      "critical": false,
+      "headline": "Brand-new RFP deal, 13 days old, awaiting Lincoln Financial's fully executed NDA (their signer was on PTO) before the RFP document is released. Single-threaded to one sourcing contact, Jordan Bullock, with no economic buyer, decision maker, or champion mapped and no discovery yet. On an RFP-driven, buyer-controlled process this is the only window to shape the evaluation rubric and build an internal coach before Zycus is forced to respond blind. Discovery and multi-threading in the next 14 days are the difference between a shaped bid and a commodity response.",
+      "math": "Swept 2026-07-06: 148 days to close (2026-12-01). Created 2026-06-23, 13 days old, stage Qualified since 2026-06-24. No submission-date fields populated (Qualified/Formal_Eval/Shortlisted all null), so time-in-stage is measured from CreatedDate: 13 days in Qualified. LastActivityDate 2026-06-30 (email thread with Jordan Bullock re NDA), so the deal is LIVE, not cold. Enterprise S2P RFP cycles typically run Qualified-to-Shortlisted in 90-120 days across RFI/RFP rounds, demos and vendor shortlisting, so a Dec 2026 close is credible on the calendar. No forward slip since creation. The risk is not the date, it is structural: zero MEDDPICC coverage and a single thread mean Zycus has no way to influence the rubric or push its response once the RFP is issued. Pace required: discovery call and a second thread within 14 days (before RFP issuance), RFP response within 30 days of receipt, advance to Shortlisted by mid-September 2026.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Deal created 2026-06-23, 13 days old, stage Qualified, close 2026-12-01 (148 days out). LastActivityDate 2026-06-30, LIVE per server pulse.",
+        "Next_Step__c (2026-06-23): Received NDA for a RFP, executed and awaiting fully executed NDA and then RFP. Blocking event: Lincoln must return the fully executed NDA (their signer was on PTO per the 2026-06-30 inbound email) and issue the RFP document before Zycus can respond.",
+        "Zero OpportunityContactRoles on record. Single-threaded to Jordan Bullock, the Lincoln sourcing contact routing the NDA and RFP (Tasks/emails 2026-06-23 and 2026-06-30). No Economic Buyer, Decision Maker, Champion or Executive Sponsor mapped.",
+        "No MEDDPICC coverage documented: Metrics, Pain, Decision Criteria, Decision Process, Paper Process, Champion, Competition all gap across the synthesis-map fields (all null/empty). No Avoma calls discovered via opp+account+attendee discovery (0 meetings).",
+        "RFP-driven motion: the buyer controls the evaluation criteria. Zycus has no visibility into what the committee values, no coach to review draft rubrics, and no champion to advocate the response. The pre-RFP discovery call is the only window to influence the rubric and build a coach before responding.",
+        "Products scope confirmed: iSource, iSupplier, eProcurement, Agentic AI (Products__c). $250k. No competitor named in any source; RFP context implies a multi-vendor field but specific rivals are unknown.",
+        "Forecast Pipeline is defensible: the deal is 13 days old, awaiting a buyer deliverable (NDA + RFP), and has not entered active evaluation. The single-thread and zero MEDDPICC coverage are the structural risks that will block progression post-RFP if not closed in the next 14 days."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 2026-06-23: RFP request (signals intent, not quantified pain)",
+          "SF synthesis-map fields (Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c, Compelling_Event__c) all null",
+          "Avoma: 0 discovery calls (opp+account+attendee pull)"
+        ],
+        "narrative": "No quantified business problem or ROI case exists yet. Every Metrics/Pain synthesis-map field is null and there are no Avoma discovery calls to surface a savings, cycle-time, or spend-under-management target. The only evidence of intent is the RFP itself (Next_Step__c 2026-06-23), which tells us Lincoln Financial is formally evaluating a source-to-pay platform but reveals nothing about the cost, headcount, or process pain driving it. On a $250k S2P initiative at a BFSI enterprise there is almost always a quantified efficiency or compliance goal behind the RFP, but none is captured. Without it Zycus cannot anchor its RFP response to measurable outcomes. The move is a pre-RFP discovery call with Jordan Bullock (and ideally the procurement lead) to surface and quantify the business case before responding."
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "sources": [
+          "SF OpportunityContactRole: 0 rows (no Economic Buyer role)",
+          "SF synthesis-map fields (X10a_Sponsor__c, Who_will_approve_budget__c, Executive_Sponsor_Identified__c) all null",
+          "SF emails 2026-06-23 to 2026-06-30: only NDA-routing logistics, no budget authority revealed",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No economic buyer is identified and the conversation to date gives no clue who owns the budget. The only two-way exchange is administrative: Edward Dlugosz and Jordan Bullock coordinating the NDA countersignature, with a Lincoln signer noted as on PTO (email 2026-06-30). That is process routing, not a budget conversation, so there is no basis to infer the EB from the evidence, and inventing one is forbidden. What the evidence does show is that Jordan sits in the sourcing/procurement function and is the current entry point, which is a starting node for the org map, not the budget holder. Mapping the economic buyer (likely a Procurement VP or Finance leader) is a top move on the pre-RFP discovery call, before the RFP forces a blind response."
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "sources": [
+          "SF synthesis-map fields (Business_Requirements__c, Top_Challenges_Priorities__c, AI_Needs_in_RFP_Rating__c) all null",
+          "SF Next_Step__c 2026-06-23: RFP pending (criteria will be codified in the RFP)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "The evaluation criteria are genuinely unknown because the RFP document has not yet been released (awaiting the fully executed NDA). Once issued, the RFP will codify the committee's weighting, at which point Zycus can respond only to criteria as written. No requirements, priorities or AI-need signals are captured in any field or call. This is the single most valuable thing to learn before the RFP lands: whether the committee weights ERP-native integration, ease of use, price, or AI/agentic capability shapes the entire response strategy. The move is to ask Jordan directly, on the pre-RFP call, what the committee cares most about and whether a draft rubric or requirements list can be shared."
+      },
+      "decision_process": {
+        "status": "gap",
+        "sources": [
+          "SF synthesis-map fields (What_is_the_decision_process__c, Mandate__c, Multiple_approvals__c) all null",
+          "SF Next_Step__c 2026-06-23: formal RFP process underway",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "The decision process is only partially visible from the shape of the engagement: Lincoln Financial is running a formal RFP with an NDA gate, which tells us this is a structured, procurement-led evaluation rather than a direct sole-source. Beyond that the sequence is unknown: number of shortlisted vendors, demo/RFI rounds, workshop stages, and the approval chain are all undocumented, and there are no calls to read the process from who joins when. Because it is an RFP, the buyer owns the timeline. The move is to establish the process map on the pre-RFP call: how many vendors, what stages follow the RFP response, who sits on the evaluation committee, and the target decision date."
+      },
+      "paper_process": {
+        "status": "partial",
+        "sources": [
+          "SF emails 2026-06-23 to 2026-06-30: NDA routed for countersignature via DocuSign, Lincoln signer on PTO",
+          "SF Next_Step__c 2026-06-23: awaiting fully executed NDA",
+          "SF Current_Contract_Expiration__c: null"
+        ],
+        "narrative": "The only paper visible so far is the NDA, which Zycus executed and returned and which Lincoln has sent for countersignature via DocuSign, delayed because the Lincoln signer was on PTO (email 2026-06-30). That the buyer is using DocuSign and a formal NDA before releasing the RFP indicates a disciplined, legal-gated procurement function, which is normal for a BFSI enterprise. Downstream contracting mechanics (MSA, Order Form, SOW, InfoSec review, any procurement portal) are not yet in view and will not be until the deal advances past evaluation. No incumbent contract expiration is on record to act as a forcing function. The near-term paper action is simply securing the fully executed NDA so the RFP can be released."
+      },
+      "identify_pain": {
+        "status": "gap",
+        "sources": [
+          "SF synthesis-map fields (Pain_points_in_the_current_solution__c, What_if_this_is_not_done__c, How_are_you_addressing_your_problem_toda__c) all null",
+          "SF Next_Step__c 2026-06-23: RFP request (implies dissatisfaction, not the specific pain)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No specific operational or financial pain has been articulated. The RFP itself is the only signal, and it implies Lincoln Financial is dissatisfied enough with its current approach (whether a legacy tool or manual process) to run a formal source-to-pay evaluation, but nothing names the pain, its owner, or its cost. There is no evidence of the current stack, so we cannot even infer whether this is a rip-and-replace or a greenfield automation play. Confirmed pain is zero; inferred pain is limited to the fact that a formal RFP exists. Surfacing the real pain and its owner on the pre-RFP discovery call is the prerequisite to a differentiated response."
+      },
+      "champion": {
+        "status": "gap",
+        "sources": [
+          "SF OpportunityContactRole: 0 rows (no Champion or Coach)",
+          "SF synthesis-map fields (X10b_Champion_Business_Buyer__c, Decision_Maker_Name_Title__c) null",
+          "SF Tasks/emails 2026-06-23 to 2026-06-30: Jordan Bullock is the sole buyer contact, role/advocacy unknown",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "No champion is identified. The only buyer-side contact is Jordan Bullock, who is routing the NDA and RFP, and it is not yet clear whether Jordan is a neutral procurement gatekeeper screening vendors or a sourcing lead who could be developed into an internal advocate. On an RFP-driven deal a champion is decisive: they preview the evaluation criteria, coach the response, and push it up the shortlist, and every entrenched competitor at Lincoln will be trying to build exactly that. Zycus currently has none, so it is positioned to respond blind. The first step is to qualify Jordan on the discovery call for champion potential (is he frustrated with the status quo, willing to share the rubric, and able to introduce the economic buyer), and in parallel open a second thread so the deal is not hostage to a single contact."
+      },
+      "competition": {
+        "status": "gap",
+        "sources": [
+          "SF synthesis-map fields (Competitors__c, Others_Competitors_Please_specify__c, Existing_vendor__c, Replacing_What__c) all null",
+          "SF Next_Step__c 2026-06-23: RFP process (implies multi-vendor competition, names unknown)",
+          "Avoma: 0 calls"
+        ],
+        "narrative": "The competitive set is unknown. No competitor is named in any Salesforce field, task, next step, or call, so there is no basis to assert a specific rival. The one structural fact is that Lincoln Financial is running a formal RFP, which is inherently multi-vendor, so Zycus should assume it is one of several source-to-pay platforms responding. Whether an incumbent is being displaced, and who else is invited, is a blind spot that must be closed before the response is written, because the wedge depends entirely on who else is in the room. The move is to ask Jordan directly on the pre-RFP call who else is being evaluated and what the buyer likes and worries about with each, then position iSource, iSupplier, eProcurement and the Agentic AI/Merlin story against the specific field once it is known."
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal moved from Initial Interest to Qualified on 2026-06-23 (by Amaan Shoyeb) and was reassigned to Edward Dlugosz as owner, then flagged New Business under the New Markets division. Since then the only movement is administrative: an RFP arrived, an NDA was executed by Zycus on 2026-06-23 and sent to Lincoln for countersignature, with a follow-up on 2026-06-30 after the Lincoln signer returned from PTO. No stage or amount change since creation; the deal is live but awaiting the buyer's NDA/RFP deliverable.",
+      "items": [
+        {
+          "change": "Stage advanced Initial Interest to Qualified; reassigned to Edward Dlugosz; typed New Business (New Markets division)",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "RFP received; NDA executed by Zycus and returned to Lincoln for countersignature",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "Follow-up email to Jordan Bullock chasing the fully executed NDA; Lincoln signer had been on PTO, NDA re-sent for signature",
+          "date": "2026-06-30"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "The competitive field is currently unknown. No competitor is named in any Salesforce field, task, next step, or call, so no specific rival can be asserted (naming one would be fabrication). The only certainty is that Lincoln Financial is running a formal RFP, which is inherently multi-vendor, so Zycus should plan for a competitive shortlist even though the names are not yet visible. Discovering the set before the RFP response is written is the highest-value competitive action, because the wedge and the whole response strategy depend on who else is in the room.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer's evaluation criteria are not yet documented; they will be codified in the RFP, which has not been released. Fit cannot be assessed against a rubric that does not yet exist. What is known is that all four scoped modules (iSource, iSupplier, eProcurement, Agentic AI) map to a full source-to-pay RFP, so Zycus can cover the likely breadth; the open question is which criteria the committee weights most heavily.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Return the fully executed NDA so the RFP can be released",
+          "said_by": "Jordan Bullock",
+          "date": "2026-06-30",
+          "addressed": false,
+          "quote": "You should all be on copy to receive the fully executed copy... I have re-sent it to him so that it's at the top of his queue.",
+          "source": "SF email (Clari) 2026-06-30"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Fully executed NDA from Lincoln Financial (blocks RFP release)",
+            "who": "Buyer",
+            "grounding_quote": "We haven't seen the fully executed copy come through DocuSign yet... Our signer was on PTO last week. I have re-sent it to him.",
+            "date": "2026-06-30",
+            "due": "2026-07-11",
+            "status": "open",
+            "source": "SF email (Clari) 2026-06-30"
+          },
+          {
+            "deliverable": "Release of the RFP document once the NDA is executed",
+            "who": "Buyer",
+            "grounding_quote": "Received NDA for a RFP, executed and awaiting fully executed NDA and then RFP",
+            "date": "2026-06-23",
+            "due": "2026-07-18",
+            "status": "open",
+            "source": "SF Next_Step__c 2026-06-23"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget authority unidentified",
+          "quote": "No OpportunityContactRole and no synthesis-map field names a budget owner; the email trail is NDA logistics only",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole (0 rows) + emails 2026-06-30"
+        },
+        {
+          "area": "No champion or coach on the buying side",
+          "quote": "Jordan Bullock is the sole contact and his advocacy is unknown",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Tasks/emails + OpportunityContactRole (0 rows)"
+        },
+        {
+          "area": "Pain, metrics and decision criteria undocumented",
+          "quote": "All Metrics/Pain/Decision-Criteria synthesis-map fields null; no discovery call held",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF synthesis-map fields + Avoma (0 calls)"
+        },
+        {
+          "area": "Competitive set unknown",
+          "quote": "No competitor named in any field or call; RFP implies a multi-vendor field",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF Competitors__c (null) + Avoma (0 calls)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a brand-new, RFP-driven, single-threaded deal in the narrow pre-RFP window where the response can still be shaped. The win-strategy levers all point to closing the discovery and multi-thread gaps before the RFP forces a blind response.",
+      "flags": [
+        "Run a pre-RFP discovery call with Jordan Bullock now, while the NDA lag holds the RFP, to surface pain, criteria and the competitive set before responding.",
+        "Break the single thread: identify and engage the procurement/finance economic buyer and a potential champion, so the deal is not hostage to one sourcing contact.",
+        "Lead with the Agentic AI/Merlin differentiation (a scoped product with only Moderate AIS): put the agentic sourcing story in front of the buyer to lift AI appetite and separate from the RFP field."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Jordan Bullock",
+          "title": null,
+          "role": "Influencer",
+          "last_contact_date": "2026-06-30",
+          "sentiment": "Neutral; responsive and cooperative on process (routing the NDA and RFP), advocacy level unknown",
+          "risk": "Single-thread contact. If a procurement gatekeeper, Zycus has no alternate path into the evaluation committee; if a sourcing lead, a candidate to develop into a champion. Qualify and multi-thread beyond him.",
+          "source": "SF Tasks + emails (Clari) 2026-06-23 and 2026-06-30"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. Jordan Bullock is the only buyer contact and is currently a neutral process owner routing the NDA and RFP, with no evidence yet of advocacy for Zycus. On an RFP deal a champion is essential to preview criteria and push the response up the shortlist, so building one (starting by qualifying Jordan) is a first-order move before the RFP is issued.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole (0 rows) + Tasks/emails 2026-06-23 to 2026-06-30 + Avoma (0 calls)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Agentic AI is a scoped product but AIS is only Moderate (4.0) and no agentic discussion has occurred. The AI story is not yet landing with the buyer because there has been no discovery, so it is under-positioned relative to the opportunity: leading with Merlin/agentic sourcing on the discovery call could lift appetite and differentiate in the RFP.",
+      "score": "4.0 (Moderate)",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 4.0 / Moderate: Agentic AI is scoped, signaling AI could enter the evaluation, but no agentic conversation has happened and no buyer AI sentiment is captured, so appetite is exploratory. No calls exist to over- or under-rate the field.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer or executive sponsor mapped; single-threaded to one sourcing contact on an RFP-driven deal.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityContactRole (0 rows) + emails"
+        },
+        {
+          "category": "political",
+          "detail": "Single-thread to Jordan Bullock; no second relationship inside Lincoln Financial to validate or advance the deal.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Tasks/emails"
+        },
+        {
+          "category": "other",
+          "detail": "RFP-driven process: the buyer controls the criteria and Zycus has no visibility into the rubric or the field, risking a commodity response if discovery does not happen pre-RFP.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Next_Step__c 2026-06-23"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live but administrative: the most recent touch (2026-06-30) is an NDA-chase email, answered by the buyer the same day. There is no discovery signal yet, so the deal is neither cooling nor substantively progressing, it is waiting on the NDA/RFP.",
+      "cooling": false,
+      "items": [
+        "Buyer responsive on NDA logistics same-day (2026-06-30), signer delay attributed to PTO, not disengagement.",
+        "No discovery, no criteria, no committee visibility yet: the substance of the deal has not started."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A 13-day-old RFP-stage deal where we are single-threaded to one sourcing contact (Jordan Bullock) with no economic buyer, champion, pain, or competitive read; the one thing between us and a shaped bid is winning a pre-RFP discovery call before the buyer-controlled RFP forces us to respond blind.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "We are unproven here: 13 days into a buyer-controlled RFP with no economic buyer, decision maker, champion, or pain mapped, and a single thread to sourcing contact Jordan Bullock (SF contact roles empty, no discovery call held as of 2026-07-06)."
+          },
+          {
+            "tone": "warn",
+            "text": "No champion exists to preview the rubric or push our response, so absent a pre-RFP discovery call Zycus responds blind against an unknown field (SF OpportunityContactRole 0 rows, Avoma 0 calls)."
+          },
+          {
+            "tone": "warn",
+            "text": "The competitive set is completely unknown and the RFP is inherently multi-vendor, so we cannot yet build a wedge or differentiate on anything but the written criteria (Competitors__c null, no calls)."
+          },
+          {
+            "tone": "good",
+            "text": "The deal is genuinely live and cooperative: Lincoln returned the NDA for countersignature and replied same-day on 2026-06-30, and all four scoped modules map cleanly to a full source-to-pay RFP."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "Movement is real but administrative: RFP received and NDA executed on 2026-06-23, chased and re-sent for the Lincoln signer on 2026-06-30, so the process is advancing on paperwork."
+          },
+          {
+            "tone": "warn",
+            "text": "No substantive momentum yet: no discovery call, no committee named, no dates set by the buyer, and the RFP is still gated behind the fully executed NDA (Next_Step__c 2026-06-23)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is procedural only: Lincoln issued an RFP and executed an NDA, but no budget owner, sponsor, or decision timeline has been shared and there is no Zycus-specific preference signal (all EB/sponsor fields null)."
+          },
+          {
+            "tone": "good",
+            "text": "The formal RFP plus NDA discipline shows a funded, governed evaluation rather than casual interest, giving a real opening if Zycus multi-threads quickly."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single-thread risk is acute: if Jordan Bullock is a neutral gatekeeper, Zycus has no alternate path to power on an RFP that will be decided by a committee we have not met."
+          },
+          {
+            "tone": "warn",
+            "text": "Blind-response risk: with criteria, pain, and competitors all unknown, a mistimed or generic RFP answer locks Zycus into a commodity position it cannot recover from post-submission."
+          }
+        ]
+      },
+      "factors": {
+        "customer_commitment": {
+          "strength": -0.2,
+          "evidence": "Formal RFP + executed NDA (funded, governed) but no EB, no preference signal, no buyer-set dates as of 2026-07-06."
+        },
+        "deal_risk": {
+          "strength": -0.5,
+          "evidence": "Single-thread to one sourcing contact plus unknown criteria and competitive field on a buyer-controlled RFP."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No Zycus-specific preference expressed; the only exchanges are NDA-routing logistics (emails 2026-06-30). No discovery call has surfaced any lean."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, cost, or automation impact discussed; all Metrics/Pain fields null and no discovery call held."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "iSource; iSupplier; eProcurement; Agentic AI (full S2P)",
+      "to": "iSource; iSupplier; eProcurement; Agentic AI (full S2P)",
+      "detail": "Scope unchanged since creation; the full source-to-pay module set remains in play and no narrowing has occurred."
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 4.9,
+      "mom": 50.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Book a pre-RFP discovery call with Jordan Bullock to surface pain, criteria, and rivals.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "RFP pending release behind the NDA; no discovery held and criteria unknown (Next_Step__c 2026-06-23).",
+          "trigger_date": "2026-06-23",
+          "act_by": "2026-07-13",
+          "expected_effect": "Opens the only window to influence the rubric and build a coach before Zycus is forced to respond blind."
+        },
+        {
+          "rank": 2,
+          "action": "Map and reach the procurement or finance economic buyer beyond Jordan Bullock.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Single-thread to one sourcing contact; no economic buyer or sponsor on record.",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Breaks the single thread and gives Zycus a path to power before the committee evaluates the RFP."
+        },
+        {
+          "rank": 3,
+          "action": "Put the Agentic AI / Merlin sourcing story in front of the buyer to lift AI appetite.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Agentic AI scoped but AIS only Moderate (4.0) and no agentic discussion yet.",
+          "trigger_date": "2026-06-24",
+          "act_by": "2026-07-22",
+          "expected_effect": "Differentiates Zycus in an unknown RFP field and raises the AI-fit signal ahead of the response."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm the RFP timeline and evaluation stages, then shape the response plan.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "RFP not yet released; decision process and shortlist size unknown.",
+          "trigger_date": "2026-06-23",
+          "act_by": "2026-08-04",
+          "expected_effect": "Establishes the close-plan clock and lets Zycus resource a targeted, criteria-aligned RFP response on time."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 4.9,
+        "deal_momentum": 50.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 16.8,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 4.9,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -13.1,
+        "ceiling": 30.0,
+        "momentum_adj": 0.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": 0.6,
+            "evidence": "commercial strength +0.40 (weight 5)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 50.0,
+        "pre_decay": 50.0,
+        "decay_note": null,
+        "contributions": []
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 16.8,
+        "contributions": [
+          {
+            "factor": "low_buyer_intent",
+            "points": 16.8,
+            "evidence": "Verdict 'At Risk' \u2014 weak forward intent."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 5 is carried by commercial strength +0.40 (weight 5). Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum is flat at 50: no forward or backward motion was observed.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 17 is driven by Verdict 'At Risk' \u2014 weak forward intent. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (5), nudged by commitment 8 and momentum 50, and dragged by risk 17. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (engagement, stage integrity). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Lincoln Financial \u2014 Qualified \u00b7 $250K \u00b7 closes 1 Dec",
+        "intro": "A 13-day-old RFP-stage deal where we are single-threaded to one sourcing contact (Jordan Bullock) with no economic buyer, champion, pain, or competitive read; the one thing between us and a shaped bid is winning a pre-RFP discovery call before the buyer-controlled RFP forces us to respond blind",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 5,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "We are unproven here; 13 days into a buyer-controlled RFP with no economic buyer, decision maker, champion, or pain mapped, and a single thread to sourcing contact Jordan Bullock (SF contact roles empty, no discovery call held as of 2026-07-06)"
+              },
+              {
+                "tone": "warn",
+                "text": "No champion exists to preview the rubric or push our response, so absent a pre-RFP discovery call Zycus responds blind against an unknown field (SF OpportunityContactRole 0 rows, Avoma 0 calls)"
+              },
+              {
+                "tone": "warn",
+                "text": "The competitive set is completely unknown and the RFP is inherently multi-vendor, so we cannot yet build a wedge or differentiate on anything but the written criteria (Competitors__c null, no calls)"
+              },
+              {
+                "tone": "good",
+                "text": "The deal is genuinely live and cooperative; Lincoln returned the NDA for countersignature and replied same-day on 2026-06-30, and all four scoped modules map cleanly to a full source-to-pay RFP"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 50,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Movement is real but administrative; RFP received and NDA executed on 2026-06-23, chased and re-sent for the Lincoln signer on 2026-06-30, so the process is advancing on paperwork"
+              },
+              {
+                "tone": "warn",
+                "text": "No substantive momentum yet; no discovery call, no committee named, no dates set by the buyer, and the RFP is still gated behind the fully executed NDA (Next_Step__c 2026-06-23)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 17,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single-thread risk is acute; if Jordan Bullock is a neutral gatekeeper, Zycus has no alternate path to power on an RFP that will be decided by a committee we have not met"
+              },
+              {
+                "tone": "warn",
+                "text": "Blind-response risk; with criteria, pain, and competitors all unknown, a mistimed or generic RFP answer locks Zycus into a commodity position it cannot recover from post-submission"
+              }
+            ],
+            "footer": "Competitive picture: The competitive field is currently unknown."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is procedural only; Lincoln issued an RFP and executed an NDA, but no budget owner, sponsor, or decision timeline has been shared and there is no Zycus-specific preference signal (all EB/sponsor fields null)"
+              },
+              {
+                "tone": "good",
+                "text": "The formal RFP plus NDA discipline shows a funded, governed evaluation rather than casual interest, giving a real opening if Zycus multi-threads quickly"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Book a pre-RFP discovery call with Jordan Bullock to surface pain, criteria, and rivals. (by 13 Jul)",
+              "Map and reach the procurement or finance economic buyer beyond Jordan Bullock. (by 20 Jul)",
+              "Put the Agentic AI / Merlin sourcing story in front of the buyer to lift AI appetite. (by 22 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since creation 2026-06-23",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls exist for this opp/account/attendees (0 discovered) \u2014 no verbatim buyer voice available this sweep.",
+      "Zero OpportunityContactRoles \u2014 economic buyer, decision maker, and champion all unmapped.",
+      "Pain, metrics, decision criteria, decision process, and competitive set all undocumented in fields and calls.",
+      "Jordan Bullock's Salesforce title is not on record; not asserted."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:53"
+}

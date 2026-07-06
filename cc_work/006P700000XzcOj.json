@@ -1,0 +1,241 @@
+{
+  "opp_id": "006P700000XzcOj",
+  "hard": {
+    "opp_id": "006P700000XzcOj",
+    "opp_name": "Chelsea Football Club_S2P_2026",
+    "account_name": "Chelsea Football Club",
+    "account_industry": "Hospitality",
+    "billing_country": "United Kingdom",
+    "owner_name": "Claire Hudson",
+    "owner_title": "Regional Sales Director - EU Sales",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-05-12",
+    "days_to_close": null,
+    "created_date": "2026-05-12",
+    "qualified_date": "2026-05-18",
+    "last_activity_date": "2026-07-03",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;eProcurement;Merlin;iLogix;iRisk;Merlin Intake;iCompliance;ANA",
+    "next_step": null,
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "Avoma returned zero meetings; no conversation evidence of AI interest. Salesforce activity is RFP logistics via BuyingStation only; the buyer enforces process: 'further questions be submitted via the portal.' No contact roles, no meetings logged, no AI requirement surfaced. Low confidence.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XzcOj/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "On 3 July Avedis Kabrielian emailed that Chelsea has concluded its evaluation and, whilst appreciating the offer to discuss further, is declining to progress with Zycus. This is a down-select rejection at the RFP gate: no demo was ever granted, zero discovery calls occurred, and the deal is single-threaded to a procurement administrator. Claire is now working the reply to salvage a debrief.",
+      "math": "Created 12 May 2026 (55 days ago). Qualified 18 May. RFP issued via BuyingStation 19 May; Stage 1 submission met 28 May; Chelsea published Stage 1 down-selection w/c 8 June and contract conclusion target July 2026. Buyer replied 8 June ('still finalising evaluation'), Claire chased 3 June and 26 June, and on 3 July Avedis replied declining further discussion after concluding the evaluation. Days to close on the SF field: ~310 (12 May 2027), but that date is now moot: the RFP outcome, not the close date, is the North Star and it has landed against us. Never advanced past Formal Evaluation; never reached a demo.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Email received from Avedis Kabrielian (Procurement Manager) 3 Jul 2026: 'Whilst we appreciate the offer to discuss further, in the spirit of...' following 'our evaluation process, we wanted...' — a polite decline to progress Zycus past Stage 1.",
+        "Claire Hudson replied 3 Jul 2026 thanking the team for the evaluation and pushing back on one point directly to seek feedback and a possible debrief.",
+        "No demo was ever secured: Claire chased the demo date on 3 Jun and 26 Jun; Avedis's 8 Jun reply said 'still finalising evaluation... regardless of the outcome on moving forward to the demo stage.'",
+        "Zero Avoma discovery or qualification calls ever logged; single contact role (Rahul Rajagopal, Decision Maker, never engaged directly); no champion, no economic-buyer access, no competitive or pain intel captured across the whole cycle."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business problem or ROI case was ever captured. The RFP was for a 'Procurement System solution' but Chelsea never articulated the operational pain, cost baseline, headcount impact, cycle-time target or savings expected, and with zero discovery calls Zycus never heard the buyer describe it. The only implicit signal is the full-suite product scope (iContract through ANA including Merlin AI), suggesting a broad Source-to-Pay ambition, but with the 3 July decline the opportunity to build a metrics case has effectively passed; any live path now runs through a debrief that reveals what Chelsea actually weighted.",
+        "sources": ["SF Products__c (full S2P suite incl. Merlin)", "Next Step RFP text 19 May 2026", "No Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c populated; zero Avoma calls"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer was ever mapped or engaged. The single contact role is Rahul Rajagopal (Head Of Procurement, Decision Maker) whom Zycus never spoke to directly; the only active contact, Avedis Kabrielian (Procurement Manager), is a process administrator with no budget authority. A £150k platform purchase at a Premier League club would require finance/executive sign-off, but no such person surfaced in any Salesforce field, activity, or call. Because the buyer ran a closed BuyingStation RFP that funnelled all contact through the portal, Zycus never gained the access needed to reach or influence the budget owner, which is a core reason this evaluation was lost blind.",
+        "sources": ["OpportunityContactRole: Rahul Rajagopal (Decision Maker, primary)", "Activity contact: Avedis Kabrielian (Procurement Manager)", "No X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c evidence"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The evaluation criteria were never disclosed to Zycus. Chelsea ran a formal two-stage BuyingStation RFP and enforced strict process ('please do submit any further questions via the portal'), so scoring weights, must-have capabilities and the AI-vs-cost-vs-fit trade-off stayed inside the portal. With no demo and no discovery, Zycus responded to a written RFP without ever validating what mattered most to the buyer. A debrief with Avedis or Rahul is now the only way to learn the criteria that decided against us.",
+        "sources": ["Email received 19 May 2026 (Avedis: submit questions via BuyingStation portal)", "No Business_Requirements__c / AI_Needs_in_RFP_Rating__c evidence; zero Avoma calls"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process itself is the one well-documented element, because Chelsea published it: RFP issued via BuyingStation 19 May, written-questions deadline 26 May, Stage 1 submission 28 May, invited-only supplier demo sessions w/c 1 June, Stage 1 down-selection w/c 8 June, and contract conclusion targeted for July 2026. Zycus submitted Stage 1 on time but was never invited to the demo round, and Avedis's 3 July email confirms the evaluation has concluded against us. The process ran exactly to the buyer's published clock; what Zycus lacked was any inside voice to shape it, so the down-selection happened without warning or a chance to intervene.",
+        "sources": ["Next Step RFP timeline table 19 May 2026", "Email 8 Jun 2026 (Avedis: still finalising evaluation)", "Email 3 Jul 2026 (Avedis: evaluation concluded, declining to progress)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics never became relevant because the deal was eliminated before Stage 1 down-selection. The only paper touchpoints were procurement-portal formalities: NDA issuance and BuyingStation onboarding referenced early in the Next Step. No MSA, Order Form, SOW, legal review or InfoSec questionnaire was ever reached. If a debrief reopens any path, paper visibility would only matter after Zycus first earns a place back in the evaluation, which it does not currently hold.",
+        "sources": ["Next Step (NDA + BuyingStation onboarding) 18-19 May 2026", "No contracting fields populated; deal never passed Formal Evaluation"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "The specific operational or financial pain driving Chelsea's RFP was never articulated to Zycus. The full-suite scope (sourcing, contracting, procurement, supplier, risk, compliance, AI intake) implies a fragmented or manual current state, but with no discovery call and no pain fields populated, Zycus never heard the trigger, the cost of inaction, or the pain owner in the buyer's own words. Plausible pains for a club of this scale (maverick spend, contract leakage, supplier/ESG risk, slow cycle time) remain inference, not evidence, and the chance to confirm them is now limited to a post-decision debrief.",
+        "sources": ["SF Products__c full-suite scope", "No Pain_points_in_the_current_solution__c / Compelling_Event__c / What_if_this_is_not_done__c; zero Avoma calls"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion ever existed on this deal. Avedis Kabrielian (Procurement Manager) was responsive but purely administrative: he ran the RFP process, sent the 8 June 'still evaluating' holding note and the 3 July decline, and showed zero advocacy, no internal selling, no competitive intel and no coaching. Rahul Rajagopal (Head Of Procurement, Decision Maker) was never engaged directly by Zycus at any point. With no inside voice, Zycus competed as a checklist vendor in a portal-controlled RFP and had no one to warn of, or fight, the down-selection. Building a relationship with Rahul independent of this RFP is the only route to a future opening.",
+        "sources": ["OpportunityContactRole: Rahul Rajagopal (never engaged)", "Emails from Avedis Kabrielian 8 Jun and 3 Jul 2026 (process admin, no advocacy)", "Zero Avoma calls"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive field was never disclosed and remains genuinely unknown: Competitors__c is blank, no rival was named in any activity, and the closed BuyingStation RFP hid the shortlist. The 3 July decline confirms Chelsea selected a path other than Zycus for the demo round, but the winning vendor is unnamed. On a zero-call run with no fresh evidence, Zycus will not invent a competitor; the honest read is that we lost a blind, portal-run evaluation to an undisclosed field, and a debrief is the only way to learn who beat us and why.",
+        "sources": ["SF Competitors__c blank", "No competitor named in any Task/email/Next Step", "Email 3 Jul 2026 (evaluation concluded against Zycus, winner not disclosed)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal moved from a live-but-slowing RFP wait to a decline in the last week: Avedis's 3 July email concluded Chelsea's evaluation and declined to progress Zycus past Stage 1, after Claire's 3 Jun and 26 Jun chases for a demo date went unanswered. Amount churned early (150k up to 350k then back to 150k on 22 May) but products stayed the full S2P suite. The verdict weakens from Slowing to Off Track on the 3 July rejection.",
+      "items": [
+        {"change": "Avedis Kabrielian emailed declining to progress Zycus after concluding the evaluation; Claire replied seeking feedback/debrief", "date": "2026-07-03"},
+        {"change": "Buyer went silent through late June after the 8 Jun 'still finalising evaluation' note; Claire chased the demo date", "date": "2026-06-26"},
+        {"change": "Amount reset 350000 to 150000 by Anthony Gray (early CRM estimate correction; product scope unchanged)", "date": "2026-05-22"},
+        {"change": "Stage advanced Qualified to Formal Evaluation; RFP issued via BuyingStation with a published two-stage timeline", "date": "2026-05-19"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competition is unknown and stays unknown: no competitor is named in any Salesforce field, activity, or call, and the closed BuyingStation RFP concealed the shortlist. The 3 July decline confirms Chelsea chose to progress others to the demo round over Zycus, but the winning vendor was not disclosed. This is a zero-call run with no fresh competitive evidence, so no rival is asserted or ranked; the only way to name the field now is a post-decision debrief.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit was never validated with the buyer. Chelsea ran a portal-only written RFP, granted no demo, and disclosed no criteria, so Zycus never confirmed alignment on any requirement. The 3 July decline is the only fit signal: on the buyer's undisclosed weighting, Zycus did not clear Stage 1.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Written evaluation feedback: why Zycus was not progressed and who was selected", "who": "Buyer", "grounding_quote": "Whilst we appreciate the offer to discuss further, in the spirit of...", "date": "2026-07-03", "due": "2026-07-20", "status": "open", "source": "Email received from Avedis Kabrielian 3 Jul 2026"}
+      ]}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Buyer engagement / demo access", "quote": "regardless of the outcome on moving forward to the demo stage", "status": "not addressed", "date": "2026-07-03", "gap_type": "knowledge", "source": "Emails 8 Jun and 3 Jul 2026"},
+        {"area": "Economic buyer identity", "quote": "", "status": "not addressed", "date": "2026-07-03", "gap_type": "knowledge", "source": "No EB in contact roles or fields"},
+        {"area": "Competitive field", "quote": "", "status": "not addressed", "date": "2026-07-03", "gap_type": "knowledge", "source": "Competitors__c blank; winner undisclosed"},
+        {"area": "Business pain and metrics", "quote": "", "status": "not addressed", "date": "2026-07-03", "gap_type": "knowledge", "source": "Zero discovery calls; pain/value fields blank"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This deal was lost blind in a portal-controlled RFP; the win-strategy focus now is salvaging intelligence and a relationship, not manufacturing pipeline motion.",
+      "flags": [
+        "Secure a loss debrief from Avedis or Rahul Rajagopal to learn the selected vendor, the decisive criteria, and where Zycus's written response fell short.",
+        "Build a direct relationship with Rahul Rajagopal (Head Of Procurement) independent of this RFP so any future S2P revisit is not single-threaded to a procurement administrator.",
+        "Treat the closed-portal, no-demo motion as the root cause: future Chelsea-style RFPs need early multi-threading before the portal locks contact, not a written response alone."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Rahul Rajagopal", "title": "Head Of Procurement", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown (never engaged directly by Zycus; zero calls, no email thread visible)", "risk": "The senior decision maker was never reached across the whole cycle; re-engaging him directly, outside the RFP, is the only route to a future opening", "source": "OpportunityContactRole (primary, Decision Maker)"},
+        {"name": "Avedis Kabrielian", "title": "Procurement Manager", "role": "Influencer", "last_contact_date": "2026-07-03", "sentiment": "Neutral; ran the RFP process and delivered the 3 Jul decline with no advocacy for Zycus", "risk": "Administrative gatekeeper, not a champion; responsive but the only thread, and he has now signalled the evaluation concluded against us", "source": "Activity contact + emails 8 Jun and 3 Jul 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion ever existed. Avedis Kabrielian was a responsive but purely administrative RFP contact with zero advocacy, and Rahul Rajagopal (Decision Maker) was never engaged directly. Zycus ran the entire evaluation with no inside voice, which is a core reason the 3 July down-selection landed without warning. The only forward move is to build Rahul into a relationship independent of this RFP.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "OpportunityContactRole (Rahul never engaged); emails from Avedis 8 Jun / 3 Jul 2026; zero Avoma calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI/Merlin story was never positioned to the buyer. Chelsea granted no demo and disclosed no AI requirement, so the Merlin Intake / Merlin negotiation narrative in the product scope never reached a live conversation. AIS reads Negative (2.0) on absence of signal, not on stated resistance.",
+      "score": "2.0",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 2.0 / AIS_Status__c Negative, driven by zero Avoma meetings and RFP-logistics-only activity, not by any stated buyer resistance to AI. With no discovery call the AI appetite is genuinely untested; the full suite carries Merlin, but the buyer never engaged on it.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "political", "detail": "Single-threaded to a procurement administrator (Avedis) with the Decision Maker (Rahul) never reached; no inside voice to sense or fight the down-selection", "first_raised": "2026-05-18", "date": "2026-07-03", "status": "realized", "source": "OpportunityContactRole + emails"},
+        {"category": "executive_alignment", "detail": "No economic buyer mapped or engaged; a £150k purchase decided without Zycus ever reaching budget authority", "first_raised": "2026-05-18", "date": "2026-07-03", "status": "realized", "source": "Contact roles / fields"},
+        {"category": "references", "detail": "Closed BuyingStation RFP with no demo granted meant Zycus competed on a written response only, unable to differentiate or read the room", "first_raised": "2026-05-19", "date": "2026-07-03", "status": "realized", "source": "Emails 19 May, 3 Jul 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer engagement has ended for this cycle: after the 8 June holding note and unanswered June chases, Avedis's 3 July email declined further discussion. The relationship is cooling to closed unless a debrief reopens it.",
+      "cooling": true,
+      "items": [
+        "3 Jul 2026: Avedis declines to progress Zycus after concluding the evaluation",
+        "26 Jun 2026: Claire's demo-date chase went unanswered until the 3 Jul decline",
+        "No demo ever granted across a 55-day cycle"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Chelsea concluded its portal-run RFP and on 3 July declined to progress Zycus to the demo round; we lost blind, never reaching a demo, an economic buyer, or a champion, and the only live play is a loss debrief to recover intel and the Rahul Rajagopal relationship.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Zycus is losing this evaluation: Avedis Kabrielian emailed on 3 Jul that Chelsea concluded its RFP and, whilst appreciating the offer to discuss further, is declining to progress us to the demo stage."},
+          {"tone": "warn", "text": "We competed blind: no demo was ever granted, the Decision Maker Rahul Rajagopal was never engaged, no economic buyer was mapped, and the closed BuyingStation portal hid both the criteria and the competing vendors."},
+          {"tone": "warn", "text": "Single-threading to a procurement administrator (Avedis) with zero advocacy left Zycus with no inside voice to sense or contest the down-selection that landed on 3 Jul."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum has reversed: after the 8 Jun 'still finalising evaluation' note, Claire's 3 Jun and 26 Jun demo-date chases went unanswered until the 3 Jul decline."},
+          {"tone": "warn", "text": "The deal never advanced past Formal Evaluation and never reached the invited-only demo round Chelsea ran w/c 1 June."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer's only commitment was to its own process, not to Zycus: Chelsea ran the published RFP clock exactly and eliminated Zycus at Stage 1 without a demo."},
+          {"tone": "warn", "text": "No Zycus-specific next step, proposal request, or pricing conversation was ever initiated by Chelsea across the whole cycle."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The primary risk has already realized: a down-select rejection at the RFP gate to an undisclosed winning vendor."},
+          {"tone": "warn", "text": "Zero discovery means no pain, metrics, or competitive intel was ever captured, so even a debrief starts from a near-blank slate."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -1, "evidence": "No champion; Avedis administrative only, Rahul never engaged (emails, contact roles)"},
+        "customer_preference": {"strength": -1, "evidence": "3 Jul 2026 email declining to progress Zycus after concluding the evaluation"},
+        "deal_momentum": {"strength": -1, "evidence": "Unanswered June demo-date chases followed by the 3 Jul decline; never reached demo"}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Full Source-to-Pay suite (iContract through ANA incl. Merlin)",
+      "to": "Full Source-to-Pay suite (iContract through ANA incl. Merlin)",
+      "detail": "Amount churned early in May (150k up to 350k then back to 150k on 22 May by Anthony Gray) but this was CRM estimate correction, not a buyer-driven scope cut; the product scope stayed the full S2P suite throughout."
+    },
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "none", "evidence": "Avedis Kabrielian, 3 Jul 2026: 'Whilst we appreciate the offer to discuss further, in the spirit of...' declining to progress Zycus after concluding the evaluation."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or business case ever discussed; zero discovery calls and pain/value fields blank."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Reply to Avedis to accept the outcome and request a 20-minute loss debrief this week.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Avedis's 3 Jul email declining to progress Zycus after concluding the evaluation", "trigger_date": "2026-07-03", "act_by": "2026-07-10", "expected_effect": "Recovers the selected vendor, the decisive criteria, and where our written response fell short, the only value left in the cycle."},
+        {"rank": 2, "action": "Ask Avedis in writing who was selected and the top two reasons Zycus was not progressed.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Closed BuyingStation RFP hid the shortlist and criteria throughout", "trigger_date": "2026-07-03", "act_by": "2026-07-17", "expected_effect": "Names the competitive field and the real evaluation weighting for future Chelsea-style RFPs."},
+        {"rank": 3, "action": "Open a direct relationship with Rahul Rajagopal for future procurement needs, outside this RFP.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Decision Maker Rahul Rajagopal was never engaged directly across the cycle", "trigger_date": "2026-07-03", "act_by": "2026-08-01", "expected_effect": "Removes the single-thread exposure and positions Zycus for the next evaluation cycle rather than chasing a lost one."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities last 120d; field history to 2026-05-12",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma calls exist for this opportunity across opp, account, and attendee-email discovery; the entire read rests on Salesforce activities and the Next Step trail.",
+      "Economic buyer, business pain, metrics, decision criteria, and the competitive field were never captured; all remain genuine knowledge gaps.",
+      "The 3 Jul decline confirms a loss at the RFP gate but the winning vendor and decisive criteria are undisclosed pending a debrief."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

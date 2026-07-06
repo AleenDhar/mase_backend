@@ -1,0 +1,256 @@
+{
+  "opp_id": "006P700000QeKM2",
+  "hard": {
+    "opp_id": "006P700000QeKM2",
+    "opp_name": "RJ_In_Orch_26",
+    "account_name": "Raymond James Financial, Inc",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Arthur Raguette",
+    "owner_title": "Vice President, Strategic Accounts",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 400000,
+    "close_date": "2027-01-15",
+    "days_to_close": 193,
+    "created_date": "2025-12-05",
+    "qualified_date": "2025-12-05",
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": "2026-07-07",
+    "products": "iSupplier;Merlin;iRisk;Merlin Intake;Agentic AI",
+    "next_step": "Pending I&O content - check on NAPES attendance; debrief on Pinnacle content with George Jannino (CPO) and Czarina Whitmore; share a new whitepaper beyond the repeated Hackett/Broadridge benchmark; longer term collaborate on Supplier Onboarding.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "Intake and Orchestration framed as workflow/speed/transparency for casual end-users, not as Merlin agentic AI; next step is event invites and Hackett benchmark sharing with no AI product positioning.",
+    "dm_identified": false,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa;iValua;JAGGAER;Oracle;SAP Ariba;iCertis;Cobblestone;Contract Pod AI;Ironclad;Conga",
+    "primary_competitor": "Status quo / no-decision (buyer not ready for I&O)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000QeKM2/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Nurture-mode Intake & Orchestration opp on an account that already rejected our CLM bid over a clunky, bolt-on AI experience; Czarina Whitmore said Raymond James is 'not ready for I & O' (9 Apr 2026) and no buyer has replied since, so this is a no-decision fight, not a competitive one.",
+      "math": "Created 2025-12-05, still Qualified after ~7 months with no progression to Formal Evaluation or Shortlisted. Close date pushed twice on 2026-06-17 (2026-06-30 to 2026-09-30 to 2027-01-15), now 193 days out, a placeholder not a buyer milestone. Last genuine two-way buyer exchange was Czarina Whitmore's 'not ready for I & O' email on 2026-04-09, ~88 days ago and past the 60-day cold line. Every touch since (Hackett reports, Pinnacle/NAPES/ISM/ProcureCon invites) is one-way rep outreach; LastActivityDate 2026-07-02 is rep-side, not a buyer reply.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Czarina Whitmore emailed 'We're not ready for I & O at this time' on 2026-04-09; no buyer reply logged in the ~88 days since (SF Task 2026-04-09 [Clari - Email Received]).",
+        "Prior CLM deal on this account was LOST; the debrief was that 'our UX/CX to leverage any of our AI was clunky and seemed like a bolt-on' (SF Task 2026-07-02).",
+        "George Jannino (SVP Chief Procurement Officer), the likely economic buyer, has never replied on this opp despite ISM, ProcureCon and Pinnacle invites (SF Tasks 2026-04-01, 2026-06-25).",
+        "Close date pushed twice on 2026-06-17 with no buyer-driven milestone (SF OpportunityFieldHistory).",
+        "Ten competitors carried on the record with no shortlist refinement and no active evaluation (SF Competitors__c).",
+        "No quantified business case, ROI, or compelling event on record; rep is still offering to build an RFFS business case (SF Task 2026-07-07)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified value case exists for the Intake & Orchestration opportunity. Across Salesforce free-text fields and the activity trail the buyer has never stated a cycle-time, cost, headcount, or error-rate target, and there are zero transcribed calls this sweep to source one. The only economic thread is the rep repeatedly sharing the Hackett procurement benchmark (Next Step 2026-07-02), which the buyer treated as 'same as earlier benchmark report', so it did not create urgency. The next move is to co-build a Raymond James-specific RFFS (financial-services) intake business case, which the rep already flagged as needed on 2026-07-07, and get Czarina Whitmore to validate the numbers.",
+        "sources": ["SF Next_Step__c 2026-07-02", "SF Task 2026-07-07 (RFFS business case not yet built)", "No Avoma calls on file"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "George Jannino, SVP Chief Procurement Officer, is the clear economic buyer for a $400k procurement I&O purchase and is a named Salesforce contact, so the EB is mapped, but he is not engaged. Every touch to him is one-way: ISM invite (2026-04-01), a ProcureCon follow-up and lunch offer (2026-06-25), and a Pinnacle invite, with no reply on record. Czarina Whitmore (VP, Procurement Sourcing & Operations) is the working-level owner and the only contact who replies, but she does not control budget and told us they are not ready. The move is to convert one of George's events (Pinnacle debrief) into a direct working session rather than another invitation.",
+        "sources": ["SF OpportunityContactRole (George Jannino, SVP CPO)", "SF Tasks 2026-04-01, 2026-06-25 (invites, no reply)", "SF Next_Step__c 2026-07-02"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria for Intake & Orchestration are documented. There is no RFP, RFI, use-case list, or workshop feedback on this opp, and Business_Requirements__c-type signal is absent from the activity trail. What the evidence DOES show is a negative criterion inherited from the lost CLM deal: the buyer found Zycus AI 'clunky' and 'a bolt-on' (Task 2026-07-02), so a native, non-bolt-on agentic experience is an implicit bar we must clear. The move is to surface I&O criteria directly with Czarina Whitmore and Alexander Guzman before proposing anything.",
+        "sources": ["SF Task 2026-07-02 (CLM loss debrief)", "No Avoma calls on file", "SF activity trail 2026-03 to 2026-07"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no visible decision or evaluation process for I&O because the buyer has not started one, stating on 2026-04-09 they are 'not ready for I & O at this time'. The stakeholder trail (Czarina Whitmore working-level, George Jannino as CPO, Eduardo Gomez in IT Security for a later InfoSec gate) implies a normal procurement-led committee if an evaluation opens, but no dates, steps, or approval chain are on record. The move is to get Czarina to name the trigger and timeline that would make I&O a live priority, converting an open-ended nurture into a dated re-evaluation.",
+        "sources": ["SF Task 2026-04-09 ('not ready for I & O')", "SF OpportunityContactRole", "No Avoma calls on file"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in play because the deal is pre-evaluation; there is no MSA, SOW, Order Form, or legal/procurement motion, and Current_Contract_Expiration__c gives no forcing function. Eduardo Gomez (Information Technology Security Analyst) is on the contact roster, which signals an InfoSec review would gate any future purchase at Raymond James (a regulated BFSI buyer), but nothing has been initiated. Visibility will only come once an evaluation opens and a timeline exists.",
+        "sources": ["SF OpportunityContactRole (Eduardo Gomez, IT Security Analyst)", "SF stage Qualified", "No Avoma calls on file"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No confirmed operational pain has been articulated by the buyer for Intake & Orchestration. The inferred pain is manual/decentralised intake and supplier-onboarding friction, implied by the rep's Supplier Onboarding collaboration thread and the product scope (Merlin Intake, iSupplier), but the buyer has not owned that pain out loud and in fact declined to progress. The one confirmed, buyer-owned data point is dissatisfaction with a bolt-on AI experience from the lost CLM evaluation. The pain owner would be Czarina Whitmore's procurement operations team; the move is a discovery session to make them state the intake pain in their own words.",
+        "sources": ["SF Next_Step__c 2026-07-02 (Supplier Onboarding collaboration)", "SF Task 2026-07-02 (CLM UX pain)", "SF Products__c: Merlin Intake;iSupplier"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is advocating for Zycus. Czarina Whitmore (VP, Procurement Sourcing & Operations) is the most engaged contact and does reply and accept updates ('I appreciate the update', 2026-04-09), which makes her a coach, but she declined to progress I&O and shares no internal intelligence or internal push, so advocacy is absent. George Jannino (CPO) and Alexander Guzman (Director, Strategic Sourcing & Procurement Operations) have not engaged. In a regulated BFSI account that just rejected our CLM bid, the deal cannot restart without one contact willing to sponsor I&O internally. The move is to earn Czarina or Alexander with a financial-services-specific proof point before any commercial step.",
+        "sources": ["SF Task 2026-04-09 (Czarina reply, no advocacy)", "SF OpportunityContactRole", "SF Next_Step__c 2026-07-02"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The named competitive field carries ten vendors (Coupa, iValua, JAGGAER, Oracle, SAP Ariba on the procurement-suite side; iCertis, Cobblestone, Contract Pod AI, Ironclad, Conga on the CLM side), but the CLM specialists trace to the already-lost CLM evaluation, and there is no evidence of an active I&O bake-off. The real current threat is do-nothing: Raymond James keeps running intake manually and told us they are 'not ready' (2026-04-09), so this is a no-decision fight, not a vendor fight. Our wedge is native Merlin agentic intake and orchestration positioned as the opposite of the clunky bolt-on that cost us the CLM deal; the activation is a live Merlin demo to George Jannino and Czarina Whitmore.",
+        "sources": ["SF Competitors__c (10 vendors)", "SF Task 2026-07-02 (CLM loss to clunky bolt-on AI)", "SF Task 2026-04-09 (not ready)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Momentum is negative-to-flat. After Czarina Whitmore's 9 Apr 2026 'not ready for I & O' reply the deal has run entirely on one-way rep nurture (Hackett reports, roundtable and conference invites). The close date was pushed twice on 17 Jun 2026 to a placeholder 15 Jan 2027, and the amount was raised to $400k back in Dec 2025, but no buyer-side step has occurred.",
+      "items": [
+        {"change": "Buyer declined to progress: Czarina Whitmore emailed 'We're not ready for I & O at this time'", "date": "2026-04-09"},
+        {"change": "Close date pushed 2026-09-30 to 2027-01-15 (second push same day, from 2026-06-30)", "date": "2026-06-17"},
+        {"change": "Rep offered to build an RFFS financial-services intake business case for Czarina, cc George", "date": "2026-07-07"},
+        {"change": "Rep logged CLM-loss debrief: our AI UX was 'clunky and seemed like a bolt-on'", "date": "2026-07-02"},
+        {"change": "Amount raised 300000 to 400000", "date": "2025-12-10"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest CURRENT threat is do-nothing / no-decision: Raymond James told us on 2026-04-09 they are not ready for Intake & Orchestration and no active evaluation is running, so status-quo manual intake is what we must beat. The ten logged vendors (Coupa, SAP Ariba, iValua, JAGGAER, Oracle plus the CLM specialists iCertis, Ironclad, Conga, Contract Pod AI, Cobblestone) are carried from the record with no fresh 2026 evidence and no active bake-off; the CLM names relate to the already-lost CLM deal. Our win path is native Merlin agentic intake positioned against the 'clunky bolt-on' perception that lost us CLM.",
+      "competitors": [
+        {"name": "Status quo / do-nothing (manual intake)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "We're not ready for I & O at this time.", "date": "2026-04-09", "source": "SF Task 2026-04-09 (Czarina Whitmore email)", "how_we_win": "Attach an RFFS financial-services ROI case to a real intake pain to create a compelling event."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": null, "source": "SF Competitors__c", "how_we_win": "Contrast native Merlin agentic intake against Coupa's bolt-on AI on a live demo."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": null, "source": "SF Competitors__c", "how_we_win": "Position faster, end-user-friendly orchestration versus Ariba complexity."},
+        {"name": "iValua", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": null, "source": "SF Competitors__c", "how_we_win": "Lead with agentic intake and supplier information management depth."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": null, "source": "SF Competitors__c", "how_we_win": "Differentiate on Merlin agentic AI embedded across the suite."},
+        {"name": "Oracle", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": null, "source": "SF Competitors__c", "how_we_win": "Position specialist procurement AI over a generalist ERP module."},
+        {"name": "iCertis", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": null, "source": "SF Competitors__c (CLM evaluation)", "how_we_win": "CLM specialist tied to the lost CLM deal; not relevant to the I&O scope."},
+        {"name": "Ironclad", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": null, "source": "SF Competitors__c (CLM evaluation)", "how_we_win": "CLM specialist tied to the lost CLM deal; not relevant to the I&O scope."},
+        {"name": "Conga", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": null, "source": "SF Competitors__c (CLM evaluation)", "how_we_win": "CLM specialist tied to the lost CLM deal; not relevant to the I&O scope."},
+        {"name": "Contract Pod AI", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": null, "source": "SF Competitors__c (CLM evaluation)", "how_we_win": "CLM specialist tied to the lost CLM deal; not relevant to the I&O scope."},
+        {"name": "Cobblestone", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": null, "source": "SF Competitors__c (CLM evaluation)", "how_we_win": "CLM specialist tied to the lost CLM deal; not relevant to the I&O scope."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer's stated expectation is that I&O is not a current priority; the inherited expectation from the lost CLM deal is that any Zycus AI must feel native, not bolted on.",
+      "items": [
+        {"criterion": "I&O timing / readiness", "position": "exposed", "quote": "We're not ready for I & O at this time.", "date": "2026-04-09", "source": "SF Task 2026-04-09 (Czarina Whitmore email)"},
+        {"criterion": "AI experience must be native, not a bolt-on", "position": "exposed", "quote": "our UX/CX to leverage any of our AI was clunky and seemed like a bolt-on", "date": "2026-07-02", "source": "SF Task 2026-07-02 (CLM loss debrief)"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No I&O evaluation timeline", "quote": "We're not ready for I & O at this time.", "status": "not addressed", "date": "2026-04-09", "gap_type": "knowledge", "source": "SF Task 2026-04-09"},
+        {"area": "No quantified business case / metrics for I&O", "quote": "need a RFFS Specific Bus.Case together for Intake / Orchestration", "status": "not addressed", "date": "2026-07-07", "gap_type": "knowledge", "source": "SF Task 2026-07-07"},
+        {"area": "Economic buyer mapped but not engaged (George Jannino, CPO)", "quote": "Ping George Janino ... offer lunch", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "SF Task 2026-06-25"},
+        {"area": "No internal champion advocating for I&O", "quote": "", "status": "not addressed", "date": "2026-04-09", "gap_type": "knowledge", "source": "SF OpportunityContactRole + activity trail"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a no-decision nurture deal on an account that just rejected our CLM bid; the win levers are reframing the AI story, earning one real champion, and manufacturing a compelling event.",
+      "flags": [
+        "Reframe the AI story: the CLM loss debrief called our AI a clunky bolt-on, so lead I&O with native Merlin agentic intake, not a re-skin.",
+        "Single-threaded and buyer said 'not ready': earn one real champion (Czarina Whitmore or Alexander Guzman) with a financial-services proof point before any commercials.",
+        "No compelling event exists: pair the RFFS-specific intake business case with a dated Raymond James pain so I&O becomes a priority instead of a nurture."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "George Jannino", "title": "SVP Chief Procurement Officer", "role": "Economic Buyer", "last_contact_date": "2026-06-25", "sentiment": "unknown", "risk": "Budget owner for a $400k procurement purchase but has never replied on this opp despite ISM, ProcureCon and Pinnacle invites; without his engagement I&O cannot become a priority or reach commercials.", "source": "SF OpportunityContactRole; SF Tasks 2026-04-01, 2026-06-25"},
+        {"name": "Czarina (sharina) Torralba-Whitmore", "title": "VP, Procurement Sourcing & Operations", "role": "Champion", "last_contact_date": "2026-04-09", "sentiment": "neutral", "risk": "Most engaged contact and accepts updates, but declined to progress ('not ready for I & O', 2026-04-09) and shows no internal advocacy; a coach, not yet a champion.", "source": "SF Task 2026-04-09 [Clari - Email Received]"},
+        {"name": "Alexander Guzman", "title": "Director, Strategic Sourcing & Procurement Operations", "role": "Influencer", "last_contact_date": "2026-05-21", "sentiment": "neutral", "risk": "Attended the Agentic AI summit per rep follow-up (2026-05-21) but no two-way engagement on I&O; a potential champion who has not been converted.", "source": "SF Task 2026-05-21 [Clari - Email Sent]"},
+        {"name": "Helen Lee", "title": "COE", "role": "Influencer", "last_contact_date": "2026-05-27", "sentiment": "unknown", "risk": "Received the Palo Alto roundtable invite and Hackett benchmark but no reply logged; engagement unconfirmed.", "source": "SF Task 2026-05-27 [Clari - Email Sent]"},
+        {"name": "Nenad Gmizic", "title": "Senior Category Manager", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown", "risk": "Named on the record and flagged for a discovery debrief but not yet engaged; working-level influencer.", "source": "SF OpportunityContactRole; SF Task 2026-07-02"},
+        {"name": "Eduardo Gomez", "title": "Information Technology Security Analyst", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown", "risk": "Future InfoSec gatekeeper for a regulated BFSI purchase; not yet engaged and not relevant until an evaluation opens.", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Czarina Whitmore is the only responsive contact and functions as a coach (accepts updates, gives status), but she declined to progress I&O and shows no internal advocacy, so there is no champion. In a BFSI account that just rejected our CLM bid, the top priority is to convert her or Alexander Guzman into a real internal sponsor with a financial-services proof point.",
+      "champion": "Czarina (sharina) Torralba-Whitmore",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF Task 2026-04-09; SF OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is under-positioned and carries a scar: we lost the CLM deal because our AI 'was clunky and seemed like a bolt-on' (2026-07-02), and the I&O next steps are framed as workflow, speed and supplier onboarding rather than Merlin agentic AI. The Merlin agentic intake narrative has not been put in front of the buyer.",
+      "score": "Low",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 4.0 / AIS_Status__c Moderate reflects a workflow-and-transparency framing, not an AI-led one; there are no calls this sweep to test it, but the lost-CLM feedback shows the buyer is open to AI yet unimpressed by a bolt-on experience, so appetite is real but unmet.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Primary threat is do-nothing: buyer keeps running intake manually and told us they are not ready, a no-decision risk rather than a loss to a rival.", "first_raised": "2026-04-09", "date": "2026-04-09", "status": "open", "source": "SF Task 2026-04-09"},
+        {"category": "executive_alignment", "detail": "George Jannino (SVP CPO / economic buyer) has never engaged on this opp; all outreach is one-way.", "first_raised": "2026-04-01", "date": "2026-06-25", "status": "open", "source": "SF Tasks 2026-04-01, 2026-06-25"},
+        {"category": "references", "detail": "Reputational drag from the lost CLM deal, where our AI was judged a clunky bolt-on, threatens the I&O AI story unless reframed.", "first_raised": "2026-07-02", "date": "2026-07-02", "status": "open", "source": "SF Task 2026-07-02"},
+        {"category": "budget", "detail": "No business case, ROI, or compelling event for I&O; the Hackett benchmark shared was dismissed as a repeat.", "first_raised": "2026-07-02", "date": "2026-07-07", "status": "open", "source": "SF Next_Step__c 2026-07-02; SF Task 2026-07-07"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling to cold: the last two-way buyer exchange was ~88 days ago and ended in a 'not ready', with only one-way rep nurture since.",
+      "cooling": true,
+      "items": [
+        "Buyer 'not ready for I & O' 2026-04-09; no reply in the ~88 days since.",
+        "Close date pushed twice on 2026-06-17 to a placeholder 2027-01-15.",
+        "Zero I&O demos, workshops, or evaluation steps on record."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Czarina and George an RFFS financial-services intake business case tied to the CLM-loss AI feedback.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Rep flagged the RFFS-specific I&O business case as still needed; buyer said not ready with no value anchor.", "trigger_date": "2026-07-07", "act_by": "2026-07-13", "expected_effect": "Gives the buyer a concrete, sector-specific reason to reopen I&O and reframes the bolt-on AI perception."},
+        {"rank": 2, "action": "Ask Czarina to name the trigger and timeline that would make I&O a real priority.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Czarina emailed 'We're not ready for I & O at this time' with no future date.", "trigger_date": "2026-04-09", "act_by": "2026-07-20", "expected_effect": "Converts an open-ended nurture into a dated re-evaluation instead of indefinite silence."},
+        {"rank": 3, "action": "Book a live Merlin agentic intake demo for George Jannino and Czarina, countering the clunky bolt-on view.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "CLM loss debrief said our AI 'was clunky and seemed like a bolt-on'; Merlin story never shown for I&O.", "trigger_date": "2026-07-02", "act_by": "2026-08-05", "expected_effect": "Directly repairs the AI perception that lost CLM and creates a buyer-facing I&O event."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A nurture-mode Intake & Orchestration opp on an account where we lost the CLM deal because our AI felt like a clunky bolt-on; Czarina Whitmore said Raymond James isn't ready for I&O (9 Apr 2026), the CPO has never engaged, and this is a no-decision fight, not a competitive one.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This sits low: Raymond James told us 'we're not ready for I & O at this time' (Czarina Whitmore, 9 Apr 2026), the opp is still Qualified with no business case, and the account already rejected our CLM bid over a clunky, bolt-on AI experience."},
+          {"tone": "warn", "text": "George Jannino (SVP CPO), the budget owner, has never replied on this opp despite ISM, ProcureCon and Pinnacle invites, so there is no economic-buyer sponsorship."},
+          {"tone": "warn", "text": "The close date was pushed twice on 17 Jun 2026 to 15 Jan 2027 with no buyer-driven milestone, signalling a placeholder rather than a real timeline."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "The last genuine two-way exchange was Czarina's 9 Apr 2026 'not ready' email; everything since (Hackett reports, event invites) is one-way rep outreach with no reply."},
+          {"tone": "warn", "text": "No demo, workshop, or evaluation step has occurred on the I&O opp; engagement is content and event nurture only."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "No champion advocates internally; Czarina Whitmore engages politely but declined to progress and shares no internal intelligence."},
+          {"tone": "warn", "text": "The buyer has committed to nothing: no next meeting requested, no timeline, and no I&O evaluation criteria on record."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The primary risk is a no-decision: Raymond James keeps running intake manually and simply does not buy, not a loss to a named rival."},
+          {"tone": "warn", "text": "Reputational drag from the lost CLM deal, where the debrief said our AI 'was clunky and seemed like a bolt-on' (2 Jul 2026), threatens the I&O AI story unless reframed around native Merlin agentic intake."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "One-way rep nurture only since Czarina's 'not ready' reply on 2026-04-09; no buyer step in ~88 days."},
+        "customer_commitment": {"strength": -0.8, "evidence": "Buyer declined to progress, requested nothing, and named no timeline; no champion advocacy."},
+        "deal_risk": {"strength": -0.7, "evidence": "No-decision status quo plus reputational scar from the lost CLM deal over clunky bolt-on AI."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "Czarina Whitmore emailed 'We're not ready for I & O at this time' (2026-04-09); no Zycus-specific pull or preference expressed since."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or metric articulated by the buyer; rep still needs to build an RFFS financial-services intake business case (2026-07-07)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d (2026-03 to 2026-07); field history through 2026-06-17",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls on file for this opp or account; all evidence is Salesforce fields and the email/activity trail.",
+      "No I&O evaluation timeline: buyer said 'not ready' 2026-04-09 with no future date.",
+      "No quantified business case, ROI, or compelling event for Intake & Orchestration.",
+      "Economic buyer George Jannino (CPO) mapped but never engaged on this opp.",
+      "No internal champion advocating; Czarina Whitmore is a coach at best."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

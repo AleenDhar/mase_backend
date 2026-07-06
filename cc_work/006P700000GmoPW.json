@@ -1,0 +1,245 @@
+{
+  "opp_id": "006P700000GmoPW",
+  "hard": {
+    "opp_id": "006P700000GmoPW",
+    "opp_name": "SaskTel S2P Opp- Aug'25",
+    "account_name": "SaskTel",
+    "account_industry": "Telecom and Communication",
+    "billing_country": "Canada",
+    "owner_name": "Mike Flowers",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Shortlisted",
+    "forecast_category": "Best Case",
+    "amount": 357898.0,
+    "close_date": "2026-09-04",
+    "days_to_close": 60,
+    "created_date": "2025-01-29",
+    "qualified_date": "2025-01-30",
+    "last_activity_date": "2026-04-15",
+    "last_modified_date": "2026-07-02",
+    "products": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI",
+    "next_step": "6.4.26MF - Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants. No response to Horizon or Calgary stampede invites sent out. 5.4.26MF - inviting SaskTel to Horizon in Sept. 4.14.26MF - Jeffrey responded they're closing year end books and next steps will be decided late April/early May timeframe.",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "Text-based RFP with no recorded discovery calls; Zycus flagged AI as Very Critical for SaskTel, paired with a Tier 2 Info Assist (AI Insights) rating for what SaskTel wants from AI in the RFP. That self-authored RFP positioning is meaningful buyer-side AI pull, but the tier is Insights not Agentic, and no demo, POC, or champion is confirmed, so confidence stays Low.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+    "primary_competitor": null,
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000GmoPW/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "82-day buyer silence after the missed April interview window; a 4 September close is indefensible with no economic buyer, no champion, and no commercial engagement.",
+      "math": "Deal created 29 Jan 2025 (523 days old), qualified 30 Jan 2025. Entered Shortlisted 24 Nov 2025; RFP submitted 11 Mar 2026. Buyer's own RFP calendar set shortlisting for the week of 6 April and supplier presentations for the week of 20 April 2026, both of which passed with no confirmation to Zycus. Last buyer touch 14-15 April 2026; ~82 days of silence to today (6 Jul 2026), which is cold 60+ days and forces Off Track regardless of stage. Close date 4 Sep 2026 is 60 days out. Closing by then requires shortlist confirmation, a vendor presentation, EB mapping, pricing, negotiation, MSA/SOW, legal, and InfoSec in ~9 weeks from a standing start. Current pace is stalled; the required pace is not credible without immediate re-engagement.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last buyer touch 14-15 April 2026: Jeffrey Buzila emailed that SaskTel is closing year-end books and the down-selection would push to end of April, then went silent for ~82 days. (Source: SF Task 2026-04-15, SF Next_Step__c)",
+        "Buyer's RFP calendar set supplier presentations for the week of 20 April 2026; that window passed with no scheduled Zycus interview, reschedule, or explanation. (Source: SF Next_Step__c 2026-02-12)",
+        "6 April 2026 rep note: Mike Flowers recorded Jeffrey referencing the team still tallying scores, and no response to Horizon or Calgary Stampede invitations, unconfirmed by the buyer directly. (Source: SF Next_Step__c)",
+        "No economic buyer identified or engaged after 523 days; the only mapped contacts are Adriel Picard (Director of Procurement, Decision Maker) and Jeffrey Buzila (no title, no role). (Source: SF OpportunityContactRole)",
+        "No pricing, commercial, or budget conversation is documented in any Salesforce field, activity, or call. (Source: SF Q1/Q3 fields, SF Tasks)",
+        "Best Case forecast with no EB, no champion, no buyer engagement in 82 days, and 60 days to close is not defensible; honest category is Pipeline. (Source: reconciled read)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case or ROI is documented in any Salesforce field, activity, or call for SaskTel. The RFP submitted 11 March 2026 covers a full source-to-pay scope, which implies a modernization or consolidation driver, but no metric (cost savings, cycle-time reduction, error rate, headcount efficiency) has been captured anywhere. Jeffrey Buzila's 14 April 2026 note that SaskTel is closing year-end books implies a finance gate and budget dependency, yet with no quantified value there is nothing to justify the $358k spend to a CFO or to separate Zycus from the four shortlisted rivals. The move is to reconstruct the business case from the RFP requirements and quantify the pain into a CFO-ready savings model on re-engagement.",
+        "sources": ["SF Next_Step__c (14 April 2026, Jeffrey Buzila: closing year-end books)", "SF AIS_Why__c (text RFP, no quantified case)", "SF Opportunity custom fields (no metrics populated)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged after 523 days. The most senior mapped contact is Adriel Picard, Director of Procurement and primary Decision Maker on the contact roles, but a procurement director at a telecom of SaskTel's size rarely owns final budget sign-off on a multi-year S2P platform. Jeffrey Buzila's 14 April 2026 reference to closing year-end books is the only budget-authority signal on record and points to a finance approval gate whose owner (a CFO or VP Finance) has never been named or contacted. The move is to ask Adriel Picard to name and introduce the budget owner, and to map the finance approver before any commercial step.",
+        "sources": ["SF OpportunityContactRole (Adriel Picard: Director of Procurement, Decision Maker; Jeffrey Buzila: no role)", "SF Next_Step__c (14 April 2026: year-end books)", "SF Opportunity custom fields (no EB/sponsor field populated)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The decision criteria are the SaskTel RFP requirements themselves: a full S2P suite (iContract, iManage, iSupplier, eProcurement, eInvoicing, iRequest, iRisk) plus AI capability, which SaskTel self-rated as Very Critical with a Tier 2 Info Assist (AI Insights) requirement (source: SF AIS_Why__c, SF Products__c). This tells us AI-driven procurement intelligence is a scored, buyer-authored evaluation criterion, not a Zycus talking point, which is a genuine wedge. What is NOT confirmed is the weighting, the scoring rubric, or where Zycus ranks, because no vendor presentation or scoring feedback has occurred. The move is to request the scoring feedback at shortlist confirmation and tailor the presentation to the Very Critical AI criterion.",
+        "sources": ["SF AIS_Why__c (AI Very Critical, Tier 2 Info Assist / AI Insights)", "SF Products__c (full S2P + Merlin/Agentic AI scope)", "SF Next_Step__c (RFP calendar, no scoring shared)"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is a formal, calendar-driven public-style RFP administered through the SAP Ariba supplier portal: issue date 11 February 2026, questions closed 18 February, SaskTel responses 25 February, submission deadline 11 March 2026, shortlisting the week of 6 April, and supplier presentations the week of 20 April 2026 (source: SF Next_Step__c 2026-02-12). Reading the sequence itself, the process has stalled at the down-selection gate: the 20 April presentation window passed with no Zycus interview, and Jeffrey Buzila attributed the slip to year-end book close pushing the decision to late April or early May (source: SF Next_Step__c 2026-04-14). The approval chain past procurement is undocumented. The move is to confirm where SaskTel is in the down-selection and lock the presentation slot.",
+        "sources": ["SF Next_Step__c (2026-02-12 RFP calendar; 2026-04-14 delay note)", "SF Task 2026-04-13 (checked Ariba portal for down-selection updates)", "SF OpportunityContactRole (procurement-only committee visibility)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible: MSA/SOW requirements, legal review, InfoSec, and the downstream procurement channel are all undocumented, and no partner or systems integrator has been named. SaskTel runs its sourcing through the SAP Ariba supplier portal (the platform Zycus checked for down-selection updates on 13 April 2026), which signals a formal, structured procurement channel but says nothing about the downstream legal and security gates. With 60 days to the 4 September close and no commercial conversation started, an enterprise MSA/SOW plus redlines and InfoSec (typically 8 to 12 weeks) cannot complete in time. The move is to surface the contracting and security steps as soon as the buyer re-engages.",
+        "sources": ["SF Task 2026-04-13 (Ariba portal used to run the RFP)", "SF Opportunity custom fields (no paper-process field populated)", "SF Next_Step__c (no contracting/legal discussion)"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific operational or financial pain has been articulated by SaskTel on any call or in any field. The RFP scope (iContract, iManage, iSupplier, eProcurement, eInvoicing, iRequest, iRisk plus Merlin and Agentic AI) implies SaskTel intends to modernize or consolidate its source-to-pay stack, and the Very Critical AI rating suggests appetite for AI-driven procurement intelligence, but the pain owner, severity, and compelling event are all unknown. The only recorded live call (28 January 2025) was social small talk with no business content, and the 82-day post-evaluation silence suggests the driver may not be urgent or the owner may lack authority to force a 2026 decision. The move is to reconstruct the pain on re-engagement: what problem drives the RFP, whose team and budget it hits, and what happens if it is not solved this year.",
+        "sources": ["SF Products__c (full S2P + Merlin/Agentic AI scope)", "SF AIS_Why__c (AI Very Critical)", "Avoma introductory call 2025-01-28 (small talk only)", "SF Opportunity custom fields (no pain field populated)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. Adriel Picard (Director of Procurement, Decision Maker) owns the RFP process but shows no advocacy: no internal intel shared, no introduction to a budget owner, no coaching on how to win. Jeffrey Buzila sent one delay email on 14 April 2026 and has not responded to follow-ups, Horizon, or Calgary Stampede invitations in ~82 days, indicating passive or cooling engagement. The relationship is transactional (RFP issued, questions answered, submission received), and the only recorded live call, the 28 January 2025 introductory call, was social small talk with no business content. The move is to test whether Adriel or Jeffrey will advocate, and if not, to develop a new higher-access contact.",
+        "sources": ["SF OpportunityContactRole (Adriel Picard: Decision Maker; Jeffrey Buzila: no role)", "SF Next_Step__c (14 April email; 6 June no response to invites)", "Avoma introductory call 2025-01-28 (small talk only, no business content)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "SaskTel is running a competitive S2P RFP with four named rivals: Coupa, GEP Worldwide, JAGGAER, and SAP Ariba (source: SF Competitors__c). None is confirmed as the incumbent or the buyer's preferred vendor; SaskTel merely uses the SAP Ariba supplier portal to administer the RFP, which is not the same as SAP Ariba being the current S2P provider, so incumbency must not be conceded. Competitive intelligence is otherwise zero: no scoring, no rank, and no stated buyer preference on any call or field, because no vendor presentation has happened. Zycus's differentiation is the Merlin and Agentic AI scope against SaskTel's self-rated Very Critical AI criterion, but that narrative has not yet been carried into a live session. The move is to confirm shortlist status, request scoring feedback, and activate the AI story in the presentation.",
+        "sources": ["SF Competitors__c (Coupa; GEP Worldwide; JAGGAER; SAP Ariba)", "SF Task 2026-04-13 (Ariba portal used to run the RFP)", "SF AIS_Why__c + Products__c (Merlin/Agentic AI as the wedge)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The record's last genuine buyer signal was 14-15 April 2026 (Jeffrey Buzila's year-end-books delay email); since then all field moves are rep-side housekeeping. On 4 May 2026 Mike Flowers pushed the close date from 30 April to 4 September and sent Horizon and Calgary Stampede invites that drew no response; the 2 July 2026 Next_Step touch is a rep note, not buyer engagement. The deal is stalled at the down-selection gate.",
+      "items": [
+        {"change": "Close date pushed 30 Apr 2026 to 4 Sep 2026 by Mike Flowers", "date": "2026-05-04"},
+        {"change": "Ownership transferred Karson Keogh to Mike Flowers", "date": "2026-04-13"},
+        {"change": "Amount raised 225,000 to 357,898 by Karson Keogh", "date": "2026-03-12"},
+        {"change": "RFP submitted via SAP Ariba supplier portal; buyer set shortlist week of 6 Apr, presentations week of 20 Apr", "date": "2026-03-11"},
+        {"change": "Last genuine buyer touch: Jeffrey Buzila emailed that year-end book close pushes the decision to late April/early May", "date": "2026-04-15"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SaskTel is running a four-vendor S2P RFP against Coupa, GEP Worldwide, JAGGAER, and SAP Ariba (SF Competitors__c). No competitor is confirmed incumbent or buyer-preferred: SaskTel administers the RFP through the SAP Ariba supplier portal, which is a sourcing platform, not proof SAP Ariba is the current provider. There is zero visibility into scoring or Zycus's rank because no vendor presentation or feedback has occurred, so all four sit as active, roughly equal, medium threats. The single most useful move is to confirm shortlist status and pull scoring feedback; the wedge is Merlin/Agentic AI against SaskTel's self-rated Very Critical AI criterion.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Listed as a shortlisted competitor on the SaskTel S2P RFP; no buyer preference or pricing intel on record.", "date": "2026-07-06", "source": "SF Competitors__c", "how_we_win": "Contrast Merlin agentic sourcing and negotiation intelligence against Coupa on SaskTel's Very Critical AI criterion in the vendor presentation."},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Listed as a shortlisted competitor on the SaskTel S2P RFP; no buyer preference or pricing intel on record.", "date": "2026-07-06", "source": "SF Competitors__c", "how_we_win": "Position productized S2P plus Merlin over GEP's consulting-led model, showing faster time-to-value for a telecom procurement team."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Listed as a shortlisted competitor on the SaskTel S2P RFP; no buyer preference or pricing intel on record.", "date": "2026-07-06", "source": "SF Competitors__c", "how_we_win": "Match suite breadth on the RFP checklist, then win on the Agentic AI Insights tier SaskTel rated Very Critical."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Listed as a shortlisted competitor; SaskTel administers the RFP via the Ariba supplier portal, which is the sourcing platform, not confirmed incumbency.", "date": "2026-07-06", "source": "SF Competitors__c; SF Task 2026-04-13", "how_we_win": "Lead with modern AI procurement intelligence and lower total cost versus a heavier SAP footprint; do not concede incumbency the evidence does not confirm."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "SaskTel authored a full S2P RFP and self-rated AI as Very Critical (Tier 2 AI Insights), which aligns well with the Zycus suite plus Merlin. The exposure is that fit has never been validated live: no presentation, no scoring feedback, and no articulated pain to anchor value, so alignment is inferred from the RFP text, not confirmed by the buyer.",
+      "items": [
+        {"criterion": "Full source-to-pay suite coverage", "position": "aligned", "quote": "RFP scope spans iContract, iManage, iSupplier, eProcurement, eInvoicing, iRequest, iRisk.", "date": "2026-03-11", "source": "SF Products__c; SF Next_Step__c"},
+        {"criterion": "AI capability rated Very Critical", "position": "partially aligned", "quote": "AI flagged Very Critical for SaskTel with a Tier 2 Info Assist (AI Insights) rating in the RFP.", "date": "2026-07-06", "source": "SF AIS_Why__c"},
+        {"criterion": "Quantified value / ROI case", "position": "exposed", "quote": "No metric, savings target, or compelling event is documented on any field or call.", "date": "2026-07-06", "source": "SF Opportunity custom fields"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Confirm SaskTel's shortlist decision and the supplier-presentation date", "who": "Buyer", "grounding_quote": "We are plugging away at evaluations, but it is going to be some time (closer to end of April) before we are done and looking at the shortlisting phase.", "date": "2026-04-13", "due": "2026-07-17", "status": "overdue", "source": "SF Task 2026-04-13 (Jeffrey Buzila email)"}
+      ]}
+    },
+    "gaps": {"items": [
+      {"area": "Economic buyer / budget owner", "quote": "Only procurement contacts are mapped after 523 days; the finance approver behind the year-end-books gate is unnamed.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole; SF Next_Step__c 2026-04-14"},
+      {"area": "Quantified business case", "quote": "No savings, cycle-time, or ROI figure is documented on any field or call.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Opportunity custom fields"},
+      {"area": "Champion", "quote": "No contact shows advocacy; the relationship is transactional and cooling.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole; Avoma 2025-01-28"}
+    ]},
+    "best_practice_check": {
+      "summary": "This is a stalled, single-threaded competitive RFP: the highest-leverage levers are to break the silence at the down-selection gate, map real power beyond procurement, and convert the buyer's Very Critical AI rating into a live differentiator before the presentation.",
+      "flags": [
+        "Break the 82-day silence: the owner must re-engage Jeffrey Buzila directly to confirm shortlist status before the window to influence the presentation closes.",
+        "Map power beyond procurement: no economic buyer or finance approver is named after 523 days, so a favorable score still cannot get to signature by 4 September.",
+        "Weaponize the Very Critical AI rating: SaskTel scored AI as a top criterion, so leading the presentation with Merlin/Agentic AI Insights is the clearest wedge against Coupa, GEP, JAGGAER, and SAP Ariba."
+      ]
+    },
+    "stakeholder_map": {"items": [
+      {"name": "Adriel Picard", "title": "Director of Procurement", "role": "Decision Maker", "last_contact_date": "2026-04-15", "sentiment": "neutral", "risk": "Single-threaded primary contact; owns the RFP process but shows no advocacy and likely lacks final budget authority, so the deal stalls if he does not drive it or open access to power.", "source": "sfdc_contact_role"},
+      {"name": "Jeffrey Buzila", "title": "NA", "role": "Influencer", "last_contact_date": "2026-04-14", "sentiment": "neutral", "risk": "Sent one delay email on 14 April 2026, then went silent for ~82 days; engagement is passive or cooling and title/authority is unknown.", "source": "sfdc_contact_role"}
+    ]},
+    "champion_strength": {
+      "summary": "No champion identified. Adriel Picard owns the RFP but shows no advocacy, internal intel sharing, or introductions to a budget owner, and Jeffrey Buzila has gone quiet for ~82 days after a single delay email. The relationship is transactional and cooling, and the sole recorded call (28 January 2025) was social small talk with no business content. Without a champion the deal is at high risk of a silent loss at down-selection.",
+      "champion": "None identified",
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole; SF Next_Step__c; Avoma call 2025-01-28"
+    },
+    "ai_positioning_strength": {
+      "summary": "SaskTel self-rated AI as Very Critical and asked for Tier 2 AI Insights in the RFP, which is real buyer-side AI pull, but Zycus has never carried the Merlin / Agentic AI story into a live session, so the positioning is latent, not landed.",
+      "score": "5.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 5.0 (Moderate). SaskTel authored AI as Very Critical with a Tier 2 Info Assist (AI Insights) requirement, which lifts this off the resistant floor, but the tier is Insights not Agentic, and there are no calls to confirm whether the rating is genuine excitement or procurement-checklist hygiene.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {"items": [
+      {"category": "executive_alignment", "detail": "No economic buyer or finance approver mapped after 523 days; a favorable score cannot convert to signature without one.", "first_raised": "2026-04-14", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole; SF Next_Step__c 2026-04-14"},
+      {"category": "timeline", "detail": "82 days of buyer silence and a 60-day runway make the 4 September close date not credible.", "first_raised": "2026-04-15", "date": "2026-07-06", "status": "open", "source": "SF Task 2026-04-15; SF field history"},
+      {"category": "political", "detail": "Single-threaded on procurement (Adriel Picard, Jeffrey Buzila) with no advocacy; a silent loss at down-selection is the base-case risk.", "first_raised": "2026-04-14", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+      {"category": "budget", "detail": "No pricing, ROI, or budget conversation is documented; the year-end-books reference implies an unmet finance gate.", "first_raised": "2026-04-14", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c 2026-04-14"}
+    ]},
+    "confidence_signals": {
+      "summary": "Engagement is cold: the buyer has not responded in ~82 days, the April presentation window passed with no interview, and Horizon and Calgary Stampede invites drew no reply.",
+      "cooling": true,
+      "items": [
+        "82-day buyer silence since the 15 April 2026 delay email",
+        "Missed supplier-presentation window (week of 20 April 2026)",
+        "No response to Horizon or Calgary Stampede invitations"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A four-vendor S2P RFP that has gone dark: SaskTel scored AI as Very Critical (our natural wedge), but 82 days after the missed April presentation window there is still no shortlist confirmation, no economic buyer, and no champion, so a 4 September close is not credible without an immediate re-engagement.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Scores low for a Shortlisted deal because after 523 days there is no champion, no economic buyer, and no live validation, so the strong RFP fit cannot be converted."},
+          {"tone": "good", "text": "The one real asset is fit: SaskTel authored a full S2P RFP and self-rated AI as Very Critical (Tier 2 AI Insights), which the Zycus suite plus Merlin maps to directly (SF AIS_Why__c, SF Products__c)."},
+          {"tone": "warn", "text": "We are one of four active vendors (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with zero scoring visibility and no stated buyer preference, so our rank is unknown (SF Competitors__c)."},
+          {"tone": "warn", "text": "Jeffrey Buzila has been silent ~82 days since the 15 April 2026 year-end-books delay, and the week-of-20-April presentation window passed with no Zycus interview (SF Task 2026-04-15)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: the only moves since 15 April 2026 are rep-side (a 4 May close-date push to 4 September and unanswered event invites), not buyer engagement (SF field history)."},
+          {"tone": "warn", "text": "The buyer's own RFP calendar slipped past its shortlist (week of 6 April) and presentation (week of 20 April) milestones with no reschedule communicated (SF Next_Step__c 2026-02-12)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "No customer-owned next step exists: the last buyer commitment was a soft late-April/early-May decision that never landed, and follow-ups since have drawn no reply (SF Next_Step__c 2026-04-14)."},
+          {"tone": "warn", "text": "Engagement is procurement-only and transactional; the sole recorded live call (28 January 2025) was social small talk with no business content (Avoma 2025-01-28)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "No economic buyer or finance approver is mapped after 523 days, so even a winning score cannot reach signature by the 4 September close (SF OpportunityContactRole)."},
+          {"tone": "warn", "text": "Best Case forecast is indefensible on an 82-day-dark deal with no EB, no champion, and no commercial conversation; honest category is Pipeline (reconciled read)."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": -1, "evidence": "No senior finance or transformation stakeholder has joined; engagement remains procurement-only and has gone silent."},
+        "customer_commitment": {"strength": -1, "evidence": "No customer-owned next step; buyer silent ~82 days after a soft, unmet decision date."},
+        "deal_risk": {"strength": -1, "evidence": "No EB, no champion, 82-day silence, 60 days to an indefensible close date."}
+      }
+    },
+    "scope_change": {
+      "direction": "expanded",
+      "from": "225,000 (opportunity amount pre-RFP)",
+      "to": "357,898 (amount raised 12 Mar 2026 at RFP submission)",
+      "detail": "Amount was raised from 225,000 to 357,898 on 12 March 2026 alongside the full S2P RFP submission; scope has not narrowed, so this is not a defensive scope-shrink signal."
+    },
+    "recommended_moves": {"items": [
+      {"rank": 1, "action": "Mike Flowers emails Jeffrey Buzila directly to confirm shortlist status and the presentation date.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Buyer silent ~82 days since the 15 April year-end-books delay; the week-of-20-April presentation window passed with no interview.", "trigger_date": "2026-04-15", "act_by": "2026-07-13", "expected_effect": "Reopens the dormant relationship and reveals whether Zycus is still in the running before the presentation is scheduled without us."},
+      {"rank": 2, "action": "Ask Adriel Picard to name and introduce the budget owner behind the year-end-books gate.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No economic buyer or finance approver mapped after 523 days; Jeffrey Buzila cited year-end book close as the decision gate.", "trigger_date": "2026-04-14", "act_by": "2026-07-20", "expected_effect": "Maps real budget authority so a favorable score can actually convert to signature."},
+      {"rank": 3, "action": "Secure the supplier-presentation slot and lead with Merlin/Agentic AI on the Very Critical AI criterion.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "SaskTel self-rated AI Very Critical (Tier 2 AI Insights) but the Merlin story has never been shown live.", "trigger_date": "2026-07-06", "act_by": "2026-07-24", "expected_effect": "Activates the clearest differentiator against Coupa, GEP, JAGGAER, and SAP Ariba and requests scoring feedback."},
+      {"rank": 4, "action": "Build a CFO-ready ROI and savings model from the RFP scope for the finance approver.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No quantified value case exists to justify the $358k spend at a finance gate.", "trigger_date": "2026-07-06", "act_by": "2026-08-05", "expected_effect": "Gives the unmapped budget owner a defensible business case and moves the forecast off Pipeline."},
+      {"rank": 5, "action": "If no buyer reply in 10 business days, executive connect with the deal owner's manager to reach SaskTel procurement leadership.", "owner": "Executive connect", "horizon": "next_30_days", "trigger": "A $358k Shortlisted deal has gone dark 82 days with no path; owner-level outreach may not break the silence.", "trigger_date": "2026-07-06", "act_by": "2026-07-27", "expected_effect": "Adds executive weight to force a shortlist answer if the owner's direct re-engagement gets no response."}
+    ]},
+    "customer_preference": {"level": "none", "evidence": "No buyer preference for Zycus or any rival is stated on any call or field; engagement is a neutral, procurement-run RFP with 82 days of silence since 15 April 2026."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or quantified impact is documented anywhere; only the RFP's Very Critical AI rating hints at qualitative appetite."},
+    "momentum_signals": {"seniority_rising": false, "commercial_topics_entering": false, "concrete_dates": false, "customer_requested_next_meeting": false, "close_plan_concretizing": false, "generic_demo_only": false, "competitor_praised": false},
+    "critical_signals": {"items": [
+      {"lens": "Last meeting", "text": "The buyer's own week-of-20-April presentation window passed with no Zycus interview, and Jeffrey Buzila has not replied in ~82 days since blaming year-end book close.", "tone": "crit"},
+      {"lens": "Competition", "text": "SaskTel is choosing among four vendors (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no scoring visibility and no stated preference, so our rank is unknown.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "No economic buyer or finance approver has ever been named beyond procurement contacts Adriel Picard and Jeffrey Buzila, leaving the budget owner unreachable.", "tone": "crit"},
+      {"lens": "Commercials", "text": "No pricing, ROI, or budget conversation has occurred, so the $358k Best Case number cannot be justified to a finance gate.", "tone": "warn"}
+    ]},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history trailing 365d; contact roles and Q1/Q2/Q3 fields as of 2026-07-06",
+    "avoma_attendees": ["Adrian", "Christian", "Josh"],
+    "gaps": [
+      "Only one Avoma call exists (28 January 2025 introductory), and it is social small talk with no business content, so there is zero transcribed buyer discovery, criteria, or competitive intel.",
+      "No economic buyer / finance approver named in any source after 523 days.",
+      "No quantified business case, pain owner, or compelling event on any field or call.",
+      "No vendor-presentation or scoring feedback, so Zycus's competitive rank is unknown."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,286 @@
+{
+  "opp_id": "006P700000a17ynYAA",
+  "hard": {
+    "opp_id": "006P700000a17ynYAA",
+    "opp_name": "Traveloka - eProc & Intake",
+    "account_name": "Traveloka",
+    "account_industry": "IT & Consulting",
+    "billing_country": "Indonesia",
+    "owner_name": "George John",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2027-02-28",
+    "days_to_close": 237,
+    "created_date": "2026-06-25",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": "2026-06-25",
+    "last_modified_date": "2026-07-01",
+    "products": "iSource;iSupplier;eProcurement;Merlin Intake",
+    "next_step": "Meeting concluded on June 25 with Procurement head and extended team. AI inclined - Demo to be scheduled",
+    "ais_score": 7.5,
+    "ais_status": "Strong",
+    "ais_why": "Head of Proc confirms theyre actively searching for AI solution, either building custom their own with ChatGPT or Claude, or search for ready to use AI",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Status quo (legacy Oracle EBS eSourcing not activated, manual PR-to-PO)",
+    "primary_competitor": "Status quo (legacy Oracle EBS, manual processes)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a17ynYAA/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Fresh, well-qualified early deal: Head of Procurement Theresia Pardede named the PR-to-PO automation mandate and an active AI search on 25 Jun; ball is with Zycus to deliver pricing and book the demo.",
+      "math": "Created 2026-06-25, swept 2026-07-06 = 11 days old. Stage Qualified (entered 30 Jun). Close 2027-02-28 = 237 days out. Last buyer touch 25 Jun introductory call; rep logged unanswered call-attempts 30 Jun. No close-date slip (no prior date). The pricing-then-demo gate is owner-owned, so an 11-day quiet spell on a brand-new deal is normal, not a stall; pace is fine for an early Qualified deal with ~8 months runway.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "25 Jun 2026 introductory call (SF Event 'Traveloka <> Zycus: Introductory Call') with Theresia Pardede (Head of Procurement, Decision Maker) and her extended procurement team.",
+        "Theresia stated procurement is being pushed to automate in 2025 and specifically called out automating PR-to-PO conversion to cut manual work (SF facts / AIS_Why 25 Jun).",
+        "Traveloka runs legacy Oracle EBS and is actively looking for a modern agentic solution beyond Oracle; head of procurement is searching for an AI solution, either custom-built (ChatGPT/Claude) or ready-to-use (AIS_Why, Strong 7.5).",
+        "Buyer's team gated a demo on receiving tailored high-level pricing for sourcing, procurement and Merlin Intake first (NextStep 25 Jun: 'AI inclined - Demo to be scheduled').",
+        "Deal is 11 days old, single-threaded on Theresia, with no economic buyer or quantified savings baseline yet; win read rests on one call."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is clear and operational but not yet quantified. Theresia Pardede (Head of Procurement) said procurement is mandated to automate in 2025 and specifically wants to automate PR-to-PO conversion to reduce manual work (SF facts / AIS_Why, 25 Jun 2026). Traveloka runs legacy Oracle EBS where eSourcing exists but was never activated, and contract management sits in a separate specialist tool (carried from the 25 Jun introductory call), signalling process fragmentation. No baseline numbers were captured yet, no cycle time, headcount, error rate, or savings target, so the value case is still qualitative. Extracting a PR-to-PO baseline during the pricing and demo conversation is the move to convert this into a quantified ROI story anchored to the 500-800 user scope.",
+        "sources": [
+          "SF facts / AIS_Why 25 Jun 2026: 'wanting to automate the PR-to-PO conversion to reduce manual work'",
+          "SF Event 'Traveloka <> Zycus: Introductory Call' 25 Jun 2026",
+          "25 Jun introductory call (carried): Oracle eSourcing exists but not activated; contract management in a separate tool",
+          "SF NextStep 25 Jun 2026: 'AI inclined - Demo to be scheduled'"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named in any real Salesforce record: the sole OpportunityContactRole is Theresia Pardede (Head of Procurement, Decision Maker), who owns the operational mandate but not necessarily the $200k budget. For a new-business spend at this size a Finance or C-level approver will be required, and none is mapped or engaged. The evidence shows procurement leadership sponsoring the search (Theresia convened her extended team on 25 Jun) but says nothing about who signs off the money. The ranked move is to ask Theresia directly to name the budget owner / finance approver and secure an introduction before commercials firm up.",
+        "sources": [
+          "OpportunityContactRole: Theresia Pardede, Head of Procurement, Decision Maker (only contact role on the opp)",
+          "SF Amount 200000 (new business); no Executive Sponsor / Economic Buyer contact role present"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The buyer's criteria are emerging from the 25 Jun introductory call rather than a formal RFP. Confirmed drivers: agentic AI to automate PR-to-PO, a modern solution beyond what legacy Oracle EBS offers, and readiness to either build custom on ChatGPT/Claude or buy a ready-to-use AI (AIS_Why, Strong 7.5, 25 Jun). Integration with legacy Oracle EBS and regional collaboration tooling (Lark/Feishu rather than MS Teams) plus localization were raised as fit requirements (carried from the 25 Jun call). These are still early and largely inferred from one discovery conversation, so a structured criteria confirmation during the demo is needed before we call them locked.",
+        "sources": [
+          "SF facts / AIS_Why 25 Jun 2026: actively searching for an AI solution, custom or ready-to-use; agentic solution beyond Oracle",
+          "25 Jun introductory call (carried): Oracle EBS integration, Lark/Feishu (not MS Teams), localization"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is only just beginning and reads directly from the call sequence: a single 25 Jun introductory call with Theresia Pardede and her extended procurement team, after which the buyer set a clear near-term path, pricing first, then a scheduled product demo (NextStep 25 Jun). No approval chain, evaluation timeline, or committee beyond procurement has been surfaced, and no Finance or IT stakeholder has joined. The visible next gate is the pricing-gated demo; the unknown is who beyond procurement must approve and on what timeline, which should be asked explicitly at the demo.",
+        "sources": [
+          "SF Event 'Traveloka <> Zycus: Introductory Call' 25 Jun 2026 with extended procurement team",
+          "SF NextStep 25 Jun 2026: 'Meeting concluded on June 25 with Procurement head and extended team. AI inclined - Demo to be scheduled'"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are not yet visible, which is normal for an 11-day-old Qualified deal with no proposal on the table. As a new-business full-suite deal (iSource, iSupplier, eProcurement, Merlin Intake) it would eventually run the standard MSA plus Order Form plus SOW path with InfoSec review, and as an Indonesia/APAC buyer it is likely PO-gated for invoicing. Nothing about legal, procurement channel, or security review has been discussed yet. Visibility here will only come once pricing and the demo advance the deal toward commercials, so no paper action is warranted now.",
+        "sources": [
+          "SF Stage Qualified; SF Products iSource;iSupplier;eProcurement;Merlin Intake (new business, full suite)",
+          "SF billing_country Indonesia (APAC, typically PO-gated invoicing)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is explicit and owned by procurement. Theresia Pardede (Head of Procurement) said procurement is being pushed to automate in 2025 and specifically called out automating PR-to-PO conversion to cut manual work (SF facts / AIS_Why, 25 Jun 2026). The compounding pain is legacy Oracle EBS: eSourcing was bought but never activated and contract management runs in a separate tool, so the current state is fragmented and manual (carried from the 25 Jun call). The pain owner is Theresia and her procurement team; what remains inferred rather than confirmed is the financial size of that pain, which the ROI conversation should quantify.",
+        "sources": [
+          "SF facts / AIS_Why 25 Jun 2026, Theresia Pardede: automate PR-to-PO conversion to reduce manual work; procurement mandated to automate in 2025",
+          "25 Jun introductory call (carried): Oracle eSourcing not activated; separate contract tool"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Theresia Pardede (Head of Procurement, Decision Maker) is an engaged operational sponsor developing toward champion, not yet a proven one. She convened the 25 Jun introductory call with her extended procurement team, articulated the automation mandate and PR-to-PO pain, and drove the internal next step by gating a demo on pricing (NextStep 25 Jun). What has developed is genuine ownership of the problem and control of the near-term process; what is still missing is champion behaviour that proves advocacy, no introduction to the budget owner, Finance or IT, no coaching on the decision process or competition, and no evidence she is selling Zycus internally. She is also our single thread, so if she is overruled by an unmapped budget owner the deal stalls; converting her from sponsor to champion by getting her to open doors to power is the priority.",
+        "sources": [
+          "OpportunityContactRole: Theresia Pardede, Head of Procurement, Decision Maker",
+          "SF Event 25 Jun 2026: Theresia convened the introductory call with her extended procurement team",
+          "SF NextStep 25 Jun 2026: buyer gated the demo on receiving pricing (Theresia driving the internal step)"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No external vendor has been named in any source, so the live competition is the status quo: legacy Oracle EBS, whose eSourcing module was purchased but never activated, plus manual PR-to-PO processes (25 Jun introductory call). Two threats follow: Traveloka could reactivate the already-paid-for Oracle module rather than buy new, or it could keep managing manually and not decide at all (a no-decision risk more than a loss to a rival). The wedge is strong and landing: Theresia is explicitly searching for an agentic AI solution beyond Oracle (AIS Strong 7.5), so Zycus's Merlin agentic PR-to-PO automation and modern UX directly answer why Oracle was never adopted. The competitive set has not been validated, so smoking out any quiet parallel vendor and neutralizing the Oracle-reactivation argument should be done explicitly at the demo.",
+        "sources": [
+          "25 Jun introductory call (carried): Oracle eSourcing exists but not activated; manual PR-to-PO",
+          "SF facts / AIS_Why 25 Jun 2026: actively looking for a modern agentic solution beyond Oracle",
+          "SF Competitors__c: no external vendor named"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Brand-new opportunity created 25 Jun, promoted Initial Interest to Qualified on 30 Jun by George John. Last genuine buyer touch is the 25 Jun introductory call; rep logged eight system 'Opportunity Health' call-attempts on 30 Jun (unanswered, rep-side). Ball is with Zycus to deliver pricing and schedule the demo.",
+      "items": [
+        {"change": "Stage moved Initial Interest -> Qualified (George John)", "date": "2026-06-30"},
+        {"change": "Type set to New Business (Chiranjivi Padole)", "date": "2026-06-30"},
+        {"change": "Ownership transferred to George John (from Hawa Aunal Fanfa)", "date": "2026-06-26"},
+        {"change": "Introductory call held with Theresia Pardede and extended procurement team", "date": "2026-06-25"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No external vendor has surfaced; the single strongest current threat is the status quo. Legacy Oracle EBS is the incumbent, its eSourcing module bought but never activated, so the real risk is either Oracle reactivation ('already paid for') or no-decision inertia keeping PR-to-PO manual (25 Jun introductory call). Zycus is well placed on AI differentiation: Theresia is explicitly searching for an agentic solution beyond Oracle (AIS Strong 7.5, 25 Jun). The competitive set is unvalidated and any quiet parallel vendor must be smoked out at the demo.",
+      "competitors": [
+        {
+          "name": "Status quo (legacy Oracle EBS eSourcing not activated + manual PR-to-PO)",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "eSourcing in Oracle exists but not activated; manual PR-to-PO conversion remains a pain point and driver for automation",
+          "date": "2026-06-25",
+          "source": "25 Jun 2026 introductory call, Theresia Pardede",
+          "how_we_win": "Make Merlin agentic PR-to-PO automation and modern UX the centerpiece of the demo, framing them as the reason Oracle was never adopted, and quantify the cost of manual processes to beat a 'reactivate what we already paid for' argument."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is strong on the AI and modernization axis that the buyer cares most about; integration and localization are raised but not yet validated.",
+      "items": [
+        {"criterion": "Agentic AI to automate PR-to-PO conversion", "position": "aligned", "quote": "wanting to automate the PR-to-PO conversion to reduce manual work", "date": "2026-06-25", "source": "SF facts / AIS_Why 25 Jun 2026, Theresia Pardede"},
+        {"criterion": "Modern solution beyond legacy Oracle EBS", "position": "aligned", "quote": "actively looking for a modern, agentic solution beyond what Oracle offers", "date": "2026-06-25", "source": "SF facts 25 Jun 2026"},
+        {"criterion": "Integration with legacy Oracle EBS and Lark/Feishu, localization", "position": "partially aligned", "quote": "Oracle EBS integration, Lark/Feishu (not MS Teams), localization support", "date": "2026-06-25", "source": "25 Jun introductory call (carried)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Tailored high-level pricing for sourcing, procurement and Merlin Intake for 500-800 users, before the demo", "said_by": "Theresia Pardede", "date": "2026-06-25", "addressed": false, "quote": "AI inclined - Demo to be scheduled (buyer gated the demo on receiving pricing first)", "source": "SF NextStep 25 Jun 2026 + 25 Jun introductory call"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm the demo date and attendee list once pricing is received", "who": "Buyer", "grounding_quote": "AI inclined - Demo to be scheduled", "date": "2026-06-25", "due": "2026-07-20", "status": "open", "source": "SF NextStep 25 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "Only Theresia Pardede (Decision Maker) is on the opp; no Finance or exec approver named", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "OpportunityContactRole"},
+        {"area": "Quantified value baseline", "quote": "PR-to-PO pain stated but no cycle time, headcount, or savings figures", "status": "not addressed", "date": "2026-06-25", "gap_type": "knowledge", "source": "25 Jun introductory call / AIS_Why"},
+        {"area": "External competitive set", "quote": "No external vendor named; unclear if a parallel evaluation is running", "status": "acknowledged", "date": "2026-06-25", "gap_type": "knowledge", "source": "SF Competitors__c"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified deal with strong AI fit and one engaged procurement contact; the win levers are multi-threading to power, locking the AI differentiation at the demo, and quantifying the pain.",
+      "flags": [
+        "Multi-thread beyond Theresia to the Finance budget owner and IT before commercials firm up, so a single unmapped approver cannot stall the deal.",
+        "Make Merlin agentic PR-to-PO automation the centerpiece of the demo to lock AI differentiation against Oracle reactivation.",
+        "Quantify the manual PR-to-PO baseline (cycle time, headcount, error rate) during pricing to build a defensible ROI case for the $200k spend."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Theresia Pardede", "title": "Head of Procurement", "role": "Decision Maker", "last_contact_date": "2026-06-25", "sentiment": "positive - articulated the automation mandate and PR-to-PO pain, stated AI intent, gated the demo on pricing", "risk": "Single thread. If she is overruled by an unmapped budget owner or goes quiet, the deal stalls. Must multi-thread to Finance and IT.", "source": "OpportunityContactRole (Decision Maker); SF Event 25 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Theresia Pardede (Head of Procurement, Decision Maker) is an engaged operational sponsor developing toward champion. She convened the 25 Jun introductory call with her extended team, owns the PR-to-PO automation mandate, and drove the pricing-then-demo next step. Not yet proven as a champion: no introduction to the budget owner, Finance or IT, no coaching on the decision process, and no evidence of internal advocacy. She is our only thread, so securing her as a true champion and getting her to open doors to power is the priority.",
+      "champion": "Theresia Pardede",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "OpportunityContactRole (Decision Maker); SF Event + NextStep 25 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Strong. The buyer is explicitly searching for an agentic AI solution and Merlin Intake plus AI sourcing directly answer the PR-to-PO automation mandate; AIS reads Strong (7.5). Positioning is landing, not under-sold.",
+      "score": "7.5",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is Strong at 7.5: Head of Procurement confirmed an active AI search, either building custom on ChatGPT/Claude or buying ready-to-use, and wants an agentic solution beyond Oracle (AIS_Why, 25 Jun). No calls this run to test the field, but the stated appetite corroborates a high AI tier.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or Finance approver mapped for the $200k spend; only the Head of Procurement is engaged.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "OpportunityContactRole"},
+        {"category": "political", "detail": "Single-threaded on Theresia Pardede; no second contact in procurement, Finance or IT.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "OpportunityContactRole"},
+        {"category": "change_management", "detail": "Status-quo inertia: Traveloka could reactivate the already-owned Oracle eSourcing or keep PR-to-PO manual (no-decision risk).", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "25 Jun introductory call"},
+        {"category": "integration", "detail": "Legacy Oracle EBS and Lark/Feishu integration feasibility unvalidated; late IT engagement could surface technical blockers.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "25 Jun introductory call (carried)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer engaged on 25 Jun but quiet for ~11 days since; rep logged unanswered system call-attempts on 30 Jun. The quiet is expected because Zycus owes the pricing that unblocks the demo, so this is a rep-side wait, not buyer disengagement.",
+      "cooling": false,
+      "items": [
+        "Last genuine buyer touch: 25 Jun introductory call.",
+        "30 Jun: eight 'Opportunity Health' call-attempts logged (rep-side, unanswered).",
+        "Next step is owner-owned (deliver pricing, then schedule demo)."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Theresia the tailored high-level pricing for sourcing, procurement and Merlin Intake.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Buyer gated the demo on receiving pricing first", "trigger_date": "2026-06-25", "act_by": "2026-07-13", "expected_effect": "Unblocks the buyer-gated demo and keeps the deal moving toward its next milestone."},
+        {"rank": 2, "action": "Book the product demo with Theresia and her procurement team on Merlin agentic PR-to-PO.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "NextStep 'AI inclined - Demo to be scheduled'", "trigger_date": "2026-06-25", "act_by": "2026-07-17", "expected_effect": "Converts stated AI appetite into a scheduled evaluation step and locks AI differentiation."},
+        {"rank": 3, "action": "Ask Theresia to name the Finance budget owner and secure an introduction.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No economic buyer mapped for the $200k spend", "trigger_date": "2026-06-25", "act_by": "2026-07-20", "expected_effect": "Maps the approver early so commercials do not stall on an unknown sign-off."},
+        {"rank": 4, "action": "Multi-thread to IT to validate legacy Oracle EBS and Lark/Feishu integration before the deep-dive.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Integration feasibility unvalidated", "trigger_date": "2026-06-25", "act_by": "2026-08-01", "expected_effect": "De-risks late technical blockers and broadens the account beyond a single thread."},
+        {"rank": 5, "action": "Confirm with Theresia whether Oracle reactivation or any external vendor is in play.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No external competitor named; status-quo reactivation risk", "trigger_date": "2026-06-25", "act_by": "2026-08-04", "expected_effect": "Surfaces the real competitive set and lets us pre-empt the 'already paid for' Oracle argument."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Fresh, well-qualified early deal: the Head of Procurement named a 2025 PR-to-PO automation mandate and an active agentic-AI search (AIS Strong 7.5) on the 25 Jun intro call; the one thing between us and momentum is delivering pricing, booking the demo, and multi-threading past a single procurement contact to a budget owner.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Well-qualified for an 11-day-old deal: Theresia Pardede (Head of Procurement, Decision Maker) named the 2025 mandate to automate PR-to-PO and an active AI search beyond Oracle on the 25 Jun intro call, and AIS reads Strong at 7.5."},
+          {"tone": "good", "text": "AI differentiation is landing: the buyer explicitly wants an agentic solution, which Merlin Intake and AI sourcing answer directly against a legacy Oracle EBS that was never adopted."},
+          {"tone": "warn", "text": "Single-threaded on Theresia with no economic buyer or Finance approver mapped for the $200k spend, so budget authority is entirely unconfirmed."},
+          {"tone": "warn", "text": "The win read rests on one introductory call: no external competitor validated and no quantified savings baseline yet."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "The buyer set a concrete next step, pricing then a scheduled demo, on the 25 Jun call, keeping the path forward clear."},
+          {"tone": "warn", "text": "No buyer reply in the ~11 days since 25 Jun and eight system call-attempts on 30 Jun went unanswered; Zycus still owes the pricing that unblocks the demo."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Theresia committed her extended procurement team to the 25 Jun intro and stated an active search for an AI procurement solution."},
+          {"tone": "warn", "text": "No timeline, budget confirmation, or economic buyer yet, and close date sits a soft 237 days out (Feb 2027)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-thread risk: if Theresia is overruled by an unmapped budget owner or goes quiet, the deal stalls with no second contact to carry it."},
+          {"tone": "warn", "text": "Status-quo inertia is the main threat, not a rival: Traveloka could reactivate the already-paid-for Oracle eSourcing or keep PR-to-PO manual and simply not decide."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": 0.2, "evidence": "Theresia is an engaged operational sponsor developing toward champion but has opened no doors to power."},
+        "single_thread": {"strength": -0.5, "evidence": "Only one contact role on the opp; no Finance or IT engaged."}
+      }
+    },
+    "customer_preference": {"level": "medium", "evidence": "Buyer is explicitly AI-inclined and wants an agentic solution beyond Oracle (25 Jun), but no comparison against a named rival and no Zycus-specific commercial next step beyond a demo yet."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: manual PR-to-PO conversion and unadopted Oracle eSourcing (25 Jun); no cost, cycle-time, or savings figures captured."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "iSource;iSupplier;eProcurement;Merlin Intake", "to": "iSource;iSupplier;eProcurement;Merlin Intake", "detail": "Full-suite scope unchanged since creation on 25 Jun; no narrowing or expansion observed."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 25 Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma transcripts available for this opp this run; the 25 Jun engagement is captured as a Salesforce Event plus AIS_Why, not a transcribed call.",
+      "Economic buyer / budget owner unmapped (only the Head of Procurement is a contact role).",
+      "No quantified value baseline for the PR-to-PO pain.",
+      "External competitive set unconfirmed."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

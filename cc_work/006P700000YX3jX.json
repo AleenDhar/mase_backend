@@ -1,0 +1,244 @@
+{
+  "opp_id": "006P700000YX3jX",
+  "hard": {
+    "opp_id": "006P700000YX3jX",
+    "opp_name": "CCM_RFP P2P + Sourcing _Opp_May'26",
+    "account_name": "Chase Cost Management",
+    "account_industry": "IT & Consulting",
+    "billing_country": "United States",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2026-09-16",
+    "days_to_close": 72,
+    "created_date": "2026-05-22",
+    "qualified_date": "2026-05-26",
+    "last_activity_date": null,
+    "last_modified_date": null,
+    "products": "iSource;eProcurement",
+    "next_step": "Maintain engagement with Ryan, gather more details around the RFP scope and timeline, and position Zycus ahead of formal evaluation.",
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "The engagement is pre-RFP: Chase Cost Management is preparing to release an RFP for a Source to Order initiative after meeting Zycus at a procurement event, with head of procurement Ryan confirming interest. Nothing in the record points to AI interest: product scope is iSource and eProcurement only, no Merlin/AI modules attached. Drivers are efficiency, control and structured procurement automation via a formal RFP (competitors Coupa/GEP/JAGGAER/SAP Ariba), a conventional sourcing evaluation, not an AI-led one. Early stage (Qualified, 10%).",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+    "primary_competitor": "GEP Worldwide",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YX3jX/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Qualified 26 May 2026, still pre-RFP 41 days later with no two-way buyer engagement on record: no Avoma call, no inbound, single-threaded to Ryan Bradford. The Next Step is seller intent to chase RFP scope, not a buyer-committed action, so the 16 Sep close date rests on a conversation that has not happened yet.",
+      "math": "Created 22 May 2026, Qualified 26 May 2026 (41 days in stage as of 6 Jul). Close date 16 Sep 2026 is 72 days out. No submission-date series populated (Qualified/Formal_Eval/Shortlisted submission dates all null), so no stage velocity to project. Zero verified buyer engagement, no Avoma calls found across opp+account+attendee-email discovery. The only activities are auto-generated Opportunity Health call-attempt tasks dated 27 May, one of which flags no inbound in 14 days. Not yet 60-day cold, so Slowing rather than Off Track, but there is no buyer-side momentum to defend the date.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "No Avoma calls discovered via opp + account + attendee-email discovery (22 May - 6 Jul window) (Avoma)",
+        "Single Decision Maker contact role, Ryan Bradford, with no Economic Buyer or Champion role (SF OpportunityContactRole)",
+        "Next Step describes seller intent to gather RFP scope, not a buyer-committed action (SF Next_Step__c)",
+        "Only activities are auto-generated Opportunity Health call-attempt tasks dated 27 May, including 'Prospect's gone cold ? No inbound since last 14 days' (SF Task)",
+        "No stage progression and no submission dates populated since Qualified on 26 May (SF field history + Q2 submission fields null)",
+        "AIS 2.0 / Negative: pre-RFP Source-to-Order modernization, iSource + eProcurement only, no AI/Merlin scope (SF AIS_Score__c / AIS_Why__c)",
+        "Competitors named in SF field (Coupa, GEP, JAGGAER, SAP Ariba) but zero call or task evidence of an active buyer evaluation (SF Competitors__c)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified value case exists in any source. The opportunity is a pre-RFP Source-to-Order modernization (per AIS_Why__c) so the intent is efficiency, control and structured procurement automation, but no buyer has stated a number: no spend-under-management figure, no manual-process cost, no sourcing cycle time, no savings target. Customer_Business_Problem__c, Business_Objectives__c and Value_to_Customer__c carry nothing, and there is no Avoma call where Ryan Bradford or anyone at Chase Cost Management sized the problem. Quantifying the pain in the first real discovery conversation is the move, since a six-figure P2P + Sourcing purchase at an AM Law 50 firm needs a defensible savings and control case to survive procurement.",
+        "sources": ["SF AIS_Why__c (pre-RFP Source-to-Order, no metrics)", "SF Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c: null", "Zero Avoma calls"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is unmapped. Ryan Bradford holds the Decision Maker contact role as Head of Procurement, and at an AM Law 50 firm a $100k procurement-platform buy will need firm leadership or finance sign-off above him, but no Executive Sponsor, CFO, or budget-authority contact role exists and no call reveals who controls the commercial decision. Because there has been no two-way buyer conversation, we have no line of sight into the approval chain or budget owner. Confirming who signs the RFP budget, and getting introduced to them, is a ranked early-stage move rather than a documented fact.",
+        "sources": ["SF OpportunityContactRole: Ryan Bradford (Decision Maker), no Economic Buyer / Executive Sponsor role", "SF X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c: null", "Zero Avoma calls"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "Evaluation criteria are unknown because the RFP has not been released and no discovery call has captured what Chase Cost Management will score vendors on. The named competitor set (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) implies a conventional Source-to-Order feature-and-price evaluation rather than an AI-led one, consistent with the Negative AIS read, but that is inference from the field, not a buyer-stated requirement. Business_Requirements__c, Top_Challenges_Priorities__c and AI_Needs_in_RFP_Rating__c carry nothing. Getting the draft RFP scope and the buyer's must-have criteria before formal evaluation is exactly what the Next Step is chasing and is the highest-value early move.",
+        "sources": ["SF Business_Requirements__c / Top_Challenges_Priorities__c / AI_Needs_in_RFP_Rating__c: null", "SF Competitors__c (implies conventional S2O evaluation)", "Zero Avoma calls"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buying process is only partially visible from the field record: Chase Cost Management met Zycus at a procurement event and is preparing to release an RFP for a Source to Order initiative (AIS_Why__c), so the process ahead is an RFP round, shortlisting, and formal evaluation. But there is no call sequence to read who joins when or who escalates, no approval chain (Does_the_Buyer_need_approval__c, Purchase_approvals_Required_from__c, Multiple_approvals__c all silent), and no confirmed RFP release date. The single most useful process fact to secure is the RFP timeline and the internal evaluation committee, both of which the deal team should pull from Ryan directly.",
+        "sources": ["SF AIS_Why__c (preparing to release an RFP for a Source to Order initiative)", "SF What_is_the_decision_process__c / Purchase_approvals_Required_from__c: null", "Zero Avoma calls"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown, which is normal for a Qualified pre-RFP deal but worth pre-empting. There is no MSA/SOW status, no InfoSec or legal-review timeline, and Current_Contract_Expiration__c is null so there is no incumbent renewal acting as a forcing function. Chase Cost Management is a professional-services / consulting firm, so client-data confidentiality and a security review are probable gates once an award is in sight, but none of that is scoped today. Paper process becomes relevant only after the RFP and shortlist; for now the visibility that matters is the RFP and decision timeline, not contracting.",
+        "sources": ["SF Current_Contract_Expiration__c: null", "SF Mandate__c / What_is_the_decision_process__c: null", "Zero Avoma calls"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "Pain is inferred, not confirmed. The deal name (P2P + Sourcing) and the Source-to-Order RFP intent point to the usual mid-market procurement pains, manual requisitioning, fragmented sourcing, weak spend visibility, but no buyer at Chase Cost Management has articulated a specific broken process or a compelling event on any call or in any field (Pain_points_in_the_current_solution__c, Compelling_Event__c, What_if_this_is_not_done__c all null). We also do not know whether they run on an incumbent system or greenfield (Existing_vendor__c, Replacing_What__c null). The re-engagement conversation must surface what is broken today, the cost of inaction, and the trigger for the RFP, and name the pain owner.",
+        "sources": ["SF Pain_points_in_the_current_solution__c / Compelling_Event__c / Existing_vendor__c: null", "SF AIS_Why__c (inferred S2O modernization)", "Zero Avoma calls"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. Ryan Bradford is the sole contact and holds a Decision Maker role as Head of Procurement, which is a useful entry point, but there is zero evidence of championing behavior: no introductions, no internal advocacy, no agenda-driving, and in fact no recorded two-way engagement since the opportunity was created. He confirmed interest at a procurement event (AIS_Why__c) but that is a spark, not sponsorship. The deal is single-threaded and would go dark entirely if Ryan disengages. The move is to convert Ryan from interested contact to active coach, get him to share the RFP scope early, and multi-thread from him to at least one other evaluator and the budget owner.",
+        "sources": ["SF OpportunityContactRole: Ryan Bradford (Decision Maker), no Champion role", "SF X10b_Champion_Business_Buyer__c / Decision_Maker_Identified__c: null or false", "Zero Avoma calls showing advocacy"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Four competitors are named in Salesforce Competitors__c (Coupa, GEP Worldwide, JAGGAER, SAP Ariba), but with no buyer conversation on record none of them is confirmed as a live evaluator, and there is no shortlist, bake-off structure, or buyer preference to anchor a ranking. This reads as a rep's initial market assessment tied to a not-yet-released RFP rather than buyer-confirmed intelligence: Others_Competitors_Please_specify__c, How_are_you_addressing_your_problem_toda__c and Zycus_Differentiation_Why_Zycus__c are all null. We cannot yet say whether this is a genuine four-way RFP, a Zycus-led sole source off the event relationship, or a field where one incumbent-friendly vendor already leads. The wedge (Merlin AI sourcing and negotiation depth versus legacy suites, total cost versus Coupa) cannot be aimed until the buyer names what they value, which is the reason to get into the RFP scope before it publishes.",
+        "sources": ["SF Competitors__c: Coupa;GEP Worldwide;JAGGAER;SAP Ariba", "SF Others_Competitors_Please_specify__c / Zycus_Differentiation_Why_Zycus__c: null", "Zero Avoma calls confirming a buyer shortlist"]
+      }
+    },
+    "deal_movement": {
+      "summary": "No buyer-side movement since Qualified on 26 May 2026. The only record activity is administrative: a Division reassignment to Mid-Enterprise on 3 Jul, a Type set to New Business on 27 May, and the owner change to Justin Ajmo on 22 May. The 27 May tasks are auto-generated Opportunity Health prompts (including a 'gone cold, no inbound in 14 days' flag), not completed buyer work. The Next Step remains seller intent to chase RFP scope, so the deal is holding in place awaiting a first real conversation.",
+      "items": [
+        {"change": "Division reassigned Zycus -> Mid-Enterprise (segmentation, no buyer signal)", "date": "2026-07-03"},
+        {"change": "Type set None -> New Business", "date": "2026-05-27"},
+        {"change": "Opportunity Health flagged prospect cold, no inbound in 14 days", "date": "2026-05-27"},
+        {"change": "Stage moved Initial Interest -> Qualified", "date": "2026-05-26"},
+        {"change": "Owner reassigned to Justin Ajmo", "date": "2026-05-22"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Four competitors are named in Salesforce (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) but with zero buyer-engagement evidence the competitive picture is unconfirmed, pre-RFP speculation rather than a live bake-off. No call, task, or next-step references any rival's pricing, fit, or buyer preference. GEP Worldwide is carried as the primary competitor (a size/fit peer for mid-market P2P + Sourcing), but nothing yet supports ranking it above Coupa or SAP Ariba, and JAGGAER sits lowest. The single strongest current threat cannot be named until the RFP scope and shortlist are known; the near-term competitive job is intelligence-gathering, not positioning. On a zero-call run these carried-forward threat levels are held as-is, not re-ranked.",
+      "competitors": [
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "", "date": "2026-05-22", "source": "SF Competitors__c field (opp creation)", "how_we_win": "Unknown without buyer discovery. Likely wedge: Merlin AI-driven sourcing and negotiation automation versus GEP's traditional suite, plus faster time-to-value."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "", "date": "2026-05-22", "source": "SF Competitors__c field (opp creation)", "how_we_win": "Unknown without buyer discovery. Likely wedge: total cost of ownership versus Coupa's high price point, plus sourcing depth for a professional-services buyer."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "", "date": "2026-05-22", "source": "SF Competitors__c field (opp creation)", "how_we_win": "Unknown without buyer discovery. Likely wedge: user experience and configurability versus Ariba's legacy UI, and Merlin innovation versus static modules."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "low", "status": "active", "quote": "", "date": "2026-05-22", "source": "SF Competitors__c field (opp creation)", "how_we_win": "Unknown without buyer discovery. Likely wedge: modern UX and Merlin AI versus JAGGAER's legacy platform, plus sourcing and contract intelligence depth."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Chase Cost Management's requirements are not yet documented because the RFP is unreleased and no discovery call has captured what they will evaluate. Fit is inferred only from the product scope (iSource + eProcurement for a Source-to-Order initiative) and cannot be confirmed until the buyer states criteria.",
+      "items": []
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Ryan Bradford to share the draft RFP scope and evaluation timeline", "who": "Buyer", "grounding_quote": "gather more details around the RFP scope and timeline, and position Zycus ahead of formal evaluation", "date": "2026-05-26", "due": "2026-07-20", "status": "open", "source": "SF Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "No buyer engagement / discovery call", "quote": "Prospect's gone cold ? No inbound since last 14 days", "status": "not addressed", "date": "2026-05-27", "gap_type": "knowledge", "source": "SF Task (Opportunity Health)"},
+        {"area": "Economic buyer / budget owner unmapped", "quote": "", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole (only Ryan Bradford, Decision Maker)"},
+        {"area": "RFP scope, criteria and timeline unknown", "quote": "preparing to release an RFP for a Source to Order initiative", "status": "acknowledged", "date": "2026-05-26", "gap_type": "knowledge", "source": "SF AIS_Why__c / Next_Step__c"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, single-threaded, pre-RFP deal whose whole value is getting ahead of a not-yet-released RFP. The win levers are all discovery-side: convert the one contact into a coach, get the RFP scope before it publishes, and map who owns the budget.",
+      "flags": [
+        "Single-threaded to Ryan Bradford (Decision Maker) with no economic buyer or second evaluator; multi-thread before the RFP publishes or the deal goes dark.",
+        "Get in front of the RFP: secure the draft scope, criteria and timeline from Ryan now so Zycus shapes requirements, rather than responding cold to a Coupa/GEP/Ariba-framed RFP.",
+        "AIS is Negative and scope is iSource + eProcurement only; do not lead with Merlin/AI, lead with sourcing efficiency and spend control for a professional-services procurement team."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Ryan Bradford", "title": "Head of Procurement - Leading Sourcing & Procurement at AM Law 50 firm", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown (interest expressed at a procurement event, no engagement since)", "risk": "Single-thread dependency: sole contact, no advocacy evidence, and no recorded two-way engagement since opp creation 22 May 2026. Ghost risk if he goes dark before the RFP.", "source": "SF OpportunityContactRole (PRIMARY, Decision Maker)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. Ryan Bradford is the sole contact and a Decision Maker by role, and he confirmed interest at a procurement event, but there is no advocacy behavior, no internal introductions, and no two-way engagement on record to assess his strength or access to the budget owner. The read is 'none' until he shares the RFP scope, drives an internal conversation, or multi-threads Zycus to another stakeholder.",
+      "champion": "",
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole: Ryan Bradford (Decision Maker); zero Avoma calls or Tasks showing advocacy"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is not a lever on this deal. AIS is 2.0 / Negative, the scope is iSource + eProcurement with no Merlin/AI modules, and this is a conventional Source-to-Order modernization. Positioning should lead with sourcing efficiency, control, and total cost, not the agentic AI story.",
+      "score": "2.0",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 2.0 with AIS_Status__c Negative: a pre-RFP Source-to-Order buy driven by efficiency and structured procurement automation, product scope iSource + eProcurement only, no AI/Merlin scope. No call evidence exists to revise the field either way, so the Negative read stands.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or budget owner mapped; single-threaded to Head of Procurement Ryan Bradford at a $100k pre-RFP deal.", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "timeline", "detail": "RFP unreleased and no discovery held; the 16 Sep 2026 close date has no buyer-side milestone behind it.", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "open", "source": "SF AIS_Why__c / Next_Step__c"},
+        {"category": "change_management", "detail": "Do-nothing / status-quo is a live no-decision risk: Chase Cost Management may keep managing sourcing manually and let the RFP slip, since no compelling event or pain owner is confirmed.", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "open", "source": "SF Compelling_Event__c: null"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No buyer engagement on record since Qualified on 26 May 2026; an Opportunity Health task on 27 May already flagged the prospect cold with no inbound in 14 days. The deal is thinning toward dark and needs owner-led re-engagement.",
+      "cooling": true,
+      "items": [
+        "No Avoma calls found across opp + account + attendee-email discovery",
+        "Opportunity Health flag: 'Prospect's gone cold ? No inbound since last 14 days' (27 May)",
+        "Next Step is seller intent, not a buyer-committed action"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Justin Ajmo calls Ryan Bradford to secure the draft RFP scope and timeline.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Pre-RFP with no discovery held; Next Step is to gather RFP scope and position ahead of formal evaluation.", "trigger_date": "2026-05-26", "act_by": "2026-07-13", "expected_effect": "Turns a cold, seller-intent record into a live discovery, and lets Zycus shape requirements before the RFP publishes."},
+        {"rank": 2, "action": "Ask Ryan to introduce the budget owner and one other RFP evaluator.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Single-threaded to one Decision Maker with no economic buyer mapped on a $100k deal.", "trigger_date": "2026-07-06", "act_by": "2026-07-20", "expected_effect": "De-risks single-thread dependency and maps the approval chain needed to defend a six-figure buy."},
+        {"rank": 3, "action": "Run a discovery call to quantify sourcing pain and the RFP's compelling event.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No confirmed pain, metrics, or compelling event in any field or call.", "trigger_date": "2026-07-06", "act_by": "2026-07-24", "expected_effect": "Builds the savings-and-control value case that a procurement-led RFP will score, and tests whether the 16 Sep date is real."},
+        {"rank": 4, "action": "If no reply from Ryan in 10 business days, re-engage with a tailored sourcing proof point.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Prospect flagged cold on 27 May with no inbound; risk of the relationship going fully dark.", "trigger_date": "2026-05-27", "act_by": "2026-08-04", "expected_effect": "Restarts a dormant thread with value rather than a chase, before the RFP is written without Zycus's input."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Early, single-threaded, pre-RFP deal off a procurement-event introduction: the only thing standing up is Ryan Bradford's initial interest, and the whole win depends on getting a real discovery call and the RFP scope before it publishes.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is weak: Chase Cost Management is Qualified but pre-RFP with no discovery call held, no economic buyer mapped, and no confirmed pain, so there is little proven ground to win on yet (SF Next_Step__c + OpportunityContactRole, 6 Jul)."},
+          {"tone": "good", "text": "The one positive is a warm entry: head of procurement Ryan Bradford confirmed interest after meeting Zycus at a procurement event and is preparing a Source-to-Order RFP (SF AIS_Why__c)."},
+          {"tone": "warn", "text": "Four rivals (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) are named on the deal and none is confirmed out, so Zycus could be walking into a competitive RFP it has not yet shaped (SF Competitors__c, 22 May)."},
+          {"tone": "warn", "text": "AIS is Negative (2.0) with iSource + eProcurement scope only, so the AI/Merlin differentiator does not apply and the win must be earned on sourcing efficiency and price (SF AIS_Score__c)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No momentum: no stage progression since Qualified on 26 May and an Opportunity Health task flagged the prospect cold with no inbound in 14 days (SF Task, 27 May)."},
+          {"tone": "warn", "text": "The only record changes are administrative (Division set to Mid-Enterprise on 3 Jul, Type set to New Business on 27 May), not buyer-driven (SF field history)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "No customer commitment on record: no buyer-requested next meeting, no named dates from Chase Cost Management, and the Next Step is Zycus's intent to chase, not the buyer's action (SF Next_Step__c, 26 May)."},
+          {"tone": "warn", "text": "Single-threaded to one Decision Maker with no economic buyer or second evaluator engaged, so there is no committee-level buy-in yet (SF OpportunityContactRole)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Highest risk is no-decision inertia: with no compelling event or quantified pain, Chase Cost Management may keep sourcing manually and let the RFP slip (SF Compelling_Event__c: null)."},
+          {"tone": "warn", "text": "The 16 Sep 2026 close date has no buyer-side milestone behind it and will slip unless discovery and the RFP timeline are secured in the next two weeks (SF CloseDate + Next_Step__c)."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.8, "evidence": "No buyer-committed next step, no requested meeting, single-threaded to one contact (SF Next_Step__c / OpportunityContactRole)."},
+        "deal_momentum": {"strength": -0.7, "evidence": "No stage progression since 26 May; prospect flagged cold on 27 May; only administrative field changes since (SF Task / field history)."},
+        "deal_risk": {"strength": -0.6, "evidence": "No compelling event, no economic buyer, close date unsupported by any buyer milestone (SF fields null)."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer engagement or stated preference; competitors named in SF only, with no confirmed shortlist or Zycus-specific ask on any call."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or quantified pain articulated by the customer in any source; pre-RFP with no discovery call held."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "2026-05-22 to 2026-07-06",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma calls found for this opportunity across opp + account + attendee-email discovery (22 May - 6 Jul), so all MEDDPICC, pain, and competitive reads rest on Salesforce fields only",
+      "No economic buyer / budget owner in contact roles or synthesis fields",
+      "RFP scope, evaluation criteria, and timeline not yet documented (RFP unreleased)"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

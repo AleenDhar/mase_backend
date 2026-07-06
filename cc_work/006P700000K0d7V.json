@@ -1,0 +1,230 @@
+{
+  "opp_id": "006P700000K0d7V",
+  "hard": {
+    "opp_id": "006P700000K0d7V",
+    "opp_name": "Teladoc Health_SRM, iContract, iRisk_May2025",
+    "account_name": "Teladoc Health Inc",
+    "account_industry": "Healthcare & Hospitals Services",
+    "billing_country": "Spain",
+    "owner_name": "Pierre Meraud",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 250000,
+    "close_date": "2026-12-22",
+    "days_to_close": null,
+    "created_date": "2025-05-28",
+    "qualified_date": "2025-06-04",
+    "last_activity_date": "2026-06-15",
+    "last_modified_date": null,
+    "products": "iContract;iSupplier;iRisk",
+    "next_step": null,
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "The June 2025 presentation included AI-driven contract discovery, risk-scoring and automatic-negotiation demos; Carlos Dolz Bautista acknowledged the AI features but pushed back on accuracy and budget (buyer-side AI scepticism, not AI demand). Product scope (iContract, iSupplier, iRisk) carries no Merlin, no ANA, no agentic AI. ~12 months in Qualified with 3 Avoma calls all in 2025, a small 3-person procurement team, and no AI products in scope, all consistent with AI Resistant.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Do-nothing / Excel status quo; Oracle ERP (incumbent, finance/PO); Coupa (faded ~2020-2021)",
+    "primary_competitor": "Do-nothing / stay-on-Excel status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000K0d7V/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "13 months in Qualified at 10% confidence, frozen Aug 2025 to Apr 2026; the buyer promised a mid-2026 revisit but has gone silent through two rep chases (29 Apr and 15 Jun 2026), so the deal is cold with no economic buyer, no budget, and no next milestone.",
+      "math": "Created 28 May 2025 (~13.5 months old), still Qualified. Close date 22 Dec 2026 (~169 days out, already slipped four times: 2025-12-01 -> 2026-02-10 -> 2026-06-30 -> 2026-12-22). Last genuine buyer touch was Carlos's 29 Apr 2026 email; the 15 Jun 2026 activity is a rep-side Clari chase awaiting reply, so buyer has been quiet ~68 days. Buyer's own timeline (shortlist Jul 2025, decision Sep 2025) slipped ~10 months. Three buyer calls, all in 2025 (6 May, 5 Jun, 25 Jun); none in the last 12 months.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omit",
+      "evidence": [
+        "Buyer stated 29 Apr 2026 (Next_Step__c / SF task): 'we have not reached a decision yet... we would like to revisit this conversation in mid-2026', with no confirmed milestone.",
+        "Carlos Dolz Bautista (Sourcing Associate) said on the 5 Jun 2025 call the decision was expected September 2025 with implementation early 2026; neither happened.",
+        "Project was frozen from Aug 2025 through Apr 2026 ('project frozen should be relaunch mid 26', Next_Step__c).",
+        "Every Next_Step entry from May 2025 to Jun 2026 logs 10% confidence; forecast category is Pipeline.",
+        "AIS is 3 / Negative: Carlos pushed back on AI accuracy and the scope (iContract, iSupplier, iRisk) carries no Merlin / agentic AI.",
+        "Single-threaded on a 3-person Barcelona sourcing team with no budget authority; New York HQ is informed but not engaged (Carlos, 6 May 2025)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The buyer has articulated strong qualitative pain but never quantified the value case. Carlos Dolz Bautista (Sourcing Associate) said on 5 Jun 2025: 'we spend a lot of time trying to control, and we miss information because at the end you can lose email... everything is manual.' He manages ~600 suppliers across many business units (ambulances, doctors, hospitals, psychologists, transport) on Excel, controlling ~EUR 20M of Spanish annual spend (stated 6 May 2025). On 25 Jun 2025 he added 'a lot of invoices that we need to control manually... the mistakes can be higher because you don't control the people entering the Excel.' No cost-of-error, FTE burden, or projected savings has ever been put to a number, which is exactly why the internal business case has stalled. Quantifying the manual-process cost is a required move.",
+        "sources": ["Avoma call 5 Jun 2025, Carlos Dolz Bautista", "Avoma call 6 May 2025, Carlos Dolz Bautista (EUR 20M Spanish spend)", "Avoma call 25 Jun 2025, Carlos Dolz Bautista"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer has been identified after 13 months. Carlos confirmed on 5 Jun 2025 'it's only between Natasha, Vincent and me... 3 people' and on 6 May 2025 that New York HQ 'don't know' the detail and would only be looped in for reporting: 'the key decisions... will be in our side.' Budget authority sits somewhere above this 3-person Barcelona sourcing team but has never been named or engaged, and the cost question Carlos flagged ('how long to develop and the cost are the two important questions', 25 Jun 2025) has no owner. Naming and reaching whoever signs the ~EUR 20M procurement budget in the Barcelona international unit is the single highest-value MEDDPICC move.",
+        "sources": ["Avoma call 5 Jun 2025, Carlos Dolz Bautista", "Avoma call 6 May 2025, Carlos Dolz Bautista", "Avoma call 25 Jun 2025, Carlos Dolz Bautista"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "The evaluation criteria are clear from the discovery and demo calls: supplier onboarding and registration with enforced document/certificate control, a contract repository with expiry alerts and clause-completeness checks, flexible roles/permissions across heterogeneous business units (Carlos: 'I'm the responsible of psychology, so I need to control all my psychologists... my mate has all the view of his field', 25 Jun 2025), integration with Oracle for PO/finance, and certified data hosting for sensitive medical data ('we have medical information... it's a high risk for us', 25 Jun 2025), which Pierre answered with the Azure Frankfurt data center. Ease-of-adoption for a non-technical supplier base was a stated criterion. Sourcing/RFP was explicitly de-scoped ('no sourcing at the end', 25 Jun 2025).",
+        "sources": ["Avoma call 25 Jun 2025, Carlos Dolz Bautista", "Avoma call 5 Jun 2025, Carlos Dolz Bautista"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running an informal, self-directed benchmark, not a structured RFP. Carlos described it on 6 May 2025 as 'just starting to check the market benchmarking... it's more like by ourselves', with the international Barcelona unit deciding independently and HQ merely informed. The intended path (shortlist July 2025, decision September 2025, implementation early 2026) collapsed into an 8-month freeze and a stated 'revisit mid-2026'. The approval chain above the 3-person team is undefined. There is no mutual close plan, no confirmed procurement/legal gate, and the buyer's cadence is now driven entirely by their internal analysis rather than any external event.",
+        "sources": ["Avoma call 6 May 2025, Carlos Dolz Bautista", "Next_Step__c 29 Apr 2026 and 23 Jun 2025"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are essentially unknown. The only concrete signals are that Teladoc uses DocuSign ('we are working with DocuSign', 25 Jun 2025) and that Zycus requires a minimum 4-to-5-year term, which Carlos resisted in favor of annual renewals. Pierre floated a trial-then-commit structure with an exit clause ('a trial period... then a 4 or 5 years contract... I can negotiate internally an exit clause', 25 Jun 2025) but nothing was formalized. Legal, procurement, InfoSec, and MSA/SOW steps have never been mapped. Visibility would come from securing a written phased-commercial proposal and asking Carlos who owns contract sign-off and vendor security review.",
+        "sources": ["Avoma call 25 Jun 2025, Carlos Dolz Bautista and Pierre Meraud"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is well established and owner-attributed. Carlos (Sourcing Associate, the pain owner) described a fully manual, Excel-based process for ~600 suppliers: 'everything is handmade, it's very manual... we spend a lot of time trying to control, and we miss information because you can lose email' (5 Jun 2025). Certificate/document renewals across regulated medical suppliers are tracked by hand and risk lapsing, and invoices are 'controlled manually' wasting team time (25 Jun 2025). The pain is real and recurring, but it is felt at the operational level by a 3-person team, not yet framed as a financial or compliance risk that a budget owner would fund.",
+        "sources": ["Avoma call 5 Jun 2025, Carlos Dolz Bautista", "Avoma call 25 Jun 2025, Carlos Dolz Bautista"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Carlos Dolz Bautista (Sourcing Associate) is a developing champion, not a power champion. He drove all three 2025 calls, articulated the pain and requirements in detail, praised the platform ('your solution is quite robust... it's a good solution', 25 Jun 2025), and personally re-opened the deal after the freeze ('we would like to revisit this conversation in mid-2026', 29 Apr 2026). But he has no budget authority, has never introduced a decision-maker, legal, IT, or finance despite Zycus's requests, and deflected on widening the room ('by the moment it's only us'). What has developed: sustained engagement and genuine advocacy for solving the problem. What is missing: internal selling power and access to whoever funds the ~EUR 20M budget. He is now at risk of going quiet, having not replied to the 15 Jun 2026 re-contact.",
+        "sources": ["Avoma calls 6 May / 5 Jun / 25 Jun 2025, Carlos Dolz Bautista", "Next_Step__c 29 Apr 2026", "SF LastActivityDate 2026-06-15"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The real competitor is the do-nothing / stay-on-Excel status quo, sustained by budget uncertainty and organizational inertia rather than a rival vendor. Oracle ERP is the incumbent for finance and POs and stays in place; Carlos called it 'a closed system... we see limitations in the flexibility we need' (6 May 2025), which is the wedge for Zycus as the flexible upstream procurement layer that integrates with Oracle downstream. Coupa was evaluated ~2020-2021 during the Oracle selection and was not chosen ('we were analyzing Coupa and all different models'), and has not resurfaced. Zycus met every functional requirement in the demos, so we win on fit; we lose to inertia unless we quantify ROI and reach a funder.",
+        "sources": ["Avoma call 6 May 2025, Carlos Dolz Bautista", "Avoma call 5 Jun 2025, Carlos Dolz Bautista", "Avoma call 25 Jun 2025, Carlos Dolz Bautista"]
+      }
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The buyer's own 'revisit mid-2026' promise from 29 April has now arrived with no reply to two follow-ups, so the deal is cold on their internal analysis, not on anything we did.", "tone": "crit"},
+      {"lens": "Competition", "text": "The front-runner is do-nothing on Excel: Teladoc keeps managing 600 suppliers manually and has never funded a change, which is a no-decision risk rather than a loss to a rival.", "tone": "crit"},
+      {"lens": "New requirement", "text": "Scope has narrowed to upstream only, sourcing was dropped and POs stay on Oracle, a defensive cost-cutting signal from a buyer wanting to start small.", "tone": "warn"},
+      {"lens": "Commercials", "text": "Carlos wants annual renewals against the 4-to-5-year minimum term and no budget owner is confirmed for the ~EUR 20M-spend unit, so price cannot yet be justified to anyone with authority.", "tone": "warn"}
+    ],
+    "deal_movement": {
+      "summary": "Four close-date slips and an 8-month freeze; the only 2026 activity is rep-side Clari email chasing (29 Apr, 15 Jun) awaiting a buyer reply that has not come. No buyer call in 12 months. The verdict is getting WEAKER versus the prior sweep: the promised mid-2026 revisit has materialised as continued silence.",
+      "items": [
+        {"change": "Rep re-contacted Carlos via Clari email to restart the S2P review; no buyer reply logged.", "date": "2026-06-15"},
+        {"change": "Carlos emailed 'we have not reached a decision yet... revisit this conversation in mid-2026' with no milestone.", "date": "2026-04-29"},
+        {"change": "Close date pushed 2026-06-30 -> 2026-12-22 (fourth slip) while project stayed frozen.", "date": "2025-12-09"},
+        {"change": "Project frozen; Next_Step logs 'project frozen should be relaunch mid 26' at 10% confidence.", "date": "2025-08-28"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is the do-nothing / stay-on-Excel status quo, driven by budget uncertainty and a 13-month stall with no funder engaged, not by any active rival. Oracle ERP is the retained incumbent for finance/PO (low threat, and the wedge for Zycus as the flexible upstream layer). Coupa was evaluated and passed over ~2020-2021 and has faded with no re-engagement. Zycus met every functional requirement in the demos, so the fight is against inertia, not a competitor.",
+      "competitors": [
+        {"name": "Excel / manual status quo (do-nothing)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "everything is handmade, it's very manual... we spend a lot of time trying to control, and we miss information because you can lose email.", "date": "2025-06-05", "source": "Avoma call 5 Jun 2025, Carlos Dolz Bautista", "how_we_win": "Quantify the cost of the manual process (FTE hours, certificate-lapse compliance risk on 600 regulated suppliers, renewal misses) and pair it with a low-risk trial-then-phased-commit to de-risk the spend."},
+        {"name": "Oracle ERP (Fusion)", "sentiment": "negative", "threat_level": "low", "status": "incumbent", "quote": "Oracle in our experience is kind of a closed system... we see limitations in connecting all the flexibility we need from the different business units.", "date": "2025-05-06", "source": "Avoma call 6 May 2025, Carlos Dolz Bautista", "how_we_win": "Position Zycus as the flexible upstream procurement layer (supplier onboarding, contracts, risk) that feeds Oracle for PO/invoice; Oracle stays for finance, Zycus solves the multi-business-unit complexity it cannot."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "we were analyzing Coupa and all different models... we decided to include Oracle.", "date": "2025-05-06", "source": "Avoma call 6 May 2025, Carlos Dolz Bautista", "how_we_win": "Not currently in play; if it resurfaces, lead with Zycus AI-assisted contract intelligence and flexible multi-BU configuration versus Coupa rigidity."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus is functionally well aligned to the stated needs (supplier onboarding, contract repository with expiry/clause control, risk scoring, Oracle integration, certified EU hosting). The two exposures are commercial term flexibility and the absence of a funded budget, not product fit.",
+      "items": [
+        {"criterion": "Certified data hosting for sensitive medical data", "position": "aligned", "quote": "we work with Microsoft Azure... for Europe we have a data center in Germany in Frankfurt.", "date": "2025-06-25", "source": "Avoma call 25 Jun 2025, Pierre Meraud responding to Carlos"},
+        {"criterion": "Modular / phased start (supplier + contract first, sourcing/PO later)", "position": "aligned", "quote": "you can start with supplier registration and contract management... then in the second phase put in place sourcing or procurement. That's a modular approach.", "date": "2025-06-25", "source": "Avoma call 25 Jun 2025, Pierre Meraud"},
+        {"criterion": "Contract-term flexibility (annual vs multi-year)", "position": "exposed", "quote": "the political here is every year new contract... what about a 5 years contract? The minimum duration is 4 years.", "date": "2025-06-25", "source": "Avoma call 25 Jun 2025, Carlos Dolz Bautista and Pierre Meraud"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Carlos to confirm whether the mid-2026 project relaunch is proceeding and give a decision timeline.", "who": "Buyer", "grounding_quote": "we have not reached a decision yet. We would like to revisit this conversation in mid-2026... we expect to have more information available.", "date": "2026-04-29", "due": "2026-07-15", "status": "overdue", "source": "Next_Step__c / SF task 29 Apr 2026, Carlos Dolz Bautista"}
+      ]}
+    },
+    "gaps": {"items": [
+      {"area": "Economic buyer / budget owner", "quote": "it's only between Natasha, Vincent and me... 3 people", "status": "not addressed", "date": "2025-06-05", "gap_type": "knowledge", "source": "Avoma call 5 Jun 2025, Carlos Dolz Bautista"},
+      {"area": "Paper process (legal, procurement, InfoSec, term structure)", "quote": "the political here is every year new contract... what about a 5 years contract?", "status": "not addressed", "date": "2025-06-25", "gap_type": "knowledge", "source": "Avoma call 25 Jun 2025, Carlos Dolz Bautista"}
+    ]},
+    "best_practice_check": {
+      "summary": "This is a cold, single-threaded, unfunded early-stage deal; the win levers are reaching a budget owner, arming Carlos with a quantified case, and de-risking the commercial commitment.",
+      "flags": [
+        "Break single-thread: get Carlos to introduce whoever funds the ~EUR 20M Barcelona procurement budget before any commercial step.",
+        "Convert qualitative pain to a one-page quantified ROI (FTE hours, certificate-lapse compliance risk on 600 suppliers) Carlos can sell internally.",
+        "Lead with the trial-then-phased-commit and exit clause Pierre floated to overcome the 5-year-term objection and do-nothing inertia."
+      ]
+    },
+    "stakeholder_map": {"items": [
+      {"name": "Carlos Dolz Bautista", "title": "Sourcing Associate", "role": "Champion", "last_contact_date": "2026-06-15", "sentiment": "Positive and engaged but operationally constrained", "risk": "No budget authority; has not multi-threaded to decision-makers after 13 months and has not replied to the 15 Jun 2026 re-contact.", "source": "Avoma calls 6 May / 5 Jun / 25 Jun 2025; SF task contact 'Carlos Dolz'; Next_Step__c 29 Apr 2026"},
+      {"name": "Natasha Vicente", "title": "Sourcing team member", "role": "Influencer", "last_contact_date": "2025-05-06", "sentiment": "Supportive but passive", "risk": "Named by Carlos and present on the 6 May 2025 call but no independent advocacy or access to power; not a Salesforce-verified contact.", "source": "Avoma calls 6 May 2025 and 5 Jun 2025 (named by Carlos as 'Natasha Vicente')"}
+    ]},
+    "champion_strength": {
+      "summary": "Carlos Dolz Bautista is a developing champion: sustained engagement, genuine advocacy, and self-driven re-engagement after the freeze, but no budget authority, no multi-threading, and no reply to the latest re-contact. What has developed is trust and problem alignment; what is missing is internal selling power and access to a funder.",
+      "champion": "Carlos Dolz Bautista",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma calls 6 May / 5 Jun / 25 Jun 2025; Next_Step__c 29 Apr 2026"
+    },
+    "ai_positioning_strength": {"summary": "AI was demoed heavily (contract discovery, InstaReview risk scoring, Negogini/Merlin negotiation) but Carlos pushed back on AI accuracy ('this data, where did it come from? it has to be checked before', 25 Jun 2025) and the licensed scope carries no Merlin/agentic AI, so the AI story is not a wedge here.", "score": "3 / Negative", "under_positioned": false},
+    "ai_fit_signal": {"summary": "AIS 3 / Negative is accurate: the buyer is conservative and SRM-focused, questioned AI accuracy, and the scope (iContract, iSupplier, iRisk) has no Merlin/agentic AI. The calls corroborate the field rather than contradict it.", "tier": "AI Resistant"},
+    "vulnerabilities": {"items": [
+      {"category": "budget", "detail": "No confirmed budget or funder for the ~EUR 20M-spend Barcelona unit; the cost question Carlos raised has no owner.", "first_raised": "2025-06-25", "date": "2025-06-25", "status": "open", "source": "Avoma call 25 Jun 2025, Carlos Dolz Bautista"},
+      {"category": "executive_alignment", "detail": "Single-threaded to a 3-person sourcing team; no economic buyer or decision-maker mapped after 13 months; New York HQ informed but not engaged.", "first_raised": "2025-05-06", "date": "2025-06-05", "status": "open", "source": "Avoma calls 6 May / 5 Jun 2025, Carlos Dolz Bautista"},
+      {"category": "change_management", "detail": "Do-nothing inertia: the buyer keeps managing suppliers manually and has stalled 13 months; the threat is a no-decision, not a rival.", "first_raised": "2025-06-05", "date": "2026-04-29", "status": "open", "source": "Avoma call 5 Jun 2025; Next_Step__c 29 Apr 2026"},
+      {"category": "timeline", "detail": "Close date slipped four times and the deal has been in Qualified ~13 months at 10% confidence with an 8-month freeze.", "first_raised": "2025-09-29", "date": "2025-12-09", "status": "open", "source": "SF field history (CloseDate moves); Next_Step__c"},
+      {"category": "pricing", "detail": "Buyer wants annual renewals against Zycus's 4-to-5-year minimum term; commercial structure unresolved.", "first_raised": "2025-06-25", "date": "2025-06-25", "status": "open", "source": "Avoma call 25 Jun 2025, Carlos Dolz Bautista"}
+    ]},
+    "confidence_signals": {"summary": "Engagement has cooled to cold: no buyer call in 12 months and no reply to two 2026 rep chases; residual intent exists only via Carlos's 29 Apr 2026 revisit note.", "cooling": true, "items": [
+      "No buyer call since 25 Jun 2025.",
+      "Two 2026 rep emails (29 Apr, 15 Jun) unanswered.",
+      "Every Next_Step logs 10% confidence."
+    ]},
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full Source-to-Pay (supplier registration + sourcing/RFP + contract + procurement/PO)",
+      "to": "Upstream only: supplier onboarding + iContract + iRisk (sourcing dropped, PO/finance stays on Oracle)",
+      "detail": "On 25 Jun 2025 Carlos confirmed 'no sourcing at the end' and that POs/finance stay with Oracle, narrowing the deal to supplier onboarding, contract management and risk. A cost-conscious, start-small, phased posture consistent with the buyer getting defensive on budget."
+    },
+    "deal_scores_evidence": {
+      "summary": "A 13-month-old Qualified deal that has gone cold: Carlos praised the platform but has no budget and never named a funder, and the buyer's own 'revisit mid-2026' promise has passed with no reply to two chases; the real opponent is do-nothing on Excel.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We fit on functionality (Carlos called Zycus 'quite robust... a good solution', 25 Jun 2025) but the deal is stuck: 13 months in Qualified, single-threaded to a 3-person Barcelona team with no budget owner named, so our win position is weak."},
+          {"tone": "warn", "text": "No economic buyer is engaged: Carlos said 'it's only between Natasha, Vincent and me' (5 Jun 2025) and New York HQ is informed but not involved, so no one can fund the ~EUR 20M-spend project."},
+          {"tone": "warn", "text": "The buyer's 'revisit mid-2026' email (29 Apr 2026) has gone silent through rep chases on 29 Apr and 15 Jun 2026, and the main threat is do-nothing on Excel, not a rival."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Zero buyer calls in the last 12 months (last was 25 Jun 2025) and the close date has slipped four times (Dec 2025 -> Feb -> Jun -> Dec 2026)."},
+          {"tone": "warn", "text": "Every Next_Step from May 2025 to Jun 2026 logs 10% confidence and the project was frozen Aug 2025 to Apr 2026."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Carlos resisted the 4-to-5-year term wanting annual renewals (25 Jun 2025) and has made no written or verbal commitment beyond a vague 'revisit mid-2026'."},
+          {"tone": "good", "text": "Carlos self-re-opened the deal after the freeze (29 Apr 2026), showing residual intent even though he lacks the authority to act on it."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "AIS 3/Negative: Carlos pushed back on AI accuracy and the scope (iContract, iSupplier, iRisk) carries no Merlin/agentic AI, so this is not an AI-led deal."},
+          {"tone": "warn", "text": "Scope has narrowed from full Source-to-Pay to upstream-only (sourcing dropped, PO stays on Oracle), a defensive cost-cutting signal."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "No buyer call in 12 months; four close-date slips; frozen Aug 2025 to Apr 2026."},
+        "customer_commitment": {"strength": -0.5, "evidence": "Annual-renewal resistance to the 4-to-5-year term; only 'revisit mid-2026' with no milestone and no reply to two chases."},
+        "deal_risk": {"strength": -0.7, "evidence": "No EB, no confirmed budget, do-nothing inertia, AIS Negative, and narrowing scope."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Positive on fit in Jun 2025 ('a good solution') but no decisive lean; now leaning to the do-nothing status quo, silent since Apr 2026 with no Zycus-specific next step requested."},
+    "business_case": {"status": "partial", "evidence": "Strong qualitative pain (manual control of ~600 suppliers, lost documents, manual invoices) but no quantified savings, FTE, or compliance-cost figure."},
+    "momentum_signals": {"seniority_rising": false, "commercial_topics_entering": false, "concrete_dates": false, "customer_requested_next_meeting": false, "close_plan_concretizing": false, "generic_demo_only": false, "competitor_praised": false},
+    "ceo_intervention": {"needed": false},
+    "expansion_context": {"prior_closed_won": false, "note": "No sibling Closed-Won opportunity on Teladoc Health Inc found in the evidence; this is a net-new deal, so executive/seat access is NOT inherited and the unmapped economic buyer remains a genuine gap."},
+    "recommended_moves": {"items": [
+      {"rank": 1, "action": "Call Carlos directly (not email) to confirm the mid-2026 relaunch is live and pin a date.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Carlos promised a mid-2026 revisit but has not replied to the 29 Apr or 15 Jun 2026 emails.", "trigger_date": "2026-06-15", "act_by": "2026-07-13", "expected_effect": "Re-establishes a live two-way thread and tests whether the project is real or dead, so the deal is either revived or honestly disqualified."},
+      {"rank": 2, "action": "Ask Carlos to introduce the budget owner funding the Barcelona procurement transformation.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No economic buyer mapped after 13 months; 'it's only between Natasha, Vincent and me' (5 Jun 2025).", "trigger_date": "2025-06-05", "act_by": "2026-07-20", "expected_effect": "Breaks the single-thread and puts the cost question in front of someone who can fund it, the only path off a 10%-confidence stall."},
+      {"rank": 3, "action": "Send Carlos a one-page quantified cost-of-manual-process case for his 600 suppliers.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Pain is vivid but never quantified; the internal business case has stalled for want of numbers.", "trigger_date": "2025-06-25", "act_by": "2026-08-01", "expected_effect": "Arms the champion with an ROI he can sell upward, converting operational pain into a fundable business case."},
+      {"rank": 4, "action": "Offer the 6-month trial-then-phased-commit with an exit clause to de-risk the commitment.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Carlos resisted the 4-to-5-year term wanting annual renewals; Pierre floated a trial-with-exit-clause on 25 Jun 2025.", "trigger_date": "2025-06-25", "act_by": "2026-08-04", "expected_effect": "Lowers the commercial barrier that feeds do-nothing inertia and gives the buyer a low-risk way to say yes."}
+    ]}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 3,
+    "calls_read": 3,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Field history and Next_Step through 2026-06-15; activities last 120d; 3 Avoma calls May-Jun 2025",
+    "avoma_attendees": ["Carlos Dolz Bautista", "Natasha Vicente"],
+    "gaps": [
+      "No economic buyer or budget owner named across any source after 13 months (knowledge gap).",
+      "No buyer call in the last 12 months; latest evidence is 25 Jun 2025, so the current buyer state is inferred from email/Next_Step only.",
+      "Paper process (legal, procurement, InfoSec, final term structure) never mapped."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

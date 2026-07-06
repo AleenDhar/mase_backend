@@ -1,0 +1,702 @@
+{
+  "opp_id": "006P700000aED8o",
+  "hard": {
+    "opp_id": "006P700000aED8o",
+    "opp_name": "Angelone_S2P_Jun'26",
+    "account_name": "Angel One Ltd",
+    "account_industry": "BFSI",
+    "billing_country": "India",
+    "owner_name": "Tanmay Srivastava",
+    "owner_title": null,
+    "manager_name": "Carl Kimball",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-30T09:50:34.000+0000",
+    "qualified_date": "2026-07-01",
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": "2026-07-01T09:29:55.000+0000",
+    "products": "iContract;iSource;iSupplier;eProcurement;Merlin;iRisk;Merlin Intake;Agentic AI;ANA",
+    "next_step": "Next Step - Meeting scheduled for 2nd July for deeper discussion 30th June - received the Business Requirement Document. Potential S2P opportunity identified, we're in touch with the Head of Technology Operations.",
+    "ais_score": 8.5,
+    "ais_status": "Strong",
+    "ais_why": "Top management at Angel One has explicitly set an expectation that the new procurement platform must have a credible AI roadmap. This is not a \"nice to have\" \u2014 it is a qualification criterion for vendors. \r\nPradeep and the team expressed disappointment that their existing system never received meaningful feature updates (e.g., no OCR capability was added over time). This has created a strong appetite for a modern, AI-forward platform.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "Status quo / in-house build (do-nothing)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aED8o/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Fresh, healthy early-stage S2P: Angel One delivered a BRD on 30 June and a broad procurement, finance and IT committee attended the 2 July demo where Prasanna Aklekar expanded scope from P2P to full end-to-end S2P; the deal is now multi-threaded, but no budget-owning executive is engaged and the buyer's savings case is still unquantified.",
+      "math": "Days to close: 359 (close 2027-06-30). Deal age: 6 days since creation (2026-06-30). Time in Qualified: ~5 days (Initial Interest to Qualified on 2026-07-01). No forward slip. A June 2027 close leaves full runway for the 12-15 month enterprise motion, so pace is appropriate for early Qualified; the near-term work is discovery depth, EB mapping and quantifying the business case, not timeline rescue.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last Salesforce activity 2026-07-02 (committee demo); deal is LIVE",
+        "Angel One delivered a Business Requirement Document on 2026-06-30 (Next Step)",
+        "2 July committee demo widened engagement from one contact to procurement (Madhavi), finance and IT/admin (Nainesh) alongside Prasanna Aklekar",
+        "Prasanna Aklekar expanded scope from P2P to full end-to-end S2P on 2 July: 'Complete end to end, basically... spend and expense management... we would like to club that as well'",
+        "AIS 8.5 Strong: AI roadmap is an explicit qualification criterion set by Angel One top management",
+        "Decision Maker mapped: Prasanna Aklekar, Head of Technology Operations (Contact Role)",
+        "Trajectory STRENGTHENING vs prior sweep: single-threaded and call-less record is now multi-threaded with one full committee demo read"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Angel One's pain is clearly articulated but not yet quantified by the buyer. On the 2 July call Tanmay Srivastava summarised the pain confirmed with Prasanna and Pradeep: a fragmented stack ('some part you do on the ERP... most of the part you do manually over the emails... no unified s2p workflow'), a home-grown custom tool with 'no modern functionalities' (no OCR, no automated updates), no contract lifecycle system ('all that thing also happens manually'), and Maverick / off-contract spend. Prasanna did not attach numbers, and no Salesforce value field (Customer_Business_Problem__c, Value_to_Customer__c) carries ROI. Zycus asserted the value (Tanmay: full-suite ROI 'somewhere close to 400, 500%', Vietnam bank case: procurement cycle time improved 80%, request-to-PO 79%, invoice compliance 99.5%), but these are Zycus-stated, not Angel One-validated. The move is a value session with Madhavi's procurement team and finance to convert manual-effort, cycle-time and Maverick-spend pain into Angel One's own numbers.",
+        "sources": [
+          "Avoma committee demo 2026-07-02 (Tanmay Srivastava pain recap)",
+          "SF Next_Step (BRD received 2026-06-30)",
+          "AIS_Why__c"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or named. The only mapped stakeholder is Prasanna Aklekar, Head of Technology Operations (Decision Maker, Contact Role); no Salesforce EB field (X10a_Sponsor__c, Who_will_approve_budget__c) is populated. The 2 July call surfaces budget clues but no budget owner: the buyer runs 12-13 legal entities with budgets held 'at entity level... entity and departments... channel LOB level' and can move budget between legal entities, and a finance participant covered PR/PO/GRN/invoicing, but no CFO or CPO joined and no one asserted sign-off authority. Tanmay noted spend analysis 'is used by CFOs most of the time', implying a finance economic buyer who is not yet in the room. For a nine-module full S2P suite this gap blocks the path to commercials; identifying and reaching the budget owner (likely a CFO / finance head) via Prasanna is a ranked early-stage move.",
+        "sources": [
+          "SF OpportunityContactRole (Decision Maker only)",
+          "Avoma 2026-07-02 (budget / legal-entity discussion, finance participant)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "A structured criteria set exists: Angel One delivered a Business Requirement Document on 30 June and the 2 July demo drew out the buyer's real evaluation levers. Confirmed criteria from the call: a credible native AI / agentic roadmap (an explicit top-management qualification bar per AIS_Why__c), a single unified S2P on one code base including CLM ('one system, one code base'), India data residency and disaster recovery with geofencing (Prasanna: 'Where is your DC and DR?', 'this geofence is already enabled, or a feature?'), compliance evidence (SOC 1/SOC 2, ISO), OCR / AP automation to replace their missing OCR, and human-in-the-loop governance so their procurement team's manual negotiation savings stay visible (Prasanna pressed this repeatedly: 'automation should not blur the team's efforts'). Still to confirm: the weighted scoring model inside the BRD and whether budget flexibility across legal entities is a scored requirement. The move is to walk the BRD line-by-line and map Zycus modules to their weighting.",
+        "sources": [
+          "SF Next_Step (BRD 2026-06-30)",
+          "Avoma 2026-07-02 (Prasanna Aklekar on data residency, geofencing, human-in-loop; Sne on SOC/ISO)"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is early but visibly forming and read directly from the call sequence: a 30 June introductory meeting with Prasanna and Pradeep, a BRD handed over the same day, then a 2 July committee demo where Prasanna deliberately convened a cross-functional audience (procurement via Madhavi, finance, admin/IT via Nainesh) and steered the agenda, telling Zycus to prioritise the procurement and payment modules for the functions waiting. That signals a committee evaluation led out of Technology Operations with procurement and finance as co-evaluators. Unknown: whether a formal RFI/RFP is coming, the shortlist size, the approval chain and the target decision date. No Salesforce process field (What_is_the_decision_process__c) is populated. The move is to extract the process map and decision date from Prasanna at the next session.",
+        "sources": [
+          "Avoma 2026-07-02 (attendee mix and Prasanna sequencing the agenda)",
+          "SF activities (intro 2026-06-30, followup 2026-07-02)"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown, which is normal this early (Qualified, close a year out). No MSA/SOW, legal, procurement-channel or InfoSec-gate detail exists in Salesforce or on the call beyond Angel One being a BFSI entity that will demand security and data-residency rigour, foreshadowed by the relevant stakeholder/DR and geofencing questions and Sne's offer to share SOC 1/2, ISO certifications and documented backup/retention policies. As a regulated financial-services buyer with 12-13 legal entities, expect a security questionnaire, DPA/data-residency review and multi-entity contracting to add time once commercials open. Visibility will come from confirming the procurement/vendor-onboarding process and InfoSec requirements; there is no forcing contract-expiration date on record.",
+        "sources": [
+          "Avoma 2026-07-02 (Sne on compliance certs, backup/retention; Prasanna on DC/DR)",
+          "SF (no paper-process fields populated)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is confirmed and owned by the technology-operations and procurement functions. Angel One runs a fragmented mix: parts on their ERP (Oracle), a home-grown custom tool that never modernised ('doesn't have the modern functionalities... no OCR capability was added over time'), and most work done manually over email with 'no unified s2p workflow', causing delays and heavy manual effort. They have no contract lifecycle system ('currently you guys don't have that... all that thing happens manually'), and off-contract / Maverick spend leaks compliance and savings. Madhavi confirmed the procurement scope ('looking from the b2b system, procurement to pay entirely') and Prasanna broadened it to spend and expense management. The pain owner is Prasanna Aklekar (Head of Technology Operations) with procurement (Madhavi) and finance as co-owners. Not yet quantified, which is the metrics gap above.",
+        "sources": [
+          "Avoma 2026-07-02 (Tanmay pain recap; Madhavi scope; Prasanna expansion)",
+          "AIS_Why__c (no OCR ever added)"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Prasanna Aklekar (Head of Technology Operations, Decision Maker) is a developing champion, not yet a confirmed one. Evidence of advocacy: he convened a broad internal committee for the 2 July demo, expanded the scope himself from P2P to full end-to-end S2P ('we would like to club that as well'), volunteered to give 'the higher insight on the existing scenarios' on spend/expense management, and drove the deep questions (data residency, geofencing, human-in-loop, supplier master). What is still missing to call him a full champion: no evidence yet that he sells Zycus to a budget-owning executive, no introduction to a EB, and no competitive pressure to defend us against (there is no external rival). The move is to arm Prasanna with the FSI proof and ROI narrative and have him open the economic buyer.",
+        "sources": [
+          "SF OpportunityContactRole (Prasanna Aklekar, Decision Maker)",
+          "Avoma 2026-07-02 (Prasanna convening committee, expanding scope, driving questions)"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No external software vendor is in the race on any source (Competitors__c blank; no rival named on the 2 July call or in any field or task). The true competition is the status quo: Angel One's own in-house custom procurement tool plus Oracle ERP plus manual email workflows, which the buyer is actively dissatisfied with. This is a do-nothing / displace-the-build contest, not a bake-off. That is favourable positioning (Zycus is effectively sole-sourced so far) but the risk on a year-out deal is inertia, not loss to a rival. The wedge is exactly what Tanmay led with: one code base with integrated CLM, native agentic AI (Merlin) versus their un-updated tool, OCR/AP automation they lack, and India-hosted delivery. The watch item is whether a formal RFP later invites SAP Ariba, Coupa, GEP or Jaggaer; nothing on record names them, so none are asserted.",
+        "sources": [
+          "SF Competitors__c (blank)",
+          "Avoma 2026-07-02 (buyer's current custom tool + ERP + manual state)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Deal went from a cold, call-less single-threaded record to a live multi-threaded evaluation in under a week: created and BRD received 30 June, qualified and reassigned to Tanmay Srivastava on 1 July, and a full cross-functional committee demo on 2 July where scope expanded from P2P to full S2P. Last real buyer touch: 2026-07-02 committee demo.",
+      "items": [
+        {
+          "change": "Opportunity created and Business Requirement Document received from Angel One; introductory meeting held with Prasanna Aklekar and Pradeep",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Stage advanced Initial Interest to Qualified; ownership moved to Tanmay Srivastava (India business head)",
+          "date": "2026-07-01"
+        },
+        {
+          "change": "Committee demo held; engagement widened to procurement (Madhavi), finance and IT/admin (Nainesh); Prasanna expanded scope from P2P to full end-to-end S2P including spend and expense management",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No external vendor is contesting this deal on any source as of 2 July 2026 - Zycus is effectively sole-sourced. The single real competitor is the status quo: Angel One's home-grown custom procurement tool plus Oracle ERP plus manual email processes, which the buyer is openly dissatisfied with (no OCR ever added, no CLM, no unified workflow). On a June 2027 close the current threat is inertia / no-decision, not a rival win. Displace it with the one-code-base + native agentic AI + India-hosting wedge; watch for a later RFP that could invite SAP Ariba, Coupa, GEP or Jaggaer (none named on record).",
+      "competitors": [
+        {
+          "name": "Status quo - Angel One in-house custom procurement tool + Oracle ERP + manual email workflows",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "do_nothing",
+          "quote": "Some part you do on the ERP... most of the part you do manually over the emails... there's no unified s2p workflow which is set up currently... whatever custom tool you guys have built in the past, it doesn't have the modern functionalities (no OCR)",
+          "date": "2026-07-02",
+          "source": "Avoma committee demo 2026-07-02 (Tanmay Srivastava pain recap, corroborated by AIS_Why__c)",
+          "how_we_win": "Contrast their un-updated build against one code base with integrated CLM, native Merlin agentic AI and OCR/AP automation; quantify the manual-effort and Maverick-spend cost of staying as-is to defeat inertia."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on the criteria surfaced so far: unified S2P, native AI, India data residency, OCR and human-in-loop governance all landed well on 2 July. Open items are budget flexibility across 12-13 legal entities and the priced fit of the full suite to the recorded $100k.",
+      "items": [
+        {
+          "criterion": "Credible native AI / agentic roadmap (top-management qualification bar)",
+          "position": "aligned",
+          "quote": "This is native AI, so our agentic AI platform... AI is an integral part of the platform",
+          "date": "2026-07-02",
+          "source": "Avoma 2026-07-02 + AIS_Why__c"
+        },
+        {
+          "criterion": "Single unified S2P on one code base including CLM",
+          "position": "aligned",
+          "quote": "It's one system, one code base, and then information seamlessly flows from the sourcing to the contracting to the PO creation",
+          "date": "2026-07-02",
+          "source": "Avoma 2026-07-02 (Tanmay Srivastava)"
+        },
+        {
+          "criterion": "India data residency, DR and geofencing (BFSI regulatory)",
+          "position": "aligned",
+          "quote": "The data for Indian customers is hosted in India... partnered with NTT and AWS... proper geofencing... DR is also in India",
+          "date": "2026-07-02",
+          "source": "Avoma 2026-07-02 (Sne, answering Prasanna Aklekar)"
+        },
+        {
+          "criterion": "Human-in-the-loop so procurement team's manual negotiation savings stay visible",
+          "position": "aligned",
+          "quote": "We always have human in loop governance. It's not that AI is going to act autonomously... a human can come in and overtake the conversation",
+          "date": "2026-07-02",
+          "source": "Avoma 2026-07-02 (Sne, answering Prasanna Aklekar)"
+        },
+        {
+          "criterion": "Budget flexibility across 12-13 legal entities / channel LOB",
+          "position": "partially aligned",
+          "quote": "We have 12, 13 legal entities... budgets can move from one legal entity to another... we need that flexibility",
+          "date": "2026-07-02",
+          "source": "Avoma 2026-07-02 (buyer finance/systems participant); Zycus said configurable, not yet demonstrated on their data"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Share Zycus compliance and hosting evidence pack (SOC 1/2, ISO certifications, backup and retention/DR policies)",
+          "said_by": "Prasanna Aklekar",
+          "date": "2026-07-02",
+          "addressed": false,
+          "quote": "Where is your DC and DR?... this geofence is already enabled, or it's a feature?",
+          "source": "Avoma 2026-07-02 (Prasanna asked; Sne offered to share the documented certifications and policies)"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {
+            "deliverable": "Send Angel One the BFSI case studies referenced on the call (Tata Play tail-spend savings, Vietnam bank S2P outcomes)",
+            "who": "Zycus",
+            "grounding_quote": "There are a lot of case studies which we'll be sharing after the call",
+            "date": "2026-07-02",
+            "due": "2026-07-09",
+            "status": "open",
+            "source": "Avoma 2026-07-02 (Tanmay Srivastava)"
+          },
+          {
+            "deliverable": "Complete the deferred supplier risk (iRisk) and sourcing module demo for procurement and finance",
+            "who": "Zycus",
+            "grounding_quote": "Before supplier, we can directly jump on the procurement part, payment part, and then we can come back to supply risk... I'll walk you through that as well in some time",
+            "date": "2026-07-02",
+            "due": "2026-07-16",
+            "status": "open",
+            "source": "Avoma 2026-07-02 (Tanmay Srivastava / Sne)"
+          }
+        ]
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget owner unidentified",
+          "quote": "No X10a_Sponsor__c or Who_will_approve_budget__c populated; no CFO/CPO on the 2 July call",
+          "status": "not addressed",
+          "date": "2026-07-02",
+          "gap_type": "knowledge",
+          "source": "SF EB fields + Avoma 2026-07-02"
+        },
+        {
+          "area": "Quantified business case (ROI/savings in Angel One's own numbers)",
+          "quote": "Pain articulated qualitatively; no buyer-stated cost, cycle-time or headcount figures",
+          "status": "not addressed",
+          "date": "2026-07-02",
+          "gap_type": "knowledge",
+          "source": "Avoma 2026-07-02 + SF value fields blank"
+        },
+        {
+          "area": "Formal decision process, shortlist and decision date",
+          "quote": "What_is_the_decision_process__c blank; RFI/RFP intent and timeline unknown",
+          "status": "acknowledged",
+          "date": "2026-07-02",
+          "gap_type": "knowledge",
+          "source": "SF process fields + Avoma 2026-07-02"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified deal that is well-positioned (sole-sourced, AI-hungry, multi-threaded after one demo); the win levers now are reaching budget power, proving the AI story and locking scope-to-price.",
+      "flags": [
+        "Multi-thread up to the budget owner: the committee is functional (procurement Madhavi, finance, IT Nainesh) but no CFO/finance head is engaged; have Prasanna Aklekar open the economic buyer before commercials.",
+        "Convert the 8.5 AI appetite into a tailored Merlin/agentic proof for Angel One's BFSI context (autonomous negotiation on their tail spend, Teams-embedded intake) rather than a generic suite demo.",
+        "Lock scope and price early: Prasanna expanded P2P to full S2P but the deal is booked at $100k for nine modules; validate suite value with finance to avoid a budget mismatch at proposal."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Prasanna Aklekar ..",
+          "_source": "sfdc_contact_role",
+          "title": "Head of Technology operations",
+          "email": "prasanna.aklekar@angelone.in",
+          "role": "Decision Maker",
+          "risk": "Currently the deal's centre of gravity and only Salesforce-verified contact; not yet proven to sell to a budget owner - single point of decision until an EB is reached.",
+          "sentiment": "positive / engaged",
+          "last_contact_date": "2026-07-02",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Prasanna Aklekar is a developing champion: he convened the committee, expanded scope from P2P to full S2P, and drove the deep evaluation questions on 2 July, but has not yet introduced a budget owner or been tested against a rival. Arm him with the FSI proof and ROI story and have him open the economic buyer.",
+      "champion": "Prasanna Aklekar",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma committee demo 2026-07-02 + SF OpportunityContactRole (Decision Maker)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus led the 2 July demo with the native agentic AI / Merlin narrative (autonomous negotiation, vendor onboarding, AP Smartdesk agents, Teams-embedded intake) against a buyer whose top management made an AI roadmap a qualification bar. Positioning is strong and on-target, not under-positioned.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8.5 Strong is corroborated by the calls: Angel One set AI as a qualification criterion and Prasanna engaged directly on the agentic platform (clarifying Merlin vs Google/Gemini, human-in-loop). Genuine AI appetite; convert it with a tailored agentic proof.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No budget-owning executive (CFO / finance head) is engaged; evaluation sits with technology operations and functional leads.",
+          "first_raised": "2026-07-02",
+          "date": "2026-07-02",
+          "status": "open",
+          "source": "SF EB fields blank + Avoma 2026-07-02"
+        },
+        {
+          "category": "budget",
+          "detail": "$100k recorded for a nine-module full S2P suite at an enterprise BFSI account looks like a placeholder; suite value not yet aligned with the buyer, risking a commercials mismatch.",
+          "first_raised": "2026-07-02",
+          "date": "2026-07-02",
+          "status": "open",
+          "source": "SF Amount + expanded scope on Avoma 2026-07-02"
+        },
+        {
+          "category": "timeline",
+          "detail": "June 2027 close with a 12-15 month motion and no decision date yet; on a long-runway deal the primary risk is stall / no-decision inertia against the status quo.",
+          "first_raised": "2026-07-02",
+          "date": "2026-07-02",
+          "status": "open",
+          "source": "SF CloseDate + process gap"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is warming: one full committee demo read this sweep, BRD in hand, scope expanded, multi-threaded. Not cooling.",
+      "cooling": false,
+      "items": [
+        "Committee demo attendance broadened engagement on 2026-07-02",
+        "Buyer-delivered BRD on 2026-06-30 signals a real, structured evaluation",
+        "Scope expanded P2P to full S2P at buyer's initiative"
+      ]
+    },
+    "scope_change": {
+      "direction": "expanded",
+      "from": "Procure-to-Pay (P2P) only, per procurement's initial brief",
+      "to": "Full end-to-end Source-to-Pay including sourcing, supplier risk/performance and spend & expense management",
+      "detail": "On 2 July Madhavi framed the need as 'procurement to pay entirely', but Prasanna Aklekar expanded it: 'Complete end to end, basically... the spend and expense management kind of thing... we would like to club that as well.' Scope broadening at the buyer's initiative is a positive, buying-vision signal, not a defensive cut."
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 2 July committee demo landed well and broadened the room from one contact to procurement, finance and IT, with Prasanna Aklekar expanding the ask from P2P to full end-to-end S2P.",
+        "tone": "pos"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Madhavi from procurement and a finance lead joined for the first time on 2 July and engaged deeply on catalogs, budgets and contract linkage; both are newly-met relationships to formalise.",
+        "tone": "pos"
+      },
+      {
+        "lens": "Competition",
+        "text": "No external vendor is in the race; Angel One is displacing its own un-updated custom tool plus Oracle ERP plus manual email processes, so the real threat is do-nothing inertia on a year-out timeline.",
+        "tone": "neu"
+      },
+      {
+        "lens": "New requirement",
+        "text": "Prasanna pressed hard on India data-residency, DR location, geofencing and SOC/ISO compliance, making security and hosting a gating criterion for this BFSI buyer.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "The suite value is unproven: Zycus quoted 400-500% ROI but Angel One has not validated savings with finance, and the $100k booking looks light for a nine-module full S2P.",
+        "tone": "warn"
+      }
+    ],
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Prasanna Aklekar engaged deeply and positively on Zycus-specific capability (agentic AI, human-in-loop, India hosting) and expanded scope, but made no explicit competitive comparison or commercial next-step ask - positive lean without a decisive commitment."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Rich qualitative pain (fragmented stack, no OCR, no CLM, manual email workflows, Maverick spend) but no buyer-quantified ROI; Zycus asserted 400-500% suite ROI and third-party case metrics, not yet validated by Angel One."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 21.9,
+      "mom": 54.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Ask Prasanna to introduce the finance/budget owner and set an economic-buyer discussion.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "No EB engaged; finance participants on 2 July but no budget authority named",
+          "trigger_date": "2026-07-02",
+          "act_by": "2026-07-13",
+          "expected_effect": "Maps the approval chain and gives commercials an anchor, de-risking the forecast."
+        },
+        {
+          "rank": 2,
+          "action": "Send the promised BFSI case studies and the SOC/ISO plus India-hosting compliance pack.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Zycus committed case studies and compliance evidence on the call; Prasanna asked for DC/DR and geofencing proof",
+          "trigger_date": "2026-07-02",
+          "act_by": "2026-07-10",
+          "expected_effect": "Clears the BFSI security gate early and reinforces credibility with the committee."
+        },
+        {
+          "rank": 3,
+          "action": "Run a value session with Madhavi and finance to quantify manual-effort, cycle-time and Maverick-spend savings.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Pain is confirmed but unquantified; Zycus ROI claim not buyer-validated",
+          "trigger_date": "2026-07-02",
+          "act_by": "2026-07-20",
+          "expected_effect": "Builds Angel One's own business case, the anchor for scope and price."
+        },
+        {
+          "rank": 4,
+          "action": "Walk the BRD line-by-line and confirm final scope (full S2P vs P2P) and module priorities in writing.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Prasanna expanded scope to full S2P while procurement framed it as P2P; BRD content not yet mapped",
+          "trigger_date": "2026-07-02",
+          "act_by": "2026-07-22",
+          "expected_effect": "Locks scope, aligns the suite to price, and prevents a commercials mismatch."
+        },
+        {
+          "rank": 5,
+          "action": "Deliver a tailored Merlin agentic proof (autonomous negotiation on their tail spend, Teams-embedded intake) and confirm decision process and dates.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "AIS 8.5; AI roadmap is a qualification criterion; no decision timeline captured",
+          "trigger_date": "2026-07-02",
+          "act_by": "2026-08-05",
+          "expected_effect": "Converts stated AI appetite into differentiated proof and surfaces the evaluation timeline."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 21.9,
+        "deal_momentum": 54.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 0.0,
+        "forecast_confidence": 14.1,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 21.9,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": 1.5,
+        "ceiling": 30.0,
+        "momentum_adj": 2.4,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 2.2,
+            "evidence": "competitive strength +0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 2.4,
+            "evidence": "momentum 55 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 54.8,
+        "pre_decay": 54.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "commercial_topics_entering",
+            "points": 4.8,
+            "evidence": "commercial topics entering (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 0.0,
+        "contributions": []
+      },
+      "forecast_confidence": {
+        "score": 14.1,
+        "core": 14.1,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 22 is carried by preference strength +0.40 (weight 20); momentum 55 vs stage-expected 50. Offsetting it: differentiation strength -0.40 (weight 20).",
+        "deal_momentum": "Momentum 55 (roughly flat): commercial topics entering (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 0: no break-risk was observed in the swept evidence. Coverage is thin, so read this as 'nothing seen yet,' not 'nothing there.'",
+        "forecast_confidence": "Forecast confidence 14 is anchored on the stage win (22), nudged by commitment 8 and momentum 55, and dragged by risk 0. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Angel One Ltd \u2014 Qualified \u00b7 $100K \u00b7 closes 30 Jun",
+        "intro": "One read per score, in language a CRO/CO can act on. We're behind on this one \u2014 the reads below say why and what would change it.",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 22,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Losing on capability fit \u2014 AIS 8.5 Strong is corroborated by the calls: Angel One set AI as a qualification criterion and Prasanna engaged directly on the agentic platform (clarifying\u2026",
+                "full": "Losing on capability fit \u2014 AIS 8.5 Strong is corroborated by the calls: Angel One set AI as a qualification criterion and Prasanna engaged directly on the agentic platform (clarifying Merlin vs Google/Gemini, human-in-loop). Genuine AI appetite; convert it with a tailored agentic proof."
+              },
+              {
+                "tone": "good",
+                "text": "Buyer is leaning our way \u2014 Prasanna Aklekar engaged deeply and positively on Zycus-specific capability (agentic AI, human-in-loop, India hosting) and expanded scope, but made no explicit\u2026",
+                "full": "Buyer is leaning our way \u2014 Prasanna Aklekar engaged deeply and positively on Zycus-specific capability (agentic AI, human-in-loop, India hosting) and expanded scope, but made no explicit competitive comparison or commercial next-step ask - positive lean without a decisive commitment."
+              },
+              {
+                "tone": "warn",
+                "text": "No executive access yet \u2014 No economic buyer is engaged or named.",
+                "full": "No executive access yet \u2014 No economic buyer is engaged or named. The only mapped stakeholder is Prasanna Aklekar, Head of Technology Operations (Decision Maker, Contact Role); no Salesforce EB field (X10a_Sponsor__c, Who_will_approve_budget__c) is populated. The 2 July call surfaces budget clues but no budget owner: the buyer runs 12-13 legal entities with budgets held 'at entity level... entity and departments... channel LOB level' and can move budget between legal entities, and a finance participant covered PR/PO/GRN/invoicing, but no CFO or CPO joined and no one asserted sign-off authority. Tanmay noted spend analysis 'is used by CFOs most of the time', implying a finance economic buyer who is not yet in the room. For a nine-module full S2P suite this gap blocks the path to commercials; identifying and reaching the budget owner (likely a CFO / finance head) via Prasanna is a ranked early-stage move."
+              },
+              {
+                "tone": "good",
+                "text": "Edge over the competition \u2014 No external vendor is contesting this deal on any source as of 2 July 2026 - Zycus is effectively sole-sourced.",
+                "full": "Edge over the competition \u2014 No external vendor is contesting this deal on any source as of 2 July 2026 - Zycus is effectively sole-sourced. The single real competitor is the status quo: Angel One's home-grown custom procurement tool plus Oracle ERP plus manual email processes, which the buyer is openly dissatisfied with (no OCR ever added, no CLM, no unified workflow). On a June 2027 close the current threat is inertia / no-decision, not a rival win. Displace it with the one-code-base + native agentic AI + India-hosting wedge; watch for a later RFP that could invite SAP Ariba, Coupa, GEP or Jaggaer (none named on record)."
+              },
+              {
+                "tone": "good",
+                "text": "Champion is driving it \u2014 Prasanna Aklekar is a developing champion: he convened the committee, expanded scope from P2P to full S2P, and drove the deep evaluation questions on 2 July\u2026",
+                "full": "Champion is driving it \u2014 Prasanna Aklekar is a developing champion: he convened the committee, expanded scope from P2P to full S2P, and drove the deep evaluation questions on 2 July, but has not yet introduced a budget owner or been tested against a rival. Arm him with the FSI proof and ROI story and have him open the economic buyer."
+              },
+              {
+                "tone": "good",
+                "text": "ROI / business case landed \u2014 Angel One's pain is clearly articulated but not yet quantified by the buyer.",
+                "full": "ROI / business case landed \u2014 Angel One's pain is clearly articulated but not yet quantified by the buyer. On the 2 July call Tanmay Srivastava summarised the pain confirmed with Prasanna and Pradeep: a fragmented stack ('some part you do on the ERP... most of the part you do manually over the emails... no unified s2p workflow'), a home-grown custom tool with 'no modern functionalities' (no OCR, no automated updates), no contract lifecycle system ('all that thing also happens manually'), and Maverick / off-contract spend. Prasanna did not attach numbers, and no Salesforce value field (Customer_Business_Problem__c, Value_to_Customer__c) carries ROI. Zycus asserted the value (Tanmay: full-suite ROI 'somewhere close to 400, 500%', Vietnam bank case: procurement cycle time improved 80%, request-to-PO 79%, invoice compliance 99.5%), but these are Zycus-stated, not Angel One-validated. The move is a value session with Madhavi's procurement team and finance to convert manual-effort, cycle-time and Maverick-spend pain into Angel One's own numbers."
+              },
+              {
+                "tone": "warn",
+                "text": "Commercial talks stalled \u2014 Contracting mechanics are unknown, which is normal this early (Qualified, close a year out).",
+                "full": "Commercial talks stalled \u2014 Contracting mechanics are unknown, which is normal this early (Qualified, close a year out). No MSA/SOW, legal, procurement-channel or InfoSec-gate detail exists in Salesforce or on the call beyond Angel One being a BFSI entity that will demand security and data-residency rigour, foreshadowed by the relevant stakeholder/DR and geofencing questions and Sne's offer to share SOC 1/2, ISO certifications and documented backup/retention policies. As a regulated financial-services buyer with 12-13 legal entities, expect a security questionnaire, DPA/data-residency review and multi-entity contracting to add time once commercials open. Visibility will come from confirming the procurement/vendor-onboarding process and InfoSec requirements; there is no forcing contract-expiration date on record."
+              },
+              {
+                "tone": "warn",
+                "text": "No budget-owning executive (CFO / finance head) is engaged; evaluation sits with technology operations and functional leads."
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 55,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 0,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No budget-owning executive (CFO / finance head) is engaged; evaluation sits with technology operations and functional leads."
+              },
+              {
+                "tone": "warn",
+                "text": "$100k recorded for a nine-module full S2P suite at an enterprise BFSI account looks like a placeholder; suite value not yet aligned with the buyer, risking a commercials\u2026"
+              },
+              {
+                "tone": "warn",
+                "text": "June 2027 close with a 12-15 month motion and no decision date yet; on a long-runway deal the primary risk is stall / no-decision inertia against the status quo."
+              }
+            ],
+            "footer": "Competitive picture: No external vendor is contesting this deal on any source as of 2 July 2026 - Zycus is effectively sole-sourced."
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Ask Prasanna to introduce the finance/budget owner and set an economic-buyer discussion. (by 13 Jul)",
+              "Send the promised BFSI case studies and the SOC/ISO plus India-hosting compliance pack. (by 10 Jul)",
+              "Run a value session with Madhavi and finance to quantify manual-effort, cycle-time and Maverick-spend savings. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [
+      {
+        "call": "Angel One <> Zycus - Introductory meeting! (2026-06-30)",
+        "reason": "No transcript available (not recorded / transcript not ready)"
+      }
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities and field history through 2026-07-02",
+    "avoma_attendees": [
+      "Prasanna Aklekar",
+      "Madhavi",
+      "Nainesh",
+      "Pradeep",
+      "Sachin"
+    ],
+    "gaps": [
+      "Economic buyer / budget owner not identified in Salesforce or on calls",
+      "No quantified business case (buyer-stated ROI/savings)",
+      "Introductory 30 June call not transcribed",
+      "Titles for Madhavi, Nainesh, Pradeep and Sachin are not in Salesforce - treated as unverified"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:59"
+}

@@ -1,0 +1,302 @@
+{
+  "opp_id": "006P700000KlsBE",
+  "hard": {
+    "opp_id": "006P700000KlsBE",
+    "opp_name": "SGD Pharma_S2P",
+    "account_name": "SGD Pharma",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "France",
+    "owner_name": "Pierre Meraud",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Vendor Selected",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2027-03-17",
+    "days_to_close": null,
+    "created_date": "2025-06-23",
+    "qualified_date": "2025-06-25",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;iRisk;Merlin Intake",
+    "next_step": null,
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "CLM niche player (unnamed); Second S2P finalist (unnamed); SAP/Ariba; Coupa; GEP Worldwide; iValua; JAGGAER",
+    "primary_competitor": "CLM niche player (unnamed)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000KlsBE/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Vendor Selected since Feb 2026 but the S2P budget is frozen; PE owner PAI Partners weighing a sale of SGD blocks any 2026 approval. No substantive buyer engagement since the 27 Feb 2026 postponement; Bihag Shah deferred re-engagement to a 2026 budget decision and the deal is dormant through summer.",
+      "math": "Created 23 Jun 2025, 378 days old; in Vendor Selected 12+ months. Close date 2027-03-17 is 254 days out, a placeholder set 14 Apr 2026 when budget was frozen (not a genuine forward slip). Last substantive two-way buyer call was 27 Feb 2026 (129 days ago), when Bihag paused the recording to show the IT roadmap and postponed S2P with no new date. Since then only rep-side touches: Bihag's 27 May 2026 reply 'I would like to wait for the decision in this year budget' and Pierre's 1 Jul 2026 pre-summer-break email proposing a Sept/Oct restart. Cold for 60+ days with the buyer explicitly deferred forces Off Track regardless of the Vendor Selected stage.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Buyer reply 27 May 2026: Bihag to Pierre, 'Thanks for the invitation, I would like to wait for the decision in this year budget. Let us keep in touch' (source: Task 2026-05-27 Clari email received)",
+        "Rep outreach 1 Jul 2026: Pierre emailed Bihag before summer break checking whether discussions could restart in September or October (source: Task 2026-07-01 Clari email sent)",
+        "Buyer call 27 Feb 2026: Bihag shared the IT roadmap and postponed the S2P project indefinitely with no new date; recording paused before the screen share (source: Avoma 'Validation of your S2P project' 27 Feb 2026)",
+        "Budget freeze confirmed 14 Apr 2026: no S2P budget in 2026 because the contract-management project is late and PE owner PAI Partners wishes to sell SGD in 2026 or 2027; Bihag will try to budget S2P for 2027, probability low (source: Next_Step__c 14 Apr 2026)",
+        "Field history: on 14 Apr 2026 CloseDate moved 2026-06-24 to 2027-03-17 and ForecastCategoryName moved Best Case to Pipeline (source: OpportunityFieldHistory)",
+        "Commercial negotiation 29 Jan 2026: Bihag, 'with yesterday's price I can tell you it is not gonna be you if the price maintains like that for standalone' (source: Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah)",
+        "Pipeline forecast is indefensible: Vendor Selected 12+ months with budget frozen and a placeholder close date awaiting an external PE ownership decision; the honest category is Omitted until 2027 budget is secured"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Discovery call 20 Jun 2025: Bihag Shah described manual, error-prone procurement across European plants (RFQs, order acknowledgments, POs via email and Excel, manual SAP entry) and contract management with no central repository, driving the S2P case. Workshop and demo engagement through Oct 2025 reinforced qualitative pain (oversight risk, no spend visibility, no contract lifecycle control) but the buyer never committed a quantified baseline: no spend under management, headcount, or cycle-time numbers were shared. The final commercial arbitrage on 29 Jan 2026 pivoted entirely on the price premium versus the CLM niche player rather than a shared ROI model, so a quantified value case remains the gap. Quantifying the savings and single-platform TCO for the September budget conversation is the move.",
+        "sources": ["Avoma 'SGD - Zycus Intro' 20 Jun 2025, Bihag Shah", "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "SF Next_Step__c 23 Jun 2025"]
+      },
+      "economic_buyer": {
+        "status": "confirmed",
+        "narrative": "Philippe Pourquery (Group CFO) is the economic buyer: Next_Step__c records that Zycus sent its BAFO on 30 Jan 2026 ahead of an arbitration meeting between Bihag (CPO) and Philippe Pourquery (CFO) to decide whether SGD could commit to full S2P versus CLM only, and Bihag confirmed on the 29 Jan 2026 call 'Philip, our CFO, with whom I have in principle agreement, is going to give me that official feedback... Philip was going to check it today.' His authority is real but not final: above him sits PE owner PAI Partners, whose ownership decision (a possible sale of SGD) gates the budget, so even a CFO yes cannot release funds this cycle. He was last touched around the 30 Jan 2026 BAFO/arbitration; a direct owner-to-CFO conversation on 2027 budget appetite is the move.",
+        "sources": ["SF OpportunityContactRole (Philippe Pourquery, Group CFO)", "SF Next_Step__c 2 Feb 2026", "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "The evaluation criteria are well documented from the workshops and technical sessions: total cost of ownership over a 3-year term, functional fit (Bihag benchmarked Zycus at ~90 percent versus a rival at ~97-98 percent on the 29 Jan 2026 call), AI capability (Valerie's legal team rated the niche CLM player's AI higher), and integration depth. Integration became a decisive, buyer-stated criterion in the 28 Jan 2026 technical session: SAP S/4HANA on-prem connectivity via BTP, native Salesforce contract integration, SSO/Azure provisioning, and RTO/RPO/DR commitments were all probed in detail by Cyril Zenouda and Adrien Kittler. The single-platform argument (CLM connected to sourcing and eProcurement) is Zycus's stated wedge, which Bihag acknowledged by being willing to pay a premium 'to an integrator like you who has larger scope.'",
+        "sources": ["Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "Avoma 'Zycus - Technical session' 28 Jan 2026, Cyril Zenouda and Adrien Kittler", "SF Next_Step__c 2 Feb 2026"]
+      },
+      "decision_process": {
+        "status": "confirmed",
+        "narrative": "The process the buyer ran is clear from the call sequence: on-site Demo Days (28-29 Oct 2025), an RFP for CLM (answer due 28 Nov 2025), a Paris deep-dive workshop (19-20 Jan 2026), a technical/IT integration session (28 Jan 2026), and a final sales negotiation (29 Jan 2026), with a stated intent to meet internally in February (Bihag, Valerie, IT) to select on price, functionality, and IT. Approval runs Bihag (CPO) -> Philippe Pourquery (Group CFO, who also heads IT) -> PAI Partners (the PE owner under LBO). On the 27 Feb 2026 validation call Bihag paused the recording, showed the IT roadmap, and postponed S2P indefinitely, and the 14 Apr 2026 Next_Step confirms the decision now waits on PAI Partners' choice to sell or keep SGD. The process is intact but externally frozen at the ownership gate.",
+        "sources": ["Avoma 'Validation of your S2P project' 27 Feb 2026, Bihag Shah", "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "SF Next_Step__c 27 Feb 2026, 14 Apr 2026"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Contracting mechanics were opened but never completed: Next_Step records that Zycus needed to send the MSA and Order Forms OF1/OF2 in the first week of February 2026, a SoW implementation workshop and a first legal call were to be scheduled, and Valerie Breon-Normand (Group General Counsel) led an IContract legal deep-dive on 17-19 Dec 2025 and 19 Jan 2026. Cognizant is the SI partner for implementation (with a French-speaking PM subcontracted for the on-site delivery), and a solo Zycus prime-contractor option was also offered. None of this advanced past the negotiation because the S2P budget froze; the MSA/OF/SoW never went to signature. Re-confirming whether the drafted commercial paper still stands when 2027 budget is decided is what would restore visibility.",
+        "sources": ["SF Next_Step__c 20 Jan 2026, 27 Jan 2026, 8 Dec 2025", "Avoma 'Deep Diving workshop - ZYCUS' 19 Jan 2026", "Avoma 'Zycus - Technical session' 28 Jan 2026"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The confirmed operational pain, owned by Bihag Shah (Group CPO) and the purchasing organisation, is fragmented, manual procurement and contract management across SGD's European plants with no central contract repository and no integrated source-to-pay flow. It is compounded by a strategic contract-management need on the legal/sales side owned by Valerie Breon-Normand, who wants CLM deployed not only for procurement but for the sales side too (15 Sep 2025). The inferred pain, implied by the SAP S/4HANA on-prem estate and the intensity of the 28 Jan 2026 integration questioning, is that any solution must plug cleanly into SAP and Salesforce or IT will resist it. The pain is real and multi-owner, but it is not urgent enough to survive the PE-owner budget freeze.",
+        "sources": ["Avoma 'SGD - Zycus Intro' 20 Jun 2025, Bihag Shah", "SF Next_Step__c 15 Sep 2025 (Valerie Breon-Normand)", "Avoma 'Zycus - Technical session' 28 Jan 2026"]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Bihag Shah (Group CPO) is a strong, sustained champion across 12 months (Jun 2025 to Feb 2026): direct CFO access, positioned Zycus as the only S2P finalist, secured informal CFO approval in January 2026, and negotiated aggressively to keep Zycus in the game ('he is aware that we are fighting for him', Next_Step__c 2 Feb 2026). His advocacy is not cooling by choice; the stall is external, the PE-owner budget freeze. The current risk is capacity, not loyalty: on 27 May 2026 he asked to wait for the year's budget decision and has been quiet since, and if PAI Partners delays or declines 2027 budget he cannot advance S2P regardless of advocacy. Fiona Zhou (Lead Buyer, SPOC) is a consistent secondary supporter for a global S2P solution, but no executive thread survives independently of Bihag.",
+        "sources": ["Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "SF Next_Step__c 2 Feb 2026, 27 Feb 2026, 14 Apr 2026", "Task 2026-05-27 Bihag reply"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "Zycus was shortlisted in January 2026 to two finalists but lost the standalone CLM scope on 6 Feb 2026 to an unnamed niche CLM player (~100k cheaper over 3 years, ~97-98 percent fit versus Zycus's ~90 percent, and higher-rated AI per Legal). Zycus stayed a finalist on the remaining S2P scope against one other unnamed S2P supplier, with Pierre perceiving IT leaning to SAP/Ariba though the buyer never confirmed it. The wedge is the single-platform argument Bihag himself validated (willing to pay a premium to an integrator with larger scope) plus the SAP S/4HANA on-prem and native Salesforce integration proven in the 28 Jan 2026 technical session. The named Competitors__c rivals Coupa, GEP, iValua and JAGGAER never surfaced in any call and are dormant. The decisive blocker is not a competitor but the PE owner's frozen budget.",
+        "sources": ["Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "SF Next_Step__c 6 Feb 2026, 2 Feb 2026", "SF Competitors__c"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal peaked at final negotiation in late January 2026, then reversed: it lost CLM to a niche player on 6 Feb 2026, the amount was cut and forecast downgraded, and on 27 Feb 2026 Bihag postponed S2P indefinitely. Since 14 Apr 2026 it has been frozen on the PE-owner budget decision, with only rep-side email touches through 1 Jul 2026. No new buyer call this sweep; the pulse is dormant.",
+      "items": [
+        {"change": "Owner emailed Bihag before summer break proposing a September/October restart (rep-side touch, no buyer reply yet)", "date": "2026-07-01"},
+        {"change": "Bihag replied he would rather wait for the year's budget decision, deferring re-engagement", "date": "2026-05-27"},
+        {"change": "Close date pushed to 2027-03-17 and forecast moved Best Case to Pipeline after the budget freeze", "date": "2026-04-14"},
+        {"change": "Bihag postponed the S2P project indefinitely on the validation call, showing the IT roadmap off-record", "date": "2026-02-27"},
+        {"change": "Lost standalone CLM scope to an unnamed niche player (~100k cheaper over 3 years, better AI per Legal)", "date": "2026-02-06"},
+        {"change": "Amount cut 190k to 150k and forecast moved Commit to Best Case", "date": "2026-02-06"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Zycus was shortlisted Jan 2026 to two finalists but lost the standalone CLM scope 6 Feb 2026 to an unnamed niche CLM player (~100k cheaper over 3 years, ~97-98 percent fit vs ~90 percent, higher-rated AI per Legal). The remaining S2P scope kept Zycus as a finalist against one other unnamed S2P supplier, with IT (per Pierre) leaning to SAP/Ariba though the buyer did not confirm it. The named Competitors__c rivals (Coupa, GEP, iValua, JAGGAER) never appeared in any call and are dormant. Recency-weighted, the CLM niche player is the strongest current named threat (won CLM Feb 2026), but the deal's decisive blocker is not a competitor, it is the PE owner's frozen budget. No new call evidence this run, so threat levels are carried forward.",
+      "competitors": [
+        {"name": "CLM niche player (unnamed)", "sentiment": "negative", "threat_level": "high", "status": "active", "quote": "Bihag called me for CLM they selected a niche player (100K less expensive over 3 years) / Bihag will communicate me the name when it will be finalized ... competition (unknown CLM provider, preferred by Legal - Better AI features)", "date": "2026-02-06", "source": "SF Next_Step__c 6 Feb 2026, 2 Feb 2026; Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah", "how_we_win": "Lost CLM on price and AI. For S2P re-engagement lead with the Merlin agentic AI story Legal wanted but could not get standalone, and quantify the single-platform integration tax of running CLM, sourcing, and eProcurement as three separate vendors."},
+        {"name": "Second S2P finalist (unnamed)", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "for the other modules, I'm negotiating with someone ... the second supplier whom we have finally listed there, we have not done yet this exercise with them like what we have done for you because they are not selected for CLM", "date": "2026-01-29", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah; SF Next_Step__c 27 Feb 2026 ('two remaining vendors')", "how_we_win": "Zycus is the only finalist that ran the full IT integration exercise; make that head-start and the CFO's in-principle S2P agreement the case for staying sole-negotiated rather than reopening an S2P RFP."},
+        {"name": "SAP / Ariba", "sentiment": "neutral", "threat_level": "low", "status": "do_nothing", "quote": "I've clearly the feeling that IT is not for us ... I've clearly the feeling that IT is for iAriba or SAP ... most of the time IT is defending SAP because they prefer a single solution", "date": "2026-01-29", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Pierre Meraud (rep observation, not buyer-confirmed)", "how_we_win": "Rep-perceived IT lean, not a stated buyer preference; neutralize by winning on the SAP S/4HANA on-prem and Salesforce integration proof already validated in the 28 Jan technical session."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Named in SF Competitors__c; no mention in any Avoma call or Next_Step since Jun 2025.", "date": "2025-06-23", "source": "SF Competitors__c", "how_we_win": "Not an active threat; monitor only if the buyer reopens an S2P RFP in 2027."},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Named in SF Competitors__c; no mention in any Avoma call or Next_Step since Jun 2025.", "date": "2025-06-23", "source": "SF Competitors__c", "how_we_win": "Not an active threat; monitor only if the buyer reopens an S2P RFP in 2027."},
+        {"name": "iValua", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Named in SF Competitors__c; no mention in any Avoma call or Next_Step since Jun 2025.", "date": "2025-06-23", "source": "SF Competitors__c", "how_we_win": "Not an active threat; monitor only if the buyer reopens an S2P RFP in 2027."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Named in SF Competitors__c; no mention in any Avoma call or Next_Step since Jun 2025.", "date": "2025-06-23", "source": "SF Competitors__c", "how_we_win": "Not an active threat; monitor only if the buyer reopens an S2P RFP in 2027."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "SGD's stated expectations centre on integration depth, a single connected platform, and a competitive TCO. Zycus is aligned on integration and platform breadth but exposed on price versus the standalone CLM player and on the maturity of some AI features.",
+      "items": [
+        {"criterion": "SAP S/4HANA on-prem and native Salesforce contract integration included in scope", "position": "aligned", "quote": "we would like to have a SAP on prem connectivity integration patterns with your solution ... clarify what is included in the proposal versus additional integration efforts", "date": "2026-01-28", "source": "Avoma 'Zycus - Technical session' 28 Jan 2026, Cyril Zenouda"},
+        {"criterion": "Single connected S2P platform (CLM linked to sourcing and eProcurement) justifying a premium", "position": "aligned", "quote": "that's why I was ready to pay some premium to an integrator like you who has larger scope available", "date": "2026-01-29", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah"},
+        {"criterion": "3-year fixed-price term (not 5) and progressive user activation during build", "position": "partially aligned", "quote": "you said it's a 5 year contract, and we want the 3 year contract ... we don't want active all the users during the build phase", "date": "2026-01-29", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Fiona Zhou / Bihag Shah"},
+        {"criterion": "Competitive TCO versus the standalone CLM alternative", "position": "exposed", "quote": "with yesterday's price I can tell you it's not gonna be you ... in 3 years I can spend 150 more, not possible for me", "date": "2026-01-29", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026, Bihag Shah"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide individual contract recovery/undelete and confirm SharePoint replication cost", "said_by": "Adrien Kittler", "date": "2026-01-28", "addressed": false, "quote": "if someone deletes a contract, do we have the possibility to recover it individually? ... and it's will be also included in the cost?", "source": "Avoma 'Zycus - Technical session' 28 Jan 2026, Adrien Kittler"},
+        {"requirement": "Share BCP/DR, penetration-testing, RTO/RPO and security documentation pack", "said_by": "Cyril Zenouda", "date": "2026-01-28", "addressed": true, "quote": "we can share the BCPDR reports with you and also penetration testing reports ... there is a complete shared folder with 6 documents about security, rto, dpo", "source": "Avoma 'Zycus - Technical session' 28 Jan 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Confirm whether individual deleted-contract recovery and SharePoint replication are included in cost", "who": "Zycus", "grounding_quote": "I will have to check that, Adrien. I can get back to you on that ... whether it is included or not, I can check", "date": "2026-01-28", "due": "2026-02-04", "status": "open", "source": "Avoma 'Zycus - Technical session' 28 Jan 2026, Neeraj Jagadar"},
+          {"deliverable": "Send the SAP Business Hub / certified adapter direct download link to Adrien", "who": "Zycus", "grounding_quote": "SAP business hub link? Yeah. Sure ... can you please provide the direct link to the package", "date": "2026-01-28", "due": "2026-02-04", "status": "open", "source": "Avoma 'Zycus - Technical session' 28 Jan 2026, Adrien Kittler"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "PAI Partners' decision on whether to sell or keep SGD, which gates S2P budget", "who": "Buyer", "grounding_quote": "Due to Contract Management project being late SGD to be sold this year or 27 by PAI Partners => No budget for S2P in 26", "date": "2026-04-14", "due": null, "status": "open", "source": "SF Next_Step__c 14 Apr 2026"},
+          {"deliverable": "Confirm 2027 S2P budget line so re-engagement can restart", "who": "Buyer", "grounding_quote": "I would like to wait for the decision in this year budget. Let's keep in touch", "date": "2026-05-27", "due": null, "status": "open", "source": "Task 2026-05-27 Clari email received, Bihag Shah"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Quantified value case / ROI baseline", "quote": "final arbitrage turned on price premium versus the niche CLM player, never on a shared savings model", "status": "not addressed", "date": "2026-01-29", "gap_type": "knowledge", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026"},
+        {"area": "Identity of the winning CLM niche player and the second S2P finalist", "quote": "Bihag will communicate me the name when it will be finalized / we cannot give the name", "status": "acknowledged", "date": "2026-02-06", "gap_type": "knowledge", "source": "SF Next_Step__c 6 Feb 2026; Avoma 29 Jan 2026"},
+        {"area": "PAI Partners ownership/sale timeline that gates budget", "quote": "PAI wishes to sell SGD ... probability to have this budget approved is low", "status": "not addressed", "date": "2026-04-14", "gap_type": "knowledge", "source": "SF Next_Step__c 14 Apr 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is dormant on an external ownership decision, so the win-strategy priorities are re-engagement timing, a quantified case that survives a budget review, and a second executive thread that does not depend solely on Bihag.",
+      "flags": [
+        "Time the September restart to SGD's 2027 budget cycle and PAI Partners' sale decision, not to Zycus's calendar, so re-engagement lands when a budget line can actually open.",
+        "Build a quantified single-platform TCO and Merlin AI case for the budget review; the deal lost CLM on price and AI and has no shared ROI model to defend the premium.",
+        "Establish a second executive thread beyond Bihag (CFO Philippe Pourquery or Legal's Valerie Breon-Normand) so the deal survives if the champion's capacity or role shifts during the ownership transition."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Bihag Shah", "title": "Group Chief Procurement Officer", "role": "Champion", "last_contact_date": "2026-05-27", "sentiment": "Positive but deferred: strong 12-month advocate, willing to pay a Zycus premium, but has paused pending the 2026/2027 budget decision", "risk": "Capacity/external: cannot advance S2P while budget is frozen; single point of executive advocacy", "source": "SF Task/Activity contact; Avoma 'Final Sales negotiation SGD' 29 Jan 2026; Task 2026-05-27"},
+        {"name": "Philippe Pourquery", "title": "Group CFO", "role": "Economic Buyer", "last_contact_date": "2026-01-30", "sentiment": "Positive: approved CLM budget 2025 and gave in-principle S2P agreement Jan 2026, but his approval is subordinate to the PE owner", "risk": "PE-owner gate (PAI Partners) above him can override his sign-off", "source": "SF OpportunityContactRole (Group CFO); SF Next_Step__c 2 Feb 2026"},
+        {"name": "Valerie Breon-Normand", "title": "Group General Counsel", "role": "Decision Maker", "last_contact_date": "2026-01-19", "sentiment": "Cautious: led the CLM evaluation, prioritized AI and Salesforce integration, and preferred the competitor CLM for better AI features", "risk": "AI-credibility gap could carry into any S2P decision", "source": "SF OpportunityContactRole (Group General Counsel); SF Next_Step__c 15 Sep 2025, 19 Jan 2026"},
+        {"name": "Fiona Zhou", "title": "Lead Buyer", "role": "Influencer", "last_contact_date": "2026-01-29", "sentiment": "Positive: SPOC for workshops and negotiation, consistently pushed for a global S2P solution", "risk": "Low", "source": "SF OpportunityContactRole (Lead Buyer); Avoma 'Final Sales negotiation SGD' 29 Jan 2026"},
+        {"name": "Cyril Zenouda", "title": "Program Manager", "role": "Influencer", "last_contact_date": "2026-01-28", "sentiment": "Neutral: led IT technical validation (SAP BTP, DR, provisioning); no stated vendor preference", "risk": "IT historically favors SAP; keep integration proof current", "source": "SF OpportunityContactRole (Program Manager); Avoma 'Zycus - Technical session' 28 Jan 2026"},
+        {"name": "ELISE CORRE", "title": "Purchasing Manager", "role": "Coach", "last_contact_date": "2025-12-08", "sentiment": "Positive: future Phase 2 project manager, warm personal feedback; was on maternity leave, expected back May/Jun 2026", "risk": "Low; re-confirm her return and role for any restart", "source": "SF OpportunityContactRole (Purchasing Manager); SF Next_Step__c 8 Dec 2025"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Bihag Shah (Group CPO) is a strong, engaged champion with sustained 12-month advocacy, direct CFO access, and proven ability to keep Zycus the only S2P finalist. He is not cooling by choice, the stall is external (PE-owner budget freeze). The current risk is capacity: since his 27 May 2026 defer he has gone quiet, and if PAI Partners declines 2027 budget he cannot advance S2P regardless of advocacy. What is still missing is a second executive thread that survives independently of him.",
+      "champion": "Bihag Shah",
+      "strength": "strong",
+      "at_risk": false,
+      "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026; SF Next_Step__c 2 Feb 2026, 27 Feb 2026, 14 Apr 2026; Task 2026-05-27"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is a single SKU (Merlin Intake) in an otherwise traditional S2P scope, and Zycus lost the standalone CLM on AI quality per Legal. The agentic/Merlin story is under-positioned relative to what Valerie's team said it wanted; the 19 Jan 2026 workshop even flagged some IContract AI features as demo-only, not production-ready.",
+      "score": "4/10",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 4 (Moderate) is accurate: deep 14-meeting engagement but a traditional-procurement, CLM-and-integration-led motion with only Merlin Intake as an AI module. Calls confirm AI mattered to Legal (they rated the rival's AI higher) yet Zycus led on platform breadth, not AI, so the field is neither under- nor over-rated.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "S2P budget frozen for 2026; PE owner PAI Partners weighing a sale of SGD blocks approval, with 2027 funding low-probability", "first_raised": "2026-04-14", "date": "2026-04-14", "status": "open", "source": "SF Next_Step__c 14 Apr 2026"},
+        {"category": "political", "detail": "SGD under LBO; the buying decision is subordinate to PAI Partners' ownership/exit strategy, which no internal sponsor can override", "first_raised": "2025-10-31", "date": "2026-04-14", "status": "open", "source": "SF Next_Step__c 31 Oct 2025, 14 Apr 2026"},
+        {"category": "timeline", "detail": "Indefinite postponement since 27 Feb 2026; close date is a placeholder awaiting an external decision, no credible date exists", "first_raised": "2026-02-27", "date": "2026-04-14", "status": "open", "source": "Avoma 'Validation of your S2P project' 27 Feb 2026; SF field history 14 Apr 2026"},
+        {"category": "pricing", "detail": "Lost standalone CLM on a ~100k 3-year TCO gap and higher-rated rival AI; the S2P premium is undefended by a quantified ROI model", "first_raised": "2026-01-29", "date": "2026-02-06", "status": "open", "source": "Avoma 'Final Sales negotiation SGD' 29 Jan 2026; SF Next_Step__c 6 Feb 2026"},
+        {"category": "executive_alignment", "detail": "Advocacy rests solely on Bihag Shah; no independent executive thread survives if his capacity or role changes during the ownership transition", "first_raised": "2026-05-27", "date": "2026-05-27", "status": "open", "source": "Task 2026-05-27; champion analysis"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cold: the last substantive two-way buyer exchange was the 27 Feb 2026 postponement call, followed only by Bihag's 27 May 2026 defer and Pierre's 1 Jul 2026 rep-side email. The buyer explicitly parked the deal pending a budget decision.",
+      "cooling": true,
+      "items": [
+        "Buyer deferred re-engagement to the year's budget decision (27 May 2026)",
+        "No buyer-facing deliverable or meeting executed in over 120 days",
+        "Only rep-initiated touches since 27 Feb 2026, all awaiting reply"
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full Source-to-Pay suite (iContract, iSource, iSupplier, iRisk, Merlin Intake) at ~190k, targeted for a single global contract",
+      "to": "CLM-first phased approach at 150k with the remaining S2P modules deferred; standalone CLM subsequently lost and S2P budget frozen",
+      "detail": "Amount was cut 190k to 150k on 6 Feb 2026 and the buyer moved from a big-bang global S2P to a CLM-led phased scope; a defensive posture driven by cost pressure and the PE owner's cash discipline under LBO, culminating in indefinite postponement."
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "Buyer chose an unnamed niche CLM player over Zycus on price and AI (6 Feb 2026) and, on 29 Jan 2026, 'with yesterday's price it's not gonna be you'; only the champion's willingness to pay a platform premium keeps Zycus alive, and even that is now frozen."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative pain is clear (fragmented manual procurement, no central contract repository, integration burden) but no quantified savings, spend-under-management, or cycle-time baseline was ever agreed; the negotiation ran on price gap, not ROI."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "Zycus is the named Vendor Selected finalist with a strong CPO champion, but the deal is frozen: SGD's PE owner PAI Partners is weighing a sale, S2P budget is dead for 2026, and 2027 funding is low-probability, so the only path is a well-timed September re-engagement, not a near-term close.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "The deal stands weak despite Vendor Selected status because the decision is frozen at the PE-owner level: PAI Partners may sell SGD and there is no S2P budget in 2026 (Next_Step__c, 14 Apr 2026)."},
+          {"tone": "good", "text": "Bihag Shah (Group CPO) is a genuine 12-month champion who kept Zycus the only S2P finalist and was willing to pay a platform premium 'to an integrator like you who has larger scope' (Avoma, 29 Jan 2026)."},
+          {"tone": "warn", "text": "Zycus already lost the standalone CLM scope to an unnamed niche player that was ~100k cheaper over 3 years with higher-rated AI per Legal (Next_Step__c, 6 Feb 2026)."},
+          {"tone": "warn", "text": "Advocacy rests entirely on Bihag; no second executive thread survives independently, and he himself deferred to the budget decision on 27 May 2026 (Task, 27 May 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No substantive two-way buyer engagement since the 27 Feb 2026 postponement call; the last touches are rep-side emails on 22 May, 27 May and 1 Jul 2026 awaiting reply."},
+          {"tone": "warn", "text": "Bihag explicitly parked the deal, 'I would like to wait for the decision in this year budget' (Task, 27 May 2026), and Pierre's 1 Jul note only proposes a Sept/Oct restart."},
+          {"tone": "warn", "text": "Close date is a placeholder pushed to 2027-03-17 and forecast dropped to Pipeline on 14 Apr 2026, reflecting a stall, not a plan."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "SGD invested heavily: on-site Demo Days (28-29 Oct 2025), a Paris deep-dive workshop, a full IT integration session (28 Jan 2026), and a BAFO/arbitration between CPO and CFO (30 Jan 2026)."},
+          {"tone": "warn", "text": "That commitment has since lapsed: no signed MSA/OF/SoW, the amount was cut 190k to 150k, and the buyer chose a rival for CLM (6 Feb 2026)."},
+          {"tone": "warn", "text": "Any 2027 commitment is contingent on PAI Partners' ownership decision, which no SGD stakeholder controls (Next_Step__c, 14 Apr 2026)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Budget risk is decisive: S2P funding is frozen for 2026 and 2027 approval is low-probability while SGD is under LBO and possibly for sale (Next_Step__c, 14 Apr 2026)."},
+          {"tone": "warn", "text": "Pricing/AI exposure is proven, having already lost CLM on a ~100k TCO gap and rival AI quality with no quantified Zycus ROI model to defend the premium."},
+          {"tone": "warn", "text": "Single-threaded on Bihag: if his capacity or role shifts in an ownership transition, the deal has no independent executive sponsor."}
+        ]
+      },
+      "factors": {
+        "budget": {"strength": -0.9, "evidence": "S2P budget frozen for 2026, 2027 low-probability, gated by PAI Partners' possible sale of SGD (Next_Step__c 14 Apr 2026)"},
+        "momentum": {"strength": -0.8, "evidence": "No buyer-facing activity since 27 Feb 2026; only rep-side emails awaiting reply"},
+        "customer_preference": {"strength": -0.4, "evidence": "Lost CLM to a niche player on price and AI; buyer said current price 'is not gonna be you' (29 Jan 2026)"}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Commercials", "text": "The S2P budget is frozen for 2026 and 2027 approval is low-probability because SGD is under LBO and its PE owner PAI Partners may sell the company, so no internal sponsor can release funds.", "tone": "crit"},
+      {"lens": "Last meeting", "text": "The last real buyer exchange was the 27 Feb 2026 call where Bihag paused the recording, showed the IT roadmap, and postponed the whole S2P project with no new date.", "tone": "crit"},
+      {"lens": "Competition", "text": "Zycus already lost the standalone contract-management scope to an unnamed niche player that was about 100k cheaper over three years with AI features Legal rated higher.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "The economic decision now sits with PAI Partners, the private-equity owner, whom Zycus has never engaged and who is weighing a sale over any procurement investment.", "tone": "warn"},
+      {"lens": "Commercials", "text": "Bihag Shah remains a committed champion willing to pay a platform premium, but he has deferred all discussion to the year's budget decision and gone quiet since 27 May.", "tone": "neu"}
+    ],
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Bihag a dated September restart plan tied to SGD's 2027 budget cycle.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Bihag deferred to the budget decision and Pierre's 1 Jul pre-break note has no reply", "trigger_date": "2026-05-27", "act_by": "2026-07-13", "expected_effect": "Reopens a two-way thread and pins a concrete re-engagement date instead of an open-ended pause."},
+        {"rank": 2, "action": "Ask Bihag to confirm PAI Partners' sale timeline and whether a 2027 S2P line is possible.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "PE-owner ownership decision gates all budget and remains unknown", "trigger_date": "2026-04-14", "act_by": "2026-07-20", "expected_effect": "Qualifies whether the deal is revivable in 2027 or should be omitted, preventing forecast noise."},
+        {"rank": 3, "action": "Build a quantified single-platform TCO and Merlin AI case for the September budget review.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Lost CLM on price and rival AI with no shared ROI model to defend the premium", "trigger_date": "2026-02-06", "act_by": "2026-08-05", "expected_effect": "Gives the champion a defensible business case to reopen budget and counters the price/AI loss."},
+        {"rank": 4, "action": "Open a direct thread with CFO Philippe Pourquery on 2027 investment appetite.", "owner": "Executive connect", "horizon": "next_30_days", "trigger": "Advocacy is single-threaded on Bihag and the CFO gave in-principle S2P agreement in Jan 2026", "trigger_date": "2026-01-30", "act_by": "2026-08-05", "expected_effect": "Adds a second executive thread that survives an ownership transition or champion capacity change."}
+      ]
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 12,
+    "calls_read": 5,
+    "calls_omitted": [
+      {"call": "Call SGD how to deploy CLM only (for phase 1) (2025-12-16)", "reason": "no transcript available in source"},
+      {"call": "Zycus demonstration day 2 - contracts and supplier onboarding (2025-10-29)", "reason": "no transcript available in source"},
+      {"call": "Zycus demonstration day 1 - e sourcing and e procurement (2025-10-28)", "reason": "no transcript available in source"},
+      {"call": "SGD - Preparation of our on Site WS (2025-10-10)", "reason": "no transcript available in source"},
+      {"call": "Nouveau contenu disponible dans SGD - Source 2 Pay project (2025-09-09)", "reason": "no transcript available in source"},
+      {"call": "Call SGD - Presentation Source to Contract Confirmed (2025-07-07)", "reason": "no transcript available in source"},
+      {"call": "SGD - Zycus Intro (2025-06-20)", "reason": "no transcript available in source; notes summarized from Next_Step and prior memory"}
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities 120d; field history trailing 365d; contact roles full",
+    "avoma_attendees": ["Bihag Shah", "Fiona Zhou", "Cyril Zenouda", "Adrien Kittler", "Pierre Meraud", "Neeraj Jagadar"],
+    "gaps": [
+      "No new buyer call this sweep; latest substantive two-way exchange is 27 Feb 2026 (129 days ago) — competitor threat levels carried forward, not re-ranked.",
+      "Winning CLM niche player and the second S2P finalist remain unnamed by the buyer.",
+      "No quantified ROI/savings baseline was ever agreed with the buyer.",
+      "PAI Partners' sale/ownership timeline that gates budget is unknown."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

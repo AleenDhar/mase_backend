@@ -1,0 +1,704 @@
+{
+  "opp_id": "006P700000a0pZS",
+  "hard": {
+    "opp_id": "006P700000a0pZS",
+    "opp_name": "Evonik_S2P_2026",
+    "account_name": "Evonik Industries AG",
+    "account_industry": "Chemical, Pharma & Biotech Mfg",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": "",
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000.0,
+    "close_date": "2026-12-31",
+    "days_to_close": 178,
+    "created_date": "2026-06-25T08:44:04.000+0000",
+    "qualified_date": "2026-06-25",
+    "last_activity_date": "2026-06-24",
+    "last_modified_date": "2026-07-02T10:32:03.000+0000",
+    "products": "iContract;iSource;iSupplier;eProcurement;eInvoicing;Merlin;iRisk;Merlin Intake;Agentic AI;ANA",
+    "next_step": "Jun 29, 2026 RFI Received Due date 3.7. 25-06-2026 : RFI (Anforderungskatalog S2P) received from Evonik Oxeno team; to be filled and submitted.",
+    "ais_score": null,
+    "ais_status": null,
+    "ais_why": null,
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000a0pZS/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Brand-new Qualified S2P deal (created 25 Jun) with a full 10-module suite plus Merlin/Agentic AI, but engagement is thin: one procurement evaluator, no discovery call, and an RFI whose 3 Jul due date has now passed with no submission or buyer reply logged. The 31 Dec close is a placeholder; the real risk is the buyer reading silence as disinterest before qualification even starts.",
+      "math": "Deal is 11 days old (created 25 Jun 2026, today 6 Jul 2026). Close date 31 Dec 2026 is 178 days out, almost certainly a placeholder. Last Salesforce activity 24 Jun (Procurement Summit Hamburg onsite), one day before deal creation. Rep-initiated Next-Step note dated 29 Jun records the RFI receipt, but there is no verified two-way buyer exchange since 24 Jun. Time-in-stage: 11 days in Qualified with no submission-date milestones recorded. No forward slip (deal too new to slip). Required pace: the RFI (Anforderungskatalog S2P, due 3 Jul) is now 3 days overdue, so confirm submission and secure a discovery call within 14 days to map MEDDPICC and advance toward Formal Evaluation; without buyer re-engagement the deal goes dark.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Stage Qualified, forecast Pipeline, but no MEDDPICC coverage yet: pain unquantified, Economic Buyer unmapped, Decision Maker unmapped, decision criteria unknown beyond the RFI itself, decision process unknown, champion unidentified, competition unnamed (source: SF, no Avoma calls found).",
+        "RFI (Anforderungskatalog S2P) received 25 Jun with a buyer-stated due date of 3 Jul; as of 6 Jul there is no confirmation of submission or of Zycus response in progress (source: Next_Step__c, 29 Jun).",
+        "Single-threaded: the only OpportunityContactRole is Lars Kuehl, Senior Procurement Manager, Evaluator (not a decision-maker). No EB/DM mapped, no champion developing (source: SF OpportunityContactRole).",
+        "Products in scope are the full S2P suite plus Merlin, Merlin Intake, Agentic AI and ANA (10 modules), indicating a large transformation opportunity, but there is no AIS score and no discovery call to confirm AI appetite or a quantified business case (source: Products__c).",
+        "Ten Opportunity-Health system tasks fired 24-25 Jun flag the exact gaps: 'Decision Maker is not identified', 'Keep the engagement multi-threaded', 'Prospect's gone cold? No inbound since last 14 days' (source: SF Tasks, 24-25 Jun)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case or pain metric is on record. No discovery call has occurred (no Avoma call found on opp, account, or attendee-email search), so cost-savings targets, headcount efficiency, cycle-time or compliance drivers are all unknown. The RFI Evonik's Oxeno team sent on 25 Jun (Anforderungskatalog S2P) likely encodes their stated requirements and may hint at pain, but the deal team has not surfaced any quantified impact from it. For a 200k EUR full-suite S2P transformation at a chemicals manufacturer, expect measurable pain (manual procurement, indirect-spend leakage, supplier risk, slow invoice cycles) but none is confirmed. The move is to complete and submit the RFI response and use it as the bridge to a discovery call where the pain owner quantifies the impact.",
+        "sources": [
+          "SF Next_Step__c (RFI received 25 Jun, due 3 Jul)",
+          "No Avoma calls found",
+          "Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c unpopulated"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is unmapped. The only contact on the opportunity is Lars Kuehl, Senior Procurement Manager (Evaluator role, source: OpportunityContactRole), a title that does not carry sign-off on a 200k EUR transformation, and no field or call names who owns the budget. The Opportunity-Health task 'Decision Maker is not identified' (25 Jun) confirms the gap is recognised internally. The RFI originates from the 'Evonik Oxeno team' (source: Next_Step__c, 29 Jun), which points to the Oxeno business unit's procurement leadership as the likely budget line, but no individual is named, so the EB cannot be asserted. The move is to ask Lars, on the first discovery call, who signs off the S2P budget and to multi-thread up into Oxeno procurement leadership.",
+        "sources": [
+          "SF OpportunityContactRole (Lars Kuehl, Evaluator)",
+          "SF Task 'Decision Maker is not identified' (25 Jun)",
+          "SF Next_Step__c (Evonik Oxeno team, 29 Jun)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are being defined by the relevant stakeholder itself: the Anforderungskatalog S2P (requirements catalogue) received 25 Jun is the buyer's own structured list of what a Source-to-Pay platform must satisfy (source: Next_Step__c, 29 Jun). That is real, buyer-authored criteria evidence, but the deal team has not yet extracted or reconciled the specific must-haves from it, and no discovery call has confirmed relative weighting or where Zycus is strong or exposed. The 10-module scope (iSource, iContract, iSupplier, eProcurement, eInvoicing, iRisk plus Merlin/Agentic AI) suggests an end-to-end suite requirement rather than point tools. The move is to work the Anforderungskatalog line-by-line, map Zycus fit, and validate the top three decision criteria with Lars.",
+        "sources": [
+          "SF Next_Step__c (Anforderungskatalog S2P RFI, 25 Jun)",
+          "Products__c (full S2P + Merlin scope)"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is unknown beyond that it is RFI-led: Evonik's Oxeno team issued a formal Anforderungskatalog with a fixed return date (3 Jul), which signals a structured, procurement-run evaluation, but the stage sequence after the RFI (RFP, shortlist, workshop, sign-off) and the approval chain are undocumented (no What_is_the_decision_process__c, no Avoma call to read the process from). The Opportunity-Health task 'Get clarity on the evaluation stages and influence the process' (25 Jun) shows the deal team knows this is the priority. The move is to ask Lars for the written evaluation timeline and the approval steps beyond procurement.",
+        "sources": [
+          "SF Next_Step__c (RFI with 3 Jul due date)",
+          "SF Task 'Get clarity on the evaluation stages' (25 Jun)",
+          "No Avoma calls found"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown at this stage and, for an 11-day-old Qualified deal, appropriately so. There are no legal, MSA/SOW, InfoSec or SI/partner signals yet, and no Current_Contract_Expiration__c to act as a forcing function. As a German enterprise chemicals buyer, Evonik will run a formal procurement channel with legal review of the MSA/Order Form, a security questionnaire (SOC 1/2, GDPR/DPA including the Zycus-India sub-processor disclosure) and, given the Agentic AI modules, likely an AI-governance review before signature. None of that is live yet. The move is simply to note these as future gates and surface them once the evaluation advances past RFI.",
+        "sources": [
+          "SF (no paper-process fields populated)",
+          "No Avoma calls found"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "The specific operational or financial pain driving the initiative is unconfirmed. The opportunity name (Evonik_S2P_2026) and full-suite scope imply an end-to-end Source-to-Pay transformation with AI embedded, and the fact that Evonik's Oxeno team built a formal requirements catalogue implies a real, funded intent, but no one has articulated WHY NOW in their own words (no Compelling_Event__c, no Pain_points_in_the_current_solution__c, no discovery call). Inferred pain from the scope and industry: manual procurement, poor spend visibility, supplier risk, and pressure to digitise, but this is inference, not buyer-stated. The move is to run discovery and get the pain owner to name the problem and the trigger.",
+        "sources": [
+          "Products__c (full S2P + Merlin scope)",
+          "SF Next_Step__c (Oxeno RFI)",
+          "No Avoma calls found"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified or developing. Lars Kuehl (Senior Procurement Manager, Evaluator, source: OpportunityContactRole) is the only known contact, and an Evaluator role plus no discovery conversation means his advocacy, internal clout and access to the budget owner are all untested; there is no evidence of him pushing for Zycus, sharing internal dynamics, or driving an agenda. The Opportunity-Health tasks 'Build an org chart and map all the key contacts' and 'Identify more contact roles' (25 Jun) confirm the deal is single-threaded. The move is to use the RFI submission to earn a discovery call, test whether Lars can be developed into a champion, and identify a more senior sponsor in Oxeno procurement.",
+        "sources": [
+          "SF OpportunityContactRole (Lars Kuehl, Evaluator)",
+          "SF Tasks 'Build an org chart' / 'Identify more contact roles' (25 Jun)",
+          "No Avoma calls found"
+        ]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor is named in any evidence source: Competitors__c is unpopulated, there are no Avoma calls, and no Task or Next-Step references another vendor. Evonik issuing a formal Anforderungskatalog S2P is consistent with a multi-vendor RFI (the buyer is likely benchmarking several S2P platforms), but that is an inference about process, not a named rival, so no competitor can be listed without fabricating one. What we do not yet know: Evonik's incumbent procurement stack, who else received the RFI, and our differentiation wedge. The move is to mine the Anforderungskatalog for incumbent-tool references and ask Lars directly, on discovery, who else is being evaluated and what triggered the RFI.",
+        "sources": [
+          "SF Competitors__c (unpopulated)",
+          "SF Next_Step__c (Anforderungskatalog S2P RFI, 25 Jun)",
+          "No Avoma calls found"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Fresh-record activity only: the opportunity was created and qualified on 25 Jun (Initial Interest to Qualified, amount 0 to 200000), ownership moved to Dirk Fischbach with Mona Schreyer as co-owner, and an RFI was logged 29 Jun. The last genuine buyer touch is the 24 Jun Procurement Summit Hamburg onsite; nothing two-way since.",
+      "items": [
+        {
+          "change": "Stage moved Initial Interest to Qualified",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Amount set from 0 to 200000 EUR",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "Ownership moved to Dirk Fischbach; Mona Schreyer added as co-owner",
+          "date": "2026-06-25"
+        },
+        {
+          "change": "RFI (Anforderungskatalog S2P) received from Evonik Oxeno team, due 3 Jul, logged in Next Step",
+          "date": "2026-06-29"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any evidence source (Competitors__c blank, no Avoma calls, no Task or Next-Step reference to a rival), so the field is genuinely unknown rather than sole-sourced. Evonik's Oxeno team issued a formal Anforderungskatalog S2P (RFI, 25 Jun), which strongly implies a multi-vendor benchmark, so assume 2-4 S2P platforms are in the frame, but naming any specific rival now would be fabrication. The single most important competitive action is discovery: extract incumbent-tool references from the Anforderungskatalog and ask Lars Kuehl who else Evonik is evaluating. Where AI appetite is confirmed, the wedge is the Merlin/Agentic AI story (autonomous sourcing and intake) against competitors' assistive AI.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Evonik has published its own expectations as the Anforderungskatalog S2P (RFI, 25 Jun), a structured requirements catalogue, but the deal team has not yet extracted the specific must-haves or scored Zycus fit against them, so alignment is unassessed. The 10-module suite scope suggests Zycus is being considered for an end-to-end S2P footprint.",
+      "items": [
+        {
+          "criterion": "End-to-end Source-to-Pay coverage per the Anforderungskatalog S2P",
+          "position": "partially aligned",
+          "quote": "RFI (Anforderungskatalog S2P) received from Evonik Oxeno team; to be filled and submitted.",
+          "date": "2026-06-25",
+          "source": "SF Next_Step__c (29 Jun)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Complete and submit the Anforderungskatalog S2P RFI to the Evonik Oxeno team",
+          "said_by": "Evonik Oxeno team (via Lars Kuehl)",
+          "date": "2026-06-25",
+          "addressed": false,
+          "quote": "RFI (Anforderungskatalog S2P) received from Evonik Oxeno team; to be filled and submitted.",
+          "source": "SF Next_Step__c (29 Jun; due 3 Jul)"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic Buyer unmapped",
+          "quote": "Decision Maker is not identified",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF Task (25 Jun) + OpportunityContactRole"
+        },
+        {
+          "area": "Single-threaded on one Evaluator",
+          "quote": "Keep the engagement multi-threaded",
+          "status": "not addressed",
+          "date": "2026-06-25",
+          "gap_type": "knowledge",
+          "source": "SF Task (25 Jun)"
+        },
+        {
+          "area": "Pain and business case unquantified",
+          "quote": "no discovery call held; Customer_Business_Problem__c unpopulated",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF fields + no Avoma calls"
+        },
+        {
+          "area": "Competitive shortlist unnamed",
+          "quote": "Competitors__c unpopulated; no call to name rivals",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF Competitors__c + no Avoma calls"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a fresh, single-threaded, RFI-led enterprise deal; the win-strategy priorities are to convert the RFI into a live conversation, break out of the single-thread, and identify the competitive field before it narrows.",
+      "flags": [
+        "Break the single-thread now: Lars Kuehl is an Evaluator, not a budget owner, so map and reach the Oxeno procurement leader and the S2P budget holder before the field narrows.",
+        "Turn the Anforderungskatalog submission into a discovery call: use the RFI response to earn a working session that surfaces pain, the compelling event, and evaluation stages instead of answering blind.",
+        "Establish the competitive field early: mine the RFI for incumbent-tool references and ask Lars who else is evaluated, then stake the Merlin/Agentic AI wedge if AI appetite is confirmed."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Lars K\u00fchl",
+          "_source": "sfdc_contact_role",
+          "title": "Senior Procurement Manager",
+          "email": "lars.kuehl@evonik.com",
+          "role": "Evaluator"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified or developing. Lars Kuehl (Senior Procurement Manager, Evaluator) is the only contact and his advocacy and access to the budget owner are untested because no discovery call has occurred and no field marks him a champion. He may become one or may be a pure evaluation coordinator. The move is to convert the RFI submission into a discovery call, test his advocacy and reach, and in parallel find a more senior sponsor in Oxeno procurement.",
+      "champion": "Lars Kuehl (Senior Procurement Manager, Evaluator)",
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (Lars Kuehl, Evaluator); no Avoma calls to assess advocacy"
+    },
+    "ai_positioning_strength": {
+      "summary": "The scope carries a strong AI footprint (Merlin, Merlin Intake, Agentic AI, ANA) but there is no AIS score and no call confirming Evonik's AI appetite, so the agentic story is not yet positioned with the buyer. Under-positioned until discovery confirms appetite and a named person carries the Merlin narrative.",
+      "score": "",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS_Score__c or AIS_Status__c on record and no buyer call, so AI appetite is inferred only from the product scope (Merlin, Merlin Intake, Agentic AI, ANA are in scope). Treat as unconfirmed and validate on discovery.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "Economic Buyer and Decision Maker unmapped; only a procurement Evaluator is engaged on a 200k EUR full-suite transformation.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Task 'Decision Maker is not identified' + OpportunityContactRole"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded on one contact; no org chart or second stakeholder, so the deal is one person away from stalling.",
+          "first_raised": "2026-06-25",
+          "date": "2026-06-25",
+          "status": "open",
+          "source": "SF Task 'Keep the engagement multi-threaded' (25 Jun)"
+        },
+        {
+          "category": "timeline",
+          "detail": "RFI due 3 Jul has passed with no submission or buyer reply logged; without re-engagement the buyer reads silence as disinterest.",
+          "first_raised": "2026-07-03",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Next_Step__c (due 3 Jul)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is thin and untested: the last genuine two-way buyer touch is the 24 Jun Hamburg onsite, and a system task already flags 'Prospect's gone cold? No inbound since last 14 days'. The deal is new rather than cold, but momentum depends entirely on converting the RFI into a live conversation.",
+      "cooling": true,
+      "items": [
+        "Last two-way buyer touch 24 Jun (Procurement Summit Hamburg onsite); nothing inbound since (SF Task, 25 Jun).",
+        "RFI logged 29 Jun is a rep-side note, not buyer engagement."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A brand-new, single-threaded Qualified deal with a big 10-module S2P + Merlin scope but no discovery, no mapped budget owner, and an RFI whose 3 Jul deadline just passed unanswered; the one thing between us and momentum is turning that RFI into a real conversation with someone senior in Oxeno.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "Early and unproven: the deal is 11 days in Qualified with only a procurement Evaluator (Lars Kuehl) engaged, no discovery call held, and no pain or budget owner confirmed (SF, 6 Jul)."
+          },
+          {
+            "tone": "warn",
+            "text": "The RFI due 3 Jul has passed with no submission or buyer reply on record, and a system flag already reads 'Prospect's gone cold? No inbound since last 14 days' (SF Task, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "The competitive field is unknown: Evonik's Anforderungskatalog implies a multi-vendor benchmark but no rival is named, so we cannot yet see where we stand (SF, 25 Jun)."
+          },
+          {
+            "tone": "good",
+            "text": "Real intent signal: Evonik's Oxeno team built and issued a formal S2P requirements catalogue and the scope spans the full suite plus Merlin/Agentic AI, so the transformation appetite is genuine if we can engage it (Products__c + Next_Step__c, 25 Jun)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "Momentum is one-directional: all movement since 25 Jun is internal (stage set, amount set, RFI logged); the only buyer-initiated signal is the RFI itself with its 3 Jul return date (SF field history + Next_Step__c)."
+          },
+          {
+            "tone": "warn",
+            "text": "No demo, no discovery call, and no next meeting is on the calendar, so there is no scheduled buyer event to carry the deal forward (SF, 6 Jul)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "Evonik committed enough to author a structured Anforderungskatalog S2P and set a firm 3 Jul return date, which is a real evaluation step, not a casual inquiry (Next_Step__c, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Commitment is shallow beyond that: a single Evaluator, no budget owner, and no executive sponsor identified on a 200k EUR full-suite deal (OpportunityContactRole + SF Task, 25 Jun)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single-threaded on Lars Kuehl (Evaluator); if he lacks clout or goes quiet the deal has no alternate path to power (SF Task 'Keep the engagement multi-threaded', 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Economic Buyer and Decision Maker are both unmapped, explicitly flagged by the 'Decision Maker is not identified' health task (SF Task, 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "The 31 Dec close date is a placeholder and, with qualification barely started, is not yet credible (SF, close_date)."
+          }
+        ]
+      },
+      "factors": {
+        "customer_commitment": {
+          "strength": -0.2,
+          "evidence": "Formal RFI issued (positive) but only one junior-authority contact and no EB engaged."
+        },
+        "deal_momentum": {
+          "strength": -0.4,
+          "evidence": "No buyer-facing event scheduled; RFI deadline passed without reply."
+        },
+        "deal_risk": {
+          "strength": -0.5,
+          "evidence": "Single-thread, EB/DM unmapped, competition unknown, placeholder close date."
+        }
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Full S2P suite + Merlin/Agentic AI (10 modules)",
+      "to": "Full S2P suite + Merlin/Agentic AI (10 modules)",
+      "detail": "Deal is 11 days old; scope has not changed since creation. Full suite plus Merlin, Merlin Intake, Agentic AI and ANA remain in scope (Products__c, 25 Jun)."
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer call or field expresses a preference for or against Zycus; only a neutral RFI has been received (Next_Step__c, 25 Jun)."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, or automation impact discussed; no discovery call held and no value fields populated."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 6.2,
+      "mom": 55.2,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Confirm the S2P RFI response reached Evonik's Oxeno team and request evaluation feedback.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Anforderungskatalog S2P RFI due 3 Jul, now overdue with no reply logged.",
+          "trigger_date": "2026-07-03",
+          "act_by": "2026-07-10",
+          "expected_effect": "Reopens the two-way thread and confirms Zycus is still in the evaluation before the buyer reads silence as disinterest."
+        },
+        {
+          "rank": 2,
+          "action": "Book a discovery call with Lars Kuehl to map pain, evaluation stages, and the budget owner.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "No discovery call held; EB and decision process unknown (Task 'Get clarity on the evaluation stages', 25 Jun).",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-13",
+          "expected_effect": "Surfaces the compelling event and decision process, moving the deal toward Formal Evaluation."
+        },
+        {
+          "rank": 3,
+          "action": "Ask Lars to introduce the Oxeno procurement leader and budget owner to break the single-thread.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Single contact is an Evaluator; 'Decision Maker is not identified' health task (25 Jun).",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps power and reduces single-point-of-failure risk on a 200k EUR transformation."
+        },
+        {
+          "rank": 4,
+          "action": "On discovery, ask who else Evonik is evaluating and mine the RFI for incumbent tools.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Anforderungskatalog implies a multi-vendor benchmark but no rival is named.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-20",
+          "expected_effect": "Reveals the competitive field so positioning and the Merlin wedge can be targeted."
+        },
+        {
+          "rank": 5,
+          "action": "Put the Merlin and Agentic AI story in front of Evonik once AI appetite is confirmed.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Merlin, Merlin Intake, Agentic AI and ANA in scope but no AIS score or buyer confirmation.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-08-05",
+          "expected_effect": "Differentiates on autonomous sourcing/intake versus competitors' assistive AI and lifts win position."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 6.2,
+        "deal_momentum": 55.2,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 6.2,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -14.4,
+        "ceiling": 30.0,
+        "momentum_adj": 2.6,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 2.6,
+            "evidence": "momentum 55 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 55.2,
+        "pre_decay": 55.2,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "concrete_dates",
+            "points": 3.6,
+            "evidence": "concrete dates (from call evidence)."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 4.8,
+            "evidence": "Next Step carries 2 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 6 is carried by momentum 55 vs stage-expected 50. Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum 55 (moving forward): Next Step carries 2 dated milestone(s) \u2014 actively worked. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (6), nudged by commitment 8 and momentum 55, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Evonik Industries AG \u2014 Qualified \u00b7 $200K \u00b7 closes 31 Dec",
+        "intro": "A brand-new, single-threaded Qualified deal with a big 10-module S2P + Merlin scope but no discovery, no mapped budget owner, and an RFI whose 3 Jul deadline just passed unanswered; the one thing between us and momentum is turning that RFI into a real conversation with someone senior in Oxeno",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 6,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Early and unproven; the deal is 11 days in Qualified with only a procurement Evaluator (Lars Kuehl) engaged, no discovery call held, and no pain or budget owner confirmed (SF, 6 Jul)"
+              },
+              {
+                "tone": "warn",
+                "text": "The RFI due 3 Jul has passed with no submission or buyer reply on record, and a system flag already reads 'Prospect's gone cold?; No inbound since last 14 days' (SF Task, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "The competitive field is unknown; Evonik's Anforderungskatalog implies a multi-vendor benchmark but no rival is named, so we cannot yet see where we stand (SF, 25 Jun)"
+              },
+              {
+                "tone": "good",
+                "text": "Real intent signal; Evonik's Oxeno team built and issued a formal S2P requirements catalogue and the scope spans the full suite plus Merlin/Agentic AI, so the transformation appetite is genuine if we can engage it (Products__c + Next_Step__c, 25 Jun)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 55,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Momentum is one-directional; all movement since 25 Jun is internal (stage set, amount set, RFI logged); the only buyer-initiated signal is the RFI itself with its 3 Jul return date (SF field history + Next_Step__c)"
+              },
+              {
+                "tone": "warn",
+                "text": "No demo, no discovery call, and no next meeting is on the calendar, so there is no scheduled buyer event to carry the deal forward (SF, 6 Jul)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single-threaded on Lars Kuehl (Evaluator); if he lacks clout or goes quiet the deal has no alternate path to power (SF Task 'Keep the engagement multi-threaded', 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Economic Buyer and Decision Maker are both unmapped, explicitly flagged by the 'Decision Maker is not identified' health task (SF Task, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "The 31 Dec close date is a placeholder and, with qualification barely started, is not yet credible (SF, close_date)"
+              }
+            ],
+            "footer": "Competitive picture: No competitor is named in any evidence source (Competitors__c blank, no Avoma calls, no Task or Next-Step reference to a rival), so the field is genuinely unknown rather than sole-sourced."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Evonik committed enough to author a structured Anforderungskatalog S2P and set a firm 3 Jul return date, which is a real evaluation step, not a casual inquiry (Next_Step__c, 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Commitment is shallow beyond that; a single Evaluator, no budget owner, and no executive sponsor identified on a 200k EUR full-suite deal (OpportunityContactRole + SF Task, 25 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Confirm the S2P RFI response reached Evonik's Oxeno team and request evaluation feedback. (by 10 Jul)",
+              "Book a discovery call with Lars Kuehl to map pain, evaluation stages, and the budget owner. (by 13 Jul)",
+              "Ask Lars to introduce the Oxeno procurement leader and budget owner to break the single-thread. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "120d activities, 365d field history",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls found on opp-id, account, or attendee-email discovery, so all MEDDPICC elements rest on Salesforce fields and tasks only.",
+      "Pain, quantified business case, Economic Buyer, Decision Maker, decision process, and the competitive shortlist are all genuinely unknown (no discovery call held).",
+      "AIS score/status not populated, so AI appetite is inferred from product scope only."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:05"
+}

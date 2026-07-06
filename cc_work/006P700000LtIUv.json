@@ -1,0 +1,285 @@
+{
+  "opp_id": "006P700000LtIUvQAK",
+  "hard": {
+    "opp_id": "006P700000LtIUvQAK",
+    "opp_name": "Khansaheb",
+    "account_name": "Khansaheb",
+    "account_industry": "Real Estate & Infra",
+    "billing_country": "United Arab Emirates",
+    "owner_name": "Mohamad Alhakim",
+    "owner_title": "Regional Vice President",
+    "manager_name": null,
+    "stage": "Shortlisted",
+    "forecast_category": "Best Case",
+    "amount": 150000,
+    "close_date": "2026-08-31",
+    "days_to_close": 56,
+    "created_date": "2025-07-30",
+    "qualified_date": "2025-07-30",
+    "last_activity_date": "2026-07-03",
+    "last_modified_date": "2026-07-03",
+    "products": "iSource;iSupplier;eInvoicing;iRisk",
+    "next_step": null,
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Others",
+    "primary_competitor": "Do-nothing / deferral (non-essential spend pause)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000LtIUvQAK/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": true,
+      "headline": "POC-validated deal frozen for roughly 8 months by an external non-essential-spend pause: champion Abraham Mathew re-engaged in person on 18 May 2026 but sits in 'wait and watch' mode, economic buyer Bilal Hamadeh has not joined a working session since the Oct 2025 POC, scope has shrunk to a single-entity iSupplier pilot, and the account was just handed to a new Regional Vice President on 29 Jun 2026.",
+      "math": "Close date 2026-08-31 is 56 days out (today 2026-07-06). Shortlisted since 17 Apr 2026; first reached Formal Evaluation 29 Jul 2025, so roughly 11.5 months in cycle. Last genuine two-way buyer touch was Abraham Mathew's 19 May 2026 'wait and watch' email (about 7 weeks ago); every touch since (Horizon invite 5 Jun, new-RVP introduction 3 Jul) is rep-side. With budget frozen and no restart date, the remaining path (spend unfreeze, management approval, contracting, deployment) cannot complete by 31 Aug 2026, so the date is not credible.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Next Step 18 May 2026: 'all non-essential spend is paused until later in the year whilst the conflict/blockade continues, new construction projects are paused'.",
+        "Buyer email 19 May 2026 (Abraham Mathew): 'we are on a wait and watch mode. Give it some time, I will get back to you on the way forward.'",
+        "Next Step 16 April 2026: 'confirmed they had shortlisted two vendors and Zycus is one (wouldn't say who else)'.",
+        "Field history 29 Jun 2026: Owner changed Dan Quinn to Mohamad Alhakim (Regional Vice President); new owner emailed Abraham 3 Jul 2026 introducing himself as primary contact.",
+        "Forecast is Best Case but the pilot budget is unapproved and frozen and the economic buyer has not joined a working session since Oct 2025, so Best Case is not defensible; honest category is Pipeline."
+      ],
+      "trajectory": "steady",
+      "prior_verdict": "Slowing"
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Value drivers are articulated qualitatively but never quantified. The Oct 2025 POC and 30 Oct 2025 commercial call confirmed scope across supplier onboarding, eInvoicing (AI OCR capture and 3-way matching) and Merlin intake, targeting automation of manual vendor onboarding and invoice processing. Since the spend freeze the live metric is margin protection: per Next Step 18 May 2026 the buyer's stated concern is that 'materials prices have sky-rocketed due to the blockade and fuel prices', and Dan planted the procuretech-to-protect-margins angle. No cost-per-invoice, cycle-time or savings figure has been agreed, so building a quantified ROI case Abraham can carry to management is the open move that unfreezes budget.",
+        "sources": ["Avoma commercial call 30 Oct 2025", "Next Step 18 May 2026", "SF Customer_Business_Problem__c"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "The economic buyer is Bilal Hamadeh, logged in the Next Step history as GM and Executive Sponsor, with pilot spend requiring management approval above him. Bilal engaged early (demo 7 Aug 2025 'very engaged'; onsite POC 13-14 Oct 2025) but has not joined a working session since Oct 2025 and was explicitly unavailable for the 14 and 18 May 2026 meetings. On the 30 Oct 2025 call the Crowe consultant Ravi Shankar confirmed the authority chain: 'Ultimately it goes to Bilal, and Bilal will approach management for this pilot project.' Budget sits with Bilal and management and is frozen; the deal is single-threaded to Abraham who cannot release it, so re-engaging Bilal on restart timing is the priority. His Salesforce contact record carries no title (NA), a hygiene gap versus the rep-logged GM/Exec Sponsor role.",
+        "sources": ["Avoma commercial call 30 Oct 2025 (Ravi Shankar)", "Next Step 7 Aug 2025 / 18 May 2026", "SF OpportunityContactRole (Bilal Hamadeh)"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "Criteria are well documented from the demo and POC cycle: a vendor portal with self-registration plus KYC/compliance document validation (trade-license, VAT and ICV certificate checks with expiry alerts), configurable role-based access control, 3-way invoice matching, AI OCR invoice capture, and phased ERP integration. On the 14 Oct 2025 in-person demo Tanya walked the confirmed Khansaheb onboarding flow (vendor registration form, duplicate check, conditional approvals, risk assessment) as 'absolutely in scope'. eInvoicing adds a hard regulatory criterion raised by Ravi Shankar and Abraham on 30 Oct 2025: compliance with the UAE FTA e-invoicing 5-corner model routed through a government-approved intermediary, plus minimal government-portal integration failure ('there will be failure, but it should be minimal').",
+        "sources": ["Avoma in-person demo 14 Oct 2025 (Tanya)", "Avoma commercial call 30 Oct 2025", "SF Business_Requirements__c"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Partner-led, phased evaluation read from the call sequence: discovery with Crowe consultant Ravi Shankar (22 Jul 2025), Head-of-Procurement demo to Abraham (29 Jul), GM/Exec-Sponsor demo to Bilal (7 Aug), configuration review (30 Sep), onsite POC with Bilal and Crowe (7-14 Oct), then commercials (30 Oct). On 30 Oct 2025 the buyer reshaped into a phased delivery, Phase 1 being an iSupplier and eInvoicing pilot on a limited set of entities with sourcing deferred to 'a different project', explicitly pending management review through Bilal. Ravi Shankar stated 'every pilot project goes to management for review and approval'. The process is now stalled at management review pending an external, date-uncertain spend-freeze decision.",
+        "sources": ["Avoma commercial call 30 Oct 2025 (Ravi Shankar)", "Next Step log 22 Jul - 30 Oct 2025", "SF What_is_the_decision_process__c"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Contracting mechanics are partly surfaced. On 29 Jul 2025 next steps included signing an NDA, receiving a proposal and presenting to management, with the NDA 'underway'. Commercial structure is clear from 30 Oct 2025: minimum three-year term (typical five) because SaaS cost is front-loaded, bundle discounts only if iSourcing is taken as an immediate Phase 2 rather than a separate 'different project', and pricing dependent on confirmed user counts (two admin, five power, one business user) and invoice volumes. A regulatory dependency gates the eInvoicing paper: it must integrate with the UAE FTA portal via a pre-approved intermediary, and Dan committed Zycus would be contractually compliant with the new regulation. No redlining, MSA or signature stage has been reached because budget is frozen; visibility returns only when management approves the unfreeze.",
+        "sources": ["Avoma commercial call 30 Oct 2025", "Next Step 29 Jul 2025", "SF Current_Contract_Expiration__c"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Confirmed operational pain: manual vendor onboarding with compliance-document validation (trade-license, VAT and ICV certificate expiry) across multiple entities running on different ERPs, manual invoice processing, and no real-time supplier visibility. On 30 Oct 2025 Abraham and Ravi Shankar detailed the multi-entity, multi-ERP complexity ('the divisions run on different ERPs, the books are different') and government-portal integration failures they want minimized. The overlay pain since the blockade is financial: spiking materials and fuel prices squeezing margins (Next Step 18 May 2026). Pain owner is Abraham for operations; the margin and economics concern is owned by Bilal and management, which is exactly where the value case must land.",
+        "sources": ["Avoma commercial call 30 Oct 2025 (Abraham Mathew, Ravi Shankar)", "Next Step 18 May 2026", "SF Pain_points_in_the_current_solution__c"]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Abraham Mathew (Head of Procurement) is a developing champion: he led the project from the first demo (29 Jul 2025), drove detailed POC configuration feedback (30 Sep and 30 Oct 2025), agreed to share sample vendor documents, and met Dan face-to-face on 18 May 2026 when no other contact would. His advocacy is currently constrained: his 19 May 2026 email was honest but passive ('wait and watch, I will get back to you'), he lacks authority to unfreeze budget, and the deal is single-threaded to him. What has developed is consistent access and hosting; what is still missing is a secured internal Bilal/management meeting for Zycus and a quantified case he can sell upward. The 29 Jun 2026 owner handover to a new RVP now risks the personal continuity Dan built with him.",
+        "sources": ["Avoma 30 Sep 2025", "Task emails 14-19 May 2026 (Abraham Mathew)", "Next Step 18 May 2026", "SF OpportunityContactRole (Abraham Mathew)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Zycus is one of two shortlisted vendors (Next Step 16 April 2026, 'wouldn't say who else'), but the rival's identity has never been disclosed, so it cannot be directly counter-positioned. The real live competitor is do-nothing / deferral: the buyer has paused all non-essential spend and frames procurement automation as discretionary while the conflict continues. No active bake-off is running while spend is frozen, so the unnamed peer is a dormant secondary threat. The wedge is to reframe procuretech as a margin-protection lever during the downturn (Dan's blog and Agentic AI summit content shared May 2026) backed by the validated POC; surfacing the rival's identity via Crowe consultant Ravi Shankar is an opportunistic, lower-priority move.",
+        "sources": ["Next Step 16 April 2026", "Next Step 18 May 2026", "Tasks May 2026 (downturn / agentic AI content)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement in the last 90 days is administrative and rep-side: on 29 Jun 2026 the account was reassigned from Dan Quinn to a new Regional Vice President, Mohamad Alhakim, who introduced himself to Abraham on 3 Jul 2026; the amount was trued up to 150,000 on 30 Jun 2026. The buyer itself has not moved since the 18-19 May 2026 in-person meeting and 'wait and watch' email; the project remains frozen by the external non-essential-spend pause.",
+      "items": [
+        {"change": "Account reassigned from Dan Quinn to new Regional Vice President Mohamad Alhakim; new owner emailed Abraham introducing himself as primary contact", "date": "2026-06-29"},
+        {"change": "Amount trued up from 148,974 to 150,000", "date": "2026-06-30"},
+        {"change": "Buyer confirmed 'wait and watch mode, give it some time, I will get back to you on the way forward'", "date": "2026-05-19"},
+        {"change": "In-person meeting with Abraham (Bilal unavailable): confirmed shortlisted against one other vendor, non-essential spend paused, materials prices spiking", "date": "2026-05-18"},
+        {"change": "Close date pushed 30 May to 31 Aug 2026, stage moved Formal Evaluation to Shortlisted, forecast raised to Best Case", "date": "2026-04-17"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Zycus is one of two shortlisted vendors (16 April 2026) but the live battle is against do-nothing / deferral: an external non-essential-spend freeze from the conflict/blockade has paused the project with no restart date. The single strongest current threat is that spend pause; the undisclosed peer vendor is a secondary, dormant threat because no active bake-off runs while spend is frozen. Win path: reframe procuretech as downturn margin protection, arm Abraham with a quantified case, and convert the validated POC into management approval once spend unfreezes.",
+      "competitors": [
+        {
+          "name": "Do-nothing / status quo (non-essential spend pause due to conflict/blockade)",
+          "sentiment": "negative",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "all non-essential spend is paused until later in the year whilst the conflict/blockade continues",
+          "date": "2026-05-18",
+          "source": "Next Step 18 May 2026",
+          "how_we_win": "Position procuretech as a controllable margin-protection lever in a downturn (Dan's blog plus Agentic AI summit content); arm Abraham with a quantified ROI case to justify unfreezing the pilot budget."
+        },
+        {
+          "name": "Undisclosed second shortlisted vendor",
+          "sentiment": "neutral",
+          "threat_level": "dormant",
+          "status": "active",
+          "quote": "confirmed they had shortlisted two vendors and Zycus is one (wouldn't say who else)",
+          "date": "2026-04-16",
+          "source": "Next Step 16 April 2026",
+          "how_we_win": "Surface the rival's identity via Crowe consultant Ravi Shankar, then counter-position on the validated onboarding/eInvoicing POC and UAE FTA compliance path; no active bake-off runs while spend is frozen, so this stays low priority until restart."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Functional fit is strong and validated on the confirmed pilot scope (supplier onboarding and eInvoicing); the exposure is commercial, not product: Zycus repeatedly flagged the shrunken pilot may be 'too small', and eInvoicing carries an unresolved UAE FTA regulatory dependency.",
+      "items": [
+        {"criterion": "Supplier onboarding / vendor registration flow with compliance-document validation", "position": "aligned", "quote": "supplier onboarding and supplier relationship management is definitely in scope for Khan Sahib", "date": "2025-10-14", "source": "Avoma in-person demo 14 Oct 2025"},
+        {"criterion": "eInvoicing with UAE FTA 5-corner-model compliance via approved intermediary", "position": "partially aligned", "quote": "until unless it is compliant with the new regulation of FDA, we should park it until we have confirmation", "date": "2025-10-30", "source": "Avoma commercial call 30 Oct 2025 (Ravi Shankar)"},
+        {"criterion": "Deal size / commercial threshold", "position": "exposed", "quote": "if it's below a certain scale of project, the business will politely walk away", "date": "2025-10-30", "source": "Avoma commercial call 30 Oct 2025 (Dan Quinn)"},
+        {"criterion": "ERP integration for supplier master and eInvoicing", "position": "partially aligned", "quote": "let's keep that scope for two-way integration then, that will be fine", "date": "2025-10-30", "source": "Avoma commercial call 30 Oct 2025"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Give Zycus the restart date / way-forward once the spend pause lifts", "who": "Buyer", "grounding_quote": "we are on a wait and watch mode. Give it some time, I will get back to you on the way forward.", "date": "2026-05-19", "due": "2026-05-19", "status": "open", "source": "Task email 19 May 2026 (Abraham Mathew)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Identity of the second shortlisted vendor", "quote": "confirmed they had shortlisted two vendors and Zycus is one (wouldn't say who else)", "status": "not addressed", "date": "2026-04-16", "gap_type": "knowledge", "source": "Next Step 16 April 2026"},
+        {"area": "Restart date for the frozen project / when budget unfreezes", "quote": "the project is still on and under review with our consultant. The team will reach out as and when there are new developments", "status": "not addressed", "date": "2026-02-17", "gap_type": "knowledge", "source": "Task email 17 Feb 2026 (Abraham Mathew)"},
+        {"area": "Economic buyer title in Salesforce (Bilal Hamadeh contact record blank / NA)", "quote": "Ultimately it goes to Bilal, and Bilal will approach management for this pilot project", "status": "acknowledged", "date": "2025-10-30", "gap_type": "hygiene", "source": "Avoma commercial call 30 Oct 2025 + SF OpportunityContactRole"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three win-strategy levers matter now: protect relationship continuity through the owner handover, break the single-thread to reach the budget-holder, and convert a shrunken pilot into a defensible margin-protection case.",
+      "flags": [
+        "Owner just changed from Dan Quinn to a new RVP on 29 Jun 2026 mid-freeze: the new owner must re-personalise the Abraham relationship fast before the warm continuity Dan built decays.",
+        "Deal is single-threaded to Abraham, a developing champion with no budget authority: multi-thread to economic buyer Bilal Hamadeh and the management layer that approves pilot spend.",
+        "Scope has collapsed to a sub-$150k single-entity iSupplier pilot: reframe from 'small pilot' to a quantified margin-protection business case so the deal survives the do-nothing / too-small risk."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Bilal Hamadeh", "title": "NA (rep-logged GM / Executive Sponsor)", "role": "Economic Buyer", "last_contact_date": "2025-10-14", "sentiment": "positive but disengaged", "risk": "Not in a working session since Oct 2025; unavailable 14 and 18 May 2026; controls the frozen pilot budget and takes it to management", "source": "SF OpportunityContactRole (Bilal Hamadeh) + Next Step 7 Aug / 18 May 2026"},
+        {"name": "Abraham Mathew", "title": "Head of Procurement", "role": "Champion", "last_contact_date": "2026-05-19", "sentiment": "engaged but passive ('wait and watch')", "risk": "Lacks authority to unfreeze budget; deal single-threaded to him; owner handover risks relationship continuity", "source": "SF OpportunityContactRole (Abraham Mathew) + Task emails 14-19 May 2026"},
+        {"name": "Ravi Shankar", "title": "Consultant, Crowe UAE", "role": "Coach", "last_contact_date": "2025-10-30", "sentiment": "neutral facilitator", "risk": "Third-party consultant running the evaluation; controls pacing and the management framing but is a facilitator, not the decision-maker", "source": "Avoma commercial call 30 Oct 2025 (named speaker) + Next Step 22 Jul 2025 ('Ravi - Crowe UAE')"},
+        {"name": "Tony Johny", "title": "Purchaser", "role": "Influencer", "last_contact_date": "2025-09-30", "sentiment": "neutral", "risk": "Operational contact with limited authority", "source": "SF OpportunityContactRole (Tony Johny)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Abraham Mathew is a consistent, engaged champion who hosts the rep and drives feedback, but is currently passive ('wait and watch'), lacks budget authority, and has not yet secured an internal management meeting for Zycus; the 29 Jun 2026 owner handover adds continuity risk.",
+      "champion": "Abraham Mathew",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Task emails 14-19 May 2026 + Next Step 18 May 2026 + SF OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is 2.0 / Negative and the buyer actively deferred the AI surface: on 30 Oct 2025 Merlin intake was parked ('pause this one for the time being, I don't see if we would go forward') and the confirmed scope is foundational (iSupplier, eInvoicing) with no Merlin/Agentic component. The resistance is buyer-driven, not a positioning miss; an AI-led narrative is not the wedge here, margin protection is.",
+      "score": "2.0 / Negative",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 2.0, AIS_Status Negative. Calls corroborate the field: the buyer deferred Merlin intake and autonomous sourcing, kept scope to foundational supplier onboarding and eInvoicing, and no named Khansaheb stakeholder engaged on any AI conversation across Nov 2025-Jul 2026. Genuinely AI-resistant, not under-rated.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "Non-essential spend frozen by the conflict/blockade with no restart date; pilot budget unapproved", "first_raised": "2026-02-25", "date": "2026-05-18", "status": "open", "source": "Next Step 18 May 2026 + Task emails Feb-May 2026"},
+        {"category": "executive_alignment", "detail": "Economic buyer Bilal Hamadeh disengaged since the Oct 2025 POC; deal single-threaded to a champion who cannot release budget", "first_raised": "2026-05-18", "date": "2026-05-18", "status": "open", "source": "Next Step 18 May 2026"},
+        {"category": "change_management", "detail": "Scope shrunk from a group-wide S2P vision to a single-entity iSupplier pilot; Zycus repeatedly warned it may be too small to pursue", "first_raised": "2025-10-30", "date": "2025-10-30", "status": "open", "source": "Avoma commercial call 30 Oct 2025 + Next Step 19 Nov 2025"},
+        {"category": "timeline", "detail": "Close date 31 Aug 2026 not credible with budget frozen and no restart date; forecast Best Case not defensible", "first_raised": "2026-04-17", "date": "2026-07-06", "status": "open", "source": "north_star math + field history 17 Apr 2026"},
+        {"category": "political", "detail": "Account owner changed from Dan Quinn to a new RVP on 29 Jun 2026 mid-freeze, risking loss of the personal relationship continuity built with Abraham", "first_raised": "2026-06-29", "date": "2026-06-29", "status": "open", "source": "Field history 29 Jun 2026 + Task 3 Jul 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Cooling: the last genuine two-way buyer exchange was Abraham's 19 May 2026 'wait and watch' email; everything since is rep-side (Horizon invite 5 Jun, new-RVP introduction 3 Jul). The buyer has kept Zycus 'in the mix' but on hold since the Oct 2025 POC.",
+      "cooling": true,
+      "items": [
+        "Buyer reply 19 May 2026: 'we are on a wait and watch mode. Give it some time.'",
+        "No buyer-facing working session since the 14 Oct 2025 onsite POC.",
+        "Rep-side only since 5 Jun 2026 (Horizon invite, new-RVP intro)."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "New RVP Mohamad Alhakim books a warm reset call with Abraham to inherit the relationship and get the restart timeline.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Owner reassigned 29 Jun 2026; new-RVP introduction email sent to Abraham 3 Jul 2026 with no reply yet", "trigger_date": "2026-07-03", "act_by": "2026-07-13", "expected_effect": "Protects relationship continuity through the handover and re-opens a live channel to learn when spend unfreezes."},
+        {"rank": 2, "action": "Build a one-page margin-protection ROI case for Abraham to carry to Bilal and management.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Buyer's stated concern that materials prices have sky-rocketed due to the blockade and fuel prices (18 May 2026)", "trigger_date": "2026-05-18", "act_by": "2026-07-20", "expected_effect": "Gives the champion a quantified reason to justify unfreezing the pilot budget, converting the validated POC into management approval."},
+        {"rank": 3, "action": "Multi-thread to economic buyer Bilal Hamadeh for a short executive restart conversation.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Bilal has not joined a working session since Oct 2025 and controls the frozen budget", "trigger_date": "2025-10-14", "act_by": "2026-07-27", "expected_effect": "Breaks the single-thread to Abraham and puts the budget-holder back in the process so the deal is not hostage to one passive contact."},
+        {"rank": 4, "action": "Ask Crowe consultant Ravi Shankar for the restart date in writing and the second vendor's identity.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Shortlisted against one undisclosed vendor; Ravi runs the evaluation and gates management review", "trigger_date": "2026-04-16", "act_by": "2026-08-05", "expected_effect": "Surfaces the competitive picture and a real timeline, letting the forecast be reset honestly rather than held at Best Case."}
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Group-wide Source-to-Pay vision across Khansaheb (iSourcing plus eInvoicing plus supplier management, ~50%+ of the group)",
+      "to": "Single-entity iSupplier pilot on roughly 30-40% of the group, eInvoicing possible in phase one, sourcing deferred to a separate later 'different project'",
+      "detail": "On 30 Oct 2025 the buyer reshaped the deal into a small phased pilot to prove value before selling the success story to the group; Dan repeatedly warned it may be too small to pursue and dropped confidence, a defensive cost-cutting / phased-implementation signal reinforced by the later non-essential-spend freeze."
+    },
+    "deal_scores_evidence": {
+      "summary": "POC-validated but frozen: Zycus is one of two shortlisted vendors, but Khansaheb has paused all non-essential spend due to the conflict/blockade with no restart date, scope has shrunk to a small iSupplier pilot, the economic buyer has gone quiet since Oct 2025, and the account was just handed to a new RVP mid-freeze.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Why the low number: Shortlisted would normally cap confidence near 70, but this earns far less because budget is frozen with no restart date, so there is no live buying process to win right now."},
+          {"tone": "good", "text": "Zycus is one of two shortlisted vendors after an onsite POC Abraham Mathew received positively (14 Oct 2025), so we remain a credible finalist once spend unfreezes."},
+          {"tone": "warn", "text": "Scope has shrunk from a group-wide Source-to-Pay vision to a single-entity iSupplier pilot Dan repeatedly warned 'may be too small for us' (30 Oct 2025), a defensive signal that drags the win read down."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-facing working session since the 14 Oct 2025 POC; the last two-way exchange was Abraham's 19 May 2026 'wait and watch' email, and everything since is rep-side (Horizon invite 5 Jun, new-RVP intro 3 Jul)."},
+          {"tone": "warn", "text": "The close date slipped from 30 May to 31 Aug 2026 on 17 Apr 2026 with no buyer-confirmed restart, so momentum is flat-to-negative."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is passive: Abraham confirmed the shortlist and hosts the rep but is in 'wait and watch' mode and cannot release budget; Bilal must take any pilot to management for approval (Ravi Shankar, 30 Oct 2025)."},
+          {"tone": "good", "text": "The buyer did invest in a full onsite POC and a detailed commercial-scoping call, so latent intent exists once the external spend freeze lifts."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "An external non-essential-spend freeze from the regional conflict/blockade has paused all discretionary spend with no restart date (18 May 2026), a do-nothing / deferral risk rather than a loss to a competitor."},
+          {"tone": "warn", "text": "Ownership changed from Dan Quinn to a new RVP on 29 Jun 2026 mid-freeze, risking loss of the personal relationship continuity Dan built with Abraham."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.6, "evidence": "No buyer working session since 14 Oct 2025; last buyer reply 19 May 2026 'wait and watch'; close date slipped to 31 Aug 2026."},
+        "customer_commitment": {"strength": -0.4, "evidence": "Passive champion with no budget authority; pilot frozen and must go to management for approval."},
+        "deal_risk": {"strength": -0.7, "evidence": "Non-essential spend freeze with no restart date; scope shrunk to a small pilot; owner changed mid-freeze."}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "The live fight is against do-nothing, not a rival: Khansaheb froze all non-essential spend during the conflict and there is no active bake-off with the one undisclosed shortlisted vendor.", "tone": "crit"},
+      {"lens": "Commercials", "text": "Scope has collapsed to a sub-150k single-entity iSupplier pilot that the rep repeatedly flagged may be too small to pursue, and the pilot budget remains unapproved and frozen.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The last real buyer contact was Abraham's 19 May 2026 'wait and watch' reply after an in-person meeting; the budget-holder Bilal has stayed out since the Oct 2025 POC.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "A new Regional Vice President, Mohamad Alhakim, took the account on 29 Jun 2026 and has only just emailed Abraham to introduce himself, so the buyer relationship is mid-handover.", "tone": "neu"}
+    ],
+    "customer_preference": {"level": "low", "evidence": "Shortlisted as one of two vendors and the POC went well, but the most recent buyer posture is 'wait and watch mode, give it some time', with no Zycus-specific next step requested since Oct 2025."},
+    "business_case": {"status": "partial", "evidence": "Strong qualitative pain (manual onboarding, multi-ERP complexity, margin squeeze from spiking materials/fuel prices) but no ROI, savings, cost-per-invoice or cycle-time figure has been quantified or agreed."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 9,
+    "calls_read": 3,
+    "calls_omitted": [
+      {"meeting": "Earlier Khansaheb demo/discovery/POC calls (Jul-Oct 2025)", "reason": "Superseded by the 30 Sep, 14 Oct and 30 Oct 2025 calls carried in this run and the prior canonical record; no new buyer call in the last 60 days"},
+      {"meeting": "POC Plan to be review and confirm (30 Sep 2025)", "reason": "No transcript content available in this run; notes only"}
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "field history 365d; tasks/activities 120d",
+    "avoma_attendees": ["Abraham Mathew", "Bilal Hamadeh", "Ravi Shankar", "Pankaj Panchal", "Tony Johny"],
+    "gaps": [
+      "Identity of the second shortlisted vendor is undisclosed (Next Step 16 Apr 2026).",
+      "No restart date for the frozen project; buyer in 'wait and watch' with no committed timeline.",
+      "No buyer call in the last 60 days; latest evidence is emails and the 18 May 2026 in-person meeting.",
+      "Economic buyer Bilal Hamadeh has no title in the Salesforce contact record (hygiene, not a knowledge gap)."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

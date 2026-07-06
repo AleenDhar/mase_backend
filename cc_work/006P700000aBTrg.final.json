@@ -1,0 +1,640 @@
+{
+  "opp_id": "006P700000aBTrg",
+  "hard": {
+    "opp_id": "006P700000aBTrg",
+    "opp_name": "Vallourec_S2P",
+    "account_name": "VALLOUREC",
+    "account_industry": "Oil & Gas",
+    "billing_country": "France",
+    "owner_name": "Pierre Meraud",
+    "owner_title": null,
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2027-02-23",
+    "days_to_close": 232,
+    "created_date": "2026-06-29T13:28:16.000+0000",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": "2026-07-01T14:23:47.000+0000",
+    "products": "iContract;iSource;iManage;iSupplier;eProcurement;eInvoicing;iRequest;iSaaS;Merlin;iRisk;Merlin Intake",
+    "next_step": "1st of July - Confidence level : 10% Reminder sent to propose a discovery meeting next week. June'26 : Schedule a discovery meeting with Guilherme CAMARA and the procurement transformation team to understand S2P objectives, current iValua landscape, RFP timeline, evaluation criteria, stakeholder map, and AI requirements. Position Zycus Merlin AI through a tailored demo and plan an ROI/value engineering workshop ahead of the post-summer RFP.",
+    "ais_score": null,
+    "ais_status": "Moderate",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "iValua",
+    "primary_competitor": "iValua",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aBTrg/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_status_source": "AIS_Status__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Two-day-old Qualified placeholder on Vallourec's S2P initiative with zero buyer engagement: the only contact, decision-maker Guilherme Camara, has not replied to the 1 July meeting proposal, no discovery has happened, and iValua appears to be the incumbent. The deal has 237 days to close but qualification has not begun, so the entire task is to convert a rep-side outreach into a first buyer conversation.",
+      "math": "Created 29 June 2026, close date 23 February 2027, 237 days to close. No stage-submission dates on record, so no measurable time-in-stage. Only touch is a rep-sent email proposal (task, 1 July) awaiting reply; no buyer-initiated activity ever. Field history shows administrative setup only (Amount corrected 15,000 to 150,000 on 30 June; owner set to Pierre Meraud on 29 June). Required pace: land the discovery call within the next 7 to 10 days, then RFI/RFP positioning across the summer, shortlist by September, commercials and workshops in the autumn, ahead of the buyer's 'post-summer RFP'. Current pace: no buyer response, self-rated confidence 10% (Next_Step, 1 July).",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Engagement is dark: no Avoma calls discovered for the opportunity or account, and no buyer-initiated Salesforce activity since creation on 29 June 2026.",
+        "The only touch is a rep-sent Clari email on 1 July 2026 proposing a summer discovery meeting to Guillaume Golven and Guilherme Camara, awaiting a reply.",
+        "Next_Step (1 July 2026) self-rates confidence at 10% and describes a reminder sent to propose a discovery meeting next week.",
+        "Automated opportunity-health tasks (29 June 2026) flag 'Decision Maker is not identified', 'Prospect's gone cold? No inbound since last 14 days', and 'Low Prospect Inbound Communication'.",
+        "Single contact role: Guilherme Camara, Decision Maker, Purchasing - Performance and Process Director; no economic buyer, champion, or multi-threading yet.",
+        "iValua is named as the competitor and referenced as the 'current iValua landscape' (Next_Step, 1 July 2026), implying an incumbent-replacement setup not yet confirmed with the buyer.",
+        "Products scope is broad (11 modules including Merlin and Merlin Intake) but no discovery has surfaced pain, savings target, RFP timeline, or a compelling event."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists yet. There is no buyer-stated pain, savings target, cycle-time, or ROI on record because no discovery call has occurred: the Next_Step (1 July 2026) itself states the intent to 'understand S2P objectives' in a future meeting. The 11-module scope (iContract, iSource, iManage, iSupplier, eProcurement, eInvoicing, iRequest, iSaaS, Merlin, iRisk, Merlin Intake) signals a full source-to-pay ambition, but without a discovery conversation the value case for a 150,000 investment is unmapped. The move is to run the discovery meeting with Guilherme Camara and quantify spend under management, maverick-buy leakage, contract-compliance gaps, and P2P cycle time.",
+        "sources": [
+          "SF Next_Step__c (1 July 2026)",
+          "SF Products__c",
+          "No Avoma calls",
+          "No Salesforce Tasks/Events with pain or ROI content"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. The sole contact role is Guilherme Camara, Purchasing - Performance and Process Director, tagged Decision Maker, which is a functional purchasing seat rather than a confirmed budget owner for a 150,000 S2P platform. An automated health task (29 June 2026) explicitly flags 'Decision Maker is not identified', and no CPO or finance sponsor appears in any Salesforce field or activity. I will not name a specific CPO because no Salesforce record supports one. The move is to use the discovery call to map who owns the S2P budget and the RFP mandate, then secure access to that person.",
+        "sources": [
+          "SF OpportunityContactRole (Guilherme Camara, Decision Maker)",
+          "SF Task 'Decision Maker is not identified' (29 June 2026)",
+          "No Avoma calls"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "Evaluation criteria are unknown. No use-case review, RFI/RFP round, or workshop has happened, so the criteria that will decide Zycus versus iValua are not yet captured; the Next_Step (1 July 2026) lists 'evaluation criteria' and 'AI requirements' as things still to be understood. The only directional signal is the broad product scope and the AIS status of Moderate, hinting AI capability may matter. The move is to surface the buyer's ranked criteria (AI/agentic automation, contract intelligence, P2P completeness, integration to their ERP) in discovery and anchor the tailored demo to them.",
+        "sources": [
+          "SF Next_Step__c (1 July 2026)",
+          "SF AIS_Status__c (Moderate)",
+          "No Avoma calls"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is not yet visible. There is no call sequence to read, no committee mapped, and no confirmed approval chain; the Next_Step (1 July 2026) frames a 'post-summer RFP' as the rep's expectation rather than a buyer-confirmed timeline. What is known is that a formal RFP is anticipated after the summer, which sets a natural forcing event. The move is to confirm the RFP date, the evaluation stages, and the sign-off chain directly with Guilherme Camara before the summer window closes.",
+        "sources": [
+          "SF Next_Step__c (1 July 2026)",
+          "SF Task 'Get clarity on the evaluation stages and influence the process' (29 June 2026)",
+          "No Avoma calls"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are unknown and not yet relevant at this Qualified, pre-discovery stage. No MSA, SOW, legal, InfoSec, or procurement-channel detail exists, and no current-contract-expiration forcing function is on record (an iValua renewal date, if iValua is the incumbent, would be a key lever to uncover). The move that would create visibility is to ask, during discovery, whether Vallourec has an incumbent iValua contract and when it expires, plus how French procurement and legal will run a vendor switch.",
+        "sources": [
+          "SF Next_Step__c (1 July 2026)",
+          "No Avoma calls",
+          "No Salesforce contracting fields populated"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "Pain is genuinely unknown. No buyer has articulated an operational or financial problem; the Next_Step (1 July 2026) plans to 'understand S2P objectives' in a future meeting, confirming this is pre-discovery. Vallourec is a global oil-and-gas steel-tube manufacturer, so procurement complexity across direct and indirect spend is plausible, but that is inferred context, not confirmed pain. The move is to have Guilherme Camara name the specific pain driving the S2P evaluation (fragmented sourcing, weak contract compliance, manual P2P, or gaps in the current iValua landscape) and identify the pain owner.",
+        "sources": [
+          "SF Next_Step__c (1 July 2026)",
+          "SF Account.Industry (Oil & Gas)",
+          "No Avoma calls"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Guilherme Camara is the single contact and carries a Decision Maker role, but there is zero evidence of advocacy, internal navigation, or access to power because no two-way conversation has happened; his responsiveness to the 1 July 2026 discovery proposal will be the first signal. Guillaume Golven appears as a task/activity contact on the same 1 July email but has no title or engagement on record. The structure is single-threaded and fragile, so the move is to convert Guilherme Camara into an engaged coach in discovery and multi-thread to a second stakeholder before the RFP.",
+        "sources": [
+          "SF OpportunityContactRole (Guilherme Camara, Decision Maker)",
+          "SF Task/activity contact (Guillaume Golven)",
+          "SF Task 'Keep the engagement multi-threaded' (29 June 2026)",
+          "No Avoma calls"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "iValua is the named competitor and is referenced as the 'current iValua landscape' in the Next_Step (1 July 2026), which implies Vallourec already runs iValua and this is a replacement or augmentation play, though no buyer conversation has confirmed incumbency, contract size, or renewal timing. No other rival (Coupa, SAP Ariba, GEP, Jaggaer) has been named, and there is no buyer-stated preference either way. The wedge if iValua is incumbent is Merlin agentic AI (Merlin Intake plus negotiation automation) and deeper contract intelligence and P2P completeness where iValua customers often have gaps. The move is to confirm the incumbent relationship and the full competitive set in discovery before positioning.",
+        "sources": [
+          "SF Competitors__c (iValua)",
+          "SF Next_Step__c (1 July 2026)",
+          "No Avoma calls"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The record shows administrative setup, not buyer momentum: the opportunity was created 29 June 2026, re-owned to Pierre Meraud, moved Initial Interest to Qualified, its amount corrected from 15,000 to 150,000, and its close date pushed to 23 February 2027. The only outward touch is a rep-sent discovery proposal on 1 July 2026 with no buyer reply yet.",
+      "items": [
+        {
+          "change": "Opportunity created and owner set to Pierre Meraud",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Stage moved Initial Interest to Qualified; type set to New Business; close date set to 23 February 2027",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Amount corrected from 15,000 to 150,000",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Rep sent a Clari email proposing a summer S2P discovery meeting to Guillaume Golven and Guilherme Camara (awaiting reply)",
+          "date": "2026-07-01"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "iValua is the only rival on record and, per the Next_Step (1 July 2026) reference to the 'current iValua landscape', appears to be the incumbent, making Zycus the challenger in a likely replacement scenario. This is unconfirmed by any buyer conversation, and no other vendor has surfaced. The single current consideration is therefore iValua incumbency and switching cost, which we cannot yet counter because discovery has not happened.",
+      "competitors": [
+        {
+          "name": "iValua",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "Next_Step (1 July 2026): 'understand S2P objectives, current iValua landscape, RFP timeline, evaluation criteria, stakeholder map, and AI requirements'",
+          "date": "2026-07-01",
+          "source": "SF Competitors__c + SF Next_Step__c (1 July 2026)",
+          "how_we_win": "If iValua is incumbent, lead with Merlin agentic AI (Merlin Intake plus negotiation automation) and iContract intelligence to expose iValua's P2P and AI gaps; confirm the incumbent contract's renewal date as the switching lever."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "No buyer-stated expectations captured yet; discovery has not occurred, so fit cannot be assessed against real criteria. The broad 11-module scope and Moderate AIS suggest a full source-to-pay, AI-inclusive ambition to validate with the buyer.",
+      "items": []
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Confirm availability for a summer S2P discovery meeting and the post-summer RFP timeline",
+            "who": "Buyer",
+            "grounding_quote": "Reminder sent to propose a discovery meeting next week ... ahead of the post-summer RFP",
+            "date": "2026-07-01",
+            "due": "2026-07-18",
+            "status": "open",
+            "source": "SF Next_Step__c + Task 'Call Attempted / Clari Email Sent' (1 July 2026)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Discovery not started",
+          "quote": "understand S2P objectives ... RFP timeline, evaluation criteria, stakeholder map, and AI requirements",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c (1 July 2026)"
+        },
+        {
+          "area": "Economic buyer unmapped",
+          "quote": "Decision Maker is not identified",
+          "status": "not addressed",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "SF Task 'Decision Maker is not identified' (29 June 2026)"
+        },
+        {
+          "area": "Incumbent iValua relationship unconfirmed",
+          "quote": "current iValua landscape",
+          "status": "not addressed",
+          "date": "2026-07-01",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c (1 July 2026)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The whole game right now is converting a rep-side outreach into a first buyer conversation before the summer window closes and multi-threading beyond a single purchasing contact.",
+      "flags": [
+        "Land the discovery meeting fast: the only touch is a 1 July rep email at 10% confidence, so a personal, value-led follow-up to Guilherme Camara this week is the single highest-leverage act.",
+        "Break single-threading: the deal hangs on one purchasing director with no economic buyer, so use discovery to reach the S2P budget owner and a second stakeholder before the RFP.",
+        "Confirm the iValua incumbency and its contract renewal date early; if Vallourec runs iValua today, the switching lever and Merlin AI wedge define the entire win strategy."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "GuilhermeF CAMARA",
+          "_source": "sfdc_contact_role",
+          "title": "Purchasing - Performance and Process Director",
+          "email": "guilherme.camara@vallourec.com",
+          "role": "Decision Maker",
+          "risk": "Sole contact and single point of failure; if he does not respond there is no alternative access path into Vallourec.",
+          "sentiment": "unknown; no reply yet to the 1 July discovery proposal",
+          "last_contact_date": "2026-07-01",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. Guilherme Camara is the only contact and, though tagged Decision Maker, has shown no advocacy because no two-way conversation has occurred; his response to the 1 July 2026 outreach will be the first engagement signal. The deal is single-threaded and fragile until a second stakeholder is reached.",
+      "champion": "None identified",
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole (1 contact, Decision Maker); no Avoma calls; no advocacy activity"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and Merlin Intake are in scope and AIS is Moderate, so there is a plausible AI-differentiation angle against iValua, but nothing has been positioned to the buyer because discovery has not happened. The agentic AI story is the intended wedge for the tailored demo named in the Next_Step (1 July 2026).",
+      "score": "Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Status is Moderate; no calls exist to confirm or contradict AI appetite, and the Next_Step (1 July 2026) lists 'AI requirements' as still to be understood. Treat AI interest as a hypothesis to test in discovery, not a confirmed pull.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "political",
+          "detail": "Single-threaded to one purchasing director with no economic buyer or champion mapped; deal collapses if he goes quiet.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF OpportunityContactRole + Task 'Keep the engagement multi-threaded' (29 June 2026)"
+        },
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer or budget owner identified for a 150,000 S2P platform; RFP mandate owner unknown.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Task 'Decision Maker is not identified' (29 June 2026)"
+        },
+        {
+          "category": "other",
+          "detail": "Do-nothing / no-response risk dominates: Vallourec has never engaged, so the immediate threat is the discovery meeting never getting booked rather than losing a live bake-off.",
+          "first_raised": "2026-07-01",
+          "date": "2026-07-01",
+          "status": "open",
+          "source": "SF Next_Step__c (10% confidence) + Task 'Prospect's gone cold? No inbound since last 14 days' (29 June 2026)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No buyer engagement to read; the deal is pre-discovery with a rep-side outreach awaiting reply. Confidence is self-rated 10% and automated checks flag the prospect as cold.",
+      "cooling": true,
+      "items": [
+        "Next_Step confidence self-rated 10% (1 July 2026).",
+        "Automated health flags: 'Prospect's gone cold? No inbound since last 14 days' and 'Low Prospect Inbound Communication' (29 June 2026)."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A two-day-old Qualified placeholder on Vallourec's S2P initiative: the only contact, decision-maker Guilherme Camara, has not replied to the 1 July discovery proposal, no pain or business case has been discovered, and iValua appears to be the incumbent, so the entire task is to earn a first buyer conversation before the post-summer RFP.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "We have no real read on this deal: it was created 29 June, the sole contact Guilherme Camara has not responded to the 1 July discovery proposal, and no pain, criteria, or economic buyer has been uncovered."
+          },
+          {
+            "tone": "warn",
+            "text": "iValua looks like the incumbent ('current iValua landscape', Next_Step 1 July), so Zycus is the challenger carrying switching-cost disadvantage with no buyer-stated preference to lean on."
+          },
+          {
+            "tone": "warn",
+            "text": "The deal is single-threaded to one purchasing director with no champion and no budget owner mapped, so there is no internal advocate if he goes quiet."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "No buyer-initiated activity since creation on 29 June; the only touch is a rep-sent meeting proposal on 1 July that is still awaiting a reply."
+          },
+          {
+            "tone": "warn",
+            "text": "Confidence is self-rated 10% in the Next_Step (1 July) and automated health checks flag the prospect cold with no inbound in 14 days."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Vallourec has committed nothing: no meeting accepted, no dates named by the buyer, and the 'post-summer RFP' is the rep's expectation, not a buyer-confirmed timeline (Next_Step, 1 July)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "The dominant risk is no-decision / no-response: with zero engagement the near-term threat is the discovery meeting never getting booked, not losing an active competitive evaluation."
+          },
+          {
+            "tone": "warn",
+            "text": "If iValua is the incumbent (Next_Step, 1 July), any evaluation starts with a switching-cost disadvantage Zycus has not yet had a chance to counter."
+          }
+        ]
+      },
+      "factors": {
+        "champion": {
+          "strength": -0.8,
+          "evidence": "No champion; single Decision Maker contact with no advocacy and no reply to the 1 July outreach."
+        },
+        "economic_buyer": {
+          "strength": -0.7,
+          "evidence": "No EB or budget owner mapped; 'Decision Maker is not identified' health flag (29 June)."
+        },
+        "engagement": {
+          "strength": -0.9,
+          "evidence": "Zero buyer engagement; only rep-side outreach on 1 July awaiting reply; confidence self-rated 10%."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "No buyer conversation or call has happened; only a rep-initiated discovery proposal on 1 July 2026 with no reply, so no stated preference exists."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No discovery held; S2P objectives, pain, savings target, and ROI remain unknown (Next_Step, 1 July 2026)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 1.3,
+      "mom": 50.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Send Guilherme Camara a value-led note and hold a July S2P discovery call.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Rep proposed a summer discovery meeting on 1 July with no buyer reply; confidence 10%.",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-07-13",
+          "expected_effect": "Converts rep-side outreach into a first buyer conversation and starts real qualification before the summer window closes."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Guilherme Camara to name the S2P budget owner and a second stakeholder.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Health flag 'Decision Maker is not identified'; single-threaded to one purchasing contact.",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps the economic buyer and breaks single-threading so the deal survives if one contact goes quiet."
+        },
+        {
+          "rank": 3,
+          "action": "Confirm the iValua incumbency and prepare a Merlin AI demo plus ROI workshop for the post-summer RFP.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Next_Step references the 'current iValua landscape' and a tailored Merlin demo ahead of the post-summer RFP.",
+          "trigger_date": "2026-07-01",
+          "act_by": "2026-08-05",
+          "expected_effect": "Establishes the switching lever and AI wedge, positioning Zycus against iValua before formal evaluation begins."
+        }
+      ]
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 1.3,
+        "deal_momentum": 50.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 16.8,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 1.3,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -16.7,
+        "ceiling": 30.0,
+        "momentum_adj": 0.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 50.0,
+        "pre_decay": 50.0,
+        "decay_note": null,
+        "contributions": []
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 16.8,
+        "contributions": [
+          {
+            "factor": "low_buyer_intent",
+            "points": 16.8,
+            "evidence": "Verdict 'Off Track' \u2014 weak forward intent."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 1 reflects a weak position: competitive strength -1.00 (weight 15). Offsetting it: competitive strength -1.00 (weight 15).",
+        "deal_momentum": "Momentum is flat at 50: no forward or backward motion was observed.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 17 is driven by Verdict 'Off Track' \u2014 weak forward intent. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (1), nudged by commitment 8 and momentum 50, and dragged by risk 17. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (engagement, stage integrity). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "VALLOUREC \u2014 Qualified \u00b7 $150K \u00b7 closes 23 Feb",
+        "intro": "A two-day-old Qualified placeholder on Vallourec's S2P initiative; the only contact, decision-maker Guilherme Camara, has not replied to the 1 July discovery proposal, no pain or business case has been discovered, and iValua appears to be the incumbent, so the entire task is to earn a first buyer conversation before the post-summer RFP",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 1,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "We have no real read on this deal; it was created 29 June, the sole contact Guilherme Camara has not responded to the 1 July discovery proposal, and no pain, criteria, or economic buyer has been uncovered"
+              },
+              {
+                "tone": "warn",
+                "text": "IValua looks like the incumbent ('current iValua landscape', Next_Step 1 July), so Zycus is the challenger carrying switching-cost disadvantage with no buyer-stated preference to lean on"
+              },
+              {
+                "tone": "warn",
+                "text": "The deal is single-threaded to one purchasing director with no champion and no budget owner mapped, so there is no internal advocate if he goes quiet"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 50,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No buyer-initiated activity since creation on 29 June; the only touch is a rep-sent meeting proposal on 1 July that is still awaiting a reply"
+              },
+              {
+                "tone": "warn",
+                "text": "Confidence is self-rated 10% in the Next_Step (1 July) and automated health checks flag the prospect cold with no inbound in 14 days"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 17,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The dominant risk is no-decision / no-response; with zero engagement the near-term threat is the discovery meeting never getting booked, not losing an active competitive evaluation"
+              },
+              {
+                "tone": "warn",
+                "text": "If iValua is the incumbent (Next_Step, 1 July), any evaluation starts with a switching-cost disadvantage Zycus has not yet had a chance to counter"
+              }
+            ],
+            "footer": "Competitive picture: iValua is the only rival on record and, per the Next_Step (1 July 2026) reference to the 'current iValua landscape', appears to be the incumbent, making Zycus the challenger in a likely replacement scenario."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Vallourec has committed nothing; no meeting accepted, no dates named by the buyer, and the 'post-summer RFP' is the rep's expectation, not a buyer-confirmed timeline (Next_Step, 1 July)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Send Guilherme Camara a value-led note and hold a July S2P discovery call. (by 13 Jul)",
+              "Ask Guilherme Camara to name the S2P budget owner and a second stakeholder. (by 20 Jul)",
+              "Confirm the iValua incumbency and prepare a Merlin AI demo plus ROI workshop for the post-summer RFP. (by 5 Aug)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since creation 29 June 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma calls exist for this opportunity or account after opp, account, and attendee-email discovery; no buyer voice on record.",
+      "No discovery has occurred: pain, metrics, decision criteria, decision process, economic buyer, and champion are all genuinely unknown.",
+      "iValua incumbency implied by Next_Step but unconfirmed; competitive set beyond iValua unknown."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:24:10"
+}

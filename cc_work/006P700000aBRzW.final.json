@@ -1,0 +1,758 @@
+{
+  "opp_id": "006P700000aBRzW",
+  "hard": {
+    "opp_id": "006P700000aBRzW",
+    "opp_name": "Sidel_SRM,Eproc,spend",
+    "account_name": "Sidel Group",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "France",
+    "owner_name": "Pierre Meraud",
+    "owner_title": null,
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2026-12-29",
+    "days_to_close": 176,
+    "created_date": "2026-06-29T13:48:15.000+0000",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-06-30T11:03:53.000+0000",
+    "products": "iSource;iSupplier;eProcurement;iRequest;Merlin;Merlin Intake;Agentic AI;ANA",
+    "next_step": "Execute NDA, followed by a detailed solution walkthrough focused on Agentic AI and RFQ automation to jointly identify priority use cases and define areas where Zycus can add value.",
+    "ais_score": null,
+    "ais_status": "Strong",
+    "ais_why": null,
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aBRzW/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "competitor_source": "Competitors__c",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_status_source": "AIS_Status__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Fresh Qualified deal (7 days in stage) with strong Agentic AI appetite from the 26 Jun introductory call, but the thread has gone quiet: the buyer has not replied to the 30 Jun collaborative-workspace share and NDA ask, no economic buyer is mapped (only Sourcing Director Julie Papier is a confirmed contact), and product fit for direct-materials drawing ingestion is still unproven. At 176 days to close the runway is ample, so the fix is speed, not time: get the NDA signed and the Agentic AI walkthrough booked this week before the intro momentum cools.",
+      "math": "Today 2026-07-06. Days to close: 176 (close 2026-12-29). Time in Qualified: 7 days (qualified 2026-06-29). Last Salesforce activity 2026-06-30 (6 days ago, rep-side Clari email + shared-workspace invites, awaiting buyer reply). Last genuine two-way buyer exchange: 26 Jun introductory call. No forward close-date slip (deal created 2026-06-29). Pace: NDA + walkthrough + use-case validation + PoC scoping + exec sponsorship + commercials + contracting across ~25 weeks is realistic for an enterprise motion, so timing is not the constraint. Verdict driver: buyer silence since the 26 Jun call plus an unmapped economic buyer, so momentum is thinning even though the deal is young and the date is credible.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last Salesforce activity 2026-06-30 was rep-side (Clari email sharing a collaborative workspace, plus shared-space invites to two more Sidel contacts); the last genuine two-way buyer exchange was the 26 Jun introductory call, so the buyer has been quiet for ~10 days",
+        "26 Jun introductory call (SF event + prior sweep) surfaced clear direct-materials RFQ-automation pain and strong Agentic AI appetite, and the agreed next step is an NDA then a solution walkthrough",
+        "No economic buyer or executive sponsor is identified; the only confirmed Salesforce contact is Julie Papier (Sourcing Director Indirect and Services, Evaluator)",
+        "Product fit for direct-materials engineered-part drawing and specification ingestion remains unproven and must be demonstrated in the walkthrough",
+        "SAP Ariba is on Sidel's roadmap for RFQ workflows (26 Jun call, prior memory) but not yet deployed, giving Zycus a window to prove Agentic AI first",
+        "Salesforce Opportunity-Health alerts fired 2026-06-29 flagging Decision Maker not identified, single-threaded engagement, and low inbound communication"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Sidel articulated a clear operational pain on the 26 Jun introductory call: manual RFQ workflows for direct materials (highly engineered machined parts) that require technical drawing and specification ingestion to auto-classify parts and route them to qualified suppliers. The Salesforce Next Step confirms the direction, naming a walkthrough focused on Agentic AI and RFQ automation to jointly identify priority use cases. However, no business case has been quantified: there is no stated cycle-time reduction target, cost-per-RFQ, error rate, headcount saving, or spend-under-management figure. The qualitative need is confirmed; building a quantified ROI case with the Sidel team is the move that anchors budget and unlocks an economic buyer.",
+        "sources": [
+          "SF Next_Step__c: 'Execute NDA, followed by a detailed solution walkthrough focused on Agentic AI and RFQ automation to jointly identify priority use cases'",
+          "26 Jun introductory call (Salesforce event 2026-06-26 'Sidel X Zycus | Introductory call' + prior sweep memory)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer or budget owner has been identified and none can be honestly inferred from the current evidence. The only confirmed Salesforce contact is Julie Papier, Sourcing Director Indirect and Services (Evaluator role, primary), who is an operational sourcing lead rather than a budget holder, and no pricing, budget, or approval-authority conversation has occurred yet. The Salesforce Opportunity-Health check flagged 'Decision Maker is not identified' on 2026-06-29, confirming this as a live gap. The move is to ask Julie during the walkthrough who owns the procurement-transformation budget (a CPO, VP Procurement, or CFO) and secure an introduction; until that person is named and engaged, the deal cannot progress past evaluation.",
+        "sources": [
+          "SF OpportunityContactRole: Julie Papier (Sourcing Director Indirect and Services, Evaluator, primary) is the only mapped contact",
+          "SF Opportunity-Health task 2026-06-29: 'Decision Maker is not identified'"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation is early and the criteria are only partially formed, but the direction is clear from the 26 Jun call and the agreed next step: Sidel wants to see Agentic AI applied to RFQ automation for direct, engineered materials, with the ability to ingest technical drawings and specifications and auto-route to qualified suppliers. That drawing-and-specification ingestion capability is the implicit make-or-break criterion, and it is exactly what remains unproven for Zycus. Broader enterprise-fit criteria (integration across Sidel's ERP landscape, security, deployment model) have not yet been formally stated. The move is to co-define the priority use cases in the walkthrough so the criteria become explicit and testable rather than inferred.",
+        "sources": [
+          "SF Next_Step__c: walkthrough 'to jointly identify priority use cases and define areas where Zycus can add value'",
+          "26 Jun introductory call (direct-materials RFQ automation + drawing/spec ingestion) per prior sweep memory"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is not yet visible. The deal was qualified only on 2026-06-29 and the sequence so far is a single introductory call (26 Jun) followed by rep-side follow-up (30 Jun workspace share plus invites to two more Sidel contacts). No formal evaluation stages, RFP/RFI intent, timeline, or approval chain has been stated by the buyer, and the Opportunity-Health alert of 2026-06-29 explicitly flagged 'Get clarity on the evaluation stages and influence the process.' The immediate move is to use the walkthrough to ask Sidel how they will evaluate and decide (formal sourcing exercise versus direct selection), who signs off, and on what timeline, so Zycus can shape the process rather than react to it.",
+        "sources": [
+          "SF field history: StageName Initial Interest -> Qualified on 2026-06-29; Type -> New Business",
+          "SF Opportunity-Health task 2026-06-29: 'Get clarity on the evaluation stages and influence the process'"
+        ]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "The paper process has started at its earliest point: the Salesforce Next Step names NDA execution as the immediate gate before the detailed solution walkthrough, so a mutual NDA is the first contracting artifact in play. No MSA, Order Form, SOW, legal review, or InfoSec process has been discussed yet, which is normal for a deal seven days into Qualified. Sidel's ERP landscape is complex (multiple ERP systems with an S/4HANA migration running out to 2029 per the 26 Jun call), so InfoSec and ERP-integration scoping will become material later. The near-term move is to get the NDA signed this week so the walkthrough can proceed, and to map the eventual PoC-to-contract path (legal, InfoSec, integration scope) as the evaluation firms up.",
+        "sources": [
+          "SF Next_Step__c: 'Execute NDA, followed by a detailed solution walkthrough'",
+          "26 Jun introductory call: Sidel's multi-ERP landscape and S/4HANA migration (prior sweep memory)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is clear and confirmed: manual RFQ workflows for direct materials (highly engineered machined parts) that require ingesting technical drawings and specifications to classify parts and route them to qualified suppliers, a process Sidel described as manual and slow on the 26 Jun introductory call. Julie Papier (Sourcing Director Indirect and Services) is the confirmed contact carrying the sourcing pain, and the agreed walkthrough is scoped directly to RFQ automation and Agentic AI for exactly this problem. What is unconfirmed is not the pain but whether Zycus can solve it: product fit for direct-materials drawing and specification ingestion is still to be proven in the demo.",
+        "sources": [
+          "26 Jun introductory call: manual RFQ process for direct engineered parts requiring drawing/spec ingestion (prior sweep memory + SF event 2026-06-26)",
+          "SF OpportunityContactRole: Julie Papier, Sourcing Director Indirect and Services"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion has emerged, which is expected seven days into Qualified but is a live gap given single-threaded engagement. Julie Papier (Sourcing Director Indirect and Services) is the sole Salesforce contact and the primary relationship, but she has shown evaluation interest, not advocacy: no introductions to power, no internal documents shared, and no competitive defense of Zycus. The engagement is currently single-threaded on her, and the Opportunity-Health check flagged 'Keep the engagement multi-threaded' on 2026-06-29. The move is to use the walkthrough to identify who internally owns the AI/automation initiative and can champion Zycus upward, and to broaden the thread beyond Julie before commercials.",
+        "sources": [
+          "SF OpportunityContactRole: Julie Papier (Sourcing Director Indirect and Services, Evaluator, primary) is the only mapped contact and has not demonstrated advocacy",
+          "SF Opportunity-Health task 2026-06-29: 'Keep the engagement multi-threaded'"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The competitive picture is light and background-level at this early stage. SAP Ariba is on Sidel's roadmap for RFQ workflows ('in the pipe to use it' per the 26 Jun call) but is not yet deployed and is not being actively evaluated against Zycus, so it is a latent threat rather than an active bake-off. The real near-term alternative is the status quo: Sidel keeps running RFQs manually and defers a decision. Zycus's wedge is Agentic AI and Merlin autonomous negotiation, which the roadmap Ariba module does not offer; the activation is to prove drawing-and-specification ingestion for direct materials in the walkthrough and make that the differentiation before Ariba's RFQ module is ever switched on. No other vendors (Coupa, GEP, Ivalua, Jaggaer) have been named.",
+        "sources": [
+          "26 Jun introductory call: 'SAP Ariba is in the pipe to use it' for RFQ workflows (prior sweep memory)",
+          "SF Next_Step__c: walkthrough 'focused on Agentic AI and RFQ automation' (the Agentic AI wedge)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal was created and qualified on 29 Jun (Initial Interest -> Qualified, Type set to New Business, owner moved to Pierre Meraud). Since the 26 Jun introductory call the only activity has been rep-side: on 30 Jun Zycus opened a collaborative shared workspace, sent an introductory Clari email, and invited two more Sidel contacts. The ball is with Sidel to execute the NDA and confirm the walkthrough; there has been no buyer inbound since the 26 Jun call.",
+      "items": [
+        {
+          "change": "Zycus opened a collaborative shared workspace and shared product presentation materials; invited two additional Sidel contacts (marianna.botteri@sidel.com and germain.bigeard.external@sidel.com) to the space",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Amount corrected from 15,000 to 150,000 and product scope populated (iSource, iSupplier, eProcurement, iRequest, Merlin, Merlin Intake, Agentic AI, ANA)",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Stage advanced Initial Interest -> Qualified; Type set to New Business; ownership moved to Pierre Meraud",
+          "date": "2026-06-29"
+        },
+        {
+          "change": "Introductory call held (Sidel X Zycus), establishing direct-materials RFQ-automation pain and Agentic AI appetite",
+          "date": "2026-06-26"
+        }
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 26 Jun introductory call landed strong Agentic AI and RFQ-automation appetite, but Sidel has not replied to the 30 Jun workspace share and NDA ask, so the next step is still unbooked.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Competition",
+        "text": "SAP Ariba sits on Sidel's roadmap for RFQ workflows but is not yet deployed, giving Zycus a window to prove Agentic AI and drawing ingestion before Ariba is ever switched on.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Commercials",
+        "text": "No budget owner or economic buyer is identified; only Sourcing Director Julie Papier is a confirmed contact, so price and ROI cannot yet be justified to anyone with authority.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Two Sidel contacts, Marianna Botteri and an external contact Germain Bigeard, were invited to the shared workspace on 30 Jun but neither has engaged yet.",
+        "tone": "neu"
+      },
+      {
+        "lens": "New requirement",
+        "text": "Product fit for ingesting direct-materials engineering drawings and specifications is the make-or-break requirement and remains unproven ahead of the walkthrough.",
+        "tone": "warn"
+      }
+    ],
+    "competitive_position": {
+      "summary": "SAP Ariba is the single strongest current competitor but only latently: it is on Sidel's roadmap for RFQ workflows ('in the pipe to use it', 26 Jun call) yet undeployed and not in an active bake-off, so the more immediate threat is do-nothing (Sidel keeps running RFQs manually and defers). No other vendor has been named. How Zycus wins: prove Agentic AI plus Merlin autonomous negotiation and direct-materials drawing/spec ingestion in the walkthrough before Ariba's RFQ module is activated.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "SAP Ariba is in the pipe to use it for RFQ workflows (26 Jun introductory call)",
+          "date": "2026-06-26",
+          "source": "26 Jun introductory call (prior sweep memory)",
+          "how_we_win": "Prove Agentic AI and Merlin autonomous negotiation plus drawing/spec ingestion before Ariba's RFQ module is switched on; Ariba's roadmap module does not offer autonomous negotiation"
+        },
+        {
+          "name": "Do-nothing (manual RFQ process)",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "do_nothing",
+          "quote": "Sidel described its current manual RFQ process for direct engineered parts as the pain to solve (26 Jun introductory call)",
+          "date": "2026-06-26",
+          "source": "26 Jun introductory call (prior sweep memory)",
+          "how_we_win": "Convert the intro into a booked NDA and walkthrough quickly and quantify the ROI so inaction becomes the costly option; the risk here is a no-decision, not a loss to a rival"
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Sidel's expectation is Agentic AI applied to RFQ automation for direct, engineered materials, including ingestion of technical drawings and specifications; appetite is confirmed but fit is unproven and integration scope is untested.",
+      "items": [
+        {
+          "criterion": "Agentic AI + RFQ automation for direct materials",
+          "position": "partially aligned",
+          "quote": "walkthrough 'focused on Agentic AI and RFQ automation to jointly identify priority use cases'",
+          "date": "2026-06-30",
+          "source": "SF Next_Step__c"
+        },
+        {
+          "criterion": "Ingest engineering drawings and specifications to classify parts and route to suppliers",
+          "position": "exposed",
+          "quote": "manual RFQ workflow for engineered parts requiring drawing/spec ingestion (26 Jun call)",
+          "date": "2026-06-26",
+          "source": "26 Jun introductory call (prior sweep memory)"
+        },
+        {
+          "criterion": "Integration across Sidel's multi-ERP landscape (S/4HANA migration to 2029)",
+          "position": "exposed",
+          "quote": "multiple ERP systems with a gradual S/4HANA migration running to 2029 (26 Jun call)",
+          "date": "2026-06-26",
+          "source": "26 Jun introductory call (prior sweep memory)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {
+            "deliverable": "Provide Sidel product presentation materials via the collaborative shared workspace",
+            "who": "Zycus",
+            "grounding_quote": "Following our presentation last Friday, I am very pleased to give you access to a collaborative shared workspace, where you will find product presentation materials",
+            "date": "2026-06-30",
+            "due": "2026-06-30",
+            "status": "completed",
+            "source": "Task 2026-06-30 (Clari email 'Re: Sidel X Zycus')"
+          }
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Execute the mutual NDA so the detailed solution walkthrough can proceed",
+            "who": "Buyer",
+            "grounding_quote": "Execute NDA, followed by a detailed solution walkthrough focused on Agentic AI and RFQ automation",
+            "date": "2026-06-30",
+            "due": "2026-07-13",
+            "status": "open",
+            "source": "SF Next_Step__c"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget owner unidentified",
+          "quote": "Decision Maker is not identified (Opportunity Health, 2026-06-29)",
+          "status": "not addressed",
+          "date": "2026-06-29",
+          "gap_type": "knowledge",
+          "source": "SF Opportunity-Health task 2026-06-29"
+        },
+        {
+          "area": "Quantified business case (no ROI, cost-per-RFQ, cycle-time, or savings figures stated)",
+          "quote": "walkthrough to 'define areas where Zycus can add value' (value not yet quantified)",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c"
+        },
+        {
+          "area": "No Avoma calls returned for this opportunity this sweep; the 26 Jun introductory call is known from prior memory and the Salesforce event but was not re-readable this run",
+          "quote": "no Avoma calls found for this opp (this sweep)",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "hygiene",
+          "source": "Avoma discovery (opp+account+attendee) this sweep"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early single-threaded deal with strong AI appetite; the win levers are speed to the walkthrough, multi-threading to power, and proving the direct-materials fit before Ariba activates.",
+      "flags": [
+        "Multi-thread beyond Julie Papier to a budget owner (VP Procurement / CFO): engagement is single-threaded and the 29 Jun health check flagged Decision Maker not identified",
+        "Prove direct-materials drawing and specification ingestion live in the walkthrough to differentiate against SAP Ariba's roadmap RFQ module",
+        "Convert the 26 Jun intro momentum fast: get the NDA signed and the demo booked before buyer attention cools (no inbound since 26 Jun)"
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Julie Papier",
+          "_source": "sfdc_contact_role",
+          "title": "Sourcing Director Indirect and Services",
+          "email": "julie.papier@sidel.com",
+          "role": "Evaluator",
+          "risk": "Sole confirmed Salesforce contact and primary relationship, but shows evaluation interest rather than advocacy and has not introduced a budget owner; single-thread risk sits on her.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-06-30",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion yet. Julie Papier (Sourcing Director Indirect and Services) is the primary Salesforce contact and engaged positively, but she has shown evaluation interest rather than advocacy: no introductions to power, no internal documents shared, no competitive defense. Expected this early (7 days in Qualified), but building a champion who can carry Zycus to the budget owner is the continuous priority starting with the walkthrough.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole (Julie Papier) + 26 Jun introductory call (prior sweep memory)"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS Status is Strong and the buyer's stated interest is specifically Agentic AI for RFQ automation, so AI is central to this deal, not peripheral. The Merlin / Agentic AI narrative is landing at the interest level; the next step is to make it concrete by proving autonomous negotiation and drawing ingestion for direct materials in the walkthrough.",
+      "score": "Strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "Salesforce AIS Status is Strong, and the 26 Jun call and the agreed walkthrough both center on Agentic AI and RFQ automation, so the AI appetite is genuine and buyer-led rather than seller-pushed. No call this sweep to add nuance, but the field and the next step are consistent and Strong.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer or executive sponsor mapped; only an operational sourcing director is engaged, so there is no path to budget sign-off yet.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Opportunity-Health task 2026-06-29 'Decision Maker is not identified'"
+        },
+        {
+          "category": "other",
+          "detail": "Product fit for ingesting direct-materials engineering drawings and specifications is unproven; if the walkthrough cannot demonstrate it, the core use case is at risk.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "26 Jun introductory call (prior sweep memory)"
+        },
+        {
+          "category": "integration",
+          "detail": "Sidel runs a complex multi-ERP landscape with an S/4HANA migration to 2029, which will complicate integration scoping and InfoSec later.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "26 Jun introductory call (prior sweep memory)"
+        },
+        {
+          "category": "political",
+          "detail": "Engagement is single-threaded on Julie Papier; a single point of contact this early leaves the deal exposed if she disengages.",
+          "first_raised": "2026-06-29",
+          "date": "2026-06-29",
+          "status": "open",
+          "source": "SF Opportunity-Health task 2026-06-29 'Keep the engagement multi-threaded'"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer engagement was positive on the 26 Jun intro call but has thinned: no inbound since, and the 30 Jun rep follow-up (workspace + NDA ask) is awaiting a reply. Not cold, but cooling until the buyer re-engages on the NDA and walkthrough.",
+      "cooling": true,
+      "items": [
+        "No buyer inbound since the 26 Jun introductory call",
+        "30 Jun rep-side workspace share and NDA ask awaiting buyer response",
+        "Opportunity-Health flagged low inbound communication on 2026-06-29"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Get the NDA signed and lock a date for the Agentic AI walkthrough.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Next Step names NDA then walkthrough; 30 Jun workspace share still awaiting buyer reply",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-13",
+          "expected_effect": "Unblocks the next milestone and re-engages a buyer quiet since 26 Jun, restoring momentum."
+        },
+        {
+          "rank": 2,
+          "action": "Tailor the walkthrough to prove drawing and specification ingestion on Sidel's engineered-parts use case.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Direct-materials drawing-ingestion fit is unproven and is the core use case",
+          "trigger_date": "2026-06-26",
+          "act_by": "2026-07-17",
+          "expected_effect": "Confirms product fit and differentiates against SAP Ariba's roadmap RFQ module."
+        },
+        {
+          "rank": 3,
+          "action": "Ask Julie Papier to name and introduce the procurement-transformation budget owner.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "No economic buyer mapped; health alert flagged Decision Maker not identified",
+          "trigger_date": "2026-06-29",
+          "act_by": "2026-07-20",
+          "expected_effect": "Opens a path to budget sign-off and moves the deal beyond an operational evaluation."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm the roles of Marianna Botteri and Germain Bigeard and multi-thread beyond Julie.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Two Sidel contacts invited to the shared workspace on 30 Jun but not yet engaged",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Broadens the single thread and reduces exposure to one contact disengaging."
+        },
+        {
+          "rank": 5,
+          "action": "Run the Agentic AI and Merlin negotiation demo and co-select priority RFQ use cases.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Next Step: walkthrough to jointly identify priority use cases",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-08-03",
+          "expected_effect": "Turns stated appetite into a scoped PoC and a quantifiable business case."
+        }
+      ]
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 9.7,
+      "mom": 43.8,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Buyer engaged specifically on Agentic AI and RFQ automation and agreed to a Zycus-focused solution walkthrough (26 Jun call + Next Step), but showed no decisive lean and is still exploring."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Clear qualitative pain (manual RFQ workflows for direct engineered parts) but no quantified ROI, cost, cycle-time, or savings figures stated."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "A freshly qualified, single-threaded new-business deal with genuine Agentic AI appetite from one strong intro call, but no economic buyer, no champion, and unproven direct-materials fit; the one thing between us and momentum is converting the 26 Jun intro into a signed NDA and a booked walkthrough before the buyer cools.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "Early and unproven: Sidel is engaged on Agentic AI RFQ automation (26 Jun call, AIS Strong), but with no economic buyer mapped, no champion, and direct-materials drawing-ingestion fit unproven, this stands as a promising but unqualified early opportunity."
+          },
+          {
+            "tone": "warn",
+            "text": "Single-threaded on Sourcing Director Julie Papier, the only confirmed contact, with the 29 Jun health check flagging Decision Maker not identified, so there is no path to budget sign-off yet."
+          },
+          {
+            "tone": "warn",
+            "text": "SAP Ariba is on Sidel's RFQ roadmap ('in the pipe to use it', 26 Jun); if it activates before Zycus proves fit, the wedge narrows."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The buyer has not replied since the 26 Jun intro call; the only activity since is the rep-side 30 Jun workspace share and NDA ask, which are still awaiting a Sidel response."
+          },
+          {
+            "tone": "good",
+            "text": "Zycus is actively driving: on 30 Jun it opened a collaborative workspace, shared materials, and invited two more Sidel contacts (Marianna Botteri and Germain Bigeard)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "No customer-named dates, no commercial or security topics, and no buyer-requested next meeting; the walkthrough was proposed by Zycus, not pulled by Sidel."
+          },
+          {
+            "tone": "good",
+            "text": "Sidel agreed to execute an NDA and a Zycus-focused Agentic AI walkthrough (Next Step), a real if early commitment to continue."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "The dominant risk is a no-decision: Sidel keeps running RFQs manually and defers, rather than a loss to a named rival."
+          },
+          {
+            "tone": "warn",
+            "text": "Product fit for ingesting engineering drawings and specifications for direct materials is unproven and could break the core use case if the walkthrough cannot demonstrate it."
+          }
+        ]
+      },
+      "factors": {
+        "customer_commitment": {
+          "strength": -0.2,
+          "evidence": "NDA and walkthrough agreed, but no buyer-named dates, no pull for the next meeting, and no reply to the 30 Jun follow-up."
+        },
+        "deal_momentum": {
+          "strength": -0.3,
+          "evidence": "No buyer inbound since 26 Jun; the 30 Jun rep outreach is awaiting a response."
+        }
+      }
+    },
+    "verdict_trajectory": {
+      "direction": "steady",
+      "note": "Holds roughly steady versus the prior sweep (At Risk / Slowing): multi-threading improved slightly with two new workspace invitees on 30 Jun, offset by continued buyer silence since the 26 Jun call and a still-unmapped economic buyer. The single biggest blocker to close remains the absence of an engaged budget owner."
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 9.7,
+        "deal_momentum": 43.8,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 9.7,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -2.1,
+        "ceiling": 30.0,
+        "momentum_adj": -6.2,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 0.9,
+            "evidence": "competitive strength +0.20 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": 0.6,
+            "evidence": "commercial strength +0.40 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -6.2,
+            "evidence": "momentum 44 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 43.8,
+        "pre_decay": 43.8,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 10 is carried by preference strength +0.40 (weight 20); competitive strength +0.20 (weight 15). Offsetting it: momentum 44 vs stage-expected 50.",
+        "deal_momentum": "Momentum 44 (slipping backward): Verdict 'Slowing' \u2014 momentum stalling. Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (10), nudged by commitment 8 and momentum 44, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Sidel Group \u2014 Qualified \u00b7 $150K \u00b7 closes 29 Dec",
+        "intro": "A freshly qualified, single-threaded new-business deal with genuine Agentic AI appetite from one strong intro call, but no economic buyer, no champion, and unproven direct-materials fit; the one thing between us and momentum is converting the 26 Jun intro into a signed NDA and a booked walkthrough before the buyer cools",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 10,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Early and unproven; Sidel is engaged on Agentic AI RFQ automation (26 Jun call, AIS Strong), but with no economic buyer mapped, no champion, and direct-materials drawing-ingestion fit unproven, this stands as a promising but unqualified early opportunity"
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threaded on Sourcing Director Julie Papier, the only confirmed contact, with the 29 Jun health check flagging Decision Maker not identified, so there is no path to budget sign-off yet"
+              },
+              {
+                "tone": "warn",
+                "text": "SAP Ariba is on Sidel's RFQ roadmap ('in the pipe to use it', 26 Jun); if it activates before Zycus proves fit, the wedge narrows"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 44,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The buyer has not replied since the 26 Jun intro call; the only activity since is the rep-side 30 Jun workspace share and NDA ask, which are still awaiting a Sidel response"
+              },
+              {
+                "tone": "good",
+                "text": "Zycus is actively driving; on 30 Jun it opened a collaborative workspace, shared materials, and invited two more Sidel contacts (Marianna Botteri and Germain Bigeard)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The dominant risk is a no-decision; Sidel keeps running RFQs manually and defers, rather than a loss to a named rival"
+              },
+              {
+                "tone": "warn",
+                "text": "Product fit for ingesting engineering drawings and specifications for direct materials is unproven and could break the core use case if the walkthrough cannot demonstrate it"
+              }
+            ],
+            "footer": "Competitive picture: SAP Ariba is the single strongest current competitor but only latently: it is on Sidel's roadmap for RFQ workflows ('in the pipe to use it', 26 Jun call) yet undeployed and not in an active bake-off, so the more immediate threat is\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No customer-named dates, no commercial or security topics, and no buyer-requested next meeting; the walkthrough was proposed by Zycus, not pulled by Sidel"
+              },
+              {
+                "tone": "good",
+                "text": "Sidel agreed to execute an NDA and a Zycus-focused Agentic AI walkthrough (Next Step), a real if early commitment to continue"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Get the NDA signed and lock a date for the Agentic AI walkthrough. (by 13 Jul)",
+              "Tailor the walkthrough to prove drawing and specification ingestion on Sidel's engineered-parts use case. (by 17 Jul)",
+              "Ask Julie Papier to name and introduce the procurement-transformation budget owner. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [
+      {
+        "reason": "Avoma returned no calls for this opportunity, account, or buyer attendees this sweep; the 26 Jun 'Sidel X Zycus | Introductory call' is known from the Salesforce event and prior sweep memory but was not re-readable this run"
+      }
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities last 120d; field history to 2026-06-30",
+    "avoma_attendees": [
+      "Julie Papier"
+    ],
+    "gaps": [
+      "No Avoma call transcript available this sweep to re-verify buyer stakeholders or competitive detail; relying on the Salesforce event, contact role, activities, and prior living memory",
+      "Economic buyer / budget owner genuinely unidentified across all sources",
+      "No quantified business case (ROI, cost, cycle-time, savings) stated by the buyer"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:50"
+}

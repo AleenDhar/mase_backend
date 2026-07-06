@@ -1,0 +1,336 @@
+{
+  "opp_id": "006P700000MYLuz",
+  "hard": {
+    "opp_id": "006P700000MYLuz",
+    "opp_name": "Nubank_S2C_Jun'2026",
+    "account_name": "Nubank",
+    "account_industry": "BFSI",
+    "billing_country": "Brazil",
+    "owner_name": "Karson Keogh",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2026-08-21",
+    "days_to_close": null,
+    "created_date": "2025-08-21",
+    "qualified_date": "2025-08-21",
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;Merlin;iRisk;ANA",
+    "next_step": "6.29.26 KK - fu on RFI and timelines 6.15.26 KK - rfi submitted 6.11.26 KK -received RFI with submission 6.15. once downselected will move to formal RFP",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "Nubank's business objectives explicitly include enabling AI-powered analytics for supplier selection, risk scoring, and spend optimization; ANA and Merlin are scoped and the deal is at Formal Evaluation via an RFI, so AI analytics is a stated objective, though efficiency, compliance and scalability are the broader drivers so AI is one of several rather than dominant.",
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "SAP Ariba;Coupa;Build in-house;Jaggaer",
+    "primary_competitor": "Build in-house",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000MYLuz/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Close Date Risk",
+      "critical": false,
+      "headline": "Zycus cleared Nubank's RFI evaluation (2 Jul) and advances toward a formal RFP, but only the supplier slice is in play and an RFP-to-contract runway cannot close by 21 Aug",
+      "math": "Close 21 Aug 2026 (46 days out). Created 21 Aug 2025, ~11 months old. In Formal Evaluation since 11 Jun 2026 (~25 days). RFI received 11 Jun, submitted 15 Jun, intro call with new EB Eduardo Freitas 18 Jun, rep RFI follow-up 29 Jun, and inbound 2 Jul 2026 email confirming Zycus passed the RFI evaluation. Remaining path (formal RFP, downselect, deeper demos, pricing, EB/CFO sign-off, legal) is a 3-5 month enterprise motion, so the 21 Aug date will slip while the deal itself is healthy and advancing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Inbound 2 Jul 2026 email: 'following the conclusion of our RFI evaluation, we are pleased to inform you that Zycus has been' selected to advance (Clari email received, Task 2 Jul 2026)",
+        "Eduardo Freitas (Procurement Director, new EB) intro call 18 Jun 2026: 'this RFI ongoing is the only one we already defined to go to the market... compiling the answers to get a short list and the ones we are going to continue'",
+        "RFI submitted 15 Jun 2026 with rep follow-ups on timelines 29 Jun; buyer inbound 12 Jun and 2 Jul confirm live two-way engagement",
+        "Eduardo confirmed buy-from-market intent for the sourcing piece: 'we are not going to build in house eSourcing, eRequest... we should get one solution from the market' (18 Jun 2026)",
+        "No pricing proposal issued, no EB/CFO joint commercial call, RFP not yet released, and no mutual close plan against the 21 Aug date"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The core business problem is confirmed and vivid: Eduardo Freitas described the disconnect between negotiated contract value and payments as 'a black box, total black box' and said 'the weakness is high' because there is 'no connection' between contracting and payment (18 Jun 2026). He also framed procurement as 'a very low maturity area' doing tactical ticket regularization rather than strategic sourcing. What is missing is hard quantification: no savings target, cycle-time, or ROI figure has been put on the pain, so the value case rests on qualitative agility and visibility arguments. Quantifying supplier-onboarding cycle time and Maverick/tail spend under management should be the next value step.",
+        "sources": ["Eduardo Freitas (Procurement Director), 18 Jun 2026 intro call", "Ronit Papa demo, 26 Sep 2025", "SF Business_Objectives__c / ais_why"]
+      },
+      "economic_buyer": {
+        "status": "confirmed",
+        "narrative": "Eduardo Freitas, Procurement Director (OpportunityContactRole), is the economic buyer: he joined ~3 months before the 18 Jun 2026 call as Nubank's first dedicated procurement director and stated 'we as new bank decide to have a proper director for procurement, so a dedicated one', controlling the vendor selection and the RFI-to-RFP process. He reports to the CFO, who forwarded him the Zycus Horizon event invitation ('the first invitation that I got, I got from my boss, the CFO of New Bank'), so the CFO is an aware but unmapped executive sponsor. Eduardo is engaged and commercially fluent (he probed the SaaS pricing model, per-module metrics, and build-vs-buy directly), but no pricing proposal or CFO joint call has happened, so his budget ceiling and any required CFO co-sign are still unconfirmed.",
+        "sources": ["Eduardo Freitas, 18 Jun 2026 intro call", "SF OpportunityContactRole (Eduardo Freitas, Procurement Director)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are emerging from the RFI and the demos: the RFI itself targets supplier qualification and onboarding (the 'SRM RFI', top-left iSupplier/iRisk piece per Eduardo, 18 Jun), and stated evaluation drivers are user-experience/adoption (Ariba is 'super allergic' to Nubank's agile culture), end-to-end integration into their Jira/Slack/Netlex/SAP stack, AI-driven automation (Merlin is 'one of the key focus of new bank's evaluation', Ronit 26 Sep), and price-versus-features fit ('understanding the composition of price versus features... as simple as possible', Eduardo 18 Jun). Nathalia Pais added supplier performance/SLA management as a criterion (26 Sep). These are confirmed as themes but not yet a formal weighted scorecard, which the formal RFP should crystallize.",
+        "sources": ["Eduardo Freitas, 18 Jun 2026 call", "Nathalia Pais and Ronit Papa, 26 Sep 2025 demo"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is buyer-run and legible from the call sequence: Nubank launched a structured SRM RFI (invite 3 Jun, clarifications 8-12 Jun, responses due/submitted 15 Jun), is now compiling responses into a shortlist, and per Eduardo 'once downselected will move to formal RFP' (Next_Step, 29 Jun). Zycus passed the RFI evaluation on 2 Jul, so an RFP round and deeper use-case demos come next. Procurement coordinators Brenda Ayres and Felicia manage RFI correspondence, Eduardo owns the selection, and the CFO sits above him. What is not yet visible is the approval chain and signature authority for a purchase, which needs to be mapped before pricing.",
+        "sources": ["Next_Step_History (29 Jun, 15 Jun, 11 Jun 2026)", "RFI email thread (Brenda Ayres / Felicia, 3-12 Jun 2026)", "Eduardo Freitas, 18 Jun 2026 call"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are genuinely unknown at this early stage: no MSA, Order Form, SOW, or InfoSec track has begun, and there is no current-contract-expiration forcing function on record (Nubank runs Ariba today but no renewal date is captured). For a BFSI buyer in Brazil, expect InfoSec/security review, DPA/GDPR-equivalent (LGPD) data-processing terms, and SAP/Google Workspace integration scoping to become gating once a vendor is selected. Visibility here will only come after the RFP downselect; the move is to ask Eduardo for the intended procurement, legal, and security review path as part of RFP engagement.",
+        "sources": ["Absence across SF fields, activities, and calls as of 6 Jul 2026"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is clearly articulated and owned by Eduardo Freitas: Ariba is a poor cultural fit ('we receive a lot of complaints, Ariba is a difficult tool to customize... the organization will not be adapted to a tool', 18 Jun), sourcing is run manually over email ('nowadays we do everything through email, we don't use any iSource'), and the contract-to-payment gap is unmanaged ('the lack of connections... is a black box'). Nathalia Pais and Giulliana Canesin confirmed operational contract-review pain (clause-specific reviews, manual metadata, HR/delegation-of-authority workflows) in the 26 Sep 2025 demo. The pain owner is procurement (Eduardo) with legal-ops (Giulliana) and legal (Nathalia) as affected stakeholders.",
+        "sources": ["Eduardo Freitas, 18 Jun 2026 call", "Nathalia Pais / Giulliana Canesin, 26 Sep 2025 demo"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no confirmed active champion. Ligia Alvarenga, the former head of procurement, drove the Aug-Sep 2025 discovery and demos but has not appeared on a call since 26 Sep 2025 and her current role is unknown after Eduardo's hire reset the reporting line. Eduardo Freitas is receptive and transparent but he is the economic buyer evaluating several options (Zycus, Coupa, build-in-house), not yet an advocate pushing internally for Zycus. The deal is effectively single-threaded through Eduardo with legal-side influencers (Giulliana, Nathalia) who have not re-engaged in 2026. Building a genuine internal champion who will carry Zycus through the RFP is the highest-leverage relationship move.",
+        "sources": ["Ligia Alvarenga last on 26 Sep 2025 demo", "Eduardo Freitas, 18 Jun 2026 call", "SF OpportunityContactRole"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "This is a multi-front evaluation. SAP Ariba is the incumbent being displaced for poor UX and rigidity (Eduardo: 'we are using Ariba... a lot of complaints... difficult tool to customize', 18 Jun), so it is a low current threat. Coupa is named as a market peer Eduardo considered ('I need to implement here maybe a Coupa or an Ariba') and Karson positioned Zycus against 'Coupa, Jaggaer, Ariba' in the Gartner top-right, making Coupa the live commercial peer. The strongest strategic threat is build-in-house: Eduardo, shaped by Nubank's Silicon Valley engineering culture, is 'thinking more about build internally our process or solutions' for some modules (spend analytics, contract), while explicitly conceding they will buy iSourcing/eRequest from the market. The wedge is speed-to-value and TCO of an organic single-codebase S2P with Merlin orchestration versus a slow internal build and a clunky Ariba.",
+        "sources": ["Eduardo Freitas and Karson Keogh, 18 Jun 2026 call"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Deal is advancing on the buyer's RFI clock: new EB Eduardo Freitas re-engaged 18 Jun after an 8-month gap, Zycus submitted the RFI 15 Jun, and the buyer confirmed on 2 Jul that Zycus cleared the RFI evaluation and will advance toward a formal RFP. Trajectory is stronger versus the prior sweep.",
+      "items": [
+        {"change": "Zycus passed Nubank's RFI evaluation and is advancing (inbound email)", "date": "2026-07-02"},
+        {"change": "Rep follow-up on RFI status and downselect timelines", "date": "2026-06-29"},
+        {"change": "Intro/qualification call with new economic buyer Eduardo Freitas", "date": "2026-06-18"},
+        {"change": "RFI response submitted to Nubank procurement", "date": "2026-06-15"},
+        {"change": "Stage moved Initial Interest to Formal Evaluation", "date": "2026-06-11"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Build-in-house is the single strongest CURRENT threat: Eduardo Freitas, shaped by Nubank's engineering-led culture, is 'thinking more about build internally' for several modules (18 Jun 2026), though he conceded iSourcing/eRequest will be bought from the market. Coupa is the live commercial peer named by Eduardo and positioned by Zycus in the Gartner top-right (18 Jun). SAP Ariba is the incumbent actively being displaced for poor UX and rigidity, so it is the most-mentioned but weakest current threat. Jaggaer was named only as a market label with no Nubank lean.",
+      "competitors": [
+        {"name": "Build in-house", "sentiment": "neutral", "threat_level": "high", "status": "active",
+          "quote": "this whole mindset in this Silicon Valley of the software industries in disruption, it's much easier to create your own software... myself as a learner is thinking more about build internally our process or solutions",
+          "date": "2026-06-18", "source": "Eduardo Freitas, 18 Jun 2026 call",
+          "how_we_win": "Quantify speed-to-value and TCO: Zycus SaaS deploy in 3-6 months plus continuous R&D and pre-built SAP/Jira/Slack connectors versus 12-18 months of internal build that distracts from Nubank's core fintech product; position AppExtend co-innovation as the middle path so they get custom flexibility without build risk."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "medium", "status": "active",
+          "quote": "your main competitors like Coupa, Jaggaer, Ariba, this is the marketing you are playing right?",
+          "date": "2026-06-18", "source": "Eduardo Freitas and Karson Keogh, 18 Jun 2026 call",
+          "how_we_win": "Differentiate on single organic codebase versus Coupa's acquisition-built stack, Merlin as core AI (intake orchestration plus autonomous negotiation agent) versus Coupa AI bolt-ons, and provide a side-by-side TCO model plus LATAM references."},
+        {"name": "SAP Ariba", "sentiment": "negative", "threat_level": "low", "status": "incumbent",
+          "quote": "we are using Ariba for this and quite honestly we receive a lot of complaints. Ariba is a difficult tool to customize... the organization will not be adapted to a tool, it should be the opposite side",
+          "date": "2026-06-18", "source": "Eduardo Freitas, 18 Jun 2026 call",
+          "how_we_win": "Contrast Zycus's single-codebase, low-bureaucracy UX and Merlin intake (Teams/Slack/link) with Ariba's clunky, hard-to-customize experience; prove agile configuration and adoption for Nubank's fast-moving culture."},
+        {"name": "Jaggaer", "sentiment": "neutral", "threat_level": "dormant", "status": "faded",
+          "quote": "your main competitors like Coupa, Jaggaer, Ariba, this is the marketing you are playing",
+          "date": "2026-06-18", "source": "Karson Keogh / Eduardo Freitas, 18 Jun 2026 call",
+          "how_we_win": "Named only as a market label with no Nubank interest; monitor and do not over-invest unless it surfaces in the RFP shortlist."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Nubank wants an agile, low-bureaucracy, AI-driven, deeply integrated supplier and contract platform. Zycus is well aligned on UX, Merlin AI, and single-codebase integration, but exposed on build-in-house preference, Google Workspace (not Microsoft Teams) as their collaboration layer, and a not-yet-quantified commercial fit.",
+      "items": [
+        {"criterion": "Agile, low-bureaucracy user experience (unlike Ariba)", "position": "aligned",
+          "quote": "the culture of the new bank is super agile and entrepreneur... avoid bureaucracy... when we have to implement a S2P old school, difficult, it's super allergic",
+          "date": "2026-06-18", "source": "Eduardo Freitas, 18 Jun 2026 call"},
+        {"criterion": "AI-driven automation across sourcing, contracts and risk", "position": "aligned",
+          "quote": "Merlin is also one of the key focus of a new bank's evaluation",
+          "date": "2025-09-26", "source": "Ronit Papa demo, 26 Sep 2025"},
+        {"criterion": "Native collaboration on Google Workspace, not Microsoft Teams", "position": "exposed",
+          "quote": "Google. We use Google [Karson: I know Google's harder because it's the desktop version versus the app]",
+          "date": "2026-06-18", "source": "Eduardo Freitas and Karson Keogh, 18 Jun 2026 call"},
+        {"criterion": "Buy-from-market versus build-in-house for parts of the suite", "position": "partially aligned",
+          "quote": "we are not going to build in house eSourcing, eRequest... we should get one solution from the market, but there are modules we are going to probably build in house",
+          "date": "2026-06-18", "source": "Eduardo Freitas, 18 Jun 2026 call"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide the price-versus-features composition and SaaS pricing model for the supplier scope", "said_by": "Eduardo Freitas",
+          "date": "2026-06-18", "addressed": false,
+          "quote": "understanding the composition of price versus features... with the mindset to be as simple as possible",
+          "source": "Eduardo Freitas, 18 Jun 2026 call"},
+        {"requirement": "Show supplier performance/SLA management in a follow-up use-case demo", "said_by": "Nathalia Pais",
+          "date": "2025-09-26", "addressed": false,
+          "quote": "one thing that we are interested in as well is the supplier performance management, in terms of SLAs established",
+          "source": "Nathalia Pais, 26 Sep 2025 demo"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Eduardo the fuller Zycus overview deck and the Bogota event details", "who": "Zycus",
+            "grounding_quote": "I'll send this to you, and then I'll send you just the more details on the event so you can float it to your colleague",
+            "date": "2026-06-18", "due": "2026-06-20", "status": "completed", "source": "Karson Keogh, 18 Jun 2026 call"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Issue the formal RFP and confirm the downselect shortlist and timeline", "who": "Buyer",
+            "grounding_quote": "once downselected will move to formal RFP",
+            "date": "2026-07-02", "due": "2026-07-31", "status": "open", "source": "Next_Step (29 Jun) + inbound RFI-pass email (2 Jul 2026)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Pricing / commercial proposal not yet delivered", "quote": "understanding the composition of price versus features",
+          "status": "not addressed", "date": "2026-06-18", "gap_type": "knowledge", "source": "Eduardo Freitas, 18 Jun 2026 call"},
+        {"area": "No active internal champion after Ligia went quiet", "quote": "Ligia last appeared on the 26 Sep 2025 demo",
+          "status": "not addressed", "date": "2025-09-26", "gap_type": "knowledge", "source": "call history"},
+        {"area": "CFO (executive sponsor) aware but unmapped", "quote": "the first invitation I got, I got from my boss, the CFO of New Bank",
+          "status": "acknowledged", "date": "2026-06-18", "gap_type": "knowledge", "source": "Eduardo Freitas, 18 Jun 2026 call"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Zycus just cleared the RFI; the next 30 days are about converting a receptive economic buyer into an advocate, neutralizing build-in-house, and getting a defensible commercial in front of the RFP.",
+      "flags": [
+        "Neutralize build-in-house now: bring a TCO and speed-to-value model plus AppExtend co-innovation to Eduardo before the RFP locks scope",
+        "Multi-thread beyond Eduardo: re-engage Ligia and the legal-ops pair (Giulliana, Nathalia) so the deal is not single-threaded through one 3-month-tenure director",
+        "Map the CFO and the approval/signature chain early, since the CFO already sponsored awareness via the Horizon invite and likely co-signs a $100k purchase"
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Eduardo Freitas", "title": "Procurement Director", "role": "Economic Buyer",
+          "last_contact_date": "2026-06-18", "sentiment": "Receptive and transparent, but evaluating Zycus against Coupa and build-in-house; commercially fluent, no pricing commitment yet",
+          "risk": "Single-threaded, ~3 months tenure; if he stalls or exits, the deal has no internal advocate, and his budget ceiling and any CFO co-sign requirement are unconfirmed",
+          "source": "SF OpportunityContactRole; Eduardo Freitas, 18 Jun 2026 call"},
+        {"name": "Ligia Alvarenga", "title": "Former Head of Procurement (current role unknown)", "role": "Champion",
+          "last_contact_date": "2025-09-26", "sentiment": "Early advocate who drove the Aug-Sep 2025 discovery and demos; has not appeared since Eduardo's hire",
+          "risk": "Champion cooling/absent for 9+ months; advocacy and current authority unknown after the reporting line changed",
+          "source": "Avoma demo, 26 Sep 2025"},
+        {"name": "Giulliana Canesin", "title": "Legal Operations Specialist", "role": "Influencer",
+          "last_contact_date": "2025-09-26", "sentiment": "Engaged influencer on contract review, integrations and approval-workflow/HR-system questions in the 26 Sep 2025 demo",
+          "risk": "No economic-buyer access or deal-driving power; not re-engaged in 2026",
+          "source": "SF OpportunityContactRole; Avoma demo, 26 Sep 2025"},
+        {"name": "Nathalia Pais", "title": "Legal Manager", "role": "Influencer",
+          "last_contact_date": "2025-09-26", "sentiment": "Engaged influencer; raised supplier performance/SLA, AI clause analysis and process-visibility requirements in the 26 Sep 2025 demo",
+          "risk": "No economic-buyer access or budget authority; not re-engaged in 2026",
+          "source": "SF OpportunityContactRole; Avoma demo, 26 Sep 2025"},
+        {"name": null, "title": "CFO", "role": "Economic Buyer",
+          "last_contact_date": null, "sentiment": "Aware and supportive at a distance: forwarded Eduardo the Zycus Horizon event invite; never appeared on a call",
+          "risk": "Executive sponsor unmapped; if the CFO co-signs a purchase above Eduardo's threshold, Zycus has no direct relationship",
+          "source": "Eduardo Freitas, 18 Jun 2026 call (CFO reference only; no Salesforce contact)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No active champion. Ligia Alvarenga was the Aug-Sep 2025 advocate but has been silent for 9+ months, and Eduardo Freitas is a receptive economic buyer weighing multiple options rather than an internal advocate. Building a champion who will carry Zycus through the RFP is the priority; what is developing is Eduardo's engagement, what is missing is anyone pushing Zycus internally against build-in-house.",
+      "champion": "Ligia Alvarenga (former Head of Procurement, current role unknown)",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Ligia last on 26 Sep 2025 demo; Eduardo Freitas, 18 Jun 2026 call"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin was foregrounded as 'one of the key focus of new bank's evaluation' and Zycus demoed intake orchestration, autonomous negotiation, and AI contract metadata/risk extraction. Positioning is strong; the risk is that Nubank's engineers believe they can build comparable AI themselves, so the agentic depth and R&D moat must be made concrete.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 / Moderate is corroborated by the calls: Nubank started an org-wide AI transformation in March 2026 and Merlin is a named evaluation focus, but AI sits alongside efficiency, integration and compliance rather than dominating, and the buyer's AI enthusiasm partly fuels a build-in-house temptation.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "Build-in-house preference for several modules could shrink or defer the purchase", "first_raised": "2026-06-18", "date": "2026-06-18", "status": "open", "source": "Eduardo Freitas, 18 Jun 2026 call"},
+        {"category": "executive_alignment", "detail": "CFO co-sign likely for $100k but the CFO is unmapped and Zycus has no direct relationship", "first_raised": "2026-06-18", "date": "2026-06-18", "status": "open", "source": "Eduardo Freitas, 18 Jun 2026 call"},
+        {"category": "timeline", "detail": "RFP, downselect, pricing and legal cannot realistically close by the 21 Aug close date", "first_raised": "2026-07-02", "date": "2026-07-02", "status": "open", "source": "Next_Step + North Star math"},
+        {"category": "integration", "detail": "Nubank runs Google Workspace not Microsoft Teams, where Merlin intake is strongest; Slack/link support must be proven", "first_raised": "2026-06-18", "date": "2026-06-18", "status": "open", "source": "Eduardo Freitas / Karson Keogh, 18 Jun 2026 call"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live and warming: two-way email traffic through 2 Jul, a new engaged economic buyer, and a positive RFI-evaluation outcome. The watch item is single-threading and an aggressive close date.",
+      "cooling": false,
+      "items": [
+        "Inbound RFI-pass email 2 Jul 2026 (buyer-initiated positive signal)",
+        "New EB Eduardo Freitas engaged and transparent on 18 Jun 2026",
+        "Single-threaded through Eduardo with no active champion (watch)"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Zycus just cleared Nubank's RFI evaluation and heads into a formal RFP with an engaged new economic buyer, but only the supplier slice is committed to market, build-in-house is the live rival for the rest, and there is no internal champion carrying us.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Zycus is advancing after Nubank confirmed on 2 Jul 2026 that we passed the RFI evaluation, with the economic buyer Eduardo Freitas engaged and Ariba being actively displaced for poor fit."},
+          {"tone": "warn", "text": "The strongest rival is Nubank building in-house: Eduardo is 'thinking more about build internally our process or solutions' (18 Jun), which could shrink Zycus to just the supplier module."},
+          {"tone": "warn", "text": "The deal is single-threaded through a 3-month-tenure director with no active champion since Ligia Alvarenga went quiet after 26 Sep 2025, and the CFO who likely co-signs is unmapped."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Momentum is rising: a new senior economic buyer joined on 18 Jun, the RFI was submitted 15 Jun, and the buyer sent a positive RFI-pass email on 2 Jul 2026."},
+          {"tone": "warn", "text": "The next milestone (formal RFP and downselect) is buyer-owned and undated, so momentum depends on Nubank releasing the RFP on their own clock."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Nubank committed to going to market for the supplier piece: Eduardo said 'we are not going to build in house eSourcing, eRequest, we should get one solution from the market' (18 Jun)."},
+          {"tone": "warn", "text": "No pricing proposal, mutual close plan, or CFO commercial conversation exists, so commitment beyond the supplier RFI is unproven."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The 21 Aug 2026 close is not credible with the RFP not yet issued and 3-5 months of enterprise motion remaining."},
+          {"tone": "warn", "text": "Scope has effectively narrowed to iSupplier/iRisk versus the full S2C suite, a defensive signal that Nubank may phase or self-build the rest."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": -0.6, "evidence": "No active champion; Ligia silent since 26 Sep 2025 and Eduardo is EB not advocate"},
+        "timeline": {"strength": -0.5, "evidence": "RFP not issued; 21 Aug close cannot hold"},
+        "customer_preference": {"strength": 0.2, "evidence": "Passed RFI 2 Jul and Ariba being displaced, but build-in-house and Coupa still in play"}
+      }
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full Source-to-Contract suite (iContract, iSource, iSupplier, iRisk, Merlin, ANA)",
+      "to": "Supplier qualification and onboarding (iSupplier + iRisk) via the active SRM RFI, with sourcing bought separately and other modules candidate for in-house build",
+      "detail": "Eduardo scoped the live evaluation to the supplier piece: 'this RFI ongoing is the only one we already defined to go to the market' and 'there are modules that we are going to probably build in house' (18 Jun 2026), narrowing near-term scope from the full S2C suite on the opportunity."
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "Nubank confirmed on 2 Jul 2026 that Zycus passed its RFI evaluation and will advance toward a formal RFP, the strongest buy signal on the deal so far.", "tone": "pos"},
+      {"lens": "Competition", "text": "The real rival is Nubank's own engineering culture: Eduardo is leaning toward building parts of the platform in-house, while Ariba is being displaced and Coupa is a market peer.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Eduardo Freitas, Nubank's first dedicated Procurement Director and the economic buyer, is newly engaged and reports directly to the CFO who sponsored the initial contact.", "tone": "pos"},
+      {"lens": "New requirement", "text": "Nubank runs on Google Workspace rather than Microsoft Teams, so Merlin intake's collaboration integration via Slack or a web link must be proven for adoption.", "tone": "warn"},
+      {"lens": "Commercials", "text": "No pricing has been put forward yet against a $100k opportunity, and Eduardo has explicitly asked for the price-versus-features composition for the supplier scope.", "tone": "neu"}
+    ],
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Confirm the RFP scope and timeline with Eduardo and pre-position Zycus's supplier fit.", "owner": "Deal team",
+          "horizon": "next_7_days", "trigger": "Nubank confirmed Zycus passed the RFI evaluation and will move to a formal RFP", "trigger_date": "2026-07-02", "act_by": "2026-07-13",
+          "expected_effect": "Locks Zycus into the RFP round on strong footing and surfaces the real decision timeline versus the 21 Aug date"},
+        {"rank": 2, "action": "Deliver a TCO and speed-to-value case for buy-versus-build to Eduardo before the RFP.", "owner": "Deal team",
+          "horizon": "next_14_days", "trigger": "Eduardo is 'thinking more about build internally our process or solutions'", "trigger_date": "2026-06-18", "act_by": "2026-07-20",
+          "expected_effect": "Neutralizes the build-in-house threat and protects full-suite scope against a phased self-build"},
+        {"rank": 3, "action": "Re-engage Ligia and the legal-ops pair to build a multi-threaded champion base.", "owner": "Deal team",
+          "horizon": "next_14_days", "trigger": "Deal single-threaded through Eduardo; Ligia and legal influencers silent since 26 Sep 2025", "trigger_date": "2025-09-26", "act_by": "2026-07-24",
+          "expected_effect": "Removes single-point-of-failure risk and creates an internal advocate for the RFP"},
+        {"rank": 4, "action": "Run a tailored use-case demo covering supplier onboarding and SLA performance for Nathalia.", "owner": "Deal team",
+          "horizon": "next_30_days", "trigger": "Nathalia requested supplier performance/SLA management coverage", "trigger_date": "2025-09-26", "act_by": "2026-08-04",
+          "expected_effect": "Proves fit on the exact supplier criteria in the RFP and deepens legal-side sponsorship"},
+        {"rank": 5, "action": "Prepare the price-versus-features commercial for the supplier scope and map the CFO sign-off path.", "owner": "Deal team",
+          "horizon": "next_30_days", "trigger": "Eduardo asked for price-versus-features composition; CFO likely co-signs a $100k purchase", "trigger_date": "2026-06-18", "act_by": "2026-08-05",
+          "expected_effect": "Gives Eduardo a defensible commercial for the RFP and pre-clears the executive approval chain"}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "medium", "evidence": "Passed the RFI (2 Jul) and asked Zycus-specific pricing/model and agent questions on 18 Jun, but no decisive lean and still weighing Coupa and build-in-house"},
+    "business_case": {"status": "partial", "evidence": "Strong qualitative pain (Ariba unfit, contract-to-payment 'black box', manual email sourcing) but no quantified savings, cycle-time, or ROI target"},
+    "momentum_signals": {
+      "seniority_rising": true,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 4,
+    "calls_read": 2,
+    "calls_omitted": [
+      {"call": "NuBank | Zycus Discovery Discussion (2025-09-10)", "reason": "no transcript available in source data"},
+      {"call": "Ligia Alvarenga and Kanchi Gupta (2025-08-21)", "reason": "no transcript available in source data"}
+    ],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history to 2025-10; contact roles",
+    "avoma_attendees": ["Eduardo Freitas", "Giulliana Canesin", "Nathalia Pais", "Ligia Alvarenga"],
+    "gaps": [
+      "No pricing/commercial proposal yet (knowledge gap - not addressed on any call or field)",
+      "No confirmed active champion after Ligia Alvarenga went silent 26 Sep 2025",
+      "CFO executive sponsor named only by reference, not mapped as a Salesforce contact",
+      "Two 2025 calls carry no transcript, limiting early-cycle detail"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

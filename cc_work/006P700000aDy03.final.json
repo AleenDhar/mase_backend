@@ -1,0 +1,725 @@
+{
+  "opp_id": "006P700000aDy03",
+  "hard": {
+    "opp_id": "006P700000aDy03",
+    "opp_name": "zeppelin_S2P",
+    "account_name": "Zeppelin Systems GmbH",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "Germany",
+    "owner_name": "Dirk Fischbach",
+    "owner_title": null,
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000.0,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-06-30T07:47:53.000+0000",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-01T09:41:30.000+0000",
+    "products": "iContract;iSource;iSupplier;eProcurement;Merlin",
+    "next_step": "30-06-2026 : Prospect mentioned she will get back to us in the coming week to give a slot for demo. Follow up with Nadine Emde to schedule a 60-minute procurement team demonstration covering Merlin AI, Merlin Intake, Autonomous Negotiation Agent, Spend Analytics, Supplier Management, Contract Management, and SAP SRM modernization. During the session validate current procurement landscape, evaluation process, stakeholders, budget, implementation timeline, ERP landscape, procurement KPIs, and decision criteria. First discussion : Met VP of procurement at procurement summit event interested for a detailed demo.",
+    "ais_score": null,
+    "ais_status": null,
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "SAP SRM (inferred incumbent)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aDy03/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Fresh summit lead at Zeppelin: VP Procurement Nadine Emde offered a demo slot on 30 Jun, but it is not booked and discovery has not started",
+      "math": "Created 30 Jun 2026; today 6 Jul 2026 (6 days old). Close date 30 Jun 2027 (~359 days out), a placeholder not a buyer-set date. The only buyer signal is a 30 Jun procurement-summit meeting where VP Procurement Nadine Emde (Decision Maker) said she would send a demo slot 'in the coming week'; no slot is booked, no follow-up is logged, and there is no LastActivityDate on record. Three evaluators are on the opportunity (Nadine Emde, Bernd Hartmann, Ralf Lauterbacher) but none has engaged since the summit. Stage is Qualified with zero discovery: no pain, metrics, economic buyer, decision criteria, or competition captured. The deal is alive but the single live action (locking the demo) is stalling, so the honest read is Slowing, not cold.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Created 30 Jun 2026; 6 days old as of 6 Jul 2026",
+        "Stage moved Initial Interest -> Qualified on 30 Jun 2026 (Rashi Varma); Type -> New Business same day",
+        "NextStep (30 Jun): Nadine Emde said she will send a demo slot 'in the coming week'; no slot booked, no follow-up logged",
+        "No LastActivityDate on record; zero Avoma calls found via opp, account, or attendee pulls",
+        "Three OpportunityContactRoles: Nadine Emde (VP Procurement, Decision Maker, primary), Bernd Hartmann (Head of Purchasing, Evaluator), Ralf Lauterbacher (VP Automation & Software, Evaluator)",
+        "No economic buyer, champion, pain, metrics, decision criteria, or competition confirmed",
+        "NextStep agenda references 'SAP SRM modernization', implying SAP SRM is the incumbent stack (inferred, not confirmed)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "No business problem or quantified value case is captured. The only record is event-based interest: VP Procurement Nadine Emde met the Zycus team at a procurement summit on 30 Jun 2026 and asked for a detailed demo, with no discovery of procurement KPIs, savings targets, cycle-time, supplier-consolidation goals, or compliance gaps. The planned demo agenda lists 'procurement KPIs' and 'decision criteria' as things to validate, confirming none are known yet. Without a quantified case there is no anchor for the EUR 200k S2P scope, so the rank-1 move is to run the demo as a structured discovery session and extract the pain owner and any quantified impact from Nadine and the two evaluators."
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "sources": [
+          "SF OpportunityContactRole",
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "No economic buyer is engaged. Nadine Emde (Vice President Procurement) is the primary Decision Maker on the opportunity, but whether she controls the EUR 200k+ budget or must escalate to a CFO/COO is unconfirmed, and the NextStep explicitly lists 'budget' as a discovery topic still to validate. The other two contacts, Bernd Hartmann (Head of Purchasing) and Ralf Lauterbacher (VP Automation & Software), are Evaluators, not budget holders. No account-level finance executive is mapped to this opportunity, so naming and engaging the budget owner is a required move during the demo/discovery, not an assumed fact."
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "Decision criteria are not captured. The demo agenda from 30 Jun lists 'decision criteria' and 'evaluation process' as items to validate, confirming none are known. There is no RFP, RFI, shortlist, or scorecard on record, and it is unknown whether Zeppelin is running a competitive evaluation or leaning to a sole-source path with the relevant stakeholder move is to structure the demo to extract the business-requirement drivers behind the S2P initiative (Merlin AI, autonomous negotiation, spend analytics, supplier and contract management, SAP SRM modernization) and how they will score vendors."
+      },
+      "decision_process": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 30 Jun 2026",
+          "SF OpportunityContactRole"
+        ],
+        "narrative": "The decision process is unmapped. The NextStep lists 'evaluation process' and 'stakeholders' as things to validate, and the close date of 30 Jun 2027 (~359 days out) reads as a placeholder rather than a buyer-driven date. Three roles exist on the opportunity (Nadine Emde as Decision Maker plus evaluators Bernd Hartmann and Ralf Lauterbacher), which gives a starting committee shape, but no gates, approvals, or internal timeline are known. The move is to use the demo to map the evaluation stages and who owns each gate."
+      },
+      "paper_process": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "No contracting, legal, procurement, or InfoSec mechanics have been discussed; the deal is Qualified with zero discovery, so paper process has not been reached. As a German manufacturing enterprise this is a new-business full-suite S2P motion that will eventually need an MSA, Order Form, and SOW plus InfoSec and DPA/GDPR review, but none is in play yet. The demo agenda flags 'ERP landscape' and 'implementation timeline', hinting at integration scoping to come. The move is to surface InfoSec and integration requirements early once discovery opens, to avoid late-stage blockers."
+      },
+      "identify_pain": {
+        "status": "gap",
+        "sources": [
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "No specific operational or financial pain has been articulated. The record shows only summit interest from Nadine Emde on 30 Jun 2026, with no statement of what is broken today or why Zeppelin is evaluating now. The agenda reference to 'SAP SRM modernization' suggests the current SAP SRM stack is a friction point, but this is inferred, not stated by the buyer, and there is no named pain owner or compelling event. The move is to use the demo to extract the pain: what is failing on SAP SRM today, who owns it, and what happens if it is not solved."
+      },
+      "champion": {
+        "status": "gap",
+        "sources": [
+          "SF OpportunityContactRole",
+          "SF Next_Step__c 30 Jun 2026"
+        ],
+        "narrative": "No champion has developed. Nadine Emde (VP Procurement, Decision Maker) showed initial interest at the summit and is the primary contact, but there is no evidence yet of internal advocacy, sharing our materials, or driving an agenda, and she has not yet returned the demo slot she offered on 30 Jun. Two evaluators, Bernd Hartmann and Ralf Lauterbacher, are on the opportunity but unengaged post-summit. The move is to deliver the demo, assess Nadine's willingness to champion, and activate the two evaluators to build redundancy before relying on any single sponsor."
+      },
+      "competition": {
+        "status": "gap",
+        "sources": [
+          "SF Competitors__c (empty)",
+          "SF Next_Step__c 30 Jun 2026 (SAP SRM inferred)"
+        ],
+        "narrative": "Competition is unconfirmed. Competitors__c is empty and no rival has been named on a call or task. The NextStep agenda references 'SAP SRM modernization', which points to the relevant stakeholder as the incumbent system and the status-quo alternative, but whether Zeppelin is benchmarking Zycus against Coupa, SAP Ariba, GEP, Jaggaer, or Ivalua, or pursuing a sole-source path, is unknown. The primary threat at this stage is inertia (staying on SAP SRM), not a named rival. The move is to surface competition in the first discovery/demo: who else they are talking to, what they are replacing, and what drove them to Zycus at the summit."
+      }
+    },
+    "deal_movement": {
+      "summary": "The only movement is internal and from 30 Jun 2026: stage advanced Initial Interest -> Qualified, Type set to New Business, and ownership reassigned to Dirk Fischbach. The single buyer touch is the procurement-summit meeting where Nadine Emde expressed interest in a detailed demo and said she would return a slot 'in the coming week'. No buyer-side activity has followed, and there is no LastActivityDate on record.",
+      "items": [
+        {
+          "change": "Stage advanced Initial Interest -> Qualified (Rashi Varma)",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Type set to New Business",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Ownership reassigned to Dirk Fischbach",
+          "date": "2026-06-30"
+        },
+        {
+          "change": "Summit meeting: VP Procurement Nadine Emde requested a detailed S2P demo, said she would send a slot 'in the coming week'",
+          "date": "2026-06-30"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in Salesforce or in any call, so the field is effectively unknown at this day-6 stage. The one inferred alternative is the incumbent SAP SRM stack, implied by the 'SAP SRM modernization' item on the 30 Jun demo agenda; the strongest current threat is therefore status-quo inertia (staying on SAP SRM) rather than a rival platform. There is no evidence yet of a competitive RFP or a shortlist against Coupa, SAP Ariba, GEP, Jaggaer, or Ivalua. The immediate need is to surface competition in discovery: who else Zeppelin is evaluating, what they are replacing, and what drew them to Zycus at the summit.",
+      "competitors": [
+        {
+          "name": "SAP SRM (inferred incumbent / status quo)",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "NextStep demo agenda includes 'SAP SRM modernization', suggesting SAP SRM is the current system to be replaced",
+          "date": "2026-06-30",
+          "source": "SF Next_Step__c 30 Jun 2026 (inferred)",
+          "how_we_win": "Position Merlin AI and the Autonomous Negotiation Agent as the modernization leap SAP SRM cannot deliver; quantify the cost of staying on legacy SAP SRM versus Zycus S2P total cost of ownership."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Only one expectation is visible and it is inferred: Zeppelin appears to want to modernize its SAP SRM procurement stack with AI-led capability, given the demo agenda. Everything else (requirements, criteria, must-haves) is undiscovered.",
+      "items": [
+        {
+          "criterion": "AI-led modernization of the SAP SRM procurement stack",
+          "position": "exposed",
+          "quote": "Demo agenda covers Merlin AI, Autonomous Negotiation Agent, and 'SAP SRM modernization'",
+          "date": "2026-06-30",
+          "source": "SF Next_Step__c 30 Jun 2026 (inferred)"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Deliver a 60-minute procurement-team demo of the S2P suite and Merlin AI",
+          "said_by": "Nadine Emde",
+          "date": "2026-06-30",
+          "addressed": false,
+          "quote": "Met VP of procurement at procurement summit event interested for a detailed demo; she will get back to us in the coming week to give a slot for demo",
+          "source": "SF Next_Step__c 30 Jun 2026"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Nadine Emde to send an available time slot for the procurement-team demo",
+            "who": "Buyer",
+            "grounding_quote": "she will get back to us in the coming week to give a slot for demo",
+            "date": "2026-06-30",
+            "due": "2026-07-07",
+            "status": "open",
+            "source": "SF Next_Step__c 30 Jun 2026"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "No buyer discovery call",
+          "quote": "No Avoma calls found via opp, account, or attendee pulls; no LastActivityDate",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Avoma opp+account+attendee-email discovery (0 calls)"
+        },
+        {
+          "area": "Economic buyer / budget authority unknown",
+          "quote": "NextStep lists 'budget' as a discovery topic still to validate",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c 30 Jun 2026"
+        },
+        {
+          "area": "Pain, metrics, and business case undiscovered",
+          "quote": "Only event interest captured; no pain owner or quantified impact",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c 30 Jun 2026"
+        },
+        {
+          "area": "Decision process and criteria unmapped",
+          "quote": "NextStep lists 'evaluation process', 'stakeholders', 'decision criteria' as items to validate",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Next_Step__c 30 Jun 2026"
+        },
+        {
+          "area": "Competition unconfirmed",
+          "quote": "Competitors__c empty; only SAP SRM inferred as incumbent",
+          "status": "not addressed",
+          "date": "2026-06-30",
+          "gap_type": "knowledge",
+          "source": "SF Competitors__c (empty)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a day-6 summit lead: the win-strategy priority is converting VP Procurement interest into a booked, structured discovery-demo, activating the two evaluators already on the record, and surfacing pain and competition before a formal evaluation forms.",
+      "flags": [
+        "Lock the demo slot Nadine Emde offered on 30 Jun this week and run it as structured discovery, before the summit interest cools.",
+        "Multi-thread now across the three roles already on the opportunity (Nadine Emde, Bernd Hartmann, Ralf Lauterbacher) to map the committee and the real budget owner.",
+        "Surface competition and the 'modernize vs. stay on SAP SRM' decision early to build the Merlin AI wedge before any formal RFP takes shape."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Nadine Emde",
+          "_source": "sfdc_contact_role",
+          "title": "Vice President Procurement",
+          "email": "nadine.emde@zeppelin.com",
+          "role": "Decision Maker",
+          "risk": "Primary and only engaged contact; expressed interest at the summit but has not yet returned the demo slot. Budget authority unconfirmed.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-06-30",
+          "_matched_ai": true
+        },
+        {
+          "name": "Bernd Hartmann",
+          "_source": "sfdc_contact_role",
+          "title": "Head of Purchasing",
+          "email": "bernd.hartmann@zeppelin.com",
+          "role": "Influencer",
+          "risk": "Evaluator on the record but unengaged since the summit; a natural procurement multi-thread not yet activated.",
+          "sentiment": "neutral",
+          "_matched_ai": true
+        },
+        {
+          "name": "Ralf Lauterbacher",
+          "_source": "sfdc_contact_role",
+          "title": "Vice President Automation & Software",
+          "email": "ralf.lauterbacher@zeppelin.com",
+          "role": "Influencer",
+          "risk": "Evaluator on the record, likely the technical/ERP voice for SAP SRM modernization; unengaged and unmapped to a specific requirement.",
+          "sentiment": "neutral",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion has emerged. Nadine Emde (VP Procurement, Decision Maker) is the warmest contact after the summit but has shown only initial interest, not advocacy, and has not yet returned the demo slot she offered on 30 Jun. The two evaluators, Bernd Hartmann and Ralf Lauterbacher, are unengaged. The move is to deliver the demo, test Nadine's willingness to champion, and activate the evaluators for redundancy.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole, SF Next_Step__c 30 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin AI, Merlin Intake, and the Autonomous Negotiation Agent are the centerpiece of the proposed 30 Jun demo agenda, so the AI story is intended to lead this pursuit, but no buyer call has yet validated appetite. Positioning cannot be judged until the demo runs.",
+      "score": "unknown",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is not populated on this opportunity, so there is no field read. The demo agenda proposed on 30 Jun explicitly foregrounds Merlin AI and the Autonomous Negotiation Agent, hinting at AI appetite, but no buyer statement confirms or rates it yet.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "No economic buyer engaged; Nadine Emde's budget authority for the EUR 200k S2P scope is unconfirmed.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "SF OpportunityContactRole, SF Next_Step__c 30 Jun 2026"
+        },
+        {
+          "category": "change_management",
+          "detail": "Main threat is status-quo inertia on SAP SRM rather than a named rival; a do-nothing / no-decision outcome is the likeliest way this lead dies.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "SF Next_Step__c 30 Jun 2026 (inferred)"
+        },
+        {
+          "category": "timeline",
+          "detail": "Close date 30 Jun 2027 (~359 days out) is a placeholder, not a buyer-driven date; no evaluation timeline exists.",
+          "first_raised": "2026-06-30",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "SF CloseDate"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "A single verbal thread with no booked next step: the summit interest can cool within days if the demo slot is not confirmed. Not yet cold, but at risk of stalling.",
+      "cooling": true,
+      "items": [
+        "Only buyer touch is the 30 Jun summit meeting; no follow-up logged and no LastActivityDate",
+        "Nadine Emde's demo slot ('coming week', 30 Jun) not yet returned",
+        "Two evaluators on the record are unengaged post-summit"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Call and email Nadine Emde to confirm a demo date this week.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Nadine said she would send a demo slot 'in the coming week' (30 Jun) but none is booked and no follow-up is logged",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-10",
+          "expected_effect": "Locks the next milestone before the summit interest cools and converts a verbal lead into a scheduled discovery-demo."
+        },
+        {
+          "rank": 2,
+          "action": "Run the 60-minute demo as structured discovery to extract pain, KPIs, budget owner, and criteria.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Stage is Qualified with zero discovery; NextStep lists procurement landscape, KPIs, budget, and decision criteria as items to validate",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-17",
+          "expected_effect": "Establishes the business case, EB, and evaluation process so the EUR 200k S2P scope is anchored rather than assumed."
+        },
+        {
+          "rank": 3,
+          "action": "Engage evaluators Bernd Hartmann and Ralf Lauterbacher to map the buying committee.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Both are Evaluators on the opportunity but unengaged since the summit; Ralf owns Automation & Software (likely the SAP SRM/ERP voice)",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Builds multi-thread redundancy beyond a single contact and identifies the technical and budget stakeholders early."
+        },
+        {
+          "rank": 4,
+          "action": "Ask Zeppelin directly who else they are evaluating and what SAP SRM gaps drove them to Zycus.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Competitors__c is empty; only SAP SRM is inferred as the incumbent, and no evaluation shape is known",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-08-03",
+          "expected_effect": "Surfaces competition and the modernization wedge before a formal RFP forms, sharpening the Merlin AI positioning."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Fresh procurement-summit lead at Zeppelin Systems: VP Procurement Nadine Emde asked for a full S2P + Merlin demo on 30 Jun 2026 but no slot is booked yet, and pain, budget owner, decision process, and competition are all still blank at Qualified.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "Very early and unproven: a 30 Jun summit conversation with VP Procurement Nadine Emde (Decision Maker) put the full S2P suite plus Merlin AI in play, but there has been no discovery call, no pain, no confirmed budget owner, and no evaluation process."
+          },
+          {
+            "tone": "warn",
+            "text": "The demo Nadine offered to slot 'in the coming week' (30 Jun) is still not booked and no follow-up is logged, so the lead risks cooling before discovery even begins."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer is engaged and the strongest threat is status-quo inertia on the existing SAP SRM stack rather than a named rival, a classic no-decision risk."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "warn",
+            "text": "The only movement is internal: stage set to Qualified and ownership moved to Dirk Fischbach on 30 Jun; there has been no buyer-side event since the summit."
+          },
+          {
+            "tone": "warn",
+            "text": "Nadine gave only a vague 'coming week' (30 Jun), not a concrete demo date, so momentum depends entirely on the team locking the slot now."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is limited to verbal interest in a detailed demo from Nadine Emde at the summit (30 Jun); no dates, budget, or evaluation process are confirmed."
+          },
+          {
+            "tone": "good",
+            "text": "Three procurement and technology roles are already on the opportunity (Nadine Emde, Bernd Hartmann, Ralf Lauterbacher), giving a multi-thread starting point rather than a single contact."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Single verbal thread with no booked next step: the summit lead can cool within days if the demo slot is not confirmed this week."
+          },
+          {
+            "tone": "warn",
+            "text": "No economic buyer, pain, metrics, decision criteria, or competition captured, so the EUR 200k S2P scope is entirely unvalidated at Qualified."
+          }
+        ]
+      },
+      "factors": {
+        "momentum": {
+          "strength": -0.5,
+          "evidence": "Only internal stage/owner changes on 30 Jun; no buyer activity or booked demo since the summit."
+        },
+        "commitment": {
+          "strength": -0.4,
+          "evidence": "Verbal demo interest only; Nadine has not returned the promised slot and no budget or process is confirmed."
+        },
+        "risk": {
+          "strength": -0.5,
+          "evidence": "Single unbooked thread, no EB, and status-quo (SAP SRM) inertia as the primary threat."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "Only event-based interest so far: 'Met VP of procurement at procurement summit event interested for a detailed demo' (30 Jun); no Zycus-specific preference or competitive comparison stated yet."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, automation, or compliance impact discussed; discovery has not started."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 9.2,
+      "mom": 52.2,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 9.2,
+        "deal_momentum": 52.2,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 0.0,
+        "read": "Partial Read"
+      },
+      "win_position": {
+        "score": 9.2,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -9.9,
+        "ceiling": 30.0,
+        "momentum_adj": 1.1,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": 2.2,
+            "evidence": "competitive strength +0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 1.1,
+            "evidence": "momentum 52 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 52.2,
+        "pre_decay": 52.2,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "customer_requested_next_meeting",
+            "points": 4.8,
+            "evidence": "customer requested next meeting (from call evidence)."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          },
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          },
+          {
+            "factor": "next_step_active",
+            "points": 3.6,
+            "evidence": "Next Step carries 1 dated milestone(s) \u2014 actively worked."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 57.1,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 57.1,
+        "label": "Partial Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "exec_and_champion",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 9 is carried by competitive strength +0.50 (weight 15); momentum 52 vs stage-expected 50. Offsetting it: preference strength -0.50 (weight 20).",
+        "deal_momentum": "Momentum 52 (roughly flat): customer requested next meeting (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (9), nudged by commitment 8 and momentum 52, and dragged by risk 14. Read is Partial Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Partial Read: 4 of 7 evidence dimensions seen (engagement, stage integrity, exec and champion, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "Zeppelin Systems GmbH \u2014 Qualified \u00b7 $200K \u00b7 closes 30 Jun",
+        "intro": "Fresh procurement-summit lead at Zeppelin Systems; VP Procurement Nadine Emde asked for a full S2P + Merlin demo on 30 Jun 2026 but no slot is booked yet, and pain, budget owner, decision process, and competition are all still blank at Qualified",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 9,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Very early and unproven; a 30 Jun summit conversation with VP Procurement Nadine Emde (Decision Maker) put the full S2P suite plus Merlin AI in play, but there has been no discovery call, no pain, no confirmed budget owner, and no evaluation process"
+              },
+              {
+                "tone": "warn",
+                "text": "The demo Nadine offered to slot 'in the coming week' (30 Jun) is still not booked and no follow-up is logged, so the lead risks cooling before discovery even begins"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer is engaged and the strongest threat is status-quo inertia on the existing SAP SRM stack rather than a named rival, a classic no-decision risk"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 52,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The only movement is internal; stage set to Qualified and ownership moved to Dirk Fischbach on 30 Jun; there has been no buyer-side event since the summit"
+              },
+              {
+                "tone": "warn",
+                "text": "Nadine gave only a vague 'coming week' (30 Jun), not a concrete demo date, so momentum depends entirely on the team locking the slot now"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Single verbal thread with no booked next step; the summit lead can cool within days if the demo slot is not confirmed this week"
+              },
+              {
+                "tone": "warn",
+                "text": "No economic buyer, pain, metrics, decision criteria, or competition captured, so the EUR 200k S2P scope is entirely unvalidated at Qualified"
+              }
+            ],
+            "footer": "Competitive picture: No competitor is named in Salesforce or in any call, so the field is effectively unknown at this day-6 stage."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is limited to verbal interest in a detailed demo from Nadine Emde at the summit (30 Jun); no dates, budget, or evaluation process are confirmed"
+              },
+              {
+                "tone": "good",
+                "text": "Three procurement and technology roles are already on the opportunity (Nadine Emde, Bernd Hartmann, Ralf Lauterbacher), giving a multi-thread starting point rather than a single contact"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Call and email Nadine Emde to confirm a demo date this week. (by 10 Jul)",
+              "Run the 60-minute demo as structured discovery to extract pain, KPIs, budget owner, and criteria. (by 17 Jul)",
+              "Engage evaluators Bernd Hartmann and Ralf Lauterbacher to map the buying committee. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history since creation 30 Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero buyer Avoma calls exist for this opportunity across opp, account, and attendee-email pulls",
+      "No economic buyer / budget authority confirmed",
+      "No pain, metrics, or business case discovered",
+      "Decision process, criteria, and competition unmapped",
+      "No LastActivityDate on record; only internal field changes since creation"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:11"
+}

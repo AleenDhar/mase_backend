@@ -1,0 +1,296 @@
+{
+  "opp_id": "006P700000aAw61",
+  "hard": {
+    "opp_id": "006P700000aAw61",
+    "opp_name": "Eskom_Holdings_SOC_Ltd",
+    "account_name": "Eskom Holdings SOC Ltd",
+    "account_industry": "Utilities",
+    "billing_country": "South Africa",
+    "owner_name": "John Woodcock",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-02-28",
+    "days_to_close": 237,
+    "created_date": "2026-06-29",
+    "qualified_date": "2026-06-29",
+    "last_activity_date": "2026-06-30",
+    "last_modified_date": "2026-06-30",
+    "products": "iManage;iSupplier;iRequest;iSaaS;Merlin;iRisk;Merlin Intake",
+    "next_step": "Follow-up meeting scheduled with Felicia Kakora for 30th June.",
+    "ais_score": null,
+    "ais_status": "",
+    "ais_why": "",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Eskom in-flight internal digital-procurement solution; status quo / do-nothing; SAP (ERP incumbent, integration anchor)",
+    "primary_competitor": "Eskom in-flight internal digital-procurement solution / status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aAw61/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "On Track",
+      "critical": false,
+      "headline": "Fresh, live early-stage deal: a strong 30 Jun introductory call with clear supplier master-data pain, but engagement is single-threaded to a mid-level evaluator who has explicitly no authority to buy an enterprise S2P suite.",
+      "math": "Opportunity created 29 Jun 2026 and moved Initial Interest to Qualified the same day; close date pushed 2026-12-29 to 2027-02-28, now 237 days out from the 6 Jul sweep. Time-in-stage is about one week, so no slip has occurred. For a $150k eight-module S2P transformation a roughly eight-month runway is realistic ONLY if the broader procurement custodian engages soon; the sole early-tier risk is that no power is mapped and the buyer sits in a small section of the value chain, not timing.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Opportunity created and moved Initial Interest to Qualified on 29 Jun 2026; close date pushed 2026-12-29 to 2027-02-28 the same day, amount corrected 15,000 to 150,000 (SF OpportunityFieldHistory).",
+        "Introductory meeting held 30 Jun 2026 with Felicia Kakora (Senior Manager: Master Data Management) and one of her direct reports in supplier master data (Avoma call 30 Jun 2026).",
+        "Felicia stated she 'cannot make inferences to such a solution because I'm only representing a very small section of the value chain' and that the enterprise conversation is 'a whole different conversation with the custodian of procurement and supply chain management' (Avoma call 30 Jun 2026), confirming no buying authority is engaged yet.",
+        "Felicia disclosed Eskom is already running an internal digital-procurement solution and doubts 'eCompliance is gonna go back and say okay we're gonna reopen the market' (Avoma call 30 Jun 2026), so an enterprise tender may already be closed."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is clearly articulated by the buyer but never quantified. Felicia Kakora described a 'web based system that has come to the end of its life cycle' where 'a lot of what we currently are doing is very manually labored' (Avoma call 30 Jun 2026), with limited automation for supplier notifications, updates, and compliance maintenance. No cost, headcount, cycle-time, error-rate, or savings figure was stated on the call. Quantifying the manual-labour cost of supplier maintenance and the compliance-risk exposure (COIDA, B-BBEE, tax) is the move that converts this qualitative pain into a defensible value case for a budget owner.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora, Inno)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged and none can be named from Salesforce. Felicia explicitly placed budget authority outside her section: 'if it is that you need to engage on a bigger platform in terms of procurement and supply chain management, then that will be a whole different conversation with the custodian of procurement and supply chain management' (Avoma call 30 Jun 2026). The only Salesforce contact role on the deal is Felicia Kakora (Evaluator, primary), who owns supplier master data, not the S2P budget. The evidence therefore shows the budget owner is the enterprise procurement and supply chain custodian, unnamed in Salesforce; identifying and reaching that person via Felicia is the rank-1 move, and no name should be asserted until a Salesforce contact confirms it.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora)", "SF OpportunityContactRole (Felicia Kakora, Evaluator)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are emerging from the buyer's own words, not yet formalized. Felicia framed the fit as a bottom-up, plug-in question: 'from a vendor maintenance perspective, what are they that's still out there that we can enhance over and above the solution?' and asked specifically where supplier registration and ongoing compliance maintenance happen after onboarding (Avoma call 30 Jun 2026). Her direct report pressed on where post-onboarding compliance maintenance for tax and B-BBEE lives, confirming supplier-master-data integrity and SAP integration as evaluation anchors. These are inferred from the intro discussion rather than a documented requirements set, so capturing them in a written requirement list is the next step.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora, Inno)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unknown. The call sequence so far is a single introductory meeting (30 Jun 2026) attended only by the supplier master-data team, Felicia Kakora and one direct report, with no procurement custodian, IT, or finance present. As a South African state-owned enterprise, Eskom is bound to a formal public tender process, and Felicia hinted the relevant digital-procurement tender may already be closed ('It's a pity you didn't bid when the tender went out'). No approval chain, evaluation stages, or timeline have been shared. Getting clarity on the evaluation stages and whether a separate supplier-management procurement is viable is what would map the process.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are known at this Qualified stage. As a state-owned enterprise Eskom procures through a formal tender governed by National Treasury / CSD requirements, which Felicia described in detail (Avoma call 30 Jun 2026). The forcing function and risk is that an enterprise digital-procurement tender may already be awarded and will not reopen: 'I doubt eCompliance is gonna go back and say okay we're gonna reopen the market.' No MSA, SOW, legal, or InfoSec activity exists yet. Visibility would come from learning whether the in-flight tender can accommodate a supplier-master-data module or whether a standalone procurement route exists.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Operational pain is confirmed and owned by the supplier master-data function. Felicia and her direct report described a legacy web-based supplier system at end-of-life forcing manual, labour-intensive onboarding and ongoing compliance maintenance (COIDA, B-BBEE certificates, tax and VAT status) with weak automation for notification and updates (Avoma call 30 Jun 2026). The direct report specifically asked 'from this picture here, where does the maintenance happen?', confirming post-onboarding compliance maintenance is the team's daily problem. Brice also surfaced fragmented email/flat-file intake causing maverick spend and compliance risk. The confirmed pain owner is Felicia's master-data team; the enterprise procurement pain owner is implied but not yet engaged.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora, Inno)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Felicia Kakora is a warm, self-initiated champion candidate but not yet a true champion with power. She sought Zycus out after seeing the kiosk at the Smart Procurement event, was openly positive ('it's already looking promising, I must say') and signalled intent to widen the conversation: she wants to 'come back if it's not just for master data management, from a procurement and supply chain management perspective' (Avoma call 30 Jun 2026). What is developing: genuine interest, willingness to open doors, and a stated intent to circulate Zycus material internally. What is still missing: she explicitly has no buying authority, controls only a small section of the value chain, and has not yet introduced the procurement and supply chain custodian, so her advocacy to power is unproven.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora)", "SF OpportunityContactRole (Felicia Kakora, Evaluator, primary)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The named competitor field is blank, so the real competition is reconstructed from the call. The primary current threat is Eskom's own in-flight internal digital-procurement solution: 'we are looking at the digital solution already via our internal procurement department, we're already farfetched in that process' (Felicia, 30 Jun 2026), reinforced by do-nothing inertia since the enterprise tender may be closed. SAP is the entrenched ERP incumbent and an integration requirement Zycus meets natively ('we have a native connector with SAP'), not a competing S2P bid. Zycus wins by taking the bottom-up wedge Felicia herself invited, positioning as a complementary supplier-master-data and Merlin AI layer that plugs into the existing solution and closes the maintenance and compliance gaps it does not cover.",
+        "sources": ["Avoma intro call 30 Jun 2026 (Felicia Kakora)", "SF Competitors__c (blank)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Brand-new opportunity opened and qualified on 29 Jun 2026 with a strong introductory buyer call on 30 Jun 2026; the deal is live and warm but has not yet moved beyond a single mid-level evaluator.",
+      "items": [
+        {"change": "Opportunity created", "date": "2026-06-29"},
+        {"change": "Stage moved Initial Interest to Qualified", "date": "2026-06-29"},
+        {"change": "Amount corrected 15,000 to 150,000", "date": "2026-06-29"},
+        {"change": "Close date pushed 2026-12-29 to 2027-02-28", "date": "2026-06-29"},
+        {"change": "Type set to New Business; Division moved Zycus to New Markets", "date": "2026-06-29"},
+        {"change": "Introductory meeting held with Felicia Kakora and her direct report", "date": "2026-06-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No external S2P vendor is in an active bake-off as of 30 Jun 2026. The single strongest current threat is Eskom's own in-flight internal digital-procurement solution combined with status-quo inertia, because the enterprise procurement tender may already be closed and 'won't reopen the market' (Felicia, 30 Jun 2026). SAP is the ERP incumbent and integration anchor, not a competing bid, and ranks low. Zycus's path is a bottom-up wedge: position as the complementary supplier-master-data and Merlin AI layer that plugs into the existing solution rather than displacing it.",
+      "competitors": [
+        {
+          "name": "Eskom in-flight internal digital-procurement solution",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "we are looking at the digital solution already via our internal procurement department, we're already farfetched in that process",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)",
+          "how_we_win": "Own the supplier-master-data and post-onboarding compliance-maintenance gap the enterprise rollout does not cover, and offer Zycus as the plug-in that completes it via the native SAP connector."
+        },
+        {
+          "name": "Status quo / do-nothing (legacy end-of-life supplier system)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "the system itself has come to the end of its life cycle, a lot of what we currently are doing is very manually labored",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)",
+          "how_we_win": "Quantify the manual-labour and compliance-risk cost of keeping the legacy system and tie a fix to a forcing event so inaction is no longer the cheapest option; do-nothing here means Eskom keeps maintaining suppliers manually and never signs."
+        },
+        {
+          "name": "SAP (ERP incumbent)",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "incumbent",
+          "quote": "ERP will be SAP... Only one ERP, right? That's correct.",
+          "date": "2026-06-30",
+          "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)",
+          "how_we_win": "Lead with the native SAP connector so SAP is an integration asset, not a competing bid, and remove integration risk as a buying objection."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Eskom's stated need is a bottom-up supplier-master-data and compliance-maintenance capability that plugs into an existing enterprise solution and integrates with SAP; Zycus fits that wedge well but must prove it does not require displacing the in-flight rollout.",
+      "items": [
+        {"criterion": "Supplier master-data maintenance and ongoing regulatory compliance (COIDA, B-BBEE, tax)", "position": "aligned", "quote": "where does the maintenance happen? because that's where we now as vendor management will then manage and push for compliance on the suppliers that are already on our database", "date": "2026-06-30", "source": "Avoma intro call 30 Jun 2026 (Inno, Felicia's direct report)"},
+        {"criterion": "Native integration with SAP ERP", "position": "aligned", "quote": "we have a native connector with SAP, so that's fine", "date": "2026-06-30", "source": "Avoma intro call 30 Jun 2026 (Brice / Felicia)"},
+        {"criterion": "Complements rather than replaces the in-flight enterprise procurement solution", "position": "partially aligned", "quote": "what are they that's still out there that we can enhance over and above the solution", "date": "2026-06-30", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"criterion": "Enterprise-wide S2P scope authority", "position": "exposed", "quote": "I cannot make inferences to such a solution because I'm only representing a very small section of the value chain", "date": "2026-06-30", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Open an enterprise procurement and supply chain conversation with the custodian, not just master data", "said_by": "Felicia Kakora", "date": "2026-06-30", "addressed": false, "quote": "I would however at some point would like to come back... from a procurement and supply chain management perspective... so that we look at a holistic need", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Felicia the supplier-side and broader S2P documentation and demo videos to circulate internally", "who": "Zycus", "grounding_quote": "What we are going to do is to send you documentations and video demos for you to send that internally, not only on the supplier side, but on the other side", "date": "2026-06-30", "due": "2026-07-13", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Brice)"},
+          {"deliverable": "Deliver the deeper supplier-onboarding, risk, and compliance-maintenance demo to Felicia's master-data team", "who": "Zycus", "grounding_quote": "I can make a demo of that of course, but due to the fact that we don't have a lot of time, we can do that in another stage", "date": "2026-06-30", "due": "2026-07-22", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Brice)"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Introduce Zycus to Eskom's procurement and supply chain custodian to open enterprise scope", "who": "Buyer", "grounding_quote": "that will be a whole different conversation with the custodian of procurement and supply chain management", "date": "2026-06-30", "due": "2026-07-20", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer", "quote": "that will be a whole different conversation with the custodian of procurement and supply chain management", "status": "not addressed", "date": "2026-06-30", "gap_type": "knowledge", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"area": "Decision process and evaluation stages", "quote": "I doubt eCompliance is gonna go back and say okay we're gonna reopen the market", "status": "not addressed", "date": "2026-06-30", "gap_type": "knowledge", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"area": "Quantified metrics / value case", "quote": "a lot of what we currently are doing is very manually labored", "status": "not addressed", "date": "2026-06-30", "gap_type": "knowledge", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"area": "Second buyer stakeholder identity", "quote": "eInvoice reports is one of my direct reports in the supplier master data management", "status": "acknowledged", "date": "2026-06-30", "gap_type": "knowledge", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora); the direct report is a transcript-only name with no matching Salesforce contact, so not asserted as a named stakeholder"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Fresh, warm early-stage deal whose win depends on getting off a single no-authority contact and onto the enterprise procurement custodian while owning the supplier-master-data wedge.",
+      "flags": [
+        "Single-threaded to one mid-level evaluator with no buying authority; use Felicia to introduce the procurement and supply chain custodian and multi-thread into SAP/IT.",
+        "The real contest is Eskom's in-flight internal digital-procurement rollout plus status quo, not an external vendor; find and own the master-data and compliance-maintenance gap that rollout leaves.",
+        "No quantified value case yet; turn the 'end-of-life, manually labored' pain into cost and compliance-risk numbers to justify $150k to a budget owner."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Felicia Kakora", "title": "Senior Manager: Master Data Management", "role": "Champion", "last_contact_date": "2026-06-30", "sentiment": "positive", "risk": "Warm and self-initiated but explicitly has no buying authority for enterprise S2P and controls only the supplier master-data section; advocacy to power is unproven.", "source": "SF OpportunityContactRole (Evaluator, primary) + Avoma intro call 30 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Felicia Kakora is a warm, self-initiated champion candidate who praised Zycus and wants to widen the conversation, but she has explicitly no buying authority and has not yet introduced anyone with power. She is developing, not secured.",
+      "champion": "Felicia Kakora",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora) + SF OpportunityContactRole (Evaluator, primary)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and Merlin Intake are in scope and were demoed front-and-centre in Microsoft Teams; Felicia engaged positively with the AI-guided supplier-onboarding flow but AI is not yet the decision driver at this section-level conversation.",
+      "score": "medium",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "No AIS field value was provided by Salesforce for this opportunity. On the 30 Jun 2026 call the buyer engaged warmly with the Merlin-in-Teams demo and reflected on AI's evolution making work easier, indicating curiosity rather than an active AI mandate.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker engaged; the only contact explicitly lacks authority and points to an unmapped procurement and supply chain custodian.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"category": "political", "detail": "Buyer scopes herself to a small section of the value chain and doubts the enterprise tender will reopen, so the full eight-module S2P opportunity may be structurally out of reach.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"category": "budget", "detail": "No quantified value case; a $150k full-suite scope is not yet justified to anyone who controls procurement budget.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"},
+        {"category": "integration", "detail": "Eskom's in-flight internal digital-procurement solution may already occupy the S2P footprint; Zycus must fit as a complementary layer rather than a rip-and-replace.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "Avoma intro call 30 Jun 2026 (Felicia Kakora)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "The deal is live and warm off a strong self-initiated intro call, but confidence is capped by a single no-authority thread and an unquantified case.",
+      "cooling": false,
+      "items": [
+        "Buyer self-initiated contact after the Smart Procurement event and called Zycus 'already looking promising' (30 Jun 2026).",
+        "Engagement is single-threaded to one mid-level evaluator with no budget authority (30 Jun 2026).",
+        "No next-meeting date, no economic buyer, and no quantified value case yet (30 Jun 2026)."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A fresh, warm South African utility deal built on real supplier master-data pain, but the only engaged contact has no authority to buy S2P and Eskom is already deep into its own internal procurement rollout, so the path to the win runs through reaching the procurement custodian.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Early but genuinely positive: Felicia Kakora sought Zycus out, called it 'already looking promising' and asked to widen the conversation beyond master data (Avoma, 30 Jun 2026)."},
+          {"tone": "warn", "text": "The only engaged contact told us she 'cannot make inferences to such a solution because I'm only representing a very small section of the value chain,' so no budget owner is in the room (Avoma, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Eskom is 'already farfetched' into an internal digital-procurement rollout it 'won't reopen the market' for, so the enterprise scope may be structurally closed (Avoma, 30 Jun 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Deal opened, qualified, and had a substantive introductory call all within 29 to 30 Jun 2026, and Zycus committed to send documentation and a deeper demo (Avoma, 30 Jun 2026)."},
+          {"tone": "warn", "text": "No next-meeting date was set and the customer named no timeline, so momentum depends on Zycus scheduling the follow-through (Avoma, 30 Jun 2026)."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Felicia agreed to circulate Zycus material internally and floated engaging the broader procurement custodian, a mild pull toward a wider evaluation (Avoma, 30 Jun 2026)."},
+          {"tone": "warn", "text": "Commitment stops at 'send us information'; no evaluation, budget, or decision process has been shared, and only one section-level stakeholder is engaged (Avoma, 30 Jun 2026)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded to a no-authority evaluator with the economic buyer unmapped, the classic early-stage power gap (Avoma, 30 Jun 2026)."},
+          {"tone": "warn", "text": "The primary threat is inertia plus Eskom's own in-flight solution: if the tender stays closed, Zycus is limited to a bottom-up master-data wedge (Avoma, 30 Jun 2026)."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": -0.5, "evidence": "Only a section-level manager and her direct report attended; no CPO/CIO/VP present (30 Jun 2026)."},
+        "single_thread": {"strength": -0.6, "evidence": "One engaged contact who explicitly lacks buying authority (30 Jun 2026)."}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Full eight-module Source-to-Pay suite ($150k)",
+      "to": "Full eight-module Source-to-Pay suite ($150k)",
+      "detail": "Deal scope is unchanged in Salesforce, but the engaged buyer scopes her interest to only the supplier master-data section while Zycus is pitching the full S2P suite; this is a positioning gap to watch, not a recorded scope reduction."
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "The real fight is Eskom's own in-flight internal procurement rollout, which it 'won't reopen the market' for, so winning means owning the supplier-master-data gap that rollout leaves rather than an external bake-off.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The 30 Jun introductory call landed well, with Felicia Kakora calling Zycus 'already looking promising' and inviting a broader procurement conversation, but no follow-up date was committed.", "tone": "pos"},
+      {"lens": "New stakeholder", "text": "Felicia's direct report in supplier master data joined and confirmed the post-onboarding compliance-maintenance pain, but sits within the same no-authority section and is engaged, not decision-making.", "tone": "neu"},
+      {"lens": "Commercials", "text": "No budget owner is engaged and the value case is unquantified, so the $150k full-suite scope is not yet justified to anyone who can fund it.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "medium", "evidence": "Felicia praised Zycus ('it's already looking promising, I must say') and agreed to circulate material internally, but closed on 'if there's information you will liaise with myself' rather than a Zycus-specific commercial next step (30 Jun 2026)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: legacy supplier system 'come to the end of its life cycle' and work is 'very manually labored,' with no cost, headcount, or savings figure stated (30 Jun 2026)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Ask Felicia to introduce Eskom's procurement and supply chain custodian.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Felicia said the enterprise platform is 'a whole different conversation with the custodian of procurement and supply chain management' (Avoma, 30 Jun 2026).", "trigger_date": "2026-06-30", "act_by": "2026-07-13", "expected_effect": "Maps the economic buyer and opens the enterprise S2P scope beyond master data."},
+        {"rank": 2, "action": "Confirm whether Eskom's in-flight digital-procurement tender is closed or can add a supplier-master-data module.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Felicia said Eskom is 'already farfetched in that process' and doubts the market will reopen (Avoma, 30 Jun 2026).", "trigger_date": "2026-06-30", "act_by": "2026-07-20", "expected_effect": "Sizes the real opportunity and avoids chasing a closed tender."},
+        {"rank": 3, "action": "Book the deeper supplier-onboarding and compliance-maintenance demo for Felicia's master-data team.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "The direct report asked 'where does the maintenance happen?' confirming the compliance-maintenance pain (Avoma, 30 Jun 2026).", "trigger_date": "2026-06-30", "act_by": "2026-07-22", "expected_effect": "Deepens the champion and proves fit on the buyer's core pain."},
+        {"rank": 4, "action": "Build a quantified value case for Eskom's manual supplier-maintenance and compliance effort.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer described an 'end of its life cycle' system where work is 'very manually labored' but gave no numbers (Avoma, 30 Jun 2026).", "trigger_date": "2026-06-30", "act_by": "2026-08-04", "expected_effect": "Creates a business case to justify budget to an economic buyer."},
+        {"rank": 5, "action": "Multi-thread beyond Felicia into Eskom's SAP/IT and supplier-risk owners.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Engagement is single-threaded to one section-level evaluator with no authority (Avoma, 30 Jun 2026).", "trigger_date": "2026-06-30", "act_by": "2026-08-05", "expected_effect": "Reduces single-thread risk and builds coverage toward the buying committee."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 29 Jun 2026 (opp created 29 Jun 2026)",
+    "avoma_attendees": ["Felicia Kakora"],
+    "gaps": [
+      "Economic buyer / procurement and supply chain custodian named by role only, not identified in Salesforce.",
+      "Decision process, evaluation stages, and timeline unknown.",
+      "No quantified metrics or value case yet.",
+      "Felicia's direct report on the 30 Jun call is a transcript-only name with no matching Salesforce contact, so not asserted as a named stakeholder."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

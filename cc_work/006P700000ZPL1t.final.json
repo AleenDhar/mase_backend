@@ -1,0 +1,729 @@
+{
+  "opp_id": "006P700000ZPL1t",
+  "hard": {
+    "opp_id": "006P700000ZPL1tQAH",
+    "opp_name": "MPM Rent - eProc&Intake",
+    "account_name": "PT. Mitra Pinasthika Mustika Rent (MPM Rent)",
+    "account_industry": "Electronics",
+    "billing_country": "Indonesia",
+    "owner_name": "George John",
+    "owner_title": null,
+    "manager_name": "Carl Kimball",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2026-12-31",
+    "days_to_close": 178,
+    "created_date": "2026-06-11T05:01:44.000+0000",
+    "qualified_date": "2026-06-30",
+    "last_activity_date": null,
+    "last_modified_date": "2026-07-03T08:10:20.000+0000",
+    "products": "iSource;iSupplier;eProcurement;Merlin;iRisk",
+    "next_step": "Initial meeting and Demo on 26th June with Pak Andianto and his team. Went well, impressed with the intake and how Bhasa Indonesia can be used for intake, Next steps to share high level pricing for internal approvals",
+    "ais_score": 7.3,
+    "ais_status": "Strong",
+    "ais_why": "Dimension\tScore (/10)\tAssessment\r\nAI Leadership Commitment\t6.5\tAI initiatives exist, but they're largely IT- and operations-focused rather than enterprise-wide.\r\nDigital Transformation Maturity\t7.5\tStrong digital transformation journey across MPM Group with modernization of core systems.\r\nProcurement Complexity\t8.0\tLarge fleet, maintenance, OEM, leasing, and services procurement create meaningful sourcing complexity.\r\nEnterprise Scale\t7.5\tLarge Indonesian enterprise, but below the scale of Fortune 500-type global organizations.\r\nLikelihood to Invest in AI Procurement\t6.8\tModerate. AI investment appears to prioritize operational efficiency before procurement transformation.\r\nOverall AIS\t7.3/10\tModerately attractive prospect",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZPL1tQAH/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "First demo on 26 June landed well on intake and Bahasa Indonesia, but the high-level pricing Pak Andianto needs for internal approvals has not gone out and there has been no buyer inbound in about 14 days, so an early deal is losing momentum before the budget owner is even mapped.",
+      "math": "Created 11 June 2026, qualified 30 June 2026, first demo 26 June 2026 (~10 days before the 6 July sweep). Close date 31 December 2026 is 178 days out, credible for an APAC enterprise cycle. This is not a date problem; it is a momentum problem: the promised pricing is undelivered and the opportunity-health flags on 30 June record no buyer inbound in 14 days, which is one stalled action plus thinning engagement, so the read is Slowing, not Close Date Risk.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "26 June 2026 demo went well; buyer impressed with intake and how Bahasa Indonesia can be used for intake (source: Next_Step__c, 26 June 2026).",
+        "Pak Andianto asked for high-level pricing to route through internal approvals, a Zycus-specific next step, but that pricing is not yet delivered (source: Next_Step__c, 26 June 2026).",
+        "No economic buyer or decision maker mapped; Pak Andianto needing internal approvals means he does not control the $150k decision himself (source: OpportunityContactRole empty; Next_Step__c, 26 June 2026).",
+        "Single-threaded: only Pak Andianto and his team are named; no senior sponsor engaged (source: Next_Step__c, 26 June 2026; opportunity contact roster empty).",
+        "No competitor named in any field, task, or call; sole-source vs quiet multi-vendor evaluation is unknown (source: Competitors__c blank).",
+        "Opportunity-health flags on 30 June note no inbound in 14 days and 10 days without outbound (source: SF tasks, 30 June 2026)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists in any source read this sweep. The 26 June demo focused on intake and Bahasa Indonesia request capture, which points to a qualitative pain around manual, English-only procurement request handling and user adoption, but no cost, cycle-time, headcount, error-rate, or savings figure has been stated (source: Next_Step__c, 26 June 2026). Quantifying the value case to justify the $150k and support the internal approval Pak Andianto referenced is the required move.",
+        "sources": [
+          "Next_Step__c, 26 June 2026"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. The only named contact, Pak Andianto, explicitly requested pricing 'for internal approvals', which shows he does not personally control the commercial decision on this $150k deal (source: Next_Step__c, 26 June 2026). There are no opportunity contact roles, so the approver (a CFO, CEO, or division head at MPM Rent) is entirely unmapped. Until the budget owner is identified and reached, pricing and ROI conversations cannot land with the person who signs, and the deal risks stalling at the procurement level.",
+        "sources": [
+          "Next_Step__c, 26 June 2026",
+          "OpportunityContactRole (empty)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Two criteria are visible from the demo feedback: intake/request-management capability and Bahasa Indonesia local-language support for user adoption, both of which impressed the buyer on 26 June (source: Next_Step__c, 26 June 2026). The product scope (iSource, iSupplier, eProcurement, Merlin, iRisk) implies a broader procurement-transformation evaluation, and the AIS read (7.3 Strong) signals AI appetite, but no formal RFI/RFP criteria, weighted scorecard, or structured evaluation has been documented (source: Products__c; AIS_Score__c 7.3). Confirming the full evaluation criteria and whether a formal comparison is running is the move.",
+        "sources": [
+          "Next_Step__c, 26 June 2026",
+          "Products__c",
+          "AIS_Score__c / AIS_Status__c"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer referenced 'internal approvals', confirming a multi-step internal process exists, but its steps, approvers, gates, and timeline are unknown (source: Next_Step__c, 26 June 2026). The activity trail this sweep is only procurement-led with no escalation to finance, legal, or senior stakeholders, and no buyer-stated decision date. Mapping the approval chain and the timeline before pricing goes out, so it does not disappear into an undefined approval loop, is the required next step.",
+        "sources": [
+          "Next_Step__c, 26 June 2026",
+          "SF field history, 11-30 June 2026"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced: no MSA, Order Form, SOW, procurement channel, InfoSec review, or ERP-integration scoping is mentioned in any source (source: no paper-process field or call evidence this sweep). The deal is still pre-commercial and awaiting pricing, so paper process is not yet a blocker, but it is entirely unmapped. Given the Indonesian geography, clarifying whether contracting runs direct or via a local entity/partner should happen before commercial negotiation begins.",
+        "sources": [
+          "No paper-process evidence found this sweep"
+        ]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Qualitative pain is confirmed but unquantified and without a named owner. The buyer was 'impressed with the intake and how Bhasa Indonesia can be used for intake' (source: Next_Step__c, 26 June 2026), which implies current-state pain around manual procurement request handling and low user adoption due to language. No cost of the pain (FTE hours, delay, error rate), pain owner, or compelling event (contract expiry, audit, growth mandate) has been articulated. Confirming and quantifying the pain, and naming its owner, is the move.",
+        "sources": [
+          "Next_Step__c, 26 June 2026"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Pak Andianto is a developing champion: he hosted the 26 June demo with his team, reacted positively to intake and Bahasa Indonesia, and pulled the deal forward by requesting pricing for internal approvals (source: Next_Step__c, 26 June 2026). What has developed is genuine product enthusiasm and an intent to advance internally; what is still missing is proof of advocacy (an introduction to the budget owner, an internal business case, urgency) and confirmation of his seniority and access, since no opportunity contact role records his title. Without exec sponsorship or a second thread, the deal is exposed if he is overruled or deprioritized.",
+        "sources": [
+          "Next_Step__c, 26 June 2026",
+          "SF field history, 30 June 2026"
+        ]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor is named in any field, task, next step, or call this sweep: Competitors__c is blank and no Avoma calls were matched (source: Competitors__c; Avoma opp+account+attendee-email pull returned 0). The competitive status is genuinely unknown, this could be a sole-source direct evaluation or a quiet multi-vendor process where rivals have not yet surfaced in our conversations. No competitor should be assumed. Confirming with Pak Andianto whether MPM Rent is comparing other vendors, so pricing and the wedge are positioned correctly, is the required move.",
+        "sources": [
+          "Competitors__c (blank)",
+          "Avoma discovery (0 calls matched)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Young deal created 11 June 2026, reassigned to George John on 23 June, moved Initial Interest to Qualified on 30 June, with a first demo on 26 June that landed well. The live pulse is a rep-side commitment (share pricing) that is outstanding while buyer inbound has gone quiet for ~14 days.",
+      "items": [
+        {
+          "change": "Opportunity created",
+          "date": "2026-06-11"
+        },
+        {
+          "change": "Owner reassigned to George John",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "First meeting and demo held; buyer impressed with intake and Bahasa Indonesia",
+          "date": "2026-06-26"
+        },
+        {
+          "change": "Stage advanced Initial Interest to Qualified; typed as New Business",
+          "date": "2026-06-30"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is documented from any source this sweep (Competitors__c blank, no calls matched). It is unknown whether this is a sole-source direct evaluation or a quiet multi-vendor process. The demo enthusiasm for intake and Bahasa Indonesia is a positive wedge, but with no competitive context the differentiation is unanchored; confirming the field with the buyer is the priority before pricing.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is early but positive on the two criteria the buyer surfaced at the demo: intake capability and Bahasa Indonesia support both landed well. The broader suite and AI story are in scope but not yet validated against a documented requirement set.",
+      "items": [
+        {
+          "criterion": "Intake / procurement request management",
+          "position": "aligned",
+          "quote": "impressed with the intake",
+          "date": "2026-06-26",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "criterion": "Bahasa Indonesia local-language support for user adoption",
+          "position": "aligned",
+          "quote": "how Bhasa Indonesia can be used for intake",
+          "date": "2026-06-26",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "criterion": "Full procurement suite (iSource, iSupplier, eProcurement, Merlin, iRisk)",
+          "position": "partially aligned",
+          "quote": "",
+          "date": "2026-06-26",
+          "source": "Products__c"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {
+          "requirement": "Share high-level pricing for MPM Rent's internal approvals",
+          "said_by": "Pak Andianto",
+          "date": "2026-06-26",
+          "addressed": false,
+          "quote": "Next steps to share high level pricing for internal approvals",
+          "source": "Next_Step__c, 26 June 2026"
+        }
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": []
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / approval authority",
+          "quote": "Next steps to share high level pricing for internal approvals",
+          "status": "not addressed",
+          "date": "2026-06-26",
+          "gap_type": "knowledge",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "area": "Competitive landscape (sole-source vs multi-vendor)",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Competitors__c (blank)"
+        },
+        {
+          "area": "Decision process and timeline",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-06-26",
+          "gap_type": "knowledge",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "area": "Quantified business case / metrics",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-06-26",
+          "gap_type": "knowledge",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "area": "No opportunity contact roles recorded",
+          "quote": "",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "hygiene",
+          "source": "OpportunityContactRole (empty)"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified $150k deal riding on one mid-level procurement contact and no competitive context. The win levers now are widening the thread to the budget owner, confirming who we are up against, and anchoring the AI intake value story.",
+      "flags": [
+        "Multi-thread past Pak Andianto to the budget owner before pricing hits an unknown approval chain.",
+        "Confirm with the buyer whether MPM Rent is sole-sourcing or comparing vendors, so pricing and the wedge are positioned right.",
+        "Anchor the value story on AI intake, Bahasa Indonesia, and Merlin (AIS 7.3 Strong) and tie it to a quantified benefit."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Pak Andianto",
+          "title": "Head of Procurement (named in Next Step; title unconfirmed, no contact role on record)",
+          "role": "Champion",
+          "last_contact_date": "2026-06-26",
+          "sentiment": "Positive; impressed with intake and Bahasa Indonesia; requested pricing for internal approvals",
+          "risk": "Mid-level; access to the economic buyer unconfirmed; sole point of contact, so the deal is exposed if he is overruled or deprioritized",
+          "source": "Next_Step__c, 26 June 2026"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "Pak Andianto is a developing champion. He hosted and reacted well to the 26 June demo and pushed the deal forward by asking for pricing for internal approvals, showing genuine product intent. What is still missing is demonstrated advocacy (an intro to the budget owner, an internal business case, urgency) and confirmation of his authority, since no contact role records his seniority. Without a second thread or exec sponsor, he is a single point of failure.",
+      "champion": "Pak Andianto",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Next_Step__c, 26 June 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is 7.3 Strong and the demo enthusiasm centered on AI-assisted intake and Bahasa Indonesia, so the AI story is landing at a surface level. Merlin is in scope but the deeper agentic / intake-to-order narrative has not yet been positioned to a senior audience; carrying it into the pricing/value conversation would raise positioning further.",
+      "score": "7.3",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 7.3 (Strong): strong digital-transformation maturity and procurement complexity, but AI investment currently prioritizes operational efficiency over procurement transformation (likelihood to invest in AI procurement 6.8). The 26 June demo confirmed appetite for AI-assisted intake and local-language capture, so the field read is corroborated, not over-rated.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "executive_alignment",
+          "detail": "Economic buyer unmapped; only a mid-level procurement contact engaged and no senior sponsor identified.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "category": "political",
+          "detail": "Single-threaded on Pak Andianto; no second contact to protect the deal if he is overruled.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-30",
+          "status": "open",
+          "source": "Opportunity-health tasks, 30 June 2026"
+        },
+        {
+          "category": "budget",
+          "detail": "$150k requires internal approval and the approver is unknown; pricing may stall in an undefined approval loop.",
+          "first_raised": "2026-06-26",
+          "date": "2026-06-26",
+          "status": "open",
+          "source": "Next_Step__c, 26 June 2026"
+        },
+        {
+          "category": "timeline",
+          "detail": "No buyer-stated decision date or compelling event; the 31 Dec close is our placeholder, not a buyer commitment.",
+          "first_raised": "2026-07-06",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "CloseDate (placeholder)"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: the demo landed 10 days ago but the promised pricing has not gone out and opportunity-health flags record no buyer inbound in 14 days and 10 days without outbound.",
+      "cooling": true,
+      "items": [
+        "No buyer inbound in 14 days (opportunity-health flag, 30 June 2026)",
+        "Promised high-level pricing not yet delivered (Next_Step__c, 26 June 2026)"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Send Pak Andianto the high-level pricing envelope he needs for internal approvals.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Buyer requested pricing for internal approvals at the 26 June demo; still undelivered",
+          "trigger_date": "2026-06-26",
+          "act_by": "2026-07-10",
+          "expected_effect": "Removes the stalled step, re-warms a cooling thread, and gives the champion something to take upward."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Pak Andianto to name the approver and walk you through the internal approval steps.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Buyer referenced internal approvals but the economic buyer and process are unmapped",
+          "trigger_date": "2026-06-26",
+          "act_by": "2026-07-13",
+          "expected_effect": "Maps the budget owner and approval chain so pricing lands with the person who signs."
+        },
+        {
+          "rank": 3,
+          "action": "Request an introduction to the budget owner or a senior procurement sponsor.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Single-threaded on one mid-level contact with no exec sponsor",
+          "trigger_date": "2026-06-30",
+          "act_by": "2026-07-20",
+          "expected_effect": "Adds a second thread and protects the deal against a single point of failure."
+        },
+        {
+          "rank": 4,
+          "action": "Confirm with the buyer whether MPM Rent is comparing other vendors or sourcing direct.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "No competitor named in any source; competitive context is blank",
+          "trigger_date": "2026-07-06",
+          "act_by": "2026-07-20",
+          "expected_effect": "Positions pricing and the intake/AI wedge against the real competitive picture."
+        },
+        {
+          "rank": 5,
+          "action": "Build a quantified intake-automation value case to justify the $150k for internal approval.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Pain confirmed qualitatively at the demo but no ROI or savings figure exists",
+          "trigger_date": "2026-06-26",
+          "act_by": "2026-08-05",
+          "expected_effect": "Gives the champion a business case that clears the internal approval faster than pricing alone."
+        }
+      ]
+    },
+    "critical_signals": [
+      {
+        "lens": "Last meeting",
+        "text": "The 26 June demo landed well: the buyer was impressed with intake and how Bahasa Indonesia can be used for request capture, and asked for pricing to take internally.",
+        "tone": "pos"
+      },
+      {
+        "lens": "Commercials",
+        "text": "High-level pricing was promised after the demo but has not been delivered, and it is the buyer's stated gate to internal approvals.",
+        "tone": "warn"
+      },
+      {
+        "lens": "New stakeholder",
+        "text": "Only Pak Andianto and his procurement team are engaged; the person who must approve the $150k has not been identified or met.",
+        "tone": "warn"
+      },
+      {
+        "lens": "Competition",
+        "text": "No rival has surfaced in any conversation or field, so it is unclear whether MPM Rent is buying sole-source or quietly comparing vendors.",
+        "tone": "neu"
+      }
+    ],
+    "deal_scores_evidence": {
+      "summary": "Early Qualified $150k intake and eProcurement play at MPM Rent: the 26 June demo landed on intake and Bahasa Indonesia, and the one thing between us and momentum is getting the promised pricing to Pak Andianto while we still have no mapped budget owner and no read on the competition.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "good",
+            "text": "Genuinely early but real: a first demo on 26 June landed well on intake and Bahasa Indonesia and Pak Andianto asked for pricing to take to internal approvals, though no budget owner is mapped and no competitor or decision timeline is known (source: Next_Step__c, 26 June 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "The economic buyer is unmapped: Pak Andianto needing pricing 'for internal approvals' means he does not control the $150k decision himself (source: Next_Step__c, 26 June 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "Single-threaded on one mid-level procurement contact with no senior sponsor; the deal is exposed if he is overruled (source: OpportunityContactRole empty; Next_Step__c, 26 June 2026)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "The deal advanced Initial Interest to Qualified on 30 June and reached a first demo on 26 June that the buyer received well (source: SF field history, 30 June 2026; Next_Step__c, 26 June 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "The promised high-level pricing has not gone out and opportunity-health flags record no buyer inbound in 14 days, so momentum is thinning (source: SF tasks, 30 June 2026)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "good",
+            "text": "Pak Andianto pulled the deal forward by asking for pricing to route through internal approvals, a Zycus-specific next step (source: Next_Step__c, 26 June 2026)."
+          },
+          {
+            "tone": "warn",
+            "text": "No buyer-stated decision date, no confirmed approval chain, and no compelling event; commitment so far is verbal product interest only (source: no decision-process evidence in any field or call)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "No competitor is named in any field, task, or call, so it is unknown whether this is sole-source or a quiet multi-vendor evaluation (source: Competitors__c blank)."
+          },
+          {
+            "tone": "warn",
+            "text": "No Avoma calls were matched this sweep and there are no opportunity contact roles, so structural evidence for this read is thin (source: Avoma opp+account+attendee-email pull returned 0; OpportunityContactRole empty)."
+          }
+        ]
+      },
+      "factors": {
+        "customer_requested_next_meeting": {
+          "strength": 0.3,
+          "evidence": "Buyer requested pricing for internal approvals, a pull toward the next step (Next_Step__c, 26 June 2026)."
+        },
+        "single_thread": {
+          "strength": -0.6,
+          "evidence": "Only Pak Andianto engaged; no economic buyer or second thread (Next_Step__c, 26 June 2026; contact roster empty)."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "medium",
+      "evidence": "Impressed with intake and Bahasa Indonesia and asked for pricing for internal approvals (26 June 2026), positive but not decisive and with no competitor comparison."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative pain around manual intake and local-language adoption confirmed at the 26 June demo, but no ROI, savings, or cycle-time figure stated."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 17.0,
+      "mom": 54.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 17.0,
+        "deal_momentum": 54.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 13.6,
+        "forecast_confidence": 2.3,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 17.0,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -3.0,
+        "ceiling": 30.0,
+        "momentum_adj": 2.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": 2.4,
+            "evidence": "preference strength +0.40 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": 1.4,
+            "evidence": "champion strength +0.30 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -2.2,
+            "evidence": "competitive strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": 0.9,
+            "evidence": "business case strength +0.30 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": 2.0,
+            "evidence": "momentum 54 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 54.0,
+        "pre_decay": 54.0,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "commercial_topics_entering",
+            "points": 4.8,
+            "evidence": "commercial topics entering (from call evidence)."
+          },
+          {
+            "factor": "customer_requested_next_meeting",
+            "points": 2.4,
+            "evidence": "Buyer requested pricing for internal approvals, a pull toward the next step (Next_Step__c, 26 June 2026)."
+          },
+          {
+            "factor": "customer_passivity",
+            "points": -3.2,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 13.6,
+        "contributions": [
+          {
+            "factor": "customer_passivity",
+            "points": 13.6,
+            "evidence": "Verdict 'Slowing' \u2014 momentum stalling."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 2.3,
+        "core": 2.3,
+        "coverage": 42.9,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 42.9,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity",
+          "forward_motion"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 17 is carried by preference strength +0.40 (weight 20); momentum 54 vs stage-expected 50. Offsetting it: differentiation strength -0.40 (weight 20).",
+        "deal_momentum": "Momentum 54 (roughly flat): commercial topics entering (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 14 is driven by Verdict 'Slowing' \u2014 momentum stalling. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 2 is anchored on the stage win (17), nudged by commitment 8 and momentum 54, and dragged by risk 14. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 3 of 7 evidence dimensions seen (engagement, stage integrity, forward motion). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "PT. Mitra Pinasthika Mustika Rent (MPM Rent) \u2014 Qualified \u00b7 $150K \u00b7 closes 31 Dec",
+        "intro": "Early Qualified $150k intake and eProcurement play at MPM Rent; the 26 June demo landed on intake and Bahasa Indonesia, and the one thing between us and momentum is getting the promised pricing to Pak Andianto while we still have no mapped budget owner and no read on the competition",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 17,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Genuinely early but real; a first demo on 26 June landed well on intake and Bahasa Indonesia and Pak Andianto asked for pricing to take to internal approvals, though no budget owner is mapped and no competitor or decision timeline is known (source; Next_Step__c, 26 June 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "The economic buyer is unmapped; Pak Andianto needing pricing 'for internal approvals' means he does not control the $150k decision himself (source; Next_Step__c, 26 June 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threaded on one mid-level procurement contact with no senior sponsor; the deal is exposed if he is overruled (source; OpportunityContactRole empty; Next_Step__c, 26 June 2026)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 54,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Lukewarm \u2014 some motion, but not strong.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "The deal advanced Initial Interest to Qualified on 30 June and reached a first demo on 26 June that the buyer received well (source; SF field history, 30 June 2026; Next_Step__c, 26 June 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "The promised high-level pricing has not gone out and opportunity-health flags record no buyer inbound in 14 days, so momentum is thinning (source; SF tasks, 30 June 2026)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 14,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "No competitor is named in any field, task, or call, so it is unknown whether this is sole-source or a quiet multi-vendor evaluation (source; Competitors__c blank)"
+              },
+              {
+                "tone": "warn",
+                "text": "No Avoma calls were matched this sweep and there are no opportunity contact roles, so structural evidence for this read is thin (source; Avoma opp+account+attendee-email pull returned 0; OpportunityContactRole empty)"
+              }
+            ],
+            "footer": "Competitive picture: No competitor is documented from any source this sweep (Competitors__c blank, no calls matched)."
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Pak Andianto pulled the deal forward by asking for pricing to route through internal approvals, a Zycus-specific next step (source; Next_Step__c, 26 June 2026)"
+              },
+              {
+                "tone": "warn",
+                "text": "No buyer-stated decision date, no confirmed approval chain, and no compelling event; commitment so far is verbal product interest only (source; no decision-process evidence in any field or call)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Send Pak Andianto the high-level pricing envelope he needs for internal approvals. (by 10 Jul)",
+              "Ask Pak Andianto to name the approver and walk you through the internal approval steps. (by 13 Jul)",
+              "Request an introduction to the budget owner or a senior procurement sponsor. (by 20 Jul)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Q1/Q2/Q3 fields, field history 11-30 June 2026, tasks last 120d, OpportunityContactRole (empty)",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls matched via opp, account, or attendee-email discovery this sweep; the only narrative evidence is Next_Step__c and field history.",
+      "No opportunity contact roles recorded, so no stakeholder titles or emails are grounded in Salesforce.",
+      "Economic buyer / approval authority unmapped.",
+      "Competitive landscape unknown (Competitors__c blank).",
+      "No decision timeline, process steps, or quantified business case documented."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:46"
+}

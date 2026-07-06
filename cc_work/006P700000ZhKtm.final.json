@@ -1,0 +1,720 @@
+{
+  "opp_id": "006P700000ZhKtm",
+  "hard": {
+    "opp_id": "006P700000ZhKtm",
+    "opp_name": "NZ Ministry of Defence_Merlin Intake + ERP",
+    "account_name": "New Zealand Ministry of Defence",
+    "account_industry": "Federal",
+    "billing_country": "New Zealand",
+    "owner_name": "Luke Dougherty",
+    "owner_title": null,
+    "manager_name": "Carl Kimball",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000.0,
+    "close_date": "2026-12-31",
+    "days_to_close": 178,
+    "created_date": "2026-06-18T04:24:52.000+0000",
+    "qualified_date": "2026-06-23",
+    "last_activity_date": "2026-06-25",
+    "last_modified_date": "2026-07-02T05:30:46.000+0000",
+    "products": "iContract;iSource;Merlin;Merlin Intake",
+    "next_step": "Per the email response from Ryan Challis (Director Procurement Excellence) the call with NZ Ministry of Defence is set for 23rd June 2026. They are evaluating for ERP and Merlin Intake modules from Zycus. Currently running on SAP Ariba & JAEGGER",
+    "ais_score": 7.0,
+    "ais_status": "Moderate",
+    "ais_why": "- Ryan Challis mentioned that they do not have any AI enablement.\r\n- They are kee on Merlin Intake.\r\n\r\nThe NZ Ministry of Defence has an ongoing focus on modernizing procurement while maintaining strict governance, security, and compliance requirements. Public sector organizations in New Zealand are increasingly exploring AI to improve procurement efficiency, supplier management, contract lifecycle management, spend visibility, and administrative productivity. Due to the Ministry's regulated environment, AI adoption is expected to be measured and governed rather than rapid. AI-powered Source-to-Pay (S2P) capabilities, such as intelligent intake, automated sourcing, contract analysis, and supplier risk management, are likely to be of interest where they meet security, transparency, and government procurement standards.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": null,
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZhKtm/view",
+    "owner_id": null,
+    "manager_name_source": "Owner.Manager.Name",
+    "owner_name_source": "Owner.Name",
+    "account_name_source": "Account.Name",
+    "stage_source": "StageName",
+    "amount_source": "Amount",
+    "close_date_source": "CloseDate",
+    "forecast_category_source": "ForecastCategoryName",
+    "products_source": "Products__c",
+    "next_step_source": "Next_Step__c",
+    "ais_score_source": "AIS_Score__c",
+    "ais_status_source": "AIS_Status__c",
+    "ais_why_source": "AIS_Why__c",
+    "created_date_source": "CreatedDate",
+    "last_modified_date_source": "LastModifiedDate",
+    "last_activity_date_source": "LastActivityDate",
+    "qualified_date_source": "Qualified_Submission_Date__c"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "At Risk",
+      "critical": false,
+      "headline": "Brand-new NZ Ministry of Defence deal (created 18 Jun, Qualified 23 Jun) with a distant 31 Dec close. One intro call held 22 Jun with Ryan Challis (Director Procurement Excellence), followed by a live email exchange through 25 Jun, so the buyer is responsive early. But the foundation is thin: single-threaded through one Director-level contact, no economic buyer mapped, no quantified business case, and Zycus must displace two entrenched incumbents (SAP Ariba + JAEGGER). At 18 days old with no discovery depth and no customer-named evaluation timeline, the deal needs multi-threading, EB identification, and a Merlin Intake ROI case in the next 30 days to justify the switch.",
+      "math": "Days to close: 178 (close 2026-12-31, today 2026-07-06). Age: 18 days since creation (2026-06-18). Time in Qualified: 13 days (qualified 2026-06-23) with no further stage progression. Last verified Salesforce activity: 2026-06-25 (11 days ago), an email exchange with Ryan Challis. Intro meeting held 2026-06-22; Next Step references a call set for 23 June 2026. No Avoma calls found for this opp, so MEDDPICC depth is Salesforce/activity-based only. Required pace: an enterprise government procurement displacing two incumbents typically runs 12-15 months; a 6-month close from Qualified would need Shortlisted within ~60 days and Vendor Selected by October, which is aggressive given zero discovery depth, single-threading, and no EB after 18 days. Forward slip risk: moderate. The close date is distant enough to absorb delay, but the weak early foundation makes 31 Dec optimistic unless corrective action lands in 30 days.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Single contact role: Ryan Challis (Director Procurement Excellence, Decision Maker, ryan.challis@nzdf.mil.nz). No champion, no Economic Buyer, no multi-threading. (source: SF OpportunityContactRole)",
+        "Displacing two incumbents: SAP Ariba and JAEGGER are the Ministry's current stack, per Next Step 23 June 2026. Zycus is the disruptor. (source: SF Next_Step__c)",
+        "Intro call held 22 June (event 'Zycus x NZ Ministry of Defence') and a live email exchange with Ryan through 25 June; deal moved to Qualified on 23 June. Buyer is responsive early. (source: SF event 2026-06-22, tasks 2026-06-23 to 2026-06-25, field history)",
+        "Ryan declined the 21-22 July Horizon Singapore event on 25 June, so no near-term face-to-face is booked and no customer-named evaluation timeline exists. (source: SF task 2026-06-25)",
+        "No quantified business case: no metrics, pain quantification, or ROI target captured in any Salesforce field or activity. (source: SF fields scan)",
+        "Products in scope: iContract, iSource, Merlin, Merlin Intake. Merlin Intake AI is the wedge neither incumbent is known for. (source: SF Products__c)",
+        "No Avoma calls found for this opp after opp+account+attendee-email discovery; evidence density is low. (source: Avoma discovery)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists yet. The Next Step (23 June 2026) states the Ministry is 'evaluating for ERP and Merlin Intake modules' but names no problem, cost, cycle-time, headcount, or compliance-risk figure, and no Salesforce field (Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c, Compelling_Event__c) carries a metric. The AIS Why note records only that the Ministry has 'no AI enablement' and is keen on Merlin Intake, which is appetite, not a quantified outcome. Without a defensible ROI case (intake cycle-time reduction, procurement headcount efficiency, or compliance auditability gain), the incumbents can retain the business on inertia. The move is to run a Merlin Intake discovery / ROI scoping session with Ryan Challis and the operational procurement leads in the next 30 days to quantify the pain and the switching value.",
+        "sources": [
+          "SF Next_Step__c (23 June 2026)",
+          "SF AIS_Why__c",
+          "SF fields scan: Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c / Compelling_Event__c null"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped. The only contact role is Ryan Challis (Director Procurement Excellence), tagged Decision Maker, and no Salesforce field (X10a_Sponsor__c, Who_will_approve_budget__c, Executive_Sponsor_Identified__c) or activity names who controls the budget. In a New Zealand government defence procurement of this size, budget authority almost certainly sits above a Director of Procurement Excellence, likely a senior finance or commercial executive within Defence Commercial Services, but the evidence does not name that person, so we cannot assert one. The immediate move is to ask Ryan to introduce the budget owner and the ERP/IT lead so the economic buyer is identified and engaged before commercials.",
+        "sources": [
+          "SF OpportunityContactRole (Ryan Challis, Decision Maker only)",
+          "SF fields scan: X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c null"
+        ]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The evaluation criteria are not yet documented. The Next Step (23 June) tells us the Ministry is doing a 'technology review and market scan' (per Luke Dougherty's 23 June email) and is evaluating ERP and Merlin Intake, but no Business_Requirements__c, Top_Challenges_Priorities__c, or AI_Needs_in_RFP_Rating__c content and no call transcript captures what the Ministry will actually score vendors on. Given a regulated public-sector buyer, criteria will likely centre on security, governance, government-procurement compliance, and integration with the existing SAP Ariba / JAEGGER stack, but that is inferred, not confirmed. The move is to surface the written requirements or RFP criteria from Ryan on the next call so positioning is targeted rather than generic.",
+        "sources": [
+          "SF task 2026-06-23 (email: 'technology review and market scan')",
+          "SF Next_Step__c (23 June 2026)",
+          "SF fields scan: Business_Requirements__c / Top_Challenges_Priorities__c null"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buying and approval process is unknown this early. We have an intro meeting on 22 June and email coordination through 25 June, but no evidence of who else sits on the evaluation, how vendors get shortlisted, or what approvals a purchase needs (What_is_the_decision_process__c, Purchase_approvals_Required_from__c, Multiple_approvals__c all silent). A defence-sector S2P purchase will run a governed, multi-approval process, but the specific steps and stakeholders are not captured. The move is to map the process explicitly on the next conversation: who evaluates, who shortlists, who signs off, and against what timeline.",
+        "sources": [
+          "SF event 2026-06-22",
+          "SF tasks 2026-06-23 to 2026-06-25",
+          "SF fields scan: What_is_the_decision_process__c / Purchase_approvals_Required_from__c null"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are not in view at Qualified stage and no forcing function is captured (Current_Contract_Expiration__c is not populated, so we do not know when the SAP Ariba or JAEGGER agreements lapse). For a New Zealand government defence buyer expect an all-of-government procurement channel, security/InfoSec review, and standard public-sector contracting terms once a vendor is selected, but none of this is confirmed. The move that creates visibility is to ask Ryan whether the current-stack contracts have a renewal or expiry date that would act as a compelling event, and what procurement route a new S2P purchase would follow.",
+        "sources": [
+          "SF fields scan: Current_Contract_Expiration__c / What_is_the_decision_process__c null",
+          "SF Next_Step__c (23 June 2026)"
+        ]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "The specific operational or financial pain is not documented. The Next Step names the current stack (SAP Ariba + JAEGGER) and the modules under evaluation, and the AIS note records 'no AI enablement' plus interest in Merlin Intake, which hints the pain is around manual procurement intake and the absence of AI-assisted workflows, but no field (Pain_points_in_the_current_solution__c, Customer_Business_Problem__c, What_if_this_is_not_done__c) and no call captures what is broken, slow, or costly. The pain owner is presumably Ryan Challis's procurement excellence function, but this is inferred. The move is to run a problem-validation discovery in the next 14-30 days to name and quantify the pain driving the market scan.",
+        "sources": [
+          "SF AIS_Why__c ('no AI enablement', 'keen on Merlin Intake')",
+          "SF Next_Step__c (23 June 2026)",
+          "SF fields scan: Pain_points_in_the_current_solution__c / Customer_Business_Problem__c null"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. Ryan Challis (Director Procurement Excellence) is the single contact and is mapped as Decision Maker, and his engagement so far is operational coordination, responding to Luke Dougherty's intro emails and scheduling the call, not advocacy: there is no evidence he is internally selling Zycus, introducing other stakeholders, or pushing back on the incumbents on our behalf. He also declined the Horizon Singapore event on 25 June, so engagement is polite but light. The deal is single-threaded through him; if he stalls or is overruled, it is exposed. The move is to test his advocacy in the next 14 days by asking him to introduce the economic buyer, the ERP/IT lead, and the operational Merlin Intake users, and to gauge who internally is pushing for change versus defending SAP Ariba and JAEGGER.",
+        "sources": [
+          "SF OpportunityContactRole (Ryan Challis, Decision Maker, no Champion role)",
+          "SF task 2026-06-25 (declined Horizon event)",
+          "SF tasks 2026-06-23 (operational coordination)"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "Zycus is displacing two entrenched incumbents. The Next Step (23 June 2026) states the Ministry is 'currently running on SAP Ariba & JAEGGER,' so both are the status quo rather than outside challengers. SAP Ariba is a globally dominant procure-to-pay platform with deep ERP integration and a strong government reference base; JAEGGER (JAGGAER) is entrenched in the Ministry's stack, suggesting a sourcing or supplier-management footprint. Both carry the advantages of existing adoption, integration, known pricing, and organisational inertia, and the biggest current threat is the buyer doing nothing and staying on the incumbent stack. Zycus's wedge is Merlin Intake AI: if the pain is manual procurement intake and the absence of AI enablement (per the AIS note), Merlin Intake is a differentiated capability neither incumbent is known for. The move is to make Merlin Intake the centrepiece of the next demo and quantify its intake-cycle and headcount savings, and to clarify why the Ministry runs BOTH Ariba and JAEGGER so we know which system(s) we displace or integrate with.",
+        "sources": [
+          "SF Next_Step__c (23 June 2026): 'Currently running on SAP Ariba & JAEGGER'",
+          "SF Products__c: Merlin, Merlin Intake (the AI wedge)",
+          "SF AIS_Why__c: 'no AI enablement'"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "Brand-new deal with a clean early trail: created 18 Jun by Rounak Handa, reassigned to Luke Dougherty and moved Initial Interest -> Qualified on 23 Jun. Intro meeting held 22 Jun, followed by a two-way email exchange with Ryan Challis through 25 Jun (last activity). No post-intro stage movement or next meeting booked since. No Avoma calls on record.",
+      "items": [
+        {
+          "change": "Opportunity created (Division set to New Markets)",
+          "date": "2026-06-18"
+        },
+        {
+          "change": "Intro meeting held: 'Zycus x NZ Ministry of Defence'",
+          "date": "2026-06-22"
+        },
+        {
+          "change": "Stage moved Initial Interest -> Qualified; owner set to Luke Dougherty",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "Follow-up email exchange with Ryan Challis; Horizon Singapore event invite sent",
+          "date": "2026-06-23"
+        },
+        {
+          "change": "Ryan Challis declined the 21-22 July Horizon Singapore event",
+          "date": "2026-06-25"
+        }
+      ]
+    },
+    "competitive_position": {
+      "summary": "Two entrenched incumbents, both status quo per the 23 June Next Step: SAP Ariba (global procure-to-pay leader, deep ERP integration, strong government footprint) and JAEGGER (JAGGAER, embedded in the Ministry's current sourcing/supplier stack). Neither is an outside challenger; the strongest current threat is inertia, the Ministry staying on its existing stack rather than absorbing the switching cost. Zycus is the disruptor and the wedge is Merlin Intake AI, a capability neither incumbent is known for, against a buyer that explicitly has 'no AI enablement' today. No RFP shortlist, competitor field, or call yet reveals how the Ministry perceives Zycus versus the incumbents, so competitive intelligence beyond the named current stack is a gap.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "incumbent",
+          "quote": "Currently running on SAP Ariba & JAEGGER",
+          "date": "2026-06-23",
+          "source": "SF Next_Step__c (23 June 2026)",
+          "how_we_win": "Lead with Merlin Intake AI-assisted procurement intake, a capability Ariba does not natively offer; quantify intake cycle-time and headcount savings for a buyer with no AI enablement today."
+        },
+        {
+          "name": "JAEGGER",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "Currently running on SAP Ariba & JAEGGER",
+          "date": "2026-06-23",
+          "source": "SF Next_Step__c (23 June 2026)",
+          "how_we_win": "Clarify what JAEGGER covers in the Ministry's stack, then position Zycus S2P plus Merlin as the unified AI-enabled replacement rather than another point tool alongside it."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Too early to confirm fit against documented criteria: the Ministry is running a technology review and market scan and has named ERP and Merlin Intake as the modules of interest, but no written requirements or scoring criteria are on record. Inferred expectations for a regulated defence buyer centre on security, governance, and government-procurement compliance.",
+      "items": [
+        {
+          "criterion": "Merlin Intake / AI-enabled procurement intake",
+          "position": "partially aligned",
+          "quote": "They are keen on Merlin Intake",
+          "date": "2026-06-23",
+          "source": "SF AIS_Why__c / Products__c"
+        },
+        {
+          "criterion": "Security, governance and government-procurement compliance (inferred)",
+          "position": "exposed",
+          "quote": "",
+          "date": "2026-06-23",
+          "source": "SF Account.Industry (Federal), inference"
+        }
+      ]
+    },
+    "explicit_requirements": {
+      "items": []
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": []
+      },
+      "buyer_dependent": {
+        "items": [
+          {
+            "deliverable": "Ryan Challis to introduce the budget owner and ERP/IT lead so the deal is multi-threaded",
+            "who": "Buyer",
+            "grounding_quote": "Currently running on SAP Ariba & JAEGGER; evaluating for ERP and Merlin Intake modules",
+            "date": "2026-06-23",
+            "due": null,
+            "status": "open",
+            "source": "SF Next_Step__c (23 June 2026), SF OpportunityContactRole (single contact)"
+          }
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {
+          "area": "Economic buyer / budget authority",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole (Ryan Challis, Decision Maker only)"
+        },
+        {
+          "area": "Champion",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF OpportunityContactRole / activity scan"
+        },
+        {
+          "area": "Quantified pain / business case",
+          "quote": "",
+          "status": "not addressed",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "SF fields scan"
+        },
+        {
+          "area": "No Avoma calls found for this opp (low evidence density)",
+          "quote": "no Avoma calls found for this opp",
+          "status": "acknowledged",
+          "date": "2026-07-06",
+          "gap_type": "knowledge",
+          "source": "Avoma opp+account+attendee-email discovery"
+        }
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage, single-threaded government deal displacing two incumbents. The highest-leverage levers now are breaking single-thread to the budget owner, quantifying the Merlin Intake ROI wedge, and pinning down the evaluation criteria and timeline before the market scan narrows without us.",
+      "flags": [
+        "Break single-thread: the deal runs entirely through Ryan Challis; get an intro to the economic buyer and the ERP/IT lead before commercials.",
+        "Quantify the Merlin Intake AI wedge vs SAP Ariba and JAEGGER; a buyer with 'no AI enablement' needs an intake cycle-time and headcount ROI case.",
+        "Pin down the evaluation criteria and a customer-named timeline while the technology review is open, so positioning is targeted not generic."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Ryan Challis",
+          "_source": "sfdc_contact_role",
+          "title": "Director Procurement Excellence",
+          "email": "ryan.challis@nzdf.mil.nz",
+          "role": "Decision Maker",
+          "risk": "Single point of contact; responsive on email but engagement is operational coordination, not advocacy, and he declined the 21-22 Jul Horizon event. If he stalls or is overruled, the deal is exposed.",
+          "sentiment": "neutral",
+          "last_contact_date": "2026-06-25",
+          "_matched_ai": true
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. Ryan Challis is the sole contact and Decision Maker, but his engagement is operational coordination (responding to intro emails, scheduling the call) rather than advocacy, and he declined the Horizon Singapore event on 25 June. There is no evidence he is internally selling Zycus or has introduced other stakeholders. For a government procurement displacing two incumbents, a champion with senior access and political capital is required to navigate the evaluation and secure an economic-buyer sponsor. The deal is single-threaded and must either develop Ryan into a champion or find a senior advocate.",
+      "champion": "Ryan Challis",
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (Ryan Challis, Decision Maker); SF tasks 2026-06-23 to 2026-06-25 (operational coordination, event declined)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and Merlin Intake are in scope and the AIS note flags the buyer has 'no AI enablement' today and is 'keen on Merlin Intake', so the AI appetite is real and the wedge is clear, but the agentic Merlin / intake-automation narrative has not yet been put in front of the buyer with a quantified case. Under-positioned until a Merlin Intake demo and ROI story land.",
+      "score": "7.0 (Moderate)",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 7.0 / Moderate. AIS Why records the Ministry has no AI enablement today but is keen on Merlin Intake, indicating genuine curiosity that a public-sector, governance-heavy buyer will adopt in a measured, governed way rather than rapidly. No calls to corroborate under/over-rating.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {
+          "category": "political",
+          "detail": "Single-threaded through one Director-level contact (Ryan Challis); no access to power and no other stakeholder engaged.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF OpportunityContactRole"
+        },
+        {
+          "category": "budget",
+          "detail": "Economic buyer / budget owner unmapped; no field or activity names who approves spend.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF fields scan / OpportunityContactRole"
+        },
+        {
+          "category": "change_management",
+          "detail": "Displacing two entrenched incumbents (SAP Ariba + JAEGGER) with no quantified ROI case; status-quo inertia favours the incumbents.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF Next_Step__c (23 June 2026)"
+        },
+        {
+          "category": "timeline",
+          "detail": "31 Dec 2026 close on a 12-15 month government procurement cycle, from Qualified with no discovery depth and no customer-named timeline; date is optimistic.",
+          "first_raised": "2026-06-23",
+          "date": "2026-07-06",
+          "status": "open",
+          "source": "SF CloseDate / StageName"
+        }
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Responsive but light and early: intro call 22 Jun, email exchange through 25 Jun, then no booked next step and the Horizon event declined. Not cold, but thin and single-threaded.",
+      "cooling": false,
+      "items": [
+        "Intro meeting held 22 Jun and two-way email through 25 Jun (buyer responsive early).",
+        "Horizon Singapore event declined 25 Jun; no near-term face-to-face booked.",
+        "No customer-named evaluation timeline and no post-intro next meeting on record."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Ask Ryan Challis for the market-scan timeline and written evaluation criteria on a follow-up call.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Intro call held 22 Jun and email exchange through 25 Jun, but no criteria, timeline, or next meeting captured.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-13",
+          "expected_effect": "Converts a polite intro into a qualified opportunity with a known decision timeline and criteria to position against."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Ryan to introduce the budget owner and ERP/IT lead to break single-thread.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Sole contact is Ryan Challis (Decision Maker); economic buyer unmapped and no multi-threading.",
+          "trigger_date": "2026-06-23",
+          "act_by": "2026-07-20",
+          "expected_effect": "Maps the economic buyer and widens the footprint so the deal is not exposed to one contact."
+        },
+        {
+          "rank": 3,
+          "action": "Run a Merlin Intake discovery and ROI scoping session to quantify the pain vs SAP Ariba and JAEGGER.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Buyer has 'no AI enablement' and is keen on Merlin Intake, but no quantified business case exists and two incumbents are in place.",
+          "trigger_date": "2026-06-23",
+          "act_by": "2026-08-03",
+          "expected_effect": "Builds the differentiated AI wedge and ROI case needed to justify displacing the incumbent stack and create urgency."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Brand-new NZ Ministry of Defence deal (Qualified 23 Jun) after one intro call with Ryan Challis: the buyer is responsive but single-threaded, with no economic buyer, no quantified case, and two incumbents (SAP Ariba + JAEGGER) to displace. The Merlin Intake AI wedge against a buyer with 'no AI enablement' is the one real lever, and it has not yet been put in front of them.",
+      "ai_reasons": {
+        "win_position": [
+          {
+            "tone": "warn",
+            "text": "The deal stands early and thin: 18 days old, one intro call on 22 Jun with Ryan Challis (Director Procurement Excellence), evaluating ERP and Merlin Intake, but no economic buyer, champion, or quantified pain yet established (source: SF OpportunityContactRole, event 22 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Single-threaded through one Director-level contact with no access to the budget owner or ERP/IT lead mapped, so the deal is exposed if Ryan stalls or is overruled (source: SF OpportunityContactRole, one contact only)."
+          },
+          {
+            "tone": "warn",
+            "text": "Zycus must displace two entrenched incumbents, SAP Ariba and JAEGGER, with no differentiation or ROI case captured yet, so status-quo inertia currently favours the incumbents (source: SF Next_Step__c, 23 Jun)."
+          },
+          {
+            "tone": "good",
+            "text": "The wedge is real: the buyer has 'no AI enablement' today and is keen on Merlin Intake, a capability neither incumbent is known for (source: SF AIS_Why__c, Products__c, 23 Jun)."
+          }
+        ],
+        "deal_momentum": [
+          {
+            "tone": "good",
+            "text": "Fresh engagement: intro call held 22 Jun and a live email exchange with Ryan through 25 Jun, with the deal moved to Qualified on 23 Jun (source: SF event 22 Jun, tasks 23-25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Ryan declined the 21-22 Jul Horizon Singapore event on 25 Jun, so no near-term face-to-face is booked and no customer-named evaluation timeline exists (source: SF task 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "No post-call summary, next meeting, or stage movement is recorded since 25 Jun, so momentum past the intro is unproven (source: SF LastActivityDate 25 Jun)."
+          }
+        ],
+        "customer_commitment": [
+          {
+            "tone": "warn",
+            "text": "Commitment is minimal: the Ministry is running a 'technology review and market scan' and only agreed to an intro, not a Zycus-specific next step (source: SF task 23 Jun email)."
+          },
+          {
+            "tone": "warn",
+            "text": "No business case, budget, decision process, or timeline has been shared, and the buyer has asked for nothing specific (source: SF fields scan, Next_Step__c 23 Jun)."
+          }
+        ],
+        "deal_risk": [
+          {
+            "tone": "warn",
+            "text": "Economic buyer unmapped and no champion: Ryan is the sole Decision Maker contact with no evidence of internal advocacy and he declined the Horizon event (source: SF OpportunityContactRole, task 25 Jun)."
+          },
+          {
+            "tone": "warn",
+            "text": "Two incumbents in place (SAP Ariba + JAEGGER) and a distant 31 Dec close on a 12-15 month government procurement cycle make the forecast date optimistic (source: SF Next_Step__c 23 Jun, CloseDate)."
+          }
+        ]
+      },
+      "factors": {
+        "seniority_rising": {
+          "strength": -0.5,
+          "evidence": "Only a Director-level contact engaged; no CPO/CFO/CIO or budget owner on any interaction (SF OpportunityContactRole)."
+        },
+        "customer_commitment": {
+          "strength": -0.6,
+          "evidence": "Buyer is market-scanning and agreed only to an intro; no Zycus-specific next step or timeline (SF task 23 Jun, Next_Step__c)."
+        },
+        "single_thread": {
+          "strength": -0.7,
+          "evidence": "One contact (Ryan Challis) across every interaction; no multi-threading (SF OpportunityContactRole)."
+        }
+      }
+    },
+    "customer_preference": {
+      "level": "none",
+      "evidence": "Ministry is running a 'technology review and market scan' and agreed only to an intro; no Zycus-specific lean, praise, or comparison against the incumbents (SF task 23 Jun email, Next_Step__c 23 Jun)."
+    },
+    "business_case": {
+      "status": "gap",
+      "evidence": "No ROI, savings, cycle-time, or compliance impact discussed or captured in any field or activity; AIS note records appetite for Merlin Intake but no quantified outcome (SF fields scan, AIS_Why__c)."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {
+      "needed": false,
+      "severity": null,
+      "needs_action": false,
+      "reasons": [],
+      "win": 0.0,
+      "mom": 47.0,
+      "source": "sweep",
+      "generated_at": "2026-07-06"
+    },
+    "deal_scores": {
+      "schema_version": 1,
+      "headline": {
+        "win_position": 0.0,
+        "deal_momentum": 47.0,
+        "customer_commitment": 8.0,
+        "deal_risk": 16.8,
+        "forecast_confidence": 0.0,
+        "read": "Early Read"
+      },
+      "win_position": {
+        "score": 0.0,
+        "baseline": 18.0,
+        "anchor": 18.0,
+        "lift": -16.7,
+        "ceiling": 30.0,
+        "momentum_adj": -3.0,
+        "scope_adj": 0.0,
+        "contributions": [
+          {
+            "factor": "differentiation",
+            "points": -2.4,
+            "evidence": "differentiation strength -0.40 (weight 20)"
+          },
+          {
+            "factor": "preference",
+            "points": -3.0,
+            "evidence": "preference strength -0.50 (weight 20)"
+          },
+          {
+            "factor": "champion",
+            "points": -2.2,
+            "evidence": "champion strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "exec_access",
+            "points": -2.2,
+            "evidence": "exec access strength -0.50 (weight 15)"
+          },
+          {
+            "factor": "competitive",
+            "points": -4.5,
+            "evidence": "competitive strength -1.00 (weight 15)"
+          },
+          {
+            "factor": "business_case",
+            "points": -1.5,
+            "evidence": "business case strength -0.50 (weight 10)"
+          },
+          {
+            "factor": "commercial",
+            "points": -0.8,
+            "evidence": "commercial strength -0.50 (weight 5)"
+          },
+          {
+            "factor": "momentum_adj",
+            "points": -3.0,
+            "evidence": "momentum 47 vs stage-expected 50"
+          }
+        ]
+      },
+      "deal_momentum": {
+        "score": 47.0,
+        "pre_decay": 47.0,
+        "decay_note": null,
+        "contributions": [
+          {
+            "factor": "generic_demo_only",
+            "points": -3.0,
+            "evidence": "generic demo only (from call evidence)."
+          }
+        ]
+      },
+      "customer_commitment": {
+        "score": 8.0,
+        "contributions": []
+      },
+      "deal_risk": {
+        "score": 16.8,
+        "contributions": [
+          {
+            "factor": "low_buyer_intent",
+            "points": 16.8,
+            "evidence": "Verdict 'At Risk' \u2014 weak forward intent."
+          }
+        ]
+      },
+      "forecast_confidence": {
+        "score": 0.0,
+        "core": 0.0,
+        "coverage": 28.6,
+        "coverage_flag": "partial"
+      },
+      "evidence_coverage": {
+        "score": 28.6,
+        "label": "Early Read",
+        "dimensions_read": [
+          "engagement",
+          "stage_integrity"
+        ],
+        "dimensions_total": 7,
+        "recency_factor": 1.0
+      },
+      "commentary": {
+        "win_position": "Win 0 reflects a weak position: competitive strength -1.00 (weight 15). Offsetting it: competitive strength -1.00 (weight 15).",
+        "deal_momentum": "Momentum 47 (roughly flat): generic demo only (from call evidence). Silence alone was not treated as backward motion.",
+        "customer_commitment": "Commitment sits near the earned-from-zero floor: little observable customer investment surfaced. Commitment is earned, so a low value is honest, not a penalty.",
+        "deal_risk": "Risk 17 is driven by Verdict 'At Risk' \u2014 weak forward intent. Only observed negatives count, so these are real warning signs, not gaps.",
+        "forecast_confidence": "Forecast confidence 0 is anchored on the stage win (0), nudged by commitment 8 and momentum 47, and dragged by risk 17. Read is Early Read \u2014 a confidence flag (we know less), not a haircut on the score.",
+        "evidence_coverage": "Early Read: 2 of 7 evidence dimensions seen (engagement, stage integrity). It labels how much of the picture we have, never the primary scores."
+      },
+      "factor_source": "hybrid",
+      "cro_panel": {
+        "pinned": false,
+        "generated": true,
+        "schema": 1,
+        "header": "New Zealand Ministry of Defence \u2014 Qualified \u00b7 $200K \u00b7 closes 31 Dec",
+        "intro": "Brand-new NZ Ministry of Defence deal (Qualified 23 Jun) after one intro call with Ryan Challis; the buyer is responsive but single-threaded, with no economic buyer, no quantified case, and two incumbents (SAP Ariba + JAEGGER) to displace.; The Merlin Intake AI wedge against a buyer with 'no AI enablement' is the one real lever, and it has not yet been put in front of them",
+        "blocks": [
+          {
+            "kind": "score",
+            "key": "win_position",
+            "score": 0,
+            "title": "Zycus win position",
+            "sub": "can we win it?",
+            "read": "We're well behind \u2014 this one is cold.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "The deal stands early and thin; 18 days old, one intro call on 22 Jun with Ryan Challis (Director Procurement Excellence), evaluating ERP and Merlin Intake, but no economic buyer, champion, or quantified pain yet established (source; SF OpportunityContactRole, event 22 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Single-threaded through one Director-level contact with no access to the budget owner or ERP/IT lead mapped, so the deal is exposed if Ryan stalls or is overruled (source; SF OpportunityContactRole, one contact only)"
+              },
+              {
+                "tone": "warn",
+                "text": "Zycus must displace two entrenched incumbents, SAP Ariba and JAEGGER, with no differentiation or ROI case captured yet, so status-quo inertia currently favours the incumbents (source; SF Next_Step__c, 23 Jun)"
+              },
+              {
+                "tone": "good",
+                "text": "The wedge is real; the buyer has 'no AI enablement' today and is keen on Merlin Intake, a capability neither incumbent is known for (source; SF AIS_Why__c, Products__c, 23 Jun)"
+              }
+            ]
+          },
+          {
+            "kind": "score",
+            "key": "deal_momentum",
+            "score": 47,
+            "title": "Deal momentum",
+            "sub": "is it moving?",
+            "read": "Flat \u2014 little is happening.",
+            "bullets": [
+              {
+                "tone": "good",
+                "text": "Fresh engagement; intro call held 22 Jun and a live email exchange with Ryan through 25 Jun, with the deal moved to Qualified on 23 Jun (source; SF event 22 Jun, tasks 23-25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Ryan declined the 21-22 Jul Horizon Singapore event on 25 Jun, so no near-term face-to-face is booked and no customer-named evaluation timeline exists (source; SF task 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "No post-call summary, next meeting, or stage movement is recorded since 25 Jun, so momentum past the intro is unproven (source; SF LastActivityDate 25 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "risk",
+            "score": 17,
+            "title": "What could lose it",
+            "sub": "the honest downside",
+            "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Economic buyer unmapped and no champion; Ryan is the sole Decision Maker contact with no evidence of internal advocacy and he declined the Horizon event (source; SF OpportunityContactRole, task 25 Jun)"
+              },
+              {
+                "tone": "warn",
+                "text": "Two incumbents in place (SAP Ariba + JAEGGER) and a distant 31 Dec close on a 12-15 month government procurement cycle make the forecast date optimistic (source; SF Next_Step__c 23 Jun, CloseDate)"
+              }
+            ],
+            "footer": "Competitive picture: Two entrenched incumbents, both status quo per the 23 June Next Step: SAP Ariba (global procure-to-pay leader, deep ERP integration, strong government footprint) and JAEGGER (JAGGAER, embedded in the Ministry's current sourcing/supplier\u2026"
+          },
+          {
+            "kind": "score",
+            "key": "customer_commitment",
+            "score": 8,
+            "title": "Customer commitment",
+            "sub": "how invested are they?",
+            "read": "Light \u2014 they haven't committed much yet.",
+            "bullets": [
+              {
+                "tone": "warn",
+                "text": "Commitment is minimal; the Ministry is running a 'technology review and market scan' and only agreed to an intro, not a Zycus-specific next step (source; SF task 23 Jun email)"
+              },
+              {
+                "tone": "warn",
+                "text": "No business case, budget, decision process, or timeline has been shared, and the buyer has asked for nothing specific (source; SF fields scan, Next_Step__c 23 Jun)"
+              }
+            ],
+            "how": null
+          },
+          {
+            "kind": "moves",
+            "title": "What moves it forward",
+            "items": [
+              "Ask Ryan Challis for the market-scan timeline and written evaluation criteria on a follow-up call. (by 13 Jul)",
+              "Ask Ryan to introduce the budget owner and ERP/IT lead to break single-thread. (by 20 Jul)",
+              "Run a Merlin Intake discovery and ROI scoping session to quantify the pain vs SAP Ariba and JAEGGER. (by 3 Aug)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d (2026-06-22 to 2026-06-25); field history 2026-06-18 to 2026-06-23; contact roles current",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls found for this opp after opp+account+attendee-email discovery; MEDDPICC depth is Salesforce/activity-based only.",
+      "Economic buyer / budget authority not named in any field or activity.",
+      "No champion; single contact role (Ryan Challis).",
+      "No quantified pain, business case, evaluation criteria, or decision process captured.",
+      "No customer-named evaluation timeline."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06T05:25:08"
+}

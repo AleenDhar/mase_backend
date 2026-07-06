@@ -1,0 +1,250 @@
+{
+  "opp_id": "006P700000X9bgUQAR",
+  "hard": {
+    "opp_id": "006P700000X9bgUQAR",
+    "opp_name": "AdaptHealth [S2P] April'26",
+    "account_name": "AdaptHealth, LLC",
+    "account_industry": "Healthcare & Hospitals Services",
+    "billing_country": "United States",
+    "owner_name": "Edward Dlugosz",
+    "owner_title": "",
+    "manager_name": "",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 110000,
+    "close_date": "2026-12-01",
+    "days_to_close": 0,
+    "created_date": "2026-04-23",
+    "qualified_date": "2026-04-24",
+    "last_activity_date": "2026-06-24",
+    "last_modified_date": "2026-06-24",
+    "products": "iContract;iSource;iManage;iSave;iSupplier;eProcurement;eInvoicing;iRequest;iSaaS;Merlin;iLogix;iRisk;Merlin Intake",
+    "next_step": "",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000X9bgUQAR/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Greenfield deal has gone dark: 81 days since the only buyer conversation, a manager-level contact who promised to socialize the deck but never returned feedback, no economic buyer, no compelling event, and no second meeting despite four rep-side follow-ups.",
+      "math": "Created 2026-04-23, 74 days old. In Qualified since 2026-04-24 with zero stage movement (SF field history). Close date 2026-12-01 is 148 days out. Only two-way buyer touch was the discovery call on 2026-04-16, 81 days ago; every touch since (email 2026-05-13, 2026-05-20, event invites 2026-05-07 and 2026-06-24) is rep-initiated with no captured buyer reply. To reach Vendor Selected by early October the deal needs feedback, a deeper demo, an ROI case, an economic buyer and commercials in roughly 13 weeks, but no buyer-owned timeline exists, so the December close is aspirational.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Stage Qualified since 2026-04-24 with no progression in 73 days (SF OpportunityFieldHistory)",
+        "Single buyer conversation on 2026-04-16 with Bryan Rottkamp; no follow-up meeting ever booked (Avoma call 2026-04-16, SF activities)",
+        "Bryan committed to 'share the deck with your team and gather feedback' but no feedback has come back in 81 days (Next_Step__c discussion summary; SF task 2026-05-20 chasing that feedback)",
+        "Rep sent four follow-ups (2026-05-07, 2026-05-13, 2026-05-20, 2026-06-24) with no captured buyer response (SF tasks, LastActivityDate 2026-06-24)",
+        "No economic buyer, decision maker, or executive sponsor exists in contact roles; the rep himself noted on the call 'this isn't a formal project, there's no budget or authority' (Avoma 2026-04-16)",
+        "AIS 6.0 Moderate: real agentic-AI curiosity from Bryan but no champion and no budget yet (SF AIS_Why__c)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Bryan Rottkamp articulated clear qualitative pain on the 2026-04-16 discovery call but no quantified business case exists. He described AdaptHealth as '10,000 plus employees, 700 plus locations' with a two-to-four-person indirect team and said 'one of the biggest challenges for us is the inability to be strategic in our sourcing.' When Chris Gracias asked how AdaptHealth negotiates tail spend today, Bryan answered 'not the numbers off offhand, but no, there's definitely a fair amount of it out there,' confirming untouched tail spend without a figure. No savings target, cycle-time baseline, or spend-under-management number was captured, so quantifying the case through the offered pro-bono ROI assessment is the metric-defining move.",
+        "sources": ["Avoma discovery call 2026-04-16, Bryan Rottkamp (AdaptHealth)", "SF AIS_Why__c", "SF Next_Step__c discussion summary"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified and none can be inferred from the evidence. On the 2026-04-16 call the Zycus rep explicitly framed the deal as non-funded: 'I'm assuming this isn't a formal project. There's no budget or authority,' and Bryan did not contradict it. No pricing or budget conversation occurred, and no CFO, VP Procurement, or budget owner appears in Salesforce contact roles or free-text fields. The $110,000 Amount is a Zycus estimate, not an AdaptHealth-anchored budget. For a 700-plus location deployment the budget owner is likely a VP or C-level finance/procurement leader above Bryan; identifying and reaching that person is the gating move before any commercial step.",
+        "sources": ["Avoma discovery call 2026-04-16 (rep: 'no budget or authority')", "SF OpportunityContactRole (no EB/Exec Sponsor role present)", "SF field history"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No formal evaluation criteria have been set because AdaptHealth has not begun a structured evaluation. The 2026-04-16 session was a one-way overview: Bryan asked only for 'a good overview of your business, how you guys help other clients, and maybe learn how we could utilize you guys at Adapt in direct procurement.' Implied criteria surface from the pitch he responded to, ease of adoption across a distributed non-procurement user base via Merlin Intake on MS Teams (AdaptHealth confirmed 'we do Teams'), touchless invoicing, and autonomous tail-spend negotiation, but none are buyer-confirmed as decision criteria. Establishing what AdaptHealth would actually weigh, ideally through the ROI assessment and a deeper demo, is the move.",
+        "sources": ["Avoma discovery call 2026-04-16, Bryan Rottkamp", "SF Products__c (full S2P suite in scope)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no visible decision process because the deal never advanced past the first call. The process map so far is a single manager-level attendee (Bryan) with the deck taken away to 'socialize internally' and 'gather feedback on interest and potential fit across the broader business,' which never returned. No approval chain, evaluation stages, or committee is known, and the SF task 'Get clarity on the evaluation stages and influence the process' (2026-04-24) remains open. Reading the call sequence itself, the absence of any second meeting or additional stakeholder in 81 days signals the internal socialization stalled. Surfacing how AdaptHealth would run an evaluation and who owns it is the process-defining move.",
+        "sources": ["Avoma discovery call 2026-04-16", "SF Next_Step__c discussion summary", "SF task 2026-04-24 'Get clarity on the evaluation stages'"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No paper process exists yet and none is expected at this stage. Contracting mechanics (MSA, Order Form, SOW, InfoSec, legal redlines) were never discussed on the 2026-04-16 call, Current_Contract_Expiration__c is empty (greenfield, no incumbent forcing function), and no procurement or legal gatekeeper is mapped. As a new-business full-suite S2P deal this will eventually require InfoSec review, ERP integration scoping (AdaptHealth runs Oracle for ERP per the call), and a phased SOW, but none of these workstreams are open. Visibility only comes once an economic buyer funds a formal evaluation.",
+        "sources": ["Avoma discovery call 2026-04-16 (Oracle ERP referenced)", "SF Current_Contract_Expiration__c empty"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is confirmed and specific. Bryan Rottkamp said AdaptHealth has 'no formal Source-to-Pay platform in place' across '700 plus locations' with an indirect team that 'just doubled from two to four,' and named the core pain directly: 'the inability to be strategic in our sourcing, we're kinda just trying to keep things running.' He confirmed untouched tail spend ('there's definitely a fair amount of it out there') and that today's requests flow ad hoc through MS Teams chats. The pain is real and owned by Bryan at a category-manager level, but it is manual-process pain without an attached cost, and no compelling event forces a timeline, which is why it has not converted to a funded project.",
+        "sources": ["Avoma discovery call 2026-04-16, Bryan Rottkamp", "SF AIS_Why__c"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Bryan Rottkamp is a warm coach but not yet a champion, and he is cooling. He engaged genuinely on 2026-04-16, sat through the full agentic S2P pitch, asked sharp questions about 'agentic AI finding outcomes' and how the AP automation negotiates, and closed positive: 'it was certainly a lot more than I was expecting in a good way, high level it looks fantastic.' He committed to socialize the deck internally because 'this touches a lot more of the business than just indirect procurement.' What has NOT developed: he never returned feedback, never introduced another stakeholder, never booked a second meeting, and has not replied to four rep follow-ups since 2026-05-07. As a manager-level contact he lacks the authority to drive an enterprise transformation alone, so re-igniting him and multi-threading to power is essential.",
+        "sources": ["Avoma discovery call 2026-04-16, Bryan Rottkamp", "SF task 2026-05-20 (follow-up chasing feedback, no reply)", "SF LastActivityDate 2026-06-24"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitor has surfaced in any source. AdaptHealth confirmed on 2026-04-16 they have 'nothing really in place' for S2P (expense management plus Oracle ERP only), making this a greenfield, effectively sole-source exploration rather than a bake-off. The main threat is inertia, not a rival: with no budget, no compelling event, and a stalled internal socialization, the realistic alternative outcome is that AdaptHealth keeps managing procurement manually through MS Teams chats and never starts a project. If AdaptHealth later formalizes an evaluation they would likely benchmark against Coupa, SAP Ariba, or GEP, so surfacing whether anyone else is in the picture is a discovery move, but nothing today supports naming a competitor.",
+        "sources": ["Avoma discovery call 2026-04-16 (no competitor named; 'nothing really in place')", "SF Competitors__c empty"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal has not moved since the 2026-04-16 discovery call. Stage has held at Qualified since 2026-04-24, and every touch since is rep-initiated outreach with no captured buyer reply; the internal socialization Bryan promised never came back.",
+      "items": [
+        {"change": "Discovery call held with Bryan Rottkamp; full agentic S2P pitch delivered and deck sent", "date": "2026-04-16"},
+        {"change": "Stage moved Initial Interest to Qualified", "date": "2026-04-24"},
+        {"change": "Rep follow-up chasing team feedback ('did you have time to discuss the deck?'), no buyer reply captured", "date": "2026-05-20"},
+        {"change": "Rep sent Horizon US 2026 event invitation, no buyer reply captured", "date": "2026-06-24"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any source: AdaptHealth confirmed on 2026-04-16 they have no Source-to-Pay platform today, making this a greenfield, effectively sole-source exploration. The single strongest current threat is do-nothing inertia, not a rival: without budget, a compelling event, or an active internal sponsor, AdaptHealth's most likely path is to keep running procurement manually through MS Teams and never start a project.",
+      "competitors": [
+        {"name": "Status quo (no formal S2P, manual + Oracle ERP)", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "No. Currently, no. Everything from our ERP system is housed in Oracle. But in terms of an actual system like this, no, we don't have anything really in place.", "date": "2026-04-16", "source": "Avoma discovery call 2026-04-16, Bryan Rottkamp", "how_we_win": "Convert curiosity into a funded project: use the pro-bono ROI assessment to put a savings number on untouched tail spend and manual cycle time so a budget owner will sponsor it."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "AdaptHealth's stated need (standardize and become strategic across 700+ locations with a lean team, no system today) aligns cleanly with the unified S2P + Merlin Intake pitch, but fit is unvalidated beyond one overview call.",
+      "items": [
+        {"criterion": "Standardization across a large distributed footprint", "position": "aligned", "quote": "standardization is a big one across the organization when you have that many sites", "date": "2026-04-16", "source": "Avoma discovery call 2026-04-16, Bryan Rottkamp"},
+        {"criterion": "Ease of use for occasional users (low adoption risk)", "position": "aligned", "quote": "We do Teams", "date": "2026-04-16", "source": "Avoma discovery call 2026-04-16, Bryan Rottkamp (Merlin Intake runs in MS Teams)"},
+        {"criterion": "Strategic sourcing capacity for a small indirect team", "position": "partially aligned", "quote": "the inability to be strategic in our sourcing, we're kinda just trying to keep things running", "date": "2026-04-16", "source": "Avoma discovery call 2026-04-16, Bryan Rottkamp"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Bryan to return his team's feedback on interest and fit across the broader business", "who": "Buyer", "grounding_quote": "I can socialize it with a couple of my team members to see what's the interest. This touches a lot more of the business than just indirect procurement.", "date": "2026-04-16", "due": "2026-05-01", "status": "overdue", "source": "Avoma discovery call 2026-04-16 + SF task 2026-05-20 chasing it"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "this isn't a formal project, there's no budget or authority", "status": "not addressed", "date": "2026-04-16", "gap_type": "knowledge", "source": "Avoma discovery call 2026-04-16"},
+        {"area": "Buyer-owned evaluation timeline / compelling event", "quote": "if you wanna send me an email in a couple weeks just to follow up, that'd be fantastic", "status": "not addressed", "date": "2026-04-16", "gap_type": "knowledge", "source": "Avoma discovery call 2026-04-16"},
+        {"area": "Additional stakeholders / multi-threading", "quote": "I can socialize it with a couple of my team members", "status": "not addressed", "date": "2026-04-16", "gap_type": "knowledge", "source": "Avoma discovery call 2026-04-16; SF task 2026-04-24 'Identify more contact roles'"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage greenfield deal that has gone dark; the win levers are re-engagement, quantifying the case, and reaching power.",
+      "flags": [
+        "Re-open a dark relationship: Bryan has not replied to four rep touches since 2026-05-07, so the rank-1 lever is a fresh, value-led reason for him to re-engage, not another event invite.",
+        "Single-thread on a manager-level contact across a 700-location enterprise: secure a second stakeholder and the budget owner before investing further.",
+        "No quantified business case and no compelling event: land the pro-bono ROI assessment to turn 'looks fantastic' into a funded project a VP will sponsor."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Bryan Rottkamp", "title": "", "role": "Coach", "last_contact_date": "2026-04-16", "sentiment": "positive", "risk": "Engagement cooling: committed to socialize the deck and return feedback on 2026-04-16, but has not responded in 81 days across four rep follow-ups. Manager-level, no budget or authority, cannot drive an enterprise S2P transformation alone.", "source": "SF task/activity contact; Avoma discovery call 2026-04-16"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Bryan Rottkamp is a warm coach, not a champion. He engaged well on 2026-04-16 and promised to socialize internally, but never returned feedback, introduced no one, and has gone silent for 81 days. Manager-level authority and cooling engagement make him insufficient as the sole relationship.",
+      "champion": "Bryan Rottkamp",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Avoma discovery call 2026-04-16; SF task 2026-05-20; SF LastActivityDate 2026-06-24"
+    },
+    "ai_positioning_strength": {
+      "summary": "The agentic story landed well: Bryan absorbed a full Merlin Intake, Anna autonomous tail-spend, and touchless-invoicing pitch and asked pointed questions about 'agentic AI finding outcomes.' Positioning is strong; the gap is that AI interest has not converted to a funded project.",
+      "score": "6/10",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 Moderate is accurate: the 2026-04-16 call shows genuine curiosity (Bryan probed how the AP automation negotiates and how agents find outcomes) but no champion and no budget, an upper-curious read rather than AI-hungry.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "No funded project, no budget owner; rep confirmed 'no budget or authority' on the only call.", "first_raised": "2026-04-16", "date": "2026-04-16", "status": "open", "source": "Avoma discovery call 2026-04-16"},
+        {"category": "executive_alignment", "detail": "No economic buyer, decision maker, or executive sponsor mapped; single manager-level contact.", "first_raised": "2026-04-16", "date": "2026-04-16", "status": "open", "source": "SF OpportunityContactRole; Avoma 2026-04-16"},
+        {"category": "timeline", "detail": "No buyer-owned timeline or compelling event; December close is a placeholder against a stalled greenfield.", "first_raised": "2026-04-16", "date": "2026-04-16", "status": "open", "source": "Avoma discovery call 2026-04-16; SF field history"},
+        {"category": "change_management", "detail": "Main threat is do-nothing inertia: AdaptHealth may keep managing procurement manually via MS Teams and never start.", "first_raised": "2026-04-16", "date": "2026-04-16", "status": "open", "source": "Avoma discovery call 2026-04-16"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer engagement has cooled to silent: one call 81 days ago, four unanswered rep follow-ups since.",
+      "cooling": true,
+      "items": [
+        "No buyer reply since the 2026-04-16 call despite rep touches on 2026-05-07, 2026-05-13, 2026-05-20, and 2026-06-24",
+        "Promised internal feedback never returned"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Bryan a short value-led note tied to his tail-spend and 700-site standardization pain.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "81 days silent after promising to socialize the deck; four generic follow-ups ignored", "trigger_date": "2026-06-24", "act_by": "2026-07-13", "expected_effect": "Restarts a two-way conversation and tests whether the deal is alive before further investment."},
+        {"rank": 2, "action": "Offer Bryan the pro-bono ROI assessment on his indirect tail spend as the reason to reconvene.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Bryan confirmed untouched tail spend but 'not the numbers offhand'; no business case exists", "trigger_date": "2026-04-16", "act_by": "2026-07-20", "expected_effect": "Creates a quantified savings case that a budget owner can sponsor, converting curiosity into a funded project."},
+        {"rank": 3, "action": "Ask Bryan to name the budget owner and one broader-business stakeholder for a joint demo.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Single-thread on a manager-level contact with no economic buyer across a 700-location enterprise", "trigger_date": "2026-04-16", "act_by": "2026-08-04", "expected_effect": "Multi-threads to power and surfaces budget authority so the deal can advance past Qualified."}
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 16 April overview landed well, Bryan called it 'a lot more than I was expecting in a good way,' but he has gone silent for 81 days and the promised internal feedback never came.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "No new stakeholder has surfaced; Bryan Rottkamp remains the sole contact and has not introduced the wider team he said this 'touches.'", "tone": "warn"},
+      {"lens": "Competition", "text": "Sole-source greenfield with no rival named; the real threat is do-nothing, AdaptHealth has no S2P system and no funded project to replace it.", "tone": "neu"},
+      {"lens": "Commercials", "text": "No budget or authority exists yet, the rep confirmed it on the call, so the $110k figure is a Zycus estimate with no buyer anchor.", "tone": "crit"}
+    ],
+    "deal_scores_evidence": {
+      "summary": "A greenfield, effectively sole-source opportunity that has gone dark: one strong discovery call 81 days ago with a curious but manager-level contact, no economic buyer, no budget, and no buyer-owned timeline, the one thing between us and momentum is re-engaging Bryan and quantifying a case a budget owner will fund.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "The deal sits weak because there is no funded project, no economic buyer, and no compelling event; the rep himself confirmed on 2026-04-16 'this isn't a formal project, there's no budget or authority.'"},
+          {"tone": "good", "text": "We are effectively uncontested: AdaptHealth has no S2P platform today ('we don't have anything really in place', Bryan, 2026-04-16), so there is no rival to displace, only inertia to overcome."},
+          {"tone": "warn", "text": "The only relationship is Bryan Rottkamp, a manager-level contact who has not replied in 81 days across four rep follow-ups, leaving us single-threaded with no access to power."},
+          {"tone": "warn", "text": "The main way we lose is do-nothing: without a quantified savings case AdaptHealth is likely to keep running procurement manually through MS Teams and never start."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Stage has held at Qualified since 2026-04-24 with no second meeting and no buyer-driven milestone in 73 days (SF field history)."},
+          {"tone": "warn", "text": "Every touch since the 2026-04-16 call is rep-initiated (emails 13 and 20 May, event invites 7 May and 24 June) with no captured buyer reply."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Bryan committed to socialize the deck and 'gather feedback on interest and fit across the broader business' but has not delivered it in 81 days."},
+          {"tone": "good", "text": "He did engage genuinely on the pitch, probing 'agentic AI finding outcomes' and how the AP automation negotiates, showing real product interest (Avoma, 2026-04-16)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "No economic buyer or budget authority is mapped, so the deal cannot progress to commercials without first reaching power (Avoma, 2026-04-16)."},
+          {"tone": "warn", "text": "The December 2026 close date is a placeholder unsupported by any buyer timeline against a stalled, dark greenfield deal."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.4, "evidence": "Bryan is a warm coach but manager-level and silent for 81 days; no champion authority."},
+        "engagement": {"strength": -0.6, "evidence": "Dark since 2026-04-16; four unanswered rep follow-ups."},
+        "economic_buyer": {"strength": -0.7, "evidence": "No EB, no budget; 'no budget or authority' stated on the call."}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Full Source-to-Pay suite (13 modules incl. Merlin) has been in scope since creation; no narrowing or expansion evidenced."},
+    "customer_preference": {"level": "low", "evidence": "Neutral, information-gathering posture: Bryan wanted 'a good overview' and asked only for the deck and a follow-up email 'in a couple weeks' (Avoma, 2026-04-16); no Zycus-specific next step requested and no competitor comparison."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only, inability to be strategic in sourcing, untouched tail spend across 700+ sites, but no numbers ('not the numbers offhand') and the pro-bono ROI assessment is not yet scoped (Avoma, 2026-04-16)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities 120d, field history full lifecycle",
+    "avoma_attendees": ["Bryan Rottkamp"],
+    "gaps": [
+      "No economic buyer, decision maker, or executive sponsor identified in any source",
+      "No buyer-owned evaluation timeline or compelling event established",
+      "Only one buyer call on record (2026-04-16); no second meeting held, so evaluation criteria and decision process are unknown",
+      "Bryan Rottkamp's Salesforce Contact.Title is not on record, so his title is left blank rather than inferred"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,272 @@
+{
+  "opp_id": "006P700000ZTx3o",
+  "hard": {
+    "opp_id": "006P700000ZTx3o",
+    "opp_name": "Drees Homes_Sourcing&SRPM_Opp_June'26",
+    "account_name": "Drees Homes",
+    "account_industry": "Real Estate & Infra",
+    "billing_country": "United States",
+    "owner_name": "Grace Kim",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 120000,
+    "close_date": "2027-10-15",
+    "days_to_close": 466,
+    "created_date": "2026-06-12",
+    "qualified_date": "2026-06-15",
+    "last_activity_date": "2026-06-09",
+    "last_modified_date": "2026-07-03",
+    "products": "iSource;iSupplier;iRisk",
+    "next_step": "Grace has sent slides, case studies, and Showpad videos to Michael for internal review. Michael will share the materials with IT, VPs, and other stakeholders to assess interest. Zycus should follow up after the review to schedule a focused discussion on iSource, Supplier Risk and Performance Management, and potential next steps for a live demo.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "Drees Homes' discovery surfaced interest in iSource, Supplier Risk and Performance Management, Spend Analysis, Merlin Intake and the Autonomous Negotiation Agent; the full agentic suite is scoped, but the interest sits among several modules and core pains are decentralized purchasing and pricing visibility, so appetite is curious-leaning rather than hungry.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+    "primary_competitor": "Status quo (manual / homegrown: Microsoft Power Apps + JD Edwards)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ZTx3o/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "First-touch Qualified deal: after the 9 Jun intro Michael Goedde flagged a genuine fit in iSource and supplier-risk, but he is only circulating slides internally, no economic buyer or budget owner is mapped, no competitive process has started, and the buyer has been quiet for ~27 days.",
+      "math": "466 days to close from 2027-10-15. Created 2026-06-12, qualified 2026-06-15. One buyer call read (Introductory Call, 2026-06-09); last Salesforce activity 2026-06-09, so ~27 days since the last two-way buyer touch as of 2026-07-06. No submission-date series populated (Qualified/Formal_Eval/Shortlisted_Submission_Date all null), so time-in-stage runs from creation. CloseDate has not slipped in field history. Early Qualified stage; pace required is to convert the internal review into a focused iSource + supplier-risk deep-dive within 90-120 days to stay credible for an Oct-2027 close.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Pipeline is the correct category: one introductory overview call, no economic buyer, no quantified business case, and materials still under internal review (Next Step, 2026-06-15).",
+        "Single-threaded to one regional Decision Maker, Michael Goedde; the IT and VP stakeholders he named on 9 Jun have not been met.",
+        "Buyer engagement has thinned: the rep sent slides, case studies and Showpad videos and is awaiting Goedde to circulate them, with no buyer reply logged in ~27 days.",
+        "Four competitors are logged in Salesforce (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) but none were mentioned by the buyer; this was Goedde's first introduction to procurement software, so no active evaluation is running.",
+        "Real fit signal exists: Goedde named iSource RFPs and supplier-risk / price transparency as areas of benefit on 9 Jun, matching the scoped iSource;iSupplier;iRisk modules."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case exists yet. On the 9 Jun intro Michael Goedde described qualitative pain around price transparency: 'deciphering between when the cost can come back down is where we find ourselves coming short on... to have some transparency on that... that could be something.' He gave scale context (about 2,500 closings company-wide this year, six Midwest divisions, 12-15 national contracts) but never attached a cost, savings target, cycle time or headcount figure. Salesforce Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c are not populated. The move is to run a discovery session that turns the price-transparency and decentralized-buying pain into numbers (spend under management, supplier count, sourcing-event effort, contract leakage) so a defensible ROI anchors the $120k ask.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (Michael Goedde on price transparency)", "SF AIS_Why__c", "SF Customer_Business_Problem__c null"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer or budget owner is identified. The only contact role is Michael Goedde, Regional Purchasing & Operations Manager (Decision Maker), an operational Midwest-region stakeholder, not the commercial authority for a cross-division platform. On 9 Jun he said he would have to 'get it in front of IT and some other parties like vice president, things like that,' but named no one, and Drees is a family-owned, fourth-generation private company where corporate 'wants to be more of a resource, rather than a directive.' No X10a_Sponsor__c / Who_will_approve_budget__c value exists. The evidence does not name a budget owner, so I do not assign one; the move is to ask Goedde directly who funds shared procurement technology and to get access before the deep-dive.",
+        "sources": ["SF OpportunityContactRole (only Michael Goedde, Decision Maker)", "Avoma Introductory Call 2026-06-09 (Goedde: get it in front of IT and VPs)", "SF X10a_Sponsor__c / Who_will_approve_budget__c null"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are early and inferred from the intro call, not yet formalized. Goedde signalled two decision anchors on 9 Jun: RFP/sourcing efficiency ('iSource, you know, we send out RFPs... I could see maybe some benefit there') and supplier risk with commodity-price transparency ('that performing risk at the top there... to have some transparency on that'). He also framed an implicit fit criterion of flexibility across a corporate / regional / local model given divisional autonomy. There is no formal BRD, RFP or scorecard yet, and Salesforce Business_Requirements__c is not populated. The move is to convert these into a written fit checklist during the focused iSource + supplier-risk session.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (Goedde on iSource RFPs and supplier risk)", "SF Business_Requirements__c null"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The process is informal and read from the intro call plus Next Step, not confirmed with the buyer. On 9 Jun Goedde said he would review the remaining slides and case studies, then 'share this with some others to see if there'd be any interest... get it in front of IT and some other parties like vice president,' and 'we could go from there and then potentially set something up later.' So the near-term path is: internal review by Goedde, then socialization to IT and regional VPs, then a possible focused demo. What is unknown is whether this becomes a formal RFP or a sole-source evaluation, who the deciding VP is, and whether IT holds a veto. What_is_the_decision_process__c is not populated. The move is to co-define this process with Goedde rather than let it drift on his review timeline.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (Goedde on sharing with IT and VPs)", "SF Next Step 2026-06-15", "SF What_is_the_decision_process__c null"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are entirely unknown at this first-touch stage, which is normal for early Qualified. No MSA, SOW, legal, procurement-channel or InfoSec discussion has occurred, and Current_Contract_Expiration__c is not populated, so there is no incumbent-contract forcing function. Goedde did reveal the systems any eventual integration and security review would touch: contracts live on an internal site, supplier paperwork runs through Microsoft Power Apps with an audit/alert feature, and pricing runs on JD Edwards (9 Jun). For a platform of this type, expect eventual IT / InfoSec review and JD Edwards integration scoping. Visibility will come only after the deal reaches evaluation; the move now is discovery, not paper.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (internal site, Microsoft Power Apps, JD Edwards)", "SF Current_Contract_Expiration__c null"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Two real pains are articulated but not yet owned or quantified. First, commodity price transparency: Goedde said on 9 Jun that Drees struggles to know 'when the cost can come back down' after shocks (oil, transportation, COVID-era paint shortages), and wants 'some transparency on that.' Second, decentralized, largely manual purchasing across corporate / regional / local with heavy divisional autonomy, tracked in Power Apps and JD Edwards rather than a procurement platform. The pain owner is Goedde at the regional level, but the divisions run their own buying and corporate 'doesn't step in too often,' so pain intensity per division is unconfirmed. Confirmed pain: price visibility and manual supplier/contract handling; inferred pain: sourcing-event effort and supplier-risk exposure. The move is to pressure-test how costly these are.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (Goedde on price transparency and manual, decentralized buying)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Michael Goedde is the working contact and is 'developing,' not yet a proven champion. What has developed: he responded to Divya Kumar's LinkedIn outreach, gave Zycus 30 minutes, engaged substantively on his purchasing model, named two modules of interest, and committed to review the materials and 'share this with some others' internally (9 Jun). What is still missing: any evidence of advocacy (he has not introduced IT or a VP, has not pushed back on an alternative for us, and set no internal timeline), plus he is our only thread and his authority is regional, not enterprise. His own words were low-commitment: 'I could see maybe some benefit there.' The move is to arm him to sell internally and to test whether he will advocate or is merely gathering information.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (Goedde engagement and commitment to share materials)", "SF OpportunityContactRole (Michael Goedde, Decision Maker, Primary)", "SF Next Step 2026-06-15"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The real competitor at this stage is the status quo, not a named vendor. On 9 Jun Goedde described a homegrown, manual stack (contracts on an internal site, supplier paperwork in Microsoft Power Apps, pricing in JD Edwards) inside a family-owned culture that gives divisions autonomy and where corporate 'doesn't step in too often' and prefers to be 'a resource, rather than a directive.' That inertia, not a rival platform, is what most likely stalls a decision. The four vendors logged in Salesforce (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) were never mentioned by the buyer and this was Goedde's first introduction to procurement software, so they are an unvalidated rep-entered list, not an active bake-off. The wedge is Goedde's own price-transparency and RFP pain, delivered through iSource plus supplier risk and the Autonomous Negotiation Agent for tail spend.",
+        "sources": ["Avoma Introductory Call 2026-06-09 (current manual stack + autonomy culture)", "SF Competitors__c (Coupa;GEP Worldwide;JAGGAER;SAP Ariba, unvalidated)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal is at first-touch: one introductory call on 2026-06-09, opportunity created 2026-06-12 and moved Initial Interest -> Qualified on 2026-06-15. Since then the only activity is the rep sending materials for internal review and system opportunity-health tasks; no buyer reply is logged in ~27 days.",
+      "items": [
+        {"change": "Introductory call held; Goedde named iSource RFPs and supplier risk / price transparency as areas of interest", "date": "2026-06-09"},
+        {"change": "Opportunity created (owner moved Divya Kumar -> Grace Kim)", "date": "2026-06-12"},
+        {"change": "Stage moved Initial Interest -> Qualified; forecast Best Case -> Pipeline", "date": "2026-06-15"},
+        {"change": "Grace sent slides, case studies and Showpad videos for internal review, awaiting Goedde to circulate to IT/VPs", "date": "2026-06-15"},
+        {"change": "Division reclassified Zycus -> Mid-Enterprise", "date": "2026-07-03"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The strongest current threat is the status quo / do-nothing, not a rival vendor: Drees runs a manual, homegrown stack (Microsoft Power Apps + JD Edwards + an internal contracts site) inside a family-owned, autonomy-driven culture where corporate 'doesn't step in too often' (Goedde, 9 Jun), so inertia is the primary risk. The four vendors logged in Salesforce (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) were not named by the buyer and this was Goedde's first exposure to procurement software, so they remain an unvalidated CRM list at low/dormant threat until a real evaluation begins.",
+      "competitors": [
+        {"name": "Status quo (do-nothing / homegrown)", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "we do give a lot of autonomy to the local division... at the regional and the corporate level, we do wanna be more of a resource, rather than a directive", "date": "2026-06-09", "source": "Avoma Introductory Call 2026-06-09", "how_we_win": "Anchor on Goedde's own price-transparency and RFP pain; propose a light corporate/regional phase-1 on iSource + supplier risk that respects divisional autonomy rather than a big-bang mandate."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-28", "source": "SF Competitors__c (unvalidated, no buyer mention)", "how_we_win": "If it surfaces, lead with Merlin agentic sourcing and the Autonomous Negotiation Agent for tail spend vs Coupa's bolt-on AI."},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-28", "source": "SF Competitors__c (unvalidated, no buyer mention)", "how_we_win": "If it surfaces, differentiate on supplier risk + performance depth and a construction reference."},
+        {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-28", "source": "SF Competitors__c (unvalidated, no buyer mention)", "how_we_win": "If it surfaces, differentiate on Merlin Intake in Microsoft Teams and price-transparency analytics."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": null, "date": "2026-06-28", "source": "SF Competitors__c (unvalidated, no buyer mention)", "how_we_win": "If it surfaces, contrast modular, fast-to-value adoption vs Ariba complexity for a mid-enterprise builder."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Early fit is promising on the two modules Goedde flagged, but adoption across a decentralized, autonomy-driven builder is an open exposure.",
+      "items": [
+        {"criterion": "Efficient RFP / sourcing execution (iSource)", "position": "aligned", "quote": "The two on the left here, iSource, you know, we send out RFPs... I could see maybe some benefit there", "date": "2026-06-09", "source": "Avoma Introductory Call 2026-06-09"},
+        {"criterion": "Supplier risk and commodity price transparency", "position": "aligned", "quote": "deciphering between when the cost can come back down is where we find ourselves coming short on... to have some transparency on that", "date": "2026-06-09", "source": "Avoma Introductory Call 2026-06-09"},
+        {"criterion": "Fits a corporate / regional / local model without forcing division autonomy", "position": "partially aligned", "quote": "we do give a lot of autonomy to the local division... we do wanna be more of a resource, rather than a directive", "date": "2026-06-09", "source": "Avoma Introductory Call 2026-06-09"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Send the remaining slides and case studies Goedde can review and circulate internally", "said_by": "Michael Goedde, MBA", "date": "2026-06-09", "addressed": true, "quote": "if you have any case studies that I can review, or have this helped others, that I can review, and then I can, you know, share this with some others", "source": "Avoma Introductory Call 2026-06-09; delivered per Next Step 2026-06-15"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Michael the slide deck, case studies and Showpad videos, then follow up in about a week", "who": "Zycus", "grounding_quote": "I'll send over these slides so you can review the rest. I'll send some case studies, and then we have something called Showpad so I can send a few videos as well... I will follow up maybe in a week or so", "date": "2026-06-09", "due": "2026-06-16", "status": "completed", "source": "Avoma Introductory Call 2026-06-09; delivered per Next Step 2026-06-15"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Circulate the materials to IT and regional VPs and confirm interest to schedule the focused iSource + supplier-risk session", "who": "Buyer", "grounding_quote": "I'd have to get it in front of IT and some other parties like vice president, things like that. We could go from there and then potentially set something up later", "date": "2026-06-09", "due": "2026-06-30", "status": "overdue", "source": "Avoma Introductory Call 2026-06-09"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unmapped", "quote": "I'd have to get it in front of IT and some other parties like vice president", "status": "not addressed", "date": "2026-06-09", "gap_type": "knowledge", "source": "Avoma Introductory Call 2026-06-09; SF X10a_Sponsor__c null"},
+        {"area": "Business case unquantified (no cost / savings / cycle-time figures)", "quote": "to have some transparency on that... that could be something", "status": "not addressed", "date": "2026-06-09", "gap_type": "knowledge", "source": "Avoma Introductory Call 2026-06-09"},
+        {"area": "Competitive landscape unvalidated with the buyer", "quote": "It's pretty much my first introduction", "status": "not addressed", "date": "2026-06-09", "gap_type": "knowledge", "source": "Avoma Introductory Call 2026-06-09; SF Competitors__c"},
+        {"area": "Single-threaded; IT and VP stakeholders named but not met", "quote": "share this with some others to see if there'd be any interest", "status": "acknowledged", "date": "2026-06-09", "gap_type": "knowledge", "source": "Avoma Introductory Call 2026-06-09"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a first-touch, single-threaded, early Qualified deal where the fight is inertia, not a rival; the win path is converting Goedde's stated pain into a multi-threaded working session before the review goes cold.",
+      "flags": [
+        "Multi-thread now: Goedde is the only contact in a decentralized, autonomy-driven builder; get IT and a regional VP into the deep-dive before the review stalls.",
+        "Sell to the pain he named, not the suite: build the next session around iSource RFP efficiency and supplier-risk / price transparency plus the Autonomous Negotiation Agent for tail spend.",
+        "Map the money: no economic buyer or budget owner is identified for a $120k cross-division platform; find who funds shared procurement technology."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Michael Goedde, MBA", "title": "Regional Purchasing & Operations Manager", "role": "Decision Maker", "last_contact_date": "2026-06-09", "sentiment": "Engaged and curious; saw benefit in iSource and supplier risk, committed to review and circulate materials, but low-commitment ('I could see maybe some benefit there') with no advocacy shown yet.", "risk": "Single point of contact and regional in scope; if his internal review with IT/VPs generates no pull, the deal stalls at first touch.", "source": "SF OpportunityContactRole (Primary, Decision Maker); Avoma Introductory Call 2026-06-09"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Michael Goedde is developing: he engaged well on the 9 Jun intro, named two modules of interest and agreed to circulate materials internally, but has shown no advocacy, introduced no one, set no timeline, and remains our only thread with regional-only authority.",
+      "champion": "Michael Goedde, MBA",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma Introductory Call 2026-06-09; SF OpportunityContactRole; Next Step 2026-06-15"
+    },
+    "ai_positioning_strength": {
+      "summary": "The Merlin agentic story and the Autonomous Negotiation Agent were introduced on 9 Jun and the ANA-for-tail-spend angle maps to Goedde's cost pressures, but the narrative was delivered in a generic overview and has not been tailored to a construction / homebuilder use case, so it is under-positioned.",
+      "score": "medium",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 / Moderate is consistent with the call: Drees uses Copilot and 'pretty much all departments are trying to find ways to incorporate AI... it's a topic of conversation' (Goedde, 9 Jun), but interest is curious, spread across modules, and driven by cost pains rather than an AI mandate.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "No economic buyer or budget owner identified for a $120k cross-division platform; funding path unknown.", "first_raised": "2026-06-09", "date": "2026-06-09", "status": "open", "source": "Avoma Introductory Call 2026-06-09; SF X10a_Sponsor__c null"},
+        {"category": "change_management", "detail": "Status-quo inertia: manual Power Apps + JD Edwards + internal contracts site, and a culture that gives divisions autonomy and rarely steps in; no-decision is the main threat.", "first_raised": "2026-06-09", "date": "2026-06-09", "status": "open", "source": "Avoma Introductory Call 2026-06-09"},
+        {"category": "political", "detail": "Decentralized corporate/regional/local buying with strong divisional autonomy makes an enterprise-wide mandate hard; adoption must be sold division by division.", "first_raised": "2026-06-09", "date": "2026-06-09", "status": "open", "source": "Avoma Introductory Call 2026-06-09"},
+        {"category": "executive_alignment", "detail": "Single-threaded to one regional manager; IT and VP stakeholders named but never met.", "first_raised": "2026-06-09", "date": "2026-06-09", "status": "open", "source": "Avoma Introductory Call 2026-06-09"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: after a solid intro on 9 Jun the buyer has been quiet for ~27 days while materials sit under internal review, and the promised circulation to IT/VPs is now past its expected window.",
+      "cooling": true,
+      "items": [
+        "One buyer call in the record; no reply since materials were sent on 2026-06-15.",
+        "System opportunity-health tasks on 2026-06-15 flagged 'prospect's gone cold, no inbound' and 'decision maker not identified.'"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A first-touch Qualified deal: Michael Goedde (regional purchasing manager) saw a real fit in iSource and supplier risk after the 9 Jun intro, but he is only circulating slides internally, with no economic buyer mapped, no competitive process running, status-quo inertia as the main threat, and a far-off Oct-2027 close.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This sits low: a single 9 Jun introductory call where Goedde is Zycus's first-ever procurement-software contact and committed only to 'review the rest of the slides' and share them internally, with no buyer decision beyond 'I could see maybe some benefit there.'"},
+          {"tone": "warn", "text": "No economic buyer or budget owner is mapped in a family-owned, autonomy-driven builder where corporate 'doesn't step in too often,' so there is no confirmed path to funding a $120k platform (Goedde, 9 Jun)."},
+          {"tone": "warn", "text": "Single-threaded to one regional manager; the IT and VP stakeholders Goedde named have not been met, and the deal depends entirely on his internal review."},
+          {"tone": "good", "text": "There is a genuine wedge: Goedde named iSource RFP efficiency and supplier-risk / price transparency as real pains, matching the scoped iSource;iSupplier;iRisk modules (9 Jun)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Roughly 27 days quiet since the 9 Jun intro; the rep sent slides, case studies and Showpad videos but no buyer reply is logged."},
+          {"tone": "warn", "text": "Engagement is still a generic overview only, with no deeper or use-case demo booked and no customer-named dates."},
+          {"tone": "warn", "text": "The next step depends on Goedde circulating materials to IT and VPs on his own timeline, which is already past its expected window."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer committed only to review the remaining slides and share them internally, with no dates and no scoped next meeting."},
+          {"tone": "warn", "text": "No economic buyer is engaged; Goedde must sell the idea upward to IT and VPs himself before anything advances."},
+          {"tone": "good", "text": "Mild forward signal: Goedde responded to LinkedIn outreach, gave 30 minutes, and asked for case studies to share internally (9 Jun)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Status-quo inertia is the primary threat: Drees runs manual Power Apps + JD Edwards and gives divisions autonomy, so no-decision is more likely than a loss to a rival (Goedde, 9 Jun)."},
+          {"tone": "warn", "text": "Four competitors are logged in the CRM (Coupa, GEP, JAGGAER, SAP Ariba) but none were validated with the buyer, so the real evaluation and competitive picture have not yet formed."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": -1, "evidence": "Only Michael Goedde, a regional purchasing manager, on the sole call; no CPO/CFO/VP has joined."},
+        "close_plan_concretizing": {"strength": -1, "evidence": "No dates, no scoped next meeting; buyer only agreed to review slides internally (9 Jun)."},
+        "status_quo_inertia": {"strength": -1, "evidence": "Manual homegrown stack and a culture where corporate 'doesn't step in too often' (Goedde, 9 Jun)."}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "iSource;iSupplier;iRisk (Sourcing & SRPM)",
+      "to": "iSource;iSupplier;iRisk (Sourcing & SRPM)",
+      "detail": "Scope is unchanged since creation; opp name and Products__c both reflect Sourcing plus Supplier Risk & Performance Management, and no modules have been added or dropped."
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "On the 9 Jun intro Goedde flagged iSource RFPs and supplier-risk / price transparency as real benefits, then asked for case studies to circulate internally, a positive first-touch outcome.", "tone": "pos"},
+      {"lens": "Competition", "text": "The real contest is inertia, not a rival: Drees runs manual Power Apps and JD Edwards inside an autonomy-driven family business, so no-decision is the biggest risk.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Goedde named IT and regional VPs he would circulate materials to, but none have been met, so the deal is still single-threaded.", "tone": "warn"},
+      {"lens": "Commercials", "text": "No budget owner is identified and no ROI has been quantified for the $120k ask, so the price cannot yet be justified.", "tone": "warn"}
+    ],
+    "customer_preference": {"level": "low", "evidence": "Goedde asked to 'review the rest of slides' and 'share this with some others,' and said 'I could see maybe some benefit there' on 9 Jun, a neutral information-gathering lean with no Zycus-specific commitment."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: price transparency ('when the cost can come back down... we find ourselves coming short') and decentralized manual buying (9 Jun); no cost, savings or cycle-time figures."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Grace re-engages Goedde to confirm the review and book a focused iSource plus supplier-risk working session.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Materials sent for internal review on 2026-06-15 with no buyer reply in ~27 days.", "trigger_date": "2026-06-15", "act_by": "2026-07-13", "expected_effect": "Restarts a cooling thread and converts passive review into a scheduled next step toward Formal Evaluation."},
+        {"rank": 2, "action": "Ask Goedde to bring IT and a regional VP into the deep-dive to broaden the thread.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Goedde said he must get it in front of IT and VPs before progressing (9 Jun).", "trigger_date": "2026-06-09", "act_by": "2026-07-20", "expected_effect": "Removes the single-thread risk and gets the platform in front of the people who influence funding."},
+        {"rank": 3, "action": "Run discovery to quantify the price-transparency and manual-buying pain in dollars and hours.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Goedde described price-visibility pain but attached no numbers (9 Jun).", "trigger_date": "2026-06-09", "act_by": "2026-07-24", "expected_effect": "Builds a defensible ROI to anchor the $120k ask and create urgency."},
+        {"rank": 4, "action": "Ask Goedde who funds shared procurement technology and secure a brief to that budget owner.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer or budget owner is mapped for a $120k cross-division platform.", "trigger_date": "2026-06-09", "act_by": "2026-08-03", "expected_effect": "Maps the economic buyer and prevents a stall at the VP or funding gate."},
+        {"rank": 5, "action": "Tailor a homebuilder supplier-risk and Autonomous Negotiation Agent proof point for Goedde to share.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Goedde asked for case studies and noted a construction-company reference resonated (9 Jun).", "trigger_date": "2026-06-09", "act_by": "2026-08-05", "expected_effect": "Gives Goedde relevant internal-selling ammunition and lands the AI story he is curious about."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities 120d; field history full; contact roles current",
+    "avoma_attendees": ["Michael Goedde"],
+    "gaps": [
+      "Economic buyer / budget owner not identified in any field or call.",
+      "No business-case quantification (cost, savings, cycle time).",
+      "Competitive landscape unvalidated: four CRM-logged vendors never mentioned by the buyer.",
+      "Only one buyer call exists; IT and VP stakeholders named but not engaged."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

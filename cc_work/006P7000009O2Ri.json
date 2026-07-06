@@ -1,0 +1,289 @@
+{
+  "opp_id": "006P7000009O2Ri",
+  "hard": {
+    "opp_id": "006P7000009O2Ri",
+    "opp_name": "OmniaS2C24",
+    "account_name": "Omnia Holdings Limited",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "South Africa",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Contract In Progress",
+    "forecast_category": "Commit",
+    "amount": 234000.0,
+    "close_date": "2026-07-31",
+    "days_to_close": null,
+    "created_date": "2024-05-22",
+    "qualified_date": "2024-05-22",
+    "last_activity_date": "2026-07-03",
+    "last_modified_date": null,
+    "products": "iContract;iSource;ML iAnalyze;iSupplier",
+    "next_step": null,
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Coupa;iValua",
+    "primary_competitor": "Incumbent manual process (Excel / Worldcheck One / do-nothing)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P7000009O2Ri/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Close Date Risk",
+      "critical": false,
+      "headline": "Won deal in final signature: all SOW comments were resolved on the 30 Jun closure call and MSA, Order 1 and SOW are out for signing, but the close date has now slipped five times to 31 Jul, so timing (internal legal-cover routing), not the deal, is the only risk.",
+      "math": "Close 2026-07-31, ~25 days out. Deal created 22 May 2024, ~775 days old. Full stage path Qualified -> Formal Evaluation -> Shortlisted -> Vendor Selected -> Negotiation -> Contract In Progress. Close date slipped five times in 2026 (10 Apr -> 30 Apr -> 29 May -> 30 Jun -> 31 Jul, latest push 02 Jul by Rashi Varma). LastActivityDate 03 Jul confirms live execution. Remaining path: Omnia returns the internally signed MSA and Order 1 (Caroline countersigns for Zycus) and the SOW after Marianne's non-automated legal-cover routing (Tejal Sawant, AVP Global Delivery, signs the SOW). No evaluation or commercial negotiation remains; pace is recoverable but 31 Jul is tight given internal legal routing plus an open Omnia supplier-due-diligence check on Zycus.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Commit",
+      "evidence": [
+        "Ground truth: stage Contract In Progress, forecast Commit, close 2026-07-31, LastActivityDate 2026-07-03",
+        "30 Jun 2026 SOW closure call: every comment resolved, Marianne Ventura 'the SOW is ready... I look forward to getting it back' and 'we've gotta go in a couple of days, and we have to report we're ready to sign'",
+        "30 Jun 2026: managed-spend scope raised from USD 900m to USD 1bn and configuration from 15 to 20 templates/KPIs/workflows, Zycus held price flat ('we won't increase any commercials')",
+        "Field history 02 Jul 2026: CloseDate 2026-06-30 -> 2026-07-31 (by Rashi Varma), the fifth 2026 slip",
+        "01 Jul 2026: SOW signatory confirmed as Tejal Sawant (AVP Global Delivery); Caroline Lacocque signs MSA and Order 1",
+        "03 Jul 2026: Omnia opened a supplier-due-diligence exercise on Zycus (SupplierRate / Inoxico report request) that must clear before vendor onboarding",
+        "Engagement pulse: LIVE, LastActivityDate 2026-07-03, dense email plus Avoma cadence through 03 Jul"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "confirmed",
+        "narrative": "Omnia is digitizing end-to-end Source-to-Contract across roughly USD 1bn of managed spend (raised from USD 900m on the 30 Jun call, with Zycus holding commercials flat) spanning multiple business units in South Africa, the rest of Africa, Brazil, Australia and China. The pain is concrete and buyer-stated: Marianne Ventura on 30 Jun described supplier screening done manually in Worldcheck One ('as we're having to do it manually now, it's one of the things that's quite painful for me... we spend a lot of time filtering that out') and spend data arriving three weeks after month-close ('after a month closes, it's 3 weeks later... I can't wait 3 weeks to get that'). Migration scope is quantified in the SOW at 6,000 legacy contracts and 6,000 suppliers. The value case is a strong qualitative and volumetric one (manual-to-automated screening, a single iContract repository, faster spend analytics via ML iAnalyze); a signed dollar ROI/savings figure is not on record, so quantifying hard savings remains the single open metric.",
+        "sources": ["Avoma SOW closure call 30 Jun 2026 (Marianne Ventura on manual screening and 3-week spend lag)", "Avoma SOW review 23 Jun 2026 (6,000-contract / 6,000-supplier migration scope)", "SF Products__c (iContract, iSource, ML iAnalyze, iSupplier)"]
+      },
+      "economic_buyer": {
+        "status": "confirmed",
+        "narrative": "Budget authority sits with Stephan Serfontein (Group Financial Director) as the named Economic Buyer on the Salesforce contact roles, with Jacques De Villiers (Group: Head of Supply Chain) as the operational co-sponsor. Both are passive during the contracting phase, which is normal at Contract In Progress: the commercial envelope is already agreed and the spend uplift from USD 900m to USD 1bn was accepted at no extra charge on 30 Jun, so no fresh EB negotiation is required. Day-to-day commercial authority in the room is exercised by Marianne Ventura, who confirmed and cleaned the Order 1 / MSA figures and drives the signature routing. The EB is mapped, not a gap; the only EB-related step left is Caroline countersigning once Omnia's internal sign-off completes.",
+        "sources": ["SF OpportunityContactRole (Stephan Serfontein, Group Financial Director; Jacques De Villiers, Group Head of Supply Chain)", "Avoma SOW closure call 30 Jun 2026 (spend uplift accepted, commercials held flat)", "SF task 01 Jul 2026 (signatory confirmation)"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "The evaluation criteria are settled and visible in the contracting detail rather than an open bake-off. Confirmed criteria include: a single system of record for 6,000 contracts consolidated from SharePoint, Teams and file servers (Zama Khambula, 23 Jun); automated supplier screening to replace manual Worldcheck One / Inoxico work, scoped as iRisk with a DnB-versus-Worldcheck gap analysis (Marianne, 30 Jun); Merlin AI extraction of contract metadata to bridge supplier-master fields lost in Omnia's 2020 cyber incident (Marianne, 23 Jun); event-based integration through Omnia's OIB (power platform) bus with Zycus iSupplier as the supplier master (Dieter Sparbier, 23 Jun); and multi-geography e-signature that works in China (Certinal, Marianne, 23 Jun). These are documented in the SOW and design documentation, so criteria are confirmed, not inferred.",
+        "sources": ["Avoma SOW review 23 Jun 2026 (Dieter Sparbier on OIB / event-based integration, Zama on data migration)", "Avoma SOW closure call 30 Jun 2026 (Marianne on iRisk screening and China e-sign)"]
+      },
+      "decision_process": {
+        "status": "confirmed",
+        "narrative": "The buyer is running a documented, phased contracting process read directly from the call sequence. Comments were captured against the SOW, worked line-by-line on the 23 Jun and 30 Jun calls, and every one resolved on 30 Jun ('all the comments are resolved... the SOW is ready'). The signing protocol is explicit: Omnia does internal signing first via Adobe Sign for the audit trail under a non-automated legal-cover workflow owned by Marianne and Head of Legal Tracy Seeley-Jeppe, then hands to Zycus for signature; Zycus signatories are Caroline Lacocque (MSA + Order 1) and Tejal Sawant, AVP Global Delivery (SOW, signed separately, which is the normal Zycus split). A parallel Omnia supplier-due-diligence check on Zycus (SupplierRate / Inoxico, opened 03 Jul) runs alongside signature. The escalation path if routing stalls is Junaid Sulaiman (Marianne's manager), as noted in the Next Step trail.",
+        "sources": ["Avoma SOW closure call 30 Jun 2026 (signing protocol, legal-cover workflow)", "SF Next_Step__c trail (Apr-Jun 2026 legal routing and escalation to Junaid)", "SF tasks 01-03 Jul 2026 (signatory confirmation, supplier due-diligence)"]
+      },
+      "paper_process": {
+        "status": "confirmed",
+        "narrative": "Contracting mechanics are well advanced and on Zycus paper: the MSA and Order 1 were cleaned (Annexure A highlights removed) and sent for signature on 29-30 Jun, and the SOW was finalized on 30 Jun after the scope was locked. Consistent with the normal Zycus motion, the SOW is signed separately by the AVP Global Delivery (Tejal Sawant) and is the choke point, while the RVP-level Caroline signs the MSA and Order 1; the buyer will not fully execute until the SOW is agreed, which it now is. E-signature routing hit a mechanical snag (documents too large for the e-sign platform, shared via a secure folder instead), and Certinal is the scoped go-forward e-sign tool. Omnia's own supplier-onboarding due-diligence on Zycus (bank letter, financials, WorldCheck/Inoxico report) is the remaining paper gate on the buyer side. No PO is expected as a gate in this South Africa engagement.",
+        "sources": ["SF tasks 26-30 Jun 2026 (MSA/Order 1 clean-up and dispatch, e-sign folder share)", "Avoma SOW closure call 30 Jun 2026 (SOW finalized, Certinal e-sign, signatory split)", "SF tasks 30 Jun-03 Jul 2026 (Omnia supplier due-diligence on Zycus)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The confirmed pain, in Marianne Ventura's own words on 30 Jun, is manual supplier screening in Worldcheck One and Inoxico ('it's one of the things that's quite painful for me... we spend a lot of time filtering that out') and slow spend visibility ('after a month closes, it's 3 weeks later... I can't wait 3 weeks'). A structural driver is Omnia's publicly known 2020 cyber incident that left gaps in supplier-master data ('not all of our data could be restored'), which the buyer wants bridged by extracting fields from contracts via Merlin. Contracts today are scattered across SharePoint, Teams and personal file stores, which the single iContract repository consolidates. The pain owner is Marianne (procurement / category management), with Dieter Sparbier owning the integration-standards pain on the IT side.",
+        "sources": ["Avoma SOW closure call 30 Jun 2026 (manual screening, 3-week spend lag)", "Avoma SOW review 23 Jun 2026 (Marianne on the 2020 cyber incident and missing supplier-master fields)"]
+      },
+      "champion": {
+        "status": "confirmed",
+        "narrative": "Marianne Ventura (Senior Category Manager: IT & Communications) is a strong, active champion who has driven the deal end-to-end and is visibly invested at the finish ('I never want to do another one of these by email ever again... it's incredibly exciting'). She controls Omnia's internal legal-cover routing, resolved every SOW comment, pulls Zycus toward close, and has access to the economic buyers. A second, technically credible advocate is Dieter Sparbier (Head of IT Architecture), constructive and collaborative on integration ('I'll share that with you guys... so there is no gaps'). Zama Khambula co-ordinates data and the Certinal e-sign thread. Nothing structural is missing on the champion; the only open dependency is Marianne completing the internal sign-off routing, which she has committed to. Engagement is continuous through the 03 Jul LastActivityDate with no cooling.",
+        "sources": ["Avoma SOW closure call 30 Jun 2026 (Marianne closing tone and ownership)", "Avoma SOW review 23 Jun 2026 (Dieter engaged on integration)", "SF LastActivityDate 2026-07-03"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "This is effectively a sole-source finish with no live multi-vendor fight. Coupa and iValua, the two Salesforce-logged competitors, were both eliminated earlier in the cycle (Coupa on cost and complexity for the multi-entity Africa/APAC rollout and weaker native CLM; iValua on weaker contract lifecycle depth) and are dormant. The real thing Zycus is displacing is Omnia's incumbent manual state (Excel and manual screening in Worldcheck One / Inoxico, 6,000 contracts scattered across SharePoint, Teams and file servers), plus Adobe Sign being replaced by Certinal for e-signature. The only competitive-adjacent open item is Omnia replacing implementation partner Letsema, where Zycus is positioning to absorb change management itself rather than lose scope to a new SI. We win by making Merlin contract-discovery and native iContract the wedge that manual tools and bolt-on suites cannot match.",
+        "sources": ["SF Competitors__c (Coupa; iValua)", "Prior record: 17 Oct 2024 discovery (Coupa/iValua elimination rationale)", "Avoma 30 Jun 2026 (Letsema partner replacement, manual-screening displacement)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Live execution toward signature. Over the last two weeks the SOW was fully worked and finalized, MSA and Order 1 were cleaned and dispatched for signing, the spend scope was raised to USD 1bn at no extra commercials, the close date was pushed to 31 Jul, and Omnia opened a supplier-due-diligence check on Zycus. Last genuine two-way touch: the 03 Jul email exchange with Zama Khambula and Marianne on signatory and the Omnia due-diligence questionnaire.",
+      "items": [
+        {"change": "SOW closure call: every outstanding comment resolved and the SOW declared ready ('the SOW is ready... I look forward to getting it back')", "date": "2026-06-30"},
+        {"change": "Managed-spend scope raised USD 900m -> USD 1bn and configuration 15 -> 20 templates/KPIs/workflows, Zycus held commercials flat", "date": "2026-06-30"},
+        {"change": "Final MSA and Order 1 cleaned (Annexure A highlights removed) and sent to Marianne for signature", "date": "2026-06-30"},
+        {"change": "Zycus signatories confirmed: Caroline Lacocque (MSA + Order 1), Tejal Sawant, AVP Global Delivery (SOW)", "date": "2026-07-01"},
+        {"change": "Close date pushed 2026-06-30 -> 2026-07-31 (by Rashi Varma), fifth 2026 slip", "date": "2026-07-02"},
+        {"change": "Omnia opened a supplier-due-diligence exercise on Zycus (SupplierRate / Inoxico report request, bank letter and financials sought)", "date": "2026-07-03"},
+        {"change": "Omnia progressing replacement of Letsema as implementation partner; Zycus positioning to take change management in-house", "date": "2026-06-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No active competitive threat in contracting: a sole-source finish. Coupa (eliminated on cost/complexity, 2024) and iValua (eliminated on weaker CLM, 2024) are both out and dormant. The displaced incumbent is Omnia's manual Excel/Worldcheck screening and scattered file-store contracts; Adobe Sign is being replaced by Certinal. The one competitive-adjacent live item is Omnia replacing implementation partner Letsema, where Zycus is moving to absorb change management. The strongest current 'threat' is execution/timing risk (internal legal routing, supplier due-diligence), not a rival.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "negative", "threat_level": "dormant", "status": "declined", "quote": "Coupa is strong in spend management but expensive and complex for our multi-entity Africa/APAC rollout.", "date": "2024-10-17", "source": "Prior record: Marianne, 17 Oct 2024 discovery; SF Competitors__c", "how_we_win": "Native iContract CLM depth plus Merlin contract discovery at a competitive multi-entity price; already selected."},
+        {"name": "iValua", "sentiment": "negative", "threat_level": "dormant", "status": "declined", "quote": "iValua has procurement focus but weaker contract lifecycle capabilities.", "date": "2024-10-17", "source": "Prior record: Marianne, 17 Oct 2024 discovery; SF Competitors__c", "how_we_win": "Stronger contract lifecycle and clause-level version control; already selected."},
+        {"name": "Manual Excel / Worldcheck / do-nothing (incumbent process)", "sentiment": "negative", "threat_level": "low", "status": "incumbent", "quote": "As we're having to do it manually now, it's one of the things that's quite painful for me.", "date": "2026-06-30", "source": "Avoma SOW closure 30 Jun 2026 (Marianne Ventura)", "how_we_win": "Automate supplier screening and spend analytics; centralize 6,000 contracts into one iContract repository."},
+        {"name": "Adobe Sign (e-signature incumbent)", "sentiment": "neutral", "threat_level": "low", "status": "declined", "quote": "Post reviews it will be Certinal... also workable in China.", "date": "2026-06-23", "source": "Avoma SOW review 23 Jun 2026 (Marianne Ventura)", "how_we_win": "Certinal e-signature is scoped in the SOW and enforceable across Omnia geographies including China."},
+        {"name": "Letsema (implementation partner being replaced)", "sentiment": "neutral", "threat_level": "low", "status": "faded", "quote": "Omnia is looking to replace Letsema as the implementation partner on this programme.", "date": "2026-06-30", "source": "SF task 30 Jun 2026 (Validation of Implementation Partner Scope)", "how_we_win": "Zycus offers native change management and PMO so Omnia can avoid a costly external SI; validate partner scope directly."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is high and the open expectations are contracting/design-phase details, not capability doubts. The buyer is aligned on the platform, single repository, e-signature and integration model; the only partially-aligned points are supplier-master data enrichment (which Zycus scopes as buyer-owned) and finalizing OIB integration specs.",
+      "items": [
+        {"criterion": "Multi-geography e-signature that works in China", "position": "aligned", "quote": "Post reviews it will be Certinal... it's also workable in China.", "date": "2026-06-23", "source": "Avoma SOW review 23 Jun 2026 (Marianne Ventura)"},
+        {"criterion": "Single system of record for 6,000 contracts consolidated from SharePoint/Teams/file stores", "position": "aligned", "quote": "6,000 contracts... doesn't matter to us from where they come. You consolidate and give it to us.", "date": "2026-06-23", "source": "Avoma SOW review 23 Jun 2026 (Hrishikesh / Zama)"},
+        {"criterion": "Merlin extraction to bridge supplier-master fields lost in the 2020 cyber incident", "position": "partially aligned", "quote": "If we could get the information using Merlin AI out of the contract and then fill those missing fields, that would be possible.", "date": "2026-06-23", "source": "Avoma SOW review 23 Jun 2026 (Marianne Ventura); Zycus provides the extract, Omnia owns the merge/enrichment"},
+        {"criterion": "Event-based integration via Omnia's OIB bus with Zycus iSupplier as supplier master", "position": "partially aligned", "quote": "Everything will go via OIB... we prefer event based type of integrations.", "date": "2026-06-23", "source": "Avoma SOW review 23 Jun 2026 (Dieter Sparbier); design-phase spec exchange still pending"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Share the Worldcheck One / Inoxico match fields and expected output to scope iRisk screening", "said_by": "Varun (Zycus) requested from Marianne Ventura", "date": "2026-06-30", "addressed": false, "quote": "First of all, those fields that are required to make that match... and then what kind of output is expected.", "source": "Avoma SOW closure call 30 Jun 2026"},
+        {"requirement": "Send DnB enrichment (parent-child linkages, diversity status) pricing details by email", "said_by": "Marianne Ventura", "date": "2026-06-30", "addressed": false, "quote": "Do you want to just pop that to me in the mail... that cost is 10 to 25k per year.", "source": "Avoma SOW closure call 30 Jun 2026 (Caroline to send)"},
+        {"requirement": "Provide the Zycus API Swagger documentation for the endpoints Omnia will consume", "said_by": "Dieter Sparbier", "date": "2026-06-23", "addressed": false, "quote": "I don't know if you've got anything available just for the various endpoints... a Swagger link's perfect.", "source": "Avoma SOW review 23 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Return the finalized clean SOW to Marianne for her internal legal-cover sign-off", "who": "Zycus", "grounding_quote": "All the comments are resolved... the SOW is ready. Wonderful, I look forward to getting it back.", "date": "2026-06-30", "due": "2026-07-09", "status": "open", "source": "Avoma SOW closure call 30 Jun 2026"},
+          {"deliverable": "Countersign MSA and Order 1 for Zycus once Omnia returns the internally signed copies", "who": "Zycus", "grounding_quote": "When you return them, I will countersign for Zycus.", "date": "2026-06-26", "due": "2026-07-15", "status": "open", "source": "SF task 26 Jun 2026 (Final Order 1 and MSA for signature)"},
+          {"deliverable": "Send Marianne the DnB-versus-Worldcheck/Inoxico gap analysis to scope iRisk verification-agency coverage", "who": "Zycus", "grounding_quote": "We'll need to do an analysis of what DNB can provide versus what you have today.", "date": "2026-06-30", "due": "2026-07-17", "status": "open", "source": "Avoma SOW closure call 30 Jun 2026"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Omnia returns the internally signed MSA, Order 1 and SOW after Marianne's legal-cover routing", "who": "Buyer", "grounding_quote": "As soon as we've done our internal signing, I'm going to tap you guys to say it is with you for signature.", "date": "2026-06-30", "due": "2026-07-20", "status": "open", "source": "Avoma SOW closure call 30 Jun 2026 (Marianne Ventura)"},
+          {"deliverable": "Marianne shares the Worldcheck/Inoxico PDF reports (fields + output) so Zycus can build the risk apps", "who": "Buyer", "grounding_quote": "If you can send that PDF report that you just generated... we need to know how to build and what fields.", "date": "2026-06-30", "due": "2026-07-15", "status": "open", "source": "Avoma SOW closure call 30 Jun 2026"},
+          {"deliverable": "Dieter shares Omnia's integration framework / OIB standards and endpoints for spec alignment", "who": "Buyer", "grounding_quote": "I'll share that document with yourselves as well... so there is no gaps.", "date": "2026-06-23", "due": "2026-07-24", "status": "open", "source": "Avoma SOW review 23 Jun 2026 (Dieter Sparbier)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Quantified ROI / savings number", "quote": "The value case is qualitative and volumetric (manual-to-automated screening, 6,000-contract migration); no signed dollar-savings figure is on record.", "status": "acknowledged", "date": "2026-06-30", "gap_type": "knowledge", "source": "Avoma calls 23 Jun and 30 Jun 2026"},
+        {"area": "OpportunityContactRole role labels blank", "quote": "Roles are unpopulated on the contact roles though the people and their titles are known (EB, DM, Champion inferred from titles + calls).", "status": "acknowledged", "date": "2026-07-03", "gap_type": "hygiene", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "A won deal in signature: protect the 31 Jul date and the margin. The highest-leverage levers now are de-risking a single-threaded legal-cover routing, converting the Letsema gap into Zycus-delivered change management, and using the enrichment window before signature.",
+      "flags": [
+        "Signature routing is single-threaded through Marianne and Tracy Seeley-Jeppe; line up a backup legal contact (Simphiwe Mdluli, Executive: Group Legal, or Josephina Nkwana) to protect the 31 Jul date if either is out.",
+        "Convert the Letsema implementation-partner replacement into Zycus-delivered change management and PMO to protect scope and margin rather than cede it to a new SI.",
+        "Use the pre-signature window to land the DnB (USD 10-25k/yr) and Ecovadis enrichment add-ons with Marianne while commercial goodwill from the flat-price scope uplift is high."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Marianne Ventura", "title": "Senior Category Manager: IT & Communications", "role": "Champion", "last_contact_date": "2026-07-03", "sentiment": "positive", "risk": "Sole driver of internal sign-off routing; strong and active but carrying legal-cover and scope complexity personally.", "source": "SF OpportunityContactRole + Avoma 23 Jun and 30 Jun 2026"},
+        {"name": "Stephan Serfontein", "title": "Group Financial Director", "role": "Economic Buyer", "last_contact_date": "2026-02-19", "sentiment": "neutral", "risk": "Budget approved; passive during legal close, which is normal at this stage.", "source": "SF OpportunityContactRole"},
+        {"name": "Tracy Seeley-Jeppe", "title": "Head of Legal, Risk, and Compliance", "role": "Decision Maker", "last_contact_date": "2026-06-30", "sentiment": "neutral", "risk": "Owns legal review and the internal legal cover; signature routing depends on her return and sign-off.", "source": "SF OpportunityContactRole + Next_Step__c trail"},
+        {"name": "Dieter Sparbier", "title": "Head of IT Architecture", "role": "Influencer", "last_contact_date": "2026-06-23", "sentiment": "positive", "risk": "Integration design authority; OIB framework conformance is non-negotiable and specs are not yet exchanged.", "source": "SF OpportunityContactRole + Avoma 23 Jun 2026"},
+        {"name": "Zama Khambula", "title": "Financial Systems Support Analyst", "role": "Influencer", "last_contact_date": "2026-07-03", "sentiment": "positive", "risk": "Data/design and Certinal e-sign coordination; runs the document-sharing and Omnia due-diligence threads.", "source": "SF OpportunityContactRole + Avoma 23 Jun 2026 + SF tasks 03 Jul 2026"},
+        {"name": "Jacques De Villiers", "title": "Group: Head of Supply Chain", "role": "Economic Buyer", "last_contact_date": "2026-02-19", "sentiment": "neutral", "risk": "Co-sponsor for the operational business case; passive in the contracting phase.", "source": "SF OpportunityContactRole"},
+        {"name": "Junaid Sulaiman", "title": "NA", "role": "Coach", "last_contact_date": "2026-06-17", "sentiment": "neutral", "risk": "Marianne's manager and named escalation path if signature routing stalls.", "source": "SF OpportunityContactRole + Next_Step__c trail 08 Apr / 20 Apr 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Marianne Ventura is a strong, active champion driving the deal to signature, emotionally invested at close and controlling Omnia's internal legal-cover routing, with Dieter Sparbier a credible second advocate on the technical side and Zama Khambula coordinating data and e-sign. Engagement is continuous through the 03 Jul LastActivityDate with no cooling.",
+      "champion": "Marianne Ventura, Senior Category Manager: IT & Communications",
+      "strength": "strong",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole + Avoma 23 Jun and 30 Jun 2026 + SF LastActivityDate 03 Jul 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is a real but secondary lever: Merlin contract-metadata extraction is scoped to bridge post-cyber-incident supplier-master gaps and ML iAnalyze drives spend analytics, but the platform value is CLM/sourcing automation, not an agentic transformation story. Positioning is adequate for the scope, not under-sold.",
+      "score": "4.0 / Moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 Moderate is fair: one ML module (ML iAnalyze) plus real Merlin use for contract metadata extraction, but no Merlin agentic or ANA scope. Calls confirm the buyer values Merlin for a concrete field-bridging use case, not an AI-transformation agenda, so the field is neither under- nor over-rated.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Close date has slipped five times in 2026, latest to 31 Jul; internal legal-cover routing plus Omnia's supplier-due-diligence on Zycus make the date tight.", "first_raised": "2026-03-23", "date": "2026-07-02", "status": "active", "source": "SF OpportunityFieldHistory (CloseDate slips) + task 03 Jul 2026"},
+        {"category": "legal", "detail": "SOW is signed separately by AVP Global Delivery and MSA Annexure A cleanup was still in flight; documents too large for the e-sign platform, now routed via secure folder.", "first_raised": "2026-06-29", "date": "2026-07-01", "status": "active", "source": "SF tasks 29 Jun - 01 Jul 2026"},
+        {"category": "partner_support", "detail": "Omnia is replacing implementation partner Letsema and evaluating whether it still needs an external SI; unresolved partner scope could delay kickoff if not converted to Zycus-delivered change management.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "active", "source": "SF task 30 Jun 2026 + Avoma 30 Jun 2026"},
+        {"category": "integration", "detail": "Omnia's OIB (power platform) integration framework conformance is non-negotiable and the API/endpoint specs are not yet exchanged; a design-phase item, low risk to signature.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "open", "source": "Avoma SOW review 23 Jun 2026 (Dieter Sparbier)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is live and warming toward signature: dense two-way email plus Avoma cadence through 03 Jul, buyer pulling for the next steps, no thread cooling.",
+      "cooling": false,
+      "items": [
+        "Buyer-pull tone at close: 'we've gotta go in a couple of days, and we have to report we're ready to sign' (Marianne, 30 Jun)",
+        "Active daily email exchange with Zama Khambula and Marianne through 03 Jul on signatory and due-diligence",
+        "Scope uplift accepted (USD 1bn) with commercials held flat, removing the last commercial friction"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Return the finalized clean SOW to Marianne for her internal legal-cover sign-off.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "30 Jun closure call: all comments resolved, 'the SOW is ready... I look forward to getting it back'.", "trigger_date": "2026-06-30", "act_by": "2026-07-09", "expected_effect": "Unblocks Omnia's internal signing and holds the 31 Jul close; the SOW is the signature predictor."},
+        {"rank": 2, "action": "Countersign MSA and Order 1 the moment Omnia returns the internally signed copies.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "MSA and Order 1 cleaned and out for signature 29-30 Jun; Caroline is the Zycus signatory.", "trigger_date": "2026-06-30", "act_by": "2026-07-13", "expected_effect": "Removes the last Zycus-side step so execution is not gated on us."},
+        {"rank": 3, "action": "Complete the SupplierRate due-diligence questionnaire to clear Zycus vendor onboarding at Omnia.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "03 Jul: Omnia opened a supplier-due-diligence exercise on Zycus (bank letter, financials, WorldCheck/Inoxico report).", "trigger_date": "2026-07-03", "act_by": "2026-07-15", "expected_effect": "Prevents a procurement-side hold that could push signature past 31 Jul."},
+        {"rank": 4, "action": "Send Marianne the DnB-versus-Worldcheck/Inoxico gap analysis to scope iRisk verification coverage.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "30 Jun: agreed to analyze DnB versus current Worldcheck/Inoxico coverage before committing risk-app scope.", "trigger_date": "2026-06-30", "act_by": "2026-07-17", "expected_effect": "Closes an open commitment and sets up the iRisk/Merlin risk expansion in implementation."},
+        {"rank": 5, "action": "Book the change-management capability session versus Letsema during the configuration workshops.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "30 Jun: Omnia replacing Letsema; Varun offered a dedicated session on Zycus change-management capability.", "trigger_date": "2026-06-30", "act_by": "2026-07-31", "expected_effect": "Converts the partner gap into Zycus-delivered scope, protecting margin and kickoff timing."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "We are the selected vendor on a sole-source S2C finish with a strong CPO-office champion (Marianne Ventura) racing us to signature; the only thing between us and the win is a five-times-slipped 31 Jul date now gated on Omnia's internal legal-cover routing and a fresh supplier-due-diligence check on Zycus.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Win sits high because it is a sole-source finish: every SOW comment was resolved on 30 Jun, MSA/Order 1/SOW are out for signing, and Coupa and iValua were both eliminated back in 2024 with no live rival."},
+          {"tone": "good", "text": "Marianne Ventura is a strong, active champion who controls the internal sign-off routing and pulled us to close ('we've gotta go in a couple of days... ready to sign', 30 Jun)."},
+          {"tone": "warn", "text": "The close date has slipped five times in 2026 (latest 30 Jun -> 31 Jul on 02 Jul) and now depends on Omnia's non-automated legal-cover routing through Marianne and Tracy Seeley-Jeppe, a single-threaded path."},
+          {"tone": "warn", "text": "Omnia opened a supplier-due-diligence exercise on Zycus on 03 Jul (bank letter, financials, WorldCheck report) that must clear before onboarding, adding a procurement gate that could push signature."}
+        ],
+        "deal_momentum": [
+          {"tone": "good", "text": "Momentum is strong and buyer-led: dense two-way email plus Avoma cadence through 03 Jul, with the buyer requesting the next steps rather than us chasing."},
+          {"tone": "good", "text": "Commercial friction is gone: the spend scope was raised to USD 1bn and config to 20 templates on 30 Jun with Zycus holding price flat ('we won't increase any commercials')."},
+          {"tone": "warn", "text": "The forward path is contracting mechanics only (internal legal cover, e-sign folder workaround, AVP Global Delivery SOW signature), so slippage risk is timing, not deal health."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Commitment is high: Marianne declared the SOW ready and is emotionally invested at close ('I never want to do another one of these by email ever again... it's incredibly exciting', 30 Jun)."},
+          {"tone": "good", "text": "The buyer confirmed the signing protocol and signatories and is actively working the Zycus vendor-onboarding due-diligence, signalling intent to transact, not to reopen."},
+          {"tone": "warn", "text": "A signed ROI/savings figure was never captured, so the business case rests on qualitative pain and 6,000-contract migration volume rather than a quantified number."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Timing is the dominant risk: five 2026 close-date slips and internal legal routing make 31 Jul tight, though no evaluation or negotiation remains."},
+          {"tone": "warn", "text": "Signature is single-threaded through Marianne and Tracy Seeley-Jeppe with no mapped legal backup, so an absence could stall execution."},
+          {"tone": "warn", "text": "The Letsema implementation-partner replacement is unresolved; if Omnia takes on a new SI instead of Zycus change management it could delay kickoff and cede scope."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": 0.8, "evidence": "Marianne declared the SOW ready and is driving to signature; signatories and protocol confirmed (30 Jun / 01 Jul)."},
+        "timeline_risk": {"strength": -0.5, "evidence": "Close date slipped five times in 2026, latest to 31 Jul on 02 Jul; internal legal routing plus supplier due-diligence gate."}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "S2C for iContract, iSource, ML iAnalyze, iSupplier at ~USD 900m managed spend",
+      "to": "Same product scope at ~USD 1bn managed spend with configuration raised 15 -> 20 templates/KPIs/workflows",
+      "detail": "Commercial scope was held flat while managed spend and configuration expanded on 30 Jun ('we won't increase any commercials'); implementation country phasing was rationalized (DRC and Indonesia deferred as legacy-QAD systems) but no products or commercials were cut, so this is stable-to-slightly-expanded, not a defensive narrowing."
+    },
+    "customer_preference": {"level": "high", "evidence": "Marianne Ventura pulling hard to sign ('we've gotta go in a couple of days... ready to sign', 30 Jun) and emotionally invested ('it's incredibly exciting'); no competitor in the frame."},
+    "business_case": {"status": "partial", "evidence": "Concrete qualitative pain (manual Worldcheck screening, 3-week spend lag) and volumetric scope (6,000 contracts/suppliers, ~USD 1bn managed spend), but no signed ROI/savings dollar figure."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": true,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 10,
+    "calls_read": 3,
+    "calls_omitted": [
+      {"call": "SOW alignment (2026-06-17)", "reason": "no transcript body available in this data set (notes only)"},
+      {"call": "Omnia Onboarding Zycus (2026-04-07)", "reason": "no transcript body available"},
+      {"call": "Zycus with Omnia: Modules Walkthrough Session (2026-03-18)", "reason": "no transcript body available"},
+      {"call": "Certinal- esignature - Omnia Group (2026-03-13)", "reason": "no transcript body available"},
+      {"call": "Source to Contract Scope of Work for Finalization (2026-02-19)", "reason": "no transcript body available; ~24 attendees per AIS note"},
+      {"call": "FW: Source to Contract Demo and Business Case (2025-10-13)", "reason": "no transcript body available; older context"},
+      {"call": "Omnia_Zycus Alignment for 13/10 presentation (2025-10-08)", "reason": "no transcript body available; older context"},
+      {"call": "Certinal and Omnia Holdings (2025-04-24)", "reason": "no transcript body available; older context"}
+    ],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history trailing; contact roles full roster",
+    "avoma_attendees": ["Marianne Ventura", "Dieter Sparbier", "Zama Khambula", "Tracy Seeley-Jeppe", "Junaid Sulaiman"],
+    "gaps": [
+      "No signed ROI/savings figure captured; business case is qualitative and volumetric (knowledge gap, low materiality at contracting).",
+      "Transcript bodies for the 17 Jun, 07 Apr, 18 Mar and earlier calls were not available in this data set; read grounded on the 23 Jun and 30 Jun full transcripts plus the email trail."
+    ]
+  },
+  "analysis_confidence": "High",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -51,11 +51,14 @@ _SWEEP_TUNING = {
     # in deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
     # MCP tool schemas here).
     "DEAL_ENGINE_SWEEP_MODEL": "anthropic:claude-sonnet-4-5",
-    # AI deal-scorer (deal_engine_ai_scoring): one extra Sonnet call per deal over the
-    # deterministic evidence packet -> real Win/Momentum + a non-robotic Scores & Reasons
-    # read. Flag OFF => pure deterministic scoring (no-op). Falls back to deterministic on
-    # any scorer failure. ANTHROPIC_API_KEY + DATALAKE_* already provided above.
-    "DEAL_ENGINE_AI_SCORING": "true",
+    # AI deal-scorer (deal_engine_ai_scoring): DISABLED 2026-07-07 (user-directed: ONE scorer).
+    # There must be a single scoring path — the DETERMINISTIC engine (deal_engine_scoring.py,
+    # the 2026-07-07 spec: stage anchor + evidence ±30 + momentum drag + selection override +
+    # forecast credit − risk penalty, inside the stage ceiling). Reproducible, exact, matches
+    # the worked examples. Human-readable reasons come from deal_engine_cro.build_cro_panel.
+    # Flag OFF => pure deterministic scoring. Do NOT re-enable without explicit direction —
+    # two scorers is the confusion this removed.
+    "DEAL_ENGINE_AI_SCORING": "false",
     "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-4-5",
 }
 API_ENV = {

@@ -353,6 +353,13 @@ def _rubric_win_strengths(record: dict) -> dict:
                        else _status_strength(mst("champion")))
 
     out["exec_access"] = _status_strength(mst("economic_buyer"))
+    # SECOND-PANEL / expansion into a WON account (user-directed, Fortive): if Zycus already
+    # closed a deal on this account (the sweep flags ai.expansion_context.prior_closed_won —
+    # e.g. a sibling Closed-Won opp), we ALREADY hold executive / seat / stakeholder access.
+    # Floor exec_access so a not-yet-mapped EB on the expansion opp can't read as "no access".
+    exp = ai.get("expansion_context")
+    if isinstance(exp, dict) and exp.get("prior_closed_won"):
+        out["exec_access"] = max(out.get("exec_access", WIN_MISSING), 0.6)
     out["competitive"] = _competitive_strength(ai)
     # Business case — sweep field if present, else MEDDPICC metrics.
     bc = ai.get("business_case")
@@ -373,6 +380,14 @@ def _rubric_win_strengths(record: dict) -> dict:
 # narrative keyword scan it could only ever read as "missing" (-0.30) and silently capped Win.
 _CRM_FACTOR_KEYS = ("differentiation", "preference", "champion", "exec_access",
                     "business_case", "commercial")
+# The soft, keyword-prone factors: a Next-Step/narrative keyword hit must NOT override an
+# EXPLICIT weak/negative read the sweep wrote (champion "weak", preference "leaning
+# elsewhere", "differentiation" off-fit). Without this a bare keyword maxed the factor to
+# +1 while the narrative said the opposite — the score-vs-reasons mismatch (SARS). The
+# structured-field factors (exec_access from a named EB, business_case from metrics) still
+# lift, because those are real evidence, not a keyword.
+_OVERLAY_LOCK_IF_NEGATIVE = ("preference", "differentiation", "champion", "commercial")
+_EXPLICIT_NEGATIVE = -0.4   # below the -0.30 "unknown" floor: an explicit gap/weak/at-risk read
 
 
 def _crm_recency(age_days) -> float:
@@ -397,8 +412,14 @@ def _crm_evidence_overlay(out: dict, ai: dict) -> dict:
     for fac in _CRM_FACTOR_KEYS:
         info = ev.get(fac)
         if isinstance(info, dict) and info.get("present"):
+            cur = out.get(fac, WIN_MISSING)
+            # Respect an explicit weak/negative read for the keyword-prone factors: don't let
+            # a deterministic presence-hit lift a factor the sweep deliberately scored down.
+            # (Unknowns at the -0.30 floor still lift — that's the original under-read fix.)
+            if fac in _OVERLAY_LOCK_IF_NEGATIVE and cur <= _EXPLICIT_NEGATIVE:
+                continue
             s = round(1.0 * _crm_recency(info.get("age_days")), 3)
-            out[fac] = max(out.get(fac, WIN_MISSING), s)
+            out[fac] = max(cur, s)
     return out
 
 
@@ -547,6 +568,25 @@ def score_momentum_v2(record: dict):
             "model": "engagement_v2", "contributions": contribs}
 
 
+# Scope-shrink (user-directed, Techtronic): a deal NARROWING vs its prior/original scope
+# (Source-to-Pay -> Source-to-Contract, modules dropped, amount cut with fewer products) is
+# the buyer getting DEFENSIVE — usually cost-cutting, or an implementation/integration
+# concern (wanting phased over big-bang). It costs Win a fixed ~7 points (bounded, one-time)
+# and is surfaced for the CEO monitor. Driven by the sweep's ai.scope_change signal.
+_SCOPE_SHRINK_PTS = -7.0
+_SCOPE_REDUCED = ("reduced", "reduced_scope", "shrunk", "shrinking", "narrowed", "narrowing", "down")
+
+
+def _scope_shrink(record):
+    """(shrunk?, why) from ai.scope_change; ('', ) when absent/stable/expanded."""
+    sc = ((record or {}).get("ai") or {}).get("scope_change")
+    if not isinstance(sc, dict):
+        return False, ""
+    if str(sc.get("direction") or "").strip().lower() in _SCOPE_REDUCED:
+        return True, str(sc.get("detail") or sc.get("to") or "scope narrowed vs prior")
+    return False, ""
+
+
 def score_win_position(ev, record=None, momentum=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
@@ -589,10 +629,20 @@ def score_win_position(ev, record=None, momentum=None):
             contributions.append(_contrib("momentum_adj", mom_adj,
                                           f"momentum {round(float(momentum))} vs stage-expected {int(exp)}"))
 
+    # Scope-shrink drag: a deal narrowing vs its prior scope loses a fixed ~7 points.
+    shrunk, shrink_why = _scope_shrink(record)
+    scope_pts = 0.0
+    if shrunk:
+        scope_pts = _SCOPE_SHRINK_PTS
+        contributions.append(_contrib("scope_reduced", scope_pts,
+                                      f"scope narrowed vs prior — {shrink_why[:160]} (buyer likely "
+                                      f"defensive on cost or phased implementation)"))
+
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
-    score = round(min(ceiling, _clamp(anchor + adj + mom_adj, 0.0, 99.0)), 1)
+    score = round(min(ceiling, _clamp(anchor + adj + mom_adj + scope_pts, 0.0, 99.0)), 1)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj, "contributions": contributions}
+            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj,
+            "scope_adj": scope_pts, "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):

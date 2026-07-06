@@ -11,6 +11,61 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-06 — Deal-quality tweak pass: specific + risk-inclusive score reasons, alignment, scope-shrink, second-panel, 24h last-active-day
+
+**What.** A set of surgical tweaks ON TOP of the working sweep (the ~80% stays untouched), from a
+deal-quality review across Publicis / Bandhan / Consumer Cellular / Fortive / SARS / Sabic / Omnia /
+Techtronic / Austrian Post / Bosch:
+- **Reasons are no longer robotic.** `build_cro_panel` now weaves the sweep's rich per-factor
+  NARRATIVE into EVERY win bullet (economic_buyer / competition / paper_process narratives,
+  competitive & champion summaries, customer_preference) — not just champion — so a bullet reads
+  "Buyer leaning our way — Nishan said we're 1st on product assessment; only blocker is FSI-India
+  experience (24 Jun)" instead of a bare label. The top **risks are folded INTO the win block**
+  (user: "win position should include the risks, don't make a different column"), the win math is
+  labelled **"Why this number"**, and the panel `intro` + bullets now also accept a sweep-authored
+  `ai.deal_scores_evidence.{summary,ai_reasons}` verbatim.
+- **Score ↔ reasons alignment (SARS).** `_crm_evidence_overlay` no longer maxes preference /
+  differentiation / champion / commercial back up on a keyword hit when the sweep scored them
+  weak/negative — killing "We're ahead (70)" sitting next to reasons that describe losing.
+- **Scope-shrink (Techtronic).** `ai.scope_change.direction=="reduced"` drags Win a fixed ~7 pts
+  (`scope_reduced` contribution) and raises a native **CEO-monitor watch** (`type:"scope_shrink"`,
+  large ≥ $250K = high) — framed as buyer-defensive (cost / phased implementation).
+- **Second-panel (Fortive).** `ai.expansion_context.prior_closed_won` floors exec_access so an
+  expansion into an already-won account is never scored "no executive access".
+- **24h summary (Publicis).** `DealDaySummary.tsx` falls back to the most recent `has_activity=true`
+  day (with its date + a banner) when today's window is empty — instead of a bare "nothing happened".
+  Summaries were already persisted per-day + searchable by date (`deal_daily_summaries`); this just
+  surfaces the last active day.
+- **Sweep prompt (§2.10, +6.2K chars, dry-run in `apply_reason_quality_tweaks.py`).** Mandates
+  deal-specific, risk-inclusive, "why-this-number" reasons; an **email-trail parsing pipeline**
+  (segment on headers → four-field → strip noise → two-bucket latest-development + unresolved-open →
+  owner/next-action) that also fixes the **Omnia SOW** contradiction; **economic-buyer inference**
+  from conversation (Austrian Post); **"last conversation" includes email** (Bosch); emission of the
+  `scope_change` / `expansion_context` / `deal_scores_evidence` signals the server now reads; and a
+  plain-English **"do nothing"** explanation (Publicis).
+
+- **Reasons never speak the scoring machinery (user-directed).** The deal reason describes the DEAL
+  only — who's engaged, what's proven, what's at risk. The stage cap still limits the *number*
+  internally but is never spoken: removed the "how it adds up / Shortlisted caps confidence near 70 /
+  anchors near X" line, added a render-time `_scrub_score_logic` in `build_cro_panel` that strips any
+  score-logic clause from the sweep's `deal_scores_evidence` reasons (43/59 fresh reasons had leaked
+  it), and patched §2.10 (`fix_reason_prompt.py`) so future sweeps don't write it. All 449 panels
+  re-rendered clean.
+
+**Why.** CMO/VPs kept asking "why is this score high/low?" and having to open Ask-AI. The reasons
+were textbook labels with no deal-specific detail and hid the risks; some scores contradicted their
+own reasons; scope cuts and second-panel access were mis-read. These close that gap without
+disturbing the deterministic 5-score model.
+
+**How to work with it going forward.** Backend (`deal_engine_cro.py`, `deal_engine_scoring.py`,
+`deal_engine_ceo.py`) + tests (`tests/test_deal_reasons.py`, all pass; the 6 pre-existing
+`test_deal_scoring.py` failures are stale old-flat-50-model tests, unaffected). New scoring/CEO paths
+are **guarded no-ops until the sweep emits the new signals** — safe before deploy. To activate: apply
+the prompt (`python apply_reason_quality_tweaks.py --apply`, idempotent, backup saved) → deploy
+backend + frontend → re-run the $0 CC sweep (or a `cro_panel` backfill) so panels regenerate. The
+narrative-per-factor bullets already work off the EXISTING meddpicc narratives (no new sweep needed
+for that part — just a panel rebuild).
+
 ## 2026-07-06 — Zycus contracting knowledge fed into the sweep prompt (terms + how we operate)
 
 **What.** Added Zycus's new-business contracting paper-trail + terminology to the analysis so

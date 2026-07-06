@@ -119,16 +119,35 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     # reason from its own discriminator and CARRIES THE WATCH REASONS FORWARD from the
     # prior record (those are owned by the separate 14-day ceo_attention run and must
     # never be clobbered by a CDC re-sweep).
+    # `support` (recomputed) and `scope_shrink` (recomputed natively below) are NOT carried
+    # forward; the 14-day attention watches (our_slip / large_slowdown / competitor_edge) are.
     def _prior_watch() -> list:
         rs = prior_ci.get("reasons")
         if isinstance(rs, list):
-            return [r for r in rs if isinstance(r, dict) and r.get("type") != "support"]
+            return [r for r in rs if isinstance(r, dict) and r.get("type") not in ("support", "scope_shrink")]
         mon = prior_ci.get("monitor") if isinstance(prior_ci.get("monitor"), dict) else {}  # legacy shape
         return [{**t, "act": False} for t in (mon.get("triggers") or [])
-                if isinstance(t, dict) and t.get("type") != "support"]
+                if isinstance(t, dict) and t.get("type") not in ("support", "scope_shrink")]
+
+    # NATIVE per-sweep watch: a deal SHRINKING vs its prior scope (S2P -> S2C, modules dropped)
+    # is a defensive signal (cost-cutting or a phased-implementation pull). Surface it on the
+    # CEO monitor for eligible deals — large deals rate `high`. Recomputed every sweep from
+    # ai.scope_change; needs no CEO action by itself (act:false).
+    def _native_watch() -> list:
+        sc = ai.get("scope_change") if isinstance(ai.get("scope_change"), dict) else {}
+        if str(sc.get("direction") or "").strip().lower() not in (
+                "reduced", "reduced_scope", "shrunk", "shrinking", "narrowed", "narrowing", "down"):
+            return []
+        amount = _num((parsed.get("hard") or {}).get("amount")) or 0.0
+        detail = str(sc.get("detail") or sc.get("to") or "narrower scope than before")
+        return [{"type": "scope_shrink", "act": False,
+                 "severity": "high" if amount >= 250000 else "medium",
+                 "summary": ("Scope shrinking vs prior — " + detail[:200] + ". Buyer likely getting "
+                             "defensive on cost or implementation/integration (phased over big-bang) — watch."),
+                 "detail": sc.get("detail"), "from": sc.get("from"), "to": sc.get("to"), "as_of": gen}]
 
     def _emit(support_reason) -> None:
-        reasons = ([support_reason] if support_reason else []) + _prior_watch()
+        reasons = ([support_reason] if support_reason else []) + _native_watch() + _prior_watch()
         needed = bool(reasons)
         severity = "high" if any(r.get("severity") == "high" for r in reasons) else "medium"
         ai["ceo_intervention"] = {"needed": needed,

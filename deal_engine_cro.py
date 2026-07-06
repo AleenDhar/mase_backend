@@ -110,6 +110,40 @@ def _strip_evi(evidence, crm_val=None):
     return body
 
 
+# Reasons must describe the DEAL, never the scoring machinery. The sweep sometimes leaks
+# score-logic language ("Shortlisted caps confidence near 70", "earns roughly 66", "why this
+# number", "holds in the mid-50s", "stage ceiling"). We strip those CLAUSES at render time so
+# the panel only ever speaks about the deal — durable even if a future sweep leaks again.
+_SCORE_LOGIC = re.compile(
+    r"(shortlisted caps|formal evaluation caps|vendor[- ]selected caps|stage (cap|ceiling)|"
+    r"below (vendor selected|the stage|stage)|caps? (confidence|win|it|the (win|score|read))|"
+    r"cap it below|(confidence|score|win read|read) (near|at|around|to|below|of) \d|"
+    r"anchors? (at|near|around)|anchored (at|near)|"
+    r"earns? (it\b|roughly|about \d|around \d|more\b|a (strong|solid|good) (position|read|score))|"
+    r"scores? (mid-?band|around \d|about \d|in the (mid|low|high)|it \d|near \d)|"
+    r"sits? (around \d|at \d|mid-?band|in the mid)|(mid|low|high)-?\d0s|mid-?band|"
+    r"hold(s|ing)? it (below|down|near|at|in the)|we hold it|holds? (it |the )?(in the (mid|low)|below|near \d)|"
+    r"not higher because|why this number|how it adds up|underlying read|earned but not|"
+    r"not yet banked|stage anchor|win (read|confidence) (near|of|holds)|ceiling)", re.I)
+_WHY_PREFIX = re.compile(r"^\s*(why this number|how it adds up|the read)\s*[:\-—–]\s*", re.I)
+
+
+def _scrub_score_logic(text):
+    """Strip clauses about the score's inner working; return deal-only text, or '' when the
+    whole thing was score-logic (the caller then falls back to the deal narratives)."""
+    t = _clean(text)
+    if not t:
+        return ""
+    t = _WHY_PREFIX.sub("", t)
+    parts = re.split(r"\s*(?:;|:|—|–|(?<=[.!?])\s+(?=[A-Z0-9]))\s*|\s+-\s+", t)
+    kept = [p.strip() for p in parts if p and p.strip() and not _SCORE_LOGIC.search(p)]
+    out = "; ".join(kept)
+    out = re.sub(r"^(but|and|however|though|although|yet|so|because|which)\b[ ,]*", "", out, flags=re.I).strip(" ;,.")
+    if len(out) < 25:
+        return ""
+    return out[0].upper() + out[1:]
+
+
 def _band_read(score, bands):
     """bands = list of (min_inclusive, text); first match wins (descending)."""
     s = score if score is not None else -1
@@ -147,6 +181,41 @@ def _competitor_threat(ai):
     return False
 
 
+# Win-factor → the rich, deal-specific NARRATIVE the sweep already wrote for it. The sweep
+# authors a 2-4 sentence `narrative` on every MEDDPICC element plus section summaries
+# (competitive_position, champion_strength, customer_preference, ai_fit_signal …). Weaving
+# these in makes every bullet SAY WHY — grounded in this deal (names/dates/quotes) — instead
+# of a generic label ("Buyer is leaning our way"). Previously ONLY champion did this.
+def _factor_narrative(f, ai):
+    ai = ai or {}
+
+    def d(x):
+        return x if isinstance(x, dict) else {}
+
+    medd = d(ai.get("meddpicc"))
+
+    def mn(k):
+        return _clean(d(medd.get(k)).get("narrative"))
+
+    if f == "champion":
+        return _clean(d(ai.get("champion_strength")).get("summary")) or mn("champion")
+    if f == "exec_access":
+        return mn("economic_buyer")
+    if f == "business_case":
+        return mn("metrics") or _clean(d(ai.get("business_case")).get("evidence"))
+    if f == "commercial":
+        return mn("paper_process")
+    if f == "competitive":
+        return _clean(d(ai.get("competitive_position")).get("summary")) or mn("competition")
+    if f == "differentiation":
+        return _clean(d(ai.get("ai_fit_signal")).get("summary")) or mn("identify_pain")
+    if f == "preference":
+        cp = d(ai.get("customer_preference"))
+        return (_clean(cp.get("evidence")) or _clean(d(ai.get("ai_positioning_strength")).get("summary"))
+                or mn("decision_criteria"))
+    return ""
+
+
 def build_cro_panel(record, pinned_override=None):
     """Return the cro_panel dict, or None when there's nothing to render."""
     if pinned_override:
@@ -172,13 +241,16 @@ def build_cro_panel(record, pinned_override=None):
     # re-derive from contributions or re-trim with _first_sentence (that chopped them
     # mid-word, e.g. "…advocate for Zycus as the…"). Deterministic deals have no
     # ai_reasons and fall through to the trimmed prose path below unchanged.
-    ai_reasons = ds.get("ai_reasons") or {}
+    # SOURCE ORDER: the off-by-default AI scorer writes ds.ai_reasons; the $0 sweep (the
+    # path we actually run) writes ai.deal_scores_evidence.ai_reasons — accept EITHER so a
+    # sweep can supply narrative, deal-specific, risk-inclusive bullets verbatim.
+    ai_reasons = ds.get("ai_reasons") or (ai.get("deal_scores_evidence") or {}).get("ai_reasons") or {}
 
     def _ai_bullets(key):
         """AI-authored bullets for one score, verbatim. [] when none stored."""
         out = []
         for b in (ai_reasons.get(key) or []):
-            t = _clean(b.get("text"))
+            t = _scrub_score_logic(b.get("text"))   # deal-only; drop a fully score-logic bullet
             if not t:
                 continue
             out.append({"tone": "good" if b.get("tone") == "good" else "warn", "text": t})
@@ -217,7 +289,11 @@ def build_cro_panel(record, pinned_override=None):
         frame = "It's genuinely competitive and could go either way; the reads below say where it stands."
     else:
         frame = "We're behind on this one — the reads below say why and what would change it."
-    intro = "One read per score, in language a CRO/CO can act on. " + frame
+    # Lead line: prefer a sweep-authored, deal-specific narrative headline (one crisp
+    # sentence naming the champion, the forcing date and the ONE thing between us and the
+    # win) when the sweep supplies it; else the generic stage-framed sentence.
+    _lead = _scrub_score_logic((ai.get("deal_scores_evidence") or {}).get("summary"))
+    intro = _lead or ("One read per score, in language a CRO/CO can act on. " + frame)
 
     blocks = []
 
@@ -242,17 +318,22 @@ def build_cro_panel(record, pinned_override=None):
             src = (crm_e.get("src") or "").lower()
             pos, neg = _WIN_FACTOR[f]
             label = pos if pts >= 0 else neg
-            # Champion: prefer the rich champion-strength narrative over a keyword hit.
+            # Prefer the rich, deal-specific SECTION NARRATIVE the sweep already wrote for
+            # THIS factor (economic_buyer / competition / paper_process narratives,
+            # competitive & champion summaries, customer_preference …) over the robotic
+            # contribution string or a bare keyword. This is what makes every bullet SAY WHY
+            # ("Buyer is leaning our way — Nishan confirmed we're 1st on the product
+            # assessment; only blocker is FSI-India experience, per the 24 Jun call") instead
+            # of a generic label. The untrimmed narrative rides `full` for the "more" expander.
             text = ""
             full_txt = None
-            if f == "champion" and pts >= 0:
-                cs_full = _clean((ai.get("champion_strength") or {}).get("summary"))
-                cs = _first_sentence(cs_full, 150)
-                if cs:
-                    text = f"{label} — {cs}"
-                    # keep the untrimmed narrative so the UI can offer a "more" expander
-                    if len(cs_full) > len(cs):
-                        full_txt = f"{label} — {cs_full}"
+            narr_full = _factor_narrative(f, ai)
+            if narr_full:
+                narr = _first_sentence(narr_full, 160)
+                if narr and narr.lower() != f.replace("_", " "):
+                    text = f"{label} — {narr}"
+                    if len(narr_full) > len(narr):
+                        full_txt = f"{label} — {narr_full}"
             if not text:
                 body = _strip_evi(c.get("evidence"), crm_e.get("value"))
                 # A Next-Step keyword match ("'pain point' in Next-Step/narrative") strips to a
@@ -279,6 +360,23 @@ def build_cro_panel(record, pinned_override=None):
             continue
         seen.add(k); wb.append(b)
     win_bullets = wb[:7]
+    # Fold the TOP RISKS into the win block itself — the deal-score reason must carry the
+    # downside INLINE (user: "win position should include the risks", "you don't have to make
+    # a different column for it"). Up to two live vulnerabilities become ⚠️ bullets here, in
+    # addition to the standalone "What could lose it" block. Skipped when the sweep supplies
+    # its own win_position ai_reasons (those already fold risk in).
+    _wvulns = [v for v in ((ai.get("vulnerabilities") or {}).get("items") or [])
+               if str(v.get("status", "")).lower() not in ("resolved", "completed", "closed")]
+    _radded = 0
+    for v in _wvulns:
+        d = _first_sentence(v.get("detail"), 160)
+        k = (d or "")[:40]
+        if d and k not in seen:
+            win_bullets.append({"tone": "warn", "text": d})
+            seen.add(k); _radded += 1
+        if _radded >= 2:
+            break
+    win_bullets = win_bullets[:8]
     _ai_win = _ai_bullets("win_position")
     if _ai_win:
         win_bullets = _ai_win
@@ -300,23 +398,14 @@ def build_cro_panel(record, pinned_override=None):
     if (win or 0) >= 55 and not any(x["tone"] == "good" for x in win_bullets):
         win_read = "Late-stage by the book, but the signals underneath are thin."
 
-    wp = ds.get("win_position") or {}
-    anchor = _r0(wp.get("anchor")); lift = wp.get("lift"); madj = wp.get("momentum_adj")
-    ceil = wp.get("ceiling")
-    how = None
-    if anchor is not None:
-        raw = (anchor or 0) + float(lift or 0) + float(madj or 0)
-        verb = "Win signals and momentum lift" if (float(lift or 0) + float(madj or 0)) >= 0 else "Thin signals pull"
-        stage_phrase = f"A deal at '{stage}'" if stage else "A deal at this stage"
-        if ceil is not None and raw > float(ceil) + 0.5:
-            how = (f"{stage_phrase} anchors near {anchor}. {verb} the underlying read to "
-                   f"~{_r0(raw)} — but we cap confidence at {_r0(ceil)} until the stage advances and sign-off lands. "
-                   f"Read the gap as 'earned, but not yet banked.'")
-        else:
-            how = f"{stage_phrase} anchors near {anchor}. {verb} the read to {_r0(win)}."
+    # The stage anchor + ceiling still drive the SCORE (deal_engine_scoring), but we do NOT
+    # surface the "a deal at 'Shortlisted' anchors near X … caps confidence at 70" mechanic
+    # in the panel — it read as textbook boilerplate. The deal-specific "why this number"
+    # lives in the intro lead + the win bullets (user-directed 2026-07-06: keep the stage-cap
+    # logic strictly internal to scoring, never spoken in the reasons).
     blocks.append({"kind": "score", "key": "win_position", "score": _r0(win),
                    "title": "Zycus win position", "sub": "can we win it?",
-                   "read": win_read, "bullets": win_bullets, "how": how})
+                   "read": win_read, "bullets": win_bullets})
 
     # ---- MOMENTUM block ----
     mom_read = _band_read(mom, [
@@ -397,7 +486,9 @@ def build_cro_panel(record, pinned_override=None):
         if cp.get("summary"):
             footer = "Competitive picture: " + _first_sentence(cp.get("summary"), 240)
         elif not comp_threat:
-            footer = "No competitor is currently out-selling us — the risk is inertia and sign-off."
+            footer = ("No competitor is out-selling us — the real threat is 'do nothing': the buyer keeps "
+                      "solving this with their current/manual process and never signs. That's a no-decision "
+                      "risk (timing, internal priority, sign-off), not a loss to a rival.")
         # de-dup risk bullets
         seen, rb = set(), []
         for b in risk_bullets:

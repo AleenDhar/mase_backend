@@ -88,6 +88,32 @@ def test_second_panel_floors_exec_access():
     assert SC._rubric_win_strengths(rec)["exec_access"] >= 0.6
 
 
+def test_selection_override_raises_win_over_stale_stage():
+    """Spec §4: a confirmed selection (high pref + no rival ahead + defensible) whose CRM
+    stage still says Shortlisted is anchored to the Vendor-Selected floor (72), 100 ceiling."""
+    rec = {"hard": {"stage": "Shortlisted"}, "pulse": {"state": "live"},
+           "ai": {"customer_preference": {"level": "high"},
+                  "north_star_verdict": {"forecast_defensible": True},
+                  "competitive_position": {"competitors": [{"name": "Do Nothing", "status": "do_nothing"}]}}}
+    assert SC._selection_override(rec) is True
+    out = SC.compute_deal_scores(rec)
+    assert out["win_position"]["selection_override"] is True
+    assert out["win_position"]["anchor"] >= 72.0
+    assert out["win_position"]["ceiling"] == 100.0
+    # an ordinary shortlisted deal (no preference) must NOT be touched
+    plain = {"hard": {"stage": "Shortlisted"}, "pulse": {"state": "live"}, "ai": {}}
+    assert SC._selection_override(plain) is False
+
+
+def test_high_risk_penalty_lowers_win():
+    """Spec §5: risk above the 20 noise floor penalises Win at 0.5×(risk-20), cap -30."""
+    assert SC._win_risk_penalty(10) == 0.0          # below floor -> no penalty
+    assert SC._win_risk_penalty(20) == 0.0          # at floor -> no penalty
+    assert SC._win_risk_penalty(40) == 10.0         # 0.5*(40-20)
+    assert SC._win_risk_penalty(60) == 20.0
+    assert SC._win_risk_penalty(200) == 30.0        # capped at 30
+
+
 def test_ceo_native_scope_shrink_watch():
     parsed = {"hard": {"amount": 300000},
               "ai": {"deal_scores": {"headline": {"win_position": 55, "deal_momentum": 50}},

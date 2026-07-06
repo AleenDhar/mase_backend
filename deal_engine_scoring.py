@@ -597,7 +597,46 @@ def _scope_shrink(record):
     return False, ""
 
 
-def score_win_position(ev, record=None, momentum=None):
+# --- Selection override (2026-07-07 spec §4): a CONFIRMED SELECTION whose CRM StageName still
+# lags is anchored to the Vendor-Selected floor (72) with the full 100 ceiling unlocked. TRIPLE-
+# gated so an ordinary shortlisted deal is never touched, and it can ONLY RAISE Win, never lower.
+SELECTION_FLOOR = 72.0
+_SELECTION_PREF_MIN = 0.9
+
+
+def _selection_override(record: dict, strengths: Optional[dict] = None) -> bool:
+    ai = (record or {}).get("ai") or {}
+    st = strengths if isinstance(strengths, dict) else _rubric_win_strengths(record or {})
+    # 1) HIGH stated preference ("you've chosen Zycus", "best platform").
+    cp = ai.get("customer_preference") or {}
+    _ps = st.get("preference")
+    pref_high = (str(cp.get("level") or cp.get("status") or "").lower() == "high"
+                 or (isinstance(_ps, (int, float)) and float(_ps) >= _SELECTION_PREF_MIN))
+    if not pref_high:
+        return False
+    # 2) NO real rival ahead (a do-nothing / incumbent-renewal timing risk does NOT count).
+    if _competitive_strength(ai) < 0:
+        return False
+    # 3) Evidence-defensible call (verdict forecast_defensible, or recommended Commit).
+    nv = ai.get("north_star_verdict") or {}
+    return bool(nv.get("forecast_defensible")) or str(nv.get("recommended_forecast") or "").lower().startswith("commit")
+
+
+# --- High-risk penalty (2026-07-07 spec §5): Risk is folded INTO Win — genuinely high risk
+# lowers winnability. Noise floor 20 (early/thin-read risk ignored); 0.5×(Risk-20), cap -30.
+WIN_RISK_NOISE_FLOOR = 20.0
+WIN_RISK_PENALTY_RATE = 0.5
+WIN_RISK_PENALTY_CAP = 30.0
+
+
+def _win_risk_penalty(deal_risk) -> float:
+    if not isinstance(deal_risk, (int, float)):
+        return 0.0
+    over = float(deal_risk) - WIN_RISK_NOISE_FLOOR
+    return min(WIN_RISK_PENALTY_CAP, WIN_RISK_PENALTY_RATE * over) if over > 0 else 0.0
+
+
+def score_win_position(ev, record=None, momentum=None, deal_risk=None):
     anchor = _win_anchor(record)
     strengths = _rubric_win_strengths(record or {})
     # CRM/Next-Step source per factor, so each contribution can SAY WHY (the reason feature).
@@ -649,10 +688,32 @@ def score_win_position(ev, record=None, momentum=None):
                                       f"defensive on cost or phased implementation)"))
 
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
-    score = round(min(ceiling, _clamp(anchor + adj + mom_adj + scope_pts, 0.0, 99.0)), 1)
-    return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor, 1),
-            "lift": adj, "ceiling": ceiling, "momentum_adj": mom_adj,
-            "scope_adj": scope_pts, "contributions": contributions}
+
+    # §4 Selection override — a confirmed selection whose CRM stage lags is anchored to the
+    # Vendor-Selected floor (72) with the 100 ceiling unlocked. Triple-gated; ONLY RAISES.
+    override = _selection_override(record, strengths)
+    anchor_eff = max(anchor, SELECTION_FLOOR) if override else anchor
+    ceiling_eff = 100.0 if override else ceiling
+    if override:
+        contributions.append(_contrib("selection_override", round(anchor_eff - anchor, 1),
+                                      "confirmed selection (high preference, no rival ahead, defensible read) "
+                                      "— anchored to the Vendor-Selected floor, full ceiling unlocked"))
+
+    # §5 High-risk penalty — Risk baked into Win: 0.5×max(0, risk−20), cap −30.
+    risk_pen = _win_risk_penalty(deal_risk)
+    if risk_pen > 0:
+        contributions.append(_contrib("risk_penalty", -round(risk_pen, 1),
+                                      f"deal risk {round(float(deal_risk))} (above the 20 noise floor) penalises winnability"))
+
+    score = round(min(ceiling_eff, _clamp(anchor_eff + adj + mom_adj + scope_pts - risk_pen, 0.0, 99.0)), 1)
+    # Only-raise guard: the override must never yield a LOWER score than no-override.
+    if override:
+        base = round(min(ceiling, _clamp(anchor + adj + mom_adj + scope_pts - risk_pen, 0.0, 99.0)), 1)
+        score = max(score, base)
+    return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor_eff, 1),
+            "lift": adj, "ceiling": ceiling_eff, "momentum_adj": mom_adj,
+            "scope_adj": scope_pts, "risk_penalty": -round(risk_pen, 1),
+            "selection_override": bool(override), "contributions": contributions}
 
 
 def score_momentum(ev, dsl, expected):
@@ -1140,16 +1201,16 @@ def compute_deal_scores(record: dict) -> dict:
             mom = score_momentum_v2(record)
         else:
             mom = score_momentum(ev, dsl, expected)
-        win = score_win_position(ev, record, momentum=mom.get("score"))
-        com = score_commitment(ev)
-        # Stage-bound the risk: at LATE (contract executing) only close-date / budget
-        # risk factors count — strip the early/mid ones so they can't inflate it.
-        # Exception: a LIVE multi-vendor fight (strong, fresh competition) is still a
-        # real loss risk at contracting, so re-admit strong competition signals.
+        # Risk BEFORE Win — Risk is folded into Win (spec §5: high risk penalises winnability).
+        # Stage-bound the risk: at LATE (contract executing) only close-date / budget factors
+        # count — strip early/mid ones so they can't inflate it. Exception: a LIVE multi-vendor
+        # fight (strong, fresh competition) is still a real loss risk at contracting.
         ev_risk = ev
         if _stage_tier(record) == "late":
             ev_risk = {k: v for k, v in ev.items() if _late_keep_risk(k, v)}
         rsk = score_risk(ev_risk)
+        win = score_win_position(ev, record, momentum=mom.get("score"), deal_risk=rsk.get("score"))
+        com = score_commitment(ev)
         cov = score_coverage(ev, dsl, expected)
         fc = score_forecast_confidence(win["score"], mom["score"], com["score"], rsk["score"], cov["score"])
         headline = {"win_position": win["score"], "deal_momentum": mom["score"],

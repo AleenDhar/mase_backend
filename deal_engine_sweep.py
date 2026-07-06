@@ -3572,6 +3572,22 @@ async def analyze_one(
                     _prior_ceo = _prior_ai_full.get("ceo_intervention") if isinstance(_prior_ai_full, dict) else None
                     if _prior_ceo:
                         parsed["ai"]["ceo_intervention"] = _prior_ceo
+        # 24h / last-active-day summary — built DETERMINISTICALLY from Salesforce activity so it
+        # refreshes WITH the rest of the record on every sweep (the drawer's 24h tab reads
+        # ai.day_summary). This is the reliable backbone: it captures the same Avoma notes +
+        # emails + field-moves regardless of whether the LLM read the calls, so a stuck/thin
+        # sweep never leaves the 24h summary blank. Runs in an executor (non-blocking) and is
+        # wrapped so a summary hiccup can NEVER fail a sweep. Only overwrites when it finds
+        # activity; otherwise any LLM-emitted day_summary is left intact.
+        if isinstance(parsed.get("ai"), dict):
+            try:
+                import build_day_summaries as _bds
+                _dsy = await asyncio.get_running_loop().run_in_executor(
+                    None, _bds.day_summary_for_opp, opp_id)
+                if _dsy:
+                    parsed["ai"]["day_summary"] = _dsy
+            except Exception as _dse:  # noqa: BLE001 — never block persist
+                print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

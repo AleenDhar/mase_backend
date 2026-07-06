@@ -126,6 +126,15 @@ _SCORE_LOGIC = re.compile(
     r"not higher because|why this number|how it adds up|underlying read|earned but not|"
     r"not yet banked|stage anchor|win (read|confidence) (near|of|holds)|ceiling)", re.I)
 _WHY_PREFIX = re.compile(r"^\s*(why this number|how it adds up|the read)\s*[:\-—–]\s*", re.I)
+# CRO-unfriendly lead-ins that talk ABOUT the score/number instead of the DEAL. Strip the
+# lead-in and keep the deal content ("Score is high because selection is confirmed" ->
+# "Selection is confirmed"; "Risk to the number; the EB never engaged" -> "The EB never
+# engaged"). A CRO wants the deal read, not a sentence about the score.
+_CRO_PREFIX = re.compile(
+    r"^\s*(score is (?:high|low|moderate|strong|weak|elevated|capped|held|solid|mid[- ]?band)\b[^,;:]*?\bbecause\s+"
+    r"|risk to the (?:number|score|forecast)\b[\s;:,.\-—–]*"
+    r"|the (?:score|number|read) (?:is|sits|reflects|reads|holds|stays)\b[^,;:]*?[;:,.\-—–]\s*"
+    r"|this (?:scores?|reads?|number)\b[^,;:]*?[;:,.\-—–]\s*)", re.I)
 
 
 def _scrub_score_logic(text):
@@ -135,6 +144,7 @@ def _scrub_score_logic(text):
     if not t:
         return ""
     t = _WHY_PREFIX.sub("", t)
+    t = _CRO_PREFIX.sub("", t)     # drop "Score is high because…" / "Risk to the number;…" lead-ins
     parts = re.split(r"\s*(?:;|:|—|–|(?<=[.!?])\s+(?=[A-Z0-9]))\s*|\s+-\s+", t)
     kept = [p.strip() for p in parts if p and p.strip() and not _SCORE_LOGIC.search(p)]
     out = "; ".join(kept)
@@ -500,26 +510,9 @@ def build_cro_panel(record, pinned_override=None):
                        "title": "What could lose it", "sub": "the honest downside",
                        "read": risk_read, "bullets": rb[:5], "footer": footer})
 
-    # ---- COMMITMENT block ----
-    cmt_read = _band_read(cmt, [
-        (50, "Real skin in the game."), (33, "Some investment, not deep yet."),
-        (-1, "Light — they haven't committed much yet."),
-    ])
-    cb = []
-    for c in (ds.get("customer_commitment") or {}).get("contributions") or []:
-        evi = _clean(c.get("evidence"))
-        # Don't claim "economic-buyer access recorded" when the EB is flagged unmapped.
-        if eb_unmapped and re.search(r"economic.buyer access|economic buyer", evi, re.I):
-            continue
-        if evi:
-            cb.append({"tone": "good", "text": _first_sentence(evi, 120)})
-    _ai_cmt = _ai_bullets("customer_commitment")
-    if _ai_cmt:
-        cb = _ai_cmt
-    if cb:
-        blocks.append({"kind": "score", "key": "customer_commitment", "score": _r0(cmt),
-                       "title": "Customer commitment", "sub": "how invested are they?",
-                       "read": cmt_read, "bullets": cb[:5], "how": None})
+    # ---- COMMITMENT block: intentionally NOT rendered (user-directed 2026-07-06). The
+    # "Customer commitment" score + reasons are suppressed from the CRO panel; win position,
+    # momentum and "what could lose it" carry the story a CRO acts on.
 
     # ---- MOVES block ----
     moves = []

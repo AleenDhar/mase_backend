@@ -251,10 +251,12 @@ def build_cro_panel(record, pinned_override=None):
     # re-derive from contributions or re-trim with _first_sentence (that chopped them
     # mid-word, e.g. "…advocate for Zycus as the…"). Deterministic deals have no
     # ai_reasons and fall through to the trimmed prose path below unchanged.
-    # SOURCE ORDER: the off-by-default AI scorer writes ds.ai_reasons; the $0 sweep (the
-    # path we actually run) writes ai.deal_scores_evidence.ai_reasons — accept EITHER so a
-    # sweep can supply narrative, deal-specific, risk-inclusive bullets verbatim.
-    ai_reasons = ds.get("ai_reasons") or (ai.get("deal_scores_evidence") or {}).get("ai_reasons") or {}
+    # ONE scorer (2026-07-07): the AI scorer is OFF — scores are deterministic. So the panel's
+    # per-score bullets are derived DETERMINISTICALLY below (grounded in the same factors that
+    # produced the number), NEVER from LLM-authored ai_reasons — else the reasons could claim a
+    # read that contradicts the deterministic number (the "correct number, wrong reasons"
+    # confusion). ai_reasons is force-empty so the deterministic narrative path always wins.
+    ai_reasons = {}
 
     def _ai_bullets(key):
         """AI-authored bullets for one score, verbatim. [] when none stored."""
@@ -425,39 +427,29 @@ def build_cro_panel(record, pinned_override=None):
         (40, "Flat — little is happening."),
         (-1, "Going quiet — engagement has dropped off."),
     ])
+    # Reasons come from the DETERMINISTIC momentum contributions (v3: close-date direction,
+    # genuine buyer-touch recency, confidence-% trajectory, real-session engagement,
+    # false-velocity), so the bullets ALWAYS match the score — never the stale footprints
+    # (buyer_touches_30d etc.) that contradicted a slipping score with "buyer touched 3×".
     mb = []
-    m60 = fp.get("meetings_60d"); bt30 = fp.get("buyer_touches_30d")
-    dsb = fp.get("days_since_buyer_touch"); lbt = fp.get("last_buyer_touch")
-    if m60:
-        mb.append({"tone": "good" if m60 >= 6 else "warn",
-                   "text": f"{m60} meeting{'s' if m60 != 1 else ''} in the last 60 days"})
-    if bt30 is not None:
-        mb.append({"tone": "good" if bt30 >= 1 else "warn",
-                   "text": (f"Buyer touched the deal {bt30}× in the last 30 days" if bt30
-                            else "No buyer-side activity in the last 30 days")})
-    if dsb is not None:
-        mb.append({"tone": "good" if dsb <= 10 else "warn",
-                   "text": (f"Last buyer contact {dsb} day{'s' if dsb != 1 else ''} ago — two-way, not the rep chasing"
-                            if dsb <= 10 else f"{dsb} days since the buyer last engaged")})
     for c in (ds.get("deal_momentum") or {}).get("contributions") or []:
-        f = c.get("factor"); evi = _clean(c.get("evidence"))
-        if f == "engagement" and evi:
-            sess = _EVI_TAIL.sub("", evi).strip(" -:")
-            sess = re.sub(r"^\[[^\]]*\]\s*", "", sess)                       # "[Clari - Email Sent] …"
-            sess = re.sub(r"^(?:avoma|clari|gong|zoom|teams)\b[\s:–\-]*", "", sess, flags=re.I)  # "Avoma - : …"
-            sess = sess.strip(" -:–")
-            # Guard: the engagement top-event must be a real SESSION — not an email
-            # (Allstate: "Re: Zycus POC discussion") and not an LLM recommended-action
-            # note that leaked in (Metallus: "MULTI-THREAD TO the relevant stakeholder…").
-            _not_session = re.search(
-                r"^(re|fw|fwd)\b|email sent|email received|\[clari - email|"
-                r"multi-thread|single-thread|relevant stakeholder|\(now\)|→|"
-                r"recommend|unmet|not sent|not scheduled", sess, re.I)
-            if sess and not _not_session:
-                mb.append({"tone": "good", "text": "Most significant recent session: " + _first_sentence(sess, 110)})
-        elif f == "next_step_active":
-            mb.append({"tone": "good", "text": "Live next steps with named dates"})
-    if not mb:  # footprints absent — fall back to pulse
+        evi = _clean(c.get("evidence"))
+        if not evi:
+            continue
+        pts = float(c.get("points") or 0)
+        # +points = forward (good), −points = slipping (warn); 0-point factors are commentary
+        # (false_velocity / engagement_ignored / one_sided) — always a caution.
+        tone = "good" if pts > 0.1 else "warn"
+        mb.append({"tone": tone, "text": _first_sentence(evi, 150)})
+    # de-dup
+    _seenm, _mb = set(), []
+    for b in mb:
+        k = b["text"][:40]
+        if k in _seenm:
+            continue
+        _seenm.add(k); _mb.append(b)
+    mb = _mb
+    if not mb:  # contributions absent — fall back to pulse
         cr = pulse.get("calls_read")
         if cr:
             mb.append({"tone": "good", "text": f"{cr} call{'s' if cr != 1 else ''} read in the window"})

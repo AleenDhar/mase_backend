@@ -482,100 +482,108 @@ def _days_since(iso):
         return None
 
 
+# --- Deal Momentum v3 (2026-07-07 spec §02): DIRECTION, not activity ------------------------
+# A busy next-step log on a slipping deal is still slipping. PRIMARY signals decide the score —
+# close-date direction (most reliable), genuine buyer-touch recency, confidence-% trajectory.
+# Engagement/milestones shape it within that read (REAL sessions only). Next-step edit
+# frequency + cumulative dated-line count NEVER raise it; the false-velocity rule holds a
+# busy-but-slipping deal low. Centered on 50.
+MOM_CLOSE_WEIGHT = 18.0            # close-date direction ±18 (symmetric, primary)
+_CONF_RE = re.compile(r"confidence\D{0,8}(\d{1,3})\s*%", re.I)
+# A real 'top event' is a short session label (demo/workshop/POC/call/meeting); a long prose
+# sentence or competitive-analysis note masquerading as an event is NOT a session (spec guard).
+_NARRATIVE_HINT = re.compile(r"\b(will open|competitive field|the only named|incumbent|motivated to switch|"
+                             r"rfp will|expected to|analysis|assessment|likely|strategy|positioning)\b", re.I)
+
+
+def _parse_confidence(text):
+    """Most-recent 'Confidence NN%' in the (newest-first) Next-Step log; None if absent."""
+    m = _CONF_RE.search(str(text or ""))
+    if not m:
+        return None
+    try:
+        v = int(m.group(1))
+        return v if 0 <= v <= 100 else None
+    except ValueError:
+        return None
+
+
+def _is_real_session(top_event) -> bool:
+    t = str(top_event or "").strip()
+    return bool(t) and len(t) <= 90 and not _NARRATIVE_HINT.search(t)
+
+
 def score_momentum_v2(record: dict):
     ai = (record or {}).get("ai") or {}
+    hard = (record or {}).get("hard") or {}
     fp = ai.get("footprints") or {}
     eng = fp.get("engagement") or {}
+    ot = ai.get("opp_trends") or {}
     contribs = []
+    score = 50.0
 
-    # BI-DIRECTIONAL GATE — momentum must be EARNED by the buyer, not the rep. A
-    # high-depth event the rep drove (a sent email, an old demo, an unmet ask) that
-    # the buyer hasn't engaged with recently is one-sided outreach, NOT momentum.
-    # Scale the activity pillars by how much the buyer is actually participating:
-    # buyer-side touches in the last 30d, or a genuinely recent meeting (meetings are
-    # inherently two-way). "Are we pitching and they're biting?" — not just pitching.
-    buyer30 = int(fp.get("buyer_touches_30d") or 0)
-    buyer60 = int(fp.get("buyer_touches_60d") or 0)
-    dsb = fp.get("days_since_buyer_touch")
+    # PRIMARY 1 — CLOSE-DATE DIRECTION (single most reliable signal; symmetric ±18).
+    cdt = ot.get("close_date_trend")
+    if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
+        cpts = round(max(-MOM_CLOSE_WEIGHT, min(MOM_CLOSE_WEIGHT, cdt * MOM_CLOSE_WEIGHT)), 1)
+        score += cpts
+        det = ot.get("close_date_trend_detail") or ("close date pulled in — accelerating" if cpts > 0 else "close date pushed out — slowing")
+        contribs.append(_contrib("close_date_direction", cpts, det))
+
+    # PRIMARY 2 — GENUINE BUYER-TOUCH RECENCY. A meeting (or buyer-initiated reply) is genuine
+    # two-way engagement; rep outreach 'awaiting reply' is not. Use the last MEETING as the
+    # genuine anchor; >30d quiet drags, dark (>60d / none) is heaviest.
     lm_days = _days_since(fp.get("last_meeting"))
-    recent_meeting = lm_days is not None and lm_days <= 21
-    if buyer30 >= 3 or (buyer30 >= 1 and recent_meeting):
-        bidir = 1.0
-    elif buyer30 == 2:
-        bidir = 0.85
-    elif buyer30 == 1:
-        bidir = 0.6
-    elif recent_meeting and buyer60 >= 1:
-        bidir = 0.55                      # a recent meeting backed by some buyer history
-    elif recent_meeting:
-        bidir = 0.4                       # a lone recent meeting, no other buyer activity
+    if lm_days is None:
+        bpts, why = -12.0, "no genuine buyer meeting on record — buyer side dark"
+    elif lm_days <= 14:
+        bpts, why = 8.0, f"genuine buyer touch {lm_days}d ago"
+    elif lm_days <= 30:
+        bpts, why = 0.0, f"last genuine buyer touch {lm_days}d ago"
+    elif lm_days <= 60:
+        bpts, why = -8.0, f"last genuine buyer touch {lm_days}d ago (>30d — buyer quiet)"
     else:
-        bidir = 0.2                       # rep pushing, buyer not biting
+        bpts, why = -12.0, f"last genuine buyer touch {lm_days}d ago (dark — rep emailing into silence)"
+    score += bpts
+    contribs.append(_contrib("buyer_recency", round(bpts, 1), why))
 
-    # 1) ENGAGEMENT (dominant): depth of the best recent engagement + a frequency
-    # bump — then GATED by bi-directionality.
-    top = float(eng.get("top_weight") or 0.0)
-    n30 = int(eng.get("events_30d") or 0)
-    eng_pts = min(MOM_ENG_CAP, (top * MOM_ENG_SCALE + min(5.0, 1.5 * max(0, n30 - 1))) * bidir)
-    if eng_pts:
-        contribs.append(_contrib("engagement", round(eng_pts, 1),
-                                 f"{eng.get('top_event') or 'engagement'} (depth {eng.get('raw_top')}, {n30} in 30d)"))
+    # PRIMARY 3 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
+    conf = _parse_confidence(hard.get("next_step"))
+    if conf is None:
+        conf = _num(hard.get("probability"))
+    if isinstance(conf, (int, float)):
+        cpts2 = -5.0 if conf < 35 else -3.0 if conf < 50 else 4.0 if conf >= 70 else 0.0
+        if cpts2:
+            score += cpts2
+            contribs.append(_contrib("confidence", round(cpts2, 1),
+                                     f"rep confidence {int(conf)}%" + (" (low)" if conf < 50 else " (high)")))
 
-    # 2) NEXT-STEP freshness — also gated: a next-step the rep logged while the buyer
-    # is silent is planning, not momentum.
-    hard = (record or {}).get("hard") or {}
-    age = _days_since(fp.get("general_last_activity"))
-    ns_pts = (7.0 if (age is not None and age <= 14) else 4.0 if (age is not None and age <= 30) else 0.0)
-    ns_pts = min(MOM_NEXTSTEP_CAP, ns_pts + min(3.0, _count_dated_milestones(hard.get("next_step")))) * bidir
-    if ns_pts:
-        contribs.append(_contrib("next_step_active", round(ns_pts, 1), "Next step fresh + dated milestones"))
+    # SECONDARY — engagement depth (REAL sessions only; a narrative/analysis 'top event' is
+    # ignored) that the buyer took part in recently.
+    top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
+    if top >= 6 and _is_real_session(eng.get("top_event")) and lm_days is not None and lm_days <= 30:
+        epts = round(min(10.0, (top - 5.0) * 3.0), 1)
+        score += epts
+        contribs.append(_contrib("engagement", epts, f"{eng.get('top_event')} — recent high-tier session"))
+    elif top >= 6 and not _is_real_session(eng.get("top_event")):
+        contribs.append(_contrib("engagement_ignored", 0.0,
+                                 "top 'event' is a narrative/analysis note, not a real session — ignored"))
 
-    # 3) NEW MILESTONES — a high-tier session only counts if the buyer took part; gate it.
-    stage_tr = (ai.get("opp_trends") or {}).get("stage_trend")
-    ms_pts = (6.0 if (isinstance(stage_tr, (int, float)) and stage_tr > 0) else 0.0)
-    if (eng.get("raw_top") or 0) >= 6:
-        ms_pts += 4.0       # a workshop / F2F / POC / diligence session is itself a milestone
-    ms_pts = min(MOM_MILESTONE_CAP, ms_pts) * bidir
-    if ms_pts:
-        contribs.append(_contrib("new_milestones", round(ms_pts, 1), "Stage advance / high-tier session reached"))
+    # FALSE-VELOCITY (the Alghanim signature): a busy next-step log on a slipping deal is still
+    # slipping. ≥3 dated lines but close pushed / confidence falling / buyer quiet >30d → hold low.
+    dated = _count_dated_milestones(hard.get("next_step"))
+    slipping = ((isinstance(cdt, (int, float)) and cdt < -0.15)
+                or (isinstance(conf, (int, float)) and conf < 40)
+                or (lm_days is not None and lm_days > 30))
+    if dated >= 3 and slipping:
+        contribs.append(_contrib("false_velocity", 0.0,
+                                 "activity without progression — busy next-step log but the deal is slipping "
+                                 "(close pushed / confidence down / buyer quiet); edits don't raise momentum"))
+        score = min(score, 25.0)
 
-    # Surface the one-sided discount so the reasons SAY WHY momentum is held back.
-    if bidir < 1.0:
-        contribs.append(_contrib("one_sided", 0.0,
-                                 f"engagement scaled ×{bidir:.2f} — buyer not responding "
-                                 f"(buyer touches in 30d: {buyer30})"))
-
-    # 4) STALL drag: quiet beyond stage cadence sinks momentum (asymmetric). A buyer
-    # who has gone DARK (no buyer-side touch in the 30d window, no recent meeting) is
-    # the heaviest non-dead stall — a deal where only the rep is still emailing.
-    cad = fp.get("stage_cadence_days") or 30
-    stall = 0.0
-    if dsb is None:
-        stall = round(MOM_STALL_CAP * 0.9, 1)        # no buyer footprint found -> dark
-        contribs.append(_contrib("stall", -stall, "no buyer touch found in window (dark)"))
-    else:
-        cad_stall = min(MOM_STALL_CAP, max(0.0, (dsb - cad)) * 0.6) if isinstance(dsb, (int, float)) else 0.0
-        # one-directional: NO buyer-initiated touch in 60d (a lone recent meeting doesn't excuse it).
-        dark_stall = 12.0 if (buyer60 == 0 and buyer30 == 0) else 0.0
-        stall = min(MOM_STALL_CAP, max(cad_stall, dark_stall))
-        if stall:
-            why = (f"{int(dsb)}d since a buyer touch (cadence {cad}d)" if cad_stall >= dark_stall
-                   else "buyer has gone quiet — no buyer-side activity in the last 30 days")
-            contribs.append(_contrib("stall", -round(stall, 1), why))
-
-    # 5) CLOSE-DATE SLIDE: a deal whose close date keeps getting pushed out is sliding
-    # right — anti-momentum ("pushed out is a bad signal"). Full weight when one-sided;
-    # softened for genuinely bi-directional deals (a single slip on a hot deal is minor).
-    cdt = (ai.get("opp_trends") or {}).get("close_date_trend")
-    push = 0.0
-    if isinstance(cdt, (int, float)) and cdt < -0.15:
-        push = min(10.0, abs(cdt) * 12.0) * (0.5 if bidir >= 0.6 else 1.0)
-        det = (ai.get("opp_trends") or {}).get("close_date_trend_detail") or "close date pushed out"
-        contribs.append(_contrib("close_date_slip", -round(push, 1), det))
-
-    score = round(_clamp(50.0 + eng_pts + ns_pts + ms_pts - stall - push, 0.0, 99.0), 1)
+    score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
-            "model": "engagement_v2", "contributions": contribs}
+            "model": "direction_v3", "contributions": contribs}
 
 
 # Scope-shrink (user-directed, Techtronic): a deal NARROWING vs its prior/original scope
@@ -634,6 +642,26 @@ def _win_risk_penalty(deal_risk) -> float:
         return 0.0
     over = float(deal_risk) - WIN_RISK_NOISE_FLOOR
     return min(WIN_RISK_PENALTY_CAP, WIN_RISK_PENALTY_RATE * over) if over > 0 else 0.0
+
+
+# --- Forecast-conviction credit (2026-07-07 spec §5): a manager's elevated ForecastCategory is
+# first-class evidence — it ADDS to Win, gated on the call being evidence-consistent (verdict
+# forecast-defensible OR opp trends net-positive). A sandbagged/inflated upgrade gets no credit.
+WIN_FORECAST_CREDIT = {"commit": 7.0, "best case": 4.0, "upside key deal": 4.0, "upside": 4.0}
+
+
+def _forecast_conviction_credit(record):
+    hard = (record or {}).get("hard") or {}
+    fc = str(hard.get("forecast_category") or "").strip().lower()
+    credit = WIN_FORECAST_CREDIT.get(fc, 0.0)
+    if credit <= 0:
+        return 0.0, ""
+    ai = (record or {}).get("ai") or {}
+    defensible = bool((ai.get("north_star_verdict") or {}).get("forecast_defensible"))
+    tnet, _ = _opp_trend_net(record or {})
+    if defensible or (isinstance(tnet, (int, float)) and tnet > 0):
+        return credit, f"{hard.get('forecast_category')} forecast is evidence-consistent — manager conviction credited"
+    return 0.0, ""   # sandbagged / inflated with no supporting evidence -> no credit
 
 
 def score_win_position(ev, record=None, momentum=None, deal_risk=None):
@@ -699,16 +727,25 @@ def score_win_position(ev, record=None, momentum=None, deal_risk=None):
                                       "confirmed selection (high preference, no rival ahead, defensible read) "
                                       "— anchored to the Vendor-Selected floor, full ceiling unlocked"))
 
-    # §5 High-risk penalty — Risk baked into Win: 0.5×max(0, risk−20), cap −30.
+    # §5 Forecast-conviction credit — an evidence-consistent Commit/Best Case adds to Win.
+    fc_credit, fc_why = _forecast_conviction_credit(record)
+    if fc_credit > 0:
+        contributions.append(_contrib("forecast_conviction", round(fc_credit, 1), fc_why))
+
+    # §6 High-risk penalty — Risk baked into Win: 0.5×max(0, risk−20), cap −30.
     risk_pen = _win_risk_penalty(deal_risk)
     if risk_pen > 0:
         contributions.append(_contrib("risk_penalty", -round(risk_pen, 1),
                                       f"deal risk {round(float(deal_risk))} (above the 20 noise floor) penalises winnability"))
 
-    score = round(min(ceiling_eff, _clamp(anchor_eff + adj + mom_adj + scope_pts - risk_pen, 0.0, 99.0)), 1)
+    # Floor a LIVE deal at 5 — score_win_position only runs for live deals (dead/lost return
+    # earlier with win 0), so win=0 would falsely read as "lost". 5 = "almost no chance, but
+    # still live". Keeps the compounding downside (evidence + momentum drag + risk) honest
+    # without colliding with the lost-deal sentinel.
+    score = round(min(ceiling_eff, max(5.0, _clamp(anchor_eff + adj + mom_adj + scope_pts + fc_credit - risk_pen, 0.0, 99.0))), 1)
     # Only-raise guard: the override must never yield a LOWER score than no-override.
     if override:
-        base = round(min(ceiling, _clamp(anchor + adj + mom_adj + scope_pts - risk_pen, 0.0, 99.0)), 1)
+        base = round(min(ceiling, max(5.0, _clamp(anchor + adj + mom_adj + scope_pts + fc_credit - risk_pen, 0.0, 99.0))), 1)
         score = max(score, base)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor_eff, 1),
             "lift": adj, "ceiling": ceiling_eff, "momentum_adj": mom_adj,

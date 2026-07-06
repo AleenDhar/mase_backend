@@ -282,10 +282,20 @@ def _buyer_leans_competitor(c: dict) -> bool:
         return False
     if c.get("preferred") is True or c.get("buyer_leaning") is True:
         return True
+    status = str(c.get("status") or "").lower()
+    sentiment = str(c.get("sentiment") or "").lower()
+    # A competitor being DISPLACED — negative sentiment, or a declined/faded status — is a
+    # WIN signal, never a buyer lean. In particular an INCUMBENT we're replacing must not drag
+    # Win (Bright Horizons: the displaced incumbent Proactis wrongly scored as buyer-leaning).
+    displaced = (any(w in sentiment for w in ("negative", "declin", "displac", "replac", "lost"))
+                 or any(w in status for w in ("declined", "faded", "do_nothing", "do nothing")))
     for f in ("status", "buyer_preference", "sentiment"):
         v = str(c.get(f) or "").lower()
-        if any(t in v for t in _COMPETITOR_LEANING):
-            return True
+        for t in _COMPETITOR_LEANING:
+            if t in v:
+                if t == "incumbent" and displaced:
+                    continue   # a displaced incumbent is not a buyer lean
+                return True
     return False
 
 

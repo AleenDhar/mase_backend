@@ -216,36 +216,54 @@ def _fmt(iso: str) -> str:
     return d.strftime("%b %d %H:%M") if d else ""
 
 
+NO_ACTIVITY_TEXT = "No moment registered in last twenty four hours in this ticket"
+
+
+def _clean_subj(s) -> str:
+    """Strip logging-tool prefixes so a subject reads like plain English
+    ('[Clari - Email Sent] Re: Checking In' -> 'Re: Checking In')."""
+    t = re.sub(r"^(\s*\[[^\]]*\]\s*)+", "", str(s or "").strip())
+    t = re.sub(r"^(avoma|clari|gong|outreach|lemlist)\s*[-:–]\s*", "", t, flags=re.I)
+    return t.strip()
+
+
+def _act_verb(a: dict) -> str:
+    k, d = a.get("kind"), a.get("direction")
+    if k == "email":
+        return "sent an email" if d == "out" else ("received an email" if d == "in" else "emailed")
+    if k == "call":
+        return "had a call"
+    if k == "meeting":
+        return "scheduled a meeting" if a.get("upcoming") else "met"
+    return "logged a task"
+
+
 def deterministic_summary(rec: dict) -> str:
+    """A plain-English PROSE summary of the day's activity — never a metadata dump.
+    Names who did what, on which item (cleaned of [Clari - …] prefixes), and when."""
     if not rec.get("has_activity"):
-        return "No new activity in the last 24 hours."
-    c = rec["counts"]
-    parts: list[str] = []
-    for mv in rec["movements"]:
-        parts.append(f"{mv['label']} {(mv.get('old') or '—')} → {(mv.get('new') or '—')}"
-                     f"{' (by ' + mv['by'] + ')' if mv.get('by') else ''}.")
+        return NO_ACTIVITY_TEXT
+    owner = rec.get("owner_name") or "The team"
+    sentences: list[str] = []
+    # real deal progression first
+    for mv in (rec.get("movements") or []):
+        sentences.append(f"{mv.get('label')} moved {(mv.get('old') or '—')} → {(mv.get('new') or '—')}"
+                         + (f" (by {mv['by']})" if mv.get("by") else "") + ".")
+    # activities as prose — up to 3 named, the rest counted
+    acts = rec.get("activities") or []
+    named = []
+    for a in acts[:3]:
+        who = str(a.get("owner") or owner).split()[0] if (a.get("owner") or owner) else owner
+        subj = _clean_subj(a.get("subject"))
+        named.append(f"{who} {_act_verb(a)}" + (f" — {subj}" if subj else "") + f" ({_fmt(a['at'])})")
+    if named:
+        sentences.append("; ".join(named) + ".")
+    extra = len(acts) - 3
+    if extra > 0:
+        sentences.append(f"Plus {extra} more activit{'y' if extra == 1 else 'ies'} logged.")
+    avoma = [_clean_subj(m.get("subject")) for m in (rec.get("meetings_avoma") or []) if m.get("subject")][:2]
+    if avoma:
+        sentences.append("Avoma call" + ("s" if len(avoma) > 1 else "") + ": " + "; ".join(avoma) + ".")
     if rec.get("next_step_changed_at"):
-        ns = (rec.get("next_step_text") or "").strip()
-        parts.append(("Next Step updated: " + ns[:140] + ("…" if len(ns) > 140 else "")) if ns
-                     else "Next Step updated.")
-    bits = []
-    for key, label in (("calls", "call"), ("emails", "email"), ("meetings", "meeting")):
-        if c[key]:
-            bits.append(f"{c[key]} {label}{'s' if c[key] != 1 else ''}")
-    if c["meetings_scheduled"]:
-        bits.append(f"{c['meetings_scheduled']} meeting{'s' if c['meetings_scheduled'] != 1 else ''} scheduled")
-    if c["tasks"]:
-        bits.append(f"{c['tasks']} task{'s' if c['tasks'] != 1 else ''}")
-    if bits:
-        parts.append("Activity: " + ", ".join(bits) + ".")
-    if rec.get("meetings_avoma"):
-        subs = [m.get("subject") for m in rec["meetings_avoma"] if m.get("subject")][:2]
-        if subs:
-            parts.append("Avoma call(s): " + "; ".join(subs) + ".")
-    heads = []
-    for a in rec["activities"][:3]:
-        s = (a.get("subject") or "").strip()
-        if s:
-            tag = " [upcoming]" if a.get("upcoming") else ""
-            heads.append(f"• {s} ({_fmt(a['at'])}){tag}")
-    return " ".join(parts) + (("\nRecent:\n" + "\n".join(heads)) if heads else "")
+        sentences.append("Next step was updated.")
+    return " ".join(sentences).strip()

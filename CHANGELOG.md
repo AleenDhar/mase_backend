@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-06 — CEO-ask names the VP; 24h summary is prose not a metadata dump
+
+**What.** Three feedback fixes. (1) **CEO watch `ceo_ask` now addresses the VP**, not the BDR — the
+CEO talks to his VP (the owner's manager), who owns the rep's book. Reframed existing records
+(`patch_ceo_ask_vp.py`, 28 deals: "Ask Grace…" → "Ask Michael McCarthy (VP over Grace Kim)…") and
+made it durable (`ceo_attention_fetch.py` adds `vp` to the pack; `gen_attention_wf.py` judge rule
+directs the ask at the VP). (2) **24h summary reads as a real summary**: removed the raw
+`Next_Step__c` wall (a months-long log, not a 24h item) from `DealDaySummary.tsx`, stripped
+`[Clari - Email Sent]` metadata prefixes from activity subjects, and rewrote `deterministic_summary`
+into plain-English prose ("Tanmay sent an email — Re: … (Jul 04)"); regenerated 74 stored rows from
+their structured data (`regen_daysummaries.py`, $0, no SF pull). (3) **Diagnosed** the "todo push
+didn't re-sweep": by design — the CDC bridge cost-guard (2026-07-02) filters Task/activity events
+(`CDC_TRIGGER_ON_ACTIVITY` off); only Opportunity Stage/Amount/CloseDate/Next_Step__c changes trigger
+a (paid-API) re-sweep.
+
+**How to work with it.** CEO-ask + prose-summary fixes are already applied to prod data. Frontend
+(`DealDaySummary.tsx`) needs a deploy to show the Next-Step-removal + subject-cleaning. To re-enable
+todo-push re-sweeps, either set `CDC_TRIGGER_ON_ACTIVITY=true` (blunt, re-adds the paid-API burn) or
+trigger a targeted re-analysis from the todo-push path — decide deliberately (it hits the paid API,
+not $0 Claude Code).
+
 ## 2026-07-06 — Deal-quality tweak pass: specific + risk-inclusive score reasons, alignment, scope-shrink, second-panel, 24h last-active-day
 
 **What.** A set of surgical tweaks ON TOP of the working sweep (the ~80% stays untouched), from a

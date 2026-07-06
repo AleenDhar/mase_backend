@@ -173,6 +173,7 @@ def main():
 
         pack = {
             "opp_id": oid, "account": r.get("account_name"), "owner": r.get("owner_name"),
+            "vp": ((r.get("record") or {}).get("hard") or {}).get("manager_name"),  # owner's manager = who the CEO asks
             "amount": amount, "is_large": amount >= LARGE,
             "forecast_category": r.get("forecast_category"),
             "is_forecasted": (r.get("forecast_category") or "").strip().lower() in FC,

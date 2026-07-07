@@ -926,6 +926,16 @@ _SELECTION_PREF_MIN = 0.9
 
 def _selection_override(record: dict, strengths: Optional[dict] = None) -> bool:
     ai = (record or {}).get("ai") or {}
+    hard = (record or {}).get("hard") or {}
+    # 0) STAGE GATE (2026-07-07): a SELECTION cannot precede an EVALUATION. The override unlocks
+    # the full 100 ceiling for a confirmed selection whose CRM stage LAGS — but that only makes
+    # sense at/after a formal evaluation. An early-stage deal (Initial Interest / Qualified /
+    # discovery) claiming selection is a mis-read, not a lagging CRM; its pre-RFP ceiling (<=30)
+    # MUST hold (PremiStar: a 7-day Qualified deal, one discovery call, 'no appetite for new
+    # platforms', read 99). Unknown stage is also blocked — can't confirm we're post-evaluation.
+    _stg = str(hard.get("stage") or "").strip().lower()
+    if not _stg or any(t in _stg for t in ("initial interest", "qualified", "prospect", "discovery", "lead", "1.", "2.")):
+        return False
     st = strengths if isinstance(strengths, dict) else _rubric_win_strengths(record or {})
     # 1) HIGH stated preference ("you've chosen Zycus", "best platform").
     cp = ai.get("customer_preference") or {}

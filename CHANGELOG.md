@@ -11,6 +11,26 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-07 — selection override is stage-gated (a selection can't precede an evaluation)
+
+**What.** `deal_engine_scoring._selection_override` now returns `False` for any pre-RFP /
+unknown stage (Initial Interest, Qualified, prospect, discovery, lead, `1.*`, `2.*`). The
+override unlocks the 100 win-ceiling for a **confirmed selection whose CRM stage lags**; it had
+no stage floor, so early-stage deals that merely *looked* strong (positive preference + no named
+competitor + a defensible-ish verdict) tripped all three gates and blew past the pre-RFP ceiling.
+PremiStar — a 7-day Qualified deal with one discovery call — read **win 99**. Book-wide, 4
+Qualified deals were affected (PremiStar, Parsons International, Northeastern University,
+International SOS), all now correctly capped at **30**.
+
+**Why.** A selection cannot happen before an evaluation exists. Crossing a stage ceiling must
+require the deal to actually be in (or past) the RFP round. Pre-RFP hard cap stays 30 (spec §7).
+
+**How to work with it.** Legit Shortlisted / Formal-Eval selections still cross (Global Switch
+holds at its Shortlisted ceiling of 70 because its fresh sweep set `forecast_defensible=False` —
+that's the gate doing its job, not the stage block). If a genuinely-selected deal is stuck below
+its stage in CRM, fix the stage or pin it — don't reopen the pre-RFP gate. Helper:
+`rescore_prerfp_overcap.py --apply` re-caps any pre-RFP deal found above 30.
+
 ## 2026-07-07 — `calls_read` is now deterministic; sweep model → `claude-sonnet-5`
 
 **What.** (1) In `deal_engine_sweep.analyze_one`, `result["calls_read"]` (and the persisted

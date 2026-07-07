@@ -514,6 +514,11 @@ def _is_real_session(top_event) -> bool:
 
 
 def score_momentum_v2(record: dict):
+    """Momentum v4 (2026-07-07, user spec): momentum = IS THE BUYER ENGAGING + IS IT PROGRESSING.
+    Engagement volume is PRIMARY (all real sessions count — a narrative 'top event' can no longer
+    zero out genuine meetings). A close-date push only drags when the buyer is ALSO quiet — on an
+    engaged deal it's a timing move (and already reflected in Win, not double-charged). Stage /
+    forecast up-moves earn credit. False-velocity rule unchanged (Alghanim stays slipping)."""
     ai = (record or {}).get("ai") or {}
     hard = (record or {}).get("hard") or {}
     fp = ai.get("footprints") or {}
@@ -522,27 +527,21 @@ def score_momentum_v2(record: dict):
     contribs = []
     score = 50.0
 
-    # PRIMARY 1 — CLOSE-DATE DIRECTION (single most reliable signal; symmetric ±18).
-    cdt = ot.get("close_date_trend")
-    if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
-        cpts = round(max(-MOM_CLOSE_WEIGHT, min(MOM_CLOSE_WEIGHT, cdt * MOM_CLOSE_WEIGHT)), 1)
-        det = ot.get("close_date_trend_detail") or ("close date pulled in — accelerating" if cpts > 0 else "close date pushed out — slowing")
-        # SELECTION MADE (2026-07-07): once the buyer has chosen Zycus (customer_preference
-        # high — award/selection captured), a close-date push is normally CONTRACTING TIMELINE
-        # (redlines, security review, signature logistics), not the deal slowing. Cap the drag.
-        if cpts < -6.0:
-            _cp_lvl = str(((ai.get("customer_preference") or {}).get("level")
-                           or (ai.get("customer_preference") or {}).get("status") or "")).lower()
-            if _cp_lvl == "high":
-                cpts = -6.0
-                det = str(det) + " — selection already made; push reflects contracting timeline, drag capped"
-        score += cpts
-        contribs.append(_contrib("close_date_direction", cpts, det))
-
-    # PRIMARY 2 — GENUINE BUYER-TOUCH RECENCY. A meeting (or buyer-initiated reply) is genuine
-    # two-way engagement; rep outreach 'awaiting reply' is not. Use the last MEETING as the
-    # genuine anchor; >30d quiet drags, dark (>60d / none) is heaviest.
+    # ---- engagement state first (drives everything else) --------------------------------
     lm_days = _days_since(fp.get("last_meeting"))
+    _la_days = min([d for d in (_days_since(hard.get("last_activity_date")),
+                                _days_since(fp.get("general_last_activity"))) if d is not None],
+                   default=None)
+    try:
+        ev30 = int(eng.get("events_30d") or 0)
+    except (TypeError, ValueError):
+        ev30 = 0
+    _stage_l = str(hard.get("stage") or "").strip().lower()
+    _late = any(t in _stage_l for t in ("shortlist", "selected", "contract", "negotiat", "award"))
+    engaged = ((lm_days is not None and lm_days <= 30) or ev30 >= 2
+               or (_late and _la_days is not None and _la_days <= 10))
+
+    # PRIMARY 1 — BUYER-TOUCH RECENCY (genuine two-way touch; meetings anchor it).
     if lm_days is None:
         bpts, why = -12.0, "no genuine buyer meeting on record — buyer side dark"
     elif lm_days <= 14:
@@ -553,25 +552,65 @@ def score_momentum_v2(record: dict):
         bpts, why = -8.0, f"last genuine buyer touch {lm_days}d ago (>30d — buyer quiet)"
     else:
         bpts, why = -12.0, f"last genuine buyer touch {lm_days}d ago (dark — rep emailing into silence)"
-    # LATE-STAGE EMAIL/CONTRACT CADENCE (2026-07-07, the Bright Horizons blind spot): a deal in
-    # Shortlisted/Selected/Contracting often moves ENTIRELY over email — award notices, NDAs,
-    # redlines, SOW scheduling — with no meetings for weeks. That is real buyer motion, not
-    # "buyer dark". If the stage is late AND Salesforce shows activity within ~10 days, the
-    # quiet/dark drag does not apply (mild positive instead).
-    if bpts < 0:
-        _stage_l = str(hard.get("stage") or "").strip().lower()
-        _late = any(t in _stage_l for t in ("shortlist", "selected", "contract", "negotiat", "award"))
-        _la_days = min([d for d in (_days_since(hard.get("last_activity_date")),
-                                    _days_since(fp.get("general_last_activity"))) if d is not None],
-                       default=None)
-        if _late and _la_days is not None and _la_days <= 10:
-            bpts = 2.0
-            why = (f"no recent meeting, but active deal flow {_la_days}d ago — late-stage "
-                   f"email/contract cadence (award/redlines/scheduling), not buyer silence")
+    # Late-stage email/contract cadence is real buyer motion, not silence (award, NDA,
+    # redlines, SOW scheduling move entirely over email).
+    if bpts < 0 and _late and _la_days is not None and _la_days <= 10:
+        bpts = 2.0
+        why = (f"no recent meeting, but active deal flow {_la_days}d ago — late-stage "
+               f"email/contract cadence (award/redlines/scheduling), not buyer silence")
     score += bpts
     contribs.append(_contrib("buyer_recency", round(bpts, 1), why))
 
-    # PRIMARY 3 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
+    # PRIMARY 2 — ENGAGEMENT VOLUME (all real sessions in the window count; the old model
+    # only looked at the single 'top event' and zeroed EVERYTHING when that one item was a
+    # narrative note — burying deals with a dozen genuine meetings).
+    vpts = 18.0 if ev30 >= 8 else 12.0 if ev30 >= 4 else 7.0 if ev30 >= 2 else 3.0 if ev30 >= 1 else 0.0
+    if vpts:
+        score += vpts
+        contribs.append(_contrib("engagement_volume", round(vpts, 1),
+                                 f"{ev30} engagement event(s) in the last 30d — sustained two-way cadence"
+                                 if ev30 >= 2 else f"{ev30} engagement event in the last 30d"))
+    # top-session bonus (still requires a REAL session; a narrative top just earns nothing
+    # extra — it no longer suppresses the volume credit above)
+    top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
+    if top >= 6 and _is_real_session(eng.get("top_event")) and lm_days is not None and lm_days <= 30:
+        epts = round(min(8.0, (top - 5.0) * 2.5), 1)
+        score += epts
+        contribs.append(_contrib("engagement", epts, f"{eng.get('top_event')} — recent high-tier session"))
+
+    # PRIMARY 3 — CLOSE-DATE DIRECTION. Pull-ins always credit. A PUSH only drags when the
+    # buyer is ALSO quiet (that's genuine slipping); on an engaged deal it's a timing move —
+    # already priced into Win, not double-charged here.
+    cdt = ot.get("close_date_trend")
+    if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
+        cpts = round(max(-MOM_CLOSE_WEIGHT, min(MOM_CLOSE_WEIGHT, cdt * MOM_CLOSE_WEIGHT)), 1)
+        det = ot.get("close_date_trend_detail") or ("close date pulled in — accelerating" if cpts > 0 else "close date pushed out — slowing")
+        if cpts < 0 and engaged:
+            cpts = 0.0
+            det = str(det) + " — buyer actively engaged, so the push reads as timing (already reflected in Win), not lost momentum"
+        elif cpts < -6.0:
+            _cp_lvl = str(((ai.get("customer_preference") or {}).get("level")
+                           or (ai.get("customer_preference") or {}).get("status") or "")).lower()
+            if _cp_lvl == "high":
+                cpts = -6.0
+                det = str(det) + " — selection already made; push reflects contracting timeline, drag capped"
+        if cpts:
+            score += cpts
+        contribs.append(_contrib("close_date_direction", cpts, det))
+
+    # PRIMARY 4 — STAGE / FORECAST PROGRESSION: a recent up-move is the clearest "it's moving".
+    _up = None
+    for k in ("stage_trend", "forecast_trend", "forecast_category_trend"):
+        v = ot.get(k)
+        if isinstance(v, (int, float)) and v > 0.02:
+            _up = k; break
+        if isinstance(v, str) and any(t in v.lower() for t in ("up", "advanc", "upgrad", "raised")):
+            _up = k; break
+    if _up:
+        score += 8.0
+        contribs.append(_contrib("progression", 8.0, f"{_up.replace('_',' ')}: moved UP recently — deal advancing"))
+
+    # PRIMARY 5 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
     conf = _parse_confidence(hard.get("next_step"))
     if conf is None:
         conf = _num(hard.get("probability"))
@@ -581,17 +620,6 @@ def score_momentum_v2(record: dict):
             score += cpts2
             contribs.append(_contrib("confidence", round(cpts2, 1),
                                      f"rep confidence {int(conf)}%" + (" (low)" if conf < 50 else " (high)")))
-
-    # SECONDARY — engagement depth (REAL sessions only; a narrative/analysis 'top event' is
-    # ignored) that the buyer took part in recently.
-    top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
-    if top >= 6 and _is_real_session(eng.get("top_event")) and lm_days is not None and lm_days <= 30:
-        epts = round(min(10.0, (top - 5.0) * 3.0), 1)
-        score += epts
-        contribs.append(_contrib("engagement", epts, f"{eng.get('top_event')} — recent high-tier session"))
-    elif top >= 6 and not _is_real_session(eng.get("top_event")):
-        contribs.append(_contrib("engagement_ignored", 0.0,
-                                 "top 'event' is a narrative/analysis note, not a real session — ignored"))
 
     # FALSE-VELOCITY (the Alghanim signature): a busy next-step log on a slipping deal is still
     # slipping. ≥3 dated lines but close pushed / confidence falling / buyer quiet >30d → hold low.
@@ -607,7 +635,7 @@ def score_momentum_v2(record: dict):
 
     score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
-            "model": "direction_v3", "contributions": contribs}
+            "model": "direction_v4", "contributions": contribs}
 
 
 # Scope-shrink (user-directed, Techtronic): a deal NARROWING vs its prior/original scope

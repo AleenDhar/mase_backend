@@ -526,8 +526,17 @@ def score_momentum_v2(record: dict):
     cdt = ot.get("close_date_trend")
     if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
         cpts = round(max(-MOM_CLOSE_WEIGHT, min(MOM_CLOSE_WEIGHT, cdt * MOM_CLOSE_WEIGHT)), 1)
-        score += cpts
         det = ot.get("close_date_trend_detail") or ("close date pulled in — accelerating" if cpts > 0 else "close date pushed out — slowing")
+        # SELECTION MADE (2026-07-07): once the buyer has chosen Zycus (customer_preference
+        # high — award/selection captured), a close-date push is normally CONTRACTING TIMELINE
+        # (redlines, security review, signature logistics), not the deal slowing. Cap the drag.
+        if cpts < -6.0:
+            _cp_lvl = str(((ai.get("customer_preference") or {}).get("level")
+                           or (ai.get("customer_preference") or {}).get("status") or "")).lower()
+            if _cp_lvl == "high":
+                cpts = -6.0
+                det = str(det) + " — selection already made; push reflects contracting timeline, drag capped"
+        score += cpts
         contribs.append(_contrib("close_date_direction", cpts, det))
 
     # PRIMARY 2 — GENUINE BUYER-TOUCH RECENCY. A meeting (or buyer-initiated reply) is genuine
@@ -544,6 +553,21 @@ def score_momentum_v2(record: dict):
         bpts, why = -8.0, f"last genuine buyer touch {lm_days}d ago (>30d — buyer quiet)"
     else:
         bpts, why = -12.0, f"last genuine buyer touch {lm_days}d ago (dark — rep emailing into silence)"
+    # LATE-STAGE EMAIL/CONTRACT CADENCE (2026-07-07, the Bright Horizons blind spot): a deal in
+    # Shortlisted/Selected/Contracting often moves ENTIRELY over email — award notices, NDAs,
+    # redlines, SOW scheduling — with no meetings for weeks. That is real buyer motion, not
+    # "buyer dark". If the stage is late AND Salesforce shows activity within ~10 days, the
+    # quiet/dark drag does not apply (mild positive instead).
+    if bpts < 0:
+        _stage_l = str(hard.get("stage") or "").strip().lower()
+        _late = any(t in _stage_l for t in ("shortlist", "selected", "contract", "negotiat", "award"))
+        _la_days = min([d for d in (_days_since(hard.get("last_activity_date")),
+                                    _days_since(fp.get("general_last_activity"))) if d is not None],
+                       default=None)
+        if _late and _la_days is not None and _la_days <= 10:
+            bpts = 2.0
+            why = (f"no recent meeting, but active deal flow {_la_days}d ago — late-stage "
+                   f"email/contract cadence (award/redlines/scheduling), not buyer silence")
     score += bpts
     contribs.append(_contrib("buyer_recency", round(bpts, 1), why))
 

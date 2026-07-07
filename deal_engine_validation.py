@@ -411,6 +411,11 @@ def apply_sf_hard_facts(hard: dict, opp: dict, *, authoritative: bool) -> None:
             hard[f] = v
         elif authoritative:
             hard[f] = None
+    # Gate contract (2026-07-07): these fields are now SERVER-OWNED on this record — the
+    # divergence check (validate_record check 4) is redundant for them and, worse, fires
+    # falsely when the enqueue-time snapshot is older than the sweep's own live read
+    # (reps update Next_Step during the day). That false class was 62% of gate retries.
+    hard["_sf_facts_applied"] = True
     set_days_to_close(hard)
 
 # A capitalised personal name (2-3 tokens). Deliberately strict so it never fires
@@ -1008,7 +1013,11 @@ def validate_record(record: dict,
                                           "carries no source")})
 
     # ---- check 4: hard fact divergence vs the authoritative SF snapshot ---------
-    for f in FACT_SOURCE_FIELDS:
+    # SKIPPED when apply_sf_hard_facts already ran on this record: the server owns these
+    # values deterministically (a model deviation cannot survive the override), and the
+    # snapshot-vs-live-read timing skew made this check fire on TRUTH AT TWO TIMESTAMPS —
+    # the dominant false-retry class (next_step on every actively-worked deal).
+    for f in ([] if (hard.get("_sf_facts_applied") is True) else list(FACT_SOURCE_FIELDS)):
         sfv = sf.get(_SF_KEY[f])
         if sfv in (None, ""):
             continue

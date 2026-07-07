@@ -339,12 +339,24 @@ def _rubric_win_strengths(record: dict) -> dict:
     mst = lambda k: (medd.get(k) or {}).get("status")
     out = {}
 
-    # Differentiation fit — AI-fit tier, else pain identified.
+    # Differentiation fit — AI-fit tier, else pain identified. The tier vocabulary is
+    # MASE's AI-appetite ladder (AI Hungry / AI Curious / AI Cool), NOT just "high/med/low"
+    # — an unmapped 'AI Hungry' was falling to the -0.4 default, reading a buyer RACING toward
+    # AI as "losing on capability fit" (Global Switch). Map the real vocabulary; an UNKNOWN
+    # tier falls back to the pain signal, never a blind negative.
     tier = str((ai.get("ai_fit_signal") or {}).get("tier") or "").lower()
     if tier:
-        out["differentiation"] = (1.0 if any(t in tier for t in ("high", "strong", "excellent", "a+", "tier 1", "tier1"))
-                                  else 0.3 if any(t in tier for t in ("med", "moderate", "b", "tier 2"))
-                                  else -0.4)
+        if any(t in tier for t in ("high", "strong", "excellent", "a+", "tier 1", "tier1",
+                                   "hungry", "racing", "leading", "advanced", "eager", "champion")):
+            out["differentiation"] = 1.0
+        elif any(t in tier for t in ("med", "moderate", "b", "tier 2", "curious", "interested",
+                                     "warm", "exploring", "growing", "open")):
+            out["differentiation"] = 0.3
+        elif any(t in tier for t in ("cool", "cold", "skeptical", "resistant", "laggard",
+                                     "reluctant", "tier 3", "tier3", " low", "low ", "none")):
+            out["differentiation"] = -0.4
+        else:
+            out["differentiation"] = _status_strength(mst("identify_pain"))
     else:
         out["differentiation"] = _status_strength(mst("identify_pain"))
 

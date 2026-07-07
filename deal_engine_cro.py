@@ -554,7 +554,12 @@ def build_cro_panel(record, pinned_override=None):
 # showing three times: win, momentum and risk).
 _ENGINE_SPEAK = re.compile(
     r"narrative/analysis note|not a real session|\bignored\b|footprints?\.|jsonb|"
-    r"carried[- ]forward packet|sanitiz|calls_read|\bev(ents)?_30d\b", re.I)
+    r"carried[- ]forward packet|sanitiz|calls_read|\bev(ents)?_30d\b|"
+    # data-plumbing / SOQL read errors must never surface as a deal reason (a failed field
+    # read is not evidence of losing — Global Switch 'AIS_* INVALID_FIELD' leaking as
+    # 'losing on capability fit'):
+    r"invalid_field|\bsoql\b|not returned by|field(?:s)? (?:not|were not) (?:returned|found)|"
+    r"no ais field|read (?:error|artifact)|mcp (?:error|timeout)", re.I)
 _SF_API_NAME = re.compile(r"\b\w+__c\b")
 _ISO_DATE = re.compile(r"\b(20\d{2})-(\d{2})-(\d{2})\b")
 _MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

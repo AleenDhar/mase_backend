@@ -11,6 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-07 — `calls_read` is now deterministic; sweep model → `claude-sonnet-5`
+
+**What.** (1) In `deal_engine_sweep.analyze_one`, `result["calls_read"]` (and the persisted
+`evidence_coverage.calls_read`) is now the **max of the LLM self-report and the engine's actual
+datalake/Avoma read count** (`_avoma_pf.coverage.read`) — a deterministic floor, not a number the
+model writes. (2) Bumped the deal-sweep pipeline from `claude-sonnet-4-5` → `claude-sonnet-5`:
+`DEAL_ENGINE_SWEEP_MODEL` + `DEAL_ENGINE_SCORING_MODEL` (render_taskdef), `_FRONTIER_DEFAULT`
+(deal_engine_sweep), `MASE_VERDICT_MODEL` default (deal_engine_verdict), `DAY_SUMMARY_MODEL`
+(day_summary_ai).
+
+**Why.** The model routinely under-reported `evidence_coverage.calls_read` (wrote 0 even when handed
+11 transcripts — Bright Horizons: `DL-DIAG … read=11` but the LLM emitted `calls_read=0`). That
+mislabelled a fully-read deal as "dark" and fed spurious retry / thin / self-heal logic — the root of
+the 9 forecasted deals that never completed a fresh sweep. A read count is a **fact**; it must come
+from the engine, not the model. Sonnet 5 is the latest Sonnet (verified 200 on the prod key).
+
+**How to work with it going forward.** `calls_read` can be trusted downstream now. If a deal still
+reads dark, check the `[DL-DIAG] … read=N` log line (the engine truth), not the model's self-report.
+Model is reversible via the `DEAL_ENGINE_SWEEP_MODEL` env.
+
+---
+
 ## 2026-07-06 — CEO-ask names the VP; 24h summary is prose not a metadata dump
 
 **What.** Three feedback fixes. (1) **CEO watch `ceo_ask` now addresses the VP**, not the BDR — the

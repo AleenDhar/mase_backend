@@ -219,7 +219,7 @@ def _prompt_fingerprint(text: str) -> str:
     return f"sha256={h} first_line={first!r}"
 
 
-_FRONTIER_DEFAULT = "anthropic:claude-sonnet-4-5"
+_FRONTIER_DEFAULT = "anthropic:claude-sonnet-5"
 # Substrings that mark a small/cheap model. The sweep is a deep, multi-tool
 # reconstruction job: a mini/haiku/flash/nano model produces shallow, low-recall
 # records (and OpenAI mini variants also hang when the MCP tool schemas are
@@ -3605,11 +3605,22 @@ async def analyze_one(
         #     contact roles OR Salesforce activity in the last 45 days — i.e. the
         #     calls almost certainly exist and discovery missed them.
         ec = parsed.get("evidence_coverage") or {}
+        # calls_read is a FACT, not the model's self-report. Floor it by what the avoma engine
+        # ACTUALLY read from the datalake / live Avoma (_avoma_pf coverage). The LLM routinely
+        # under-reports evidence_coverage.calls_read — writing 0 even when handed N transcripts —
+        # which mislabels a fully-read deal as "dark" and drives spurious retries / self-heals.
         try:
-            calls_read = int(ec.get("calls_read") or 0)
+            _llm_calls_read = int(ec.get("calls_read") or 0)
         except (TypeError, ValueError):
-            calls_read = 0
+            _llm_calls_read = 0
+        try:
+            _engine_calls_read = int((_avoma_pf.get("coverage") or {}).get("read") or 0) if isinstance(_avoma_pf, dict) else 0
+        except (TypeError, ValueError):
+            _engine_calls_read = 0
+        calls_read = max(_llm_calls_read, _engine_calls_read)
         result["calls_read"] = calls_read
+        if isinstance(ec, dict) and calls_read != _llm_calls_read:
+            ec["calls_read"] = calls_read   # correct the record so nothing downstream sees a fabricated 0
         # A thin record (worth the worker re-running analyze_one) is now ONLY one
         # whose Salesforce read genuinely failed (no core mechanics) — a transient
         # MCP/SOQL hiccup a fresh attempt can fix. We DELIBERATELY no longer mark

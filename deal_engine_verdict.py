@@ -123,7 +123,7 @@ def regrade_label(record: dict) -> str:
 # ----------------------------------------------------------------------------------
 # PROSE layer — verdict-only LLM rewrite over the stored record (no re-sweep).
 # ----------------------------------------------------------------------------------
-_MODEL = os.getenv("MASE_VERDICT_MODEL", "claude-sonnet-4-5")
+_MODEL = os.getenv("MASE_VERDICT_MODEL", "claude-sonnet-5")
 _STAGE_RULES = (
     "STAGE-AWARE RULES — read the verdict RELATIVE TO STAGE.\n"
     "Tiers: EARLY=Initial Interest/Qualified/Formal Evaluation; MID=Shortlisted/Vendor Selected; "

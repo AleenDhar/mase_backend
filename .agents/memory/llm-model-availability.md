@@ -6,8 +6,9 @@ description: Which LLM providers respond when invoking models, and the OpenAI-wi
 # LLM model availability
 
 Both providers respond on actual invocation in this environment now:
-- Anthropic works (`api.anthropic.com/v1/messages` returns 200). The app default
-  `anthropic:claude-sonnet-4-5` and the webhook opportunity-analyzer run fine on it.
+- Anthropic works (`api.anthropic.com/v1/messages` returns 200). **`claude-sonnet-5`
+  is the current sweep model** (2026-07-07, upgraded from `claude-sonnet-4-5`; both return
+  live 200s on the prod key — verified). The webhook opportunity-analyzer runs fine too.
 - OpenAI works for plain chat (`openai:gpt-4o`, `openai:gpt-4o-mini`).
 
 (An earlier note claimed Anthropic 404s here; that is no longer true — verified by

@@ -3593,14 +3593,24 @@ async def analyze_one(
         # wrapped so a summary hiccup can NEVER fail a sweep. Only overwrites when it finds
         # activity; otherwise any LLM-emitted day_summary is left intact.
         if isinstance(parsed.get("ai"), dict):
-            try:
-                import build_day_summaries as _bds
-                _dsy = await asyncio.get_running_loop().run_in_executor(
-                    None, _bds.day_summary_for_opp, opp_id)
-                if _dsy:
-                    parsed["ai"]["day_summary"] = _dsy
-            except Exception as _dse:  # noqa: BLE001 — never block persist
-                print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
+            # OWNERSHIP (2026-07-07): the INTELLIGENT day summary (day_summary_ai — Sonnet-written
+            # business intelligence: who did what and why, what's pending) OWNS ai.day_summary.
+            # A sweep must NEVER replace it with the deterministic template dump ("1 email —
+            # subject") — that regression shipped twice. Carry the intelligent one forward; the
+            # post-sweep restore refreshes it with the newest activity. The deterministic build
+            # remains only as a BACKSTOP for records that have no summary at all.
+            _prior_dsy = _prior_ai_full.get("day_summary") if isinstance(_prior_ai_full, dict) else None
+            if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai":
+                parsed["ai"]["day_summary"] = _prior_dsy
+            else:
+                try:
+                    import build_day_summaries as _bds
+                    _dsy = await asyncio.get_running_loop().run_in_executor(
+                        None, _bds.day_summary_for_opp, opp_id)
+                    if _dsy:
+                        parsed["ai"]["day_summary"] = _dsy
+                except Exception as _dse:  # noqa: BLE001 — never block persist
+                    print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed

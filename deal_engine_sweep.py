@@ -876,12 +876,57 @@ async def _footprints_for(agent_manager, opp_id: str, stage: str, avoma_meeting_
         opp = (rows[0] if rows else {}) or {}
     except Exception as _e:  # noqa: BLE001
         print(f"[FOOTPRINTS] opp-fields read failed opp={opp_id}: {_e}", flush=True)
+    # DIRECT-SOQL FALLBACK (2026-07-07): the agent/MCP SOQL above is flaky — when it returns
+    # empty, footprints silently don't get built and Momentum/Win crater to "cold" on genuinely
+    # engaged deals (Nidec: 12 buyer touches/30d read win 5, mom 25). If the MCP path found NO
+    # tasks AND NO events, re-read them via the reliable server-side Salesforce session before
+    # giving up — the data is there, only the MCP hiccupped.
+    if not tasks and not events:
+        try:
+            import asyncio as _asyncio
+            from daily_summary import common as _C
+
+            def _direct():
+                s, inst = _footprints_sf()
+                if not s:
+                    return [], [], {}
+                tk = _C.soql(s, inst, f"SELECT Subject,Type,CreatedDate,ActivityDate FROM Task WHERE WhatId='{sid}' AND CreatedDate>=LAST_N_DAYS:180 LIMIT 400")
+                ev = _C.soql(s, inst, f"SELECT Subject,Type,ActivityDateTime,CreatedDate FROM Event WHERE WhatId='{sid}' AND (ActivityDateTime>=LAST_N_DAYS:180 OR CreatedDate>=LAST_N_DAYS:180) LIMIT 200")
+                op = _C.soql(s, inst, f"SELECT Last_Email_Received_Date__c,Last_Meeting_Date__c,Next_Step_Updated_Date_Time__c,No_activity_in_last_20_30_Days__c,LastActivityDate FROM Opportunity WHERE Id='{sid}' LIMIT 1")
+                return ([{"subject": r.get("Subject"), "date": r.get("CreatedDate") or r.get("ActivityDate"), "type": r.get("Type")} for r in (tk or [])],
+                        [{"subject": r.get("Subject"), "date": r.get("ActivityDateTime") or r.get("CreatedDate")} for r in (ev or [])],
+                        (op[0] if op else {}) or {})
+            _dt, _de, _do = await _asyncio.get_running_loop().run_in_executor(None, _direct)
+            if _dt or _de:
+                tasks, events, opp = _dt, _de, (_do or opp)
+                print(f"[FOOTPRINTS] direct-SOQL fallback recovered opp={opp_id} "
+                      f"(tasks={len(tasks)} events={len(events)}) — MCP read had returned empty", flush=True)
+        except Exception as _fbe:  # noqa: BLE001
+            print(f"[FOOTPRINTS] direct fallback failed opp={opp_id}: {_fbe}", flush=True)
     try:
         return _fp.derive_footprints(tasks=tasks, opp=opp, events=events, stage=stage,
                                      meeting_dates=avoma_meeting_dates)
     except Exception as _e:  # noqa: BLE001
         print(f"[FOOTPRINTS] derive failed opp={opp_id}: {_e}", flush=True)
         return {}
+
+
+# Cached server-side Salesforce session for the footprints direct-SOQL fallback (logging in
+# per deal is expensive). Lazy, best-effort — returns (None, None) if unavailable.
+_FP_SF = {"sid": None, "inst": None}
+
+
+def _footprints_sf():
+    if _FP_SF["sid"]:
+        return _FP_SF["sid"], _FP_SF["inst"]
+    try:
+        from daily_summary import common as _C
+        s, inst = _C.sf_login(_C.load_secret())
+        _FP_SF["sid"], _FP_SF["inst"] = s, inst
+        return s, inst
+    except Exception as _e:  # noqa: BLE001
+        print(f"[FOOTPRINTS] direct SF login failed: {_e}", flush=True)
+        return None, None
 
 
 async def _meddpicc_crm(agent_manager, opp_id: str) -> dict:

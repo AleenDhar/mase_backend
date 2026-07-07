@@ -519,6 +519,37 @@ def _is_real_session(top_event) -> bool:
     return bool(t) and len(t) <= 90 and not _NARRATIVE_HINT.search(t)
 
 
+# --- RELATIONSHIP LEVERAGE (2026-07-07 user spec): an EXPANSION / PHASE-2 / ADD-ON opp on an
+# account we already run (a sibling Closed-Won, or a strong live sibling deal) inherits the
+# rapport — it must not read cold just because its own record is young/thin.
+#   WIN: +10 relationship points when the account has a sibling Closed-Won OR a strong live
+#        sibling (win >= 60 or momentum >= 60). Stage ceilings still apply.
+#   MOMENTUM: the strongest sibling's momentum partially wraps on (35% of the gap, cap +12).
+# Reads ai.account_context {sibling_closed_won, best_sibling_win, best_sibling_mom,
+# sibling_name} — stamped by the rescore pass / sweep from the same-account sibling index —
+# with ai.expansion_context.prior_closed_won as the legacy signal.
+REL_WIN_PTS = 10.0
+REL_MOM_FRACTION = 0.35
+REL_MOM_CAP = 12.0
+
+
+def _relationship_context(record: dict):
+    """(qualifies: bool, why: str, best_sibling_mom: float|None)"""
+    ai = (record or {}).get("ai") or {}
+    rel = ai.get("account_context") if isinstance(ai.get("account_context"), dict) else {}
+    prior_won = bool(rel.get("sibling_closed_won")
+                     or (isinstance(ai.get("expansion_context"), dict)
+                         and ai["expansion_context"].get("prior_closed_won")))
+    bw = _num(rel.get("best_sibling_win")) or 0.0
+    bm = _num(rel.get("best_sibling_mom")) or 0.0
+    nm = str(rel.get("sibling_name") or "a sibling deal")
+    if prior_won:
+        return True, f"existing account relationship — Zycus already closed-won on this account; rapport carries to this expansion", bm or None
+    if bw >= 60.0 or bm >= 60.0:
+        return True, f"existing account relationship — {nm[:40]} is running strong on this account (win {round(bw)} / momentum {round(bm)}); rapport carries", bm or None
+    return False, "", (bm or None)
+
+
 # --- §8.5 RFP / PROCESS-MODE (VP patch, 2026-07-07): during a structured RFP/tender the
 # buyer runs the clock — quiet between deliverables is process cadence, not stalling.
 # Guarded so a dead deal can't hide behind "we're in an RFP" (anti-zombie rules below).
@@ -820,6 +851,17 @@ def score_momentum_v2(record: dict):
                                  "(close pushed / confidence down / buyer quiet); edits don't raise momentum"))
         score = min(score, 25.0)
 
+    # RELATIONSHIP MOMENTUM WRAP (2026-07-07 user spec): a strong sibling deal's momentum
+    # partially carries onto an expansion/phase-2 opp on the same account — the rapport is
+    # shared even when this record is young. 35% of the gap, cap +12, never lowers.
+    rel_ok, rel_why, _rel_bm = _relationship_context(record)
+    if rel_ok and isinstance(_rel_bm, (int, float)) and _rel_bm > score:
+        wrap = round(min(REL_MOM_CAP, REL_MOM_FRACTION * (float(_rel_bm) - score)), 1)
+        if wrap > 0:
+            score += wrap
+            contribs.append(_contrib("relationship_momentum", wrap,
+                                     f"sister deal on this account is moving (momentum {round(float(_rel_bm))}) — account momentum partially carries over"))
+
     # §8.5 on-track floor: a deal waiting on the buyer's OWN published process is steady, not
     # slowing — momentum holds at 50 minimum while process-mode is on.
     if process_mode and score < 50.0:
@@ -993,14 +1035,20 @@ def score_win_position(ev, record=None, momentum=None, deal_risk=None):
     if trend:
         contributions.append(_contrib("trend_nudge", round(trend, 1), trend_why))
 
+    # RELATIONSHIP LEVERAGE (+10): an expansion/phase-2 opp on an account we already run.
+    rel_ok, rel_why, _rel_bm = _relationship_context(record)
+    rel_pts = REL_WIN_PTS if rel_ok else 0.0
+    if rel_pts:
+        contributions.append(_contrib("relationship_leverage", rel_pts, rel_why))
+
     # Floor a LIVE deal at 5 — score_win_position only runs for live deals (dead/lost return
     # earlier with win 0), so win=0 would falsely read as "lost". 5 = "almost no chance, but
     # still live". Keeps the compounding downside (evidence + momentum drag + risk) honest
     # without colliding with the lost-deal sentinel.
-    score = round(min(ceiling_eff, max(5.0, _clamp(anchor_eff + adj + mom_adj + scope_pts + fc_credit + trend - risk_pen, 0.0, 99.0))), 1)
+    score = round(min(ceiling_eff, max(5.0, _clamp(anchor_eff + adj + mom_adj + scope_pts + fc_credit + trend + rel_pts - risk_pen, 0.0, 99.0))), 1)
     # Only-raise guard: the override must never yield a LOWER score than no-override.
     if override:
-        base = round(min(ceiling, max(5.0, _clamp(anchor + adj + mom_adj + scope_pts + fc_credit + trend - risk_pen, 0.0, 99.0))), 1)
+        base = round(min(ceiling, max(5.0, _clamp(anchor + adj + mom_adj + scope_pts + fc_credit + trend + rel_pts - risk_pen, 0.0, 99.0))), 1)
         score = max(score, base)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor_eff, 1),
             "lift": adj, "ceiling": ceiling_eff, "momentum_adj": mom_adj,

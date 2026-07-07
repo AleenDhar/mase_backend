@@ -3454,6 +3454,12 @@ async def analyze_one(
         # flag onto every re-swept record until a human explicitly unpins.
         if _pinned:
             parsed.setdefault("ai", {})["pinned"] = True
+        # RELATIONSHIP CONTEXT carry (2026-07-07): the same-account sibling index
+        # (ai.account_context — expansion/phase-2 leverage) is stamped by the rescore pass;
+        # a sweep must not drop it (refreshed on the next stamp run).
+        if isinstance(_prior_ai_full, dict) and isinstance(_prior_ai_full.get("account_context"), dict) \
+                and not isinstance((parsed.get("ai") or {}).get("account_context"), dict):
+            parsed.setdefault("ai", {})["account_context"] = _prior_ai_full["account_context"]
         try:
             import deal_engine_scoring
             # AI DEAL-SCORER (flag-gated by DEAL_ENGINE_AI_SCORING). Judges the five scores

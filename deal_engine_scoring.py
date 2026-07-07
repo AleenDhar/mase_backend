@@ -533,21 +533,40 @@ _MONTH_N = {m: i + 1 for i, m in enumerate(
 
 
 def _milestone_dates(text):
-    """All parseable dates in a next-step log (ISO + '8 Jul 2026' forms)."""
+    """All parseable dates in a next-step log — in the formats REPS ACTUALLY WRITE:
+    ISO 2026-07-17 · '8 Jul 2026' · 'Jun 29, 2026' · '13th July' / '17-Jul' (year-less)
+    · 'July 13' (year-less) · European '17.7.' / '17.7.2026'. Year-less dates assume the
+    current year and are kept only within ±300 days (near-term milestones / recent log)."""
     import datetime as _dt
-    out = []
+    today = _dt.datetime.now(_dt.timezone.utc).date()
+    out = set()
+
+    def _add(y, mo, d, yearless=False):
+        try:
+            dt = _dt.date(int(y), int(mo), int(d))
+        except (ValueError, TypeError):
+            return
+        if yearless and abs((dt - today).days) > 300:
+            return
+        out.add(dt)
+
     t = str(text or "")
+    _mon = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
     for m in re.finditer(r"\b(20\d{2})-(\d{2})-(\d{2})\b", t):
-        try:
-            out.append(_dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))))
-        except ValueError:
-            pass
-    for m in re.finditer(r"\b(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(20\d{2})\b", t, re.I):
-        try:
-            out.append(_dt.date(int(m.group(3)), _MONTH_N[m.group(2).lower()], int(m.group(1))))
-        except (ValueError, KeyError):
-            pass
-    return out
+        _add(m.group(1), m.group(2), m.group(3))
+    for m in re.finditer(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+" + _mon + r"[a-z]*\.?,?\s+(20\d{2})\b", t, re.I):
+        _add(m.group(3), _MONTH_N[m.group(2).lower()], m.group(1))
+    for m in re.finditer(_mon + r"[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(20\d{2})\b", t, re.I):
+        _add(m.group(3), _MONTH_N[m.group(1).lower()], m.group(2))
+    for m in re.finditer(r"\b(\d{1,2})(?:st|nd|rd|th)?[\s.-]+" + _mon + r"[a-z]*\b(?!\.?,?\s*20\d{2})", t, re.I):
+        _add(today.year, _MONTH_N[m.group(2).lower()], m.group(1), yearless=True)
+    for m in re.finditer(_mon + r"[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b(?!,?\s*20\d{2})(?![./\d])", t, re.I):
+        _add(today.year, _MONTH_N[m.group(1).lower()], m.group(2), yearless=True)
+    for m in re.finditer(r"\b(\d{1,2})\.(\d{1,2})\.(20\d{2})\b", t):
+        _add(m.group(3), m.group(2), m.group(1))
+    for m in re.finditer(r"\b(\d{1,2})\.(\d{1,2})\.(?!\d)", t):
+        _add(today.year, m.group(2), m.group(1), yearless=True)
+    return sorted(out)
 
 
 def _process_mode(hard, stage_l, la_days):

@@ -570,8 +570,11 @@ def _relationship_context(record: dict):
     nm = str(rel.get("sibling_name") or "a sibling deal")
     if prior_won:
         return True, f"existing account relationship — Zycus already closed-won on this account; rapport carries to this expansion", bm or None
-    if bw >= 60.0 or bm >= 60.0:
-        return True, f"existing account relationship — {nm[:40]} is running strong on this account (win {round(bw)} / momentum {round(bm)}); rapport carries", bm or None
+    # A strong LIVE sibling counts even when its OWN win is capped by qualification (a Shortlisted /
+    # Best-Case sibling reads ~52 under the Access-to-Power gate but is a real foothold). The
+    # stamper flags sibling_strong on stage / forecast, not just the (capped) win/momentum number.
+    if bool(rel.get("sibling_strong")) or bw >= 60.0 or bm >= 60.0:
+        return True, f"existing account relationship — {nm[:40]} is a live deal on this account (win {round(bw)} / momentum {round(bm)}); we're already in — rapport and access carry", bm or None
     return False, "", (bm or None)
 
 

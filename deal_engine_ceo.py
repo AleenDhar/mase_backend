@@ -119,15 +119,18 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
     # reason from its own discriminator and CARRIES THE WATCH REASONS FORWARD from the
     # prior record (those are owned by the separate 14-day ceo_attention run and must
     # never be clobbered by a CDC re-sweep).
-    # `support` (recomputed) and `scope_shrink` (recomputed natively below) are NOT carried
-    # forward; the 14-day attention watches (our_slip / large_slowdown / competitor_edge) are.
+    # DURABILITY (2026-07-07): carry forward EVERY prior WATCH (our_slip / large_slowdown /
+    # competitor_edge / scope_shrink), so a re-sweep that doesn't re-detect a signal NEVER wipes
+    # a previously-flagged watch. Only `support` is recomputed fresh each sweep. A fresh native
+    # scope_shrink supersedes a carried one (de-duped in _emit). Watches persist until the deal
+    # dies or a human clears it — the sweep must not silently drop CEO supervision.
     def _prior_watch() -> list:
         rs = prior_ci.get("reasons")
         if isinstance(rs, list):
-            return [r for r in rs if isinstance(r, dict) and r.get("type") not in ("support", "scope_shrink")]
+            return [r for r in rs if isinstance(r, dict) and r.get("type") != "support"]
         mon = prior_ci.get("monitor") if isinstance(prior_ci.get("monitor"), dict) else {}  # legacy shape
         return [{**t, "act": False} for t in (mon.get("triggers") or [])
-                if isinstance(t, dict) and t.get("type") not in ("support", "scope_shrink")]
+                if isinstance(t, dict) and t.get("type") != "support"]
 
     # NATIVE per-sweep watch: a deal SHRINKING vs its prior scope (S2P -> S2C, modules dropped)
     # is a defensive signal (cost-cutting or a phased-implementation pull). Surface it on the
@@ -147,19 +150,28 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
                  "detail": sc.get("detail"), "from": sc.get("from"), "to": sc.get("to"), "as_of": gen}]
 
     def _emit(support_reason) -> None:
-        reasons = ([support_reason] if support_reason else []) + _native_watch() + _prior_watch()
-        needed = bool(reasons)
-        severity = "high" if any(r.get("severity") == "high" for r in reasons) else "medium"
+        native = _native_watch()
+        carried = _prior_watch()
+        if native:                                    # fresh scope_shrink supersedes a carried one
+            carried = [r for r in carried if r.get("type") != "scope_shrink"]
+        reasons = ([support_reason] if support_reason else []) + native + carried
+        seen, dedup = set(), []                       # one per watch type (support may stand alone)
+        for r in reasons:
+            t = r.get("type")
+            if t == "support" or t not in seen:
+                dedup.append(r); seen.add(t)
+        needed = bool(dedup)
+        severity = "high" if any(r.get("severity") == "high" for r in dedup) else "medium"
         ai["ceo_intervention"] = {"needed": needed,
                                   "severity": severity if needed else None,
                                   "needs_action": bool(support_reason),
-                                  "reasons": reasons, "win": win, "mom": mom,
+                                  "reasons": dedup, "win": win, "mom": mom,
                                   "source": "sweep", "generated_at": gen}
 
     if not eligible:
-        ai["ceo_intervention"] = {"needed": False, "severity": None, "needs_action": False,
-                                  "reasons": [], "win": win, "mom": mom, "source": "sweep",
-                                  "generated_at": gen}
+        # win < 40 → no NEW CEO support, but DON'T wipe prior watches: a deal that was flagged
+        # (slipping / scope-shrinking / competitor) still needs watching even as its win drops.
+        _emit(None)
         return
 
     # --- THE SUPPORT FILTER: does the CEO GENUINELY need to ACT? (default NO) ----

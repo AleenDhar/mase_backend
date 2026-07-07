@@ -573,19 +573,20 @@ def _pretty_dates(t):
 
 
 def _polish_text(t):
-    """Human-polish one bullet; return '' to drop it entirely."""
+    """Human-polish one bullet; return '' to drop it entirely. SURGICAL: when only PART of a
+    bullet is plumbing (a SOQL/API-name sentence bolted onto real deal evidence — Bosch:
+    'AIS_* not returned in this sweep. Call evidence shows Bosch is genuinely curious about
+    agentic AI…'), drop only the offending SENTENCE and keep the deal content — don't blank
+    the whole bullet or replace it with a false 'not recorded'."""
     t = _clean(t)
     if not t:
         return ""
-    if _ENGINE_SPEAK.search(t):
-        return ""                       # engine internals never reach the screen
-    if _SF_API_NAME.search(t):
-        # raw API-name bullets are usually "field X not populated" noise — rewrite the known
-        # one, drop the rest.
-        if re.search(r"\bAIS_\w+__c\b", t):
-            t = "AI-fit assessment not yet recorded for this deal in Salesforce."
-        else:
-            return ""
+    if _ENGINE_SPEAK.search(t) or _SF_API_NAME.search(t):
+        sents = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9])", t)
+        kept = [s for s in sents if s.strip() and not _ENGINE_SPEAK.search(s) and not _SF_API_NAME.search(s)]
+        t = " ".join(kept).strip()
+        if not t or len(t) < 15:
+            return ""                   # nothing but plumbing was here
     t = t.replace(" -> ", " → ").replace("->", "→")
     t = _pretty_dates(t)
     return t

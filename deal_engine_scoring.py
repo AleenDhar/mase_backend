@@ -372,6 +372,19 @@ def _rubric_win_strengths(record: dict) -> dict:
             out["preference"] = -0.4
         elif isinstance(sc, (int, float)):
             out["preference"] = max(-0.5, min(1.0, (sc - 50.0) / 50.0 if sc > 1 else sc * 2 - 1))
+        elif isinstance(sc, str) and sc.strip():
+            # the sweep sometimes writes positioning as PROSE ('Moderate-High interest,
+            # maturity gap flagged') not a number — parse the sentiment instead of defaulting
+            # negative (Bosch read 'leaning elsewhere' on a Moderate-High-interest deal).
+            _s = sc.lower()
+            if any(t in _s for t in ("very high", "strong", "high interest", "moderate-high", "moderate to high", "preferred", "leading", "front-runner", "well positioned", "landing strongly")):
+                out["preference"] = 0.5
+            elif any(t in _s for t in ("moderate", "medium", "warm", "positive", "good interest", "interested")):
+                out["preference"] = 0.3
+            elif any(t in _s for t in ("low", "weak", "under", "behind", "poor", "cool", "negative")):
+                out["preference"] = -0.3
+            else:
+                out["preference"] = WIN_MISSING
         else:
             out["preference"] = WIN_MISSING
 

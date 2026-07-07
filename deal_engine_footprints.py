@@ -162,11 +162,15 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     # F2F / themed call). Tasks AND events AND meeting-bearing tasks all qualify.
     eng_events = []  # (eff_weight, raw_weight, subject, age_days)
 
-    # ENGAGEMENT POINTS (2026-07-07 VP spec): Σ(type-weight × who-weight × steep recency decay)
-    # over the last 60 days — the momentum engine's primary fuel. Steep decay: ≤14d ×1.0,
-    # ≤30d ×0.5, ≤60d ×0.2, older ×0. A two-way buyer email (no typed keyword) earns 2.0.
-    # MASE's own pushed to-dos and generic untyped tasks earn NOTHING (activity theatre).
-    _epts = {"v": 0.0}
+    # ENGAGEMENT POINTS (2026-07-07 VP spec): Σ(type-weight × who-weight × recency decay) —
+    # the momentum engine's primary fuel. TWO clocks are emitted:
+    #   points_60d          fast cycle: ≤14d ×1.0, ≤30d ×0.5, ≤60d ×0.2, older ×0
+    #   points_90d_process  RFP/process clock (§8.5 v1.1): ≤30d ×1.0, ≤60d ×0.5, ≤90d ×0.2 —
+    #                       in a tender, deliverables run 3-6 weeks apart, so a month-old demo
+    #                       cluster is RECENT and keeps real weight.
+    # A two-way buyer email (no typed keyword) earns 2.0. MASE's own pushed to-dos and generic
+    # untyped tasks earn NOTHING (activity theatre).
+    _epts = {"v": 0.0, "proc": 0.0}
 
     def _steep(age):
         if age is None:
@@ -176,6 +180,17 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
         if age <= 30:
             return 0.5
         if age <= 60:
+            return 0.2
+        return 0.0
+
+    def _stretch(age):
+        if age is None:
+            return 0.4
+        if age <= 30:
+            return 1.0
+        if age <= 60:
+            return 0.5
+        if age <= 90:
             return 0.2
         return 0.0
 
@@ -190,11 +205,14 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
             rep_only = (d == "rep") and w < 6
             eff = w * _recency_ladder(age) * (0.4 if rep_only else 1.0)
             eng_events.append((round(eff, 2), w, subj, None if age is None else int(age)))
-            _epts["v"] += w * _steep(age) * (0.4 if rep_only else 1.0)
+            who = 0.4 if rep_only else 1.0
+            _epts["v"] += w * _steep(age) * who
+            _epts["proc"] += w * _stretch(age) * who
         else:
             # untyped BUYER touch (a two-way email reply) still counts — weight 2.0
             if _classify(subj) == "buyer":
                 _epts["v"] += 2.0 * _steep(age)
+                _epts["proc"] += 2.0 * _stretch(age)
 
     for t in tasks:
         dt = _parse_dt(t.get("date") or t.get("ActivityDate") or t.get("CreatedDate"))
@@ -284,6 +302,7 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
             "raw_top": top[1] if top else 0,           # un-decayed depth (e.g. 8 = workshop)
             "events_30d": n30,                         # count of real (>=demo) engagements in 30d
             "points_60d": round(min(_epts["v"], 60.0), 1),  # Σ(type × who × steep decay) — momentum fuel
+            "points_90d_process": round(min(_epts["proc"], 60.0), 1),  # §8.5 stretched RFP clock
         },
     }
     return out

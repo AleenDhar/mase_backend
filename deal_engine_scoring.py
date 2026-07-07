@@ -627,14 +627,17 @@ def score_momentum_v2(record: dict):
     # §8.5 RFP / process-mode — buyer runs the clock; deliverable-driven quiet ≠ stalling.
     process_mode, pm_why = _process_mode(hard, _stage_l, _la_days)
 
-    # PRIMARY 1 — ENGAGEMENT POINTS (VP spec §2A/§3/§4: Σ type-weight × who × steep recency
-    # decay, cap +35 — the dominant term). footprints.engagement.points_60d carries the real
-    # per-activity sum (POC 10 … two-way email 2, rep-only ×0.4, ≤14d ×1.0 / ≤30d ×0.5 /
-    # ≤60d ×0.2). Legacy records without it fall back to the volume buckets.
-    _pts_raw = eng.get("points_60d")
+    # PRIMARY 1 — ENGAGEMENT POINTS (VP spec §2A/§3/§4: Σ type-weight × who × recency decay,
+    # cap +35 — the dominant term). Two clocks (§8.5 v1.1): the fast-cycle points_60d normally;
+    # the STRETCHED process clock (points_90d_process: ≤30d ×1.0 / ≤60d ×0.5 / ≤90d ×0.2) while
+    # a structured RFP/tender is on-track — deliverables run 3-6 weeks apart, so a month-old
+    # demo cluster is recent and keeps real weight. Legacy records fall back to volume buckets.
+    _pts_raw = eng.get("points_90d_process") if process_mode and isinstance(eng.get("points_90d_process"), (int, float)) \
+        else eng.get("points_60d")
     if isinstance(_pts_raw, (int, float)):
         epts = round(min(35.0, float(_pts_raw)), 1)
-        esrc = f"engagement points {epts} (type × buyer/rep × recency over 60d)"
+        esrc = (f"engagement points {epts} on the RFP process clock (month-old deliverable work keeps weight)"
+                if process_mode else f"engagement points {epts} (type × buyer/rep × recency over 60d)")
     else:
         _vol = max(ev30, bt30)
         epts = 18.0 if _vol >= 8 else 12.0 if _vol >= 4 else 7.0 if _vol >= 2 else 3.0 if _vol >= 1 else 0.0
@@ -643,6 +646,16 @@ def score_momentum_v2(record: dict):
             epts = min(35.0, epts + round(min(8.0, (top - 5.0) * 2.5), 1))
         _vsrc = "session(s)" if ev30 >= bt30 else "inbound buyer repl(ies)"
         esrc = f"{_vol} {_vsrc} in the last 30d (legacy volume read)"
+        if process_mode:
+            # legacy record on the process clock: a 60d meeting cluster is on-cycle work
+            try:
+                m60 = int(fp.get("meetings_60d") or 0)
+            except (TypeError, ValueError):
+                m60 = 0
+            _proc_e = 16.0 if m60 >= 8 else 12.0 if m60 >= 4 else 8.0 if m60 >= 2 else 5.0 if m60 >= 1 else 0.0
+            if _proc_e > epts:
+                epts = _proc_e
+                esrc = f"{m60} meeting(s) in the last 60d — on-cycle RFP work (process clock, legacy read)"
     # freshness floor (§3): any genuine buyer touch in the last 14 days can't read below steady
     if bt_days is not None and bt_days <= 14 and epts < 8.0:
         epts = 8.0

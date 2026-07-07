@@ -691,8 +691,25 @@ def score_momentum_v2(record: dict):
         drag = 0.0
         dwhy = pm_why
     elif bt_days is None:
-        drag = 25.0
-        dwhy = "no genuine buyer touch on record — buyer side dark"
+        # DATA ABSENCE ≠ BUYER DARK (2026-07-07): a record with NO activity instrumentation at
+        # all (footprints never built — pre-footprints sweep) must not take the full dark slam;
+        # we don't KNOW the buyer is silent, we know we haven't measured. Scale a mild drag by
+        # the only signal available (Salesforce last-activity). A record that IS instrumented
+        # and still shows zero buyer touches earns the full dark read — that's proven silence.
+        _no_instr = not (fp.get("last_buyer_touch") or fp.get("last_meeting")
+                         or fp.get("buyer_touches_30d") or fp.get("meetings_60d"))
+        if _no_instr:
+            if _la_days is not None and _la_days <= 30:
+                drag = 4.0
+            elif _la_days is not None and _la_days <= 60:
+                drag = 8.0
+            else:
+                drag = 12.0
+            dwhy = (f"no activity instrumentation on this record yet (cadence reads fully after "
+                    f"its next sweep){f' — Salesforce shows activity {_la_days}d ago' if _la_days is not None else ''}")
+        else:
+            drag = 25.0
+            dwhy = "no genuine buyer touch on record — buyer side dark"
     elif bt_days <= cadence:
         drag = 0.0
         dwhy = f"buyer touch {bt_days}d ago — within the ~{int(cadence)}d cadence this stage needs"

@@ -89,11 +89,16 @@ def test_second_panel_floors_exec_access():
 
 
 def test_selection_override_raises_win_over_stale_stage():
-    """Spec §4: a confirmed selection (high pref + no rival ahead + defensible) whose CRM
-    stage still says Shortlisted is anchored to the Vendor-Selected floor (72), 100 ceiling."""
+    """Spec §4 (hardened 2026-07-07): a confirmed selection — high pref + CONFIRMED economic
+    buyer (a selection is made BY someone) + positive competitive edge + a real Commit/won
+    signal — whose CRM stage still says Shortlisted is anchored to the Vendor-Selected floor
+    (72) with the 100 ceiling. Merely 'forecast_defensible' or a missing EB must NOT unlock it
+    (the PremiStar / Barnes & Noble mis-reads)."""
     rec = {"hard": {"stage": "Shortlisted"}, "pulse": {"state": "live"},
            "ai": {"customer_preference": {"level": "high"},
-                  "north_star_verdict": {"forecast_defensible": True},
+                  "meddpicc": {"economic_buyer": {"status": "confirmed"}},
+                  "north_star_verdict": {"forecast_defensible": True,
+                                         "recommended_forecast": "Commit"},
                   "competitive_position": {"competitors": [{"name": "Do Nothing", "status": "do_nothing"}]}}}
     assert SC._selection_override(rec) is True
     out = SC.compute_deal_scores(rec)

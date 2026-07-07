@@ -519,6 +519,65 @@ def _is_real_session(top_event) -> bool:
     return bool(t) and len(t) <= 90 and not _NARRATIVE_HINT.search(t)
 
 
+# --- §8.5 RFP / PROCESS-MODE (VP patch, 2026-07-07): during a structured RFP/tender the
+# buyer runs the clock — quiet between deliverables is process cadence, not stalling.
+# Guarded so a dead deal can't hide behind "we're in an RFP" (anti-zombie rules below).
+_PROC_STAGES = ("formal evaluation", "shortlist", "vendor selected")
+_PROC_KW = re.compile(r"rfp|rfi|rfq|bafo|tender|demo|orals|clarificat|infosec|info sec|security review"
+                      r"|legal review|redlin|sow|proposal|submission|due|award|decision|workshop"
+                      r"|presentation|evaluation|down[- ]?select", re.I)
+_PAUSE_KW = re.compile(r"postpon|on hold|hold until|budget freeze|re-?baselin|next quarter|paused"
+                       r"|deferred|frozen|pushed to (q[1-4]|next)", re.I)
+_MONTH_N = {m: i + 1 for i, m in enumerate(
+    ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"))}
+
+
+def _milestone_dates(text):
+    """All parseable dates in a next-step log (ISO + '8 Jul 2026' forms)."""
+    import datetime as _dt
+    out = []
+    t = str(text or "")
+    for m in re.finditer(r"\b(20\d{2})-(\d{2})-(\d{2})\b", t):
+        try:
+            out.append(_dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))))
+        except ValueError:
+            pass
+    for m in re.finditer(r"\b(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(20\d{2})\b", t, re.I):
+        try:
+            out.append(_dt.date(int(m.group(3)), _MONTH_N[m.group(2).lower()], int(m.group(1))))
+        except (ValueError, KeyError):
+            pass
+    return out
+
+
+def _process_mode(hard, stage_l, la_days):
+    """(on: bool, why: str) — §8.5. ON requires: structured stage + a live FUTURE dated process
+    milestone + on-track (no pause language, no deadline passed in silence)."""
+    import datetime as _dt
+    if not any(s in stage_l for s in _PROC_STAGES):
+        return False, ""
+    text = str(hard.get("next_step") or "")
+    if not text or not _PROC_KW.search(text):
+        return False, ""
+    if _PAUSE_KW.search(text):
+        return False, "pause language in the next-step log"
+    today = _dt.datetime.now(_dt.timezone.utc).date()
+    dates = _milestone_dates(text)
+    future = [d for d in dates if d >= today]
+    past = [d for d in dates if d < today]
+    if not future:
+        return False, ""                      # nothing scheduled -> dead-quiet, not RFP-quiet
+    # anti-zombie: a deliverable date PASSED with no movement since (no activity of ours or
+    # the buyer's after it) -> the process itself stalled.
+    if past:
+        newest_past_age = (today - max(past)).days
+        if la_days is None or la_days > newest_past_age + 2:
+            return False, f"deliverable dated {max(past).isoformat()} passed with no movement"
+    nearest = min(future)
+    return True, (f"structured {stage_l or 'evaluation'} process on-track — next dated milestone "
+                  f"{nearest.isoformat()}; quiet between deliverables is process cadence")
+
+
 def score_momentum_v2(record: dict):
     """Momentum v5 (2026-07-07, VP spec adopted with amendments): momentum = the PULSE of buyer
     engagement + forward progression, recency-weighted. Engagement points (type × who × steep
@@ -559,6 +618,14 @@ def score_momentum_v2(record: dict):
     engaged = ((bt_days is not None and bt_days <= 30) or ev30 >= 2 or bt30 >= 1
                or (_late and _la_days is not None and _la_days <= 10))
     _via = ("meeting" if (lm_days is not None and (bt_days == lm_days)) else "buyer reply")
+    _cad_map = {"qualified": 30.0, "formal evaluation": 21.0, "shortlisted": 18.0,
+                "vendor selected": 14.0, "contracting": 14.0}
+    try:
+        cadence = float(fp.get("stage_cadence_days") or 0) or _cad_map.get(_stage_l, 21.0)
+    except (TypeError, ValueError):
+        cadence = _cad_map.get(_stage_l, 21.0)
+    # §8.5 RFP / process-mode — buyer runs the clock; deliverable-driven quiet ≠ stalling.
+    process_mode, pm_why = _process_mode(hard, _stage_l, _la_days)
 
     # PRIMARY 1 — ENGAGEMENT POINTS (VP spec §2A/§3/§4: Σ type-weight × who × steep recency
     # decay, cap +35 — the dominant term). footprints.engagement.points_60d carries the real
@@ -587,13 +654,11 @@ def score_momentum_v2(record: dict):
     # PRIMARY 2 — STAGE-RELATIVE STALLING DRAG (VP spec §8: quiet vs what the STAGE needs,
     # graduated 0…−25; replaces the old flat −8/−12). Late-stage email/contract cadence
     # (award, NDA, redlines) still softens the drag — that's real buyer motion.
-    _cad_map = {"qualified": 30.0, "formal evaluation": 21.0, "shortlisted": 18.0,
-                "vendor selected": 14.0, "contracting": 14.0}
-    try:
-        cadence = float(fp.get("stage_cadence_days") or 0) or _cad_map.get(_stage_l, 21.0)
-    except (TypeError, ValueError):
-        cadence = _cad_map.get(_stage_l, 21.0)
-    if bt_days is None:
+    # §8.5: SUSPENDED entirely while a structured RFP/tender process is on-track.
+    if process_mode:
+        drag = 0.0
+        dwhy = pm_why
+    elif bt_days is None:
         drag = 25.0
         dwhy = "no genuine buyer touch on record — buyer side dark"
     elif bt_days <= cadence:
@@ -674,13 +739,21 @@ def score_momentum_v2(record: dict):
     # FALSE VELOCITY means "activity WITHOUT progression" — it can NEVER fire on a deal that
     # just progressed (stage/forecast up-move) or is actively engaged. The Bosch bug: stage
     # moved UP + active deal flow 8d ago, yet the cap slammed momentum 60 -> 25, which then
-    # dragged Win by -31 on a $1.2M Shortlisted deal.
-    if dated >= 3 and slipping and not _up and not engaged:
+    # dragged Win by -31 on a $1.2M Shortlisted deal. §8.5: also suspended in an ON-TRACK
+    # structured process — FUTURE-dated deliverables are the process plan, not fake motion
+    # (the anti-zombie overdue rule already ejects deals whose deadlines passed in silence).
+    if dated >= 3 and slipping and not _up and not engaged and not process_mode:
         contribs.append(_contrib("false_velocity", 0.0,
                                  "activity without progression — busy next-step log but the deal is slipping "
                                  "(close pushed / confidence down / buyer quiet); edits don't raise momentum"))
         score = min(score, 25.0)
 
+    # §8.5 on-track floor: a deal waiting on the buyer's OWN published process is steady, not
+    # slowing — momentum holds at 50 minimum while process-mode is on.
+    if process_mode and score < 50.0:
+        contribs.append(_contrib("process_floor", round(50.0 - score, 1),
+                                 "on-track structured process — waiting on the buyer's published timeline reads steady, not slowing"))
+        score = 50.0
     score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
             "model": "engagement_v5", "contributions": contribs}

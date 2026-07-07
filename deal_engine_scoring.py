@@ -641,7 +641,11 @@ def score_momentum_v2(record: dict):
                 or (isinstance(conf, (int, float)) and conf < 40)
                 or (bt_days is not None and bt_days > 30)
                 or bt_days is None)
-    if dated >= 3 and slipping:
+    # FALSE VELOCITY means "activity WITHOUT progression" — it can NEVER fire on a deal that
+    # just progressed (stage/forecast up-move) or is actively engaged. The Bosch bug: stage
+    # moved UP + active deal flow 8d ago, yet the cap slammed momentum 60 -> 25, which then
+    # dragged Win by -31 on a $1.2M Shortlisted deal.
+    if dated >= 3 and slipping and not _up and not engaged:
         contribs.append(_contrib("false_velocity", 0.0,
                                  "activity without progression — busy next-step log but the deal is slipping "
                                  "(close pushed / confidence down / buyer quiet); edits don't raise momentum"))

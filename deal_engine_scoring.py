@@ -936,20 +936,79 @@ def _selection_override(record: dict, strengths: Optional[dict] = None) -> bool:
     _stg = str(hard.get("stage") or "").strip().lower()
     if not _stg or any(t in _stg for t in ("initial interest", "qualified", "prospect", "discovery", "lead", "1.", "2.")):
         return False
+    # 1) ACCESS TO POWER (2026-07-07, user-directed 7-point drill): a selection is MADE BY an
+    # economic buyer. With NO confirmed EB on record there is no one who could have selected us —
+    # a "confirmed selection" claim on inferred preference is a mis-read (Barnes & Noble:
+    # economic_buyer gap, one stale "checks the boxes" quote, still read 99). Hard fact, not a lean.
+    if str(((ai.get("meddpicc") or {}).get("economic_buyer") or {}).get("status") or "").strip().lower() != "confirmed":
+        return False
+    # 2) The engine's OWN verdict must not be weak — a Slowing / at-risk deal is not a selection.
+    nv = ai.get("north_star_verdict") or {}
+    if str(nv.get("verdict") or "").strip().lower() in ("slowing", "stalled", "at risk", "at_risk", "cooling", "declining"):
+        return False
     st = strengths if isinstance(strengths, dict) else _rubric_win_strengths(record or {})
-    # 1) HIGH stated preference ("you've chosen Zycus", "best platform").
+    # 3) HIGH stated preference ("you've chosen Zycus", "best platform").
     cp = ai.get("customer_preference") or {}
     _ps = st.get("preference")
     pref_high = (str(cp.get("level") or cp.get("status") or "").lower() == "high"
                  or (isinstance(_ps, (int, float)) and float(_ps) >= _SELECTION_PREF_MIN))
     if not pref_high:
         return False
-    # 2) NO real rival ahead (a do-nothing / incumbent-renewal timing risk does NOT count).
-    if _competitive_strength(ai) < 0:
+    # 4) A POSITIVE competitive edge — 'unknown rivals' (a data gap, competitive_strength ~0) does
+    # NOT count as 'no rival ahead'. Require actual evidence we're ahead of the named field.
+    if _competitive_strength(ai) <= 0:
         return False
-    # 3) Evidence-defensible call (verdict forecast_defensible, or recommended Commit).
-    nv = ai.get("north_star_verdict") or {}
-    return bool(nv.get("forecast_defensible")) or str(nv.get("recommended_forecast") or "").lower().startswith("commit")
+    # 5) A REAL selection/commit signal — not merely 'forecast_defensible', which defends even a
+    # Pipeline call (B&N's verdict was forecast_defensible=true while recommending Pipeline). Needs
+    # a recorded won/selected decision, or the north-star recommending COMMIT. Best Case is UPSIDE,
+    # not a confirmed selection — it must NOT unlock the ceiling (Global Switch, Best Case, → 70).
+    dec = str((ai.get("decision_outcome") or {}).get("status") or "").strip().lower()
+    rec_fc = str(nv.get("recommended_forecast") or "").strip().lower()
+    return dec in ("won", "selected") or rec_fc.startswith("commit")
+
+
+# --- Qualification gate (2026-07-07, user-directed "7-point drill") -----------------------------
+# A HIGH Win probability must be EARNED by ticking the qualification boxes first. ACCESS TO POWER
+# (economic buyer) is the dominant gate — you cannot be confident of winning a deal you have no path
+# to get signed. Win is CEILINGED by qualification AFTER the raw compute, so momentum / stated
+# preference cannot lift a deal past what its boxes support (Barnes & Noble: economic_buyer gap,
+# single-threaded to a Manager, unknown competitive field — yet read 99). Once the HARD SF stage is
+# Vendor Selected+ the stage ITSELF proves access to power, so the cap lifts (Publicis / Swift / Mair
+# untouched). Competitive visibility and champion depth also gate the top.
+QUAL_EB_CEILING = {"confirmed": 100.0, "partial": 74.0, "gap": 52.0}
+QUAL_COMP_CEILING = {"confirmed": 100.0, "partial": 90.0, "gap": 66.0}
+QUAL_CHAMP_CEILING = {"confirmed": 100.0, "partial": 86.0, "gap": 60.0}
+_QUAL_MISSING = {"economic_buyer": 50.0, "competition": 66.0, "champion": 58.0}
+_QUAL_POST_SELECTION = ("vendor select", "selected", "negotiat", "contract", "won",
+                        "po received", "po-received", "closed")
+
+
+def _qualification_ceiling(record: dict):
+    """(cap, box_label, status): the highest Win the deal's qualification supports. Access to Power
+    dominates; competitive visibility and champion depth also gate the top. Post-selection stages
+    return 100 — the hard SF stage already proves selection."""
+    hard = (record or {}).get("hard") or {}
+    ai = (record or {}).get("ai") or {}
+    stage = str(hard.get("stage") or "").strip().lower()
+    if any(t in stage for t in _QUAL_POST_SELECTION):
+        return 100.0, "", ""
+    md = ai.get("meddpicc") or {}
+
+    def _st(k):
+        v = md.get(k) if isinstance(md, dict) else None
+        return str((v.get("status") if isinstance(v, dict) else v) or "").strip().lower()
+
+    eb, comp, champ = _st("economic_buyer"), _st("competition"), _st("champion")
+    # Expansion into a WON account: we already hold executive / seat access — relax the EB gate.
+    exp = ai.get("expansion_context")
+    if isinstance(exp, dict) and exp.get("prior_closed_won") and eb in ("gap", ""):
+        eb = "partial"
+    caps = [
+        (QUAL_EB_CEILING.get(eb, _QUAL_MISSING["economic_buyer"]), "access to power (economic buyer)", eb or "missing"),
+        (QUAL_COMP_CEILING.get(comp, _QUAL_MISSING["competition"]), "competitive visibility", comp or "missing"),
+        (QUAL_CHAMP_CEILING.get(champ, _QUAL_MISSING["champion"]), "champion", champ or "missing"),
+    ]
+    return min(caps, key=lambda x: x[0])
 
 
 # --- High-risk penalty (2026-07-07 spec §5): Risk is folded INTO Win — genuinely high risk
@@ -1038,6 +1097,17 @@ def score_win_position(ev, record=None, momentum=None, deal_risk=None):
                                       f"defensive on cost or phased implementation)"))
 
     ceiling = _win_ceiling(record)                # stage cap: pre-RFP 30 / RFP 70 / post 100
+
+    # QUALIFICATION GATE (7-point drill): a high Win must be EARNED — Access to Power (economic
+    # buyer) dominates. Caps the stage ceiling so momentum / stated preference can't lift a deal
+    # past what its qualification supports (B&N: economic_buyer gap -> capped 52, not 99).
+    qual_cap, qual_box, qual_status = _qualification_ceiling(record)
+    if qual_cap < ceiling:
+        contributions.append(_contrib("qualification_gate", 0.0,
+                                      f"Win capped at {int(qual_cap)}: {qual_box} not established "
+                                      f"({qual_status}) — a higher win probability has to be earned "
+                                      f"by qualifying this first"))
+        ceiling = qual_cap
 
     # §4 Selection override — a confirmed selection whose CRM stage lags is anchored to the
     # Vendor-Selected floor (72) with the 100 ceiling unlocked. Triple-gated; ONLY RAISES.

@@ -11,6 +11,36 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-07 — Win is QUALIFICATION-GATED (a high probability must be earned, not inferred)
+
+**What.** Win Position is now ceilinged by qualification (`deal_engine_scoring._qualification_ceiling`),
+applied after the raw compute so momentum / stated preference can't lift a deal past what its
+qualification boxes support. **Access to Power (MEDDPICC `economic_buyer`) is the dominant gate:**
+`gap` → win capped **52**, `partial` → **74**, `confirmed` → no cap. Competitive visibility and
+champion depth also gate the top (`competition`/`champion` gap → 66/60). Once the **hard SF stage is
+Vendor Selected+**, the stage itself proves selection → no cap (Publicis / Swift / Mair untouched).
+Two supporting fixes: (1) the selection override now **requires a confirmed economic buyer** (+ a real
+Commit/won signal, verdict not Slowing, a *positive* competitive edge — not "unknown rivals"); (2) the
+CRO panel no longer renders a weak/unknown competitive field as "✅ Edge over the competition" — it
+reads "⚠️ Competitive field still unmapped".
+
+**Why.** The engine was bullish on inferred soft signals and blind to obvious gaps. Barnes & Noble —
+Formal Evaluation, SF forecast **Pipeline**, verdict **Slowing**, `economic_buyer=gap`, single-threaded
+to a Manager, unknown competitors — read **Win 99** off the override + a stale April "checks the boxes"
+quote. That violates the stage-authority rule (*the engine must never be more bullish than the hard CRM
+facts*). User's 7-point-drill logic: *momentum first, then win; and tick the qualification boxes before
+a higher probability can be established.* Book-wide, 25 of 60 high-win deals had `economic_buyer=gap`.
+
+**How to work with it.** B&N 99→52; ~41 no-EB Formal-Eval/Shortlisted deals corrected to ≤52; momentum
+is UNTOUCHED (the gate caps win regardless of momentum). Legit late-stage deals untouched. Cap values
+live in `QUAL_EB_CEILING` / `QUAL_COMP_CEILING` / `QUAL_CHAMP_CEILING`. Diagnostics:
+`diag_qual_gate.py`, `diag_scoring_integrity.py`, `diag_momentum_inflation.py` (all read-only). Rescore
+the book with `refresh_scores_panels_all.py --rescore --apply` (skips pins on `ai.pinned` OR
+`deal_scores.pinned`). If a deal is wrongly capped because its EB is engaged but MEDDPICC under-read it
+as `gap`, the fix is the sweep's MEDDPICC accuracy (examination), not re-opening the gate.
+
+---
+
 ## 2026-07-07 — selection override is stage-gated (a selection can't precede an evaluation)
 
 **What.** `deal_engine_scoring._selection_override` now returns `False` for any pre-RFP /

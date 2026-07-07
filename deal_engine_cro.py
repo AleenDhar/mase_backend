@@ -344,6 +344,17 @@ def build_cro_panel(record, pinned_override=None):
             src = (crm_e.get("src") or "").lower()
             pos, neg = _WIN_FACTOR[f]
             label = pos if pts >= 0 else neg
+            # COMPETITIVE (2026-07-07): a weak-positive competitive strength means 'credible rivals
+            # present but the field is UNKNOWN / even' — that is NOT an edge. Only a real edge
+            # (sole-source / buyer-preferred, pts >= ~2.0) keeps "Edge over the competition"; an
+            # unknown or merely-even field reads as the open question it is (Barnes & Noble:
+            # "unknown competitors" was wrongly rendered "✅ Edge over the competition").
+            force_warn = False
+            if f == "competitive" and 0 <= pts < 2.0:
+                _cst = str(((ai.get("meddpicc") or {}).get("competition") or {}).get("status") or "").lower()
+                _unknown = _cst in ("gap", "unknown", "missing", "")
+                label = "Competitive field still unmapped" if _unknown else "No decisive edge over the field yet"
+                force_warn = True
             # Prefer the rich, deal-specific SECTION NARRATIVE the sweep already wrote for
             # THIS factor (economic_buyer / competition / paper_process narratives,
             # competitive & champion summaries, customer_preference …) over the robotic
@@ -370,7 +381,7 @@ def build_cro_panel(record, pinned_override=None):
                     text = label
                 else:
                     text = f"{label} — {body}"
-            bl = {"tone": "good" if pts >= 0 else "warn", "text": text}
+            bl = {"tone": "warn" if (force_warn or pts < 0) else "good", "text": text}
             if full_txt and full_txt != text:
                 bl["full"] = full_txt
             win_bullets.append(bl)

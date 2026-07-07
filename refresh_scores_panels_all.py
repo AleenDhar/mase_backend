@@ -75,8 +75,8 @@ def main():
             excluded += 1; continue
         rec = r.get("record") or {}
         ai = rec.get("ai") or {}
-        if ai.get("pinned"):
-            skip_pinned += 1; continue
+        if ai.get("pinned") or (ai.get("deal_scores") or {}).get("pinned"):
+            skip_pinned += 1; continue      # pin may live on ai.pinned OR deal_scores.pinned
         if not _has_analysis(ai):
             skip_noanalysis += 1; continue
         ds = dict(ai.get("deal_scores") or {})

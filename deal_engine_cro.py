@@ -154,6 +154,20 @@ def _scrub_score_logic(text):
     return out[0].upper() + out[1:]
 
 
+def _btext(raw, cap, tone=None):
+    """Bullet body with NO dead ellipses: `text` is the readable clip, and when the clip
+    lost content the complete prose rides along as `full` (the UI's 'more' expander).
+    2026-07-07: truncation without a path to the whole text is a UI defect."""
+    fulltxt = _clean(raw)
+    short = _first_sentence(raw, cap)
+    b = {"text": short}
+    if tone is not None:
+        b["tone"] = tone
+    if fulltxt and short and fulltxt.strip() != short.strip() and len(fulltxt) > len(short) + 8:
+        b["full"] = fulltxt[:1200]
+    return b
+
+
 def _band_read(score, bands):
     """bands = list of (min_inclusive, text); first match wins (descending)."""
     s = score if score is not None else -1
@@ -440,7 +454,7 @@ def build_cro_panel(record, pinned_override=None):
         # +points = forward (good), −points = slipping (warn); 0-point factors are commentary
         # (false_velocity / engagement_ignored / one_sided) — always a caution.
         tone = "good" if pts > 0.1 else "warn"
-        mb.append({"tone": tone, "text": _first_sentence(evi, 150)})
+        mb.append(_btext(evi, 150, tone=tone))
     # de-dup
     _seenm, _mb = set(), []
     for b in mb:
@@ -469,7 +483,7 @@ def build_cro_panel(record, pinned_override=None):
     overdue = [d for d in odl if str(d.get("status", "")).lower() == "overdue"]
     risk_bullets = []
     for v in vulns[:4]:
-        risk_bullets.append({"tone": "warn", "text": _first_sentence(v.get("detail"), 170)})
+        risk_bullets.append(_btext(v.get("detail"), 170, tone="warn"))
     for d in overdue[:2]:
         due = _human_date(d.get("due"))
         risk_bullets.append({"tone": "warn",
@@ -509,7 +523,7 @@ def build_cro_panel(record, pinned_override=None):
     # ---- MOVES block ----
     moves = []
     for m in sorted((ai.get("recommended_moves") or {}).get("items") or [], key=lambda x: x.get("rank", 99))[:3]:
-        act = _first_sentence(m.get("action"), 150)
+        act = _first_sentence(m.get("action"), 320)
         by = _human_date(m.get("act_by"))
         if act:
             moves.append(act + (f" (by {by})" if by else ""))

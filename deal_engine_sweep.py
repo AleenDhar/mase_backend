@@ -3647,6 +3647,29 @@ async def analyze_one(
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed
         else:
+            # NEVER-CLOBBER GUARD (2026-07-07): a run that ends WITHOUT a scored record must
+            # never overwrite one that HAS scores. Concurrent/duplicate runs (overlapping
+            # triggers, reclaim races) had a malformed early-exit persist LAND ON TOP of a
+            # good fresh record (Techtronic: run B's win=None clobbered run A's 54/61 four
+            # minutes later). Re-read the CURRENT record at persist time; if ours is
+            # score-less and the stored one is scored+fresher, adopt its judgment surfaces.
+            try:
+                _my_hl = (((parsed.get("ai") or {}).get("deal_scores") or {}).get("headline") or {})
+                if _my_hl.get("win_position") is None:
+                    _cur = await asyncio.get_running_loop().run_in_executor(
+                        None, store.get_record, opp_id)
+                    _cur_ai = (_cur or {}).get("ai") if isinstance(_cur, dict) else None
+                    _cur_hl = (((_cur_ai or {}).get("deal_scores") or {}).get("headline") or {})
+                    if _cur_hl.get("win_position") is not None:
+                        for _k in ("deal_scores", "footprints", "day_summary", "account_context"):
+                            if _cur_ai.get(_k) is not None and (parsed.get("ai") or {}).get(_k) is None:
+                                parsed.setdefault("ai", {})[_k] = _cur_ai[_k]
+                        if (((parsed.get("ai") or {}).get("deal_scores") or {}).get("headline") or {}).get("win_position") is None:
+                            parsed["ai"]["deal_scores"] = _cur_ai["deal_scores"]
+                        print(f"[DEAL-SWEEP] never-clobber opp={opp_id}: this run produced no scores — "
+                              f"kept the stored scored surfaces instead of blanking them", flush=True)
+            except Exception as _nce:  # noqa: BLE001 — guard must never block persist
+                print(f"[DEAL-SWEEP] never-clobber check skipped opp={opp_id}: {_nce}", flush=True)
             await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Surface the stamped engagement state so the dashboard/audit can flag a

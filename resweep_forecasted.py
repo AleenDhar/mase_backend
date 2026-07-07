@@ -123,21 +123,19 @@ def matrix(ids, label):
 
 
 def main():
-    # resolve waves
-    bh = by_name("Bright Horizons")
-    ap = by_name("Austrian Post")
-    alg = by_name("Alghanim")
-    w1 = [o for o, _ in bh]
-    w2 = [o for o, _ in ap] + [o for o, _ in alg]
+    # 2026-07-07 user-directed: START from Techtronic, then the rest of the forecasted book.
+    # EXCLUDE the hand-fixed pinned deals (Bright Horizons JwvB3, Austrian Post, Alghanim) —
+    # do not re-sweep them at all.
+    EXCLUDE = {"006P700000JwvB3", "006P700000J71MD", "006P700000OUsd6"}
+    tt = [o for o, _ in by_name("Techtronic") if o not in EXCLUDE]
     s1 = [id15(x) for x in json.load(open("cc_work/_stage1.json"))]
-    w3 = [o for o in s1 if o not in set(w1) | set(w2)]
-    print(f"WAVE 1 Bright Horizons: {w1}")
-    print(f"WAVE 2 Austrian Post + Alghanim: {[(o, n[:20]) for o, n in ap + alg]}")
-    print(f"WAVE 3 rest of forecasted: {len(w3)} deals", flush=True)
+    w2 = [o for o in s1 if o not in EXCLUDE and o not in set(tt)]
+    print(f"WAVE 1 Techtronic: {tt}")
+    print(f"WAVE 2 rest of forecasted (pinned excluded): {len(w2)} deals")
+    print(f"EXCLUDED (hand-fixed, pinned): {sorted(EXCLUDE)}", flush=True)
 
-    for label, ids, mins in (("WAVE 1 (Bright Horizons)", w1, 30),
-                             ("WAVE 2 (Austrian Post + Alghanim)", w2, 30),
-                             ("WAVE 3 (rest of forecasted)", w3, 150)):
+    for label, ids, mins in (("WAVE 1 (Techtronic)", tt, 30),
+                             ("WAVE 2 (rest of forecasted)", w2, 150)):
         print(f"\n>>> {label}: triggering {len(ids)}", flush=True)
         if not ids:
             continue
@@ -148,7 +146,7 @@ def main():
         if label.startswith("WAVE 1") or label.startswith("WAVE 2"):
             matrix(ids, label + " result")
 
-    everything = w1 + w2 + w3
+    everything = tt + w2
     # restore the INTELLIGENT day summaries over the sweep's inline ones
     print("\n>>> restoring intelligent 24h summaries for all swept deals", flush=True)
     try:
@@ -161,12 +159,22 @@ def main():
         print("  day-summary rerun failed:", str(e)[:120], flush=True)
 
     # final QA
-    matrix(w1 + w2, "FINAL — BH / Austrian Post / Alghanim")
+    matrix(tt, "FINAL — Techtronic")
     recs = drows({"opp_id": "in.(" + ",".join(everything) + ")", "select": "record"})
     scored = sum(1 for r in recs if (((r.get("record") or {}).get("ai") or {}).get("deal_scores") or {}).get("headline", {}).get("win_position") is not None)
     ceo = sum(1 for r in recs if (((r.get("record") or {}).get("ai") or {}).get("ceo_intervention") or {}).get("needed"))
     ds_ok = sum(1 for r in recs if (((r.get("record") or {}).get("ai") or {}).get("day_summary") or {}).get("overall"))
     print(f"\nBOOK QA: {len(recs)} swept | scored={scored} | ceo_watch={ceo} | 24h_present={ds_ok}", flush=True)
+        # QA SELF-HEAL (2026-07-07): verify every drawer component and repair each broken one
+    # INDEPENDENTLY (scores / reasons / 24h / footprints / context) — no whole-sweep re-runs
+    # for fixable parts.
+    try:
+        p = subprocess.run([sys.executable, "qa_self_heal.py", "--apply"],
+                           capture_output=True, text=True, timeout=3600)
+        for ln in [l for l in (p.stdout or "").splitlines() if l.strip()][-6:]:
+            print("  QA: " + ln, flush=True)
+    except Exception as e:
+        print("  QA self-heal failed:", str(e)[:100], flush=True)
     print("ORCHESTRATION COMPLETE", flush=True)
 
 

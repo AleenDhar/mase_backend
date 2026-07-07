@@ -122,9 +122,11 @@ def qa(ids, label):
 
 
 def main():
-    s2 = [id15(x) for x in json.load(open("cc_work/_stage2.json"))]
-    s3 = [id15(x) for x in json.load(open("cc_work/_stage3.json"))]
-    print(f"S2: {len(s2)} deals | S3: {len(s3)} deals", flush=True)
+    # 2026-07-07 user-directed: never re-sweep the hand-fixed pinned deals.
+    EXCLUDE = {"006P700000JwvB3", "006P700000J71MD", "006P700000OUsd6"}
+    s2 = [id15(x) for x in json.load(open("cc_work/_stage2.json")) if id15(x) not in EXCLUDE]
+    s3 = [id15(x) for x in json.load(open("cc_work/_stage3.json")) if id15(x) not in EXCLUDE]
+    print(f"S2: {len(s2)} deals | S3: {len(s3)} deals (pinned excluded)", flush=True)
 
     for label, ids, mins in (("S2 (non-forecasted >= Formal Evaluation)", s2, 240),
                              ("S3 (rest of book)", s3, 420)):
@@ -148,6 +150,16 @@ def main():
             print("  day-summary batch failed:", str(e)[:100], flush=True)
 
     qa(everything, "\nS2+S3 FINAL")
+        # QA SELF-HEAL (2026-07-07): verify every drawer component and repair each broken one
+    # INDEPENDENTLY (scores / reasons / 24h / footprints / context) — no whole-sweep re-runs
+    # for fixable parts.
+    try:
+        p = subprocess.run([sys.executable, "qa_self_heal.py", "--apply"],
+                           capture_output=True, text=True, timeout=3600)
+        for ln in [l for l in (p.stdout or "").splitlines() if l.strip()][-6:]:
+            print("  QA: " + ln, flush=True)
+    except Exception as e:
+        print("  QA self-heal failed:", str(e)[:100], flush=True)
     print("S2+S3 COMPLETE", flush=True)
 
 

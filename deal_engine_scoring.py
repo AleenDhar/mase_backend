@@ -524,8 +524,8 @@ def _is_real_session(top_event) -> bool:
 # Guarded so a dead deal can't hide behind "we're in an RFP" (anti-zombie rules below).
 _PROC_STAGES = ("formal evaluation", "shortlist", "vendor selected")
 _PROC_KW = re.compile(r"rfp|rfi|rfq|bafo|tender|demo|orals|clarificat|infosec|info sec|security review"
-                      r"|legal review|redlin|sow|proposal|submission|due|award|decision|workshop"
-                      r"|presentation|evaluation|down[- ]?select", re.I)
+                      r"|legal review|redlin|sow|proposal|submission|due|award|decis|decid|workshop"
+                      r"|presentation|evaluation|down[- ]?select|pricing|cfo|exco|steerco|board (review|meeting)", re.I)
 _PAUSE_KW = re.compile(r"postpon|on hold|hold until|budget freeze|re-?baselin|next quarter|paused"
                        r"|deferred|frozen|pushed to (q[1-4]|next)", re.I)
 _MONTH_N = {m: i + 1 for i, m in enumerate(
@@ -750,6 +750,29 @@ def score_momentum_v2(record: dict):
         score += 6.0
         contribs.append(_contrib("progression", 6.0, f"{_up.replace('_',' ')}: moved UP recently — deal advancing"))
 
+    # NEXT-STEP PLAN TERMS (VP §2B/§2C, user-ratified via Techtronic): a live, dated,
+    # ADVANCING plan is forward motion — +8 when ≥2 dated milestones with one in the future,
+    # +3 more for a rich trail (≥4). THEATRE GUARD: halved when the buyer is quiet >30d
+    # outside a structured process — a rep typing dates into silence is not momentum
+    # (false-velocity still caps the genuinely slipping ones).
+    import datetime as _dtns
+    _today_ns = _dtns.datetime.now(_dtns.timezone.utc).date()
+    _all_ms = _milestone_dates(hard.get("next_step"))
+    # dated count: legacy counter ORed with the full rep-date parser ('1st July', '17.7.' etc.)
+    dated = max(_count_dated_milestones(hard.get("next_step")), len(_all_ms))
+    _fut_ms = [d for d in _all_ms if d >= _today_ns]
+    nspts = 0.0
+    if _fut_ms and dated >= 2:
+        nspts += 8.0
+    if _fut_ms and dated >= 4:
+        nspts += 3.0
+    if nspts and not process_mode and (bt_days is None or bt_days > 30):
+        nspts = round(nspts * 0.5, 1)
+    if nspts:
+        score += nspts
+        contribs.append(_contrib("next_step_plan", round(nspts, 1),
+                                 f"{dated} dated milestone(s), nearest {min(_fut_ms).isoformat()} — live advancing plan"))
+
     # PRIMARY 5 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
     conf = _parse_confidence(hard.get("next_step"))
     if conf is None:
@@ -763,7 +786,6 @@ def score_momentum_v2(record: dict):
 
     # FALSE-VELOCITY (the Alghanim signature): a busy next-step log on a slipping deal is still
     # slipping. ≥3 dated lines but close pushed / confidence falling / buyer quiet >30d → hold low.
-    dated = _count_dated_milestones(hard.get("next_step"))
     slipping = ((isinstance(cdt, (int, float)) and cdt < -0.15)
                 or (isinstance(conf, (int, float)) and conf < 40)
                 or (bt_days is not None and bt_days > 30)
@@ -774,6 +796,7 @@ def score_momentum_v2(record: dict):
     # dragged Win by -31 on a $1.2M Shortlisted deal. §8.5: also suspended in an ON-TRACK
     # structured process — FUTURE-dated deliverables are the process plan, not fake motion
     # (the anti-zombie overdue rule already ejects deals whose deadlines passed in silence).
+    # (`dated` computed above in the next-step plan block.)
     if dated >= 3 and slipping and not _up and not engaged and not process_mode:
         contribs.append(_contrib("false_velocity", 0.0,
                                  "activity without progression — busy next-step log but the deal is slipping "
@@ -937,11 +960,14 @@ def score_win_position(ev, record=None, momentum=None, deal_risk=None):
     if fc_credit > 0:
         contributions.append(_contrib("forecast_conviction", round(fc_credit, 1), fc_why))
 
-    # §6 High-risk penalty — Risk baked into Win: 0.5×max(0, risk−20), cap −30.
-    risk_pen = _win_risk_penalty(deal_risk)
-    if risk_pen > 0:
-        contributions.append(_contrib("risk_penalty", -round(risk_pen, 1),
-                                      f"deal risk {round(float(deal_risk))} (above the 20 noise floor) penalises winnability"))
+    # RISK OUT OF POSITION (2026-07-07 VP definition, user-ratified via Techtronic): Position
+    # is a PURE win-likelihood read — "if it closes, do we win?" Risk lives in Deal Risk and
+    # Forecast Confidence ("will it close?"), not here — charging it in Position double-counted
+    # it (Techtronic: honest 47 'weak fundamentals' vs 33 'weak AND risky twice over').
+    risk_pen = 0.0
+    if deal_risk is not None and _num(deal_risk) and float(deal_risk) > WIN_RISK_NOISE_FLOOR:
+        contributions.append(_contrib("risk_note", 0.0,
+                                      f"deal risk {round(float(deal_risk))} is carried by Deal Risk / Forecast Confidence, not Position"))
 
     # OPPORTUNITY-TREND NUDGE (VP spec §4): CRM moves are buying/loss signals — stage/forecast
     # up-moves and amount growth nudge Win up; a close-date push (the SLIP signal lives HERE,
@@ -1485,12 +1511,13 @@ def compute_deal_scores(record: dict) -> dict:
 
         # Momentum FIRST — it feeds Win's momentum-drag, so a high-stage deal that isn't
         # behaving like its stage demands (low momentum) falls instead of riding the anchor.
-        # Prefer the engagement-based v2 model when footprints are available (the sweep
-        # computes them from SF Events/Tasks); else the signal-based model.
-        if ((record.get("ai") or {}).get("footprints") or {}).get("engagement"):
-            mom = score_momentum_v2(record)
-        else:
-            mom = score_momentum(ev, dsl, expected)
+        # ONE ENGINE (2026-07-07, VP spec ratified): ALWAYS the engagement/process model.
+        # The old footprints-gate silently routed every null-footprint deal (Techtronic!)
+        # to the legacy signal model — bypassing process-mode, the stretched RFP clock,
+        # next-step plan terms, stalling cadence, close tolerance… the entire spec.
+        # score_momentum_v2 handles missing footprints itself (legacy volume fallback,
+        # process-mode floor, next-step terms from the hard record).
+        mom = score_momentum_v2(record)
         # Risk BEFORE Win — Risk is folded into Win (spec §5: high risk penalises winnability).
         # Stage-bound the risk: at LATE (contract executing) only close-date / budget factors
         # count — strip early/mid ones so they can't inflate it. Exception: a LIVE multi-vendor

@@ -2748,6 +2748,26 @@ async def analyze_one(
             last_inbound_email_date=(buyer.get("last_inbound_email_date")
                                      if isinstance(buyer, dict) else None),
         )
+        # FIRST-PASS QUALITY (2026-07-07, user-directed: retries are an ALERT, not normal —
+        # 62% of runs were failing the validation gate on attempt 1 because the model was
+        # graded against a people-allowlist it never saw). Show the roster UP FRONT so the
+        # first attempt can comply; the gate stays as the backstop, not the workflow.
+        _roster_block = ""
+        try:
+            _roster_names = sorted({str(n).strip() for n in (_allowlist or set())
+                                    if n and len(str(n).strip()) > 2})[:80]
+            if _roster_names:
+                _roster_block = (
+                    "\n\n## PEOPLE YOU MAY NAME (the ONLY permitted names — exact spellings)\n"
+                    + ", ".join(_roster_names)
+                    + "\nAnyone else you encounter (in transcripts, emails, notes): refer to them "
+                      "by ROLE only ('the IT director', 'their procurement lead') — NEVER write a "
+                      "personal name that is not in this list, never guess or normalise spellings, "
+                      "and never invent a manager name. Records naming unlisted people are REJECTED "
+                      "and force a full re-run."
+                )
+        except Exception:
+            pass
         user_msg = (
             f"Sweep Salesforce Opportunity Id `{opp_id}`"
             + (f" (account: {opp.get('account')}, name: {opp.get('name')})" if opp.get("account") else "")
@@ -2761,6 +2781,7 @@ async def analyze_one(
             + avoma_prefetch_block
             + meddpicc_crm_block
             + topics_block
+            + _roster_block
         )
         _meta = {"agent_sf_blank": False}
 
@@ -3170,9 +3191,14 @@ async def analyze_one(
                 break
             if _attempt < _max_attempts - 1:
                 _feedback = _val.format_validation_feedback(_violations)
+                # ALERTING (2026-07-07): a gate FAIL is an exception, not a workflow — log
+                # WHAT failed (category + first offender) so systemic causes are visible.
+                _cats = sorted({str(v.get("check")) for v in _violations if isinstance(v, dict)})
+                _v0 = next((v for v in _violations if isinstance(v, dict)), {})
                 print(f"[DEAL-SWEEP] gate FAIL opp={opp_id} "
                       f"attempt={_attempt + 1}/{_max_attempts} "
-                      f"violations={len(_violations)} -> retry", flush=True)
+                      f"violations={len(_violations)} cats={_cats} "
+                      f"first={_v0.get('field')}::{str(_v0.get('offending'))[:60]!r} -> retry", flush=True)
                 continue
             # Retries exhausted: deterministic last-resort sanitize, then persist
             # ONCE. An honest, scrubbed record is always saved (never withhold).

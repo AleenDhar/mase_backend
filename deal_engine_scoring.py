@@ -320,6 +320,12 @@ def _competitive_strength(ai: dict) -> float:
         return 0.5            # only do-nothing / manual rival -> we're the wedge
     if has_real:
         return 0.2            # credible rivals present but no leaning -> roughly even
+    # SOLE-SOURCE (VP spec §6): no competitor on record because the buyer SKIPPED the RFP and
+    # came direct is a STRENGTH, not an unknown. Only fires on explicit evidence in the
+    # competitive summary — a mere data gap still reads mild-negative below.
+    _cs_txt = (str(comp.get("summary") or "") + " " + str(comp.get("position") or "")).lower()
+    if re.search(r"sole[- ]?sourc|no rfp|skipped\s+(?:an?\s+)?rfp|came\s+(?:to\s+us\s+)?direct|single[- ]vendor|only vendor invited", _cs_txt):
+        return 0.5
     return _status_strength((ai.get("meddpicc") or {}).get("competition", {}).get("status"),
                             present=0.3, partial=0.1)
 
@@ -514,11 +520,13 @@ def _is_real_session(top_event) -> bool:
 
 
 def score_momentum_v2(record: dict):
-    """Momentum v4 (2026-07-07, user spec): momentum = IS THE BUYER ENGAGING + IS IT PROGRESSING.
-    Engagement volume is PRIMARY (all real sessions count — a narrative 'top event' can no longer
-    zero out genuine meetings). A close-date push only drags when the buyer is ALSO quiet — on an
-    engaged deal it's a timing move (and already reflected in Win, not double-charged). Stage /
-    forecast up-moves earn credit. False-velocity rule unchanged (Alghanim stays slipping)."""
+    """Momentum v5 (2026-07-07, VP spec adopted with amendments): momentum = the PULSE of buyer
+    engagement + forward progression, recency-weighted. Engagement points (type × who × steep
+    decay, cap +35) are the dominant term; stalling is judged against the STAGE's expected
+    cadence (graduated 0…−25); a close push within 60d tolerance costs nothing (the slip signal
+    lives in Win Position); forecast/stage up-moves credit +6. CARRIED OVER unchanged: AI-text
+    exclusion, buyer replies count, the false-velocity guard (only fires with no progression AND
+    not engaged), late-stage email/contract-cadence softening."""
     ai = (record or {}).get("ai") or {}
     hard = (record or {}).get("hard") or {}
     fp = ai.get("footprints") or {}
@@ -552,66 +560,88 @@ def score_momentum_v2(record: dict):
                or (_late and _la_days is not None and _la_days <= 10))
     _via = ("meeting" if (lm_days is not None and (bt_days == lm_days)) else "buyer reply")
 
-    # PRIMARY 1 — BUYER-TOUCH RECENCY (meetings AND inbound buyer replies both count).
-    if bt_days is None:
-        bpts, why = -12.0, "no genuine buyer touch on record — buyer side dark"
-    elif bt_days <= 14:
-        bpts, why = 8.0, f"genuine buyer touch {bt_days}d ago ({_via})"
-    elif bt_days <= 30:
-        bpts, why = 0.0, f"last genuine buyer touch {bt_days}d ago ({_via})"
-    elif bt_days <= 60:
-        bpts, why = -8.0, f"last genuine buyer touch {bt_days}d ago (>30d — buyer quiet)"
+    # PRIMARY 1 — ENGAGEMENT POINTS (VP spec §2A/§3/§4: Σ type-weight × who × steep recency
+    # decay, cap +35 — the dominant term). footprints.engagement.points_60d carries the real
+    # per-activity sum (POC 10 … two-way email 2, rep-only ×0.4, ≤14d ×1.0 / ≤30d ×0.5 /
+    # ≤60d ×0.2). Legacy records without it fall back to the volume buckets.
+    _pts_raw = eng.get("points_60d")
+    if isinstance(_pts_raw, (int, float)):
+        epts = round(min(35.0, float(_pts_raw)), 1)
+        esrc = f"engagement points {epts} (type × buyer/rep × recency over 60d)"
     else:
-        bpts, why = -12.0, f"last genuine buyer touch {bt_days}d ago (dark — rep emailing into silence)"
-    # Late-stage email/contract cadence is real buyer motion, not silence (award, NDA,
-    # redlines, SOW scheduling move entirely over email).
-    if bpts < 0 and _late and _la_days is not None and _la_days <= 10:
-        bpts = 2.0
-        why = (f"no recent meeting, but active deal flow {_la_days}d ago — late-stage "
-               f"email/contract cadence (award/redlines/scheduling), not buyer silence")
-    score += bpts
-    contribs.append(_contrib("buyer_recency", round(bpts, 1), why))
-
-    # PRIMARY 2 — ENGAGEMENT VOLUME (all real sessions AND inbound buyer replies count; the
-    # old model only looked at the single 'top event' and zeroed EVERYTHING when that one
-    # item was a narrative note — burying deals with a dozen genuine touches).
-    _vol = max(ev30, bt30)
-    vpts = 18.0 if _vol >= 8 else 12.0 if _vol >= 4 else 7.0 if _vol >= 2 else 3.0 if _vol >= 1 else 0.0
-    if vpts:
-        score += vpts
+        _vol = max(ev30, bt30)
+        epts = 18.0 if _vol >= 8 else 12.0 if _vol >= 4 else 7.0 if _vol >= 2 else 3.0 if _vol >= 1 else 0.0
+        top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
+        if top >= 6 and _is_real_session(eng.get("top_event")) and lm_days is not None and lm_days <= 30:
+            epts = min(35.0, epts + round(min(8.0, (top - 5.0) * 2.5), 1))
         _vsrc = "session(s)" if ev30 >= bt30 else "inbound buyer repl(ies)"
-        score_note = f"{_vol} {_vsrc} in the last 30d"
-        contribs.append(_contrib("engagement_volume", round(vpts, 1),
-                                 score_note + (" — sustained two-way cadence" if _vol >= 2 else "")))
-    # top-session bonus (still requires a REAL session; a narrative top just earns nothing
-    # extra — it no longer suppresses the volume credit above)
-    top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
-    if top >= 6 and _is_real_session(eng.get("top_event")) and lm_days is not None and lm_days <= 30:
-        epts = round(min(8.0, (top - 5.0) * 2.5), 1)
+        esrc = f"{_vol} {_vsrc} in the last 30d (legacy volume read)"
+    # freshness floor (§3): any genuine buyer touch in the last 14 days can't read below steady
+    if bt_days is not None and bt_days <= 14 and epts < 8.0:
+        epts = 8.0
+        esrc = f"buyer touched the deal {bt_days}d ago ({_via}) — freshness floor"
+    if epts:
         score += epts
-        contribs.append(_contrib("engagement", epts, f"{eng.get('top_event')} — recent high-tier session"))
+        contribs.append(_contrib("engagement", round(epts, 1), esrc))
 
-    # PRIMARY 3 — CLOSE-DATE DIRECTION. Pull-ins always credit. A PUSH only drags when the
-    # buyer is ALSO quiet (that's genuine slipping); on an engaged deal it's a timing move —
-    # already priced into Win, not double-charged here.
+    # PRIMARY 2 — STAGE-RELATIVE STALLING DRAG (VP spec §8: quiet vs what the STAGE needs,
+    # graduated 0…−25; replaces the old flat −8/−12). Late-stage email/contract cadence
+    # (award, NDA, redlines) still softens the drag — that's real buyer motion.
+    _cad_map = {"qualified": 30.0, "formal evaluation": 21.0, "shortlisted": 18.0,
+                "vendor selected": 14.0, "contracting": 14.0}
+    try:
+        cadence = float(fp.get("stage_cadence_days") or 0) or _cad_map.get(_stage_l, 21.0)
+    except (TypeError, ValueError):
+        cadence = _cad_map.get(_stage_l, 21.0)
+    if bt_days is None:
+        drag = 25.0
+        dwhy = "no genuine buyer touch on record — buyer side dark"
+    elif bt_days <= cadence:
+        drag = 0.0
+        dwhy = f"buyer touch {bt_days}d ago — within the ~{int(cadence)}d cadence this stage needs"
+    else:
+        drag = min(25.0, (bt_days / cadence - 1.0) * 12.0)
+        dwhy = (f"last genuine buyer touch {bt_days}d ago vs the ~{int(cadence)}d cadence this "
+                f"stage needs — going quiet")
+    if drag > 4.0 and _late and _la_days is not None and _la_days <= 10:
+        drag = 4.0
+        dwhy = (f"no recent meeting, but active deal flow {_la_days}d ago — late-stage "
+                f"email/contract cadence (award/redlines/scheduling), not buyer silence")
+    if drag:
+        score -= drag
+    contribs.append(_contrib("stalling" if drag else "cadence", round(-drag, 1), dwhy))
+
+    # PRIMARY 3 — CLOSE-DATE MOVE with TOLERANCE (VP spec §6): a normal, explainable push
+    # (≤60d) costs NOTHING; only beyond-tolerance slips drag (capped −10, scaled); a pull-in
+    # earns up to +5. The slip signal itself lives in Win Position (trend nudge), not here.
     cdt = ot.get("close_date_trend")
     if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
-        cpts = round(max(-MOM_CLOSE_WEIGHT, min(MOM_CLOSE_WEIGHT, cdt * MOM_CLOSE_WEIGHT)), 1)
-        det = ot.get("close_date_trend_detail") or ("close date pulled in — accelerating" if cpts > 0 else "close date pushed out — slowing")
-        if cpts < 0 and engaged:
+        det = ot.get("close_date_trend_detail") or ""
+        _m = re.search(r"(pushed|pulled)\s*(?:out|in|forward)?\s*(?:by\s*)?(\d+)\s*d", str(det), re.I)
+        days = int(_m.group(2)) if _m else None
+        if cdt > 0:      # pulled in — accelerating
+            cpts = min(5.0, (days / 10.0) if days else 3.0)
+            det = (det or "close date pulled in") + " — accelerating"
+        elif days is not None and days <= 60:
             cpts = 0.0
-            det = str(det) + " — buyer actively engaged, so the push reads as timing (already reflected in Win), not lost momentum"
-        elif cpts < -6.0:
-            _cp_lvl = str(((ai.get("customer_preference") or {}).get("level")
-                           or (ai.get("customer_preference") or {}).get("status") or "")).lower()
-            if _cp_lvl == "high":
-                cpts = -6.0
-                det = str(det) + " — selection already made; push reflects contracting timeline, drag capped"
+            det = (det or "close date pushed") + " — within tolerance (≤60d), a timing move priced into Win, not lost momentum"
+        elif days is not None:
+            cpts = -min(10.0, (days - 60) / 12.0)
+            det = (det or "close date pushed") + f" — {days}d cumulative push is beyond tolerance"
+        else:
+            cpts = -4.0 if cdt < -0.3 else 0.0
+            det = (det or "close date pushed out") + " — push magnitude unknown, modest drag"
+        _cp_lvl = str(((ai.get("customer_preference") or {}).get("level")
+                       or (ai.get("customer_preference") or {}).get("status") or "")).lower()
+        if cpts < -6.0 and _cp_lvl == "high":
+            cpts = -6.0
+            det = str(det) + " — selection already made; push reflects contracting timeline, drag capped"
+        cpts = round(cpts, 1)
         if cpts:
             score += cpts
         contribs.append(_contrib("close_date_direction", cpts, det))
 
-    # PRIMARY 4 — STAGE / FORECAST PROGRESSION: a recent up-move is the clearest "it's moving".
+    # PRIMARY 4 — STAGE / FORECAST PROGRESSION (VP spec §7): a recent up-move is real advance.
     _up = None
     for k in ("stage_trend", "forecast_trend", "forecast_category_trend"):
         v = ot.get(k)
@@ -620,8 +650,8 @@ def score_momentum_v2(record: dict):
         if isinstance(v, str) and any(t in v.lower() for t in ("up", "advanc", "upgrad", "raised")):
             _up = k; break
     if _up:
-        score += 8.0
-        contribs.append(_contrib("progression", 8.0, f"{_up.replace('_',' ')}: moved UP recently — deal advancing"))
+        score += 6.0
+        contribs.append(_contrib("progression", 6.0, f"{_up.replace('_',' ')}: moved UP recently — deal advancing"))
 
     # PRIMARY 5 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
     conf = _parse_confidence(hard.get("next_step"))
@@ -653,7 +683,7 @@ def score_momentum_v2(record: dict):
 
     score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
-            "model": "direction_v4", "contributions": contribs}
+            "model": "engagement_v5", "contributions": contribs}
 
 
 # Scope-shrink (user-directed, Techtronic): a deal NARROWING vs its prior/original scope
@@ -808,19 +838,67 @@ def score_win_position(ev, record=None, momentum=None, deal_risk=None):
         contributions.append(_contrib("risk_penalty", -round(risk_pen, 1),
                                       f"deal risk {round(float(deal_risk))} (above the 20 noise floor) penalises winnability"))
 
+    # OPPORTUNITY-TREND NUDGE (VP spec §4): CRM moves are buying/loss signals — stage/forecast
+    # up-moves and amount growth nudge Win up; a close-date push (the SLIP signal lives HERE,
+    # not in Momentum) and downgrades nudge it down. Modest, capped ±8.
+    trend, trend_why = _trend_nudge(record)
+    if trend:
+        contributions.append(_contrib("trend_nudge", round(trend, 1), trend_why))
+
     # Floor a LIVE deal at 5 — score_win_position only runs for live deals (dead/lost return
     # earlier with win 0), so win=0 would falsely read as "lost". 5 = "almost no chance, but
     # still live". Keeps the compounding downside (evidence + momentum drag + risk) honest
     # without colliding with the lost-deal sentinel.
-    score = round(min(ceiling_eff, max(5.0, _clamp(anchor_eff + adj + mom_adj + scope_pts + fc_credit - risk_pen, 0.0, 99.0))), 1)
+    score = round(min(ceiling_eff, max(5.0, _clamp(anchor_eff + adj + mom_adj + scope_pts + fc_credit + trend - risk_pen, 0.0, 99.0))), 1)
     # Only-raise guard: the override must never yield a LOWER score than no-override.
     if override:
-        base = round(min(ceiling, max(5.0, _clamp(anchor + adj + mom_adj + scope_pts + fc_credit - risk_pen, 0.0, 99.0))), 1)
+        base = round(min(ceiling, max(5.0, _clamp(anchor + adj + mom_adj + scope_pts + fc_credit + trend - risk_pen, 0.0, 99.0))), 1)
         score = max(score, base)
     return {"score": score, "baseline": round(anchor, 1), "anchor": round(anchor_eff, 1),
             "lift": adj, "ceiling": ceiling_eff, "momentum_adj": mom_adj,
-            "scope_adj": scope_pts, "risk_penalty": -round(risk_pen, 1),
+            "scope_adj": scope_pts, "risk_penalty": -round(risk_pen, 1), "trend_nudge": round(trend, 1),
             "selection_override": bool(override), "contributions": contributions}
+
+
+def _trend_nudge(record: dict):
+    """VP spec §4: blend recent CRM moves into Win, capped ±8. Stage/forecast up-moves weigh
+    more than amount/close. The close-date SLIP belongs here (Position), not in Momentum —
+    Momentum only reacts beyond its 60d tolerance."""
+    ai = (record or {}).get("ai") or {}
+    ot = ai.get("opp_trends") or {}
+    total, why = 0.0, []
+
+    def _dirn(v):
+        if isinstance(v, (int, float)):
+            return 1 if v > 0.02 else (-1 if v < -0.02 else 0)
+        s = str(v or "").lower()
+        if any(t in s for t in ("up", "advanc", "upgrad", "raised", "increase", "pulled in", "pulled forward")):
+            return 1
+        if any(t in s for t in ("down", "regress", "downgrad", "cut", "pushed", "reduce", "decrease")):
+            return -1
+        return 0
+
+    d = _dirn(ot.get("stage_trend"))
+    if d:
+        total += 4.0 * d; why.append("stage " + ("advanced" if d > 0 else "regressed"))
+    d = _dirn(ot.get("forecast_trend") if ot.get("forecast_trend") is not None else ot.get("forecast_category_trend"))
+    if d:
+        total += 3.0 * d; why.append("forecast " + ("upgraded" if d > 0 else "downgraded"))
+    d = _dirn(ot.get("amount_trend"))
+    if d and not _scope_shrink(record)[0]:   # a scope-shrink amount cut is already charged −7
+        total += 2.0 * d; why.append("amount " + ("up" if d > 0 else "cut"))
+    cdt = ot.get("close_date_trend")
+    if isinstance(cdt, (int, float)) and abs(cdt) > 0.02:
+        det = str(ot.get("close_date_trend_detail") or "")
+        m = re.search(r"(?:pushed|pulled)\s*(?:out|in|forward)?\s*(?:by\s*)?(\d+)\s*d", det, re.I)
+        days = int(m.group(1)) if m else None
+        if cdt > 0:
+            total += 2.0; why.append("close pulled in")
+        else:
+            pen = min(4.0, ((days or 45) / 45.0) * 2.0)
+            total -= pen; why.append(f"close pushed{f' {days}d' if days else ''}")
+    total = max(-8.0, min(8.0, total))
+    return round(total, 1), ("recent CRM moves: " + ", ".join(why)) if why else ""
 
 
 def score_momentum(ev, dsl, expected):

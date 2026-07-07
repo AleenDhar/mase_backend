@@ -528,7 +528,13 @@ def score_momentum_v2(record: dict):
     score = 50.0
 
     # ---- engagement state first (drives everything else) --------------------------------
+    # GENUINE buyer touch = a meeting OR an INBOUND buyer reply (footprints.last_buyer_touch —
+    # Outreach '[Email] [In]' / 'Email Received' tasks classify as buyer touches). The Alghanim
+    # bug: the buyer replied 3x on Jun-30, footprints knew it (buyer_touches_30d=3), but the
+    # scorer only read last_meeting (Apr-23) and called the buyer 'dark 74d'.
     lm_days = _days_since(fp.get("last_meeting"))
+    _bt_raw = _days_since(fp.get("last_buyer_touch"))
+    bt_days = min([d for d in (lm_days, _bt_raw) if d is not None], default=None)
     _la_days = min([d for d in (_days_since(hard.get("last_activity_date")),
                                 _days_since(fp.get("general_last_activity"))) if d is not None],
                    default=None)
@@ -536,22 +542,27 @@ def score_momentum_v2(record: dict):
         ev30 = int(eng.get("events_30d") or 0)
     except (TypeError, ValueError):
         ev30 = 0
+    try:
+        bt30 = int(fp.get("buyer_touches_30d") or 0)
+    except (TypeError, ValueError):
+        bt30 = 0
     _stage_l = str(hard.get("stage") or "").strip().lower()
     _late = any(t in _stage_l for t in ("shortlist", "selected", "contract", "negotiat", "award"))
-    engaged = ((lm_days is not None and lm_days <= 30) or ev30 >= 2
+    engaged = ((bt_days is not None and bt_days <= 30) or ev30 >= 2 or bt30 >= 1
                or (_late and _la_days is not None and _la_days <= 10))
+    _via = ("meeting" if (lm_days is not None and (bt_days == lm_days)) else "buyer reply")
 
-    # PRIMARY 1 — BUYER-TOUCH RECENCY (genuine two-way touch; meetings anchor it).
-    if lm_days is None:
-        bpts, why = -12.0, "no genuine buyer meeting on record — buyer side dark"
-    elif lm_days <= 14:
-        bpts, why = 8.0, f"genuine buyer touch {lm_days}d ago"
-    elif lm_days <= 30:
-        bpts, why = 0.0, f"last genuine buyer touch {lm_days}d ago"
-    elif lm_days <= 60:
-        bpts, why = -8.0, f"last genuine buyer touch {lm_days}d ago (>30d — buyer quiet)"
+    # PRIMARY 1 — BUYER-TOUCH RECENCY (meetings AND inbound buyer replies both count).
+    if bt_days is None:
+        bpts, why = -12.0, "no genuine buyer touch on record — buyer side dark"
+    elif bt_days <= 14:
+        bpts, why = 8.0, f"genuine buyer touch {bt_days}d ago ({_via})"
+    elif bt_days <= 30:
+        bpts, why = 0.0, f"last genuine buyer touch {bt_days}d ago ({_via})"
+    elif bt_days <= 60:
+        bpts, why = -8.0, f"last genuine buyer touch {bt_days}d ago (>30d — buyer quiet)"
     else:
-        bpts, why = -12.0, f"last genuine buyer touch {lm_days}d ago (dark — rep emailing into silence)"
+        bpts, why = -12.0, f"last genuine buyer touch {bt_days}d ago (dark — rep emailing into silence)"
     # Late-stage email/contract cadence is real buyer motion, not silence (award, NDA,
     # redlines, SOW scheduling move entirely over email).
     if bpts < 0 and _late and _la_days is not None and _la_days <= 10:
@@ -561,15 +572,17 @@ def score_momentum_v2(record: dict):
     score += bpts
     contribs.append(_contrib("buyer_recency", round(bpts, 1), why))
 
-    # PRIMARY 2 — ENGAGEMENT VOLUME (all real sessions in the window count; the old model
-    # only looked at the single 'top event' and zeroed EVERYTHING when that one item was a
-    # narrative note — burying deals with a dozen genuine meetings).
-    vpts = 18.0 if ev30 >= 8 else 12.0 if ev30 >= 4 else 7.0 if ev30 >= 2 else 3.0 if ev30 >= 1 else 0.0
+    # PRIMARY 2 — ENGAGEMENT VOLUME (all real sessions AND inbound buyer replies count; the
+    # old model only looked at the single 'top event' and zeroed EVERYTHING when that one
+    # item was a narrative note — burying deals with a dozen genuine touches).
+    _vol = max(ev30, bt30)
+    vpts = 18.0 if _vol >= 8 else 12.0 if _vol >= 4 else 7.0 if _vol >= 2 else 3.0 if _vol >= 1 else 0.0
     if vpts:
         score += vpts
+        _vsrc = "session(s)" if ev30 >= bt30 else "inbound buyer repl(ies)"
+        score_note = f"{_vol} {_vsrc} in the last 30d"
         contribs.append(_contrib("engagement_volume", round(vpts, 1),
-                                 f"{ev30} engagement event(s) in the last 30d — sustained two-way cadence"
-                                 if ev30 >= 2 else f"{ev30} engagement event in the last 30d"))
+                                 score_note + (" — sustained two-way cadence" if _vol >= 2 else "")))
     # top-session bonus (still requires a REAL session; a narrative top just earns nothing
     # extra — it no longer suppresses the volume credit above)
     top = float(eng.get("raw_top") or eng.get("top_weight") or 0.0)
@@ -626,7 +639,8 @@ def score_momentum_v2(record: dict):
     dated = _count_dated_milestones(hard.get("next_step"))
     slipping = ((isinstance(cdt, (int, float)) and cdt < -0.15)
                 or (isinstance(conf, (int, float)) and conf < 40)
-                or (lm_days is not None and lm_days > 30))
+                or (bt_days is not None and bt_days > 30)
+                or bt_days is None)
     if dated >= 3 and slipping:
         contribs.append(_contrib("false_velocity", 0.0,
                                  "activity without progression — busy next-step log but the deal is slipping "

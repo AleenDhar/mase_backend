@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-07 — Momentum v4, durable pins/CEO/24h ownership, one score source, panel polish
+
+**What.** (1) Momentum rebuilt (direction_v4): engagement volume is primary (ALL real sessions
++ INBOUND buyer replies count — footprints.last_buyer_touch/buyer_touches_30d; a narrative
+'top event' can no longer zero real meetings); a close-date push only drags when the buyer is
+ALSO quiet (engaged deals: timing, already priced into Win); stage/forecast up-moves +8;
+false-velocity cannot fire on a progressed/engaged deal (Bosch). (2) Ownership rules the
+sweep must honor: ai.pinned re-persisted every sweep (pins are durable until unpinned);
+source=='ai' day_summary carried verbatim (the intelligent 24h can never be replaced by the
+template dump); CEO watches carry forward (verified live: Cornell swept, watches survived).
+(3) ONE source of truth for scores: ai.deal_scores.headline drives list + drawer cards +
+modal (frontend 267aa05); panels are rebuilt FROM the final headline everywhere. (4) Panel
+polish (_polish_panel): no engine internals, no raw __c field names, one fact once, pretty
+dates. (5) 90-day evidence window appended to the live sweep prompt (Supabase): current-state
+narratives may not retell old history as live motion.
+
+**Why.** The day's user-reported regressions: Alghanim 'dark 74d' while the buyer replied 3x
+a week ago; Bosch 33 win from a false-velocity misfire; three different scores on three UI
+surfaces; sweeps stomping intelligent 24h summaries and pins; ACEN narrating Jun-2025 as
+current.
+
+**How to work with it going forward.** Pins: set ai.pinned + deal_scores.pinned; sweeps carry
+them verbatim; unpin to hand back to the engine. 24h: day_summary_ai.py owns ai.day_summary
+(source 'ai'); the sweep's deterministic build is a backstop only. Momentum/scoring edits go
+in deal_engine_scoring.py + tests/test_deal_reasons.py. Score display: headline only — never
+render panel-embedded numbers. Hand-fix scripts: boost_three.py (pins), restore_ceo.py +
+ensure_scope_shrink_ceo.py (CEO), recompute_broken.py / qa_self_heal.py (component heals).
+
 ## 2026-07-07 — hard-flag floor on economic_buyer (the examination can't out-claim Salesforce)
 
 **What.** `deal_engine_scoring._eb_status_floored(record)`: if Salesforce's own `hard.eb_identified`

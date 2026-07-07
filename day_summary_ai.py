@@ -125,7 +125,11 @@ def summarize(key, account, as_of, day_items):
     user = "\n".join(lines)
     r = requests.post("https://api.anthropic.com/v1/messages",
                       headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                      json={"model": MODEL, "max_tokens": 1100, "system": SYS,
+                      json={"model": MODEL, "max_tokens": 2500, "system": SYS,
+                            # Sonnet 5 defaults to ADAPTIVE THINKING when `thinking` is omitted —
+                            # it silently eats the token budget and truncates the JSON (the
+                            # empty-overall bug). Summaries don't need thinking: disable it.
+                            "thinking": {"type": "disabled"},
                             "messages": [{"role": "user", "content": user}]},
                       verify=False, timeout=90)
     if r.status_code != 200:

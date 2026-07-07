@@ -521,6 +521,8 @@ def build_cro_panel(record, pinned_override=None):
     if moves:
         blocks.append({"kind": "moves", "title": "What moves it forward", "items": moves})
 
+    _polish_panel(blocks)
+
     return {
         "pinned": False,
         "generated": True,
@@ -529,3 +531,64 @@ def build_cro_panel(record, pinned_override=None):
         "intro": intro,
         "blocks": blocks,
     }
+
+
+# ---- PANEL POLISH (2026-07-07, "fix the UI") -------------------------------------------
+# The rendered panel must read like an analyst wrote it: no engine internals ("top 'event'
+# is a narrative/analysis note — ignored"), no raw Salesforce API names (AIS_Score__c), no
+# ASCII arrows, and never the SAME bullet repeated across blocks (the close-date push was
+# showing three times: win, momentum and risk).
+_ENGINE_SPEAK = re.compile(
+    r"narrative/analysis note|not a real session|\bignored\b|footprints?\.|jsonb|"
+    r"carried[- ]forward packet|sanitiz|calls_read|\bev(ents)?_30d\b", re.I)
+_SF_API_NAME = re.compile(r"\b\w+__c\b")
+_ISO_DATE = re.compile(r"\b(20\d{2})-(\d{2})-(\d{2})\b")
+_MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def _pretty_dates(t):
+    def _one(m):
+        y, mo, d = m.group(1), int(m.group(2)), int(m.group(3))
+        return f"{int(d)} {_MONTHS[mo]} {y}" if 1 <= mo <= 12 else m.group(0)
+    return _ISO_DATE.sub(_one, t)
+
+
+def _polish_text(t):
+    """Human-polish one bullet; return '' to drop it entirely."""
+    t = _clean(t)
+    if not t:
+        return ""
+    if _ENGINE_SPEAK.search(t):
+        return ""                       # engine internals never reach the screen
+    if _SF_API_NAME.search(t):
+        # raw API-name bullets are usually "field X not populated" noise — rewrite the known
+        # one, drop the rest.
+        if re.search(r"\bAIS_\w+__c\b", t):
+            t = "AI-fit assessment not yet recorded for this deal in Salesforce."
+        else:
+            return ""
+    t = t.replace(" -> ", " → ").replace("->", "→")
+    t = _pretty_dates(t)
+    return t
+
+
+def _polish_panel(blocks):
+    seen = set()
+    for bl in blocks:
+        items = bl.get("bullets")
+        if not isinstance(items, list):
+            continue
+        out = []
+        for b in items:
+            is_dict = isinstance(b, dict)
+            txt = _polish_text(b.get("text") if is_dict else b)
+            if not txt:
+                continue
+            key = re.sub(r"\W+", "", txt.lower())[:60]
+            if key in seen:
+                continue                 # one fact appears ONCE across the whole panel
+            seen.add(key)
+            out.append({**b, "text": txt} if is_dict else txt)
+        bl["bullets"] = out
+        if bl.get("footer"):
+            bl["footer"] = _polish_text(bl["footer"]) or None

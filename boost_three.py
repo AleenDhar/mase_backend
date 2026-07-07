@@ -73,6 +73,16 @@ def compute(rec):
     return sc
 
 
+def finalize_panel(rec, sc):
+    """ONE SOURCE OF TRUTH: after ANY headline override, rebuild the panel FROM the final
+    headline so the panel's embedded numbers can never disagree with the header cards."""
+    rec.setdefault("ai", {})["deal_scores"] = sc
+    panel = CRO.build_cro_panel(rec)
+    if panel:
+        sc["cro_panel"] = panel
+    return sc
+
+
 def main():
     apply = "--apply" in sys.argv
     ds_out, ai_field_writes = {}, []   # (oid, path, obj)
@@ -102,6 +112,7 @@ def main():
                                     float((live_ds.get("headline") or {}).get("deal_momentum") or 0), 74.0), 1)
     hl["read"] = "Awarded — finalising terms"
     sc["headline"] = hl
+    sc = finalize_panel({**rec, "ai": ai_bh}, sc)
     print(f"BRIGHT HORIZONS: win {live_win} -> {hl['win_position']} (award floor) | mom -> {hl['deal_momentum']}")
     ai_field_writes += [(id15(row["opp_id"]), "{ai,customer_preference}", ai_bh["customer_preference"]),
                         (id15(row["opp_id"]), "{ai,north_star_verdict}", nv),
@@ -121,10 +132,7 @@ def main():
         hl["win_position"] = max(float(hl.get("win_position") or 0), prior_win)
         hl["deal_momentum"] = max(float(hl.get("deal_momentum") or 0), prior_mom)
         sc["headline"] = hl
-        # keep the panel's numbers in line with the corrected headline
-        panel = CRO.build_cro_panel(rec) or sc.get("cro_panel")
-        if panel:
-            sc["cro_panel"] = panel
+        sc = finalize_panel(rec, sc)   # panel numbers = final headline, always
         sc["pinned"] = True
         sc["pin_note"] = "2026-07-07 user-directed: restored prior known-good headline (68.5/70.1 from ceo_attention_export); unpin to let sweeps rescore"
         print(f"AUSTRIAN POST: win {before} -> {hl['win_position']} | mom -> {hl['deal_momentum']}")
@@ -141,6 +149,7 @@ def main():
         floored = max(float(hl.get("win_position") or 0), anchor)
         hl["win_position"] = round(floored, 1)
         sc["headline"] = hl
+        sc = finalize_panel(rec, sc)   # panel numbers = final headline, always
         sc["pinned"] = True
         sc["pin_note"] = (f"2026-07-07 user-directed: win floored at the {row.get('stage')} stage anchor ({anchor}); "
                           "momentum left honest (deal is slipping); unpin to let sweeps rescore")

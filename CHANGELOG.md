@@ -11,7 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
-## 2026-07-07 — Win is QUALIFICATION-GATED (a high probability must be earned, not inferred)
+## 2026-07-07 — hard-flag floor on economic_buyer (the examination can't out-claim Salesforce)
+
+**What.** `deal_engine_scoring._eb_status_floored(record)`: if Salesforce's own `hard.eb_identified`
+flag is **False** AND the sweep recorded **no evidence** for its inferred `economic_buyer` status,
+that `partial/confirmed` is floored to **gap**. Wired into both the qualification ceiling
+(`_qualification_ceiling`) and the `exec_access` rubric factor. This closes the hole the
+qualification-gate left open: a no-evidence "partial" EB dodged the Access-to-Power cap.
+
+**Why.** Avaya Corp read **Win 70** at Formal Evaluation — but the raw win was only ~44; momentum
+coupling (+25) carried it, and the 52 cap that should have caught it was dodged because the sweep
+marked `economic_buyer=partial` with `(none)` evidence, contradicting SF's `eb_identified=False`
+(and `dm_identified=False`). Book-wide this mismatch hit **28 deals — all 28 with empty EB evidence**
+(pure inference), 11 inflated above 52. Same principle as the stage-authority playbook: the engine
+must never be more bullish than the hard CRM facts. The scoring gate is only as honest as the
+examination feeding it — this makes a hard SF fact win over an unbacked LLM inference.
+
+**How to work with it.** Avaya / Vodafone Idea / Gamuda / National Holding / Etex / Hager … → ≤52.
+Safe by construction: only fires when `eb_identified=False` **and** EB evidence is empty — a
+genuinely-evidenced EB, or `eb_identified=True` (104 deals), is untouched; expansion-into-won-account
+and post-selection stages keep their lift. The durable fix for a wrongly-floored deal is the sweep
+recording real EB evidence (examination quality), not re-opening the floor. Momentum→Win over-credit
+(the other half of Avaya's 70) is still open — tracked separately.
+
+---
 
 **What.** Win Position is now ceilinged by qualification (`deal_engine_scoring._qualification_ceiling`),
 applied after the raw compute so momentum / stated preference can't lift a deal past what its

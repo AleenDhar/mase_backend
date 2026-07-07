@@ -393,7 +393,9 @@ def _rubric_win_strengths(record: dict) -> dict:
     out["champion"] = (_status_strength(cs, present=1.0, partial=0.3) if cs
                        else _status_strength(mst("champion")))
 
-    out["exec_access"] = _status_strength(mst("economic_buyer"))
+    # Exec access reads the economic_buyer status AFTER the hard-flag floor — a no-evidence
+    # 'partial' that contradicts SF's eb_identified=False must not hand out exec-access credit.
+    out["exec_access"] = _status_strength(_eb_status_floored(record))
     # SECOND-PANEL / expansion into a WON account (user-directed, Fortive): if Zycus already
     # closed a deal on this account (the sweep flags ai.expansion_context.prior_closed_won —
     # e.g. a sibling Closed-Won opp), we ALREADY hold executive / seat / stakeholder access.
@@ -986,6 +988,25 @@ _QUAL_POST_SELECTION = ("vendor select", "selected", "negotiat", "contract", "wo
                         "po received", "po-received", "closed")
 
 
+def _eb_status_floored(record: dict) -> str:
+    """Effective economic_buyer status after the HARD-FLAG floor. If Salesforce's own
+    `hard.eb_identified` flag is False AND the sweep recorded NO evidence for its inferred
+    economic_buyer status, that 'partial/confirmed' cannot stand — the hard CRM fact wins
+    (stage-authority rule: the engine must not out-bull the CRM). Floors to 'gap'. This closes
+    the hole where a no-evidence 'partial' dodged the Access-to-Power cap (Avaya: eb_identified
+    False + EB evidence empty + MEDDPICC 'partial' → read 70; floored → gap → cap 52). Only bites
+    inferences with no backing — a genuinely evidenced EB (or eb_identified True) is untouched."""
+    ai = (record or {}).get("ai") or {}
+    hard = (record or {}).get("hard") or {}
+    md = ai.get("meddpicc") or {}
+    ebd = md.get("economic_buyer") if isinstance(md.get("economic_buyer"), dict) else {}
+    stat = str((ebd.get("status") if isinstance(ebd, dict) else ebd) or "").strip().lower()
+    evi = str((ebd.get("evidence") if isinstance(ebd, dict) else "") or "").strip()
+    if hard.get("eb_identified") is False and len(evi) < 10 and stat in ("partial", "confirmed"):
+        return "gap"
+    return stat
+
+
 def _qualification_ceiling(record: dict):
     """(cap, box_label, status): the highest Win the deal's qualification supports. Access to Power
     dominates; competitive visibility and champion depth also gate the top. Post-selection stages
@@ -1001,7 +1022,7 @@ def _qualification_ceiling(record: dict):
         v = md.get(k) if isinstance(md, dict) else None
         return str((v.get("status") if isinstance(v, dict) else v) or "").strip().lower()
 
-    eb, comp, champ = _st("economic_buyer"), _st("competition"), _st("champion")
+    eb, comp, champ = _eb_status_floored(record), _st("competition"), _st("champion")
     # Expansion into a WON account: we already hold executive / seat access — relax the EB gate.
     exp = ai.get("expansion_context")
     if isinstance(exp, dict) and exp.get("prior_closed_won") and eb in ("gap", ""):

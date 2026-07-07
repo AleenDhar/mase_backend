@@ -30,7 +30,12 @@ def main():
                        params={"select": "opp_id,account_name,opp_name,stage", "active": "eq.false",
                                "stage": "ilike.*closed won*"},
                        headers=h, verify=VERIFY, timeout=90).json()
-    norm = lambda s: re.sub(r"\W+", "", str(s or "").lower())
+    # Normalize account names so legal-entity variants group as ONE account (Civeo: "Civeo
+    # Corporation" vs "CIVEO PTY LTD" are the same customer). Strip common suffixes + noise words.
+    def norm(s):
+        s = str(s or "").lower()
+        s = re.sub(r"\b(inc|incorporated|ltd|limited|llc|llp|corp|corporation|co|company|gmbh|ag|plc|pty|pte|the|of|and)\b", " ", s)
+        return re.sub(r"\W+", "", s)
     by_acct = defaultdict(list)
     for r in act:
         by_acct[norm(r.get("account_name"))].append(r)

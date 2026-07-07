@@ -573,7 +573,7 @@ def _relationship_context(record: dict):
     # A strong LIVE sibling counts even when its OWN win is capped by qualification (a Shortlisted /
     # Best-Case sibling reads ~52 under the Access-to-Power gate but is a real foothold). The
     # stamper flags sibling_strong on stage / forecast, not just the (capped) win/momentum number.
-    if bool(rel.get("sibling_strong")) or bw >= 60.0 or bm >= 60.0:
+    if bool(rel.get("sibling_strong")):
         return True, f"existing account relationship — {nm[:40]} is a live deal on this account (win {round(bw)} / momentum {round(bm)}); we're already in — rapport and access carry", bm or None
     return False, "", (bm or None)
 

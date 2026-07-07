@@ -3444,7 +3444,16 @@ async def analyze_one(
         # sweep never clobbers a human correction (the Austrian Post revert). Hard facts
         # (stage/amount/dates) still refresh; only the AI judgment is frozen.
         _prior_ai_full = existing_record.get("ai") if isinstance(existing_record, dict) else None
-        _pinned = bool(isinstance(_prior_ai_full, dict) and _prior_ai_full.get("pinned"))
+        _pinned = bool(isinstance(_prior_ai_full, dict)
+                       and (_prior_ai_full.get("pinned")
+                            or ((_prior_ai_full.get("deal_scores") or {}).get("pinned")
+                                if isinstance(_prior_ai_full.get("deal_scores"), dict) else False)))
+        # DURABILITY (2026-07-07): the sweep REPLACES the whole ai object, which used to drop
+        # the pin flag itself — so a pin only survived ONE sweep, then the next sweep clobbered
+        # the human correction (BH 88 -> 70, Alghanim 35 -> 5). A pin is durable: re-persist the
+        # flag onto every re-swept record until a human explicitly unpins.
+        if _pinned:
+            parsed.setdefault("ai", {})["pinned"] = True
         try:
             import deal_engine_scoring
             # AI DEAL-SCORER (flag-gated by DEAL_ENGINE_AI_SCORING). Judges the five scores

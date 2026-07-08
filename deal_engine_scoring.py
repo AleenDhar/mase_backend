@@ -433,6 +433,19 @@ def _rubric_win_strengths(record: dict) -> dict:
                   or (isinstance(_ot.get("amount_trend"), (int, float)) and _ot["amount_trend"] < -0.2))
     if not (_cp.get("level") or _cp.get("status")) and _declining and out.get("preference", 0.0) > 0.5:
         out["preference"] = 0.5
+    # 3) BLOCKED DIFFERENTIATOR (2026-07-08): when the deal's OWN blockers explicitly negate the AI
+    #    story ("ZERO AI functionality will be accepted", "no AI permitted" — data-residency /
+    #    security bans), differentiation cannot read MAX off that same AI story (SAMI: differentiation
+    #    +1.0 from the Merlin narrative while a MEDDPICC blocker said ZERO AI will be accepted).
+    #    Capped at moderate — the fit interest is real, the differentiator is blocked.
+    if out.get("differentiation", 0.0) > 0.3:
+        _blk = " ".join(str(v.get("detail") or "") for v in ((ai.get("vulnerabilities") or {}).get("items") or [])
+                        if isinstance(v, dict))
+        _blk += " " + str((record.get("hard") or {}).get("blockers") or "") + " " + str(ai.get("blockers") or "")
+        if re.search(r"zero\s+ai|no\s+ai\s+(?:functionality|features?|capabilit)|ai\s+(?:functionality\s+)?"
+                     r"(?:will\s+not|won'?t|cannot|can'?t)\s+be\s+accepted|ai\s+(?:is\s+)?"
+                     r"(?:banned|prohibited|not\s+(?:permitted|allowed|accepted))", _blk, re.I):
+            out["differentiation"] = 0.3
     return out
 
 
@@ -841,7 +854,11 @@ def score_momentum_v2(record: dict):
             cpts = 0.0
             det = (det or "close date pushed") + " — within tolerance (≤60d), a timing move priced into Win, not lost momentum"
         elif days is not None:
-            cpts = -min(10.0, (days - 60) / 12.0)
+            # BEYOND-TOLERANCE (2026-07-08): the 60d grace is a THRESHOLD, not a deductible — once
+            # crossed, the WHOLE push is charged (base −5, ramping to −12), never a from-zero ramp.
+            # Old formula: −(days−60)/12 → a 61d push cost −0.1 (a two-month slip ≈ free; SAMI read
+            # momentum 95 with close pushed 61d). Now 61d ≈ −5.1, 130d+ = −12.
+            cpts = -min(12.0, 5.0 + (days - 60) / 10.0)
             det = (det or "close date pushed") + f" — {days}d cumulative push is beyond tolerance"
         else:
             cpts = -4.0 if cdt < -0.3 else 0.0
@@ -917,6 +934,13 @@ def score_momentum_v2(record: dict):
         nspts += 3.0
     if nspts and not process_mode and (bt_days is None or bt_days > 30):
         nspts = round(nspts * 0.5, 1)
+    # SUBSTANCE GATE (2026-07-08, Galp): a plan is only motion when real engagement backs it.
+    # Dates typed into a near-dead deal are THEATRE: engagement ~0 halves the credit; rep's OWN
+    # confidence <35% with no real engagement earns NOTHING (Galp: engagement 1.0, champion
+    # cooling, confidence 10% — momentum read 57 off a +11 paper plan).
+    if nspts and not process_mode and epts < 8.0:
+        _cg = _parse_confidence(hard.get("next_step"))
+        nspts = 0.0 if (isinstance(_cg, (int, float)) and _cg < 35) else round(nspts * 0.5, 1)
     if nspts:
         score += nspts
         contribs.append(_contrib("next_step_plan", round(nspts, 1),
@@ -969,6 +993,22 @@ def score_momentum_v2(record: dict):
         contribs.append(_contrib("process_floor", round(50.0 - score, 1),
                                  "on-track structured process — waiting on the buyer's published timeline reads steady, not slowing"))
         score = 50.0
+
+    # VERDICT RECONCILE (2026-07-08, user-directed): ONE STORY PER DEAL. The north-star verdict is
+    # the engine's own holistic judgment (it reads stalled milestones, stage-stuck time, blockers —
+    # things the momentum terms don't); momentum must not contradict it. A NEGATIVE-verdict deal
+    # cannot read "accelerating" off raw activity volume (SAMI: verdict Slowing — milestone passed
+    # with no movement, 127d stuck in Shortlisted — while momentum read 95 "one of the hottest").
+    # Slowing caps momentum at 60 ("active but slipping"); Off Track caps at 35. Applied AFTER the
+    # process floor — a genuinely negative verdict out-votes "we're in a process".
+    _nv = ai.get("north_star_verdict") or {}
+    _verd = str(_nv.get("verdict") or "").strip().lower().replace("-", " ")
+    _vcap = 60.0 if _verd == "slowing" else (35.0 if _verd == "off track" else None)
+    if _vcap is not None and score > _vcap:
+        contribs.append(_contrib("verdict_reconcile", round(_vcap - score, 1),
+                                 f"the deal's own verdict is '{_nv.get('verdict')}' — momentum cannot read "
+                                 f"hotter than the holistic judgment; capped at {int(_vcap)}"))
+        score = _vcap
     score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
             "model": "engagement_v5", "contributions": contribs}

@@ -11,6 +11,24 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Momentum: engagement is DISCOUNTED when the deal is declining
+
+**What.** In `score_momentum_v2`, the engagement-points term is now multiplied by a decline factor
+when the deal is trending down in SUBSTANCE: **×0.82** with a forecast downgrade OR a scope/amount
+cut, **×0.66** with both. A close-date slip is deliberately NOT counted (timing, already tolerated),
+so the discount fires only on substance-declining deals, never on a healthy deal that rescheduled.
+
+**Why.** Engagement rewarded raw meeting VOLUME regardless of direction, so a busy deal being
+renegotiated DOWNWARD banked near-max points (~35) that the flat decline penalties (−10 regression,
+−6 scope cut) couldn't fully offset. Austrian Post: onsite + pricing rounds → engagement 34 while
+amount −31% and forecast cut → momentum still 68. Now the busywork itself is discounted →
+**Austrian Post 68 → 57**. Surgical: **27 deals** move (avg −2.2); routine close-slip deals
+(SAMI, S&C, McAfee) are untouched.
+
+**How to work with it.** Factors tunable in the engagement block. This was the last item on the
+scoring inflation watch-list (`docs/deal-scoring-logic.md` §7). Ships with the next worker deploy;
+book rescored.
+
 ## 2026-07-08 — Win rubric: honest-examination guards (at-risk champion, keyword-only preference)
 
 **What.** Two guards at the end of `deal_engine_scoring._rubric_win_strengths` stop the win rubric

@@ -758,6 +758,28 @@ def score_momentum_v2(record: dict):
     if bt_days is not None and bt_days <= 14 and epts < 8.0:
         epts = 8.0
         esrc = f"buyer touched the deal {bt_days}d ago ({_via}) — freshness floor"
+    # DECLINE DISCOUNT (2026-07-08, user-directed): engagement rewards meeting VOLUME regardless of
+    # DIRECTION — a busy deal being renegotiated DOWNWARD banks near-max points. When the deal is
+    # trending down (forecast downgrade / scope cut / a real close slip), those meetings are worth
+    # LESS, scaled by how many axes are declining. Deliberately STACKS with the flat decline
+    # penalties below (regression / scope_cut): lots of talk about shrinking a deal is not momentum.
+    # (Austrian Post: onsite + pricing rounds banked engagement ~34 while amount −31%, forecast cut,
+    # close slipped — momentum still read hot until the busywork itself was discounted.)
+    # Keyed on the two UNAMBIGUOUS "deal getting worse in substance" signals — a forecast DOWNGRADE
+    # and a SCOPE / amount CUT. A close-date slip is timing (already handled with tolerance by the
+    # close term) and is deliberately NOT counted here, so the discount only fires on deals whose
+    # substance is declining, never on a healthy deal that merely rescheduled.
+    if epts > 0:
+        _decl = 0
+        _fct, _amt = ot.get("forecast_category_trend"), ot.get("amount_trend")
+        if isinstance(_fct, (int, float)) and _fct < -0.02:
+            _decl += 1                      # forecast downgraded
+        if isinstance(_amt, (int, float)) and _amt < -0.2:
+            _decl += 1                      # scope / amount cut
+        if _decl:
+            _fac = 0.82 if _decl == 1 else 0.66     # one axis: mild; both: firm
+            epts = round(epts * _fac, 1)
+            esrc += f" — discounted ×{_fac} (deal trending DOWN on {_decl} " + ("axis" if _decl == 1 else "axes") + ")"
     if epts:
         score += epts
         contribs.append(_contrib("engagement", round(epts, 1), esrc))

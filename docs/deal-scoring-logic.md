@@ -183,10 +183,12 @@ From `deal_engine_footprints.py`: `Σ(type_weight × who × recency_decay)` over
 `who`: buyer/two-way = 1.0; a low-tier rep-sent email = 0.4. Two decay clocks — a fast 14/30/60-day
 clock and a stretched 30/60/90-day **process clock** for RFP/tender deals.
 
-**⚠️ Where this inflates:** engagement measures *activity volume/depth*, blind to whether the meeting
-was productive or a downward renegotiation. A busy-but-declining deal earns near-max engagement — so
-the **decline terms below must bite** to keep it honest. (This was the Austrian Post "90 while
-everything's down" problem.)
+**Decline discount (2026-07-08):** engagement measures *activity volume/depth*, blind to whether the
+meeting advanced or shrank the deal. So the engagement points are now **multiplied down** when the
+deal is declining in substance — **×0.82** (forecast downgrade OR scope/amount cut) / **×0.66**
+(both). A close slip is timing, not counted. This was the Austrian Post "90 while everything's down"
+problem — lots of pricing sessions banked ~34 engagement; discounting the busywork lands it honestly
+(engagement 34 → ~23 on a 2-axis decline).
 
 ### 2b. Direction — stage / forecast (SYMMETRIC, 2026-07-08)
 
@@ -298,10 +300,10 @@ signal and ignored the deal's own negative flags.** Documented so it can be audi
 | **Inference beats the CRM** | selection override on a Qualified deal → 99 | stage + EB gated (§1g) |
 | **Absence read as edge/dark** | "unknown competitors" → "edge"; no footprints → "cold" | render as ⚠️; datalake footprints |
 
-**Still on the watch-list (not yet changed):** the engagement cap (§2a) rewards raw meeting volume —
-a deal can bank ~35 engagement points on activity alone before the decline terms net it down. If a
-deal that is declining on every axis should read *lower* than "busy," the lever is to discount
-engagement itself when the trend is negative (a proposed, not-yet-shipped change).
+| Rewarding raw **volume** over direction | busy deal renegotiated DOWN banks ~35 engagement | engagement discounted ×0.82/×0.66 when declining (§2a) — *shipped 2026-07-08* |
+
+**Watch-list: clear.** Every inflation vector found has a guard. The remaining judgment call is
+tuning (the exact cap/discount magnitudes), not an unpatched hole.
 
 ---
 

@@ -11,6 +11,20 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Omnivision Phase 2: locked instructions GOVERN the live sweep
+
+**What.** The five LOCKED Studio instructions are appended to the effective sweep prompt as the
+authoritative final section (`deal_engine_sweep._studio_block`, 5-min TTL, fail-open) — so editing
++ locking in /omnivision changes the actual deal sweep on its next run, no deploy. Every swept
+record stamps `ai.scoring_studio.versions` (provenance). `day_summary_ai.py` is governed by the
+locked 24h-Summary text (its JSON contract kept as an output adapter). Locking busts the cache +
+resets the cached sweep agent.
+
+**How to work with it.** Win/Momentum ARITHMETIC stays deterministic code (hybrid model): the
+locked win/mom texts govern the LLM's reading/evidence/rationale, not the Python constants —
+changing anchors/ceilings still means a code change (or Phase 3: constants parsed from the locked
+text). Drafts never run; no locked version → no injection.
+
 ## 2026-07-08 — Scoring Version Studio (Omnivision) — control plane shipped
 
 **What.** Phase 1 of the versioned, lock-before-run engine-instruction system from the

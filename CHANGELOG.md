@@ -11,6 +11,38 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Studio v2: Deal Sweep engine + reference assets (vendor dictionary, playbook) wired end-to-end
+
+**What.** Adopted the governance prototype Sam landed in the MASE repo (`scoring-studio/index.html`,
+commit 4dda444) into the REAL Omnivision + runtime. The Studio now governs EIGHT versioned assets:
+the five engines + **`sweep`** (Deal Sweep / Deal Drawer v10.0 — the rebuilt canonical-record
+instruction from `refs/deal-sweep-v3.md`) + two REFERENCE assets — **`vendordict`** (Vendor
+Dictionary v1.0, canonical vendor entity-resolution glossary) and **`playbook`** (Deal-Progression
+Playbook v1.0) — cited via stable `{{ref:vendor-dictionary}}` / `{{ref:deal-playbook}}` tokens.
+Also locked **extract v10.4** (= v10.3 + §A5b vendor/competitor entity resolution, composed exactly
+per the prototype). Changes: `scoring_studio.py` (ASSETS model, `resolve_refs`, `reference_sections`,
+ref-aware list/active/lock), `deal_engine_sweep.py` (**the locked `sweep` engine now REPLACES the
+monolithic `mase_deal_sweep` base prompt** when present — precedence: locked sweep → agent-control
+override → disk seed; the studio block appends the other five engines with tokens resolved + ONE
+locked copy of each reference; provenance stamps include sweep + refs), a **verdict compatibility
+adapter** (Deal Sweep v3 drops `north_star_verdict` for `ai.forecast_read` — the server now carries
+the prior verdict forward, else synthesizes On Track/At Risk from forecast_read, so the UI badge /
+pulse reconcile / fallback-scorer caps keep working), and `scripts/scoring_studio_v2_seed.py`
+(CHECK-constraint extension + idempotent seed; APPLIED 2026-07-09). Seeds archived under
+`prompts/studio_seeds/` (cold-start copies; Supabase stays the source of truth).
+
+**Why.** "Connect the new Studio assets to the sweep and Omnivision so every sweep actually runs on
+them" (user-directed). The Omnivision UI is API-driven, so the three new asset cards appear
+automatically; editing + locking any of the eight in /omnivision now changes the next sweep with no
+code deploy.
+
+**How to work with it going forward.** The sweep's base prompt is the LOCKED `sweep` asset — edit it
+in /omnivision (Deal Sweep card), never in Agent Control (that override is now the fallback only).
+New rival names/ASR mishearings go into the Vendor Dictionary asset; domain knowledge goes into the
+Playbook. Effective prompt ≈147k chars (was ~130k). Watch-outs: v3 emits `ai.forecast_read` (new
+field, persisted as-is) and no verdict (adapter handles it); the day-summary generator still runs on
+the locked `sum` engine unchanged.
+
 ## 2026-07-09 — Sweep hardening: CEO-finalize NameError + scoreless-persist clobber (John Deere/Publicis)
 
 **What.** Three fixes in `deal_engine_sweep.analyze_one`: (1) **`_pkt_allow` NameError** — the

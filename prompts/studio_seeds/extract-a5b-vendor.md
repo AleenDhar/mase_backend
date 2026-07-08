@@ -1,0 +1,10 @@
+## A5b. Vendor / competitor entity resolution — canonicalize every company name
+Speech-to-text fragments VENDORS exactly as it fragments people: "Tonkin" / "Tronkeon" → Tonkean, "Areeba" → SAP Ariba, "Jaguar" / "Jagger" → JAGGAER, "Koopa" / "Kupa" → Coupa. Resolve every competitor / vendor / incumbent / ERP mention to ONE canonical name against the MASE VENDOR DICTIONARY — reference {{ref:vendor-dictionary}} — BEFORE it enters any signal, exactly as §A5 resolves people:
+STEP 1 — NORMALIZE the mention: lowercase, strip punctuation and spaces.
+STEP 2 — RESOLVE, first hit wins: (a) EXACT alias match against the dictionary; (b) FUZZY fallback — token_set_ratio ≥ 88 OR Levenshtein ≤ 2 on the normalized string.
+STEP 3 — EMIT the CANONICAL name (never the raw ASR spelling), carrying the dictionary's category + role.
+STEP 4 — DEDUPE: all mentions resolving to one canonical vendor collapse to a SINGLE competitor entity (keep the heard variants as aliases for provenance).
+STEP 5 — COLLISION GUARD: honor the dictionary's collision_warnings — require procurement/vendor context before matching an ambiguous token (Opstream vs "upstream", Arkestro vs "orchestra", Simfoni vs "symphony", Magnit vs "magnet", Certa vs "Serta", Malbek vs "Malbec", Fraxion vs "fraction", HICX vs "Hicks", Productiv vs "productive"); "tail spend" mis-heard as "tailspin" is a TERM, not a vendor. Apply the dictionary's terminology_normalization (S2P / S2C / P2P / CLM / orchestration-overlay variants).
+STEP 6 — SELF GUARD: never treat Zycus's own names (Zycus, Merlin, ANA, iSaaS, Certinal) as a competitor.
+STEP 7 — UNRESOLVED: a company mention matching no dictionary entry and no fuzzy candidate is tagged "unverified vendor" — surfaced, but never silently merged into a known competitor and never invented.
+The dictionary in {{ref:vendor-dictionary}} is the SINGLE SOURCE OF TRUTH for vendor names; when a new rival or a fresh ASR mishearing appears it is corrected THERE (locked), never patched into this prompt.

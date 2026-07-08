@@ -189,19 +189,29 @@ def _disk_prompt() -> str:
 def _load_prompt() -> str:
     """Return the EFFECTIVE deal-sweep system prompt.
 
-    SUPABASE IS THE SOURCE OF TRUTH. Precedence:
-      1. the Supabase value (agent_prompt_store, key ID_DEAL_SWEEP) when set — this
-         is what we run; edit it from Admin -> Agent Control -> Deal Sweep (NOT the
-         on-disk file);
-      2. only if Supabase has no row (cold start / never seeded) do we fall back to
-         the on-disk seed (prompts/deal_engine_sweep_system_prompt.md), which is
-         DEPRECATED as an editing surface and kept solely as that fallback.
+    SUPABASE IS THE SOURCE OF TRUTH. Precedence (2026-07-09, Omnivision Deal-Sweep asset):
+      1. the LOCKED `sweep` engine from the Scoring Version Studio (Omnivision) — the
+         Deal Sweep (Deal Drawer) instruction IS the base system prompt when locked;
+         edit + lock a new version in /omnivision and the sweep adopts it on the next
+         agent (re)build, no code deploy;
+      2. else the Supabase agent-control value (agent_prompt_store, key ID_DEAL_SWEEP)
+         — the legacy monolithic prompt, still editable in Admin -> Agent Control;
+      3. else the on-disk seed (prompts/deal_engine_sweep_system_prompt.md).
 
-    Never raises on a Supabase blip — it degrades to the disk seed so the sweep is
-    never blocked by the settings read. (Sync httpx; callers offload it to a thread
-    via run_in_executor — see _get_agent.)
+    The studio block (the other locked engines + the reference assets) is ALWAYS
+    appended on top of whichever base won. Never raises on a Supabase blip — degrades
+    down the precedence chain so the sweep is never blocked by a settings read.
     """
     base = ""
+    # 1) Omnivision-governed base: the locked Deal Sweep engine (via the studio cache).
+    try:
+        _blk = _studio_block()   # primes/reuses the cache; also builds the appendix
+        _sw = (_studio_cache.get("sweep_base") or "").strip()
+        if _sw:
+            return _sw + _blk
+    except Exception as _e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] studio sweep-base read failed ({_e}); falling back", flush=True)
+    # 2) legacy Supabase base prompt
     try:
         import agent_prompt_store as _aps
         base = (_aps.get_prompt(_aps.ID_DEAL_SWEEP) or "").strip()
@@ -217,16 +227,24 @@ def _load_prompt() -> str:
 # no code deploy. Lock-before-run: only LOCKED versions are ever injected (drafts invisible);
 # fail-OPEN to the previous cached block (or none) so a Supabase blip can't stall sweeps.
 _STUDIO_TTL_S = int(os.getenv("SCORING_STUDIO_TTL_S", "300"))
-_studio_cache: dict = {"at": 0.0, "block": "", "versions": {}}
+_studio_cache: dict = {"at": 0.0, "block": "", "versions": {}, "sweep_base": ""}
 
 
 def studio_versions() -> dict:
-    """Engine→version map of the locked instructions the CURRENT prompt carries
-    (provenance — stamped on every swept record)."""
+    """Asset→version map of the locked instructions the CURRENT prompt carries
+    (provenance — stamped on every swept record). Includes the sweep base engine
+    and the reference assets when locked."""
     return dict(_studio_cache.get("versions") or {})
 
 
 def _studio_block() -> str:
+    """Build (and cache) the studio appendix + the Omnivision sweep BASE prompt.
+
+    2026-07-09 (Studio v2 — 8 assets): the locked `sweep` engine is the Deal Sweep
+    (Deal Drawer) BASE system prompt (consumed by _load_prompt via the cache's
+    `sweep_base`); the OTHER five engines are appended as the authoritative studio
+    block, with `{{ref:...}}` citations resolved to pointers and each locked
+    REFERENCE ASSET (vendor dictionary, deal playbook) appended exactly once."""
     now = time.time()
     if now - _studio_cache["at"] < _STUDIO_TTL_S:
         return _studio_cache["block"]
@@ -234,20 +252,41 @@ def _studio_block() -> str:
         import scoring_studio as _st
         active = _st.active_locked()
         parts, versions = [], {}
+        cited_all = set()
         for eng in _st.ENGINES:
+            if eng == "sweep":
+                continue   # the sweep engine is the BASE prompt, not an appended block
             row = active.get(eng)
             if not row:
                 continue
             versions[eng] = row["version"]
-            parts.append(f"### ENGINE — {_st.ENGINE_NAMES[eng]} · LOCKED v{row['version']}\n\n{row['content']}")
-        if parts:
+            _txt, _cited = _st.resolve_refs(row["content"], active)
+            cited_all |= _cited
+            parts.append(f"### ENGINE — {_st.ENGINE_NAMES[eng]} · LOCKED v{row['version']}\n\n{_txt}")
+        # Reference assets: append every locked reference ONCE (the sweep engine cites
+        # them in prose — vendor dictionary §4.3b, playbook §12 — so include them all).
+        ref_txt, ref_versions = _st.reference_sections(active)
+        versions.update(ref_versions)
+        # The Omnivision Deal Sweep base prompt (tokens resolved against the same refs).
+        _sw_row = active.get("sweep")
+        if _sw_row and (_sw_row.get("content") or "").strip():
+            versions["sweep"] = _sw_row["version"]
+            _sw_txt, _ = _st.resolve_refs(_sw_row["content"], active)
+            _studio_cache["sweep_base"] = _sw_txt
+        else:
+            _studio_cache["sweep_base"] = ""
+        if parts or ref_txt:
             head = ("\n\n# SCORING VERSION STUDIO — LOCKED ENGINE INSTRUCTIONS (AUTHORITATIVE)\n"
-                    "The five instructions below are the versioned, LOCKED governing instructions "
+                    "The instructions below are the versioned, LOCKED governing instructions "
                     "(edited in Omnivision). They are the CURRENT operating law for signal extraction, "
                     "win-position reading, momentum reading, to-do generation and the 24-hour summary — "
                     "where anything above conflicts with them, THESE WIN. Provenance: "
                     + " · ".join(f"{e} v{v}" for e, v in versions.items()) + "\n\n")
-            _studio_cache.update(at=now, block=head + "\n\n".join(parts), versions=versions)
+            block = head + "\n\n".join(parts)
+            if ref_txt:
+                block += ("\n\n# REFERENCE ASSETS (LOCKED — cited by the engines above)\n\n"
+                          + ref_txt)
+            _studio_cache.update(at=now, block=block, versions=versions)
         else:
             _studio_cache.update(at=now, block="", versions={})
     except Exception as _e:  # noqa: BLE001 — keep the previous block; never stall the sweep
@@ -3626,6 +3665,31 @@ async def analyze_one(
             parsed.setdefault("ai", {})["account_context"] = _prior_ai_full["account_context"]
         try:
             import deal_engine_scoring
+            # VERDICT COMPATIBILITY ADAPTER (2026-07-09, Deal Sweep v3): the Omnivision
+            # Deal-Sweep engine v10.0 DROPS the standalone north_star_verdict and emits
+            # ai.forecast_read instead (§8/v3.1). Downstream consumers (UI verdict badge,
+            # pulse flag reconcile, the fallback scorer's verdict caps, todo derivation)
+            # still read north_star_verdict — so when a sweep emits none: carry the PRIOR
+            # verdict forward (living memory: absence = not re-mentioned), else synthesize
+            # a coarse one from forecast_read (defensible -> On Track, else At Risk).
+            try:
+                _ai_v = parsed.get("ai") or {}
+                _nv = _ai_v.get("north_star_verdict")
+                if not (isinstance(_nv, dict) and str(_nv.get("verdict") or "").strip()):
+                    _prior_nv = ((existing_record.get("ai") or {}).get("north_star_verdict")
+                                 if isinstance(existing_record, dict) else None)
+                    if isinstance(_prior_nv, dict) and str(_prior_nv.get("verdict") or "").strip():
+                        parsed.setdefault("ai", {})["north_star_verdict"] = {
+                            **_prior_nv, "carried_forward": True}
+                    else:
+                        _fr = _ai_v.get("forecast_read")
+                        if isinstance(_fr, dict) and ("defensible" in _fr):
+                            parsed.setdefault("ai", {})["north_star_verdict"] = {
+                                "verdict": ("On Track" if _fr.get("defensible") else "At Risk"),
+                                "summary": str(_fr.get("reason") or "")[:300],
+                                "source": "forecast_read_adapter"}
+            except Exception:  # noqa: BLE001 — the adapter must never block the sweep
+                pass
             # AI DEAL-SCORER (flag-gated by DEAL_ENGINE_AI_SCORING). Judges the five scores
             # over a deterministic evidence packet. score_deal_ai builds the packet itself
             # (datalake meetings) and already falls back to compute_deal_scores on any internal

@@ -689,6 +689,56 @@ def _process_mode(hard, stage_l, la_days):
                   f"{nearest.isoformat()}; quiet between deliverables is process cadence")
 
 
+# --- DORMANT / ON-HOLD FLOOR (2026-07-09, Galp) -------------------------------------------------
+# A deal the BUYER has explicitly PARKED — merger freeze, reprioritisation, "on hold", "shelved",
+# "relaunch in <future year>", a fired "closed-lost-if-no-feedback" trigger — is NOT "moving right
+# now"; momentum must read stalled. The leak this closes: a single status-update email confirming
+# the freeze ("we're on hold until 2028") lands as last_buyer_touch <30d, so the stalling drag reads
+# 0 and the deal shows "Steady" — Galp 46 "On Hold", MTR 79 "frozen", National Holding 84 "on hold".
+# A status email SAYING the deal is parked is the OPPOSITE of engagement, not evidence of it.
+# High precision: fires ONLY when the rep's CURRENT Next Step (authoritative "where is this deal
+# now") or the live verdict says parked AND engagement is genuinely inert (~0 real buyer sessions),
+# so a busy live deal that merely references a past hold is untouched (Temasek eng 24.6, John Deere
+# eng 30 stay live — those are a separate engagement-quality question, not dormancy).
+_DORMANT_PARK_RE = re.compile(
+    r"(on[\s\-]?hold|\bsuspend|\bfrozen\b|\bfreeze\b|\bshelved\b|\bparked\b|\bdormant\b|"
+    r"deprioriti[sz]|de[\s\-]?prioriti[sz]|no (?:more )?visibilit\w* (?:on|into) priorit|"
+    r"back burner|closed lost due|(?:re[\s\-]?launch|relaunch|revisit)\w*\s+(?:in|by|before|next|end)\b)",
+    re.I)
+_DORMANT_FUTUREYEAR_RE = re.compile(r"\b(202[89]|203\d)\b")
+DORMANT_MOM_CAP = 8.0   # a parked deal reads firmly "Slowing/stalled" (<35), whatever the recent email cadence
+
+
+def _dormant_read(record: dict):
+    """(is_dormant, why): the buyer has explicitly PARKED this deal AND it is genuinely inert.
+    Keyed on the rep's CURRENT Next Step / the live verdict summary, corroborated by near-zero
+    engagement so a live deal that merely references a past hold never trips it."""
+    ai = (record or {}).get("ai") or {}
+    hard = (record or {}).get("hard") or {}
+    ns = str(hard.get("next_step") or "")
+    vs = str((ai.get("north_star_verdict") or {}).get("summary") or "")
+    m = _DORMANT_PARK_RE.search(ns) or _DORMANT_PARK_RE.search(vs)
+    if not m:
+        return False, ""
+    eng = (ai.get("footprints") or {}).get("engagement") or {}
+    try:
+        pts = float(eng.get("points_60d"))
+    except (TypeError, ValueError):
+        pts = 0.0
+    conf = _parse_confidence(ns)
+    low_conf = isinstance(conf, (int, float)) and conf < 35
+    future = bool(_DORMANT_FUTUREYEAR_RE.search(ns))
+    # Near-zero engagement is sufficient on its own (no real buyer sessions = inert). A weaker
+    # engagement reading needs a second inertness flag — rep confidence <35% or a future-year relaunch.
+    if not ((pts < 2.0) or (pts < 6.0 and (low_conf or future))):
+        return False, ""
+    _fy = _DORMANT_FUTUREYEAR_RE.search(ns)
+    return True, (f"buyer has parked the deal (next step: '{m.group(0)}'"
+                  + (f", relaunch not before {_fy.group(0)}" if _fy else "")
+                  + f") with no live engagement (engagement pts {round(pts, 1)}) — a status update "
+                  "confirming a freeze is not buyer momentum; dormant")
+
+
 def score_momentum_v2(record: dict):
     """Momentum v5 (2026-07-07, VP spec adopted with amendments): momentum = the PULSE of buyer
     engagement + forward progression, recency-weighted. Engagement points (type × who × steep
@@ -1009,6 +1059,14 @@ def score_momentum_v2(record: dict):
                                  f"the deal's own verdict is '{_nv.get('verdict')}' — momentum cannot read "
                                  f"hotter than the holistic judgment; capped at {int(_vcap)}"))
         score = _vcap
+
+    # DORMANT / ON-HOLD FLOOR (2026-07-09, Galp): a buyer-parked, inert deal cannot read "Steady"
+    # off a status-update email that itself confirms the freeze. Strongest cap — applied last.
+    _dorm, _dorm_why = _dormant_read(record)
+    if _dorm and score > DORMANT_MOM_CAP:
+        contribs.append(_contrib("dormant_floor", round(DORMANT_MOM_CAP - score, 1), _dorm_why))
+        score = DORMANT_MOM_CAP
+
     score = round(_clamp(score, 0.0, 99.0), 1)
     return {"score": score, "pre_decay": score, "decay_note": None,
             "model": "engagement_v5", "contributions": contribs}

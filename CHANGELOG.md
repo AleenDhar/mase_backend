@@ -11,6 +11,25 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Deterministic scorer (now the fallback) — dormant floor + verdict/close/differentiator fixes
+
+**What.** Shipped the local edits to `deal_engine_scoring.py`: (1) **dormant/on-hold floor** — a
+buyer-parked, inert deal (next step says on-hold/suspended/frozen/relaunch-in-future-year AND ~0
+engagement) caps Deal Momentum at 8, so a merger-frozen deal can't read "Steady" off a status
+email confirming the freeze; (2) **verdict-reconcile** — a Slowing verdict caps momentum at 60,
+Off Track at 35 (one story per deal); (3) **close-push ramp** — a beyond-60d close slip charges
+the whole push (−5..−12), not a from-zero ramp; (4) **blocked-differentiator guard** — a "ZERO AI"
+buyer ban caps AI differentiation. These are the anti-inflation floors validated on the Galp /
+Austrian Post / John Deere calibration set.
+
+**Why.** `deal_engine_scoring.py` is now the FALLBACK scorer (the primary path is the Omnivision
+Studio-governed AI scorer — see the entry below). These fixes keep the fallback honest for the
+cases the AI call can't cover (LLM failure / hard loss). NOTE: under "pure Studio, no floors" the
+Studio path itself carries no deterministic floors — these live only in the fallback.
+
+**How to work with it going forward.** Primary scoring = the Studio win/mom engines (edit in
+`/omnivision`). This deterministic engine only runs when the AI scorer fails; tune it in code.
+
 ## 2026-07-09 — Deal scores now GOVERNED by the Omnivision Scoring Version Studio (win/mom)
 
 **What.** Re-enabled the AI deal-scorer (`DEAL_ENGINE_AI_SCORING=true`, both api + worker) and

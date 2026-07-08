@@ -128,9 +128,12 @@ def _model():
     name = (os.getenv("DEAL_ENGINE_SCORING_MODEL") or "anthropic:claude-sonnet-4-5").strip()
     model_id = name.split(":", 1)[1] if ":" in name else name
     from anthropic_cache import CachedChatAnthropic
+    # NO temperature= : claude-sonnet-5 REJECTS it ("temperature is deprecated for this model",
+    # HTTP 400) — every AI-scoring call 400'd and silently fell back to deterministic (hybrid).
+    # Match the proven sweep model path (deal_engine_sweep._build_model), which passes no temperature.
     return CachedChatAnthropic(
         model_name=model_id,
-        temperature=0,
+        api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
         max_tokens=int(os.getenv("DEAL_SCORING_MAX_TOKENS", "4000")),
         timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "180")),
         max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "4")),

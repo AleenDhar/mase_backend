@@ -11,6 +11,25 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Win rubric: honest-examination guards (at-risk champion, keyword-only preference)
+
+**What.** Two guards at the end of `deal_engine_scoring._rubric_win_strengths` stop the win rubric
+reading MAX strength off prose while the deal's own flags say otherwise. (1) An **at-risk champion**
+(`ai.champion_strength.at_risk == true`) is capped at partial (0.3) — it can no longer score
+full-strength off a "strong" prose label. (2) **Preference** is capped at moderate (0.5) when it was
+maxed from a NARRATIVE KEYWORD with **no structured `customer_preference`** AND the deal is visibly
+**declining** (forecast cut / amount cut).
+
+**Why.** Austrian Post read **win 70** but the raw was propped by preference **+1.0** (from a
+keyword; `customer_preference` was empty; the buyer is renegotiating DOWN) and champion **+1.0**
+(despite `at_risk=true` — the champion himself said they were being "strung along" — and MEDDPICC
+champion = *partial*). Honest win **70 → 64**. Surgical: **22 deals** move (avg −4); most at-risk
+champions were already scored low so are untouched.
+
+**How to work with it.** Caps are conservative and tunable in the guard block. A genuine structured
+high preference, or a non-declining deal, is untouched. Ships with the next worker deploy; book
+rescored.
+
 ## 2026-07-08 — Forecast-category order FIXED + momentum reacts to DECLINE (not just volume)
 
 **What.** (1) `deal_engine_trends._FC_RANK` corrected: "Upside Key Deal" ranked ABOVE "Best Case"

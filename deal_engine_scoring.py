@@ -415,6 +415,24 @@ def _rubric_win_strengths(record: dict) -> dict:
     # across the LLM read and the raw CRM (so a named EB in MEDDPICC 2.0 lifts exec_access even
     # if the LLM under-read it), recency-weighted (recent evidence counts for more).
     out = _crm_evidence_overlay(out, ai)
+
+    # HONEST-EXAMINATION GUARDS (2026-07-08, user-directed): the rubric was reading MAX strength off
+    # prose keywords while the deal's OWN flags said otherwise — the "going easy on deals" inflation.
+    # 1) An AT-RISK champion is NOT a full-strength champion. Austrian Post: champion_strength.at_risk
+    #    = true (the champion himself said they're being "strung along") + MEDDPICC champion = partial,
+    #    yet the prose label scored +1.0. Cap an at-risk champion at partial.
+    if (ai.get("champion_strength") or {}).get("at_risk"):
+        out["champion"] = min(out.get("champion", 0.0), 0.3)
+    # 2) MAX preference off a NARRATIVE KEYWORD, with NO structured customer_preference AND the deal
+    #    visibly DECLINING (forecast cut / amount cut), is an over-read — a technically-ahead but
+    #    cost-squeezed, cautious buyer is not "maximum preference". Cap at moderate. (A genuine
+    #    structured high preference, or a non-declining deal, is untouched.)
+    _cp = ai.get("customer_preference") or {}
+    _ot = ai.get("opp_trends") or {}
+    _declining = ((isinstance(_ot.get("forecast_category_trend"), (int, float)) and _ot["forecast_category_trend"] < -0.02)
+                  or (isinstance(_ot.get("amount_trend"), (int, float)) and _ot["amount_trend"] < -0.2))
+    if not (_cp.get("level") or _cp.get("status")) and _declining and out.get("preference", 0.0) > 0.5:
+        out["preference"] = 0.5
     return out
 
 

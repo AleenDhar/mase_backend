@@ -44,6 +44,7 @@ def _h(prefer: str = "") -> dict:
 def _req(method: str, path: str, **kw) -> httpx.Response:
     if not _SB or not _KEY:
         raise StudioError("Supabase is not configured")
+    kw.setdefault("headers", _h())   # GETs must carry the apikey too (401 without it)
     r = httpx.request(method, f"{_SB}/rest/v1/{path}", timeout=30, **kw)
     if r.status_code >= 400:
         raise StudioError(f"{method} {path}: HTTP {r.status_code} {r.text[:300]}")

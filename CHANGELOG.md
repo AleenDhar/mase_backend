@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Forecast-category order FIXED + momentum reacts to DECLINE (not just volume)
+
+**What.** (1) `deal_engine_trends._FC_RANK` corrected: "Upside Key Deal" ranked ABOVE "Best Case"
+(3 vs 2) — backwards. Real order is Omitted < Pipeline < **Upside < Best Case** < Commit. A
+`Best Case → Upside` move is a DOWNGRADE; the old map scored it as an UPGRADE. (2)
+`score_momentum_v2` stage/forecast term is now **symmetric**: a recent up-move still +6, but a
+**downgrade / stage regression now −10** (was: no penalty at all — momentum only ever *added*). (3)
+New **scope-cut drag −6** when `amount_trend < −0.2` (a deal renegotiated smaller is contracting).
+
+**Why.** A deal with every substantive signal DOWN — amount cut 31%, forecast cut Best Case→Upside,
+close slipped 23d — still read **momentum 90** because momentum rewarded raw meeting VOLUME and was
+blind to decline, AND the forecast cut was mis-scored as a +6 upgrade. Austrian Post: **90→68**
+("actively engaged but terms declining"). The forecast-order bug flipped the sign of every
+Upside↔Best Case move book-wide (inflating momentum + win-nudge on downgraded deals). 40 deals
+corrected (avg −8.6); the −22 swings had both a downgrade and a scope cut.
+
+**How to work with it.** Ships with the next worker deploy. Offline rescore re-derives the stored
+`opp_trends.forecast_category_trend` sign from its detail using the corrected rank, then recomputes.
+Future sweeps recompute trends fresh. Momentum now = engagement/activity MINUS decline (downgrade,
+scope cut, stall) — a busy-but-shrinking deal no longer reads hot.
+
 ## 2026-07-08 — Momentum: "advancing plan" credit counts only NEAR-TERM FUTURE milestones
 
 **What.** `deal_engine_scoring.score_momentum_v2` next-step-plan term no longer credits a deal for

@@ -26,8 +26,13 @@ _STAGE_RANK = {
 _STAGE_DEAD = {"no decision", "qualified out", "closed lost", "lost", "omitted", "dropped"}
 
 # Forecast category order (ascending strength). Used when FC history is available.
-_FC_RANK = {"omitted": 0, "pipeline": 1, "best case": 2, "upside key deal": 3,
-            "upside": 3, "commit": 4}
+# Forecast-category confidence order (ascending). Zycus: Omitted < Pipeline < Upside(/Key Deal)
+# < Best Case < Commit. "Upside Key Deal" ranks BELOW "Best Case" — a Best Case -> Upside move is a
+# DOWNGRADE (reduced confidence), NOT an upgrade. The old map had Upside(3) ABOVE Best Case(2), so a
+# downgrade scored as +progression on momentum and +nudge on win (Austrian Post: cut to Upside the
+# same week the amount dropped 31% and the close slipped, yet read as "forecast moved UP").
+_FC_RANK = {"omitted": 0, "pipeline": 1, "upside": 2, "upside key deal": 2,
+            "best case": 3, "commit": 4}
 
 _TREND_WINDOW_DAYS = 120        # only consider changes within this window
 _RECENCY_TAU_DAYS = 60.0       # a change decays to ~0.37 strength by this age

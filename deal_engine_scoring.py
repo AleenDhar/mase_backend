@@ -816,17 +816,39 @@ def score_momentum_v2(record: dict):
             score += cpts
         contribs.append(_contrib("close_date_direction", cpts, det))
 
-    # PRIMARY 4 — STAGE / FORECAST PROGRESSION (VP spec §7): a recent up-move is real advance.
-    _up = None
+    # PRIMARY 4 — STAGE / FORECAST DIRECTION (VP spec §7, SYMMETRIC 2026-07-08): a recent up-move is
+    # real advance (+6); a DOWNGRADE (forecast cut, e.g. Best Case -> Upside) or stage regression is
+    # real DECLINE (-10). A deal moving BACKWARDS is NOT high-momentum however busy it looks — the
+    # rep lowering their OWN forecast is a strong negative signal, and momentum was previously blind
+    # to it (only ever added +6, never subtracted), so a shrinking/downgraded/slipping deal still
+    # read hot on raw meeting volume (Austrian Post: forecast cut + amount -31% + close +23d → 90).
+    _up = _down = None
     for k in ("stage_trend", "forecast_trend", "forecast_category_trend"):
         v = ot.get(k)
-        if isinstance(v, (int, float)) and v > 0.02:
-            _up = k; break
-        if isinstance(v, str) and any(t in v.lower() for t in ("up", "advanc", "upgrad", "raised")):
-            _up = k; break
-    if _up:
+        if isinstance(v, (int, float)):
+            if v > 0.02 and _up is None:
+                _up = k
+            elif v < -0.02 and _down is None:
+                _down = k
+        elif isinstance(v, str):
+            lv = v.lower()
+            if any(t in lv for t in ("up", "advanc", "upgrad", "raised")) and _up is None:
+                _up = k
+            elif any(t in lv for t in ("down", "regress", "downgrad", "lower", "cut")) and _down is None:
+                _down = k
+    if _down:                          # a downgrade/regression DOMINATES a stale up-move
+        score -= 10.0
+        contribs.append(_contrib("regression", -10.0,
+                                 f"{_down.replace('_', ' ')}: moved DOWN recently — forecast/stage cut, deal regressing"))
+    elif _up:
         score += 6.0
-        contribs.append(_contrib("progression", 6.0, f"{_up.replace('_',' ')}: moved UP recently — deal advancing"))
+        contribs.append(_contrib("progression", 6.0, f"{_up.replace('_', ' ')}: moved UP recently — deal advancing"))
+    # SCOPE / AMOUNT CUT — a deal renegotiated SMALLER is contracting, not advancing; drag momentum.
+    _amt = ot.get("amount_trend")
+    if isinstance(_amt, (int, float)) and _amt < -0.2:
+        score -= 6.0
+        contribs.append(_contrib("scope_cut", -6.0,
+                                 f"deal size cut recently ({ot.get('amount_trend_detail') or 'amount reduced'}) — contracting, not advancing"))
 
     # NEXT-STEP PLAN TERMS (VP §2B/§2C, user-ratified via Techtronic): a live, dated,
     # ADVANCING plan is forward motion — +8 when ≥2 dated milestones with one in the future,

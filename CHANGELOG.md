@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Momentum: "advancing plan" credit counts only NEAR-TERM FUTURE milestones
+
+**What.** `deal_engine_scoring.score_momentum_v2` next-step-plan term no longer credits a deal for
+its Next-Step *history*. It previously gated the +8/+11 "live advancing plan" on `dated` = the count
+of ALL parsed milestone dates (mostly PAST log entries) and accepted ANY single future date — even
+one after the close. Now the credit counts only milestones that are in the FUTURE **and inside a
+90-day planning horizon** (`_plan_ms`); the total `dated` count is retained ONLY for the
+false-velocity signal. +8 for ≥1 near-term future milestone, +3 more for ≥3.
+
+**Why.** Austrian Post read momentum **99** (the max). Its Next-Step is a 10,006-char running
+journal; the parser found **44 dates — 42 already past, and the only 2 future ones in December,
+after a 23-Jul close**. It scored the full +11 "advancing plan" with ZERO real near-term milestone,
+pegging momentum to 99. Systemic: **113 of 409 live deals** were inflated this way — including
+stalled deals the noise was masking (Louis Dreyfus momentum 55→19, last touch 99d ago, close
+slipped 195d; Hager 73→37, 147d quiet). This is the "everything scores too high" pattern.
+
+**How to work with it.** Austrian Post honest momentum **99→90** (still high — genuinely active
+onsite + pricing cadence earns the engagement points; the fake plan credit is gone). Book rescored.
+Horizon tunable in code. A milestone beyond 90 days (or after the close) is context, not current
+momentum.
+
 ## 2026-07-08 — Avoma: multi-part meetings read WHOLE + anti-fabrication guard
 
 **What.** Two fixes so the sweep never invents a meeting it only half-read. (1) **Multi-part

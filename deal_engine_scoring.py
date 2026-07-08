@@ -836,20 +836,29 @@ def score_momentum_v2(record: dict):
     import datetime as _dtns
     _today_ns = _dtns.datetime.now(_dtns.timezone.utc).date()
     _all_ms = _milestone_dates(hard.get("next_step"))
-    # dated count: legacy counter ORed with the full rep-date parser ('1st July', '17.7.' etc.)
+    # dated count: legacy counter ORed with the full rep-date parser ('1st July', '17.7.' etc.).
+    # Retained ONLY for the false-velocity signal below (a BUSY log — past edits included — on a
+    # slipping deal). It must NOT drive the plan credit (see below).
     dated = max(_count_dated_milestones(hard.get("next_step")), len(_all_ms))
-    _fut_ms = [d for d in _all_ms if d >= _today_ns]
+    # PLAN CREDIT = FORWARD, NEAR-TERM milestones only. The Next_Step field is usually a running
+    # HISTORY JOURNAL, so counting all parsed dates rewards the past: Austrian Post's 10k-char log
+    # parsed to 44 dates — 42 already past, the only 2 future ones in December, AFTER a 23-Jul close
+    # — earned the full +11 "advancing plan" with ZERO real near-term milestone, pegging momentum to
+    # 99. A live plan is milestones ahead of today and inside a ~90-day planning horizon (a lone
+    # post-close placeholder is not a plan to hit THIS close). Count those; ignore the history.
+    _horizon_ns = _today_ns + _dtns.timedelta(days=90)
+    _plan_ms = [d for d in _all_ms if _today_ns <= d <= _horizon_ns]
     nspts = 0.0
-    if _fut_ms and dated >= 2:
+    if len(_plan_ms) >= 1:
         nspts += 8.0
-    if _fut_ms and dated >= 4:
+    if len(_plan_ms) >= 3:
         nspts += 3.0
     if nspts and not process_mode and (bt_days is None or bt_days > 30):
         nspts = round(nspts * 0.5, 1)
     if nspts:
         score += nspts
         contribs.append(_contrib("next_step_plan", round(nspts, 1),
-                                 f"{dated} dated milestone(s), nearest {min(_fut_ms).isoformat()} — live advancing plan"))
+                                 f"{len(_plan_ms)} upcoming milestone(s), nearest {min(_plan_ms).isoformat()} — live advancing plan"))
 
     # PRIMARY 5 — CONFIDENCE-% TRAJECTORY (the rep's own Probability/Confidence in the log).
     conf = _parse_confidence(hard.get("next_step"))

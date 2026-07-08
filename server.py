@@ -7489,6 +7489,90 @@ async def set_sweep_prompt(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+# ---------------------------------------------------------------------------
+# SCORING VERSION STUDIO (omnivision) — versioned, lock-before-run engine
+# instructions (Supabase `scoring_instructions`). SUPER-ADMIN enforcement lives
+# in the frontend proxy (same convention as the Agent-Control prompt endpoints);
+# writes here require the service bearer that only the proxy injects.
+# ---------------------------------------------------------------------------
+@app.get("/api/deal-engine/scoring-studio/engines")
+async def scoring_studio_engines():
+    """The five engines with their active locked version + draft state."""
+    import scoring_studio as st
+    try:
+        return {"engines": await _aw(st.list_engines)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/scoring-studio/active")
+async def scoring_studio_active():
+    """Runtime resolver: latest LOCKED instruction per engine (drafts invisible)."""
+    import scoring_studio as st
+    try:
+        return {"active": await _aw(st.active_locked)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.get("/api/deal-engine/scoring-studio/{engine}/trail")
+async def scoring_studio_trail(engine: str):
+    """Full version history for one engine (no content bodies)."""
+    import scoring_studio as st
+    try:
+        return await _aw(st.trail, engine)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+
+@app.get("/api/deal-engine/scoring-studio/{engine}/version/{version}")
+async def scoring_studio_version(engine: str, version: str):
+    """One version row WITH its full instruction content."""
+    import scoring_studio as st
+    try:
+        return await _aw(st.get_version, engine, version)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=404)
+
+
+@app.post("/api/deal-engine/scoring-studio/{engine}/draft")
+async def scoring_studio_save_draft(engine: str, request: Request):
+    """Create/replace the engine's single unlocked draft ({content, author})."""
+    import scoring_studio as st
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    try:
+        return await _aw(st.save_draft, engine, body.get("content") or "", body.get("author") or "")
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+
+@app.delete("/api/deal-engine/scoring-studio/{engine}/draft")
+async def scoring_studio_discard_draft(engine: str):
+    import scoring_studio as st
+    try:
+        return await _aw(st.discard_draft, engine)
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+
+@app.post("/api/deal-engine/scoring-studio/{engine}/lock")
+async def scoring_studio_lock(engine: str, request: Request):
+    """Promote the draft to the next semver and LOCK it ({kind, note, locked_by})."""
+    import scoring_studio as st
+    try:
+        body = await request.json()
+    except Exception:  # noqa: BLE001
+        body = {}
+    try:
+        return await _aw(st.lock, engine, body.get("kind") or "minor",
+                         body.get("note") or "", body.get("locked_by") or "")
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=400)
+
+
 @app.post("/api/deal-engine/knowledge/presign")
 async def mase_knowledge_presign(request_body: dict):
     """Mint a short-lived presigned S3 PUT URL so the browser can upload a large file

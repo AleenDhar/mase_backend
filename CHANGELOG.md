@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Scoring Version Studio (Omnivision) — control plane shipped
+
+**What.** Phase 1 of the versioned, lock-before-run engine-instruction system from the
+MASE_Scoring_Studio staging handoff. (1) Supabase **`scoring_instructions`** (versioned texts,
+required changelog note, locked/locked_by/locked_at) + **`deal_outputs`** (provenance), seeded with
+the five engines' full trails — latest locked: extract 10.3, win 10.3, mom 10.1, todo 10.1,
+sum 10.1 (`scripts/scoring_studio_schema.py`, idempotent). (2) **`scoring_studio.py`** + endpoints
+`/api/deal-engine/scoring-studio/*`: engines · trail · version content · single-unlocked-draft
+save/discard · lock (kind minor/major + required note → next semver) · `active` (runtime resolver —
+latest LOCKED per engine; drafts invisible). (3) Frontend (MASE repo, staging): **/omnivision**
+route, SUPER-ADMIN only (aleen.dhar + sam.thomas via `SUPER_ADMIN_EMAILS`, enforced in the
+deal-engine proxy on every method).
+
+**Why.** User-directed: one place where the system prompts for the different engines live, editable
+with version control, an edit-blocks-run lock gate, and provenance — restricted to the two platform
+owners. Full mapping of the handoff's five engines vs today's implementation (win/momentum are
+Python, extraction/todo/24h live inside the monolithic sweep prompt) + the calibration deltas:
+**`docs/scoring-studio-gap-analysis.md`**.
+
+**How to work with it.** Phase 2 (NOT built): wire the sweep to `active_locked()` (lock-before-run),
+split the monolithic prompt into per-engine locked instructions, stamp instruction/extraction
+versions on every output. Adopting the handoff's more conservative calibration (RFP ceiling 60,
+momentum start 35, …) is a per-parameter decision = a locked version bump + book rescore.
+
 ## 2026-07-08 — Momentum: engagement is DISCOUNTED when the deal is declining
 
 **What.** In `score_momentum_v2`, the engagement-points term is now multiplied by a decline factor

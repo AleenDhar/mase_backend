@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Deal scores now GOVERNED by the Omnivision Scoring Version Studio (win/mom)
+
+**What.** Re-enabled the AI deal-scorer (`DEAL_ENGINE_AI_SCORING=true`, both api + worker) and
+rewired it to be GOVERNED by the locked Scoring Version Studio engines. The two headline scores —
+**Zycus Win Position** and **Deal Momentum** — are now produced by the LLM applying the LOCKED
+`win` + `mom` instructions from `/omnivision`, exactly as the 24-Hour Summary is governed by the
+locked `sum` engine (`day_summary_ai`). `deal_engine_ai_scoring._prompt()` reads the locked engines
+via `scoring_studio.active_locked()` and appends only a thin OUTPUT ADAPTER (the JSON shape + the
+three scores with no Studio engine: commitment/risk/forecast). **Pure Studio — the deterministic
+floors are NOT applied on top** (the `_normalize` late-stage/zero-engagement clamps were removed,
+user-directed). Deterministic `deal_engine_scoring.py` stays as the FALLBACK only (LLM failure or a
+hard loss), so a deal is never left unscored.
+
+**Why.** The Studio is meant to be the control plane for scoring, but until now editing win/mom in
+Omnivision did NOT change the stored numbers — those came from the Python scorer. So the Studio and
+the DB disagreed (e.g. John Deere read 88 from the code vs 31/45 from the prompt). Governance closes
+that gap: lock a new win/mom version → it governs the next sweep, no code deploy.
+
+**How to work with it going forward.** Tune scoring by editing + locking `win`/`mom` in `/omnivision`
+(NOT `deal_engine_scoring.py`, which is now only the fallback). The current locked `mom` (v10.4/10.5)
+carries a §9 "generous-reading" floor that lifts some dark/declining deals to Steady 45 (FGV 136d
+dark → 45, John Deere paused → 45, Austrian Post −31% amount → 73) — fix that IN the Studio prompt.
+Cost: +1 LLM call per deal per sweep. Reverses the 2026-07-07 "one scorer / deterministic-only"
+decision, this time with the Studio as the single source of truth.
+
 ## 2026-07-09 — Live sweep prompt was reading its own deprecation banner (fixed)
 
 **What.** The `mase_deal_sweep` Supabase row had been seeded WITH the disk file's leading

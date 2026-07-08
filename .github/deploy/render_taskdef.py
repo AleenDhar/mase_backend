@@ -51,14 +51,16 @@ _SWEEP_TUNING = {
     # in deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
     # MCP tool schemas here).
     "DEAL_ENGINE_SWEEP_MODEL": "anthropic:claude-sonnet-5",
-    # AI deal-scorer (deal_engine_ai_scoring): DISABLED 2026-07-07 (user-directed: ONE scorer).
-    # There must be a single scoring path — the DETERMINISTIC engine (deal_engine_scoring.py,
-    # the 2026-07-07 spec: stage anchor + evidence ±30 + momentum drag + selection override +
-    # forecast credit − risk penalty, inside the stage ceiling). Reproducible, exact, matches
-    # the worked examples. Human-readable reasons come from deal_engine_cro.build_cro_panel.
-    # Flag OFF => pure deterministic scoring. Do NOT re-enable without explicit direction —
-    # two scorers is the confusion this removed.
-    "DEAL_ENGINE_AI_SCORING": "false",
+    # AI deal-scorer (deal_engine_ai_scoring): RE-ENABLED 2026-07-09 (user-directed) under
+    # OMNIVISION GOVERNANCE. The two headline scores (Win Position + Deal Momentum) are now
+    # produced by the LLM applying the LOCKED Scoring Version Studio engines (win + mom),
+    # exactly as the 24-Hour Summary is governed by the locked `sum` engine — the Studio is
+    # the single source of truth. deal_engine_ai_scoring._prompt() reads the locked win/mom
+    # instructions; edit + lock a new version in /omnivision → the scorer adopts it on the
+    # next sweep, no code deploy. PURE STUDIO, NO deterministic floors on top (user-directed).
+    # The deterministic engine (deal_engine_scoring.py) remains the FALLBACK only — it scores
+    # a deal if the AI call fails or a loss is a hard fact, so a deal is never left unscored.
+    "DEAL_ENGINE_AI_SCORING": "true",
     "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-5",
 }
 API_ENV = {

@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-08 — Avoma: multi-part meetings read WHOLE + anti-fabrication guard
+
+**What.** Two fixes so the sweep never invents a meeting it only half-read. (1) **Multi-part
+grouping** in the datalake transcript budget (`deal_engine_sweep._avoma_prefetch_from_datalake`):
+same-day recordings of ONE meeting — `Teil 1`/`Teil 2`, `Part 1/2`, `Session/Day/(1/2)` — are now
+grouped (`_meeting_group_key` + `_MEETING_PART_MARKER`) and inlined as a UNIT (whole meeting or
+notes-only, never one part while dropping the other); the single newest meeting is guaranteed
+inlined. Budget raised 80k→110k and per-call cap 48k→56k so a grouped onsite fits whole alongside
+the newest call. (2) **Anti-fabrication guard** appended to the live `mase_deal_sweep` Supabase
+prompt (§2.12, via `apply_antifabrication_guard.py`): never assert a negative meeting fact ('CPO
+never showed up', 'left unresolved') from missing/partial coverage; multi-part meetings are one
+meeting; absence in the read slice ≠ the event didn't happen.
+
+**Why.** Austrian Post's "Last meeting" read said *"the invited CPO never showed up… pricing gap
+left unresolved"* about the 1-Jul onsite. Proven from the datalake: the onsite is **two**
+recordings — `Zycus (Onsite) Teil 1` + `Teil 2` — and **Teil 2 (46,082 chars), where the CPO
+actually spoke, was dropped to notes-only** because Teil 2 alone ate the 80k budget and Teil 1
+fell out. The model summarised half the meeting and invented the rest. Teil 2's transcript opens
+with ~600 chars of small-talk (a sightseeing/conference chat), so even the old REST `[:6000]`
+path would have captured pleasantries and missed the substance.
+
+**How to work with it.** The datalake path is already the default (`DEAL_SWEEP_AVOMA_FROM_DATALAKE`);
+this makes its coverage whole-meeting-safe. Verified on Austrian Post: both onsite parts now inline
+as one 71,231-char unit. Tunable via `DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET` / `_MAXCHARS`. The
+prompt guard is additive + backed up outside the repo + reversible. **Code change needs a worker
+deploy to take effect; the prompt guard is already live.** The Austrian Post record's stale
+"Last meeting" text was separately corrected in-place (pinned deal, not re-swept).
+
 ## 2026-07-07 — Momentum v4, durable pins/CEO/24h ownership, one score source, panel polish
 
 **What.** (1) Momentum rebuilt (direction_v4): engagement volume is primary (ALL real sessions

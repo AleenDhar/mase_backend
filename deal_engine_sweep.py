@@ -28,6 +28,7 @@ import asyncio
 import hashlib
 import json
 import os
+import re
 import time
 import uuid
 from datetime import date, datetime, timedelta, timezone
@@ -1604,17 +1605,45 @@ _AVOMA_NOTES_CHARS = int(os.getenv("DEAL_SWEEP_AVOMA_NOTES_CHARS", "4000"))
 # carries its COMPLETE Avoma AI-notes (a faithful whole-call summary). So a call is
 # always represented completely (full transcript OR full summary) or listed as a bare
 # touchpoint — but NEVER cut in half.
-# Budget kept moderate (~8 full transcripts) so the prompt stays small enough that the
+# Budget kept moderate (~10 full transcripts) so the prompt stays small enough that the
 # agent's LLM call finishes inside the Anthropic client timeout. Inlining EVERY call's
 # full transcript (e.g. 15+) pushed a single generation past 600s -> APITimeoutError.
 # Older calls beyond the budget keep their COMPLETE notes summary (whole-call, faithful),
 # so coverage/quality is preserved while latency stays bounded. Tune via the env var.
-_AVOMA_DL_TRANSCRIPT_BUDGET = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET", "80000"))
+# Raised 80k->110k (2026-07-08) so a MULTI-PART meeting (e.g. an onsite logged as
+# "Teil 1" + "Teil 2") fits WHOLE alongside the newest call — a split onsite is exactly
+# how the model came to invent "the CPO never showed up" (it read one part, missed the other).
+_AVOMA_DL_TRANSCRIPT_BUDGET = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_BUDGET", "110000"))
 # Per-call guard: a single transcript larger than this is NOT inlined verbatim (it
 # would crowd out every other call); that call falls back to its complete AI-notes.
-_AVOMA_DL_TRANSCRIPT_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_MAXCHARS", "48000"))
+# 56k covers the common 46-55k enterprise call; the 100k+ workshops still fall to notes.
+_AVOMA_DL_TRANSCRIPT_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_TRANSCRIPT_MAXCHARS", "56000"))
 # Generous guard on the complete-summary notes (these are whole-call summaries, short).
 _AVOMA_DL_NOTES_MAXCHARS = int(os.getenv("DEAL_SWEEP_AVOMA_DL_NOTES_MAXCHARS", "12000"))
+
+# Multi-part meeting detector: a single onsite/workshop is frequently logged as several
+# same-day Avoma recordings — "Teil 1"/"Teil 2" (German), "Part 1", "Session 2", "(1/2)",
+# "Day 1", "Pt 2". These are ONE logical meeting; the transcript budget must inline them
+# together (whole meeting or none), never one part while dropping the other — a half-read
+# meeting is exactly what let the model invent the missing half ("the CPO never showed up"
+# on the 1-Jul onsite, whose Teil 2 — where the CPO spoke — had been dropped to notes-only).
+_MEETING_PART_MARKER = re.compile(
+    r"\b(?:teil|part|session|sitzung|tag|day|pt|episode|ep)\s*\.?\s*\d+\b"
+    r"|\(\s*\d+\s*(?:of|/|von)\s*\d+\s*\)"
+    r"|\b\d+\s*/\s*\d+\b", re.I)
+
+
+def _meeting_group_key(subject: str, date: str) -> tuple:
+    """Group same-day recordings of ONE meeting. Strip part markers from the subject and
+    key on (day, normalised stem) so 'Zycus (Onsite) Teil 1' and '... Teil 2' on the same
+    day collapse to one group. A blank/degenerate stem falls back to the date+subject so
+    unrelated same-day calls are never wrongly merged."""
+    day = str(date or "")[:10]
+    stem = _MEETING_PART_MARKER.sub(" ", str(subject or "")).lower()
+    stem = re.sub(r"[\s\-–—:|.,]+", " ", stem).strip()
+    if len(stem) < 4:                       # nothing distinctive left — don't over-merge
+        return (day, "\x00" + str(subject or "").lower())
+    return (day, stem)
 
 
 def _avoma_window(days: int) -> tuple[str, str]:
@@ -2152,17 +2181,36 @@ async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
         if notes:
             entry["notes"] = str(notes)[:_AVOMA_DL_NOTES_MAXCHARS]  # complete summary
         prepared.append((entry, str(tr_text) if tr_text else None))
-    # Verbatim transcripts: most-recent first, whole-or-nothing, until budget spent.
+    # Verbatim transcripts: whole MEETINGS newest-first, NEVER splitting a multi-part
+    # meeting. Group same-day parts (Teil 1/Teil 2, Part 1/2, Day 1/2) into ONE unit and
+    # inline all its parts together or none — so the model never sees half a meeting and
+    # invents the missing half. The single NEWEST meeting is guaranteed inlined (it is the
+    # "last meeting" that drives the day-summary / critical signals); older meetings then
+    # fill the remaining budget, whole-unit-or-notes.
+    groups: dict = {}
+    for entry, tr_text in prepared:                      # prepared is oldest -> newest
+        groups.setdefault(_meeting_group_key(entry.get("subject"), entry.get("date")),
+                          []).append((entry, tr_text))
+    ordered = sorted(groups.values(),
+                     key=lambda mem: max((e.get("date") or "") for e, _ in mem),
+                     reverse=True)                        # newest meeting first
     budget = _AVOMA_DL_TRANSCRIPT_BUDGET
     full = 0
-    for entry, tr_text in reversed(prepared):  # newest -> oldest
-        if not tr_text:
+    for gi, members in enumerate(ordered):
+        # Parts individually small enough to inline; an over-long part stays notes-only
+        # but must NOT block its siblings.
+        inlinable = [(e, t) for (e, t) in members
+                     if t and len(t) <= _AVOMA_DL_TRANSCRIPT_MAXCHARS]
+        if not inlinable:
             continue
-        n = len(tr_text)
-        if n <= _AVOMA_DL_TRANSCRIPT_MAXCHARS and n <= budget:
-            entry["transcript_excerpt"] = tr_text  # WHOLE transcript — never truncated
-            budget -= n
-            full += 1
+        need = sum(len(t) for _e, t in inlinable)
+        # Guarantee the NEWEST meeting (gi == 0) whole even if it slightly exceeds budget;
+        # every other meeting must fit the remaining budget as a WHOLE unit (never split).
+        if gi == 0 or need <= budget:
+            for e, t in inlinable:
+                e["transcript_excerpt"] = t              # WHOLE transcript — never truncated
+                full += 1
+            budget -= need
     manifest = [e for (e, _t) in prepared]
     shaped["manifest"] = manifest
     shaped["calls"] = [x for x in manifest if x.get("has_content")]

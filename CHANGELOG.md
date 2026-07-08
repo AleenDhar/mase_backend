@@ -11,6 +11,42 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Live sweep prompt was reading its own deprecation banner (fixed)
+
+**What.** The `mase_deal_sweep` Supabase row had been seeded WITH the disk file's leading
+`<!-- DEPRECATED -->` banner, so every sweep's system prompt literally opened with "do not edit
+this file / this is deprecated". The row is cleaned (banner removed via POST /sweep/prompt;
+backup kept locally), and `agent_prompt_store` now strips ONE leading HTML comment at BOTH load
+(`get_prompt`) and save (`set_prompt`) so a future paste-with-banner is harmless for every
+prompt key. Frontend editors gained the same guard + a live-provenance badge (see MASE repo
+CHANGELOG 2026-07-09).
+
+## 2026-07-09 — Omnivision E2E proven + strict/loose scoring evals + ROGUE SWEEPER found
+
+**What.** (1) `docs/cro-scoring-doctrine.md` — the CRO-voice doctrine for Win Position + Deal
+Momentum. (2) E2E injection PROVEN: the worker's effective-prompt sha256 matches base-prompt +
+locked studio block exactly, hot-swaps within seconds of a lock (`prompt changed …; rebuilding
+agent`), and every swept record stamps `ai.scoring_studio.versions`. (3) Calibration evals: mom
+v10.3 (STRICT) and v10.4 (LOOSE) locked, 11 forecasted deals swept under each →
+`Desktop\eval_strict.csv` / `eval_loose.csv` / `eval_comparison.csv` / `eval_cro_analysis.md`;
+v10.5 (content-identical to production doctrine) re-locked after. Result: momentum numbers are
+deterministic (identical under both variants, by design — the instruction steers the AI reading/
+narrative); WIN moves with the instruction on evidence-thin deals (±9-10) and holds on
+evidence-backed ones.
+
+**⚠️ Why it matters / the find.** The ABANDONED REPLIT DEPLOYMENT (`agent-salesforce-link.replit.app`)
+still runs a queue worker on OLD code against the production `sweep_queue`. Every claim it wins
+(most of the 07-08 afternoon: Teads, Discovery, Lincoln, PSEG, Changi, HAECO, Bandhan, Cebu…)
+writes an old-schema record with NO `deal_scores`, NO datalake footprints and NO Omnivision
+governance — 15 live records were left with blank score panels; all re-swept in a repair pass.
+**Until its sweep worker is stopped (user action, Replit console — the app itself must stay up
+for the MCP endpoint), any Omnivision lock only governs the sweeps the ECS worker wins.**
+
+**How to work with it going forward.** Evals against live locks: use the per-record version stamp
+as ground truth and re-enqueue on mismatch (see `eval_run_batch.py`). Momentum *number*
+calibration from the locked text = Phase 3 (not built, deliberate). Helper scripts kept in repo
+root (`eval_*.py`); eval CSVs on the Desktop, never in git.
+
 ## 2026-07-08 — Omnivision Phase 2: locked instructions GOVERN the live sweep
 
 **What.** The five LOCKED Studio instructions are appended to the effective sweep prompt as the

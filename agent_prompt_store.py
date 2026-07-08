@@ -48,14 +48,21 @@ _ID = ID_CHAT
 def get_prompt(agent_id: str = ID_CHAT) -> str:
     """The admin prompt override stored in Supabase for `agent_id` ("" => unset).
     Never raises — a missing table / REST blip degrades to no-override so the
-    caller falls back to its built-in / on-disk default."""
+    caller falls back to its built-in / on-disk default.
+
+    The stored value is banner-stripped at load: the mase_deal_sweep row was seeded
+    from the disk file WITH its leading deprecation banner, so the live agent spent
+    weeks reading "this file is deprecated" as its opening line (found 2026-07-09;
+    the row itself was cleaned the same day). Stripping here makes a future
+    paste-with-banner harmless everywhere the override is consumed (worker, API,
+    admin editor)."""
     try:
         row = store._first(
             store._select(T_SETTINGS, filters=[f"id=eq.{agent_id}"], limit=1)
         ) or {}
     except Exception:  # noqa: BLE001 — never block an agent path on this read
         return ""
-    return (row.get("system_prompt") or "")
+    return strip_leading_banner(row.get("system_prompt") or "")
 
 
 def set_prompt(prompt: str, agent_id: str = ID_CHAT) -> str:
@@ -64,7 +71,10 @@ def set_prompt(prompt: str, agent_id: str = ID_CHAT) -> str:
     (endpoint) can surface it."""
     store._upsert(
         T_SETTINGS,
-        {"id": agent_id, "system_prompt": str(prompt or ""), "updated_at": store._now()},
+        # Banner-stripped on save too: a paste that still carries a disk-seed
+        # deprecation banner never lands in the row (see get_prompt docstring).
+        {"id": agent_id, "system_prompt": strip_leading_banner(str(prompt or "")),
+         "updated_at": store._now()},
         on_conflict="id", returning=False,
     )
     return get_prompt(agent_id)

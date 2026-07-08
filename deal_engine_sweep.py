@@ -3872,6 +3872,12 @@ async def analyze_one(
                         parsed["ai"]["day_summary"] = _dsy
                 except Exception as _dse:  # noqa: BLE001 — never block persist
                     print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
+        # PROVENANCE (Omnivision) — stamped on EVERY run (2026-07-09: moved ABOVE the
+        # dry_run split; dry-run/A-B records previously returned WITHOUT the stamp, so
+        # QA couldn't verify which locked Studio versions governed the run).
+        _sv_all = studio_versions()
+        if _sv_all:
+            parsed.setdefault("ai", {})["scoring_studio"] = {"versions": _sv_all, "stamped_at": _today()}
         if dry_run:
             # A/B test mode: return the verdict for comparison, do NOT persist.
             result["record"] = parsed
@@ -3914,11 +3920,7 @@ async def analyze_one(
                               f"kept the stored scored surfaces instead of blanking them", flush=True)
             except Exception as _nce:  # noqa: BLE001 — guard must never block persist
                 print(f"[DEAL-SWEEP] never-clobber check skipped opp={opp_id}: {_nce}", flush=True)
-            # PROVENANCE (Omnivision): stamp which LOCKED instruction versions governed this run
-            # so every output traces to the exact Studio versions ("why did this number move").
-            _sv = studio_versions()
-            if _sv:
-                parsed.setdefault("ai", {})["scoring_studio"] = {"versions": _sv, "stamped_at": _today()}
+            # (provenance stamped above, before the dry_run split)
             await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Surface the stamped engagement state so the dashboard/audit can flag a

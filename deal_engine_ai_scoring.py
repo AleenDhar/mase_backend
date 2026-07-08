@@ -131,11 +131,15 @@ def _model():
     # NO temperature= : claude-sonnet-5 REJECTS it ("temperature is deprecated for this model",
     # HTTP 400) — every AI-scoring call 400'd and silently fell back to deterministic (hybrid).
     # Match the proven sweep model path (deal_engine_sweep._build_model), which passes no temperature.
+    # max_tokens 16000 (was 4000): sonnet-5 is a THINKING model — it emits a thinking block
+    # BEFORE the text. At 4000 the entire budget was consumed by thinking (stop_reason=
+    # max_tokens, ZERO text), so _extract_json found nothing and every deal silently fell
+    # back to hybrid. Verified 2026-07-09: 16000 → ['thinking','text'], clean adapter JSON.
     return CachedChatAnthropic(
         model_name=model_id,
         api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
-        max_tokens=int(os.getenv("DEAL_SCORING_MAX_TOKENS", "4000")),
-        timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "180")),
+        max_tokens=int(os.getenv("DEAL_SCORING_MAX_TOKENS", "16000")),
+        timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "300")),
         max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "4")),
     )
 
@@ -222,6 +226,8 @@ def score_deal_ai(record: dict, *, meetings: Optional[list] = None,
         text = resp.content if isinstance(resp.content, str) else str(resp.content)
         parsed = _extract_json(text)
         if not isinstance(parsed, dict) or parsed.get("_error") or not parsed.get("scores"):
+            print(f"[DEAL-SCORES] ai response unusable (chars={len(text)}) head: {text[:220]!r}",
+                  flush=True)
             raise ValueError("ai scoring returned no usable scores")
         out = _normalize(parsed, packet)
         out["evidence_packet"] = packet

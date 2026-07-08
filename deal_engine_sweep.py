@@ -201,14 +201,59 @@ def _load_prompt() -> str:
     never blocked by the settings read. (Sync httpx; callers offload it to a thread
     via run_in_executor — see _get_agent.)
     """
+    base = ""
     try:
         import agent_prompt_store as _aps
-        override = (_aps.get_prompt(_aps.ID_DEAL_SWEEP) or "").strip()
-        if override:
-            return override
+        base = (_aps.get_prompt(_aps.ID_DEAL_SWEEP) or "").strip()
     except Exception as _e:  # noqa: BLE001 — never block the sweep on the settings read
         print(f"[DEAL-SWEEP] supabase prompt read failed ({_e}); using disk seed", flush=True)
-    return _disk_prompt()
+    return (base or _disk_prompt()) + _studio_block()
+
+
+# --- SCORING VERSION STUDIO (Omnivision) — the LOCKED engine instructions GOVERN the sweep ---
+# The five versioned instructions (extract / win / mom / todo / sum) edited + locked in
+# /omnivision are appended to the effective sweep prompt as the AUTHORITATIVE final section:
+# lock a new version there → the sweep adopts it on the next agent (re)build (TTL / reset),
+# no code deploy. Lock-before-run: only LOCKED versions are ever injected (drafts invisible);
+# fail-OPEN to the previous cached block (or none) so a Supabase blip can't stall sweeps.
+_STUDIO_TTL_S = int(os.getenv("SCORING_STUDIO_TTL_S", "300"))
+_studio_cache: dict = {"at": 0.0, "block": "", "versions": {}}
+
+
+def studio_versions() -> dict:
+    """Engine→version map of the locked instructions the CURRENT prompt carries
+    (provenance — stamped on every swept record)."""
+    return dict(_studio_cache.get("versions") or {})
+
+
+def _studio_block() -> str:
+    now = time.time()
+    if now - _studio_cache["at"] < _STUDIO_TTL_S:
+        return _studio_cache["block"]
+    try:
+        import scoring_studio as _st
+        active = _st.active_locked()
+        parts, versions = [], {}
+        for eng in _st.ENGINES:
+            row = active.get(eng)
+            if not row:
+                continue
+            versions[eng] = row["version"]
+            parts.append(f"### ENGINE — {_st.ENGINE_NAMES[eng]} · LOCKED v{row['version']}\n\n{row['content']}")
+        if parts:
+            head = ("\n\n# SCORING VERSION STUDIO — LOCKED ENGINE INSTRUCTIONS (AUTHORITATIVE)\n"
+                    "The five instructions below are the versioned, LOCKED governing instructions "
+                    "(edited in Omnivision). They are the CURRENT operating law for signal extraction, "
+                    "win-position reading, momentum reading, to-do generation and the 24-hour summary — "
+                    "where anything above conflicts with them, THESE WIN. Provenance: "
+                    + " · ".join(f"{e} v{v}" for e, v in versions.items()) + "\n\n")
+            _studio_cache.update(at=now, block=head + "\n\n".join(parts), versions=versions)
+        else:
+            _studio_cache.update(at=now, block="", versions={})
+    except Exception as _e:  # noqa: BLE001 — keep the previous block; never stall the sweep
+        print(f"[DEAL-SWEEP] studio instructions read failed ({_e}); keeping cached block", flush=True)
+        _studio_cache["at"] = now
+    return _studio_cache["block"]
 
 
 def _prompt_fingerprint(text: str) -> str:
@@ -3763,6 +3808,11 @@ async def analyze_one(
                               f"kept the stored scored surfaces instead of blanking them", flush=True)
             except Exception as _nce:  # noqa: BLE001 — guard must never block persist
                 print(f"[DEAL-SWEEP] never-clobber check skipped opp={opp_id}: {_nce}", flush=True)
+            # PROVENANCE (Omnivision): stamp which LOCKED instruction versions governed this run
+            # so every output traces to the exact Studio versions ("why did this number move").
+            _sv = studio_versions()
+            if _sv:
+                parsed.setdefault("ai", {})["scoring_studio"] = {"versions": _sv, "stamped_at": _today()}
             await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"
         # Surface the stamped engagement state so the dashboard/audit can flag a

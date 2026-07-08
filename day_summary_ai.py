@@ -152,6 +152,23 @@ def main():
             a[tok[2:]] = sys.argv[i + 1]
     sec = C.load_secret()
     base = sec["SUPABASE_URL"].rstrip("/"); key = sec.get("SUPABASE_SERVICE_ROLE_KEY") or sec.get("SUPABASE_SERVICE_KEY")
+    # OMNIVISION: the locked 24-Hour-Summary instruction GOVERNS this generator. The Studio text
+    # leads; the built-in SYS stays appended as the OUTPUT ADAPTER (the strict JSON contract the
+    # UI renders). Fail-open to the built-in on any read error.
+    global SYS
+    try:
+        _rows = requests.get(f"{base}/rest/v1/scoring_instructions",
+                             params={"engine": "eq.sum", "locked": "eq.true",
+                                     "select": "version,content", "order": "created_at.desc", "limit": "1"},
+                             headers={"apikey": key, "Authorization": f"Bearer {key}"},
+                             verify=VERIFY, timeout=20).json()
+        if isinstance(_rows, list) and _rows:
+            SYS = (_rows[0]["content"]
+                   + "\n\n# OUTPUT ADAPTER (engine contract — unchanged): follow the GOVERNING "
+                     "instruction above for WHAT to report; return ONLY the JSON shape below.\n\n" + SYS)
+            print(f"[day-summary] governed by locked 24h-Summary v{_rows[0]['version']} (Omnivision)")
+    except Exception as _e:  # noqa: BLE001
+        print(f"[day-summary] studio instruction read failed ({_e}); using built-in prompt")
     ref = re.search(r"https://([a-z0-9]+)\.supabase\.co", sec["SUPABASE_URL"]).group(1)
     mgmt = f"https://api.supabase.com/v1/projects/{ref}/database/query"; token = sec["SUPABASE_ACCESS_TOKEN"]
     ak = sec.get("ANTHROPIC_API_KEY"); h = {"apikey": key, "Authorization": f"Bearer {key}"}

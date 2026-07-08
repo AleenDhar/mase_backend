@@ -7567,8 +7567,18 @@ async def scoring_studio_lock(engine: str, request: Request):
     except Exception:  # noqa: BLE001
         body = {}
     try:
-        return await _aw(st.lock, engine, body.get("kind") or "minor",
-                         body.get("note") or "", body.get("locked_by") or "")
+        out = await _aw(st.lock, engine, body.get("kind") or "minor",
+                        body.get("note") or "", body.get("locked_by") or "")
+        # ADOPTION: the locked instructions are appended to the sweep's effective prompt —
+        # bust the studio cache + cached agent so THIS process adopts on the very next run
+        # (the worker adopts via its prompt-TTL rebuild, ≤5 min).
+        try:
+            import deal_engine_sweep as des
+            des._studio_cache["at"] = 0.0
+            des.reset()
+        except Exception:  # noqa: BLE001 — lock succeeded; TTL adoption still applies
+            pass
+        return out
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=400)
 

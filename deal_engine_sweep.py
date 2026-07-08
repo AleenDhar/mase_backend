@@ -3696,6 +3696,22 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
             print(f"[DEAL-SCORES] compute failed for {opp_id}: {_se}", flush=True)
+            # EXCEPTION-PATH CARRY-FORWARD (2026-07-09): if the WHOLE scoring block raised,
+            # parsed has NO deal_scores at all — persisting that blanks a good stored score
+            # (the John Deere/Publicis clobber). Carry the prior scores forward, exactly like
+            # the in-band safety nets above.
+            try:
+                _pds = (existing_record.get("ai") or {}).get("deal_scores") if isinstance(existing_record, dict) else None
+                _phl = (_pds or {}).get("headline") or {}
+                if not ((parsed.get("ai") or {}).get("deal_scores")) and _pds and _phl.get("win_position") is not None:
+                    _cf = dict(_pds)
+                    _cf["stale_read"] = True
+                    _cf["headline"] = {**_phl, "stale_read": True}
+                    parsed.setdefault("ai", {})["deal_scores"] = _cf
+                    print(f"[DEAL-SCORES] carried prior scores forward opp={opp_id} "
+                          f"(scoring block raised; never persist scoreless over scored)", flush=True)
+            except Exception:  # noqa: BLE001 — the carry-forward itself must never block persist
+                pass
         try:
             # CRO-readable "Scores & reasons" panel — assembles the existing human-written
             # prose (competitive_position / vulnerabilities / champion_strength /
@@ -3744,10 +3760,21 @@ async def analyze_one(
         if isinstance(parsed.get("ai"), dict):
             try:
                 import deal_engine_ceo as _ceo
+                # People allowlist built HERE, in analyze_one scope (2026-07-09 fix): the old
+                # code referenced `_pkt_allow`, which is a LOCAL of the nested
+                # _apply_living_memory() — so this call raised NameError on EVERY sweep and
+                # the native CEO finalize silently never ran (always fell back to carrying
+                # the prior value). Same recipe as the packet gate's allowlist.
+                _ceo_allow = set(_allowlist)
+                _ceo_allow |= {_val._norm_name(n) for n in _attendees_of(parsed)}
+                _ceo_allow |= set(_active_users or set())
+                _ceo_allow |= {_val._norm_name(n)
+                               for n in _val._sourced_names_in_record(existing_record)}
+                _ceo_allow.discard("")
                 _ceo.finalize_ceo_intervention(
                     parsed, opp, buyer,
                     prior_ai=_prior_ai_full if isinstance(_prior_ai_full, dict) else None,
-                    allowlist=_pkt_allow)
+                    allowlist=_ceo_allow)
             except Exception as _cie:  # noqa: BLE001 — never block persist
                 print(f"[DEAL-SWEEP] ceo-intervention finalize skipped opp={opp_id}: "
                       f"{type(_cie).__name__}: {_cie}", flush=True)
@@ -3794,10 +3821,25 @@ async def analyze_one(
             try:
                 _my_hl = (((parsed.get("ai") or {}).get("deal_scores") or {}).get("headline") or {})
                 if _my_hl.get("win_position") is None:
-                    _cur = await asyncio.get_running_loop().run_in_executor(
-                        None, store.get_record, opp_id)
+                    # Re-read the CURRENT stored record; if that read itself fails or comes
+                    # back empty (Supabase blip mid-race — exactly when this guard matters
+                    # most), fall back to the sweep-start snapshot (existing_record) so the
+                    # guard NEVER silently no-ops. (2026-07-09: John Deere/Publicis were
+                    # blanked by a scoreless persist that slipped through here.)
+                    _cur = None
+                    try:
+                        _cur = await asyncio.get_running_loop().run_in_executor(
+                            None, store.get_record, opp_id)
+                    except Exception as _gre:  # noqa: BLE001
+                        print(f"[DEAL-SWEEP] never-clobber re-read failed opp={opp_id} "
+                              f"({_gre}) — falling back to the sweep-start snapshot", flush=True)
                     _cur_ai = (_cur or {}).get("ai") if isinstance(_cur, dict) else None
                     _cur_hl = (((_cur_ai or {}).get("deal_scores") or {}).get("headline") or {})
+                    if _cur_hl.get("win_position") is None and isinstance(existing_record, dict):
+                        _snap_ai = existing_record.get("ai")
+                        _snap_hl = (((_snap_ai or {}).get("deal_scores") or {}).get("headline") or {})
+                        if _snap_hl.get("win_position") is not None:
+                            _cur_ai, _cur_hl = _snap_ai, _snap_hl
                     if _cur_hl.get("win_position") is not None:
                         for _k in ("deal_scores", "footprints", "day_summary", "account_context"):
                             if _cur_ai.get(_k) is not None and (parsed.get("ai") or {}).get(_k) is None:

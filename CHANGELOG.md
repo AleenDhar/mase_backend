@@ -11,6 +11,28 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Sweep hardening: CEO-finalize NameError + scoreless-persist clobber (John Deere/Publicis)
+
+**What.** Three fixes in `deal_engine_sweep.analyze_one`: (1) **`_pkt_allow` NameError** — the
+native CEO-intervention finalize referenced `_pkt_allow`, a LOCAL of the nested
+`_apply_living_memory()`, so it raised NameError on EVERY sweep and silently fell back to
+carrying the prior CEO value; the allowlist is now built at the call site (`_ceo_allow`, same
+recipe). (2) **Exception-path score carry-forward** — if the whole scoring block raised, the
+record persisted with NO `ai.deal_scores`, blanking a good stored score; the except path now
+carries the prior scores forward (`stale_read` marked). (3) **Never-clobber guard hardened** —
+its persist-time re-read now falls back to the sweep-start snapshot when the re-read fails or
+returns unscored, so the guard can't silently no-op mid-race.
+
+**Why.** During the 2026-07-09 test sweeps, duplicate concurrent runs of the same opp (operator
+re-queues + deploy reclaims + Avoma 429 slowdowns) raced, and a scoreless persist LANDED ON TOP
+of scored records — John Deere (52/88 → None) and Publicis (99/99 → None). The CEO NameError was
+found in the same logs, firing on every deal.
+
+**How to work with it going forward.** A sweep can no longer persist a scoreless record over a
+scored one on ANY path. Known residual (deliberately not fixed here): duplicate sweeps of one opp
+can still run concurrently (no distributed per-opp lease); the guard removes the damage. Avoid
+resetting `working` queue rows while a sweep might still be in flight.
+
 ## 2026-07-09 — Deterministic scorer (now the fallback) — dormant floor + verdict/close/differentiator fixes
 
 **What.** Shipped the local edits to `deal_engine_scoring.py`: (1) **dormant/on-hold floor** — a

@@ -124,7 +124,13 @@ def _dedupe_competitors(comps: Any, index: Optional[list] = None) -> list:
         canon = _resolve_canonical(c.get("name"), idx)
         if canon == "Zycus":
             continue                     # never list ourselves as a competitor
-        norm = re.sub(r"[^a-z0-9]", "", str(c.get("name") or "").lower())
+        # Fallback key for NON-dictionary rows (in-house systems, do-nothing): strip
+        # parenthetical qualifiers first, so "In-house P2P system (status quo)" and
+        # "In-house P2P system (status quo / do-nothing)" merge to one row. Canonical
+        # resolution above still sees the FULL name (a vendor named inside the parens,
+        # e.g. "Do nothing (NetSuite procurement)", must keep resolving to that vendor).
+        base = re.sub(r"\([^)]*\)", " ", str(c.get("name") or ""))
+        norm = re.sub(r"[^a-z0-9]", "", base.lower())
         key = canon or norm or f"__blank{len(order)}"
         if key not in groups:
             e = dict(c)

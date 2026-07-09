@@ -8508,27 +8508,33 @@ async def deal_engine_sweep_trigger(request: Request):
         _trg_src = d.get("source")
         _trg_src = _trg_src.strip() if isinstance(_trg_src, str) and _trg_src.strip() else "manual"
         if sweep.manual_only():
-            # MANUAL-ONLY TEST PAUSE: automated triggers (salesforce_trigger / scheduled)
-            # are DROPPED; an explicit manual trigger runs on THIS web process
-            # (trigger_opp_async), bounded by DEAL_TRIGGER_CONCURRENCY.
+            # MANUAL-ONLY: automated triggers (salesforce_trigger / scheduled) are DROPPED; an
+            # explicit MANUAL trigger is ENQUEUED as a durable `waiting` row and drained by the
+            # mase-worker fleet (DEAL_SWEEP_CONCURRENCY per worker × the autoscaled fleet) — so
+            # many manual sweeps run in PARALLEL instead of one-by-one on the web tier, and a
+            # task restart can't silently lose them (worker.py reclaims claimed-but-unfinished
+            # rows). enqueue_trigger independently re-checks manual_only, so automated sources
+            # stay blocked even here.
             #
-            # ROLLED BACK 2026-07-09 (same day it shipped). Routing manual triggers to
-            # enqueue_trigger made them crash-safe, but the mase-worker fleet was running an
-            # OLDER task-definition revision: its runs logged model `claude-sonnet-4-5` (the api
-            # logs `claude-sonnet-5`) and it wrote deal_records rows with `ai.deal_scores = null`,
-            # WIPING good governed scores. NORTHPORT (27/8) and Robert Bosch (54/49) were both
-            # clobbered to null before the queue was halted. Correctness beats durability: the
-            # api tier runs the current image and scores correctly.
-            #
-            # Re-enable the durable path ONLY after verifying the running mase-worker task is on
-            # the current task-definition revision — check that a worker run logs
-            # model=claude-sonnet-5 and writes a non-null ai.deal_scores.
+            # HISTORY (2026-07-09): this path briefly wrote null deal_scores because the running
+            # mase-worker was on an OLDER image (model=claude-sonnet-4-5). ROOT CAUSE was a
+            # half-rolled deploy, not the routing — deploy.yml rolls mase-worker to the new image
+            # on every deploy, so a clean deploy cures it. Re-enabled after that deploy + a
+            # single-deal canary confirming a worker run logs claude-sonnet-5 and writes non-null
+            # deal_scores. If the fleet ever needs to run ONLY on the api again, flip
+            # DEAL_SWEEP_USE_QUEUE=false (in-process fallback below).
             if _trg_src != "manual":
                 return JSONResponse(
                     {"status": "skipped", "reason": "manual-only mode: automated sweeping is "
                      "paused (DEAL_SWEEP_MANUAL_ONLY)", "source": _trg_src, "count": len(ids)},
                     status_code=202)
-            results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
+            if sweep.queue_enabled():
+                results = {oid: await sweep.enqueue_trigger(agent_manager, oid, source="manual")
+                           for oid in ids}
+            else:
+                # Emergency in-process fallback (DEAL_SWEEP_USE_QUEUE=false). Not crash-safe;
+                # bounded by DEAL_TRIGGER_CONCURRENCY on the api task.
+                results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
         elif sweep.queue_enabled():
             # Queue mode: enqueue a durable `waiting` row per opp; the separate
             # worker.py drains it. The web process does NOT run the analysis, so

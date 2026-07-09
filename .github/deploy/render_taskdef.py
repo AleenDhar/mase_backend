@@ -88,14 +88,15 @@ API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,
     # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog.
-    # DISABLED AGAIN 2026-07-09 — the running mase-worker task was on an OLDER task-definition
-    # revision and wrote deal_records rows with `ai.deal_scores = null`, wiping good scores
-    # (NORTHPORT, Robert Bosch). Nothing enqueues now that the manual trigger runs in-process,
-    # but leaving the autoscaler on would keep that stale worker alive at SWEEP_AUTOSCALE_MIN=1.
-    # Re-enable only after confirming a worker run logs model=claude-sonnet-5 AND writes a
-    # non-null ai.deal_scores.
-    "SWEEP_AUTOSCALE_ENABLED": "false",
-    "SWEEP_AUTOSCALE_MAX": "6",
+    # RE-ENABLED 2026-07-09 (user-directed: run the fleet in parallel). Manual triggers now
+    # enqueue, so the fleet must scale up off 0 to drain them. THIS deploy also rolls mase-worker
+    # to the current image (deploy.yml "Deploy sweep worker"), which cures the stale-image null-
+    # score bug that forced the earlier rollback. desired = clamp(ceil(backlog / 8), 1, MAX).
+    # MAX=8 → up to 8 workers × DEAL_SWEEP_CONCURRENCY=8 = 64 parallel slots (>> the 20 the user
+    # wants). Automated CDC sweeping stays OFF (DEAL_SWEEP_MANUAL_ONLY=true) — only explicit
+    # manual triggers fill the queue.
+    "SWEEP_AUTOSCALE_ENABLED": "true",
+    "SWEEP_AUTOSCALE_MAX": "8",
     # KILL the nightly scheduled discovery + reconcile AI sweeps — the
     # `scheduled_discovery` / `scheduled_reconcile` burn. This gates sub-job D of
     # `_run_nightly_sf_pull` (server.py:6099), the ONLY code that produces those two

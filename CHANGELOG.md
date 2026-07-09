@@ -11,6 +11,30 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Parallel fleet: manual triggers → worker queue, autoscaler on (re-applied)
+
+**What.** Manual sweep triggers ENQUEUE again (durable `sweep_queue`, drained by the mase-worker
+fleet) and `SWEEP_AUTOSCALE_ENABLED=true` with `SWEEP_AUTOSCALE_MAX=8` → up to 8 workers ×
+`DEAL_SWEEP_CONCURRENCY=8` = **64 parallel slots**. `DEAL_SWEEP_MANUAL_ONLY` stays `true`
+(automated CDC/scheduled sweeping remains OFF — only explicit manual triggers fill the queue).
+
+**Why.** The fleet was running ~5-wide in-process on the api because the earlier durable-queue
+routing was rolled back after the mase-worker wrote null `deal_scores`. Root cause was a
+half-rolled deploy leaving the worker on an OLD image (model=claude-sonnet-4-5), NOT the routing.
+`deploy.yml` rolls mase-worker to the current image on every deploy, so a clean deploy cures it.
+User wants the fleet run in parallel (≥20 at once); the worker fleet is the right engine for that.
+
+**How to work with it going forward.**
+- After THIS deploy, before pointing the fleet at the queue, run a 1-deal CANARY: enqueue one opp,
+  let a worker claim it, confirm the run logs `model=claude-sonnet-5` and writes a NON-NULL
+  `ai.deal_scores`. Only then fan out the full fleet. (This is the check whose absence nulled
+  Bosch/NORTHPORT earlier today.)
+- Parallelism now comes from workers, so the api no longer runs sweeps — its 4 GB is for UI +
+  enqueue only; the 16 GB worker runs the 8 concurrent sweeps.
+- To pause everything: `SWEEP_AUTOSCALE_ENABLED=false` (fleet drains then scales to 0).
+
+---
+
 ## 2026-07-09 — ROLLBACK: manual triggers back in-process (stale worker wiped scores)
 
 **What.** Reverted the same-day change that routed manual sweep triggers through the durable

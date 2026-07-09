@@ -46,6 +46,18 @@ def _num(v: Any) -> Optional[float]:
         return None
 
 
+def _within_90d(as_of: Any) -> bool:
+    """True if a watch's last-proof date (`as_of`) is within the trailing 90 days.
+    A watch with no date (legacy) is kept — we can't prove it's stale."""
+    if not as_of:
+        return True
+    try:
+        d = date.fromisoformat(str(as_of)[:10])
+    except (TypeError, ValueError):
+        return True
+    return (date.today() - d).days <= 90
+
+
 def _is_forecasted(forecast_category: Any) -> bool:
     try:
         import deal_engine_qi as _qi
@@ -160,11 +172,27 @@ def finalize_ceo_intervention(parsed: dict, opp: dict, buyer: Optional[dict],
             t = r.get("type")
             if t == "support" or t not in seen:
                 dedup.append(r); seen.add(t)
+        # RECENCY WINDOW (2026-07-09, user-directed): the CEO column stays anchored to the LAST
+        # 90 DAYS. Carried watches still persist across sweeps (a re-sweep never silently wipes a
+        # live signal), but once a watch's last proof (`as_of`) is >90 days old it is stale
+        # supervision — drop it so the CEO view isn't cluttered with months-old items. Fresh
+        # support/native watches carry today's `as_of` and always survive; a legacy watch with no
+        # date is kept (can't prove it's stale). This bounds the earlier "watches persist until
+        # the deal dies or a human clears it" durability to a rolling 90-day horizon.
+        dedup = [r for r in dedup if _within_90d(r.get("as_of"))]
         needed = bool(dedup)
         severity = "high" if any(r.get("severity") == "high" for r in dedup) else "medium"
+        # HEADLINE `summary` for the CEO column (was absent -> the UI/drawer rendered blank).
+        # The support reason wins when the CEO must ACT; otherwise the most severe live watch.
+        summary = ""
+        if dedup:
+            _top = sorted(dedup, key=lambda r: (r.get("type") == "support",
+                                                r.get("severity") == "high"), reverse=True)[0]
+            summary = (_top.get("summary") or _top.get("detail") or "")[:220]
         ai["ceo_intervention"] = {"needed": needed,
                                   "severity": severity if needed else None,
                                   "needs_action": bool(support_reason),
+                                  "summary": summary,
                                   "reasons": dedup, "win": win, "mom": mom,
                                   "source": "sweep", "generated_at": gen}
 

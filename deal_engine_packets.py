@@ -54,6 +54,101 @@ _MAX_SLUG = 60
 
 
 # ---------------------------------------------------------------------------
+# Vendor de-dup — resolve competitor rows to canonical Vendor-Dictionary names
+# ---------------------------------------------------------------------------
+_VENDOR_INDEX_CACHE: Optional[list] = None
+
+
+def _vendor_index() -> list:
+    """[(normalized_token, canonical, token_len)] from the locked Vendor Dictionary,
+    longest token first. Cached per process; empty list if the dict can't be read."""
+    global _VENDOR_INDEX_CACHE
+    if _VENDOR_INDEX_CACHE is not None:
+        return _VENDOR_INDEX_CACHE
+    idx: list = []
+    try:
+        import json as _json
+        import scoring_studio as _st
+        row = (_st.active_locked() or {}).get("vendordict")
+        data = _json.loads(row["content"]) if row and row.get("content") else {}
+        for v in data.get("vendors", []):
+            canon = (v.get("canonical") or "").strip()
+            if not canon:
+                continue
+            for nm in [canon] + list(v.get("aliases") or []):
+                tok = re.sub(r"[^a-z0-9]", "", str(nm).lower())
+                if tok:
+                    idx.append((tok, canon, len(tok)))
+        idx.sort(key=lambda x: x[2], reverse=True)
+    except Exception:  # noqa: BLE001 — dedup is best-effort; never break the sweep
+        idx = []
+    _VENDOR_INDEX_CACHE = idx
+    return idx
+
+
+def _resolve_canonical(name: Any, index: Optional[list] = None) -> Optional[str]:
+    """Canonical vendor name for a free-text competitor label, or None. Exact match
+    first; then a >=5-char alias appearing anywhere in the normalized name, or a
+    >=4-char alias the name starts with. Short aliases (GP/AX/S4) match only exactly."""
+    idx = index if index is not None else _vendor_index()
+    norm = re.sub(r"[^a-z0-9]", "", str(name or "").lower())
+    if not norm or not idx:
+        return None
+    for tok, canon, _L in idx:
+        if norm == tok:
+            return canon
+    for tok, canon, L in idx:            # already longest-first
+        if L >= 5 and tok in norm:
+            return canon
+        if L >= 4 and norm.startswith(tok):
+            return canon
+    return None
+
+
+_THREAT_RANK = {"high": 3, "medium": 2, "low": 1, "dormant": 0, "none": 0}
+
+
+def _dedupe_competitors(comps: Any, index: Optional[list] = None) -> list:
+    """Merge competitor rows that resolve to the SAME canonical vendor (living-memory
+    carry-forward can list one rival under two spellings). Keeps the strongest threat,
+    the richest how_we_win/quote, the most recent date, renders the canonical name, and
+    drops any row that resolves to Zycus itself. Non-vendor rows de-dupe by name only."""
+    if not isinstance(comps, list):
+        return []
+    idx = index if index is not None else _vendor_index()
+    groups: dict = {}
+    order: list = []
+    for c in comps:
+        if not isinstance(c, dict):
+            continue
+        canon = _resolve_canonical(c.get("name"), idx)
+        if canon == "Zycus":
+            continue                     # never list ourselves as a competitor
+        norm = re.sub(r"[^a-z0-9]", "", str(c.get("name") or "").lower())
+        key = canon or norm or f"__blank{len(order)}"
+        if key not in groups:
+            e = dict(c)
+            if canon:
+                e["name"] = canon
+            groups[key] = e
+            order.append(key)
+        else:
+            g = groups[key]
+            if _THREAT_RANK.get((c.get("threat_level") or "").lower(), 0) > \
+               _THREAT_RANK.get((g.get("threat_level") or "").lower(), 0):
+                g["threat_level"] = c.get("threat_level")
+                g["status"] = c.get("status") or g.get("status")
+            for f in ("how_we_win", "quote", "summary", "sentiment"):
+                if len(str(c.get(f) or "")) > len(str(g.get(f) or "")):
+                    g[f] = c.get(f)
+            if str(c.get("date") or "") > str(g.get("date") or ""):
+                g["date"] = c.get("date")
+            if canon:
+                g["name"] = canon
+    return [groups[k] for k in order]
+
+
+# ---------------------------------------------------------------------------
 # Keys & value comparison
 # ---------------------------------------------------------------------------
 
@@ -822,7 +917,11 @@ def project_into_ai(agent_ai: dict, packets: list, today: Optional[str] = None) 
     ai["stakeholder_map"] = {"items": _rank_stakeholders(stake)[:_stakeholder_cap()]}
 
     cp = dict(ai.get("competitive_position") or {})
-    cp["competitors"] = comps
+    # VENDOR DE-DUP (2026-07-09): living-memory carry-forward can re-introduce the SAME rival
+    # under two spellings ("Zip HQ" + "ZipHQ", or NetSuite three ways). Resolve each name to its
+    # canonical Vendor-Dictionary entry and merge duplicates so the competitive read shows ONE
+    # row per real competitor.
+    cp["competitors"] = _dedupe_competitors(comps)
     ai["competitive_position"] = cp
 
     ai["vulnerabilities"] = {"items": vulns}

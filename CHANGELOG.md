@@ -11,6 +11,40 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Manual sweeps are durable + 8-wide (OOM incident fix)
+
+**What.** A manual `POST /api/deal-engine/sweep/trigger` no longer runs fire-and-forget on
+the web tier. Under `DEAL_SWEEP_MANUAL_ONLY=true` it is now **enqueued** as a durable
+`waiting` row and drained by the `mase-worker` fleet (`DEAL_SWEEP_CONCURRENCY=8` per worker,
+autoscaled to `SWEEP_AUTOSCALE_MAX=6`). Automated sweeping (Salesforce CDC, scheduled) stays
+**paused** — the route still drops non-manual sources, and `enqueue_trigger` re-checks
+`manual_only()` independently. Task sizing is now per-role: api `1024/4096`, worker
+`4096/16384` (was a shared `1024/2048`). `DEAL_TRIGGER_CONCURRENCY=8` set for the
+in-process emergency fallback (`DEAL_SWEEP_USE_QUEUE=false`), which defaulted to 3.
+
+**Why.** 2026-07-09 ~14:13 UTC: seven manual triggers were fired for the forecasted-deal
+set. Two completed (SAMI 10.4m, Allstate 12.8m); the other five died in the same instant.
+The api container (1 vCPU / 2 GB) was running three concurrent sweeps — each holding the
+locked win+mom+sweep engines plus the full vendordict/playbook reference bodies (~58K) and
+a deal's Avoma transcripts — and was OOM-killed. Because those sweeps were
+`asyncio.create_task` coroutines on the web process, they died with the event loop:
+`analyze_one`'s `finally` never ran, so **no `deal_trigger_runs` row, no error, no retry**,
+and the `_trigger_inflight` claim vanished with the process. The deals silently never
+updated, and nothing in the system could tell they had failed. `worker.py` already solves
+this — it reclaims claimed-but-unfinished rows back to `waiting` on restart — the trigger
+route just never used it.
+
+**How to work with it going forward.**
+- A manual trigger returns `accepted` / `already_queued`; watch `deal_sweep_queue`, not an
+  in-memory claim. A run that finishes (success OR failure) always writes `deal_trigger_runs`.
+- Silence is no longer possible: a killed worker leaves its row reclaimable.
+- `DEAL_SWEEP_TIMEOUT_S=2400` (40m) is deliberate — it converts a wedged sweep into a
+  recorded `failed` row instead of a slot held forever. Do not remove it.
+- Do NOT set `DEAL_SWEEP_MANUAL_ONLY=false` to get parallelism; that also resumes automated
+  CDC sweeping. Parallelism now comes from the worker fleet under manual-only.
+
+---
+
 ## 2026-07-09 — sf-report-watch: Salesforce report → VIBE project dispatcher (new infra)
 
 **What.** New scheduled Lambda `infra/sf-report-watch/lambda_function.py` (+ state

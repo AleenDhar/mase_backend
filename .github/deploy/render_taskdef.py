@@ -27,6 +27,16 @@ TASK_ROLE = f"arn:aws:iam::{ACCOUNT}:role/mase-ecs-task-role"
 LOG_GROUP = "/ecs/mase-service"
 CPU = "1024"
 MEMORY = "2048"
+# PER-ROLE SIZING (2026-07-09). One shared 1 vCPU / 2 GB box for BOTH roles was the root
+# cause of the 2026-07-09 14:13 UTC incident: three concurrent trigger sweeps (each holding
+# the locked win+mom+sweep engines plus the full vendordict/playbook reference bodies, ~58K,
+# and a deal's Avoma transcripts) exhausted the 2 GB container. ECS OOM-killed the api task
+# and every in-flight `asyncio.create_task` sweep died with it — no deal_trigger_runs row, no
+# error, no retry (see the durable-queue fix in server.py's trigger route). The worker runs
+# DEAL_SWEEP_CONCURRENCY=8 of those same sweeps, so it needs materially more headroom than
+# the api. Fargate valid pairs: cpu 1024 -> 2048..8192 MB; cpu 4096 -> 8192..30720 MB.
+API_CPU, API_MEMORY = "1024", "4096"        # api no longer runs sweeps; headroom for 17 MCP servers
+WORKER_CPU, WORKER_MEMORY = "4096", "16384"  # 8 concurrent sweeps x ~1 GB peak + base
 PORT = 5000
 
 # ---- DURABLE ENV (the single source of truth) -------------------------------
@@ -62,22 +72,26 @@ _SWEEP_TUNING = {
     # a deal if the AI call fails or a loss is a hard fact, so a deal is never left unscored.
     "DEAL_ENGINE_AI_SCORING": "true",
     "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-5",
-    # MANUAL-ONLY TEST PAUSE (2026-07-09, user-directed): ALL automated sweeping is OFF —
-    # Salesforce-CDC triggers are dropped at enqueue, whole-book/scheduled runs are refused,
-    # and the mase-worker fleet IDLES (never drains the queue). Only an explicit per-deal
-    # MANUAL trigger runs, and it runs SYNCHRONOUSLY on the api (no worker). Shared by api +
-    # worker via _SWEEP_TUNING. Set "false" (or delete this line) + re-enable the autoscaler
-    # to resume automated sweeping.
+    # MANUAL-ONLY TEST PAUSE stays ON: Salesforce-CDC and scheduled sweeps are still DROPPED
+    # (server.py's trigger route refuses them; enqueue_trigger blocks them independently).
+    # What CHANGED 2026-07-09: a MANUAL trigger no longer runs fire-and-forget on the web tier
+    # — it is ENQUEUED as a durable `waiting` row and drained by the mase-worker fleet
+    # (DEAL_SWEEP_CONCURRENCY=8 each, autoscaled to SWEEP_AUTOSCALE_MAX). So manual sweeps are
+    # now crash-safe (worker.py reclaims claimed-but-unfinished rows on restart) AND 8-wide,
+    # while automated sweeping remains paused. Set "false" to resume automated sweeping.
     "DEAL_SWEEP_MANUAL_ONLY": "true",
+    # The web-tier trigger semaphore (only reached if DEAL_SWEEP_USE_QUEUE=false — the
+    # emergency in-process fallback). Was an unset default of 3.
+    "DEAL_TRIGGER_CONCURRENCY": "8",
 }
 API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,
     # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog.
-    # DISABLED 2026-07-09 alongside DEAL_SWEEP_MANUAL_ONLY — with automated sweeping paused
-    # the worker must stay at 0 and NOT be auto-scaled back up. Re-enable ("true") when
-    # resuming automated sweeping.
-    "SWEEP_AUTOSCALE_ENABLED": "false",
+    # RE-ENABLED 2026-07-09 — manual triggers now enqueue, so the fleet must scale up off 0
+    # to drain them. Automated sweeping stays paused (DEAL_SWEEP_MANUAL_ONLY=true), so the
+    # only thing that fills the queue is an explicit manual trigger. Backlog 0 -> scales home.
+    "SWEEP_AUTOSCALE_ENABLED": "true",
     "SWEEP_AUTOSCALE_MAX": "6",
     # KILL the nightly scheduled discovery + reconcile AI sweeps — the
     # `scheduled_discovery` / `scheduled_reconcile` burn. This gates sub-job D of
@@ -114,7 +128,7 @@ def _secrets_block() -> list:
     return out
 
 
-def _td(family, name, image, env, command=None, with_health=True):
+def _td(family, name, image, env, command=None, with_health=True, cpu=None, memory=None):
     container = {
         "name": name, "image": image, "essential": True, "stopTimeout": 120,
         "environment": [{"name": k, "value": v} for k, v in env.items()],
@@ -132,16 +146,18 @@ def _td(family, name, image, env, command=None, with_health=True):
             "interval": 30, "timeout": 5, "retries": 3, "startPeriod": 60}
     return {
         "family": family, "networkMode": "awsvpc", "requiresCompatibilities": ["FARGATE"],
-        "cpu": CPU, "memory": MEMORY, "executionRoleArn": EXEC_ROLE, "taskRoleArn": TASK_ROLE,
+        "cpu": cpu or CPU, "memory": memory or MEMORY,
+        "executionRoleArn": EXEC_ROLE, "taskRoleArn": TASK_ROLE,
         "containerDefinitions": [container],
     }
 
 
 def main():
     image, out_api, out_worker = sys.argv[1], sys.argv[2], sys.argv[3]
-    api = _td("mase-api", "mase-api", image, API_ENV)
+    api = _td("mase-api", "mase-api", image, API_ENV, cpu=API_CPU, memory=API_MEMORY)
     worker = _td("mase-worker", "mase-worker", image, WORKER_ENV,
-                 command=["python", "worker.py"], with_health=False)
+                 command=["python", "worker.py"], with_health=False,
+                 cpu=WORKER_CPU, memory=WORKER_MEMORY)
     with open(out_api, "w") as f:
         json.dump(api, f, indent=2)
     with open(out_worker, "w") as f:

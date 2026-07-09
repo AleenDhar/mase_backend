@@ -1103,6 +1103,7 @@ def _map_opps(rows: list[dict]) -> list[dict]:
             "amount": o.get("Amount"),
             "close_date": o.get("CloseDate"),
             "geography": o.get("Geography__c"),
+            "billing_country": _sf_name(o, "Account", "BillingCountry"),
             "next_step": o.get("Next_Step__c"),
             "ais_score": o.get("AIS_Score__c"),
             "ais_status": o.get("AIS_Status__c"),
@@ -1134,7 +1135,7 @@ def _map_opps(rows: list[dict]) -> list[dict]:
 _OPP_SELECT_FIELDS = (
     "Id, Name, Account.Name, Owner.Name, OwnerId, "
     "Owner.ManagerId, Owner.Manager.Name, StageName, ForecastCategoryName, "
-    "Amount, CloseDate, Geography__c, "
+    "Amount, CloseDate, Geography__c, Account.BillingCountry, "
     # AIS_Score__c / AIS_Status__c / AIS_Why__c REMOVED 2026-07-09: they do NOT exist on
     # Opportunity in the Zycus org, so Salesforce 400'd the ENTIRE query (INVALID_FIELD
     # 'No such column AIS_Score__c') — every _authoritative_opp / _enrich_opp_ids /

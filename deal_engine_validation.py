@@ -353,6 +353,7 @@ SF_FACT_OPP_KEYS: dict[str, str] = {
     "last_modified_date": "last_modified_date",
     "last_activity_date": "last_activity_date",
     "qualified_date": "qualified_date",
+    "billing_country": "billing_country",
 }
 
 

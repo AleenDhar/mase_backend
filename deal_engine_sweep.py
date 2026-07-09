@@ -3697,17 +3697,41 @@ async def analyze_one(
             # the sweep. Emits the SAME _scores shape (headline.win_position/... + per-score
             # contributions) the carry-forward and build_cro_panel below consume.
             _scores = None
+            _fallback_reason = None
             try:
                 import deal_engine_ai_scoring
                 if deal_engine_ai_scoring.ai_scoring_enabled():
                     _scores = deal_engine_ai_scoring.score_deal_ai(parsed)
+                else:
+                    _fallback_reason = "ai scoring disabled (DEAL_ENGINE_AI_SCORING off)"
             except Exception as _aie:  # noqa: BLE001 — AI scoring is best-effort
                 print(f"[DEAL-SCORES] AI scorer failed opp={opp_id}, using deterministic: {_aie}", flush=True)
                 _scores = None
-            # Flag OFF, or a degenerate AI return -> deterministic compute (unchanged behaviour).
+                _fallback_reason = f"ai scorer raised: {type(_aie).__name__}: {str(_aie)[:160]}"
+            # Flag OFF, or a degenerate AI return -> deterministic compute — but NEVER silently
+            # (2026-07-09, Alghanim): the fallback previously wore the analyst's badge with no
+            # stamp (factor_source=hybrid, ai_scoring_error=None) — a wrong keyword score shipped
+            # looking normal. Every fallback now stamps scoring_degraded + fallback_reason and
+            # logs LOUDLY, so a degraded score is visible at a glance and greppable in CloudWatch.
             if not (isinstance(_scores, dict)
                     and (_scores.get("headline") or {}).get("win_position") is not None):
+                if _fallback_reason is None:
+                    _fallback_reason = ((_scores or {}).get("ai_scoring_error")
+                                        if isinstance(_scores, dict) else None) \
+                        or "ai scorer returned no usable headline"
                 _scores = deal_engine_scoring.compute_deal_scores(parsed)
+                if isinstance(_scores, dict):
+                    _scores["scoring_degraded"] = True
+                    _scores["fallback_reason"] = str(_fallback_reason)[:220]
+                print(f"[DEAL-SCORES] DEGRADED opp={opp_id} — deterministic fallback scored this "
+                      f"deal ({_fallback_reason})", flush=True)
+            elif isinstance(_scores, dict) and _scores.get("ai_scoring_error"):
+                # score_deal_ai's INTERNAL fallback (it returns det scores + the error string):
+                # normalize to the same loud shape.
+                _scores["scoring_degraded"] = True
+                _scores["fallback_reason"] = str(_scores.get("ai_scoring_error"))[:220]
+                print(f"[DEAL-SCORES] DEGRADED opp={opp_id} — internal fallback "
+                      f"({_scores.get('ai_scoring_error')})", flush=True)
             # SAFETY NET — a sweep that read NOTHING (zero Avoma calls AND no engagement
             # footprints AND no CRM evidence) cannot produce a trustworthy score; left alone
             # it writes a confident-but-wrong LOW score over a good one — the "a strong deal
@@ -3769,8 +3793,10 @@ async def analyze_one(
                 try:
                     _forced = deal_engine_scoring.compute_deal_scores(parsed)
                     if isinstance(_forced, dict) and (_forced.get("headline") or {}).get("win_position") is not None:
+                        _forced["scoring_degraded"] = True
+                        _forced["fallback_reason"] = "husk-floor: no usable score from any path; forced deterministic"
                         _scores = _forced
-                        print(f"[DEAL-SCORES] husk-floor opp={opp_id} — record had no usable score "
+                        print(f"[DEAL-SCORES] DEGRADED husk-floor opp={opp_id} — record had no usable score "
                               f"(and prior was scoreless); forced a fresh deterministic headline", flush=True)
                 except Exception as _hfe:  # noqa: BLE001 — the floor must never block persist
                     print(f"[DEAL-SCORES] husk-floor failed opp={opp_id}: {_hfe}", flush=True)

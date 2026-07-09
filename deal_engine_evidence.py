@@ -189,7 +189,13 @@ def build_evidence_packet(record: dict, *, meetings: Optional[list[dict]] = None
             "forecast_category": hard.get("forecast_category"),
             "close_date": hard.get("close_date"),
             "days_to_close": _days_until(hard.get("close_date")),
-            "next_step": _strip_html(hard.get("next_step"))[:600],
+            # 2026-07-09 (S&C/SAMI CRO-judge): 600 chars TRUNCATED the forward plan — S&C's four
+            # booked 13-17 Jul demos and SAMI's 2/7-Jul buyer proposal-chases live in Next Step /
+            # Next Step History and were CUT, so the momentum scorer said "no dated future meeting"
+            # and under-read active deals by ~15-24. Raise to 2400; append the history trail.
+            "next_step": _strip_html(hard.get("next_step"))[:2400],
+            "next_step_history": (_strip_html(((sf_activities or {}).get("next_step_history")) or "")[:1800]
+                                  or None),
             "last_activity_date": hard.get("last_activity_date") or fp.get("general_last_activity"),
         },
         "meetings": _meetings_block(opp_id, meetings),
@@ -207,12 +213,29 @@ def build_evidence_packet(record: dict, *, meetings: Optional[list[dict]] = None
     # a two-way touch). The stored footprint buyer_touches / last_buyer_touch are deliberately
     # NOT surfaced — they were the bug (0 despite many meetings; last touch defaulted to today).
     mt = packet["meetings"]
+    _eng = fp.get("engagement") or {}
     packet["buyer_engagement"] = {
         "meeting_days_30d": mt["count_30d"],
         "meeting_days_60d": mt["count_60d"],
         "days_since_last_meeting": mt["days_since_last"],
         "sfdc_email_touches_60d": fp.get("buyer_touches_60d"),
+        "buyer_touches_30d": fp.get("buyer_touches_30d"),
         "rep_only": fp.get("rep_only"),
+        # 2026-07-09: the measured engagement DEPTH the momentum scorer was flying blind to —
+        # its own points read (type × who × recency) + the forward calendar. Without these the
+        # AI scorer said "no future meeting" while demos were booked (S&C under-read 92->68).
+        "engagement_points_60d": _eng.get("points_60d"),
+        "next_scheduled_meeting": mt.get("next_scheduled"),
+    }
+    # FORWARD MOMENTUM (2026-07-09): explicit forward-motion signals so the scorer credits a
+    # LIVE advancing plan (booked demos, a dated buyer milestone) instead of chipping momentum
+    # for "no future meeting" when the calendar is full. Sourced from the datalake future rows
+    # + the (now un-truncated) next step; the scorer still weighs BUYER-accepted forward dates,
+    # not rep intentions.
+    packet["forward_momentum"] = {
+        "next_scheduled_meeting": mt.get("next_scheduled"),
+        "has_future_calendar": bool(mt.get("next_scheduled")),
+        "engagement_points_60d": _eng.get("points_60d"),
     }
 
     # Differentiation / fit signals already produced by the sweep (Win §7 factor 1 +

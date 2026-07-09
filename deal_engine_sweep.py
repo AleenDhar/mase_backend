@@ -3756,6 +3756,24 @@ async def analyze_one(
                 _scores = dict(_prior_ds)
                 print(f"[PIN] opp={opp_id} pinned — carried prior scores/panel forward "
                       f"(sweep did not overwrite)", flush=True)
+            # NEVER PERSIST A SCORELESS HEADLINE (2026-07-09, Publicis vibe Run Now): the
+            # carry-forwards above ALL key on `_prior_ok` (prior has a win_position). When a
+            # record is already a HUSK (prior scores null, e.g. from an earlier race) AND this
+            # sweep's compute came back empty/errored, every guard no-ops and the deal PERSISTS
+            # with headline=null forever — the UI then shows its client-side 94/62 filler + no
+            # reasons. HARD FLOOR: if we still have no usable headline, force one final
+            # deterministic compute on THIS sweep's record (it always returns a headline, even
+            # for a thin/Salesforce-only deal), so a deal can never get stuck scoreless.
+            _fin_hl = (_scores or {}).get("headline") if isinstance(_scores, dict) else None
+            if not (isinstance(_fin_hl, dict) and _fin_hl.get("win_position") is not None) and not _pinned:
+                try:
+                    _forced = deal_engine_scoring.compute_deal_scores(parsed)
+                    if isinstance(_forced, dict) and (_forced.get("headline") or {}).get("win_position") is not None:
+                        _scores = _forced
+                        print(f"[DEAL-SCORES] husk-floor opp={opp_id} — record had no usable score "
+                              f"(and prior was scoreless); forced a fresh deterministic headline", flush=True)
+                except Exception as _hfe:  # noqa: BLE001 — the floor must never block persist
+                    print(f"[DEAL-SCORES] husk-floor failed opp={opp_id}: {_hfe}", flush=True)
             if _scores:
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist

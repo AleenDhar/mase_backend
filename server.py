@@ -2211,7 +2211,13 @@ _LLM_PRICING: Dict[str, tuple] = {
     "claude-opus-4-7":     (5.0,   25.0),   # Opus 4.7: $5/$25 (released Apr 16 2026)
     "claude-opus-4":       (5.0,   25.0),   # Opus 4.6: $5/$25
     "claude-3-opus":       (15.0,  75.0),   # Claude 3 Opus (legacy)
-    "claude-sonnet-4":     (3.0,   15.0),   # Sonnet 4.6: $3/$15
+    # Sonnet 5: $3/$15 list. NOTE an introductory $2/$10 applies through 2026-08-31, so a
+    # logged cost is an UPPER BOUND until then. Added 2026-07-09: this key was MISSING, and
+    # because `"claude-sonnet-4" in "claude-sonnet-5"` is False, _calculate_llm_cost fell
+    # through to `return 0.0` — every sweep on DEAL_ENGINE_SWEEP_MODEL=anthropic:claude-sonnet-5
+    # logged cost_usd=NULL. The cost dashboard reported those runs as FREE.
+    "claude-sonnet-5":     (3.0,   15.0),
+    "claude-sonnet-4":     (3.0,   15.0),   # Sonnet 4.6 / 4.5: $3/$15
     "claude-3-5-sonnet":   (3.0,   15.0),
     "claude-3-sonnet":     (3.0,   15.0),
     "claude-haiku-4":      (1.0,   5.0),    # Haiku 4.5: $1/$5
@@ -8503,29 +8509,26 @@ async def deal_engine_sweep_trigger(request: Request):
         _trg_src = _trg_src.strip() if isinstance(_trg_src, str) and _trg_src.strip() else "manual"
         if sweep.manual_only():
             # MANUAL-ONLY TEST PAUSE: automated triggers (salesforce_trigger / scheduled)
-            # are DROPPED. An explicit manual trigger is ENQUEUED as a durable `waiting` row
-            # and drained by the mase-worker fleet.
+            # are DROPPED; an explicit manual trigger runs on THIS web process
+            # (trigger_opp_async), bounded by DEAL_TRIGGER_CONCURRENCY.
             #
-            # It used to call trigger_opp_async — a fire-and-forget asyncio.create_task on
-            # THIS web process. On 2026-07-09 the api task was OOM-killed mid-run and all five
-            # in-flight sweeps died with the event loop: no deal_records write, no
-            # deal_trigger_runs row (analyze_one's finally never ran), no error, no retry. The
-            # deals simply never updated, and the in-flight claim vanished with the process, so
-            # nothing could even tell they had died. Queue mode is crash-safe: worker.py
-            # reclaims claimed-but-unfinished rows back to `waiting` on restart, and the row
-            # itself is the audit trail. enqueue_trigger independently re-checks manual_only,
-            # so automated sources stay blocked even on this path.
+            # ROLLED BACK 2026-07-09 (same day it shipped). Routing manual triggers to
+            # enqueue_trigger made them crash-safe, but the mase-worker fleet was running an
+            # OLDER task-definition revision: its runs logged model `claude-sonnet-4-5` (the api
+            # logs `claude-sonnet-5`) and it wrote deal_records rows with `ai.deal_scores = null`,
+            # WIPING good governed scores. NORTHPORT (27/8) and Robert Bosch (54/49) were both
+            # clobbered to null before the queue was halted. Correctness beats durability: the
+            # api tier runs the current image and scores correctly.
+            #
+            # Re-enable the durable path ONLY after verifying the running mase-worker task is on
+            # the current task-definition revision — check that a worker run logs
+            # model=claude-sonnet-5 and writes a non-null ai.deal_scores.
             if _trg_src != "manual":
                 return JSONResponse(
                     {"status": "skipped", "reason": "manual-only mode: automated sweeping is "
                      "paused (DEAL_SWEEP_MANUAL_ONLY)", "source": _trg_src, "count": len(ids)},
                     status_code=202)
-            if sweep.queue_enabled():
-                results = {oid: await sweep.enqueue_trigger(agent_manager, oid, source="manual")
-                           for oid in ids}
-            else:
-                # Emergency in-process fallback (DEAL_SWEEP_USE_QUEUE=false). Not crash-safe.
-                results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
+            results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
         elif sweep.queue_enabled():
             # Queue mode: enqueue a durable `waiting` row per opp; the separate
             # worker.py drains it. The web process does NOT run the analysis, so

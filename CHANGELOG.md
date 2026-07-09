@@ -11,6 +11,36 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — ROLLBACK: manual triggers back in-process (stale worker wiped scores)
+
+**What.** Reverted the same-day change that routed manual sweep triggers through the durable
+`sweep_queue`. Manual triggers run in-process again (`trigger_opp_async`), now at
+`DEAL_TRIGGER_CONCURRENCY=8` on a 4 GB api task. `SWEEP_AUTOSCALE_ENABLED` back to `false`.
+Kept from the original fix: per-role sizing (api `1024/4096`, worker `4096/16384`) and the
+8-wide trigger concurrency. Also added the missing `claude-sonnet-5` key to `_LLM_PRICING`.
+
+**Why.** The running `mase-worker` task was on an OLDER task-definition revision — its runs
+logged `model=claude-sonnet-4-5` while the api logged `claude-sonnet-5`, and it wrote
+`deal_records` rows with `ai.deal_scores = null`. Routing manual triggers to it CLOBBERED good
+governed scores: NORTHPORT (27/8 -> null) and Robert Bosch (54/49 -> null). The api tier runs
+the current image and scores correctly, so correctness beats durability here. Separately,
+`_calculate_llm_cost` had no key matching `claude-sonnet-5` (`"claude-sonnet-4" in
+"claude-sonnet-5"` is False), so it returned 0.0 — every Omnivision sweep logged `cost_usd=NULL`
+and the cost dashboard reported them as free.
+
+**How to work with it going forward.**
+- Do NOT re-enable the queue path or the autoscaler until a `mase-worker` run is verified to log
+  `model=claude-sonnet-5` AND write a non-null `ai.deal_scores`. The worker service's task
+  definition must be confirmed current — the autoscaler only changes `desiredCount`; it launches
+  whatever revision the service points at.
+- A no-data sweep (`calls_read=0`) can still overwrite a good record with null scores — the
+  `_no_data` carry-forward guard requires calls_read=0 AND no footprints AND no CRM evidence, so
+  `roles>0` defeats it. Separate bug, still open.
+- Sonnet 5 carries an introductory $2/$10 per MTok through 2026-08-31; the table encodes the
+  $3/$15 list price, so logged cost is an upper bound until then.
+
+---
+
 ## 2026-07-09 — Manual sweeps are durable + 8-wide (OOM incident fix)
 
 **What.** A manual `POST /api/deal-engine/sweep/trigger` no longer runs fire-and-forget on

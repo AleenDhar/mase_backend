@@ -88,10 +88,13 @@ API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,
     # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog.
-    # RE-ENABLED 2026-07-09 — manual triggers now enqueue, so the fleet must scale up off 0
-    # to drain them. Automated sweeping stays paused (DEAL_SWEEP_MANUAL_ONLY=true), so the
-    # only thing that fills the queue is an explicit manual trigger. Backlog 0 -> scales home.
-    "SWEEP_AUTOSCALE_ENABLED": "true",
+    # DISABLED AGAIN 2026-07-09 — the running mase-worker task was on an OLDER task-definition
+    # revision and wrote deal_records rows with `ai.deal_scores = null`, wiping good scores
+    # (NORTHPORT, Robert Bosch). Nothing enqueues now that the manual trigger runs in-process,
+    # but leaving the autoscaler on would keep that stale worker alive at SWEEP_AUTOSCALE_MIN=1.
+    # Re-enable only after confirming a worker run logs model=claude-sonnet-5 AND writes a
+    # non-null ai.deal_scores.
+    "SWEEP_AUTOSCALE_ENABLED": "false",
     "SWEEP_AUTOSCALE_MAX": "6",
     # KILL the nightly scheduled discovery + reconcile AI sweeps — the
     # `scheduled_discovery` / `scheduled_reconcile` burn. This gates sub-job D of

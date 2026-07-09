@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — sf-report-watch: Salesforce report → VIBE project dispatcher (new infra)
+
+**What.** New scheduled Lambda `infra/sf-report-watch/lambda_function.py` (+ state
+schema `migrations/0013_sf_report_watch.sql`). On an EventBridge 5-min schedule it
+polls the object behind the Salesforce report **APAC GTM MQL Global_V1**
+(`00OP7000005v4TsMAI`, a *Contacts with MQL History* report = `MQL_History__c.MQL__c
+= true AND Contact.Account.Geography__c = 'APAC'`), and for each NEW `MQL_History__c`
+row POSTs to VIBE `/api/workflows/dispatch-abm` (Bearer `DISPATCH_SECRET`) to kick a
+run under the contact's owning BDR in the target project (`MQL_ABM_PROJECT_ID`).
+Zero-dep stdlib, mirrors `sf-cdc-bridge`; SF auth is the SOAP username-password login
+(same `SF_*` creds as `salesforce_mcp_server.py`), session id reused as REST Bearer.
+
+**Why.** Reports can't be subscribed to (CDC watches objects, not reports) and this
+one is Matrix format, so a scheduled SOQL poller with a high-water mark is the robust
+"new entry → project run" pipe. First deliverable of the MQL→ABM automation.
+
+**How to work with it going forward.** "New" = high-water mark on SF `CreatedDate`
+(second precision; `MQL_Date_Time__c` is 5-min-bucketed so it would drop ties) PLUS a
+dedup ledger on the `MQL_History__c` id in `sf_report_watch_log` → exactly-once.
+`sf_report_watch_cursor` holds the watermark, **seeded to "now" on first run** so a
+deploy does NOT fire the existing backlog (`SEED_WATERMARK_ISO` to backfill;
+`MAX_DISPATCH_PER_RUN` caps per-run; `DRY_RUN=true` to observe without dispatching).
+Owners not present as VIBE users fall back to `FALLBACK_BDR_EMAIL` (else logged
+`skipped_no_bdr`). The report's exact filter/columns were read via the Analytics
+`ReportManager.describeReport` metadata; the poller SOQL is pinned to that definition.
+Deploy + env table in `infra/sf-report-watch/README.md`. Salesforce stays read-only
+(no `MCP_TOOL_DENYLIST` interaction — this queries via REST, writes nothing to SF).
+
 ## 2026-07-09 — Future-dated SF activity no longer read as "happened" + queue-auth gate
 
 **What.** (1) A Salesforce Task/Event/`LastActivityDate` dated in the FUTURE (a merely

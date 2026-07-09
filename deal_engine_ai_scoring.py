@@ -103,6 +103,19 @@ def _prompt() -> str:
     # 1) OMNIVISION GOVERNANCE: locked Studio win+mom engines lead, adapter appended.
     gov = _studio_governing()
     if gov:
+        # The win/mom engines cite the locked reference assets as {{ref:...}} tokens. In a
+        # SWEEP those tokens resolve + the full reference bodies are appended (deal_engine_sweep
+        # ._studio_block). The AI scorer, though, works on a PRE-NORMALIZED evidence packet
+        # (competitor names already resolved via the Vendor Dictionary during extraction, stage
+        # facts already read), so it needs the POINTER, not the 58K of appended bodies. Render
+        # each citation as its plain name so no raw {{ref:...}} token leaks into the scorer.
+        import re as _re
+        gov = _re.sub(
+            r"\{\{ref:([a-z0-9-]+)\}\}",
+            lambda m: {"vendor-dictionary": "the MASE Vendor Dictionary",
+                       "deal-playbook": "the Zycus Deal Playbook"}.get(
+                           m.group(1).strip().lower(), m.group(0)),
+            gov)
         return gov + "\n\n" + _OUTPUT_ADAPTER
     # 2) Fallback — the mase_deal_scoring admin override (Supabase), if set.
     if _aps is not None:

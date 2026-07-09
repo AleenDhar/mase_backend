@@ -1135,7 +1135,13 @@ _OPP_SELECT_FIELDS = (
     "Id, Name, Account.Name, Owner.Name, OwnerId, "
     "Owner.ManagerId, Owner.Manager.Name, StageName, ForecastCategoryName, "
     "Amount, CloseDate, Geography__c, "
-    "Next_Step__c, AIS_Score__c, AIS_Status__c, AIS_Why__c, Products__c, Competitors__c, "
+    # AIS_Score__c / AIS_Status__c / AIS_Why__c REMOVED 2026-07-09: they do NOT exist on
+    # Opportunity in the Zycus org, so Salesforce 400'd the ENTIRE query (INVALID_FIELD
+    # 'No such column AIS_Score__c') — every _authoritative_opp / _enrich_opp_ids /
+    # discover_opps read returned {}, silently starving the sweep of Next_Step__c +
+    # LastActivityDate ground truth (the SFDC next-steps/activity the RSDs update). Do NOT
+    # re-add without confirming the field exists via a Salesforce describe first.
+    "Next_Step__c, Products__c, Competitors__c, "
     "Others_Competitors_Please_specify__c, LastModifiedDate, CreatedDate, "
     "LastActivityDate, Qualified_Submission_Date__c"
 )

@@ -265,12 +265,17 @@ def build_cro_panel(record, pinned_override=None):
     # re-derive from contributions or re-trim with _first_sentence (that chopped them
     # mid-word, e.g. "…advocate for Zycus as the…"). Deterministic deals have no
     # ai_reasons and fall through to the trimmed prose path below unchanged.
-    # ONE scorer (2026-07-07): the AI scorer is OFF — scores are deterministic. So the panel's
-    # per-score bullets are derived DETERMINISTICALLY below (grounded in the same factors that
-    # produced the number), NEVER from LLM-authored ai_reasons — else the reasons could claim a
-    # read that contradicts the deterministic number (the "correct number, wrong reasons"
-    # confusion). ai_reasons is force-empty so the deterministic narrative path always wins.
-    ai_reasons = {}
+    # 2026-07-09 (Publicis): re-enabled. A 2026-07-07 patch (when the AI scorer was
+    # temporarily OFF) hardcoded this to {} "so the deterministic narrative path always
+    # wins" — but the AI scorer was re-enabled 2026-07-09 under Omnivision governance
+    # and this line was never reverted, so EVERY AI-scored deal silently lost its
+    # richer, deal-specific reasons (Publicis: 2 of 4 win reasons, 0 of 3 momentum
+    # reasons) and fell back to the much thinner deterministic bullets — the exact
+    # "reasons are pretty thin" the panel was showing. Read straight from the same
+    # dict deal_engine_ai_scoring._normalize() writes to (deal_scores.ai_reasons);
+    # a deterministic-only record simply has no such key, so it falls through to the
+    # deterministic path below completely unchanged — no behavior change for it.
+    ai_reasons = ds.get("ai_reasons") or {}
 
     def _ai_bullets(key):
         """AI-authored bullets for one score, verbatim. [] when none stored."""

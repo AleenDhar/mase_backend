@@ -58,20 +58,18 @@ _TIMEOUT = 30.0
 _ANALYZE_TIMEOUT_S = int(os.environ.get("DEAL_SWEEP_TIMEOUT_S", "900"))
 
 # A claimed row whose worker died mid-run is reclaimed after this many seconds
-# (status flipped working -> waiting so another worker picks it up). It MUST sit
-# safely ABOVE the worst-case analyze_one time, or a legitimately long-running
-# analysis would be force-reclaimed mid-flight and processed twice. So the
-# default is the analysis timeout + a 50% buffer (min 5 min). Tie-to-timeout
-# (rather than a bare constant) prevents config drift if DEAL_SWEEP_TIMEOUT_S is
-# raised; override explicitly with DEAL_SWEEP_STALE_CLAIM_S only if you must.
-STALE_CLAIM_S = int(os.environ.get(
-    "DEAL_SWEEP_STALE_CLAIM_S",
-    # First-pass analyze_one AND the quality inspector's recovery re-synthesis can
-    # each run up to the per-opp timeout, so a single LEGIT run can take ~2x the
-    # timeout. Stale-reclaim must sit safely above that, or a long-but-healthy run
-    # gets force-reclaimed mid-flight and processed twice (a duplicate sweep).
-    str(_ANALYZE_TIMEOUT_S * 2 + max(600, _ANALYZE_TIMEOUT_S // 2)),
-))
+# (status flipped working -> waiting so another worker picks it up).
+#
+# 2026-07-09 (zombie-row fix): the worker now HEARTBEATS its claim — while a sweep
+# runs, _process refreshes `claimed_at` every HEARTBEAT_EVERY_S. So `claimed_at`
+# means "last proof of life", not "when first claimed", and a stale claim means the
+# worker is DEAD, not merely slow. That lets the reclaim window be SHORT (8 min =
+# ~5 missed 90s heartbeats) instead of the old ~100 min (2x the per-opp timeout,
+# which is what a claim had to survive when a legit long run sent no heartbeat).
+# Short window = a crashed/deploy-killed worker's rows free up in minutes, not
+# hours — no more zombies blocking a re-trigger. Override with DEAL_SWEEP_STALE_CLAIM_S.
+HEARTBEAT_EVERY_S = int(os.environ.get("DEAL_SWEEP_HEARTBEAT_EVERY_S", "90"))
+STALE_CLAIM_S = int(os.environ.get("DEAL_SWEEP_STALE_CLAIM_S", "480"))
 
 
 class SweepQueueError(Exception):
@@ -240,6 +238,36 @@ def claim_one() -> Optional[dict]:
     (see CHANGELOG.md 2026-07-09) — this call never touches it."""
     out = _rpc("claim_one_sweep_v2", {"p_secret": _SWEEP_QUEUE_SECRET})
     return out[0] if out else None
+
+
+def heartbeat(opp_id: str) -> None:
+    """Refresh a claim's `claimed_at` to NOW — the worker's proof of life while a
+    sweep runs (2026-07-09 zombie fix). Scoped to status=eq.working so it can never
+    resurrect a row that finished (done/failed) between heartbeats, and never touch
+    a row a peer has since reclaimed. Best-effort: a missed heartbeat just brings the
+    row closer to the stale window; it never blocks the sweep."""
+    oid = (opp_id or "").strip()
+    if not oid:
+        return
+    _patch({"claimed_at": _now()},
+           filters=[f"opp_id=eq.{quote(oid, safe='')}", "status=eq.working"])
+
+
+def reclaim_one_if_stale(opp_id: str, max_age_s: int = STALE_CLAIM_S) -> bool:
+    """Reclaim THIS opp's row to `waiting` if it is a stale/zombie `working` claim
+    (claimed_at older than max_age_s). Called on the MANUAL re-trigger path so a
+    user re-running a stuck deal isn't told 'already_queued' by a dead claim — the
+    zombie is freed first, then the enqueue re-arms it. Returns True if it freed a
+    row. A LIVE claim (fresh heartbeat) is left untouched (no double-sweep)."""
+    oid = (opp_id or "").strip()
+    if not oid:
+        return False
+    cutoff = (datetime.now(timezone.utc) - timedelta(seconds=max_age_s)).isoformat()
+    rows = _patch({"status": "waiting", "claimed_at": None, "updated_at": _now()},
+                  filters=[f"opp_id=eq.{quote(oid, safe='')}", "status=eq.working",
+                           f"claimed_at=lt.{quote(cutoff, safe='')}"],
+                  returning=True)
+    return bool(rows)
 
 
 def mark_done(opp_id: str, *, duration_ms: Optional[int] = None) -> None:

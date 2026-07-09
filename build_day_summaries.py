@@ -151,6 +151,15 @@ def build_one(oid, tasks, events, emails, moves):
         if k not in seen or len(summ or "") > len(seen[k][3] or ""):
             seen[k] = e
     allev = list(seen.values())
+    # FUTURE-DATED GUARD (2026-07-09, John Deere): a booked FUTURE event (e.g. the 20-Jul
+    # "Clarify Call") carries ActivityDateTime > today — without this cap it became
+    # "Most recent activity was on 20 Jul: Meeting held." A scheduled session is a plan,
+    # not activity that happened; drop future days from the summary entirely.
+    import datetime as _dt
+    _today = _dt.date.today()
+    allev = [e for e in allev if e[0].date() <= _today]
+    if not allev:
+        return None
     items = [e for e in allev if e[1] != "movement"]
     move_items = [e for e in allev if e[1] == "movement"]
     # LAST DAY WITH ACTIVITY: the most recent calendar day that carries a real event.

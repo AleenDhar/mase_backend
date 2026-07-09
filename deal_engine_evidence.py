@@ -81,14 +81,21 @@ def _datalake_ctx():
 
 
 def fetch_datalake_meetings(opp_id: str, *, limit: int = 300) -> list[dict]:
-    """Completed, non-internal meetings for an opp from the datalake. [] on any failure."""
+    """HELD, non-internal meetings for an opp from the datalake. [] on any failure.
+
+    2026-07-09 (John Deere): `state=eq.completed` silently ERASED held-but-not-recorded
+    meetings — John Deere's four 2026 meetings (11 May, 31 Mar, 24 Feb, 28 Jan) are all
+    `not_recorded`, so the packet told the scorer "0 meetings in 90d / last meeting Dec-18 /
+    203 days of silence" while the buyer had met Zycus 59 days earlier. A meeting the bot
+    didn't record STILL HAPPENED (`not_recorded` ≠ didn't happen — the anti-fabrication
+    rule). Include not_recorded; future-dated rows are dropped in _meetings_block."""
     url = (os.getenv("DATALAKE_URL") or "").rstrip("/")
     key = os.getenv("DATALAKE_SERVICE_KEY") or ""
     if not url or not key or not opp_id:
         return []
     sel = "uuid,subject,start_at,is_internal,is_call,state,transcript_ready,duration,crm_opportunity_id,attendee_domains"
     qs = (f"avoma_meetings?select={sel}&crm_opportunity_id=ilike.{urllib.parse.quote(opp_id[:15])}*"
-          f"&state=eq.completed&is_internal=eq.false&order=start_at.desc&limit={limit}")
+          f"&state=in.(completed,not_recorded)&is_internal=eq.false&order=start_at.desc&limit={limit}")
     req = urllib.request.Request(f"{url}/rest/v1/{qs}", headers={"apikey": key, "Authorization": "Bearer " + key})
     try:
         with urllib.request.urlopen(req, timeout=30, context=_datalake_ctx()) as r:
@@ -100,9 +107,14 @@ def fetch_datalake_meetings(opp_id: str, *, limit: int = 300) -> list[dict]:
 def _meetings_block(opp_id: str, meetings: Optional[list[dict]]) -> dict:
     rows = meetings if meetings is not None else fetch_datalake_meetings(opp_id)
     rows = [m for m in rows if m.get("start_at") and not m.get("is_internal")]
+    # HELD meetings only: a datalake row with a FUTURE start is a scheduled session,
+    # not engagement that happened — count it separately as next_scheduled.
+    _past = [m for m in rows if (_days_since(str(m["start_at"])[:10]) or -1) >= 0]
+    _future = sorted((str(m["start_at"])[:10] for m in rows
+                      if (_days_since(str(m["start_at"])[:10]) or 0) < 0))
     # one entry per calendar day (same session is logged multiple times)
     by_day = {}
-    for m in rows:
+    for m in _past:
         k = str(m["start_at"])[:10]
         if k not in by_day:
             by_day[k] = m
@@ -119,14 +131,17 @@ def _meetings_block(opp_id: str, meetings: Optional[list[dict]]) -> dict:
             "date": d,
             "subject": (m.get("subject") or "")[:90],
             "buyer_domains": doms[:3],
+            "recorded": (m.get("state") == "completed"),
             "transcript": bool(m.get("transcript_ready")),
             "minutes": round((m.get("duration") or 0) / 60) if m.get("duration") else None,
         })
     return {
         "total_all_time": len(days),
         "count_30d": _in(30), "count_60d": _in(60), "count_90d": _in(90),
+        "with_transcript_all_time": sum(1 for d in by_day.values() if d.get("transcript_ready")),
         "last_date": days[0] if days else None,
         "days_since_last": _days_since(days[0]) if days else None,
+        "next_scheduled": (_future[0] if _future else None),
         "recent": recent,
     }
 

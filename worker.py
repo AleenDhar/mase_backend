@@ -186,7 +186,29 @@ async def _process(row: dict) -> None:
         else:
             _src = "worker"
         _log(f"source label opp={opp_id} run_id={_rid!r} -> {_src}")
-        res = await sweep.analyze_one(server.agent_manager, opp, source=_src)
+        # HEARTBEAT (2026-07-09 zombie fix): while this sweep runs, refresh the claim
+        # every HEARTBEAT_EVERY_S so `claimed_at` stays fresh and the row is never
+        # mistaken for a dead claim by reclaim_stale. Cancelled the instant the sweep
+        # returns. Best-effort — a heartbeat REST hiccup never disturbs the sweep.
+        async def _hb() -> None:
+            try:
+                while True:
+                    await asyncio.sleep(q.HEARTBEAT_EVERY_S)
+                    try:
+                        await asyncio.to_thread(q.heartbeat, opp_id)
+                    except Exception as _hbe:  # noqa: BLE001
+                        _log(f"heartbeat miss opp={opp_id}: {type(_hbe).__name__}")
+            except asyncio.CancelledError:
+                return
+        _hb_task = asyncio.create_task(_hb())
+        try:
+            res = await sweep.analyze_one(server.agent_manager, opp, source=_src)
+        finally:
+            _hb_task.cancel()
+            try:
+                await _hb_task
+            except (asyncio.CancelledError, Exception):  # noqa: BLE001
+                pass
         status = (res or {}).get("status")
         thin = bool((res or {}).get("thin"))
         dur = (res or {}).get("duration_ms") or int((time.time() - t0) * 1000)
@@ -219,15 +241,34 @@ async def _drain_loop() -> None:
     # age-based reclaim only touches rows whose claim is older than STALE_CLAIM_S
     # (genuinely orphaned, since no healthy run takes that long), so it recovers a
     # crashed worker's rows without ever stealing a peer's in-flight work.
-    reclaimed = await asyncio.to_thread(q.reclaim_stale)
-    if reclaimed:
-        _log(f"startup: reclaimed {reclaimed} stale 'working' row(s) -> waiting")
-    _log(f"draining queue (concurrency={CONCURRENCY}, max_retries={MAX_RETRIES}, "
-         f"stale_after={q.STALE_CLAIM_S}s)")
+    _manual = os.getenv("DEAL_SWEEP_MANUAL_ONLY", "false").strip().lower() in ("1", "true", "yes", "on")
+    if not _manual:
+        reclaimed = await asyncio.to_thread(q.reclaim_stale)
+        if reclaimed:
+            _log(f"startup: reclaimed {reclaimed} stale 'working' row(s) -> waiting")
+        _log(f"draining queue (concurrency={CONCURRENCY}, max_retries={MAX_RETRIES}, "
+             f"stale_after={q.STALE_CLAIM_S}s)")
+    else:
+        _log("startup: DEAL_SWEEP_MANUAL_ONLY is ON — NOT reclaiming/draining the queue")
 
     inflight: set[asyncio.Task] = set()
     last_reclaim = time.time()
+    _manual_logged = False
     while not _stop.is_set():
+        # MANUAL-ONLY TEST PAUSE (2026-07-09): when DEAL_SWEEP_MANUAL_ONLY is set, the
+        # worker does NOT claim/drain the queue at all — automated sweeping is off and
+        # manual triggers run synchronously on the web process. Idle until the flag clears
+        # (env change takes effect on the worker's next restart/deploy) or a stop signal.
+        if os.getenv("DEAL_SWEEP_MANUAL_ONLY", "false").strip().lower() in ("1", "true", "yes", "on"):
+            if not _manual_logged:
+                _log("DEAL_SWEEP_MANUAL_ONLY is ON — worker IDLE, not draining the queue "
+                     "(automated sweeping paused; manual triggers run on the web process)")
+                _manual_logged = True
+            try:
+                await asyncio.wait_for(_stop.wait(), timeout=POLL_IDLE_S)
+            except asyncio.TimeoutError:
+                pass
+            continue
         if time.time() - last_reclaim > RECLAIM_EVERY_S:
             try:
                 n = await asyncio.to_thread(q.reclaim_stale)

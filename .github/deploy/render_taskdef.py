@@ -62,12 +62,22 @@ _SWEEP_TUNING = {
     # a deal if the AI call fails or a loss is a hard fact, so a deal is never left unscored.
     "DEAL_ENGINE_AI_SCORING": "true",
     "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-5",
+    # MANUAL-ONLY TEST PAUSE (2026-07-09, user-directed): ALL automated sweeping is OFF —
+    # Salesforce-CDC triggers are dropped at enqueue, whole-book/scheduled runs are refused,
+    # and the mase-worker fleet IDLES (never drains the queue). Only an explicit per-deal
+    # MANUAL trigger runs, and it runs SYNCHRONOUSLY on the api (no worker). Shared by api +
+    # worker via _SWEEP_TUNING. Set "false" (or delete this line) + re-enable the autoscaler
+    # to resume automated sweeping.
+    "DEAL_SWEEP_MANUAL_ONLY": "true",
 }
 API_ENV = {
     "HOST": "0.0.0.0", "PORT": str(PORT),
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,
-    # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog
-    "SWEEP_AUTOSCALE_ENABLED": "true",
+    # worker autoscaler (runs on the api): sizes mase-worker to the queue backlog.
+    # DISABLED 2026-07-09 alongside DEAL_SWEEP_MANUAL_ONLY — with automated sweeping paused
+    # the worker must stay at 0 and NOT be auto-scaled back up. Re-enable ("true") when
+    # resuming automated sweeping.
+    "SWEEP_AUTOSCALE_ENABLED": "false",
     "SWEEP_AUTOSCALE_MAX": "6",
     # KILL the nightly scheduled discovery + reconcile AI sweeps — the
     # `scheduled_discovery` / `scheduled_reconcile` burn. This gates sub-job D of

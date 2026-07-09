@@ -4182,6 +4182,15 @@ def queue_enabled() -> bool:
     return os.getenv("DEAL_SWEEP_USE_QUEUE", "true").lower() in ("1", "true", "yes")
 
 
+def manual_only() -> bool:
+    """TEST PAUSE (2026-07-09, user-directed): when DEAL_SWEEP_MANUAL_ONLY is set, ALL
+    automated sweeping is OFF — Salesforce-CDC triggers, scheduled/book runs, and the
+    mase-worker fleet do NOTHING. Only an explicit per-deal MANUAL trigger runs, and it
+    runs SYNCHRONOUSLY on the web process (never the worker). Flip the env back to false
+    (or unset it) to resume automated sweeping."""
+    return os.getenv("DEAL_SWEEP_MANUAL_ONLY", "false").strip().lower() in ("1", "true", "yes", "on")
+
+
 async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
                            opp_ids: Optional[list[str]] = None,
                            limit: int = 500, from_scratch: bool = False) -> dict:
@@ -4191,6 +4200,9 @@ async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
     queue. One book sweep at a time: refuses while rows are still waiting/working
     so a second click can't double-enqueue the book.
     """
+    if manual_only():
+        raise RuntimeError("manual-only mode is ON (DEAL_SWEEP_MANUAL_ONLY) — automated and "
+                           "whole-book sweeps are disabled. Trigger a single deal manually to test.")
     snap = await asyncio.to_thread(_queue.status)
     if (snap.get("waiting", 0) + snap.get("working", 0)) > 0:
         raise RuntimeError("a sweep is already in progress (queue not drained)")
@@ -4247,6 +4259,14 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
     opp_id = (opp_id or "").strip()
     if not opp_id:
         return "error"
+    # MANUAL-ONLY TEST PAUSE: drop any AUTOMATED enqueue (Salesforce CDC sends
+    # source="salesforce_trigger"; scheduled sub-jobs send "scheduled_*"). Only an
+    # explicit source="manual" is honoured (and even that runs synchronously via the
+    # endpoint, not this queue path). Never fills the queue while automation is paused.
+    if manual_only() and source != "manual":
+        print(f"[DEAL-SWEEP] manual-only mode: BLOCKED automated trigger opp={opp_id} "
+              f"source={source!r} (automated sweeping is paused)", flush=True)
+        return "blocked_manual_only"
     # Membership comes ONLY from the MASE report (single source of truth). A
     # trigger is a faster RE-sweep of a deal already in the book — it must never
     # ADD a non-member (e.g. a Salesforce-update webhook firing on an opp outside

@@ -7210,6 +7210,13 @@ async def deal_engine_sweep_rerun(request: Request):
     do_all = bool(d.get("all"))
     try:
         if opp_id:
+            # MANUAL-ONLY TEST PAUSE: a single-opp Rerun is an explicit MANUAL action — run it
+            # SYNCHRONOUSLY on the web process (the worker fleet is idle). Whole-book/owner/
+            # forecast/all reruns below are automated-scope and refused by enqueue_book_run.
+            if sweep.manual_only():
+                r = sweep.trigger_opp_async(agent_manager, opp_id)
+                return {"status": "accepted", "mode": "opp", "opp_id": opp_id,
+                        "result": r, "note": "manual-only mode: ran synchronously (no worker)"}
             r = await sweep.enqueue_trigger(agent_manager, opp_id)
             return {"status": "accepted", "mode": "opp", "opp_id": opp_id, "result": r}
         if owner:
@@ -8494,7 +8501,17 @@ async def deal_engine_sweep_trigger(request: Request):
         # flows to the worker's run-log source so the dashboard shows "salesforce".
         _trg_src = d.get("source")
         _trg_src = _trg_src.strip() if isinstance(_trg_src, str) and _trg_src.strip() else "manual"
-        if sweep.queue_enabled():
+        if sweep.manual_only():
+            # MANUAL-ONLY TEST PAUSE: automated triggers (salesforce_trigger / scheduled)
+            # are DROPPED; an explicit manual trigger runs SYNCHRONOUSLY on the web process
+            # (trigger_opp_async — no worker, since the worker fleet is idle/scaled to 0).
+            if _trg_src != "manual":
+                return JSONResponse(
+                    {"status": "skipped", "reason": "manual-only mode: automated sweeping is "
+                     "paused (DEAL_SWEEP_MANUAL_ONLY)", "source": _trg_src, "count": len(ids)},
+                    status_code=202)
+            results = {oid: sweep.trigger_opp_async(agent_manager, oid) for oid in ids}
+        elif sweep.queue_enabled():
             # Queue mode: enqueue a durable `waiting` row per opp; the separate
             # worker.py drains it. The web process does NOT run the analysis, so
             # a burst of Salesforce updates can't starve it.

@@ -37,6 +37,17 @@ _SERVICE_KEY = (
     os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
     or os.environ.get("SUPABASE_SERVICE_KEY", "")
 )
+# 2026-07-09: an abandoned Replit deployment of this same codebase kept polling
+# THIS SAME shared sweep_queue with its old (pre-Omnivision, pre-datalake) code —
+# it has no way to know this secret, so claim_one() below silently stops handing
+# it any work once the old claim_one_sweep() is neutered (see migration note in
+# CHANGELOG.md 2026-07-09). Missing here is a loud, one-time log, not a crash —
+# the worker should idle honestly, not pretend nothing's wrong.
+_SWEEP_QUEUE_SECRET = os.environ.get("SWEEP_QUEUE_SECRET", "")
+if not _SWEEP_QUEUE_SECRET:
+    print("[sweep_queue] WARNING: SWEEP_QUEUE_SECRET is not set — claim_one() will "
+          "never claim a row once the legacy claim_one_sweep() RPC is retired.",
+          flush=True)
 
 T_QUEUE = "sweep_queue"
 
@@ -218,8 +229,16 @@ def enqueue_one(run_id: str, opp: dict) -> str:
 
 def claim_one() -> Optional[dict]:
     """Atomically claim the next `waiting` row (FOR UPDATE SKIP LOCKED via RPC).
-    Returns the claimed row (now `working`, attempts bumped) or None when drained."""
-    out = _rpc("claim_one_sweep", {})
+    Returns the claimed row (now `working`, attempts bumped) or None when drained.
+
+    2026-07-09: calls the SECRET-GATED `claim_one_sweep_v2(p_secret)` (not the
+    original zero-arg `claim_one_sweep()`) — a caller without SWEEP_QUEUE_SECRET
+    (the abandoned Replit deployment; any future stray copy of this code) gets an
+    empty result forever, identical to "queue drained", never an error. Only this
+    ECS worker (env-injected via Secrets Manager, see .github/deploy/render_taskdef.py)
+    knows the secret. The original function is left in place, neutered separately
+    (see CHANGELOG.md 2026-07-09) — this call never touches it."""
+    out = _rpc("claim_one_sweep_v2", {"p_secret": _SWEEP_QUEUE_SECRET})
     return out[0] if out else None
 
 

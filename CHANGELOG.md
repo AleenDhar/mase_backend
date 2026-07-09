@@ -11,6 +11,40 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-09 — Future-dated SF activity no longer read as "happened" + queue-auth gate
+
+**What.** (1) A Salesforce Task/Event/`LastActivityDate` dated in the FUTURE (a merely
+scheduled, not-yet-held meeting) is no longer treated as verified past engagement.
+`deal_engine_footprints._is_future` excludes it from `last_meeting` / `last_buyer_touch` /
+`general_last_activity` / engagement points; `deal_engine_pulse.compute_pulse` splits it out
+as `next_scheduled_date` instead of folding it into `last_activity_date` (which drove the false
+`state=live` + the "Last recorded activity 2026-07-13" bullet on Publicis — a call calendared
+4 days out read as having already happened). `deal_engine_cro` surfaces the honest fact
+("Next meeting scheduled …") instead of dropping it. (2) **Queue-auth gate**: a still-running,
+abandoned Replit deployment of this codebase (frozen pre-Omnivision/pre-datalake) has been
+polling the SAME production `sweep_queue` via the shared service-role key and silently
+writing old-schema, unscored records over live deals (Publicis, 15+ others). Added
+`public.claim_one_sweep_v2(p_secret)` (Supabase migration, `_sweep_auth` singleton table,
+service-role-only) — `sweep_queue.claim_one()` now calls it with `SWEEP_QUEUE_SECRET`
+(new key in the `mase/app-env` Secrets Manager secret, auto-picked up by
+`render_taskdef.py`'s live key enumeration). The original zero-arg `claim_one_sweep()` is
+**left untouched for now** — neutering it (so Replit's calls go permanently empty-handed) is
+a deliberate follow-up step, done only after confirming the ECS worker is healthy on v2.
+
+**Why.** The future-date bug: SF's `LastActivityDate` rollup includes the next/most-recent
+Event even before it's held, and `_age_days`/`_days_since` both clamped a negative (future) age
+to 0 — "happened today" — instead of treating it as no verified signal. The queue-auth gap:
+`claim_one_sweep()` takes no arguments and is callable by anyone holding the service-role key,
+so two independent deployments have been racing to claim the same rows with no way to tell them
+apart.
+
+**How to work with it going forward.** A future SF date is now ALWAYS excluded from "what
+already happened" signals project-wide (footprints + pulse); use `next_scheduled_date` /
+`pulse.get("next_scheduled_date")` if you need to surface an upcoming touch honestly. For the
+queue: any NEW claimer must call `claim_one_sweep_v2` with `SWEEP_QUEUE_SECRET` — the old
+zero-arg RPC is legacy-only and will start returning nothing once neutered (watch for that
+follow-up entry before assuming Replit is fully cut off).
+
 ## 2026-07-09 — Studio v2: Deal Sweep engine + reference assets (vendor dictionary, playbook) wired end-to-end
 
 **What.** Adopted the governance prototype Sam landed in the MASE repo (`scoring-studio/index.html`,

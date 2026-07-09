@@ -66,6 +66,29 @@ def _age_days(dt, now=None):
     return max(0.0, (now - dt).total_seconds() / 86400.0)
 
 
+def _is_future(dt, now=None):
+    """True when `dt` falls on a calendar day AFTER today (UTC) — a merely
+    SCHEDULED Task/Event, not something that has actually happened yet.
+
+    2026-07-09 (Publicis): Salesforce's own LastActivityDate rollup — and every
+    Task/Event we read — can carry a FUTURE date (a calendar invite for a call
+    4 days out). Before this guard, `_age_days` clamped that to 0.0 ("happened
+    today"), so a not-yet-held meeting fed last_meeting/last_buyer_touch/
+    general_last_activity AND full-strength engagement points as if the buyer
+    had already shown up — a scheduled-but-not-held meeting is not a footprint.
+    Compared by DATE (not exact datetime) so a same-day, later-today Task/Event
+    is never wrongly excluded (only a genuinely future calendar day is). Future
+    dates remain fully visible to the separate NEXT-STEP plan-credit signal
+    (`_milestone_dates` in deal_engine_scoring.py), which is sourced from the
+    Next Step text, not from here — nothing about "what's coming up" is lost."""
+    if dt is None:
+        return False
+    now = now or datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.date() > now.date()
+
+
 # Engagement-DEPTH ladder (2026-06-29, user-directed). Each engagement TYPE carries a 0-10
 # depth weight = how much buyer commitment it represents. Detected by keyword in a meeting /
 # task subject. Highest match wins. These feed Momentum's engagement pillar.
@@ -216,8 +239,8 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
 
     for t in tasks:
         dt = _parse_dt(t.get("date") or t.get("ActivityDate") or t.get("CreatedDate"))
-        if dt is None:
-            continue
+        if dt is None or _is_future(dt, now):
+            continue  # a future ActivityDate is a PLANNED task, not a footprint
         subj = t.get("subject") or t.get("Subject") or ""
         if _meeting_task(subj, t.get("type") or t.get("Type") or ""):
             meet_dts.append(dt)
@@ -230,22 +253,24 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     for e in (events or []):
         dt = _parse_dt(e.get("date") or e.get("ActivityDateTime") or e.get("CreatedDate"))
         subj = e.get("subject") or e.get("Subject") or ""
-        if dt and not _is_email(subj, e.get("type") or e.get("Type") or ""):
+        if dt and not _is_future(dt, now) and not _is_email(subj, e.get("type") or e.get("Type") or ""):
             meet_dts.append(dt)   # SF Events are calendar meetings (email-events excluded)
             _ingest(subj, dt)
 
-    # corroborate with SF summary fields + Avoma meetings
+    # corroborate with SF summary fields + Avoma meetings — same future-date guard,
+    # since Last_Meeting_Date__c / LastActivityDate can themselves carry a scheduled
+    # (not-yet-held) date straight from Salesforce's own rollup.
     for f in ("Last_Email_Received_Date__c",):
         dt = _parse_dt(opp.get(f))
-        if dt:
+        if dt and not _is_future(dt, now):
             buyer_dts.append(dt)
     for f in ("Last_Meeting_Date__c",):
         dt = _parse_dt(opp.get(f))
-        if dt:
+        if dt and not _is_future(dt, now):
             meet_dts.append(dt)
     for m in (meeting_dates or []):
         dt = _parse_dt(m)
-        if dt:
+        if dt and not _is_future(dt, now):
             meet_dts.append(dt)
 
     # Dedupe meetings by calendar DATE: the SAME session is routinely logged 3× (an
@@ -264,9 +289,12 @@ def derive_footprints(tasks=None, opp=None, meeting_dates=None, events=None, sta
     last_buyer = _latest(buyer_dts + meet_dts)   # a meeting held IS a buyer touch
     last_meeting = _latest(meet_dts)
     last_rep = _latest(rep_dts)
-    # general activity floor from the opp summary (covers deals with no parsed tasks)
+    # general activity floor from the opp summary (covers deals with no parsed tasks).
+    # LastActivityDate is Salesforce's OWN rollup and can itself carry a future date
+    # (SF folds in the next/most-recent Event, including ones not yet held) — guard it
+    # the same way, else "general activity" silently reads a scheduled meeting as done.
     gen = _latest([d for d in (_parse_dt(opp.get("LastActivityDate")),
-                               _parse_dt(opp.get("Next_Step_Updated_Date_Time__c"))) if d])
+                               _parse_dt(opp.get("Next_Step_Updated_Date_Time__c"))) if d and not _is_future(d, now)])
 
     dsb = _age_days(last_buyer, now)
     cadence = _STAGE_CADENCE.get(str(stage or "").strip().lower(), _DEFAULT_CADENCE)

@@ -173,6 +173,18 @@ def compute_pulse(
     """Compute the single authoritative engagement pulse for one opportunity."""
     today = today or date.today()
     la = _parse_date(last_activity_date)
+    # Salesforce's LastActivityDate is the newest of the last COMPLETED Task OR the
+    # next/most-recent EVENT — including one that hasn't happened yet (2026-07-09,
+    # Publicis: a call calendared for 13 Jul, 4 days out, read as "verified activity
+    # 0 days ago" / state=live / a bullet reading "Last recorded activity 2026-07-13").
+    # A future date is not verified PAST activity — split it out as a separately
+    # labeled fact (next_scheduled_date) so it can be surfaced correctly (an upcoming
+    # meeting is genuinely good news) without ever being treated as something that
+    # already happened, or leaking a future date into a "recorded"/past-tense line.
+    next_scheduled = None
+    if la is not None and la > today:
+        next_scheduled = la
+        la = None
     days_since = _days_since(la, today)
     cd = _parse_date(close_date)
     qd = _parse_date(qualified_date)
@@ -216,6 +228,9 @@ def compute_pulse(
         "state": state,
         "last_activity_date": la.isoformat() if la else None,
         "days_since_activity": days_since,
+        # A future LastActivityDate (see above) — a genuinely scheduled next touch,
+        # surfaced honestly as upcoming rather than folded into "last activity".
+        "next_scheduled_date": next_scheduled.isoformat() if next_scheduled else None,
         "last_inbound_email_date": li.isoformat() if li else None,
         "days_since_inbound": days_since_inbound,
         "calls_read": cr,

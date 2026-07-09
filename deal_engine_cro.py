@@ -481,6 +481,13 @@ def build_cro_panel(record, pinned_override=None):
         la = pulse.get("last_activity_date")
         if la:
             mb.append({"tone": "warn", "text": f"Last recorded activity {la}"})
+        # 2026-07-09 (Publicis): `last_activity_date` is already guarded to never be a
+        # future date (deal_engine_pulse splits a future SF LastActivityDate out as
+        # next_scheduled_date). Surface that honestly — as an upcoming touch, never as
+        # something already "recorded" — instead of silently dropping the fact.
+        nsd = pulse.get("next_scheduled_date")
+        if nsd and not la:
+            mb.append({"tone": "good", "text": f"Next meeting scheduled {nsd}"})
     _ai_mom = _ai_bullets("deal_momentum")
     if _ai_mom:
         mb = _ai_mom

@@ -39,6 +39,23 @@ Owners not present as VIBE users fall back to `FALLBACK_BDR_EMAIL` (else logged
 Deploy + env table in `infra/sf-report-watch/README.md`. Salesforce stays read-only
 (no `MCP_TOOL_DENYLIST` interaction — this queries via REST, writes nothing to SF).
 
+## 2026-07-09 — Win Position momentum gate (win engine v10.7)
+
+**What.** On a LATE-STAGE deal (recorded stage Vendor Selected or later) whose Deal Momentum
+< 30, the Zycus Win Position is now HALVED — the §4.4a qualification-depth floor (which credits
+historical EB/MEDDPICC depth) is overridden by the new **§4.4b momentum gate**. Locked as **win
+engine v10.7** in Omnivision (Scoring Version Studio). Verified: ACEN (Vendor Selected, momentum
+8, 330 days dark) drops from win **40 → 20**.
+
+**Why.** Historical qualification and a high stage protect a deal only while it is still alive in
+the market; a late-stage deal that has gone momentum-dead is a stalled deal wearing a stage badge,
+not a strong win. (Reviewer-directed.)
+
+**How to work with it.** The rule lives ONLY in the locked win engine (Supabase / Omnivision) —
+edit + lock a new win version to change it, no code deploy. A repo copy of the current win-engine
+prompt is synced to `prompts/studio_seeds/win-position.md` on each lock. Momentum ≥ 30 → gate off,
+the §4.4a floor applies normally.
+
 ## 2026-07-09 — Future-dated SF activity no longer read as "happened" + queue-auth gate
 
 **What.** (1) A Salesforce Task/Event/`LastActivityDate` dated in the FUTURE (a merely

@@ -223,7 +223,18 @@ def score_deal_ai(record: dict, *, meetings: Optional[list] = None,
         user = ("Score this opportunity. Evidence packet (facts only):\n\n"
                 + json.dumps(packet, default=str, ensure_ascii=False))
         resp = _model().invoke([SystemMessage(content=_prompt()), HumanMessage(content=user)])
-        text = resp.content if isinstance(resp.content, str) else str(resp.content)
+        # THINKING-MODEL CONTENT (2026-07-09): with claude-sonnet-5, LangChain returns
+        # resp.content as a LIST of blocks [{'type':'thinking',...},{'type':'text','text':...}].
+        # str(list) mangles the JSON into a Python repr (escaped quotes) that _extract_json
+        # cannot parse -> "no usable scores" -> permanent hybrid fallback. Join TEXT blocks.
+        _c = resp.content
+        if isinstance(_c, list):
+            text = "".join(
+                (b.get("text", "") if isinstance(b, dict) else (b if isinstance(b, str) else ""))
+                for b in _c
+                if not (isinstance(b, dict) and b.get("type") in ("thinking", "redacted_thinking")))
+        else:
+            text = _c if isinstance(_c, str) else str(_c)
         parsed = _extract_json(text)
         if not isinstance(parsed, dict) or parsed.get("_error") or not parsed.get("scores"):
             print(f"[DEAL-SCORES] ai response unusable (chars={len(text)}) head: {text[:220]!r}",

@@ -3905,32 +3905,26 @@ async def analyze_one(
         # wrapped so a summary hiccup can NEVER fail a sweep. Only overwrites when it finds
         # activity; otherwise any LLM-emitted day_summary is left intact.
         if isinstance(parsed.get("ai"), dict):
-            # The INTELLIGENT day summary (day_summary_ai — Sonnet, Omnivision `sum`-governed:
-            # a human "who did what and why, what's pending" briefing) OWNS ai.day_summary and is
-            # regenerated FRESH every sweep (2026-07-10: was only carried forward, so it went
-            # stale / most deals never had one and fell to the robotic template). Order:
-            #   1) fresh intelligent AI summary; 2) deterministic build_day_summaries backstop if
-            #   the AI call produced nothing; 3) keep a prior AI summary rather than blank.
+            # OWNERSHIP (2026-07-07): the INTELLIGENT day summary (day_summary_ai — Sonnet-written
+            # business intelligence) OWNS ai.day_summary. Carry the intelligent one forward; the
+            # deterministic build is the BACKSTOP for records that have no summary at all.
+            # NOTE (2026-07-10): the in-sweep day_summary_ai call was REVERTED — it did a blocking
+            # SF login + SOQL + Anthropic call inside run_in_executor, and on the worker (8
+            # concurrent sweeps) it saturated the default thread pool and stalled the PERSIST,
+            # shipping records with NO deal_scores. day_summary_ai now runs as a SEPARATE batch
+            # pass (day_summary_ai.py --ids ...), not inside each concurrent sweep.
             _prior_dsy = _prior_ai_full.get("day_summary") if isinstance(_prior_ai_full, dict) else None
-            _dsy = None
-            try:
-                import day_summary_ai as _dsa
-                _acct = opp.get("account") if isinstance(opp, dict) else None
-                _dsy = await asyncio.get_running_loop().run_in_executor(
-                    None, _dsa.day_summary_ai_for_opp, opp_id, _acct)
-            except Exception as _dse:  # noqa: BLE001 — fall through to the deterministic backstop
-                print(f"[DAY-SUMMARY-AI] skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
-            if not _dsy:
+            if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai":
+                parsed["ai"]["day_summary"] = _prior_dsy
+            else:
                 try:
                     import build_day_summaries as _bds
                     _dsy = await asyncio.get_running_loop().run_in_executor(
                         None, _bds.day_summary_for_opp, opp_id)
+                    if _dsy:
+                        parsed["ai"]["day_summary"] = _dsy
                 except Exception as _dse:  # noqa: BLE001 — never block persist
                     print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
-            if _dsy:
-                parsed["ai"]["day_summary"] = _dsy
-            elif isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai":
-                parsed["ai"]["day_summary"] = _prior_dsy
         # PROVENANCE (Omnivision) — stamped on EVERY run (2026-07-09: moved ABOVE the
         # dry_run split; dry-run/A-B records previously returned WITHOUT the stamp, so
         # QA couldn't verify which locked Studio versions governed the run).

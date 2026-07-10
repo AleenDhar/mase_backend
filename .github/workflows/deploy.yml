@@ -135,9 +135,18 @@ jobs:
       - name: Deploy sweep worker
         run: |
           set -euo pipefail
+          # --force-new-deployment: without it, a mase-worker task already running (kept alive
+          # by the autoscaler on queue backlog) is NOT replaced, so it keeps serving the OLD
+          # image indefinitely (2026-07-09/10: workers ran claude-sonnet-4-5 and wrote null
+          # deal_scores for a full day after the deploy). Forcing a new deployment drains the
+          # stale task and starts fresh ones on the current image + task-def.
           aws ecs update-service --cluster "$CLUSTER" --service mase-worker \
-            --task-definition "$WORKER_TD" >/dev/null
-          echo "worker rolled to new image (autoscaler manages count)"
+            --task-definition "$WORKER_TD" --force-new-deployment >/dev/null
+          echo "worker force-rolled to new image ($WORKER_TD)"
+          # Best-effort: surface a stuck roll in the deploy log, but never fail the deploy on
+          # it (the API is already live; the post-deploy canary verifies worker health).
+          aws ecs wait services-stable --cluster "$CLUSTER" --services mase-worker \
+            || echo "::warning::mase-worker not steady within wait window — verify via canary"
 
       - name: Smoke test + selfcheck (gate)
         env:

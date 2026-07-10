@@ -94,6 +94,13 @@ def collect_day(oid, tasks, events, emails, moves, avoma):
             mv.append(("movement", f"{STRATEGIC[h['Field']]} changed", d,
                        f"{STRATEGIC[h['Field']]}: {o or '—'} -> {n or '—'}"))
     allv = ev + mv
+    # FUTURE-DATED GUARD (parity with build_day_summaries): a booked FUTURE session (e.g. a
+    # "CFO presentation" dated 13 Jul when today is 10 Jul) is a PLAN, not activity that
+    # happened. Without this the AI narrates a scheduled meeting as delivered ("finally
+    # delivered the presentation"). The 24h summary is what HAPPENED; drop future-dated items.
+    import datetime as _dt
+    _today = _dt.date.today()
+    allv = [x for x in allv if x[2].date() <= _today]
     if not allv:
         return None
     last = max(x[2].date() for x in allv)
@@ -142,6 +149,79 @@ def summarize(key, account, as_of, day_items):
         it.setdefault("at", as_of)
     return {"as_of": as_of, "overall": str(obj.get("overall") or "").strip(),
             "items": items, "source": "ai"}
+
+
+# ---------------------------------------------------------------------------
+# LIVE-SWEEP ENTRY POINT — one opp, called from deal_engine_sweep so every sweep produces
+# the INTELLIGENT (Sonnet, Omnivision-governed) day summary instead of the robotic template.
+# Self-contained: own SF login (cached), own SOQL/Avoma read, own Anthropic call. Returns the
+# summary dict (source="ai") or None on no-activity/any-failure so the caller falls back to the
+# deterministic build_day_summaries backstop. NEVER raises into the sweep.
+_SF = {"sec": None, "sid": None, "inst": None, "dl": None, "sys_loaded": False}
+
+
+def _governed_sys(base, key):
+    """Load the locked 24h-Summary (`sum`) engine into SYS once (Omnivision governance)."""
+    global SYS
+    if _SF["sys_loaded"]:
+        return
+    try:
+        rows = requests.get(f"{base}/rest/v1/scoring_instructions",
+                            params={"engine": "eq.sum", "locked": "eq.true",
+                                    "select": "version,content", "order": "created_at.desc", "limit": "1"},
+                            headers={"apikey": key, "Authorization": f"Bearer {key}"},
+                            verify=VERIFY, timeout=20).json()
+        if isinstance(rows, list) and rows:
+            SYS = (rows[0]["content"] + "\n\n# OUTPUT ADAPTER (engine contract — unchanged): follow "
+                   "the GOVERNING instruction above for WHAT to report; return ONLY the JSON below.\n\n" + SYS)
+    except Exception:  # noqa: BLE001 — fail-open to the built-in prompt
+        pass
+    _SF["sys_loaded"] = True
+
+
+def day_summary_ai_for_opp(opp_id, account=None):
+    """Intelligent single-opp day summary for the live sweep. Returns dict|None (never raises)."""
+    try:
+        if _SF["sec"] is None:
+            _SF["sec"] = C.load_secret()
+            _SF["sid"], _SF["inst"] = C.sf_login(_SF["sec"])
+            _SF["dl"] = C.load_datalake()
+        sec = _SF["sec"]
+        base = sec["SUPABASE_URL"].rstrip("/")
+        key = sec.get("SUPABASE_SERVICE_ROLE_KEY") or sec.get("SUPABASE_SERVICE_KEY")
+        ak = sec.get("ANTHROPIC_API_KEY")
+        if not ak:
+            return None
+        _governed_sys(base, key)
+        oid = id15(opp_id)
+        h = {"apikey": key, "Authorization": f"Bearer {key}"}
+        if not account:
+            try:
+                r = requests.get(f"{base}/rest/v1/deal_records",
+                                 params={"select": "account_name", "opp_id": f"eq.{opp_id}"},
+                                 headers=h, verify=VERIFY, timeout=20).json()
+                account = (r[0].get("account_name") if r else None) or opp_id
+            except Exception:  # noqa: BLE001
+                account = opp_id
+        IL = f"('{oid}')"
+        tks = C.soql(_SF["sid"], _SF["inst"], f"SELECT WhatId,Subject,Type,Status,CreatedDate,LastModifiedDate,CompletedDateTime,Description FROM Task WHERE WhatId IN {IL} AND (CreatedDate>=LAST_N_DAYS:{LOOKBACK} OR LastModifiedDate>=LAST_N_DAYS:{LOOKBACK})")
+        evs = C.soql(_SF["sid"], _SF["inst"], f"SELECT WhatId,Subject,ActivityDateTime,CreatedDate,Description FROM Event WHERE WhatId IN {IL} AND (ActivityDateTime>=LAST_N_DAYS:{LOOKBACK} OR CreatedDate>=LAST_N_DAYS:{LOOKBACK})")
+        ems = C.soql(_SF["sid"], _SF["inst"], f"SELECT RelatedToId,Subject,MessageDate,Incoming,TextBody FROM EmailMessage WHERE RelatedToId IN {IL} AND MessageDate>=LAST_N_DAYS:{LOOKBACK}")
+        mvs = C.soql(_SF["sid"], _SF["inst"], f"SELECT OpportunityId,Field,OldValue,NewValue,CreatedDate FROM OpportunityFieldHistory WHERE OpportunityId IN {IL} AND CreatedDate>=LAST_N_DAYS:{LOOKBACK}")
+        avn = []
+        if _SF["dl"]:
+            av = C.datalake_get(_SF["dl"], f"avoma_meetings?crm_opportunity_id=ilike.{oid}*&select=subject,start_at,uuid&order=start_at.desc&limit=6") or []
+            for m in av[:4]:
+                ins = C.datalake_get(_SF["dl"], f"avoma_insights?uuid=eq.{m['uuid']}&select=ai_notes_text&limit=1")
+                avn.append({"date": (m.get("start_at") or "")[:10], "notes": (ins[0].get("ai_notes_text") if ins else "") or ""})
+        packet = collect_day(oid, tks, evs, ems, mvs, avn)
+        if not packet:
+            return None
+        as_of, items = packet
+        return summarize(ak, account, as_of, items)
+    except Exception as e:  # noqa: BLE001 — the deterministic backstop takes over
+        print(f"[DAY-SUMMARY-AI] opp={opp_id} failed: {type(e).__name__}: {str(e)[:120]}", flush=True)
+        return None
 
 
 def main():

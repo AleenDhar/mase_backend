@@ -72,7 +72,7 @@ def _notes_substance(t: str) -> str:
     return "  ".join(picked) if picked else t
 
 
-def _snippet(s, n=200) -> str:
+def _snippet(s, n=260) -> str:
     t = strip_html(str(s or ""))
     # drop a leading notes-source prefix ("fb/notes", "avoma notes", "meeting notes", "notes:")
     t = re.sub(r"^\s*(fb\s*/?\s*notes?|avoma\s*notes?|meeting\s*notes?|call\s*notes?|notes?|fb)\s*[:\-–]?\s+",
@@ -92,10 +92,27 @@ def _snippet(s, n=200) -> str:
     t = re.sub(r"#(?!\d)", " ", t)                                      # drop stray '#' but keep "#1"
     t = re.sub(r"[`>|]+", " ", t)
     t = re.sub(r"\s+", " ", t).strip(" ;-")
+    # Clean joins: a takeaway already ending in sentence punctuation shouldn't get a "; "
+    # glued on ("concerns.; An external" -> "concerns. An external"); collapse doubled seps.
+    t = re.sub(r"([.!?])\s*[;,]\s+", r"\1 ", t)
+    t = re.sub(r"\s*;\s*(?:;\s*)+", "; ", t)
     t = re.sub(r"^(hi|hello|hey|dear)\b[^,.:]{0,30}[,:]\s*", "", t, flags=re.I)  # leading greeting
     # cut at a quoted-reply / signature boundary so we don't drag in the thread history
     t = re.split(r"(?:^|\s)(?:On .{0,50}wrote:|From:\s|Sent:\s|-----Original|Best regards|Kind regards|Mit freundlichen|Thanks,|Regards,|Von:\s)", t)[0].strip()
-    return (t[:n].rstrip(" ;,-") + "…") if len(t) > n else t
+    return _smart_trunc(t, n)
+
+
+def _smart_trunc(t: str, n: int) -> str:
+    """Trim to ~n chars at a SENTENCE boundary when one lands past halfway, else a WORD
+    boundary — never mid-word (the '…implementation exp…' bug)."""
+    if len(t) <= n:
+        return t.rstrip(" ;,-")
+    cut = t[:n]
+    sent = re.search(r"^.*[.!?](?=\s|$)", cut)          # last full sentence within the cap
+    if sent and len(sent.group(0)) >= n * 0.5:
+        return sent.group(0).strip()
+    word = cut.rsplit(" ", 1)[0].rstrip(" ;,–-")         # else last whole word
+    return (word or cut.rstrip()) + "…"
 
 
 def _is_sfid(v) -> bool:

@@ -45,19 +45,57 @@ def _clean_subj(s) -> str:
     return t.strip(" -:–") or "(untitled)"
 
 
-def _snippet(s, n=140) -> str:
+# Structured meeting-notes handling. Avoma/Fireflies notes arrive as markdown sections
+# ("## Participants / ## Key Takeaways / ## Next Steps"). The what-happened lives in the
+# TAKEAWAYS, not the attendee ROSTER — so drop roster/agenda sections and prefer the substance.
+_NOTE_DROP = re.compile(r"particip|attend|agenda|logistic|\bjoin|dial|housekeep|present\b|roster|invitee", re.I)
+_NOTE_PREFER = re.compile(r"take\s*away|takeaway|summary|highlight|key\s*point|outcome|decision|"
+                          r"discussion|recap|conclusion|action|next\s*step|\bask\b|risk|blocker|note", re.I)
+
+
+def _notes_substance(t: str) -> str:
+    """If t is sectioned meeting notes (## headers), return the substantive sections
+    (takeaways / decisions / next-steps), dropping the participant roster and agenda. Works on
+    newline-delimited AND whitespace-flattened notes. Returns t unchanged when not sectioned."""
+    parts = re.split(r"#{1,4}\s+", t)   # header markers only (space after) — never split "#1"
+    if len(parts) < 2:
+        return t
+    prefer, keep = [], []
+    for chunk in parts[1:]:
+        # header = the label up to the first newline / colon / bullet; body = the rest
+        m = re.match(r"\s*(.{1,48}?)\s*(?:[\n:]|[*••\-]\s)(.*)", chunk, flags=re.S)
+        head, body = (m.group(1).strip(), m.group(2).strip()) if m else (chunk.strip()[:40], chunk.strip())
+        if not body or _NOTE_DROP.search(head):
+            continue
+        (prefer if _NOTE_PREFER.search(head) else keep).append(body)
+    picked = prefer or keep
+    return "  ".join(picked) if picked else t
+
+
+def _snippet(s, n=200) -> str:
     t = strip_html(str(s or ""))
+    # drop a leading notes-source prefix ("fb/notes", "avoma notes", "meeting notes", "notes:")
+    t = re.sub(r"^\s*(fb\s*/?\s*notes?|avoma\s*notes?|meeting\s*notes?|call\s*notes?|notes?|fb)\s*[:\-–]?\s+",
+               "", t, flags=re.I)
+    # sectioned notes -> keep the takeaways/decisions, drop the participant roster + agenda
+    t = _notes_substance(t)
     # strip logging-tool boilerplate so we keep only the substance (never a raw dump)
     t = re.sub(r"--\s*Avoma[^-]*?(?:Start|End)\s*--", " ", t, flags=re.I)   # -- Avoma Note Start --
     t = re.sub(r"Avoma\s*-\s*:[^\n]*?(?:<>[^\n]*\d{4}|\n|$)", " ", t)        # "Avoma - : Title <> July 01, 2026"
     t = re.sub(r"[_]{4,}|[-]{4,}|[=]{4,}|\*{3,}", " ", t)                    # rule lines
     t = re.sub(r"Microsoft Teams meeting.*", " ", t, flags=re.I | re.S)      # Teams join blurb
     t = re.sub(r"https?://\S+|Join:\s*\S*|Meeting ID:.*|Passcode:.*", " ", t, flags=re.I)
-    t = re.sub(r"\s+", " ", t).strip()
+    # residual markdown: turn bullets into separators, drop header/emphasis markers
+    t = re.sub(r"(?m)^\s*[*••\-]\s+", "", t)                            # leading bullets
+    t = re.sub(r"\s[*••]\s+", "; ", t)                                  # inline bullets -> "; "
+    t = t.replace("**", "")
+    t = re.sub(r"#(?!\d)", " ", t)                                      # drop stray '#' but keep "#1"
+    t = re.sub(r"[`>|]+", " ", t)
+    t = re.sub(r"\s+", " ", t).strip(" ;-")
     t = re.sub(r"^(hi|hello|hey|dear)\b[^,.:]{0,30}[,:]\s*", "", t, flags=re.I)  # leading greeting
     # cut at a quoted-reply / signature boundary so we don't drag in the thread history
     t = re.split(r"(?:^|\s)(?:On .{0,50}wrote:|From:\s|Sent:\s|-----Original|Best regards|Kind regards|Mit freundlichen|Thanks,|Regards,|Von:\s)", t)[0].strip()
-    return (t[:n].rstrip() + "…") if len(t) > n else t
+    return (t[:n].rstrip(" ;,-") + "…") if len(t) > n else t
 
 
 def _is_sfid(v) -> bool:

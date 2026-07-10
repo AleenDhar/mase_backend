@@ -65,6 +65,24 @@ def test_degraded_read_never_blanks():
     assert hard["stage"] == "Negotiation"
 
 
+def test_authoritative_null_stub_never_blanks_the_book():
+    # The 2026-07 "$0 everywhere" regression: a failed enrich SOQL returns a null
+    # STUB (id + all fields None, NO StageName). Even though the caller passes
+    # authoritative=True, a stub must NEVER clear governed facts — else one bad
+    # column 400s the query and blanks every deal's amount/stage/forecast/close.
+    hard = {"stage": "Negotiation", "amount": 250000, "forecast_category": "Commit",
+            "close_date": "2026-09-30", "competitor": "Coupa"}
+    stub = {"id": "0065g00000ABCDEFGHI", "name": None, "account": None,
+            "owner_name": None, "stage": None, "amount": None,
+            "forecast_category": None, "close_date": None, "competitor": None}
+    V.apply_sf_hard_facts(hard, stub, authoritative=True)
+    assert hard["stage"] == "Negotiation"          # preserved
+    assert hard["amount"] == 250000                # preserved
+    assert hard["forecast_category"] == "Commit"   # preserved
+    assert hard["close_date"] == "2026-09-30"      # preserved
+    assert hard["competitor"] == "Coupa"           # preserved
+
+
 def test_identity_labels_never_blanked_even_on_clean_read():
     hard = {"owner_name": "Dana Rep", "account_name": "Acme Corp", "opp_name": "Acme S2P"}
     V.apply_sf_hard_facts(

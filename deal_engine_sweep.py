@@ -4965,17 +4965,39 @@ async def hard_refresh_all(
             "removed": 0, "unmatched": 0, "failed": 0,
             "removed_opps": [], "source": source, "status": "completed",
         }
+        # Wholesale-failure circuit breaker: if the enrich SOQL failed for EVERY opp
+        # (e.g. an INVALID_FIELD 400 kills the entire query), every entry is a null
+        # stub carrying no StageName. Proceeding would blank the whole book to $0.
+        # Detect that (records exist, but not one carries a stage) and ABORT before
+        # writing anything — the stored records are left exactly as they are.
+        real_reads = sum(1 for o in enriched if (o.get("stage") or "").strip())
+        if records and real_reads == 0:
+            out = {
+                "status": "aborted", "reason": "sf_enrich_returned_no_facts",
+                "records": len(records), "real_reads": 0, "source": source,
+                "note": "Salesforce enrich returned no StageName for ANY tracked opp "
+                        "(likely an INVALID_FIELD 400); aborted so the book is not "
+                        "blanked to $0. Check _OPP_SELECT_FIELDS for a bad column.",
+            }
+            print(f"[HARD-REFRESH] ⛔ ABORT — enrich returned 0 real reads for "
+                  f"{len(records)} tracked opps (SOQL likely 400'd); book untouched",
+                  flush=True)
+            return out
         sem = asyncio.Semaphore(concurrency)
 
         async def _one(rec: dict) -> None:
             oid = (rec.get("opp_id") or (rec.get("hard") or {}).get("opp_id") or "")
             key = oid[:15]
             live = by15.get(key)
-            if not live:
+            stage = ((live or {}).get("stage") or "").strip()
+            # `live` present but with no StageName is a label STUB for an id the enrich
+            # SOQL could not read (a failed/400 chunk) — NOT a real Salesforce snapshot.
+            # Applying it with authoritative=True would blank stage/amount/forecast/close
+            # (the $0 outage). Skip it as unmatched so the stored record is preserved.
+            if not live or not stage:
                 out["unmatched"] += 1
                 return
             out["matched"] += 1
-            stage = (live.get("stage") or "").strip()
             async with sem:
                 try:
                     if delete_initial_interest and stage.lower() == "initial interest":

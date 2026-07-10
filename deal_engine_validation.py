@@ -406,11 +406,20 @@ def apply_sf_hard_facts(hard: dict, opp: dict, *, authoritative: bool) -> None:
             hard[f] = v
         else:
             hard.setdefault(f, v)
+    # A snapshot with NO StageName is not a real Opportunity read — it is a failed /
+    # partial SOQL (e.g. an INVALID_FIELD 400) or an unresolved label stub. Clearing
+    # governed facts from it would blank stage/amount/forecast/close on EVERY deal
+    # (the 2026-07 "$0 everywhere" outage: one bad column 400'd the enrich query, so
+    # every opp came back as a null stub and authoritative=True zeroed the book).
+    # Salesforce may only NULL a fact when it genuinely read the opp, which a real
+    # read always proves by carrying a StageName. Never blank from a stub.
+    snapshot_is_real = bool(str(opp.get("stage") or "").strip())
+    allow_clear = authoritative and snapshot_is_real
     for f, k in SF_FACT_OPP_KEYS.items():
         v = opp.get(k)
         if v is not None and v != "":
             hard[f] = v
-        elif authoritative:
+        elif allow_clear:
             hard[f] = None
     # Gate contract (2026-07-07): these fields are now SERVER-OWNED on this record — the
     # divergence check (validate_record check 4) is redundant for them and, worse, fires

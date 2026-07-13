@@ -699,6 +699,73 @@ async def _soql(agent_manager, query: str) -> list[dict]:
     return await asyncio.to_thread(_run)
 
 
+# --- Deep-read the latest N Salesforce activities (Task/Event bodies) ------
+# Salesforce activities — logged emails ([Clari]/[Email]), tasks, meetings — are ground
+# truth for what is happening NOW, but the sweep otherwise only sees their SUBJECTS (for
+# engagement dates). Here we pull the newest N with their FULL Description (the email
+# body / call log) and hand them to the agent PRE-READ, so it reconciles requirements /
+# commitments / moves against what the emails actually SAID ("the RFI response was
+# submitted", "the council replied Jul 7") instead of guessing from a subject line.
+# Standard fields only (no 400 risk); each query wrapped; never blocks the sweep.
+_ACTIVITY_DEEP_N = int(os.getenv("DEAL_SWEEP_ACTIVITY_DEEP_N", "10") or 10)
+_ACTIVITY_BODY_CAP = int(os.getenv("DEAL_SWEEP_ACTIVITY_BODY_CAP", "1800") or 1800)
+
+
+async def _recent_activities_deep(agent_manager, opp_id: str, limit: int = 10) -> list[dict]:
+    """The newest `limit` activities (Task + Event) for an opp — Subject + full body,
+    newest first. Direct SOQL (bypasses the tool summariser). Never raises."""
+    sid = _sql_str(opp_id)
+    out: list[dict] = []
+    try:
+        for t in (await _soql(
+                agent_manager,
+                f"SELECT Subject, Description, Type, ActivityDate, CreatedDate, Who.Name, "
+                f"Owner.Name FROM Task WHERE WhatId = '{sid}' ORDER BY CreatedDate DESC "
+                f"LIMIT {int(limit)}")) or []:
+            out.append({"kind": "email/task", "type": t.get("Type"),
+                        "subject": t.get("Subject"), "body": t.get("Description"),
+                        "date": (t.get("ActivityDate") or (t.get("CreatedDate") or "")[:10]),
+                        "who": _sf_name(t, "Who", "Name")})
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] activity Task deep-read failed opp={opp_id}: {e}", flush=True)
+    try:
+        for ev in (await _soql(
+                agent_manager,
+                f"SELECT Subject, Description, ActivityDate, ActivityDateTime, CreatedDate, "
+                f"Who.Name, Owner.Name FROM Event WHERE WhatId = '{sid}' ORDER BY CreatedDate "
+                f"DESC LIMIT {int(limit)}")) or []:
+            out.append({"kind": "meeting", "type": "Event",
+                        "subject": ev.get("Subject"), "body": ev.get("Description"),
+                        "date": (ev.get("ActivityDate") or (ev.get("ActivityDateTime")
+                                 or ev.get("CreatedDate") or "")[:10]),
+                        "who": _sf_name(ev, "Who", "Name")})
+    except Exception as e:  # noqa: BLE001
+        print(f"[DEAL-SWEEP] activity Event deep-read failed opp={opp_id}: {e}", flush=True)
+    out.sort(key=lambda a: str(a.get("date") or ""), reverse=True)
+    return out[:int(limit)]
+
+
+def _activities_block(acts: list[dict]) -> str:
+    """Render the deep-read activities as a pre-read GROUND-TRUTH block for the agent."""
+    if not acts:
+        return ""
+    lines = ["\n\n## RECENT SALESFORCE ACTIVITIES — deep read, newest first",
+             "GROUND TRUTH for what is happening NOW. Reconcile every requirement, "
+             "commitment, buyer-dependency and move against these; if an activity shows an "
+             "ask is already done (RFI/response submitted, document sent, question answered, "
+             "meeting held), treat it CLOSED and never list it as still open."]
+    for a in acts:
+        hd = f"\n• [{a.get('date') or '?'}] {a.get('type') or a.get('kind')}: " \
+             f"{str(a.get('subject') or '').strip()[:180]}"
+        if a.get("who"):
+            hd += f"  · with {a['who']}"
+        lines.append(hd)
+        body = re.sub(r"[ \t]+\n", "\n", str(a.get("body") or "").strip())
+        if body:
+            lines.append("   " + body[:_ACTIVITY_BODY_CAP].replace("\n", "\n   "))
+    return "\n".join(lines)
+
+
 # --- MEDDPICC custom-object pull (CRM-entered) -----------------------------
 # Reps fill MEDDPICC into two SF custom objects: MEDDPICC__c (human-entered,
 # authoritative — clean named economic buyer) and MEDDPICC_2_0__c (auto-synced,
@@ -2787,11 +2854,20 @@ async def analyze_one(
         # for lack of prior state — the sweep result stands on its own. Every other
         # source keeps living memory (the incremental merge used by SF triggers /
         # automated refreshes), so steady-state behaviour is unchanged.
-        _from_scratch = (source == "update_living_memory")
+        # LATEST-IS-TRUTH (user directive 2026-07-13): default to a FROM-SCRATCH rebuild on
+        # EVERY sweep — NO living-memory carry-forward, no stale packet / requirement /
+        # element / move carry. Salesforce (next steps, activities, fields) + the Avoma
+        # datalake are the ONLY source of truth, and the LATEST state wins; each sweep
+        # re-derives the whole record from that latest evidence, so a stale prior state can
+        # never contradict it (the Birmingham "submit RFI: done in one bucket, open in
+        # another" class of bug). Set DEAL_SWEEP_KEEP_LIVING_MEMORY=true to restore the old
+        # incremental-merge behaviour.
+        _keep_lm = os.getenv("DEAL_SWEEP_KEEP_LIVING_MEMORY", "").strip().lower() in ("1", "true", "yes", "on")
+        _from_scratch = (source == "update_living_memory") or not _keep_lm
         existing_record = {}
         if _from_scratch:
-            print(f"[DEAL-SWEEP] update-living-memory opp={opp_id} — FROM SCRATCH "
-                  f"(no carry-forward; replaces the prior record)", flush=True)
+            print(f"[DEAL-SWEEP] opp={opp_id} — FROM SCRATCH (latest-is-truth: no "
+                  f"living-memory carry-forward; rebuilt from SFDC + Avoma)", flush=True)
         else:
             try:
                 existing_record = await asyncio.get_running_loop().run_in_executor(
@@ -2952,6 +3028,16 @@ async def analyze_one(
                 )
         except Exception:
             pass
+        # Deep-read the newest N Salesforce activities (email/task/event bodies) so the
+        # agent reconciles against what actually happened, not just subject lines.
+        activities_block = ""
+        try:
+            _acts_deep = await _recent_activities_deep(agent_manager, opp_id, _ACTIVITY_DEEP_N)
+            activities_block = _activities_block(_acts_deep)
+            print(f"[DEAL-SWEEP] deep-read {len(_acts_deep)} recent activities opp={opp_id}",
+                  flush=True)
+        except Exception as _ae:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] activity deep-read failed opp={opp_id}: {_ae}", flush=True)
         user_msg = (
             f"Sweep Salesforce Opportunity Id `{opp_id}`"
             + (f" (account: {opp.get('account')}, name: {opp.get('name')})" if opp.get("account") else "")
@@ -2963,6 +3049,10 @@ async def analyze_one(
             # Pre-read Avoma calls (empty string unless DEAL_SWEEP_PARALLEL_READERS
             # is on AND the prefetch found+read matched calls — off-path is unchanged).
             + avoma_prefetch_block
+            # Pre-read the newest N Salesforce activities (email/task/event BODIES) —
+            # ground truth for the current state; the agent reconciles every ask against
+            # these instead of inferring from a subject line.
+            + activities_block
             + meddpicc_crm_block
             + topics_block
             + _roster_block

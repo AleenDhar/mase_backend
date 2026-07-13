@@ -8033,9 +8033,33 @@ async def deal_engine_todo_push(request: Request):
         push = await _aw(dstore.insert_push, todo_key=key, opp_id=what_id,
                          category=category or None, subject=rec_subject,
                          sf_task_id=sf_task_id, pushed_by=pushed_by, payload=d)
+        # EVENT TRIGGER (2026-07-13): a ticked to-do pushed to Salesforce is a real
+        # deal event (a new closed activity), so fire an IMMEDIATE, event-driven
+        # Omnivision re-sweep of THIS deal — the same analyze_one path (win/mom
+        # v10.8 …) we run for the whole book, NOT the old deal sweep, and NOT on a
+        # schedule. trigger_opp_async is fire-and-forget (never blocks this push
+        # response), deduped per opp (ticking several to-dos on one deal fires ONE
+        # sweep), and bounded by DEAL_TRIGGER_CONCURRENCY. Reliability: it re-sweeps
+        # ONLY an existing book member and skips during a hard-refresh, so it can
+        # never add a non-member or clobber freshly-corrected SF facts. It runs
+        # in-process, bypassing the manual_only queue gate. A trigger failure is
+        # swallowed — it must NEVER fail the push the rep just confirmed.
+        # Gated (default OFF) so the code ships inert and we flip it on to test on a
+        # few deals, then kill it instantly if anything misbehaves — no redeploy.
+        resweep = "disabled"
+        if os.getenv("TODO_PUSH_RESWEEP", "").strip().lower() in ("1", "true", "yes", "on"):
+            try:
+                import deal_engine_sweep as _sweep
+                resweep = _sweep.trigger_opp_async(agent_manager, what_id)
+                print(f"[TODO-PUSH] opp={what_id} todo_key={key} -> resweep={resweep}",
+                      flush=True)
+            except Exception as _re:  # noqa: BLE001
+                resweep = "error"
+                print(f"[TODO-PUSH] opp={what_id} resweep schedule failed: "
+                      f"{type(_re).__name__}: {_re}", flush=True)
         return {"ok": True, "already_pushed": False, "sf_task_id": sf_task_id,
                 "todo_key": key, "pushed_at": push.get("pushed_at"),
-                "subject": rec_subject}
+                "subject": rec_subject, "resweep": resweep}
     except dstore.DealEngineError as e:
         return JSONResponse({"error": str(e)}, status_code=400)
     except Exception as e:  # noqa: BLE001
@@ -8692,6 +8716,69 @@ async def deal_engine_sweep_status():
         return await sweep.get_status()
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
+
+
+# ============================================================================
+# DATABASE BACKUP (admin) — mirror the main Supabase into the mase-backup project.
+# The same db_backup routine powers the admin "Sync Now" button and the 5-hour cron.
+# Creds (BACKUP_URL / BACKUP_SERVICE_KEY / SUPABASE_ACCESS_TOKEN) come from env (mase/app-env).
+# ============================================================================
+_backup_run = {"running": False, "started_at": None, "mode": None, "last": None}
+
+
+@app.post("/api/deal-engine/backup/sync")
+async def deal_engine_backup_sync(request: Request):
+    """Kick off a DB backup NOW. Incremental (delta) by default; ?mode=full for a full re-seed.
+    Returns 202 immediately and runs in the background (a full seed of the big tables is slow).
+    Deduped: a second call while one is running returns already_running."""
+    global _backup_run
+    if _backup_run["running"]:
+        return JSONResponse({"status": "already_running", "started_at": _backup_run["started_at"],
+                             "mode": _backup_run["mode"]}, status_code=202)
+    mode = "full" if request.query_params.get("mode") == "full" else "incremental"
+    import datetime as _dt
+    _backup_run = {"running": True, "started_at": _dt.datetime.now(_dt.timezone.utc).isoformat(),
+                   "mode": mode, "last": _backup_run.get("last")}
+
+    async def _go():
+        global _backup_run
+        try:
+            import db_backup
+            summary = await asyncio.to_thread(db_backup.run, mode)
+            _backup_run = {"running": False, "started_at": None, "mode": None, "last": summary}
+        except Exception as e:  # noqa: BLE001
+            print(f"[DB-BACKUP] run failed: {type(e).__name__}: {e}", flush=True)
+            _backup_run = {"running": False, "started_at": None, "mode": None,
+                           "last": {"status": "error", "error": str(e)[:300]}}
+
+    asyncio.create_task(_go())
+    return JSONResponse({"status": "accepted", "mode": mode,
+                         "note": "backup running in background; poll /api/deal-engine/backup/status"},
+                        status_code=202)
+
+
+@app.get("/api/deal-engine/backup/status")
+async def deal_engine_backup_status():
+    """Whether a backup is running now + the last completed run (from the backup DB's
+    _backup_runs table), so the admin UI can show 'last synced …' and per-table counts."""
+    import db_backup
+    out = {"running": _backup_run["running"], "started_at": _backup_run["started_at"],
+           "mode": _backup_run["mode"]}
+    try:
+        def _read():
+            import requests as _rq
+            return _rq.get(f"{db_backup.BAK_URL}/rest/v1/_backup_runs", headers=db_backup.BAK_H,
+                           params={"select": "started_at,finished_at,mode,tables_synced,rows_copied,status",
+                                   "order": "finished_at.desc.nullslast", "limit": "1"},
+                           verify=False, timeout=30).json()
+        rows = await asyncio.to_thread(_read)
+        out["last_run"] = rows[0] if isinstance(rows, list) and rows else None
+        out["configured"] = bool(db_backup.BAK_URL and db_backup.BAK_KEY)
+    except Exception as e:  # noqa: BLE001
+        out["last_run"] = None
+        out["configured"] = bool(getattr(db_backup, "BAK_URL", "") and getattr(db_backup, "BAK_KEY", ""))
+        out["error"] = str(e)[:200]
+    return out
 
 
 @app.get("/api/deal-engine/sweep/dashboard", response_class=HTMLResponse)

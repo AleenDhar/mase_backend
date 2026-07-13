@@ -11,6 +11,45 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-14 — Living-Memory Reconciler: keep the ledger, reconcile it to the latest truth
+
+**What.** Reversed the short-lived from-scratch experiment. Living memory is **kept by default
+again** (`DEAL_SWEEP_KEEP_LIVING_MEMORY` now defaults **true**; a from-scratch rebuild is now an
+*explicit* escape hatch only — the "Update Living Memories" purge button, `source=
+"update_living_memory"`, still forces a no-carry rebuild to clear poisoned memory). On top of the
+kept ledger we added a **Reconciler** (Sam Thomas brief):
+- **P-4** — every packet carries a stable `entry_id` (survives text re-wordings) + `generated_at_stage`.
+- **P-5** — a new locked Omnivision engine `reconciler` (Reconciler 1.0) makes a **RETIRE / KEEP /
+  UPDATE** decision per open entry, with a hard **evidence guardrail** (RETIRE requires a *verbatim*
+  quote from the sweep evidence; duplicates retire with `evidence:"duplicate"`).
+- **P-6** — `_reconcile_open_entries` (Haiku, via the daysum pool) runs each sweep AFTER the packet
+  merge/projection over the open `requirement`/`commitment` packets, judged against the latest SFDC
+  activities + Avoma notes. A **code-level** guardrail re-checks the model: a RETIRE with empty
+  evidence is downgraded to KEEP, so a real action item can never be silently deleted. Retired items
+  become `status="resolved"` (+ `retire_evidence`/`retire_reason`/`retire_sweep_date` audit trail),
+  which `_live()` drops from the re-projection → they vanish from `ai.*` and `derive_todo` without a
+  hard delete. Fixes the Birmingham "submit RFI: done in the score narrative, still open in the
+  to-dos" class of contradiction.
+- **P-2/P-3** (hardening, same push) — `_soql` now drops an invalid SELECT column and retries instead
+  of blanking the book on a schema change; `_recent_activities_deep` filters OOO/auto-reply/
+  undeliverable/calendar-status noise from the deep read.
+- **Prompts v11** — GROUND TRUTH rule #1 rewritten from "there is NO living memory / rebuild from
+  scratch" to "**latest wins — reconcile the ledger to it**" across all 6 engines (rules 2–5 unchanged).
+
+**Why.** From-scratch fixed the contradictions but threw away genuinely useful accumulated context
+every sweep. The reconciler keeps the context AND kills the staleness: latest evidence still wins,
+but via *retirement-with-audit*, not by nuking the ledger. P-7/P-8/P-9 from the brief were found
+already covered (stakeholder_map is already anchored to real `OpportunityContactRole`; MEDDPICC EB
+already prefers `MEDDPICC__c`; dedup handled by `todo_grouping.tidy` + the reconciler's DUPLICATES rule).
+
+**How to work with it going forward.**
+- Flags: `DEAL_SWEEP_KEEP_LIVING_MEMORY` (default true), `DEAL_SWEEP_RECONCILER_ENABLED` (default
+  true), `DEAL_SWEEP_RECONCILER_MODEL` (default `claude-haiku-4-5`). The reconciler is non-fatal and
+  skipped under an explicit from-scratch purge (no prior ledger to reconcile).
+- A wrongly-KEPT item lingers one extra sweep (harmless); a wrongly-RETIRED item is an audited
+  `status="resolved"` packet you can inspect — never a silent delete.
+- Edit the reconciler prompt in Admin → Agent Control (engine `reconciler`), NOT in code.
+
 ## 2026-07-09 — Parallel fleet: manual triggers → worker queue, autoscaler on (re-applied)
 
 **What.** Manual sweep triggers ENQUEUE again (durable `sweep_queue`, drained by the mase-worker

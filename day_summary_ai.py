@@ -33,11 +33,14 @@ recent day this deal had activity. You are given that day's raw Salesforce activ
 meeting/call notes, tasks, and field changes. Write like a sharp colleague giving the story, NOT a bot \
 listing events.
 
-WRITE:
-- overall: 2-4 sentences telling the STORY of the day. What did we or the buyer actually DO, and WHY? \
-What moved? Where does it stand now — are we waiting on them, or they on us? If a long-postponed meeting \
-finally happened, say that. Insight over recitation.
-- items[]: one per real activity, each a 1-2 sentence INTELLIGENT read:
+WRITE (detailed — this is a briefing, not a telegram; detail and specificity are the goal, brevity is NOT):
+- overall: a RICH 3-5 sentence narrative telling the full STORY of the day (more when the day genuinely \
+warrants it). What did we or the buyer actually DO, and WHY? Who drove it (name the real people)? What \
+moved, and what does it MEAN for the deal? Where does it stand now — are we waiting on them, or they on \
+us, and what is pending? If a long-postponed meeting finally happened, say that. Quote the buyer where it \
+sharpens the point; cite dates, dollar figures, competitor names. Insight over recitation — but never pad \
+a quiet day.
+- items[]: one per real activity, each a DETAILED 2-4 sentence INTELLIGENT read:
    * EMAIL — who sent it to whom, WHY (what prompted it / what it replies to), what it asked for or \
 delivered, and whether a reply is now pending. Never "we sent an email" with no substance — say what it \
 was about.
@@ -132,7 +135,7 @@ def summarize(key, account, as_of, day_items):
     user = "\n".join(lines)
     r = requests.post("https://api.anthropic.com/v1/messages",
                       headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                      json={"model": MODEL, "max_tokens": 2500, "system": SYS,
+                      json={"model": MODEL, "max_tokens": 4000, "system": SYS,
                             # Sonnet 5 defaults to ADAPTIVE THINKING when `thinking` is omitted —
                             # it silently eats the token budget and truncates the JSON (the
                             # empty-overall bug). Summaries don't need thinking: disable it.

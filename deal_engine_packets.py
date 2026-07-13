@@ -35,6 +35,7 @@ import datetime as _dt
 import json
 import os
 import re
+import uuid
 from typing import Any, Optional
 
 # Facts whose ABSENCE from a sweep means "not re-mentioned", not "gone". They go
@@ -367,7 +368,7 @@ def present_delta(delta: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 def reconcile(existing_packets: list, candidate_packets: list,
-              today: str) -> tuple[list, list]:
+              today: str, stage: str = "") -> tuple[list, list]:
     """Merge a sweep's candidate packets into the deal's existing packets.
 
     Pure function. Returns (packets, deltas_for_this_sweep). Cases handled:
@@ -389,7 +390,10 @@ def reconcile(existing_packets: list, candidate_packets: list,
     for p in existing_packets or []:
         k = p.get("key")
         if k:
-            by_key[k] = dict(p)
+            pp = dict(p)
+            if not pp.get("entry_id"):     # P-4: backfill a stable id on pre-existing packets
+                pp["entry_id"] = uuid.uuid4().hex
+            by_key[k] = pp
 
     deltas: list[dict] = []
     seen: set[str] = set()
@@ -431,6 +435,8 @@ def reconcile(existing_packets: list, candidate_packets: list,
         if key not in by_key:
             packet = {
                 "key": key,
+                "entry_id": uuid.uuid4().hex,          # P-4: stable id (survives text updates)
+                "generated_at_stage": stage or None,   # P-4: SF stage at creation
                 "type": ctype,
                 "subject": c.get("subject") or key.split(":", 1)[-1],
                 "value": cval,

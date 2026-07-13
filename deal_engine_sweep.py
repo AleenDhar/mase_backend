@@ -681,6 +681,24 @@ def sf_id_18(oid: str) -> str:
     return oid + suffix
 
 
+_INVALID_FIELD_RE = re.compile(r"No such column '([^']+)'", re.IGNORECASE)
+
+
+def _drop_soql_field(query: str, field: str) -> str:
+    """Remove ONE column from a SOQL SELECT list (exact or relationship-suffix match),
+    leaving the rest intact. Returns the query unchanged if the field isn't in the SELECT."""
+    m = re.match(r"(?is)(\s*SELECT\s+)(.*?)(\s+FROM\s.*)", query)
+    if not m:
+        return query
+    pre, sel, post = m.groups()
+    fl = field.strip().lower()
+    parts = [p.strip() for p in sel.split(",")]
+    kept = [f for f in parts if f.lower() != fl and not f.lower().endswith("." + fl)]
+    if len(kept) == len(parts):
+        return query
+    return pre + ", ".join(kept) + post
+
+
 async def _soql(agent_manager, query: str) -> list[dict]:
     """Run a SOQL query for discovery.
 
@@ -694,7 +712,27 @@ async def _soql(agent_manager, query: str) -> list[dict]:
     from salesforce_mcp_server import sf_conn
 
     def _run() -> list[dict]:
-        return sf_conn().query_all(query).get("records", []) or []
+        # SOQL FIELD GUARD (P-2): a single non-existent column makes Salesforce reject the
+        # ENTIRE query (INVALID_FIELD 400) -> empty result -> the enrich then clears
+        # stage/amount/close across the WHOLE book (the "$0 everywhere" outage). Instead,
+        # drop the offending column and retry, so the VALID fields still return and the book
+        # is NEVER blanked by one bad field. Non-field errors propagate unchanged.
+        q = query
+        for _ in range(8):
+            try:
+                return sf_conn().query_all(q).get("records", []) or []
+            except Exception as e:  # noqa: BLE001
+                blob = f"{e} {getattr(e, 'content', '')}"
+                if "INVALID_FIELD" not in blob.upper():
+                    raise
+                m = _INVALID_FIELD_RE.search(blob)
+                nq = _drop_soql_field(q, m.group(1)) if m else q
+                if not m or nq == q:
+                    raise
+                print(f"[SOQL-GUARD] dropped INVALID_FIELD '{m.group(1)}' and retried — a bad "
+                      f"column must never 400 the whole query / blank the book", flush=True)
+                q = nq
+        return sf_conn().query_all(q).get("records", []) or []
 
     return await asyncio.to_thread(_run)
 
@@ -724,17 +762,36 @@ def _daysum_pool():
     return _DAYSUM_POOL
 
 
+def _activity_is_noise(a: dict) -> bool:
+    """P-3 email/activity filter: True for machine NOISE that should NOT enter the sweep
+    context — auto-reply / OOO / delivery-failure / calendar-status (Accepted:/Declined:) /
+    a bare calendar invite with no body. High-precision by design: a real buyer email is
+    NEVER dropped (only clear non-signal is)."""
+    subj = str(a.get("subject") or "").lower()
+    subj = re.sub(r"^\s*\[clari[^\]]*\]\s*", "", subj)          # strip [Clari - Email …] tag
+    subj = re.sub(r"^\s*((re|fwd|fw)\s*:\s*)+", "", subj)       # strip Re:/Fwd: chain
+    if re.match(r"(automatic reply|auto\s*reply|out of office|ooo\b|undeliverable|"
+                r"delivery (status notification|has failed)|read:|accepted:|declined:|"
+                r"tentative:|canceled:|cancelled:)", subj):
+        return True
+    body = str(a.get("body") or "").strip()
+    if len(body.split()) < 6 and subj.startswith("invitation:"):
+        return True
+    return False
+
+
 async def _recent_activities_deep(agent_manager, opp_id: str, limit: int = 10) -> list[dict]:
     """The newest `limit` activities (Task + Event) for an opp — Subject + full body,
     newest first. Direct SOQL (bypasses the tool summariser). Never raises."""
     sid = _sql_str(opp_id)
+    _fetch = int(limit) + 15  # over-fetch so the noise filter can't starve the top-N
     out: list[dict] = []
     try:
         for t in (await _soql(
                 agent_manager,
                 f"SELECT Subject, Description, Type, ActivityDate, CreatedDate, Who.Name, "
                 f"Owner.Name FROM Task WHERE WhatId = '{sid}' ORDER BY CreatedDate DESC "
-                f"LIMIT {int(limit)}")) or []:
+                f"LIMIT {_fetch}")) or []:
             out.append({"kind": "email/task", "type": t.get("Type"),
                         "subject": t.get("Subject"), "body": t.get("Description"),
                         "date": (t.get("ActivityDate") or (t.get("CreatedDate") or "")[:10]),
@@ -746,7 +803,7 @@ async def _recent_activities_deep(agent_manager, opp_id: str, limit: int = 10) -
                 agent_manager,
                 f"SELECT Subject, Description, ActivityDate, ActivityDateTime, CreatedDate, "
                 f"Who.Name, Owner.Name FROM Event WHERE WhatId = '{sid}' ORDER BY CreatedDate "
-                f"DESC LIMIT {int(limit)}")) or []:
+                f"DESC LIMIT {_fetch}")) or []:
             out.append({"kind": "meeting", "type": "Event",
                         "subject": ev.get("Subject"), "body": ev.get("Description"),
                         "date": (ev.get("ActivityDate") or (ev.get("ActivityDateTime")
@@ -754,8 +811,84 @@ async def _recent_activities_deep(agent_manager, opp_id: str, limit: int = 10) -
                         "who": _sf_name(ev, "Who", "Name")})
     except Exception as e:  # noqa: BLE001
         print(f"[DEAL-SWEEP] activity Event deep-read failed opp={opp_id}: {e}", flush=True)
-    out.sort(key=lambda a: str(a.get("date") or ""), reverse=True)
-    return out[:int(limit)]
+    kept = [a for a in out if not _activity_is_noise(a)]
+    _dropped = len(out) - len(kept)
+    if _dropped:
+        print(f"[DEAL-SWEEP] activity-filter opp={opp_id}: dropped {_dropped} noise "
+              f"(OOO/auto-reply/calendar) of {len(out)}", flush=True)
+    kept.sort(key=lambda a: str(a.get("date") or ""), reverse=True)
+    return kept[:int(limit)]
+
+
+# --- P-6: Living Memory Reconciler (retire / keep / update, evidence-guarded) --------------
+# The reconcilable packet types are exactly the carried ACTION-ITEMS that accumulate across
+# sweeps and can be fulfilled/closed: "requirement" (prospect asks) and "commitment" (Zycus
+# promises AND buyer-dependent actions — buyer-deps are commitments with who="Buyer"). Moves
+# are regenerated fresh every sweep (never carried), and stakeholder/competitor/risk/champion/
+# product_scope are durable STATE, not closeable to-dos — so none of those are reconciled here.
+_RECONCILE_TYPES = {"requirement", "commitment"}
+
+
+def _packet_entry_text(p: dict) -> str:
+    v = p.get("value") if isinstance(p.get("value"), dict) else {}
+    return str(p.get("subject") or v.get("value") or v.get("text") or v.get("action")
+               or v.get("requirement") or v.get("deliverable") or v.get("commitment") or "").strip()
+
+
+def _packet_entry_due(p: dict):
+    v = p.get("value") if isinstance(p.get("value"), dict) else {}
+    return v.get("due") or v.get("act_by") or v.get("due_date")
+
+
+async def _reconcile_open_entries(agent_manager, opp_id: str, open_packets: list,
+                                  sweep_text: str) -> dict:
+    """A Haiku pass that decides RETIRE / KEEP / UPDATE per open ledger entry against the
+    latest sweep evidence, governed by the locked `reconciler` engine. The evidence guardrail
+    is ALSO enforced in code at the call site, so a bad decision can never silently delete an
+    item. Returns {entry_id: decision}. Never raises (failure => {} => everything KEEPs)."""
+    if os.getenv("DEAL_SWEEP_RECONCILER_ENABLED", "true").strip().lower() in ("0", "false", "no", "off"):
+        return {}
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if not key or not sweep_text:
+        return {}
+    items = []
+    for p in open_packets or []:
+        eid, txt = p.get("entry_id"), _packet_entry_text(p)
+        if eid and txt:
+            items.append({"entry_id": eid, "type": p.get("type"),
+                          "text": txt[:400], "due": _packet_entry_due(p)})
+    if not items:
+        return {}
+    try:
+        import json as _json
+        import requests as _rq
+        sys_prompt = ((_st.active_locked() or {}).get("reconciler") or {}).get("content")
+        if not sys_prompt:
+            return {}
+        user = _json.dumps({"sweep": str(sweep_text)[:24000], "open_items": items})
+        model = os.getenv("DEAL_SWEEP_RECONCILER_MODEL", "claude-haiku-4-5")
+
+        def _call():
+            r = _rq.post("https://api.anthropic.com/v1/messages",
+                         headers={"x-api-key": key, "anthropic-version": "2023-06-01",
+                                  "content-type": "application/json"},
+                         json={"model": model, "max_tokens": 4000, "system": sys_prompt,
+                               "messages": [{"role": "user", "content": user}]},
+                         verify=False, timeout=90)
+            return r.json()
+
+        resp = await asyncio.get_running_loop().run_in_executor(_daysum_pool(), _call)
+        txt = ((resp.get("content") or [{}])[0] or {}).get("text", "") if isinstance(resp, dict) else ""
+        m = re.search(r"\{.*\}", txt, re.DOTALL)
+        obj = _json.loads(m.group(0)) if m else {}
+        out = {d["entry_id"]: d for d in (obj.get("reconcile") or [])
+               if isinstance(d, dict) and d.get("entry_id")}
+        print(f"[RECONCILER] opp={opp_id}: {len(items)} open entries -> {len(out)} decisions",
+              flush=True)
+        return out
+    except Exception as e:  # noqa: BLE001 — never block the sweep
+        print(f"[RECONCILER] opp={opp_id} skipped: {type(e).__name__}: {e}", flush=True)
+        return {}
 
 
 def _activities_block(acts: list[dict]) -> str:
@@ -2867,15 +3000,16 @@ async def analyze_one(
         # for lack of prior state — the sweep result stands on its own. Every other
         # source keeps living memory (the incremental merge used by SF triggers /
         # automated refreshes), so steady-state behaviour is unchanged.
-        # LATEST-IS-TRUTH (user directive 2026-07-13): default to a FROM-SCRATCH rebuild on
-        # EVERY sweep — NO living-memory carry-forward, no stale packet / requirement /
-        # element / move carry. Salesforce (next steps, activities, fields) + the Avoma
-        # datalake are the ONLY source of truth, and the LATEST state wins; each sweep
-        # re-derives the whole record from that latest evidence, so a stale prior state can
-        # never contradict it (the Birmingham "submit RFI: done in one bucket, open in
-        # another" class of bug). Set DEAL_SWEEP_KEEP_LIVING_MEMORY=true to restore the old
-        # incremental-merge behaviour.
-        _keep_lm = os.getenv("DEAL_SWEEP_KEEP_LIVING_MEMORY", "").strip().lower() in ("1", "true", "yes", "on")
+        # KEEP-LIVING-MEMORY + RECONCILE (user directive 2026-07-13, reversing the earlier
+        # from-scratch experiment): the DEFAULT is to CARRY the living-memory ledger forward
+        # and RECONCILE it against the latest evidence (the P-6 reconciler below retires
+        # DONE/duplicate open entries with a verbatim-evidence guardrail, so nothing is
+        # silently deleted and the Birmingham "submit RFI: done here, open there" class of
+        # bug is fixed by retirement-with-audit, not by nuking the ledger). FROM-SCRATCH is
+        # now an EXPLICIT escape hatch only: the "Update Living Memories" purge button
+        # (source="update_living_memory") rebuilds one deal/book with no carry to clear
+        # poisoned memory. Set DEAL_SWEEP_KEEP_LIVING_MEMORY=false to force from-scratch.
+        _keep_lm = os.getenv("DEAL_SWEEP_KEEP_LIVING_MEMORY", "true").strip().lower() in ("1", "true", "yes", "on")
         _from_scratch = (source == "update_living_memory") or not _keep_lm
         existing_record = {}
         if _from_scratch:
@@ -3259,7 +3393,8 @@ async def analyze_one(
                     candidates = _kept
                 if candidates or _prior_packets:
                     merged_packets, new_deltas = packets_mod.reconcile(
-                        _prior_packets, candidates, parsed["swept_at"])
+                        _prior_packets, candidates, parsed["swept_at"],
+                        stage=hard.get("stage") or "")
                     # Living-memory rule: NEVER age-retire carried-forward facts.
                     # Absence is "not re-mentioned", never "gone" — a fact is retired
                     # ONLY on an explicit resolve/supersede signal (in reconcile) or an
@@ -3678,6 +3813,65 @@ async def analyze_one(
         # recomputes the engagement pulse and projects the packet-backed ai.* (moves,
         # verdict, meddpicc) — the good, accurate, deal-progression facts.
         _apply_living_memory(parsed)
+        # P-6 LIVING-MEMORY RECONCILER (Sam Thomas brief). Runs AFTER the packet
+        # merge/projection so it sees the FINALISED ledger, and BEFORE tidy + RevOps
+        # so they operate on the reconciled surface. For every OPEN reconcilable entry
+        # (requirement / commitment / buyer_dependency / move) the Reconciler engine
+        # (Haiku, evidence-guarded) decides RETIRE / KEEP / UPDATE against the latest
+        # SFDC activities + Avoma notes. CODE guardrail (belt-and-suspenders on top of
+        # the prompt): a RETIRE with EMPTY evidence is downgraded to KEEP here, so a
+        # real action item can never be silently deleted. Retired entries become
+        # status="resolved" (+ retire_evidence/reason/date audit trail) which _live()
+        # drops from the re-projection — never a hard delete. Async (Haiku via the
+        # daysum pool), non-fatal, and skipped under an explicit from-scratch purge
+        # (no prior ledger to reconcile). Gated by DEAL_SWEEP_RECONCILER_ENABLED.
+        if (not _from_scratch
+                and os.getenv("DEAL_SWEEP_RECONCILER_ENABLED", "true").strip().lower()
+                in ("1", "true", "yes", "on")):
+            try:
+                _pkts = parsed.get("packets") or []
+                _open = [p for p in _pkts
+                         if str(p.get("status") or "active") == "active"
+                         and str(p.get("type") or "") in _RECONCILE_TYPES
+                         and not p.get("retire_evidence")]
+                if _open:
+                    _ev = ((activities_block or "") + "\n\n"
+                           + (avoma_prefetch_block or "")).strip()
+                    _dec = await _reconcile_open_entries(
+                        agent_manager, opp_id, _open, _ev)
+                    _ret = _upd = 0
+                    for _p in _pkts:
+                        _d = _dec.get(_p.get("entry_id"))
+                        if not _d:
+                            continue
+                        _decision = str(_d.get("decision") or "").upper()
+                        _evq = str(_d.get("evidence") or "").strip()
+                        if _decision == "RETIRE" and _evq:  # guardrail: no evidence -> KEEP
+                            _p["status"] = "resolved"
+                            _p["retire_evidence"] = _evq[:500]
+                            _p["retire_reason"] = (_d.get("reason") or "")[:200]
+                            _p["retire_sweep_date"] = parsed.get("swept_at")
+                            _ret += 1
+                        elif _decision == "UPDATE":
+                            _pv = _p.get("value") if isinstance(_p.get("value"), dict) else {}
+                            if _d.get("updated_text"):
+                                _pv["value"] = _d["updated_text"]
+                            if _d.get("updated_due"):
+                                _pv["due"] = _d["updated_due"]
+                            _p["value"] = _pv
+                            _p["last_updated"] = parsed.get("swept_at")
+                            _upd += 1
+                    if _ret or _upd:  # re-project so ai.* drops resolved (via _live)
+                        parsed["packets"] = _pkts
+                        parsed["ai"] = packets_mod.project_into_ai(
+                            parsed.get("ai") or {}, _pkts,
+                            today=parsed.get("swept_at"))
+                        print(f"[RECONCILER] opp={opp_id}: retired {_ret}, updated "
+                              f"{_upd} open entr(ies) vs latest evidence "
+                              f"(evidence-guarded); re-projected", flush=True)
+            except Exception as _rce:  # noqa: BLE001 — must never block persist
+                print(f"[RECONCILER] opp={opp_id} skipped: "
+                      f"{type(_rce).__name__}: {_rce}", flush=True)
         # Belt-and-suspenders dedup: deterministically collapse homogeneous
         # open_deliverables + best_practice flags so carried-forward living memory
         # can never re-bloat the to-do surface even if the model re-lists near-

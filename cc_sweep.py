@@ -47,7 +47,9 @@ def prefetch(sid, inst, sec, dl, opp_id):
              "CreatedDate, LastModifiedDate, LastActivityDate, Next_Step__c, Next_Step_History__c, "
              "Description, Competitors__c, Products__c, Type, Account.Name, Account.Website, "
              "Account.Industry, Account.BillingCountry, Owner.Name, Owner.Title, Owner.Manager.Name, "
-             "AIS_Score__c, AIS_Status__c, AIS_Why__c, Qualified_Submission_Date__c "
+             # AIS_Score__c/Status/Why REMOVED 2026-07-09 — they do not exist on Opportunity in
+             # this org and 400 the whole query (matches the deal_engine_sweep._OPP_SELECT_FIELDS fix).
+             "Qualified_Submission_Date__c "
              f"FROM Opportunity WHERE Id='{opp_id}'")
     o = o[0] if o else {}
     opp = {
@@ -64,8 +66,10 @@ def prefetch(sid, inst, sec, dl, opp_id):
         "qualified_date": o.get("Qualified_Submission_Date__c"),
         "next_step": strip_html(o.get("Next_Step__c")), "products": o.get("Products__c"),
         "competitor": o.get("Competitors__c"),
-        "ais_score": o.get("AIS_Score__c"), "ais_status": o.get("AIS_Status__c"),
-        "ais_why": o.get("AIS_Why__c"),
+        # AIS_Score__c/Status/Why are NOT selected (they do not exist on Opportunity in
+        # this org and 400 the whole query — the 2026-07-09 book-wipe). Hard-None so the
+        # record shape is unchanged. NEVER re-add them to the SOQL above.
+        "ais_score": None, "ais_status": None, "ais_why": None,
     }
     # contacts (OpportunityContactRole)
     roles = soql(sid, inst, "SELECT Contact.Name, Contact.Title, Contact.Email, Role, IsPrimary "
@@ -89,8 +93,10 @@ def prefetch(sid, inst, sec, dl, opp_id):
     # Avoma transcripts (datalake)
     avoma = []
     if dl:
-        ms = datalake_get(dl, f"avoma_meetings?crm_opportunity_id=ilike.{oid}*&select=uuid,subject,start_at,is_internal&state=eq.completed&order=start_at.desc&limit=25") or []
-        budget = 80000
+        ms = datalake_get(dl, f"avoma_meetings?crm_opportunity_id=ilike.{oid}*&select=uuid,subject,start_at,is_internal&state=in.(completed,not_recorded)&order=start_at.desc&limit=25") or []
+        # 200K transcript budget (was 80K): the 80K cap read only 2 of 17 Consumer Cellular calls
+        # and cost the local run ~18 win points vs the cloud read — enriched runs need the history.
+        budget = 200000
         for m in ms:
             tr = datalake_get(dl, f"avoma_transcripts?meeting_uuid=eq.{m['uuid']}&select=transcript_text&limit=1") or []
             txt = (tr[0].get("transcript_text") if tr else "") or ""

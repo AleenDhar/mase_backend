@@ -710,6 +710,19 @@ async def _soql(agent_manager, query: str) -> list[dict]:
 _ACTIVITY_DEEP_N = int(os.getenv("DEAL_SWEEP_ACTIVITY_DEEP_N", "10") or 10)
 _ACTIVITY_BODY_CAP = int(os.getenv("DEAL_SWEEP_ACTIVITY_BODY_CAP", "1800") or 1800)
 
+# Dedicated bounded thread pool for the in-sweep AI 24h summary (day_summary_ai). Kept
+# SEPARATE from run_in_executor's DEFAULT pool so concurrent sweeps' summary calls can
+# never exhaust it and stall the persist (the 2026-07-10 revert cause). Small + fixed.
+_DAYSUM_POOL = None
+def _daysum_pool():
+    global _DAYSUM_POOL
+    if _DAYSUM_POOL is None:
+        from concurrent.futures import ThreadPoolExecutor
+        _DAYSUM_POOL = ThreadPoolExecutor(
+            max_workers=max(1, int(os.getenv("DEAL_SWEEP_DAYSUM_CONC", "4") or 4)),
+            thread_name_prefix="daysum")
+    return _DAYSUM_POOL
+
 
 async def _recent_activities_deep(agent_manager, opp_id: str, limit: int = 10) -> list[dict]:
     """The newest `limit` activities (Task + Event) for an opp — Subject + full body,
@@ -4004,17 +4017,35 @@ async def analyze_one(
             # shipping records with NO deal_scores. day_summary_ai now runs as a SEPARATE batch
             # pass (day_summary_ai.py --ids ...), not inside each concurrent sweep.
             _prior_dsy = _prior_ai_full.get("day_summary") if isinstance(_prior_ai_full, dict) else None
-            if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai":
-                parsed["ai"]["day_summary"] = _prior_dsy
-            else:
+            _dsy = None
+            # FRESHNESS (2026-07-13): regenerate the INTELLIGENT AI summary IN-SWEEP so a
+            # from-scratch rebuild is fresh AND detailed (not the deterministic backstop).
+            # day_summary_ai deep-reads recent emails + Avoma and is governed by the locked
+            # `sum` engine. Runs on a DEDICATED bounded pool (_daysum_pool) — NEVER the
+            # sweep's default pool — so it can't exhaust it / stall persist (the 2026-07-10
+            # revert cause). Best-effort; the deterministic build backstops a None.
+            if os.getenv("DEAL_SWEEP_INSWEEP_DAYSUM_AI", "true").strip().lower() not in ("0", "false", "no", "off"):
                 try:
-                    import build_day_summaries as _bds
+                    import day_summary_ai as _dsa
                     _dsy = await asyncio.get_running_loop().run_in_executor(
-                        None, _bds.day_summary_for_opp, opp_id)
-                    if _dsy:
-                        parsed["ai"]["day_summary"] = _dsy
-                except Exception as _dse:  # noqa: BLE001 — never block persist
-                    print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
+                        _daysum_pool(), _dsa.day_summary_ai_for_opp, opp_id, opp.get("account"))
+                except Exception as _ae:  # noqa: BLE001 — never block persist
+                    print(f"[DAY-SUMMARY-AI] opp={opp_id} skipped: {type(_ae).__name__}: {_ae}", flush=True)
+                    _dsy = None
+            if not (isinstance(_dsy, dict) and (_dsy.get("overall") or _dsy.get("items"))):
+                # No fresh AI summary: carry a prior AI one (non-from-scratch) else deterministic build.
+                if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai" and not _from_scratch:
+                    _dsy = _prior_dsy
+                else:
+                    try:
+                        import build_day_summaries as _bds
+                        _dsy = await asyncio.get_running_loop().run_in_executor(
+                            None, _bds.day_summary_for_opp, opp_id)
+                    except Exception as _dse:  # noqa: BLE001 — never block persist
+                        print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
+                        _dsy = None
+            if _dsy:
+                parsed["ai"]["day_summary"] = _dsy
         # PROVENANCE (Omnivision) — stamped on EVERY run (2026-07-09: moved ABOVE the
         # dry_run split; dry-run/A-B records previously returned WITHOUT the stamp, so
         # QA couldn't verify which locked Studio versions governed the run).

@@ -966,7 +966,7 @@ _LOSS_PHRASES = (
     "lost the deal to", "lost to coupa", "lost to the competitor", "deal is lost",
     "have not been selected", "were not selected", "not been selected as",
     "decided against zycus", "decided not to proceed with zycus", "deprioritized zycus",
-    "selected coupa", "chosen coupa", "awarded to coupa", "going with coupa",
+    "selected coupa", "chosen coupa", "awarded to coupa", "customer going with coupa",
     "selected the incumbent", "zycus came second", "runner-up",
 )
 _WON_PHRASES = (

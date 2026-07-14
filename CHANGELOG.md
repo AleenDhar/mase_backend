@@ -11,6 +11,24 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-15 — Sequential pipeline: finalize 24h summary + roster BEFORE scoring
+
+**What.** In `analyze_one` (`deal_engine_sweep.py`) the **24h day_summary** rebuild and the
+**SFDC-anchored stakeholder roster** (`_roster_from_sfdc`) now run **before** the deal-scoring
+block, not after it. Also fed the **action_plan** (`recommended_moves`) into the scorer's
+`sweep_analysis` evidence block (`deal_engine_evidence.py`) and named it in the scoring prompt
+(`deal_engine_ai_scoring.py`), alongside the day_summary/stakeholder_map/critical_signals that
+`5f44e7b` already added.
+
+**Why.** `5f44e7b` made the scorer *receive* the sweep analysis, but scoring ran at stage 11
+while the authoritative day_summary (stage 15) and stakeholder_map (stage 13) were regenerated
+*after* it — so the scorer reasoned over the LLM's DRAFT roster/summary while the drawer kept the
+final SFDC-anchored ones. That's the "scoring is a separate entity / score-roster-summary
+mismatch" reported on **Sabic**. Now the order is: 24h summary → what-matters (critical_signals,
+already 1st) → action plan → stakeholders & risk → **scoring**, so scores/verdict/moves are
+coherent with exactly what the drawer shows. Pure relocation (blocks moved verbatim, +header);
+CRO panel + CEO stay after scoring (they depend on the scores).
+
 ## 2026-07-15 — Slim-book cache: kill the ~7.5s dashboard load (stale-while-revalidate)
 
 **What.** `GET /api/deal-engine/opportunities?slim=1` (no owner) — the payload EVERY rep's

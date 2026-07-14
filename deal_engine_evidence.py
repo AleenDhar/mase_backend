@@ -301,6 +301,14 @@ def build_evidence_packet(record: dict, *, meetings: Optional[list[dict]] = None
     _ebc = ai.get("eb_candidates")
     if isinstance(_ebc, list) and _ebc:
         _analysis_ctx["eb_candidates"] = _ebc[:5]
+    # Action plan — the recommended moves (to-dos) the analysis produced, so the score/verdict
+    # are coherent with the plan the drawer shows (user-directed 2026-07-15: pass the action
+    # plan to scoring alongside the 24h summary + what-matters).
+    _rm = ai.get("recommended_moves")
+    if isinstance(_rm, dict) and _rm.get("items"):
+        _analysis_ctx["action_plan"] = (_rm["items"] or [])[:8]
+    elif isinstance(_rm, list) and _rm:
+        _analysis_ctx["action_plan"] = _rm[:8]
     if _analysis_ctx:
         packet["sweep_analysis"] = _analysis_ctx
     return packet

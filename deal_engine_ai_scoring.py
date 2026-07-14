@@ -95,10 +95,12 @@ Every count/date you cite MUST come from the packet — never invent a meeting/t
 
 ## sweep_analysis context
 If the packet contains a "sweep_analysis" block, READ it before scoring. The stakeholder_map,
-eb_engagement, champion_strength, critical_signals, gaps, and day_summary there are the structured
-analysis the evidence-extraction pass produced for this exact deal. Your scores, verdict, and
-recommended_moves MUST be coherent with them — e.g. if eb_engagement.strength is "none", the
-exec_access factor must score low; if champion_strength.at_risk is true, cap champion factor at ≤0.3.
+eb_engagement, champion_strength, critical_signals, gaps, day_summary, and action_plan there are the
+FINAL structured analysis produced for this exact deal (the 24h summary + SFDC-anchored roster are
+computed BEFORE you, so this is what the drawer shows). Your scores, verdict, and recommended_moves
+MUST be coherent with them — e.g. if eb_engagement.strength is "none", the exec_access factor must
+score low; if champion_strength.at_risk is true, cap champion factor at ≤0.3; your recommended_moves
+should build on / stay consistent with the action_plan already surfaced.
 Do NOT contradict the sweep_analysis — it is primary context, not a suggestion.
 
 ## recommended_moves style

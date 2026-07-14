@@ -4061,6 +4061,73 @@ async def analyze_one(
         if isinstance(_prior_ai_full, dict) and isinstance(_prior_ai_full.get("account_context"), dict) \
                 and not isinstance((parsed.get("ai") or {}).get("account_context"), dict):
             parsed.setdefault("ai", {})["account_context"] = _prior_ai_full["account_context"]
+        # ===== SEQUENTIAL PIPELINE (2026-07-15): finalize the 24h summary + SFDC-anchored
+        # stakeholder roster BEFORE scoring, so the scorer's evidence packet reads the FINAL
+        # day_summary + stakeholder_map (not the LLM drafts). Fixes the drawer score/roster/
+        # summary mismatch (Sabic). These blocks were relocated verbatim from after scoring.
+        # 24h / last-active-day summary — built DETERMINISTICALLY from Salesforce activity so it
+        # refreshes WITH the rest of the record on every sweep (the drawer's 24h tab reads
+        # ai.day_summary). This is the reliable backbone: it captures the same Avoma notes +
+        # emails + field-moves regardless of whether the LLM read the calls, so a stuck/thin
+        # sweep never leaves the 24h summary blank. Runs in an executor (non-blocking) and is
+        # wrapped so a summary hiccup can NEVER fail a sweep. Only overwrites when it finds
+        # activity; otherwise any LLM-emitted day_summary is left intact.
+        if isinstance(parsed.get("ai"), dict):
+            # OWNERSHIP (2026-07-07): the INTELLIGENT day summary (day_summary_ai — Sonnet-written
+            # business intelligence) OWNS ai.day_summary. Carry the intelligent one forward; the
+            # deterministic build is the BACKSTOP for records that have no summary at all.
+            # NOTE (2026-07-10): the in-sweep day_summary_ai call was REVERTED — it did a blocking
+            # SF login + SOQL + Anthropic call inside run_in_executor, and on the worker (8
+            # concurrent sweeps) it saturated the default thread pool and stalled the PERSIST,
+            # shipping records with NO deal_scores. day_summary_ai now runs as a SEPARATE batch
+            # pass (day_summary_ai.py --ids ...), not inside each concurrent sweep.
+            _prior_dsy = _prior_ai_full.get("day_summary") if isinstance(_prior_ai_full, dict) else None
+            _dsy = None
+            # FRESHNESS (2026-07-13): regenerate the INTELLIGENT AI summary IN-SWEEP so a
+            # from-scratch rebuild is fresh AND detailed (not the deterministic backstop).
+            # day_summary_ai deep-reads recent emails + Avoma and is governed by the locked
+            # `sum` engine. Runs on a DEDICATED bounded pool (_daysum_pool) — NEVER the
+            # sweep's default pool — so it can't exhaust it / stall persist (the 2026-07-10
+            # revert cause). Best-effort; the deterministic build backstops a None.
+            if os.getenv("DEAL_SWEEP_INSWEEP_DAYSUM_AI", "true").strip().lower() not in ("0", "false", "no", "off"):
+                try:
+                    import day_summary_ai as _dsa
+                    _dsy = await asyncio.get_running_loop().run_in_executor(
+                        _daysum_pool(), _dsa.day_summary_ai_for_opp, opp_id, opp.get("account"))
+                except Exception as _ae:  # noqa: BLE001 — never block persist
+                    print(f"[DAY-SUMMARY-AI] opp={opp_id} skipped: {type(_ae).__name__}: {_ae}", flush=True)
+                    _dsy = None
+            if not (isinstance(_dsy, dict) and (_dsy.get("overall") or _dsy.get("items"))):
+                # No fresh AI summary: carry a prior AI one (non-from-scratch) else deterministic build.
+                if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai" and not _from_scratch:
+                    _dsy = _prior_dsy
+                else:
+                    try:
+                        import build_day_summaries as _bds
+                        _dsy = await asyncio.get_running_loop().run_in_executor(
+                            None, _bds.day_summary_for_opp, opp_id)
+                    except Exception as _dse:  # noqa: BLE001 — never block persist
+                        print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
+                        _dsy = None
+            if _dsy:
+                parsed["ai"]["day_summary"] = _dsy
+        # SFDC-anchored roster: rebuild ai.stakeholder_map from real OpportunityContactRole
+        # contacts (AI annotates, never invents) at the single persist chokepoint. Defensive.
+        try:
+            if _pinned and isinstance(_prior_ai_full, dict) and isinstance(_prior_ai_full.get("stakeholder_map"), dict):
+                # Pinned deal — keep the human-corrected roster verbatim (don't re-anchor,
+                # which would re-admit/rescore names the correction curated).
+                parsed.setdefault("ai", {})["stakeholder_map"] = _prior_ai_full["stakeholder_map"]
+            elif isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
+                parsed["ai"] = _roster_from_sfdc(parsed["ai"], buyer, existing_record)
+        except Exception as _rre:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] roster build skipped opp={opp_id}: {type(_rre).__name__}: {_rre}", flush=True)
+        # Carry the pin forward so the freeze survives this write (upsert replaces `record`).
+        if _pinned and isinstance(parsed.get("ai"), dict):
+            parsed["ai"]["pinned"] = True
+            _p_at = _prior_ai_full.get("pinned_at") if isinstance(_prior_ai_full, dict) else None
+            if _p_at:
+                parsed["ai"]["pinned_at"] = _p_at
         try:
             import deal_engine_scoring
             # VERDICT COMPATIBILITY ADAPTER (2026-07-09, Deal Sweep v3): the Omnivision
@@ -4263,23 +4330,6 @@ async def analyze_one(
                     _ds_now["cro_panel"] = _prior_panel
         except Exception as _cpe:  # noqa: BLE001 — panel is cosmetic, never blocks persist
             print(f"[CRO-PANEL] build failed for {opp_id}: {_cpe}", flush=True)
-        # SFDC-anchored roster: rebuild ai.stakeholder_map from real OpportunityContactRole
-        # contacts (AI annotates, never invents) at the single persist chokepoint. Defensive.
-        try:
-            if _pinned and isinstance(_prior_ai_full, dict) and isinstance(_prior_ai_full.get("stakeholder_map"), dict):
-                # Pinned deal — keep the human-corrected roster verbatim (don't re-anchor,
-                # which would re-admit/rescore names the correction curated).
-                parsed.setdefault("ai", {})["stakeholder_map"] = _prior_ai_full["stakeholder_map"]
-            elif isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
-                parsed["ai"] = _roster_from_sfdc(parsed["ai"], buyer, existing_record)
-        except Exception as _rre:  # noqa: BLE001
-            print(f"[DEAL-SWEEP] roster build skipped opp={opp_id}: {type(_rre).__name__}: {_rre}", flush=True)
-        # Carry the pin forward so the freeze survives this write (upsert replaces `record`).
-        if _pinned and isinstance(parsed.get("ai"), dict):
-            parsed["ai"]["pinned"] = True
-            _p_at = _prior_ai_full.get("pinned_at") if isinstance(_prior_ai_full, dict) else None
-            if _p_at:
-                parsed["ai"]["pinned_at"] = _p_at
         # CEO-intervention — computed NATIVELY each sweep (was a separate pass). The
         # WHEN is a deterministic gate on the just-computed scores (forecasted AND
         # win>60 AND mom>60); the WHAT rides the model's own emitted ceo_intervention
@@ -4328,52 +4378,6 @@ async def analyze_one(
                     parsed["ai"]["ceo_intervention"] = _ceo_gov
             except Exception as _cee_e:  # noqa: BLE001 — never block persist
                 print(f"[CEO-ENGINE] opp={opp_id} governed skipped: {type(_cee_e).__name__}: {_cee_e}", flush=True)
-        # 24h / last-active-day summary — built DETERMINISTICALLY from Salesforce activity so it
-        # refreshes WITH the rest of the record on every sweep (the drawer's 24h tab reads
-        # ai.day_summary). This is the reliable backbone: it captures the same Avoma notes +
-        # emails + field-moves regardless of whether the LLM read the calls, so a stuck/thin
-        # sweep never leaves the 24h summary blank. Runs in an executor (non-blocking) and is
-        # wrapped so a summary hiccup can NEVER fail a sweep. Only overwrites when it finds
-        # activity; otherwise any LLM-emitted day_summary is left intact.
-        if isinstance(parsed.get("ai"), dict):
-            # OWNERSHIP (2026-07-07): the INTELLIGENT day summary (day_summary_ai — Sonnet-written
-            # business intelligence) OWNS ai.day_summary. Carry the intelligent one forward; the
-            # deterministic build is the BACKSTOP for records that have no summary at all.
-            # NOTE (2026-07-10): the in-sweep day_summary_ai call was REVERTED — it did a blocking
-            # SF login + SOQL + Anthropic call inside run_in_executor, and on the worker (8
-            # concurrent sweeps) it saturated the default thread pool and stalled the PERSIST,
-            # shipping records with NO deal_scores. day_summary_ai now runs as a SEPARATE batch
-            # pass (day_summary_ai.py --ids ...), not inside each concurrent sweep.
-            _prior_dsy = _prior_ai_full.get("day_summary") if isinstance(_prior_ai_full, dict) else None
-            _dsy = None
-            # FRESHNESS (2026-07-13): regenerate the INTELLIGENT AI summary IN-SWEEP so a
-            # from-scratch rebuild is fresh AND detailed (not the deterministic backstop).
-            # day_summary_ai deep-reads recent emails + Avoma and is governed by the locked
-            # `sum` engine. Runs on a DEDICATED bounded pool (_daysum_pool) — NEVER the
-            # sweep's default pool — so it can't exhaust it / stall persist (the 2026-07-10
-            # revert cause). Best-effort; the deterministic build backstops a None.
-            if os.getenv("DEAL_SWEEP_INSWEEP_DAYSUM_AI", "true").strip().lower() not in ("0", "false", "no", "off"):
-                try:
-                    import day_summary_ai as _dsa
-                    _dsy = await asyncio.get_running_loop().run_in_executor(
-                        _daysum_pool(), _dsa.day_summary_ai_for_opp, opp_id, opp.get("account"))
-                except Exception as _ae:  # noqa: BLE001 — never block persist
-                    print(f"[DAY-SUMMARY-AI] opp={opp_id} skipped: {type(_ae).__name__}: {_ae}", flush=True)
-                    _dsy = None
-            if not (isinstance(_dsy, dict) and (_dsy.get("overall") or _dsy.get("items"))):
-                # No fresh AI summary: carry a prior AI one (non-from-scratch) else deterministic build.
-                if isinstance(_prior_dsy, dict) and _prior_dsy.get("source") == "ai" and not _from_scratch:
-                    _dsy = _prior_dsy
-                else:
-                    try:
-                        import build_day_summaries as _bds
-                        _dsy = await asyncio.get_running_loop().run_in_executor(
-                            None, _bds.day_summary_for_opp, opp_id)
-                    except Exception as _dse:  # noqa: BLE001 — never block persist
-                        print(f"[DAY-SUMMARY] build skipped opp={opp_id}: {type(_dse).__name__}: {_dse}", flush=True)
-                        _dsy = None
-            if _dsy:
-                parsed["ai"]["day_summary"] = _dsy
         # PROVENANCE (Omnivision) — stamped on EVERY run (2026-07-09: moved ABOVE the
         # dry_run split; dry-run/A-B records previously returned WITHOUT the stamp, so
         # QA couldn't verify which locked Studio versions governed the run).

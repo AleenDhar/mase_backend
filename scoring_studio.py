@@ -29,7 +29,13 @@ import httpx
 
 ENGINES = ("extract", "win", "mom", "todo", "sum", "sweep")
 REFERENCES = ("vendordict", "playbook")
-ASSETS = ENGINES + REFERENCES
+# GOVERNED (2026-07-14): engines that are editable/versioned in the Studio but run
+# OUTSIDE the sweep-prompt assembly on their OWN LLM step (ceo_engine.py loads
+# active_locked('ceo') directly). Kept out of ENGINES so studio_versions() and the
+# sweep-prompt build (which iterate ENGINES) are untouched; included in ASSETS so the
+# Studio renders a card + allows view/edit/lock.
+GOVERNED = ("ceo",)
+ASSETS = ENGINES + GOVERNED + REFERENCES
 ENGINE_NAMES = {
     "extract": "Signal Extraction / Deal-Reading",
     "win": "Zycus Win Position",
@@ -37,6 +43,7 @@ ENGINE_NAMES = {
     "todo": "To-Do Generation",
     "sum": "24-Hour Summary",
     "sweep": "Deal Sweep (Deal Drawer)",
+    "ceo": "CEO Attention / Help",
     "vendordict": "Vendor Dictionary",
     "playbook": "Deal Playbook",
 }

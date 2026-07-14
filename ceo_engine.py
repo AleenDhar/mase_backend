@@ -112,7 +112,9 @@ def _pack(opp_id, ai, hard, win, mom, today):
     p = {
         "opp_id": opp_id, "today": today.isoformat(),
         "account": hard.get("account_name"), "opp_name": hard.get("opp_name"),
-        "owner_rsd": hard.get("owner_name"), "amount": hard.get("amount"),
+        "owner_rsd": hard.get("owner_name"),
+        "vp": hard.get("manager_name"),   # escalation target — the CEO asks the VP, not the rep
+        "amount": hard.get("amount"),
         "is_large": (_num(hard.get("amount")) or 0) >= 250000,
         "forecast_category": hard.get("forecast_category"), "stage": hard.get("stage"),
         "close_date": hard.get("close_date"), "days_to_close": hard.get("days_to_close"),
@@ -147,6 +149,24 @@ def _call_llm(blob, ak):
     return _extract_json(txt)
 
 
+def _to_vp(ask, rep, vp):
+    """GUARANTEE the ceo_ask addresses the VP, not the rep — swap a leading 'Ask <rep>'
+    for the VP's name (unless the VP is already named up front)."""
+    if not ask or not vp:
+        return ask
+    vpf = vp.split()[0] if vp.split() else vp
+    if vpf.lower() in ask[:55].lower():
+        return ask
+    if rep:
+        for nm in ([rep, rep.split()[0]] if rep.split() else [rep]):
+            if not nm:
+                continue
+            m = re.match(r"^(\s*ask\s+)" + re.escape(nm) + r"\b", ask, re.I)
+            if m:
+                return ask[:m.end(1)] + vp + ask[m.end():]
+    return ask
+
+
 def _build(llm_out, ai, hard, win, mom, prior_ai, today):
     prior = (prior_ai or {}).get("ceo_intervention") if isinstance(prior_ai, dict) else None
     prior = prior if isinstance(prior, dict) else {}
@@ -162,7 +182,9 @@ def _build(llm_out, ai, hard, win, mom, prior_ai, today):
         reasons.append({"type": "support", "act": True, "severity": pr, "areas": areas,
                         "summary": sup.get("summary") or sup.get("detail"), "detail": sup.get("detail"),
                         "metric": sup.get("metric"), "owner": sup.get("owner"),
-                        "ceo_action": sup.get("ceo_action"), "ceo_ask": sup.get("ceo_ask"),
+                        "vp": sup.get("vp") or hard.get("manager_name"),
+                        "ceo_action": sup.get("ceo_action"),
+                        "ceo_ask": _to_vp(sup.get("ceo_ask"), hard.get("owner_name"), hard.get("manager_name")),
                         "buyer_target": sup.get("buyer_target") or {}, "why_not_vp": sup.get("why_not_vp"),
                         "evidence": ev if isinstance(ev, list) else ([ev] if ev else []), "as_of": tdy})
     mon = (llm_out or {}).get("monitor") or {}
@@ -172,7 +194,8 @@ def _build(llm_out, ai, hard, win, mom, prior_ai, today):
                 reasons.append({"type": t["type"], "act": False,
                                 "severity": t.get("severity") if t.get("severity") in ("high", "medium") else "medium",
                                 "summary": t.get("summary"), "detail": t.get("detail"), "metric": t.get("metric"),
-                                "owner": t.get("owner"), "ceo_ask": t.get("ceo_ask"),
+                                "owner": t.get("owner"), "vp": t.get("vp") or hard.get("manager_name"),
+                                "ceo_ask": _to_vp(t.get("ceo_ask"), hard.get("owner_name"), hard.get("manager_name")),
                                 "evidence": t.get("evidence"), "as_of": t.get("as_of")})
         sc = ai.get("scope_change") if isinstance(ai.get("scope_change"), dict) else {}
         if str(sc.get("direction") or "").strip().lower() in ("reduced", "reduced_scope", "shrunk", "shrinking", "narrowed", "narrowing", "down"):

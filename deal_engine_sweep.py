@@ -3073,7 +3073,14 @@ async def analyze_one(
         # (source="update_living_memory") rebuilds one deal/book with no carry to clear
         # poisoned memory. Set DEAL_SWEEP_KEEP_LIVING_MEMORY=false to force from-scratch.
         _keep_lm = os.getenv("DEAL_SWEEP_KEEP_LIVING_MEMORY", "true").strip().lower() in ("1", "true", "yes", "on")
-        _from_scratch = (source == "update_living_memory") or not _keep_lm
+        # SFDC-TRIGGER = UPDATE-LIVING-MEMORY (user-directed 2026-07-14): a live Salesforce
+        # CDC trigger (source="salesforce_trigger", set by the worker for a "sftrig-*" run_id)
+        # rebuilds the deal FROM SCRATCH — same as the manual "Update Living Memories" purge —
+        # so a new SFDC activity / field change refreshes the deal on the latest truth with no
+        # carried memory. SCOPED to the SFDC trigger ONLY: manual re-runs (source="manual"),
+        # scheduled/book sweeps (source="worker"), and the AI-free hard-refresh are UNCHANGED
+        # (they keep living memory). Add "salesforce" as a belt-and-suspenders alias.
+        _from_scratch = (source in ("update_living_memory", "salesforce_trigger", "salesforce")) or not _keep_lm
         existing_record = {}
         if _from_scratch:
             print(f"[DEAL-SWEEP] opp={opp_id} — FROM SCRATCH (latest-is-truth: no "

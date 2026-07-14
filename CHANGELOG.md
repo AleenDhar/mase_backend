@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-14 — SFDC CDC trigger now does UPDATE-LIVING-MEMORY (from-scratch)
+
+**What.** A live Salesforce CDC trigger (`source="salesforce_trigger"`, set by the worker for a
+`sftrig-*` run_id) now runs a **from-scratch** rebuild — the same as the manual "Update Living
+Memories" purge — instead of an incremental keep-LM sweep. One-line change to the `_from_scratch`
+gate in `analyze_one` (`deal_engine_sweep.py` ~3076): `"salesforce_trigger"`/`"salesforce"` added to
+the from-scratch source set.
+
+**Why.** User-directed: when something new happens on Salesforce, the deal should refresh purely on
+the latest truth (no carried memory) — 24h summary / to-dos / score all re-derived fresh.
+
+**How to work with it going forward.**
+- **Scoped to the SFDC trigger ONLY.** Manual re-runs (`source="manual"`), scheduled/book sweeps
+  (`source="worker"`), and the AI-free hard-refresh are UNCHANGED — they keep living memory.
+- Prereq (Salesforce-side): the **Event Relay** to AWS EventBridge must be running — it stopped
+  delivering on **Jul 6** (AWS side is all ACTIVE: partner source ACTIVE, rule ENABLED, Lambda
+  `CDC_TRIGGER_ON_ACTIVITY=true`, `DEAL_SWEEP_MANUAL_ONLY=false`). Resume it in SF Setup → Event
+  Relays. Activity (Task/Event) triggering also needs those entities in the SF CDC channel.
+- TODO (next): progressive/ordered writes (24h summary → to-dos → score → rest) + navbar
+  notification (admin beta: "sweep running… done").
+
 ## 2026-07-14 — Hide unpopulated stubs; fill facts on reactivation (the recurring "$0 pipeline" fix)
 
 **What.** Two guards so a deal never appears before its Salesforce hard facts land:

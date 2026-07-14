@@ -110,6 +110,13 @@ API_ENV = {
     # discovery via POST /api/deal-engine/discover-new is UNAFFECTED (it doesn't read
     # this flag). Remove this line to re-enable nightly deal-engine discovery.
     "DEAL_ENGINE_DISCOVERY_ENABLED": "false",
+    # TODO-PUSH RE-SWEEP (2026-07-15, user-directed): completing (ticking) a to-do already
+    # pushes a COMPLETED Task to Salesforce (server.py /todo/push, direct salesforce_task_writer);
+    # this flag ALSO fires an immediate event-driven Omnivision re-sweep of that deal
+    # (trigger_opp_async — fire-and-forget, deduped per opp, book-members only, skipped during a
+    # hard-refresh, never blocks the push). Turns the completed-to-do -> SFDC -> re-sweep loop
+    # LIVE. Set to "false" (or remove) to disable instantly.
+    "TODO_PUSH_RESWEEP": "true",
 }
 WORKER_ENV = {
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,

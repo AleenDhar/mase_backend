@@ -7749,6 +7749,13 @@ async def deal_engine_opportunities(owner: str = "", slim: bool = False, paged: 
                 sort=sort, direction=dir, limit=limit, offset=offset)
             return {"records": recs, "total": total, "count": len(recs)}
         records = await _aw(dstore.list_records, owner or None)
+        # Drop UNPOPULATED STUBS — records whose Salesforce hard facts haven't landed yet
+        # (no stage). Every real SF opportunity has a StageName, so an empty stage means the
+        # deal was made visible (report reconciliation reactivates a member) BEFORE its facts
+        # were populated; it renders as a $0/blank row and can make a freshly-tracked rep's
+        # whole book look empty. Hide until a hard-refresh fills it in — it returns
+        # automatically once stage/amount land. (Root cause of the recurring "$0 pipeline".)
+        records = [r for r in records if str((r.get("hard") or {}).get("stage") or "").strip()]
         if slim:
             # LIST/aggregate payload: attach pulse (from the full record) then strip the
             # heavy ai narratives — the Deals list, Matcha and filters only need hard +

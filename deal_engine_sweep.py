@@ -5160,6 +5160,22 @@ async def reconcile_membership(
             "swept": 0, "completed": 0, "failed": 0, "skipped_inflight": 0,
         }
 
+        # Reactivated members were just flipped visible (active=true) but still carry their
+        # OLD record — often a stub with null stage/amount from before they left the book.
+        # Pull their live SF hard facts NOW (cheap, no AI) so they never surface as $0/blank
+        # rows in the interim before the AI sweep / nightly refresh catches them (the "Karson
+        # book shows $0" bug). Runs BEFORE the AI enqueue below so hard_refresh_all's
+        # sweep-queue guard doesn't skip it. Best-effort — a hiccup must not fail reconcile.
+        if reenter:
+            try:
+                fill = await hard_refresh_all(
+                    agent_manager, opp_ids=[id18_by15.get(k, k) for k in reenter],
+                    delete_initial_interest=False, source="reconcile-fill")
+                out["filled"] = fill.get("updated", 0)
+            except Exception as e:  # noqa: BLE001
+                print(f"[DEAL-RECONCILE] reactivated-fill hard-refresh failed: "
+                      f"{type(e).__name__}: {e}", flush=True)
+
         # Sweep brand-new + re-entered members so they get a fresh record.
         # Cap across the combined set (new first); max_new==0 disables sweeping.
         if sweep_new and max_new:
@@ -5250,6 +5266,7 @@ async def hard_refresh_all(
     delete_initial_interest: bool = True,
     concurrency: Optional[int] = None,
     source: str = "manual",
+    opp_ids: Optional[list[str]] = None,
 ) -> dict:
     """Refresh the hard Salesforce fields on every canonical deal record, with no
     AI cost.
@@ -5299,6 +5316,13 @@ async def hard_refresh_all(
                 return out
 
         records = await asyncio.to_thread(store.list_records, None)
+        # Optional SUBSET: refresh only these opps (e.g. reconcile calls this to fill the
+        # SF facts of just-reactivated members immediately, so they never surface as $0
+        # stubs). Match on the 15-char key. None = the whole book (nightly cadence).
+        if opp_ids:
+            keep15 = {(i or "")[:15] for i in opp_ids if i}
+            records = [r for r in records
+                       if ((r.get("opp_id") or (r.get("hard") or {}).get("opp_id") or "")[:15]) in keep15]
         ids: list[str] = []
         for rec in records:
             oid = rec.get("opp_id") or (rec.get("hard") or {}).get("opp_id")

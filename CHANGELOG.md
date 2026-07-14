@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-14 — Hide unpopulated stubs; fill facts on reactivation (the recurring "$0 pipeline" fix)
+
+**What.** Two guards so a deal never appears before its Salesforce hard facts land:
+- `GET /api/deal-engine/opportunities` now drops records with an **empty `hard.stage`** (an
+  unpopulated stub) before returning; frontend `keepRecord` (`isUnpopulatedStub`) does the same.
+  Every real SF opp has a StageName, so empty stage ⇒ facts not yet pulled.
+- `reconcile_membership()` runs a **targeted `hard_refresh_all(opp_ids=…)`** on just-reactivated
+  members right after `set_active(reenter, True)` (before the AI enqueue, so the sweep-queue guard
+  doesn't skip it). `hard_refresh_all` gained an `opp_ids` subset param.
+
+**Why.** Report reconciliation reactivates a returning member (active=true) with its OLD record —
+often a stub with null stage/amount from before it left the book — and only AI-sweeps up to
+`DEAL_DISCOVERY_MAX_NEW` (25)/cycle. The rest sat visible as $0/blank rows until the *nightly*
+hard-refresh. When a whole rep's book was freshly (re)tracked (Karson Keogh: 38 re-entrants) their
+entire MASE looked empty ("Salesforce not connecting"). The hard-refresh itself never nulls (audit
+`deal_hard_refresh_runs` clean for weeks) — this was a membership-before-facts ordering gap.
+
+**How to work with it.** Stubs self-heal — once stage lands they reappear automatically. The
+reconcile fill is best-effort (a hiccup can't fail reconcile) and logs a `source="reconcile-fill"`
+row in `deal_hard_refresh_runs`. A deal you want visible must carry a stage.
+
 ## 2026-07-14 — Living-Memory Reconciler: keep the ledger, reconcile it to the latest truth
 
 **What.** Reversed the short-lived from-scratch experiment. Living memory is **kept by default

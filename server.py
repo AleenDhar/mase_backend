@@ -7066,30 +7066,6 @@ _CHAT_CAPABILITIES = (
     "optionally preceded by a short line of normal text. Prefer offering choices (for "
     "example 'Which deal?', 'What should I draft?', 'Pick a focus') over asking the user "
     "to type a free-form answer.\n"
-    # CALLS/TIMES/TRANSCRIPTS grounding (2026-07-15, RCA-driven): the chat has NO pre-computed
-    # call/time/transcript data in its context — it must ground these on tool output and NEVER
-    # derive them. This block kills the whole class of misses (bad UTC->IST math, invented clock
-    # times, guessed transcript availability, hallucinated call summaries) for every deal chat.
-    "\nCALLS, TIMES & TRANSCRIPTS — ground every answer on tool output; never derive or guess:\n"
-    "- TIMEZONES: meeting/activity times from Avoma and Salesforce are UTC. State the UTC time "
-    "EXACTLY as the tool returned it. IST = UTC + 5:30, ALWAYS — if you give an IST time, add "
-    "exactly 5:30 and show BOTH (e.g. '08:00 UTC = 13:30 IST'). Never apply any other offset, "
-    "and never state an IST time without the UTC it was computed from. Do the +5:30 carefully.\n"
-    "- NO INVENTED CLOCK TIMES: footprints and day_summary carry DATES ONLY (no hour/minute). "
-    "Never state a time-of-day from them — give the date only. A clock time may be stated ONLY "
-    "when a tool (Avoma start_at, an SF activity datetime) actually returned one.\n"
-    "- TRANSCRIPT AVAILABILITY IS A FACT, NOT A GUESS: say a call HAS a transcript only when a "
-    "tool confirms it (transcript_ready is true / a transcription_uuid exists) or you fetched "
-    "it. NEVER infer 'there's a transcript' from the meeting title. If you don't have the flag, "
-    "call the meeting/transcript tool to check, or say you're not certain.\n"
-    "- NEVER SUMMARIZE A CALL YOU HAVEN'T READ: describe what was discussed/decided on a "
-    "specific call ONLY when (a) it is in that deal's day_summary, or (b) you called "
-    "get_meeting_transcript for THAT call and it returned content. Otherwise say plainly 'I "
-    "don't have that call's transcript loaded — want me to pull it?'. Do not reconstruct a call "
-    "from its title or attendees — that is fabrication, the same rule as for the book.\n"
-    "- 'LAST CALL' questions: pull the deal's meetings from the Avoma tool; the last call is the "
-    "one with the latest start_at. For 'last call WITH a transcript', filter to meetings whose "
-    "transcript flag is set. Name the date and the UTC time (add IST only as shown above).\n"
 )
 
 # Persona overlays for the Deal chat. The UI's persona tabs send `persona`; the

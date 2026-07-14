@@ -762,6 +762,20 @@ def _daysum_pool():
     return _DAYSUM_POOL
 
 
+# Dedicated bounded pool for the in-sweep GOVERNED CEO engine (ceo_engine) — SEPARATE
+# from the default pool for the same reason as the summary: concurrent sweeps' CEO
+# LLM calls must never exhaust it and stall the persist.
+_CEO_POOL = None
+def _ceo_pool():
+    global _CEO_POOL
+    if _CEO_POOL is None:
+        from concurrent.futures import ThreadPoolExecutor
+        _CEO_POOL = ThreadPoolExecutor(
+            max_workers=max(1, int(os.getenv("DEAL_SWEEP_CEO_CONC", "4") or 4)),
+            thread_name_prefix="ceo")
+    return _CEO_POOL
+
+
 def _activity_is_noise(a: dict) -> bool:
     """P-3 email/activity filter: True for machine NOISE that should NOT enter the sweep
     context — auto-reply / OOO / delivery-failure / calendar-status (Accepted:/Declined:) /
@@ -4194,6 +4208,23 @@ async def analyze_one(
                     _prior_ceo = _prior_ai_full.get("ceo_intervention") if isinstance(_prior_ai_full, dict) else None
                     if _prior_ceo:
                         parsed["ai"]["ceo_intervention"] = _prior_ceo
+        # GOVERNED CEO ENGINE (2026-07-14): the locked Omnivision `ceo` engine now OWNS
+        # ai.ceo_intervention — it SUPERSEDES the §13 deterministic finalize above when it
+        # returns a result. Runs on a DEDICATED bounded pool (never the sweep's default pool,
+        # so it can't stall the persist — same guard as the 24h summary). Best-effort; on None
+        # the §13 result above stands. Gate off via DEAL_SWEEP_INSWEEP_CEO_AI=false.
+        if isinstance(parsed.get("ai"), dict) and \
+                os.getenv("DEAL_SWEEP_INSWEEP_CEO_AI", "true").strip().lower() not in ("0", "false", "no", "off"):
+            try:
+                import ceo_engine as _cee
+                _ceo_gov = await asyncio.get_running_loop().run_in_executor(
+                    _ceo_pool(), _cee.ceo_intervention_for, opp_id, parsed["ai"],
+                    parsed.get("hard") or {},
+                    _prior_ai_full if isinstance(_prior_ai_full, dict) else None)
+                if isinstance(_ceo_gov, dict):
+                    parsed["ai"]["ceo_intervention"] = _ceo_gov
+            except Exception as _cee_e:  # noqa: BLE001 — never block persist
+                print(f"[CEO-ENGINE] opp={opp_id} governed skipped: {type(_cee_e).__name__}: {_cee_e}", flush=True)
         # 24h / last-active-day summary — built DETERMINISTICALLY from Salesforce activity so it
         # refreshes WITH the rest of the record on every sweep (the drawer's 24h tab reads
         # ai.day_summary). This is the reliable backbone: it captures the same Avoma notes +

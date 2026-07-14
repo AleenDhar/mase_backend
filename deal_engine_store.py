@@ -1174,6 +1174,16 @@ def _pushes_index() -> dict[str, str]:
     return {r["todo_key"]: r.get("sf_task_id") for r in rows if r.get("todo_key")}
 
 
+def _all_pushes() -> list:
+    """Every push record with its stored payload — used to RE-INJECT ticked-off
+    (pushed) to-dos so a re-sweep KEEPS them instead of dropping them. Degrades to
+    an empty list if the ledger isn't present."""
+    try:
+        return _select(T_PUSHES, select="todo_key,opp_id,category,subject,payload,sf_task_id,pushed_at")
+    except DealEngineError:
+        return []
+
+
 def insert_push(*, todo_key: str, opp_id: str, category: Optional[str],
                 subject: Optional[str], sf_task_id: Optional[str],
                 pushed_by: Optional[str] = None,
@@ -2181,6 +2191,38 @@ def derive_todo(owner: Optional[str] = None) -> dict:
     implicit = [it for it in implicit
                 if not any(_same_ask(_norm_todo(_todo_text(it)), rk)
                            for rk in _req_keys.get(it.get("opp_id"), []))]
+
+    # TO-DO PRESERVATION (2026-07-14): re-inject ticked-off (pushed-to-Salesforce)
+    # to-dos that this re-sweep's regenerated buckets no longer contain, so a
+    # re-sweep KEEPS the completed to-dos (rendered checked/locked by pushed=true)
+    # instead of dropping them — the rep sees the old ticked-off items STAY while
+    # the new list also appears. Reconstructed from the push ledger's stored
+    # payload; appended AFTER the live items so they never crowd the active list.
+    # A deleted-override on a key suppresses re-injection.
+    _buckets = {"critical": critical, "important": important,
+                "explicitRequirements": explicit, "implicit": implicit,
+                "bestPractice": best_practice}
+    _present = {it.get("todo_key") for b in _buckets.values() for it in b if it.get("todo_key")}
+    for pr in _all_pushes():
+        tk = pr.get("todo_key")
+        if not tk or tk in _present:
+            continue
+        o = ovr.get(tk)
+        if o and o.get("action") == "delete":
+            continue
+        bucket = _buckets.get(pr.get("category") or "critical")
+        if bucket is None:
+            continue
+        base = pr.get("payload") if isinstance(pr.get("payload"), dict) else {}
+        item = dict(base)
+        item["todo_key"] = tk
+        item["opp_id"] = pr.get("opp_id") or item.get("opp_id")
+        item["pushed"] = True
+        item["completed"] = True
+        item["sf_task_id"] = pr.get("sf_task_id")
+        item["pushed_at"] = pr.get("pushed_at")
+        bucket.append(item)
+        _present.add(tk)
 
     # Manually-added completed updates (book-wide; carry opp_id only, so the
     # frontend filters by opp and merges them into 'Recently completed').

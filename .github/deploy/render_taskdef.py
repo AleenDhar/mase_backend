@@ -77,9 +77,13 @@ _SWEEP_TUNING = {
     # What CHANGED 2026-07-09: a MANUAL trigger no longer runs fire-and-forget on the web tier
     # — it is ENQUEUED as a durable `waiting` row and drained by the mase-worker fleet
     # (DEAL_SWEEP_CONCURRENCY=8 each, autoscaled to SWEEP_AUTOSCALE_MAX). So manual sweeps are
-    # now crash-safe (worker.py reclaims claimed-but-unfinished rows on restart) AND 8-wide,
-    # while automated sweeping remains paused. Set "false" to resume automated sweeping.
-    "DEAL_SWEEP_MANUAL_ONLY": "true",
+    # now crash-safe (worker.py reclaims claimed-but-unfinished rows on restart) AND 8-wide.
+    # 2026-07-14 (user-directed): the SFDC EVENT TRIGGER is now LIVE — automated CDC sweeping
+    # is ON so a rep's SFDC change / activity (Stage/Amount/CloseDate/Next_Step + Task/Event)
+    # fires a near-instant re-sweep (refreshes 24h summary + scores + CEO + to-dos, keeping
+    # ticked-off to-dos). Paired with CDC_TRIGGER_ON_ACTIVITY=true on the CDC Lambda. Set back
+    # to "true" to pause all automated sweeping.
+    "DEAL_SWEEP_MANUAL_ONLY": "false",
     # The web-tier trigger semaphore (only reached if DEAL_SWEEP_USE_QUEUE=false — the
     # emergency in-process fallback). Was an unset default of 3.
     "DEAL_TRIGGER_CONCURRENCY": "8",

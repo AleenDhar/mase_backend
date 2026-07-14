@@ -1567,7 +1567,7 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
            "website": None, "domains": [], "contacts": [], "account_contacts": [],
            "task_contacts": [], "sibling_opps": [], "contact_roles_thin": False,
            "roles_count": 0, "buyer_roles_count": 0, "partner_count": 0,
-           "nonperson_count": 0, "last_activity_date": None}
+           "nonperson_count": 0, "last_activity_date": None, "eb_candidates": []}
     sid = _sql_str(opp_id)
     try:
         head = await _soql(
@@ -1701,11 +1701,10 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
         except Exception as e:  # noqa: BLE001
             print(f"[DEAL-SWEEP] buyer-identity sibling-opps failed "
                   f"opp={opp_id}: {type(e).__name__}: {e}", flush=True)
-    # Account-contacts fallback — only when THIN: recover the account's own contacts
-    # directly via Contact WHERE AccountId (the gateway never materialises the
-    # Account.Contacts child subquery). Recovers the bench + mailbox-domain set for
-    # Avoma attendee matching; drives the "add contact roles" to-do nudge.
-    if out["contact_roles_thin"] and out.get("account_id"):
+    # Account-contacts: always fetch (not just when thin) so we can build EB
+    # candidates for fuzzy Avoma matching regardless of contact-role coverage.
+    # The "thin" flag still gates the DATA-HYGIENE nudge in the identity block.
+    if out.get("account_id"):
         acct = _sql_str(out["account_id"])
         try:
             acct_contacts = await _soql(
@@ -1723,8 +1722,38 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
                     "email": _sf_name(c, "Email"),
                 })
         except Exception as e:  # noqa: BLE001
-            print(f"[DEAL-SWEEP] buyer-identity account-contacts fallback failed "
+            print(f"[DEAL-SWEEP] buyer-identity account-contacts failed "
                   f"opp={opp_id}: {type(e).__name__}: {e}", flush=True)
+
+    # EB candidates: contacts from BOTH pools whose title signals budget/exec authority.
+    # Used for fuzzy attendee matching — the LLM can recognise a CFO on an Avoma call
+    # even when they were never entered into MEDDPICC or contact roles.
+    _EB_TITLE_KEYWORDS = (
+        "cfo", "cio", "cpo", "coo", "ceo", "cro",
+        "chief financial", "chief information", "chief procurement",
+        "chief operating", "chief executive", "chief revenue",
+        "vp finance", "vp of finance", "vp procurement", "vp of procurement",
+        "vp supply chain", "vp of supply chain",
+        "head of finance", "head of procurement", "head of supply chain",
+        "director of finance", "director of procurement",
+        "svp finance", "evp finance", "svp procurement", "evp procurement",
+    )
+    seen_eb: set = set()
+    for c in out["contacts"] + out["account_contacts"]:
+        if c.get("is_partner") or c.get("is_nonperson"):
+            continue
+        title = (c.get("title") or "").lower()
+        if not title:
+            continue
+        if any(kw in title for kw in _EB_TITLE_KEYWORDS):
+            key = (c.get("name") or "").lower()
+            if key and key not in seen_eb:
+                seen_eb.add(key)
+                out["eb_candidates"].append({
+                    "name": c.get("name"),
+                    "title": c.get("title"),
+                    "email": c.get("email"),
+                })
     try:
         tasks = await _soql(
             agent_manager,
@@ -1825,7 +1854,20 @@ def _buyer_identity_block(bi: dict) -> str:
             "this opp; RETAIN them in full as real stakeholders (an SI/reseller is often "
             "the channel the deal runs through, and partner-led calls run through them). "
             f"Do NOT count them toward buyer multi-threading: {ppl}")
-    if bi.get("account_contacts"):
+    if bi.get("eb_candidates"):
+        eb_people = "; ".join(
+            f"{c['name']} ({c['title']})" + (f" <{c['email']}>" if c.get("email") else "")
+            for c in bi["eb_candidates"][:10])
+        lines.append(
+            f"EB-LEVEL CONTACTS ({len(bi['eb_candidates'])} identified by SF title — "
+            "for fuzzy Avoma attendee matching): "
+            f"{eb_people}. "
+            "When reading Avoma attendees, fuzzy-match names against this list "
+            "(same first+last name, or common abbreviation, on the buyer domain). "
+            "A match counts as a resolved EB attendee — use their SF title to set "
+            "eb_engagement.strength even if MEDDPICC does not name them as the EB. "
+            "Email match takes priority; name match threshold ~80% similarity.")
+    if bi.get("account_contacts") and bi.get("contact_roles_thin"):
         acct_people = "; ".join(
             f"{c['name']}"
             + (f" ({c['title']})" if c.get("title") else "")

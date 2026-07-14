@@ -309,6 +309,37 @@ def get_run_id(opp_id: str) -> Optional[str]:
     return (rows[0].get("run_id") if rows else None)
 
 
+def list_active(recent_done_min: int = 8, limit: int = 120) -> list:
+    """Per-deal sweep activity for a live UI (the navbar): every IN-FLIGHT sweep
+    (waiting/working) PLUS sweeps that finished (done/failed) within the last
+    `recent_done_min` minutes — so the UI can flash a 'done' toast then let it drop.
+    The caller derives the origin (Salesforce / manual / …) from the run_id prefix and
+    maps opp_id -> name via the already-loaded book. Read-only, cheap (one select),
+    never raises (returns [] on any error) — a navbar poll must never disturb the sweep."""
+    try:
+        rows = _select(
+            select="opp_id,status,run_id,updated_at,claimed_at,duration_ms,attempts,error",
+            filters=["status=in.(waiting,working,done,failed)"],
+            order="updated_at.desc", limit=limit) or []
+    except Exception:  # noqa: BLE001
+        return []
+    from datetime import datetime, timezone, timedelta
+    cutoff = datetime.now(timezone.utc) - timedelta(minutes=max(1, recent_done_min))
+    out = []
+    for r in rows:
+        st = r.get("status")
+        if st in ("waiting", "working"):
+            out.append(r)
+        elif st in ("done", "failed"):
+            u = str(r.get("updated_at") or "")
+            try:
+                if u and datetime.fromisoformat(u.replace("Z", "+00:00")) >= cutoff:
+                    out.append(r)
+            except Exception:  # noqa: BLE001
+                pass
+    return out
+
+
 # ---------- recovery ----------
 
 def reclaim_stragglers() -> int:

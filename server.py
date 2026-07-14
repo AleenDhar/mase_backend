@@ -8725,6 +8725,34 @@ async def deal_engine_sweep_status():
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.get("/api/deal-engine/sweep/active")
+async def deal_engine_sweep_active():
+    """Per-deal sweep activity for the navbar: in-flight sweeps (waiting/working) + ones that
+    just finished (done/failed in the last few minutes). The frontend maps opp_id -> deal name
+    via the loaded book and shows 'a sweep is running on X…' -> 'X updated'. Read-only + cheap
+    (one queue select); the origin is derived from the run_id prefix (Salesforce trigger, manual,
+    update-living-memory, scheduled)."""
+    import sweep_queue as q
+
+    def _origin(rid: str) -> str:
+        rid = str(rid or "")
+        if rid.startswith("sftrig"):
+            return "salesforce"        # Salesforce CDC trigger
+        if rid.startswith("fromscratch"):
+            return "update-living-memory"
+        if rid.startswith("trigger"):
+            return "manual"
+        return "scheduled"
+    try:
+        rows = await asyncio.to_thread(q.list_active)
+        for r in rows:
+            r["origin"] = _origin(r.get("run_id"))
+        running = sum(1 for r in rows if r.get("status") in ("waiting", "working"))
+        return {"active": rows, "count": len(rows), "running": running}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 # ============================================================================
 # DATABASE BACKUP (admin) — mirror the main Supabase into the mase-backup project.
 # The same db_backup routine powers the admin "Sync Now" button and the 5-hour cron.

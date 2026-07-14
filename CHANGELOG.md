@@ -11,6 +11,27 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-15 — Slim-book cache: kill the ~7.5s dashboard load (stale-while-revalidate)
+
+**What.** `GET /api/deal-engine/opportunities?slim=1` (no owner) — the payload EVERY rep's
+dashboard loads on open — is now served from an in-process **stale-while-revalidate** cache of
+pre-serialized JSON bytes. Within `_SLIM_TTL` (30s) a request returns the cached bytes instantly
+(no DB read, no slim compute, no re-serialize); when stale (but under a 10-min hard cap) it
+returns the stale bytes immediately AND fires ONE background rebuild; only a cold request (or
+past the hard cap) builds inline, serialized behind an `asyncio.Lock` so a burst can't stampede
+the DB. Owner-scoped / search (`q`) / `paged` variants bypass the cache and read live.
+
+**Why.** The slim endpoint pulls every record's full `record` jsonb (~20 MB) then slims it
+~10-25×, plus per-record `attach_deal_scores` / `attach_verdict_view` — ~7.5s of server work,
+paid on every load. Biggest single source of the "initial load takes forever" sluggishness. The
+book only changes on sweeps/refreshes (not per-request), so ≤30s staleness is harmless (the
+frontend also re-fetches on tab focus).
+
+**How to work with it.** The build path (`_build_slim_book_body`) reuses the SAME stub-filter +
+`slim_record(attach_pulse(r))` as the inline path, so output is byte-identical — just cached.
+Staleness is time-based (cross-process safe: the worker writes to Supabase, the web cache expires
+on its own); after a write the list catches up within 30s. Bump `_SLIM_TTL` if you need fresher.
+
 ## 2026-07-14 — SFDC CDC trigger now does UPDATE-LIVING-MEMORY (from-scratch)
 
 **What.** A live Salesforce CDC trigger (`source="salesforce_trigger"`, set by the worker for a

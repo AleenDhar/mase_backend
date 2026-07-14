@@ -23,7 +23,7 @@ from datetime import datetime
 
 from fastapi import FastAPI, WebSocket, HTTPException, WebSocketDisconnect, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
+from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -7731,12 +7731,80 @@ async def deal_engine_deals_count():
         return JSONResponse({"error": str(e), "count": None}, status_code=500)
 
 
+# --- whole-book slim cache (the dashboard's hot path) ------------------------------------
+# GET /opportunities?slim=1 (no owner) is what EVERY rep's dashboard loads on open. It pulls
+# every record's full `record` jsonb then slims it ~10-25x — ~7.5s of server work for 558
+# records, paid on every single load. Serve it STALE-WHILE-REVALIDATE: within _SLIM_TTL a
+# request returns the pre-serialized payload instantly (a byte copy — no DB read, no slim
+# compute, no re-serialize); when stale but under the hard cap it returns the stale bytes
+# immediately AND kicks off ONE background rebuild, so no rep ever waits the ~7.5s except the
+# first cold request. The book only changes on sweeps/refreshes (not per-request), so a few
+# seconds of staleness is harmless — the frontend also re-fetches on tab focus.
+_SLIM_CACHE: dict = {"body": None, "at": 0.0}
+_SLIM_TTL = 30.0         # serve as fresh within this many seconds of the last build
+_SLIM_HARD_TTL = 600.0   # never serve bytes older than this — rebuild inline instead
+_slim_refreshing = False
+_slim_lock = asyncio.Lock()  # serialize inline (cold) builds so a burst doesn't stampede the DB
+
+
+async def _build_slim_book_body() -> bytes:
+    """Build the whole-book slim payload as JSON bytes (same shape + stub-filter as the
+    inline path below), ready to return with no further serialization."""
+    import deal_engine_store as dstore
+    records = await _aw(dstore.list_records, None)
+    records = [r for r in records if str((r.get("hard") or {}).get("stage") or "").strip()]
+    slim = [dstore.slim_record(dstore.attach_pulse(r)) for r in records]
+    return json.dumps({"count": len(slim), "records": slim}, default=str).encode("utf-8")
+
+
+async def _refresh_slim_book_bg() -> None:
+    """Background rebuild for the SWR path; swallows its own errors and clears the flag so a
+    transient failure just keeps serving the last good bytes until the next attempt."""
+    global _slim_refreshing
+    try:
+        body = await _build_slim_book_body()
+        _SLIM_CACHE["body"] = body
+        _SLIM_CACHE["at"] = time.monotonic()
+    except Exception as e:  # noqa: BLE001
+        print(f"[SLIM-CACHE] background refresh failed: {type(e).__name__}: {e}", flush=True)
+    finally:
+        _slim_refreshing = False
+
+
+async def _slim_book_response() -> Response:
+    """Stale-while-revalidate accessor: returns a JSON Response of the whole-book slim book."""
+    global _slim_refreshing
+    now = time.monotonic()
+    body = _SLIM_CACHE["body"]
+    age = (now - _SLIM_CACHE["at"]) if body is not None else None
+    if body is not None and age < _SLIM_HARD_TTL:
+        if age >= _SLIM_TTL and not _slim_refreshing:   # stale-but-usable: refresh once in bg
+            _slim_refreshing = True
+            asyncio.create_task(_refresh_slim_book_bg())
+        return Response(content=body, media_type="application/json")
+    # cold, or older than the hard cap: build inline under a lock so a burst of concurrent
+    # cold requests doesn't all hit the DB — the first builds, the rest get the fresh bytes.
+    async with _slim_lock:
+        body = _SLIM_CACHE["body"]
+        if body is not None and (time.monotonic() - _SLIM_CACHE["at"]) < _SLIM_TTL:
+            return Response(content=body, media_type="application/json")
+        body = await _build_slim_book_body()
+        _SLIM_CACHE["body"] = body
+        _SLIM_CACHE["at"] = time.monotonic()
+        return Response(content=body, media_type="application/json")
+
+
 @app.get("/api/deal-engine/opportunities")
 async def deal_engine_opportunities(owner: str = "", slim: bool = False, paged: bool = False,
                                     q: str = "", sort: str = "close_date", dir: str = "asc",
                                     limit: int = 50, offset: int = 0, owners: str = ""):
     import deal_engine_store as dstore
     try:
+        # Whole-book slim (every dashboard's hot path) — served from a stale-while-revalidate
+        # cache so only the first cold request pays the ~7.5s build. Owner-scoped / search /
+        # paged variants fall through and read live.
+        if slim and not owner and not q and not paged:
+            return await _slim_book_response()
         if paged:
             # Server-side one-page slice for the Deals table: scope (owners) + search (q)
             # + sort + range all run in Postgres, so the request returns ONE page + the

@@ -1859,14 +1859,18 @@ def _buyer_identity_block(bi: dict) -> str:
             f"{c['name']} ({c['title']})" + (f" <{c['email']}>" if c.get("email") else "")
             for c in bi["eb_candidates"][:10])
         lines.append(
-            f"EB-LEVEL CONTACTS ({len(bi['eb_candidates'])} identified by SF title — "
-            "for fuzzy Avoma attendee matching): "
+            f"POTENTIAL EB CANDIDATES ({len(bi['eb_candidates'])} identified by SF title only — "
+            "NOT yet confirmed as the economic buyer): "
             f"{eb_people}. "
             "When reading Avoma attendees, fuzzy-match names against this list "
-            "(same first+last name, or common abbreviation, on the buyer domain). "
-            "A match counts as a resolved EB attendee — use their SF title to set "
-            "eb_engagement.strength even if MEDDPICC does not name them as the EB. "
-            "Email match takes priority; name match threshold ~80% similarity.")
+            "(email-exact or ~80% name similarity on buyer domain). "
+            "A title match alone — even with call attendance — makes this person a "
+            "POTENTIAL economic buyer only. "
+            "Set eb_engagement.strength = 'indirect' and note source as "
+            "'potential EB by title — not yet confirmed'. "
+            "Only upgrade to strength = 'direct' if MEDDPICC explicitly names them as EB "
+            "OR an Avoma transcript explicitly identifies them as the budget authority, "
+            "final decision-maker, or 'the person who signs'.")
     if bi.get("account_contacts") and bi.get("contact_roles_thin"):
         acct_people = "; ".join(
             f"{c['name']}"

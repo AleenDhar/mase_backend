@@ -955,12 +955,15 @@ _MEDDPICC_NULLISH = {"", "n.a.", "na", "n/a", "none", "no", "-", "unknown", "tbd
 
 # MEDDPICC label -> rubric factor (presence = good). Competition excluded (a named rival
 # isn't necessarily favourable); preference has no direct CRM field.
+# "decision process" removed: knowing the purchase process description is not evidence that
+# paper/pricing motion is underway (process knowledge ≠ being in the process). The commercial
+# factor reads medd.paper_process from the AI sweep; CRM field for decision process was lifting
+# commercial from the "unknown" floor on deals with no active paper motion.
 _CRM_LABEL_TO_FACTOR = {
     "economic buyer": "exec_access",
     "champion": "champion",
     "metrics": "business_case",
     "identify pain": "differentiation",
-    "decision process": "commercial",
 }
 
 

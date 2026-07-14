@@ -492,20 +492,36 @@ def _crm_recency(age_days) -> float:
 def _crm_evidence_overlay(out: dict, ai: dict) -> dict:
     """Lift 'presence = good' factor strengths from ai.crm_evidence (deterministic, multi-
     source). Only ever HELPS (max), so a CRM-confirmed factor can't be hidden by an LLM miss.
-    Competition is excluded (a named competitor isn't necessarily favourable)."""
+    Competition is excluded (a named competitor isn't necessarily favourable).
+
+    Two guard layers:
+    1. _OVERLAY_LOCK_IF_NEGATIVE: CRM can't override an explicit negative AI read (cur ≤ -0.4).
+    2. _AI_ASSESSED_FACTORS: for factors where the AI has a dedicated call-evidence field
+       (differentiation from ai_fit_signal, business_case from ai.business_case, commercial
+       from medd.paper_process), CRM can only lift from the "missing" floor (-0.30). If the AI
+       has already assessed the factor at any level above missing, that assessment is the ceiling
+       — a rep-entered MEDDPICC field cannot inflate above a genuine AI read.
+       This closes the symmetric gap to the champion/eb guards: "AI Curious" stays 0.3, not 0.7.
+    """
     ev = ai.get("crm_evidence")
     if not isinstance(ev, dict):
         return out
+
+    # Factors where the AI already has a dedicated call-evidence assessment.
+    # CRM may lift from the "missing" floor (-0.30) but never beyond the AI's own read.
+    _AI_ASSESSED_FACTORS = frozenset({"differentiation", "business_case", "commercial"})
+
     for fac in _CRM_FACTOR_KEYS:
         info = ev.get(fac)
         if isinstance(info, dict) and info.get("present"):
             cur = out.get(fac, WIN_MISSING)
-            # Respect an explicit weak/negative read for the keyword-prone factors: don't let
-            # a deterministic presence-hit lift a factor the sweep deliberately scored down.
-            # (Unknowns at the -0.30 floor still lift — that's the original under-read fix.)
+            # Guard 1: don't override explicit negative reads for keyword-prone factors.
             if fac in _OVERLAY_LOCK_IF_NEGATIVE and cur <= _EXPLICIT_NEGATIVE:
                 continue
             s = round(1.0 * _crm_recency(info.get("age_days")), 3)
+            # Guard 2: if AI already assessed this factor, CRM can't inflate above that read.
+            if fac in _AI_ASSESSED_FACTORS and cur > WIN_MISSING:
+                s = min(s, cur)
             out[fac] = max(cur, s)
     return out
 

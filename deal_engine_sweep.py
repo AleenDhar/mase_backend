@@ -3093,6 +3093,30 @@ async def analyze_one(
                 print(f"[DEAL-SWEEP] prior record load failed opp={opp_id}: {_e}", flush=True)
         existing_packets = existing_record.get("packets") or []
         topics_block = packets_mod.known_topics_block(existing_packets)
+        # SUMMARY-FIRST on an SFDC trigger (user-directed 2026-07-14): compute + write JUST the
+        # fresh 24h summary FIRST — ahead of the full ~8-min from-scratch rebuild — so the drawer
+        # shows "what just happened" within seconds, then to-dos / score / details land when the
+        # sweep finishes. Targeted read-modify-write of ONLY ai.day_summary on the stored record
+        # (the full sweep overwrites everything at the end, behind the never-clobber guard). SFDC
+        # trigger only, env-gated (DEAL_SWEEP_SUMMARY_FIRST), best-effort — never blocks the sweep.
+        if (source in ("salesforce_trigger", "salesforce")
+                and os.getenv("DEAL_SWEEP_SUMMARY_FIRST", "true").strip().lower()
+                in ("1", "true", "yes", "on")):
+            try:
+                import day_summary_ai as _dsa_pre
+                _pre_sum = await asyncio.get_running_loop().run_in_executor(
+                    _daysum_pool(), _dsa_pre.day_summary_ai_for_opp, opp_id, opp.get("account"))
+                if isinstance(_pre_sum, dict) and (_pre_sum.get("overall") or _pre_sum.get("items")):
+                    _pre_rec = await asyncio.get_running_loop().run_in_executor(
+                        None, store.get_record, opp_id)
+                    if isinstance(_pre_rec, dict) and _pre_rec and isinstance(_pre_rec.get("ai"), dict):
+                        _pre_rec["ai"]["day_summary"] = _pre_sum
+                        await asyncio.get_running_loop().run_in_executor(
+                            None, store.upsert_record, _pre_rec)
+                        print(f"[SUMMARY-FIRST] opp={opp_id}: fresh 24h summary written ahead "
+                              f"of the full sweep", flush=True)
+            except Exception as _sfe:  # noqa: BLE001 — pre-pass is best-effort, never blocks
+                print(f"[SUMMARY-FIRST] opp={opp_id} skipped: {type(_sfe).__name__}: {_sfe}", flush=True)
         # Buyer-identity prefetch (account + contact roles + domains + recent task
         # contacts + LastActivityDate), via direct SOQL. Drives reliable
         # account+attendee Avoma discovery and lets us tell a genuinely-dark deal

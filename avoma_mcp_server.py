@@ -582,15 +582,34 @@ def get_meetings_summary_for_account(
     }
     all_meetings = _get_all_pages("/meetings/", params)
 
+    # Pre-compute the IST clock time so the chat model never does UTC->IST math itself
+    # (RCA 2026-07-15: model-side +5:30 arithmetic was the source of wrong-time answers).
+    from datetime import datetime as _dt, timedelta as _td
+
+    def _ist(u):
+        if not u:
+            return None
+        try:
+            return (_dt.fromisoformat(str(u).replace("Z", "+00:00")) + _td(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M IST")
+        except Exception:  # noqa: BLE001
+            return None
+
     summary = []
     for m in all_meetings:
+        _tu = m.get("transcription_uuid")
         summary.append({
             "uuid": m.get("uuid"),
             "title": m.get("title"),
-            "start_at": m.get("start_at"),
+            "start_at": m.get("start_at"),                # UTC, exactly as Avoma returns it
+            "start_at_ist": _ist(m.get("start_at")),      # pre-computed IST — cite this, don't recompute
             "duration_seconds": m.get("duration"),
             "is_call": m.get("is_call"),
             "state": m.get("state"),
+            # Transcript availability as a FACT (not a title guess): exists iff transcript_ready
+            # is true OR a transcription_uuid is present.
+            "transcript_ready": bool(m.get("transcript_ready")) or bool(_tu),
+            "transcription_uuid": _tu,
+            "recording_uuid": m.get("recording_uuid"),
             "attendees": [
                 a.get("email") for a in m.get("attendees", [])
             ],
@@ -634,15 +653,34 @@ def get_meetings_summary_for_opportunity(
     }
     all_meetings = _get_all_pages("/meetings/", params)
 
+    # Pre-compute the IST clock time so the chat model never does UTC->IST math itself
+    # (RCA 2026-07-15: model-side +5:30 arithmetic was the source of wrong-time answers).
+    from datetime import datetime as _dt, timedelta as _td
+
+    def _ist(u):
+        if not u:
+            return None
+        try:
+            return (_dt.fromisoformat(str(u).replace("Z", "+00:00")) + _td(hours=5, minutes=30)).strftime("%Y-%m-%d %H:%M IST")
+        except Exception:  # noqa: BLE001
+            return None
+
     summary = []
     for m in all_meetings:
+        _tu = m.get("transcription_uuid")
         summary.append({
             "uuid": m.get("uuid"),
             "title": m.get("title"),
-            "start_at": m.get("start_at"),
+            "start_at": m.get("start_at"),                # UTC, exactly as Avoma returns it
+            "start_at_ist": _ist(m.get("start_at")),      # pre-computed IST — cite this, don't recompute
             "duration_seconds": m.get("duration"),
             "is_call": m.get("is_call"),
             "state": m.get("state"),
+            # Transcript availability as a FACT (not a title guess): exists iff transcript_ready
+            # is true OR a transcription_uuid is present.
+            "transcript_ready": bool(m.get("transcript_ready")) or bool(_tu),
+            "transcription_uuid": _tu,
+            "recording_uuid": m.get("recording_uuid"),
             "attendees": [
                 a.get("email") for a in m.get("attendees", [])
             ],

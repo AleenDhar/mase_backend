@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-15 — Deal chat: ground call/time/transcript answers (RCA fix, kills the whole class)
+
+**What.** The per-deal AI chat was giving subtly wrong call facts — bad UTC→IST times ("1:30 PM
+IST" labelled "7:30 AM UTC"; correct is 8:00), invented clock times, guessed transcript
+availability, and hallucinated call summaries. Two structural fixes:
+- **Prompt (`_CHAT_CAPABILITIES`, server.py — appended in code to EVERY deal chat, admin-proof):**
+  a "CALLS, TIMES & TRANSCRIPTS" grounding block — never hand-convert timezones (state UTC as given;
+  IST = UTC+5:30 shown explicitly); never state a clock time from a date-only field
+  (footprints/day_summary are dates only); never assert a transcript exists or summarize a call
+  unless a tool flag confirms it or you fetched it (else "I'd need to pull that transcript").
+- **Tool (`avoma_mcp_server.get_meetings_summary_for_opportunity` + sibling):** the projection now
+  includes `transcript_ready`/`transcription_uuid`/`recording_uuid` (availability is a FACT, not a
+  title guess) and a **pre-computed `start_at_ist`** (so the model never does +5:30 arithmetic).
+
+**Why (RCA).** The chat's assembled context has ZERO grounded call data (`chat_book_context` strips
+it) and no rules — so the model *derived* every call fact itself (tz math, availability, summaries)
+and got the derivation wrong. Transcript text is never persisted (sweep reads it transiently), so
+any off-day call summary was ungrounded. One structural gap → the whole class of misses.
+
+**How to work with it going forward.** The grounding rules live in code (`_CHAT_CAPABILITIES`), so
+they can't be lost by clearing the Supabase `mase_chat_agent` prompt (which is currently empty →
+the built-in fallback governs). When adding any model-facing call/time data, PRE-COMPUTE it (times,
+flags) rather than let the model derive it. `mase_chat_agent` lives in `jarvis_settings`, NOT
+`scoring_instructions`.
+
 ## 2026-07-15 — Slim-book cache: kill the ~7.5s dashboard load (stale-while-revalidate)
 
 **What.** `GET /api/deal-engine/opportunities?slim=1` (no owner) — the payload EVERY rep's

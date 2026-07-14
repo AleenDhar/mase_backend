@@ -4426,6 +4426,28 @@ async def analyze_one(
                               f"kept the stored scored surfaces instead of blanking them", flush=True)
             except Exception as _nce:  # noqa: BLE001 — guard must never block persist
                 print(f"[DEAL-SWEEP] never-clobber check skipped opp={opp_id}: {_nce}", flush=True)
+            # BLANK-STAGE / BLANK-SUMMARY GUARD (2026-07-15): an intermittent agent/SF-read failure
+            # can end a run with a NULL hard.stage or an empty day_summary even when scores survived
+            # (Sabic/Boston Beer/ITT came out blank this way). A null stage means the live SF read
+            # failed — we do NOT know the current stage, so carrying the last-known-good hard facts +
+            # summary forward is strictly better than blanking the deal off the board. The next clean
+            # sweep refreshes them. Best-effort; never blocks persist.
+            try:
+                _phard = parsed.get("hard") or {}
+                _prior_hard = (existing_record.get("hard") if isinstance(existing_record, dict) else None) or {}
+                if not str(_phard.get("stage") or "").strip() and str(_prior_hard.get("stage") or "").strip():
+                    # keep the prior hard block as the base; let any non-empty fresh field win
+                    parsed["hard"] = {**_prior_hard, **{k: v for k, v in _phard.items() if v not in (None, "")}}
+                    print(f"[DEAL-SWEEP] blank-stage guard opp={opp_id}: live SF read produced no stage — "
+                          f"kept last-known-good hard facts instead of blanking", flush=True)
+                _pds = (parsed.get("ai") or {}).get("day_summary")
+                if not (isinstance(_pds, dict) and (_pds.get("overall") or _pds.get("items"))):
+                    _prior_ds = ((existing_record.get("ai") or {}).get("day_summary")
+                                 if isinstance(existing_record, dict) else None)
+                    if isinstance(_prior_ds, dict) and (_prior_ds.get("overall") or _prior_ds.get("items")):
+                        parsed.setdefault("ai", {})["day_summary"] = _prior_ds
+            except Exception as _bge:  # noqa: BLE001 — guard must never block persist
+                print(f"[DEAL-SWEEP] blank-stage guard skipped opp={opp_id}: {_bge}", flush=True)
             # (provenance stamped above, before the dry_run split)
             await asyncio.get_running_loop().run_in_executor(None, store.upsert_record, parsed)
         result["status"] = "completed"

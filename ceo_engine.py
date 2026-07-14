@@ -150,13 +150,17 @@ def _call_llm(blob, ak):
 
 
 def _to_vp(ask, rep, vp):
-    """GUARANTEE the ceo_ask addresses the VP, not the rep — swap a leading 'Ask <rep>'
-    for the VP's name (unless the VP is already named up front)."""
+    """GUARANTEE the ceo_ask names the actual VP: (1) leave if the VP is already named
+    up front; (2) substitute a generic 'the deal owner's VP/manager' with the real name;
+    (3) swap a leading 'Ask <rep>' for the VP's name."""
     if not ask or not vp:
         return ask
     vpf = vp.split()[0] if vp.split() else vp
     if vpf.lower() in ask[:55].lower():
         return ask
+    generic = re.compile(r"the deal owner'?s (?:VP|manager)", re.I)
+    if generic.search(ask):
+        return generic.sub(vp, ask, count=1)
     if rep:
         for nm in ([rep, rep.split()[0]] if rep.split() else [rep]):
             if not nm:

@@ -258,4 +258,49 @@ def build_evidence_packet(record: dict, *, meetings: Optional[list[dict]] = None
             "events": (sf_activities.get("events") or [])[:40],
             "next_step_history": _strip_html(sf_activities.get("next_step_history"))[:600] or None,
         }
+
+    # SWEEP ANALYSIS CONTEXT (2026-07-15): the full narrative analysis produced by the
+    # evidence-extraction pass. The scoring LLM receives this so its scores, verdict, and
+    # recommended_moves are coherent with the same stakeholder / champion / EB reads that
+    # appear in the drawer — preventing the "scoring is a separate entity / data mismatch"
+    # problem reported on SABIC. Fields are pass-through (no truncation beyond lists),
+    # because the scorer MUST use the same picture the analysis produced.
+    _analysis_ctx: dict = {}
+    # 24-hour summary — buyer actions since last sweep
+    _ds = ai.get("day_summary")
+    if isinstance(_ds, dict) and _ds.get("items"):
+        _analysis_ctx["day_summary"] = {
+            "as_of": _ds.get("as_of"),
+            "items": (_ds["items"] or [])[:8],
+        }
+    elif isinstance(_ds, list):
+        _analysis_ctx["day_summary"] = {"items": _ds[:8]}
+    # Stakeholder map — who is engaged, roles, sentiment, risk
+    _sm = ai.get("stakeholder_map")
+    if isinstance(_sm, dict) and _sm.get("items"):
+        _analysis_ctx["stakeholder_map"] = {"items": (_sm["items"] or [])[:10]}
+    # EB engagement — the authoritative economic-buyer signal (overrides MEDDPICC EB checkbox)
+    _ebe = ai.get("eb_engagement")
+    if isinstance(_ebe, dict) and _ebe.get("strength"):
+        _analysis_ctx["eb_engagement"] = _ebe
+    # Critical signals — the 5-lens what-changed-this-sweep highlights
+    _cs = ai.get("critical_signals")
+    if isinstance(_cs, list) and _cs:
+        _analysis_ctx["critical_signals"] = _cs[:6]
+    elif isinstance(_cs, dict) and _cs.get("items"):
+        _analysis_ctx["critical_signals"] = (_cs["items"] or [])[:6]
+    # Gaps — structured known-unknowns driving the risk read
+    _gp = ai.get("gaps")
+    if isinstance(_gp, list) and _gp:
+        _analysis_ctx["gaps"] = _gp[:5]
+    # Champion strength — includes at_risk flag that caps champion rubric factor
+    _champ = ai.get("champion_strength")
+    if isinstance(_champ, dict):
+        _analysis_ctx["champion_strength"] = _champ
+    # EB candidates — SF-identified potential economic buyers (title-based, not confirmed)
+    _ebc = ai.get("eb_candidates")
+    if isinstance(_ebc, list) and _ebc:
+        _analysis_ctx["eb_candidates"] = _ebc[:5]
+    if _analysis_ctx:
+        packet["sweep_analysis"] = _analysis_ctx
     return packet

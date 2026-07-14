@@ -4199,6 +4199,29 @@ async def analyze_one(
                 except Exception as _hfe:  # noqa: BLE001 — the floor must never block persist
                     print(f"[DEAL-SCORES] husk-floor failed opp={opp_id}: {_hfe}", flush=True)
             if _scores:
+                # PIPELINE NARRATIVE FIELDS (2026-07-15): the scoring LLM produces
+                # what_matters / north_star_verdict / recommended_moves alongside scores
+                # so all four live in the same inference context. Lift them out of the
+                # deal_scores dict (where they would be invisible to the UI) into the
+                # top-level ai.* fields that the drawer and CRO panel already read.
+                # The underscore prefix (_what_matters etc.) signals "lift this field".
+                # Non-fatal: if the scorer didn't emit them the existing values survive.
+                try:
+                    _wm = _scores.pop("_what_matters", None)
+                    _nv = _scores.pop("_north_star_verdict", None)
+                    _rm = _scores.pop("_recommended_moves", None)
+                    _ai_out = parsed.setdefault("ai", {})
+                    if _wm:
+                        _ai_out["what_matters"] = _wm
+                    if _nv:
+                        # Fresh verdict from the scoring pass always wins over carried_forward.
+                        _ai_out["north_star_verdict"] = _nv
+                        print(f"[DEAL-SCORES] fresh north_star_verdict opp={opp_id} "
+                              f"verdict={_nv.get('verdict')}", flush=True)
+                    if _rm:
+                        _ai_out["recommended_moves"] = _rm
+                except Exception as _lfte:  # noqa: BLE001
+                    print(f"[DEAL-SCORES] lift-narrative failed opp={opp_id}: {_lfte}", flush=True)
                 parsed.setdefault("ai", {})["deal_scores"] = _scores
         except Exception as _se:  # noqa: BLE001 — scoring is best-effort, never blocks persist
             print(f"[DEAL-SCORES] compute failed for {opp_id}: {_se}", flush=True)

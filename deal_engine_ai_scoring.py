@@ -58,8 +58,20 @@ _OUTPUT_ADAPTER = """# OUTPUT ADAPTER (engine contract — follow the GOVERNING 
     "deal_momentum":      [{"tone":"good|warn","text":"..."}],
     "win_position":       [{"tone":"good|warn","text":"..."}],
     "customer_commitment":[{"tone":"good|warn","text":"..."}],
-    "deal_risk":          [{"tone":"good|warn","text":"..."}]
-  }
+    "deal_risk":          [{"tone":"good|warn","text":"..."}],
+    "forecast_confidence":[{"tone":"good|warn","text":"..."}]
+  },
+  "what_matters": "2-3 sentence strategic synthesis a VP reads in 15 seconds: the one deal-defining question right now, the most critical near-term action, and the biggest risk to close. Use specific names, dates, and dollar amounts from the evidence packet. Sentence 1: the defining gap or opportunity. Sentence 2: the most critical action and who must take it. Sentence 3: what happens to the deal if that action is not taken.",
+  "north_star_verdict": {
+    "verdict": "On Track|At Risk|Off Track",
+    "headline": "5-8 word buyer-behavior headline (e.g. 'Buyer expanding evaluation scope')",
+    "summary": "≤90-word momentum PULSE — what BUYER actions have actually happened or are planned, graded purely on BUYER engagement (rep outreach alone is NOT momentum). Must be consistent with the scores above."
+  },
+  "recommended_moves": [
+    {"rank": 1, "action": "Concrete action a human can take this week", "act_by": "YYYY-MM-DD", "owner": "Deal team|Executive connect|RevOps"},
+    {"rank": 2, "action": "...", "act_by": "YYYY-MM-DD", "owner": "..."},
+    {"rank": 3, "action": "...", "act_by": "YYYY-MM-DD", "owner": "..."}
+  ]
 }
 ```
 
@@ -79,7 +91,22 @@ Plain English a CRO can act on; NO model internals (no "strength +1.00 (weight 2
 Always cite a REAL source (a call date, a field, a Next-Step note, a dollar move); keyword-only -> soften to
 "rep-noted (unverified)". Win, Momentum, the read label and the risk line must tell ONE consistent story.
 3-5 bullets per score, most-decisive first. Genuinely thin evidence -> score LOW and say so.
-Every count/date you cite MUST come from the packet — never invent a meeting/touch/date."""
+Every count/date you cite MUST come from the packet — never invent a meeting/touch/date.
+
+## sweep_analysis context
+If the packet contains a "sweep_analysis" block, READ it before scoring. The stakeholder_map,
+eb_engagement, champion_strength, critical_signals, gaps, and day_summary there are the structured
+analysis the evidence-extraction pass produced for this exact deal. Your scores, verdict, and
+recommended_moves MUST be coherent with them — e.g. if eb_engagement.strength is "none", the
+exec_access factor must score low; if champion_strength.at_risk is true, cap champion factor at ≤0.3.
+Do NOT contradict the sweep_analysis — it is primary context, not a suggestion.
+
+## recommended_moves style
+3 moves, most urgent first. Each move must be specific (name an action, a person, a target date).
+act_by dates MUST be future dates (today is in the packet deal.close_date context; infer today ±).
+Owner: "Deal team" for AE/AM actions, "Executive connect" for VP/CRO/CEO sponsor actions, "RevOps"
+for system-of-record updates. NEVER use a past date — if an earlier move passed its window, reset to
+the next realistic date (within 30 days unless the close date is further out)."""
 
 
 def _studio_governing() -> str:
@@ -197,7 +224,7 @@ def _normalize(parsed: dict, packet: dict) -> dict:
     read = str(parsed.get("read") or "").strip()[:40] or _det_read(mom)
     headline = {"win_position": win, "deal_momentum": mom, "customer_commitment": com,
                 "deal_risk": rsk, "forecast_confidence": fc, "read": read}
-    return {
+    out = {
         "schema_version": getattr(_det, "SCHEMA_VERSION", 1),
         "model": "ai_v1",
         "headline": headline,
@@ -205,10 +232,43 @@ def _normalize(parsed: dict, packet: dict) -> dict:
         "deal_momentum": {"score": mom, "contributions": _contribs(reasons.get("deal_momentum"))},
         "customer_commitment": {"score": com, "contributions": _contribs(reasons.get("customer_commitment"))},
         "deal_risk": {"score": rsk, "contributions": _contribs(reasons.get("deal_risk"))},
-        "forecast_confidence": {"score": fc, "contributions": []},
+        "forecast_confidence": {"score": fc, "contributions": _contribs(reasons.get("forecast_confidence"))},
         "ai_reasons": reasons,
         "factor_source": "ai",
     }
+
+    # PIPELINE NARRATIVE FIELDS (2026-07-15): the scoring pass also produces the deal
+    # narrative so scores + verdict + recommended_moves are always from the same LLM call
+    # (same context → no data mismatch between the drawer sections).
+    _wm = str(parsed.get("what_matters") or "").strip()
+    if _wm:
+        out["_what_matters"] = _wm[:600]  # lifted out into ai.* by the sweep merge step
+
+    _nv = parsed.get("north_star_verdict")
+    if isinstance(_nv, dict) and str(_nv.get("verdict") or "").strip():
+        _clean_nv = {
+            "verdict": str(_nv.get("verdict") or "").strip(),
+            "headline": str(_nv.get("headline") or "").strip()[:120],
+            "summary": str(_nv.get("summary") or "").strip()[:500],
+        }
+        out["_north_star_verdict"] = _clean_nv  # lifted out by sweep merge step
+
+    _rm = parsed.get("recommended_moves")
+    if isinstance(_rm, list) and _rm:
+        _clean_rm = []
+        for _m in _rm[:5]:
+            if isinstance(_m, dict) and str(_m.get("action") or "").strip():
+                _clean_rm.append({
+                    "rank": int(_m.get("rank") or len(_clean_rm) + 1),
+                    "action": str(_m.get("action") or "").strip()[:400],
+                    "act_by": str(_m.get("act_by") or "").strip()[:20],
+                    "owner": str(_m.get("owner") or "Deal team").strip()[:60],
+                })
+        if _clean_rm:
+            # Wrap in {items:[...]} — the format the CRO panel (.get("items")) expects
+            out["_recommended_moves"] = {"items": _clean_rm}  # lifted out by sweep merge step
+
+    return out
 
 
 def _det_read(mom: float) -> str:

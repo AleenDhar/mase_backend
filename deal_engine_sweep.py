@@ -3077,10 +3077,13 @@ async def analyze_one(
         # CDC trigger (source="salesforce_trigger", set by the worker for a "sftrig-*" run_id)
         # rebuilds the deal FROM SCRATCH — same as the manual "Update Living Memories" purge —
         # so a new SFDC activity / field change refreshes the deal on the latest truth with no
-        # carried memory. SCOPED to the SFDC trigger ONLY: manual re-runs (source="manual"),
-        # scheduled/book sweeps (source="worker"), and the AI-free hard-refresh are UNCHANGED
-        # (they keep living memory). Add "salesforce" as a belt-and-suspenders alias.
-        _from_scratch = (source in ("update_living_memory", "salesforce_trigger", "salesforce")) or not _keep_lm
+        # carried memory. ALSO the deal-drawer "✦ Run Omnivision" button (source="omnivision",
+        # 2026-07-15): ONE canonical Omnivision run — a human click gets the IDENTICAL
+        # from-scratch + summary-first workflow as a live CDC trigger (no keep-LM divergence;
+        # fixes the button silently running source="manual" = keep-LM + no summary-first).
+        # Other manual reruns (source="manual"), scheduled/book sweeps (source="worker"), and
+        # the AI-free hard-refresh are UNCHANGED (they keep living memory). "salesforce" alias.
+        _from_scratch = (source in ("update_living_memory", "salesforce_trigger", "salesforce", "omnivision")) or not _keep_lm
         existing_record = {}
         if _from_scratch:
             print(f"[DEAL-SWEEP] opp={opp_id} — FROM SCRATCH (latest-is-truth: no "
@@ -3098,8 +3101,9 @@ async def analyze_one(
         # shows "what just happened" within seconds, then to-dos / score / details land when the
         # sweep finishes. Targeted read-modify-write of ONLY ai.day_summary on the stored record
         # (the full sweep overwrites everything at the end, behind the never-clobber guard). SFDC
-        # trigger only, env-gated (DEAL_SWEEP_SUMMARY_FIRST), best-effort — never blocks the sweep.
-        if (source in ("salesforce_trigger", "salesforce")
+        # trigger + the "✦ Run Omnivision" button only, env-gated (DEAL_SWEEP_SUMMARY_FIRST),
+        # best-effort — never blocks the sweep.
+        if (source in ("salesforce_trigger", "salesforce", "omnivision")
                 and os.getenv("DEAL_SWEEP_SUMMARY_FIRST", "true").strip().lower()
                 in ("1", "true", "yes", "on")):
             try:
@@ -4747,7 +4751,7 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
     # source="salesforce_trigger"; scheduled sub-jobs send "scheduled_*"). Only an
     # explicit source="manual" is honoured (and even that runs synchronously via the
     # endpoint, not this queue path). Never fills the queue while automation is paused.
-    if manual_only() and source != "manual":
+    if manual_only() and source not in ("manual", "omnivision"):
         print(f"[DEAL-SWEEP] manual-only mode: BLOCKED automated trigger opp={opp_id} "
               f"source={source!r} (automated sweeping is paused)", flush=True)
         return "blocked_manual_only"
@@ -4789,7 +4793,9 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
     opp.setdefault("id", opp_id)
     # Encode the ORIGIN in the run_id prefix so the worker can stamp the real source
     # on the run log (the dashboard shows "salesforce" for a CDC trigger, not "worker").
-    _prefix = "sftrig" if source in ("salesforce_trigger", "salesforce") else "trigger"
+    _prefix = ("omni" if source == "omnivision"
+               else "sftrig" if source in ("salesforce_trigger", "salesforce")
+               else "trigger")
     return await asyncio.to_thread(
         _queue.enqueue_one, f"{_prefix}-{opp_id[:15]}", opp)
 
@@ -5566,9 +5572,12 @@ _trigger_sem: Optional[asyncio.Semaphore] = None
 _trigger_tasks: set = set()
 
 
-async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
+async def _run_trigger(agent_manager, opp_id: str, key: str, *,
+                       source: str = "salesforce_trigger") -> dict:
     """Worker: enrich + analyze one opp, bounded by the trigger semaphore.
-    Always releases the in-flight claim. Returns the analyze_one result."""
+    Always releases the in-flight claim. Returns the analyze_one result.
+    `source` selects the sweep contract passed to analyze_one — default
+    "salesforce_trigger" (CDC re-sweep); "omnivision" for the drawer button."""
     global _trigger_sem
     try:
         # Membership comes ONLY from the MASE report. A trigger is a faster
@@ -5595,7 +5604,7 @@ async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
                 max(1, int(os.getenv("DEAL_TRIGGER_CONCURRENCY", "3"))))
         async with _trigger_sem:
             opps = await _enrich_opp_ids(agent_manager, [opp_id])
-            res = await analyze_one(agent_manager, opps[0], source="salesforce_trigger")
+            res = await analyze_one(agent_manager, opps[0], source=source)
         # Refresh the dashboard/book history so the updated record shows promptly.
         _history_cache["ts"] = 0.0
         print(f"[DEAL-SWEEP] trigger opp={opp_id} -> {res.get('status')}", flush=True)
@@ -5604,8 +5613,11 @@ async def _run_trigger(agent_manager, opp_id: str, key: str) -> dict:
         _trigger_inflight.discard(key)
 
 
-def trigger_opp_async(agent_manager, opp_id: str) -> str:
+def trigger_opp_async(agent_manager, opp_id: str, *,
+                      source: str = "salesforce_trigger") -> str:
     """Fire-and-forget a single-opp re-analysis as a tracked background task.
+    `source` is threaded to analyze_one (default "salesforce_trigger"; the
+    deal-drawer button passes "omnivision" for the canonical from-scratch run).
 
     The in-flight claim is made SYNCHRONOUSLY here (atomic on the single event
     loop — no await before the set is mutated), so two near-simultaneous calls
@@ -5619,7 +5631,7 @@ def trigger_opp_async(agent_manager, opp_id: str) -> str:
         return "already_running"
     _trigger_inflight.add(key)
     try:
-        t = asyncio.create_task(_run_trigger(agent_manager, opp_id, key))
+        t = asyncio.create_task(_run_trigger(agent_manager, opp_id, key, source=source))
     except Exception:  # noqa: BLE001 — never leak a claim if scheduling fails
         _trigger_inflight.discard(key)
         raise

@@ -7219,11 +7219,16 @@ async def deal_engine_sweep_rerun(request: Request):
             # MANUAL-ONLY TEST PAUSE: a single-opp Rerun is an explicit MANUAL action — run it
             # SYNCHRONOUSLY on the web process (the worker fleet is idle). Whole-book/owner/
             # forecast/all reruns below are automated-scope and refused by enqueue_book_run.
+            # ONE canonical Omnivision run (2026-07-15): the drawer "✦ Run Omnivision"
+            # button hits this single-opp branch and MUST run the identical from-scratch +
+            # summary-first workflow as a live SFDC CDC trigger — so source="omnivision"
+            # in BOTH branches (was: sync=salesforce_trigger, async=default "manual" which
+            # kept living memory + skipped summary-first — the silent divergence).
             if sweep.manual_only():
-                r = sweep.trigger_opp_async(agent_manager, opp_id)
+                r = sweep.trigger_opp_async(agent_manager, opp_id, source="omnivision")
                 return {"status": "accepted", "mode": "opp", "opp_id": opp_id,
                         "result": r, "note": "manual-only mode: ran synchronously (no worker)"}
-            r = await sweep.enqueue_trigger(agent_manager, opp_id)
+            r = await sweep.enqueue_trigger(agent_manager, opp_id, source="omnivision")
             return {"status": "accepted", "mode": "opp", "opp_id": opp_id, "result": r}
         if owner:
             res = await sweep.enqueue_book_run(agent_manager, owner=owner)

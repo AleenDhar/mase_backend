@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-15 — One canonical "Omnivision run" (drawer button ≡ SFDC trigger)
+
+**What.** The deal-drawer **"✦ Run Omnivision"** button now runs the **identical** sweep
+workflow as a live Salesforce CDC trigger: **from-scratch** (no living-memory carry) +
+**summary-first** pre-pass. Introduced a first-class run mode `source="omnivision"` and wired
+it through: `analyze_one` from-scratch gate + summary-first gate (`deal_engine_sweep.py:3086,3106`);
+`enqueue_trigger` manual-only bypass + `omni-` run_id prefix (`:4754,4796`); `_run_trigger` /
+`trigger_opp_async` now take a `source` kwarg (`:5573,5616`); `worker.py` maps `omni-*` → source
+label `omnivision` (`:172,185`). The `/sweep/rerun` single-opp branch (`server.py:7228,7231`)
+passes `source="omnivision"` in **both** the manual-only (sync) and queued branches.
+
+**Why.** In current prod (`DEAL_SWEEP_MANUAL_ONLY=false`) the button called
+`enqueue_trigger` with the **default `source="manual"`** → run_id `trigger-*` → worker labelled
+it `manual` → `analyze_one(source="manual")`, which **keeps living memory and skips the
+summary-first pass**. So the button and the CDC trigger had silently diverged — only the trigger
+ran the real from-scratch + summary-first Omnivision workflow. This unifies them onto the proven
+`salesforce_trigger` semantics path (no fork).
+
+**How to work with it going forward.** Button runs are labelled **`omnivision`** in
+trigger-logs/history (distinct from automated `salesforce_trigger`). Cooldown/debounce is
+intentionally NOT applied to `omnivision` (human click = run now). CDC path, todo-push resweep,
+scheduled/book sweeps, and the AI-free hard-refresh are **unchanged**. Ticked/pushed to-dos live
+in separate tables (`deal_todo_pushes`/`deal_todo_overrides`) and survive the from-scratch run,
+same as they already do for CDC triggers. Frontend unchanged (still POSTs `/sweep/rerun {opp_id}`).
+
 ## 2026-07-15 — Sequential pipeline: finalize 24h summary + roster BEFORE scoring
 
 **What.** In `analyze_one` (`deal_engine_sweep.py`) the **24h day_summary** rebuild and the

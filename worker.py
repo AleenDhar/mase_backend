@@ -162,7 +162,8 @@ async def _process(row: dict) -> None:
         # autoscaled fleet. Normal rows keep source="worker" (incremental carry-forward).
         # The run_id prefix carries the ORIGIN so the dashboard shows the real source
         # instead of a blanket "worker": sftrig-* = Salesforce CDC trigger,
-        # trigger-* = manual re-run, fromscratch-* = purge rebuild, else = scheduled/book.
+        # omni-* = drawer "✦ Run Omnivision" button, trigger-* = manual re-run,
+        # fromscratch-* = purge rebuild, else = scheduled/book.
         _rid = str(row.get("run_id") or "")
         # Reliable labeling (2026-07-05): a claimed row sometimes reaches the worker
         # without its run_id, so a Salesforce/manual trigger was logged under the
@@ -170,7 +171,7 @@ async def _process(row: dict) -> None:
         # rows). When the run_id is absent OR lacks a known origin prefix, re-read the
         # authoritative run_id from the queue row before deriving the label. Correctly
         # prefixed rows skip the extra read (no behaviour change for them).
-        if not _rid.startswith(("fromscratch", "sftrig", "trigger")):
+        if not _rid.startswith(("fromscratch", "sftrig", "omni", "trigger")):
             try:
                 _fresh = await asyncio.to_thread(q.get_run_id, opp_id)
                 if _fresh:
@@ -181,6 +182,8 @@ async def _process(row: dict) -> None:
             _src = "update_living_memory"
         elif _rid.startswith("sftrig"):
             _src = "salesforce_trigger"
+        elif _rid.startswith("omni"):
+            _src = "omnivision"
         elif _rid.startswith("trigger"):
             _src = "manual"
         else:

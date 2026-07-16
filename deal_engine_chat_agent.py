@@ -327,6 +327,33 @@ def _make_get_deal_analysis_tool(agent_manager):
     return get_deal_analysis
 
 
+def _make_load_skill_tool():
+    @tool
+    async def load_skill(name: str) -> str:
+        """Load the full instructions for a named SKILL and follow them. Skills are
+        admin-authored procedures listed under 'SKILLS AVAILABLE' in your system
+        prompt. Call this with the EXACT skill name when a user's request matches a
+        skill's 'when to use' description, then FOLLOW the returned Markdown for the
+        rest of your reply. Do NOT guess a skill's steps from its name — load it.
+        Args: name — the exact skill name from the SKILLS AVAILABLE list."""
+        try:
+            import mase_skills as _ms
+            loop = asyncio.get_running_loop()
+            row = await loop.run_in_executor(None, _ms.get_by_name, (name or "").strip())
+            if not row:
+                names = await loop.run_in_executor(None, _ms.enabled_names)
+                avail = ", ".join(names) if names else "(none)"
+                return (f"No enabled skill named '{name}'. Available skills: {avail}. "
+                        "Use one of those exact names, or proceed without a skill.")
+            body = (row.get("body") or "").strip()
+            if not body:
+                return f"Skill '{row.get('name')}' has no instructions."
+            return f"SKILL: {row.get('name')}\n\n{body}"
+        except Exception as e:  # noqa: BLE001
+            return f"Could not load skill '{name}': {e}"
+    return load_skill
+
+
 def build_chat_agent(agent_manager, system_prompt: str, emit=None):
     """Build the RevOps chat deep agent: search_knowledge (shared MASE KB) + run_todo
     (delegate to the Todo Runner). Raises if neither tool is available so the caller can
@@ -342,6 +369,10 @@ def build_chat_agent(agent_manager, system_prompt: str, emit=None):
         tools.append(sk)
     # PRIMARY deal source: the Deal Sweep's analysis on demand.
     tools.append(_make_get_deal_analysis_tool(agent_manager))
+    # Admin-authored SKILLS: load a named procedure on demand (Admin -> Skills). The
+    # SKILLS AVAILABLE index is injected into system_prompt by server.py; this tool
+    # returns the full body when the agent decides a skill applies.
+    tools.append(_make_load_skill_tool())
     # Direct read access to Salesforce + Avoma so the chat can follow the retrieval
     # hierarchy itself: deal-sweep analysis -> SFDC (tasks / next steps) -> Avoma.
     # (Drafting + Showpad collateral stays delegated to the Todo Runner via run_todo.)

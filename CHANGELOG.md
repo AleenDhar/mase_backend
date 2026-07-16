@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-16 — MASE Skills: load-on-demand procedures for the RevOps chat agent
+
+**What.** New **Admin → Skills** tab where admins upload `.skill`/`.md` files (or write
+one inline) that the chat agent can load and follow on demand. A skill = `name` +
+"when to use" `description` + Markdown `body`. Progressive disclosure (the Anthropic
+Skills model): the agent always sees a lightweight **SKILLS AVAILABLE** index (name +
+description) injected into the chat system prompt, and pulls a skill's full body via a
+new **`load_skill(name)`** tool only when a request matches. Applies to BOTH `/chat` and
+the deal-drawer "Ask AI" (same agent). Distinct from the Knowledge base — a skill is an
+instruction the agent *follows*, not data it searches.
+
+**Where.**
+- Backend: new `mase_skills.py` (store + `.skill`/`.md` frontmatter parser + `skills_prompt_block`),
+  `migrations/0014_mase_skills.sql` (table `public.mase_skills`), CRUD endpoints
+  `POST/GET /api/deal-engine/skills`, `GET/DELETE /api/deal-engine/skills/{id}`,
+  `POST /api/deal-engine/skills/{id}/enabled` (`server.py`), the `load_skill` tool +
+  registration in `deal_engine_chat_agent.py:build_chat_agent`, and the SKILLS AVAILABLE
+  injection in the streaming chat handler (`/api/deal-engine/chat/async`).
+- Frontend: `SkillsSection` + "Skills" tab in `app/(dashboard)/admin/page.tsx`; admin-only
+  proxy gate `isSkillsPath` on GET/POST/DELETE in `app/api/deal-engine/[[...path]]/route.ts`.
+
+**How to work with it going forward.** Storage is `jarvis_settings`-style but its own table
+`mase_skills` (RLS service-role only, like `mase_documents`). The two chat hot-path readers
+(`skills_prompt_block`, `get_by_name`) NEVER raise — a missing table degrades to "no skills",
+so the chat is never blocked. **Requires migration 0014 applied to Supabase before it works**
+(the table is not auto-created). Skills are global (no per-user scope), admin-managed. Not yet
+wired into the Todo Runner or the sweep — chat agent only.
+
 ## 2026-07-15 — One canonical "Omnivision run" (drawer button ≡ SFDC trigger)
 
 **What.** The deal-drawer **"✦ Run Omnivision"** button now runs the **identical** sweep

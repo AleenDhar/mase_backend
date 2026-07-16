@@ -7726,6 +7726,82 @@ async def mase_knowledge_delete(doc_id: str):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+# ── MASE Skills: admin-authored, load-on-demand PROCEDURES for the RevOps chat ──
+# agent (progressive disclosure). DISTINCT from the knowledge base — a skill is an
+# instruction the agent FOLLOWS (loaded via the load_skill tool when a request
+# matches its "when to use" description), not data it searches. Admin-gated at the
+# Vercel proxy (path starts with `skills`). Store + parser in mase_skills.py.
+@app.post("/api/deal-engine/skills")
+async def mase_skills_upload(request_body: dict):
+    """Create — or, on a same-name re-upload, REPLACE — a skill. Body:
+    {content|body, name?, description?, filename?}. `content` is the raw .skill/.md
+    text (optionally with a leading `--- name/description ---` frontmatter); an
+    explicit name/description in the request overrides the parsed ones."""
+    import mase_skills as ms
+    content = request_body.get("content") or request_body.get("body") or ""
+    filename = (request_body.get("filename") or "").strip() or None
+    if not (content or "").strip():
+        raise HTTPException(status_code=400, detail="Skill content (the instructions) is required")
+    fallback = filename.rsplit(".", 1)[0] if filename else ""
+    parsed = ms.parse_skill_file(content, fallback_name=fallback)
+    name = (request_body.get("name") or "").strip() or parsed["name"]
+    description = (request_body.get("description") or "").strip() or parsed["description"]
+    try:
+        res = await _aw(ms.create, name=name, description=description,
+                        body=parsed["body"], source_filename=filename)
+        return {"status": "success", **res}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": f"Save failed: {e}"}, status_code=500)
+
+
+@app.get("/api/deal-engine/skills")
+async def mase_skills_list():
+    """List all skills (metadata only, no body), newest first. Admin-gated at the proxy."""
+    import mase_skills as ms
+    try:
+        return {"skills": await _aw(ms.list_skills)}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e), "skills": []}, status_code=500)
+
+
+@app.get("/api/deal-engine/skills/{skill_id}")
+async def mase_skills_get(skill_id: str):
+    """One skill WITH its full body (admin viewer). Admin-gated at the proxy."""
+    import mase_skills as ms
+    try:
+        row = await _aw(ms.get, skill_id)
+        if not row:
+            return JSONResponse({"error": "not found"}, status_code=404)
+        return row
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.post("/api/deal-engine/skills/{skill_id}/enabled")
+async def mase_skills_set_enabled(skill_id: str, request_body: dict):
+    """Enable/disable a skill (POST — the proxy only forwards GET/POST/DELETE). Body:
+    {enabled: bool}. A disabled skill leaves the SKILLS AVAILABLE index and can no
+    longer be loaded. Admin-gated at the proxy."""
+    import mase_skills as ms
+    enabled = bool(request_body.get("enabled"))
+    try:
+        await _aw(ms.set_enabled, skill_id, enabled)
+        return {"status": "ok", "id": skill_id, "enabled": enabled}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@app.delete("/api/deal-engine/skills/{skill_id}")
+async def mase_skills_delete(skill_id: str):
+    """Delete a skill. Admin-gated at the proxy."""
+    import mase_skills as ms
+    try:
+        await _aw(ms.delete, skill_id)
+        return {"status": "deleted", "id": skill_id}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
 @app.get("/api/deal-engine/deals-count")
 async def deal_engine_deals_count():
     """Total number of tracked (active) deals — for the Admin panel stat."""
@@ -9600,8 +9676,17 @@ async def deal_engine_chat_async(request: Request):
         # appending its directive to the system prompt for this run.
         _persona = (d.get("persona") or "").strip().lower()
         _pdir = _CHAT_PERSONAS.get(_persona, "")
+        # SKILLS AVAILABLE index — admin-authored procedures the agent loads on demand
+        # via the load_skill tool (Admin -> Skills). Empty string when none are enabled,
+        # so the prompt is unchanged. Never blocks the chat on this read.
+        try:
+            import mase_skills as _msk
+            _skills_block = await _aw(_msk.skills_prompt_block)
+        except Exception:  # noqa: BLE001
+            _skills_block = ""
         sys_text = (
             f"{_base}\n{_CHAT_CAPABILITIES}\n"
+            + _skills_block
             + (f"\n{_pdir}\n" if _pdir else "")
             + f"\nTHE BOOK{scope} — {len(book)} opportunities (compact view; ask for a "
             f"specific opp for full detail):\n{json.dumps(book, default=str)}"

@@ -3015,7 +3015,12 @@ async def analyze_one(
     if recursion_limit is None:
         recursion_limit = int(os.getenv("DEAL_SWEEP_RECURSION_LIMIT", "80"))
     if timeout_s is None:
-        timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "900"))
+        # 2400s (was 900s). The old 900 default was only ever survivable because the WORKER
+        # task-def set DEAL_SWEEP_TIMEOUT_S=2400 — any process WITHOUT that env (the api tier,
+        # a new tier, local, a stray copy) silently ran on a 15-min budget and killed heavy
+        # deals mid-sweep ("timeout after 900s"). The default now matches the real budget, so
+        # a missing/forgotten env can never halve it again.
+        timeout_s = int(os.getenv("DEAL_SWEEP_TIMEOUT_S", "2400"))
     # PRODUCTION Avoma source: the datalake is now the DEFAULT (was opt-in). It holds the
     # deal's WHOLE call history AND matches by opp_id OR account_id OR buyer attendee-DOMAIN,
     # so it catches calls whose Salesforce association is null/cross-wired — the HAVI loss

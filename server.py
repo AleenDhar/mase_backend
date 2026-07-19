@@ -8225,7 +8225,22 @@ async def deal_engine_todo_push(request: Request):
         if os.getenv("TODO_PUSH_RESWEEP", "").strip().lower() in ("1", "true", "yes", "on"):
             try:
                 import deal_engine_sweep as _sweep
-                resweep = _sweep.trigger_opp_async(agent_manager, what_id)
+                # RUN IT ON THE WORKER FLEET, not here (2026-07-19). A full Omnivision
+                # re-sweep is a multi-minute job; the api task is 1 vCPU/4GB while a worker
+                # is 4 vCPU/16GB, so running it in-process both starves the web tier and
+                # gave it the api's (shorter) wall-clock budget — BassPro (006P700000VCKnV,
+                # ~2217s on a worker) died here as "timeout after 900s". Enqueuing puts it on
+                # the right hardware AND makes it crash-safe (worker.py reclaims claimed rows).
+                # source="omnivision" preserves EXACTLY the previous semantics: from-scratch +
+                # summary-first, and NO cooldown (a ticked to-do must always re-sweep) — which
+                # source="salesforce_trigger" would not, since that path is debounced.
+                # Membership + hard-refresh guards are identical (enqueue_trigger checks both).
+                if _sweep.queue_enabled():
+                    resweep = await _sweep.enqueue_trigger(
+                        agent_manager, what_id, source="omnivision")
+                else:
+                    resweep = _sweep.trigger_opp_async(
+                        agent_manager, what_id, source="omnivision")
                 print(f"[TODO-PUSH] opp={what_id} todo_key={key} -> resweep={resweep}",
                       flush=True)
             except Exception as _re:  # noqa: BLE001

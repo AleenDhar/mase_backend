@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-19 — Sweep timeouts: shared budget + heavy sweeps off the API tier
+
+**What.** Three changes so a sweep can never die on a short clock again:
+1. `DEAL_SWEEP_TIMEOUT_S=2400` moved from `WORKER_ENV` into the SHARED `_SWEEP_TUNING`
+   block (`.github/deploy/render_taskdef.py`) — it now renders on **both** `mase-api` and
+   `mase-worker` (verified by rendering both task defs). It previously existed only on the worker.
+2. The code default in `analyze_one` (`deal_engine_sweep.py`) raised **900 → 2400**, so any
+   process without the env (a new tier, local, a stray copy) can't silently halve the budget.
+3. The to-do-push re-sweep (`server.py`, `/api/deal-engine/todo/push`) now **enqueues to the
+   worker fleet** when the queue is on, instead of running `trigger_opp_async` in-process on
+   the api task. Uses `source="omnivision"` to preserve the exact prior semantics
+   (from-scratch + summary-first, and NO cooldown — `salesforce_trigger` is debounced and
+   would have silently skipped re-sweeps). Membership + hard-refresh guards unchanged.
+
+**Why.** `DEAL_SWEEP_TIMEOUT_S` lived only in `WORKER_ENV`, so every sweep that runs
+in-process on the **api** tier (sync `salesforce_trigger` / to-do-push re-sweep,
+`update_living_memory`, `manual`) fell back to the 900s code default. Proven: all 5 sweep
+failures since 2026-07-10 read *exactly* `timeout after 900s`, and all came from api-tier
+sources. Example: **BassPro** (`006P700000VCKnV`) needs ~2217s and completes fine on a worker
+(2400s) but timed out at 915s on a trigger. The api task is also 1 vCPU/4GB vs the worker's
+4 vCPU/16GB, so a uniform budget alone wasn't enough — heavy sweeps had to move off the api.
+
+**How to work with it going forward.** Keep `DEAL_SWEEP_TIMEOUT_S` in `_SWEEP_TUNING` (shared)
+— do NOT re-add a per-tier copy, that's how the tiers drifted. Long/multi-minute sweeps belong
+on the worker fleet; prefer `enqueue_trigger` over `trigger_opp_async` for any new caller
+(`trigger_opp_async` remains only as the queue-disabled fallback).
+
 ## 2026-07-16 — MASE Skills: load-on-demand procedures for the RevOps chat agent
 
 **What.** New **Admin → Skills** tab where admins upload `.skill`/`.md` files (or write

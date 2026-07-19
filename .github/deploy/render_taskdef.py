@@ -56,6 +56,14 @@ _SWEEP_TUNING = {
     "DEAL_SWEEP_MAX_TRANSIENT_RETRIES": "50",
     "DEAL_SWEEP_MAX_TOKENS": "64000",
     "MCP_TOOL_TIMEOUT_S": "600",
+    # Whole-sweep wall-clock budget. MUST live in the SHARED block: it previously sat only
+    # in WORKER_ENV, so every API-tier sweep (the sync salesforce_trigger / todo-push
+    # re-sweep, update_living_memory, and manual paths all run in-process on the api)
+    # silently fell back to the 900s CODE default and heavy deals died at 15 min. Proven
+    # by 5/5 failures since 2026-07-10 all reading exactly "timeout after 900s" — e.g.
+    # BassPro (006P700000VCKnV) needs ~2217s and completes fine on a worker (2400s) but
+    # timed out on a trigger. Shared here so the two tiers can never drift apart again.
+    "DEAL_SWEEP_TIMEOUT_S": "2400",
     # Sweep/analysis model — Sonnet 4.5 (reverted from Opus 4.8: Opus ran ~5x the
     # cost, ~$4.83/sweep, and exhausted the Anthropic credit balance). Frontier-guarded
     # in deal_engine_sweep (mini/haiku refused); Anthropic-only (OpenAI hangs on the
@@ -122,7 +130,7 @@ WORKER_ENV = {
     **_DATALAKE_AND_SNS, **_SWEEP_TUNING,
     "DEAL_SWEEP_CONCURRENCY": "8",
     "MCP_SERVER_ALLOWLIST": "salesforce,avoma",
-    "DEAL_SWEEP_TIMEOUT_S": "2400",
+    # DEAL_SWEEP_TIMEOUT_S moved to _SWEEP_TUNING (shared by api + worker) — see there.
 }
 
 

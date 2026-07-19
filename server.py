@@ -7734,16 +7734,35 @@ async def mase_knowledge_delete(doc_id: str):
 @app.post("/api/deal-engine/skills")
 async def mase_skills_upload(request_body: dict):
     """Create — or, on a same-name re-upload, REPLACE — a skill. Body:
-    {content|body, name?, description?, filename?}. `content` is the raw .skill/.md
-    text (optionally with a leading `--- name/description ---` frontmatter); an
-    explicit name/description in the request overrides the parsed ones."""
+    {file_b64|content|body, name?, description?, filename?}.
+
+    `file_b64` is the base64 of an UPLOADED file and is the path the admin UI uses:
+    it handles BOTH a **.skill ZIP bundle** (the Anthropic layout — SKILL.md +
+    references/*.md, which are appended to the body) and a plain .md/.txt file.
+    Bytes must travel base64 — reading a ZIP as text yields NULs and Postgres
+    rejects them (22P05). `content` remains the raw-text path (paste / .md).
+    An explicit name/description in the request overrides the parsed ones."""
     import mase_skills as ms
     content = request_body.get("content") or request_body.get("body") or ""
+    file_b64 = request_body.get("file_b64")
     filename = (request_body.get("filename") or "").strip() or None
-    if not (content or "").strip():
+    if file_b64:
+        import base64
+        try:
+            raw = base64.b64decode(file_b64)
+        except Exception as _e:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail=f"Could not decode '{filename}': {_e}")
+        try:
+            parsed = ms.parse_skill_bundle(raw, filename=filename or "")
+        except ValueError as _e:
+            raise HTTPException(status_code=400, detail=str(_e))
+        except Exception as _e:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail=f"Could not read '{filename}': {_e}")
+    elif (content or "").strip():
+        fallback = filename.rsplit(".", 1)[0] if filename else ""
+        parsed = ms.parse_skill_file(content, fallback_name=fallback)
+    else:
         raise HTTPException(status_code=400, detail="Skill content (the instructions) is required")
-    fallback = filename.rsplit(".", 1)[0] if filename else ""
-    parsed = ms.parse_skill_file(content, fallback_name=fallback)
     name = (request_body.get("name") or "").strip() or parsed["name"]
     description = (request_body.get("description") or "").strip() or parsed["description"]
     try:

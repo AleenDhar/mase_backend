@@ -11,6 +11,49 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-21 — Exec F2F wired into the sweep + exposed on the deals list
+
+**What.** Backend plumbing for the Exec F2F column. Two additive edits, no new logic —
+the detector itself (`deal_engine_f2f.derive_exec_f2f`, 45/45 unit assertions) is unchanged.
+
+1. **`deal_engine_sweep.py`** — new `_exec_f2f_for()` helper (next to `_footprints_for`,
+   same best-effort shape), called from the per-deal sweep right after the footprints
+   block. Writes the verdict to `record["ai"]["exec_f2f"]`, so the column is recomputed
+   every sweep instead of freezing at the one-time backfill.
+2. **`deal_engine_store.py`** — `slim_record` now whitelists `ai.exec_f2f`. The deals LIST
+   endpoint serves slim records, so without this the list column had no data at all.
+   The whole flat dict is kept (not just `status`) because `evidence` must travel with it.
+3. `exec_f2f` joined the never-clobber carry-forward set, so a flaky Event read can't blank
+   a previously proven verdict.
+
+**Why it needed its own SOQL.** `derive_exec_f2f` needs `Event.Description` + `Location`
+(the in-person marker AND the virtual-join veto both live in the invite body) and the
+`EventRelation` attendee roster (seniority). The sweep's existing Event SELECTs carry none
+of those, and **widening them was not an option** — the footprints SELECTs feed
+`derive_footprints` → Deal Momentum. So this reads separately, at 365d rather than the
+footprints 120d: footprints asks "is this deal alive NOW", this asks "has an exec F2F
+happened at all this cycle", and a genuine onsite 8 months ago is still the answer
+(`days_stale` in the verdict is what flags it as old).
+
+**Two SOQL gotchas, both verified read-only against the org before coding:**
+- `EventRelation.Relation` is polymorphic — `TYPEOF Relation WHEN Contact THEN Name, Title,
+  Email ELSE Name END` is mandatory; a plain `Relation.Title` will not compile.
+- The **Opportunity itself comes back as an EventRelation** (`RelationId` `006…`). Unfiltered,
+  the account name counts as a meeting attendee. Filtered to Contacts (`003…`).
+
+**How to work with it going forward.**
+- This path is **purely additive and feeds no score.** `_ENGAGEMENT_WEIGHTS`, `deal_scores`
+  and the `raw_top >= 6` momentum floor were not touched. Keep it that way — the Exec F2F
+  verdict is a display column, and promoting it into scoring would move Deal Momentum
+  across the whole book.
+- The verdict is **inference, not a lookup** (`Event.Location_Medium__c` and
+  `Meeting_Sub_Type__c` are 100% NULL org-wide). `evidence` is mandatory on every non-none
+  verdict and must stay visible in the UI. **Never render a bare "Not yet"** — absence of a
+  keyword is not proof a meeting did not happen (measured: 20 provable false blanks).
+- Failure is always silent-and-absent, never fatal: each read is independently try/wrapped
+  and logs `[EXEC-F2F] …`. If the attendee read specifically fails, a would-be `done`
+  degrades to a near-miss `planned` — the conservative direction, by design.
+
 ## 2026-07-20 — Follow-up: a DEAD deal is a scored deal (regression fix) + no carrying a degraded prior
 
 **What.** Two fixes to the Omnivision-only scoring change shipped earlier today

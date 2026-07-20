@@ -39,7 +39,9 @@ def rebuild_fp(oid, stage):
 
 def main():
     apply = "--apply" in sys.argv
-    rows = requests.get(f"{SB}/rest/v1/deal_records", params={"select": "opp_id,account_name,stage,record", "active": "eq.true", "limit": "600"},
+    # limit is a CEILING, not the book size. The inherited "600" silently dropped the tail of
+    # the book (627 active today), so those deals were never rebuilt at all.
+    rows = requests.get(f"{SB}/rest/v1/deal_records", params={"select": "opp_id,account_name,stage,record", "active": "eq.true", "limit": "5000"},
                         headers=H, verify=VERIFY, timeout=180).json()
     targets = []
     for r in rows:

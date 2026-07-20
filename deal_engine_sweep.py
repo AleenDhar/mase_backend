@@ -1244,6 +1244,87 @@ def _footprints_sf():
         return None, None
 
 
+async def _exec_f2f_for(agent_manager, opp_id: str, next_step: str = "") -> dict:
+    """Deterministic 'has an in-person meeting with a buyer EXECUTIVE happened' verdict
+    from SF Events + Tasks + the opp Next-Step text. Feeds the Exec F2F column only.
+
+    Runs its OWN reads instead of reusing the footprints fetch above, deliberately:
+    derive_exec_f2f needs Event.Description + Location (the in-person marker AND the
+    virtual-join veto both live in the invite body) plus the EventRelation attendee
+    roster (seniority) — none of which the footprints SELECTs carry. Widening THOSE
+    would change what derive_footprints sees, and footprints feeds Deal Momentum. This
+    path is additive and feeds no score. Returns {} on failure (best-effort, never raises).
+    """
+    if not opp_id:
+        return {}
+    import deal_engine_f2f as _f2f
+    import deal_engine_f2f_prep as _f2fp
+    sid = _sql_str(str(opp_id))
+    events, tasks = [], []
+    # 730d, not the footprints 120d: footprints asks "is this deal alive NOW", this asks
+    # "has an exec F2F happened at all this cycle" — a real onsite 8 months ago is still
+    # the answer to that, and the verdict's own `days_stale` is what flags it as old.
+    # PREDICATE, ORDERING and CAPS all come from _f2fp, not just the window constant: sharing
+    # only the constant still let this read ActivityDateTime-only (blind to the all-day Events
+    # the backfill sees) and order/cap differently (a different "most recent 200" on the 19
+    # opps with >200 events), so each writer overwrote the other's rows.
+    try:
+        rows = await _soql(agent_manager,
+            f"SELECT Id, Subject, Description, Location, ActivityDate, ActivityDateTime "
+            f"FROM Event WHERE WhatId = '{sid}' AND {_f2fp.event_window_clause()} "
+            f"{_f2fp.EVENT_ORDER_BY} LIMIT {_f2fp.MAX_EVENTS}")
+        # description AND description_raw: markers are matched on the cleaned text, the
+        # virtual veto reads the raw body (a join link below a stripped '##' heading is
+        # still a join link — SGD Pharma). See deal_engine_f2f._is_virtual.
+        events = [{"id": r.get("Id"), "subject": r.get("Subject"),
+                   "description": _f2fp.clean_description(r.get("Description")),
+                   "description_raw": r.get("Description"),
+                   "location": r.get("Location"),
+                   "date": _f2fp.event_date(r.get("ActivityDate"), r.get("ActivityDateTime")),
+                   "attendees": []} for r in (rows or [])]
+    except Exception as _e:  # noqa: BLE001
+        print(f"[EXEC-F2F] event read failed opp={opp_id}: {_e}", flush=True)
+    # Attendee roster. EventRelation.Relation is polymorphic, so TYPEOF is mandatory to
+    # reach Title/Email at all; and the OPPORTUNITY itself comes back as a relation
+    # (RelationId 006...), so filter to Contacts (003...) — otherwise the account name
+    # is counted as an attendee. A failure here only costs seniority, which downgrades a
+    # would-be "done" to a near-miss "planned" — the conservative direction, by design.
+    if events:
+        try:
+            rows = await _soql(agent_manager,
+                f"SELECT EventId, RelationId, TYPEOF Relation WHEN Contact THEN Name, "
+                f"Title, Email ELSE Name END FROM EventRelation "
+                f"WHERE Event.WhatId = '{sid}' "
+                f"AND {_f2fp.event_window_clause('Event')} LIMIT 800")
+            by_event: dict = {}
+            for r in (rows or []):
+                if not str(r.get("RelationId") or "").startswith("003"):
+                    continue
+                rel = r.get("Relation") or {}
+                by_event.setdefault(r.get("EventId"), []).append(
+                    {"name": rel.get("Name"), "title": rel.get("Title"),
+                     "email": rel.get("Email")})
+            for ev in events:
+                ev["attendees"] = by_event.get(ev.get("id")) or []
+        except Exception as _e:  # noqa: BLE001
+            print(f"[EXEC-F2F] attendee read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        rows = await _soql(agent_manager,
+            f"SELECT Subject, Status, ActivityDate FROM Task WHERE WhatId = '{sid}' "
+            f"AND {_f2fp.task_window_clause()} {_f2fp.TASK_ORDER_BY} "
+            f"LIMIT {_f2fp.MAX_TASKS}")
+        tasks = [{"subject": r.get("Subject"), "status": r.get("Status"),
+                  "date": r.get("ActivityDate")} for r in (rows or [])]
+    except Exception as _e:  # noqa: BLE001
+        print(f"[EXEC-F2F] task read failed opp={opp_id}: {_e}", flush=True)
+    try:
+        return _f2f.derive_exec_f2f(events=events, tasks=tasks,
+                                    next_step=str(next_step or ""))
+    except Exception as _e:  # noqa: BLE001
+        print(f"[EXEC-F2F] derive failed opp={opp_id}: {_e}", flush=True)
+        return {}
+
+
 async def _meddpicc_crm(agent_manager, opp_id: str) -> dict:
     """Pull CRM-entered MEDDPICC for the opp (MEDDPICC__c preferred, then 2.0).
     Returns {"fields": [(label, value, src)], "last_modified": str} or {}."""
@@ -4026,6 +4107,56 @@ async def analyze_one(
         except Exception as _fe:  # noqa: BLE001
             print(f"[FOOTPRINTS] sweep compute failed for {opp_id}: {_fe}", flush=True)
         try:
+            # Exec F2F: deterministic "has an in-person meeting with a buyer EXECUTIVE
+            # happened" verdict from Events + Tasks + Next-Step free text. It is inference,
+            # not a lookup — the purpose-built SF fields (Event.Location_Medium__c,
+            # Meeting_Sub_Type__c) are 100% NULL org-wide — which is why every non-none
+            # verdict carries mandatory `evidence` for the UI to cite. Recomputed every
+            # sweep so the column stays fresh instead of freezing at the one-time backfill.
+            # Purely ADDITIVE: writes ai.exec_f2f only and feeds NO score. Never blocks a sweep.
+            _f2f_v = await _exec_f2f_for(agent_manager, opp_id,
+                                         (parsed.get("hard") or {}).get("next_step") or "")
+            # RATCHET (not `if _f2f_v:` — that was always true, since derive_exec_f2f returns
+            # {"status":"none",...} rather than {} when it finds nothing). A thin run must not
+            # downgrade a stored verdict: overwrite only when the new one ranks at least as
+            # strong (done > planned > none), or when nothing is stored yet.
+            import deal_engine_f2f_prep as _f2fp
+            # The prior verdict comes from the STORE, not from `existing_record`. On the
+            # PRIMARY path `existing_record` is {} — _from_scratch covers update_living_memory,
+            # salesforce_trigger (the DEFAULT source, and what the CDC bridge sends) and
+            # omnivision (the drawer button) — so the ratchet compared against None, every
+            # thin {"status":"none"} run ranked as "nothing stored yet", and a sweep clobbered
+            # a stored "done". The never-clobber block below could not save it either: that
+            # only fills keys whose value is None, and this key held a dict.
+            _f2f_prior, _f2f_prior_known = None, True
+            if isinstance(existing_record, dict) and existing_record:
+                _f2f_prior = (existing_record.get("ai") or {}).get("exec_f2f")
+            else:
+                try:
+                    _f2f_stored = await asyncio.get_running_loop().run_in_executor(
+                        None, store.get_record, opp_id) or {}
+                    _f2f_prior = ((_f2f_stored.get("ai") or {}).get("exec_f2f")
+                                  if isinstance(_f2f_stored, dict) else None)
+                except Exception as _f2fre:  # noqa: BLE001
+                    # Unknown prior — so we CANNOT prove the new verdict is not weaker.
+                    # Fail safe: only a "done" (the top rank, which can never demote
+                    # anything) may be written blind; anything else leaves the stored
+                    # verdict alone rather than risk clobbering it.
+                    _f2f_prior_known = False
+                    print(f"[EXEC-F2F] prior-verdict read failed for {opp_id}: {_f2fre} — "
+                          f"will not write a weaker verdict", flush=True)
+            if not _f2f_prior_known:
+                if (_f2f_v or {}).get("status") == "done":
+                    parsed.setdefault("ai", {})["exec_f2f"] = _f2f_v
+            elif _f2fp.should_replace(_f2f_v, _f2f_prior):
+                parsed.setdefault("ai", {})["exec_f2f"] = _f2f_v
+            elif isinstance(_f2f_prior, dict):
+                parsed.setdefault("ai", {})["exec_f2f"] = _f2f_prior
+                print(f"[EXEC-F2F] kept stored verdict for {opp_id}: "
+                      f"{_f2f_prior.get('status')} beats new {_f2f_v.get('status')}", flush=True)
+        except Exception as _f2fe:  # noqa: BLE001
+            print(f"[EXEC-F2F] sweep compute failed for {opp_id}: {_f2fe}", flush=True)
+        try:
             # CRM evidence: deterministic factor presence from MEDDPICC 2.0 (already fetched).
             # Stored so the Win rubric can broaden its source — a named EB/champion/metrics in
             # MEDDPICC 2.0 lifts the factor even if the LLM under-read it (the HAVI EB case).
@@ -4500,7 +4631,12 @@ async def analyze_one(
                         if _snap_hl.get("win_position") is not None:
                             _cur_ai, _cur_hl = _snap_ai, _snap_hl
                     if _cur_hl.get("win_position") is not None:
-                        for _k in ("deal_scores", "footprints", "day_summary", "account_context"):
+                        # exec_f2f joins the carried-forward set for the same reason as the rest:
+                        # a failed Event/attendee read must not turn a proven in-person exec
+                        # meeting into a blank. Absence of a keyword is not proof it never
+                        # happened, so we keep the last-known verdict over blanking the column.
+                        for _k in ("deal_scores", "footprints", "day_summary", "account_context",
+                                   "exec_f2f"):
                             if _cur_ai.get(_k) is not None and (parsed.get("ai") or {}).get(_k) is None:
                                 parsed.setdefault("ai", {})[_k] = _cur_ai[_k]
                         if (((parsed.get("ai") or {}).get("deal_scores") or {}).get("headline") or {}).get("win_position") is None:

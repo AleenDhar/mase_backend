@@ -34,19 +34,39 @@ CPO = {"name": "Ana Ruiz", "title": "Chief Procurement Officer", "email": "ana@b
 
 # ── exec-title traps ────────────────────────────────────────────────────────────
 def test_exec_titles():
+    # C-SUITE ONLY (user-directed 2026-07-21). "Executive connect" means a C-level
+    # counterpart; the wider rule counted a Director, a Senior GM and a Head of
+    # Procurement as exec connects on the forecasted book, which they are not.
     assert is_exec_title("Chief Procurement Officer") is True
     assert is_exec_title("Chief Financial Officer") is True
-    assert is_exec_title("Managing Director") is True
-    assert is_exec_title("Deputy Director") is True
-    assert is_exec_title("VP, Procurement") is True
-    assert is_exec_title("Vice President Supply Chain") is True
-    assert is_exec_title("Head of Procurement") is True
-    assert is_exec_title("Head Procurement") is True          # no "of" — real and senior
-    assert is_exec_title("Global Head Supply Chain") is True
-    assert is_exec_title("General Manager") is True
-    assert is_exec_title("Founder") is True
-    # "Director" outranks the junior word when both appear.
-    assert is_exec_title("Director & Procurement Officer") is True
+    assert is_exec_title("Chief Executive Officer") is True
+    assert is_exec_title("Chief Executive") is True
+    assert is_exec_title("Group Chief Procurement and Vendor Development Officer") is True
+    assert is_exec_title("CPO") is True
+    assert is_exec_title("CFO") is True
+    assert is_exec_title("COO") is True
+    # A real C-title outranks a junior word beside it.
+    assert is_exec_title("CFO & Company Secretary") is True
+
+    # NOT C-level — all of these were True under the old rule.
+    assert is_exec_title("Managing Director") is False
+    assert is_exec_title("Deputy Director") is False
+    assert is_exec_title("VP, Procurement") is False
+    assert is_exec_title("Vice President Supply Chain") is False
+    assert is_exec_title("Head of Procurement") is False
+    assert is_exec_title("Head Procurement") is False
+    assert is_exec_title("General Manager") is False
+    assert is_exec_title("Senior General Manager") is False   # GAMUDA
+    assert is_exec_title("Director of Procurement") is False  # Mair Group
+    assert is_exec_title("President, ACEN Shared Services") is False
+    assert is_exec_title("Partner") is False
+    assert is_exec_title("Founder") is False
+    assert is_exec_title("Chief of Staff") is False           # not a C-suite officer
+
+    # The trailing noun is the real role; anything before it is scope.
+    assert is_exec_title("CPO Advisory Analyst") is False
+    assert is_exec_title("CFO Office Manager") is False
+
     # ...and the junior traps, which all contain "executive" or a chief-ish word.
     assert is_exec_title("Executive Assistant") is False
     assert is_exec_title("Assistant to the CEO") is False

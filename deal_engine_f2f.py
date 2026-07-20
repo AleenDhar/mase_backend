@@ -102,20 +102,32 @@ _NOT_EXEC = (
     "coordinator", "administrator", "officer",  # "officer" unless Chief — see below
     "associate", "intern", "trainee", "supervisor", "team lead", "teamlead",
 )
+# C-SUITE ONLY (user-directed, 2026-07-21).  An "executive connect" means a C-level
+# counterpart — CEO/CFO/CPO/COO/CMO and the rest of the Chief-X-Officer family.  VP,
+# SVP, Director, Head-of, General Manager and Partner are DELIBERATELY NOT executives
+# here: they were counted before, and that inflation is what made three of the four
+# "done" rows on the forecasted book look like exec connects when they were a Director,
+# a Senior GM and a Head of Procurement.
 _EXEC = (
     "chief", "ceo", "cfo", "cpo", "cio", "cto", "cdo", "coo", "cmo", "cso",
-    "president", "managing director", "manging director", "md,", "vice president",
-    "vp,", "svp", "evp", "avp", "group director", "deputy director", "director",
-    "head of", "head,", "head -", "global head", "group head", "regional head",
-    "general manager", "senior general manager", "senior gm", " gm,", "partner",
-    "country manager", "owner", "founder", "board member", "treasurer",
-    "controller", "principal",
+    "chro", "cro", "clo", "cco", "caio", "cxo",
 )
-# Titles that literally start with "head" but no comma/of — "Head Procurement",
-# "Head Supply Chain".  Real and senior; a naive `head of` regex misses them.
-_HEAD_PREFIX = re.compile(r"^\s*(global |group |regional |deputy )?head\b", re.I)
+# Bare acronyms must be whole words or "CPO" fires inside "CPO Advisory Analyst" and,
+# worse, "cio" inside "Social Media Manager".
+_EXEC_ACRONYM = re.compile(
+    r"(?<![a-z])(ceo|cfo|cpo|cio|cto|cdo|coo|cmo|cso|chro|cro|clo|cco|caio|cxo)(?![a-z])",
+    re.I)
 # "Officer" is junior UNLESS it is a chief-officer title.
 _CHIEF_OFFICER = re.compile(r"\bchief\b.*\bofficer\b", re.I)
+# Reporting TO a C-level is not being one ("Assistant to the CEO", "Office of the CFO").
+_SUBORDINATE_TO = re.compile(
+    r"\b(assistant|secretary|aide|support|office|reporting|reports|ea|pa)\s+(to|of)\b", re.I)
+# Words that, when they END a title, name the real role — everything earlier is scope.
+_JUNIOR_HEAD_NOUNS = frozenset((
+    "analyst", "manager", "consultant", "specialist", "coordinator", "assistant",
+    "engineer", "intern", "trainee", "administrator", "supervisor", "associate",
+    "lead", "executive", "secretary", "advisor", "adviser", "architect", "developer",
+))
 
 # ── non-people that masquerade as Contacts ──────────────────────────────────────
 _ROOM_WORDS = ("room", "boardroom", "meeting room", "conf room", "conference room",
@@ -212,22 +224,42 @@ def _is_aspirational(text: str) -> bool:
 
 
 def is_exec_title(title: str) -> bool:
-    """Buyer-side seniority from a free-text CRM title. Junior traps tested first."""
+    """C-SUITE ONLY. True for a Chief-X-Officer / C?O title, False for everything else.
+
+    Scope is deliberately narrow (user-directed): VP, SVP, Director, Head of, General
+    Manager and Partner are NOT executives for this column. Under the old wider rule
+    three of the four "done" rows on the forecasted book were a Director, a Senior GM
+    and a Head of Procurement — which is not an executive connect.
+    """
     t = _norm(title)
     if not t or t in ("na", "n/a", "-", "none", "unknown"):
         return False           # literal 'NA' means UNKNOWN, never a valid exec
+    # Working FOR an executive is not being one. "Assistant to the CEO" / "Office of the
+    # CFO" carry a real C-acronym and would otherwise outrank their own junior word.
+    if _SUBORDINATE_TO.search(t):
+        return False
     if _CHIEF_OFFICER.search(t):
-        return True
+        return True            # "Chief Procurement Officer", "Group Chief ... Officer"
+    # "Chief of Staff" is not a C-suite officer; neither is "Deputy Chief".
+    if "chief of staff" in t or "deputy chief" in t or "vice chief" in t:
+        return False
+    # The TRAILING noun names the actual role; anything before it is scope. "CPO Advisory
+    # Analyst" is an analyst who advises on CPO matters, not a CPO — the acronym is the
+    # subject of the job, not the job. Applied PER ROLE, because a compound title holds
+    # several ("CFO & Company Secretary" is a CFO who is also company secretary — judging
+    # the whole string on its last word would demote a genuine CFO to secretary).
+    roles = [p.strip() for p in re.split(r"[&/,;]| and ", t) if p.strip()]
+    if roles and all("chief" not in r and r.split()[-1].strip(".") in _JUNIOR_HEAD_NOUNS
+                     for r in roles):
+        return False
     for bad in _NOT_EXEC:
         if bad in t:
-            # "Director" outranks the junior word when both appear
-            # (e.g. "Director & Procurement Officer").
-            if "director" in t or "chief" in t or "president" in t or "head of" in t:
+            # A real C-title outranks a junior word appearing alongside it
+            # (e.g. "CFO & Company Secretary" contains "secretary").
+            if _EXEC_ACRONYM.search(t) or "chief" in t:
                 break
             return False
-    if _HEAD_PREFIX.match(t):
-        return True
-    return any(e in t for e in _EXEC)
+    return bool(_EXEC_ACRONYM.search(t)) or "chief" in t
 
 
 def is_real_person(name: str, email: str = "") -> bool:

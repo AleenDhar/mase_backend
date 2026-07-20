@@ -119,6 +119,17 @@ def pull_chunk(oids):
 
 def main():
     apply = "--apply" in sys.argv
+    # --force bypasses the ratchet. The ratchet exists so a FLAKY run (attendees lost on a
+    # failed EventRelation hop) can't demote a stored verdict — but when the DEFINITION
+    # changes, demotion is the whole point and the ratchet would freeze the old answer in.
+    force = "--force" in sys.argv
+    # --only <path-to-json> scopes the run to specific opportunity ids: either a JSON list
+    # of 15/18-char ids, or a list of objects carrying an "Id" key.
+    only = None
+    if "--only" in sys.argv:
+        with open(sys.argv[sys.argv.index("--only") + 1], encoding="utf-8") as fh:
+            raw = json.load(fh)
+        only = {id15(r["Id"] if isinstance(r, dict) else r) for r in raw}
     rows = requests.get(f"{SB}/rest/v1/deal_records",
                         # limit is a ceiling, NOT the book size — 627 active today, and the
                         # inherited "600" in footprints_rebuild_all.py silently drops the tail.
@@ -129,9 +140,12 @@ def main():
                         headers=H, verify=VERIFY, timeout=180).json()
     names = {id15(r["opp_id"]): r.get("account_name") for r in rows}
     stored = {id15(r["opp_id"]): r.get("stored_f2f") for r in rows}
-    oids = sorted(names)
+    oids = sorted(o for o in names if only is None or o in only)
     chunks = [oids[i:i + DEALS_PER_CHUNK] for i in range(0, len(oids), DEALS_PER_CHUNK)]
-    print(f"active={len(oids)} | chunks={len(chunks)} x{DEALS_PER_CHUNK}")
+    print(f"active={len(names)} | targeted={len(oids)} | chunks={len(chunks)} "
+          f"x{DEALS_PER_CHUNK}{' | FORCE (ratchet off)' if force else ''}")
+    if only is not None and len(oids) != len(only):
+        print(f"  NOTE: {len(only) - len(oids)} requested id(s) are not active deals")
 
     def work(ch):
         try:
@@ -158,7 +172,8 @@ def main():
     # UNCONDITIONALLY, so a run where the EventRelation hop partially failed (attendees lost,
     # so a "done" demotes to a near-miss "planned") silently overwrote a stored "done". A
     # weaker verdict is dropped from the write set; the stored one stands.
-    held = {o: v for o, v in out.items() if not should_replace(v, stored.get(o))}
+    held = {} if force else {o: v for o, v in out.items()
+                             if not should_replace(v, stored.get(o))}
     for o in held:
         del out[o]
     if held:

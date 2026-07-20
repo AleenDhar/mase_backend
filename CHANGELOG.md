@@ -11,6 +11,93 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-21 — Exec F2F wired into the sweep + exposed on the deals list
+
+**What.** Backend plumbing for the Exec F2F column. Two additive edits, no new logic —
+the detector itself (`deal_engine_f2f.derive_exec_f2f`, 45/45 unit assertions) is unchanged.
+
+1. **`deal_engine_sweep.py`** — new `_exec_f2f_for()` helper (next to `_footprints_for`,
+   same best-effort shape), called from the per-deal sweep right after the footprints
+   block. Writes the verdict to `record["ai"]["exec_f2f"]`, so the column is recomputed
+   every sweep instead of freezing at the one-time backfill.
+2. **`deal_engine_store.py`** — `slim_record` now whitelists `ai.exec_f2f`. The deals LIST
+   endpoint serves slim records, so without this the list column had no data at all.
+   The whole flat dict is kept (not just `status`) because `evidence` must travel with it.
+3. `exec_f2f` joined the never-clobber carry-forward set, so a flaky Event read can't blank
+   a previously proven verdict.
+
+**Why it needed its own SOQL.** `derive_exec_f2f` needs `Event.Description` + `Location`
+(the in-person marker AND the virtual-join veto both live in the invite body) and the
+`EventRelation` attendee roster (seniority). The sweep's existing Event SELECTs carry none
+of those, and **widening them was not an option** — the footprints SELECTs feed
+`derive_footprints` → Deal Momentum. So this reads separately, at 365d rather than the
+footprints 120d: footprints asks "is this deal alive NOW", this asks "has an exec F2F
+happened at all this cycle", and a genuine onsite 8 months ago is still the answer
+(`days_stale` in the verdict is what flags it as old).
+
+**Two SOQL gotchas, both verified read-only against the org before coding:**
+- `EventRelation.Relation` is polymorphic — `TYPEOF Relation WHEN Contact THEN Name, Title,
+  Email ELSE Name END` is mandatory; a plain `Relation.Title` will not compile.
+- The **Opportunity itself comes back as an EventRelation** (`RelationId` `006…`). Unfiltered,
+  the account name counts as a meeting attendee. Filtered to Contacts (`003…`).
+
+**How to work with it going forward.**
+- This path is **purely additive and feeds no score.** `_ENGAGEMENT_WEIGHTS`, `deal_scores`
+  and the `raw_top >= 6` momentum floor were not touched. Keep it that way — the Exec F2F
+  verdict is a display column, and promoting it into scoring would move Deal Momentum
+  across the whole book.
+- The verdict is **inference, not a lookup** (`Event.Location_Medium__c` and
+  `Meeting_Sub_Type__c` are 100% NULL org-wide). `evidence` is mandatory on every non-none
+  verdict and must stay visible in the UI. **Never render a bare "Not yet"** — absence of a
+  keyword is not proof a meeting did not happen (measured: 20 provable false blanks).
+- Failure is always silent-and-absent, never fatal: each read is independently try/wrapped
+  and logs `[EXEC-F2F] …`. If the attendee read specifically fails, a would-be `done`
+  degrades to a near-miss `planned` — the conservative direction, by design.
+
+## 2026-07-20 — Follow-up: a DEAD deal is a scored deal (regression fix) + no carrying a degraded prior
+
+**What.** Two fixes to the Omnivision-only scoring change shipped earlier today
+(`deal_engine_sweep.py`), plus what the first re-run actually showed.
+
+1. **REGRESSION FIX — `dead` headlines are valid, not failures.** The new "did we score it?"
+   gate keyed on `headline.win_position is not None`. But the deterministic dead/loss override
+   returns `win_position=None` **with `dead=True`** (a terminal deal has no win odds), and
+   `score_deal_ai` returns that verbatim **without ever calling the LLM**. So every
+   `Qualified Out` / `No Decision` / `Omitted` deal was flagged `SCORING FAILED` and had its
+   `dead` marker blanked — 42 deals in the first re-run. The gate is now
+   `win_position is not None OR dead is True` (helper `_hl_ok`), applied to the scoring gate
+   and to the husk-floor's `_fin_ok`.
+   *No UI impact from the blanking:* `isDeadDeal` also matches on Salesforce stage
+   (`DEAD_STAGES` includes "qualified out"/"no decision"/"omitted"), so those deals stayed
+   hidden. The flag matters for the case it exists for — a loss DETECTED from a call/email
+   while SF still shows the deal live — which is why this had to be fixed.
+2. **A degraded prior is no longer a carryable "good" prior.** `_prior_ok` now excludes a prior
+   whose `scoring_degraded` is true or whose `factor_source != "ai"`. Carrying a hybrid score
+   forward re-stamped the degraded read every sweep, so the deal never left `hybrid` and never
+   surfaced as needing a re-sweep.
+3. **The husk-floor no longer papers over a real AI failure.** When `scoring_failed` is set it is
+   SKIPPED (logs `husk-floor SKIPPED … persisting UNSCORED`). It still runs for its original
+   case — a husk with no AI failure recorded. Verified safe: with a null headline the drawer
+   renders "No scores computed for this deal yet." and nothing in the frontend defaults a score
+   to a number (checked `DealScores.tsx`; `DealsStats` line 353's 85/62/40 is a separate
+   analysis_confidence rollup, not a win score).
+
+**Why the first re-run looked bad.** Of 78 deals re-run: **31 live deals got genuine AI scores**,
+**42 were never live** (terminal — my "live" filter only excluded closed/lost/won, missing
+Qualified Out / No Decision / Omitted), **5 live stayed hybrid**, **0 live failures**. The 42
+"failures" were entirely the regression above, not scoring problems. Of the original 78, only 2
+were the token-truncation mode (`no usable scores`); 40 were `no usable headline` = dead deals.
+
+**How to work with it going forward.**
+- When selecting "live" deals, exclude `qualified out`, `no decision` and forecast `omitted` —
+  not just closed/lost/won. Mirror `DEAD_STAGES` in `frontend/lib/engine/helpers.ts`.
+- `headline.dead is True` with `win_position=None` is a COMPLETE score. Never treat a missing
+  `win_position` alone as a scoring failure.
+- Dead deals cost nothing to re-score (`score_deal_ai` returns before the LLM call), so their
+  records can be repaired with a local deterministic recompute rather than a paid sweep.
+
+---
+
 ## 2026-07-20 — Omnivision-only scoring: no more keyword fallback + fix the truncation that caused it
 
 **What.**

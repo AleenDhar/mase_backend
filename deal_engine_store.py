@@ -374,8 +374,10 @@ def slim_record(rec: dict) -> dict:
     """A lightweight projection of a canonical record for LIST + aggregate views.
 
     Keeps `hard` (all the deal mechanics the Deals list, Matcha and the filters use)
-    plus the only two `ai` summary fields the list/filters read — the verdict (chip)
-    and the AI-fit signal (AI-excitement filter) — and `pulse`. It DROPS the heavy ai
+    plus the small flat `ai` summary fields the list/filters read — the verdict (chip),
+    the AI-fit signal (AI-excitement filter), the CEO-intervention flag, the deal-scores
+    headline and the exec-F2F verdict (its own column, evidence included so the list can
+    cite WHY it says a meeting happened) — and `pulse`. It DROPS the heavy ai
     narratives/arrays (meddpicc, competitive_position, recommended_moves, requirements,
     stakeholder_map, gaps, …) and evidence_coverage, which are only needed when a deal
     DRAWER is opened (fetched then via GET /opportunities/{opp_id}). Cuts the list
@@ -397,6 +399,11 @@ def slim_record(rec: dict) -> dict:
             # can render + filter the "CEO help" column without loading the full record.
             "ceo_intervention": ai.get("ceo_intervention"),
             "deal_scores": _ds_slim,
+            # Exec F2F verdict — a small flat dict (status/date/exec/evidence). Kept whole
+            # because `evidence` is MANDATORY on every non-none verdict: this column asserts
+            # to a VP that an in-person exec meeting happened, and the list must be able to
+            # cite the source line rather than render a bare claim.
+            "exec_f2f": ai.get("exec_f2f"),
         },
         "pulse": rec.get("pulse"),
         "forecast_critical": rec.get("forecast_critical"),

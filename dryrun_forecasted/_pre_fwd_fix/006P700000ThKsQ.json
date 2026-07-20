@@ -1,0 +1,3523 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Quantified business case / ROI for the $150,000 spend",
+     "date": "2026-07-09",
+     "quote": "Business_Objectives__c = 'Done'; Value_to_Customer__c blank",
+     "source": "Opportunity fields",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Direct confirmation of the decision timeline after the EY South Africa team's one-month estimate lapsed",
+     "date": "2026-07-01",
+     "quote": "01/07/26: Caroline reached out to EY if there is any update",
+     "source": "Next Step",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Content of the 8 May 2026 orals/demo session",
+     "date": "2026-05-08",
+     "quote": "Meeting logged, no recording available (not_recorded)",
+     "source": "Avoma manifest \u2014 the session's occurrence and headline outcome (EY's month-out estimate) are known via Next Step even though the recording itself is unavailable",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "gap",
+    "sources": [
+     "Opportunity.Business_Objectives__c",
+     "Opportunity.Value_to_Customer__c",
+     "CRM MEDDPICC Identify Pain note, 23 Mar 2026"
+    ],
+    "narrative": "No quantified value, ROI, or cost-savings figure has been captured anywhere in the record: the CRM's Business_Objectives__c field holds only a placeholder ('Done') and Value_to_Customer__c is blank. The CRM's Identify Pain narrative (dated 23 Mar 2026) describes directional pressures \u2014 post-insolvency margin recovery, tail-spend leakage, IPO/JSE audit-readiness \u2014 but none of it is tied to a number the buyer has voiced. Until a business case is quantified, the $150,000 ask has no anchor for a finance-led evaluation."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "CRM MEDDPICC Champion note, 23 Mar 2026",
+     "OpportunityContactRole (Zeyn Khan, Zuko Ndima)",
+     "Next Step History, 2 Mar 2026 entry"
+    ],
+    "narrative": "The EY South Africa team is the primary champion in practice, fronting the entire evaluation on Cell C's behalf ('EY will front', 2 Mar 2026 note) and driving the process through RFP, orals, and follow-up Q&A. Internally, Zeyn Khan (Senior Manager, Strategic Sourcing) and Zuko Ndima (Contracts Specialist) are flagged in the CRM as developing internal champions who reacted positively to the solution and its compliance angle, but neither has a logged direct engagement since that CRM note was last updated on 23 Mar 2026 (~16 weeks ago). Relying entirely on an external evaluation partner for championship is a real exposure if the EY South Africa team's internal read is wrong or Cell C's own committee overrides it."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Next Step History, 30 Mar 2026 entry",
+     "CRM MEDDPICC Competition field, 23 Mar 2026"
+    ],
+    "narrative": "Coupa was in the field and withdrew on 30 Mar 2026 ('Coupa pulled out of this one - we have a fair chance', rep note in Next Step History). SpotDraft is named in the CRM's Competition field as of 23 Mar 2026 as the remaining rival, which fits given RFP 2026-005 is scoped as a Contract Lifecycle Management solution, but there has been no fresh mention of SpotDraft in any note or task since, so its current standing in the evaluation is unconfirmed rather than ruled out."
+   },
+   "identify_pain": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.How_are_you_addressing_your_problem_toda__c ('SAP with no existing tool')",
+     "CRM MEDDPICC Identify Pain note, 23 Mar 2026"
+    ],
+    "narrative": "Cell C currently runs on SAP with no dedicated sourcing/contracting tool, per a direct Salesforce field, consistent with the manual/fragmented-process pain theme in the CRM's Identify Pain note (post-insolvency margin pressure, tail-spend leakage, JSE/IPO audit-readiness risk, supplier dependency, dated 23 Mar 2026). None of this has been directly quoted by a buyer in a call we've read, since the one real evaluation touchpoint (8 May 2026 orals) was not recorded, so the depth and buyer-owned language behind the pain remain unconfirmed."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Opportunity.StageName = Formal Evaluation"
+    ],
+    "narrative": "No contracting artifact (MSA, Order Form, SOW, or term sheet) has surfaced yet. This is expected: the deal is still in Formal Evaluation, a stage short of vendor selection where paper process normally begins. There is no evidence yet to assess."
+   },
+   "economic_buyer": {
+    "status": "partial",
+    "sources": [
+     "OpportunityContactRole (Shaheen De Vries, Executive: Operational Finance & Procurement)",
+     "Task email, 24 Feb 2026",
+     "Next Step History, 8 May 2026 entry"
+    ],
+    "narrative": "Shaheen De Vries, Executive: Operational Finance & Procurement, is the senior-most named contact on the account and the closest match to an economic buyer. She personally emailed the Zycus/EY group on 24 Feb 2026 to reschedule a demo session, copying the Zycus account owner's own manager on the thread. She is understood to have been present for the 8 May 2026 orals and demo, but there has been no confirmed direct engagement with her since 24 Feb 2026 (~19 weeks ago), and her posture has only been relayed through EY since. Salesforce's own Executive_Sponsor_Identified__c and Decision_Maker_Identified__c booleans are unticked, so this reads as identified-but-thin rather than confirmed sponsorship."
+   },
+   "decision_process": {
+    "status": "confirmed",
+    "sources": [
+     "Next Step / Next Step History (dated entries, 27 Jan-1 Jul 2026)"
+    ],
+    "narrative": "This is a multi-vendor evaluation run through the EY South Africa team as the fronting/evaluation partner: a short intro on 27 Jan 2026, a demo on 16 Feb 2026 that Cell C's team liked, RFP 2026-005 issued with a 16 Mar 2026 deadline, Coupa's withdrawal on 30 Mar 2026, orals and a full demo before the panel on 8 May 2026, a written Q&A round closing 29 May 2026, and EY's own estimate of naming a preferred vendor within about a month of the orals (target ~8 Jun 2026). That estimate has now lapsed by about a month with no announcement."
+   },
+   "decision_criteria": {
+    "status": "confirmed",
+    "sources": [
+     "Task (Email Received), Mpho Mabaso, 27 May 2026",
+     "Next Step History, 29 May 2026 entry"
+    ],
+    "narrative": "Cell C's evaluation team, through sourcing coordinator Mpho Mabaso, sent Zycus a written follow-up on 27 May 2026 spelling out three concrete criteria: a confirmed implementation timeframe, a fully itemized pricing breakdown by cost component (licensing, implementation, support, training, maintenance), and a defined user access and governance model (org-wide viewing rights, template-population rights, and a roughly 5-15 person super-user/approver layer with legal and executive/chief-level sign-off per business unit). Zycus answered all three within two days (29 May 2026). This is specific, buyer-articulated criteria, not a generic RFP checklist."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 6.0,
+    "top_event": "[Clari - Email Received] Re: EY - RFP 2026-005 CONTRACT LIFECYCLE MANAGEMENT SOLUTION",
+    "events_30d": 0,
+    "points_60d": 1.2,
+    "top_weight": 5.1,
+    "points_90d_process": 4.2
+   },
+   "last_meeting": "2026-05-08",
+   "meetings_60d": 0,
+   "last_rep_touch": null,
+   "last_buyer_touch": "2026-05-27",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 1,
+   "stage_cadence_days": 21,
+   "general_last_activity": "2026-07-01",
+   "days_since_buyer_touch": 43
+  },
+  "opp_trends": {
+   "stage_trend": 0.105,
+   "amount_trend": -0.091,
+   "close_date_trend": -0.875,
+   "stage_trend_detail": "Stage qualified -> formal evaluation (117d ago)",
+   "amount_trend_detail": "Amount 200000 -> 150000 (117d ago)",
+   "close_date_trend_detail": "Close date 2026-07-31 -> 2026-08-31 (pushed out 31d)"
+  },
+  "day_summary": {
+   "as_of": "2026-07-06",
+   "items": [
+    {
+     "at": "2026-07-06",
+     "kind": "movement",
+     "name": "Close date pushed 30 days",
+     "summary": "Close date moved from 2026-07-31 to 2026-08-31 with no accompanying note \u2014 a slip that suggests the deal has stalled or hit a snag, but the reason isn't documented here."
+    }
+   ],
+   "source": "ai",
+   "overall": "The only thing that happened today was a quiet pushback of the close date by a month, from end of July to end of August \u2014 no calls, emails, or notes accompanying it. That's a signal the deal isn't tracking to plan, though without any other activity logged, we can't tell whether it's a buyer-driven delay or just an internal reforecast. Ball is effectively in our court to find out why and re-engage."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "At risk",
+    "deal_risk": 70.0,
+    "win_position": 40.0,
+    "deal_momentum": 22.0,
+    "customer_commitment": 37.0,
+    "forecast_confidence": 30.0
+   },
+   "cro_panel": {
+    "intro": "A committee evaluation that engaged seriously through May 2026 (orals, demo, detailed follow-up questions, and Coupa's exit) has gone quiet for the past six weeks, right as the evaluation partner's own one-month decision estimate lapsed with no word",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're behind.",
+      "score": 40,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 41 days since\u2026",
+        "tone": "warn"
+       },
+       {
+        "text": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 41-day silence may signal budget freeze, internal\u2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 22,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Last recorded activity 27 May 2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 70,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Coupa was the more recent, verified competitor and it withdrew from the RFP on 30 Mar 2026, which the rep read as leaving 'a fair chance.' SpotDraft is the only other named rival, per the CRM MEDDPICC Competition field updated 23 Mar 2026\u2026",
+      "bullets": [
+       {
+        "full": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls.",
+        "text": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8\u2026",
+        "tone": "warn"
+       },
+       {
+        "full": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 41-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative.",
+        "text": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and\u2026",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date 31 Jul 2026 \u2192 31 Aug 2026 (pushed out 31d)",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Escalate a direct status check to Shaheen De Vries or Mpho Mabaso, not just the EY South Africa team, given no reply to the 1 Jul outreach. (by 16 Jun)",
+       "Send a written recap of the implementation-timeline and pricing answers submitted 29 May, framed around Cell C's cost-pressure and IPO-readiness priorities, to keep the case fresh while EY deliberates. (by 23 Jun)",
+       "Propose a joint call with Zeyn Khan, Zuko Ndima, and Shaheen De Vries to confirm evaluation status directly if no decision emerges by early August. (by 6 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Cell C \u2014 Formal Evaluation \u00b7 $150K \u00b7 closes 31 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 70.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "The decision window EY itself set (~early June, one month after 8 May orals) has passed by roughly 5 weeks with no preferred-vendor announcement.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Cell C is a post-insolvency turnaround business \u2014 budget freeze or funding delay is a plausible explanation for the silence.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Amount cut from $200k to $150k plus a close-date push (31 Jul \u2192 31 Aug) \u2014 the deal is contracting, not expanding.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion (external, EY-anchored) and EB (partial) are both unconfirmed \u2014 no strong internal advocate to force the decision.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "SpotDraft remains a named, unconfirmed rival with no recent intel \u2014 competitive risk isn't closed out.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Coupa's confirmed withdrawal (30 Mar) removes one competitor and caps some of the downside.",
+      "points": 1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "The decision window EY itself set (~early June, one month after 8 May orals) has passed by roughly 5 weeks with no preferred-vendor announcement.",
+      "tone": "warn"
+     },
+     {
+      "text": "Cell C is a post-insolvency turnaround business \u2014 budget freeze or funding delay is a plausible explanation for the silence.",
+      "tone": "warn"
+     },
+     {
+      "text": "Amount cut from $200k to $150k plus a close-date push (31 Jul \u2192 31 Aug) \u2014 the deal is contracting, not expanding.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion (external, EY-anchored) and EB (partial) are both unconfirmed \u2014 no strong internal advocate to force the decision.",
+      "tone": "warn"
+     },
+     {
+      "text": "SpotDraft remains a named, unconfirmed rival with no recent intel \u2014 competitive risk isn't closed out.",
+      "tone": "warn"
+     },
+     {
+      "text": "Coupa's confirmed withdrawal (30 Mar) removes one competitor and caps some of the downside.",
+      "tone": "good"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Orals/demo completed with EY on 8 May, and Zycus turned around EY's post-orals follow-up questions within 2 days (29 May) \u2014 real process progress.",
+      "tone": "good"
+     },
+     {
+      "text": "Coupa formally withdrew from the RFP (30 Mar), narrowing the field to Zycus and one unconfirmed rival.",
+      "tone": "good"
+     },
+     {
+      "text": "EY's own forecast of a preferred-vendor decision 'within a month' of the 8 May orals has elapsed by roughly 5 weeks with no announcement \u2014 the process has stalled right at the finish line.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer (Shaheen De Vries) engagement is only 'partial' in MEDDPICC \u2014 no confirmed direct Zycus face time with her.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion is externally anchored in EY rather than a Cell C insider, and unconfirmed since orals \u2014 fragile advocacy at decision time.",
+      "tone": "warn"
+     },
+     {
+      "text": "SpotDraft's status hasn't been confirmed since 23 Mar \u2014 no evidence it's out of contention.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Zero meetings logged in the 30/60/90-day windows; the last real meeting was 127 days ago (4 Mar) \u2014 engagement has gone cold.",
+      "tone": "warn"
+     },
+     {
+      "text": "No buyer response since 29 May; Caroline's 1 Jul outreach asking EY for an update sits unanswered \u2014 this is now one-way chasing.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting or milestone scheduled (next_scheduled is null) \u2014 nothing forward-dated is booked.",
+      "tone": "warn"
+     },
+     {
+      "text": "Prior cadence (Jan\u2013May) shows real back-and-forth \u2014 demo, RFP submission, orals on 8 May, and Q&A answered within 2 days on 29 May.",
+      "tone": "good"
+     },
+     {
+      "text": "Amount quietly trimmed $200k \u2192 $150k with no matching stage/forecast movement \u2014 the deal is shrinking, not just slowing.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed only once, by 31 days (31 Jul \u2192 31 Aug) \u2014 within normal first-move tolerance, not yet a hard red flag on its own.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "EY drove a real evaluative exchange post-orals \u2014 3 concrete follow-up questions sent, answered by Zycus within 2 days (29 May).",
+      "tone": "good"
+     },
+     {
+      "text": "Decision criteria and decision process are both marked confirmed in MEDDPICC \u2014 the buyer has a defined path to decide.",
+      "tone": "good"
+     },
+     {
+      "text": "No paper process (MSA/SOW) has started despite being deep in Formal Evaluation.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer engagement is only partial/indirect \u2014 no confirmed top-level sponsorship.",
+      "tone": "warn"
+     },
+     {
+      "text": "Silence since 29 May, right past EY's own one-month decision promise, suggests buyer-side momentum stalled just short of a call.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 40.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Orals/demo completed with EY on 8 May, and Zycus turned around EY's post-orals follow-up questions within 2 days (29 May) \u2014 real process progress.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Coupa formally withdrew from the RFP (30 Mar), narrowing the field to Zycus and one unconfirmed rival.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "EY's own forecast of a preferred-vendor decision 'within a month' of the 8 May orals has elapsed by roughly 5 weeks with no announcement \u2014 the process has stalled right at the finish line.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer (Shaheen De Vries) engagement is only 'partial' in MEDDPICC \u2014 no confirmed direct Zycus face time with her.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion is externally anchored in EY rather than a Cell C insider, and unconfirmed since orals \u2014 fragile advocacy at decision time.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "SpotDraft's status hasn't been confirmed since 23 Mar \u2014 no evidence it's out of contention.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 22.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero meetings logged in the 30/60/90-day windows; the last real meeting was 127 days ago (4 Mar) \u2014 engagement has gone cold.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer response since 29 May; Caroline's 1 Jul outreach asking EY for an update sits unanswered \u2014 this is now one-way chasing.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No future meeting or milestone scheduled (next_scheduled is null) \u2014 nothing forward-dated is booked.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Prior cadence (Jan\u2013May) shows real back-and-forth \u2014 demo, RFP submission, orals on 8 May, and Q&A answered within 2 days on 29 May.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Amount quietly trimmed $200k \u2192 $150k with no matching stage/forecast movement \u2014 the deal is shrinking, not just slowing.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Close date pushed only once, by 31 days (31 Jul \u2192 31 Aug) \u2014 within normal first-move tolerance, not yet a hard red flag on its own.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Cell C's team responded positively to a 'Zycus Agentic AI Powered Procurement Solutions Demo' on 16 Feb 2026 ('Cell C liked our solution'), but the RFP itself is CLM-scoped and the 27 May 2026 follow-up questions focused on implementation, ",
+     "expectations_fit": "Cell C's post-orals follow-up named three concrete evaluation criteria; Zycus responded to all three within two days, but no buyer confirmation of satisfaction has been received since.",
+     "north_star_verdict": null,
+     "positioning_strength": "An AI-branded demo landed well early, but no subsequent evaluation content has tested AI capability specifically."
+    },
+    "deal": {
+     "stage": "Formal Evaluation",
+     "amount": 150000.0,
+     "opp_id": "006P700000ThKsQ",
+     "account": "Cell C",
+     "opp_name": "Cell C S2P",
+     "next_step": "01/07/26: Caroline reached out to EY if there is any update29/05/26: extra questions answered and sent back08/05/2026: Orals and Demo done with EY. EY expect appointment of preferred vendor within a month23/04/26: demo with EY on May 8th30/03/2026: Coupa puled out of this one - we have a fair cahnce13/03/2026: RfP deadline 16/3 - EY is involved with Zycus support02/03/2026: EY will front - we have a call to discuss today20/02/2026: demo for the Telco SA client ( C ell C) 24/216/2/26: Follow up EY & Zycus Agentic AI Powered Procurement Solutions Demo today as Cell C liked our solution27/1/26: S",
+     "close_date": "2026-08-31",
+     "stage_tier": "mid",
+     "days_to_close": 53,
+     "forecast_category": "Pipeline",
+     "last_activity_date": "2026-05-27"
+    },
+    "trends": {
+     "stage_trend": 0.105,
+     "amount_trend": -0.091,
+     "close_date_trend": -0.875,
+     "stage_trend_detail": "Stage qualified -> formal evaluation (117d ago)",
+     "amount_trend_detail": "Amount 200000 -> 150000 (117d ago)",
+     "close_date_trend_detail": "Close date 2026-07-31 -> 2026-08-31 (pushed out 31d)"
+    },
+    "champion": "Championship is real but externally anchored and unconfirmed recently.",
+    "meddpicc": {
+     "metrics": "gap",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "partial",
+     "paper_process": "gap",
+     "economic_buyer": "partial",
+     "decision_process": "confirmed",
+     "decision_criteria": "confirmed"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-03-04",
+       "minutes": null,
+       "subject": "EY Insights: AI-powered procurement innovation | Zycus capabilities",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "cellc.co.za",
+        "za.ey.com"
+       ]
+      },
+      {
+       "date": "2026-02-16",
+       "minutes": null,
+       "subject": "EY Insights: AI-powered procurement innovation | Zycus capabilities",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "cellc.co.za",
+        "za.ey.com"
+       ]
+      },
+      {
+       "date": "2026-02-04",
+       "minutes": null,
+       "subject": "EY Insights: AI-powered procurement innovation | Zycus capabilities",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "cellc.co.za",
+        "in.ey.com",
+        "za.ey.com"
+       ]
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2026-03-04",
+     "next_scheduled": null,
+     "total_all_time": 3,
+     "days_since_last": 127,
+     "with_transcript_all_time": 0
+    },
+    "competition": {
+     "summary": "Coupa was the more recent, verified competitor and it withdrew from the RFP on 30 Mar 2026, which the rep read as leaving 'a fair chance.' SpotDraft is the only other named rival, per the CRM MEDDPICC Competition field updated 23 Mar 2026, but no call evidence since has confirmed whether it remains active in the evaluation; treat it as the current strongest known threat only because it is the sole",
+     "competitors": [
+      {
+       "name": "Coupa",
+       "status": "declined",
+       "threat": "dormant"
+      },
+      {
+       "name": "SpotDraft",
+       "status": "active",
+       "threat": "medium"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 41 days since the",
+     "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 41-day silence may signal budget freeze, internal funding",
+     "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (atte",
+     "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement invest",
+     "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement."
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "sfdc_email_touches_60d": 1,
+     "days_since_last_meeting": 127
+    },
+    "decision_outcome": {}
+   },
+   "customer_commitment": {
+    "score": 37.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "EY drove a real evaluative exchange post-orals \u2014 3 concrete follow-up questions sent, answered by Zycus within 2 days (29 May).",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Decision criteria and decision process are both marked confirmed in MEDDPICC \u2014 the buyer has a defined path to decide.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No paper process (MSA/SOW) has started despite being deep in Formal Evaluation.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer engagement is only partial/indirect \u2014 no confirmed top-level sponsorship.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Silence since 29 May, right past EY's own one-month decision promise, suggests buyer-side momentum stalled just short of a call.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 30.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "champion": {
+    "src": "MEDDPICC",
+    "value": "rimary Champion: EY (South Africa Team)\r\n- Leading the engagement (\u201cEY will front\u201d)\r\n- Strong influence on vendor select",
+    "present": true,
+    "age_days": 107
+   },
+   "commercial": {
+    "src": "MEDDPICC",
+    "value": "Multi-vendor evaluation initiated via EY South Africa (fronting partner)\r\n\r\n1. Vendor intro (Jan 27)\r\n2. Demo & follow-u",
+    "present": true,
+    "age_days": 107
+   },
+   "preference": {
+    "src": "Next-Step/narrative",
+    "value": "'preferred vendor' in Next-Step/narrative",
+    "present": true,
+    "age_days": 7
+   },
+   "differentiation": {
+    "src": "MEDDPICC",
+    "value": "Critical pains clearly aligned to business context:\r\n\r\n\ud83d\udd34 Financial Turnaround Pressure\r\n- Need to improve margins post i",
+    "present": true,
+    "age_days": 107
+   }
+  },
+  "scope_change": {
+   "to": "Zycus proposing its full S2P suite (iContract, iSource, ML iAnalyze, iSupplier, eProcurement, eInvoicing)",
+   "from": "RFP 2026-005, scoped as a Contract Lifecycle Management (CLM) solution",
+   "detail": "The RFP name and the 27 May 2026 follow-up questions center on CLM specifics (implementation timeline, pricing, access/governance model), but the Opportunity's Products field spans the full S2P suite. Worth confirming this is an intentional broader footprint pitch rather than a scope mismatch with what the buyer actually issued the RFP for.",
+   "direction": "expanded"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Cell C's team responded positively to a 'Zycus Agentic AI Powered Procurement Solutions Demo' on 16 Feb 2026 ('Cell C liked our solution'), but the RFP itself is CLM-scoped and the 27 May 2026 follow-up questions focused on implementation, pricing, and governance rather than AI capability."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "No quantified value case, ROI, or cost-savings figure has been captured in any field or note; Opportunity.Business_Objectives__c is an unpopulated placeholder ('Done') and Value_to_Customer__c is blank."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-02-13",
+     "change": "Entered Qualified stage"
+    },
+    {
+     "date": "2026-02-16",
+     "change": "Demo delivered; Cell C's team reacted positively"
+    },
+    {
+     "date": "2026-03-13",
+     "change": "Entered Formal Evaluation stage; RFP 2026-005 process underway"
+    },
+    {
+     "date": "2026-03-30",
+     "change": "Coupa withdrew from the evaluation"
+    },
+    {
+     "date": "2026-05-08",
+     "change": "Orals and full demo completed before the evaluation panel; EY estimated a preferred-vendor decision within ~1 month"
+    },
+    {
+     "date": "2026-05-27",
+     "change": "Cell C sent detailed post-orals evaluation follow-up questions"
+    },
+    {
+     "date": "2026-05-29",
+     "change": "Zycus answered the follow-up questions"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "Owner requested a status update from the EY evaluation team"
+    }
+   ],
+   "summary": "The deal advanced steadily through discovery, demo, RFP, and orals milestones from late Jan through early May 2026, including Coupa's withdrawal, but has stalled since the 27-29 May 2026 evaluation Q&A round pending the EY South Africa team's promised preferred-vendor decision."
+  },
+  "forecast_read": {
+   "math": "Formal_Eval_Submission_Date__c 2026-03-13 to today 2026-07-09 = ~118 days in stage (cadence for this stage tier is materially shorter). Last verified buyer touch 2026-05-27 = 43 days ago. EY's ~1-month decision estimate set 2026-05-08 (target ~2026-06-08) is ~31 days overdue. Close date 2026-08-31 is 53 days out with no vendor-selection milestone yet reached.",
+   "reason": "Pipeline is the appropriately conservative category: there is no confirmed decision, no direct economic-buyer engagement in over four months, and EY's own vendor-selection estimate is already about a month overdue. The bigger exposure is the close date itself, not the category \u2014 31 Aug 2026 assumes a signed deal within roughly eight weeks of a still-undecided RFP evaluation with no fresh dated commitment from the buyer.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.5",
+    "sum": "10.1",
+    "win": "10.3",
+    "todo": "10.1",
+    "sweep": "10.0",
+    "extract": "10.4",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Shaheen De Vries",
+     "risk": "No direct engagement confirmed since a 24 Feb 2026 scheduling email; her position is only known via the EY South Africa team's relay.",
+     "role": "Economic Buyer",
+     "email": "sdevries@cellc.co.za",
+     "title": "Executive: Operational Finance & Procurement",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown (not directly confirmed since)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-08"
+    },
+    {
+     "name": "Zeyn Khan",
+     "risk": "Flagged as a developing internal champion but no direct engagement logged since the CRM note was last updated.",
+     "role": "Champion",
+     "email": "zkhan@cellc.co.za",
+     "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive (per CRM)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-03-23"
+    },
+    {
+     "name": "Zuko Ndima",
+     "risk": "Same as Zeyn Khan \u2014 developing, unconfirmed by recent activity.",
+     "role": "Champion",
+     "email": "zndima@cellc.co.za",
+     "title": "Contracts Specialist (Procurement)",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive (per CRM, compliance angle)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-03-23"
+    },
+    {
+     "name": "Mpho Mabaso",
+     "risk": "Administrative liaison for the evaluation committee; not a decision-power holder.",
+     "role": "Influencer",
+     "email": "m.mabaso@cellc.co.za",
+     "title": "Sourcing Coordinator",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral/procedural",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-27"
+    },
+    {
+     "name": "Marius Potgieter",
+     "risk": "Named as a contact role but no call or email evidence of engagement found in any source read this sweep.",
+     "role": "Unknown",
+     "email": "mpotgieter@cellc.co.za",
+     "title": "Senior Manager, Property & Procurement",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown",
+     "_matched_ai": true
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 41 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (6 days and counting). Close date 31 Aug is 55 days out, leaving limited runway if the decision drags further or requires additional approvals.",
+     "status": "active",
+     "category": "timeline",
+     "first_seen": "2026-07-06T12:55:28.624261+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 41-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored.",
+     "status": "active",
+     "category": "budget",
+     "first_seen": "2026-07-06T12:55:28.624261+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls.",
+     "status": "active",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-06T12:55:28.624261+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 41-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative.",
+     "status": "active",
+     "category": "political",
+     "first_seen": "2026-07-06T12:55:28.624261+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "carried",
+     "detail": "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T13:07:20.731399+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+    },
+    {
+     "date": "2026-05-08",
+     "change": "carried",
+     "detail": "The named economic buyer, Shaheen De Vries, has no confirmed direct engagement or recorded sentiment since the 8 May 2026 orals; Zycus is reliant on EY relaying her position.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T13:07:20.731399+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+    },
+    {
+     "date": "2026-03-23",
+     "change": "carried",
+     "detail": "No quantified business case exists to support a $150k spend for a post-insolvency, cost-sensitive buyer undergoing IPO-readiness scrutiny.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T13:07:20.731399+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+    },
+    {
+     "date": "2026-03-23",
+     "change": "carried",
+     "detail": "Post-insolvency financial turnaround pressure and no quantified ROI could make a new $150k spend harder to justify to Cell C's committee.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T14:48:25.880367+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+    },
+    {
+     "date": "2026-03-23",
+     "change": "carried",
+     "detail": "Cell C's JSE listing/IPO-readiness governance may require board-level approval not yet confirmed for this spend.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T14:48:25.880367+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "carried",
+     "detail": "Zycus has no confirmed direct read on Cell C's internal sentiment since the 8 May orals and is relying entirely on EY to relay updates.",
+     "status": "open",
+     "category": "partner_support",
+     "first_seen": "2026-07-07T14:48:25.880367+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "carried",
+     "detail": "EY's forecast of a preferred-vendor decision by early June 2026 is now roughly a month overdue with no announcement.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T14:48:25.880367+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "The EY South Africa team's forecast of a preferred-vendor decision by early June 2026 has elapsed by about a month with no announcement.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T08:03:27.395160+05:30",
+     "first_raised": "2026-05-08",
+     "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No confirmed direct engagement with the named economic buyer, Shaheen De Vries, since a 24 Feb 2026 scheduling email; her posture on the deal is unconfirmed and relayed only via the EY South Africa team.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T08:03:27.395160+05:30",
+     "first_raised": "2026-02-24",
+     "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Cell C's post-insolvency financial turnaround context and the lack of a quantified ROI/business case leaves the $150,000 investment unanchored heading into a decision that's already about a month overdue.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-09T08:03:27.395160+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "SpotDraft remains a named rival for this CLM-scoped RFP with no fresh read since a 23 Mar 2026 CRM note; Coupa is confirmed withdrawn (30 Mar 2026) but SpotDraft's current standing is unconfirmed.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-09T08:03:27.395160+05:30",
+     "first_raised": "2026-03-23",
+     "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 22.0,
+   "win": 40.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Competition",
+    "text": "Coupa withdrew from the evaluation on 30 Mar 2026 (~14 weeks ago), leaving SpotDraft as the only other named rival, though that read hasn't been refreshed since 23 Mar 2026.",
+    "tone": "pos"
+   },
+   {
+    "lens": "Last meeting",
+    "text": "The evaluation panel completed orals and a full demo on 8 May 2026 (~9 weeks ago) and said it expected to name a preferred vendor within about a month; that window closed around 8 Jun 2026 and has now passed by roughly a month with no announcement.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Commercials",
+    "text": "Cell C's sourcing coordinator followed up in writing on 27 May 2026 (~6 weeks ago) asking for a firm implementation timeline, a full cost-component pricing breakdown, and a defined super-user/approver access model, and Zycus answered all three within two days.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New entrant",
+    "text": "The owner's 1 Jul 2026 (~1 week ago) check-in with the EY evaluation team for a status update has gone unanswered, extending a buyer silence that now stands at 43 days since the last inbound reply.",
+    "tone": "crit"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": true,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "CRM MEDDPICC Champion note, 23 Mar 2026 + Next Step History, 2 Mar 2026 entry",
+   "at_risk": true,
+   "summary": "Championship is real but externally anchored and unconfirmed recently.",
+   "champion": "EY South Africa team (external, fronting the evaluation); Zeyn Khan and Zuko Ndima flagged as developing internal champions",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "No evidence of a prior Closed-Won or advanced sibling opportunity at Cell C was found in this sweep.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Escalate a direct status check to Shaheen De Vries or Mpho Mabaso, not just the EY South Africa team, given no reply to the 1 Jul outreach.",
+     "horizon": "next_7_days",
+     "trigger": "No reply to the 1 Jul 2026 status check after ~8 days",
+     "trigger_date": "2026-07-01",
+     "expected_effect": "Establishes a direct read on Cell C's internal timeline instead of relying solely on the EY South Africa team as a relay."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Send a written recap of the implementation-timeline and pricing answers submitted 29 May, framed around Cell C's cost-pressure and IPO-readiness priorities, to keep the case fresh while EY deliberates.",
+     "horizon": "next_14_days",
+     "trigger": "No preferred-vendor announcement despite the lapsed EY estimate",
+     "trigger_date": "2026-06-08",
+     "expected_effect": "Keeps Zycus's value case visible to the evaluation committee during an unexplained decision delay."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Propose a joint call with Zeyn Khan, Zuko Ndima, and Shaheen De Vries to confirm evaluation status directly if no decision emerges by early August.",
+     "horizon": "next_30_days",
+     "trigger": "Continued silence past 30 days from the 1 Jul outreach",
+     "trigger_date": "2026-07-31",
+     "expected_effect": "Reduces dependence on the EY South Africa team as the sole channel and tests whether internal champions can accelerate a decision before the 31 Aug close date."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "43 days since the last verified buyer touch (27 May 2026)",
+    "EY South Africa team's self-set decision deadline (~8 Jun 2026) has passed by ~31 days with no announcement",
+    "Owner outreach on 1 Jul 2026 unanswered for 8 days as of today"
+   ],
+   "cooling": true,
+   "summary": "The deal has gone quiet since the 27 May 2026 buyer email; the owner's 1 Jul 2026 status check to the EY evaluation team has drawn no reply as of 9 Jul 2026."
+  },
+  "north_star_verdict": {
+   "math": "Created 13 Feb 2026 (144 days in-cycle as of 7 Jul). RFP submitted 16 Mar 2026; orals/demo delivered 8 May 2026 (~60 days ago), after which EY forecast a preferred-vendor decision 'within a month' (~by 8 Jun 2026) - that forecast is now ~29 days overdue. 55 days remain to the 31 Aug 2026 close date, leaving a tight runway to reach paper if the decision lands soon.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Next_Step__c 08/05/2026: 'Orals and Demo done with EY. EY expect appointment of preferred vendor within a month.'",
+    "Next_Step__c 01/07/2026: 'Caroline reached out to EY if there is any update' (no reply logged as of 7 Jul 2026)",
+    "Next_Step__c 30/03/2026: 'Coupa puled out of this one - we have a fair chance'"
+   ],
+   "headline": "Stalled at the finish line: EY's early-June preferred-vendor call is roughly a month overdue and the 1 Jul 2026 status-check has gone unanswered for 6 days.",
+   "trajectory": "stronger",
+   "prior_verdict": "Slowing",
+   "carried_forward": true,
+   "forecast_defensible": true,
+   "recommended_forecast": "Pipeline (current category is already appropriately conservative given the overdue decision and no confirmed direct buyer read since 8 May)"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Multi-thread inside Cell C beyond EY: Zycus is heavily reliant on EY's external championing, with weaker direct engagement from internal Cell C stakeholders (Zeyn Khan, Zuko Ndima, Shaheen De Vries all confirmed in roles but engagement strength unclear). Risk: if EY's influence is weaker than assumed or an internal Cell C exec objects, the deal stalls. High-leverage move: secure a direct 1:1 with Shaheen De Vries (the economic buyer) to confirm her sponsorship and diagnose any internal hesitation, independently of EY's fronting role.",
+    "Reframe the business case as an IPO-readiness enabler: Cell C's JSE listing mandate requires audit-ready procurement (a regulatory forcing function), but no quantified ROI or savings case has been articulated. Re-engage with a compliance-led narrative (S2P = de-risk the IPO by delivering audit-grade spend visibility and controls) and quantify the value (e.g. tail-spend reduction %, contract-cycle compression, compliance-audit cost avoidance) to justify the investment in a post-insolvency budget environment.",
+    "Offer a phased or cost-optimized commercial structure: Given Cell C's post-insolvency turnaround context and the 40-day silence (possible budget sensitivity), propose a Phase 1 focused on compliance/audit readiness (iContract + iSource) with deferred Phase 2 for eProcurement/eInvoicing, or explore a term-extended payment structure to ease cash-flow impact. This lowers the entry barrier and aligns with their capital-light MVNO model while still delivering the IPO-readiness mandate.",
+    "EY-mediated engagement has gone silent for 41 days (last contact 27 May, no reply to 1 Jul outreach). Zycus is over-reliant on the external fronting partner with no direct Cell C internal champion actively driving the decision. Secure a direct call with Shaheen De Vries (EB) to validate budget, timeline, and decision authority, bypassing the EY bottleneck.",
+    "Decision Maker and approval chain unclear. Shaheen De Vries (EB) may require CFO, board, or exec-committee sign-off for a material procurement investment in the IPO context, but no visibility into the approval process. Map the final signatory and approval gates before the close date tightens further.",
+    "Build a quantified business case now (cost/margin impact) to give EY and Shaheen De Vries ammunition for an internal sign-off, since no numbers have been articulated to date.",
+    "Convert Zeyn Khan and Zuko Ndima from passive, previously-positive contacts into active internal champions who can independently confirm status while EY is silent.",
+    "Coupa's March withdrawal opened the field; confirm SpotDraft's current status and get a CLM-vs-S2P differentiation note to EY before the decision closes."
+   ],
+   "summary": "Reduce reliance on a single external relay and re-anchor the business case while the decision is stalled."
+  },
+  "customer_preference": {
+   "level": "low",
+   "evidence": "Cell C's evaluation team reacted positively to the demo on 16 Feb 2026 ('Cell C liked our solution' \u2014 Next Step History), but no further buyer-voiced preference signal has surfaced since; the 8 May 2026 orals update carries no explicit preference statement from the buyer, only the EY South Africa team's own decision-timeline estimate."
+  },
+  "competitive_position": {
+   "summary": "Coupa was the more recent, verified competitor and it withdrew from the RFP on 30 Mar 2026, which the rep read as leaving 'a fair chance.' SpotDraft is the only other named rival, per the CRM MEDDPICC Competition field updated 23 Mar 2026, but no call evidence since has confirmed whether it remains active in the evaluation; treat it as the current strongest known threat only because it is the sole one still unresolved.",
+   "competitors": [
+    {
+     "date": "2026-03-30",
+     "name": "Coupa",
+     "quote": "Coupa puled out of this one - we have a fair cahnce",
+     "change": "carried",
+     "source": "Next_Step 30 Mar 2026",
+     "status": "declined",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-06T12:55:28.624261+05:30",
+     "how_we_win": "Coupa is out. Win by re-engaging EY and Shaheen De Vries, reframing the S2P investment as an IPO-readiness enabler (audit-grade procurement de-risks the JSE listing), and offering a phased or cost-optimized commercial structure to address any post-insolvency budget sensitivity.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+    },
+    {
+     "date": "2026-03-23",
+     "name": "SpotDraft",
+     "quote": "Competition: SpotDraft",
+     "change": "carried",
+     "source": "SF MEDDPICC Competition field (23 Mar 2026)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T14:48:25.880367+05:30",
+     "how_we_win": "Position the full source-to-pay suite (iContract, iSource, ML iAnalyze, iSupplier, eProcurement, eInvoicing) against SpotDraft's narrower CLM-only footprint.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "A committee evaluation that engaged seriously through May 2026 (orals, demo, detailed follow-up questions, and Coupa's exit) has gone quiet for the past six weeks, right as the evaluation partner's own one-month decision estimate lapsed with no word.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "The EY South Africa team's self-set decision timeline is now roughly a month overdue with no announcement and no explanation \u2014 the single biggest open risk on this deal.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zycus has no confirmed direct read on the named economic buyer's (Shaheen De Vries) position since 24 Feb 2026 and is reliant on the EY South Africa team relaying Cell C's internal sentiment.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified ROI or cost-savings case exists to support a $150,000 investment at a cost-sensitive, post-insolvency, IPO-readiness-focused account.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Cell C's evaluation team requested a detailed cost-component breakdown and implementation-timeline commitment on 27 May 2026 (Mpho Mabaso, via Task) and Zycus answered within two days (29 May 2026, Next Step History) \u2014 the kind of late-stage commercial diligence a buyer usually only runs on a vendor still genuinely in contention.",
+      "tone": "good"
+     },
+     {
+      "text": "The only other named competitor, Coupa, withdrew from the evaluation on 30 Mar 2026 (~14 weeks ago), per the rep's own note ('Coupa pulled out of this one - we have a fair chance').",
+      "tone": "good"
+     },
+     {
+      "text": "The EY South Africa team told Zycus after the 8 May 2026 orals that a preferred-vendor decision was expected within about a month; that window closed around 8 Jun 2026 and, as of 9 Jul 2026, roughly a month has passed with no announcement and no confirmed reason for the delay.",
+      "tone": "warn"
+     },
+     {
+      "text": "There has been no direct engagement with the named economic buyer, Shaheen De Vries, since a scheduling email on 24 Feb 2026; Zycus has relied entirely on the EY South Africa team to relay Cell C's internal position for over four months.",
+      "tone": "warn"
+     },
+     {
+      "text": "SpotDraft, a purpose-built CLM competitor, is still on record as competition per a 23 Mar 2026 CRM note that has not been refreshed or corroborated by any call evidence since.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "The rep's 1 Jul 2026 outreach to the EY evaluation team asking for a status update has gone unanswered for 8 days as of 9 Jul 2026, extending a buyer silence that now stands at 43 days since the last inbound reply (27 May 2026).",
+      "tone": "warn"
+     },
+     {
+      "text": "The most recent two-way exchange was substantive: Cell C's sourcing coordinator sent a detailed written follow-up on 27 May 2026 covering implementation timeline, pricing structure, and the access/approval model, and Zycus closed it out within two days.",
+      "tone": "good"
+     },
+     {
+      "text": "No forward-dated milestone or future meeting is currently on record; the deal's only remaining pace-setter is the EY South Africa team's own lapsed one-month decision estimate.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Cell C invested a full orals-and-demo session (8 May 2026) plus a detailed written follow-up round (27-29 May 2026) \u2014 real evaluation effort, not a passive courtesy demo.",
+      "tone": "good"
+     },
+     {
+      "text": "No stated business case, ROI figure, or compelling event has been voiced by the buyer to anchor the $150,000 spend, and no future session is currently scheduled.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": []
+  },
+  "implicit_requirements": {
+   "items": []
+  },
+  "ai_positioning_strength": {
+   "score": "medium",
+   "summary": "An AI-branded demo landed well early, but no subsequent evaluation content has tested AI capability specifically.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-05-27",
+     "quote": "Kindly confirm the estimated timeframe required for full implementation of the proposed solution, including onboarding, configuration, and go-live.",
+     "source": "Task (Email Received), Mpho Mabaso",
+     "position": "partially aligned",
+     "criterion": "Implementation timeframe (onboarding, configuration, go-live)"
+    },
+    {
+     "date": "2026-05-27",
+     "quote": "Please clearly stipulate each cost component and indicate what each charge relates to (e.g., licensing, implementation, support, training, maintenance, etc.).",
+     "source": "Task (Email Received), Mpho Mabaso",
+     "position": "partially aligned",
+     "criterion": "Comprehensive, itemized pricing by cost component"
+    },
+    {
+     "date": "2026-05-27",
+     "quote": "A controlled access model with approximately 5-15 'super users/approvers' responsible for legal review and executive/chief-level approvals within each business unit.",
+     "source": "Task (Email Received), Mpho Mabaso",
+     "position": "partially aligned",
+     "criterion": "User access and governance/approval model"
+    }
+   ],
+   "summary": "Cell C's post-orals follow-up named three concrete evaluation criteria; Zycus responded to all three within two days, but no buyer confirmation of satisfaction has been received since."
+  }
+ },
+ "hard": {
+  "stage": "Formal Evaluation",
+  "amount": 150000.0,
+  "opp_id": "006P700000ThKsQIAV",
+  "ais_why": "\u2022 Product scope is traditional S2P (eInvoicing, eProcurement, iContract, iSource, iSupplier) plus ML iAnalyze \u201a\u00c4\u00ee some AI/ML in analytics but no Merlin, no ANA, no Agentic AI, no Merlin Intake selected. ML iAnalyze is the sole AI SKU and it's a spend-analytics product (machine learning categorisation) rather than the generative-AI/agentic stack. AI is not the headline of the deal.\n\u2022 Formal Evaluation stage with EY South Africa engaged as advisor (jakob.schleu@za.ey.com, EY India team in support) and a strong Cell C buying committee including s.devries, lkekae, zndima and rfourie. Three meetings scheduled Feb-Mar 2026 but all three returned 'not_recorded' state in Avoma, so we cannot verify any customer-spoken AI sentiment from transcripts. BD_Engagement is Engaged per SFDC.\n\u2022 Low confidence: SF Description is null and all Avoma meetings unrecorded. The score rests on product mix (ML iAnalyze hints at analytics AI) plus EY's involvement as an advisory partner. Default DOWN at 5/6 boundary held given the complete lack of explicit AI evidence from transcripts. Would move UP only if a recorded discovery surfaces buyer-side AI demand or RFP issuance specifies AI capability.",
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000ThKsQIAV/view",
+  "opp_name": "Cell C S2P",
+  "owner_id": "005P7000002gRKPIA2",
+  "products": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing",
+  "ais_score": 5.0,
+  "next_step": "01/07/26: Caroline reached out to EY if there is any update29/05/26: extra questions answered and sent back08/05/2026: Orals and Demo done with EY. EY expect appointment of preferred vendor within a month23/04/26: demo with EY on May 8th30/03/2026: Coupa puled out of this one - we have a fair cahnce13/03/2026: RfP deadline 16/3 - EY is involved with Zycus support02/03/2026: EY will front - we have a call to discuss today20/02/2026: <span style=\"color: rgb(36, 36, 36); font-family: Aptos, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">demo for the Telco SA\u00a0client (<span style=\"color: inherit; font-family: inherit; font-size: 12px; background-color: rgb(255, 255, 255);\">C<span style=\"color: rgb(36, 36, 36); font-family: Aptos, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">ell\u00a0C) 24/216/2/26: Follow up EY &amp; Zycus Agentic AI Powered Procurement Solutions Demo today as Cell C liked our solution27/1/26: Short intro done for Cell C as part of multiple vendors presentation - lead through EY SA",
+  "ais_status": "Moderate",
+  "close_date": "2026-08-31",
+  "competitor": null,
+  "owner_name": "Caroline Lacocque",
+  "owner_title": null,
+  "account_name": "Cell C",
+  "created_date": "2026-02-13",
+  "manager_name": "John Woodcock",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 53,
+  "dm_identified": false,
+  "eb_identified": true,
+  "ais_why_source": "AIS_Why__c",
+  "qualified_date": "2026-02-13",
+  "billing_country": null,
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "ais_score_source": "AIS_Score__c",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "ais_status_source": "AIS_Status__c",
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-05-27",
+  "last_modified_date": "2026-07-06",
+  "metrics_identified": false,
+  "primary_competitor": "SpotDraft",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-05-27",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Formal Evaluation",
+  "state": "cooling",
+  "summary": "Cooling: last verified activity 43 day(s) ago (2026-05-27). Buyer EMAIL RECEIVED 43 day(s) ago (2026-05-27) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement.",
+  "calls_read": 0,
+  "close_date": "2026-08-31",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 53,
+  "verified_known": true,
+  "buyer_calls_seen": false,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 43,
+  "last_activity_date": "2026-05-27",
+  "days_since_activity": 43,
+  "days_since_qualified": 146,
+  "last_inbound_email_date": "2026-05-27"
+ },
+ "deltas": [
+  {
+   "to": "Confirm the estimated implementation timeframe (onboarding, configuration, go-live).",
+   "key": "requirement:confirm-the-estimated-implementation-timeframe-onboarding-co",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Mpho Mabaso",
+   "subject": "Confirm the estimated implementation timeframe (onboarding, configuration, go-live)."
+  },
+  {
+   "to": "Submit updated, comprehensive pricing broken out by cost component (licensing, implementation, support, training, maintenance).",
+   "key": "requirement:submit-updated-comprehensive-pricing-broken-out-by-cost-comp",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Mpho Mabaso",
+   "subject": "Submit updated, comprehensive pricing broken out by cost component (licensing, implementation, support, training, maintenance)."
+  },
+  {
+   "to": "Confirm the user access and governance model: org-wide viewing rights, template-population rights, and a ~5-15 person super-user/approver model covering legal r",
+   "key": "requirement:confirm-the-user-access-and-governance-model-org-wide-viewin",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Mpho Mabaso",
+   "subject": "Confirm the user access and governance model: org-wide viewing rights, template-population rights, and a ~5-15 person super-user/approver model covering legal review and executive/chief-level approval per business unit."
+  },
+  {
+   "to": "Return written answers to Cell C/EY's post-orals evaluation questions (implementation timeline, pricing breakdown, access model). - completed",
+   "key": "commitment:zycus-return-written-answers-to-cell-c-ey-s-post-orals-evalu",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Return written answers to Cell C/EY's post-orals evaluation questions (implementation timeline, pricing breakdown, access model)."
+  },
+  {
+   "to": "Announce the preferred-vendor selection decision for RFP 2026-005. - overdue",
+   "key": "commitment:buyer-announce-the-preferred-vendor-selection-decision-for-r",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Announce the preferred-vendor selection decision for RFP 2026-005."
+  },
+  {
+   "to": "Shaheen De Vries - Economic Buyer",
+   "key": "stakeholder:shaheen-de-vries",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "from": "Shaheen De Vries - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Shaheen De Vries"
+  },
+  {
+   "to": "Zeyn Khan - Champion",
+   "key": "stakeholder:zeyn-khan",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "from": "Zeyn Khan - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeyn Khan"
+  },
+  {
+   "to": "Zuko Ndima - Champion",
+   "key": "stakeholder:zuko-ndima",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "from": "Zuko Ndima - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zuko Ndima"
+  },
+  {
+   "to": "Mpho Mabaso - Influencer",
+   "key": "stakeholder:mpho-mabaso",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "from": "Mpho Mabaso - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mpho Mabaso"
+  },
+  {
+   "to": "Marius Potgieter - Unknown",
+   "key": "stakeholder:marius-potgieter",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "from": "Marius Potgieter - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marius Potgieter"
+  },
+  {
+   "to": "The EY South Africa team's forecast of a preferred-vendor decision by early June 2026 has elapsed by about a month with no announcement. - open",
+   "key": "risk:the-ey-south-africa-team-s-forecast-of-a-preferred-vendor-de",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The EY South Africa team's forecast of a preferred-vendor decision by early June 2026 has elapsed by about a month with no announcement."
+  },
+  {
+   "to": "No confirmed direct engagement with the named economic buyer, Shaheen De Vries, since a 24 Feb 2026 scheduling email; her posture on the deal is unconfirmed and",
+   "key": "risk:no-confirmed-direct-engagement-with-the-named-economic-buyer",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No confirmed direct engagement with the named economic buyer, Shaheen De Vries, since a 24 Feb 2026 scheduling email; her posture on the deal is unconfirmed and relayed only via the EY South Africa team."
+  },
+  {
+   "to": "Cell C's post-insolvency financial turnaround context and the lack of a quantified ROI/business case leaves the $150,000 investment unanchored heading into a de",
+   "key": "risk:cell-c-s-post-insolvency-financial-turnaround-context-and-th",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Cell C's post-insolvency financial turnaround context and the lack of a quantified ROI/business case leaves the $150,000 investment unanchored heading into a decision that's already about a month overdue."
+  },
+  {
+   "to": "SpotDraft remains a named rival for this CLM-scoped RFP with no fresh read since a 23 Mar 2026 CRM note; Coupa is confirmed withdrawn (30 Mar 2026) but SpotDraf",
+   "key": "risk:spotdraft-remains-a-named-rival-for-this-clm-scoped-rfp-with",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "SpotDraft remains a named rival for this CLM-scoped RFP with no fresh read since a 23 Mar 2026 CRM note; Coupa is confirmed withdrawn (30 Mar 2026) but SpotDraft's current standing is unconfirmed."
+  },
+  {
+   "to": "Reliance on the EY South Africa team as the sole relay for Cell C's internal sentiment leaves Zycus without a direct read on the decision; the two internal cont",
+   "key": "hygiene:reliance-on-the-ey-south-africa-team-as-the-sole-relay-for-c",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Reliance on the EY South Africa team as the sole relay for Cell C's internal sentiment leaves Zycus without a direct read on the decision; the two internal contacts flagged as developing champions (Zeyn Khan, Zuko Ndima) have had no direct engagement logged since the 23 Mar 2026 CRM note \u2014 building a direct line to them would reduce dependence on a single external channel."
+  },
+  {
+   "to": "The preferred-vendor decision the EY South Africa team flagged for early June 2026 is now roughly a month overdue with no fresh commercial or competitive signal",
+   "key": "hygiene:the-preferred-vendor-decision-the-ey-south-africa-team-flagg",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The preferred-vendor decision the EY South Africa team flagged for early June 2026 is now roughly a month overdue with no fresh commercial or competitive signal; a direct, dated status ask to Shaheen De Vries would test whether the delay is procedural or a sign the deal has cooled."
+  },
+  {
+   "to": "No quantified ROI or cost-savings case has been documented for a $150,000 spend at a cost-sensitive, post-insolvency account; building one now would help if int",
+   "key": "hygiene:no-quantified-roi-or-cost-savings-case-has-been-documented-f",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI or cost-savings case has been documented for a $150,000 spend at a cost-sensitive, post-insolvency account; building one now would help if internal budget scrutiny, rather than vendor comparison, is the real cause of the delay."
+  },
+  {
+   "to": "EY South Africa team (external, fronting the evaluation); Zeyn Khan and Zuko Ndima flagged as developing internal champions - developing",
+   "key": "champion:champion",
+   "date": "2026-07-09T08:03:27.395160+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Answer additional evaluation questions raised after the 8 May orals and demo",
+   "key": "requirement:answer-additional-evaluation-questions-raised-after-the-8-ma",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Cell C / EY evaluation team",
+   "subject": "Answer additional evaluation questions raised after the 8 May orals and demo"
+  },
+  {
+   "to": "Announce preferred-vendor selection decision for RFP 2026-005 - overdue",
+   "key": "commitment:buyer-announce-preferred-vendor-selection-decision-for-rfp-2",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Announce preferred-vendor selection decision for RFP 2026-005"
+  },
+  {
+   "to": "Shaheen De Vries - Economic Buyer",
+   "key": "stakeholder:shaheen-de-vries",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "Shaheen De Vries - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Shaheen De Vries"
+  },
+  {
+   "to": "EY South Africa team - Coach",
+   "key": "stakeholder:ey-south-africa-team",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "EY South Africa team - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "EY South Africa team"
+  },
+  {
+   "to": "Zeyn Khan - Champion",
+   "key": "stakeholder:zeyn-khan",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "Zeyn Khan - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeyn Khan"
+  },
+  {
+   "to": "Zuko Ndima - Champion",
+   "key": "stakeholder:zuko-ndima",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "Zuko Ndima - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zuko Ndima"
+  },
+  {
+   "to": "Mpho Mabaso - Influencer",
+   "key": "stakeholder:mpho-mabaso",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "Mpho Mabaso - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mpho Mabaso"
+  },
+  {
+   "to": "Marius Potgieter - Unknown",
+   "key": "stakeholder:marius-potgieter",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "Marius Potgieter - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marius Potgieter"
+  },
+  {
+   "to": "SpotDraft - active",
+   "key": "competitor:spotdraft",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SpotDraft"
+  },
+  {
+   "to": "Post-insolvency financial turnaround pressure and no quantified ROI could make a new $150k spend harder to justify to Cell C's committee. - open",
+   "key": "risk:post-insolvency-financial-turnaround-pressure-and-no-quantif",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Post-insolvency financial turnaround pressure and no quantified ROI could make a new $150k spend harder to justify to Cell C's committee."
+  },
+  {
+   "to": "Cell C's JSE listing/IPO-readiness governance may require board-level approval not yet confirmed for this spend. - open",
+   "key": "risk:cell-c-s-jse-listing-ipo-readiness-governance-may-require-bo",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Cell C's JSE listing/IPO-readiness governance may require board-level approval not yet confirmed for this spend."
+  },
+  {
+   "to": "Zycus has no confirmed direct read on Cell C's internal sentiment since the 8 May orals and is relying entirely on EY to relay updates. - open",
+   "key": "risk:zycus-has-no-confirmed-direct-read-on-cell-c-s-internal-sent",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zycus has no confirmed direct read on Cell C's internal sentiment since the 8 May orals and is relying entirely on EY to relay updates."
+  },
+  {
+   "to": "EY's forecast of a preferred-vendor decision by early June 2026 is now roughly a month overdue with no announcement. - open",
+   "key": "risk:ey-s-forecast-of-a-preferred-vendor-decision-by-early-june-2",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "EY's forecast of a preferred-vendor decision by early June 2026 is now roughly a month overdue with no announcement."
+  },
+  {
+   "to": "Coupa's March withdrawal opened the field; confirm SpotDraft's current status and get a CLM-vs-S2P differentiation note to EY before the decision closes.",
+   "key": "hygiene:coupa-s-march-withdrawal-opened-the-field-confirm-spotdraft-",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Coupa's March withdrawal opened the field; confirm SpotDraft's current status and get a CLM-vs-S2P differentiation note to EY before the decision closes."
+  },
+  {
+   "to": "Reliance on EY as the sole channel to Shaheen De Vries and the Cell C committee is a single point of failure; open a direct line to Zeyn Khan or Zuko Ndima to c",
+   "key": "hygiene:reliance-on-ey-as-the-sole-channel-to-shaheen-de-vries-and-t",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Reliance on EY as the sole channel to Shaheen De Vries and the Cell C committee is a single point of failure; open a direct line to Zeyn Khan or Zuko Ndima to corroborate EY's read."
+  },
+  {
+   "to": "No quantified ROI has reached the economic buyer for a cost-sensitive, post-insolvency account; a savings model now would strengthen the case at the exact momen",
+   "key": "hygiene:no-quantified-roi-has-reached-the-economic-buyer-for-a-cost-",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI has reached the economic buyer for a cost-sensitive, post-insolvency account; a savings model now would strengthen the case at the exact moment the decision is being finalized."
+  },
+  {
+   "to": "EY South Africa team (external partner, active); Zeyn Khan and Zuko Ndima (developing internal champions) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T14:48:25.880367+05:30",
+   "from": "EY South Africa team - developing",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Respond to RFP 2026-005 (Contract Lifecycle Management Solution)",
+   "key": "requirement:respond-to-rfp-2026-005-contract-lifecycle-management-soluti",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "EY South Africa team",
+   "subject": "Respond to RFP 2026-005 (Contract Lifecycle Management Solution)"
+  },
+  {
+   "to": "Deliver orals and demo presentation to Cell C and EY evaluation team",
+   "key": "requirement:deliver-orals-and-demo-presentation-to-cell-c-and-ey-evaluat",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "EY South Africa team",
+   "subject": "Deliver orals and demo presentation to Cell C and EY evaluation team"
+  },
+  {
+   "to": "Answer additional evaluation questions raised by Cell C/EY",
+   "key": "requirement:answer-additional-evaluation-questions-raised-by-cell-c-ey",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "EY South Africa team",
+   "subject": "Answer additional evaluation questions raised by Cell C/EY"
+  },
+  {
+   "to": "Return written answers to Cell C/EY's extra evaluation questions - completed",
+   "key": "commitment:zycus-return-written-answers-to-cell-c-ey-s-extra-evaluation",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Return written answers to Cell C/EY's extra evaluation questions"
+  },
+  {
+   "to": "Announce the preferred-vendor selection decision - overdue",
+   "key": "commitment:buyer-announce-the-preferred-vendor-selection-decision",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Announce the preferred-vendor selection decision"
+  },
+  {
+   "to": "Shaheen De Vries - Economic Buyer",
+   "key": "stakeholder:shaheen-de-vries",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "Shaheen De Vries - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Shaheen De Vries"
+  },
+  {
+   "to": "EY South Africa team - Champion",
+   "key": "stakeholder:ey-south-africa-team",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "EY South Africa team - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "EY South Africa team"
+  },
+  {
+   "to": "Zeyn Khan - Influencer",
+   "key": "stakeholder:zeyn-khan",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "Zeyn Khan - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeyn Khan"
+  },
+  {
+   "to": "Zuko Ndima - Influencer",
+   "key": "stakeholder:zuko-ndima",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "Zuko Ndima - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zuko Ndima"
+  },
+  {
+   "to": "Mpho Mabaso - Unknown",
+   "key": "stakeholder:mpho-mabaso",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "Mpho Mabaso - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mpho Mabaso"
+  },
+  {
+   "to": "Marius Potgieter - Unknown",
+   "key": "stakeholder:marius-potgieter",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "from": "Marius Potgieter - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marius Potgieter"
+  },
+  {
+   "to": "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement. - open",
+   "key": "risk:ey-s-forecast-of-a-preferred-vendor-appointment-within-a-mon",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement."
+  },
+  {
+   "to": "The named economic buyer, Shaheen De Vries, has no confirmed direct engagement or recorded sentiment since the 8 May 2026 orals; Zycus is reliant on EY relaying",
+   "key": "risk:the-named-economic-buyer-shaheen-de-vries-has-no-confirmed-d",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The named economic buyer, Shaheen De Vries, has no confirmed direct engagement or recorded sentiment since the 8 May 2026 orals; Zycus is reliant on EY relaying her position."
+  },
+  {
+   "to": "No quantified business case exists to support a $150k spend for a post-insolvency, cost-sensitive buyer undergoing IPO-readiness scrutiny. - open",
+   "key": "risk:no-quantified-business-case-exists-to-support-a-150k-spend-f",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified business case exists to support a $150k spend for a post-insolvency, cost-sensitive buyer undergoing IPO-readiness scrutiny."
+  },
+  {
+   "to": "Break single-thread dependency on EY: get a direct, dated response from Shaheen De Vries (economic buyer) or Zeyn Khan rather than relying solely on EY's fronti",
+   "key": "hygiene:break-single-thread-dependency-on-ey-get-a-direct-dated-resp",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Break single-thread dependency on EY: get a direct, dated response from Shaheen De Vries (economic buyer) or Zeyn Khan rather than relying solely on EY's fronting relationship, since EY's own June forecast has already slipped."
+  },
+  {
+   "to": "Build a quantified business case now (cost/margin impact) to give EY and Shaheen De Vries ammunition for an internal sign-off, since no numbers have been articu",
+   "key": "hygiene:build-a-quantified-business-case-now-cost-margin-impact-to-g",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build a quantified business case now (cost/margin impact) to give EY and Shaheen De Vries ammunition for an internal sign-off, since no numbers have been articulated to date."
+  },
+  {
+   "to": "Convert Zeyn Khan and Zuko Ndima from passive, previously-positive contacts into active internal champions who can independently confirm status while EY is sile",
+   "key": "hygiene:convert-zeyn-khan-and-zuko-ndima-from-passive-previously-pos",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Convert Zeyn Khan and Zuko Ndima from passive, previously-positive contacts into active internal champions who can independently confirm status while EY is silent."
+  },
+  {
+   "to": "EY South Africa team - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T13:07:20.731399+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Shaheen De Vries - Economic Buyer",
+   "key": "stakeholder:shaheen-de-vries",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Shaheen De Vries - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Shaheen De Vries"
+  },
+  {
+   "to": "Zeyn Khan - Influencer",
+   "key": "stakeholder:zeyn-khan",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Zeyn Khan - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeyn Khan"
+  },
+  {
+   "to": "Zuko Ndima - Influencer",
+   "key": "stakeholder:zuko-ndima",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Zuko Ndima - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zuko Ndima"
+  },
+  {
+   "to": "Mpho Mabaso - Influencer",
+   "key": "stakeholder:mpho-mabaso",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Mpho Mabaso - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mpho Mabaso"
+  },
+  {
+   "to": "Marius Potgieter - Influencer",
+   "key": "stakeholder:marius-potgieter",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Marius Potgieter - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marius Potgieter"
+  },
+  {
+   "to": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 41 days since the",
+   "key": "risk:the-one-month-decision-window-ey-forecast-by-early-june-has-",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (5 days and counting). Close date 31 Aug is 56 days out, leaving limited runway if the decision drags further or requires additional approvals."
+  },
+  {
+   "to": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 41-day silence may signal budget freeze, internal funding",
+   "key": "risk:cell-c-is-a-post-insolvency-turnaround-case-implied-budget-c",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored."
+  },
+  {
+   "to": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (atte",
+   "key": "risk:shaheen-de-vries-executive-operational-finance-procurement-i",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (atte",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls."
+  },
+  {
+   "to": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement invest",
+   "key": "risk:ipo-readiness-and-board-approval-complexity-cell-c-s-jse-lis",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "from": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement invest",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 40-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative."
+  },
+  {
+   "to": "EY-mediated engagement has gone silent for 41 days (last contact 27 May, no reply to 1 Jul outreach). Zycus is over-reliant on the external fronting partner wit",
+   "key": "hygiene:ey-mediated-engagement-has-gone-silent-for-41-days-last-cont",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "EY-mediated engagement has gone silent for 41 days (last contact 27 May, no reply to 1 Jul outreach). Zycus is over-reliant on the external fronting partner with no direct Cell C internal champion actively driving the decision. Secure a direct call with Shaheen De Vries (EB) to validate budget, timeline, and decision authority, bypassing the EY bottleneck."
+  },
+  {
+   "to": "No quantified ROI or business case anchors the $150k investment to Cell C's post-insolvency margin-improvement mandate. Co-author a one-page savings/efficiency ",
+   "key": "hygiene:no-quantified-roi-or-business-case-anchors-the-150k-investme",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI or business case anchors the $150k investment to Cell C's post-insolvency margin-improvement mandate. Co-author a one-page savings/efficiency model with Shaheen or the procurement lead (Zeyn Khan) tying Zycus S2P to measurable cost reduction, audit readiness, and IPO governance value."
+  },
+  {
+   "to": "Decision Maker and approval chain unclear. Shaheen De Vries (EB) may require CFO, board, or exec-committee sign-off for a material procurement investment in the",
+   "key": "hygiene:decision-maker-and-approval-chain-unclear-shaheen-de-vries-e",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Decision Maker and approval chain unclear. Shaheen De Vries (EB) may require CFO, board, or exec-committee sign-off for a material procurement investment in the IPO context, but no visibility into the approval process. Map the final signatory and approval gates before the close date tightens further."
+  },
+  {
+   "to": "EY South Africa advisory team (external fronting partner); Zeyn Khan and Zuko Ndima (internal Cell C, weak) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T05:57:28.999984+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Respond to RFP (deadline 16 Mar 2026)",
+   "key": "requirement:respond-to-rfp-deadline-16-mar-2026",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "EY South Africa / Cell C (via RFP process)",
+   "subject": "Respond to RFP (deadline 16 Mar 2026)"
+  },
+  {
+   "to": "Deliver demo and orals presentation to Cell C and EY evaluation team",
+   "key": "requirement:deliver-demo-and-orals-presentation-to-cell-c-and-ey-evaluat",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "EY South Africa / Cell C",
+   "subject": "Deliver demo and orals presentation to Cell C and EY evaluation team"
+  },
+  {
+   "to": "Answer extra questions from Cell C evaluation team",
+   "key": "requirement:answer-extra-questions-from-cell-c-evaluation-team",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Cell C / EY (inferred from Next_Step entry)",
+   "subject": "Answer extra questions from Cell C evaluation team"
+  },
+  {
+   "to": "Cell C and EY to announce preferred-vendor selection decision (forecast by early June 2026, now overdue) - overdue",
+   "key": "commitment:buyer-cell-c-and-ey-to-announce-preferred-vendor-selection-d",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Cell C and EY to announce preferred-vendor selection decision (forecast by early June 2026, now overdue)"
+  },
+  {
+   "to": "Shaheen De Vries - Economic Buyer",
+   "key": "stakeholder:shaheen-de-vries",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Shaheen De Vries"
+  },
+  {
+   "to": "Zeyn Khan - Influencer",
+   "key": "stakeholder:zeyn-khan",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeyn Khan"
+  },
+  {
+   "to": "Zuko Ndima - Influencer",
+   "key": "stakeholder:zuko-ndima",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zuko Ndima"
+  },
+  {
+   "to": "Mpho Mabaso - Influencer",
+   "key": "stakeholder:mpho-mabaso",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mpho Mabaso"
+  },
+  {
+   "to": "Marius Potgieter - Influencer",
+   "key": "stakeholder:marius-potgieter",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marius Potgieter"
+  },
+  {
+   "to": "EY South Africa team - Champion",
+   "key": "stakeholder:ey-south-africa-team",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "EY South Africa team"
+  },
+  {
+   "to": "Coupa - declined",
+   "key": "competitor:coupa",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the",
+   "key": "risk:the-one-month-decision-window-ey-forecast-by-early-june-has-",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (5 days and counting). Close date 31 Aug is 56 days out, leaving limited runway if the decision drags further or requires additional approvals."
+  },
+  {
+   "to": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding",
+   "key": "risk:cell-c-is-a-post-insolvency-turnaround-case-implied-budget-c",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored."
+  },
+  {
+   "to": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (atte",
+   "key": "risk:shaheen-de-vries-executive-operational-finance-procurement-i",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls."
+  },
+  {
+   "to": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement invest",
+   "key": "risk:ipo-readiness-and-board-approval-complexity-cell-c-s-jse-lis",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 40-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative."
+  },
+  {
+   "to": "Multi-thread inside Cell C beyond EY: Zycus is heavily reliant on EY's external championing, with weaker direct engagement from internal Cell C stakeholders (Ze",
+   "key": "hygiene:multi-thread-inside-cell-c-beyond-ey-zycus-is-heavily-relian",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread inside Cell C beyond EY: Zycus is heavily reliant on EY's external championing, with weaker direct engagement from internal Cell C stakeholders (Zeyn Khan, Zuko Ndima, Shaheen De Vries all confirmed in roles but engagement strength unclear). Risk: if EY's influence is weaker than assumed or an internal Cell C exec objects, the deal stalls. High-leverage move: secure a direct 1:1 with Shaheen De Vries (the economic buyer) to confirm her sponsorship and diagnose any internal hesitation, independently of EY's fronting role."
+  },
+  {
+   "to": "Reframe the business case as an IPO-readiness enabler: Cell C's JSE listing mandate requires audit-ready procurement (a regulatory forcing function), but no qua",
+   "key": "hygiene:reframe-the-business-case-as-an-ipo-readiness-enabler-cell-c",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Reframe the business case as an IPO-readiness enabler: Cell C's JSE listing mandate requires audit-ready procurement (a regulatory forcing function), but no quantified ROI or savings case has been articulated. Re-engage with a compliance-led narrative (S2P = de-risk the IPO by delivering audit-grade spend visibility and controls) and quantify the value (e.g. tail-spend reduction %, contract-cycle compression, compliance-audit cost avoidance) to justify the investment in a post-insolvency budget environment."
+  },
+  {
+   "to": "Offer a phased or cost-optimized commercial structure: Given Cell C's post-insolvency turnaround context and the 40-day silence (possible budget sensitivity), p",
+   "key": "hygiene:offer-a-phased-or-cost-optimized-commercial-structure-given-",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Offer a phased or cost-optimized commercial structure: Given Cell C's post-insolvency turnaround context and the 40-day silence (possible budget sensitivity), propose a Phase 1 focused on compliance/audit readiness (iContract + iSource) with deferred Phase 2 for eProcurement/eInvoicing, or explore a term-extended payment structure to ease cash-flow impact. This lowers the entry barrier and aligns with their capital-light MVNO model while still delivering the IPO-readiness mandate."
+  },
+  {
+   "to": "EY South Africa (external partner); Zeyn Khan and Zuko Ndima (internal Cell C, weaker) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing",
+   "key": "product_scope:scope",
+   "date": "2026-07-06T12:55:28.624261+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000ThKsQ",
+ "packets": [
+  {
+   "key": "requirement:respond-to-rfp-deadline-16-mar-2026",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-13",
+    "kind": "explicit",
+    "quote": "RfP deadline 16/3 - EY is involved with Zycus support",
+    "source": "Next_Step 13 Mar 2026",
+    "said_by": "EY South Africa / Cell C (via RFP process)",
+    "addressed": true,
+    "requirement": "Respond to RFP (deadline 16 Mar 2026)"
+   },
+   "source": "EY South Africa / Cell C (via RFP process)",
+   "status": "active",
+   "history": [],
+   "subject": "Respond to RFP (deadline 16 Mar 2026)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "requirement:deliver-demo-and-orals-presentation-to-cell-c-and-ey-evaluat",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-23",
+    "kind": "explicit",
+    "quote": "demo with EY on May 8th",
+    "source": "Next_Step 23 Apr 2026; completed 8 May 2026 per Next_Step 8 May",
+    "said_by": "EY South Africa / Cell C",
+    "addressed": true,
+    "requirement": "Deliver demo and orals presentation to Cell C and EY evaluation team"
+   },
+   "source": "EY South Africa / Cell C",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver demo and orals presentation to Cell C and EY evaluation team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "requirement:answer-extra-questions-from-cell-c-evaluation-team",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-27",
+    "kind": "explicit",
+    "quote": "extra questions answered and sent back",
+    "source": "Next_Step 29 May 2026 (answered and returned by 29 May)",
+    "said_by": "Cell C / EY (inferred from Next_Step entry)",
+    "addressed": true,
+    "requirement": "Answer extra questions from Cell C evaluation team"
+   },
+   "source": "Cell C / EY (inferred from Next_Step entry)",
+   "status": "active",
+   "history": [],
+   "subject": "Answer extra questions from Cell C evaluation team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "commitment:buyer-cell-c-and-ey-to-announce-preferred-vendor-selection-d",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-08",
+    "who": "Buyer",
+    "date": "2026-05-08",
+    "source": "Next_Step__c 8 May 2026",
+    "status": "overdue",
+    "commitment": "Cell C and EY to announce preferred-vendor selection decision (forecast by early June 2026, now overdue by ~5 weeks)",
+    "deliverable": "Cell C and EY to announce preferred-vendor selection decision (forecast by early June 2026, now overdue by ~5 weeks)",
+    "grounding_quote": "EY expect appointment of preferred vendor within a month (post-8 May orals)"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Cell C and EY to announce preferred-vendor selection decision (forecast by early June 2026, now overdue)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "stakeholder:shaheen-de-vries",
+   "type": "stakeholder",
+   "value": {
+    "name": "Shaheen De Vries",
+    "risk": "No direct engagement confirmed since a 24 Feb 2026 scheduling email; her position is only known via the EY South Africa team's relay.",
+    "role": "Economic Buyer",
+    "title": "Executive: Operational Finance & Procurement",
+    "source": "OpportunityContactRole + Task email (24 Feb 2026) + Next Step History (8 May 2026 entry)",
+    "sentiment": "unknown (not directly confirmed since)",
+    "last_contact_date": "2026-05-08"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:48:25.880367+05:30",
+     "value": {
+      "name": "Shaheen De Vries",
+      "risk": "No direct engagement confirmed since 8 May orals",
+      "role": "Economic Buyer",
+      "title": "Executive: Operational Finance & Procurement",
+      "source": "SF OpportunityContactRole; Avoma manifest 8 May 2026",
+      "sentiment": "unknown (meeting not recorded)",
+      "last_contact_date": "2026-05-08"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "Shaheen De Vries",
+      "risk": "No direct contact logged since 8 May 2026 orals (~9 weeks); sponsorship strength unconfirmed",
+      "role": "Economic Buyer",
+      "title": "Executive: Operational Finance & Procurement",
+      "source": "OpportunityContactRole; Avoma manifest 2026-05-08 attendee",
+      "sentiment": "unknown (call not recorded)",
+      "last_contact_date": "2026-05-08"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:57:28.999984+05:30",
+     "value": {
+      "name": "Shaheen De Vries",
+      "risk": "No direct one-on-one engagement since 8 May (60 days ago); all recent contact mediated through Mpho Mabaso or EY. EB budget sign-off and active sponsorship unconfirmed.",
+      "role": "Economic Buyer",
+      "title": "Executive: Operational Finance & Procurement",
+      "source": "OpportunityContactRole; Avoma 8 May touchpoint attendee (s.devries@cellc.co.za)",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-05-08"
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "Shaheen De Vries",
+      "risk": "Engagement strength and sponsorship level unclear; 40-day silence may signal hesitation or internal approval complexity.",
+      "role": "Economic Buyer",
+      "title": "Executive: Operational Finance & Procurement",
+      "source": "Salesforce OpportunityContactRole; Avoma attendee 8 May 2026 (not recorded)",
+      "sentiment": "Unknown (attended 8 May demo/orals but meeting not recorded; no direct engagement since)",
+      "last_contact_date": "2026-05-08"
+     }
+    }
+   ],
+   "subject": "Shaheen De Vries",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "stakeholder:zeyn-khan",
+   "type": "stakeholder",
+   "value": {
+    "name": "Zeyn Khan",
+    "risk": "Flagged as a developing internal champion but no direct engagement logged since the CRM note was last updated.",
+    "role": "Champion",
+    "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+    "source": "OpportunityContactRole + CRM MEDDPICC Champion note, 23 Mar 2026",
+    "sentiment": "positive (per CRM)",
+    "last_contact_date": "2026-03-23"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:48:25.880367+05:30",
+     "value": {
+      "name": "Zeyn Khan",
+      "risk": "No confirmed advocacy action since February",
+      "role": "Champion",
+      "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+      "source": "SF MEDDPICC Champion field (23 Mar 2026)",
+      "sentiment": "positive at demo stage",
+      "last_contact_date": "2026-02-24"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "Zeyn Khan",
+      "risk": "No logged direct touchpoint since the CRM MEDDPICC update",
+      "role": "Influencer",
+      "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+      "source": "SF MEDDPICC (Champion, 2026-03-23); OpportunityContactRole",
+      "sentiment": "positive but weak engagement",
+      "last_contact_date": "2026-03-23"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:57:28.999984+05:30",
+     "value": {
+      "name": "Zeyn Khan",
+      "risk": "Saw value in the solution per CRM MEDDPICC (23 Mar), but no advocacy or active engagement evidence since. Weak champion.",
+      "role": "Influencer",
+      "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+      "source": "OpportunityContactRole; CRM MEDDPICC Champion (23 Mar)",
+      "sentiment": "positive",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "Zeyn Khan",
+      "risk": "Current engagement level unclear; no recent direct contact.",
+      "role": "Influencer",
+      "title": "Senior Manager Strategic Sourcing (Marketing and Infrastructure)",
+      "source": "Salesforce OpportunityContactRole; MEDDPICC CRM 23 Mar 2026",
+      "sentiment": "Positive (MEDDPICC CRM 23 Mar: 'saw value in solution')",
+      "last_contact_date": "2026-05-08"
+     }
+    }
+   ],
+   "subject": "Zeyn Khan",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "stakeholder:zuko-ndima",
+   "type": "stakeholder",
+   "value": {
+    "name": "Zuko Ndima",
+    "risk": "Same as Zeyn Khan \u2014 developing, unconfirmed by recent activity.",
+    "role": "Champion",
+    "title": "Contracts Specialist (Procurement)",
+    "source": "OpportunityContactRole + CRM MEDDPICC Champion note, 23 Mar 2026",
+    "sentiment": "positive (per CRM, compliance angle)",
+    "last_contact_date": "2026-03-23"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:48:25.880367+05:30",
+     "value": {
+      "name": "Zuko Ndima",
+      "risk": "No confirmed advocacy action since February",
+      "role": "Champion",
+      "title": "Contracts Specialist (Procurement)",
+      "source": "SF MEDDPICC Champion field (23 Mar 2026)",
+      "sentiment": "positive, aligns on compliance benefits",
+      "last_contact_date": "2026-02-24"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "Zuko Ndima",
+      "risk": "No logged direct touchpoint since the CRM MEDDPICC update",
+      "role": "Influencer",
+      "title": "Contracts Specialist (Procurement)",
+      "source": "SF MEDDPICC (Champion, 2026-03-23); OpportunityContactRole",
+      "sentiment": "positive but weak engagement (compliance alignment)",
+      "last_contact_date": "2026-03-23"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:57:28.999984+05:30",
+     "value": {
+      "name": "Zuko Ndima",
+      "risk": "Aligns with compliance benefits per CRM MEDDPICC (23 Mar), but no active advocacy or engagement evidence.",
+      "role": "Influencer",
+      "title": "Contracts Specialist (Procurement)",
+      "source": "OpportunityContactRole; CRM MEDDPICC Champion (23 Mar)",
+      "sentiment": "positive",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "Zuko Ndima",
+      "risk": "Current engagement level unclear; no recent direct contact.",
+      "role": "Influencer",
+      "title": "Contracts Specialist (Procurement)",
+      "source": "Salesforce OpportunityContactRole; MEDDPICC CRM 23 Mar 2026",
+      "sentiment": "Positive (MEDDPICC CRM 23 Mar: 'aligns with compliance benefits')",
+      "last_contact_date": "2026-05-08"
+     }
+    }
+   ],
+   "subject": "Zuko Ndima",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "stakeholder:mpho-mabaso",
+   "type": "stakeholder",
+   "value": {
+    "name": "Mpho Mabaso",
+    "risk": "Administrative liaison for the evaluation committee; not a decision-power holder.",
+    "role": "Influencer",
+    "title": "Sourcing Coordinator",
+    "source": "Task (Email Received), 27 May 2026",
+    "sentiment": "neutral/procedural",
+    "last_contact_date": "2026-05-27"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:48:25.880367+05:30",
+     "value": {
+      "name": "Mpho Mabaso",
+      "risk": "Low influence on final decision",
+      "role": "Influencer",
+      "title": "Sourcing Coordinator",
+      "source": "Avoma manifest 8 May 2026 attendee list",
+      "sentiment": "neutral, logistics/coordination role",
+      "last_contact_date": "2026-05-08"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "Mpho Mabaso",
+      "risk": "Coordinator-level contact, no evidence of influence on decision",
+      "role": "Unknown",
+      "title": "Sourcing Coordinator",
+      "source": "Avoma manifest 2026-05-08 attendee (m.mabaso@cellc.co.za)",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-05-08"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:57:28.999984+05:30",
+     "value": {
+      "name": "Mpho Mabaso",
+      "risk": "Primary logistics/Q&A contact (27 May extra questions), but coordinator role, not a champion or power contact.",
+      "role": "Influencer",
+      "title": "Sourcing Coordinator",
+      "source": "OpportunityContactRole; Task contact (27 May); Avoma 8 May attendee (m.mabaso@cellc.co.za)",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-05-27"
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "Mpho Mabaso",
+      "risk": "Coordinator-level contact, not a power champion; may not have decision influence.",
+      "role": "Influencer",
+      "title": "Sourcing Coordinator",
+      "source": "Salesforce OpportunityContactRole; Salesforce task contact 27 May 2026",
+      "sentiment": "Neutral (coordinator role; most recent task contact, replied 27 May with extra questions answered)",
+      "last_contact_date": "2026-05-27"
+     }
+    }
+   ],
+   "subject": "Mpho Mabaso",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "stakeholder:marius-potgieter",
+   "type": "stakeholder",
+   "value": {
+    "name": "Marius Potgieter",
+    "risk": "Named as a contact role but no call or email evidence of engagement found in any source read this sweep.",
+    "role": "Unknown",
+    "title": "Senior Manager, Property & Procurement",
+    "source": "OpportunityContactRole only",
+    "sentiment": "unknown",
+    "last_contact_date": null
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:48:25.880367+05:30",
+     "value": {
+      "name": "Marius Potgieter",
+      "risk": "Never appeared on a call or next-step note; stance unknown",
+      "role": "Unknown",
+      "title": "Senior Manager, Property & Procurement",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "unread",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "Marius Potgieter",
+      "risk": "No logged direct engagement found this sweep",
+      "role": "Unknown",
+      "title": "Senior Manager, Property & Procurement",
+      "source": "OpportunityContactRole",
+      "sentiment": "unknown",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:57:28.999984+05:30",
+     "value": {
+      "name": "Marius Potgieter",
+      "risk": "No engagement evidence; role suggests procurement operations influence.",
+      "role": "Influencer",
+      "title": "Senior Manager, Property & Procurement",
+      "source": "OpportunityContactRole",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "Marius Potgieter",
+      "risk": "No documented engagement; role suggests procurement process ownership but involvement unclear.",
+      "role": "Influencer",
+      "title": "Senior Manager, Property & Procurement",
+      "source": "Salesforce OpportunityContactRole; Avoma attendee 8 May 2026 (not recorded)",
+      "sentiment": "Unknown",
+      "last_contact_date": "2026-05-08"
+     }
+    }
+   ],
+   "subject": "Marius Potgieter",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "stakeholder:ey-south-africa-team",
+   "type": "stakeholder",
+   "value": {
+    "name": "EY South Africa team",
+    "risk": "Sole channel to Cell C's decision; if EY's influence is weaker than assumed the deal stalls",
+    "role": "Coach",
+    "title": "Fronting/evaluation partner",
+    "source": "Next_Step__c 02/03/2026 and 01/07/2026",
+    "sentiment": "neutral, no reply yet to 1 Jul check-in",
+    "last_contact_date": "2026-07-01"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:07:20.731399+05:30",
+     "value": {
+      "name": "EY South Africa team",
+      "risk": "Sole channel to Cell C; no reply to 1 Jul 2026 status check yet",
+      "role": "Champion",
+      "title": "Fronting evaluation/advisory partner",
+      "source": "Next_Step__c 02/03/2026, 01/07/26",
+      "sentiment": "positive (historically)",
+      "last_contact_date": "2026-07-01"
+     }
+    },
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "name": "EY South Africa team",
+      "risk": "External champion (not internal to Cell C); 40-day silence since last buyer contact and no reply to 1 Jul rep outreach suggests EY may be waiting on internal Cell C approvals or facing pushback. Zycus is heavily reliant on EY's influence; if EY's sway is weaker than assumed, the deal stalls.",
+      "role": "Champion",
+      "title": "Consulting partner (fronting the evaluation)",
+      "source": "Next_Step trail (2 Mar 'EY will front', 13 Mar 'EY is involved with Zycus support', 8 May 'EY expect appointment of preferred vendor within a month'); MEDDPICC CRM 23 Mar 2026",
+      "sentiment": "Positive (stated 'EY expect appointment of preferred vendor within a month' on 8 May, implying EY's recommendation leans toward Zycus)",
+      "last_contact_date": "2026-07-01"
+     }
+    }
+   ],
+   "subject": "EY South Africa team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2026-03-30",
+    "name": "Coupa",
+    "quote": "Coupa puled out of this one - we have a fair cahnce",
+    "source": "Next_Step 30 Mar 2026",
+    "status": "declined",
+    "sentiment": "neutral",
+    "how_we_win": "Coupa is out. Win by re-engaging EY and Shaheen De Vries, reframing the S2P investment as an IPO-readiness enabler (audit-grade procurement de-risks the JSE listing), and offering a phased or cost-optimized commercial structure to address any post-insolvency budget sensitivity.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "risk:the-one-month-decision-window-ey-forecast-by-early-june-has-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 41 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (6 days and counting). Close date 31 Aug is 55 days out, leaving limited runway if the decision drags further or requires additional approvals.",
+    "source": "Next_Step__c 8 May (EY forecast); 1 Jul (rep outreach, no reply); LastActivityDate 27 May",
+    "status": "active",
+    "category": "timeline",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "date": "2026-07-06",
+      "detail": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (5 days and counting). Close date 31 Aug is 56 days out, leaving limited runway if the decision drags further or requires additional approvals.",
+      "source": "Next_Step 1 Jul 2026 (rep outreach, no reply); engagement pulse (last buyer contact 27 May, 40 days ago)",
+      "status": "open",
+      "category": "timeline",
+      "first_raised": "2026-07-01"
+     }
+    }
+   ],
+   "subject": "The one-month decision window EY forecast (by early June) has elapsed with no preferred-vendor announcement, and the buyer has been silent for 40 days since the last email reply (27 May). Rep outreach 1 Jul to EY for an update has yielded no reply (5 days and counting). Close date 31 Aug is 56 days out, leaving limited runway if the decision drags further or requires additional approvals.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "risk:cell-c-is-a-post-insolvency-turnaround-case-implied-budget-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 41-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored.",
+    "source": "CRM MEDDPICC Identify Pain (23 Mar: post-insolvency margin pressure); Next_Step__c trail (no ROI discussed)",
+    "status": "active",
+    "category": "budget",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "date": "2026-07-06",
+      "detail": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored.",
+      "source": "MEDDPICC CRM 23 Mar 2026 (post-insolvency context); engagement pulse (40-day silence)",
+      "status": "open",
+      "category": "budget",
+      "first_raised": "2026-03-23"
+     }
+    }
+   ],
+   "subject": "Cell C is a post-insolvency turnaround case (implied budget constraints and cost-sensitivity), and the 40-day silence may signal budget freeze, internal funding approval complexity, or prioritization of more urgent operational spend over a $150k S2P initiative. No quantified ROI or business case has been articulated by the buyer, leaving the investment justification unanchored.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "risk:shaheen-de-vries-executive-operational-finance-procurement-i",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls.",
+    "source": "OpportunityContactRole (Shaheen EB); Avoma 8 May touchpoint (not recorded); CRM MEDDPICC Champion (23 Mar: EY fronting, internal champions weak)",
+    "status": "active",
+    "category": "executive_alignment",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "date": "2026-07-06",
+      "detail": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls.",
+      "source": "Avoma manifest: 8 May meeting not_recorded; engagement pulse (40 days since last buyer contact); stakeholder map",
+      "status": "open",
+      "category": "executive_alignment",
+      "first_raised": "2026-05-08"
+     }
+    }
+   ],
+   "subject": "Shaheen De Vries (Executive: Operational Finance & Procurement) is the named economic buyer, but her engagement strength and sponsorship level are unclear (attended 8 May demo/orals but meeting not recorded; no direct contact since). Zycus is heavily reliant on EY's external championing, with weaker direct internal Cell C champion engagement. If EY's influence is weaker than assumed, or if Shaheen or another Cell C executive objects, the deal stalls.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "risk:ipo-readiness-and-board-approval-complexity-cell-c-s-jse-lis",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 41-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative.",
+    "source": "CRM MEDDPICC Identify Pain (23 Mar: JSE IPO readiness mandate); Next_Step__c trail (no approval-chain visibility)",
+    "status": "active",
+    "category": "political",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-06T12:55:28.624261+05:30",
+     "value": {
+      "date": "2026-07-06",
+      "detail": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 40-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative.",
+      "source": "MEDDPICC CRM 23 Mar 2026 (IPO readiness mandate); engagement pulse (40-day silence, decision window elapsed)",
+      "status": "open",
+      "category": "other",
+      "first_raised": "2026-03-23"
+     }
+    }
+   ],
+   "subject": "IPO readiness and board approval complexity: Cell C's JSE listing mandate may require board-level or executive-committee approval for a $150k procurement investment, and the 40-day silence may indicate the decision is escalated beyond Shaheen De Vries or EY's recommendation. No visibility into whether additional approvals are required or whether the IPO timeline has shifted, deprioritizing the S2P initiative.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-inside-cell-c-beyond-ey-zycus-is-heavily-relian",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread inside Cell C beyond EY: Zycus is heavily reliant on EY's external championing, with weaker direct engagement from internal Cell C stakeholders (Zeyn Khan, Zuko Ndima, Shaheen De Vries all confirmed in roles but engagement strength unclear). Risk: if EY's influence is weaker than assumed or an internal Cell C exec objects, the deal stalls. High-leverage move: secure a direct 1:1 with Shaheen De Vries (the economic buyer) to confirm her sponsorship and diagnose any internal hesitation, independently of EY's fronting role."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread inside Cell C beyond EY: Zycus is heavily reliant on EY's external championing, with weaker direct engagement from internal Cell C stakeholders (Zeyn Khan, Zuko Ndima, Shaheen De Vries all confirmed in roles but engagement strength unclear). Risk: if EY's influence is weaker than assumed or an internal Cell C exec objects, the deal stalls. High-leverage move: secure a direct 1:1 with Shaheen De Vries (the economic buyer) to confirm her sponsorship and diagnose any internal hesitation, independently of EY's fronting role.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "hygiene:reframe-the-business-case-as-an-ipo-readiness-enabler-cell-c",
+   "type": "hygiene",
+   "value": {
+    "flag": "Reframe the business case as an IPO-readiness enabler: Cell C's JSE listing mandate requires audit-ready procurement (a regulatory forcing function), but no quantified ROI or savings case has been articulated. Re-engage with a compliance-led narrative (S2P = de-risk the IPO by delivering audit-grade spend visibility and controls) and quantify the value (e.g. tail-spend reduction %, contract-cycle compression, compliance-audit cost avoidance) to justify the investment in a post-insolvency budget environment."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Reframe the business case as an IPO-readiness enabler: Cell C's JSE listing mandate requires audit-ready procurement (a regulatory forcing function), but no quantified ROI or savings case has been articulated. Re-engage with a compliance-led narrative (S2P = de-risk the IPO by delivering audit-grade spend visibility and controls) and quantify the value (e.g. tail-spend reduction %, contract-cycle compression, compliance-audit cost avoidance) to justify the investment in a post-insolvency budget environment.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "hygiene:offer-a-phased-or-cost-optimized-commercial-structure-given-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Offer a phased or cost-optimized commercial structure: Given Cell C's post-insolvency turnaround context and the 40-day silence (possible budget sensitivity), propose a Phase 1 focused on compliance/audit readiness (iContract + iSource) with deferred Phase 2 for eProcurement/eInvoicing, or explore a term-extended payment structure to ease cash-flow impact. This lowers the entry barrier and aligns with their capital-light MVNO model while still delivering the IPO-readiness mandate."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Offer a phased or cost-optimized commercial structure: Given Cell C's post-insolvency turnaround context and the 40-day silence (possible budget sensitivity), propose a Phase 1 focused on compliance/audit readiness (iContract + iSource) with deferred Phase 2 for eProcurement/eInvoicing, or explore a term-extended payment structure to ease cash-flow impact. This lowers the entry barrier and aligns with their capital-light MVNO model while still delivering the IPO-readiness mandate.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-06T12:55:28.624261+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-06T12:55:28.624261+05:30",
+   "last_updated": "2026-07-06T12:55:28.624261+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "hygiene:ey-mediated-engagement-has-gone-silent-for-41-days-last-cont",
+   "type": "hygiene",
+   "value": {
+    "flag": "EY-mediated engagement has gone silent for 41 days (last contact 27 May, no reply to 1 Jul outreach). Zycus is over-reliant on the external fronting partner with no direct Cell C internal champion actively driving the decision. Secure a direct call with Shaheen De Vries (EB) to validate budget, timeline, and decision authority, bypassing the EY bottleneck."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "EY-mediated engagement has gone silent for 41 days (last contact 27 May, no reply to 1 Jul outreach). Zycus is over-reliant on the external fronting partner with no direct Cell C internal champion actively driving the decision. Secure a direct call with Shaheen De Vries (EB) to validate budget, timeline, and decision authority, bypassing the EY bottleneck.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:57:28.999984+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-or-business-case-anchors-the-150k-investme",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI or business case anchors the $150k investment to Cell C's post-insolvency margin-improvement mandate. Co-author a one-page savings/efficiency model with Shaheen or the procurement lead (Zeyn Khan) tying Zycus S2P to measurable cost reduction, audit readiness, and IPO governance value."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case anchors the $150k investment to Cell C's post-insolvency margin-improvement mandate. Co-author a one-page savings/efficiency model with Shaheen or the procurement lead (Zeyn Khan) tying Zycus S2P to measurable cost reduction, audit readiness, and IPO governance value.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:57:28.999984+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "hygiene:decision-maker-and-approval-chain-unclear-shaheen-de-vries-e",
+   "type": "hygiene",
+   "value": {
+    "flag": "Decision Maker and approval chain unclear. Shaheen De Vries (EB) may require CFO, board, or exec-committee sign-off for a material procurement investment in the IPO context, but no visibility into the approval process. Map the final signatory and approval gates before the close date tightens further."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Decision Maker and approval chain unclear. Shaheen De Vries (EB) may require CFO, board, or exec-committee sign-off for a material procurement investment in the IPO context, but no visibility into the approval process. Map the final signatory and approval gates before the close date tightens further.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:57:28.999984+05:30",
+   "last_updated": "2026-07-07T05:57:28.999984+05:30",
+   "last_confirmed": "2026-07-07T05:57:28.999984+05:30"
+  },
+  {
+   "key": "requirement:respond-to-rfp-2026-005-contract-lifecycle-management-soluti",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-13",
+    "kind": "explicit",
+    "quote": "RfP deadline 16/3 - EY is involved with Zycus support",
+    "source": "Next_Step__c 13/03/2026",
+    "said_by": "EY South Africa team",
+    "addressed": true,
+    "requirement": "Respond to RFP 2026-005 (Contract Lifecycle Management Solution) by the 16 Mar 2026 deadline"
+   },
+   "source": "EY South Africa team",
+   "status": "active",
+   "history": [],
+   "subject": "Respond to RFP 2026-005 (Contract Lifecycle Management Solution)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "requirement:deliver-orals-and-demo-presentation-to-cell-c-and-ey-evaluat",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-08",
+    "kind": "explicit",
+    "quote": "Orals and Demo done with EY",
+    "source": "Next_Step__c 08/05/2026",
+    "said_by": "EY South Africa team",
+    "addressed": true,
+    "requirement": "Deliver orals and demo presentation to Cell C and EY evaluation team"
+   },
+   "source": "EY South Africa team",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver orals and demo presentation to Cell C and EY evaluation team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "requirement:answer-additional-evaluation-questions-raised-by-cell-c-ey",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-29",
+    "kind": "explicit",
+    "quote": "extra questions answered and sent back",
+    "source": "Next_Step__c 29/05/26",
+    "said_by": "EY South Africa team",
+    "addressed": true,
+    "requirement": "Answer additional evaluation questions raised by Cell C/EY"
+   },
+   "source": "EY South Africa team",
+   "status": "active",
+   "history": [],
+   "subject": "Answer additional evaluation questions raised by Cell C/EY",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "commitment:zycus-return-written-answers-to-cell-c-ey-s-extra-evaluation",
+   "type": "commitment",
+   "value": {
+    "due": "2026-05-29",
+    "who": "Zycus",
+    "date": "2026-05-29",
+    "source": "Next_Step__c 29/05/26",
+    "status": "completed",
+    "commitment": "Return written answers to Cell C/EY's extra evaluation questions",
+    "deliverable": "Return written answers to Cell C/EY's extra evaluation questions",
+    "grounding_quote": "extra questions answered and sent back"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Return written answers to Cell C/EY's extra evaluation questions",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "commitment:buyer-announce-the-preferred-vendor-selection-decision",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-08",
+    "who": "Buyer",
+    "date": "2026-05-08",
+    "source": "Next_Step__c 08/05/2026",
+    "status": "overdue",
+    "commitment": "Announce the preferred-vendor selection decision",
+    "deliverable": "Announce the preferred-vendor selection decision",
+    "grounding_quote": "EY expect appointment of preferred vendor within a month"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Announce the preferred-vendor selection decision",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "risk:ey-s-forecast-of-a-preferred-vendor-appointment-within-a-mon",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement.",
+    "source": "Next_Step__c 08/05/2026, 01/07/26",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "EY's forecast of a preferred-vendor appointment within a month of the 8 May 2026 orals has elapsed by roughly five weeks with no announcement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "risk:the-named-economic-buyer-shaheen-de-vries-has-no-confirmed-d",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-08",
+    "detail": "The named economic buyer, Shaheen De Vries, has no confirmed direct engagement or recorded sentiment since the 8 May 2026 orals; Zycus is reliant on EY relaying her position.",
+    "source": "Avoma manifest 2026-05-08; OpportunityContactRole",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The named economic buyer, Shaheen De Vries, has no confirmed direct engagement or recorded sentiment since the 8 May 2026 orals; Zycus is reliant on EY relaying her position.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "risk:no-quantified-business-case-exists-to-support-a-150k-spend-f",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-23",
+    "detail": "No quantified business case exists to support a $150k spend for a post-insolvency, cost-sensitive buyer undergoing IPO-readiness scrutiny.",
+    "source": "SF MEDDPICC (Metrics/Identify pain, 2026-03-23)",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified business case exists to support a $150k spend for a post-insolvency, cost-sensitive buyer undergoing IPO-readiness scrutiny.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "hygiene:break-single-thread-dependency-on-ey-get-a-direct-dated-resp",
+   "type": "hygiene",
+   "value": {
+    "flag": "Break single-thread dependency on EY: get a direct, dated response from Shaheen De Vries (economic buyer) or Zeyn Khan rather than relying solely on EY's fronting relationship, since EY's own June forecast has already slipped."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Break single-thread dependency on EY: get a direct, dated response from Shaheen De Vries (economic buyer) or Zeyn Khan rather than relying solely on EY's fronting relationship, since EY's own June forecast has already slipped.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "hygiene:build-a-quantified-business-case-now-cost-margin-impact-to-g",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build a quantified business case now (cost/margin impact) to give EY and Shaheen De Vries ammunition for an internal sign-off, since no numbers have been articulated to date."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build a quantified business case now (cost/margin impact) to give EY and Shaheen De Vries ammunition for an internal sign-off, since no numbers have been articulated to date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "hygiene:convert-zeyn-khan-and-zuko-ndima-from-passive-previously-pos",
+   "type": "hygiene",
+   "value": {
+    "flag": "Convert Zeyn Khan and Zuko Ndima from passive, previously-positive contacts into active internal champions who can independently confirm status while EY is silent."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Convert Zeyn Khan and Zuko Ndima from passive, previously-positive contacts into active internal champions who can independently confirm status while EY is silent.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:07:20.731399+05:30",
+   "last_updated": "2026-07-07T13:07:20.731399+05:30",
+   "last_confirmed": "2026-07-07T13:07:20.731399+05:30"
+  },
+  {
+   "key": "requirement:answer-additional-evaluation-questions-raised-after-the-8-ma",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-29",
+    "kind": "explicit",
+    "quote": "extra questions answered and sent back",
+    "source": "Next_Step__c 29/05/2026",
+    "said_by": "Cell C / EY evaluation team",
+    "addressed": true,
+    "requirement": "Answer additional evaluation questions raised after the 8 May orals and demo"
+   },
+   "source": "Cell C / EY evaluation team",
+   "status": "active",
+   "history": [],
+   "subject": "Answer additional evaluation questions raised after the 8 May orals and demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "commitment:buyer-announce-preferred-vendor-selection-decision-for-rfp-2",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-08",
+    "who": "Buyer",
+    "date": "2026-05-08",
+    "source": "Next_Step__c 08/05/2026",
+    "status": "overdue",
+    "commitment": "Announce preferred-vendor selection decision for RFP 2026-005",
+    "deliverable": "Announce preferred-vendor selection decision for RFP 2026-005",
+    "grounding_quote": "EY expect appointment of preferred vendor within a month"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Announce preferred-vendor selection decision for RFP 2026-005",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "competitor:spotdraft",
+   "type": "competitor",
+   "value": {
+    "date": "2026-03-23",
+    "name": "SpotDraft",
+    "quote": "Competition: SpotDraft",
+    "source": "SF MEDDPICC Competition field (23 Mar 2026)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Position the full source-to-pay suite (iContract, iSource, ML iAnalyze, iSupplier, eProcurement, eInvoicing) against SpotDraft's narrower CLM-only footprint.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "SpotDraft",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "risk:post-insolvency-financial-turnaround-pressure-and-no-quantif",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-23",
+    "detail": "Post-insolvency financial turnaround pressure and no quantified ROI could make a new $150k spend harder to justify to Cell C's committee.",
+    "source": "SF MEDDPICC Identify pain field",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Post-insolvency financial turnaround pressure and no quantified ROI could make a new $150k spend harder to justify to Cell C's committee.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "risk:cell-c-s-jse-listing-ipo-readiness-governance-may-require-bo",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-23",
+    "detail": "Cell C's JSE listing/IPO-readiness governance may require board-level approval not yet confirmed for this spend.",
+    "source": "SF MEDDPICC Identify pain field (inference)",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Cell C's JSE listing/IPO-readiness governance may require board-level approval not yet confirmed for this spend.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "risk:zycus-has-no-confirmed-direct-read-on-cell-c-s-internal-sent",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "Zycus has no confirmed direct read on Cell C's internal sentiment since the 8 May orals and is relying entirely on EY to relay updates.",
+    "source": "Next_Step__c 01/07/2026",
+    "status": "open",
+    "category": "partner_support",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus has no confirmed direct read on Cell C's internal sentiment since the 8 May orals and is relying entirely on EY to relay updates.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "risk:ey-s-forecast-of-a-preferred-vendor-decision-by-early-june-2",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "EY's forecast of a preferred-vendor decision by early June 2026 is now roughly a month overdue with no announcement.",
+    "source": "Next_Step__c 08/05/2026 and 01/07/2026",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "EY's forecast of a preferred-vendor decision by early June 2026 is now roughly a month overdue with no announcement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "hygiene:coupa-s-march-withdrawal-opened-the-field-confirm-spotdraft-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Coupa's March withdrawal opened the field; confirm SpotDraft's current status and get a CLM-vs-S2P differentiation note to EY before the decision closes."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Coupa's March withdrawal opened the field; confirm SpotDraft's current status and get a CLM-vs-S2P differentiation note to EY before the decision closes.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "hygiene:reliance-on-ey-as-the-sole-channel-to-shaheen-de-vries-and-t",
+   "type": "hygiene",
+   "value": {
+    "flag": "Reliance on EY as the sole channel to Shaheen De Vries and the Cell C committee is a single point of failure; open a direct line to Zeyn Khan or Zuko Ndima to corroborate EY's read."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Reliance on EY as the sole channel to Shaheen De Vries and the Cell C committee is a single point of failure; open a direct line to Zeyn Khan or Zuko Ndima to corroborate EY's read.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-has-reached-the-economic-buyer-for-a-cost-",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI has reached the economic buyer for a cost-sensitive, post-insolvency account; a savings model now would strengthen the case at the exact moment the decision is being finalized."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI has reached the economic buyer for a cost-sensitive, post-insolvency account; a savings model now would strengthen the case at the exact moment the decision is being finalized.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:48:25.880367+05:30",
+   "last_updated": "2026-07-07T14:48:25.880367+05:30",
+   "last_confirmed": "2026-07-07T14:48:25.880367+05:30"
+  },
+  {
+   "key": "requirement:confirm-the-estimated-implementation-timeframe-onboarding-co",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-27",
+    "kind": "explicit",
+    "quote": "Kindly confirm the estimated timeframe required for full implementation of the proposed solution, including onboarding, configuration, and go-live.",
+    "source": "Task (Email Received), 27 May 2026",
+    "said_by": "Mpho Mabaso",
+    "addressed": true,
+    "requirement": "Confirm the estimated implementation timeframe (onboarding, configuration, go-live)."
+   },
+   "source": "Mpho Mabaso",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm the estimated implementation timeframe (onboarding, configuration, go-live).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "requirement:submit-updated-comprehensive-pricing-broken-out-by-cost-comp",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-27",
+    "kind": "explicit",
+    "quote": "Please clearly stipulate each cost component and indicate what each charge relates to.",
+    "source": "Task (Email Received), 27 May 2026",
+    "said_by": "Mpho Mabaso",
+    "addressed": true,
+    "requirement": "Submit updated, comprehensive pricing broken out by cost component (licensing, implementation, support, training, maintenance)."
+   },
+   "source": "Mpho Mabaso",
+   "status": "active",
+   "history": [],
+   "subject": "Submit updated, comprehensive pricing broken out by cost component (licensing, implementation, support, training, maintenance).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "requirement:confirm-the-user-access-and-governance-model-org-wide-viewin",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-27",
+    "kind": "explicit",
+    "quote": "A controlled access model with approximately 5-15 'super users/approvers'... Legal review and approval of documents / Executive/Chief-level approvals within each business unit.",
+    "source": "Task (Email Received), 27 May 2026",
+    "said_by": "Mpho Mabaso",
+    "addressed": true,
+    "requirement": "Confirm the user access and governance model: org-wide viewing rights, template-population rights, and a ~5-15 person super-user/approver model covering legal review and executive/chief-level approval per business unit."
+   },
+   "source": "Mpho Mabaso",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm the user access and governance model: org-wide viewing rights, template-population rights, and a ~5-15 person super-user/approver model covering legal review and executive/chief-level approval per business unit.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "commitment:zycus-return-written-answers-to-cell-c-ey-s-post-orals-evalu",
+   "type": "commitment",
+   "value": {
+    "due": "2026-05-29",
+    "who": "Zycus",
+    "date": "2026-05-27",
+    "source": "Next Step History, 29 May 2026 entry",
+    "status": "completed",
+    "commitment": "Return written answers to Cell C/EY's post-orals evaluation questions (implementation timeline, pricing breakdown, access model).",
+    "deliverable": "Return written answers to Cell C/EY's post-orals evaluation questions (implementation timeline, pricing breakdown, access model).",
+    "grounding_quote": "29/05/26: extra questions answered and sent back"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Return written answers to Cell C/EY's post-orals evaluation questions (implementation timeline, pricing breakdown, access model).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "commitment:buyer-announce-the-preferred-vendor-selection-decision-for-r",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-08",
+    "who": "Buyer",
+    "date": "2026-05-08",
+    "source": "Next Step / Next Step History, 8 May 2026 entry",
+    "status": "overdue",
+    "commitment": "Announce the preferred-vendor selection decision for RFP 2026-005.",
+    "deliverable": "Announce the preferred-vendor selection decision for RFP 2026-005.",
+    "grounding_quote": "EY expect appointment of preferred vendor within a month"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Announce the preferred-vendor selection decision for RFP 2026-005.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "risk:the-ey-south-africa-team-s-forecast-of-a-preferred-vendor-de",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "The EY South Africa team's forecast of a preferred-vendor decision by early June 2026 has elapsed by about a month with no announcement.",
+    "source": "Next Step / Next Step History",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The EY South Africa team's forecast of a preferred-vendor decision by early June 2026 has elapsed by about a month with no announcement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "risk:no-confirmed-direct-engagement-with-the-named-economic-buyer",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No confirmed direct engagement with the named economic buyer, Shaheen De Vries, since a 24 Feb 2026 scheduling email; her posture on the deal is unconfirmed and relayed only via the EY South Africa team.",
+    "source": "Task email (24 Feb 2026) + OpportunityContactRole",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-24"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No confirmed direct engagement with the named economic buyer, Shaheen De Vries, since a 24 Feb 2026 scheduling email; her posture on the deal is unconfirmed and relayed only via the EY South Africa team.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "risk:cell-c-s-post-insolvency-financial-turnaround-context-and-th",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Cell C's post-insolvency financial turnaround context and the lack of a quantified ROI/business case leaves the $150,000 investment unanchored heading into a decision that's already about a month overdue.",
+    "source": "CRM MEDDPICC Identify Pain note, 23 Mar 2026 + Next Step History",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Cell C's post-insolvency financial turnaround context and the lack of a quantified ROI/business case leaves the $150,000 investment unanchored heading into a decision that's already about a month overdue.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "risk:spotdraft-remains-a-named-rival-for-this-clm-scoped-rfp-with",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "SpotDraft remains a named rival for this CLM-scoped RFP with no fresh read since a 23 Mar 2026 CRM note; Coupa is confirmed withdrawn (30 Mar 2026) but SpotDraft's current standing is unconfirmed.",
+    "source": "CRM MEDDPICC Competition field, 23 Mar 2026",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-03-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "SpotDraft remains a named rival for this CLM-scoped RFP with no fresh read since a 23 Mar 2026 CRM note; Coupa is confirmed withdrawn (30 Mar 2026) but SpotDraft's current standing is unconfirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "hygiene:reliance-on-the-ey-south-africa-team-as-the-sole-relay-for-c",
+   "type": "hygiene",
+   "value": {
+    "flag": "Reliance on the EY South Africa team as the sole relay for Cell C's internal sentiment leaves Zycus without a direct read on the decision; the two internal contacts flagged as developing champions (Zeyn Khan, Zuko Ndima) have had no direct engagement logged since the 23 Mar 2026 CRM note \u2014 building a direct line to them would reduce dependence on a single external channel."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Reliance on the EY South Africa team as the sole relay for Cell C's internal sentiment leaves Zycus without a direct read on the decision; the two internal contacts flagged as developing champions (Zeyn Khan, Zuko Ndima) have had no direct engagement logged since the 23 Mar 2026 CRM note \u2014 building a direct line to them would reduce dependence on a single external channel.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "hygiene:the-preferred-vendor-decision-the-ey-south-africa-team-flagg",
+   "type": "hygiene",
+   "value": {
+    "flag": "The preferred-vendor decision the EY South Africa team flagged for early June 2026 is now roughly a month overdue with no fresh commercial or competitive signal; a direct, dated status ask to Shaheen De Vries would test whether the delay is procedural or a sign the deal has cooled."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The preferred-vendor decision the EY South Africa team flagged for early June 2026 is now roughly a month overdue with no fresh commercial or competitive signal; a direct, dated status ask to Shaheen De Vries would test whether the delay is procedural or a sign the deal has cooled.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-or-cost-savings-case-has-been-documented-f",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI or cost-savings case has been documented for a $150,000 spend at a cost-sensitive, post-insolvency account; building one now would help if internal budget scrutiny, rather than vendor comparison, is the real cause of the delay."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or cost-savings case has been documented for a $150,000 spend at a cost-sensitive, post-insolvency account; building one now would help if internal budget scrutiny, rather than vendor comparison, is the real cause of the delay.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:03:27.395160+05:30",
+   "last_updated": "2026-07-09T08:03:27.395160+05:30",
+   "last_confirmed": "2026-07-09T08:03:27.395160+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T08:03:27.395160+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Full content of the 8 May 2026 orals/demo session unavailable \u2014 no transcript or Avoma summary; the session's occurrence and headline outcome (EY's month-out decision estimate) are known only via Next Step notes.",
+   "No quantified business case/ROI exists anywhere in Salesforce for this opportunity.",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 0,
+  "calls_omitted": [
+   {
+    "reason": "not_recorded \u2014 no transcript or recording available; content reconstructed only from Next Step / Next Step History notes",
+    "meeting": "FW: EY - RFP 2026-005 Contract Lifecycle Management Solution (orals/demo), 8 May 2026"
+   }
+  ],
+  "avoma_attendees": [
+   "m.mabaso@cellc.co.za",
+   "caroline.lacocque@zycus.com",
+   "asmita.mukherjee@zycus.com",
+   "jakob.schleu@za.ey.com",
+   "sajag.arora@za.ey.com",
+   "gloria.yekanipeni@za.ey.com",
+   "grant.blair@za.ey.com",
+   "ntandod@cellc.co.za",
+   "kumary.naidoo@cellc.co.za",
+   "rnyakane@cellc.co.za",
+   "jarndt@cellc.co.za",
+   "s.devries@cellc.co.za"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "opp+account+attendee-email (never-miss engine)",
+  "salesforce_window": "Q1 mechanics + Q2/Q3 custom fields (full read); Task (all-time on WhatId, 10 records); OpportunityContactRole (full read, 5 contacts); OpportunityFieldHistory not separately queried this run"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

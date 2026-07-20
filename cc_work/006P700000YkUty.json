@@ -1,0 +1,228 @@
+{
+  "opp_id": "006P700000YkUty",
+  "hard": {
+    "opp_id": "006P700000YkUty",
+    "opp_name": "Aurorium_S2C_May '26",
+    "account_name": "aurorium",
+    "account_industry": "Chemical, Pharma & Biotech Mfg",
+    "billing_country": "United States",
+    "owner_name": "Bailey Erazo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2027-05-13",
+    "days_to_close": 311,
+    "created_date": "2026-05-27",
+    "qualified_date": "2026-05-27",
+    "last_activity_date": "2026-05-28",
+    "last_modified_date": "2026-06-26",
+    "products": "iContract;iSource;iSave;iSupplier;Merlin;iRisk",
+    "next_step": "Carole to discuss with stakeholders and get back in 3 months. Bailey to reach out in 3 months.",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "No customer-expressed AI interest on the 27-May call; the only AI reference is rep-side. Carole's needs are data- and process-driven (poor master data, supplier scorecards, analytics, eSourcing to replace Veruzy/Deepstream). Deal is parked: agreed next step is to follow up end of year to reassess 2027 priorities; she is uncertain about timing for adoption. No POC, budget, or champion.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Do Nothing / Status Quo; Veruzy; Deepstream",
+    "primary_competitor": "Do Nothing / Status Quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YkUty/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "Aurorium parked the deal on the 27 May qualification call and pushed the close 9 months, from 31 Jul 2026 to 13 May 2027, asking Zycus to reconnect in 3 months to reassess 2027 priorities. Single-threaded to one passive Decision Maker (Carole Wendt), with no economic buyer, no champion, no quantified case, and a Negative AI signal, this is a re-engagement problem, not an active cycle.",
+      "math": "Today 6 Jul 2026. Qualified since 27 May 2026 (40 days in stage) with zero stage progression; no demo, ShoeFit, pricing, or workshop. Close date pushed 31 Jul 2026 -> 13 May 2027 on 26 Jun 2026 (a 286-day slip). Last buyer touch was the 27 May qualification call; the only later activity is 28 May rep call-attempts (no buyer reply). Buyer-agreed pause runs to roughly late Aug / early Sep 2026, so the realistic restart is Q4 2026 at the earliest. From Qualified with no EB, champion, or momentum, the 13 May 2027 date carries the whole cycle ahead of it and is indefensible on current pace.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Buyer-requested pause in Next_Step__c: 'Carole to discuss with stakeholders and get back in 3 months. Bailey to reach out in 3 months.' (SF Next_Step__c, last modified 26 Jun 2026)",
+        "Close date pushed 31 Jul 2026 -> 13 May 2027 by Bailey Erazo on 26 Jun 2026, a 286-day slip (SF OpportunityFieldHistory, CloseDate)",
+        "AIS 3.0 / Negative: 'Deal is parked... she is uncertain about timing for adoption. No POC, budget, or champion.' (SF AIS_Why__c)",
+        "Only buyer contact on record is Carole Wendt, Decision Maker, Head of Global Procurement (SF OpportunityContactRole, PRIMARY)",
+        "No Economic Buyer named in any contact role, activity, or free-text field",
+        "No champion: Carole is a passive evaluator who requested a pause; no advocacy evidence (SF AIS_Why__c: 'No... champion')",
+        "Post-creation activity is eight 28 May rep 'Call Attempted' tasks (Opportunity Health), i.e. rep-side outreach with no buyer response (SF Tasks)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Pain is stated but never quantified. On the 27 May 2026 qualification call Carole Wendt (Head of Global Procurement) described the core problem as disorganized master data on the analytics side, plus gaps in supplier scorecards, analytics, and eSourcing (SF AIS_Why__c). No number was attached: no cost of bad data, no procurement cycle-time, no error rate, no savings target, and no compelling event, which is consistent with her asking to pause and reassess in 2027. Without a quantified case the $100k spend has nothing to justify it to a budget owner, and status-quo inertia wins by default. The move is to build a defensible ROI hypothesis on the master-data and eSourcing pain and validate the numbers with Carole when the pause ends.",
+        "sources": ["SF AIS_Why__c (paraphrase of 27 May 2026 qualification call)", "SF Next_Step__c (26 Jun 2026)", "No value logged in Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c / Compelling_Event__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. The only mapped contact is Carole Wendt, Head of Global Procurement, tagged Decision Maker, not budget owner, and AIS_Why__c explicitly notes 'No... budget' (SF AIS_Why__c, 27 May 2026). Nothing in the call summary, activities, or free-text fields names who signs off a $100k procurement-transformation spend at Aurorium, and no finance or executive stakeholder has appeared. What the evidence does show is that budget authority sits above Carole and is unengaged, which is why she must 'discuss with stakeholders' before proceeding (SF Next_Step__c, 26 Jun 2026). The move is to have Carole name and introduce the budget owner during the reassessment conversation so the case can be built to the right person.",
+        "sources": ["SF OpportunityContactRole (Carole Wendt = Decision Maker, only contact)", "SF AIS_Why__c ('No... budget')", "SF Next_Step__c (26 Jun 2026)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria are directional, not formalized. Carole's stated needs on 27 May 2026 point to concrete evaluation dimensions: clean, well-structured master data on the analytics side, supplier scorecards, analytics, and eSourcing capable of replacing the incumbent Veruzy/Deepstream setup (SF AIS_Why__c). These map cleanly to the in-scope modules (iSource, iSupplier, iSave, iContract, iRisk). What is missing is a written requirement set, weighting, or success measures, and there has been no demo or ShoeFit to test fit against them. The move is to convert her stated needs into a short requirements checklist and confirm it before any deeper demo.",
+        "sources": ["SF AIS_Why__c (27 May 2026)", "SF Products__c (iContract;iSource;iSave;iSupplier;Merlin;iRisk)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is undefined. The single data point is procedural: Carole will 'discuss with stakeholders and get back in 3 months' (SF Next_Step__c, 26 Jun 2026), which tells us there are unnamed internal stakeholders and an internal reprioritization step tied to 2027 planning, but not who they are, what the approval chain is, or what triggers a go decision. No approval fields (Multiple_approvals__c, Purchase_approvals_Required_from__c) are populated and no procurement or evaluation timeline exists. The move is to ask Carole to map the stakeholders and the 2027 planning milestones that would gate a real evaluation.",
+        "sources": ["SF Next_Step__c (26 Jun 2026)", "No content in decision-process approval fields"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in view, which is expected at Qualified stage with the deal parked pre-evaluation. There is no MSA/SOW discussion, no procurement channel, no InfoSec activity, and Current_Contract_Expiration__c is not populated to act as a forcing function, though the incumbent Veruzy/Deepstream eSourcing tools imply a replaceable contract whose renewal date, if surfaced, could create urgency. Paper process is simply not yet relevant until the buyer re-enters an active evaluation. The move that would create visibility is to learn the incumbent contract renewal timing during re-engagement.",
+        "sources": ["SF stage = Qualified", "SF AIS_Why__c (Veruzy/Deepstream incumbents)", "No Current_Contract_Expiration__c value"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The confirmed pain is operational data quality: Carole stated on 27 May 2026 that 'the master data on the analytics side is significantly disorganized,' alongside weak supplier scorecards, limited analytics, and an eSourcing stack (Veruzy/Deepstream) she wants to replace (SF AIS_Why__c). The pain owner is Carole herself as Head of Global Procurement, but whether IT (data integration) or finance (spend visibility) share ownership is unconfirmed since neither is engaged. The inferred, unstated pain is that this inefficiency is not yet painful enough to act on, evidenced by her request to pause until 2027. The move is to raise the stakes by quantifying the cost of the disorganized data and confirming who else feels it.",
+        "sources": ["SF AIS_Why__c (27 May 2026)", "SF Next_Step__c (26 Jun 2026)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no champion. Carole Wendt is the only engaged contact and she is a passive evaluator, not an advocate: she listened, described her pain, and asked to pause and reassess in 2027, with AIS_Why__c stating plainly 'No... champion' (SF AIS_Why__c, 27 May 2026). She has not introduced Zycus to a budget owner, IT, or finance, has not shared internal criteria, and has driven the deal toward a pause rather than forward. With one single-threaded, non-advocating contact, ghost risk is high: if Carole deprioritizes during the pause, the deal has no internal owner. The move is to earn a real champion by delivering a quantified, credible value story Carole can carry internally, and to multi-thread so the deal does not rest on one passive contact.",
+        "sources": ["SF AIS_Why__c ('No... champion', 27 May 2026)", "SF OpportunityContactRole (Carole Wendt = Decision Maker, only contact)", "SF Next_Step__c (26 Jun 2026)"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The primary threat here is not a rival vendor, it is do-nothing / status quo: Aurorium chose to pause and 'reassess priorities for 2027' with Carole 'uncertain about timing for adoption' (SF AIS_Why__c, 27 May 2026), so the deal is losing to inertia. The named alternatives are the incumbent eSourcing tools Veruzy and Deepstream, which Carole wants to replace, making them displaceable incumbents rather than active rivals winning the deal. Coupa is carried from prior living memory with no fresh evidence this sweep and no logged Competitors__c entry. The wedge is to make the master-data and eSourcing pain concrete and time-bound so standing still costs more than switching; against Veruzy/Deepstream, lead with unified master data plus supplier scorecards and analytics in one suite.",
+        "sources": ["SF AIS_Why__c (27 May 2026: Veruzy/Deepstream incumbents, deal parked)", "SF Next_Step__c (26 Jun 2026)", "Prior canonical record (Coupa, no new evidence this sweep)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Momentum is negative. The only substantive movement since the 27 May 2026 qualification call is a 286-day close-date slip and an owner change; the buyer has not re-engaged, and the post-creation activity is rep-side call attempts with no reply.",
+      "items": [
+        {"change": "Close date pushed 31 Jul 2026 -> 13 May 2027 (286-day slip) by Bailey Erazo", "date": "2026-06-26"},
+        {"change": "Division reclassified Zycus -> Mid-Enterprise", "date": "2026-06-26"},
+        {"change": "Opportunity Source changed IS Research -> Webinar", "date": "2026-06-03"},
+        {"change": "Owner reassigned Rickson Castelino -> Bailey Erazo", "date": "2026-06-02"},
+        {"change": "Eight rep 'Call Attempted' Opportunity-Health tasks logged with no buyer response", "date": "2026-05-28"},
+        {"change": "Stage advanced Initial Interest -> Qualified; Type set to New Business", "date": "2026-05-27"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is do-nothing / status quo: Aurorium parked the deal on 27 May 2026 to reassess 2027 priorities, 'uncertain about timing for adoption' (AIS_Why__c). The incumbents Veruzy and Deepstream are the eSourcing tools Carole wants to replace, so they are displaceable, not winning. Coupa is carried from prior memory with no fresh 2026 evidence and no logged entry.",
+      "competitors": [
+        {"name": "Do Nothing / Status Quo", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "she is uncertain about timing for adoption... follow up towards the end of the year to reassess Aurorium's priorities for 2027", "date": "2026-05-27", "source": "SF AIS_Why__c / Next_Step__c", "how_we_win": "Quantify the cost of disorganized master data and manual eSourcing so standing still is more expensive than acting; tie to a 2027 planning milestone."},
+        {"name": "Veruzy", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "eSourcing to replace Veruzy/Deepstream", "date": "2026-05-27", "source": "SF AIS_Why__c (27 May 2026 qualification call)", "how_we_win": "Show unified master data plus supplier scorecards and analytics in one suite versus point eSourcing tools."},
+        {"name": "Deepstream", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "eSourcing to replace Veruzy/Deepstream", "date": "2026-05-27", "source": "SF AIS_Why__c (27 May 2026 qualification call)", "how_we_win": "Replace the point eSourcing tool with iSource plus iSupplier scorecards and analytics, removing the disorganized-data root cause."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": null, "date": "2026-06-26", "source": "Prior canonical record (no new evidence this sweep)", "how_we_win": "If Coupa resurfaces, lead with integrated suite plus master-data cleanup over a bolt-on stack."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Aurorium's stated needs (clean master data, supplier scorecards, analytics, and eSourcing to replace Veruzy/Deepstream) align well with the in-scope suite, but the AI story is a mismatch: Carole showed no AI interest and the only AI mention was rep-side.",
+      "items": [
+        {"criterion": "Fix disorganized analytics master data", "position": "aligned", "quote": "The master data on the analytics side is significantly disorganized.", "date": "2026-05-27", "source": "SF AIS_Why__c"},
+        {"criterion": "Supplier scorecards and analytics", "position": "aligned", "quote": "Her stated needs are data- and process-driven... supplier scorecards, analytics", "date": "2026-05-27", "source": "SF AIS_Why__c"},
+        {"criterion": "eSourcing to replace Veruzy/Deepstream", "position": "aligned", "quote": "eSourcing to replace Veruzy/Deepstream", "date": "2026-05-27", "source": "SF AIS_Why__c"},
+        {"criterion": "AI / Merlin automation appetite", "position": "exposed", "quote": "No customer-expressed AI interest on the 27-May call. The only AI reference is rep-side.", "date": "2026-05-27", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Carole to reconvene her stakeholders and return with Aurorium's 2027 priorities and timing", "who": "Buyer", "grounding_quote": "Carole to discuss with stakeholders and get back in 3 months.", "date": "2026-06-26", "due": "2026-09-01", "status": "open", "source": "SF Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "No... budget", "status": "not addressed", "date": "2026-05-27", "gap_type": "knowledge", "source": "SF AIS_Why__c"},
+        {"area": "Champion", "quote": "No... champion", "status": "not addressed", "date": "2026-05-27", "gap_type": "knowledge", "source": "SF AIS_Why__c"},
+        {"area": "Quantified value / metrics", "quote": "Her stated needs are data- and process-driven, not AI-led", "status": "not addressed", "date": "2026-05-27", "gap_type": "knowledge", "source": "SF AIS_Why__c"},
+        {"area": "Multi-threading beyond a single contact", "quote": "Carole to discuss with stakeholders and get back in 3 months.", "status": "acknowledged", "date": "2026-06-26", "gap_type": "knowledge", "source": "SF Next_Step__c / OpportunityContactRole"},
+        {"area": "Competitors not logged in Competitors__c", "quote": "eSourcing to replace Veruzy/Deepstream", "status": "acknowledged", "date": "2026-05-27", "gap_type": "hygiene", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, single-threaded deal parked by the buyer; winning it back turns on quantifying the pain, mapping power, and widening the relationship before the reassessment.",
+      "flags": [
+        "Multi-thread beyond Carole into finance and IT before the pause ends; one passive Decision Maker is the top ghost risk.",
+        "Quantify the disorganized-master-data and manual-eSourcing cost into a written ROI so status-quo inertia stops winning.",
+        "Get Carole to name and introduce the budget owner for the $100k spend; no economic buyer is identified."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Carole Wendt", "title": "Head of Global Procurement", "role": "Decision Maker", "last_contact_date": "2026-05-27", "sentiment": "Neutral, passive. Articulated real pain (disorganized master data) but requested a 3-month pause to reassess 2027 priorities and is uncertain about timing.", "risk": "Single point of contact and single point of failure. Not championing, no advocacy; if she deprioritizes during the pause the deal has no internal owner.", "source": "SF OpportunityContactRole (PRIMARY)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Carole Wendt (Decision Maker, Head of Global Procurement) is a passive evaluator who parked the deal; AIS_Why__c states plainly there is no champion. No introductions, no shared internal criteria, no competitive advocacy. High ghost risk on a single thread.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF AIS_Why__c (27 May 2026); SF OpportunityContactRole; SF Next_Step__c (26 Jun 2026)"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in the product scope but the AI narrative has not landed: the only AI reference on the 27 May call was rep-side and Carole neither probed nor reacted. AIS is 3.0 / Negative. The deal will be won on data quality, eSourcing, and supplier analytics, not an AI story.",
+      "score": "low",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 3.0 with AIS_Status__c Negative. The field is corroborated by the call: no customer-expressed AI interest, needs are data- and process-driven (master data, scorecards, analytics, eSourcing). Do not force a Merlin-led pitch here.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "No budget identified and buyer parked the deal to reassess 2027 priorities; the spend is not funded or prioritized.", "first_raised": "2026-05-27", "date": "2026-05-27", "status": "open", "source": "SF AIS_Why__c"},
+        {"category": "change_management", "detail": "Do-nothing risk: Aurorium keeps its current disorganized master data and Veruzy/Deepstream eSourcing rather than switching; a no-decision, not a loss to a rival.", "first_raised": "2026-05-27", "date": "2026-06-26", "status": "open", "source": "SF AIS_Why__c / Next_Step__c"},
+        {"category": "political", "detail": "Single-threaded to one passive Decision Maker with no economic buyer or champion mapped; the deal rests entirely on Carole.", "first_raised": "2026-05-27", "date": "2026-05-27", "status": "open", "source": "SF OpportunityContactRole / AIS_Why__c"},
+        {"category": "executive_alignment", "detail": "No executive or budget owner engaged; a $100k transformation spend has no sponsor above procurement.", "first_raised": "2026-05-27", "date": "2026-05-27", "status": "open", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cold. Last genuine two-way buyer exchange was the 27 May 2026 qualification call; everything since is rep-side (28 May call attempts, a 26 Jun close-date push). Buyer explicitly requested a 3-month pause.",
+      "cooling": true,
+      "items": [
+        "Buyer-requested 3-month pause (Next_Step__c, 26 Jun 2026)",
+        "Close date pushed 286 days (26 Jun 2026)",
+        "Eight rep call attempts on 28 May 2026 with no buyer reply",
+        "AIS Negative; no POC, budget, or champion (AIS_Why__c)"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Build a quantified ROI on Aurorium's disorganized master data and manual eSourcing.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Pain stated but never quantified; no compelling case to beat status quo.", "trigger_date": "2026-05-27", "act_by": "2026-07-15", "expected_effect": "Creates the urgency and value story needed to reopen the evaluation before the reassessment."},
+        {"rank": 2, "action": "Ask Carole to name and introduce the budget owner and one IT or finance stakeholder.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Single-threaded to one passive DM; no EB and no champion identified.", "trigger_date": "2026-05-27", "act_by": "2026-07-20", "expected_effect": "Maps power and widens the relationship so the deal no longer rests on one contact."},
+        {"rank": 3, "action": "Send Carole a chemical or pharma manufacturing proof point on replacing point eSourcing tools.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Incumbent Veruzy/Deepstream eSourcing named as replaceable; deal parked.", "trigger_date": "2026-05-27", "act_by": "2026-08-05", "expected_effect": "Keeps Zycus warm through the pause and frames the switch as low-risk and proven."},
+        {"rank": 4, "action": "Book the late-August reassessment check-in now, tied to Aurorium's 2027 planning.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer committed to revisit in 3 months (get back end of year to reassess 2027 priorities).", "trigger_date": "2026-06-26", "act_by": "2026-08-25", "expected_effect": "Converts the vague 'get back in 3 months' into a dated forcing event that restarts momentum."}
+      ]
+    },
+    "customer_preference": {"level": "none", "evidence": "No preference expressed; Carole asked to pause and reassess 2027 priorities, uncertain about timing (AIS_Why__c, 27 May 2026)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only (disorganized master data, weak scorecards/analytics); no cost, savings, or ROI quantified (AIS_Why__c, 27 May 2026)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Product scope (iContract;iSource;iSave;iSupplier;Merlin;iRisk) unchanged since creation; no narrowing observed. The 26 Jun change was a close-date slip and division reclassification, not a scope reduction."}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities 120d; field history to 26 Jun 2026; contact roles; Q1/Q2/Q3 fields",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls found or transcribed for this opportunity or account this sweep; the only call evidence is the paraphrased 27 May 2026 qualification summary in AIS_Why__c.",
+      "No economic buyer or budget owner named in any source.",
+      "No champion identified.",
+      "Prior-record stakeholders (Kelly Kowatsch, James Ziegelmeyer, Anne Frye) are unsourced (not in contact roles, activities, or any read this sweep) and were dropped as unverifiable."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

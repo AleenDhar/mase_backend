@@ -1,0 +1,77 @@
+{
+  "account":"SGD Pharma","opp_id":"006P700000KlsBE",
+  "extract":{
+    "signals":[
+      {"type":"buyer_postponement","who":"buyer","date":"2026-02-27","evidence":"Bihag on Avoma validation call: 'I have to postpone my project for a while' — shared frozen IT roadmap, no new date","confidence":"high"},
+      {"type":"budget_withdrawn","who":"buyer_process","date":"2026-04-14","evidence":"Next_Step: 'No budget for S2P in 26 ... SGD to be sold this year or 27 by PAI Partners'; confidence dropped to 10%","confidence":"high"},
+      {"type":"competitor_won_module","who":"buyer","date":"2026-02-06","evidence":"CLM awarded to unnamed niche vendor on price/AI fit; Bihag 29 Jan: 'with the gap of price today ... it's not gonna be you'","confidence":"high"},
+      {"type":"buyer_email_reply_deferral","who":"buyer","date":"2026-05-27","evidence":"Bihag: 'I would like to wait for the decision in this year budget. Let's keep in touch.'","confidence":"high"},
+      {"type":"one_way_outreach","who":"rep","date":"2026-07-01","evidence":"Pierre: 'check whether we could restart our discussions in September or October' — no reply logged","confidence":"high"},
+      {"type":"forecast_downgrade","who":"internal","date":"2026-04-14","evidence":"ForecastCategory Best Case->Pipeline; CloseDate 2026-06-24->2027-03-17 (placeholder); amount earlier cut 190k->150k","confidence":"high"},
+      {"type":"champion_intact_blocked","who":"buyer","date":"2026-06-15","evidence":"Next_Step: 'Ask Bihag if he will ask for approval of this project again in September' — champion engaged but blocked by budget/PE","confidence":"high"}
+    ],
+    "coverage":"full",
+    "top_rationale":[
+      "The S2P project has been on indefinite hold since the 27 Feb 2026 validation call, where Bihag Shah postponed and showed SGD's frozen IT roadmap with no new date.",
+      "FY26 budget was withdrawn (14 Apr) after the Contract Management rollout ran late and because PE owner PAI Partners may sell SGD; forecast was cut to Pipeline and close pushed to a Mar-2027 placeholder.",
+      "Zycus lost the CLM module to an unnamed niche vendor (Feb 2026) on price plus a marginally better AI/integration fit, per Bihag's own account on the 29 Jan negotiation call.",
+      "Champion Bihag Shah is still engaged (replied 27 May, 'let's keep in touch, waiting on this year's budget') and plans to re-request FY27 budget in September, but no dated commitment exists.",
+      "No buyer meeting in ~4.5 months; recent cadence is rep-initiated (22 May, 1 Jul) drawing only polite deferrals; there is no scheduled future milestone anywhere.",
+      "Deep technical/legal validation (SAP + Salesforce integration, DR/security, on-site workshops) was completed in Jan 2026 — the solution is de-risked, but nothing advances until budget authority returns."
+    ]
+  },
+  "win":{
+    "score":33,
+    "band":"Behind/early",
+    "drivers":[
+      "⚠️ Project postponed indefinitely since 27 Feb 2026; FY26 budget withdrawn, no confirmed FY27 date, ~132d since the last buyer meeting. ► Get Bihag to commit a dated September FY27 budget-review checkpoint and a joint calendar hold.",
+      "⚠️ 'Vendor Selected' but no S2P award and no paper — MSA/OF/SOW were drafted in late Jan then never executed. ► Correct the system of record and rebuild the paper path the moment budget clears.",
+      "⚠️ CLM module lost to a niche vendor on price + AI/integration fit (Feb 2026); Legal (Valérie) sponsors the rival. ► Reposition the surviving S2P scope (sourcing, eProc, supplier onboarding, iRisk, Merlin) as a purchasing-led award insulated from Legal's CLM choice.",
+      "⚠️ Forecast cut Best Case→Pipeline, amount 190k→150k, close pushed ~9 months; PE owner PAI Partners may sell SGD — an existential freeze risk. ► Map the PAI sale timeline and identify who controls capex during the LBO.",
+      "✅ Bihag Shah is a proven champion who fought internally to keep Zycus in the full-suite race and kept us informed through the freeze rather than going dark.",
+      "✅ Deep multi-threaded technical and legal validation completed (SAP on-prem + Salesforce integration, DR/RTO-RPO, security, workshops) — solution risk is largely retired for a restart."
+    ],
+    "focus_now":"Convert Bihag's vague September re-ask into a dated, budgeted FY27 checkpoint and establish whether the PAI Partners sale freezes or funds S2P — nothing advances until budget authority is clear.",
+    "ceiling_applied":"§5.5 stage-reality STALL override — capped DOWN from the Vendor Selected anchor (72) to the deal's true stalled/unawarded state; §5.2 forecast-conviction ceiling (Pipeline → ≤80) also binds.",
+    "exception_statement":"Recorded 'Vendor Selected' (anchor 72) OVER-positions this deal: there is no buyer-voiced S2P award, no MSA/OF/SOW executed, the CLM module was lost to a niche rival (Feb 2026), the project has been postponed indefinitely since the 27 Feb 2026 validation call (~132d dark), forecast was cut to Pipeline, amount reduced and close pushed ~9 months, and the PE owner (PAI Partners) may sell SGD. Scored against the true state — a stalled, unawarded deal held up only by an intact champion and completed validation — not the recorded stage. ► Seller nudge: move the stage back / correct the forecast + close in Salesforce so the record reflects the freeze."
+  },
+  "mom":{
+    "score":14,
+    "band":"Slowing/stalled",
+    "drivers":[
+      "✅ Champion intact and slowdown explained: Bihag replied 27 May ('let's keep in touch, waiting on this year's budget') and plans a September FY27 re-ask — this is a budget freeze, not a ghosting.",
+      "⚠️ No buyer meeting since the 27 Feb validation call (~4.5 months) and no genuine deal advance since. ► Lock a September FY27 budget-review session with Bihag now to create the next dated milestone.",
+      "⚠️ No dated future milestone or scheduled session anywhere on the calendar. ► Convert the vague 'September re-ask' into a specific dated checkpoint with Bihag + Fiona.",
+      "⚠️ Forecast cut Best Case→Pipeline and close pushed ~9 months to a Mar-2027 placeholder. ► Set an honest close tied to the FY27 budget cycle rather than a placeholder.",
+      "⚠️ Recent cadence is entirely rep-initiated (22 May invite, 1 Jul summer note) drawing only deferrals. ► Give Bihag a concrete reason to re-engage before September (ROI refresh, French reference, PAI-focused case).",
+      "⚠️ PE owner PAI Partners may sell SGD, which could freeze all capex. ► Diagnose the sale timeline and its impact on S2P funding."
+    ],
+    "focus_now":"Turn Bihag's September re-ask into a firm, dated FY27 budget checkpoint — that single scheduled milestone is what restarts momentum."
+  },
+  "todo":{
+    "prospect_requirements":[
+      {"item":"Confirm with Bihag the September FY27 budget re-approval timing he asked us to re-check, and whether the PAI Partners sale changes it","who_asked":"Bihag Shah","date":"2026-05-27","due":"2026-09-01"},
+      {"item":"Hold ready the dual pricing (full S2P-suite vs CLM-only) as a 3-year fixed-price with progressive user activation, per Bihag/Fiona's asks, for the budget restart","who_asked":"Bihag Shah / Fiona Zhou","date":"2026-01-29","due":"2026-09-07"}
+    ],
+    "zycus_commitments":[
+      {"item":"Re-open discussions with Bihag in September/October as Pierre committed in the pre-summer note","committed_on":"2026-07-01","grounding_quote":"I also wanted to check whether you think we could restart our discussions in September or October.","due":"2026-09-01"}
+    ],
+    "waiting_on_buyer":[
+      {"item":"FY27 budget approval for S2P (the gating dependency) from the CFO and PE owner","who":"Philippe Pourquéry (CFO) / PAI Partners","needed_by":"2026-09-15"},
+      {"item":"Bihag to confirm whether the PAI Partners sale of SGD proceeds and its impact on the S2P project","who":"Bihag Shah","needed_by":"2026-09-01"}
+    ],
+    "best_practices":[
+      {"item":"Reposition the surviving S2P scope (sourcing, eProc, supplier onboarding, iRisk, Merlin Intake) as a purchasing-led award insulated from Legal's CLM decision — rebuild the differentiation/credibility case vs the incumbent CLM rival","rank_reason":"Buyer doubt about Zycus vs competition (Legal chose a rival on AI/integration/price) — highest precedence, an active deal-killer","due":"2026-08-15"},
+      {"item":"Multi-thread beyond the blocked champion: re-engage CFO Philippe (EB) and identify/map the PAI Partners capex decision-maker","rank_reason":"Single-threaded on a champion who is currently powerless; EB disengaged since Jan 2026 on a frozen deal","due":"2026-08-30"},
+      {"item":"Refresh a quantified, buyer-owned business case (ROI) tied to FY27 budget justification to arm Bihag for the September re-ask","rank_reason":"MEDDPICC metrics gap — pain is documented but never converted to a buyer-owned dollar figure","due":"2026-09-01"},
+      {"item":"Run a keep-warm reference cadence (French customer on iContract with SFDC connector) to sustain credibility through the freeze","rank_reason":"Sustain preference during dormancy so Zycus stays front-runner when budget returns","due":"2026-08-15"}
+    ],
+    "suggested_realistic_close":null
+  },
+  "sum":{
+    "headline":"No change in the last 24h.",
+    "supporting":[],
+    "no_change":true,
+    "as_of_note":"Deal on indefinite hold since the 27 Feb 2026 postponement; Pierre's 1 Jul 'before summer break' note to Bihag (restart in Sep/Oct?) is still awaiting a reply — a rep-only email into silence, not a change."
+  }
+}

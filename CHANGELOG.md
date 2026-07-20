@@ -11,6 +11,50 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-20 — Follow-up: a DEAD deal is a scored deal (regression fix) + no carrying a degraded prior
+
+**What.** Two fixes to the Omnivision-only scoring change shipped earlier today
+(`deal_engine_sweep.py`), plus what the first re-run actually showed.
+
+1. **REGRESSION FIX — `dead` headlines are valid, not failures.** The new "did we score it?"
+   gate keyed on `headline.win_position is not None`. But the deterministic dead/loss override
+   returns `win_position=None` **with `dead=True`** (a terminal deal has no win odds), and
+   `score_deal_ai` returns that verbatim **without ever calling the LLM**. So every
+   `Qualified Out` / `No Decision` / `Omitted` deal was flagged `SCORING FAILED` and had its
+   `dead` marker blanked — 42 deals in the first re-run. The gate is now
+   `win_position is not None OR dead is True` (helper `_hl_ok`), applied to the scoring gate
+   and to the husk-floor's `_fin_ok`.
+   *No UI impact from the blanking:* `isDeadDeal` also matches on Salesforce stage
+   (`DEAD_STAGES` includes "qualified out"/"no decision"/"omitted"), so those deals stayed
+   hidden. The flag matters for the case it exists for — a loss DETECTED from a call/email
+   while SF still shows the deal live — which is why this had to be fixed.
+2. **A degraded prior is no longer a carryable "good" prior.** `_prior_ok` now excludes a prior
+   whose `scoring_degraded` is true or whose `factor_source != "ai"`. Carrying a hybrid score
+   forward re-stamped the degraded read every sweep, so the deal never left `hybrid` and never
+   surfaced as needing a re-sweep.
+3. **The husk-floor no longer papers over a real AI failure.** When `scoring_failed` is set it is
+   SKIPPED (logs `husk-floor SKIPPED … persisting UNSCORED`). It still runs for its original
+   case — a husk with no AI failure recorded. Verified safe: with a null headline the drawer
+   renders "No scores computed for this deal yet." and nothing in the frontend defaults a score
+   to a number (checked `DealScores.tsx`; `DealsStats` line 353's 85/62/40 is a separate
+   analysis_confidence rollup, not a win score).
+
+**Why the first re-run looked bad.** Of 78 deals re-run: **31 live deals got genuine AI scores**,
+**42 were never live** (terminal — my "live" filter only excluded closed/lost/won, missing
+Qualified Out / No Decision / Omitted), **5 live stayed hybrid**, **0 live failures**. The 42
+"failures" were entirely the regression above, not scoring problems. Of the original 78, only 2
+were the token-truncation mode (`no usable scores`); 40 were `no usable headline` = dead deals.
+
+**How to work with it going forward.**
+- When selecting "live" deals, exclude `qualified out`, `no decision` and forecast `omitted` —
+  not just closed/lost/won. Mirror `DEAD_STAGES` in `frontend/lib/engine/helpers.ts`.
+- `headline.dead is True` with `win_position=None` is a COMPLETE score. Never treat a missing
+  `win_position` alone as a scoring failure.
+- Dead deals cost nothing to re-score (`score_deal_ai` returns before the LLM call), so their
+  records can be repaired with a local deterministic recompute rather than a paid sweep.
+
+---
+
 ## 2026-07-20 — Omnivision-only scoring: no more keyword fallback + fix the truncation that caused it
 
 **What.**

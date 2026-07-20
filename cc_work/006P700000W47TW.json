@@ -1,0 +1,260 @@
+{
+  "opp_id": "006P700000W47TW",
+  "hard": {
+    "opp_id": "006P700000W47TW",
+    "opp_name": "DirectTravel_CLM+Invoice_March26",
+    "account_name": "DIRECT TRAVEL INC.",
+    "account_industry": "Business Services",
+    "billing_country": "United States",
+    "owner_name": "Michael McCarthy",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2026-10-31",
+    "days_to_close": null,
+    "created_date": "2026-03-31",
+    "qualified_date": "2026-04-01",
+    "last_activity_date": "2026-07-01",
+    "last_modified_date": null,
+    "products": "iContract;eInvoicing;Merlin",
+    "next_step": "Zycus to review use case internally with solution consultants Zycus to revert with tailored solution approach Prospect to gather insights on sourcing processes Invite prospect to attend upcoming Zycus Chicago roadshow Loop in SE for a discovery call",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "Direct Travel's intro centered on contract renewal reminders, missed-payment risk and Salesforce integration - classic CLM and AP pain with no AI vocabulary from the prospect. Zycus probed for Teams/Slack collaboration and AI use cases but received no engagement on Merlin, ANA or autonomous negotiation themes. Single 24-minute discovery, post-ATPI acquisition chaos, sparse evidence supports Resistant.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Do-Nothing / Status Quo",
+    "primary_competitor": "Do-Nothing / Status Quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000W47TW/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Cold since the 31 Mar discovery call: the only buyer contact, Michael Kell, told us procurement is barely his role and Direct Travel has not replied to any outreach in 97 days. Trajectory has WEAKENED versus the prior On Track read, which mistook rep-side Nooks dials for buyer engagement. The single blocker most likely to prevent close is that there is no engaged buyer and no economic sponsor to advance the deal.",
+      "math": "117 days to close (close 31 Oct 2026), created 31 Mar 2026. Stage still Qualified. The last genuine two-way buyer exchange was the 24-minute discovery call on 31 Mar 2026, so the deal has been silent for ~97 days. LastActivityDate 01 Jul 2026 is a rep-initiated Nooks dial to Salote Havili that could not connect, not buyer engagement; a 22 Jun Nooks dial to Guylaine Cliche also could not connect. No stage movement since Qualified on 01 Apr. Cold for 60+ days with no buyer-facing deliverable executed forces Off Track regardless of the 31 Oct date still being nominally reachable.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Only one real buyer interaction exists: the 31 Mar 2026 discovery call. Every touch since (roadshow email 03 Apr, shared space 07 Apr, Nooks dials 22 Jun and 01 Jul) is rep-initiated outbound with no buyer reply.",
+        "Two Nooks dials could not connect: Guylaine Cliche (22 Jun) and Salote Havili (01 Jul), confirming the account has gone quiet rather than newly engaged.",
+        "Michael Kell said on 31 Mar 'very little of my role is involved directly in procurement' and framed his interest as narrow (~10 technology partners), signaling low authority and a small, non-core use case.",
+        "No economic buyer, decision maker, or exec sponsor is engaged; the finance/CFO org Kell referenced was never introduced.",
+        "AIS is Negative (3.0): Kell centered on CLM reminders and invoicing and ignored every Teams/Slack and Merlin/AI probe.",
+        "The tailored solution approach and SE discovery call McCarthy promised on 31 Mar were never delivered, which likely drove the silence."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Michael Kell articulated real but unquantified pain on the 31 Mar 2026 discovery call: a decentralized post-acquisition environment (he cited ~37 acquisitions in 8 years and the ATPI deal adding ~100 offices) where partner upsell invoicing is done in email by account managers with no system of record. He said plainly 'we're at risk getting missed payments, double payments' and described carrying open liabilities to partners while customers sit on invoices for 90-120 days. No dollar figures, error rates, or cycle-time baselines were given, and Kell noted the process moved under his oversight only 2-3 months ago so historical impact is not compiled. Quantifying the cost of payment errors and the invoice-cycle gap is the move that would turn this into a fundable business case.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell (buyer)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged, and this is the deal's central weakness at this early stage. On 31 Mar Kell referenced a finance leadership chain (a CFO who had been in his reporting line, an EVP of supplier relations, and a senior leader who has since moved to run the ATPI acquisition), but he named no one we can verify in Salesforce and made no introduction. There is no OpportunityContactRole for an Economic Buyer or Executive Sponsor and no budget-authority field populated. The evidence shows budget for AP/invoicing automation would sit in the finance org, not with Kell, who said procurement is 'very little of my role.' Identifying and reaching the finance leader who owns the AP/invoicing budget is the gating move before any commercial conversation.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell", "Salesforce OpportunityContactRole (no EB/Exec Sponsor role present)"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria have been established. The 31 Mar call was a single high-level overview in which McCarthy walked the source-to-pay wheel and Kell reacted with interest to contract management and eInvoicing, but no requirement list, scorecard, RFP, or use-case set was defined. The one concrete capability Kell probed was Salesforce integration ('do you have a Salesforce integration?') to record quotes and amendments back to opportunities, which is the closest thing to a stated criterion. Everything else is undefined because the buyer has not run a structured evaluation. Criteria will only firm up once an SE-led discovery validates the CLM + invoicing + Salesforce-integration scope with the right stakeholders.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no visible decision process. Only one buyer, Michael Kell, has ever engaged, and he described a fluid, decentralized org still reorganizing after the ATPI acquisition where 'I'm not even quite sure where all those responsibilities set in the company today.' No approval chain, evaluation timeline, or buying committee has been surfaced, and Kell himself pointed to marketing, operations, IT and finance as the parties who actually do procurement, none of whom are engaged. Reading the call sequence, the process has not started: after the 31 Mar discovery the buyer went silent through every follow-up. Mapping who owns the decision and getting a next step on the calendar is prerequisite to any process at all.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Paper process is not in view and would be premature at Qualified. No contract-expiration forcing function exists (Current_Contract_Expiration__c is not populated and the pain is greenfield, not a renewal), and there is no procurement channel, legal contact, InfoSec requirement, or partner/SI involvement on record. As a single-module-adjacent new-business deal (iContract + eInvoicing) this would eventually be an Order Form plus SOW motion rather than a full-suite MSA, but nothing about contracting has been discussed. Visibility will only come once a real evaluation and an economic buyer exist.",
+        "sources": ["Salesforce Q2 fields (Current_Contract_Expiration__c empty)", "Avoma discovery call 31 Mar 2026"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is genuine and clearly owned by Michael Kell. On 31 Mar he described inheriting a manual partner-upsell lifecycle where amendments were sometimes taken verbally, quotes were done in email by a pricing team, and invoices were sent reactively by account managers, creating exposure: 'meanwhile, we have an open liability to the partner' and 'you're at risk getting missed payments, double payments.' He wants automated contract renewal reminders (90-day notice windows), a system to record quotes and capture customer amendments, and proactive invoicing before the partner invoice lands, all recorded back into Salesforce. The pain is confirmed and specific, but narrow: it sits with Kell's ~10-partner portfolio rather than an enterprise procurement mandate.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell (buyer)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Michael Kell is the only engaged contact and functions as a weak, at-risk champion. On the positive side he articulated detailed pain and a clear use case and was open to consulting IT and attending the Chicago roadshow. But his advocacy is unproven and his power is low by his own admission ('very little of my role is involved directly in procurement'), he made no introduction to finance or IT, and his commitments were passive ('let me think on it', 'I'll look at my calendar'). Critically, he has gone silent since 31 Mar and has not responded to any follow-up, so what looked developing has cooled. Converting his articulated pain into a written business case and asking him to open the finance/IT door is required before he can be a real champion.",
+        "sources": ["Avoma discovery call 31 Mar 2026, Michael Kell", "Salesforce activities: no buyer reply since 31 Mar; Nooks dials 22 Jun and 01 Jul could not connect"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No named vendor competitor has surfaced in any source: Competitors__c is empty and the 31 Mar call named no rival. The real alternative is do-nothing / status quo inertia, which is strong here because procurement ownership is fragmented after the ATPI acquisition and Kell's use case is small and non-core. Notably, Zycus's own VP flagged a fit gap on the call, saying the platform 'tends to be suited for thousands of suppliers' while Kell manages tens, which makes status-quo the likeliest outcome absent a broader enterprise mandate. Direct Travel is also reengineering Salesforce with a new team, so a Salesforce-native CLM or AP alternative could emerge later, but none was named and it must not be assumed. The wedge is to quantify the liability/payment-error cost and tie automation to the finance leadership's post-acquisition centralization push.",
+        "sources": ["Avoma discovery call 31 Mar 2026", "Salesforce Competitors__c (empty)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal has not moved since day one. The 31 Mar 2026 discovery call is the only genuine buyer interaction; all subsequent activity is rep-initiated outbound with no buyer response, so the pulse is dark.",
+      "items": [
+        {"change": "24-minute discovery call with Michael Kell surfaced CLM + eInvoicing pain and a Salesforce-integration ask", "date": "2026-03-31"},
+        {"change": "Angela DSouza set stage Qualified, trued up Amount 120000->100000, and pulled CloseDate 2027-03-31->2026-10-31", "date": "2026-04-01"},
+        {"change": "Chicago roadshow invitation emailed to Michael Kell (no acceptance on record)", "date": "2026-04-03"},
+        {"change": "'Zycus Procurement Overview' shared space created for mkell@dt.com (no engagement logged)", "date": "2026-04-07"},
+        {"change": "Nooks dial to Guylaine Cliche - could not connect", "date": "2026-06-22"},
+        {"change": "Nooks dial to Salote Havili - could not connect", "date": "2026-07-01"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "There is no named vendor competitor in any source; the single strongest current threat is do-nothing / status-quo inertia, dated to the 31 Mar 2026 call. It is strong because Direct Travel's procurement ownership is fragmented after the ATPI acquisition, Kell's use case is narrow (~10 partners), and Zycus's own VP acknowledged the platform is 'suited for thousands of suppliers' rather than tens, making no-decision the default. The new Salesforce team could eventually bring a Salesforce-native CLM/AP alternative into play, but no such vendor has been named and none is assumed. We win only by quantifying the cost of manual payment errors and attaching automation to the finance org's centralization agenda.",
+      "competitors": [
+        {
+          "name": "Do-Nothing / Status Quo",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "Very little of my role is involved directly in procurement. It was all offline. There were too many gaps in that process.",
+          "date": "2026-03-31",
+          "source": "Avoma discovery call 31 Mar 2026, Michael Kell",
+          "how_we_win": "Quantify the liability and missed/double-payment cost of the manual invoicing process and position CLM + eInvoicing + Salesforce integration as the forcing function to centralize under the post-acquisition finance leadership; without a quantified case the buyer keeps managing it manually and never signs."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "The functional fit for the stated pain is reasonable (Zycus iContract covers renewal reminders and amendment capture; eInvoicing and AP Smartdesk cover proactive invoicing and exception flagging), but the scale and scope fit is exposed and the Salesforce-integration expectation is unvalidated.",
+      "items": [
+        {"criterion": "Automated contract renewal reminders and amendment capture", "position": "aligned", "quote": "as simple as being able to send out reminders when those contracts are coming up for renewal", "date": "2026-03-31", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"},
+        {"criterion": "Proactive invoicing before the partner invoice arrives, with exception flagging", "position": "aligned", "quote": "I would prefer that invoice to be sent prior to us getting the invoice from the partner", "date": "2026-03-31", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"},
+        {"criterion": "Salesforce integration to record quotes/amendments back to opportunities", "position": "partially aligned", "quote": "do you have a Salesforce integration? Recording back into our Salesforce what that price was", "date": "2026-03-31", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"},
+        {"criterion": "Scale/scope fit for the use case", "position": "exposed", "quote": "it tends to be suited for thousands of suppliers ... I'm sure you can manage your partners pretty well", "date": "2026-03-31", "source": "Avoma discovery call 31 Mar 2026, Michael McCarthy (Zycus)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Confirm Salesforce integration for CLM and invoicing back to opportunity records", "said_by": "Michael Kell", "date": "2026-03-31", "addressed": false, "quote": "do you have a Salesforce integration? ... Recording back into our Salesforce what that price was", "source": "Avoma discovery call 31 Mar 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "very little of my role is involved directly in procurement", "status": "not addressed", "date": "2026-03-31", "gap_type": "knowledge", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"},
+        {"area": "Buyer engagement since discovery", "quote": "Nooks dials to Guylaine Cliche (22 Jun) and Salote Havili (01 Jul) could not connect; no buyer reply since 31 Mar", "status": "not addressed", "date": "2026-07-01", "gap_type": "knowledge", "source": "Salesforce activities"},
+        {"area": "Competitive landscape / any Salesforce-native alternative", "quote": "no vendor named on the 31 Mar call and Competitors__c empty", "status": "acknowledged", "date": "2026-03-31", "gap_type": "knowledge", "source": "Avoma discovery call 31 Mar 2026; Salesforce Competitors__c"},
+        {"area": "Quantified business case (payment-error cost, cycle time, ROI)", "quote": "we're at risk getting missed payments, double payments", "status": "not addressed", "date": "2026-03-31", "gap_type": "knowledge", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is single-threaded on a low-authority, now-silent contact and needs to break into finance/IT power and honestly re-qualify fit before any further investment.",
+      "flags": [
+        "Multi-thread beyond Michael Kell: he said procurement isn't his remit, so reach the finance leader who owns AP/invoicing and the IT/Salesforce team, or the deal cannot advance.",
+        "Map and engage an economic buyer: no budget owner is identified, so identifying the finance sponsor is the gating step before commercials.",
+        "Re-qualify fit and mandate: Zycus's own VP flagged a scale mismatch (thousands of suppliers vs ~10 partners); confirm there is an enterprise procurement mandate or disqualify honestly."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Michael Kell", "title": "Partner Engagement lead (self-described; manages ~10 technology partners)", "role": "Champion", "last_contact_date": "2026-03-31", "sentiment": "positive", "risk": "Weak, at-risk champion: engaged and articulate on 31 Mar but explicitly low-authority ('very little of my role is involved directly in procurement'), made no intro to finance/IT, and has gone silent since. If he does not open the door to a budget owner, the deal stays single-threaded and dead.", "source": "Avoma discovery call 31 Mar 2026; shared space mkell@dt.com 07 Apr; roadshow email 03 Apr"},
+        {"name": "Guylaine Cliche", "title": "", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown", "risk": "Outbound target only: a 22 Jun Nooks dial could not connect and she has never engaged. Potential multi-thread into sourcing/operations but relationship is zero.", "source": "Salesforce task 22 Jun 2026 (Nooks - Could Not Connect)"},
+        {"name": "Salote Havili", "title": "", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown", "risk": "Outbound target only: a 01 Jul Nooks dial could not connect and she has never engaged. Included in the Angela Event sequence but no two-way contact exists.", "source": "Salesforce task 01 Jul 2026 (Nooks - Could Not Connect)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Michael Kell is a weak, at-risk champion. He is the only person who has ever engaged and he described the pain well on 31 Mar, but he is low-authority by his own words, has made no introductions to finance or IT, gave only passive commitments, and has not responded to any follow-up in ~97 days. Rebuilding him requires converting his pain into a written business case and getting him to open the finance/IT door; otherwise the deal has no internal advocate.",
+      "champion": "Michael Kell",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Avoma discovery call 31 Mar 2026; Salesforce activities (no buyer reply since 31 Mar)"
+    },
+    "ai_positioning_strength": {
+      "summary": "The Merlin/AI story did not land: on 31 Mar McCarthy surfaced AI-based supplier risk, Insta reviews, autonomous negotiation and Teams-based intake, but Kell engaged on none of it and stayed entirely on CLM reminders and invoicing mechanics. This is genuine AI resistance, not a mispositioning we can simply re-pitch.",
+      "score": "low",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 3.0 / Status Negative, corroborated by the call: the buyer used no AI vocabulary and ignored every Merlin, autonomous-negotiation and Teams-intake probe, focusing solely on contract reminders and invoicing automation. The AI narrative is not a wedge here.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer, decision maker, or exec sponsor engaged; single-threaded on one low-authority contact.", "first_raised": "2026-03-31", "date": "2026-03-31", "status": "open", "source": "Avoma discovery call 31 Mar 2026; Salesforce OpportunityContactRole"},
+        {"category": "timeline", "detail": "Cold ~97 days since the only discovery call; no buyer reply to any outreach, making the 31 Oct close date unrealistic without a revival.", "first_raised": "2026-07-01", "date": "2026-07-01", "status": "open", "source": "Salesforce activities (Nooks dials could not connect)"},
+        {"category": "other", "detail": "Product-scale fit risk: Zycus is built for thousands of suppliers while Kell's use case covers ~10 partners; needs an enterprise mandate to be viable.", "first_raised": "2026-03-31", "date": "2026-03-31", "status": "open", "source": "Avoma discovery call 31 Mar 2026, Michael McCarthy (Zycus)"},
+        {"category": "change_management", "detail": "Post-ATPI acquisition, procurement ownership is decentralized and unclear ('not even quite sure where all those responsibilities set'), so no one owns the decision.", "first_raised": "2026-03-31", "date": "2026-03-31", "status": "open", "source": "Avoma discovery call 31 Mar 2026, Michael Kell"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: one 24-minute call three months ago and no buyer response since, across two failed dials and unanswered emails/shared space.",
+      "cooling": true,
+      "items": [
+        "No buyer reply since 31 Mar 2026 (97 days).",
+        "Two Nooks dials could not connect (22 Jun, 01 Jul).",
+        "Roadshow invite and shared space produced no logged engagement."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Michael McCarthy personally emails Michael Kell to revive, recapping the invoicing use case and offering the SE discovery call.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Owner-promised tailored approach and SE call from 31 Mar never delivered; buyer silent since.", "trigger_date": "2026-03-31", "act_by": "2026-07-13", "expected_effect": "Reopens the one warm relationship and tests whether a real deal still exists before more BDR dials."},
+        {"rank": 2, "action": "Ask Kell to introduce the finance leader who owns AP/invoicing budget and the Salesforce/IT team.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Kell said procurement is 'very little of my role'; no economic buyer is engaged.", "trigger_date": "2026-03-31", "act_by": "2026-07-20", "expected_effect": "Breaks single-threading and puts a budget owner in the room, without which the deal cannot progress past Qualified."},
+        {"rank": 3, "action": "Re-qualify fit and mandate; confirm an enterprise procurement need or move the deal to nurture/disqualify.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Zycus VP flagged scale mismatch (thousands of suppliers vs ~10 partners); Negative AIS.", "trigger_date": "2026-03-31", "act_by": "2026-08-04", "expected_effect": "Prevents wasted cycles on a poor-fit, cold deal and either surfaces a real enterprise scope or honestly clears the pipeline."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A cold, early-stage $100k deal resting on one mid-level influencer who says procurement isn't his job; no economic buyer, no named competitor, and no buyer reply since the 31 Mar discovery call, so the real contest is against do-nothing inertia and a questionable product-scale fit.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This is an early, cold, single-threaded deal: the only buyer contact, Michael Kell, said on 31 Mar 'very little of my role is involved directly in procurement' and no one at Direct Travel has replied to any outreach in 97 days."},
+          {"tone": "warn", "text": "No economic buyer is engaged; Kell pointed to a finance/CFO org reshuffled by the ATPI acquisition but never introduced anyone (Avoma, 31 Mar)."},
+          {"tone": "warn", "text": "Fit is unproven: McCarthy himself said Zycus 'tends to be suited for thousands of suppliers' while Kell manages only ~10 partners (Avoma, 31 Mar)."},
+          {"tone": "good", "text": "There is genuine, specific pain: Kell described partner-liability exposure and 'missed payments, double payments' from a manual, decentralized invoicing process (Avoma, 31 Mar)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum has stalled: the last real two-way conversation was the 31 Mar discovery call, and Nooks dials to Guylaine Cliche (22 Jun) and Salote Havili (01 Jul) could not connect."},
+          {"tone": "warn", "text": "The tailored solution approach and SE discovery call McCarthy promised on 31 Mar were never delivered, and the buyer has since gone silent."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is weak: Kell offered only 'let me think on it' and 'I'll look at my calendar' about the roadshow, with no next meeting booked (Avoma, 31 Mar)."},
+          {"tone": "warn", "text": "No concrete dates, no Zycus-specific asks, and no proposal request; this remains a single high-level overview."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Cold for over 90 days with a Negative AIS (3.0) and no AI appetite: Kell ignored every Merlin/AI and Teams-intake probe on 31 Mar."},
+          {"tone": "warn", "text": "The primary threat is do-nothing/status-quo inertia in a post-acquisition, decentralized org where procurement ownership is admittedly unclear (Avoma, 31 Mar)."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "No buyer reply in 97 days; two failed Nooks dials; promised follow-ups never delivered."},
+        "customer_commitment": {"strength": -0.7, "evidence": "Only 'let me think on it'; no next meeting, no dates, no Zycus-specific asks."},
+        "deal_risk": {"strength": -0.8, "evidence": "Cold 90+ days, Negative AIS, unclear procurement ownership, scale-fit mismatch."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Buyer only 'let me think on it', requested no Zycus-specific next step, and went silent; no favourable comparison or lean."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only (liability exposure, missed/double payments); no dollar figures, cycle times, or ROI quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "iContract;eInvoicing;Merlin (~$120k)", "to": "iContract;eInvoicing;Merlin ($100k)", "detail": "Amount was trued up 120000->100000 by Angela DSouza on 01 Apr as part of creation-day data cleanup (120->120000->100000), not a defensive scope reduction; product scope is unchanged."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120d; field history to creation 31 Mar 2026",
+    "avoma_attendees": ["Michael Kell"],
+    "gaps": [
+      "Only one buyer call exists (31 Mar 2026, 24 minutes); no calls since, limiting recency of evidence.",
+      "No economic buyer or decision maker named in Salesforce contact roles or verified on any call.",
+      "No Salesforce Contact.Title available for buyer contacts (Michael Kell, Guylaine Cliche, Salote Havili); titles are self-described or unknown.",
+      "Competitive landscape unconfirmed beyond do-nothing; whether the new Salesforce team is evaluating a native CLM/AP alternative is unknown."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,3256 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic buyer / EMEA HQ authority",
+     "date": "2026-04-06",
+     "quote": "the EMEA HQ 'may' insist on a solution used elsewhere, which could be us (US & Australia) or alternative(s) (not clear who)",
+     "source": "Next_Step_History__c, 2026-04-06",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Market intelligence integration story (Beroe / Smart Cube gap)",
+     "date": "2026-01-07",
+     "quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform",
+     "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c blockers, 2026-06-04",
+     "status": "acknowledged",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Buyer-side contact roles / multi-threading",
+     "date": "2026-07-09",
+     "quote": "only 2 buyer-side contact role(s) on this opp, below the multi-thread bar",
+     "source": "Salesforce OpportunityContactRole coverage",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Quantified ROI / business case",
+     "date": "2026-04-06",
+     "quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment)",
+     "source": "Next_Step_History__c, 2026-04-06",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Next_Step_History__c (28 Jan 2026, 6 Apr 2026 entries)",
+     "Avoma discovery call notes, 7 Jan 2026"
+    ],
+    "narrative": "The 7 Jan 2026 discovery call established qualitative pain (manual PR-to-PO-to-invoice via SAP/eBa/Outlook/spreadsheets, poor spend visibility) but no quantified savings or ROI figure exists yet. Zycus committed on 6 Apr 2026 to build 'a high-level ROI analysis (not a full Value Assessment)' to support the buyer's budget case, but this was tied to a May 2026 face-to-face session that never took place. The only pricing artifact so far is a 'heavily caveated' budgetary estimate shared 28 Jan 2026, itself flagged as likely overstated for what is only a small team."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma discovery call notes, 7 Jan 2026",
+     "MEDDPICC_2_0__c, 2026-06-04",
+     "Next_Step_History__c, 2026-04-06 & 2026-07-03"
+    ],
+    "narrative": "Vinoth Kumar initiated the outreach, attended discovery, articulated requirements clearly, and is described in MEDDPICC 2.0 (4 Jun 2026) as the internal driver pushing toward RFQ; Salonee Karnik was assigned operational ownership of the RFQ process in the same call. However, since the buyer's last email reply on 13 Jan 2026, there has been no response through the war pause (mid-Jan-Apr 2026), the noted ceasefire (6 Apr 2026), the missed early-mid May 2026 restart, and the rep's 3 Jul 2026 re-engagement email. A champion silent for roughly six months is a real risk irrespective of how well he engaged in January."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "MEDDPICC_2_0__c, 2026-06-04",
+     "Avoma discovery call notes, 7 Jan 2026",
+     "Next_Step_History__c, 2026-04-06",
+     "Competitors__c field"
+    ],
+    "narrative": "MEDDPICC 2.0 (4 Jun 2026) states competitors were 'not named directly' on the call and lists Zycus's own differentiation instead (pre-existing Nissan AU/US relationship, native AI, single-code-base platform, live autonomous negotiation agent, Smart Cube partnership). SF's Competitors__c field separately lists SAP Ariba, but no call or note corroborates it as an active rival this sweep - likely a hygiene/template entry. The real competitive tension is the incumbent SAP/eBa plus manual-Outlook status quo (do-nothing baseline), and a capability gap: the buyer uses Beroe for market intelligence in other regions and Zycus's Smart Cube story remains unresolved since 7 Jan 2026. Separately, the 6 Apr 2026 note flags a possible EMEA HQ mandate toward a platform 'used elsewhere,' ambiguous as to whether that favors Zycus's existing AU/US footprint or an unnamed alternative."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma discovery call notes, 7 Jan 2026",
+     "MEDDPICC_2_0__c, 2026-06-04"
+    ],
+    "narrative": "The 7 Jan 2026 call: the buyer 'outlined that current SAP and eBa systems plus manual emails and spreadsheets are hindering indirect procurement' across the Middle East, Africa, Turkey, Egypt, and future India markets. MEDDPICC 2.0 (4 Jun 2026) adds no RFQ capability in eBa, heavy Outlook reliance for procurement, manual monthly market-intelligence research by the EU team, and poor spend visibility. This is the most fully evidenced element on the deal, corroborated by both the call and the CRM."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "No source located (Next_Step__c, Next_Step_History__c, Task, MEDDPICC_2_0__c, Avoma all silent on this)"
+    ],
+    "narrative": "No contracting mechanics, MSA/SOW, or procurement-portal discussion has surfaced in any source read this sweep. This is expected at Qualified/pre-RFQ, but it remains a genuine, unaddressed unknown rather than a hygiene gap."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "MEDDPICC_2_0__c, updated 2026-06-04",
+     "Next_Step_History__c, 2026-04-06 entry"
+    ],
+    "narrative": "MEDDPICC 2.0 (updated 4 Jun 2026) states the economic buyer is 'not explicitly identified.' Vinoth Kumar drives procurement for the ME/Europe scope and intends to bring in a global 'process team' for the demo, signaling that sign-off authority sits above him. The 6 Apr 2026 Next Step note raises a structural risk that EMEA HQ, not the local team, 'may insist on a solution used elsewhere' \u2014 meaning true purchasing authority may rest at a regional headquarters level where Zycus has no named contact, direct or indirect."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma discovery call notes, 7 Jan 2026",
+     "MEDDPICC_2_0__c, 2026-06-04",
+     "Next_Step_History__c, 2026-04-06"
+    ],
+    "narrative": "Vinoth Kumar framed the 7 Jan 2026 call as a 'get-to-know' session ahead of a formal RFQ; Salonee Karnik was tasked to 'coordinate and schedule the detailed demo with the ME and Europe process teams and manage the RFP process moving forward.' MEDDPICC 2.0 (4 Jun 2026) frames the sequence as pre-RFQ discovery -> internal stakeholder alignment -> formal RFQ -> evaluation -> vendor selection. No RFQ has actually been issued six months after discovery began, and the process stalled entirely during the war pause noted 6 Apr 2026."
+   },
+   "decision_criteria": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma discovery call notes, 7 Jan 2026",
+     "MEDDPICC_2_0__c, 2026-06-04"
+    ],
+    "narrative": "Five criteria were captured directly in the 7 Jan 2026 discovery call and corroborated in MEDDPICC 2.0: end-to-end S2P automation, AI/market-intelligence integration (named a 'key differentiator ask'), Outlook/email replacement, SAP HANA integration, and a supplier portal for invoice submission. Verbatim from the call: 'full end-to-end automation of PR to invoice processes, enhanced tail-spend visibility, AI-driven sourcing capabilities, and integrated market intelligence.'"
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": "2026-01-07",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-07-03",
+   "last_buyer_touch": "2026-01-07",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-07-03",
+   "days_since_buyer_touch": 183
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-07-03",
+   "items": [
+    {
+     "at": "2026-07-03",
+     "kind": "email",
+     "name": "New Zycus POC introduction & restart request",
+     "summary": "Mohamad Alhakim (Zycus RVP Middle East) emails Vinoth and Salonee to introduce himself as the new primary contact replacing Dan Quinn, referencing the earlier-year discussions on sourcing/contracting/invoicing priorities across ME, Africa, Turkey and Egypt, and proposes a 20-minute call the week of July 13 to reassess where things stand \u2014 reply pending from Nissan."
+    }
+   ],
+   "source": "ai",
+   "overall": "After months of dormancy since the January demo scheduling thread stalled, Zycus re-engaged with a new regional VP, Mohamad Alhakim, taking over as primary contact after Dan Quinn's departure. Alhakim's email to Vinoth and Salonee is essentially a relationship-continuity play \u2014 signaling he's briefed on the ME/Africa/Turkey/Egypt procurement transformation agenda and asking to restart the conversation with a 20-minute call the week of July 13. The ball is now in Nissan's court to confirm availability; nothing substantive on scope or commercials has moved yet."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 86.0,
+    "win_position": 12.0,
+    "deal_momentum": 4.0,
+    "customer_commitment": 16.0,
+    "forecast_confidence": 10.0
+   },
+   "cro_panel": {
+    "intro": "Score should sit near the stage floor; a genuinely promising discovery call in January produced clear pain and criteria, but six months of buyer silence, no economic buyer engagement, and an unproven timeline mean this reads as dormant, not building",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 12,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Economic buyer never identified; MEDDPICC EB field is a flat 'gap'; no HQ-level contact exists despite EMEA HQ reportedly holding platform-choice authority",
+        "tone": "warn"
+       },
+       {
+        "text": "Champion gone cold; Vinoth drove requirements and RFQ intent in January but has been silent ~6 months with no response to the 3 Jul outreach",
+        "tone": "warn"
+       },
+       {
+        "text": "HQ mandate risk unaddressed; 6 Apr note says EMEA HQ 'may insist on a solution used elsewhere,' and Zycus has no relationship at that HQ level",
+        "tone": "warn"
+       },
+       {
+        "text": "Genuine early discovery landed well; 8 Jan 2026 call with Vinoth (HOP) + 2 colleagues was 'positively received,' with 5 decision criteria named and pain confirmed",
+        "tone": "good"
+       },
+       {
+        "text": "No demo, no business case built; only a heavily caveated budgetary estimate (28 Jan) exists; the promised live demo + ROI analysis never happened",
+        "tone": "warn"
+       },
+       {
+        "text": "Still Qualified after 181 days in stage with zero paper process and a competitive market-intel gap (Beroe) unresolved",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 4,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Buyer dark six-plus months; last real buyer response was Vinoth's 13 Jan 2026 email; no reply to the rep's 3 Jul 2026 re-engagement outreach",
+        "tone": "warn"
+       },
+       {
+        "text": "No meetings in 30/60/90 days; last actual call was the 8 Jan 2026 discovery session, 183 days ago; nothing scheduled next",
+        "tone": "warn"
+       },
+       {
+        "text": "Restart window missed; 6 Apr note flagged a ceasefire-driven restart for 'early-mid May,' but no May session occurred and it's now July",
+        "tone": "warn"
+       },
+       {
+        "text": "One-way rep chasing only; the current Next_Step is literally a rep email 'for meeting intro,' with zero buyer-side action logged since January",
+        "tone": "warn"
+       },
+       {
+        "text": "No forward motion in system; Next_Step_History is empty, forecast category still Pipeline, and no future meeting or milestone exists anywhere",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+      "score": 86,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No competitor is currently winning or actively contesting this deal; the real threats are inertia (continuing on SAP/eBa manually) and a regional headquarters that may mandate a different platform choice.",
+      "bullets": [
+       {
+        "text": "Close date unrealistic given silence; 31 Aug 2026 close (53 days out) with no buyer contact in 183 days and no demo ever run",
+        "tone": "warn"
+       },
+       {
+        "text": "Governance risk outside deal's control; EMEA HQ may mandate a platform used elsewhere in the region, bypassing local evaluation entirely",
+        "tone": "warn"
+       },
+       {
+        "text": "Geopolitical disruption ongoing; war paused the project mid-Jan to Apr; ceasefire-driven May restart never materialized, showing fragility beyond sales control",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer, no champion activity; both EB and champion tracks are effectively dead, leaving no internal advocate driving this forward",
+        "tone": "warn"
+       },
+       {
+        "text": "Unaddressed capability gap; buyer uses Beroe for market intelligence elsewhere; Zycus has no confirmed integration story, flagged since 8 Jan with no follow-up",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Send a second re-engagement touch (call, not just email) to the buyer team (by 16 Jun)",
+       "Pre-package the Smart Cube / market-intelligence integration story so it is ready the moment contact resumes (by 23 Jun)",
+       "Draft the two-session demo agenda and high-level ROI outline proactively so both can be sent within 48 hours of a reply (by 30 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Nissan Africa, Middle East & India \u2014 Qualified \u00b7 $200K \u00b7 closes 31 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 86.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date unrealistic given silence \u2014 31 Aug 2026 close (53 days out) with no buyer contact in 183 days and no demo ever run.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Governance risk outside deal's control \u2014 EMEA HQ may mandate a platform used elsewhere in the region, bypassing local evaluation entirely.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Geopolitical disruption ongoing \u2014 war paused the project mid-Jan to Apr; ceasefire-driven May restart never materialized, showing fragility beyond sales control.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer, no champion activity \u2014 both EB and champion tracks are effectively dead, leaving no internal advocate driving this forward.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Unaddressed capability gap \u2014 buyer uses Beroe for market intelligence elsewhere; Zycus has no confirmed integration story, flagged since 8 Jan with no follow-up.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date unrealistic given silence \u2014 31 Aug 2026 close (53 days out) with no buyer contact in 183 days and no demo ever run.",
+      "tone": "warn"
+     },
+     {
+      "text": "Governance risk outside deal's control \u2014 EMEA HQ may mandate a platform used elsewhere in the region, bypassing local evaluation entirely.",
+      "tone": "warn"
+     },
+     {
+      "text": "Geopolitical disruption ongoing \u2014 war paused the project mid-Jan to Apr; ceasefire-driven May restart never materialized, showing fragility beyond sales control.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer, no champion activity \u2014 both EB and champion tracks are effectively dead, leaving no internal advocate driving this forward.",
+      "tone": "warn"
+     },
+     {
+      "text": "Unaddressed capability gap \u2014 buyer uses Beroe for market intelligence elsewhere; Zycus has no confirmed integration story, flagged since 8 Jan with no follow-up.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Economic buyer never identified \u2014 MEDDPICC EB field is a flat 'gap'; no HQ-level contact exists despite EMEA HQ reportedly holding platform-choice authority.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion gone cold \u2014 Vinoth drove requirements and RFQ intent in January but has been silent ~6 months with no response to the 3 Jul outreach.",
+      "tone": "warn"
+     },
+     {
+      "text": "HQ mandate risk unaddressed \u2014 6 Apr note says EMEA HQ 'may insist on a solution used elsewhere,' and Zycus has no relationship at that HQ level.",
+      "tone": "warn"
+     },
+     {
+      "text": "Genuine early discovery landed well \u2014 8 Jan 2026 call with Vinoth (HOP) + 2 colleagues was 'positively received,' with 5 decision criteria named and pain confirmed.",
+      "tone": "good"
+     },
+     {
+      "text": "No demo, no business case built \u2014 only a heavily caveated budgetary estimate (28 Jan) exists; the promised live demo + ROI analysis never happened.",
+      "tone": "warn"
+     },
+     {
+      "text": "Stage-appropriate ceiling applies \u2014 still Qualified after 181 days in stage with zero paper process and a competitive market-intel gap (Beroe) unresolved.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Buyer dark six-plus months \u2014 last real buyer response was Vinoth's 13 Jan 2026 email; no reply to the rep's 3 Jul 2026 re-engagement outreach.",
+      "tone": "warn"
+     },
+     {
+      "text": "No meetings in 30/60/90 days \u2014 last actual call was the 8 Jan 2026 discovery session, 183 days ago; nothing scheduled next.",
+      "tone": "warn"
+     },
+     {
+      "text": "Restart window missed \u2014 6 Apr note flagged a ceasefire-driven restart for 'early-mid May,' but no May session occurred and it's now July.",
+      "tone": "warn"
+     },
+     {
+      "text": "One-way rep chasing only \u2014 the current Next_Step is literally a rep email 'for meeting intro,' with zero buyer-side action logged since January.",
+      "tone": "warn"
+     },
+     {
+      "text": "No forward motion in system \u2014 Next_Step_History is empty, forecast category still Pipeline, and no future meeting or milestone exists anywhere.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Buyer investment stalled after early interest \u2014 Vinoth requested a budgetary estimate and demo dates in Jan, but has driven nothing since 13 Jan.",
+      "tone": "warn"
+     },
+     {
+      "text": "No security/procurement motion \u2014 paper_process is a flat 'gap' in MEDDPICC; no RFQ or formal process ever launched despite early RFQ intent.",
+      "tone": "warn"
+     },
+     {
+      "text": "No exec access granted \u2014 CPO involvement was only a stated 'intention' for the May demo, which never occurred; no direct EB touch on record.",
+      "tone": "warn"
+     },
+     {
+      "text": "Real requirements shared once \u2014 buyer named AI-driven sourcing and market-intelligence integration as key asks on the 7 Jan 2026 call.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer never identified \u2014 MEDDPICC EB field is a flat 'gap'; no HQ-level contact exists despite EMEA HQ reportedly holding platform-choice authority.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion gone cold \u2014 Vinoth drove requirements and RFQ intent in January but has been silent ~6 months with no response to the 3 Jul outreach.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "HQ mandate risk unaddressed \u2014 6 Apr note says EMEA HQ 'may insist on a solution used elsewhere,' and Zycus has no relationship at that HQ level.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Genuine early discovery landed well \u2014 8 Jan 2026 call with Vinoth (HOP) + 2 colleagues was 'positively received,' with 5 decision criteria named and pain confirmed.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No demo, no business case built \u2014 only a heavily caveated budgetary estimate (28 Jan) exists; the promised live demo + ROI analysis never happened.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage-appropriate ceiling applies \u2014 still Qualified after 181 days in stage with zero paper process and a competitive market-intel gap (Beroe) unresolved.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 4.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer dark six-plus months \u2014 last real buyer response was Vinoth's 13 Jan 2026 email; no reply to the rep's 3 Jul 2026 re-engagement outreach.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No meetings in 30/60/90 days \u2014 last actual call was the 8 Jan 2026 discovery session, 183 days ago; nothing scheduled next.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Restart window missed \u2014 6 Apr note flagged a ceasefire-driven restart for 'early-mid May,' but no May session occurred and it's now July.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "One-way rep chasing only \u2014 the current Next_Step is literally a rep email 'for meeting intro,' with zero buyer-side action logged since January.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No forward motion in system \u2014 Next_Step_History is empty, forecast category still Pipeline, and no future meeting or milestone exists anywhere.",
+      "points": -1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "The buyer explicitly named AI-driven sourcing and integrated market intelligence as key requirements in the 7 Jan 2026 discovery call, indicating real appetite for AI capability rather than passive interest, though nothing has been validate",
+     "expectations_fit": "Zycus is broadly aligned to the five decision criteria named in discovery, with the market-intelligence integration and SAP HANA integration points only partially confirmed.",
+     "north_star_verdict": null,
+     "positioning_strength": "AI/agentic capabilities (Merlin, Merlin Intake, ANA) are central to the pitch and match a buyer-stated 'key differentiator ask' for AI-driven sourcing and market intelligence (7 Jan 2026 call), but the market-intelligence integration piece "
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 200000.0,
+     "opp_id": "006P700000RvMHF",
+     "account": "Nissan Africa, Middle East & India",
+     "opp_name": "Nissan_S2P_2026",
+     "next_step": "Confidence 10%3rd of July more than 6 months the customer in silent mode, email outreach for meeting intro and to evaluate this opportunity 6th April - Have paused the project due to the war, but the ceasefire is giving confidence to restart in early-mid May when all will be back to the office - current situation is that the EMEA HQ &#39;may&#39; insist on a solution used elsewhere, which could be us (US & Australia) or alternative(s) (not clear who) - next step is to share a process flow that we will need to run a live custom demo against, also interested in getting a high-level ROI analysis (not a full Value Assessment) - intention is for DQ to spend some time with project lead and CPO to build this out at the face-to-face demo session in May.28th Jan - Provided a high-level budgetary estimate only heavily caveated - likely to be lower in scale in reality as only a small team, have nudged again to get the demo back on track before Ramadan/QBR trip.20th Jan - Responded that its early stages, don&#39;t have the data to complete the tables, but want a high level estimate, suggest call to discuss and confirm demo dates.9th Jan - Interested in a budgetary estimate, shared the estimation tables and requested a call/meeting to run through8th Jan - Discovery call held with Vinoth (HOP) and two colleagues - positively received (only gap is market analysis - they are using Beroe in other regions, we will need to flesh out a story around our Smart Cube &#39;integration&#39;) - next step is a live demo, Dan & Tanya to propose a structure, Salonee to provide date options asap.18th Dec - Discovery call postponed to new year - 8th Jan.17th Dec - Inbound lead requesting a demo on Tues 23rd Dec",
+     "close_date": "2026-08-31",
+     "stage_tier": "early",
+     "days_to_close": 53,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-03"
+    },
+    "trends": {},
+    "champion": "Vinoth Kumar showed strong initial engagement - he initiated outreach, attended discovery, articulated requirements clearly, and was driving toward a formal RFQ - but has gone quiet for roughly six months since his 13 Jan 2026 email reply, with no response yet to the rep's 3 Jul 2026 re-engagement a",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "partial",
+     "decision_criteria": "confirmed"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-01-07",
+       "minutes": 70,
+       "subject": "Discovery Call | Zycus x Nissan",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-12-23",
+       "minutes": null,
+       "subject": "Discovery Call | Zycus x Nissan",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "nissan-me.ae"
+       ]
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2026-01-07",
+     "next_scheduled": null,
+     "total_all_time": 2,
+     "days_since_last": 183,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No competitor is currently winning or actively contesting this deal; the real threats are inertia (continuing on SAP/eBa manually) and a regional headquarters that may mandate a different platform choice. SAP Ariba sits on the CRM competitor field but has no corroborating evidence from any call or note read this sweep.",
+     "competitors": [
+      {
+       "name": "SAP Ariba",
+       "status": "active",
+       "threat": "dormant"
+      },
+      {
+       "name": "Beroe (market analysis / category intelligence)",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "SAP / eBa (current stack, do-nothing baseline)",
+       "status": "incumbent",
+       "threat": "medium"
+      },
+      {
+       "name": "Unnamed alternative (EMEA HQ-mandated platform)",
+       "status": "active",
+       "threat": "medium"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selectio",
+     "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 J",
+     "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is ",
+     "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing",
+     "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters le"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 183
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 16.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer investment stalled after early interest \u2014 Vinoth requested a budgetary estimate and demo dates in Jan, but has driven nothing since 13 Jan.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No security/procurement motion \u2014 paper_process is a flat 'gap' in MEDDPICC; no RFQ or formal process ever launched despite early RFQ intent.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No exec access granted \u2014 CPO involvement was only a stated 'intention' for the May demo, which never occurred; no direct EB touch on record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Real requirements shared once \u2014 buyer named AI-driven sourcing and market-intelligence integration as key asks on the 7 Jan 2026 call.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 10.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "champion": {
+    "src": "MEDDPICC 2.0",
+    "value": "Vinoth Kumar appears to be the internal driver/champion \u2014 he initiated outreach, attended the call, articulated requirem",
+    "present": true,
+    "age_days": 34
+   },
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 6
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cpo' in Next-Step/narrative",
+    "present": true,
+    "age_days": 6
+   },
+   "business_case": {
+    "src": "Next-Step/narrative",
+    "value": "'roi' in Next-Step/narrative",
+    "present": true,
+    "age_days": 6
+   },
+   "differentiation": {
+    "src": "MEDDPICC 2.0",
+    "value": "(1) No RFQ capability in current eBa tool; (2) Manual processes across procurement; (3) Heavy reliance on Outlook \u2014 buye",
+    "present": true,
+    "age_days": 34
+   }
+  },
+  "scope_change": {
+   "to": "",
+   "from": "",
+   "detail": "Products in scope (iContract, iSource, eProcurement, eInvoicing, Merlin, Merlin Intake, Agentic AI, ANA) match the full S2P + AI suite pitched from the 7 Jan 2026 discovery call; no expansion or reduction evidenced since.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "The buyer explicitly named AI-driven sourcing and integrated market intelligence as key requirements in the 7 Jan 2026 discovery call, indicating real appetite for AI capability rather than passive interest, though nothing has been validated via a demo yet."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Only a heavily caveated budgetary estimate (shared 28 Jan 2026) exists; the promised 'high-level ROI analysis' was never delivered because the May 2026 workshop meant to produce it never took place."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-12-17",
+     "change": "Inbound lead requested a demo"
+    },
+    {
+     "date": "2025-12-18",
+     "change": "Discovery call postponed to the new year"
+    },
+    {
+     "date": "2025-12-23",
+     "change": "First discovery call held (not recorded)"
+    },
+    {
+     "date": "2026-01-07",
+     "change": "Second discovery call held with Vinoth Kumar (HOP) and colleagues; positively received"
+    },
+    {
+     "date": "2026-01-09",
+     "change": "Buyer requested budgetary estimate and a follow-up call; estimation tables shared"
+    },
+    {
+     "date": "2026-01-13",
+     "change": "Buyer confirmed early-stage status, requested high-level estimate and demo-date confirmation"
+    },
+    {
+     "date": "2026-01-28",
+     "change": "Zycus provided a heavily caveated high-level budgetary estimate"
+    },
+    {
+     "date": "2026-04-06",
+     "change": "Project paused due to regional conflict; ceasefire noted, restart targeted for early-mid May 2026; EMEA HQ platform-mandate risk flagged"
+    },
+    {
+     "date": "2026-07-03",
+     "change": "Targeted May 2026 restart (face-to-face demo / ROI session) did not occur; no new date set"
+    },
+    {
+     "date": "2026-07-03",
+     "change": "Deal owner sent re-engagement outreach email after roughly six months of buyer silence"
+    }
+   ],
+   "summary": "A well-received discovery call in early January 2026 built real momentum, which was then interrupted by a regional conflict pause and has not restarted despite a noted ceasefire and a missed May target; the deal owner re-engaged 3 Jul 2026 after roughly six months of buyer silence."
+  },
+  "forecast_read": {
+   "math": "days_to_close=53 (close 2026-08-31 vs today 2026-07-09); time in Qualified stage = ~183 days since created 2026-01-07; last genuine buyer engagement 2026-01-13 (177 days ago); rep re-engagement 2026-07-03 (6 days ago, awaiting reply).",
+   "reason": "The deal is still in pre-RFQ discovery (last real buyer touch 13 Jan 2026), no demo, RFQ, or ROI workshop has occurred, the project was paused by regional conflict, and the targeted early-mid May 2026 restart never happened. Reaching Vendor Selection or signature by 31 Aug 2026 (53 days from today) would require an RFQ, demo, ROI workshop, and full evaluation to compress into under two months from a standing start after six months of silence.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline (unchanged), but the 31 Aug 2026 close date is not defensible and should be pushed materially"
+  },
+  "product_scope": {
+   "scope": "iContract;iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI;ANA"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Vinoth Kumar",
+     "risk": "Six months of silence since last reply; contact record sits on a partner/channel-associated domain (email.nissan.in) separate from the ME buyer domains",
+     "role": "Decision Maker",
+     "email": "vinoth.kumar@email.nissan.in",
+     "title": "Dy manager purchase",
+     "_source": "sfdc_contact_role",
+     "_partner": true,
+     "sentiment": "positive but unresponsive since January",
+     "_matched_ai": true,
+     "last_contact_date": "2026-01-13"
+    },
+    {
+     "name": "Salonee Karnik",
+     "risk": "Was tasked to run the RFQ process but has not been heard from since January alongside the rest of the buying team",
+     "role": "Influencer",
+     "email": "salonee.karnik@nissan-me.ae",
+     "title": "Purchasing Section Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive, operationally engaged",
+     "_matched_ai": true,
+     "last_contact_date": "2026-01-07"
+    },
+    {
+     "name": "Ziad Baroud",
+     "risk": "Appears in the recent task contact log but not evidenced as a call attendee in the two discovery sessions; involvement in this opp's scope is not directly confirmed",
+     "role": "Influencer",
+     "email": "ziad.baroud@nissan-me.ae",
+     "title": "Purchasing Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown",
+     "_matched_ai": true
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-04-06",
+     "change": "carried",
+     "detail": "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selection authority unclear; local team may lack decision power",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-01-08",
+     "change": "carried",
+     "detail": "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 Jan and not resolved",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-01-08",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is unachievable without forcing event",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-01-07",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-04-06",
+     "change": "carried",
+     "detail": "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing context for region",
+     "status": "acknowledged",
+     "category": "political",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-04-06",
+     "change": "carried",
+     "detail": "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters level, leaving final vendor-selection authority unclear.",
+     "status": "not addressed",
+     "category": "political",
+     "first_seen": "2026-07-07T17:47:37.005244+05:30",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "The face-to-face demo and ROI workshop targeted for early-to-mid May 2026 (after the ceasefire) never took place; no new date has been set as of 7 Jul 2026.",
+     "status": "not addressed",
+     "category": "timeline",
+     "first_seen": "2026-07-07T17:47:37.005244+05:30",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+    },
+    {
+     "date": "2026-01-07",
+     "change": "carried",
+     "detail": "Continued reliance on manual SAP/eBa/Outlook processes is the do-nothing baseline; a prolonged evaluation restart risks the buyer simply continuing as-is.",
+     "status": "not addressed",
+     "category": "change_management",
+     "first_seen": "2026-07-07T17:47:37.005244+05:30",
+     "first_raised": "2026-01-07",
+     "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+    },
+    {
+     "date": "2026-04-06",
+     "change": "new",
+     "detail": "No confirmed economic buyer; EMEA HQ may mandate a platform decision outside the local team's control",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T19:29:50.214888+05:30",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Close date of 31 Aug 2026 is unachievable given the deal has been in pre-RFQ discovery since January 2026 with a six-month pause and no demo/RFQ launched",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T19:29:50.214888+05:30",
+     "first_raised": "2026-07-09",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-04-06",
+     "change": "new",
+     "detail": "Regional conflict paused the project mid-January to April 2026; ceasefire noted 6 Apr 2026 but the restart targeted for early-mid May 2026 never materialized",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-09T19:29:50.214888+05:30",
+     "first_raised": "2026-04-06",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-06-04",
+     "change": "new",
+     "detail": "Market intelligence / Beroe capability gap unresolved since the 7 Jan 2026 discovery call",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-09T19:29:50.214888+05:30",
+     "first_raised": "2026-01-07",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 4.0,
+   "win": 12.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The 7 Jan 2026 discovery call went well and surfaced clear, unprompted pain, but nothing has moved since - no demo, no RFQ, no reply to a fresh outreach sent 3 Jul 2026.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "The buyer's regional headquarters may mandate a platform decision from elsewhere in the business, and Zycus has no confirmed relationship at that level to influence which way it goes.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New requirement",
+    "text": "A market-intelligence capability gap versus the buyer's existing Beroe usage was flagged on 7 Jan 2026 and is still unresolved six months later.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Commercials",
+    "text": "Only a heavily caveated budgetary estimate exists; no quantified ROI case has been built because the May 2026 workshop meant to produce it never happened.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c, 2026-06-04; Next_Step_History__c, 2026-04-06 & 2026-07-03",
+   "at_risk": true,
+   "summary": "Vinoth Kumar showed strong initial engagement - he initiated outreach, attended discovery, articulated requirements clearly, and was driving toward a formal RFQ - but has gone quiet for roughly six months since his 13 Jan 2026 email reply, with no response yet to the rep's 3 Jul 2026 re-engagement attempt.",
+   "champion": "Vinoth Kumar",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "MEDDPICC differentiation cites Nissan Australia/US as existing Zycus customers (since 2018/2021), which is a separate account/geography from this Middle East/Africa/India account; not confirmed via a sibling Salesforce opportunity in this sweep, so no executive-access inheritance is assumed here.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Send a second re-engagement touch (call, not just email) to the buyer team",
+     "horizon": "next_7_days",
+     "trigger": "No reply to the 3 Jul 2026 outreach email within 7 days",
+     "trigger_date": "2026-07-10",
+     "expected_effect": "Re-open the conversation and test whether the buyer restart is genuinely back on."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Pre-package the Smart Cube / market-intelligence integration story so it is ready the moment contact resumes",
+     "horizon": "next_14_days",
+     "trigger": "Buyer replies to the re-engagement outreach",
+     "trigger_date": "2026-07-16",
+     "expected_effect": "Removes the one open objection (Beroe capability gap) from blocking the next demo."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-30",
+     "action": "Draft the two-session demo agenda and high-level ROI outline proactively so both can be sent within 48 hours of a reply",
+     "horizon": "next_14_days",
+     "trigger": "Buyer confirms restart interest",
+     "trigger_date": "2026-07-16",
+     "expected_effect": "Converts a warm reply into a scheduled demo without re-negotiating scope from scratch."
+    },
+    {
+     "rank": 4,
+     "owner": "Executive sponsor",
+     "act_by": "2026-08-13",
+     "action": "Escalate to the deal owner's manager for an exec-to-exec check-in if there is still no reply",
+     "horizon": "next_30_days",
+     "trigger": "No response to two re-engagement attempts by 6 Aug 2026",
+     "trigger_date": "2026-08-06",
+     "expected_effect": "Surfaces whether the deal is genuinely dormant or blocked by the regional HQ decision before the 31 Aug 2026 close date passes."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "No buyer reply since 2026-01-13",
+    "War-driven pause with a missed May 2026 restart",
+    "No demo, RFQ, or ROI workshop delivered to date"
+   ],
+   "cooling": true,
+   "summary": "The deal owner re-engaged on 3 Jul 2026 after an extended quiet period; substance (demo, RFQ, ROI case) has not advanced since the 7 Jan 2026 discovery call despite a well-received first meeting."
+  },
+  "north_star_verdict": {
+   "math": "Created 2026-01-07, 181 days in Qualified as of 7 Jul 2026 with no stage movement. Close date 2026-08-31 is 55 days out. Last content-rich buyer touch was the 7 Jan 2026 discovery call; the last genuine two-way buyer contact (an inbound email reply) was 2026-01-13 (175 days ago). The only newer activity is a rep-initiated re-engagement email on 2026-07-03 (4 days ago), still awaiting reply. No demo, RFQ, or economic-buyer conversation has happened. Reaching a decision in the remaining 55 days from Qualified with none of these steps underway is not realistic.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Next_Step__c (3 Jul 2026): 'more than 6 months the customer in silent mode, email outreach for meeting intro and to evaluate this opportunity'",
+    "Next_Step__c (6 Apr 2026): project paused due to war, restart targeted early-mid May 2026, which did not occur",
+    "Avoma discovery call notes, 2026-01-07: demo agenda and ROI build session were planned but never scheduled"
+   ],
+   "headline": "A promising discovery call on 7 Jan 2026 stalled for six months when the regional conflict paused the project; a re-engagement email went out 3 Jul 2026 but the buyer has not yet replied, and the 31 Aug 2026 close date is not achievable on current pace.",
+   "trajectory": "stronger",
+   "prior_verdict": "Off Track",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Omitted / push close date - no EB confirmed, no demo held, no RFQ launched, and buyer has been silent for 6 months"
+  },
+  "best_practice_check": {
+   "flags": [
+    "No economic buyer identified; budget authority may sit at regional EMEA HQ, no HQ stakeholder mapped",
+    "No champion; Vinoth (Decision Maker role) has not re-engaged after 6-month silence and may not control vendor selection (HQ overlay risk)",
+    "No quantified business problem or ROI case; buyer has not provided data for value assessment",
+    "Demo planned for 'early-mid May' per 6 Apr note, never occurred; no demo scheduled as of 7 Jul",
+    "Regional EMEA HQ may mandate platform from other Nissan regions, bypassing local evaluation; no HQ relationship or sponsor",
+    "Market analysis / category intelligence gap (Beroe) identified 8 Jan, no resolution plan",
+    "Single-threaded: all contact roles are procurement operational level, no C-level or regional exec access",
+    "181 days in Qualified stage, no stage progression, no field-history movement since creation 7 Jan",
+    "Use Nissan's existing Zycus footprint in Australia and the US as internal proof: help the Australia reference call Vinoth Kumar wanted happen quickly to reinforce his own business case.",
+    "Add the missing buyer-side contact roles and multi-thread beyond Vinoth Kumar and Salonee Karnik before the deal restarts, given the flagged risk that EMEA HQ, not the local team, may hold real purchasing authority."
+   ],
+   "summary": "The three highest-leverage moves are: re-engage the champion beyond a single email, close the market-intelligence capability gap before any demo, and fix the multi-threading shortfall given the EMEA HQ authority risk."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference on record; the 7 Jan 2026 call was positively received but no comparative statement favoring Zycus over an alternative was made, and Competitors__c lists SAP Ariba with no corroborating quote from any source."
+  },
+  "competitive_position": {
+   "summary": "No competitor is currently winning or actively contesting this deal; the real threats are inertia (continuing on SAP/eBa manually) and a regional headquarters that may mandate a different platform choice. SAP Ariba sits on the CRM competitor field but has no corroborating evidence from any call or note read this sweep.",
+   "competitors": [
+    {
+     "date": "2026-06-04",
+     "name": "SAP Ariba",
+     "quote": "",
+     "change": "updated",
+     "source": "Salesforce Competitors__c field (no corroborating call or note evidence found)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07",
+     "how_we_win": "Confirm with the buyer whether SAP Ariba is genuinely in consideration before building a comparative story; do not assume it is live.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-01-08",
+     "name": "Beroe (market analysis / category intelligence)",
+     "quote": "only gap is market analysis - they are using Beroe in other regions, we will need to flesh out a story around our Smart Cube 'integration'",
+     "change": "updated",
+     "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c blockers, 2026-06-04",
+     "status": "active",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07",
+     "how_we_win": "Deliver a concrete Smart Cube integration story before any renewed demo; this was Zycus's own committed action item from the 7 Jan 2026 call and remains outstanding.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-01-07",
+     "name": "SAP / eBa (current stack, do-nothing baseline)",
+     "quote": "current SAP and eBa systems plus manual emails and spreadsheets are hindering indirect procurement across the Middle East, Africa, Turkey, Egypt, and future India markets",
+     "change": "carried",
+     "source": "Avoma discovery call notes, 7 Jan 2026",
+     "status": "incumbent",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T17:47:37.005244+05:30",
+     "how_we_win": "Keep the six-month-silent buyer anchored to the pain they already voiced; a prolonged evaluation restart risks the buyer simply continuing as-is on SAP/eBa.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    },
+    {
+     "date": "2026-04-06",
+     "name": "Unnamed alternative (EMEA HQ-mandated platform)",
+     "quote": "the EMEA HQ 'may' insist on a solution used elsewhere, which could be us (US & Australia) or alternative(s) (not clear who)",
+     "change": "new",
+     "source": "Next_Step_History__c, 2026-04-06",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-09T19:29:50.214888+05:30",
+     "how_we_win": "Seek any available channel into EMEA HQ (potentially leveraging the existing Nissan US/Australia relationship) to understand and influence this mandate before it is decided without local input.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Score should sit near the stage floor: a genuinely promising discovery call in January produced clear pain and criteria, but six months of buyer silence, no economic buyer engagement, and an unproven timeline mean this reads as dormant, not building.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Regional platform-mandate risk - the 6 Apr 2026 note warns EMEA HQ 'may insist on a solution used elsewhere,' which could favor Zycus (already live in Nissan US/Australia) or an unnamed alternative; Zycus has no confirmed relationship at that HQ level.",
+      "tone": "warn"
+     },
+     {
+      "text": "Timeline is not credible as recorded - CloseDate is 31 Aug 2026 (53 days out) but the deal has not exited pre-RFQ discovery and six months have passed mostly paused; this pace cannot support an August close without a forcing event.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Discovery landed well and pain is proven - the 7 Jan 2026 call surfaced fully articulated pain (SAP/eBa manual processes, Outlook reliance, no RFQ tooling) the buyer volunteered unprompted, giving Zycus a genuine wedge.",
+      "tone": "good"
+     },
+     {
+      "text": "No economic buyer engaged - MEDDPICC 2.0 (4 Jun 2026) states the EB is 'not explicitly identified,' and the 6 Apr 2026 note flags that EMEA HQ, not Vinoth Kumar, may hold final platform-selection authority, with no Zycus contact there.",
+      "tone": "warn"
+     },
+     {
+      "text": "Six months of buyer silence - no reply since the 13 Jan 2026 email; a war-driven pause, an April ceasefire, and a targeted early-mid May 2026 restart all passed with no demo, ROI workshop, or reply logged.",
+      "tone": "warn"
+     },
+     {
+      "text": "Competitive standing unproven - SAP Ariba sits on the Competitors__c field but is uncorroborated by any call; the real threats are inertia (continuing on SAP/eBa manually) and an unresolved Beroe/Smart Cube market-intelligence gap.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Stalled since January - the last two-way buyer touch was the 13 Jan 2026 email reply (177 days ago); the only recent activity is a rep re-engagement email sent 3 Jul 2026 (6 days ago), not yet answered.",
+      "tone": "warn"
+     },
+     {
+      "text": "No forward deliverable has landed - the promised pricing document, demo agenda, and process-flow diagram were all committed to on 7 Jan 2026, but the demo itself never happened and the May restart target passed with nothing scheduled.",
+      "tone": "warn"
+     },
+     {
+      "text": "The relationship and requirements are still intact, not dead - the champion fully engaged in January and the pause was explained by regional conflict rather than buyer disinterest, so this reads as dormant, not lost.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No commitment has been renewed since January - Vinoth Kumar committed on 7 Jan 2026 to share Nissan's process flow and budget targets, but the war pause and missed May restart mean neither has been delivered.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-04-06",
+     "quote": "next step is to share a process flow that we will need to run a live custom demo against",
+     "said_by": "Vinoth Kumar",
+     "addressed": false,
+     "requirement": "Share internal S2P process flow for custom demo preparation"
+    },
+    {
+     "date": "2026-01-07",
+     "quote": "Vinoth Kumar will check with the team regarding the availability of time slots for the demo, which will not exceed 90 minutes",
+     "said_by": "Vinoth Kumar",
+     "addressed": false,
+     "requirement": "Provide demo date options"
+    },
+    {
+     "date": "2026-01-07",
+     "quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform",
+     "said_by": "Vinoth Kumar",
+     "addressed": false,
+     "requirement": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo"
+    },
+    {
+     "date": "2026-04-06",
+     "quote": "interested in getting a high-level ROI analysis (not a full Value Assessment)",
+     "said_by": "Vinoth Kumar (project lead)",
+     "addressed": false,
+     "requirement": "Provide a high-level ROI analysis (not a full Value Assessment) to support the budget case"
+    },
+    {
+     "date": "2026-04-06",
+     "quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment)",
+     "said_by": "Vinoth Kumar",
+     "addressed": false,
+     "requirement": "Deliver high-level ROI analysis (not a full Value Assessment) to support the budget case"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-04-06",
+      "source": "Next_Step_History__c, 2026-04-06",
+      "status": "overdue",
+      "group_key": "analysis_assessment_budget",
+      "deliverable": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case",
+      "inferred_need": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case",
+      "grounding_quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment) - intention is for DQ to spend some time with project lead and CPO to build this out (Zycus volunteered, 6 Apr)",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Zycus",
+      "date": "2026-01-08",
+      "source": "Next_Step__c, 2026-01-08 entry / Avoma discovery call notes, 2026-01-07",
+      "status": "overdue",
+      "group_key": "coordinated_date_demo",
+      "commitment": "Provide demo date options (coordinated with Salonee Karnik)",
+      "deliverable": "Provide demo date options (coordinated with Salonee Karnik)",
+      "grounding_quote": "Dan & Tanya to propose a structure, Salonee to provide date options asap",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-01-09",
+      "who": "Zycus",
+      "date": "2026-01-07",
+      "source": "Avoma discovery call notes, 7 Jan 2026; Next_Step_History__c, 2026-01-28",
+      "status": "completed",
+      "group_key": "detailed_document_licensing",
+      "commitment": "Provide a detailed pricing and licensing document",
+      "deliverable": "Provide a detailed pricing and licensing document",
+      "grounding_quote": "Provide a detailed pricing and licensing document within 48 hours",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-04-06",
+      "source": "Next_Step_History__c, 2026-04-06",
+      "status": "overdue",
+      "group_key": "custom_demo_flow",
+      "commitment": "Share internal S2P process flow for custom demo preparation",
+      "deliverable": "Share internal S2P process flow for custom demo preparation",
+      "grounding_quote": null,
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-01-07",
+      "source": "Avoma discovery call notes, 7 Jan 2026",
+      "status": "overdue",
+      "group_key": "budget_initial_module",
+      "commitment": "Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal",
+      "deliverable": "Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal",
+      "grounding_quote": "Share Nissan's budget targets and procurement module requirements after reviewing Dan's initial proposal",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-01-07",
+      "source": "Avoma discovery call notes, 7 Jan 2026",
+      "status": "overdue",
+      "group_key": "availability_demo_exceeding",
+      "commitment": "Confirm demo time-slot availability (not exceeding 90 minutes)",
+      "deliverable": "Confirm demo time-slot availability (not exceeding 90 minutes)",
+      "grounding_quote": "Vinoth Kumar will check with the team regarding the availability of time slots for the demo, which will not exceed 90 minutes",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Moderate - strong fit on paper, unproven integration/ROI story",
+   "summary": "AI/agentic capabilities (Merlin, Merlin Intake, ANA) are central to the pitch and match a buyer-stated 'key differentiator ask' for AI-driven sourcing and market intelligence (7 Jan 2026 call), but the market-intelligence integration piece (Beroe/Smart Cube) remains unresolved, partially undercutting the AI story.",
+   "under_positioned": true
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-01-07",
+     "quote": "full end-to-end automation of PR to invoice processes",
+     "source": "Avoma discovery call notes",
+     "position": "aligned",
+     "criterion": "End-to-end S2P automation (PR to PO to invoice)"
+    },
+    {
+     "date": "2026-01-07",
+     "quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform",
+     "source": "Avoma discovery call notes; MEDDPICC_2_0__c blockers, 2026-06-04",
+     "position": "partially aligned",
+     "criterion": "AI / market intelligence integration"
+    },
+    {
+     "date": "2026-06-04",
+     "quote": "heavy reliance on Outlook - buyers use email for all procurement",
+     "source": "MEDDPICC_2_0__c",
+     "position": "aligned",
+     "criterion": "Outlook / email replacement"
+    },
+    {
+     "date": "2026-06-04",
+     "quote": "Integration with existing tools (Procurement IQ / BRE) unconfirmed",
+     "source": "MEDDPICC_2_0__c blockers",
+     "position": "partially aligned",
+     "criterion": "SAP HANA integration"
+    },
+    {
+     "date": "2026-01-07",
+     "quote": "Does the supplier will have a portal where they go and upload their invoice against each purchase order?",
+     "source": "Avoma discovery call notes (buyer question, addressed via eInvoicing scope)",
+     "position": "aligned",
+     "criterion": "Supplier portal for invoice submission"
+    }
+   ],
+   "summary": "Zycus is broadly aligned to the five decision criteria named in discovery, with the market-intelligence integration and SAP HANA integration points only partially confirmed."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 200000.0,
+  "opp_id": "006P700000RvMHFIA3",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000RvMHFIA3/view",
+  "opp_name": "Nissan_S2P_2026",
+  "owner_id": "005P7000008n4AjIAI",
+  "products": "iContract;iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI;ANA",
+  "ais_score": null,
+  "next_step": "Confidence 10%3rd of July more than 6 months the customer in silent mode, <span style=\"background-color: rgb(255, 255, 255); font-size: 14.6667px; color: rgb(36, 36, 36);\">email outreach for meeting intro and to evaluate this opportunity 6th April - Have paused the project due to the war, but the ceasefire is giving confidence to restart in early-mid May when all will be back to the office - current situation is that the EMEA HQ &#39;may&#39; insist on a solution used elsewhere, which could be us (US &amp; Australia) or alternative(s) (not clear who) - next step is to share a process flow that we will need to run a live custom demo against, also interested in getting a high-level ROI analysis (not a full Value Assessment) - intention is for DQ to spend some time with project lead and CPO to build this out at the face-to-face demo session in May.28th Jan - Provided a high-level budgetary estimate only heavily caveated - likely to be lower in scale in reality as only a small team, have nudged again to get the demo back on track before Ramadan/QBR trip.20th Jan - Responded that its early stages, don&#39;t have the data to complete the tables, but want a high level estimate, suggest call to discuss and confirm demo dates.9th Jan - Interested in a budgetary estimate, shared the estimation tables and requested a call/meeting to run through8th Jan - Discovery call held with Vinoth (HOP) and two colleagues - positively received (only gap is market analysis - they are using Beroe in other regions, we will need to flesh out a story around our Smart Cube &#39;integration&#39;) - next step is a live demo, Dan &amp; Tanya to propose a structure, Salonee to provide date options asap.18th Dec - Discovery call postponed to new year - 8th Jan.17th Dec - Inbound lead requesting a demo on Tues 23rd Dec",
+  "ais_status": null,
+  "close_date": "2026-08-31",
+  "competitor": "SAP Ariba;Others",
+  "owner_name": "Mohamad Alhakim",
+  "owner_title": null,
+  "account_name": "Nissan Africa, Middle East & India",
+  "created_date": "2026-01-07",
+  "manager_name": "Carl Kimball",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 53,
+  "dm_identified": true,
+  "eb_identified": false,
+  "qualified_date": "2026-01-08",
+  "billing_country": "United Arab Emirates",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-03",
+  "last_modified_date": "2026-07-03",
+  "metrics_identified": false,
+  "primary_competitor": "SAP / eBa (incumbent do-nothing baseline) \u2014 SAP Ariba is listed on the Competitors__c field but is not corroborated by any call or note read this sweep",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-01-13",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 6 day(s) ago (2026-07-03). Buyer EMAIL RECEIVED 177 day(s) ago (2026-01-13) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement.",
+  "calls_read": 1,
+  "close_date": "2026-08-31",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 53,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 177,
+  "last_activity_date": "2026-07-03",
+  "days_since_activity": 6,
+  "next_scheduled_date": null,
+  "days_since_qualified": 182,
+  "last_inbound_email_date": "2026-01-13"
+ },
+ "deltas": [
+  {
+   "to": "Deliver high-level ROI analysis (not a full Value Assessment) to support the budget case",
+   "key": "requirement:deliver-high-level-roi-analysis-not-a-full-value-assessment-",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Vinoth Kumar",
+   "subject": "Deliver high-level ROI analysis (not a full Value Assessment) to support the budget case"
+  },
+  {
+   "to": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo",
+   "key": "requirement:address-market-analysis-category-intelligence-gap-beroe-equi",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo",
+   "kind": "changed",
+   "type": "requirement",
+   "source": "Vinoth Kumar",
+   "subject": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo"
+  },
+  {
+   "to": "Provide a detailed pricing and licensing document - completed",
+   "key": "commitment:zycus-provide-a-detailed-pricing-and-licensing-document",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide a detailed pricing and licensing document"
+  },
+  {
+   "to": "Draft a two-session demo agenda covering strategic and operational modules - overdue",
+   "key": "commitment:zycus-draft-a-two-session-demo-agenda-covering-strategic-and",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Draft a two-session demo agenda covering strategic and operational modules"
+  },
+  {
+   "to": "Provide a high-level ROI analysis (not a full Value Assessment) - overdue",
+   "key": "commitment:zycus-provide-a-high-level-roi-analysis-not-a-full-value-ass",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide a high-level ROI analysis (not a full Value Assessment)"
+  },
+  {
+   "to": "Investigate market-intelligence integration (Smart Cube) and build the story - open",
+   "key": "commitment:zycus-investigate-market-intelligence-integration-smart-cube",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Investigate market-intelligence integration (Smart Cube) and build the story"
+  },
+  {
+   "to": "Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal - overdue",
+   "key": "commitment:buyer-share-nissan-s-budget-targets-and-procurement-module-r",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal"
+  },
+  {
+   "to": "Share internal S2P process flow for the custom demo - overdue",
+   "key": "commitment:buyer-share-internal-s2p-process-flow-for-the-custom-demo",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share internal S2P process flow for the custom demo"
+  },
+  {
+   "to": "Confirm demo time-slot availability (not exceeding 90 minutes) - overdue",
+   "key": "commitment:buyer-confirm-demo-time-slot-availability-not-exceeding-90-m",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm demo time-slot availability (not exceeding 90 minutes)"
+  },
+  {
+   "to": "Vinoth Kumar - Decision Maker",
+   "key": "stakeholder:vinoth-kumar",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "Vinoth Kumar - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Vinoth Kumar"
+  },
+  {
+   "to": "Salonee Karnik - Influencer",
+   "key": "stakeholder:salonee-karnik",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "Salonee Karnik - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Salonee Karnik"
+  },
+  {
+   "to": "Ziad Baroud - Influencer",
+   "key": "stakeholder:ziad-baroud",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "Ziad Baroud - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ziad Baroud"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "SAP Ariba - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Beroe (market analysis / category intelligence) - active",
+   "key": "competitor:beroe-market-analysis-category-intelligence",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "from": "Beroe (market analysis / category intelligence)",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Beroe (market analysis / category intelligence)"
+  },
+  {
+   "to": "Unnamed alternative (EMEA HQ-mandated platform) - active",
+   "key": "competitor:unnamed-alternative-emea-hq-mandated-platform",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Unnamed alternative (EMEA HQ-mandated platform)"
+  },
+  {
+   "to": "No confirmed economic buyer; EMEA HQ may mandate a platform decision outside the local team's control - open",
+   "key": "risk:no-confirmed-economic-buyer-emea-hq-may-mandate-a-platform-d",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No confirmed economic buyer; EMEA HQ may mandate a platform decision outside the local team's control"
+  },
+  {
+   "to": "Close date of 31 Aug 2026 is unachievable given the deal has been in pre-RFQ discovery since January 2026 with a six-month pause and no demo/RFQ launched - open",
+   "key": "risk:close-date-of-31-aug-2026-is-unachievable-given-the-deal-has",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date of 31 Aug 2026 is unachievable given the deal has been in pre-RFQ discovery since January 2026 with a six-month pause and no demo/RFQ launched"
+  },
+  {
+   "to": "Regional conflict paused the project mid-January to April 2026; ceasefire noted 6 Apr 2026 but the restart targeted for early-mid May 2026 never materialized - ",
+   "key": "risk:regional-conflict-paused-the-project-mid-january-to-april-20",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Regional conflict paused the project mid-January to April 2026; ceasefire noted 6 Apr 2026 but the restart targeted for early-mid May 2026 never materialized"
+  },
+  {
+   "to": "Market intelligence / Beroe capability gap unresolved since the 7 Jan 2026 discovery call - open",
+   "key": "risk:market-intelligence-beroe-capability-gap-unresolved-since-th",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Market intelligence / Beroe capability gap unresolved since the 7 Jan 2026 discovery call"
+  },
+  {
+   "to": "Re-engage the champion directly rather than relying on the 3 Jul 2026 email alone - six months of silence after a strong discovery call is the highest-risk patt",
+   "key": "hygiene:re-engage-the-champion-directly-rather-than-relying-on-the-3",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage the champion directly rather than relying on the 3 Jul 2026 email alone - six months of silence after a strong discovery call is the highest-risk pattern on this deal; a second, multi-channel touch (call, not just email) is overdue."
+  },
+  {
+   "to": "Close the market-intelligence / Beroe capability gap before any demo - it was flagged as unresolved on 7 Jan 2026 and remains the one named objection risk; walk",
+   "key": "hygiene:close-the-market-intelligence-beroe-capability-gap-before-an",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close the market-intelligence / Beroe capability gap before any demo - it was flagged as unresolved on 7 Jan 2026 and remains the one named objection risk; walking into a demo without a Smart Cube story invites a direct comparison loss."
+  },
+  {
+   "to": "Add the missing buyer-side contact roles and multi-thread beyond Vinoth Kumar and Salonee Karnik before the deal restarts, given the flagged risk that EMEA HQ, ",
+   "key": "hygiene:add-the-missing-buyer-side-contact-roles-and-multi-thread-be",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Add the missing buyer-side contact roles and multi-thread beyond Vinoth Kumar and Salonee Karnik before the deal restarts, given the flagged risk that EMEA HQ, not the local team, may hold real purchasing authority."
+  },
+  {
+   "to": "Vinoth Kumar - developing",
+   "key": "champion:champion",
+   "date": "2026-07-09T19:29:50.214888+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Provide a high-level ROI analysis (not a full Value Assessment) to support the budget case",
+   "key": "requirement:provide-a-high-level-roi-analysis-not-a-full-value-assessmen",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Vinoth Kumar (project lead)",
+   "subject": "Provide a high-level ROI analysis (not a full Value Assessment) to support the budget case"
+  },
+  {
+   "to": "Provide demo date options (coordinated with Salonee Karnik) - overdue",
+   "key": "commitment:zycus-provide-demo-date-options-coordinated-with-salonee-kar",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide demo date options (coordinated with Salonee Karnik)"
+  },
+  {
+   "to": "Develop the market-intelligence / Smart Cube integration story addressing the Beroe gap - overdue",
+   "key": "commitment:zycus-develop-the-market-intelligence-smart-cube-integration",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Develop the market-intelligence / Smart Cube integration story addressing the Beroe gap"
+  },
+  {
+   "to": "Share internal S2P process flow to prepare the custom demo - overdue",
+   "key": "commitment:buyer-share-internal-s2p-process-flow-to-prepare-the-custom-",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share internal S2P process flow to prepare the custom demo"
+  },
+  {
+   "to": "Vinoth Kumar - Champion",
+   "key": "stakeholder:vinoth-kumar",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "from": "Vinoth Kumar - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Vinoth Kumar"
+  },
+  {
+   "to": "Salonee Karnik - Influencer",
+   "key": "stakeholder:salonee-karnik",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "from": "Salonee Karnik - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Salonee Karnik"
+  },
+  {
+   "to": "Ziad Baroud - Unknown",
+   "key": "stakeholder:ziad-baroud",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "from": "Ziad Baroud - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ziad Baroud"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "from": "SAP Ariba",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "SAP / eBa (current stack, do-nothing baseline) - incumbent",
+   "key": "competitor:sap-eba-current-stack-do-nothing-baseline",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP / eBa (current stack, do-nothing baseline)"
+  },
+  {
+   "to": "Beroe (market-intelligence gap) - active",
+   "key": "competitor:beroe-market-intelligence-gap",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Beroe (market-intelligence gap)"
+  },
+  {
+   "to": "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters le",
+   "key": "risk:regional-headquarters-overseeing-this-account-may-mandate-a-",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters level, leaving final vendor-selection authority unclear."
+  },
+  {
+   "to": "The face-to-face demo and ROI workshop targeted for early-to-mid May 2026 (after the ceasefire) never took place; no new date has been set as of 7 Jul 2026. - n",
+   "key": "risk:the-face-to-face-demo-and-roi-workshop-targeted-for-early-to",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The face-to-face demo and ROI workshop targeted for early-to-mid May 2026 (after the ceasefire) never took place; no new date has been set as of 7 Jul 2026."
+  },
+  {
+   "to": "Continued reliance on manual SAP/eBa/Outlook processes is the do-nothing baseline; a prolonged evaluation restart risks the buyer simply continuing as-is. - not",
+   "key": "risk:continued-reliance-on-manual-sap-eba-outlook-processes-is-th",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Continued reliance on manual SAP/eBa/Outlook processes is the do-nothing baseline; a prolonged evaluation restart risks the buyer simply continuing as-is."
+  },
+  {
+   "to": "Use Nissan's existing Zycus footprint in Australia and the US as internal proof: help the Australia reference call Vinoth Kumar wanted happen quickly to reinfor",
+   "key": "hygiene:use-nissan-s-existing-zycus-footprint-in-australia-and-the-u",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Use Nissan's existing Zycus footprint in Australia and the US as internal proof: help the Australia reference call Vinoth Kumar wanted happen quickly to reinforce his own business case."
+  },
+  {
+   "to": "Close the Beroe/market-intelligence gap with a concrete Smart Cube integration story before any renewed demo; it was the only objection raised on 8 Jan 2026 and",
+   "key": "hygiene:close-the-beroe-market-intelligence-gap-with-a-concrete-smar",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close the Beroe/market-intelligence gap with a concrete Smart Cube integration story before any renewed demo; it was the only objection raised on 8 Jan 2026 and is still unresolved six months later."
+  },
+  {
+   "to": "Multi-thread beyond Vinoth Kumar and Salonee Karnik and clarify whether regional headquarters controls the final platform decision before investing further, sin",
+   "key": "hygiene:multi-thread-beyond-vinoth-kumar-and-salonee-karnik-and-clar",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Vinoth Kumar and Salonee Karnik and clarify whether regional headquarters controls the final platform decision before investing further, since only 2 buyer-side contacts are logged."
+  },
+  {
+   "to": "Vinoth Kumar (with Salonee Karnik operationally) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T17:47:37.005244+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:no-buyer-call-in-180-days-last-8-jan-discovery-call-rep-outr",
+   "date": "2026-07-07",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "No buyer call in 180 days (last 8 Jan discovery call); rep outreach 3 Jul awaiting response; 55 days to close with no two-way engagement in H1 2026"
+  },
+  {
+   "to": "Share internal S2P process flow for custom demo preparation",
+   "key": "requirement:share-internal-s2p-process-flow-for-custom-demo-preparation",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Vinoth Kumar or colleagues",
+   "subject": "Share internal S2P process flow for custom demo preparation"
+  },
+  {
+   "to": "Provide demo date options",
+   "key": "requirement:provide-demo-date-options",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Vinoth Kumar (HOP)",
+   "subject": "Provide demo date options"
+  },
+  {
+   "to": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo",
+   "key": "requirement:address-market-analysis-category-intelligence-gap-beroe-equi",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "ai:implicit_requirements",
+   "subject": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo"
+  },
+  {
+   "to": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case",
+   "key": "requirement:deliver-high-level-roi-analysis-not-full-value-assessment-to",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "ai:implicit_requirements",
+   "subject": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case"
+  },
+  {
+   "to": "Vinoth Kumar - Decision Maker",
+   "key": "stakeholder:vinoth-kumar",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Vinoth Kumar"
+  },
+  {
+   "to": "Salonee Karnik - Influencer",
+   "key": "stakeholder:salonee-karnik",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Salonee Karnik"
+  },
+  {
+   "to": "Ziad Baroud - Evaluator",
+   "key": "stakeholder:ziad-baroud",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ziad Baroud"
+  },
+  {
+   "to": "SAP Ariba",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Regional incumbent platforms (unknown)",
+   "key": "competitor:regional-incumbent-platforms-unknown",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Regional incumbent platforms (unknown)"
+  },
+  {
+   "to": "Beroe (market analysis / category intelligence)",
+   "key": "competitor:beroe-market-analysis-category-intelligence",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Beroe (market analysis / category intelligence)"
+  },
+  {
+   "to": "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selectio",
+   "key": "risk:regional-emea-hq-may-mandate-s2p-platform-from-other-nissan-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selection authority unclear; local team may lack decision power"
+  },
+  {
+   "to": "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 J",
+   "key": "risk:market-analysis-category-intelligence-gap-buyer-uses-beroe-i",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 Jan and not resolved"
+  },
+  {
+   "to": "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is ",
+   "key": "risk:55-days-to-close-181-days-in-qualified-no-demo-no-buyer-call",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is unachievable without forcing event"
+  },
+  {
+   "to": "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing",
+   "key": "risk:war-pause-mid-jan-to-apr-disrupted-project-ceasefire-noted-6",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing context for region"
+  },
+  {
+   "to": "Share internal S2P process flow for custom demo preparation - no due date",
+   "key": "commitment:buyer-share-internal-s2p-process-flow-for-custom-demo-prepar",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Share internal S2P process flow for custom demo preparation"
+  },
+  {
+   "to": "Provide demo date options (Salonee) - no due date",
+   "key": "commitment:zycus-provide-demo-date-options-salonee",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Provide demo date options (Salonee)"
+  },
+  {
+   "to": "Develop market analysis / category intelligence integration story (Beroe gap) - no due date",
+   "key": "commitment:zycus-develop-market-analysis-category-intelligence-integrat",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Develop market analysis / category intelligence integration story (Beroe gap)"
+  },
+  {
+   "to": "No buyer call in 180 days (last 8 Jan discovery call); rep outreach 3 Jul awaiting response; 55 days to close with no two-way engagement in H1 2026",
+   "key": "hygiene:no-buyer-call-in-180-days-last-8-jan-discovery-call-rep-outr",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No buyer call in 180 days (last 8 Jan discovery call); rep outreach 3 Jul awaiting response; 55 days to close with no two-way engagement in H1 2026"
+  },
+  {
+   "to": "No economic buyer identified; budget authority may sit at regional EMEA HQ, no HQ stakeholder mapped",
+   "key": "hygiene:no-economic-buyer-identified-budget-authority-may-sit-at-reg",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No economic buyer identified; budget authority may sit at regional EMEA HQ, no HQ stakeholder mapped"
+  },
+  {
+   "to": "No champion; Vinoth (Decision Maker role) has not re-engaged after 6-month silence and may not control vendor selection (HQ overlay risk)",
+   "key": "hygiene:no-champion-vinoth-decision-maker-role-has-not-re-engaged-af",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion; Vinoth (Decision Maker role) has not re-engaged after 6-month silence and may not control vendor selection (HQ overlay risk)"
+  },
+  {
+   "to": "No quantified business problem or ROI case; buyer has not provided data for value assessment",
+   "key": "hygiene:no-quantified-business-problem-or-roi-case-buyer-has-not-pro",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified business problem or ROI case; buyer has not provided data for value assessment"
+  },
+  {
+   "to": "Demo planned for 'early-mid May' per 6 Apr note, never occurred; no demo scheduled as of 7 Jul",
+   "key": "hygiene:demo-planned-for-early-mid-may-per-6-apr-note-never-occurred",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Demo planned for 'early-mid May' per 6 Apr note, never occurred; no demo scheduled as of 7 Jul"
+  },
+  {
+   "to": "Regional EMEA HQ may mandate platform from other Nissan regions, bypassing local evaluation; no HQ relationship or sponsor",
+   "key": "hygiene:regional-emea-hq-may-mandate-platform-from-other-nissan-regi",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Regional EMEA HQ may mandate platform from other Nissan regions, bypassing local evaluation; no HQ relationship or sponsor"
+  },
+  {
+   "to": "Market analysis / category intelligence gap (Beroe) identified 8 Jan, no resolution plan",
+   "key": "hygiene:market-analysis-category-intelligence-gap-beroe-identified-8",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Market analysis / category intelligence gap (Beroe) identified 8 Jan, no resolution plan"
+  },
+  {
+   "to": "Single-threaded: all contact roles are procurement operational level, no C-level or regional exec access",
+   "key": "hygiene:single-threaded-all-contact-roles-are-procurement-operationa",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded: all contact roles are procurement operational level, no C-level or regional exec access"
+  },
+  {
+   "to": "181 days in Qualified stage, no stage progression, no field-history movement since creation 7 Jan",
+   "key": "hygiene:181-days-in-qualified-stage-no-stage-progression-no-field-hi",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "181 days in Qualified stage, no stage progression, no field-history movement since creation 7 Jan"
+  },
+  {
+   "to": "iContract;iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI;ANA",
+   "key": "product_scope:scope",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000RvMHF",
+ "packets": [
+  {
+   "key": "requirement:share-internal-s2p-process-flow-for-custom-demo-preparation",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-06",
+    "kind": "explicit",
+    "quote": "next step is to share a process flow that we will need to run a live custom demo against",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "said_by": "Vinoth Kumar",
+    "addressed": false,
+    "requirement": "Share internal S2P process flow for custom demo preparation"
+   },
+   "source": "Vinoth Kumar",
+   "status": "active",
+   "history": [],
+   "subject": "Share internal S2P process flow for custom demo preparation",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "requirement:provide-demo-date-options",
+   "type": "requirement",
+   "value": {
+    "date": "2026-01-07",
+    "kind": "explicit",
+    "quote": "Vinoth Kumar will check with the team regarding the availability of time slots for the demo, which will not exceed 90 minutes",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "said_by": "Vinoth Kumar",
+    "addressed": false,
+    "requirement": "Provide demo date options"
+   },
+   "source": "Vinoth Kumar",
+   "status": "active",
+   "history": [],
+   "subject": "Provide demo date options",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "requirement:address-market-analysis-category-intelligence-gap-beroe-equi",
+   "type": "requirement",
+   "value": {
+    "date": "2026-01-07",
+    "kind": "explicit",
+    "quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "said_by": "Vinoth Kumar",
+    "addressed": false,
+    "requirement": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo"
+   },
+   "source": "Vinoth Kumar",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-01-08",
+      "kind": "implicit",
+      "source": "SF Next Step 8 Jan",
+      "inferred_need": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo",
+      "grounding_quote": "only gap is market analysis - they are using Beroe in other regions, we will need to flesh out a story around our integration (Zycus internal observation, 8 Jan)"
+     }
+    }
+   ],
+   "subject": "Address market analysis / category intelligence gap (Beroe-equivalent capability) before demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "requirement:deliver-high-level-roi-analysis-not-full-value-assessment-to",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-06",
+    "kind": "implicit",
+    "source": "SF Next Step 6 Apr",
+    "inferred_need": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case",
+    "grounding_quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment) - intention is for DQ to spend some time with project lead and CPO to build this out (Zycus volunteered, 6 Apr)"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver high-level ROI analysis (not full Value Assessment) to support budget case",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "stakeholder:vinoth-kumar",
+   "type": "stakeholder",
+   "value": {
+    "name": "Vinoth Kumar",
+    "risk": "Six months of silence since last reply; contact record sits on a partner/channel-associated domain (email.nissan.in) separate from the ME buyer domains",
+    "role": "Decision Maker",
+    "title": "Dy manager purchase / Head of Procurement (ME/Europe)",
+    "source": "OpportunityContactRole; Avoma discovery call notes, 7 Jan 2026; Next_Step_History__c",
+    "sentiment": "positive but unresponsive since January",
+    "last_contact_date": "2026-01-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:47:37.005244+05:30",
+     "value": {
+      "name": "Vinoth Kumar",
+      "risk": "No contact in 6 months; contact role on this opportunity is tagged as partner/third-party, a hygiene inconsistency with his call-evidenced buyer-side driver role",
+      "role": "Champion",
+      "title": "Dy manager purchase",
+      "source": "OpportunityContactRole; Avoma discovery call, 2026-01-07",
+      "sentiment": "positive but unresponsive since",
+      "last_contact_date": "2026-01-07"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Vinoth Kumar",
+      "risk": "Led 8 Jan discovery call, assigned Decision Maker role, but has not re-engaged in 6 months despite war-pause resolution. May not control vendor selection if regional EMEA HQ mandates platform. No evidence of advocacy or urgency.",
+      "role": "Decision Maker",
+      "title": "Dy manager purchase",
+      "source": "SF Contact Role, SF Next Step 8 Jan",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-08"
+     }
+    }
+   ],
+   "subject": "Vinoth Kumar",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "stakeholder:salonee-karnik",
+   "type": "stakeholder",
+   "value": {
+    "name": "Salonee Karnik",
+    "risk": "Was tasked to run the RFQ process but has not been heard from since January alongside the rest of the buying team",
+    "role": "Influencer",
+    "title": "Purchasing Section Manager",
+    "source": "OpportunityContactRole; Avoma discovery call notes, 7 Jan 2026; recent task contact log",
+    "sentiment": "positive, operationally engaged",
+    "last_contact_date": "2026-01-07"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:47:37.005244+05:30",
+     "value": {
+      "name": "Salonee Karnik",
+      "risk": "RFP she was tasked to manage has not launched; no contact since 7 Jan 2026",
+      "role": "Influencer",
+      "title": "Purchasing Section Manager",
+      "source": "OpportunityContactRole; Avoma discovery call, 2026-01-07",
+      "sentiment": "positive, tasked with owning the RFP process",
+      "last_contact_date": "2026-01-07"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Salonee Karnik",
+      "risk": "Tasked with providing demo date options 8 Jan, no dates provided, no follow-up. Appears in tasks but no evidence of active engagement or re-engagement post-pause.",
+      "role": "Influencer",
+      "title": "Purchasing Section Manager",
+      "source": "SF Contact Role, SF Next Step 8 Jan, SF Tasks",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-08"
+     }
+    }
+   ],
+   "subject": "Salonee Karnik",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "stakeholder:ziad-baroud",
+   "type": "stakeholder",
+   "value": {
+    "name": "Ziad Baroud",
+    "risk": "Appears in the recent task contact log but not evidenced as a call attendee in the two discovery sessions; involvement in this opp's scope is not directly confirmed",
+    "role": "Influencer",
+    "title": "Purchasing Manager",
+    "source": "OpportunityContactRole; recent task contact log",
+    "sentiment": "unknown",
+    "last_contact_date": null
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:47:37.005244+05:30",
+     "value": {
+      "name": "Ziad Baroud",
+      "risk": "Listed as Evaluator on the opportunity contact role but no call attendance or task activity found confirming engagement",
+      "role": "Unknown",
+      "title": "Purchasing Manager",
+      "source": "OpportunityContactRole",
+      "sentiment": "unconfirmed",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Ziad Baroud",
+      "risk": "Evaluator role assigned, appears in tasks, no documented engagement or call participation. No evidence of evaluation activity or requirements input.",
+      "role": "Evaluator",
+      "title": "Purchasing Manager",
+      "source": "SF Contact Role, SF Tasks",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Ziad Baroud",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2026-06-04",
+    "name": "SAP Ariba",
+    "quote": "",
+    "source": "Salesforce Competitors__c field (no corroborating call or note evidence found)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Confirm with the buyer whether SAP Ariba is genuinely in consideration before building a comparative story; do not assume it is live.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:47:37.005244+05:30",
+     "value": {
+      "date": "2026-07-03",
+      "name": "SAP Ariba",
+      "quote": "",
+      "source": "SF Competitors__c (opportunity record)",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "No direct evaluation evidence found; keep monitoring since it is logged as a named competitor, but lead with the existing Nissan Australia/US relationship and decision-criteria fit instead of a head-to-head comparison.",
+      "threat_level": "low"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-01-07",
+      "name": "SAP Ariba",
+      "quote": null,
+      "source": "SF Competitors field",
+      "sentiment": "neutral",
+      "how_we_win": "Position Merlin agentic AI (Merlin, Merlin Intake, Agentic AI in scope) as the next-gen differentiator vs Ariba's legacy workflow automation; leverage existing Nissan US & Australia deployments as proof of enterprise scale and integration readiness; secure regional EMEA HQ sponsor to advocate for Zycus as the Nissan-global S2P standard."
+     }
+    }
+   ],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "competitor:beroe-market-analysis-category-intelligence",
+   "type": "competitor",
+   "value": {
+    "date": "2026-01-07",
+    "name": "Beroe (market analysis / category intelligence)",
+    "quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform",
+    "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c blockers, 2026-06-04",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Close the Smart Cube integration story before any demo so the buyer's existing Beroe usage in other regions is not a differentiator against Zycus.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-01-08",
+      "name": "Beroe (market analysis / category intelligence)",
+      "quote": "they are using Beroe in other regions, we will need to flesh out a story around our integration",
+      "source": "SF Next Step 8 Jan",
+      "sentiment": "negative",
+      "how_we_win": "Build a category-intelligence integration narrative (partnership, data feed, or native capability roadmap); demonstrate how Zycus + market data delivers unified S2P+insights vs point-solution stitching; include this in the demo when restarted."
+     }
+    }
+   ],
+   "subject": "Beroe (market analysis / category intelligence)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "risk:regional-emea-hq-may-mandate-s2p-platform-from-other-nissan-",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-06",
+    "detail": "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selection authority unclear; local team may lack decision power",
+    "source": "SF Next Step 6 Apr",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Regional EMEA HQ may mandate S2P platform from other Nissan regions, bypassing local Middle East evaluation; no EMEA HQ relationship or sponsor; vendor selection authority unclear; local team may lack decision power",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:market-analysis-category-intelligence-gap-buyer-uses-beroe-i",
+   "type": "risk",
+   "value": {
+    "date": "2026-01-08",
+    "detail": "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 Jan and not resolved",
+    "source": "SF Next Step 8 Jan",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-01-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Market analysis / category intelligence gap: buyer uses Beroe in other regions, Zycus has no documented integration or equivalent capability, gap identified 8 Jan and not resolved",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:55-days-to-close-181-days-in-qualified-no-demo-no-buyer-call",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is unachievable without forcing event",
+    "source": "SF stage-date math, Next Step 3 Jul, ground truth close date 31 Aug",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-01-07"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "55 days to close, 181 days in Qualified, no demo, no buyer call since 8 Jan (180 days ago), restart missed after war pause, pace required to close by 31 Aug is unachievable without forcing event",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:war-pause-mid-jan-to-apr-disrupted-project-ceasefire-noted-6",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-06",
+    "detail": "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing context for region",
+    "source": "SF Next Step 6 Apr",
+    "status": "acknowledged",
+    "category": "political",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "War pause mid-Jan to Apr disrupted project; ceasefire noted 6 Apr with restart target 'early-mid May' but no restart occurred; geopolitical risk remains ongoing context for region",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:buyer-share-internal-s2p-process-flow-for-custom-demo-prepar",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-04-06",
+    "source": "SF Next Step 6 Apr",
+    "status": "no due date",
+    "commitment": "Share internal S2P process flow for custom demo preparation"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Share internal S2P process flow for custom demo preparation",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-provide-demo-date-options-salonee",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-01-08",
+    "source": "SF Next Step 8 Jan",
+    "status": "no due date",
+    "commitment": "Provide demo date options (Salonee)"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide demo date options (Salonee)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-develop-market-analysis-category-intelligence-integrat",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-01-08",
+    "source": "SF Next Step 8 Jan",
+    "status": "no due date",
+    "commitment": "Develop market analysis / category intelligence integration story (Beroe gap)"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Develop market analysis / category intelligence integration story (Beroe gap)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-buyer-call-in-180-days-last-8-jan-discovery-call-rep-outr",
+   "type": "hygiene",
+   "value": {
+    "flag": "No buyer call in 180 days (last 8 Jan discovery call); rep outreach 3 Jul awaiting response; 55 days to close with no two-way engagement in H1 2026"
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "No buyer call in 180 days (last 8 Jan discovery call); rep outreach 3 Jul awaiting response; 55 days to close with no two-way engagement in H1 2026",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-identified-budget-authority-may-sit-at-reg",
+   "type": "hygiene",
+   "value": {
+    "flag": "No economic buyer identified; budget authority may sit at regional EMEA HQ, no HQ stakeholder mapped"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer identified; budget authority may sit at regional EMEA HQ, no HQ stakeholder mapped",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-vinoth-decision-maker-role-has-not-re-engaged-af",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion; Vinoth (Decision Maker role) has not re-engaged after 6-month silence and may not control vendor selection (HQ overlay risk)"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No champion; Vinoth (Decision Maker role) has not re-engaged after 6-month silence and may not control vendor selection (HQ overlay risk)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-quantified-business-problem-or-roi-case-buyer-has-not-pro",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified business problem or ROI case; buyer has not provided data for value assessment"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified business problem or ROI case; buyer has not provided data for value assessment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:demo-planned-for-early-mid-may-per-6-apr-note-never-occurred",
+   "type": "hygiene",
+   "value": {
+    "flag": "Demo planned for 'early-mid May' per 6 Apr note, never occurred; no demo scheduled as of 7 Jul"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Demo planned for 'early-mid May' per 6 Apr note, never occurred; no demo scheduled as of 7 Jul",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:regional-emea-hq-may-mandate-platform-from-other-nissan-regi",
+   "type": "hygiene",
+   "value": {
+    "flag": "Regional EMEA HQ may mandate platform from other Nissan regions, bypassing local evaluation; no HQ relationship or sponsor"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Regional EMEA HQ may mandate platform from other Nissan regions, bypassing local evaluation; no HQ relationship or sponsor",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:market-analysis-category-intelligence-gap-beroe-identified-8",
+   "type": "hygiene",
+   "value": {
+    "flag": "Market analysis / category intelligence gap (Beroe) identified 8 Jan, no resolution plan"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Market analysis / category intelligence gap (Beroe) identified 8 Jan, no resolution plan",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:single-threaded-all-contact-roles-are-procurement-operationa",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded: all contact roles are procurement operational level, no C-level or regional exec access"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded: all contact roles are procurement operational level, no C-level or regional exec access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:181-days-in-qualified-stage-no-stage-progression-no-field-hi",
+   "type": "hygiene",
+   "value": {
+    "flag": "181 days in Qualified stage, no stage progression, no field-history movement since creation 7 Jan"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "181 days in Qualified stage, no stage progression, no field-history movement since creation 7 Jan",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI;ANA"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "requirement:provide-a-high-level-roi-analysis-not-a-full-value-assessmen",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-06",
+    "kind": "explicit",
+    "quote": "interested in getting a high-level ROI analysis (not a full Value Assessment)",
+    "source": "Next_Step__c, 2026-04-06 entry",
+    "said_by": "Vinoth Kumar (project lead)",
+    "addressed": false,
+    "requirement": "Provide a high-level ROI analysis (not a full Value Assessment) to support the budget case"
+   },
+   "source": "Vinoth Kumar (project lead)",
+   "status": "active",
+   "history": [],
+   "subject": "Provide a high-level ROI analysis (not a full Value Assessment) to support the budget case",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-demo-date-options-coordinated-with-salonee-kar",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Zycus",
+    "date": "2026-01-08",
+    "source": "Next_Step__c, 2026-01-08 entry / Avoma discovery call notes, 2026-01-07",
+    "status": "overdue",
+    "commitment": "Provide demo date options (coordinated with Salonee Karnik)",
+    "deliverable": "Provide demo date options (coordinated with Salonee Karnik)",
+    "grounding_quote": "Dan & Tanya to propose a structure, Salonee to provide date options asap"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide demo date options (coordinated with Salonee Karnik)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "commitment:zycus-develop-the-market-intelligence-smart-cube-integration",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Zycus",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 2026-01-07",
+    "status": "overdue",
+    "commitment": "Develop the market-intelligence / Smart Cube integration story addressing the Beroe gap",
+    "deliverable": "Develop the market-intelligence / Smart Cube integration story addressing the Beroe gap",
+    "grounding_quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Develop the market-intelligence / Smart Cube integration story addressing the Beroe gap",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-internal-s2p-process-flow-to-prepare-the-custom-",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-04-06",
+    "source": "Next_Step__c, 2026-04-06 entry",
+    "status": "overdue",
+    "commitment": "Share internal S2P process flow to prepare the custom demo",
+    "deliverable": "Share internal S2P process flow to prepare the custom demo",
+    "grounding_quote": "share a process flow that we will need to run a live custom demo against"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Share internal S2P process flow to prepare the custom demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "competitor:sap-eba-current-stack-do-nothing-baseline",
+   "type": "competitor",
+   "value": {
+    "date": "2026-01-07",
+    "name": "SAP / eBa (current stack, do-nothing baseline)",
+    "quote": "current SAP and eBa systems plus manual emails and spreadsheets are hindering indirect procurement across the Middle East, Africa, Turkey, Egypt, and future India markets",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "status": "incumbent",
+    "sentiment": "negative",
+    "how_we_win": "Keep the six-month-silent buyer anchored to the pain they already voiced; a prolonged evaluation restart risks the buyer simply continuing as-is on SAP/eBa.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "SAP / eBa (current stack, do-nothing baseline)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "competitor:beroe-market-intelligence-gap",
+   "type": "competitor",
+   "value": {
+    "date": "2026-01-08",
+    "name": "Beroe (market-intelligence gap)",
+    "quote": "only gap is market analysis - they are using Beroe in other regions, we will need to flesh out a story around our Smart Cube 'integration'",
+    "source": "Next_Step__c, 2026-01-08 entry",
+    "status": "active",
+    "sentiment": "negative",
+    "how_we_win": "Deliver a concrete Smart Cube integration story before any renewed demo; this was Zycus's own committed action item from the 7 Jan 2026 call and remains outstanding.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Beroe (market-intelligence gap)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "risk:regional-headquarters-overseeing-this-account-may-mandate-a-",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-06",
+    "detail": "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters level, leaving final vendor-selection authority unclear.",
+    "source": "Next_Step__c, 2026-04-06 entry",
+    "status": "not addressed",
+    "category": "political",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Regional headquarters overseeing this account may mandate a platform already used elsewhere in EMEA; Zycus has no confirmed relationship at that headquarters level, leaving final vendor-selection authority unclear.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "risk:the-face-to-face-demo-and-roi-workshop-targeted-for-early-to",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "The face-to-face demo and ROI workshop targeted for early-to-mid May 2026 (after the ceasefire) never took place; no new date has been set as of 7 Jul 2026.",
+    "source": "Next_Step__c, 2026-04-06 and 2026-07-03 entries",
+    "status": "not addressed",
+    "category": "timeline",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The face-to-face demo and ROI workshop targeted for early-to-mid May 2026 (after the ceasefire) never took place; no new date has been set as of 7 Jul 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "risk:continued-reliance-on-manual-sap-eba-outlook-processes-is-th",
+   "type": "risk",
+   "value": {
+    "date": "2026-01-07",
+    "detail": "Continued reliance on manual SAP/eBa/Outlook processes is the do-nothing baseline; a prolonged evaluation restart risks the buyer simply continuing as-is.",
+    "source": "Avoma discovery call notes, 2026-01-07",
+    "status": "not addressed",
+    "category": "change_management",
+    "first_raised": "2026-01-07"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Continued reliance on manual SAP/eBa/Outlook processes is the do-nothing baseline; a prolonged evaluation restart risks the buyer simply continuing as-is.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "hygiene:use-nissan-s-existing-zycus-footprint-in-australia-and-the-u",
+   "type": "hygiene",
+   "value": {
+    "flag": "Use Nissan's existing Zycus footprint in Australia and the US as internal proof: help the Australia reference call Vinoth Kumar wanted happen quickly to reinforce his own business case."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Use Nissan's existing Zycus footprint in Australia and the US as internal proof: help the Australia reference call Vinoth Kumar wanted happen quickly to reinforce his own business case.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "hygiene:close-the-beroe-market-intelligence-gap-with-a-concrete-smar",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close the Beroe/market-intelligence gap with a concrete Smart Cube integration story before any renewed demo; it was the only objection raised on 8 Jan 2026 and is still unresolved six months later."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close the Beroe/market-intelligence gap with a concrete Smart Cube integration story before any renewed demo; it was the only objection raised on 8 Jan 2026 and is still unresolved six months later.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-vinoth-kumar-and-salonee-karnik-and-clar",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Vinoth Kumar and Salonee Karnik and clarify whether regional headquarters controls the final platform decision before investing further, since only 2 buyer-side contacts are logged."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond Vinoth Kumar and Salonee Karnik and clarify whether regional headquarters controls the final platform decision before investing further, since only 2 buyer-side contacts are logged.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:47:37.005244+05:30",
+   "last_updated": "2026-07-07T17:47:37.005244+05:30",
+   "last_confirmed": "2026-07-07T17:47:37.005244+05:30"
+  },
+  {
+   "key": "requirement:deliver-high-level-roi-analysis-not-a-full-value-assessment-",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-06",
+    "kind": "explicit",
+    "quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment)",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "said_by": "Vinoth Kumar",
+    "addressed": false,
+    "requirement": "Deliver high-level ROI analysis (not a full Value Assessment) to support the budget case"
+   },
+   "source": "Vinoth Kumar",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver high-level ROI analysis (not a full Value Assessment) to support the budget case",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-a-detailed-pricing-and-licensing-document",
+   "type": "commitment",
+   "value": {
+    "due": "2026-01-09",
+    "who": "Zycus",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 7 Jan 2026; Next_Step_History__c, 2026-01-28",
+    "status": "completed",
+    "commitment": "Provide a detailed pricing and licensing document",
+    "deliverable": "Provide a detailed pricing and licensing document",
+    "grounding_quote": "Provide a detailed pricing and licensing document within 48 hours"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide a detailed pricing and licensing document",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:zycus-draft-a-two-session-demo-agenda-covering-strategic-and",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "status": "overdue",
+    "commitment": "Draft a two-session demo agenda covering strategic and operational modules",
+    "deliverable": "Draft a two-session demo agenda covering strategic and operational modules",
+    "grounding_quote": "propose a two-session demo agenda covering strategic and operational modules"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Draft a two-session demo agenda covering strategic and operational modules",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-a-high-level-roi-analysis-not-a-full-value-ass",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-04-06",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "status": "overdue",
+    "commitment": "Provide a high-level ROI analysis (not a full Value Assessment)",
+    "deliverable": "Provide a high-level ROI analysis (not a full Value Assessment)",
+    "grounding_quote": "also interested in getting a high-level ROI analysis (not a full Value Assessment)"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide a high-level ROI analysis (not a full Value Assessment)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:zycus-investigate-market-intelligence-integration-smart-cube",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c blockers, 2026-06-04",
+    "status": "open",
+    "commitment": "Investigate market-intelligence integration (Smart Cube) and build the story",
+    "deliverable": "Investigate market-intelligence integration (Smart Cube) and build the story",
+    "grounding_quote": "Investigate market intelligence integration options (e.g., SmartCube) and outline how they can be embedded into the Zycus platform"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Investigate market-intelligence integration (Smart Cube) and build the story",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-nissan-s-budget-targets-and-procurement-module-r",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "status": "overdue",
+    "commitment": "Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal",
+    "deliverable": "Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal",
+    "grounding_quote": "Share Nissan's budget targets and procurement module requirements after reviewing Dan's initial proposal"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Share Nissan's budget targets and procurement module requirements after reviewing Zycus's initial proposal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-internal-s2p-process-flow-for-the-custom-demo",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-04-06",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "status": "overdue",
+    "commitment": "Share internal S2P process flow for the custom demo",
+    "deliverable": "Share internal S2P process flow for the custom demo",
+    "grounding_quote": "next step is to share a process flow that we will need to run a live custom demo against"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Share internal S2P process flow for the custom demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-demo-time-slot-availability-not-exceeding-90-m",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-01-07",
+    "source": "Avoma discovery call notes, 7 Jan 2026",
+    "status": "overdue",
+    "commitment": "Confirm demo time-slot availability (not exceeding 90 minutes)",
+    "deliverable": "Confirm demo time-slot availability (not exceeding 90 minutes)",
+    "grounding_quote": "Vinoth Kumar will check with the team regarding the availability of time slots for the demo, which will not exceed 90 minutes"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm demo time-slot availability (not exceeding 90 minutes)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "competitor:unnamed-alternative-emea-hq-mandated-platform",
+   "type": "competitor",
+   "value": {
+    "date": "2026-04-06",
+    "name": "Unnamed alternative (EMEA HQ-mandated platform)",
+    "quote": "the EMEA HQ 'may' insist on a solution used elsewhere, which could be us (US & Australia) or alternative(s) (not clear who)",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Seek any available channel into EMEA HQ (potentially leveraging the existing Nissan US/Australia relationship) to understand and influence this mandate before it is decided without local input.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Unnamed alternative (EMEA HQ-mandated platform)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "risk:no-confirmed-economic-buyer-emea-hq-may-mandate-a-platform-d",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-06",
+    "detail": "No confirmed economic buyer; EMEA HQ may mandate a platform decision outside the local team's control",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No confirmed economic buyer; EMEA HQ may mandate a platform decision outside the local team's control",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "risk:close-date-of-31-aug-2026-is-unachievable-given-the-deal-has",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Close date of 31 Aug 2026 is unachievable given the deal has been in pre-RFQ discovery since January 2026 with a six-month pause and no demo/RFQ launched",
+    "source": "CloseDate field; Next Step timeline reconstruction",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-07-09"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date of 31 Aug 2026 is unachievable given the deal has been in pre-RFQ discovery since January 2026 with a six-month pause and no demo/RFQ launched",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "risk:regional-conflict-paused-the-project-mid-january-to-april-20",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-06",
+    "detail": "Regional conflict paused the project mid-January to April 2026; ceasefire noted 6 Apr 2026 but the restart targeted for early-mid May 2026 never materialized",
+    "source": "Next_Step_History__c, 2026-04-06",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-04-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Regional conflict paused the project mid-January to April 2026; ceasefire noted 6 Apr 2026 but the restart targeted for early-mid May 2026 never materialized",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "risk:market-intelligence-beroe-capability-gap-unresolved-since-th",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-04",
+    "detail": "Market intelligence / Beroe capability gap unresolved since the 7 Jan 2026 discovery call",
+    "source": "Avoma discovery call notes, 7 Jan 2026; MEDDPICC_2_0__c blockers, 2026-06-04",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-01-07"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Market intelligence / Beroe capability gap unresolved since the 7 Jan 2026 discovery call",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-the-champion-directly-rather-than-relying-on-the-3",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage the champion directly rather than relying on the 3 Jul 2026 email alone - six months of silence after a strong discovery call is the highest-risk pattern on this deal; a second, multi-channel touch (call, not just email) is overdue."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage the champion directly rather than relying on the 3 Jul 2026 email alone - six months of silence after a strong discovery call is the highest-risk pattern on this deal; a second, multi-channel touch (call, not just email) is overdue.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "hygiene:close-the-market-intelligence-beroe-capability-gap-before-an",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close the market-intelligence / Beroe capability gap before any demo - it was flagged as unresolved on 7 Jan 2026 and remains the one named objection risk; walking into a demo without a Smart Cube story invites a direct comparison loss."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close the market-intelligence / Beroe capability gap before any demo - it was flagged as unresolved on 7 Jan 2026 and remains the one named objection risk; walking into a demo without a Smart Cube story invites a direct comparison loss.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "hygiene:add-the-missing-buyer-side-contact-roles-and-multi-thread-be",
+   "type": "hygiene",
+   "value": {
+    "flag": "Add the missing buyer-side contact roles and multi-thread beyond Vinoth Kumar and Salonee Karnik before the deal restarts, given the flagged risk that EMEA HQ, not the local team, may hold real purchasing authority."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Add the missing buyer-side contact roles and multi-thread beyond Vinoth Kumar and Salonee Karnik before the deal restarts, given the flagged risk that EMEA HQ, not the local team, may hold real purchasing authority.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Vinoth Kumar",
+    "at_risk": true,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:29:50.214888+05:30",
+   "last_updated": "2026-07-09T19:29:50.214888+05:30",
+   "last_confirmed": "2026-07-09T19:29:50.214888+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T19:29:50.214888+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Touchpoint 1 (23 Dec 2025 discovery call) not recorded - counted as a real touchpoint only, content unread",
+   "No economic buyer / EMEA HQ contact identified in any source",
+   "No corroboration found for SAP Ariba as an active competitor",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [
+   {
+    "reason": "not_recorded (captcha/bot denial or cancellation); counted as a real touchpoint, content unread",
+    "meeting": "Discovery Call | Zycus x Nissan, 2025-12-23"
+   }
+  ],
+  "avoma_attendees": [
+   "vinoth.kumar@nissan-me.ae",
+   "salonee.karnik@nissan-me.ae"
+  ],
+  "calls_discovered": 2,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "OpportunityFieldHistory 365d; Task/Next_Step__c/Next_Step_History__c full read"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

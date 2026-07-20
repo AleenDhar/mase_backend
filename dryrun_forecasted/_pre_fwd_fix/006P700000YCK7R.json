@@ -1,0 +1,2935 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic buyer / executive sponsor",
+     "date": "2026-07-09",
+     "quote": "Executive_Sponsor_Identified__c = false",
+     "source": "Executive_Sponsor_Identified__c; OpportunityContactRole (2 records, both Evaluator)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Champion",
+     "date": "2026-07-09",
+     "quote": "X10b_Champion_Business_Buyer__c: (blank)",
+     "source": "X10b_Champion_Business_Buyer__c",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Competitive intelligence",
+     "date": "2026-07-09",
+     "quote": "Competitors__c: Coupa;GEP Worldwide;JAGGAER",
+     "source": "Competitors__c (no supporting call/task/Avoma evidence found)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Buyer-side contact roles",
+     "date": "2026-07-09",
+     "quote": "Only 2 Opportunity Contact Roles on record, both Evaluator",
+     "source": "OpportunityContactRole query",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "gap",
+    "sources": [
+     "Customer_Business_Problem__c",
+     "Compelling_Event__c",
+     "Value_to_Customer__c"
+    ],
+    "narrative": "No quantified value case exists. Customer_Business_Problem__c states Monroe's sourcing and procurement processes are 'fully manual, with no system in place' and that it wants to 'support a structured three bids to buy procurement process,' but no cycle-time baseline, dollar figure, or savings target has been captured anywhere. Compelling_Event__c confirms the project is 'still in very early stages.' Value_to_Customer__c ('standardize sourcing, automate bid comparison, improve governance') is Zycus-authored framing, not a buyer-voiced metric."
+   },
+   "champion": {
+    "status": "gap",
+    "sources": [
+     "X10b_Champion_Business_Buyer__c",
+     "Next_Step_History__c"
+    ],
+    "narrative": "X10b_Champion_Business_Buyer__c is blank and no advocacy behavior is evidenced. Neither Nona MCIPS nor Maria Camarre has taken a visible internal action (forwarding an intro, scheduling an internal session) and both have gone unresponsive to five outreach attempts since the 18 May 2026 call (2 Jun, 11 Jun, 19 Jun, 29 Jun, 7 Jul)."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Competitors__c",
+     "evidence_coverage (zero Avoma meetings discovered)"
+    ],
+    "narrative": "Competitors__c names Coupa, GEP Worldwide, and JAGGAER, but zero supporting evidence exists anywhere: no Avoma meeting was found for this opportunity, this account, or either buyer contact's email across the full history, and no completed Task references any of the three. The field is populated (a hygiene positive) but how or why these three were named, and how Monroe rates them, is a genuine knowledge gap."
+   },
+   "identify_pain": {
+    "status": "partial",
+    "sources": [
+     "Customer_Business_Problem__c",
+     "Task 00TP700000nfla2MAA (18 May 2026 call, no description captured)"
+    ],
+    "narrative": "Customer_Business_Problem__c records real buyer pain: sourcing and procurement processes are 'fully manual, with no system in place,' and Monroe wants a 'structured three bids to buy procurement process.' This is a genuine, SF-recorded pain statement, but it is a paraphrase rather than a verbatim buyer quote (no transcript exists), and it has not been deepened or reconfirmed since the deal was qualified on 18 May 2026 \u2014 the single positive call with Maria Camarre that day carries no logged notes."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Current_Contract_Expiration__c",
+     "Existing_vendor__c"
+    ],
+    "narrative": "No paper process exists yet. Current_Contract_Expiration__c and Existing_vendor__c are blank; the deal is pre-RFP and pre-demo, well before any contracting motion would begin."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Executive_Sponsor_Identified__c",
+     "X10a_Sponsor__c",
+     "Who_will_approve_budget__c",
+     "OpportunityContactRole"
+    ],
+    "narrative": "No economic buyer or executive sponsor is identified or engaged (Executive_Sponsor_Identified__c = false, X10a_Sponsor__c and Who_will_approve_budget__c both blank). The only two Opportunity Contact Roles are Nona MCIPS (Procurement Leader) and Maria Camarre (Project Procurement Specialist), both logged as Evaluator, not budget owners. Monroe Energy's account record shows several senior titles (a Chief Operating Officer, two Chief Financial Officer entries, a VP General Counsel) but none carry an Opportunity Contact Role or appear in any task or call tied to this deal's scope."
+   },
+   "decision_process": {
+    "status": "gap",
+    "sources": [
+     "What_is_the_decision_process__c",
+     "Mandate__c",
+     "Decision_Maker_Identified__c",
+     "Next_Step_History__c"
+    ],
+    "narrative": "What_is_the_decision_process__c, Mandate__c, and Decision_Maker_Name_Title__c are all blank and Decision_Maker_Identified__c = false. The Next Step trail shows the deal owner repeatedly asking Monroe to 'release the RFP' and confirm a 'timeline' (6/29/26 entry) without a reply, meaning even the shape of the process (RFP-led vs. informal) is still unconfirmed by the buyer."
+   },
+   "decision_criteria": {
+    "status": "gap",
+    "sources": [
+     "Business_Requirements__c",
+     "Top_Challenges_Priorities__c",
+     "Shoe_Fit_Criteria_Met__c"
+    ],
+    "narrative": "Business_Requirements__c and Top_Challenges_Priorities__c are both blank and Shoe_Fit_Criteria_Met__c = false. No use-case criteria, BRD, or RFP scope has been shared or captured; the deal has not reached a demo or requirements-gathering session."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": true,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": null,
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-06-02",
+   "last_buyer_touch": null,
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-07-07",
+   "days_since_buyer_touch": null
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-06-02",
+   "items": [
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: process/evaluation stage unclear",
+     "summary": "System flags that we lack clarity on the buyer's evaluation stages and haven't secured influence over the process \u2014 a structural qualification gap, not a completed call."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: org chart / contact mapping needed",
+     "summary": "Flags that the key contacts and org structure at Monroe Energy still aren't mapped, leaving us blind on who else matters in the account."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: APD review pending",
+     "summary": "Flags an outstanding need to review and approve APD information \u2014 an internal step that hasn't been closed out yet."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: low inbound from prospect",
+     "summary": "System flags low inbound communication from Monroe Energy, reinforcing that the buyer side has gone quiet."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: no decision maker identified",
+     "summary": "A core risk flag \u2014 despite time in this deal, no confirmed economic/decision maker has been identified, which puts the whole opportunity's validity in question."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: multi-threading needed",
+     "summary": "Flags that engagement is too narrow and urges spreading contact across more stakeholders at Monroe Energy."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: more contact roles needed",
+     "summary": "Reinforces the multi-threading gap \u2014 asks for identification of additional roles/contacts beyond whoever is currently engaged."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Opportunity Health: prospect gone cold",
+     "summary": "Flags zero inbound from the prospect in the last 14 days, confirming the deal has stalled from the buyer's side."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "email",
+     "name": "Opportunity Health: 10-day outbound gap",
+     "summary": "Automated nudge noting our own team hasn't sent outbound email in 10 days, prompting a reminder to send follow-ups \u2014 reply/engagement from Monroe Energy is still pending."
+    },
+    {
+     "at": "2026-06-02",
+     "kind": "call",
+     "name": "Nooks call task: Nona MCIPS, Step #6 Quack US-ME DDs",
+     "summary": "A scheduled/logged call task to reach Nona (MCIPS) as part of step 6 of a due-diligence sequence tied to the US-ME (Monroe Energy) deal, likely a dialer-generated task rather than a completed substantive conversation."
+    }
+   ],
+   "source": "ai",
+   "overall": "On the most recent active day, the Monroe Energy deal saw no genuine buyer engagement \u2014 instead, a batch of automated Opportunity Health flags fired, all pointing to the same underlying problem: this deal has stalled and is under-qualified. No inbound from the prospect in 14 days, no decision maker identified, and outbound email has gone quiet for 10 days. We're entirely on our side of the net now, needing to rebuild multi-threading and get basic process/contact clarity before this can move again."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "At risk",
+    "deal_risk": 90.0,
+    "win_position": 8.0,
+    "deal_momentum": 12.0,
+    "customer_commitment": 6.0,
+    "forecast_confidence": 8.0
+   },
+   "cro_panel": {
+    "intro": "This is a $100k Qualified-stage, pre-discovery Monroe Energy P2P + sourcing deal that has never had a confirmed two-way buyer meeting beyond one positive-tagged cold call with Maria Camarre on 18 May 2026.; In the 52 days since Qualified (through 9 Jul 2026), the buyer side has gone silent through five further outreach attempts, no economic buyer or champion exists, and three named competitors carry zero supporting intelligence.; The read is early-stage and cooling, not advancing",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 8,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access.",
+        "tone": "warn"
+       },
+       {
+        "text": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun.",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 12,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Last recorded activity 2 Jun 2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 90,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence.",
+      "bullets": [
+       {
+        "full": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+        "text": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence.",
+        "tone": "warn"
+       },
+       {
+        "full": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been tested against buyer reality. Deal cannot reach closed-won by 21 Aug through a credible process.",
+        "text": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access.",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Personally re-engage Nona MCIPS and Maria Camarre with a fresh, non-cadence outreach to confirm the project is still live. (by 16 Jun)",
+       "If both contacts remain unresponsive, identify and reach a more senior Monroe procurement or operations contact to multi-thread. (by 23 Jun)",
+       "Add the missing buyer-side contact roles to the Opportunity and reassess whether the 21 Aug 2026 close date is still credible. (by 6 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Monroe Energy, LLC \u2014 Qualified \u00b7 $100K \u00b7 closes 21 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 90.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "43 days to close (21 Aug) with zero discovery call, demo, RFP, champion, or EB access \u2014 timeline is not credible against current evidence.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Three named competitors with no intel on Monroe's evaluation stage or preference \u2014 real risk the field is already decided elsewhere.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stated buyer need (\"basic sourcing control and governance,\" not AI) conflicts with Zycus's core Merlin/AI differentiation wedge.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Both buyer contacts silent for 3+ weeks despite repeated rep attempts \u2014 no confirmed path to an economic buyer.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "43 days to close (21 Aug) with zero discovery call, demo, RFP, champion, or EB access \u2014 timeline is not credible against current evidence.",
+      "tone": "warn"
+     },
+     {
+      "text": "Three named competitors with no intel on Monroe's evaluation stage or preference \u2014 real risk the field is already decided elsewhere.",
+      "tone": "warn"
+     },
+     {
+      "text": "Stated buyer need (\"basic sourcing control and governance,\" not AI) conflicts with Zycus's core Merlin/AI differentiation wedge.",
+      "tone": "warn"
+     },
+     {
+      "text": "Both buyer contacts silent for 3+ weeks despite repeated rep attempts \u2014 no confirmed path to an economic buyer.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "No champion exists on this opportunity \u2014 confirmed directly, not inferred.",
+      "tone": "warn"
+     },
+     {
+      "text": "MEDDPICC is almost entirely gaps: economic buyer, metrics, decision criteria, decision process, and paper process all unrecorded; only pain and competition are partial.",
+      "tone": "warn"
+     },
+     {
+      "text": "Three named competitors (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence \u2014 no visibility into whether Monroe has already shortlisted one of them.",
+      "tone": "warn"
+     },
+     {
+      "text": "AIS_Why__c states Monroe wants \"basic sourcing control and governance,\" explicitly noting AI \"is not part of the stated need\" \u2014 undercuts Zycus's Merlin/agentic-AI differentiation before it's even been presented.",
+      "tone": "warn"
+     },
+     {
+      "text": "Scope is at least defined (iSource/eProcurement, move from manual to three-bids-to-buy), giving a concrete starting point if engagement restarts.",
+      "tone": "good"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Zero buyer meetings ever recorded (0 total, 0 in 30/60/90d) \u2014 this deal has never had a live buyer session.",
+      "tone": "warn"
+     },
+     {
+      "text": "Three rep outreach attempts to Nona/Marie (Jun 3, Jun 11, Jun 19) went unanswered; no reply on any channel.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting scheduled (next_scheduled: none); next step is rep-authored plan (\"collab w/ BD and multi threading,\" 7/7) with no buyer commitment behind it.",
+      "tone": "warn"
+     },
+     {
+      "text": "Customer passivity \u2014 both named contacts have never initiated contact since the opp was opened.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep is multi-threading (LinkedIn connect + repeat email) rather than giving up, keeping a channel open for re-engagement.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-owned action items, no security/procurement review, no references requested, no paper process motion of any kind.",
+      "tone": "warn"
+     },
+     {
+      "text": "The only two named contacts (Nona MCIPS, Maria Camarre \u2014 both Evaluators) have gone unresponsive to three separate outreach attempts.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer identified, direct or indirect \u2014 nothing suggests anyone above the evaluator level is aware of this deal.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 8.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No champion exists on this opportunity \u2014 confirmed directly, not inferred.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "MEDDPICC is almost entirely gaps: economic buyer, metrics, decision criteria, decision process, and paper process all unrecorded; only pain and competition are partial.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Three named competitors (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence \u2014 no visibility into whether Monroe has already shortlisted one of them.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "AIS_Why__c states Monroe wants \"basic sourcing control and governance,\" explicitly noting AI \"is not part of the stated need\" \u2014 undercuts Zycus's Merlin/agentic-AI differentiation before it's even been presented.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Scope is at least defined (iSource/eProcurement, move from manual to three-bids-to-buy), giving a concrete starting point if engagement restarts.",
+      "points": 1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero buyer meetings ever recorded (0 total, 0 in 30/60/90d) \u2014 this deal has never had a live buyer session.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Three rep outreach attempts to Nona/Marie (Jun 3, Jun 11, Jun 19) went unanswered; no reply on any channel.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No future meeting scheduled (next_scheduled: none); next step is rep-authored plan (\"collab w/ BD and multi threading,\" 7/7) with no buyer commitment behind it.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Customer passivity \u2014 both named contacts have never initiated contact since the opp was opened.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Rep is multi-threading (LinkedIn connect + repeat email) rather than giving up, keeping a channel open for re-engagement.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "AIS_Why__c states Monroe wants 'basic sourcing control and governance ... not AI capability' and that AI 'is not part of the stated need' for a buyer starting from a fully manual process. This reads as indifference to AI rather than active ",
+     "expectations_fit": "Only one requirement theme is on record: moving Monroe from a fully manual sourcing/procurement process to a structured three-bids-to-buy process. No demo or fit-gap session has occurred to test alignment.",
+     "north_star_verdict": null,
+     "positioning_strength": "Merlin is attached to the iSource/eProcurement scope, but AIS_Why__c explicitly notes Monroe's objective is basic sourcing control and governance, not AI capability, and that 'AI is not part of the stated need.' AI value has not yet been po"
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 100000.0,
+     "opp_id": "006P700000YCK7R",
+     "account": "Monroe Energy, LLC",
+     "opp_name": "MonroeEnergy_P2P + sourcing Opp_May'26",
+     "next_step": "\ufeff7/7/26 GK: collab w/ BD and multi threading6/29/26 GK: follow up with Nona/Marie + team regarding RFP release timeline6/19/26 GK: LinkedIn connect Nona/Marie + DM6/11/26 GK: repeat email to Nona/Marie regarding rfp release6/3/26 GK: Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team",
+     "close_date": "2026-08-21",
+     "stage_tier": "early",
+     "days_to_close": 43,
+     "forecast_category": "Pipeline",
+     "last_activity_date": "2026-06-02"
+    },
+    "trends": {},
+    "champion": "No champion exists on this opportunity.",
+    "meddpicc": {
+     "metrics": "gap",
+     "champion": "gap",
+     "competition": "partial",
+     "identify_pain": "partial",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "gap",
+     "decision_criteria": "gap"
+    },
+    "meetings": {
+     "recent": [],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": null,
+     "next_scheduled": null,
+     "total_all_time": 0,
+     "days_since_last": null,
+     "with_transcript_all_time": 0
+    },
+    "competition": {
+     "summary": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. Zycus's differentiation wedge\u2014Merlin's agentic AI negotiation (I2O: Insight to Outcome, autonomous supplier price optimization)\u2014has not been presen",
+     "competitors": [
+      {
+       "name": "GEP Worldwide",
+       "status": null,
+       "threat": null
+      },
+      {
+       "name": "Coupa",
+       "status": null,
+       "threat": null
+      },
+      {
+       "name": "JAGGAER",
+       "status": null,
+       "threat": null
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP respons",
+     "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no s",
+     "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going thro",
+     "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing",
+     "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unr"
+    ],
+    "buyer_engagement": {
+     "rep_only": true,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": null
+    },
+    "decision_outcome": {}
+   },
+   "customer_commitment": {
+    "score": 6.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-owned action items, no security/procurement review, no references requested, no paper process motion of any kind.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "The only two named contacts (Nona MCIPS, Maria Camarre \u2014 both Evaluators) have gone unresponsive to three separate outreach attempts.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer identified, direct or indirect \u2014 nothing suggests anyone above the evaluator level is aware of this deal.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 8.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   }
+  },
+  "scope_change": {
+   "to": "",
+   "from": "",
+   "detail": "No scope change since creation; iSource, eProcurement, and Merlin have been the stated product scope throughout (Products__c).",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Resistant",
+   "summary": "AIS_Why__c states Monroe wants 'basic sourcing control and governance ... not AI capability' and that AI 'is not part of the stated need' for a buyer starting from a fully manual process. This reads as indifference to AI rather than active pushback, but on current evidence the buyer has not engaged with the AI dimension of the offering at all."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Customer_Business_Problem__c states manual sourcing/procurement with no system in place, but no quantified savings, cycle-time baseline, or ROI figure has been confirmed by the buyer (Value_to_Customer__c is Zycus-authored framing, not buyer-voiced)."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-05-18",
+     "change": "StageName: Initial Interest -> Qualified"
+    },
+    {
+     "date": "2026-06-02",
+     "change": "Owner reassigned to Grace Kim (from the previous deal owner)"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "Division__c re-tagged: Zycus -> Mid-Enterprise"
+    }
+   ],
+   "summary": "Since opportunity creation on 15 May 2026: the stage advanced from Initial Interest to Qualified on 18 May 2026 (the same day as the one positive buyer call), ownership transferred from the previous deal owner to Grace Kim on 2 Jun 2026, and a segment/division re-tag (Zycus to Mid-Enterprise) occurred on 30 Jun 2026. No further stage, forecast, amount, or close-date movement has occurred."
+  },
+  "forecast_read": {
+   "math": "Days to close: 43 (today 2026-07-09 to 2026-08-21). Days in Qualified stage: 52 (since 2026-05-18). Days since last verified activity: 37 (since 2026-06-02). Zero buyer-facing milestones logged since opportunity creation on 2026-05-15.",
+   "reason": "The 21 Aug 2026 close date implies signature within 43 days of today, but the deal has not yet had a discovery call, demo, RFP exchange, or any confirmed decision process. A realistic new-business S2P motion (discovery, demo, RFP, shortlist, workshops, commercials, legal) takes several months from this point, not six weeks.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline (category unchanged; close date is the defensibility problem)"
+  },
+  "product_scope": {
+   "scope": "iSource;eProcurement;Merlin"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.5",
+    "sum": "10.1",
+    "win": "10.3",
+    "todo": "10.1",
+    "sweep": "10.0",
+    "extract": "10.4",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Maria Camarre",
+     "risk": "Went silent immediately after the one positive call on 18 May 2026; unresponsive to subsequent joint outreach on 11 Jun, 19 Jun, and 29 Jun 2026.",
+     "role": "Influencer",
+     "email": "maria.camarre@monroe-energy.com",
+     "title": "Project Procurement Specialist",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive (single call, no notes captured)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-18"
+    },
+    {
+     "name": "Nona MCIPS",
+     "risk": "No confirmed two-way conversation exists on record; unresponsive to five outreach attempts since opportunity creation (2 Jun, 11 Jun, 19 Jun, 29 Jun, 7 Jul 2026).",
+     "role": "Influencer",
+     "email": "nona.somoza@monroe-energy.com",
+     "title": "Procurement Leader",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown / unresponsive",
+     "_matched_ai": true
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-06-26",
+     "change": "carried",
+     "detail": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4-6 months, not 8 weeks. Close date is not credible.",
+     "status": "active",
+     "category": "timeline",
+     "first_seen": "2026-06-26",
+     "first_raised": "2026-06-26",
+     "last_confirmed": "2026-06-26"
+    },
+    {
+     "date": "2026-06-26",
+     "change": "carried",
+     "detail": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no senior stakeholder mapped. Deal may be a low-priority internal project, or Monroe may be favoring another vendor and ghosting Zycus. Ghost risk is high.",
+     "status": "active",
+     "category": "political",
+     "first_seen": "2026-06-26",
+     "first_raised": "2026-06-26",
+     "last_confirmed": "2026-06-26"
+    },
+    {
+     "date": "2026-06-26",
+     "change": "carried",
+     "detail": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+     "status": "active",
+     "category": "other",
+     "first_seen": "2026-06-26",
+     "first_raised": "2026-05-15",
+     "last_confirmed": "2026-06-26"
+    },
+    {
+     "date": "2026-05-15",
+     "change": "carried",
+     "detail": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been tested against buyer reality. Deal cannot reach closed-won by 21 Aug through a credible process.",
+     "status": "Unresolved\u2014close date not validated, no buyer engagement to anchor a realistic timeline",
+     "category": "timeline",
+     "first_seen": "2026-06-30",
+     "first_raised": "Opportunity creation (close date set to 21 Aug 2026 at inception)",
+     "last_confirmed": "2026-06-30"
+    },
+    {
+     "date": "2026-06-19",
+     "change": "carried",
+     "detail": "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unresponsive. No champion, no EB, no senior stakeholder mapped. Monroe may have deprioritized the project, shortlisted another vendor, or ghosted Zycus for compliance/price benchmarking. Ghost risk is high. Without a discovery call within the next 7 days, the deal should be disqualified or close date pushed to Q1 2027.",
+     "status": "Unresolved\u2014buyer still unresponsive as of 19 Jun LinkedIn connect attempt",
+     "category": "executive_alignment",
+     "first_seen": "2026-06-30",
+     "first_raised": "3 Jun 2026 (first rep outreach requesting discovery call)",
+     "last_confirmed": "2026-06-30"
+    },
+    {
+     "date": "2026-05-15",
+     "change": "carried",
+     "detail": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. High risk that Monroe has already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+     "status": "Unresolved\u2014no competitive intelligence gathered, no buyer engagement to validate positioning",
+     "category": "political",
+     "first_seen": "2026-06-30",
+     "first_raised": "Opportunity creation (competitors set in Competitors__c)",
+     "last_confirmed": "2026-06-30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or senior sponsor engaged; the only two contact roles are mid-level Evaluators.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T14:40:38.260617+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "45 days remain to the 21 Aug 2026 close date with no discovery call, RFP release, or demo held; a realistic enterprise motion needs 4-6 months from RFP release alone.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T14:40:38.260617+05:30",
+     "first_raised": "2026-05-15",
+     "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Both buyer contacts have gone unresponsive since the single positive call with Maria Camarre on 18 May 2026, despite five subsequent outreach attempts through 29 Jun 2026.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T14:40:38.260617+05:30",
+     "first_raised": "2026-05-19",
+     "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Coupa, GEP Worldwide, and JAGGAER are logged as competitors with no supporting call, quote, or context on positioning or timing.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T14:40:38.260617+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or executive sponsor is engaged; both known contacts are Evaluators.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T17:35:22.845124+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "updated",
+     "detail": "No budget owner or approval process identified; unclear whether the $100k deal size is even budgeted for what would be Monroe's first procurement automation purchase.",
+     "status": "not addressed",
+     "category": "budget",
+     "first_seen": "2026-07-07T17:35:22.845124+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "21 Aug 2026 close date predates any discovery call, RFP, or demo and is not achievable on a realistic enterprise cycle.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T17:35:22.845124+05:30",
+     "first_raised": "2026-05-15",
+     "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+    },
+    {
+     "date": "2026-05-18",
+     "change": "carried",
+     "detail": "Buyer is moving from a fully manual process to its first system; adoption risk is real given zero prior automation experience.",
+     "status": "acknowledged",
+     "category": "change_management",
+     "first_seen": "2026-07-07T17:35:22.845124+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No economic buyer or executive sponsor is identified or engaged; both known contacts are Evaluator-level.",
+     "status": "not addressed",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T08:33:59.959245+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No champion; both buyer contacts have gone unresponsive to five outreach attempts since the single positive call on 18 May 2026.",
+     "status": "not addressed",
+     "category": "political",
+     "first_seen": "2026-07-09T08:33:59.959245+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "43-day close window (21 Aug 2026) is incompatible with a motion that has not yet had a discovery call, RFP, or demo.",
+     "status": "not addressed",
+     "category": "timeline",
+     "first_seen": "2026-07-09T08:33:59.959245+05:30",
+     "first_raised": "2026-05-15",
+     "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Three competitors (Coupa, GEP Worldwide, JAGGAER) are logged with zero supporting evidence on positioning, timing, or Monroe's evaluation status.",
+     "status": "not addressed",
+     "category": "other",
+     "first_seen": "2026-07-09T08:33:59.959245+05:30",
+     "first_raised": "2026-05-18",
+     "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 12.0,
+   "win": 8.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Competition",
+    "text": "Coupa, GEP Worldwide, and JAGGAER are logged as the competitive field but no call, quote, or discovery conversation exists anywhere to explain how they were identified or how Monroe views them.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Last meeting",
+    "text": "The only confirmed two-way buyer conversation was a positive call with Maria Camarre on 18 May 2026, over seven weeks ago; no notes were captured and nothing has followed it up.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "No new stakeholder has surfaced since the opportunity was created on 15 May 2026; both known contacts remain Evaluator-level with no economic buyer or champion in view.",
+    "tone": "crit"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "X10b_Champion_Business_Buyer__c is blank; neither buyer contact has shown advocacy behavior since the single 18 May 2026 call.",
+   "at_risk": true,
+   "summary": "No champion exists on this opportunity.",
+   "champion": "",
+   "strength": "none"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Personally re-engage Nona MCIPS and Maria Camarre with a fresh, non-cadence outreach to confirm the project is still live.",
+     "horizon": "next_7_days",
+     "trigger": "37 days since last verified activity (2 Jun 2026); 5 unanswered outreach attempts on record.",
+     "trigger_date": "2026-07-07",
+     "expected_effect": "Re-establish two-way contact and surface whether the project or the vendor field has moved on."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "If both contacts remain unresponsive, identify and reach a more senior Monroe procurement or operations contact to multi-thread.",
+     "horizon": "next_14_days",
+     "trigger": "No reply from either Evaluator-level contact after the rank-1 attempt.",
+     "trigger_date": "2026-07-16",
+     "expected_effect": "Break single-threaded dependence on two unresponsive Evaluators and create a path to an economic buyer."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Add the missing buyer-side contact roles to the Opportunity and reassess whether the 21 Aug 2026 close date is still credible.",
+     "horizon": "next_30_days",
+     "trigger": "Only 2 Opportunity Contact Roles exist and 43 days remain to close with zero discovery-stage progress.",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Correct the CRM record for multi-thread tracking and set an honest close-date expectation if the deal has not progressed."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "37 days since last verified Salesforce activity (2 Jun 2026)",
+    "5 unanswered outreach attempts since the single 18 May 2026 call (2 Jun, 11 Jun, 19 Jun, 29 Jun, 7 Jul)",
+    "Zero Avoma meetings found across opportunity, account, and both buyer-contact-email pulls"
+   ],
+   "cooling": true,
+   "summary": "Engagement is cooling: 37 days since the last verified activity, five unanswered outreach attempts, and zero Avoma call evidence found anywhere for this opportunity, account, or either buyer contact."
+  },
+  "north_star_verdict": {
+   "math": "Created 15 May 2026, moved to Qualified 18 May 2026 (Qualified_Submission_Date__c), so the opportunity has sat about 50 days in Qualified as of 7 Jul 2026. Close date is 45 days out. No Formal_Eval_Submission_Date__c or Shortlisted_Submission_Date__c exist, meaning zero progression past Qualified. A realistic enterprise P2P and sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal) needs 4 to 6 months from RFP release alone, and the RFP has not been released. The deal cannot reach Closed Won by 21 Aug 2026 on current pace.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "SF StageName=Qualified since 18 May 2026 (Qualified_Submission_Date__c)",
+    "Next_Step_History__c shows the identical unresolved RFP-release ask repeated 3 Jun, 11 Jun, 19 Jun, 29 Jun 2026",
+    "Zero Avoma meetings found across opp, account, and attendee-email discovery (2025-01-01 to 2026-07-07)"
+   ],
+   "headline": "Stalled in Qualified for about 50 days with zero confirmed buyer reply since 18 May 2026; the 21 Aug 2026 close date is not achievable without a discovery call opening in the next two weeks.",
+   "trajectory": "steady",
+   "prior_verdict": "Slowing",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Hold at Pipeline and push the close date to at least Q4 2026 or Q1 2027 until a discovery call and RFP release are confirmed with the buyer."
+  },
+  "best_practice_check": {
+   "flags": [
+    "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do not reply within 5 business days (by 3 Jul), escalate to the Procurement Lead or CFO level to restart momentum. Without a discovery call by early Jul, the 21 Aug close is impossible and the deal should be disqualified or pushed to Q4.",
+    "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking. GEP and Coupa are both Tier-1 and can win on P2P + sourcing; JAGGAER is procurement-native. Merlin AI is the wedge but buyer AI appetite is unconfirmed. Immediate move: extract the shortlist, buyer preferences, and each rival's positioning on the discovery call. Then run a competitive deep-dive (battle cards, win themes, proof points) within 14 days and position Merlin as the differentiator in every subsequent conversation.",
+    "No champion: Nona and Maria are Evaluators with zero engagement. No Champion, Decision Maker, Economic Buyer, or Executive Sponsor identified in contact roles. No internal advocate to guide Zycus through Monroe's process or defend against the three named competitors (Coupa, GEP, JAGGAER). Cannot navigate approval chain or internal politics without a champion.",
+    "No Economic Buyer access: EB\u2014the executive who controls budget and signs the contract\u2014is unidentified. Contact roles list only two Evaluators (Nona, Maria). Zero visibility into who holds budget authority, whether funds are allocated, or whether this is an approved project vs market research. Cannot validate deal viability or commercial terms without EB engagement.",
+    "No competitive intelligence: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero context\u2014how identified, where in eval process, what their positioning is, how Zycus should differentiate. No discovery call or RFP to provide competitive framing. High risk that Monroe has already shortlisted another vendor and is using Zycus for price benchmarking. Competitive position is completely blind.",
+    "The single live human connection (positive call with Maria Camarre, 18 May 2026) is now ~7 weeks stale with no follow-up meeting booked; convert it to a scheduled discovery call before it goes fully cold.",
+    "The RFP-release ask has been repeated four times (3, 11, 22, 30 Jun 2026) with no written response; press for a specific date rather than repeating the same open-ended ask, and use the answer to gauge whether Monroe is genuinely running a live tender or has deprioritized the project.",
+    "Correct the forecast honestly: a 21 Aug 2026 close date sitting atop zero discovery call, RFP, or demo is not credible and should be reset before it slips silently.",
+    "Buyer has not yet seen Zycus execute anything: zero discovery call, demo, or RFP exchanged in the 55 days since opportunity creation (15 May 2026) \u2014 a tailored value note or working session would rebuild momentum faster than another cold touch.",
+    "No next step carries a buyer-confirmed date: the current Next Step is entirely rep-authored outreach; secure an actual calendar hold, even tentative, to anchor the record."
+   ],
+   "summary": "The two highest-leverage moves are re-establishing two-way contact with the existing Evaluators and multi-threading beyond them; both current contacts are non-decision-making and unresponsive, and no one senior has ever been engaged."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference exists anywhere on record; the only buyer-side data point is one 'Conversation - Positive' tag on the 18 May 2026 call with Maria Camarre, with no notes captured on content or sentiment beyond the outreach tool's tag."
+  },
+  "competitive_position": {
+   "summary": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. Zycus's differentiation wedge\u2014Merlin's agentic AI negotiation (I2O: Insight to Outcome, autonomous supplier price optimization)\u2014has not been presented to the buyer. Competitive position is completely blind. High risk that Monroe has already shortlisted another vendor and is using Zycus for price benchmarking or compliance.",
+   "competitors": [
+    {
+     "date": "2026-05-15",
+     "name": "GEP Worldwide",
+     "quote": null,
+     "change": "carried",
+     "source": "SF Competitors__c (set at opportunity creation)",
+     "status": null,
+     "sentiment": "neutral",
+     "first_seen": "2026-06-26",
+     "how_we_win": "Merlin agentic negotiation (I2O: supplier price intelligence, autonomous RFP optimization on historical data) vs GEP's consulting-heavy, less-mature AI. Position Merlin as Phase 1 centerpiece in RFP response and demo.",
+     "threat_level": null,
+     "last_confirmed": "2026-06-30"
+    },
+    {
+     "date": "2026-05-15",
+     "name": "Coupa",
+     "quote": null,
+     "change": "carried",
+     "source": "SF Competitors__c (set at opportunity creation)",
+     "status": null,
+     "sentiment": "neutral",
+     "first_seen": "2026-06-26",
+     "how_we_win": "Merlin agentic negotiation + deeper sourcing AI vs Coupa's broad but AI-shallow platform. Emphasize I2O autonomy and supplier collaboration depth in discovery and demo.",
+     "threat_level": null,
+     "last_confirmed": "2026-06-30"
+    },
+    {
+     "date": "2026-05-15",
+     "name": "JAGGAER",
+     "quote": null,
+     "change": "carried",
+     "source": "SF Competitors__c (set at opportunity creation)",
+     "status": null,
+     "sentiment": "neutral",
+     "first_seen": "2026-06-26",
+     "how_we_win": "Merlin agentic negotiation + modern UX vs JAGGAER's legacy platform and weaker AI. Position Merlin as the AI differentiation in RFP and use-case demos.",
+     "threat_level": null,
+     "last_confirmed": "2026-06-30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "This is a $100k Qualified-stage, pre-discovery Monroe Energy P2P + sourcing deal that has never had a confirmed two-way buyer meeting beyond one positive-tagged cold call with Maria Camarre on 18 May 2026. In the 52 days since Qualified (through 9 Jul 2026), the buyer side has gone silent through five further outreach attempts, no economic buyer or champion exists, and three named competitors carry zero supporting intelligence. The read is early-stage and cooling, not advancing.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "43 days remain to the 21 Aug 2026 close date, but the deal has not yet had a discovery call, demo, or RFP exchange; a realistic new-business S2P motion needs several more months from this point, making the close date not credible.",
+      "tone": "warn"
+     },
+     {
+      "text": "Both buyer contacts are Evaluator-level and currently unresponsive; without a senior sponsor or a re-engaged evaluator, the deal risks stalling toward disqualification.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Stage is Qualified, which caps a pre-RFP win read; AIS_Why__c independently rates this Negative (AIS 2.0), noting Monroe wants basic manual-to-structured sourcing control, not an AI-led buy, and that Merlin is not part of the stated need.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer or executive sponsor is engaged (Executive_Sponsor_Identified__c = false); the only two Opportunity Contact Roles, Nona MCIPS and Maria Camarre, are both Evaluator-level.",
+      "tone": "warn"
+     },
+     {
+      "text": "No champion: neither buyer contact has advocated internally or replied to five outreach attempts since the single 18 May 2026 call (X10b_Champion_Business_Buyer__c is blank).",
+      "tone": "warn"
+     },
+     {
+      "text": "Three named competitors (Coupa, GEP Worldwide, JAGGAER) carry zero supporting call evidence, so competitive standing is unverified rather than favorable.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "37 days since the last verified Salesforce activity (2 Jun 2026, a failed call attempt to Nona MCIPS); the deal owner's five subsequent touches (11 Jun email, 19 Jun LinkedIn, 29 Jun follow-up, 7 Jul internal note) have drawn no buyer reply.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting, demo, or dated milestone is on the calendar; the current Next Step is entirely rep-authored outreach with no buyer-confirmed date.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "The only buyer-side action on record is one positive-tagged call with Maria Camarre on 18 May 2026 (no notes captured); there has been no reciprocal buyer action since \u2014 no reply, no meeting request, no document shared.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": []
+  },
+  "implicit_requirements": {
+   "items": []
+  },
+  "ai_positioning_strength": {
+   "score": "Not yet positioned",
+   "summary": "Merlin is attached to the iSource/eProcurement scope, but AIS_Why__c explicitly notes Monroe's objective is basic sourcing control and governance, not AI capability, and that 'AI is not part of the stated need.' AI value has not yet been positioned to this buyer.",
+   "under_positioned": true
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-05-18",
+     "quote": "Current sourcing and procurement processes are fully manual, with no system in place.",
+     "source": "Customer_Business_Problem__c",
+     "position": "partially aligned",
+     "criterion": "Move from fully manual sourcing/procurement to a structured, systemized three-bids-to-buy process"
+    }
+   ],
+   "summary": "Only one requirement theme is on record: moving Monroe from a fully manual sourcing/procurement process to a structured three-bids-to-buy process. No demo or fit-gap session has occurred to test alignment."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 100000.0,
+  "opp_id": "006P700000YCK7RIAX",
+  "ais_why": "* Monroe Energy is starting from zero: \"Current sourcing and procurement processes are fully manual, with no system in place,\" and it wants to \"support a structured three bids to buy procurement process.\"\n* The objective is basic sourcing control and governance for an oil-and-gas refiner, not AI capability.\n* Next step is scheduling a project/modules demo; Merlin is attached to a core iSource/eProcurement scope but AI is not part of the stated need. Qualified at 10%.",
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YCK7RIAX/view",
+  "opp_name": "MonroeEnergy_P2P + sourcing Opp_May'26",
+  "owner_id": "005P7000004sMvhIAE",
+  "products": "iSource;eProcurement;Merlin",
+  "ais_score": 2.0,
+  "next_step": "\ufeff7/7/26 GK: collab w/ BD and multi threading6/29/26 GK: follow up with Nona/Marie + team regarding RFP release timeline6/19/26 GK: LinkedIn connect Nona/Marie + DM6/11/26 GK: repeat email to Nona/Marie regarding rfp release6/3/26 GK: Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team",
+  "ais_status": "Negative",
+  "close_date": "2026-08-21",
+  "competitor": "Coupa;GEP Worldwide;JAGGAER",
+  "owner_name": "Grace Kim",
+  "owner_title": null,
+  "account_name": "Monroe Energy, LLC",
+  "created_date": "2026-05-15",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 43,
+  "dm_identified": false,
+  "eb_identified": false,
+  "ais_why_source": "AIS_Why__c",
+  "qualified_date": "2026-05-18",
+  "billing_country": "United States",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "Oil & Gas",
+  "ais_score_source": "AIS_Score__c",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "ais_status_source": "AIS_Status__c",
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-06-02",
+  "last_modified_date": "2026-07-07",
+  "metrics_identified": false,
+  "primary_competitor": "Unconfirmed (no differentiating evidence among Coupa, GEP Worldwide, JAGGAER)",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "cooling",
+  "summary": "Cooling: last verified activity 37 day(s) ago (2026-06-02). Rep outreach 2026-07-07 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 0,
+  "close_date": "2026-08-21",
+  "rep_outreach": {
+   "date": "2026-07-07",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "\ufeff7/7/26 GK: collab w/ BD and multi threading6/29/26 GK: follow up with Nona/Marie + team regarding RFP release timeline6/19/26 GK: LinkedIn connect Nona/Marie + DM6/11/26 GK: repeat email to Nona/Marie regarding rfp release6/3/26 GK: Follow up with Nona and Marie to schedule call to discuss the deta",
+   "detected": true
+  },
+  "days_to_close": 43,
+  "verified_known": true,
+  "buyer_calls_seen": false,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-06-02",
+  "days_since_activity": 37,
+  "days_since_qualified": 52,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Schedule a discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin - overdue",
+   "key": "commitment:buyer-schedule-a-discovery-call-with-the-deal-owner-to-discu",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Schedule a discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin"
+  },
+  {
+   "to": "Release the RFP document and evaluation timeline to Zycus so it can respond and understand Monroe's criteria and timeline - overdue",
+   "key": "commitment:buyer-release-the-rfp-document-and-evaluation-timeline-to-zy",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release the RFP document and evaluation timeline to Zycus so it can respond and understand Monroe's criteria and timeline"
+  },
+  {
+   "to": "Nona MCIPS - Influencer",
+   "key": "stakeholder:nona-mcips",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "from": "Nona MCIPS - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Nona MCIPS"
+  },
+  {
+   "to": "Maria Camarre - Influencer",
+   "key": "stakeholder:maria-camarre",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "from": "Maria Camarre - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Maria Camarre"
+  },
+  {
+   "to": "No economic buyer or executive sponsor is identified or engaged; both known contacts are Evaluator-level. - not addressed",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-is-identified-or-enga",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor is identified or engaged; both known contacts are Evaluator-level."
+  },
+  {
+   "to": "No champion; both buyer contacts have gone unresponsive to five outreach attempts since the single positive call on 18 May 2026. - not addressed",
+   "key": "risk:no-champion-both-buyer-contacts-have-gone-unresponsive-to-fi",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No champion; both buyer contacts have gone unresponsive to five outreach attempts since the single positive call on 18 May 2026."
+  },
+  {
+   "to": "43-day close window (21 Aug 2026) is incompatible with a motion that has not yet had a discovery call, RFP, or demo. - not addressed",
+   "key": "risk:43-day-close-window-21-aug-2026-is-incompatible-with-a-motio",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "43-day close window (21 Aug 2026) is incompatible with a motion that has not yet had a discovery call, RFP, or demo."
+  },
+  {
+   "to": "Three competitors (Coupa, GEP Worldwide, JAGGAER) are logged with zero supporting evidence on positioning, timing, or Monroe's evaluation status. - not addresse",
+   "key": "risk:three-competitors-coupa-gep-worldwide-jaggaer-are-logged-wit",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Three competitors (Coupa, GEP Worldwide, JAGGAER) are logged with zero supporting evidence on positioning, timing, or Monroe's evaluation status."
+  },
+  {
+   "to": "No budget owner or approval process identified; unclear whether the $100k deal size is even budgeted for what would be Monroe's first procurement automation pur",
+   "key": "risk:no-budget-owner-or-approval-process-identified-unclear-wheth",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "from": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase. - open",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase."
+  },
+  {
+   "to": "Single-threaded at Evaluator level: only two contacts (Nona MCIPS, Maria Camarre), both non-decision-making Evaluators, and both unresponsive since 18 May 2026 ",
+   "key": "hygiene:single-threaded-at-evaluator-level-only-two-contacts-nona-mc",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded at Evaluator level: only two contacts (Nona MCIPS, Maria Camarre), both non-decision-making Evaluators, and both unresponsive since 18 May 2026 \u2014 multi-thread to a more senior contact before the close date erodes further."
+  },
+  {
+   "to": "Buyer has not yet seen Zycus execute anything: zero discovery call, demo, or RFP exchanged in the 55 days since opportunity creation (15 May 2026) \u2014 a tailored ",
+   "key": "hygiene:buyer-has-not-yet-seen-zycus-execute-anything-zero-discovery",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Buyer has not yet seen Zycus execute anything: zero discovery call, demo, or RFP exchanged in the 55 days since opportunity creation (15 May 2026) \u2014 a tailored value note or working session would rebuild momentum faster than another cold touch."
+  },
+  {
+   "to": "No next step carries a buyer-confirmed date: the current Next Step is entirely rep-authored outreach; secure an actual calendar hold, even tentative, to anchor ",
+   "key": "hygiene:no-next-step-carries-a-buyer-confirmed-date-the-current-next",
+   "date": "2026-07-09T08:33:59.959245+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No next step carries a buyer-confirmed date: the current Next Step is entirely rep-authored outreach; secure an actual calendar hold, even tentative, to anchor the record."
+  },
+  {
+   "to": "Release the RFP document to Zycus so it can respond and understand evaluation criteria and timeline. - overdue",
+   "key": "commitment:buyer-release-the-rfp-document-to-zycus-so-it-can-respond-an",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "from": "Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline"
+  },
+  {
+   "to": "Schedule a discovery call with Grace Kim to discuss project details and demo scope for iSource, eProcurement, and Merlin. - overdue",
+   "key": "commitment:buyer-schedule-a-discovery-call-with-grace-kim-to-discuss-pr",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Schedule a discovery call with Grace Kim to discuss project details and demo scope for iSource, eProcurement, and Merlin."
+  },
+  {
+   "to": "Nona MCIPS - Influencer",
+   "key": "stakeholder:nona-mcips",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "from": "Nona MCIPS - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Nona MCIPS"
+  },
+  {
+   "to": "Maria Camarre - Influencer",
+   "key": "stakeholder:maria-camarre",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "from": "Maria Camarre - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Maria Camarre"
+  },
+  {
+   "to": "No economic buyer or executive sponsor is engaged; both known contacts are Evaluators. - open",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-is-engaged-both-known",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor is engaged; both known contacts are Evaluators."
+  },
+  {
+   "to": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase. - open",
+   "key": "risk:no-budget-owner-or-approval-process-identified-unclear-wheth",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase."
+  },
+  {
+   "to": "21 Aug 2026 close date predates any discovery call, RFP, or demo and is not achievable on a realistic enterprise cycle. - open",
+   "key": "risk:21-aug-2026-close-date-predates-any-discovery-call-rfp-or-de",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "21 Aug 2026 close date predates any discovery call, RFP, or demo and is not achievable on a realistic enterprise cycle."
+  },
+  {
+   "to": "Buyer is moving from a fully manual process to its first system; adoption risk is real given zero prior automation experience. - acknowledged",
+   "key": "risk:buyer-is-moving-from-a-fully-manual-process-to-its-first-sys",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer is moving from a fully manual process to its first system; adoption risk is real given zero prior automation experience."
+  },
+  {
+   "to": "Multi-thread past the two Evaluator-level contacts now; a single unresponsive pair currently holds the entire deal hostage.",
+   "key": "hygiene:multi-thread-past-the-two-evaluator-level-contacts-now-a-sin",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread past the two Evaluator-level contacts now; a single unresponsive pair currently holds the entire deal hostage."
+  },
+  {
+   "to": "Build a Coupa, GEP Worldwide, and JAGGAER battlecard before the first real discovery call so Zycus is not entering a shortlist blind.",
+   "key": "hygiene:build-a-coupa-gep-worldwide-and-jaggaer-battlecard-before-th",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build a Coupa, GEP Worldwide, and JAGGAER battlecard before the first real discovery call so Zycus is not entering a shortlist blind."
+  },
+  {
+   "to": "Correct the forecast honestly: a 21 Aug 2026 close date sitting atop zero discovery call, RFP, or demo is not credible and should be reset before it slips silen",
+   "key": "hygiene:correct-the-forecast-honestly-a-21-aug-2026-close-date-sitti",
+   "date": "2026-07-07T17:35:22.845124+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Correct the forecast honestly: a 21 Aug 2026 close date sitting atop zero discovery call, RFP, or demo is not credible and should be reset before it slips silently."
+  },
+  {
+   "to": "Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline - open",
+   "key": "commitment:buyer-release-the-rfp-document-to-zycus-so-it-can-respond-an",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline"
+  },
+  {
+   "to": "Schedule the discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin - open",
+   "key": "commitment:buyer-schedule-the-discovery-call-with-the-deal-owner-to-dis",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Schedule the discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin"
+  },
+  {
+   "to": "Nona MCIPS - Evaluator",
+   "key": "stakeholder:nona-mcips",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "from": "Nona MCIPS - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Nona MCIPS"
+  },
+  {
+   "to": "Maria Camarre - Evaluator",
+   "key": "stakeholder:maria-camarre",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "from": "Maria Camarre - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Maria Camarre"
+  },
+  {
+   "to": "No economic buyer or senior sponsor engaged; the only two contact roles are mid-level Evaluators. - open",
+   "key": "risk:no-economic-buyer-or-senior-sponsor-engaged-the-only-two-con",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or senior sponsor engaged; the only two contact roles are mid-level Evaluators."
+  },
+  {
+   "to": "45 days remain to the 21 Aug 2026 close date with no discovery call, RFP release, or demo held; a realistic enterprise motion needs 4-6 months from RFP release ",
+   "key": "risk:45-days-remain-to-the-21-aug-2026-close-date-with-no-discove",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "45 days remain to the 21 Aug 2026 close date with no discovery call, RFP release, or demo held; a realistic enterprise motion needs 4-6 months from RFP release alone."
+  },
+  {
+   "to": "Both buyer contacts have gone unresponsive since the single positive call with Maria Camarre on 18 May 2026, despite five subsequent outreach attempts through 2",
+   "key": "risk:both-buyer-contacts-have-gone-unresponsive-since-the-single-",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Both buyer contacts have gone unresponsive since the single positive call with Maria Camarre on 18 May 2026, despite five subsequent outreach attempts through 29 Jun 2026."
+  },
+  {
+   "to": "Coupa, GEP Worldwide, and JAGGAER are logged as competitors with no supporting call, quote, or context on positioning or timing. - open",
+   "key": "risk:coupa-gep-worldwide-and-jaggaer-are-logged-as-competitors-wi",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Coupa, GEP Worldwide, and JAGGAER are logged as competitors with no supporting call, quote, or context on positioning or timing."
+  },
+  {
+   "to": "The single live human connection (positive call with Maria Camarre, 18 May 2026) is now ~7 weeks stale with no follow-up meeting booked; convert it to a schedul",
+   "key": "hygiene:the-single-live-human-connection-positive-call-with-maria-ca",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The single live human connection (positive call with Maria Camarre, 18 May 2026) is now ~7 weeks stale with no follow-up meeting booked; convert it to a scheduled discovery call before it goes fully cold."
+  },
+  {
+   "to": "Zero access to power: both known contacts are Evaluators with no budget authority; open a second thread toward a senior procurement or finance stakeholder to ge",
+   "key": "hygiene:zero-access-to-power-both-known-contacts-are-evaluators-with",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Zero access to power: both known contacts are Evaluators with no budget authority; open a second thread toward a senior procurement or finance stakeholder to get any read on economic buyer identity."
+  },
+  {
+   "to": "The RFP-release ask has been repeated four times (3, 11, 22, 30 Jun 2026) with no written response; press for a specific date rather than repeating the same ope",
+   "key": "hygiene:the-rfp-release-ask-has-been-repeated-four-times-3-11-22-30-",
+   "date": "2026-07-07T14:40:38.260617+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The RFP-release ask has been repeated four times (3, 11, 22, 30 Jun 2026) with no written response; press for a specific date rather than repeating the same open-ended ask, and use the answer to gauge whether Monroe is genuinely running a live tender or has deprioritized the project."
+  },
+  {
+   "key": "hygiene:multi-threading-gap-only-2-buyer-side-contact-roles-nona-mar",
+   "date": "2026-06-30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk."
+  },
+  {
+   "key": "hygiene:zero-buyer-engagement-nona-mcips-and-maria-camarre-the-only-",
+   "date": "2026-06-30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Zero buyer engagement: Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) have not responded to three rep-initiated outreach attempts\u20143 Jun (discovery call request), 11 Jun (RFP follow-up), 19 Jun (LinkedIn connect). No discovery call, no demos, no RFP received. LastActivityDate 2 Jun 2026 is a Salesforce-logged activity, not a two-way buyer conversation. 28 days since last activity, 11 days since most recent rep outreach (19 Jun). Ghost risk is high."
+  },
+  {
+   "key": "hygiene:close-date-not-credible-52-days-to-close-21-aug-2026-with-ze",
+   "date": "2026-06-30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Close date not credible: 52 days to close (21 Aug 2026) with zero buyer engagement, no discovery, no demos, no RFP, no shortlist, no champion, no EB. A realistic enterprise P2P + sourcing motion (RFP response, vendor shortlist, demos, use-case validation, commercials, legal review, contracting) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been validated with the buyer. Forecast category is Pipeline (correct\u2014deal is not progressing), but the close date should be pushed to Q1 2027 or the deal should be disqualified."
+  },
+  {
+   "to": "Nona MCIPS - Evaluator",
+   "key": "stakeholder:nona-mcips",
+   "date": "2026-06-30",
+   "from": "Nona MCIPS - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Nona MCIPS"
+  },
+  {
+   "to": "Maria Camarre - Evaluator",
+   "key": "stakeholder:maria-camarre",
+   "date": "2026-06-30",
+   "from": "Maria Camarre - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Maria Camarre"
+  },
+  {
+   "to": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing",
+   "key": "risk:52-days-to-close-21-aug-2026-with-zero-buyer-engagement-no-d",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been tested against buyer reality. Deal cannot reach closed-won by 21 Aug through a credible process."
+  },
+  {
+   "to": "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unr",
+   "key": "risk:zero-buyer-engagement-despite-three-rep-outreach-attempts-3-",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unresponsive. No champion, no EB, no senior stakeholder mapped. Monroe may have deprioritized the project, shortlisted another vendor, or ghosted Zycus for compliance/price benchmarking. Ghost risk is high. Without a discovery call within the next 7 days, the deal should be disqualified or close date pushed to Q1 2027."
+  },
+  {
+   "to": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these wer",
+   "key": "risk:three-competitors-named-coupa-gep-worldwide-jaggaer-with-zer",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. High risk that Monroe has already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind."
+  },
+  {
+   "to": "Release RFP document to Zycus so Zycus can respond, position competitively, and understand Monroe's evaluation criteria and timeline - overdue",
+   "key": "commitment:buyer-release-rfp-document-to-zycus-so-zycus-can-respond-pos",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Release RFP document to Zycus so Zycus can respond, position competitively, and understand Monroe's evaluation criteria and timeline"
+  },
+  {
+   "to": "Schedule discovery call with Grace Kim to discuss project details, pain, decision process, and demo scope for iSource, eProcurement, and Merlin - overdue",
+   "key": "commitment:buyer-schedule-discovery-call-with-grace-kim-to-discuss-proj",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Schedule discovery call with Grace Kim to discuss project details, pain, decision process, and demo scope for iSource, eProcurement, and Merlin"
+  },
+  {
+   "to": "Zero buyer engagement: Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) have not responded to three rep-initiated outreach attempts\u20143 Jun (",
+   "key": "hygiene:zero-buyer-engagement-nona-mcips-and-maria-camarre-the-only-",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Zero buyer engagement: Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) have not responded to three rep-initiated outreach attempts\u20143 Jun (discovery call request), 11 Jun (RFP follow-up), 19 Jun (LinkedIn connect). No discovery call, no demos, no RFP received. LastActivityDate 2 Jun 2026 is a Salesforce-logged activity, not a two-way buyer conversation. 28 days since last activity, 11 days since most recent rep outreach (19 Jun). Ghost risk is high."
+  },
+  {
+   "to": "No champion: Nona and Maria are Evaluators with zero engagement. No Champion, Decision Maker, Economic Buyer, or Executive Sponsor identified in contact roles. ",
+   "key": "hygiene:no-champion-nona-and-maria-are-evaluators-with-zero-engageme",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion: Nona and Maria are Evaluators with zero engagement. No Champion, Decision Maker, Economic Buyer, or Executive Sponsor identified in contact roles. No internal advocate to guide Zycus through Monroe's process or defend against the three named competitors (Coupa, GEP, JAGGAER). Cannot navigate approval chain or internal politics without a champion."
+  },
+  {
+   "to": "No Economic Buyer access: EB\u2014the executive who controls budget and signs the contract\u2014is unidentified. Contact roles list only two Evaluators (Nona, Maria). Zer",
+   "key": "hygiene:no-economic-buyer-access-eb-the-executive-who-controls-budge",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No Economic Buyer access: EB\u2014the executive who controls budget and signs the contract\u2014is unidentified. Contact roles list only two Evaluators (Nona, Maria). Zero visibility into who holds budget authority, whether funds are allocated, or whether this is an approved project vs market research. Cannot validate deal viability or commercial terms without EB engagement."
+  },
+  {
+   "to": "Single-threaded, no multi-threading: Only two contacts (Nona MCIPS, Maria Camarre, both Evaluators), both unresponsive. No senior stakeholders (VP Procurement, ",
+   "key": "hygiene:single-threaded-no-multi-threading-only-two-contacts-nona-mc",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded, no multi-threading: Only two contacts (Nona MCIPS, Maria Camarre, both Evaluators), both unresponsive. No senior stakeholders (VP Procurement, CFO, Operations exec) mapped. Zero Avoma calls, zero tasks/events with additional buyer participants. Single-thread stall: if Nona and Maria disengage or leave, deal dies."
+  },
+  {
+   "to": "Close date not credible: 52 days to close (21 Aug 2026) with zero buyer engagement, no discovery, no demos, no RFP, no shortlist, no champion, no EB. A realisti",
+   "key": "hygiene:close-date-not-credible-52-days-to-close-21-aug-2026-with-ze",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close date not credible: 52 days to close (21 Aug 2026) with zero buyer engagement, no discovery, no demos, no RFP, no shortlist, no champion, no EB. A realistic enterprise P2P + sourcing motion (RFP response, vendor shortlist, demos, use-case validation, commercials, legal review, contracting) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been validated with the buyer. Forecast category is Pipeline (correct\u2014deal is not progressing), but the close date should be pushed to Q1 2027 or the deal should be disqualified."
+  },
+  {
+   "to": "No competitive intelligence: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero context\u2014how identified, where in eval process, what their positio",
+   "key": "hygiene:no-competitive-intelligence-three-competitors-named-coupa-ge",
+   "date": "2026-06-30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No competitive intelligence: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero context\u2014how identified, where in eval process, what their positioning is, how Zycus should differentiate. No discovery call or RFP to provide competitive framing. High risk that Monroe has already shortlisted another vendor and is using Zycus for price benchmarking. Competitive position is completely blind."
+  },
+  {
+   "key": "risk:56-days-to-close-21-aug-with-zero-buyer-engagement-no-discov",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4-6 months, not 8 weeks. Close date is not credible."
+  },
+  {
+   "key": "risk:zero-buyer-engagement-despite-rep-outreach-3-jun-11-jun-19-j",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no senior stakeholder mapped. Deal may be a low-priority internal project, or Monroe may be favoring another vendor and ghosting Zycus. Ghost risk is high."
+  },
+  {
+   "key": "risk:three-competitors-coupa-gep-jaggaer-named-but-zero-competiti",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind."
+  },
+  {
+   "key": "hygiene:deal-is-cold-zero-buyer-calls-24-days-since-last-sf-activity",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do not reply within 5 business days (by 3 Jul), escalate to the Procurement Lead or CFO level to restart momentum. Without a discovery call by early Jul, the 21 Aug close is impossible and the deal should be disqualified or pushed to Q4."
+  },
+  {
+   "key": "hygiene:multi-threading-gap-only-2-buyer-side-contact-roles-nona-mar",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk."
+  },
+  {
+   "key": "hygiene:competitive-intelligence-is-a-complete-gap-three-competitors",
+   "date": "2026-06-30",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking. GEP and Coupa are both Tier-1 and can win on P2P + sourcing; JAGGAER is procurement-native. Merlin AI is the wedge but buyer AI appetite is unconfirmed. Immediate move: extract the shortlist, buyer preferences, and each rival's positioning on the discovery call. Then run a competitive deep-dive (battle cards, win themes, proof points) within 14 days and position Merlin as the differentiator in every subsequent conversation."
+  },
+  {
+   "key": "hygiene:multi-threading-gap-only-2-buyer-side-contact-roles-nona-mar",
+   "date": "2026-06-26",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk."
+  },
+  {
+   "to": "Release RFP to Zycus so we can respond and position competitively - overdue",
+   "key": "commitment:buyer-release-rfp-to-zycus-so-we-can-respond-and-position-co",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release RFP to Zycus so we can respond and position competitively"
+  },
+  {
+   "to": "Schedule discovery call with Nona and Maria to discuss project details, pain, decision process, and demo scope - overdue",
+   "key": "commitment:buyer-schedule-discovery-call-with-nona-and-maria-to-discuss",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Schedule discovery call with Nona and Maria to discuss project details, pain, decision process, and demo scope"
+  },
+  {
+   "to": "Nona MCIPS - Evaluator",
+   "key": "stakeholder:nona-mcips",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Nona MCIPS"
+  },
+  {
+   "to": "Maria Camarre - Evaluator",
+   "key": "stakeholder:maria-camarre",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Maria Camarre"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "Coupa - active",
+   "key": "competitor:coupa",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "JAGGAER - active",
+   "key": "competitor:jaggaer",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "JAGGAER"
+  },
+  {
+   "to": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP respons",
+   "key": "risk:56-days-to-close-21-aug-with-zero-buyer-engagement-no-discov",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4-6 months, not 8 weeks. Close date is not credible."
+  },
+  {
+   "to": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no s",
+   "key": "risk:zero-buyer-engagement-despite-rep-outreach-3-jun-11-jun-19-j",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no senior stakeholder mapped. Deal may be a low-priority internal project, or Monroe may be favoring another vendor and ghosting Zycus. Ghost risk is high."
+  },
+  {
+   "to": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going thro",
+   "key": "risk:three-competitors-coupa-gep-jaggaer-named-but-zero-competiti",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind."
+  },
+  {
+   "to": "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do no",
+   "key": "hygiene:deal-is-cold-zero-buyer-calls-24-days-since-last-sf-activity",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do not reply within 5 business days (by 3 Jul), escalate to the Procurement Lead or CFO level to restart momentum. Without a discovery call by early Jul, the 21 Aug close is impossible and the deal should be disqualified or pushed to Q4."
+  },
+  {
+   "to": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-le",
+   "key": "hygiene:multi-threading-gap-only-2-buyer-side-contact-roles-nona-mar",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk."
+  },
+  {
+   "to": "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking.",
+   "key": "hygiene:competitive-intelligence-is-a-complete-gap-three-competitors",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking. GEP and Coupa are both Tier-1 and can win on P2P + sourcing; JAGGAER is procurement-native. Merlin AI is the wedge but buyer AI appetite is unconfirmed. Immediate move: extract the shortlist, buyer preferences, and each rival's positioning on the discovery call. Then run a competitive deep-dive (battle cards, win themes, proof points) within 14 days and position Merlin as the differentiator in every subsequent conversation."
+  },
+  {
+   "to": "iSource;eProcurement;Merlin",
+   "key": "product_scope:scope",
+   "date": "2026-06-26",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000YCK7R",
+ "packets": [
+  {
+   "key": "commitment:buyer-release-rfp-to-zycus-so-we-can-respond-and-position-co",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-30",
+    "who": "Buyer",
+    "date": "2026-06-11",
+    "source": "Next Step 11 Jun 2026",
+    "status": "overdue",
+    "commitment": "Release RFP to Zycus so we can respond and position competitively",
+    "deliverable": "Release RFP to Zycus so we can respond and position competitively",
+    "grounding_quote": "Next Step 11 Jun: rep email to Nona/Marie regarding RFP release, no reply. Next Step 3 Jun: rep seeking call to discuss project details and module demos for evaluation."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Release RFP to Zycus so we can respond and position competitively",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "commitment:buyer-schedule-discovery-call-with-nona-and-maria-to-discuss",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-10",
+    "who": "Buyer",
+    "date": "2026-06-03",
+    "source": "Next Step 3 Jun 2026",
+    "status": "overdue",
+    "commitment": "Schedule discovery call with Nona and Maria to discuss project details, pain, decision process, and demo scope",
+    "deliverable": "Schedule discovery call with Nona and Maria to discuss project details, pain, decision process, and demo scope",
+    "grounding_quote": "Next Step 3 Jun: Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team. No response to outreach 3 Jun, 11 Jun, or 19 Jun."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule discovery call with Nona and Maria to discuss project details, pain, decision process, and demo scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "stakeholder:nona-mcips",
+   "type": "stakeholder",
+   "value": {
+    "name": "Nona MCIPS",
+    "risk": "No confirmed two-way conversation exists on record; unresponsive to five outreach attempts since opportunity creation (2 Jun, 11 Jun, 19 Jun, 29 Jun, 7 Jul 2026).",
+    "role": "Influencer",
+    "title": "Procurement Leader",
+    "source": "Task history (repeated 'Could Not Connect' / 'No Pick Up' outcomes); OpportunityContactRole",
+    "sentiment": "unknown / unresponsive",
+    "last_contact_date": null
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:35:22.845124+05:30",
+     "value": {
+      "name": "Nona MCIPS",
+      "risk": "No reply since 18 May 2026 despite an outbound call attempt (2 Jun) plus three follow-ups (11, 19, 29 Jun).",
+      "role": "Influencer",
+      "title": "Procurement Leader",
+      "source": "SF OpportunityContactRole; Task 00TP700000oh7mEMAQ; SF Next_Step_History__c",
+      "sentiment": "unresponsive",
+      "last_contact_date": "2026-06-02"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:40:38.260617+05:30",
+     "value": {
+      "name": "Nona MCIPS",
+      "risk": "Primary contact has not engaged despite 8+ outreach attempts since 4 May 2026; last attempt (2 Jun 2026) logged as Could Not Connect.",
+      "role": "Evaluator",
+      "title": "Procurement Leader",
+      "source": "OpportunityContactRole; SF Task records (e.g. 00TP700000oh7mEMAQ)",
+      "sentiment": "unresponsive",
+      "last_contact_date": "2026-06-02"
+     }
+    },
+    {
+     "as_of": "2026-06-30",
+     "value": {
+      "name": "Nona MCIPS",
+      "risk": "High ghost risk\u2014has not engaged despite repeated requests for discovery call and RFP. May have deprioritized the project or favored another vendor.",
+      "role": "Evaluator",
+      "title": "Procurement Leader",
+      "source": "SF OpportunityContactRole (Evaluator), SF Next_Step__c (rep outreach 3 Jun, 11 Jun, 19 Jun)",
+      "sentiment": "Unknown (unresponsive to three rep outreach attempts: 3 Jun, 11 Jun, 19 Jun)",
+      "last_contact_date": "2026-06-19"
+     }
+    },
+    {
+     "as_of": "2026-06-26",
+     "value": {
+      "name": "Nona MCIPS",
+      "risk": "Rep has reached out 3 Jun, 11 Jun, and 19 Jun (LinkedIn connect + email) with zero response. Passive or cooling engagement. May be uninterested, overwhelmed, or preferring another vendor. Without a reply, her role as evaluator is at risk.",
+      "role": "Evaluator",
+      "title": "Procurement Leader",
+      "source": "OpportunityContactRole; Next Step 3/11/19 Jun",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-06-19"
+     }
+    }
+   ],
+   "subject": "Nona MCIPS",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "stakeholder:maria-camarre",
+   "type": "stakeholder",
+   "value": {
+    "name": "Maria Camarre",
+    "risk": "Went silent immediately after the one positive call on 18 May 2026; unresponsive to subsequent joint outreach on 11 Jun, 19 Jun, and 29 Jun 2026.",
+    "role": "Influencer",
+    "title": "Project Procurement Specialist",
+    "source": "Task 00TP700000nfla2MAA (18 May 2026, 'Conversation - Positive'); OpportunityContactRole",
+    "sentiment": "positive (single call, no notes captured)",
+    "last_contact_date": "2026-05-18"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:35:22.845124+05:30",
+     "value": {
+      "name": "Maria Camarre",
+      "risk": "No confirmed reply since the 18 May 2026 qualification; named in every subsequent unanswered follow-up.",
+      "role": "Influencer",
+      "title": "Project Procurement Specialist",
+      "source": "SF OpportunityContactRole; SF Next_Step_History__c",
+      "sentiment": "unresponsive",
+      "last_contact_date": "2026-05-18"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:40:38.260617+05:30",
+     "value": {
+      "name": "Maria Camarre",
+      "risk": "Single positive live call on 18 May 2026 was never converted into a scheduled meeting; no reply to follow-up outreach since.",
+      "role": "Evaluator",
+      "title": "Project Procurement Specialist",
+      "source": "OpportunityContactRole; SF Task 00TP700000nfla2MAA (18 May 2026)",
+      "sentiment": "positive at first contact, unresponsive since",
+      "last_contact_date": "2026-05-18"
+     }
+    },
+    {
+     "as_of": "2026-06-30",
+     "value": {
+      "name": "Maria Camarre",
+      "risk": "High ghost risk\u2014has not engaged despite repeated requests for discovery call and RFP. May be deferring to Nona or another internal lead.",
+      "role": "Evaluator",
+      "title": "Project Procurement Specialist",
+      "source": "SF OpportunityContactRole (Evaluator), SF Next_Step__c (rep outreach 3 Jun, 11 Jun, 19 Jun)",
+      "sentiment": "Unknown (unresponsive to three rep outreach attempts: 3 Jun, 11 Jun, 19 Jun)",
+      "last_contact_date": "2026-06-19"
+     }
+    },
+    {
+     "as_of": "2026-06-26",
+     "value": {
+      "name": "Maria Camarre",
+      "risk": "Rep has reached out 3 Jun, 11 Jun, and 19 Jun (LinkedIn connect + email) with zero response. Passive or cooling engagement. Same risk as Nona: unresponsive mid-level contact with no evidence of advocacy.",
+      "role": "Evaluator",
+      "title": "Project Procurement Specialist",
+      "source": "OpportunityContactRole; Next Step 3/11/19 Jun",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-06-19"
+     }
+    }
+   ],
+   "subject": "Maria Camarre",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "competitor:gep-worldwide",
+   "type": "competitor",
+   "value": {
+    "date": "2026-05-15",
+    "name": "GEP Worldwide",
+    "quote": null,
+    "source": "SF Competitors__c (set at opportunity creation)",
+    "sentiment": "neutral",
+    "how_we_win": "Merlin agentic negotiation (I2O: supplier price intelligence, autonomous RFP optimization on historical data) vs GEP's consulting-heavy, less-mature AI. Position Merlin as Phase 1 centerpiece in RFP response and demo."
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "GEP Worldwide",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2026-05-15",
+    "name": "Coupa",
+    "quote": null,
+    "source": "SF Competitors__c (set at opportunity creation)",
+    "sentiment": "neutral",
+    "how_we_win": "Merlin agentic negotiation + deeper sourcing AI vs Coupa's broad but AI-shallow platform. Emphasize I2O autonomy and supplier collaboration depth in discovery and demo."
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "competitor:jaggaer",
+   "type": "competitor",
+   "value": {
+    "date": "2026-05-15",
+    "name": "JAGGAER",
+    "quote": null,
+    "source": "SF Competitors__c (set at opportunity creation)",
+    "sentiment": "neutral",
+    "how_we_win": "Merlin agentic negotiation + modern UX vs JAGGAER's legacy platform and weaker AI. Position Merlin as the AI differentiation in RFP and use-case demos."
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "JAGGAER",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "risk:56-days-to-close-21-aug-with-zero-buyer-engagement-no-discov",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-26",
+    "detail": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4-6 months, not 8 weeks. Close date is not credible.",
+    "source": "CloseDate 21 Aug; stage Qualified; zero Avoma calls; Next Step shows no buyer reply",
+    "status": "active",
+    "category": "timeline",
+    "first_raised": "2026-06-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "56 days to close (21 Aug) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4-6 months, not 8 weeks. Close date is not credible.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "risk:zero-buyer-engagement-despite-rep-outreach-3-jun-11-jun-19-j",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-26",
+    "detail": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no senior stakeholder mapped. Deal may be a low-priority internal project, or Monroe may be favoring another vendor and ghosting Zycus. Ghost risk is high.",
+    "source": "Next Step 3/11/19 Jun; zero Avoma calls; OpportunityContactRole shows 2 Evaluators, no Champion/EB",
+    "status": "active",
+    "category": "political",
+    "first_raised": "2026-06-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Zero buyer engagement despite rep outreach 3 Jun, 11 Jun, 19 Jun. Nona and Maria (the only two buyer contacts) are unresponsive. No champion, no EB access, no senior stakeholder mapped. Deal may be a low-priority internal project, or Monroe may be favoring another vendor and ghosting Zycus. Ghost risk is high.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "risk:three-competitors-coupa-gep-jaggaer-named-but-zero-competiti",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-26",
+    "detail": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+    "source": "SF Competitors__c; zero Avoma calls; no Next Step competitor mentions",
+    "status": "active",
+    "category": "other",
+    "first_raised": "2026-05-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Three competitors (Coupa, GEP, JAGGAER) named but zero competitive intelligence. Buyer may have already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "hygiene:deal-is-cold-zero-buyer-calls-24-days-since-last-sf-activity",
+   "type": "hygiene",
+   "value": {
+    "flag": "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do not reply within 5 business days (by 3 Jul), escalate to the Procurement Lead or CFO level to restart momentum. Without a discovery call by early Jul, the 21 Aug close is impossible and the deal should be disqualified or pushed to Q4."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Deal is cold (zero buyer calls, 24 days since last SF activity, rep outreach 19 Jun unanswered). Re-engagement is the only path forward. If Nona and Maria do not reply within 5 business days (by 3 Jul), escalate to the Procurement Lead or CFO level to restart momentum. Without a discovery call by early Jul, the 21 Aug close is impossible and the deal should be disqualified or pushed to Q4.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "hygiene:multi-threading-gap-only-2-buyer-side-contact-roles-nona-mar",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Multi-threading gap: only 2 buyer-side contact roles (Nona, Maria, both Evaluators), no champion, no EB, no DM. Monroe is a $100k enterprise deal requiring C-level or VP approval, but no senior stakeholders are mapped. Add Procurement Lead (account contact roster shows a Procurement Lead, not on opp roles), CFO (Matthew O'Mahoney or Patrick Callan, data unclear), and COO (Regan Howell) to the opportunity and reach them in parallel during or immediately after discovery. Single-threading to two unresponsive mid-level evaluators is a ghost risk.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "hygiene:competitive-intelligence-is-a-complete-gap-three-competitors",
+   "type": "hygiene",
+   "value": {
+    "flag": "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking. GEP and Coupa are both Tier-1 and can win on P2P + sourcing; JAGGAER is procurement-native. Merlin AI is the wedge but buyer AI appetite is unconfirmed. Immediate move: extract the shortlist, buyer preferences, and each rival's positioning on the discovery call. Then run a competitive deep-dive (battle cards, win themes, proof points) within 14 days and position Merlin as the differentiator in every subsequent conversation."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Competitive intelligence is a complete gap. Three competitors named (Coupa, GEP, JAGGAER) but no buyer statements, no shortlist confirmation, no threat ranking. GEP and Coupa are both Tier-1 and can win on P2P + sourcing; JAGGAER is procurement-native. Merlin AI is the wedge but buyer AI appetite is unconfirmed. Immediate move: extract the shortlist, buyer preferences, and each rival's positioning on the discovery call. Then run a competitive deep-dive (battle cards, win themes, proof points) within 14 days and position Merlin as the differentiator in every subsequent conversation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-26"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iSource;eProcurement;Merlin"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-26",
+   "last_updated": "2026-06-26",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:52-days-to-close-21-aug-2026-with-zero-buyer-engagement-no-d",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-15",
+    "detail": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been tested against buyer reality. Deal cannot reach closed-won by 21 Aug through a credible process.",
+    "source": "SF CloseDate (21 Aug 2026), SF CreatedDate (15 May 2026), Avoma (zero calls)",
+    "status": "Unresolved\u2014close date not validated, no buyer engagement to anchor a realistic timeline",
+    "category": "timeline",
+    "first_raised": "Opportunity creation (close date set to 21 Aug 2026 at inception)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "52 days to close (21 Aug 2026) with zero buyer engagement, no discovery call, no demos, no RFP, no champion, no EB access. A realistic enterprise P2P + sourcing motion (RFP response, shortlist, demos, workshops, commercials, legal, contract) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been tested against buyer reality. Deal cannot reach closed-won by 21 Aug through a credible process.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "risk:zero-buyer-engagement-despite-three-rep-outreach-attempts-3-",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-19",
+    "detail": "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unresponsive. No champion, no EB, no senior stakeholder mapped. Monroe may have deprioritized the project, shortlisted another vendor, or ghosted Zycus for compliance/price benchmarking. Ghost risk is high. Without a discovery call within the next 7 days, the deal should be disqualified or close date pushed to Q1 2027.",
+    "source": "SF Next_Step__c (rep outreach 3 Jun, 11 Jun, 19 Jun), Avoma (zero calls)",
+    "status": "Unresolved\u2014buyer still unresponsive as of 19 Jun LinkedIn connect attempt",
+    "category": "executive_alignment",
+    "first_raised": "3 Jun 2026 (first rep outreach requesting discovery call)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Zero buyer engagement despite three rep outreach attempts (3 Jun, 11 Jun, 19 Jun). Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) are unresponsive. No champion, no EB, no senior stakeholder mapped. Monroe may have deprioritized the project, shortlisted another vendor, or ghosted Zycus for compliance/price benchmarking. Ghost risk is high. Without a discovery call within the next 7 days, the deal should be disqualified or close date pushed to Q1 2027.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "risk:three-competitors-named-coupa-gep-worldwide-jaggaer-with-zer",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-15",
+    "detail": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. High risk that Monroe has already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+    "source": "SF Competitors__c (Coupa;GEP Worldwide;JAGGAER), Avoma (zero calls)",
+    "status": "Unresolved\u2014no competitive intelligence gathered, no buyer engagement to validate positioning",
+    "category": "political",
+    "first_raised": "Opportunity creation (competitors set in Competitors__c)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero competitive intelligence. No discovery call, RFP, or buyer engagement to explain how these were identified, whether Monroe is actively evaluating all three, or what their positioning is. High risk that Monroe has already shortlisted or selected another vendor and is going through the motions with Zycus for compliance or price benchmarking. Competitive position is completely blind.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "commitment:buyer-release-rfp-document-to-zycus-so-zycus-can-respond-pos",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-11",
+    "source": "SF Next_Step__c: '6/11/26 GK: repeat email to Nona/Marie regarding rfp release' (RFP requested multiple times, not received)",
+    "status": "overdue",
+    "commitment": "Release RFP document to Zycus so Zycus can respond, position competitively, and understand Monroe's evaluation criteria and timeline"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Release RFP document to Zycus so Zycus can respond, position competitively, and understand Monroe's evaluation criteria and timeline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "commitment:buyer-schedule-discovery-call-with-grace-kim-to-discuss-proj",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-03",
+    "source": "SF Next_Step__c: '6/3/26 GK: Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team' (call requested, not held)",
+    "status": "overdue",
+    "commitment": "Schedule discovery call with Grace Kim to discuss project details, pain, decision process, and demo scope for iSource, eProcurement, and Merlin"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule discovery call with Grace Kim to discuss project details, pain, decision process, and demo scope for iSource, eProcurement, and Merlin",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:zero-buyer-engagement-nona-mcips-and-maria-camarre-the-only-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Zero buyer engagement: Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) have not responded to three rep-initiated outreach attempts\u20143 Jun (discovery call request), 11 Jun (RFP follow-up), 19 Jun (LinkedIn connect). No discovery call, no demos, no RFP received. LastActivityDate 2 Jun 2026 is a Salesforce-logged activity, not a two-way buyer conversation. 28 days since last activity, 11 days since most recent rep outreach (19 Jun). Ghost risk is high."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Zero buyer engagement: Nona MCIPS and Maria Camarre (the only two contacts, both Evaluators) have not responded to three rep-initiated outreach attempts\u20143 Jun (discovery call request), 11 Jun (RFP follow-up), 19 Jun (LinkedIn connect). No discovery call, no demos, no RFP received. LastActivityDate 2 Jun 2026 is a Salesforce-logged activity, not a two-way buyer conversation. 28 days since last activity, 11 days since most recent rep outreach (19 Jun). Ghost risk is high.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:no-champion-nona-and-maria-are-evaluators-with-zero-engageme",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion: Nona and Maria are Evaluators with zero engagement. No Champion, Decision Maker, Economic Buyer, or Executive Sponsor identified in contact roles. No internal advocate to guide Zycus through Monroe's process or defend against the three named competitors (Coupa, GEP, JAGGAER). Cannot navigate approval chain or internal politics without a champion."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No champion: Nona and Maria are Evaluators with zero engagement. No Champion, Decision Maker, Economic Buyer, or Executive Sponsor identified in contact roles. No internal advocate to guide Zycus through Monroe's process or defend against the three named competitors (Coupa, GEP, JAGGAER). Cannot navigate approval chain or internal politics without a champion.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-access-eb-the-executive-who-controls-budge",
+   "type": "hygiene",
+   "value": {
+    "flag": "No Economic Buyer access: EB\u2014the executive who controls budget and signs the contract\u2014is unidentified. Contact roles list only two Evaluators (Nona, Maria). Zero visibility into who holds budget authority, whether funds are allocated, or whether this is an approved project vs market research. Cannot validate deal viability or commercial terms without EB engagement."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No Economic Buyer access: EB\u2014the executive who controls budget and signs the contract\u2014is unidentified. Contact roles list only two Evaluators (Nona, Maria). Zero visibility into who holds budget authority, whether funds are allocated, or whether this is an approved project vs market research. Cannot validate deal viability or commercial terms without EB engagement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:single-threaded-no-multi-threading-only-two-contacts-nona-mc",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded, no multi-threading: Only two contacts (Nona MCIPS, Maria Camarre, both Evaluators), both unresponsive. No senior stakeholders (VP Procurement, CFO, Operations exec) mapped. Zero Avoma calls, zero tasks/events with additional buyer participants. Single-thread stall: if Nona and Maria disengage or leave, deal dies."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded, no multi-threading: Only two contacts (Nona MCIPS, Maria Camarre, both Evaluators), both unresponsive. No senior stakeholders (VP Procurement, CFO, Operations exec) mapped. Zero Avoma calls, zero tasks/events with additional buyer participants. Single-thread stall: if Nona and Maria disengage or leave, deal dies.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:close-date-not-credible-52-days-to-close-21-aug-2026-with-ze",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close date not credible: 52 days to close (21 Aug 2026) with zero buyer engagement, no discovery, no demos, no RFP, no shortlist, no champion, no EB. A realistic enterprise P2P + sourcing motion (RFP response, vendor shortlist, demos, use-case validation, commercials, legal review, contracting) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been validated with the buyer. Forecast category is Pipeline (correct\u2014deal is not progressing), but the close date should be pushed to Q1 2027 or the deal should be disqualified."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Close date not credible: 52 days to close (21 Aug 2026) with zero buyer engagement, no discovery, no demos, no RFP, no shortlist, no champion, no EB. A realistic enterprise P2P + sourcing motion (RFP response, vendor shortlist, demos, use-case validation, commercials, legal review, contracting) requires 4 to 6 months, not 8 weeks. Close date was set at opportunity creation (15 May) and has never been validated with the buyer. Forecast category is Pipeline (correct\u2014deal is not progressing), but the close date should be pushed to Q1 2027 or the deal should be disqualified.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "hygiene:no-competitive-intelligence-three-competitors-named-coupa-ge",
+   "type": "hygiene",
+   "value": {
+    "flag": "No competitive intelligence: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero context\u2014how identified, where in eval process, what their positioning is, how Zycus should differentiate. No discovery call or RFP to provide competitive framing. High risk that Monroe has already shortlisted another vendor and is using Zycus for price benchmarking. Competitive position is completely blind."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No competitive intelligence: Three competitors named (Coupa, GEP Worldwide, JAGGAER) with zero context\u2014how identified, where in eval process, what their positioning is, how Zycus should differentiate. No discovery call or RFP to provide competitive framing. High risk that Monroe has already shortlisted another vendor and is using Zycus for price benchmarking. Competitive position is completely blind.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-06-30",
+   "last_updated": "2026-06-30",
+   "last_confirmed": "2026-06-30"
+  },
+  {
+   "key": "commitment:buyer-release-the-rfp-document-to-zycus-so-it-can-respond-an",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-29",
+    "source": "SF Next_Step__c / Next_Step_History__c",
+    "status": "overdue",
+    "commitment": "Release the RFP document to Zycus so it can respond and understand evaluation criteria and timeline.",
+    "deliverable": "Release the RFP document to Zycus so it can respond and understand evaluation criteria and timeline.",
+    "grounding_quote": "6/29/26 GK: follow up with Nona/Marie + team regarding RFP release timeline"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:40:38.260617+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-06-29",
+      "source": "Next_Step_History__c (29 Jun 2026)",
+      "status": "open",
+      "commitment": "Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline",
+      "deliverable": "Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline",
+      "grounding_quote": "6/29/26 GK: follow up with Nona/Marie + team regarding RFP release timeline"
+     }
+    }
+   ],
+   "subject": "Buyer:Release the RFP document to Zycus so it can respond and understand Monroe's evaluation criteria and timeline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "commitment:buyer-schedule-the-discovery-call-with-the-deal-owner-to-dis",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-03",
+    "source": "Next_Step_History__c (3 Jun 2026)",
+    "status": "open",
+    "commitment": "Schedule the discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+    "deliverable": "Schedule the discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+    "grounding_quote": "6/3/26 GK: Follow up with Nona and Maria to schedule call to discuss the details of project and modules demos for evaluation with the team"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule the discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-senior-sponsor-engaged-the-only-two-con",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or senior sponsor engaged; the only two contact roles are mid-level Evaluators.",
+    "source": "OpportunityContactRole",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or senior sponsor engaged; the only two contact roles are mid-level Evaluators.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "risk:45-days-remain-to-the-21-aug-2026-close-date-with-no-discove",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "45 days remain to the 21 Aug 2026 close date with no discovery call, RFP release, or demo held; a realistic enterprise motion needs 4-6 months from RFP release alone.",
+    "source": "SF CloseDate; Next_Step_History__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "45 days remain to the 21 Aug 2026 close date with no discovery call, RFP release, or demo held; a realistic enterprise motion needs 4-6 months from RFP release alone.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "risk:both-buyer-contacts-have-gone-unresponsive-since-the-single-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Both buyer contacts have gone unresponsive since the single positive call with Maria Camarre on 18 May 2026, despite five subsequent outreach attempts through 29 Jun 2026.",
+    "source": "SF Tasks; Next_Step_History__c",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-05-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Both buyer contacts have gone unresponsive since the single positive call with Maria Camarre on 18 May 2026, despite five subsequent outreach attempts through 29 Jun 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "risk:coupa-gep-worldwide-and-jaggaer-are-logged-as-competitors-wi",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Coupa, GEP Worldwide, and JAGGAER are logged as competitors with no supporting call, quote, or context on positioning or timing.",
+    "source": "SF Competitors__c",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Coupa, GEP Worldwide, and JAGGAER are logged as competitors with no supporting call, quote, or context on positioning or timing.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "hygiene:the-single-live-human-connection-positive-call-with-maria-ca",
+   "type": "hygiene",
+   "value": {
+    "flag": "The single live human connection (positive call with Maria Camarre, 18 May 2026) is now ~7 weeks stale with no follow-up meeting booked; convert it to a scheduled discovery call before it goes fully cold."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The single live human connection (positive call with Maria Camarre, 18 May 2026) is now ~7 weeks stale with no follow-up meeting booked; convert it to a scheduled discovery call before it goes fully cold.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "hygiene:zero-access-to-power-both-known-contacts-are-evaluators-with",
+   "type": "hygiene",
+   "value": {
+    "flag": "Zero access to power: both known contacts are Evaluators with no budget authority; open a second thread toward a senior procurement or finance stakeholder to get any read on economic buyer identity."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Zero access to power: both known contacts are Evaluators with no budget authority; open a second thread toward a senior procurement or finance stakeholder to get any read on economic buyer identity.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "hygiene:the-rfp-release-ask-has-been-repeated-four-times-3-11-22-30-",
+   "type": "hygiene",
+   "value": {
+    "flag": "The RFP-release ask has been repeated four times (3, 11, 22, 30 Jun 2026) with no written response; press for a specific date rather than repeating the same open-ended ask, and use the answer to gauge whether Monroe is genuinely running a live tender or has deprioritized the project."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The RFP-release ask has been repeated four times (3, 11, 22, 30 Jun 2026) with no written response; press for a specific date rather than repeating the same open-ended ask, and use the answer to gauge whether Monroe is genuinely running a live tender or has deprioritized the project.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:40:38.260617+05:30",
+   "last_updated": "2026-07-07T14:40:38.260617+05:30",
+   "last_confirmed": "2026-07-07T14:40:38.260617+05:30"
+  },
+  {
+   "key": "commitment:buyer-schedule-a-discovery-call-with-grace-kim-to-discuss-pr",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-03",
+    "source": "SF Next_Step_History__c",
+    "status": "overdue",
+    "commitment": "Schedule a discovery call with Grace Kim to discuss project details and demo scope for iSource, eProcurement, and Merlin.",
+    "deliverable": "Schedule a discovery call with Grace Kim to discuss project details and demo scope for iSource, eProcurement, and Merlin.",
+    "grounding_quote": "6/3/26 GK: Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule a discovery call with Grace Kim to discuss project details and demo scope for iSource, eProcurement, and Merlin.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-is-engaged-both-known",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or executive sponsor is engaged; both known contacts are Evaluators.",
+    "source": "SF Executive_Sponsor_Identified__c=false; SF OpportunityContactRole",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor is engaged; both known contacts are Evaluators.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "risk:no-budget-owner-or-approval-process-identified-unclear-wheth",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No budget owner or approval process identified; unclear whether the $100k deal size is even budgeted for what would be Monroe's first procurement automation purchase.",
+    "source": "Who_will_approve_budget__c (blank)",
+    "status": "not addressed",
+    "category": "budget",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:35:22.845124+05:30",
+     "value": {
+      "date": "2026-07-07",
+      "detail": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase.",
+      "source": "SF Who_will_approve_budget__c=null",
+      "status": "open",
+      "category": "budget",
+      "first_raised": "2026-05-18"
+     }
+    }
+   ],
+   "subject": "No budget owner or approval process identified; unclear whether $100k is even budgeted for a first-time automation purchase.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:21-aug-2026-close-date-predates-any-discovery-call-rfp-or-de",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "21 Aug 2026 close date predates any discovery call, RFP, or demo and is not achievable on a realistic enterprise cycle.",
+    "source": "SF CloseDate vs Next_Step_History__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "21 Aug 2026 close date predates any discovery call, RFP, or demo and is not achievable on a realistic enterprise cycle.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "risk:buyer-is-moving-from-a-fully-manual-process-to-its-first-sys",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-18",
+    "detail": "Buyer is moving from a fully manual process to its first system; adoption risk is real given zero prior automation experience.",
+    "source": "SF Customer_Business_Problem__c",
+    "status": "acknowledged",
+    "category": "change_management",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer is moving from a fully manual process to its first system; adoption risk is real given zero prior automation experience.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-past-the-two-evaluator-level-contacts-now-a-sin",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread past the two Evaluator-level contacts now; a single unresponsive pair currently holds the entire deal hostage."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread past the two Evaluator-level contacts now; a single unresponsive pair currently holds the entire deal hostage.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "hygiene:build-a-coupa-gep-worldwide-and-jaggaer-battlecard-before-th",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build a Coupa, GEP Worldwide, and JAGGAER battlecard before the first real discovery call so Zycus is not entering a shortlist blind."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build a Coupa, GEP Worldwide, and JAGGAER battlecard before the first real discovery call so Zycus is not entering a shortlist blind.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "hygiene:correct-the-forecast-honestly-a-21-aug-2026-close-date-sitti",
+   "type": "hygiene",
+   "value": {
+    "flag": "Correct the forecast honestly: a 21 Aug 2026 close date sitting atop zero discovery call, RFP, or demo is not credible and should be reset before it slips silently."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Correct the forecast honestly: a 21 Aug 2026 close date sitting atop zero discovery call, RFP, or demo is not credible and should be reset before it slips silently.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:35:22.845124+05:30",
+   "last_updated": "2026-07-07T17:35:22.845124+05:30",
+   "last_confirmed": "2026-07-07T17:35:22.845124+05:30"
+  },
+  {
+   "key": "commitment:buyer-schedule-a-discovery-call-with-the-deal-owner-to-discu",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-06-03",
+    "source": "Next_Step__c / Next_Step_History__c (6/3/26 entry)",
+    "status": "overdue",
+    "commitment": "Schedule a discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+    "deliverable": "Schedule a discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+    "grounding_quote": "Follow up with Nona and Marie to schedule call to discuss the details of project and modules demos for evaluation with the team"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule a discovery call with the deal owner to discuss project details, pain, and demo scope for iSource, eProcurement, and Merlin",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "commitment:buyer-release-the-rfp-document-and-evaluation-timeline-to-zy",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-06-29",
+    "source": "Next_Step__c / Next_Step_History__c (6/29/26 entry)",
+    "status": "overdue",
+    "commitment": "Release the RFP document and evaluation timeline to Zycus so it can respond and understand Monroe's criteria and timeline",
+    "deliverable": "Release the RFP document and evaluation timeline to Zycus so it can respond and understand Monroe's criteria and timeline",
+    "grounding_quote": "follow up with Nona/Marie + team regarding RFP release timeline"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Release the RFP document and evaluation timeline to Zycus so it can respond and understand Monroe's criteria and timeline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-is-identified-or-enga",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No economic buyer or executive sponsor is identified or engaged; both known contacts are Evaluator-level.",
+    "source": "Executive_Sponsor_Identified__c; OpportunityContactRole",
+    "status": "not addressed",
+    "category": "executive_alignment",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor is identified or engaged; both known contacts are Evaluator-level.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:no-champion-both-buyer-contacts-have-gone-unresponsive-to-fi",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No champion; both buyer contacts have gone unresponsive to five outreach attempts since the single positive call on 18 May 2026.",
+    "source": "X10b_Champion_Business_Buyer__c; Next_Step_History__c",
+    "status": "not addressed",
+    "category": "political",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No champion; both buyer contacts have gone unresponsive to five outreach attempts since the single positive call on 18 May 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:43-day-close-window-21-aug-2026-is-incompatible-with-a-motio",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "43-day close window (21 Aug 2026) is incompatible with a motion that has not yet had a discovery call, RFP, or demo.",
+    "source": "CloseDate; Next_Step_History__c",
+    "status": "not addressed",
+    "category": "timeline",
+    "first_raised": "2026-05-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "43-day close window (21 Aug 2026) is incompatible with a motion that has not yet had a discovery call, RFP, or demo.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "risk:three-competitors-coupa-gep-worldwide-jaggaer-are-logged-wit",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Three competitors (Coupa, GEP Worldwide, JAGGAER) are logged with zero supporting evidence on positioning, timing, or Monroe's evaluation status.",
+    "source": "Competitors__c",
+    "status": "not addressed",
+    "category": "other",
+    "first_raised": "2026-05-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Three competitors (Coupa, GEP Worldwide, JAGGAER) are logged with zero supporting evidence on positioning, timing, or Monroe's evaluation status.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-at-evaluator-level-only-two-contacts-nona-mc",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded at Evaluator level: only two contacts (Nona MCIPS, Maria Camarre), both non-decision-making Evaluators, and both unresponsive since 18 May 2026 \u2014 multi-thread to a more senior contact before the close date erodes further."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded at Evaluator level: only two contacts (Nona MCIPS, Maria Camarre), both non-decision-making Evaluators, and both unresponsive since 18 May 2026 \u2014 multi-thread to a more senior contact before the close date erodes further.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "hygiene:buyer-has-not-yet-seen-zycus-execute-anything-zero-discovery",
+   "type": "hygiene",
+   "value": {
+    "flag": "Buyer has not yet seen Zycus execute anything: zero discovery call, demo, or RFP exchanged in the 55 days since opportunity creation (15 May 2026) \u2014 a tailored value note or working session would rebuild momentum faster than another cold touch."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer has not yet seen Zycus execute anything: zero discovery call, demo, or RFP exchanged in the 55 days since opportunity creation (15 May 2026) \u2014 a tailored value note or working session would rebuild momentum faster than another cold touch.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  },
+  {
+   "key": "hygiene:no-next-step-carries-a-buyer-confirmed-date-the-current-next",
+   "type": "hygiene",
+   "value": {
+    "flag": "No next step carries a buyer-confirmed date: the current Next Step is entirely rep-authored outreach; secure an actual calendar hold, even tentative, to anchor the record."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No next step carries a buyer-confirmed date: the current Next Step is entirely rep-authored outreach; secure an actual calendar hold, even tentative, to anchor the record.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:33:59.959245+05:30",
+   "last_updated": "2026-07-09T08:33:59.959245+05:30",
+   "last_confirmed": "2026-07-09T08:33:59.959245+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T08:33:59.959245+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No Avoma meetings found for this opportunity, this account, or either buyer contact email across the full history window \u2014 no Zycus-Monroe call has ever been captured by Avoma for this deal.",
+   "The single 'Conversation - Positive' Task (18 May 2026) with Maria Camarre carries no Description/notes, so its content is unverified beyond the outreach tool's own positive tag.",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 0,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "nona.somoza@monroe-energy.com",
+   "maria.camarre@monroe-energy.com"
+  ],
+  "calls_discovered": 0,
+  "discovery_method": "opp+account+attendee-email",
+  "salesforce_window": "Full Task history 2024-05-01 to 2026-07-09; OpportunityFieldHistory since CreatedDate (2026-05-15)"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Low"
+}

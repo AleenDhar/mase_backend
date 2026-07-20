@@ -1,0 +1,82 @@
+{
+  "account": "A.R.M. Holding",
+  "opp_id": "006P700000FF6Np",
+  "extract": {
+    "signals": [
+      {"type": "buyer_silence_stall", "who": "buyer_process", "date": "2026-04-08", "evidence": "Last inbound buyer email (Benita, NDA/registration) 8 Apr; Eid 25 May, resources 8/19 May, reconnect 3 Jul all REP-SENT into silence — no buyer reply on any channel since", "confidence": "high"},
+      {"type": "rep_owner_handoff", "who": "internal", "date": "2026-06-29", "evidence": "Owner Dan Quinn -> Mohamad Alhakim (by Carl Kimball); 3 Jul email 'Dan Quinn has recently moved on... I am Mohamad Alhakim... I will be your' — unanswered", "confidence": "high"},
+      {"type": "milestone_slip", "who": "buyer_process", "date": "2026-05-14", "evidence": "'draft RFP is nearly completed - expecting the launch sometime in next few weeks... focus only on Sourcing now' — 54+ days overdue, no RFP landed", "confidence": "high"},
+      {"type": "amount_scope_down", "who": "buyer_process", "date": "2026-04-01", "evidence": "Amount 230000->150000 (1 Apr); PQQ 16 Mar 'Appears to be for sourcing only, previously iSupplier, iRisk & CLM were included'", "confidence": "high"},
+      {"type": "requirement_risk", "who": "buyer", "date": "2026-03-27", "evidence": "'they are emphasising local support requirements... if local support is a showstopper we will qualify out'; UAE-based support resource mandatory", "confidence": "high"},
+      {"type": "deliverable_landed", "who": "rep", "date": "2026-03-26", "evidence": "PQQ submitted 26 Mar, clarifications addressed through 8 Apr — genuine (rep-side) procurement participation; buyer invited us to the PQQ 16 Mar", "confidence": "high"},
+      {"type": "close_date_push", "who": "rep", "date": "2026-06-11", "evidence": "CloseDate 2026-07-31 -> 2026-09-30; 7th push since Jan 2025 per field/prior record", "confidence": "high"},
+      {"type": "champion_cooling", "who": "buyer", "date": "2026-05-14", "evidence": "Champion Mohamed Arshed self-drove both POCs but silent since 14 May; EB Ahmed Raafat only cc'd since the 17 Apr 2025 demo", "confidence": "medium"},
+      {"type": "competitive_inertia", "who": "buyer_process", "date": "2026-05-14", "evidence": "Coupa faded (1 mention 28 Nov 2024), JAGGAER incumbency unconfirmed/contradicted, GEP no call corroboration; strongest threat is status-quo/do-nothing", "confidence": "medium"},
+      {"type": "poc_tech_eval", "who": "buyer", "date": "2025-06-12", "evidence": "Two POC sessions (29 May, 12 Jun 2025), fit ~70-80%, 'very unusual process', functionality/version-control gaps (>90d, context only)", "confidence": "high"}
+    ],
+    "coverage": "full",
+    "top_rationale": [
+      "A genuinely live ~20-month sourcing evaluation has STALLED behind an unlaunched RFP: the buyer has been dark ~90 days since the 8 Apr PQQ/NDA thread, with every May–Jul outreach unanswered.",
+      "The deal narrowed to sourcing-only and the amount was cut $230k->$150k (1 Apr); iSupplier/iRisk/CLM were dropped from the PQQ — shrinking both value and footprint.",
+      "The 14 May 'draft RFP nearly complete, launching in a few weeks' plan is now 54+ days overdue with nothing landed — the single biggest blocker to any 2026 close.",
+      "Zycus reassigned the account (Dan Quinn -> Mohamad Alhakim, 29 Jun); the new owner's 3 Jul reconnect email is unanswered, so the relationship is mid-reset with no buyer acknowledgment.",
+      "No competitor is ahead (Coupa faded, JAGGAER incumbency unconfirmed) — the real threat is inertia/status-quo, not a competitive loss; owner's self-stated confidence is 20%.",
+      "UAE-local support is a buyer-mandated potential SHOWSTOPPER the rep has flagged as a qualify-out trigger."
+    ]
+  },
+  "win": {
+    "score": 22,
+    "band": "Weak",
+    "drivers": [
+      "⚠️ Buyer dark ~90 days — no substantive two-way engagement since the 8 Apr PQQ/NDA thread; Eid (25 May), resources (8/19 May) and the 3 Jul reconnect all sent into silence. ► New owner Mohamad Alhakim must secure a live call with Ahmad Jan / Mohamed Arshed this week to confirm the project is still live — or qualify out.",
+      "⚠️ RFP never launched — the 14 May 'nearly complete, launching in a few weeks' plan is 54+ days overdue with nothing landed. ► Press for a firm, dated RFP launch commitment; without it, the 30 Sep close is not credible.",
+      "⚠️ Scope & amount cut — narrowed to sourcing-only, amount $230k->$150k, iSupplier/iRisk/CLM dropped. ► Re-qualify at the reduced scope and confirm budget authority for $150k with EB Ahmed Raafat.",
+      "⚠️ Champion cooling / EB passive — Mohamed Arshed silent since 14 May; Ahmed Raafat only cc'd since the Apr 2025 demo. ► Multi-thread and re-engage the EB directly to reconfirm sponsorship for the narrowed scope.",
+      "✅ No competitor ahead — Coupa faded, JAGGAER incumbency unconfirmed, GEP uncorroborated; the deal is losable to inertia, not to a rival — a real (if fragile) re-open window remains.",
+      "⚠️ UAE-local support mandated — rep flagged it as a qualify-out trigger. ► Confirm Zycus can meet the UAE-local support requirement before any further investment."
+    ],
+    "focus_now": "Get a live re-engagement call this week to confirm the RFP is still live and the deal still qualifies at the reduced sourcing-only scope; if the buyer stays dark, qualify out rather than forecast it.",
+    "ceiling_applied": "Formal Evaluation / RFP-round stage ceiling ≤60 available but NOT binding — score sits far below it; operative adjustment is the evidence-based downward correction below the Formal-Eval anchor (35).",
+    "exception_statement": "Field OVER-positions the deal: recorded Formal Evaluation (anchor 35) but hard evidence — ~90d dark, RFP 54+ days overdue and never launched, amount cut $230k->$150k, scope shrunk, champion cooling — shows a genuine stall, so scored BELOW the Formal-Eval anchor. ► Move the stage back toward Qualified/Initial Interest (or re-qualify) and correct the non-credible 30 Sep 2026 close date in Salesforce."
+  },
+  "mom": {
+    "score": 20,
+    "band": "Slowing/stalled",
+    "drivers": [
+      "⚠️ Buyer dark — zero buyer-initiated action in the 14/30/60-day windows; last real two-way engagement was the 8 Apr PQQ/NDA thread (>60d, zero recency weight). ► Convert the new-owner intro into a live, dated session to restart two-way motion.",
+      "⚠️ One-way rep chasing — Eid, resources and the 3 Jul reconnect all sent into silence (who-weight x0.1). ► Stop broadcasting content; get one scheduled meeting on the calendar via Benita/Ahmad.",
+      "⚠️ No live future milestone — the 14 May RFP-launch plan is undated and overdue; no future meeting or open task exists, so process-mode is OFF (anti-zombie guard fired). ► Secure a dated RFP launch date from Ahmad Jan.",
+      "⚠️ Owner handoff mid-stall — Dan Quinn -> Mohamad Alhakim (29 Jun) resets the relationship with no buyer acknowledgment yet. ► Warm-introduce the new owner through the existing operational contacts rather than cold outreach.",
+      "✅ Close-date push within tolerance — 31 Jul -> 30 Sep (61 days) reads as neutral timing this cycle, not fresh slippage.",
+      "⚠️ Customer passivity — rep drives all cadence; the buyer has not initiated since April. ► Create a buyer-owned next step (RFP date / clarification deadline) so motion isn't rep-dependent."
+    ],
+    "focus_now": "Turn the new-owner reconnect into a live, dated call this week — a scheduled RFP launch date is the single thing that would lift this off the floor; until then it is stalling, not moving."
+  },
+  "todo": {
+    "prospect_requirements": [
+      {"item": "Confirm Zycus can meet the mandatory UAE-local support requirement (buyer's stated evaluation criterion / potential showstopper)", "who_asked": "Ahmed Raafat / Ahmad Jan", "date": "2026-03-27", "due": "2026-07-16"},
+      {"item": "Address the buyer's technical-document version-control / audit-trail asks (multi-round PTCs, view v1+v2+v3, split-award by value, regret emails, Oracle PR integration) surfaced in the POC — bundle into the RFP response", "who_asked": "A.R.M. evaluation team (POC 12 Jun)", "date": "2025-06-12", "due": "2026-07-31"}
+    ],
+    "zycus_commitments": [
+      {"item": "New owner Mohamad Alhakim to complete the reconnect / formal handoff and re-establish a point of contact with the buying team", "committed_on": "2026-07-03", "grounding_quote": "I wanted to let you know that Dan Quinn has recently moved on from Zycus. I am Mohamad Alhakim, Regional Sales Director-ME at Zycus, and I will be your [contact]", "due": "2026-07-14"},
+      {"item": "Deliver the promised end-to-end sourcing process video (incl. version-control workaround) committed at the POC — verify it is still relevant after the sourcing-only scope change before re-sending", "committed_on": "2025-06-12", "grounding_quote": "we're gonna share the recorded video as well... share us the complete end to end process video", "due": "2026-07-23"}
+    ],
+    "waiting_on_buyer": [
+      {"item": "Launch of the draft RFP the buyer said was 'nearly complete' on 14 May (undated, now 54+ days overdue)", "who": "Mohamed Arshed / Ahmad Jan", "needed_by": "2026-07-18"},
+      {"item": "Confirmation the project is still live and not shelved (buyer silent since ~mid-May; response to the 3 Jul reconnect email)", "who": "Ahmed Raafat / Ahmad Jan", "needed_by": "2026-07-16"}
+    ],
+    "best_practices": [
+      {"item": "Re-engage and confirm the deal is alive — new owner lands one live call with the buying team this week", "rank_reason": "Deal is ~90d dark and dying to inertia; confirming it is live is the gate to every other action — highest blocking-power, most time-critical.", "due": "2026-07-16"},
+      {"item": "Nail a firm, dated RFP launch date and formally qualify in/out at the sourcing-only scope", "rank_reason": "Unblocks the next stage-gate; without a dated RFP there is no credible path to close and the forecast is undefensible.", "due": "2026-07-23"},
+      {"item": "Multi-thread to EB Ahmed Raafat and reconfirm sponsorship + $150k budget for the narrowed scope", "rank_reason": "Single-threaded through a cooling champion (Mohamed Arshed); EB passive since Apr 2025 — removes the biggest single-point-of-failure risk.", "due": "2026-07-30"},
+      {"item": "Resolve the UAE-local support feasibility question before further investment", "rank_reason": "Buyer-mandated showstopper; settling it converts wasted effort into a clean qualify-in or a fast qualify-out.", "due": "2026-07-21"}
+    ],
+    "suggested_realistic_close": "2027-03-31"
+  },
+  "sum": {
+    "headline": "No change in the last 24h — the buyer remains dark and the new owner's 3 Jul reconnect email is still unanswered.",
+    "supporting": [],
+    "no_change": true,
+    "as_of_note": "As of last week (outside the 24/48h window): the account was reassigned to new owner Mohamad Alhakim (29 Jun) and a reconnect email was sent (3 Jul) — both still unanswered; the ~90-day silence since the 8 Apr PQQ/NDA thread is unbroken."
+  }
+}

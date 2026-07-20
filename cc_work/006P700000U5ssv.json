@@ -1,0 +1,334 @@
+{
+  "opp_id": "006P700000U5ssv",
+  "hard": {
+    "opp_id": "006P700000U5ssv",
+    "opp_name": "Newrez [S2P] Feb'26",
+    "account_name": "Newrez LLC",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Edward Dlugosz",
+    "owner_title": "Regional Sales Director",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 110000.0,
+    "close_date": "2027-02-06",
+    "days_to_close": 215,
+    "created_date": "2026-02-17",
+    "qualified_date": "2026-02-17",
+    "last_activity_date": "2026-06-25",
+    "last_modified_date": null,
+    "products": "iSource;eProcurement;eInvoicing;iRequest;Merlin;Merlin Intake",
+    "next_step": "Joyce mentioned about having an internal discussion with her manager about Zycus, since they do not have any tools in place for automation right now",
+    "ais_score": 8.0,
+    "ais_status": "Moderate",
+    "ais_why": "On the 2/11/26 call Joyce Kornfeld voiced interest in AI applications for indirect services in financial services and committed to reviewing the Hackett Group Pinnacle AI webinar; same-day demo covered agentic invoice capture/matching/routing, tail-spend negotiation agents, and Merlin Intake on MS Teams, with Joyce pressing into fraud-detection specifics.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000U5ssv/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "The only buyer conversation was the 11 Feb intro call; 145 days later Joyce has never replied to three rep invitations and the deal is cold. Genuine pain and AI curiosity exist, but with a single individual-contributor contact, no budget owner, and 'we're not actively looking right now' still standing, the Feb-2027 date is not credible without a fresh two-way re-engagement.",
+      "math": "Created and Qualified 17 Feb 2026, so 139 days in Qualified with zero stage progression. Last genuine two-way buyer touch 11 Feb 2026 (145 days ago); every touch since is rep-side (Apr 14, May 13, Jun 25 email/call attempts with no logged buyer reply), so the deal is cold on the 60-day rule. Close date 06 Feb 2027 is 215 days away. Reaching close from Qualified requires Formal Evaluation, Shortlisted, Vendor Selected, Negotiation and Contract In Progress in roughly seven months, which is only possible if a two-way buyer conversation restarts inside 14 days, the manager/peer managers Joyce named engage within 30 days, and a budget owner is mapped by Q3 2026.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Only one buyer call on record (Intro Call, 11 Feb 2026): Joyce Kornfeld confirmed manual, offshore-dependent processes and disparate systems across acquired subsidiaries, but framed it as 'more of an educational presentation' and said 'we're not actively looking right now'.",
+        "Three rep-side touches since (Task 14 Apr 2026 'Share the P2P PPT with your manager', Task 13 May 2026 Agentic AI Summit invite, Task 25 Jun 2026 Horizon US invite) are all 'Call Attempted / Email Sent' with no buyer reply logged, so buyer engagement has been dark for 145 days.",
+        "Next_Step__c references Joyce's intent to have an internal discussion with her manager since Newrez has no automation tooling, but that discussion has never been confirmed back to the deal team.",
+        "Single-thread on Joyce, a sourcing individual contributor with no budget authority; no manager, peer manager, or economic buyer has ever joined a call.",
+        "Stage has sat at Qualified for 139 days with no advance to Formal Evaluation, consistent with a slow, self-directed buyer rather than an active evaluation."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Joyce Kornfeld articulated real operational pain on the 11 Feb intro call but never quantified it. She stated 'all the repetitive tasks get sent offshore, but they're manual today', confirmed 'visibility is a challenge' across Rhythm's acquired subsidiaries, and said she was 'continually looking at how to bring over their contracts, how to leverage their spend'. When Ed Dlugosz showed automated invoice matching, supplier onboarding and tail-spend negotiation agents she reacted with interest ('That is always a challenge for sure', 'It's fascinating') but committed to no cost, headcount, cycle-time or savings figure. The business case is therefore qualitative only; quantifying the offshore labour spend, manual AP workload and maverick-spend leakage is the work that would convert curiosity into a funded project.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'all the repetitive tasks get sent offshore... they're manual today'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'visibility is a challenge' / 'we're continually looking at how to bring over their contracts, how to leverage their spend'",
+          "SF Next_Step__c: internal discussion with manager 'since they do not have any tools in place for automation right now'"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer has been identified or engaged. Joyce is a sourcing individual contributor who said plainly 'I can't go beyond that right now... promising can't be on that right now', so she does not own budget. She twice pointed to the real authority above her: 'I will definitely share this with my manager and my peer managers' and, per Next_Step__c, an intended internal discussion with her manager about Zycus. That unnamed manager (and the peer managers) is the budget-influencing layer, but no name, title or contact exists in Salesforce or on any call, so the economic buyer cannot be asserted. Mapping and reaching that manager is the single most important qualification move; until then there is no path to a commercial conversation.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'I will definitely share this with my manager and my peer managers'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'I can't go beyond that right now'",
+          "SF Next_Step__c: internal discussion with her manager about Zycus"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Criteria surface only implicitly from Joyce's questions on the 11 Feb call, and are inferred rather than confirmed by a documented requirement set. She probed user adoption and ease of use (agreeing strongly with the 90%-of-rollouts-fail statistic and recalling her own failed intake project, 'we tried to do something like this before AI technology existed'), services-not-just-goods sourcing ('Does it do that for services as well as goods?'), genuine fraud controls on AP ('does it actually do a fraud check... sequential invoice numbers'), configurability, and legacy-system interoperability ('does Merlin Intake sit on top of legacy systems'). These map to adoption, multi-entity visibility, agentic automation and integration as the buyer's likely evaluation axes, but no formal BRD, RFP or weighted criteria exist yet, so all of it is inferred from one educational session.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'Does it do that for services as well as goods?'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'does it actually do a fraud check... sequential invoice numbers and errors on the invoice'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'does Merlin Intake sit on top of legacy systems'"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no visible buying process yet. The 11 Feb call was explicitly scoped by Chris Gracias and Ed Dlugosz as educational, not discovery, and Joyce confirmed 'we're not actively looking right now'. The only process signal is her stated intention to share the material internally with her manager and peer managers and to 'talk about options and strategies', which is informal exploration, not a funded evaluation with steps, owners or dates. No approval chain, procurement route, or timeline has been named on any call or in any field. The move that creates process visibility is a working session with Joyce plus her manager to establish whether this becomes a formal initiative and what would trigger one.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026 (call framed as educational): 'this is more of an educational presentation today'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we're not actively looking right now... we talk about options and strategies'",
+          "SF Next_Step__c: internal discussion with manager pending"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in play, which is correct for a Qualified, pre-evaluation deal. There is no MSA, Order Form, SOW, legal review, InfoSec questionnaire, procurement channel or contract-expiration forcing function on record, and Newrez has not entered any commercial motion. Current_Contract_Expiration__c is not populated and Joyce did not name a renewal date on the unnamed incumbent 'primary vendor', so there is no external clock. Paper visibility only becomes relevant after a business case is built and a decision process is defined; the earliest useful step is learning the incumbent contract's renewal timing to see whether a natural forcing event exists.",
+        "sources": [
+          "SF stage Qualified, no commercial or legal fields populated",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we have one primary vendor' (renewal timing not stated)"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Joyce owns and clearly articulated three current, felt pains on the 11 Feb call. First, manual offshore-dependent operations: 'all the repetitive tasks get sent offshore, but they're manual today', with no agentic automation in her current tool. Second, fragmented systems across Rhythm's acquisitions: 'we have a lot of companies without any systems' and 'visibility is a challenge', blocking consolidated spend, contract compliance and cross-entity leverage. Third, intake and adoption failure: she was 'stuck' in a meeting on 'how do I raise a request' immediately before this call and recalled past P2P rollouts that failed on adoption, agreeing with the 90%-of-rollouts-fail point. The pain is real and owned by Joyce, but she is the pain-feeler, not the budget owner, so pain alone will not fund a project.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'all the repetitive tasks get sent offshore... they're manual today'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we have a lot of companies without any systems' / 'visibility is a challenge'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'the meeting I was stuck on was how do I raise a request because we're looking at our intake process right now'"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Joyce Kornfeld is a developing-but-weakening champion. On 11 Feb she engaged warmly, connected the demo to her own history ('we tried to do something like this before AI technology existed'), and committed 'I will definitely share this with my manager and my peer managers'. What has developed is genuine product conviction and internal intent to circulate Zycus. What is missing is decisive: she has no budget authority ('I can't go beyond that right now'), she has not produced the manager or peer-manager introduction she promised, and 145 days later she has not answered any of the three rep follow-ups (14 Apr, 13 May, 25 Jun). Her advocacy is real but entirely passive and now cooling, so she cannot yet carry the deal; converting her intent into an actual scheduled meeting with her manager is the test of whether the champion is real.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'I will definitely share this with my manager and my peer managers'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'I can't go beyond that right now'",
+          "SF Tasks 14 Apr / 13 May / 25 Jun 2026: rep follow-ups with no logged buyer reply"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "There is no active competitive evaluation, but the deal is not truly uncontested. The real alternative is the status quo: Joyce said 'we're not actively looking right now', named an unnamed 'one primary vendor' that lacks any agentic capability ('the version we're on today doesn't have any of that integrated'), and described many acquired subsidiaries running on no system at all. So the dominant threat is inertia and no-decision, not a named rival. Newrez could keep managing manually and offshore indefinitely rather than fund a project. The unnamed incumbent is a low, dormant threat only if it presents an AI/automation upgrade path, which Joyce's enthusiasm for Merlin Intake suggests it has not. The wedge is to make the cost of doing nothing concrete and put the agentic-AI adoption story in front of her manager; identifying that incumbent by name is a discovery gap to close.",
+        "sources": [
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we have one primary vendor' (unnamed)",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'the version we're on today doesn't have any of that integrated... it's all manual or you send it offshore'",
+          "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we're not actively looking right now'"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only substantive movement was the 11 Feb 2026 intro/education call. Since then the trail is entirely rep-side outreach (14 Apr, 13 May, 25 Jun) with no buyer reply, so the deal has not moved forward and has gone cold at Qualified.",
+      "items": [
+        {"change": "Intro/education call held; Joyce confirmed pain and committed to share Zycus with her manager and peer managers", "date": "2026-02-11"},
+        {"change": "Ownership moved to Edward Dlugosz and Type set to New Business", "date": "2026-02-20"},
+        {"change": "Rep follow-up: asked Joyce whether she had shared the P2P deck with her manager and peer managers (no reply logged)", "date": "2026-04-14"},
+        {"change": "Rep invited Joyce to the Agentic AI Procurement Summit (no reply logged)", "date": "2026-05-13"},
+        {"change": "Rep invited Joyce to Horizon US 2026 (no reply logged)", "date": "2026-06-25"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "There is no active competitor and no RFP; the strongest current threat on this deal is no-decision / status quo, not a rival. Joyce said 'we're not actively looking right now' (11 Feb 2026) and Newrez runs an unnamed 'one primary vendor' with no agentic capability plus many acquired subsidiaries on no system at all, so the risk is that Newrez keeps managing manually and offshore and never funds a project. The unnamed incumbent is a dormant, low threat pending its AI roadmap; no SAP Ariba, Coupa, Ivalua, GEP or other named rival appears in any call, field or task, so none is asserted.",
+      "competitors": [
+        {
+          "name": "Do-nothing / status quo (manual + offshore, unnamed primary vendor)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "we're not actively looking right now... all the repetitive tasks get sent offshore, but they're manual today",
+          "date": "2026-02-11",
+          "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld",
+          "how_we_win": "Make the cost of inertia concrete (offshore labour + manual AP + maverick spend) and put the Merlin Intake adoption story in front of Joyce's manager so a funded initiative starts."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is strong on the axes Joyce probed on 11 Feb, though everything is inferred from one educational call, not a documented requirement set. User-adoption/ease-of-use and agentic automation land squarely with Zycus; services sourcing and legacy interoperability are only partially confirmed.",
+      "items": [
+        {"criterion": "User adoption / ease of use (past rollouts failed on adoption)", "position": "aligned", "quote": "we tried to do something like this before AI technology existed on our intranet, and we called it 'I have a need'", "date": "2026-02-11", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"},
+        {"criterion": "Agentic AI automation of manual AP / onboarding / tail spend", "position": "aligned", "quote": "the version we're on today doesn't have any of that integrated... it's all manual or you send it offshore", "date": "2026-02-11", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"},
+        {"criterion": "Sourcing for services, not only goods", "position": "partially aligned", "quote": "Does it do that for services as well as goods?", "date": "2026-02-11", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld (Ed: 'it can do it for certain services')"},
+        {"criterion": "Multi-entity spend visibility across acquired subsidiaries", "position": "aligned", "quote": "we have a lot of companies without any systems... visibility is a challenge", "date": "2026-02-11", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Joyce to share the Zycus P2P material with her manager and peer managers and revert on the internal automation discussion", "who": "Buyer", "grounding_quote": "I will definitely share this with my manager and my peer managers", "date": "2026-02-11", "due": null, "status": "overdue", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld; reinforced SF Next_Step__c and Task 14 Apr 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "I will definitely share this with my manager and my peer managers", "status": "not addressed", "date": "2026-02-11", "gap_type": "knowledge", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"},
+        {"area": "Incumbent vendor identity and contract renewal timing", "quote": "we have one primary vendor", "status": "not addressed", "date": "2026-02-11", "gap_type": "knowledge", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"},
+        {"area": "Quantified business case (offshore labour, manual AP, maverick spend)", "quote": "all the repetitive tasks get sent offshore, but they're manual today", "status": "not addressed", "date": "2026-02-11", "gap_type": "knowledge", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a single-threaded, cold, early-stage deal on real AI-driven pain; the win levers are re-opening a two-way conversation, reaching the budget layer Joyce named, and making the cost of doing nothing concrete.",
+      "flags": [
+        "Break single-thread: Joyce is a sourcing IC with no budget authority. Get to the manager and peer managers she named or the deal cannot progress past Qualified.",
+        "Convert AI curiosity to urgency: AIS 8 and Joyce's fraud/adoption/agentic questions show genuine pull. Quantify offshore + manual-AP cost so the manager sees a funded case, not a demo.",
+        "Name the incumbent and its renewal clock: the 'one primary vendor' and the no-system subsidiaries define the displacement story and any natural forcing event; identify both before recommending a formal evaluation."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Joyce Kornfeld", "title": "Senior Sourcing and Procurement Professional", "role": "Champion", "last_contact_date": "2026-02-11", "sentiment": "Positive on the product but passive and now cooling; engaged warmly on Merlin Intake and agentic AI, committed to share internally, but has not replied to three follow-ups since 11 Feb.", "risk": "Single point of contact, no budget authority, 145 days silent; deal depends entirely on her converting stated intent into a manager introduction.", "source": "Avoma Intro Call 11 Feb 2026; SF task/activity contact"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Joyce Kornfeld is a developing champion whose advocacy is real but entirely passive and now cooling. She showed genuine conviction and committed to share Zycus with her manager and peer managers, but has no budget authority, has not produced the promised introduction, and has ignored three rep follow-ups over 145 days. She cannot carry the deal alone; the test is whether she will schedule the manager meeting.",
+      "champion": "Joyce Kornfeld",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "Avoma Intro Call 11 Feb 2026; SF Tasks 14 Apr / 13 May / 25 Jun 2026; 145-day buyer silence"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus was positioned AI-first and it landed: Ed led with the Merlin Intake control tower on MS Teams, agentic invoice capture/matching/routing, autonomous tail-spend negotiation and supplier onboarding, and Joyce pushed into specifics (fraud checks, services sourcing, legacy integration). The agentic story is well told; the gap is not positioning but reaching a budget owner who will act on it.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8 / Moderate is corroborated by the call: Joyce voiced clear AI pull for indirect services in financial services, agreed to review the Hackett Pinnacle AI webinar, and engaged deeply with agentic flows and Merlin Intake. The curiosity is genuine but has not converted to buying intent ('we're not actively looking right now'), so it reads as curious, not hungry.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or manager mapped or engaged; only a sourcing IC has been reached.", "first_raised": "2026-02-11", "date": "2026-02-11", "status": "open", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'I can't go beyond that right now'"},
+        {"category": "political", "detail": "Single-thread on Joyce; no second contact anywhere in the account.", "first_raised": "2026-02-11", "date": "2026-02-11", "status": "open", "source": "SF contact roles; Avoma Intro Call 11 Feb 2026"},
+        {"category": "budget", "detail": "No compelling event, no funded project, buyer explicitly 'not actively looking' with no quantified case.", "first_raised": "2026-02-11", "date": "2026-02-11", "status": "open", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld"},
+        {"category": "timeline", "detail": "145 days of buyer silence at Qualified makes the 06 Feb 2027 close date not credible without immediate re-engagement.", "first_raised": "2026-06-25", "date": "2026-06-25", "status": "open", "source": "SF LastActivityDate; Tasks 14 Apr / 13 May / 25 Jun 2026"},
+        {"category": "change_management", "detail": "Newrez's own prior P2P rollouts failed on adoption; a real risk that doubles as the Merlin Intake wedge if handled well.", "first_raised": "2026-02-11", "date": "2026-02-11", "status": "open", "source": "Avoma Intro Call 11 Feb 2026, Joyce Kornfeld: 'we tried to do something like this before'"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling to cold: one buyer call in the record, no reply to three rep follow-ups over 145 days, and no stage movement in 139 days.",
+      "cooling": true,
+      "items": [
+        "No buyer reply since 11 Feb 2026 despite outreach on 14 Apr, 13 May and 25 Jun.",
+        "Stage unchanged at Qualified for 139 days.",
+        "Buyer self-described as 'not actively looking right now'."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Owner emails Joyce a short offshore-vs-automation cost angle and asks for a 20-minute reconnect.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "145 days of buyer silence since the 11 Feb call; three prior invites went unanswered, so a value-led, low-friction re-open is needed, not another event invite.",
+          "trigger_date": "2026-06-25",
+          "act_by": "2026-07-13",
+          "expected_effect": "Restarts a two-way conversation and tests whether the deal is still live; without a reply inside 10 business days, treat as dormant and plan a fresh entry point."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Joyce to bring her manager and a peer manager to a working session on intake and adoption.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Joyce committed on 11 Feb to share with her manager and peer managers but no introduction has materialised in 145 days.",
+          "trigger_date": "2026-02-11",
+          "act_by": "2026-07-20",
+          "expected_effect": "Breaks single-thread and surfaces the budget owner, the only path to move past Qualified."
+        },
+        {
+          "rank": 3,
+          "action": "Discover the incumbent vendor's name, its AI roadmap, and its contract renewal date.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Joyce named 'one primary vendor' but never identified it, and no renewal clock is known.",
+          "trigger_date": "2026-02-11",
+          "act_by": "2026-08-05",
+          "expected_effect": "Frames the displacement story and finds any natural forcing event to create urgency."
+        },
+        {
+          "rank": 4,
+          "action": "Build a one-page cost-of-inertia case quantifying offshore labour and manual AP for the manager.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Pain is confirmed but entirely qualitative; no cost, headcount or cycle-time figure exists.",
+          "trigger_date": "2026-02-11",
+          "act_by": "2026-08-05",
+          "expected_effect": "Turns curiosity into a fundable business case a budget owner can act on."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "One educational intro call (11 Feb) proved genuine AI-driven pain but no buying intent; 145 days later the deal is single-threaded on a sourcing IC with no budget owner, buyer silent, and 'not actively looking' still standing, so the only path forward is a value-led re-open into Joyce's manager.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low because the deal has never left the education stage: the single buyer conversation was framed as educational, Joyce said 'we're not actively looking right now' (11 Feb), and no budget owner has ever been reached."},
+          {"tone": "good", "text": "The upside is real product-market fit: Joyce confirmed manual-offshore pain and adoption failures and engaged deeply with Merlin Intake and agentic AI, which is why AIS reads 8/Moderate."},
+          {"tone": "warn", "text": "The deal is single-threaded on Joyce, an individual contributor with no budget authority ('I can't go beyond that right now'), so there is no one who can fund a project today."},
+          {"tone": "warn", "text": "The dominant threat is no-decision, not a rival: Newrez can keep managing manually and offshore indefinitely, and 145 days of unanswered follow-ups suggest that is the current default."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: the buyer has not replied since the 11 Feb call despite outreach on 14 Apr, 13 May and 25 Jun, and the stage has sat at Qualified for 139 days."},
+          {"tone": "warn", "text": "No senior stakeholder has joined, no commercial or security topic has opened, and the buyer has named no dates, so the deal is still a generic post-demo state."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is thin: Joyce's only pledge was to share materials internally, which she has not visibly done, and she asked for no next meeting or Zycus-specific next step."},
+          {"tone": "good", "text": "She did volunteer to review the Hackett Pinnacle AI webinar and spoke of discussing 'options and strategies' internally, a small positive signal of ongoing interest."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Highest risk is inertia plus single-thread: no economic buyer, no compelling event, no quantified case, and a champion who has gone quiet for 145 days."},
+          {"tone": "warn", "text": "Newrez's own history of failed P2P rollouts is an adoption risk that must be neutralised with the Merlin Intake story to keep the manager engaged."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.5, "evidence": "Only committed to share materials internally; no reply to three follow-ups over 145 days; 'not actively looking right now'."},
+        "deal_momentum": {"strength": -0.7, "evidence": "No buyer touch since 11 Feb; 139 days in Qualified with no stage movement; only generic education so far."},
+        "deal_risk": {"strength": -0.6, "evidence": "Single-thread on a no-budget IC, no economic buyer mapped, no compelling event, status-quo/no-decision is the main threat."}
+      }
+    },
+    "scope_change": {
+      "direction": "stable",
+      "from": "Source-to-Pay suite (iSource, eProcurement, eInvoicing, iRequest, Merlin, Merlin Intake)",
+      "to": "Source-to-Pay suite (iSource, eProcurement, eInvoicing, iRequest, Merlin, Merlin Intake)",
+      "detail": "Product scope is unchanged since creation; no modules dropped and amount steady at $110k."
+    },
+    "customer_preference": {
+      "level": "low",
+      "evidence": "Positive on the product ('That's really slick', 'It's fascinating') but explicitly 'we're not actively looking right now', treated the session as educational, and requested no Zycus-specific next step."
+    },
+    "business_case": {
+      "status": "partial",
+      "evidence": "Qualitative pain only (manual offshore processes, disparate systems, adoption failures); no cost, headcount, cycle-time or savings figure quantified by the buyer."
+    },
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 2,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d (14 Apr, 13 May, 25 Jun 2026); field history from 17 Feb 2026",
+    "avoma_attendees": ["Joyce Kornfeld"],
+    "gaps": [
+      "Economic buyer / budget owner: Joyce's manager and peer managers are referenced but unnamed in Salesforce and on all calls.",
+      "Incumbent 'one primary vendor' is never named, nor is its renewal timing.",
+      "Business case is unquantified; only one buyer call exists, so evidence density is low."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

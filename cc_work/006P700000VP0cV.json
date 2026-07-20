@@ -1,0 +1,244 @@
+{
+  "opp_id": "006P700000VP0cV",
+  "hard": {
+    "opp_id": "006P700000VP0cV",
+    "opp_name": "Axens_Supplier+Invoicing_March26",
+    "account_name": "Axens",
+    "account_industry": "Oil & Gas",
+    "billing_country": "United States",
+    "owner_name": "Bailey Erazo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2027-03-26",
+    "days_to_close": null,
+    "created_date": "2026-03-17",
+    "qualified_date": "2026-03-17",
+    "last_activity_date": "2026-03-17",
+    "last_modified_date": null,
+    "products": "ML iAnalyze;iSupplier;eInvoicing",
+    "next_step": "Discovery scheduled for 17th April.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "No Avoma recording is available for Axens; only a discovery has been scheduled (April 17). Scope is Supplier Management plus Invoicing, with no AI-specific framing in the Salesforce description or next steps. Created in March 2026 and still pre-discovery, so any AI excitement is unproven.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000VP0cV/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Deal has been dark for 111 days since creation on 17 March 2026. The discovery call scheduled for 17 April never occurred, and no buyer engagement, contact roles, or activity has been logged since. The opportunity is stalled in Qualified stage with no champion, no economic buyer, and no competitive map.",
+      "math": "Created 17 March 2026, qualified the same day, now 111 days in Qualified stage with zero stage progression. Discovery was scheduled for 17 April 2026 but is 80 days overdue with no evidence it happened. Last Salesforce activity was 17 March 2026 (111 days ago). Close date 26 March 2027 is 263 days out, but with no buyer engagement in nearly four months and no calls recorded, the deal has gone cold before the discovery phase. Time-in-stage (111 days in Qualified, pre-discovery) far exceeds the norm for an engaged early-stage deal, so the forecast date is not defensible on current pace.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Last activity 17 March 2026, 111 days ago (SF LastActivityDate)",
+        "Next_Step__c: Discovery scheduled for 17th April (2026-04-17, now 80 days overdue with no evidence it occurred)",
+        "Next_Step_History__c: Introduction Call conducted successfully 17 March 2026; discovery scheduled for 17 April, no follow-up logged",
+        "Zero Avoma calls discovered via opp, account, or attendee-email pulls",
+        "Zero buyer-side OpportunityContactRole entries on the opportunity",
+        "Only activity contact is Judith Perez (Outreach outbound call 16 March 2026, marked Conversation - Positive)",
+        "No field-history movement since StageName moved Initial Interest -> Qualified on 17 March 2026",
+        "Stage: Qualified for 111 days with no progression to Formal Evaluation"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is documented in the Salesforce free-text fields but has never been quantified by the buyer, because no discovery call has occurred. Customer_Business_Problem__c describes fragmented procurement data across multiple entities and ERPs (SAP plus non-SAP systems), a lack of centralized spend visibility, limited tooling beyond SAP, and heavy manual effort with dependency on an external SAP team in France. Business_Objectives__c names improved spend visibility across global entities, standardized procurement processes, enhanced supplier risk management, and data-driven decision-making. No figure (spend under management, supplier count, manual hours, savings target, or compliance exposure) has been stated by anyone at Axens, so there is no buyer-confirmed value case. The move is to run the overdue discovery call and have the buyer quantify current spend, supplier volume, and the cost of the manual process.",
+        "sources": ["SF Customer_Business_Problem__c", "SF Business_Objectives__c", "SF Value_to_Customer__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. There is no OpportunityContactRole of Economic Buyer or Executive Sponsor, no MEDDPICC field names a budget owner, and no call exists from which to infer who controls the money. The only human on record is Judith Perez, reached on a single positive Outreach outbound call on 16 March 2026, with no title on file and no evidence of budget authority. The scope (Supplier Management plus Invoicing for a global Oil and Gas operator) implies a procurement or finance owner, but that is inference from scope, not evidence. The move is to identify and get access to the budget owner on the first discovery call, and to ask directly who signs off on a purchase of this size.",
+        "sources": ["Zero Economic Buyer / Executive Sponsor contact roles", "SF X10a_Sponsor__c: null", "No calls recorded"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "Decision criteria are genuinely unknown for this deal. No use-case review, RFP round, workshop, or demo has taken place, so there is no buyer-stated list of what will differentiate the winning vendor. The Salesforce business-requirement fields carry the generic objectives (spend visibility, standardized processes, supplier risk, AI-driven automation) but nothing the buyer has ratified as evaluation criteria. Because Why_not_Zycus__c indicates the buyer intends to compare AI capabilities before deciding, AI/analytics depth is likely to be a criterion, but that is inferred. The move is to establish the buyer's evaluation criteria and weighting during the discovery call before any demo is built.",
+        "sources": ["SF Business_Requirements__c", "SF Why_not_Zycus__c", "No calls recorded"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is undocumented. There is no call sequence to read as a process map because only a single introduction call (17 March 2026) occurred and the scheduled discovery lapsed. No approval chain, evaluation timeline, or buying-committee shape is captured in any field, and What_is_the_decision_process__c carries no buyer-confirmed steps. We do not know whether Axens will run an RFP, a short competitive evaluation, or a direct evaluation off their prior Zycus experience. The move is to map the decision process and named stakeholders (procurement, IT, finance) on the discovery call and confirm the evaluation timeline in writing.",
+        "sources": ["SF What_is_the_decision_process__c", "Next_Step_History__c: Introduction Call 17 March 2026", "No calls recorded"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "The paper process is not yet in view, which is expected at Qualified stage this early. Current_Contract_Expiration__c is null, so there is no incumbent-contract forcing function, and no MSA, Order Form, SOW, legal, or InfoSec step is referenced anywhere. The recent SAP S/4HANA implementation signals a complex ERP-integration environment that will eventually require scoping and possibly an implementation partner, but none of that is confirmed. This is a knowledge gap only because the deal has not reached a stage where paper matters. The move is to note contracting mechanics (legal review, InfoSec questionnaire, procurement channel) as discovery questions once the evaluation is live.",
+        "sources": ["SF Current_Contract_Expiration__c: null", "SF How_are_you_addressing_your_problem_toda__c", "No calls recorded"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Pain is documented in Salesforce but not yet articulated by the buyer on a call. Customer_Business_Problem__c and Compelling_Event__c together describe fragmented procurement data across multiple ERPs, limited tooling beyond SAP, manual effort with external-team dependency, and strategic pressure from geopolitical risk, tariffs, and a recent SAP S/4HANA upgrade that opens an ecosystem-enhancement window. The pain is both operational (manual, fragmented, low visibility) and strategic (risk, compliance, cost), and it is tied to a plausible compelling event (the SAP upgrade window, targeting implementation next year). The pain owner is inferred to be procurement but not named. The move is to have the buyer state the pain in their own words and confirm who owns it on the discovery call.",
+        "sources": ["SF Customer_Business_Problem__c", "SF Compelling_Event__c", "SF How_are_you_addressing_your_problem_toda__c"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified. X10b_Champion_Business_Buyer__c is null and no buyer-side contact role of any kind exists on the opportunity. Judith Perez took a single positive Outreach outbound call on 16 March 2026, but a one-touch positive call 111 days ago with no follow-through is not advocacy, and she carries no title or evidence of internal influence. There is no sign of anyone introducing us to other stakeholders, sharing internal documents, or driving an agenda for Zycus. The deal is single-threaded at best and has gone quiet. The move is to re-engage Judith Perez, run the discovery, and assess whether she or a procurement/IT leader can be developed into a champion, then multi-thread beyond her.",
+        "sources": ["SF X10b_Champion_Business_Buyer__c: null", "Zero Champion contact roles", "Task 2026-03-16: positive Outreach call to Judith Perez"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "The competitive picture is unknown. Competitors__c and Others_Competitors_Please_specify__c are null, no competitor is named in any call (zero recorded), and no next step or task references a competitive evaluation. Why_not_Zycus__c states the buyer intends to evaluate competitors and compare AI capabilities before deciding, so this is not sole-source, but the shortlist is undefined. How_are_you_addressing_your_problem_toda__c describes a recently implemented SAP S/4HANA stack with no dedicated procurement suite, which raises a possible stay-with-SAP or SAP Ariba alternative, but that is inference, not evidence, and no rival is asserted. The move is to ask Axens directly on the discovery call who else they are evaluating and against what criteria.",
+        "sources": ["SF Competitors__c: null", "SF Why_not_Zycus__c", "SF How_are_you_addressing_your_problem_toda__c"]
+      }
+    },
+    "deal_movement": {
+      "summary": "One introduction call was conducted successfully on 17 March 2026 and a positive Outreach outbound call reached Judith Perez on 16 March 2026, after which the deal moved Initial Interest -> Qualified. Since then there has been no movement: the 17 April discovery lapsed, and there is no buyer touch, field change, or call in the 111 days since. The pulse is dark.",
+      "items": [
+        {"change": "Stage moved Initial Interest -> Qualified by Bailey Erazo", "date": "2026-03-17"},
+        {"change": "Introduction call conducted successfully; discovery scheduled for 17 April", "date": "2026-03-17"},
+        {"change": "Positive Outreach outbound call to Judith Perez", "date": "2026-03-16"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competition is unknown. No competitor is named in any Salesforce field, call, or activity. Why_not_Zycus__c confirms the buyer intends to evaluate competitors and compare AI capabilities before deciding, so this is not sole-source, but the competitive shortlist is undefined. The current stack includes a recently implemented SAP S/4HANA with no dedicated procurement suite, which implies SAP Ariba or SAP-native modules could be an alternative or a stay-with-SAP inertia risk, but this is inferred, not confirmed. Without a discovery call we have no visibility into who else is being evaluated, whether an RFP has been issued, or the buyer's preferred-fit peer. The single strongest current threat is unknown; the immediate action is to run the discovery call and map the competitive landscape.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "No buyer-confirmed expectations exist yet. The Salesforce fields frame the desired outcomes (unified spend visibility across global entities, standardized procurement, supplier risk management, AI-driven automation, reduced manual effort), but none has been validated by the buyer on a call, so fit is unproven across the board.",
+      "items": [
+        {"criterion": "Unified spend visibility across global entities and multiple ERPs", "position": "exposed", "quote": "", "date": "2026-03-17", "source": "SF Business_Objectives__c"},
+        {"criterion": "AI-driven procurement automation and analytics", "position": "exposed", "quote": "", "date": "2026-03-17", "source": "SF Value_to_Customer__c + Why_not_Zycus__c"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "No economic buyer or decision maker mapped", "quote": "", "status": "not addressed", "date": "2026-03-17", "gap_type": "knowledge", "source": "Zero contact roles; no calls recorded"},
+        {"area": "No champion identified beyond a single positive call with Judith Perez", "quote": "", "status": "not addressed", "date": "2026-03-16", "gap_type": "knowledge", "source": "SF X10b_Champion_Business_Buyer__c: null"},
+        {"area": "Competitive shortlist undefined (buyer intends to compare but named no one)", "quote": "", "status": "not addressed", "date": "2026-03-17", "gap_type": "knowledge", "source": "SF Why_not_Zycus__c"},
+        {"area": "No quantified value case from the buyer", "quote": "", "status": "not addressed", "date": "2026-03-17", "gap_type": "knowledge", "source": "SF Value_to_Customer__c (qualitative only)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early-stage deal that has gone dark before discovery. The winning move set is about re-opening a lapsed relationship and building power coverage, not competitive positioning yet.",
+      "flags": [
+        "Re-open the deal now: the 17 April discovery lapsed and there has been no buyer touch in 111 days, so re-engaging Judith Perez this week is the difference between a live deal and a dead one.",
+        "Break the single-thread: only one contact (Judith Perez, no title) has ever engaged, so multi-thread into Axens procurement, IT, and finance leadership on the first live call.",
+        "Map power early: no economic buyer, decision maker, or champion exists, so make identifying the budget owner and the decision process the explicit agenda for discovery."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Judith Perez", "title": null, "role": "Unknown", "last_contact_date": "2026-03-16", "sentiment": "positive", "risk": "Sole point of contact, no title or confirmed authority, and no engagement since a single positive call 111 days ago.", "source": "Task 2026-03-16: Outreach outbound call, Conversation - Positive"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion identified. The deal is single-threaded at best (one positive introduction-era call with Judith Perez on 16 March 2026, no title, no follow-up) with zero ongoing engagement. There is no evidence of advocacy, access to power, or active sponsorship.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF X10b_Champion_Business_Buyer__c: null; Task 2026-03-16 positive call to Judith Perez, no follow-up"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI positioning is unproven. AIS is 4.0 / Moderate, and the scope (ML iAnalyze plus iSupplier and eInvoicing) carries an AI-analytics element, but no discovery has occurred to test whether the Merlin / analytics story lands with the buyer. Why_not_Zycus__c signals the buyer will compare AI capabilities, so the AI narrative matters, but it has not yet been put in front of anyone.",
+      "score": "4.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c is 4.0 with AIS_Status__c Moderate. The score is unproven because no Avoma recording exists and the deal is pre-discovery; the buyer's stated intent to compare AI capabilities (Why_not_Zycus__c) is the only signal that AI could matter, and it is unvalidated.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Discovery scheduled for 17 April 2026 never happened and the deal has been dark 111 days, so the 26 March 2027 close date is not credible on current pace.", "first_raised": "2026-04-17", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c + LastActivityDate 2026-03-17"},
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker is mapped and there is no access to power at Axens.", "first_raised": "2026-03-17", "date": "2026-03-17", "status": "open", "source": "Zero contact roles"},
+        {"category": "political", "detail": "Single-threaded on one untitled contact (Judith Perez); no coverage across procurement, IT, or finance.", "first_raised": "2026-03-16", "date": "2026-03-16", "status": "open", "source": "Task 2026-03-16"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark. The last genuine buyer touch was 111 days ago and the scheduled discovery lapsed, so momentum is negative and the relationship needs to be restarted from scratch.",
+      "cooling": true,
+      "items": [
+        "No buyer touch since 17 March 2026 (111 days)",
+        "Discovery scheduled 17 April 2026 never occurred (80 days overdue)",
+        "No progression out of Qualified stage since creation"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Call and email Judith Perez to re-book the lapsed discovery this week.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Discovery scheduled for 17 April never occurred; no buyer touch in 111 days.", "trigger_date": "2026-04-17", "act_by": "2026-07-13", "expected_effect": "Restarts a dark relationship and creates the first live signal to rescue the deal from no-decision."},
+        {"rank": 2, "action": "Prospect into Axens procurement and IT leadership to break the single-thread.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Only one untitled contact (Judith Perez) has ever engaged, with no reply since 16 March.", "trigger_date": "2026-03-16", "act_by": "2026-07-20", "expected_effect": "Adds a second and third thread so the deal no longer depends on one silent contact."},
+        {"rank": 3, "action": "Run discovery to quantify spend and supplier pain and map the buyer and decision process.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No quantified value case, no economic buyer, and no decision process are on record.", "trigger_date": "2026-03-17", "act_by": "2026-08-05", "expected_effect": "Converts documented pain into a buyer-owned business case and identifies who signs, unlocking stage progression."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Axens is a dark, pre-discovery Qualified deal: the 17 April discovery lapsed and there has been no buyer touch in 111 days, so the only thing between us and a no-decision loss is re-opening the relationship with Judith Perez.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low: the deal is stalled in Qualified with no champion, no economic buyer, and no competitive map, and it has been dark for 111 days since the 16-17 March introduction touches."},
+          {"tone": "warn", "text": "The scheduled 17 April discovery never happened and no one at Axens has engaged since, so there is no proof the buyer is still interested."},
+          {"tone": "warn", "text": "Only one untitled contact (Judith Perez) has ever spoken with us, on a single positive Outreach call on 16 March 2026, and she has gone silent, leaving us single-threaded with no access to power."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: no stage progression, field change, or buyer activity since qualification on 17 March 2026 (111 days)."},
+          {"tone": "warn", "text": "The buyer named no dates and requested no next meeting; the only forward date, the 17 April discovery, came and went unactioned."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "There is no customer commitment on record: no economic buyer, no confirmed evaluation criteria, no decision process, and no buyer-stated timeline."},
+          {"tone": "warn", "text": "Documented pain lives only in Salesforce free-text fields (fragmented procurement data, manual effort, SAP-only tooling) and has never been articulated or quantified by anyone at Axens."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The dominant risk is inertia and no-decision: Axens keeps running procurement manually on SAP and never starts an evaluation, rather than a loss to a named rival."},
+          {"tone": "warn", "text": "The 26 March 2027 close date is not defensible: a deal that has not even completed discovery cannot credibly complete evaluation, pricing, and contracting on the current dark pace."}
+        ]
+      },
+      "factors": {
+        "champion": {"strength": -1, "evidence": "No champion; single positive call with untitled Judith Perez 111 days ago, no follow-up."},
+        "engagement": {"strength": -1, "evidence": "No buyer touch since 17 March 2026; scheduled discovery lapsed."},
+        "economic_buyer": {"strength": -1, "evidence": "No EB or DM mapped; zero buyer contact roles."}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": "Supplier Management plus Invoicing (ML iAnalyze, iSupplier, eInvoicing)", "to": "Supplier Management plus Invoicing (ML iAnalyze, iSupplier, eInvoicing)", "detail": "Scope is unchanged from creation; no narrowing or expansion evidence exists on this pre-discovery deal."},
+    "expansion_context": {"prior_closed_won": false, "note": "No sibling Closed-Won opportunity on Axens is on record; this is a net-new deal, so executive and stakeholder access must be earned, not inherited."},
+    "customer_preference": {"level": "none", "evidence": "No calls recorded; no buyer statement of preference for Zycus or any rival exists."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain documented in Salesforce (fragmented procurement data, manual effort, limited visibility, geopolitical/compliance pressure) but no buyer-stated numbers."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 17 April discovery never happened and the last real touch was a single positive introduction call with Judith Perez on 16 March 2026, leaving the deal dark for 111 days.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "Only one contact, Judith Perez, has ever engaged and she has no title and has gone silent, so we have no economic buyer and no access to power at Axens.", "tone": "warn"},
+      {"lens": "Competition", "text": "No competitor has been named; the buyer signalled they will compare AI capabilities before deciding, but the main threat right now is a no-decision, not a rival.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false},
+    "trajectory": {"direction": "steady", "note": "Holds Off Track versus the prior sweep: still dark, still pre-discovery, no new evidence either way. The single biggest blocker to the close remains the lapsed discovery and the absence of any engaged stakeholder or economic buyer."}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "created 2026-03-17 through 2026-07-06; activities last 120d; field history full",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma buyer calls exist across opp, account, and attendee-email pulls, so all buyer articulation of pain, criteria, process, and competition is missing",
+      "No economic buyer, decision maker, or champion is identifiable from any source",
+      "Competitive shortlist is genuinely unknown (buyer intends to compare but named no vendor)"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,263 @@
+{
+  "opp_id": "006P700000PBvSn",
+  "hard": {
+    "opp_id": "006P700000PBvSn",
+    "opp_name": "BP_S2P_Controltower Global",
+    "account_name": "BP",
+    "account_industry": "Oil & Gas",
+    "billing_country": "United Kingdom",
+    "owner_name": "Claire Hudson",
+    "owner_title": "Regional Sales Director - EU Sales",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 300000,
+    "close_date": "2027-01-31",
+    "days_to_close": 209,
+    "created_date": "2025-10-31",
+    "qualified_date": null,
+    "last_activity_date": "2025-12-08",
+    "last_modified_date": "2026-06-30",
+    "products": "iContract;iSource;iSave;iSupplier;eProcurement;eInvoicing;iRequest;iRisk",
+    "next_step": "pending travel Pending Dates from Sid (Lead) in the BP Digital Garage for Demo - travel issues, could be in India, dubai or UK.",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "Product scope is fully traditional S2P (eInvoicing, eProcurement, iContract, iRequest, iRisk, iSave, iSource, iSupplier) with no AI modules (no Merlin, no ANA, no Agentic AI, no ML iAnalyze); the 8-module traditional-S2P breadth without any AI SKU signals procurement-platform coverage rather than AI differentiation. Zero Avoma meetings on record despite Formal Evaluation stage and LastActivityDate 2025-12-08 (~7 months stale).",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000PBvSn/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "BP has been silent for roughly 210 days since the 8 Dec 2025 Control Tower demo, with no champion, no economic buyer, and no buyer-side contact on record; the demo Claire Hudson is waiting on is still blocked on Sid's travel dates and has never been scheduled.",
+      "math": "Created 31 Oct 2025, entered Formal Evaluation 19 Nov 2025 (19 days). Last verified activity 8 Dec 2025 = ~210 days ago as of 6 Jul 2026, a full stall in one stage. Close date was pushed on 30 Jun 2026 from 31 Oct 2026 to 31 Jan 2027 (now 209 days out) with no offsetting buyer progress, a slip that signals the original date was never credible. At zero pace the remaining discovery, shortlisting, commercials, negotiation and contracting gates cannot complete; a deal dark 60+ days at an EARLY stage with no stakeholder map is forced Off Track.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Last verified Salesforce activity 8 Dec 2025 (~210 days ago); no activity logged since",
+        "Only recorded touchpoint is the 8 Dec 2025 Procurement Control Tower demo, not recorded, no content available",
+        "Next_Step__c still reads pending travel dates from Sid at the BP Digital Garage for a demo, no date, no follow-up logged",
+        "Zero OpportunityContactRole buyer-side contacts on record; no EB, DM or Champion identified in any source",
+        "CloseDate pushed 31 Oct 2026 to 31 Jan 2027 on 30 Jun 2026 by Claire Hudson with no buyer-facing movement behind it",
+        "Owner reassigned Rozalyn Orme to Claire Hudson on 13 May 2026, a mid-cycle handoff with no re-engagement logged since",
+        "Amount doubled 150k to 300k on 30 Jan 2026 by Anthony Gray, a projection change, not a buyer signal",
+        "SAP Ariba named in Competitors__c; no buyer competitive intelligence exists"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business problem, pain or ROI case exists in any source. Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c and Pain_points_in_the_current_solution__c are unpopulated, and the only touchpoint (the 8 Dec 2025 Procurement Control Tower demo) was not recorded, so no buyer-stated cost, cycle-time or spend-under-management target is available. The opportunity name BP_S2P_Controltower Global and the eight-module scope imply BP wants centralized global procurement visibility, but that is inferred from product scope, not stated by BP. Quantifying the business case with BP's procurement and finance leads is the first move once contact is re-established.",
+        "sources": ["SF Products__c", "SF Customer_Business_Problem__c (empty)", "8 Dec 2025 demo, not recorded"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified in any source: there are zero OpportunityContactRole entries, and X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c carry nothing. For a global S2P programme at BP the budget owner would sit at CPO or VP Procurement level, but no such person has appeared on any call, task or field, so we have neither a name nor confirmed access to power. The $300k amount is a Zycus-side projection (set by Anthony Gray on 30 Jan 2026), not a buyer-validated budget. Identifying and reaching the budget owner is a ranked move and a prerequisite to any commercial conversation.",
+        "sources": ["SF OpportunityContactRole (0 entries)", "SF X10a_Sponsor__c (empty)", "Field history 30 Jan 2026 Amount change by Anthony Gray"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria have been captured from BP. Business_Requirements__c, Top_Challenges_Priorities__c and AI_Needs_in_RFP_Rating__c are empty, and the single 8 Dec 2025 demo was not recorded, so no use-case, feature-weighting or scoring criteria are on record. The AIS read (3/Negative) shows the scope is traditional S2P with no AI modules, which suggests platform breadth and consolidation matter more to BP than AI capability, but that is inference from the product list, not a stated criterion. Running structured discovery to document BP's requirement set is the move to close this.",
+        "sources": ["SF Business_Requirements__c (empty)", "SF AIS_Why__c", "8 Dec 2025 demo, not recorded"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is unknown. What_is_the_decision_process__c and the approval fields (Does_the_Buyer_need_approval__c, Purchase_approvals_Required_from__c, Multiple_approvals__c) are empty, and with only one touchpoint there is no call sequence to read the process from. The Next_Step__c reference to the BP Digital Garage and a lead named Sid hints at an innovation-team-driven evaluation channel, but that pathway is unconfirmed and stalled on travel logistics. Mapping who inside BP owns the evaluation and how a global procurement platform gets approved is required before any close plan is credible.",
+        "sources": ["SF What_is_the_decision_process__c (empty)", "SF Next_Step__c"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible. There is no MSA/SOW discussion, no procurement channel, no InfoSec track and no Current_Contract_Expiration__c forcing function on record, which is consistent with an EARLY-stage deal that has not reached commercials. As a UK-billed enterprise, BP is a direct-invoice / no-PO region, so a missing PO is normal and not a gap. Paper visibility only becomes meaningful once BP re-engages and reaches shortlisting; for now the absence reflects stage, not a risk.",
+        "sources": ["SF Current_Contract_Expiration__c (empty)", "SF stage Formal Evaluation"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific operational or financial pain has been articulated by BP. Compelling_Event__c, What_if_this_is_not_done__c and Pain_points_in_the_current_solution__c are empty, and the 8 Dec 2025 demo produced no recorded pain statement. The eight-product S2P scope (sourcing, contracts, supplier, procurement, invoicing, requisitions, risk) implies a fragmented or manual current stack BP wants to consolidate globally, but with no buyer quote and no named pain owner this is inferred, not confirmed. Surfacing the concrete pain and its owner is the discovery objective on re-engagement.",
+        "sources": ["SF Compelling_Event__c (empty)", "SF Products__c", "8 Dec 2025 demo, not recorded"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion has been identified or developed. X10b_Champion_Business_Buyer__c is empty and zero OpportunityContactRole entries carry a Champion role. The 8 Dec 2025 demo drew several BP attendees (Rebecca Macoustra plus attendees at fee_min.chee@bp.com, quayum.miah@uk.bp.com, tusti.ghosh@bp.com and brittany.crosby@bp.com), and Rebecca Macoustra (Procurement Manager) is the closest candidate, but after ~210 days of silence there is no evidence any of them is advocating internally, opening senior doors or driving the evaluation. Sid at the BP Digital Garage, named in Next_Step__c, could be a sponsor for the innovation channel but has never been added as a contact and has no full name, title or email on record. Re-engaging Rebecca Macoustra to test whether she can champion, and if not cultivating a new advocate with executive access, is the priority move.",
+        "sources": ["SF OpportunityContactRole (0 Champion roles)", "SF X10b_Champion_Business_Buyer__c (empty)", "8 Dec 2025 demo attendees", "SF Next_Step__c"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "SAP Ariba is the sole named competitor (Competitors__c) and, given BP's SAP-heavy enterprise footprint in Oil and Gas, is a credible incumbent or finalist. The intelligence is thin: no buyer quote on Ariba's strengths or gaps, no pricing benchmark and no feature comparison, because the one demo was not recorded and BP has been silent for ~210 days. We do not know whether Ariba has advanced, whether BP is also weighing Coupa, Ivalua or GEP, or whether the whole procurement stalled. The wedge against Ariba is Zycus configurability, end-to-end S2P-plus-contract integration and lower TCO versus SAP lock-in, but that narrative has never been activated with BP and cannot be until contact resumes.",
+        "sources": ["SF Competitors__c: SAP Ariba", "8 Dec 2025 demo, not recorded"]
+      }
+    },
+    "deal_movement": {
+      "summary": "No genuine buyer movement since the 8 Dec 2025 demo. Every field-history change since is internal (owner reassignment to Claire Hudson on 13 May 2026, amount doubled by Anthony Gray on 30 Jan 2026, close date pushed to 31 Jan 2027 on 30 Jun 2026); none reflects a buyer touch. Next_Step__c has cycled through empty None-to-None edits by multiple owners without ever logging a real next step.",
+      "items": [
+        {"change": "Close date pushed 31 Oct 2026 to 31 Jan 2027 (owner projection, no buyer driver)", "date": "2026-06-30"},
+        {"change": "Owner reassigned Rozalyn Orme to Claire Hudson", "date": "2026-05-13"},
+        {"change": "Amount doubled 150k to 300k by Anthony Gray (projection change)", "date": "2026-01-30"},
+        {"change": "Only buyer touchpoint: Procurement Control Tower demo, not recorded", "date": "2025-12-08"},
+        {"change": "Stage advanced Qualified to Formal Evaluation", "date": "2025-11-19"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba remains the sole named competitor (Competitors__c) and the strongest current threat by default given BP's SAP-heavy Oil and Gas estate, likely as incumbent or finalist. Competitive intelligence is stale and minimal: no buyer feedback, no pricing, and the one 8 Dec 2025 demo was not recorded. With ~210 days of silence we cannot confirm whether Ariba has advanced or whether peers (Coupa, Ivalua, GEP) are in play; the real threat here is BP inertia and no-decision, not a rival actively winning. No new call evidence this run, so Ariba's threat level is carried forward unchanged.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "Named in Salesforce Competitors__c; no buyer-stated feedback available.",
+          "date": "2025-12-08",
+          "source": "SF Competitors__c",
+          "how_we_win": "Position Zycus configurability, end-to-end S2P-plus-contract integration and lower TCO against SAP lock-in and Ariba complexity, and prove it in a live fit workshop with BP procurement and finance once contact resumes."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "BP's expectations are undocumented: no requirements, criteria or success measures have been captured across any field or call, so fit cannot be assessed. The eight-module S2P scope implies a global consolidation ambition, but with no buyer input every fit read is inferred and exposed.",
+      "items": [
+        {"criterion": "Global S2P platform consolidation and control-tower visibility", "position": "exposed", "quote": "Opportunity name BP_S2P_Controltower Global and 8-module scope imply the goal; never confirmed by BP.", "date": "2025-12-08", "source": "SF Opportunity Name + Products__c"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm demo dates for the BP Digital Garage session (owed by Sid)", "who": "Buyer", "grounding_quote": "pending travel Pending Dates from Sid (Lead) in the BP Digital Garage for Demo - travel issues, could be in India, dubai or UK.", "date": "2025-12-08", "due": "2026-07-20", "status": "overdue", "source": "SF Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "No buyer-side contacts on record", "quote": "Zero OpportunityContactRole entries; all known attendees came from the unrecorded 8 Dec 2025 demo.", "status": "not addressed", "date": "2025-12-08", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "No economic buyer or decision maker identified", "quote": "No EB/DM named in any field, task or call.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF synthesis fields (empty)"},
+        {"area": "Only touchpoint unrecorded", "quote": "8 Dec 2025 Procurement Control Tower demo not recorded, no content available.", "status": "not addressed", "date": "2025-12-08", "gap_type": "knowledge", "source": "Avoma (no calls found)"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a dark EARLY-stage enterprise deal: the entire win strategy hinges on restarting a relationship that has been silent for ~210 days before the pushed 31 Jan 2027 date makes it a zombie.",
+      "flags": [
+        "Re-open the relationship now: the owner changed to Claire Hudson on 13 May but no buyer contact has been logged since; a direct owner-led re-engagement is the single highest-impact lever.",
+        "Convert an attendee to a named contact: none of the five 8 Dec 2025 demo participants (Rebecca Macoustra and four others) are on the contact roster, leaving the deal with zero mapped stakeholders and no champion.",
+        "Pin down the BP Digital Garage channel: Sid controls the demo dates but has no name, title or email on record, so the one live thread cannot be actioned until he is identified."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Sid", "title": "Lead, BP Digital Garage", "role": "Coach", "last_contact_date": null, "sentiment": "neutral", "risk": "Named only in Next_Step__c as the person owing demo dates; no full name, title or email on record, never added as a contact, thread stalled on travel.", "source": "SF Next_Step__c"},
+        {"name": "Rebecca Macoustra", "title": "Procurement Manager", "role": "Influencer", "last_contact_date": "2025-12-08", "sentiment": "neutral", "risk": "Closest champion candidate from the 8 Dec 2025 demo, but no engagement in ~210 days and no evidence of internal advocacy; relationship at risk of going permanently cold.", "source": "8 Dec 2025 demo attendee"},
+        {"name": "fee_min.chee@bp.com", "title": "Unknown", "role": "Influencer", "last_contact_date": "2025-12-08", "sentiment": "neutral", "risk": "Attended the 8 Dec 2025 demo; role and engagement unknown, no follow-up.", "source": "8 Dec 2025 demo attendee"},
+        {"name": "quayum.miah@uk.bp.com", "title": "Unknown", "role": "Influencer", "last_contact_date": "2025-12-08", "sentiment": "neutral", "risk": "Attended the 8 Dec 2025 demo; role and engagement unknown, no follow-up.", "source": "8 Dec 2025 demo attendee"},
+        {"name": "tusti.ghosh@bp.com", "title": "Unknown", "role": "Influencer", "last_contact_date": "2025-12-08", "sentiment": "neutral", "risk": "Attended the 8 Dec 2025 demo; role and engagement unknown, no follow-up.", "source": "8 Dec 2025 demo attendee"},
+        {"name": "brittany.crosby@bp.com", "title": "Unknown", "role": "Influencer", "last_contact_date": "2025-12-08", "sentiment": "neutral", "risk": "Attended the 8 Dec 2025 demo; role and engagement unknown, no follow-up.", "source": "8 Dec 2025 demo attendee"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion exists. Rebecca Macoustra (Procurement Manager) is the only realistic candidate, having attended the 8 Dec 2025 demo, but after ~210 days of silence there is no evidence of advocacy, executive access or competitive intelligence sharing, so she does not meet the bar. Sid at the BP Digital Garage may be a sponsor for the innovation channel but is unidentified beyond a first name. Without an engaged champion with access to power the deal cannot progress.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (0 Champion roles), 8 Dec 2025 demo attendees, SF Next_Step__c"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is not positioned at all: the scope is eight traditional S2P modules with no Merlin or agentic SKU, and BP has raised no AI need on record. There is no under-positioning to correct because there is no AI appetite signalled; the deal is a platform-consolidation play, not an AI play.",
+      "score": "3.0",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 3.0 / Negative: fully traditional S2P scope with no AI modules and no buyer AI need expressed. No calls exist to challenge the field read, so the Negative rating stands.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or decision maker mapped and zero buyer-side contacts on record after ~210 days.", "first_raised": "2025-12-08", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole (0 entries)"},
+        {"category": "timeline", "detail": "Close date pushed to 31 Jan 2027 with no buyer-facing progress; the date is an owner projection, not a credible plan.", "first_raised": "2026-06-30", "date": "2026-06-30", "status": "open", "source": "Field history CloseDate change"},
+        {"category": "change_management", "detail": "Primary threat is BP inertia / no-decision: the demo has sat unscheduled on travel logistics for months and BP keeps its current stack by default.", "first_raised": "2025-12-08", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c"},
+        {"category": "political", "detail": "Single unconfirmed thread through Sid at the BP Digital Garage; no multi-threading into procurement leadership.", "first_raised": "2025-12-08", "date": "2026-07-06", "status": "open", "source": "SF Next_Step__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: no buyer touch in ~210 days, one unrecorded demo, no champion and no stakeholder map. Every signal points to a cold deal drifting toward its pushed close date.",
+      "cooling": true,
+      "items": [
+        "No buyer activity since 8 Dec 2025",
+        "Only touchpoint was unrecorded, so no content exists",
+        "Close date slipped without any offsetting buyer progress",
+        "Zero buyer-side contacts on the record"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email the 8 Dec demo group to re-open and lock a Control Tower session date.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Next_Step__c still pending Sid's travel dates; no buyer contact in ~210 days.", "trigger_date": "2025-12-08", "act_by": "2026-07-13", "expected_effect": "Restarts a dead thread and tests whether the BP evaluation is still live before the pushed close date."},
+        {"rank": 2, "action": "Identify Sid's full name, title and email and add him as a contact.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Sid controls the demo dates but has no full identity on record.", "trigger_date": "2025-12-08", "act_by": "2026-07-15", "expected_effect": "Turns the one live thread into an actionable, mapped stakeholder."},
+        {"rank": 3, "action": "Ask Rebecca Macoustra for a discovery call to confirm BP's global S2P drivers.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Rebecca is the only realistic champion candidate; pain and metrics are undocumented.", "trigger_date": "2025-12-08", "act_by": "2026-07-20", "expected_effect": "Rebuilds a champion and captures the business case and criteria that are currently blank."},
+        {"rank": 4, "action": "Map BP's procurement budget owner (CPO / VP Procurement) and request an intro.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer or decision maker identified in any source.", "trigger_date": "2026-07-06", "act_by": "2026-08-05", "expected_effect": "Opens a path to power so a $300k global programme has an owner who can sponsor it."},
+        {"rank": 5, "action": "If no BP reply by 24 Jul, have the owner's manager open an executive re-engagement.", "owner": "Executive connect", "horizon": "next_30_days", "trigger": "Owner reassigned to Claire Hudson 13 May with no buyer contact since; escalate only after the owner's own attempt.", "trigger_date": "2026-05-13", "act_by": "2026-08-01", "expected_effect": "Provides an exec-to-exec lever to revive a marquee BP account if the direct re-engagement gets no reply."}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "deal_scores_evidence": {
+      "summary": "BP has gone dark for ~210 days on a $300k global S2P deal with no champion, no economic buyer and zero mapped contacts; the demo the whole deal hinges on is still unscheduled and the close date was quietly pushed to Jan 2027, so the real contest is BP inertia, not SAP Ariba.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This deal reads weak: BP has not engaged since the 8 Dec 2025 demo, there is no champion or economic buyer, and no buyer-side contact exists on the record."},
+          {"tone": "warn", "text": "The only competitor named is SAP Ariba (Competitors__c), and with BP's SAP-heavy estate and no activated Zycus wedge the incumbent lead is unchallenged."},
+          {"tone": "warn", "text": "The close date was pushed from 31 Oct 2026 to 31 Jan 2027 on 30 Jun 2026 by Claire Hudson with no buyer progress behind it, so the forecast date is an owner projection, not a credible plan."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Every field change since December is internal (owner swap 13 May, amount doubled 30 Jan, close date pushed 30 Jun); no buyer-driven movement has occurred in ~210 days."},
+          {"tone": "warn", "text": "The BP Digital Garage demo has been stuck on Sid's travel logistics since 8 Dec 2025 and has never been scheduled."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "BP has made no commitment: one unrecorded demo, no requirements, no criteria and no next-meeting request are on record."},
+          {"tone": "warn", "text": "Sid owes demo dates that are months overdue, the only outstanding buyer-side action, and it remains unfulfilled."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The dominant risk is no-decision inertia: BP keeps its current stack by default while the deal drifts toward a pushed 31 Jan 2027 date with no engaged stakeholder."},
+          {"tone": "warn", "text": "A mid-cycle owner handoff to Claire Hudson on 13 May with no re-engagement since leaves the account effectively orphaned."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -1, "evidence": "No champion; Rebecca Macoustra unengaged ~210 days, Sid unidentified."},
+        "buyer_engagement": {"strength": -1, "evidence": "No buyer activity since 8 Dec 2025 demo."},
+        "economic_buyer": {"strength": -1, "evidence": "No EB or DM named in any source; zero contact roles."}
+      }
+    },
+    "scope_change": {"direction": "expanded", "from": "$150k", "to": "$300k", "detail": "Amount doubled from 150k to 300k on 30 Jan 2026 by Anthony Gray; a Zycus-side projection change, not a buyer-driven scope expansion, and product scope remained the same 8-module S2P suite."},
+    "customer_preference": {"level": "none", "evidence": "No buyer preference expressed; BP silent for ~210 days since the unrecorded 8 Dec 2025 demo, no Zycus-specific next steps requested."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings or pain quantified in any field or call; business case never discussed with BP."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Field history through 2026-06-30; last activity 2025-12-08",
+    "avoma_attendees": ["Rebecca Macoustra"],
+    "gaps": [
+      "Zero Avoma buyer calls found across opp, account and attendee discovery; the one 8 Dec 2025 demo touchpoint was not recorded",
+      "Zero OpportunityContactRole buyer-side contacts on record",
+      "No economic buyer, decision maker or champion identified in any source",
+      "No pain, metrics, decision criteria or process captured from BP",
+      "Sid at BP Digital Garage unidentified beyond a first name"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

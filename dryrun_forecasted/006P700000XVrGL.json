@@ -1,0 +1,1872 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic buyer (CFO/CEO) identification and engagement",
+     "date": "2026-05-01",
+     "quote": "those decisions come from CFO and CEO",
+     "source": "Avoma call 2026-05-01",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Opportunity contact roles (multi-thread)",
+     "date": "2026-07-09",
+     "quote": "only 1 buyer-side contact role logged on this opportunity",
+     "source": "Salesforce OpportunityContactRole",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Confirmation of Daniel's internal review outcome",
+     "date": "2026-05-01",
+     "quote": "reconnect in a couple weeks",
+     "source": "Avoma call 2026-05-01",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "Daniel Tzegay described real operational pain but no quantified metric. On the 1 May 2026 discovery call he said the invoice approval process involves 'too many too many approval process' back-and-forth by email, and referenced wanting Workday-style timestamped audit trails for visibility. No dollar figure, headcount, or cycle-time number was quoted, so the business case remains qualitative."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-05-01",
+     "Next_Step__c"
+    ],
+    "narrative": "Daniel showed real, sustained engagement across a ~37-minute call \u2014 asking detailed follow-up questions and stating the platform 'will streamline a lot of our services' \u2014 but he is not a confirmed champion. He has no proven access to the CFO/CEO who own the decision, and there is no evidence since 1 May 2026 that he took the material to his team/director as he said he would; the 20 May 2026 rep follow-up has gone unanswered as of 9 Jul 2026."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "Stratasys runs Oracle ERP (Fusion/NetSuite variants) for financials and operations, already uses Microsoft Copilot for some contract-related automation, and runs CLM through a 'Mailbox' platform under a newly-signed 10-year term (out of scope here). The real alternative Zycus is displacing for this deal's eProcurement/eInvoicing scope is the status quo: manual, email-based invoice approval. No dedicated S2P/P2P competitor has been named."
+   },
+   "identify_pain": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "Daniel confirmed specific, first-hand pain: a slow, email-driven invoice approval cycle between AP and internal business users ('there's a lot of time consuming back and forth of emails, and I'd rather just have a streamline of one service'), plus a desire for better supplier risk visibility given government-contract exposure. This is buyer-articulated and specific, but it hasn't been prioritized or escalated beyond Daniel's own function."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "The deal has not progressed to any contracting discussion; Stratasys is still at Qualified with a single completed discovery call. No paper-process artifacts (MSA, SOW, pricing) have been introduced. Notably, Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, which locks contract-lifecycle-management out of scope for this deal for the foreseeable future."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "No economic buyer has been identified or engaged. Daniel stated explicitly on the 1 May 2026 call, 'those decisions come from CFO and CEO. I have to present this out to them and see what their thoughts are before we connect again' \u2014 meaning Zycus has zero confirmed access to the actual decision-maker, and there is no evidence the CFO or CEO have seen any Zycus material."
+   },
+   "decision_process": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "The process beyond Daniel is unmapped. He confirmed he can only 'make recommendations' and that the CFO and CEO make the final call, and said he would align with his team and director before deciding next steps \u2014 but no timeline, committee, or approval sequence has been shared since."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-05-01"
+    ],
+    "narrative": "Daniel surfaced several real evaluation angles on the 1 May 2026 call: a single system of record to replace email-based invoice approvals, timestamped/audited workflow modeled on his prior Workday experience, robust supplier risk screening (cyber, financial, litigation) given Stratasys' government-contract exposure, multi-language support, and interest in autonomous negotiation for tail-spend purchases. None of this has been formalized into a written requirements list or RFP."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 1.2
+   },
+   "last_meeting": "2026-05-01",
+   "meetings_60d": 0,
+   "last_rep_touch": null,
+   "last_buyer_touch": "2026-05-01",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-05-20",
+   "days_since_buyer_touch": 69
+  },
+  "opp_trends": {
+   "stage_trend": 0.238,
+   "stage_trend_detail": "Stage initial interest -> qualified (68d ago)"
+  },
+  "day_summary": {
+   "as_of": "2026-05-01",
+   "items": [
+    {
+     "at": "2026-05-01",
+     "kind": "movement",
+     "name": "Stage: Initial Interest \u2192 Qualified",
+     "summary": "Opportunity advanced to Qualified, but this appears procedural given the parallel health alerts showing cold engagement and no decision maker \u2014 worth confirming what actually justified the stage move."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 evaluation process clarity",
+     "summary": "Internal flag to get clarity on the buyer's evaluation stages and find ways to influence the process, suggesting we currently lack visibility into how Stratasys will actually make its decision."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 org chart mapping",
+     "summary": "Internal flag to build an org chart and map key contacts, indicating our contact coverage at Stratasys is currently too thin to navigate the account."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 APD approval",
+     "summary": "Internal flag to review and approve the Account Plan Document, a housekeeping step to keep the account plan current."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 low inbound communication",
+     "summary": "System flag noting inbound communication from the prospect has been low, reinforcing that Stratasys has gone quiet on their end."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 decision maker not identified",
+     "summary": "Internal flag confirming we still haven't pinned down who the actual decision maker is at Stratasys, a key gap given the stage advancement."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 multi-threading",
+     "summary": "Internal reminder to keep engagement multi-threaded rather than relying on a single contact, likely prompted by the thin org chart."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 identify more contact roles",
+     "summary": "Internal flag to identify additional contact roles within Stratasys, consistent with the broader theme of insufficient account mapping."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "call",
+     "name": "Opportunity health review \u2014 prospect gone cold",
+     "summary": "System alert that there's been no inbound communication from Stratasys in 14 days, the clearest signal that buyer engagement has stalled."
+    },
+    {
+     "at": "2026-05-01",
+     "kind": "email",
+     "name": "Outbound follow-up reminder",
+     "summary": "System-generated nudge noting 10 days have passed without an outbound email, prompting the rep to send a follow-up to re-engage the account."
+    }
+   ],
+   "source": "ai",
+   "overall": "Stratasys was bumped from Initial Interest to Qualified, but the health-check flags tell a more cautious story than the stage change suggests: no inbound from the prospect in two weeks, no outbound email in ten days, and the decision maker still isn't identified. This looks like an internal process/scoring update rather than genuine buyer momentum \u2014 the deal is stalled on engagement and needs to be re-threaded before it can be called truly qualified."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 80.0,
+    "win_position": 16.0,
+    "deal_momentum": 12.0,
+    "customer_commitment": 18.0,
+    "forecast_confidence": 14.0
+   },
+   "cro_panel": {
+    "intro": "One genuinely deep discovery call establishes real interest and a well-articulated pain point, but the deal has since gone quiet for nearly seven weeks with no economic buyer engaged and only one confirmed contact; a cooling, early-stage, single-threaded deal",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 16,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Champion gone dark seven weeks; Daniel's planned 'couple weeks' internal review from the 1 May 2026 call is now ~7 weeks overdue, with no reply to the 20 May email",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer engaged; CFO/CEO who own the decision have never been named or reached (MEDDPICC economic_buyer = gap)",
+        "tone": "warn"
+       },
+       {
+        "text": "Strong product-fit signal; Daniel drove 20+ substantive questions on Merlin Intake, AP Smartdesk, autonomous negotiation and supplier risk radar in the 1 May 2026 call",
+        "tone": "good"
+       },
+       {
+        "text": "No real vendor competitor; the alternative being displaced is the status-quo manual invoice process; Copilot/Mailbox CLM is out of scope under a newly-signed 10-year term",
+        "tone": "good"
+       },
+       {
+        "text": "Single-threaded; only Daniel Tzegay is engaged; the Israel-based head of sourcing floated as a backup route on 30 Apr 2026 has never been contacted",
+        "tone": "warn"
+       },
+       {
+        "text": "Process undefined; MEDDPICC shows decision_process and paper_process both as gaps, with no scheduled next session to move either forward",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 12,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Dark for 69 days; last buyer touch was the 1 May 2026 introduction call; zero meetings logged in the 30d or 60d windows",
+        "tone": "warn"
+       },
+       {
+        "text": "No future meeting on the calendar; next_scheduled_meeting is null, with no confirmed reply to the 20 May follow-up email",
+        "tone": "warn"
+       },
+       {
+        "text": "One-way outreach; the rep's 20 May next-step ('Email to Daniel to discuss next steps with his team') has gone unanswered, no cross-channel response logged",
+        "tone": "warn"
+       },
+       {
+        "text": "Customer passivity; Daniel Tzegay has not initiated contact since the 1 May 2026 call; all cadence has come from the rep side",
+        "tone": "warn"
+       },
+       {
+        "text": "Quick early advance; stage moved Initial Interest to Qualified in 68 days (stage_trend +0.238), showing some initial traction before it went quiet",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 80,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No dedicated procurement suite competitor is actively in the fight.",
+      "bullets": [
+       {
+        "text": "No economic buyer identified; CFO/CEO decision-owners remain unengaged and unnamed per MEDDPICC",
+        "tone": "warn"
+       },
+       {
+        "text": "69 days dark, nothing scheduled; last activity was 1 May 2026 and next_scheduled_meeting is null",
+        "tone": "warn"
+       },
+       {
+        "text": "Single-threaded champion; Daniel Tzegay is the only contact, with no proven advocacy or access to power beyond himself",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date exposed; 1 Sep 2026 target is only 54 days out while the deal sits in early Qualified stage with paper process and decision process both undefined",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Call Daniel Tzegay directly to check the status of his internal CFO/CEO review after 7 weeks of email silence. (by 16 Jun)",
+       "Add Daniel Tzegay's known Stratasys peers as opportunity contact roles and attempt to multi-thread beyond a single contact. (by 23 Jun)",
+       "If Daniel re-engages, ask him to broker a short introduction to whoever on the CFO/CEO side is reviewing the recommendation, rather than relaying it alone. (by 6 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Stratasys Inc \u2014 Qualified \u00b7 $100K \u00b7 closes 1 Aug",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 80.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer identified \u2014 CFO/CEO decision-owners remain unengaged and unnamed per MEDDPICC.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "69 days dark, nothing scheduled \u2014 last activity was 1 May 2026 and next_scheduled_meeting is null.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded champion \u2014 Daniel Tzegay is the only contact, with no proven advocacy or access to power beyond himself.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date exposed \u2014 2026-09-01 target is only 54 days out while the deal sits in early Qualified stage with paper process and decision process both undefined.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "No economic buyer identified \u2014 CFO/CEO decision-owners remain unengaged and unnamed per MEDDPICC.",
+      "tone": "warn"
+     },
+     {
+      "text": "69 days dark, nothing scheduled \u2014 last activity was 1 May 2026 and next_scheduled_meeting is null.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded champion \u2014 Daniel Tzegay is the only contact, with no proven advocacy or access to power beyond himself.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date exposed \u2014 2026-09-01 target is only 54 days out while the deal sits in early Qualified stage with paper process and decision process both undefined.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Champion gone dark seven weeks \u2014 Daniel's planned 'couple weeks' internal review from the 1 May 2026 call is now ~7 weeks overdue, with no reply to the 20 May email.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer engaged \u2014 CFO/CEO who own the decision have never been named or reached (MEDDPICC economic_buyer = gap).",
+      "tone": "warn"
+     },
+     {
+      "text": "Strong product-fit signal \u2014 Daniel drove 20+ substantive questions on Merlin Intake, AP Smartdesk, autonomous negotiation and supplier risk radar in the 1 May 2026 call.",
+      "tone": "good"
+     },
+     {
+      "text": "No real vendor competitor \u2014 the alternative being displaced is the status-quo manual invoice process; Copilot/Mailbox CLM is out of scope under a newly-signed 10-year term.",
+      "tone": "good"
+     },
+     {
+      "text": "Single-threaded \u2014 only Daniel Tzegay is engaged; the Israel-based head of sourcing floated as a backup route on 30 Apr 2026 has never been contacted.",
+      "tone": "warn"
+     },
+     {
+      "text": "Process undefined \u2014 MEDDPICC shows decision_process and paper_process both as gaps, with no scheduled next session to move either forward.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Dark for 69 days \u2014 last buyer touch was the 1 May 2026 introduction call; zero meetings logged in the 30d or 60d windows.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting on the calendar \u2014 next_scheduled_meeting is null, with no confirmed reply to the 20 May follow-up email.",
+      "tone": "warn"
+     },
+     {
+      "text": "One-way outreach \u2014 the rep's 20 May next-step ('Email to Daniel to discuss next steps with his team') has gone unanswered, no cross-channel response logged.",
+      "tone": "warn"
+     },
+     {
+      "text": "Customer passivity \u2014 Daniel Tzegay has not initiated contact since the 1 May 2026 call; all cadence has come from the rep side.",
+      "tone": "warn"
+     },
+     {
+      "text": "Quick early advance \u2014 stage moved Initial Interest to Qualified in 68 days (stage_trend +0.238), showing some initial traction before it went quiet.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-side process running \u2014 no procurement/security review, paper process, or reference check underway (paper_process = gap).",
+      "tone": "warn"
+     },
+     {
+      "text": "Sole contact only \u2014 Daniel Tzegay is the only stakeholder engaged; no committee or economic buyer involvement confirmed.",
+      "tone": "warn"
+     },
+     {
+      "text": "Genuine curiosity shown once \u2014 Daniel asked 20+ detailed product questions in the 1 May 2026 call, above passive listening.",
+      "tone": "good"
+     },
+     {
+      "text": "Self-set deadline missed \u2014 Daniel's own 'couple weeks' reconnect promise from 1 May 2026 is 7 weeks overdue with no response.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 16.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion gone dark seven weeks \u2014 Daniel's planned 'couple weeks' internal review from the 1 May 2026 call is now ~7 weeks overdue, with no reply to the 20 May email.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer engaged \u2014 CFO/CEO who own the decision have never been named or reached (MEDDPICC economic_buyer = gap).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Strong product-fit signal \u2014 Daniel drove 20+ substantive questions on Merlin Intake, AP Smartdesk, autonomous negotiation and supplier risk radar in the 1 May 2026 call.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "No real vendor competitor \u2014 the alternative being displaced is the status-quo manual invoice process; Copilot/Mailbox CLM is out of scope under a newly-signed 10-year term.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded \u2014 only Daniel Tzegay is engaged; the Israel-based head of sourcing floated as a backup route on 30 Apr 2026 has never been contacted.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Process undefined \u2014 MEDDPICC shows decision_process and paper_process both as gaps, with no scheduled next session to move either forward.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Dark for 69 days \u2014 last buyer touch was the 1 May 2026 introduction call; zero meetings logged in the 30d or 60d windows.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No future meeting on the calendar \u2014 next_scheduled_meeting is null, with no confirmed reply to the 20 May follow-up email.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "One-way outreach \u2014 the rep's 20 May next-step ('Email to Daniel to discuss next steps with his team') has gone unanswered, no cross-channel response logged.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Customer passivity \u2014 Daniel Tzegay has not initiated contact since the 1 May 2026 call; all cadence has come from the rep side.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Quick early advance \u2014 stage moved Initial Interest to Qualified in 68 days (stage_trend +0.238), showing some initial traction before it went quiet.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Daniel drove more than 20 substantive questions across AI-driven modules (autonomous negotiation, Merlin Intake, AP Smartdesk, supplier risk radar) in a single call, indicating genuine curiosity rather than passive listening.",
+     "expectations_fit": "Daniel's stated interests line up closely with eInvoicing/AP automation and supplier risk screening; CLM overlap with Copilot is a secondary, not fully resolved, comparison.",
+     "north_star_verdict": null,
+     "positioning_strength": "Zycus is well-positioned on AI/automation differentiation \u2014 Daniel asked detailed comparison questions against his existing Microsoft Copilot use and expressed clear interest in AP Smartdesk/eInvoicing automation, supplier risk screening, a"
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 100000.0,
+     "opp_id": "006P700000XVrGL",
+     "account": "Stratasys Inc",
+     "opp_name": "Stratasys_EProc+EInvoicing_April26",
+     "next_step": "JRA 5/20: Email to Daniel to discuss next steps with his team.",
+     "close_date": "2026-09-01",
+     "stage_tier": "early",
+     "days_to_close": 54,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-05-01"
+    },
+    "trends": {
+     "stage_trend": 0.238,
+     "stage_trend_detail": "Stage initial interest -> qualified (68d ago)"
+    },
+    "champion": "Daniel Tzegay engaged deeply on a single call but has not proven advocacy or access to power since, and has gone quiet for seven weeks.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "partial",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "gap",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-05-01",
+       "minutes": 37,
+       "subject": "Introduction Between Zycus | Stratasys",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-04-30",
+       "minutes": 10,
+       "subject": "Introductory Call Between Zycus | Stratasys",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-04-29",
+       "minutes": null,
+       "subject": "Introductory Call Between Zycus | Stratasys",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "stratasys.com"
+       ]
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 3,
+     "last_date": "2026-05-01",
+     "next_scheduled": null,
+     "total_all_time": 3,
+     "days_since_last": 69,
+     "with_transcript_all_time": 2
+    },
+    "competition": {
+     "summary": "No dedicated procurement suite competitor is actively in the fight. The real alternative being displaced is the status quo manual, email-based invoice approval process; Microsoft Copilot and the Stratasys 'Mailbox' CLM platform came up as adjacent tools but CLM is out of scope given a newly-signed 10-year term.",
+     "competitors": [
+      {
+       "name": "Status quo / manual email-based invoice approval",
+       "status": "do_nothing",
+       "threat": "medium"
+      },
+      {
+       "name": "Microsoft Copilot / Mailbox (CLM, out of scope)",
+       "status": "incumbent",
+       "threat": "dormant"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned.",
+     "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email",
+     "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them.",
+     "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them.",
+     "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 69
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 18.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-side process running \u2014 no procurement/security review, paper process, or reference check underway (paper_process = gap).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Sole contact only \u2014 Daniel Tzegay is the only stakeholder engaged; no committee or economic buyer involvement confirmed.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Genuine curiosity shown once \u2014 Daniel asked 20+ detailed product questions in the 1 May 2026 call, above passive listening.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Self-set deadline missed \u2014 Daniel's own 'couple weeks' reconnect promise from 1 May 2026 is 7 weeks overdue with no response.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 14.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'pricing' in Next-Step/narrative",
+    "present": true,
+    "age_days": 50
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cfo' in Next-Step/narrative",
+    "present": true,
+    "age_days": 50
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'inefficien' in Next-Step/narrative",
+    "present": true,
+    "age_days": 50
+   }
+  },
+  "scope_change": {
+   "to": "eProcurement, eInvoicing, Merlin, Merlin Intake",
+   "from": "eProcurement, eInvoicing, Merlin, Merlin Intake",
+   "detail": "Products in scope unchanged since creation. Contract lifecycle management is confirmed out of scope because Stratasys just signed a 10-year contract on its existing 'Mailbox' CLM platform.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Daniel drove more than 20 substantive questions across AI-driven modules (autonomous negotiation, Merlin Intake, AP Smartdesk, supplier risk radar) in a single call, indicating genuine curiosity rather than passive listening."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Pain is articulated (manual, email-driven invoice approval; desire for supplier risk visibility) but not quantified in dollars, hours, or headcount (Avoma call 2026-05-01)."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-05-01",
+     "change": "Opportunity created at Qualified / Pipeline following the 1 May 2026 discovery call"
+    }
+   ],
+   "summary": "No stage, amount, or forecast movement since the opportunity was created at Qualified on 1 May 2026, immediately following the qualifying discovery call; the deal has since gone quiet."
+  },
+  "forecast_read": {
+   "math": "days_to_close=54 (close 2026-09-01); stage entered 2026-05-01, so ~69 days in Qualified vs a ~30-day typical Qualified cadence (~2.3x dwell) with no progression to Formal Evaluation.",
+   "reason": "ForecastCategory=Pipeline is appropriately conservative given a single-threaded Qualified deal with no economic buyer engaged. However, the recorded CloseDate of 1 Sep 2026 (54 days out) is not realistic for a deal that has drawn no confirmed buyer reply in 7 weeks; the date should be pushed out once re-engagement is confirmed.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "eProcurement;eInvoicing;Merlin;Merlin Intake"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Daniel Tzegay",
+     "risk": "Sole confirmed contact; no proven path to the CFO/CEO who own the decision; has not replied since the 20 May 2026 follow-up",
+     "role": "Influencer",
+     "email": "daniel.tzegay@stratasys.com",
+     "title": "Senior Commodity Manager Indirect",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive but currently unresponsive",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-01"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-05-01",
+     "change": "carried",
+     "detail": "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T17:29:11.436305+05:30",
+     "first_raised": "2026-05-01",
+     "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email.",
+     "status": "overdue",
+     "category": "timeline",
+     "first_seen": "2026-07-07T17:29:11.436305+05:30",
+     "first_raised": "2026-05-01",
+     "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+    },
+    {
+     "date": "2026-05-01",
+     "change": "carried",
+     "detail": "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T17:29:11.436305+05:30",
+     "first_raised": "2026-05-01",
+     "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+    },
+    {
+     "date": "2026-05-01",
+     "change": "new",
+     "detail": "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them.",
+     "status": "not addressed",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T20:14:04.739685+05:30",
+     "first_raised": "2026-05-01",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    },
+    {
+     "date": "2026-04-30",
+     "change": "new",
+     "detail": "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence that contact was reached.",
+     "status": "not addressed",
+     "category": "political",
+     "first_seen": "2026-07-09T20:14:04.739685+05:30",
+     "first_raised": "2026-04-30",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "CloseDate (1 Sep 2026, 54 days out) is not realistic given the deal is still Qualified, single-threaded, with no confirmed buyer reply in 7 weeks.",
+     "status": "not addressed",
+     "category": "timeline",
+     "first_seen": "2026-07-09T20:14:04.739685+05:30",
+     "first_raised": "2026-07-09",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    },
+    {
+     "date": "2026-05-01",
+     "change": "new",
+     "detail": "Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, permanently narrowing this deal's addressable scope away from contract lifecycle management.",
+     "status": "acknowledged",
+     "category": "change_management",
+     "first_seen": "2026-07-09T20:14:04.739685+05:30",
+     "first_raised": "2026-05-01",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 12.0,
+   "win": 16.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The one substantive call so far (1 May 2026) went deep and positive, with the buyer driving detailed questions on invoicing automation and supplier risk, but he committed to reconnect in a couple of weeks and has gone quiet for roughly seven weeks since.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "There is no live rival vendor in the fight; the real competitor is the status quo manual email-based invoice approval process, and contract-lifecycle management is permanently out of scope because the buyer just signed a 10-year deal on their existing CLM platform.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New requirement",
+    "text": "The buyer specifically wants a single, timestamped, auditable approval workflow (modeled on a prior Workday experience) rather than the current email back-and-forth, a concrete and winnable requirement if re-engagement happens.",
+    "tone": "pos"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma call 2026-05-01",
+   "at_risk": true,
+   "summary": "Daniel Tzegay engaged deeply on a single call but has not proven advocacy or access to power since, and has gone quiet for seven weeks.",
+   "champion": "Daniel Tzegay",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Call Daniel Tzegay directly to check the status of his internal CFO/CEO review after 7 weeks of email silence.",
+     "horizon": "next_7_days",
+     "trigger": "No reply to the 20 May 2026 follow-up email",
+     "trigger_date": "2026-05-20",
+     "expected_effect": "Re-establish contact and learn whether the deal is still alive before the close date erodes further."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Add Daniel Tzegay's known Stratasys peers as opportunity contact roles and attempt to multi-thread beyond a single contact.",
+     "horizon": "next_14_days",
+     "trigger": "Single-threaded opportunity with only one contact role logged",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Reduces single-point-of-failure risk and creates a path to the economic buyer if Daniel goes fully dark."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "If Daniel re-engages, ask him to broker a short introduction to whoever on the CFO/CEO side is reviewing the recommendation, rather than relaying it alone.",
+     "horizon": "next_30_days",
+     "trigger": "Daniel's own statement that decisions come from CFO and CEO",
+     "trigger_date": "2026-05-01",
+     "expected_effect": "Creates direct access to the actual economic buyer instead of relying solely on secondhand relay."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Reassess and adjust the CloseDate in Salesforce once the re-engagement outcome is known, since 1 Sep 2026 is not realistic for a stalled, single-threaded Qualified deal.",
+     "horizon": "next_30_days",
+     "trigger": "CloseDate 54 days out with no active engagement",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Keeps the forecast honest and avoids a last-minute slip surprise."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Last verified activity 2026-05-01 (69 days ago as of 2026-07-09)",
+    "20 May 2026 follow-up email unanswered as of 9 Jul 2026",
+    "Single confirmed buyer contact (Daniel Tzegay), no multi-thread"
+   ],
+   "cooling": true,
+   "summary": "Deal is cooling: 69 days since the last verified Salesforce activity (1 May 2026), and the one confirmed rep follow-up since (20 May 2026) has no logged buyer reply."
+  },
+  "north_star_verdict": {
+   "math": "Today 2026-07-07; close_date 2026-09-01 = 56 days out. Opportunity created 2026-05-01 (same day as the sole substantive buyer call), so the deal has spent all ~67 days of its life in Qualified with no reported advance to Formal Evaluation. LastActivityDate is 2026-05-01 (67 days ago); Next_Step__c logs a rep follow-up email on 2026-05-20 (48 days ago) with no reply on record since. At this pace, and with the economic buyer (CFO/CEO) never engaged, the deal cannot realistically reach Shortlisted/Vendor Selected before the 1 Sep 2026 close date without an immediate re-engagement.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Only one substantive buyer call on record (1 May 2026); no further engagement logged since.",
+    "Rep follow-up email sent 20 May 2026 (Next_Step__c) has no logged reply after roughly seven weeks.",
+    "Daniel Tzegay stated the decision rests with the CFO and CEO, neither of whom has been contacted or named.",
+    "Close date is 56 days out while the deal sits at Qualified stage with no economic buyer engagement."
+   ],
+   "headline": "Single-threaded Qualified deal, cooling for 67 days since its only real discovery call; the 1 Sep 2026 close date is not achievable without an immediate re-engagement and access to the CFO/CEO who hold the decision.",
+   "trajectory": "stronger",
+   "prior_verdict": "Off Track",
+   "carried_forward": true,
+   "forecast_defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Multi-thread beyond Daniel Tzegay: get his director and the Israel-based sourcing lead into a call before the deal advances past Qualified.",
+    "Build the ROI story on invoice-approval and supplier-risk time savings now, so Daniel has numbers to carry into his CFO/CEO pitch.",
+    "Re-engage on a different channel (phone, not just email) given the 20 May follow-up went unanswered for seven weeks; the deal is cooling.",
+    "Build a path to the economic buyer (CFO/CEO) early, since Daniel has stated he can only recommend, not decide."
+   ],
+   "summary": "The two highest-impact levers right now are breaking single-threading and re-opening the conversation directly, since email has stalled for seven weeks."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference for Zycus over any named alternative has been captured; interest was expressed in specific capabilities (AP Smartdesk, supplier risk, Merlin Intake) but not framed as a vendor preference (Avoma call 2026-05-01)."
+  },
+  "competitive_position": {
+   "summary": "No dedicated procurement suite competitor is actively in the fight. The real alternative being displaced is the status quo manual, email-based invoice approval process; Microsoft Copilot and the Stratasys 'Mailbox' CLM platform came up as adjacent tools but CLM is out of scope given a newly-signed 10-year term.",
+   "competitors": [
+    {
+     "date": "2026-05-01",
+     "name": "Status quo / manual email-based invoice approval",
+     "quote": "There's just too many too many approval process. Right? If we could do it where everything is timestamped...",
+     "change": "updated",
+     "source": "Avoma call 2026-05-01",
+     "status": "do_nothing",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T17:29:11.436305+05:30",
+     "how_we_win": "AP Smartdesk / eInvoicing directly addresses the named pain of slow, email-driven approvals with a single auditable, timestamped workflow.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    },
+    {
+     "date": "2026-05-01",
+     "name": "Microsoft Copilot / Mailbox (CLM, out of scope)",
+     "quote": "For contract, we'll use Mailbox system... that is something new that we just signed up for 10 years, so I don't see us moving away from that... something that we have implemented last year or so is Copilot because Copilot does that for us also.",
+     "change": "updated",
+     "source": "Avoma call 2026-05-01",
+     "status": "incumbent",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T17:29:11.436305+05:30",
+     "how_we_win": "Not applicable for CLM (locked for 10 years); Zycus positioned Merlin Intake as a complementary front-door layer rather than a CLM replacement.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "One genuinely deep discovery call establishes real interest and a well-articulated pain point, but the deal has since gone quiet for nearly seven weeks with no economic buyer engaged and only one confirmed contact \u2014 a cooling, early-stage, single-threaded deal.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date is not credible against the current state \u2014 CloseDate is 1 Sep 2026 (54 days out) while the deal is still single-threaded at Qualified with no economic buyer engaged and no reply in 7 weeks; the date should be treated as provisional until Daniel re-engages.",
+      "tone": "crit"
+     },
+     {
+      "text": "CLM is locked out for 10 years \u2014 Daniel confirmed Stratasys just signed a 10-year contract with their 'Mailbox' CLM platform, so no contract-lifecycle-management upsell is available in this deal for the foreseeable future.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Real buyer engagement secured \u2014 Daniel Tzegay spent roughly 37 minutes on the 1 May 2026 discovery call asking detailed, technical questions across eProcurement, eInvoicing/AP Smartdesk, supplier risk and Merlin Intake, and called the pitch 'something that will streamline a lot of our services.'",
+      "tone": "good"
+     },
+     {
+      "text": "No economic buyer engaged \u2014 Daniel told Zycus directly on 1 May 2026 that 'those decisions come from CFO and CEO,' and neither has been named, contacted, or shown any confirmed exposure to Zycus materials.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded \u2014 Daniel Tzegay is the only confirmed opportunity contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there's no evidence that outreach happened or landed.",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer's own review clock has lapsed \u2014 Daniel committed on 1 May 2026 to loop in his team and director and reconnect 'in a couple weeks' (roughly by 15 May 2026); it is now 9 Jul 2026, about seven weeks past that commitment, with no confirmed reply to the 20 May 2026 follow-up email logged in Next Step.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Cooling for 69 days \u2014 last verified Salesforce activity is 1 May 2026 (69 days ago as of 9 Jul 2026), and the one confirmed follow-up touch since (a 20 May 2026 rep email) has drawn no logged buyer reply.",
+      "tone": "warn"
+     },
+     {
+      "text": "No forward next step \u2014 Next_Step__c still reads 'JRA 5/20: Email to Daniel to discuss next steps with his team,' a rep-side send with no dated forward milestone or confirmed buyer response.",
+      "tone": "warn"
+     },
+     {
+      "text": "The one real session was deep, not a courtesy call \u2014 the 1 May 2026 discovery ran ~37 minutes with Daniel driving follow-up questions on supplier risk, invoice matching, and multilingual support, evidence of genuine (if since-quiet) interest.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Commitment made, not yet honored \u2014 Daniel said he'd present the Zycus deck to his team/director and come back with CFO/CEO's thoughts within a couple of weeks of 1 May 2026; that has not happened as of 9 Jul 2026.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zycus delivered its side \u2014 the rep promised on the 1 May 2026 call to 'put us all on an email thread with these slides,' and that follow-up was sent the same day.",
+      "tone": "neu"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-05-01",
+     "quote": "Is there any way you could share this presentation to me?",
+     "said_by": "Daniel Tzegay",
+     "addressed": true,
+     "requirement": "Share the Zycus overview deck and screenshots for Daniel's internal review"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2026-05-01",
+      "who": "Zycus",
+      "date": "2026-05-01",
+      "source": "Avoma call 2026-05-01",
+      "status": "completed",
+      "commitment": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+      "deliverable": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+      "grounding_quote": "I'll put us all on an email thread with these slides and feel free to just respond back there if you have any questions or comments."
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-05-15",
+      "who": "Buyer",
+      "date": "2026-05-01",
+      "source": "Avoma call 2026-05-01",
+      "status": "overdue",
+      "commitment": "Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal, then reconnect",
+      "deliverable": "Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal, then reconnect",
+      "grounding_quote": "I'm gonna have internal conversation. I'll talk to my team, see what they think, and then we could definitely reconnect in a couple weeks."
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Medium-High (single-call read)",
+   "summary": "Zycus is well-positioned on AI/automation differentiation \u2014 Daniel asked detailed comparison questions against his existing Microsoft Copilot use and expressed clear interest in AP Smartdesk/eInvoicing automation, supplier risk screening, and Merlin Intake as a front-door layer.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-05-01",
+     "quote": "If we could do it where everything is timestamped... that's an area that I'm really interested in.",
+     "source": "Avoma call 2026-05-01",
+     "position": "aligned",
+     "criterion": "Single unified system with timestamped audit trail to replace email-based invoice approvals"
+    },
+    {
+     "date": "2026-05-01",
+     "quote": "Does it do the supplier risk assessment prior to onboarding... does it have a lien or a judgment against the company?",
+     "source": "Avoma call 2026-05-01",
+     "position": "aligned",
+     "criterion": "Supplier risk screening (cyber, financial, litigation) ahead of onboarding for government/DOD-related suppliers"
+    },
+    {
+     "date": "2026-05-01",
+     "quote": "What's the difference between that platform versus, for instance, right now, something that we have implemented last year or so is Copilot?",
+     "source": "Avoma call 2026-05-01",
+     "position": "partially aligned",
+     "criterion": "Contract automation differentiation vs already-implemented Microsoft Copilot"
+    }
+   ],
+   "summary": "Daniel's stated interests line up closely with eInvoicing/AP automation and supplier risk screening; CLM overlap with Copilot is a secondary, not fully resolved, comparison."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 100000.0,
+  "opp_id": "006P700000XVrGLIA1",
+  "ais_why": null,
+  "sf_link": "https://stratasys.lightning.force.com/lightning/r/Opportunity/006P700000XVrGLIA1/view",
+  "opp_name": "Stratasys_EProc+EInvoicing_April26",
+  "owner_id": "005P7000006SU1JIAW",
+  "products": "eProcurement;eInvoicing;Merlin;Merlin Intake",
+  "ais_score": null,
+  "next_step": "JRA 5/20: Email to Daniel to discuss next steps with his team.",
+  "ais_status": null,
+  "close_date": "2026-09-01",
+  "competitor": null,
+  "owner_name": "Justin Ajmo",
+  "owner_title": "",
+  "account_name": "Stratasys Inc",
+  "created_date": "2026-05-01",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 54,
+  "dm_identified": false,
+  "eb_identified": false,
+  "qualified_date": "2026-05-01",
+  "billing_country": "United States",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-05-01",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": false,
+  "primary_competitor": "Status quo / manual email-based invoice approval",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "live",
+  "summary": "Live: buyer call(s) read this sweep.",
+  "calls_read": 2,
+  "close_date": "2026-09-01",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 54,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-05-01",
+  "days_since_activity": 69,
+  "next_scheduled_date": null,
+  "days_since_qualified": 69,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Share the Zycus overview deck and screenshots for Daniel's internal review - completed",
+   "key": "commitment:zycus-share-the-zycus-overview-deck-and-screenshots-for-dani",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Share the Zycus overview deck and screenshots for Daniel's internal review"
+  },
+  {
+   "to": "Daniel Tzegay - Influencer",
+   "key": "stakeholder:daniel-tzegay",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "from": "Daniel Tzegay - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Daniel Tzegay"
+  },
+  {
+   "to": "Status quo / manual email-based invoice approval - do_nothing",
+   "key": "competitor:status-quo-manual-email-based-invoice-approval",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "from": "Status quo / manual email-based invoice approval - do_nothing",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Status quo / manual email-based invoice approval"
+  },
+  {
+   "to": "Microsoft Copilot / Mailbox (CLM, out of scope) - incumbent",
+   "key": "competitor:microsoft-copilot-mailbox-clm-out-of-scope",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "from": "Microsoft Copilot / Mailbox (CLM, out of scope) - do_nothing",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Microsoft Copilot / Mailbox (CLM, out of scope)"
+  },
+  {
+   "to": "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them. - not addressed",
+   "key": "risk:no-economic-buyer-cfo-ceo-engaged-or-named-the-sole-contact-",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them."
+  },
+  {
+   "to": "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence",
+   "key": "risk:single-threaded-on-one-contact-a-30-apr-2026-internal-zycus-",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence that contact was reached."
+  },
+  {
+   "to": "CloseDate (1 Sep 2026, 54 days out) is not realistic given the deal is still Qualified, single-threaded, with no confirmed buyer reply in 7 weeks. - not address",
+   "key": "risk:closedate-1-sep-2026-54-days-out-is-not-realistic-given-the-",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "CloseDate (1 Sep 2026, 54 days out) is not realistic given the deal is still Qualified, single-threaded, with no confirmed buyer reply in 7 weeks."
+  },
+  {
+   "to": "Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, permanently narrowing this deal's addressable scope away from contract lifecycle managem",
+   "key": "risk:stratasys-just-signed-a-10-year-contract-on-its-mailbox-clm-",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, permanently narrowing this deal's addressable scope away from contract lifecycle management."
+  },
+  {
+   "to": "Multi-thread beyond Daniel Tzegay: log additional known Stratasys contacts as opportunity contact roles so the deal doesn't live or die on one relationship.",
+   "key": "hygiene:multi-thread-beyond-daniel-tzegay-log-additional-known-strat",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Daniel Tzegay: log additional known Stratasys contacts as opportunity contact roles so the deal doesn't live or die on one relationship."
+  },
+  {
+   "to": "Re-open the conversation with a direct call rather than another email, given the 20 May 2026 follow-up went unanswered for seven weeks.",
+   "key": "hygiene:re-open-the-conversation-with-a-direct-call-rather-than-anot",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-open the conversation with a direct call rather than another email, given the 20 May 2026 follow-up went unanswered for seven weeks."
+  },
+  {
+   "to": "Build a path to the economic buyer (CFO/CEO) early, since Daniel has stated he can only recommend, not decide.",
+   "key": "hygiene:build-a-path-to-the-economic-buyer-cfo-ceo-early-since-danie",
+   "date": "2026-07-09T20:14:04.739685+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build a path to the economic buyer (CFO/CEO) early, since Daniel has stated he can only recommend, not decide."
+  },
+  {
+   "to": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+   "key": "requirement:share-the-zycus-overview-deck-and-screenshots-for-daniel-s-i",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Daniel Tzegay",
+   "subject": "Share the Zycus overview deck and screenshots for Daniel's internal review"
+  },
+  {
+   "to": "Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal - overdue",
+   "key": "commitment:buyer-daniel-to-align-internally-with-his-team-director-and-",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal"
+  },
+  {
+   "to": "Daniel Tzegay - Influencer",
+   "key": "stakeholder:daniel-tzegay",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Daniel Tzegay"
+  },
+  {
+   "to": "Status quo / manual email-based invoice approval - do_nothing",
+   "key": "competitor:status-quo-manual-email-based-invoice-approval",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Status quo / manual email-based invoice approval"
+  },
+  {
+   "to": "Microsoft Copilot / Mailbox (CLM, out of scope) - do_nothing",
+   "key": "competitor:microsoft-copilot-mailbox-clm-out-of-scope",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Microsoft Copilot / Mailbox (CLM, out of scope)"
+  },
+  {
+   "to": "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned. - open",
+   "key": "risk:only-daniel-tzegay-is-engaged-no-access-yet-to-the-cfo-ceo-w",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned."
+  },
+  {
+   "to": "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email",
+   "key": "risk:daniel-s-planned-couple-weeks-internal-review-and-reconnect-",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email."
+  },
+  {
+   "to": "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them. - open",
+   "key": "risk:economic-buyer-cfo-ceo-has-not-been-engaged-or-named-no-conf",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them."
+  },
+  {
+   "to": "Multi-thread beyond Daniel Tzegay: get his director and the Israel-based sourcing lead into a call before the deal advances past Qualified.",
+   "key": "hygiene:multi-thread-beyond-daniel-tzegay-get-his-director-and-the-i",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Daniel Tzegay: get his director and the Israel-based sourcing lead into a call before the deal advances past Qualified."
+  },
+  {
+   "to": "Build the ROI story on invoice-approval and supplier-risk time savings now, so Daniel has numbers to carry into his CFO/CEO pitch.",
+   "key": "hygiene:build-the-roi-story-on-invoice-approval-and-supplier-risk-ti",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build the ROI story on invoice-approval and supplier-risk time savings now, so Daniel has numbers to carry into his CFO/CEO pitch."
+  },
+  {
+   "to": "Re-engage on a different channel (phone, not just email) given the 20 May follow-up went unanswered for seven weeks; the deal is cooling.",
+   "key": "hygiene:re-engage-on-a-different-channel-phone-not-just-email-given-",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage on a different channel (phone, not just email) given the 20 May follow-up went unanswered for seven weeks; the deal is cooling."
+  },
+  {
+   "to": "Daniel Tzegay - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "eProcurement;eInvoicing;Merlin;Merlin Intake",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T17:29:11.436305+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000XVrGL",
+ "packets": [
+  {
+   "key": "requirement:share-the-zycus-overview-deck-and-screenshots-for-daniel-s-i",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-01",
+    "kind": "explicit",
+    "quote": "Is there any way you could share this presentation to me?",
+    "source": "Avoma call 2026-05-01",
+    "said_by": "Daniel Tzegay",
+    "addressed": true,
+    "requirement": "Share the Zycus overview deck and screenshots for Daniel's internal review"
+   },
+   "source": "Daniel Tzegay",
+   "status": "active",
+   "history": [],
+   "subject": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "commitment:buyer-daniel-to-align-internally-with-his-team-director-and-",
+   "type": "commitment",
+   "value": {
+    "due": "2026-05-15",
+    "who": "Buyer",
+    "date": "2026-05-01",
+    "source": "Avoma call 2026-05-01",
+    "status": "overdue",
+    "commitment": "Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal, then reconnect",
+    "deliverable": "Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal, then reconnect",
+    "grounding_quote": "I'm gonna have internal conversation. I'll talk to my team, see what they think, and then we could definitely reconnect in a couple weeks."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Daniel to align internally with his team/director and brief the CFO/CEO on the Zycus proposal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "stakeholder:daniel-tzegay",
+   "type": "stakeholder",
+   "value": {
+    "name": "Daniel Tzegay",
+    "risk": "Sole confirmed contact; no proven path to the CFO/CEO who own the decision; has not replied since the 20 May 2026 follow-up",
+    "role": "Influencer",
+    "title": "Senior Commodity Manager, Indirect (self-described coverage of facilities, operations, R&D, finance, global logistics, and NA IT)",
+    "source": "OpportunityContactRole; Avoma call 2026-05-01",
+    "sentiment": "positive but currently unresponsive",
+    "last_contact_date": "2026-05-01"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:29:11.436305+05:30",
+     "value": {
+      "name": "Daniel Tzegay",
+      "risk": "sole point of contact; has not replied to the 20 May follow-up email",
+      "role": "Influencer",
+      "title": "Senior Commodity Manager, Indirect",
+      "source": "Avoma call 1 May 2026; SF OpportunityContactRole",
+      "sentiment": "engaged, curious",
+      "last_contact_date": "2026-05-01"
+     }
+    }
+   ],
+   "subject": "Daniel Tzegay",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "competitor:status-quo-manual-email-based-invoice-approval",
+   "type": "competitor",
+   "value": {
+    "date": "2026-05-01",
+    "name": "Status quo / manual email-based invoice approval",
+    "quote": "There's just too many too many approval process. Right? If we could do it where everything is timestamped...",
+    "source": "Avoma call 2026-05-01",
+    "status": "do_nothing",
+    "sentiment": "negative",
+    "how_we_win": "AP Smartdesk / eInvoicing directly addresses the named pain of slow, email-driven approvals with a single auditable, timestamped workflow.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:29:11.436305+05:30",
+     "value": {
+      "date": "2026-05-01",
+      "name": "Status quo / manual email-based invoice approval",
+      "quote": "there's just too many too many approval process",
+      "source": "Avoma call 1 May 2026",
+      "status": "do_nothing",
+      "sentiment": "neutral",
+      "how_we_win": "Land the AP Smartdesk story on the concrete pain Daniel already named (email back-and-forth, no audit trail) to displace the manual process.",
+      "threat_level": "medium"
+     }
+    }
+   ],
+   "subject": "Status quo / manual email-based invoice approval",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "competitor:microsoft-copilot-mailbox-clm-out-of-scope",
+   "type": "competitor",
+   "value": {
+    "date": "2026-05-01",
+    "name": "Microsoft Copilot / Mailbox (CLM, out of scope)",
+    "quote": "For contract, we'll use Mailbox system... that is something new that we just signed up for 10 years, so I don't see us moving away from that... something that we have implemented last year or so is Copilot because Copilot does that for us also.",
+    "source": "Avoma call 2026-05-01",
+    "status": "incumbent",
+    "sentiment": "neutral",
+    "how_we_win": "Not applicable for CLM (locked for 10 years); Zycus positioned Merlin Intake as a complementary front-door layer rather than a CLM replacement.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T17:29:11.436305+05:30",
+     "value": {
+      "date": "2026-05-01",
+      "name": "Microsoft Copilot / Mailbox (CLM, out of scope)",
+      "quote": "we just signed up for for 10 years, so I don't see us moving away from that",
+      "source": "Avoma call 1 May 2026",
+      "status": "do_nothing",
+      "sentiment": "neutral",
+      "how_we_win": "Do not contest CLM; position Merlin Intake and AP Smartdesk as complementary to the existing Copilot/Mailbox stack, not a replacement.",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "Microsoft Copilot / Mailbox (CLM, out of scope)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "risk:only-daniel-tzegay-is-engaged-no-access-yet-to-the-cfo-ceo-w",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-01",
+    "detail": "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned.",
+    "source": "Avoma call 1 May 2026",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-05-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Only Daniel Tzegay is engaged; no access yet to the CFO/CEO who own the decision or the Israel-based head of sourcing he mentioned.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "risk:daniel-s-planned-couple-weeks-internal-review-and-reconnect-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email.",
+    "source": "Avoma call 1 May 2026; SF Next_Step__c 20 May 2026",
+    "status": "overdue",
+    "category": "timeline",
+    "first_raised": "2026-05-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Daniel's planned 'couple weeks' internal review and reconnect (from 1 May 2026) is roughly 7 weeks overdue with no confirmed reply to the 20 May follow-up email.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-cfo-ceo-has-not-been-engaged-or-named-no-conf",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-01",
+    "detail": "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them.",
+    "source": "Avoma call 1 May 2026",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-05-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer (CFO/CEO) has not been engaged or named; no confirmation Zycus materials have reached them.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-daniel-tzegay-get-his-director-and-the-i",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Daniel Tzegay: get his director and the Israel-based sourcing lead into a call before the deal advances past Qualified."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond Daniel Tzegay: get his director and the Israel-based sourcing lead into a call before the deal advances past Qualified.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "hygiene:build-the-roi-story-on-invoice-approval-and-supplier-risk-ti",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build the ROI story on invoice-approval and supplier-risk time savings now, so Daniel has numbers to carry into his CFO/CEO pitch."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build the ROI story on invoice-approval and supplier-risk time savings now, so Daniel has numbers to carry into his CFO/CEO pitch.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-on-a-different-channel-phone-not-just-email-given-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage on a different channel (phone, not just email) given the 20 May follow-up went unanswered for seven weeks; the deal is cooling."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage on a different channel (phone, not just email) given the 20 May follow-up went unanswered for seven weeks; the deal is cooling.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-07T17:29:11.436305+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Daniel Tzegay",
+    "at_risk": true,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "eProcurement;eInvoicing;Merlin;Merlin Intake"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:29:11.436305+05:30",
+   "last_updated": "2026-07-07T17:29:11.436305+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "commitment:zycus-share-the-zycus-overview-deck-and-screenshots-for-dani",
+   "type": "commitment",
+   "value": {
+    "due": "2026-05-01",
+    "who": "Zycus",
+    "date": "2026-05-01",
+    "source": "Avoma call 2026-05-01",
+    "status": "completed",
+    "commitment": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+    "deliverable": "Share the Zycus overview deck and screenshots for Daniel's internal review",
+    "grounding_quote": "I'll put us all on an email thread with these slides and feel free to just respond back there if you have any questions or comments."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Share the Zycus overview deck and screenshots for Daniel's internal review",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-cfo-ceo-engaged-or-named-the-sole-contact-",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-01",
+    "detail": "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them.",
+    "source": "Avoma call 2026-05-01",
+    "status": "not addressed",
+    "category": "executive_alignment",
+    "first_raised": "2026-05-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer (CFO/CEO) engaged or named; the sole contact explicitly said the decision sits with them.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "risk:single-threaded-on-one-contact-a-30-apr-2026-internal-zycus-",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-30",
+    "detail": "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence that contact was reached.",
+    "source": "Avoma call 2026-04-30 (internal Zycus call)",
+    "status": "not addressed",
+    "category": "political",
+    "first_raised": "2026-04-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded on one contact; a 30 Apr 2026 internal Zycus call discussed trying the Israel-based head of sourcing as a backup route, but there is no evidence that contact was reached.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "risk:closedate-1-sep-2026-54-days-out-is-not-realistic-given-the-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "CloseDate (1 Sep 2026, 54 days out) is not realistic given the deal is still Qualified, single-threaded, with no confirmed buyer reply in 7 weeks.",
+    "source": "Opportunity CloseDate field; Next_Step__c",
+    "status": "not addressed",
+    "category": "timeline",
+    "first_raised": "2026-07-09"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "CloseDate (1 Sep 2026, 54 days out) is not realistic given the deal is still Qualified, single-threaded, with no confirmed buyer reply in 7 weeks.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "risk:stratasys-just-signed-a-10-year-contract-on-its-mailbox-clm-",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-01",
+    "detail": "Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, permanently narrowing this deal's addressable scope away from contract lifecycle management.",
+    "source": "Avoma call 2026-05-01",
+    "status": "acknowledged",
+    "category": "change_management",
+    "first_raised": "2026-05-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Stratasys just signed a 10-year contract on its 'Mailbox' CLM platform, permanently narrowing this deal's addressable scope away from contract lifecycle management.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-daniel-tzegay-log-additional-known-strat",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Daniel Tzegay: log additional known Stratasys contacts as opportunity contact roles so the deal doesn't live or die on one relationship."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond Daniel Tzegay: log additional known Stratasys contacts as opportunity contact roles so the deal doesn't live or die on one relationship.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "hygiene:re-open-the-conversation-with-a-direct-call-rather-than-anot",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-open the conversation with a direct call rather than another email, given the 20 May 2026 follow-up went unanswered for seven weeks."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-open the conversation with a direct call rather than another email, given the 20 May 2026 follow-up went unanswered for seven weeks.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  },
+  {
+   "key": "hygiene:build-a-path-to-the-economic-buyer-cfo-ceo-early-since-danie",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build a path to the economic buyer (CFO/CEO) early, since Daniel has stated he can only recommend, not decide."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build a path to the economic buyer (CFO/CEO) early, since Daniel has stated he can only recommend, not decide.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:14:04.739685+05:30",
+   "last_updated": "2026-07-09T20:14:04.739685+05:30",
+   "last_confirmed": "2026-07-09T20:14:04.739685+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T20:14:04.739685+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No confirmed economic buyer contact",
+   "Only one buyer-side opportunity contact role logged",
+   "No confirmed buyer activity since the 1 May 2026 call",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 2,
+  "calls_omitted": [
+   {
+    "reason": "cancelled \u2014 no content; predates this opportunity's 2026-05-01 creation by roughly 11 months",
+    "meeting": "Introductory Call | Zycus X Stratasys Inc (2025-06-24)"
+   },
+   {
+    "reason": "not_recorded \u2014 touchpoint occurred but no transcript/notes captured",
+    "meeting": "Introductory Call Between Zycus | Stratasys (2026-04-29)"
+   }
+  ],
+  "avoma_attendees": [
+   "daniel.tzegay@stratasys.com",
+   "peggy.sowden@stratasys.com",
+   "justin.ajmo@zycus.com",
+   "prashant.saxena@zycus.com",
+   "noopur.handa@zycus.com",
+   "michael.mccarthy@zycus.com"
+  ],
+  "calls_discovered": 4,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "2026-05-01 to 2026-07-09 (full opportunity lifetime)"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

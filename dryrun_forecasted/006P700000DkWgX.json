@@ -1,0 +1,4062 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Customer reference call completion (BDO/SM)",
+     "date": "2025-08-13",
+     "quote": "We'll get you a couple of references, Jeff.",
+     "source": "Avoma call 13 Aug 2025",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Confirmed exco/IT steering committee presentation date",
+     "date": "2025-08-13",
+     "quote": "We don't know, know yet, Kurt.",
+     "source": "Avoma call 13 Aug 2025",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "MSA/Order Form legal review outcome",
+     "date": "2025-08-13",
+     "quote": "Since we are gonna do few things in parallel, such as reference call, would you mind me sending you also a copy of order form?",
+     "source": "Avoma call 13 Aug 2025",
+     "status": "acknowledged",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Direct CFO (Jonathan Back) re-engagement",
+     "date": "2025-02-28",
+     "quote": "He's the one who's telling me, see, why haven't we moved this?",
+     "source": "Avoma call 28 Feb 2025",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Content of the 7 Jul 2026 buyer email reply",
+     "date": "2026-07-07",
+     "quote": "",
+     "source": "Salesforce LastActivityDate / EmailMessage",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 6 May 2025 (Project Sapay - Vendor Proposal)",
+     "Next Step History 7 Apr 2025",
+     "Avoma call 28 Feb 2025 (Zee, Carl and regional Zycus lead)"
+    ],
+    "narrative": "The commercial scope was quantified in detail during the 6 May 2025 clarification call: a 5-year term covering roughly 30,000 invoices, 250 annual AI-scored contracts, and unlimited supplier-portal access with AI-based risk scoring beyond the initial 500. Jennelyn Nicolas formally weighted the evaluation 50% functional fit and 50% technical capability/ROI on 7 Apr 2025, and Zeeshan Pervez has directly articulated the business pain driving the case: roughly 70% of ACEN's spend (non-PO payments like loan and tax) is disconnected from their current system (28 Feb 2025 call)."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Next Step History 13 Feb 2025",
+     "Avoma call 28 Feb 2025",
+     "Next Step 16 Mar 2026, 4 May 2026"
+    ],
+    "narrative": "Zeeshan Pervez behaves as an internal champion \u2014 confirming CFO alignment, personally pushing his own team, and repeatedly advocating for Zycus internally ('this is something... I'll probably be more interested in,' 28 Feb 2025) \u2014 and a 13 Feb 2025 note separately names the CPO-level contact as a confirmed champion. But that advocacy has not converted into released budget across three deferrals, and the champion thread went quiet for months (only rep-side pings on 16 Mar 2026 and 4 May 2026) until the buyer replied 7 Jul 2026. Champion strength is developing and currently at risk."
+   },
+   "competition": {
+    "status": "confirmed",
+    "sources": [
+     "Next Step History 3 Jun 2025",
+     "Next Step History 26 May 2025",
+     "Salesforce Competitors__c"
+    ],
+    "narrative": "Zycus was confirmed shortlisted to the final two against SAP Ariba on 3 Jun 2025, and the SAP secondary integration/connection fee is being used almost as a competitive lever (26 May 2025 note describes it as SAP 'playing this low integrity card of charging a fee to integrate Zycus'). Coupa, GEP Worldwide and Ivalua sit in the Salesforce Competitors field but never surface in any call evidence, consistent with being eliminated earlier in the RFP long-list before the 3 Jun 2025 down-select to two."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 28 Feb 2025",
+     "Avoma call 21 Feb 2025 (Zycus System - Full Demo)"
+    ],
+    "narrative": "Pain is well documented and buyer-voiced: the in-house-built P2P system is emotionally tied to the team that built it (28 Feb 2025 call), roughly 70% of spend (non-PO payments such as loan and tax) is manually disconnected from the system, supplier onboarding runs manually via email with third-party verification, and ADB funding is imposing ESG/supplier code-of-conduct requirements the current stack can't meet. Zeeshan Pervez personally framed the non-PO payment gap as something his CFO 'is going to be very laser sharp on.'"
+   },
+   "paper_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 13 Aug 2025 (Project SAPAY )"
+    ],
+    "narrative": "Zycus proactively sent the MSA and Order Form to Jeff De Sagun for preliminary legal review on 13 Aug 2025, specifically to get ahead of legal turnaround time before commercials were finalized. No redline, legal feedback, or sign-off status has been confirmed in any record since \u2014 this is an open thread roughly 11 months old."
+   },
+   "economic_buyer": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 28 Feb 2025",
+     "Salesforce Contact Role: Jonathan Back, Executive Sponsor"
+    ],
+    "narrative": "Jonathan Back (CFO and Chief Strategy Officer, Executive Sponsor) was named and personally engaged once, on the 28 Feb 2025 call, where he was described by Zeeshan Pervez as one of only four people who will make the final decision and as actively pushing internally ('why haven't we moved this'). No direct Zycus contact with Jonathan Back has been logged in any source since that single call, over 16 months ago \u2014 access to this economic buyer is real but entirely indirect, routed through Zeeshan Pervez."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 13 Aug 2025 (Project SAPAY )",
+     "Next Step History 22 Sep 2025, 30 Oct 2025"
+    ],
+    "narrative": "The process ran RFP (Mar 2025) to clarification to onsite POC (11 Apr 2025) to proposal to commercial clarification (May-Jun 2025) to a full architecture walkthrough (13 Aug 2025) to references and preliminary legal review, feeding an internal 'evaluation scoring exercise' meant to support an IT steering committee/exco decision. On the 13 Aug 2025 call Jeff De Sagun could not confirm when that steering-committee presentation would happen ('we don't know yet'), and the process has since stalled through three budget-driven exco deferrals."
+   },
+   "decision_criteria": {
+    "status": "confirmed",
+    "sources": [
+     "Next Step History 7 Apr 2025",
+     "Avoma call 6 May 2025"
+    ],
+    "narrative": "Jennelyn Nicolas supplied a formal weighting on 7 Apr 2025 (50% functional fit, 50% technical capability and ROI), and detailed clarification rounds through May-Aug 2025 worked through specific criteria: user/buyer counts, supplier and risk-module scope, AI-based contract scoring, and the budget-checking approach (Zycus e-procurement vs. ERP)."
+   }
+  },
+  "footprints": {
+   "alive": true,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 2.0,
+    "top_weight": 0.0,
+    "points_90d_process": 2.0
+   },
+   "last_meeting": "2025-08-13",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-07-07",
+   "last_buyer_touch": "2026-07-07",
+   "buyer_touches_30d": 1,
+   "buyer_touches_60d": 1,
+   "stage_cadence_days": 14,
+   "general_last_activity": "2026-07-07",
+   "days_since_buyer_touch": 2
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-06-15",
+   "items": [
+    {
+     "at": "2026-06-15",
+     "kind": "email",
+     "summary": "Carl Kimball (Zycus VP APAC) reached out to Zee after a gap in contact, inviting him and colleagues to Zycus' \"Horizon\" event in Singapore (21-22 July), offering waived fees and a possible speaking slot; this is relationship/brand touchpoint rather than deal progression, and a reply is pending on whether Zee wants to attend."
+    }
+   ],
+   "source": "ai",
+   "overall": "The only activity today was an inbound invite from Zycus' APAC VP inviting Zee to their July industry event in Singapore, positioned as a networking/thought-leadership forum rather than a sales pitch. It's a relationship-nurturing outreach after a period of quiet on the account, not a substantive deal move \u2014 the ball is now in Zee's court to respond if interested."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 82.0,
+    "win_position": 18.0,
+    "deal_momentum": 8.0,
+    "customer_commitment": 22.0,
+    "forecast_confidence": 15.0
+   },
+   "cro_panel": {
+    "intro": "ACEN S2P built a genuinely deep, CFO-backed case through mid-2025 (MSA/Order Form already with the buyer's legal reviewer, shortlisted to the final two against SAP Ariba, onsite POC completed), but the exco budget release it has always depended on slipped three times from September 2025 onward, leaving the account effectively dark until a real buyer reply landed two days ago",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 18,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Momentum gate applied; Vendor Selected fundamentals alone would land near 35, but Deal Momentum of 8 after 330 days dark halves the score to ~18 per the momentum-gate rule",
+        "tone": "warn"
+       },
+       {
+        "text": "Real qualification depth exists; 4 of 8 MEDDPICC pillars confirmed (metrics, decision criteria, pain, competition), plus a 127-minute full demo and full architecture walkthrough delivered in 2025",
+        "tone": "good"
+       },
+       {
+        "text": "Economic buyer never directly engaged; CFO alignment is only claimed through champion Zeeshan; MEDDPICC marks economic_buyer as 'partial,' not confirmed direct Zycus face time",
+        "tone": "warn"
+       },
+       {
+        "text": "Three exco deferrals with no budget released; Sep 2025 'postponed by a quarter,' Oct 2025 scope-trim ask, Jan 2026 push for exco submission, none converted",
+        "tone": "warn"
+       },
+       {
+        "text": "Down-selected to final two vs SAP Ariba by Jun 2025; the live threat is SAP's integration fee, not a lost technical evaluation, leaving a path back if budget frees up",
+        "tone": "good"
+       },
+       {
+        "text": "Vendor Selected stage is stale, not strong; 330 days with zero buyer meetings means the recorded stage no longer reflects an active decision in motion",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 8,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "No buyer meeting in 330 days; last recorded session was 'Project SAPAY' on 13 Aug 2025; nothing has happened since and nothing is scheduled. \u25ba Get a dated meeting on the calendar with Zee this week, not another email",
+        "tone": "warn"
+       },
+       {
+        "text": "Rep chasing, buyer not confirming; 16 Mar 2026 'intro mail requesting a revival meeting' and 4 May 2026 lunch outreach to Zee, with no logged meeting resulting from either. \u25ba Escalate exec-to-exec instead of repeating cold outreach",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date pushed repeatedly; slipped from a hoped-for Q3 2025 close to 31 Jan 2027 across three exco deferrals since Sep 2025. \u25ba Force a hard exco decision date instead of accepting another 'revisit' promise",
+        "tone": "warn"
+       },
+       {
+        "text": "Champion gone quiet; Zeeshan Pervez, who earlier 'confirmed CFO alignment,' has surfaced nothing actionable since the Jan 2026 push for exco submission. \u25ba Ask Zeeshan directly for the exco decision date, not a status update",
+        "tone": "warn"
+       },
+       {
+        "text": "One live buyer touch in the last 30 days; SFDC logs 1 non-rep-only buyer touch, keeping a thread technically alive despite the freeze",
+        "tone": "good"
+       },
+       {
+        "text": "No forward CRM signal; no scheduled next meeting, no forecast upgrade; the next-step text reads as rep aspiration ('push Zee') rather than a dated buyer commitment",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 82,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Zycus was down-selected to the final two against SAP Ariba by June 2025.",
+      "bullets": [
+       {
+        "text": "330 days dark on meetings; no session since 13 Aug 2025, no future meeting scheduled anywhere in the record",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date pushed repeatedly; now sitting at 31 Jan 2027 after multiple exco deferrals since Sep 2025, with no firm re-commitment date. \u25ba Pin exco to a specific decision date this quarter",
+        "tone": "warn"
+       },
+       {
+        "text": "Do-nothing is the real competitor; in-house status quo is rated 'high' threat, a bigger risk than SAP Ariba's 'medium' threat, which is really a fee dispute",
+        "tone": "warn"
+       },
+       {
+        "text": "Economic buyer access unconfirmed; EB engagement is 'partial' in MEDDPICC, and budget approval sits with an exco that has deferred the project three times",
+        "tone": "warn"
+       },
+       {
+        "text": "Stage/forecast likely inflated; 'Vendor Selected' + 'Best Case' forecast sit oddly against 330 days of silence and no signed paper. \u25ba Correct forecast category to reflect the dark 330 days pending exco action",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Confirm a next meeting with Zeeshan Pervez off the 7 Jul 2026 reply and lock a date. (by 16 Jun)",
+       "Ask Jeff De Sagun for a status check on the Aug 2025 MSA/Order Form legal review. (by 16 Jun)",
+       "Send Zeeshan Pervez a documented TCO comparison that neutralizes the SAP secondary integration fee objection. (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "ACEN \u2014 Vendor Selected \u00b7 $245K \u00b7 closes 31 ",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 82.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "330 days dark on meetings \u2014 no session since 13 Aug 2025, no future meeting scheduled anywhere in the record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date pushed repeatedly \u2014 now sitting at 31 Jan 2027 after multiple exco deferrals since Sep 2025, with no firm re-commitment date. \u25ba Pin exco to a specific decision date this quarter.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Do-nothing is the real competitor \u2014 in-house status quo is rated 'high' threat, a bigger risk than SAP Ariba's 'medium' threat, which is really a fee dispute.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer access unconfirmed \u2014 EB engagement is 'partial' in MEDDPICC, and budget approval sits with an exco that has deferred the project three times.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage/forecast likely inflated \u2014 'Vendor Selected' + 'Best Case' forecast sit oddly against 330 days of silence and no signed paper. \u25ba Correct forecast category to reflect the dark 330 days pending exco action.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Mitigant: technical fit largely intact \u2014 down-selected to final two, full demo and architecture walkthrough already delivered, so the door reopens quickly once budget frees.",
+      "points": 1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "330 days dark on meetings \u2014 no session since 13 Aug 2025, no future meeting scheduled anywhere in the record.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed repeatedly \u2014 now sitting at 31 Jan 2027 after multiple exco deferrals since Sep 2025, with no firm re-commitment date. \u25ba Pin exco to a specific decision date this quarter.",
+      "tone": "warn"
+     },
+     {
+      "text": "Do-nothing is the real competitor \u2014 in-house status quo is rated 'high' threat, a bigger risk than SAP Ariba's 'medium' threat, which is really a fee dispute.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer access unconfirmed \u2014 EB engagement is 'partial' in MEDDPICC, and budget approval sits with an exco that has deferred the project three times.",
+      "tone": "warn"
+     },
+     {
+      "text": "Stage/forecast likely inflated \u2014 'Vendor Selected' + 'Best Case' forecast sit oddly against 330 days of silence and no signed paper. \u25ba Correct forecast category to reflect the dark 330 days pending exco action.",
+      "tone": "warn"
+     },
+     {
+      "text": "Mitigant: technical fit largely intact \u2014 down-selected to final two, full demo and architecture walkthrough already delivered, so the door reopens quickly once budget frees.",
+      "tone": "good"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Momentum gate applied \u2014 Vendor Selected fundamentals alone would land near 35, but Deal Momentum of 8 after 330 days dark halves the score to ~18 per the momentum-gate rule.",
+      "tone": "warn"
+     },
+     {
+      "text": "Real qualification depth exists \u2014 4 of 8 MEDDPICC pillars confirmed (metrics, decision criteria, pain, competition), plus a 127-minute full demo and full architecture walkthrough delivered in 2025.",
+      "tone": "good"
+     },
+     {
+      "text": "Economic buyer never directly engaged \u2014 CFO alignment is only claimed through champion Zeeshan; MEDDPICC marks economic_buyer as 'partial,' not confirmed direct Zycus face time.",
+      "tone": "warn"
+     },
+     {
+      "text": "Three exco deferrals with no budget released \u2014 Sep 2025 'postponed by a quarter,' Oct 2025 scope-trim ask, Jan 2026 push for exco submission, none converted.",
+      "tone": "warn"
+     },
+     {
+      "text": "Down-selected to final two vs SAP Ariba by Jun 2025 \u2014 the live threat is SAP's integration fee, not a lost technical evaluation, leaving a path back if budget frees up.",
+      "tone": "good"
+     },
+     {
+      "text": "Vendor Selected stage is stale, not strong \u2014 330 days with zero buyer meetings means the recorded stage no longer reflects an active decision in motion.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "No buyer meeting in 330 days \u2014 last recorded session was 'Project SAPAY' on 13 Aug 2025; nothing has happened since and nothing is scheduled. \u25ba Get a dated meeting on the calendar with Zee this week, not another email.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep chasing, buyer not confirming \u2014 16 Mar 2026 'intro mail requesting a revival meeting' and 4 May 2026 lunch outreach to Zee, with no logged meeting resulting from either. \u25ba Escalate exec-to-exec instead of repeating cold outreach.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed repeatedly \u2014 slipped from a hoped-for Q3 2025 close to 31 Jan 2027 across three exco deferrals since Sep 2025. \u25ba Force a hard exco decision date instead of accepting another 'revisit' promise.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion gone quiet \u2014 Zeeshan Pervez, who earlier 'confirmed CFO alignment,' has surfaced nothing actionable since the Jan 2026 push for exco submission. \u25ba Ask Zeeshan directly for the exco decision date, not a status update.",
+      "tone": "warn"
+     },
+     {
+      "text": "One live buyer touch in the last 30 days \u2014 SFDC logs 1 non-rep-only buyer touch, keeping a thread technically alive despite the freeze.",
+      "tone": "good"
+     },
+     {
+      "text": "No forward CRM signal \u2014 no scheduled next meeting, no forecast upgrade; the next-step text reads as rep aspiration ('push Zee') rather than a dated buyer commitment.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-initiated action in a year \u2014 exco has deferred repeatedly (Sep 2025, Jan 2026 push) with no released budget or approved re-scoped proposal.",
+      "tone": "warn"
+     },
+     {
+      "text": "Heavy earlier investment \u2014 buyer requested a full architecture walkthrough (Aug 2025) and revised commercials with new integration touchpoints (Sep 2025), showing real prior engagement.",
+      "tone": "good"
+     },
+     {
+      "text": "Paper process stalled \u2014 MEDDPICC marks paper_process 'partial'; no re-scoped proposal has been delivered since the Oct 2025 request to trim scope. \u25ba Land the revised proposal Zee asked for before chasing another meeting.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion can't move budget \u2014 Zeeshan advocates internally but 'has not been able to convert that advocacy into released budget across three exco deferrals.'",
+      "tone": "warn"
+     },
+     {
+      "text": "1 buyer touch logged in the last 30 days \u2014 a small but real signal of continued interest amid the freeze.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 18.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Momentum gate applied \u2014 Vendor Selected fundamentals alone would land near 35, but Deal Momentum of 8 after 330 days dark halves the score to ~18 per the momentum-gate rule.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Real qualification depth exists \u2014 4 of 8 MEDDPICC pillars confirmed (metrics, decision criteria, pain, competition), plus a 127-minute full demo and full architecture walkthrough delivered in 2025.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer never directly engaged \u2014 CFO alignment is only claimed through champion Zeeshan; MEDDPICC marks economic_buyer as 'partial,' not confirmed direct Zycus face time.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Three exco deferrals with no budget released \u2014 Sep 2025 'postponed by a quarter,' Oct 2025 scope-trim ask, Jan 2026 push for exco submission, none converted.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Down-selected to final two vs SAP Ariba by Jun 2025 \u2014 the live threat is SAP's integration fee, not a lost technical evaluation, leaving a path back if budget frees up.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Vendor Selected stage is stale, not strong \u2014 330 days with zero buyer meetings means the recorded stage no longer reflects an active decision in motion.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 8.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer meeting in 330 days \u2014 last recorded session was 'Project SAPAY' on 13 Aug 2025; nothing has happened since and nothing is scheduled. \u25ba Get a dated meeting on the calendar with Zee this week, not another email.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Rep chasing, buyer not confirming \u2014 16 Mar 2026 'intro mail requesting a revival meeting' and 4 May 2026 lunch outreach to Zee, with no logged meeting resulting from either. \u25ba Escalate exec-to-exec instead of repeating cold outreach.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date pushed repeatedly \u2014 slipped from a hoped-for Q3 2025 close to 31 Jan 2027 across three exco deferrals since Sep 2025. \u25ba Force a hard exco decision date instead of accepting another 'revisit' promise.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion gone quiet \u2014 Zeeshan Pervez, who earlier 'confirmed CFO alignment,' has surfaced nothing actionable since the Jan 2026 push for exco submission. \u25ba Ask Zeeshan directly for the exco decision date, not a status update.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "One live buyer touch in the last 30 days \u2014 SFDC logs 1 non-rep-only buyer touch, keeping a thread technically alive despite the freeze.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No forward CRM signal \u2014 no scheduled next meeting, no forecast upgrade; the next-step text reads as rep aspiration ('push Zee') rather than a dated buyer commitment.",
+      "points": -1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "The buyer engaged directly with Zycus's GenAI chatbot/intake-management pitch and separately requested a follow-up on the ESG (Lythouse) module, driven partly by ADB funding compliance requirements, but has not voiced an AI-specific mandate",
+     "expectations_fit": "Zycus is broadly aligned on security and product flexibility, exposed on the SAP integration cost, and only partially resolved on the buyer's non-standard 'Request for Payment' module for non-PO spend.",
+     "north_star_verdict": null,
+     "positioning_strength": "Zycus pitched Merlin AI/GenAI capabilities (a claimed 12-18 month lead in intake management) and the Lythouse ESG module across the Feb 2025 demos, and the buyer engaged directly with both, but no AI-specific ROI case has been built into th"
+    },
+    "deal": {
+     "stage": "Vendor Selected",
+     "amount": 245000.0,
+     "opp_id": "006P700000DkWgX",
+     "account": "ACEN",
+     "opp_name": "ACEN S2P",
+     "next_step": "50% Probability4th May- reached out to Zee fr lunch and meeting with Globe about Agentic AI16th Mar - Sent an intro mail and requesting for a revival meeting.14th Jan Push Zee now for submission of our proposal in next exco meeting end Jan30th Oct Zee has advised management (exco) have decided to delay for 1 quarter27th Oct Revised proposal- to meet Zee week of 12th Nov14th Oct Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3- Carl to revise numbersand work with Zee 1:1 to optimize (likely reduce scope) 22nd Sept: President Zee has confirmed that due to ongoing challenges with other initiatives, the Procurement Digitization project will be postponed by a quarter minimum. Budget creation and resource allocation are currently not feasible but he will look into it at earliest possible. They plan to reconnect in January 2026 to revisit the initiative. In the meantime, we will maintain a warm engagement, given the significant groundwork already completed, so we can seamlessly resume when the timing is right. The prospect is still interested in Zycus. 11th Sept: Carl has agreed to send revised commercials to Zee which we will prepare and send by next week. 8th Sept: Acen requested for revised proposal which includes recently discussed integration touch points which we will send it by EOD.1st Sep Carl meeting Zee (CPO) 5th Sept to push for close- and remove blockers for Q2 close26th Aug: Our team is preparing for 4th SAept meeting, no other update from Acen side.18th Aug: Architecture Walkthrough meeting is scheduled on 4th Sept.13th Aug: Jeff arranged quick clarification meeting for us to set the expectation for a meeting to discuss &quot;Detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.&quot;12th Aug: Since Jenn is on leave till 14th Aug, meeting is postponed to new date. Jeff will confirm new schedule soon.8th Aug: Meeting scheduled for 13th Aug.31st July: Requested for a clarification meeting with our presales. Awaiting for Acen&#39;s availability.28th July: Acen has requested for a detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.16th July: In the meeting with Jen",
+     "close_date": "2027-01-31",
+     "stage_tier": "late",
+     "days_to_close": 206,
+     "forecast_category": "Best Case",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-07"
+    },
+    "trends": {},
+    "champion": "Zeeshan Pervez functions as the closest thing to a champion \u2014 advocating internally, confirming CFO alignment, and pushing his own team \u2014 but has not been able to convert that advocacy into released budget across three exco deferrals since Sep 2025, and went quiet for months until the 7 Jul 2026 rep",
+    "meddpicc": {
+     "metrics": "confirmed",
+     "champion": "partial",
+     "competition": "confirmed",
+     "identify_pain": "confirmed",
+     "paper_process": "partial",
+     "economic_buyer": "partial",
+     "decision_process": "partial",
+     "decision_criteria": "confirmed"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2025-08-13",
+       "minutes": 18,
+       "subject": "Project SAPAY [Zycus]",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-05-06",
+       "minutes": 31,
+       "subject": "Project Sapay - Vendor Proposal",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-02-28",
+       "minutes": 50,
+       "subject": "Zee,Carl and Madhuri",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-02-21",
+       "minutes": 127,
+       "subject": "Zycus System - Full Demo",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-02-05",
+       "minutes": null,
+       "subject": "Zycus Updates",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "acenrenewables.com"
+       ]
+      },
+      {
+       "date": "2024-12-04",
+       "minutes": null,
+       "subject": "Zycus Team Meeting (F2F)",
+       "recorded": true,
+       "transcript": false,
+       "buyer_domains": [
+        "acenrenewables.com"
+       ]
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2025-08-13",
+     "next_scheduled": null,
+     "total_all_time": 6,
+     "days_since_last": 330,
+     "with_transcript_all_time": 4
+    },
+    "competition": {
+     "summary": "Zycus was down-selected to the final two against SAP Ariba by June 2025. The live threat is not really SAP Ariba's product but the fee SAP charges to integrate a third-party tool alongside its own ERP, which the buyer has been actively negotiating directly with SAP since mid-2025. Coupa, GEP Worldwide and Ivalua appear only as early-stage Salesforce field entries with no supporting call evidence, ",
+     "competitors": [
+      {
+       "name": "SAP Ariba",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "In-house P2P system (status quo)",
+       "status": "do_nothing",
+       "threat": "high"
+      },
+      {
+       "name": "Coupa",
+       "status": "faded",
+       "threat": "dormant"
+      },
+      {
+       "name": "GEP Worldwide",
+       "status": "faded",
+       "threat": "dormant"
+      },
+      {
+       "name": "Ivalua",
+       "status": "faded",
+       "threat": "dormant"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is ",
+     "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resour",
+     "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is ",
+     "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison.",
+     "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope."
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 1,
+     "engagement_points_60d": 2.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 1,
+     "days_since_last_meeting": 330
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 2.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 22.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-initiated action in a year \u2014 exco has deferred repeatedly (Sep 2025, Jan 2026 push) with no released budget or approved re-scoped proposal.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Heavy earlier investment \u2014 buyer requested a full architecture walkthrough (Aug 2025) and revised commercials with new integration touchpoints (Sep 2025), showing real prior engagement.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Paper process stalled \u2014 MEDDPICC marks paper_process 'partial'; no re-scoped proposal has been delivered since the Oct 2025 request to trim scope. \u25ba Land the revised proposal Zee asked for before chasing another meeting.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion can't move budget \u2014 Zeeshan advocates internally but 'has not been able to convert that advocacy into released budget across three exco deferrals.'",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "1 buyer touch logged in the last 30 days \u2014 a small but real signal of continued interest amid the freeze.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 15.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "champion": {
+    "src": "Next-Step/narrative",
+    "value": "'champion' in Next-Step/narrative",
+    "present": true,
+    "age_days": 66
+   },
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'commercials' in Next-Step/narrative",
+    "present": true,
+    "age_days": 66
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cpo' in Next-Step/narrative",
+    "present": true,
+    "age_days": 66
+   },
+   "business_case": {
+    "src": "Next-Step/narrative",
+    "value": "'roi' in Next-Step/narrative",
+    "present": true,
+    "age_days": 66
+   }
+  },
+  "scope_change": {
+   "to": "Core S2P plus iRisk and Lythouse (ESG)",
+   "from": "Core S2P (iContract, iSupplier, eProcurement, eInvoicing)",
+   "detail": "ESG interest (Lythouse) surfaced as a follow-on ask after the 21 Feb 2025 demo ('interest in ESG module as well... Lythouse deck and demo request has been sent'), and iRisk's unlimited/no-extra-charge supplier risk scoring was clarified in the 6 May 2025 commercial call.",
+   "direction": "expanded"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "The buyer engaged directly with Zycus's GenAI chatbot/intake-management pitch and separately requested a follow-up on the ESG (Lythouse) module, driven partly by ADB funding compliance requirements, but has not voiced an AI-specific mandate beyond general interest."
+  },
+  "business_case": {
+   "status": "partial",
+   "evidence": "Scope and evaluation criteria are quantified and agreed (50% functional fit / 50% tech+ROI weighting, 7 Apr 2025; commercial detail clarified May 2025), but the business case has not converted into a released budget through three exco deferrals since Sep 2025, and the SAP secondary integration cost objection remains unresolved."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-06-03",
+     "change": "Confirmed shortlisted to the final two, against SAP Ariba"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "MSA and Order Form sent to Jeff De Sagun for preliminary legal review"
+    },
+    {
+     "date": "2025-09-22",
+     "change": "Exco postponed the Procurement Digitization project by a quarter minimum"
+    },
+    {
+     "date": "2025-10-30",
+     "change": "Exco decided to delay a further quarter"
+    },
+    {
+     "date": "2026-01-14",
+     "change": "Rep pushed for proposal submission at next exco meeting (end Jan target)"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "First confirmed two-way buyer contact in roughly ten months (incoming email reply)"
+    }
+   ],
+   "summary": "The deal reached Vendor Selected with real paper-process motion (MSA/OF to legal review) by August 2025, then stalled through three exco budget deferrals before a genuine buyer reply broke the silence this month."
+  },
+  "forecast_read": {
+   "math": "206 days to close (2027-01-31). Time-in-stage since Vendor Selected is difficult to pin exactly, but paper-process activity (MSA/OF sent for preliminary legal review) dates to 13 Aug 2025 (~11 months ago) with no confirmed advance since; three exco deferrals (22 Sep 2025, 30 Oct 2025, and an implied slip past the 14 Jan 2026 'end of Jan' target) have consumed most of the runway to date.",
+   "reason": "Best Case implies a probable near-term close, but the exco budget approval this deal is entirely dependent on has slipped three times since 22 Sep 2025 and the account went effectively dark for about ten months. The only supporting evidence right now is a two-day-old email reply (7 Jul 2026) of unknown content, with no confirmed exco date, no confirmed reference completion, and no confirmed legal/MSA status. That does not yet support Best Case.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRisk;Lythouse"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Jonathan Back",
+     "risk": "No direct Zycus engagement in over 16 months; access is entirely indirect via Zeeshan Pervez",
+     "role": "Economic Buyer",
+     "email": "jonathan.back@acenrenewables.com",
+     "title": "CFO and Chief Strategy Officer",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive (personally backing the project)",
+     "_matched_ai": true,
+     "last_contact_date": "2025-02-28"
+    },
+    {
+     "name": "Zeeshan Pervez",
+     "risk": "Single thread into exco; his internal advocacy has not yet converted into released budget across three deferrals",
+     "role": "Decision Maker",
+     "email": "zee.pervez@acenrenewables.com",
+     "title": "President ACEN Shared Services",
+     "_source": "sfdc_contact_role",
+     "sentiment": "historically strongly positive / champion-like, currently unconfirmed",
+     "_matched_ai": true,
+     "last_contact_date": "2026-07-07"
+    },
+    {
+     "name": "Jennelyn Nicolas",
+     "risk": "No recent contact logged since mid-2025",
+     "role": "Influencer",
+     "email": "jenn.nicolas@acenrenewables.com",
+     "title": "Senior Manager, Information Technology",
+     "_source": "sfdc_contact_role",
+     "sentiment": "engaged, working the SAP cost issue directly",
+     "_matched_ai": true,
+     "last_contact_date": "2025-07-16"
+    },
+    {
+     "name": "Mher Tolentino-Blas",
+     "risk": "No recent contact logged since mid-2025",
+     "role": "Influencer",
+     "email": "mher.tolentino-blas@acenrenewables.com",
+     "title": "Head of Procurement",
+     "_source": "sfdc_contact_role",
+     "sentiment": "engaged through demo, RFP scoring and proposal review",
+     "_matched_ai": true,
+     "last_contact_date": "2025-06-09"
+    },
+    {
+     "name": "Aaron Angeles",
+     "risk": "Present at early meetings; no recent evidenced engagement",
+     "role": "Influencer",
+     "email": "aaron.angeles@acenrenewables.com",
+     "title": "Senior Information Technology Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2024-12-04"
+    },
+    {
+     "name": "Jeff De Sagun",
+     "risk": "No contact logged since the Aug 2025 architecture walkthrough",
+     "role": "Evaluator",
+     "email": "jeff.desagun@acenrenewables.com",
+     "title": "Senior IT Application Specialist",
+     "_source": "sfdc_contact_role",
+     "sentiment": "most operationally active buyer contact, positive",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-13"
+    },
+    {
+     "name": "Eric Francia",
+     "risk": "Named as part of the 4-person decision group by Zeeshan Pervez, but no direct Zycus engagement has ever been evidenced",
+     "role": "Executive Sponsor",
+     "email": "eric.francia@acenrenewables.com",
+     "title": "President and CEO",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown",
+     "_matched_ai": true
+    },
+    {
+     "name": "Ryan Pertez",
+     "role": "Evaluator",
+     "email": "ryan.pertez@acenrenewables.com",
+     "title": "Manager IT",
+     "_source": "sfdc_contact_role"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2025-05-22",
+     "change": "carried",
+     "detail": "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is negotiating this cost directly with SAP (23 Jun 2025), and it has caused internal issues with final award timing (29 May 2025). If SAP's fee is too high or if Ariba bundles integration at no extra charge, this could tip the commercial decision to Ariba.",
+     "status": "open",
+     "category": "pricing",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "first_raised": "2025-05-22",
+     "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+    },
+    {
+     "date": "2025-09-22",
+     "change": "carried",
+     "detail": "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resource allocation are currently not feasible'). Zeeshan Pervez (champion and budget gatekeeper) must get exco approval within a specific budget envelope (14 Oct 2025 Next Step). If the commercial case (including SAP integration cost) does not fit the budget, the deal could stall or revert to do-nothing.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "first_raised": "2025-09-22",
+     "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+    },
+    {
+     "date": "2025-09-22",
+     "change": "carried",
+     "detail": "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is still unclear (13 Aug 2025 call: 'we don't know yet, Kurt'). Further delays could erode momentum or allow Ariba to gain ground.",
+     "status": "acknowledged",
+     "category": "timeline",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "first_raised": "2025-06-30",
+     "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+    },
+    {
+     "date": "2025-06-23",
+     "change": "carried",
+     "detail": "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison.",
+     "status": "unresolved",
+     "category": "pricing",
+     "first_seen": "2026-07-07T09:48:24.897639+05:30",
+     "first_raised": "2025-05-22",
+     "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+    },
+    {
+     "date": "2025-10-14",
+     "change": "carried",
+     "detail": "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope.",
+     "status": "unresolved",
+     "category": "budget",
+     "first_seen": "2026-07-07T09:48:24.897639+05:30",
+     "first_raised": "2025-09-22",
+     "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+    },
+    {
+     "date": "2025-10-30",
+     "change": "carried",
+     "detail": "Project has been postponed multiple times (delayed to Q1 2026 in Jun 2025, postponed a further quarter in Sep 2025, delayed again in Oct 2025); no confirmed exco date exists.",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-07T09:48:24.897639+05:30",
+     "first_raised": "2025-06-30",
+     "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "carried",
+     "detail": "Customer reference calls (BDO, SM) were requested and a list was to be prepared, but completion is unconfirmed.",
+     "status": "unresolved",
+     "category": "references",
+     "first_seen": "2026-07-07T09:48:24.897639+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "carried",
+     "detail": "MSA/Order Form was sent for preliminary legal review to expedite contracting, but redline/sign-off status is unconfirmed.",
+     "status": "unresolved",
+     "category": "legal",
+     "first_seen": "2026-07-07T09:48:24.897639+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+    },
+    {
+     "date": "2025-06-23",
+     "change": "updated",
+     "detail": "SAP's secondary integration/connection fee is a live, unresolved cost objection Zeeshan Pervez raised directly on 22 May 2025 that could tip the buyer's TCO comparison toward SAP Ariba if unresolved; Jeff De Sagun and Jennelyn Nicolas were negotiating this directly with SAP as of 23 Jun 2025 with no confirmed resolution logged since.",
+     "status": "open",
+     "category": "pricing",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-05-22",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-10-14",
+     "change": "carried",
+     "detail": "Project was not originally budgeted for 2025; exco approval has been postponed multiple times pending a workable budget envelope.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-02-28",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No confirmed direct engagement with the Sponsor tier (Zeeshan Pervez, Jonathan Back) in roughly ten months until the 7 Jul 2026 reply.",
+     "status": "reactivating, unconfirmed",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-09-05",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "carried",
+     "detail": "Customer reference calls (BDO, SM) requested 13 Aug 2025 with no confirmed completion logged since.",
+     "status": "open",
+     "category": "references",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "carried",
+     "detail": "MSA/Order Form sent for preliminary legal review 13 Aug 2025 with no confirmed redline or sign-off status since.",
+     "status": "open",
+     "category": "legal",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-09-22",
+     "change": "carried",
+     "detail": "Close target has slipped repeatedly: Q3 2025 push, delayed to Q1 2026 (30 Jun 2025), postponed a further quarter (22 Sep 2025), still no confirmed exco date as of the 4 May 2026 revival attempt.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T16:51:43.217721+05:30",
+     "first_raised": "2025-06-30",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-10-30",
+     "change": "new",
+     "detail": "ACEN's exco has deferred the Procurement Digitization budget three times (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 target) \u2014 the single live blocker to closing.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "first_raised": "2025-09-22",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "new",
+     "detail": "Customer reference calls (BDO and SM requested, same-industry preferred) were requested by Jeff De Sagun on 13 Aug 2025, with no confirmed completion in any later record.",
+     "status": "open/unconfirmed",
+     "category": "references",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-08-13",
+     "change": "new",
+     "detail": "MSA and Order Form were sent to Jeff De Sagun for preliminary legal review on 13 Aug 2025 to pre-empt delays, but no redline or sign-off status has been confirmed since.",
+     "status": "open/unconfirmed",
+     "category": "legal",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "first_raised": "2025-08-13",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-02-28",
+     "change": "new",
+     "detail": "No direct Zycus engagement with CFO Jonathan Back (Executive Sponsor) has been logged since the single 28 Feb 2025 call; all subsequent contact has routed solely through Zeeshan Pervez.",
+     "status": "ongoing gap",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "first_raised": "2025-02-28",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-10-30",
+     "change": "new",
+     "detail": "The project has been postponed multiple times (delayed to Q1 2026 per the 30 Jun 2025 note, postponed a further quarter on 22 Sep 2025, delayed again on 30 Oct 2025) with no confirmed exco presentation date ever logged.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "first_raised": "2025-06-30",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 8.0,
+   "win": 18.0,
+   "needed": true,
+   "source": "sweep",
+   "reasons": [
+    {
+     "to": "A budget-trimmed scope requested by Zeeshan Pervez on 14 Oct 2025 (~9 months ago) to fit an exco-approvable budget envelope; specifics of the revised scope are unconfirmed in the record.",
+     "act": false,
+     "from": "Full proposed S2P suite (iContract, iManage, iSupplier, eProcurement, eInvoicing, iRisk, Lythouse) per the original RFP proposal",
+     "type": "scope_shrink",
+     "as_of": "2026-07-09",
+     "detail": "Next_Step_History__c, 2025-10-14: \"Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3 - Carl to revise numbers and work with Zee 1:1 to optimize (likely reduce scope).\"",
+     "summary": "Scope shrinking vs prior \u2014 Next_Step_History__c, 2025-10-14: \"Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3 - Carl to revise numbers and work with Zee 1:1 to optimi. Buyer likely getting defensive on cost or implementation/integration (phased over big-bang) \u2014 watch.",
+     "severity": "medium"
+    }
+   ],
+   "summary": "Scope shrinking vs prior \u2014 Next_Step_History__c, 2025-10-14: \"Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3 - Carl to revise numbers and work with Zee 1:1 to",
+   "severity": "medium",
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "After roughly ten months of silence, the buyer's side replied by email on 7 Jul 2026 (two days ago), the first confirmed two-way contact since the budget freeze began.",
+    "tone": "pos"
+   },
+   {
+    "lens": "Commercials",
+    "text": "The buying committee's own exco has deferred the project's budget approval three times since September 2025 and still has no confirmed decision date.",
+    "tone": "crit"
+   },
+   {
+    "lens": "Competition",
+    "text": "SAP's fee to integrate Zycus alongside the buyer's SAP ERP remains an unresolved cost objection that could tip the decision toward SAP Ariba if it isn't closed out.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Commercials",
+    "text": "A revised commercial proposal the team committed to sending in September 2025 has no confirmed delivery on record, leaving the buyer without an updated number to bring to exco.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Next Step History 13 Feb 2025, 28 Feb 2025, 22 Sep 2025, 30 Oct 2025",
+   "at_risk": true,
+   "summary": "Zeeshan Pervez functions as the closest thing to a champion \u2014 advocating internally, confirming CFO alignment, and pushing his own team \u2014 but has not been able to convert that advocacy into released budget across three exco deferrals since Sep 2025, and went quiet for months until the 7 Jul 2026 reply.",
+   "champion": "Zeeshan Pervez",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "Multiple calls (13 Jan 2025 meeting invite referencing 'GCASH Success and next steps'; 27 Feb 2025: 'strong position here following sister company close') reference a related account's successful Zycus engagement as a credibility driver and internal momentum source. The specific sibling opportunity record was not independently confirmed in this sweep.",
+   "prior_opp": "",
+   "prior_closed_won": true
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Confirm a next meeting with Zeeshan Pervez off the 7 Jul 2026 reply and lock a date.",
+     "horizon": "next_7_days",
+     "trigger": "Buyer replied 7 Jul 2026 after roughly ten months of silence",
+     "trigger_date": "2026-07-07",
+     "expected_effect": "Re-establishes a live cadence and reveals whether the exco budget freeze has lifted."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Ask Jeff De Sagun for a status check on the Aug 2025 MSA/Order Form legal review.",
+     "horizon": "next_7_days",
+     "trigger": "MSA/OF sent for review 13 Aug 2025 with no confirmed status since",
+     "trigger_date": "2025-08-13",
+     "expected_effect": "Surfaces whether legal has already cleared the paper, shortening the path to signature once budget clears."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Send Zeeshan Pervez a documented TCO comparison that neutralizes the SAP secondary integration fee objection.",
+     "horizon": "next_14_days",
+     "trigger": "SAP integration fee cited as a live blocker since 22 May 2025",
+     "trigger_date": "2025-05-22",
+     "expected_effect": "Removes the one open commercial gap that could otherwise tip the decision to SAP Ariba."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Follow up with Jeff De Sagun to schedule the BDO and SM reference calls requested 13 Aug 2025.",
+     "horizon": "next_14_days",
+     "trigger": "Reference calls requested but never confirmed completed",
+     "trigger_date": "2025-08-13",
+     "expected_effect": "Clears an outstanding late-stage requirement before the buyer's next internal review."
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Deliver the revised commercial proposal that was committed to Zeeshan Pervez in September 2025 but never confirmed sent.",
+     "horizon": "next_14_days",
+     "trigger": "Revised commercials promised 11 Sep 2025, now overdue",
+     "trigger_date": "2025-09-11",
+     "expected_effect": "Gives the buyer a current number to carry into exco instead of a stale, pre-freeze proposal."
+    },
+    {
+     "rank": 6,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Get a confirmed exco/steering-committee presentation date from Zeeshan Pervez and Jeff De Sagun.",
+     "horizon": "next_30_days",
+     "trigger": "No exco date has ever been confirmed despite three deferrals",
+     "trigger_date": "2025-10-30",
+     "expected_effect": "Converts an open-ended stall into a dated milestone the deal can be forecast against."
+    },
+    {
+     "rank": 7,
+     "owner": "Executive connect",
+     "act_by": "2026-08-08",
+     "action": "Have the deal owner's manager or a Zycus executive reach out directly to CFO Jonathan Back to re-confirm sponsorship.",
+     "horizon": "next_30_days",
+     "trigger": "No direct CFO engagement logged since 28 Feb 2025",
+     "trigger_date": "2025-02-28",
+     "expected_effect": "Reopens the economic-buyer channel directly rather than relying solely on a single thread."
+    },
+    {
+     "rank": 8,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Re-confirm with Jennelyn Nicolas whether the SAP secondary integration cost negotiation (last active 23 Jun 2025) has reached a resolution.",
+     "horizon": "next_30_days",
+     "trigger": "SAP cost negotiation last confirmed active 23 Jun 2025",
+     "trigger_date": "2025-06-23",
+     "expected_effect": "Closes out a year-old open thread that directly affects the buyer's TCO decision."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Three exco budget deferrals since Sep 2025",
+    "Only one-way rep outreach Jan-May 2026",
+    "Buyer email reply 7 Jul 2026 breaks the pattern"
+   ],
+   "cooling": false,
+   "summary": "The account cooled hard from Sep 2025 through spring 2026 amid three exco deferrals, but a genuine two-way buyer reply on 7 Jul 2026 (2 days ago) is the first live signal in roughly ten months."
+  },
+  "north_star_verdict": {
+   "math": "Created 2024-10-08 (~21 months ago). Down-selected to top-2 finalist 2025-06-03; entered/held Vendor Selected since roughly mid-2025 (~13 months in stage). Two exco postponements logged 2025-09-22 and 2025-10-30. One verified two-way buyer reply on 2026-03-24 (105 days before this sweep); rep outreach logged 2026-03-16 and 2026-05-04, with a further rep touch flagged around 2026-07-09. Close date sits far out at 2027-01-31 (208 days), consistent with a rolled-forward placeholder date rather than a confirmed path. Best Case forecast is not supported by any confirmed near-term milestone.",
+   "verdict": "Slowing",
+   "critical": false,
+   "evidence": [
+    "ACEN confirmed Zycus shortlisted to a final two vendors (with SAP Ariba), 3 Jun 2025 (SF Next_Step_History__c)",
+    "President Zeeshan Pervez confirmed the project postponed at least a quarter for budget/resourcing reasons, 22 Sep 2025 (SF Next_Step_History__c)",
+    "Further exco delay confirmed, 30 Oct 2025 (SF Next_Step_History__c)",
+    "Verified buyer email reply, 24 Mar 2026 (server-computed pulse)",
+    "Carl reached out to Zee for lunch/Agentic AI meeting with Globe, 4 May 2026 (SF Next_Step_History__c)"
+   ],
+   "headline": "Down-selected to a final two against SAP Ariba by Jun 2025, but the deal has been frozen since ACEN's exco twice postponed the project for budget reasons (Sep and Oct 2025); re-engagement since Mar 2026 has been almost entirely rep-initiated.",
+   "trajectory": "weaker",
+   "prior_verdict": "Close Date Risk",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Pipeline (downgrade from Best Case until a re-scoped proposal and exco date are confirmed)"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Re-confirm the SAP integration-cost resolution and refresh the TCO comparison directly with Zee before the next exco cycle, since that unresolved fee is the lever most likely to tip the top-2 decision toward SAP Ariba (Next Step, 22 May-23 Jun 2025).",
+    "Convert the May 2026 Agentic AI/Globe angle into a concrete, budget-fit re-scoped proposal Zee can carry into exco, closing the loop Carl opened in Oct 2025 to trim scope and revise numbers.",
+    "Single-threaded reliance on Zeeshan Pervez for exco advancement \u2014 no evidence of direct Zycus engagement with Jonathan Back (CFO) or Eric Francia (CEO) in over a year; broaden the thread now that contact has resumed.",
+    "The deal has been effectively stalled for roughly ten months since the Sep 2025 postponement; without a dated re-engagement plan anchored to this week's reply, it risks reverting to the in-house P2P status quo or losing further ground to SAP Ariba.",
+    "Convert the 7 Jul 2026 buyer reply into a firm next meeting and a confirmed exco/steering-committee date \u2014 the account currently has no scheduled forward motion on record."
+   ],
+   "summary": "The deal's qualification depth is real; the gap is entirely in converting internal buyer advocacy into a released budget and closing the one open competitive cost objection."
+  },
+  "customer_preference": {
+   "level": "medium",
+   "evidence": "Zeeshan Pervez voiced a clear technical preference for Zycus in the 28 Feb 2025 call ('I've seen this product... I'll probably be more interested in '), citing prior Zycus experience and the intake-management/GenAI differentiator, but this is the last direct buyer-voiced preference statement on record (over 16 months old) and the content of the 7 Jul 2026 reply is not yet known, so this should not be read as a fresh, current preference signal."
+  },
+  "competitive_position": {
+   "summary": "Zycus was down-selected to the final two against SAP Ariba by June 2025. The live threat is not really SAP Ariba's product but the fee SAP charges to integrate a third-party tool alongside its own ERP, which the buyer has been actively negotiating directly with SAP since mid-2025. Coupa, GEP Worldwide and Ivalua appear only as early-stage Salesforce field entries with no supporting call evidence, consistent with elimination before the shortlist. The in-house P2P status quo (do-nothing) is arguably the deal's biggest ongoing threat given the repeated exco deferrals.",
+   "competitors": [
+    {
+     "date": "2025-05-22",
+     "name": "SAP Ariba",
+     "quote": "He is yet to see the evaluation summary and commercials from Mehr... over SAP secondary integration cost which is significant.",
+     "change": "updated",
+     "source": "Next Step History",
+     "status": "active",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "how_we_win": "Deliver a documented TCO comparison that neutralizes SAP's integration-fee argument and reinforces Zycus's GenAI/intake-management lead cited in the Feb 2025 demos.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-09-22",
+     "name": "In-house P2P system (status quo)",
+     "quote": "Change of the procurement system... is actually not part of our budget for the year 2025... we never intended to change the procurement system in the year 2025.",
+     "change": "carried",
+     "source": "Avoma call 2025-02-28 (Zeeshan Pervez)",
+     "status": "do_nothing",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "how_we_win": "Use the just-resumed contact to re-anchor a dated decision milestone before the repeated postponements harden into permanent inertia; quantify the cost of continuing to run 70% of spend manually outside the system.",
+     "threat_level": "high",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-06-03",
+     "name": "Coupa",
+     "quote": "",
+     "change": "carried",
+     "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "how_we_win": "No live evidence of active competition; monitor only.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2026-07-09T16:51:43.217721+05:30",
+     "name": "GEP Worldwide",
+     "quote": "",
+     "change": "carried",
+     "source": "SFDC Competitors__c field",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "how_we_win": "No recent evidence of active consideration; not referenced after the top-two down-select.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+    },
+    {
+     "date": "2025-06-03",
+     "name": "Ivalua",
+     "quote": "",
+     "change": "carried",
+     "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T06:17:30.585694+05:30",
+     "how_we_win": "No live evidence of active competition; monitor only.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    },
+    {
+     "date": "2025-06-03",
+     "name": "GEP",
+     "quote": "",
+     "change": "new",
+     "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-09T19:09:42.561878+05:30",
+     "how_we_win": "No live evidence of active competition; monitor only.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "ACEN S2P built a genuinely deep, CFO-backed case through mid-2025 (MSA/Order Form already with the buyer's legal reviewer, shortlisted to the final two against SAP Ariba, onsite POC completed), but the exco budget release it has always depended on slipped three times from September 2025 onward, leaving the account effectively dark until a real buyer reply landed two days ago.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Budget/exco approval is the single blocking dependency \u2014 Zeeshan Pervez needs exco sign-off within a workable budget envelope and has not secured it after three deferrals (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 target).",
+      "tone": "warn"
+     },
+     {
+      "text": "The SAP secondary integration fee is a live, unresolved cost objection (raised 22 May 2025, being negotiated directly with SAP by Jeff De Sagun and Jennelyn Nicolas as of 23 Jun 2025) that could tip the buyer's TCO math toward SAP Ariba if it stays open.",
+      "tone": "warn"
+     },
+     {
+      "text": "Customer references (BDO/SM) requested 13 Aug 2025 and the revised commercial proposal committed to on 11 Sep 2025 both have no confirmed completion on record, leaving open MEDDPICC gaps heading into any final decision.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Deep qualification history \u2014 a strong face-to-face with the extended management team on 13 Feb 2025, CFO Jonathan Back personally backing the project on 28 Feb 2025 ('why haven't we moved this'), and the MSA/Order Form already sent for preliminary legal review on 13 Aug 2025.",
+      "tone": "good"
+     },
+     {
+      "text": "Shortlisted to the final two against SAP Ariba (confirmed 3 Jun 2025) on a favorable, buyer-defined criteria split (50% functional fit / 50% tech+ROI, set 7 Apr 2025).",
+      "tone": "good"
+     },
+     {
+      "text": "But the deal sat effectively frozen for most of a year: exco postponed the initiative a quarter on 22 Sep 2025 and again on 30 Oct 2025, and the only Next Step activity between Jan 2026 and Jul 2026 was one-way rep outreach (16 Mar 2026, 4 May 2026) with no logged buyer response until 7 Jul 2026.",
+      "tone": "warn"
+     },
+     {
+      "text": "No direct engagement with the economic sponsor, CFO Jonathan Back, has been logged since the single 28 Feb 2025 call \u2014 over 16 months without another confirmed touch at that level.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "The account was essentially dark from the Sep 2025 postponement through spring 2026: an intro email on 16 Mar 2026 and a lunch/Agentic-AI outreach on 4 May 2026 both went unanswered in the record.",
+      "tone": "warn"
+     },
+     {
+      "text": "The one live signal: the buyer replied by email on 7 Jul 2026 (two days ago), the first confirmed two-way contact in roughly ten months, and the rep followed up again today, 9 Jul 2026.",
+      "tone": "good"
+     },
+     {
+      "text": "Momentum has not yet been rebuilt beyond that single reply \u2014 no new meeting, no confirmed exco date, and no resolution of the SAP integration-cost objection is on record.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Zeeshan Pervez has repeatedly told Zycus his leadership team is aligned (28 Feb 2025: 'you've already got two people kind of aligned on this') and has personally advocated internally.",
+      "tone": "good"
+     },
+     {
+      "text": "That advocacy has not converted into a released budget across three deferrals, and the customer reference calls (BDO, SM) Jeff De Sagun requested on 13 Aug 2025 have no confirmed completion since.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2025-08-13",
+     "quote": "If we have the same industry at least different options... BDO is really good for complex... SM is good but it's not your industry.",
+     "said_by": "Jeff De Sagun",
+     "addressed": false,
+     "requirement": "Provide customer references (BDO and SM requested, same-industry preferred)"
+    },
+    {
+     "date": "2025-08-13",
+     "quote": "Before the end of this month, we should have it.",
+     "said_by": "Jeff De Sagun",
+     "addressed": false,
+     "requirement": "Complete process mapping session (IT, procurement, finance) to align RFP requirements with S2P-to-SAP architecture"
+    },
+    {
+     "date": "2025-07-28",
+     "quote": "Detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.",
+     "said_by": "Jeff De Sagun",
+     "addressed": true,
+     "requirement": "Detailed walkthrough of the full system architecture, from supplier processes through the S2P application layer to the SAP ERP"
+    },
+    {
+     "date": "2025-05-22",
+     "quote": "He shared a concerned over SAP secondary integration cost which is significant.",
+     "said_by": "Zeeshan Pervez",
+     "addressed": false,
+     "requirement": "Resolve/clarify the SAP secondary integration cost concern"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2025-09-18",
+      "who": "Zycus",
+      "date": "2025-09-11",
+      "source": "Next Step History 11 Sep 2025",
+      "status": "overdue",
+      "group_key": "budget_commercials_optimizing",
+      "commitment": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+      "deliverable": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+      "grounding_quote": "Carl has agreed to send revised commercials to Zee which we will prepare and send by next week.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2025-08-31",
+      "who": "Buyer",
+      "date": "2025-08-13",
+      "source": "Avoma 13 Aug 2025 (Jeff: complete assessment by end of month)",
+      "status": "overdue",
+      "group_key": "assessment_committee_exco",
+      "commitment": "Complete internal assessment/scoring exercise and present to the IT steering committee (exco)",
+      "deliverable": "Complete internal assessment/scoring exercise and present to the IT steering committee (exco)",
+      "grounding_quote": "Those cards are the supporting documents that we are going to present in the steering committee.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Buyer",
+      "date": "2025-06-23",
+      "source": "Next Step History 23 Jun 2025",
+      "status": "open",
+      "group_key": "cost_directly_impact",
+      "commitment": "Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)",
+      "deliverable": "Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)",
+      "grounding_quote": "Jeff and Jenn are negotiating with SAP for the secondary cost. meeting them in Manila on 25th June.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2025-10-14",
+      "source": "Next Step History 14 Oct 2025",
+      "status": "overdue",
+      "group_key": "approval_budget_envelope",
+      "commitment": "Secure exco approval within a workable budget envelope",
+      "deliverable": "Secure exco approval within a workable budget envelope",
+      "grounding_quote": "Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3.",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "moderate",
+   "summary": "Zycus pitched Merlin AI/GenAI capabilities (a claimed 12-18 month lead in intake management) and the Lythouse ESG module across the Feb 2025 demos, and the buyer engaged directly with both, but no AI-specific ROI case has been built into the final proposal or reference materials.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2025-05-22",
+     "quote": "He shared a concerned over SAP secondary integration cost which is significant.",
+     "source": "Next Step History",
+     "position": "exposed",
+     "criterion": "SAP secondary integration cost"
+    },
+    {
+     "date": "2025-02-28",
+     "quote": "We've never had a security breach in our history, 25 years... we work with data centers like AWS.",
+     "source": "Avoma call transcript",
+     "position": "aligned",
+     "criterion": "Data security / GenAI risk"
+    },
+    {
+     "date": "2025-02-28",
+     "quote": "This is something I need I really need a solution for... my CFO is going to be very laser sharp on that particular thing.",
+     "source": "Avoma call transcript",
+     "position": "partially aligned",
+     "criterion": "Non-PO 'Request for Payment' module (70% of spend)"
+    }
+   ],
+   "summary": "Zycus is broadly aligned on security and product flexibility, exposed on the SAP integration cost, and only partially resolved on the buyer's non-standard 'Request for Payment' module for non-PO spend."
+  }
+ },
+ "hard": {
+  "stage": "Vendor Selected",
+  "amount": 245000.0,
+  "opp_id": "006P700000DkWgXIAV",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000DkWgXIAV/view",
+  "opp_name": "ACEN S2P",
+  "owner_id": "0056700000D50r3AAB",
+  "products": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRisk;Lythouse",
+  "ais_score": null,
+  "next_step": "50% Probability4th May- reached out to Zee fr lunch and meeting with Globe about Agentic AI16th Mar - Sent an intro mail and requesting for a revival meeting.14th Jan Push Zee now for submission of our proposal in next exco meeting end Jan30th Oct Zee has advised management (exco) have decided to delay for 1 quarter27th Oct Revised proposal- to meet Zee week of 12th Nov14th Oct Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3- Carl to revise numbersand work with Zee 1:1 to optimize (likely reduce scope)\u00a022nd Sept: President Zee has confirmed that due to ongoing challenges with other initiatives, the Procurement Digitization project will be postponed by a quarter minimum. Budget creation and resource allocation are currently not feasible but he will look into it at earliest possible.\nThey plan to reconnect in January 2026 to revisit the initiative. In the meantime, we will maintain a warm engagement, given the significant groundwork already completed, so we can seamlessly resume when the timing is right. The prospect is still interested in Zycus.\n11th Sept: Carl has agreed to send revised commercials to Zee which we will prepare and send by next week.\u00a08th Sept: Acen requested for revised proposal which includes recently discussed integration touch points which we will send it by EOD.1st Sep Carl meeting Zee (CPO) 5th Sept to push for close- and remove blockers for Q2 close26th Aug: Our team is preparing for 4th SAept meeting, no other update from Acen side.18th Aug: Architecture Walkthrough meeting is scheduled on 4th Sept.13th Aug: Jeff arranged quick clarification meeting for us to set the expectation for a meeting to discuss &quot;Detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.&quot;12th Aug: Since Jenn is on leave till 14th Aug, meeting is postponed to new date. Jeff will confirm new schedule soon.8th Aug: Meeting scheduled for 13th Aug.31st July: Requested for a clarification meeting with our presales. Awaiting for Acen&#39;s availability.28th July: Acen has requested for a detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.16th July: In the meeting with Jenn, she concluded that she will get back to us after reviewing SAP scenarios and cost associated with it.14th July: Jenn has set up a meeting to discuss SAP secondary cost on 15th July. Jeff is still chasing for ref call with SM.\u00a030th June: Project has been delayed to Q1,2026.Onsite meeting with Acen team and President is scheduled for 9th July.23rd June: Jeff and Jenn are negotiating with SAP for the secondary cost. meeting them in Manila on 25th June.18th June: Acen is working on the user count and requested a session on 23rd to help them preparing exco presentations. We need to work on competitive analysis for Ariba.9th June: We have a meeting today with CIP,CPO today to discuss revisions in the proposal and clarifications they have requested.3rd June: Acen has confirmed that Zycus is shortlisted as top 2. (Other one is SAP-Ariba). Acen has requested for a isaas advance clarification session to plan internal resource planning and secondary cost from SAP Middleware.2nd June: Acen responded with comments on our proposal and few additional queries related to commercials. Response expected by 6th June. Invoice page limit can be a blocker.29th May The SAP blocker has caused some internal issues with final award timing- Carl to try and find a way to work around this slow down26th May Arranging call for Carl and Zee to talk through how Zycus can better assist in TCO (if in fact SAP are playing this low integrity card of charging a fee to integrate Zycus)22nd May: Had a call with President - Zee who shared a concerned over SAP secondary integration cost which is significant. He is yet to see the evaluation summary and commercials from Mehr.19th May: Mehr mentioned that they havent finished compiling responses from all the vendors.12th May: Jenn (CIO) and Mehr (CPO) are discussing the revisions they need in user count. We have another round of clarification on 14th May.7th May: We had a first round proposal clarification. Acen is discussing internally the revisions they need in the proposal from our end.Expecting next clarification meeting in the week of 12th May.5th May: Having a meeting with Zee this week, he is yet to confirm the time. RFP Committee has acknowledged the proposal and requested for a week to review it before any meeting or discussion.28th April- Final proposal2 sending today- commercials and contract discussions planned for week of 5th May5th April: Jeff extended the RFP response submission timeline to 30th April. Proposal is ready to be submitted from our side.21st April: Progressing on RFP response with help of Carl,AKshay and Tanvi. To be submitted on 24th April.14th April: Working on proposal preparation which is due on 24th April. POC helped us in getting better clarity of their requirements and expectations.11th April: Successfully delivered the onsite POC in presence of Jenn (CIO) and Mehr(CPO).8th April: Secured a face to face meeting for Carl and I to meet CPO Mehr and President along with CIO on 11th April.7th April: Acen CIO Jenn had responded with selection criteria table as a response to my request. Weightage is 50% for functional fit and 50% for tech capabilities and ROI. Working with Carl on winning strategy.4th April: Requested Shravan for a data migration partner which we need for this project. Working with presales on POC demo31st Mar - Closed plan attached.28th March - We have submitted the clarifications questions for RFP and POC preparation.14th Mar- Acen has invited us for participating in S2P RFP. More details will be added in the notes.10th Mar- Zee, Jonathan,Carl and Madhuri dinner meeting is set for 17th Mar6th Mar- Zee requested our RFP template which he can ask his team to use without telling its coming from Zycus.27th Feb: Carl, Zee and Madhuri spoke regarding fastening the vendor selection process, Zee, his boss (CFO - Jonnathan Back) are backing Zycus. Zee will speak to team to get the vendor selection done by April end.21st Feb: Demo was interactive, CIO and CPO were clarifying functional and process related queries.Interest in ESG module as well. Lythouse deck and demo request has been sent. 18th Feb: we have scheduled a demo on 21st Feb for Acen CPO,CIO and key stakeholders to understand Zycus product better before they initiate RFI.13th Feb strong F2F meeting with CPO (is Zycus champion) will move forward with project now- met with extended management team, finance, procurement, IT- strong position here following sister company close (CGash)3rd Feb: Acen CPO Jenn is taking help in coaching her team regarding IMPL with HANA, phasewise impl approach, tender template etc.24th Jan: Both Acen President and CPO have tentatively accepted Horizon invitation. To be confirmed on 5th Feb meeting with Carl and Madhuri.21st Jan: As per Jenn, there is a slight delay in RFP roll out. She is pushing it for mid feb.20th Jan: CPO meeting has been reschduled to 5th Feb since CPO also wanted to include other BU stakeholders.13th Jan: Acen President and CPO has sent invite to Carl and I for a meeting on 22nd Jan for discussing GCASH Success and next steps.16th Dec: Madhuri and Jeff had a call and he confirmed to release RFP in Jan&#39;25.4th Dec: Madhuri met Acen President, CPO, IT Head at their office. They are favouring Zycus as they have heard great things about Zycus from Delta air friends and from ABoitiz power. As part of the process, they will issue an RFP in Feb,256th Nov: IT and Procurement team from Acen is actively engaging with us. Detailed demo was done today and follow up clarification session is scheduled for 11th Nov.25th OCt: To sign the NDA and get Pain-points, requirements and process information from them.",
+  "ais_status": null,
+  "close_date": "2027-01-31",
+  "competitor": "Coupa;GEP Worldwide;iValua;SAP Ariba",
+  "owner_name": "Carl Kimball",
+  "owner_title": "",
+  "account_name": "ACEN",
+  "created_date": "2024-10-08",
+  "manager_name": "Shekhar Varma",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 206,
+  "dm_identified": true,
+  "eb_identified": true,
+  "qualified_date": "2024-10-10",
+  "billing_country": "Philippines",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "Energy/Renewables",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Best Case",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-07",
+  "last_modified_date": "2026-05-12",
+  "metrics_identified": true,
+  "primary_competitor": "SAP Ariba",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-07-07",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Vendor Selected",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 2 day(s) ago (2026-07-07). Buyer EMAIL RECEIVED 2 day(s) ago (2026-07-07) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement. Rep outreach 2026-07-09 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 4,
+  "close_date": "2027-01-31",
+  "rep_outreach": {
+   "date": "2026-07-09",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "50% Probability4th May- reached out to Zee fr lunch and meeting with Globe about Agentic AI16th Mar - Sent an intro mail and requesting for a revival meeting.14th Jan Push Zee now for submission of our proposal in next exco meeting end Jan30th Oct Zee has advised management (exco) have decided to de",
+   "detected": true
+  },
+  "days_to_close": 206,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Best Case",
+  "days_since_inbound": 2,
+  "last_activity_date": "2026-07-07",
+  "days_since_activity": 2,
+  "next_scheduled_date": null,
+  "days_since_qualified": 637,
+  "last_inbound_email_date": "2026-07-07"
+ },
+ "deltas": [
+  {
+   "key": "hygiene:re-engage-cfo-jonathan-back-directly-rather-than-relying-sol",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Re-engage CFO Jonathan Back directly rather than relying solely on Zeeshan Pervez as the single thread into exco \u2014 no direct Zycus contact with him has been logged in over 16 months despite his confirmed backing."
+  },
+  {
+   "to": "Detailed walkthrough of the full system architecture, from supplier processes through the S2P application layer to the SAP ERP",
+   "key": "requirement:detailed-walkthrough-of-the-full-system-architecture-from-su",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Jeff De Sagun",
+   "subject": "Detailed walkthrough of the full system architecture, from supplier processes through the S2P application layer to the SAP ERP"
+  },
+  {
+   "to": "Resolve/clarify the SAP secondary integration cost concern",
+   "key": "requirement:resolve-clarify-the-sap-secondary-integration-cost-concern",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Zeeshan Pervez",
+   "subject": "Resolve/clarify the SAP secondary integration cost concern"
+  },
+  {
+   "to": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun - open",
+   "key": "commitment:zycus-prepare-and-send-a-curated-list-of-customer-reference-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun - no due date",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun"
+  },
+  {
+   "to": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget - overdue",
+   "key": "commitment:zycus-send-revised-commercials-to-zeeshan-pervez-after-optim",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send revised commercials to Zeeshan Pervez after optimizing scope and budget"
+  },
+  {
+   "to": "Complete internal assessment/scoring exercise and present to the IT steering committee (exco) - overdue",
+   "key": "commitment:buyer-complete-internal-assessment-scoring-exercise-and-pres",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Complete internal assessment/scoring exercise and present to the IT steering committee - no due date",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete internal assessment/scoring exercise and present to the IT steering committee"
+  },
+  {
+   "to": "Zeeshan Pervez - Decision Maker",
+   "key": "stakeholder:zeeshan-pervez",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Zeeshan Pervez - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeeshan Pervez"
+  },
+  {
+   "to": "Jonathan Back - Economic Buyer",
+   "key": "stakeholder:jonathan-back",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Jonathan Back - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jonathan Back"
+  },
+  {
+   "to": "Jennelyn Nicolas - Influencer",
+   "key": "stakeholder:jennelyn-nicolas",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Jennelyn Nicolas - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jennelyn Nicolas"
+  },
+  {
+   "to": "Mher Tolentino-Blas - Influencer",
+   "key": "stakeholder:mher-tolentino-blas",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Mher Tolentino-Blas - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mher Tolentino-Blas"
+  },
+  {
+   "to": "Jeff De Sagun - Evaluator",
+   "key": "stakeholder:jeff-de-sagun",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Jeff De Sagun - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeff De Sagun"
+  },
+  {
+   "to": "Eric Francia - Executive Sponsor",
+   "key": "stakeholder:eric-francia",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Eric Francia - Executive Sponsor",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Eric Francia"
+  },
+  {
+   "to": "Aaron Angeles - Influencer",
+   "key": "stakeholder:aaron-angeles",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Aaron Angeles"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "SAP Ariba - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "GEP - faded",
+   "key": "competitor:gep",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP"
+  },
+  {
+   "to": "In-house P2P system (status quo / do-nothing) - do_nothing",
+   "key": "competitor:in-house-p2p-system-status-quo-do-nothing",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "In-house P2P system (status quo / do-nothing) - do_nothing",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "In-house P2P system (status quo / do-nothing)"
+  },
+  {
+   "to": "ACEN's exco has deferred the Procurement Digitization budget three times (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 targe",
+   "key": "risk:acen-s-exco-has-deferred-the-procurement-digitization-budget",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "ACEN's exco has deferred the Procurement Digitization budget three times (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 target) \u2014 the single live blocker to closing."
+  },
+  {
+   "to": "SAP's secondary integration/connection fee is a live, unresolved cost objection Zeeshan Pervez raised directly on 22 May 2025 that could tip the buyer's TCO com",
+   "key": "risk:sap-s-secondary-integration-connection-fee-is-a-live-unresol",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem. - open, unconfirmed ",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem."
+  },
+  {
+   "to": "Customer reference calls (BDO and SM requested, same-industry preferred) were requested by Jeff De Sagun on 13 Aug 2025, with no confirmed completion in any lat",
+   "key": "risk:customer-reference-calls-bdo-and-sm-requested-same-industry-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Customer reference calls (BDO and SM requested, same-industry preferred) were requested by Jeff De Sagun on 13 Aug 2025, with no confirmed completion in any later record."
+  },
+  {
+   "to": "MSA and Order Form were sent to Jeff De Sagun for preliminary legal review on 13 Aug 2025 to pre-empt delays, but no redline or sign-off status has been confirm",
+   "key": "risk:msa-and-order-form-were-sent-to-jeff-de-sagun-for-preliminar",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "MSA and Order Form were sent to Jeff De Sagun for preliminary legal review on 13 Aug 2025 to pre-empt delays, but no redline or sign-off status has been confirmed since."
+  },
+  {
+   "to": "No direct Zycus engagement with CFO Jonathan Back (Executive Sponsor) has been logged since the single 28 Feb 2025 call; all subsequent contact has routed solel",
+   "key": "risk:no-direct-zycus-engagement-with-cfo-jonathan-back-executive-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No direct Zycus engagement with CFO Jonathan Back (Executive Sponsor) has been logged since the single 28 Feb 2025 call; all subsequent contact has routed solely through Zeeshan Pervez."
+  },
+  {
+   "to": "The project has been postponed multiple times (delayed to Q1 2026 per the 30 Jun 2025 note, postponed a further quarter on 22 Sep 2025, delayed again on 30 Oct ",
+   "key": "risk:the-project-has-been-postponed-multiple-times-delayed-to-q1-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The project has been postponed multiple times (delayed to Q1 2026 per the 30 Jun 2025 note, postponed a further quarter on 22 Sep 2025, delayed again on 30 Oct 2025) with no confirmed exco presentation date ever logged."
+  },
+  {
+   "to": "Re-engage CFO Jonathan Back directly rather than relying solely on Zeeshan Pervez as the single thread into exco \u2014 no direct Zycus contact with him has been log",
+   "key": "hygiene:re-engage-cfo-jonathan-back-directly-rather-than-relying-sol",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage CFO Jonathan Back directly rather than relying solely on Zeeshan Pervez as the single thread into exco \u2014 no direct Zycus contact with him has been logged in over 16 months despite his confirmed backing."
+  },
+  {
+   "to": "Close out the SAP secondary integration cost objection with a documented TCO comparison before the buyer's next internal review; it is the one live lever compet",
+   "key": "hygiene:close-out-the-sap-secondary-integration-cost-objection-with-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close out the SAP secondary integration cost objection with a documented TCO comparison before the buyer's next internal review; it is the one live lever competing against SAP Ariba."
+  },
+  {
+   "to": "Convert the 7 Jul 2026 buyer reply into a firm next meeting and a confirmed exco/steering-committee date \u2014 the account currently has no scheduled forward motion",
+   "key": "hygiene:convert-the-7-jul-2026-buyer-reply-into-a-firm-next-meeting-",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Convert the 7 Jul 2026 buyer reply into a firm next meeting and a confirmed exco/steering-committee date \u2014 the account currently has no scheduled forward motion on record."
+  },
+  {
+   "to": "Zeeshan Pervez - developing",
+   "key": "champion:champion",
+   "date": "2026-07-09T19:09:42.561878+05:30",
+   "from": "Mher Tolentino-Blas - weak",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Send MSA and Order Form to Jeff De Sagun for preliminary legal review - no due date",
+   "key": "commitment:zycus-send-msa-and-order-form-to-jeff-de-sagun-for-prelimina",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send MSA and Order Form to Jeff De Sagun for preliminary legal review"
+  },
+  {
+   "to": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun - no due date",
+   "key": "commitment:zycus-prepare-and-send-a-curated-list-of-customer-reference-",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun"
+  },
+  {
+   "to": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget - overdue",
+   "key": "commitment:zycus-send-revised-commercials-to-zeeshan-pervez-after-optim",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send revised commercials to Zeeshan Pervez after optimizing scope and budget"
+  },
+  {
+   "to": "Complete internal assessment/scoring exercise and present to the IT steering committee - no due date",
+   "key": "commitment:buyer-complete-internal-assessment-scoring-exercise-and-pres",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete internal assessment/scoring exercise and present to the IT steering committee"
+  },
+  {
+   "to": "Resolve the SAP secondary integration cost (negotiate with SAP or confirm total cost impact) - open",
+   "key": "commitment:buyer-resolve-the-sap-secondary-integration-cost-negotiate-w",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Resolve the SAP secondary integration cost (negotiate with SAP or confirm total cost impact)"
+  },
+  {
+   "to": "Secure exco approval within a workable budget envelope - overdue",
+   "key": "commitment:buyer-secure-exco-approval-within-a-workable-budget-envelope",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Secure exco approval within a workable budget envelope"
+  },
+  {
+   "to": "Zeeshan Pervez - Decision Maker",
+   "key": "stakeholder:zeeshan-pervez",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Zeeshan Pervez - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeeshan Pervez"
+  },
+  {
+   "to": "Jonathan Back - Economic Buyer",
+   "key": "stakeholder:jonathan-back",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Jonathan Back - Executive Sponsor",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jonathan Back"
+  },
+  {
+   "to": "Mher Tolentino-Blas - Champion",
+   "key": "stakeholder:mher-tolentino-blas",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Mher Tolentino-Blas - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mher Tolentino-Blas"
+  },
+  {
+   "to": "Jennelyn Nicolas - Influencer",
+   "key": "stakeholder:jennelyn-nicolas",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Jennelyn Nicolas - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jennelyn Nicolas"
+  },
+  {
+   "to": "Jeff De Sagun - Influencer",
+   "key": "stakeholder:jeff-de-sagun",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Jeff De Sagun - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeff De Sagun"
+  },
+  {
+   "to": "Eric Francia - Executive Sponsor",
+   "key": "stakeholder:eric-francia",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "Eric Francia - Executive Sponsor",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Eric Francia"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "SAP Ariba - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "In-house P2P system (status quo) - do_nothing",
+   "key": "competitor:in-house-p2p-system-status-quo",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "from": "In-house P2P system (status quo) - do_nothing",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "In-house P2P system (status quo)"
+  },
+  {
+   "to": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem. - open, unconfirmed ",
+   "key": "risk:sap-s-secondary-integration-connection-fee-is-a-live-unresol",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem."
+  },
+  {
+   "to": "Project was not originally budgeted for 2025; exco approval has been postponed multiple times pending a workable budget envelope. - open",
+   "key": "risk:project-was-not-originally-budgeted-for-2025-exco-approval-h",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Project was not originally budgeted for 2025; exco approval has been postponed multiple times pending a workable budget envelope."
+  },
+  {
+   "to": "No confirmed direct engagement with the Economic Buyer/Sponsor tier (Zeeshan Pervez, Jonathan Back) in roughly ten months until the 7 Jul 2026 reply. - reactiva",
+   "key": "risk:no-confirmed-direct-engagement-with-the-economic-buyer-spons",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No confirmed direct engagement with the Economic Buyer/Sponsor tier (Zeeshan Pervez, Jonathan Back) in roughly ten months until the 7 Jul 2026 reply."
+  },
+  {
+   "to": "Customer reference calls (BDO, SM) requested 13 Aug 2025 with no confirmed completion logged since. - open",
+   "key": "risk:customer-reference-calls-bdo-sm-requested-13-aug-2025-with-n",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Customer reference calls (BDO, SM) requested 13 Aug 2025 with no confirmed completion logged since."
+  },
+  {
+   "to": "MSA/Order Form sent for preliminary legal review 13 Aug 2025 with no confirmed redline or sign-off status since. - open",
+   "key": "risk:msa-order-form-sent-for-preliminary-legal-review-13-aug-2025",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "MSA/Order Form sent for preliminary legal review 13 Aug 2025 with no confirmed redline or sign-off status since."
+  },
+  {
+   "to": "Close target has slipped repeatedly: Q3 2025 push, delayed to Q1 2026 (30 Jun 2025), postponed a further quarter (22 Sep 2025), still no confirmed exco date as ",
+   "key": "risk:close-target-has-slipped-repeatedly-q3-2025-push-delayed-to-",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close target has slipped repeatedly: Q3 2025 push, delayed to Q1 2026 (30 Jun 2025), postponed a further quarter (22 Sep 2025), still no confirmed exco date as of the 4 May 2026 revival attempt."
+  },
+  {
+   "to": "Single-threaded reliance on Zeeshan Pervez for exco advancement \u2014 no evidence of direct Zycus engagement with Jonathan Back (CFO) or Eric Francia (CEO) in over ",
+   "key": "hygiene:single-threaded-reliance-on-zeeshan-pervez-for-exco-advancem",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded reliance on Zeeshan Pervez for exco advancement \u2014 no evidence of direct Zycus engagement with Jonathan Back (CFO) or Eric Francia (CEO) in over a year; broaden the thread now that contact has resumed."
+  },
+  {
+   "to": "The deal has been effectively stalled for roughly ten months since the Sep 2025 postponement; without a dated re-engagement plan anchored to this week's reply, ",
+   "key": "hygiene:the-deal-has-been-effectively-stalled-for-roughly-ten-months",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The deal has been effectively stalled for roughly ten months since the Sep 2025 postponement; without a dated re-engagement plan anchored to this week's reply, it risks reverting to the in-house P2P status quo or losing further ground to SAP Ariba."
+  },
+  {
+   "to": "The SAP secondary integration cost objection was never confirmed resolved \u2014 quantify and counter it directly during re-engagement, since it remains the single m",
+   "key": "hygiene:the-sap-secondary-integration-cost-objection-was-never-confi",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The SAP secondary integration cost objection was never confirmed resolved \u2014 quantify and counter it directly during re-engagement, since it remains the single most concrete lever SAP Ariba has."
+  },
+  {
+   "to": "Mher Tolentino-Blas - weak",
+   "key": "champion:champion",
+   "date": "2026-07-09T16:51:43.217721+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Zeeshan Pervez - Economic Buyer",
+   "key": "stakeholder:zeeshan-pervez",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Zeeshan Pervez - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeeshan Pervez"
+  },
+  {
+   "to": "Jonathan Back - Executive Sponsor",
+   "key": "stakeholder:jonathan-back",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Jonathan Back - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jonathan Back"
+  },
+  {
+   "to": "Mher Tolentino-Blas - Champion",
+   "key": "stakeholder:mher-tolentino-blas",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Mher Tolentino-Blas - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mher Tolentino-Blas"
+  },
+  {
+   "to": "Jennelyn Nicolas - Coach",
+   "key": "stakeholder:jennelyn-nicolas",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Jennelyn Nicolas - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jennelyn Nicolas"
+  },
+  {
+   "to": "Jeff De Sagun - Influencer",
+   "key": "stakeholder:jeff-de-sagun",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Jeff De Sagun - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeff De Sagun"
+  },
+  {
+   "to": "Eric Francia - Executive Sponsor",
+   "key": "stakeholder:eric-francia",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "Eric Francia - Executive Sponsor",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Eric Francia"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "from": "SAP Ariba - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "In-house P2P system (status quo / do-nothing) - do_nothing",
+   "key": "competitor:in-house-p2p-system-status-quo-do-nothing",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "In-house P2P system (status quo / do-nothing)"
+  },
+  {
+   "to": "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison. - unresolved",
+   "key": "risk:sap-s-secondary-integration-fee-for-connecting-to-ariba-is-a",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison."
+  },
+  {
+   "to": "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope. - unresolved",
+   "key": "risk:project-remains-stalled-pending-acen-exco-budget-approval-no",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope."
+  },
+  {
+   "to": "Project has been postponed multiple times (delayed to Q1 2026 in Jun 2025, postponed a further quarter in Sep 2025, delayed again in Oct 2025); no confirmed exc",
+   "key": "risk:project-has-been-postponed-multiple-times-delayed-to-q1-2026",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Project has been postponed multiple times (delayed to Q1 2026 in Jun 2025, postponed a further quarter in Sep 2025, delayed again in Oct 2025); no confirmed exco date exists."
+  },
+  {
+   "to": "Customer reference calls (BDO, SM) were requested and a list was to be prepared, but completion is unconfirmed. - unresolved",
+   "key": "risk:customer-reference-calls-bdo-sm-were-requested-and-a-list-wa",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Customer reference calls (BDO, SM) were requested and a list was to be prepared, but completion is unconfirmed."
+  },
+  {
+   "to": "MSA/Order Form was sent for preliminary legal review to expedite contracting, but redline/sign-off status is unconfirmed. - unresolved",
+   "key": "risk:msa-order-form-was-sent-for-preliminary-legal-review-to-expe",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "MSA/Order Form was sent for preliminary legal review to expedite contracting, but redline/sign-off status is unconfirmed."
+  },
+  {
+   "to": "Re-confirm the SAP integration-cost resolution and refresh the TCO comparison directly with Zee before the next exco cycle, since that unresolved fee is the lev",
+   "key": "hygiene:re-confirm-the-sap-integration-cost-resolution-and-refresh-t",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-confirm the SAP integration-cost resolution and refresh the TCO comparison directly with Zee before the next exco cycle, since that unresolved fee is the lever most likely to tip the top-2 decision toward SAP Ariba (Next Step, 22 May-23 Jun 2025)."
+  },
+  {
+   "to": "Convert the May 2026 Agentic AI/Globe angle into a concrete, budget-fit re-scoped proposal Zee can carry into exco, closing the loop Carl opened in Oct 2025 to ",
+   "key": "hygiene:convert-the-may-2026-agentic-ai-globe-angle-into-a-concrete-",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Convert the May 2026 Agentic AI/Globe angle into a concrete, budget-fit re-scoped proposal Zee can carry into exco, closing the loop Carl opened in Oct 2025 to trim scope and revise numbers."
+  },
+  {
+   "to": "Multi-thread beyond Zee: re-engage Jeff De Sagun and Jennelyn Nicolas directly (last substantive contact mid-2025) to confirm the stalled reference calls and MS",
+   "key": "hygiene:multi-thread-beyond-zee-re-engage-jeff-de-sagun-and-jennelyn",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Zee: re-engage Jeff De Sagun and Jennelyn Nicolas directly (last substantive contact mid-2025) to confirm the stalled reference calls and MSA legal pre-review are still live, since the relationship has narrowed to a single rep-to-champion thread."
+  },
+  {
+   "to": "Zeeshan Pervez (President, ACEN Shared Services); Mher Tolentino-Blas (Head of Procurement) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T09:48:24.897639+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Provide customer references (BDO and SM requested, same industry preferred)",
+   "key": "requirement:provide-customer-references-bdo-and-sm-requested-same-indust",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Jeff De Sagun (Senior IT Application Specialist, Evaluator)",
+   "subject": "Provide customer references (BDO and SM requested, same industry preferred)"
+  },
+  {
+   "to": "Complete process mapping session (IT, procurement, finance) to align RFP requirements with S2P-to-SAP architecture",
+   "key": "requirement:complete-process-mapping-session-it-procurement-finance-to-a",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Jeff De Sagun (Senior IT Application Specialist, Evaluator)",
+   "subject": "Complete process mapping session (IT, procurement, finance) to align RFP requirements with S2P-to-SAP architecture"
+  },
+  {
+   "to": "Send MSA and Order Form to Jeff for preliminary legal review - open",
+   "key": "commitment:zycus-send-msa-and-order-form-to-jeff-for-preliminary-legal-",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send MSA and Order Form to Jeff for preliminary legal review"
+  },
+  {
+   "to": "Prepare and send curated list of customer reference options (including BDO and SM) to Jeff - open",
+   "key": "commitment:zycus-prepare-and-send-curated-list-of-customer-reference-op",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare and send curated list of customer reference options (including BDO and SM) to Jeff"
+  },
+  {
+   "to": "Send revised commercials to the President after optimizing scope and budget - no due date",
+   "key": "commitment:zycus-send-revised-commercials-to-the-president-after-optimi",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send revised commercials to the President after optimizing scope and budget"
+  },
+  {
+   "to": "Complete internal assessment and scoring exercise, present to IT steering committee - open",
+   "key": "commitment:buyer-complete-internal-assessment-and-scoring-exercise-pres",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete internal assessment and scoring exercise, present to IT steering committee"
+  },
+  {
+   "to": "Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact) - open",
+   "key": "commitment:buyer-resolve-sap-secondary-integration-cost-negotiate-with-",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)"
+  },
+  {
+   "to": "Jonathan Back - Economic Buyer",
+   "key": "stakeholder:jonathan-back",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jonathan Back"
+  },
+  {
+   "to": "Zeeshan Pervez - Champion",
+   "key": "stakeholder:zeeshan-pervez",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zeeshan Pervez"
+  },
+  {
+   "to": "Jennelyn Nicolas - Influencer",
+   "key": "stakeholder:jennelyn-nicolas",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jennelyn Nicolas"
+  },
+  {
+   "to": "Mher Tolentino-Blas - Influencer",
+   "key": "stakeholder:mher-tolentino-blas",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Mher Tolentino-Blas"
+  },
+  {
+   "to": "Jeff De Sagun - Influencer",
+   "key": "stakeholder:jeff-de-sagun",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeff De Sagun"
+  },
+  {
+   "to": "Eric Francia - Executive Sponsor",
+   "key": "stakeholder:eric-francia",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Eric Francia"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "In-house P2P system (status quo) - do_nothing",
+   "key": "competitor:in-house-p2p-system-status-quo",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "In-house P2P system (status quo)"
+  },
+  {
+   "to": "Coupa - faded",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "GEP Worldwide - faded",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "iValua - faded",
+   "key": "competitor:ivalua",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "iValua"
+  },
+  {
+   "to": "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is ",
+   "key": "risk:sap-secondary-integration-cost-is-a-significant-buyer-concer",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is negotiating this cost directly with SAP (23 Jun 2025), and it has caused internal issues with final award timing (29 May 2025). If SAP's fee is too high or if Ariba bundles integration at no extra charge, this could tip the commercial decision to Ariba."
+  },
+  {
+   "to": "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resour",
+   "key": "risk:the-project-was-postponed-by-a-quarter-in-sep-2025-due-to-bu",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resource allocation are currently not feasible'). Zeeshan Pervez (champion and budget gatekeeper) must get exco approval within a specific budget envelope (14 Oct 2025 Next Step). If the commercial case (including SAP integration cost) does not fit the budget, the deal could stall or revert to do-nothing."
+  },
+  {
+   "to": "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is ",
+   "key": "risk:the-deal-has-been-delayed-multiple-times-postponed-by-a-quar",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is still unclear (13 Aug 2025 call: 'we don't know yet, Kurt'). Further delays could erode momentum or allow Ariba to gain ground."
+  },
+  {
+   "to": "Zeeshan Pervez (President ACEN Shared Services) - strong",
+   "key": "champion:champion",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRisk;Lythouse",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T06:17:30.585694+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000DkWgX",
+ "packets": [
+  {
+   "key": "requirement:provide-customer-references-bdo-and-sm-requested-same-indust",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-13",
+    "kind": "explicit",
+    "quote": "If we have the same industry at least different options... BDO is really good for complex... SM is good but it's not your industry.",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY )",
+    "said_by": "Jeff De Sagun",
+    "addressed": false,
+    "requirement": "Provide customer references (BDO and SM requested, same-industry preferred)"
+   },
+   "source": "Jeff De Sagun",
+   "status": "active",
+   "history": [],
+   "subject": "Provide customer references (BDO and SM requested, same industry preferred)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "requirement:complete-process-mapping-session-it-procurement-finance-to-a",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-13",
+    "kind": "explicit",
+    "quote": "Before the end of this month, we should have it.",
+    "source": "Avoma call 2025-08-13 (Project SAPAY)",
+    "said_by": "Jeff De Sagun",
+    "addressed": false,
+    "requirement": "Complete process mapping session (IT, procurement, finance) to align RFP requirements with S2P-to-SAP architecture"
+   },
+   "source": "Jeff De Sagun",
+   "status": "active",
+   "history": [],
+   "subject": "Complete process mapping session (IT, procurement, finance) to align RFP requirements with S2P-to-SAP architecture",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-msa-and-order-form-to-jeff-for-preliminary-legal-",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-20",
+    "who": "Zycus",
+    "date": "2025-08-13",
+    "source": "Avoma 13 Aug 2025 (action item, speaker 3)",
+    "status": "open",
+    "commitment": "Send MSA and Order Form to Jeff for preliminary legal review",
+    "deliverable": "Send MSA and Order Form to Jeff for preliminary legal review",
+    "grounding_quote": "Email a copy of the order form/MSA to Jeff for legal review to expedite contract discussions."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send MSA and Order Form to Jeff for preliminary legal review",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "commitment:zycus-prepare-and-send-curated-list-of-customer-reference-op",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-20",
+    "who": "Zycus",
+    "date": "2025-08-13",
+    "source": "Avoma 13 Aug 2025 (action item, speaker 0)",
+    "status": "open",
+    "commitment": "Prepare and send curated list of customer reference options (including BDO and SM) to Jeff",
+    "deliverable": "Prepare and send curated list of customer reference options (including BDO and SM) to Jeff",
+    "grounding_quote": "Prepare and send a curated list of customer reference options (including examples like BDO and SM) to Jeff."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Prepare and send curated list of customer reference options (including BDO and SM) to Jeff",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-revised-commercials-to-the-president-after-optimi",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-18",
+    "who": "Zycus",
+    "date": "2025-09-11",
+    "source": "Next Step 11 Sep 2025",
+    "status": "no due date",
+    "commitment": "Send revised commercials to the President after optimizing scope and budget",
+    "deliverable": "Send revised commercials to the President after optimizing scope and budget",
+    "grounding_quote": "Carl has agreed to send revised commercials to Zee which we will prepare and send by next week."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send revised commercials to the President after optimizing scope and budget",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "commitment:buyer-complete-internal-assessment-and-scoring-exercise-pres",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-31",
+    "who": "Buyer",
+    "date": "2025-08-13",
+    "source": "Avoma 13 Aug 2025 (Jeff: complete assessment by end of month)",
+    "status": "open",
+    "commitment": "Complete internal assessment and scoring exercise, present to IT steering committee",
+    "deliverable": "Complete internal assessment and scoring exercise, present to IT steering committee",
+    "grounding_quote": "The assessment involves an evaluation scoring exercise based on the current system processes, which will serve as supporting documentation in final decision-making."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Complete internal assessment and scoring exercise, present to IT steering committee",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "commitment:buyer-resolve-sap-secondary-integration-cost-negotiate-with-",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2025-06-23",
+    "source": "Next Step 23 Jun 2025",
+    "status": "open",
+    "commitment": "Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)",
+    "deliverable": "Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)",
+    "grounding_quote": "Jeff and Jenn are negotiating with SAP for the secondary cost. meeting them in Manila on 25th June."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Resolve SAP secondary integration cost (negotiate with SAP directly or confirm total cost impact)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "stakeholder:jonathan-back",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jonathan Back",
+    "risk": "No direct Zycus engagement in over 16 months; access is entirely indirect via Zeeshan Pervez",
+    "role": "Economic Buyer",
+    "title": "CFO and Chief Strategy Officer",
+    "source": "Avoma call 28 Feb 2025; Salesforce Contact Role",
+    "sentiment": "positive (personally backing the project)",
+    "last_contact_date": "2025-02-28"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Jonathan Back",
+      "risk": "Backing relayed via Zeeshan Pervez only; no direct Zycus engagement evidenced.",
+      "role": "Economic Buyer",
+      "title": "CFO and Chief Strategy Officer",
+      "source": "Next_Step_History__c entry 2025-02-27",
+      "sentiment": "positive (reported, not direct)",
+      "last_contact_date": "2025-02-27"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Jonathan Back",
+      "risk": "No direct engagement evidence since early 2025",
+      "role": "Executive Sponsor",
+      "title": "CFO and Chief Strategy Officer",
+      "source": "SF Next_Step_History__c 27 Feb 2025",
+      "sentiment": "positive (backing Zycus)",
+      "last_contact_date": "2025-02-27"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Jonathan Back",
+      "risk": "none",
+      "role": "Economic Buyer",
+      "title": "CFO and Chief Strategy Officer",
+      "source": "OpportunityContactRole (Executive Sponsor); Next Step 27 Feb 2025 (backing Zycus)",
+      "sentiment": "positive",
+      "last_contact_date": "2025-03-10"
+     }
+    }
+   ],
+   "subject": "Jonathan Back",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:zeeshan-pervez",
+   "type": "stakeholder",
+   "value": {
+    "name": "Zeeshan Pervez",
+    "risk": "Single thread into exco; his internal advocacy has not yet converted into released budget across three deferrals",
+    "role": "Decision Maker",
+    "title": "President, ACEN Shared Services",
+    "source": "Next Step History; Salesforce Contact Role",
+    "sentiment": "historically strongly positive / champion-like, currently unconfirmed",
+    "last_contact_date": "2026-07-07"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Zeeshan Pervez",
+      "risk": "No confirmed direct engagement in ~10 months until the 7 Jul 2026 email reply; single point of internal advocacy.",
+      "role": "Decision Maker",
+      "title": "President, ACEN Shared Services",
+      "source": "Next_Step_History__c; Avoma call 2025-02-28",
+      "sentiment": "positive (historically)",
+      "last_contact_date": "2025-09-05"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Zeeshan Pervez",
+      "risk": "Engagement now driven entirely by Zycus outreach; last confirmed two-way contact was 24 Mar 2026",
+      "role": "Economic Buyer",
+      "title": "President, ACEN Shared Services",
+      "source": "SF OpportunityContactRole; SF Next_Step_History__c 4 May 2026",
+      "sentiment": "warm per stated interest, but unconfirmed since",
+      "last_contact_date": "2026-05-04"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Zeeshan Pervez",
+      "risk": "Budget gatekeeper \u2014 delayed project by a quarter in Sep 2025; must get exco approval within budget envelope",
+      "role": "Champion",
+      "title": "President ACEN Shared Services",
+      "source": "OpportunityContactRole (Decision Maker); Next Step 13 Feb 2025 (CPO is Zycus champion); Next Step 22 Sep 2025 (postponed by a quarter)",
+      "sentiment": "positive",
+      "last_contact_date": "2026-05-04"
+     }
+    }
+   ],
+   "subject": "Zeeshan Pervez",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:jennelyn-nicolas",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jennelyn Nicolas",
+    "risk": "No recent contact logged since mid-2025",
+    "role": "Influencer",
+    "title": "Senior Manager, Information Technology",
+    "source": "Next Step History 16 Jul 2025",
+    "sentiment": "engaged, working the SAP cost issue directly",
+    "last_contact_date": "2025-07-16"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Jennelyn Nicolas",
+      "risk": "Central to SAP-cost evaluation but no confirmed contact in the last ~12 months.",
+      "role": "Influencer",
+      "title": "Senior Manager, Information Technology",
+      "source": "Next_Step_History__c entry 2025-07-16",
+      "sentiment": "neutral, analytical",
+      "last_contact_date": "2025-07-16"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Jennelyn Nicolas",
+      "risk": "Reviewing SAP cost scenarios as of Jul 2025, outcome unknown",
+      "role": "Coach",
+      "title": "Senior Manager, Information Technology (CIO)",
+      "source": "SF Next_Step_History__c 7 Apr 2025, 16 Jul 2025",
+      "sentiment": "engaged, defined selection criteria",
+      "last_contact_date": "2025-07-16"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Jennelyn Nicolas",
+      "risk": "none",
+      "role": "Influencer",
+      "title": "Senior Manager, Information Technology",
+      "source": "OpportunityContactRole; Avoma 13 Aug 2025, 6 May 2025 (active in proposal and architecture discussions)",
+      "sentiment": "positive",
+      "last_contact_date": "2025-08-13"
+     }
+    }
+   ],
+   "subject": "Jennelyn Nicolas",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:mher-tolentino-blas",
+   "type": "stakeholder",
+   "value": {
+    "name": "Mher Tolentino-Blas",
+    "risk": "No recent contact logged since mid-2025",
+    "role": "Influencer",
+    "title": "Head of Procurement",
+    "source": "Next Step History 9 Jun 2025",
+    "sentiment": "engaged through demo, RFP scoring and proposal review",
+    "last_contact_date": "2025-06-09"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Mher Tolentino-Blas",
+      "risk": "No confirmed direct engagement since early 2025; champion status now at risk from prolonged silence.",
+      "role": "Champion",
+      "title": "Head of Procurement",
+      "source": "Next_Step_History__c entry 2025-02-13; Avoma call 2025-02-28",
+      "sentiment": "positive (historically)",
+      "last_contact_date": "2025-02-28"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Mher Tolentino-Blas",
+      "risk": "No direct evidence of contact since May 2025",
+      "role": "Champion",
+      "title": "Head of Procurement",
+      "source": "SF Next_Step_History__c 13 Feb 2025, 22 May 2025",
+      "sentiment": "positive, working-level advocate",
+      "last_contact_date": "2025-05-22"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Mher Tolentino-Blas",
+      "risk": "none",
+      "role": "Influencer",
+      "title": "Head of Procurement",
+      "source": "OpportunityContactRole; Avoma 21 Feb 2025, 6 May 2025 (procurement lead, evaluation committee)",
+      "sentiment": "positive",
+      "last_contact_date": "2025-08-13"
+     }
+    }
+   ],
+   "subject": "Mher Tolentino-Blas",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:jeff-de-sagun",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jeff De Sagun",
+    "risk": "No contact logged since the Aug 2025 architecture walkthrough",
+    "role": "Evaluator",
+    "title": "Senior IT Application Specialist",
+    "source": "Avoma call 13 Aug 2025",
+    "sentiment": "most operationally active buyer contact, positive",
+    "last_contact_date": "2025-08-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Jeff De Sagun",
+      "risk": "Most recently active named contact (references, legal review), but no confirmed contact in ~11 months.",
+      "role": "Influencer",
+      "title": "Senior IT Application Specialist",
+      "source": "Avoma call 2025-08-13",
+      "sentiment": "positive, cooperative",
+      "last_contact_date": "2025-08-13"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Jeff De Sagun",
+      "risk": "Most recent named individual contact overall; not re-engaged since",
+      "role": "Influencer",
+      "title": "Senior IT Application Specialist",
+      "source": "Avoma call 13 Aug 2025 (Project SAPAY)",
+      "sentiment": "cooperative, drove RFP logistics",
+      "last_contact_date": "2025-08-13"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Jeff De Sagun",
+      "risk": "none",
+      "role": "Influencer",
+      "title": "Senior IT Application Specialist",
+      "source": "OpportunityContactRole (Evaluator); Avoma 13 Aug 2025, 6 May 2025 (owns process mapping, reference calls, legal review coordination)",
+      "sentiment": "positive",
+      "last_contact_date": "2025-08-13"
+     }
+    }
+   ],
+   "subject": "Jeff De Sagun",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:eric-francia",
+   "type": "stakeholder",
+   "value": {
+    "name": "Eric Francia",
+    "risk": "Named as part of the 4-person decision group by Zeeshan Pervez, but no direct Zycus engagement has ever been evidenced",
+    "role": "Executive Sponsor",
+    "title": "President and CEO",
+    "source": "Salesforce Contact Role; inferred from 28 Feb 2025 call ('there are 4 people in the company who's gonna make this decision')",
+    "sentiment": "unknown",
+    "last_contact_date": ""
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Eric Francia",
+      "risk": "Identified as Executive Sponsor in Salesforce, but no direct engagement evidenced in any call or task read.",
+      "role": "Executive Sponsor",
+      "title": "President and CEO",
+      "source": "OpportunityContactRole",
+      "sentiment": "unknown",
+      "last_contact_date": ""
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "name": "Eric Francia",
+      "risk": "No direct engagement evidence since early 2025",
+      "role": "Executive Sponsor",
+      "title": "President and CEO",
+      "source": "SF Next_Step_History__c 24 Jan 2025",
+      "sentiment": "passive, tentative Horizon invitee",
+      "last_contact_date": "2025-01-24"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "name": "Eric Francia",
+      "risk": "not engaged since Dec 2024 F2F",
+      "role": "Executive Sponsor",
+      "title": "President and CEO",
+      "source": "OpportunityContactRole (Executive Sponsor); Next Step 4 Dec 2024 (met at office)",
+      "sentiment": "positive",
+      "last_contact_date": "2024-12-04"
+     }
+    }
+   ],
+   "subject": "Eric Francia",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2025-05-22",
+    "name": "SAP Ariba",
+    "quote": "He is yet to see the evaluation summary and commercials from Mehr... over SAP secondary integration cost which is significant.",
+    "source": "Next Step History",
+    "status": "active",
+    "sentiment": "negative",
+    "how_we_win": "Deliver a documented TCO comparison that neutralizes SAP's integration-fee argument and reinforces Zycus's GenAI/intake-management lead cited in the Feb 2025 demos.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "date": "2025-06-03",
+      "name": "SAP Ariba",
+      "quote": "Acen has confirmed that Zycus is shortlisted as top 2. (Other one is SAP-Ariba)",
+      "source": "Next_Step_History__c",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "Reinforce the SAP secondary-integration cost math directly with Zeeshan Pervez and Jonathan Back now that contact has resumed; the AI/intake-management differentiator (cited internally as a 12-18 month lead) is the strongest counter and is already the hook used to restart contact on 4 May 2026.",
+      "threat_level": "medium"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "date": "2025-06-03",
+      "name": "SAP Ariba",
+      "quote": "Acen has confirmed that Zycus is shortlisted as top 2. (Other one is SAP-Ariba).",
+      "source": "SF Next_Step_History__c",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "Press the TCO story: use the SAP secondary-integration-fee dispute (unresolved as of Jun 2025) to show a cleaner all-in cost, and keep the pricing flexibility Zycus already offered (reduced first-year fee, Feb 2025 call) on the table.",
+      "threat_level": "high"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "date": "2025-06-03",
+      "name": "SAP Ariba",
+      "quote": "Acen has confirmed that Zycus is shortlisted as top 2. (Other one is SAP-Ariba). Acen has requested for a isaas advance clarification session to plan internal resource planning and secondary cost from SAP Middleware.",
+      "source": "Next Step 3 Jun 2025",
+      "status": "active",
+      "sentiment": "negative",
+      "how_we_win": "Differentiate on AI (Merlin negotiation agent, intake automation, spend analysis OCR, contract risk analysis) and flexibility/configurability vs Ariba's rigidity; neutralize the SAP secondary integration cost by helping the buyer quantify total ROI (automation savings, compliance value, supplier portal cost savings) to justify any integration fee.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "competitor:in-house-p2p-system-status-quo",
+   "type": "competitor",
+   "value": {
+    "date": "2025-02-28",
+    "name": "In-house P2P system (status quo)",
+    "quote": "Change of the procurement system... is actually not part of our budget for the year 2025... we never intended to change the procurement system in the year 2025.",
+    "source": "Avoma call 2025-02-28 (Zeeshan Pervez)",
+    "status": "do_nothing",
+    "sentiment": "neutral",
+    "how_we_win": "Use the just-resumed contact to re-anchor a dated decision milestone before the repeated postponements harden into permanent inertia; quantify the cost of continuing to run 70% of spend manually outside the system.",
+    "threat_level": "high"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T06:17:30.585694+05:30",
+     "value": {
+      "date": "2025-02-21",
+      "name": "In-house P2P system (status quo)",
+      "quote": "The procurement team currently uses an in-house developed P2P system for requests, which is integrated with their ERP.",
+      "source": "Avoma 21 Feb 2025",
+      "status": "do_nothing",
+      "sentiment": "neutral",
+      "how_we_win": "Prove the pain is unsustainable (manual ad hoc purchases, 70% non-PO payments unmanaged, no AI, email-based supplier onboarding) and that the GCash sister-company success (13 Feb 2025 Next Step) de-risks the change.",
+      "threat_level": "medium"
+     }
+    }
+   ],
+   "subject": "In-house P2P system (status quo)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2025-06-03",
+    "name": "Coupa",
+    "quote": "",
+    "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "No live evidence of active competition; monitor only.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "competitor:gep-worldwide",
+   "type": "competitor",
+   "value": {
+    "date": "",
+    "name": "GEP Worldwide",
+    "quote": "",
+    "source": "SFDC Competitors__c field",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "No recent evidence of active consideration; not referenced after the top-two down-select.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "GEP Worldwide",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "competitor:ivalua",
+   "type": "competitor",
+   "value": {
+    "date": "2025-06-03",
+    "name": "Ivalua",
+    "quote": "",
+    "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "No live evidence of active competition; monitor only.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "iValua",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:sap-secondary-integration-cost-is-a-significant-buyer-concer",
+   "type": "risk",
+   "value": {
+    "date": "2025-05-22",
+    "detail": "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is negotiating this cost directly with SAP (23 Jun 2025), and it has caused internal issues with final award timing (29 May 2025). If SAP's fee is too high or if Ariba bundles integration at no extra charge, this could tip the commercial decision to Ariba.",
+    "source": "Next Step 22 May 2025, 23 Jun 2025, 29 May 2025",
+    "status": "open",
+    "category": "pricing",
+    "first_raised": "2025-05-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "SAP secondary integration cost is a significant buyer concern (22 May 2025: 'concerned over SAP secondary integration cost which is significant'). The buyer is negotiating this cost directly with SAP (23 Jun 2025), and it has caused internal issues with final award timing (29 May 2025). If SAP's fee is too high or if Ariba bundles integration at no extra charge, this could tip the commercial decision to Ariba.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "risk:the-project-was-postponed-by-a-quarter-in-sep-2025-due-to-bu",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-22",
+    "detail": "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resource allocation are currently not feasible'). Zeeshan Pervez (champion and budget gatekeeper) must get exco approval within a specific budget envelope (14 Oct 2025 Next Step). If the commercial case (including SAP integration cost) does not fit the budget, the deal could stall or revert to do-nothing.",
+    "source": "Next Step 22 Sep 2025, 14 Oct 2025",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-09-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The project was postponed by a quarter in Sep 2025 due to budget creation and resource allocation challenges (22 Sep 2025 Next Step: 'budget creation and resource allocation are currently not feasible'). Zeeshan Pervez (champion and budget gatekeeper) must get exco approval within a specific budget envelope (14 Oct 2025 Next Step). If the commercial case (including SAP integration cost) does not fit the budget, the deal could stall or revert to do-nothing.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "risk:the-deal-has-been-delayed-multiple-times-postponed-by-a-quar",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-22",
+    "detail": "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is still unclear (13 Aug 2025 call: 'we don't know yet, Kurt'). Further delays could erode momentum or allow Ariba to gain ground.",
+    "source": "Next Step 30 Jun 2025, 22 Sep 2025; Avoma 13 Aug 2025",
+    "status": "acknowledged",
+    "category": "timeline",
+    "first_raised": "2025-06-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The deal has been delayed multiple times (postponed by a quarter in Sep 2025, delayed to Q1 2026 in Jun 2025). The IT steering committee presentation timing is still unclear (13 Aug 2025 call: 'we don't know yet, Kurt'). Further delays could erode momentum or allow Ariba to gain ground.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-07T06:17:30.585694+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRisk;Lythouse"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:17:30.585694+05:30",
+   "last_updated": "2026-07-07T06:17:30.585694+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "competitor:in-house-p2p-system-status-quo-do-nothing",
+   "type": "competitor",
+   "value": {
+    "date": "2025-09-22",
+    "name": "In-house P2P system (status quo / do-nothing)",
+    "quote": "The procurement system change wasn't planned for 2025... budget creation and resource allocation are currently not feasible.",
+    "source": "Next Step History",
+    "status": "do_nothing",
+    "sentiment": "negative",
+    "how_we_win": "Keep re-anchoring the buyer to the quantified pain (70% of spend disconnected, manual supplier onboarding) so inertia doesn't win by default while exco budget is stalled.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:24.897639+05:30",
+     "value": {
+      "date": "2025-02-21",
+      "name": "In-house P2P system (status quo / do-nothing)",
+      "quote": "The company is exploring a new procurement solution to replace their current in-house P2P system.",
+      "source": "Avoma call 21 Feb 2025 (Zycus System - Full Demo)",
+      "status": "do_nothing",
+      "sentiment": "negative",
+      "how_we_win": "Keep quantifying the pain ACEN itself named (70% non-PO spend disconnected, manual supplier onboarding, no RFP module) and pair it with a trimmed-scope proposal that fits Zee's exco budget ceiling so inertia is not the path of least resistance.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "In-house P2P system (status quo / do-nothing)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:sap-s-secondary-integration-fee-for-connecting-to-ariba-is-a",
+   "type": "risk",
+   "value": {
+    "date": "2025-06-23",
+    "detail": "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison.",
+    "source": "SF Next_Step_History__c 22 May-23 Jun 2025",
+    "status": "unresolved",
+    "category": "pricing",
+    "first_raised": "2025-05-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "SAP's secondary integration fee for connecting to Ariba is a live commercial blocker affecting the buyer's TCO comparison.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "risk:project-remains-stalled-pending-acen-exco-budget-approval-no",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-14",
+    "detail": "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope.",
+    "source": "SF Next_Step_History__c 22 Sep 2025, 14 Oct 2025",
+    "status": "unresolved",
+    "category": "budget",
+    "first_raised": "2025-09-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Project remains stalled pending ACEN exco budget approval; no confirmed re-scoped proposal delivered since the Oct 2025 request to trim scope.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "risk:project-has-been-postponed-multiple-times-delayed-to-q1-2026",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-30",
+    "detail": "Project has been postponed multiple times (delayed to Q1 2026 in Jun 2025, postponed a further quarter in Sep 2025, delayed again in Oct 2025); no confirmed exco date exists.",
+    "source": "SF Next_Step_History__c",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2025-06-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Project has been postponed multiple times (delayed to Q1 2026 in Jun 2025, postponed a further quarter in Sep 2025, delayed again in Oct 2025); no confirmed exco date exists.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "risk:customer-reference-calls-bdo-sm-were-requested-and-a-list-wa",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "Customer reference calls (BDO, SM) were requested and a list was to be prepared, but completion is unconfirmed.",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY)",
+    "status": "unresolved",
+    "category": "references",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Customer reference calls (BDO, SM) were requested and a list was to be prepared, but completion is unconfirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "risk:msa-order-form-was-sent-for-preliminary-legal-review-to-expe",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "MSA/Order Form was sent for preliminary legal review to expedite contracting, but redline/sign-off status is unconfirmed.",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY)",
+    "status": "unresolved",
+    "category": "legal",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "MSA/Order Form was sent for preliminary legal review to expedite contracting, but redline/sign-off status is unconfirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "hygiene:re-confirm-the-sap-integration-cost-resolution-and-refresh-t",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-confirm the SAP integration-cost resolution and refresh the TCO comparison directly with Zee before the next exco cycle, since that unresolved fee is the lever most likely to tip the top-2 decision toward SAP Ariba (Next Step, 22 May-23 Jun 2025)."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-confirm the SAP integration-cost resolution and refresh the TCO comparison directly with Zee before the next exco cycle, since that unresolved fee is the lever most likely to tip the top-2 decision toward SAP Ariba (Next Step, 22 May-23 Jun 2025).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "hygiene:convert-the-may-2026-agentic-ai-globe-angle-into-a-concrete-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Convert the May 2026 Agentic AI/Globe angle into a concrete, budget-fit re-scoped proposal Zee can carry into exco, closing the loop Carl opened in Oct 2025 to trim scope and revise numbers."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Convert the May 2026 Agentic AI/Globe angle into a concrete, budget-fit re-scoped proposal Zee can carry into exco, closing the loop Carl opened in Oct 2025 to trim scope and revise numbers.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-zee-re-engage-jeff-de-sagun-and-jennelyn",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Zee: re-engage Jeff De Sagun and Jennelyn Nicolas directly (last substantive contact mid-2025) to confirm the stalled reference calls and MSA legal pre-review are still live, since the relationship has narrowed to a single rep-to-champion thread."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond Zee: re-engage Jeff De Sagun and Jennelyn Nicolas directly (last substantive contact mid-2025) to confirm the stalled reference calls and MSA legal pre-review are still live, since the relationship has narrowed to a single rep-to-champion thread.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:24.897639+05:30",
+   "last_updated": "2026-07-07T09:48:24.897639+05:30",
+   "last_confirmed": "2026-07-07T09:48:24.897639+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-msa-and-order-form-to-jeff-de-sagun-for-prelimina",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2025-08-13",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY )",
+    "status": "no due date",
+    "commitment": "Send MSA and Order Form to Jeff De Sagun for preliminary legal review",
+    "deliverable": "Send MSA and Order Form to Jeff De Sagun for preliminary legal review",
+    "grounding_quote": "I wanted to send you the copy of order form, MSA... would you mind me sending you also a copy of order form... perhaps you can pass it on to your legal."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send MSA and Order Form to Jeff De Sagun for preliminary legal review",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "commitment:zycus-prepare-and-send-a-curated-list-of-customer-reference-",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2025-08-13",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY )",
+    "status": "open",
+    "commitment": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun",
+    "deliverable": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun",
+    "grounding_quote": "I'll put a list together and send it to you. You just pick what you want, and then we'll set up the calls."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "due": "",
+      "who": "Zycus",
+      "date": "2025-08-13",
+      "source": "Avoma call 2025-08-13 (Project SAPAY)",
+      "status": "no due date",
+      "commitment": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun",
+      "deliverable": "Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun",
+      "grounding_quote": "I'll put a list together and send it to you. You just pick what you want, and then we'll set up the calls."
+     }
+    }
+   ],
+   "subject": "Zycus:Prepare and send a curated list of customer reference options (including BDO and SM) to Jeff De Sagun",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-revised-commercials-to-zeeshan-pervez-after-optim",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-18",
+    "who": "Zycus",
+    "date": "2025-09-11",
+    "source": "Next Step History 11 Sep 2025",
+    "status": "overdue",
+    "commitment": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+    "deliverable": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+    "grounding_quote": "Carl has agreed to send revised commercials to Zee which we will prepare and send by next week."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "due": "2025-11-12",
+      "who": "Zycus",
+      "date": "2025-10-14",
+      "source": "Next_Step_History__c",
+      "status": "overdue",
+      "commitment": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+      "deliverable": "Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+      "grounding_quote": "Zee indicates if we can work within a budget that he can get through exco... Carl to revise numbers and work with Zee 1:1 to optimize (likely reduce scope)."
+     }
+    }
+   ],
+   "subject": "Zycus:Send revised commercials to Zeeshan Pervez after optimizing scope and budget",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "commitment:buyer-complete-internal-assessment-scoring-exercise-and-pres",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2025-08-13",
+    "source": "Avoma call 13 Aug 2025 (Project SAPAY )",
+    "status": "overdue",
+    "commitment": "Complete internal assessment/scoring exercise and present to the IT steering committee (exco)",
+    "deliverable": "Complete internal assessment/scoring exercise and present to the IT steering committee (exco)",
+    "grounding_quote": "Those cards are the supporting documents that we are going to present in the steering committee."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "due": "",
+      "who": "Buyer",
+      "date": "2025-08-13",
+      "source": "Avoma call 2025-08-13 (Project SAPAY)",
+      "status": "no due date",
+      "commitment": "Complete internal assessment/scoring exercise and present to the IT steering committee",
+      "deliverable": "Complete internal assessment/scoring exercise and present to the IT steering committee",
+      "grounding_quote": "We don't know yet, Kurt... that's why what we have to complete first is all the assessment within this month."
+     }
+    }
+   ],
+   "subject": "Buyer:Complete internal assessment/scoring exercise and present to the IT steering committee",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "commitment:buyer-resolve-the-sap-secondary-integration-cost-negotiate-w",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2025-06-23",
+    "source": "Next Step History 23 Jun 2025",
+    "status": "open",
+    "commitment": "Resolve the SAP secondary integration cost (negotiate with SAP or confirm total cost impact)",
+    "deliverable": "Resolve the SAP secondary integration cost (negotiate with SAP or confirm total cost impact)",
+    "grounding_quote": "Jeff and Jenn are negotiating with SAP for the secondary cost, meeting them in Manila on 25 June."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Resolve the SAP secondary integration cost (negotiate with SAP or confirm total cost impact)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "commitment:buyer-secure-exco-approval-within-a-workable-budget-envelope",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2025-10-14",
+    "source": "Next Step History 14 Oct 2025",
+    "status": "overdue",
+    "commitment": "Secure exco approval within a workable budget envelope",
+    "deliverable": "Secure exco approval within a workable budget envelope",
+    "grounding_quote": "Zee indicates if we can work within a budget that he can get through exco, we may be able to close off in Q3."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Secure exco approval within a workable budget envelope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:sap-s-secondary-integration-connection-fee-is-a-live-unresol",
+   "type": "risk",
+   "value": {
+    "date": "2025-06-23",
+    "detail": "SAP's secondary integration/connection fee is a live, unresolved cost objection Zeeshan Pervez raised directly on 22 May 2025 that could tip the buyer's TCO comparison toward SAP Ariba if unresolved; Jeff De Sagun and Jennelyn Nicolas were negotiating this directly with SAP as of 23 Jun 2025 with no confirmed resolution logged since.",
+    "source": "Next Step History",
+    "status": "open",
+    "category": "pricing",
+    "first_raised": "2025-05-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "date": "2025-06-23",
+      "detail": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem.",
+      "source": "Next_Step_History__c",
+      "status": "open, unconfirmed resolution",
+      "category": "pricing",
+      "first_raised": "2025-05-22"
+     }
+    }
+   ],
+   "subject": "SAP's secondary integration/connection fee is a live, unresolved cost objection that could tip the decision toward the incumbent ecosystem.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:project-was-not-originally-budgeted-for-2025-exco-approval-h",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-14",
+    "detail": "Project was not originally budgeted for 2025; exco approval has been postponed multiple times pending a workable budget envelope.",
+    "source": "Avoma call 2025-02-28; Next_Step_History__c",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-02-28"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Project was not originally budgeted for 2025; exco approval has been postponed multiple times pending a workable budget envelope.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "risk:no-confirmed-direct-engagement-with-the-economic-buyer-spons",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No confirmed direct engagement with the Economic Buyer/Sponsor tier (Zeeshan Pervez, Jonathan Back) in roughly ten months until the 7 Jul 2026 reply.",
+    "source": "Next_Step_History__c; ground truth engagement pulse",
+    "status": "reactivating, unconfirmed",
+    "category": "executive_alignment",
+    "first_raised": "2025-09-05"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No confirmed direct engagement with the Economic Buyer/Sponsor tier (Zeeshan Pervez, Jonathan Back) in roughly ten months until the 7 Jul 2026 reply.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "risk:customer-reference-calls-bdo-sm-requested-13-aug-2025-with-n",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "Customer reference calls (BDO, SM) requested 13 Aug 2025 with no confirmed completion logged since.",
+    "source": "Avoma call 2025-08-13",
+    "status": "open",
+    "category": "references",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Customer reference calls (BDO, SM) requested 13 Aug 2025 with no confirmed completion logged since.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "risk:msa-order-form-sent-for-preliminary-legal-review-13-aug-2025",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "MSA/Order Form sent for preliminary legal review 13 Aug 2025 with no confirmed redline or sign-off status since.",
+    "source": "Avoma call 2025-08-13",
+    "status": "open",
+    "category": "legal",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "MSA/Order Form sent for preliminary legal review 13 Aug 2025 with no confirmed redline or sign-off status since.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "risk:close-target-has-slipped-repeatedly-q3-2025-push-delayed-to-",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-22",
+    "detail": "Close target has slipped repeatedly: Q3 2025 push, delayed to Q1 2026 (30 Jun 2025), postponed a further quarter (22 Sep 2025), still no confirmed exco date as of the 4 May 2026 revival attempt.",
+    "source": "Next_Step_History__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-06-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close target has slipped repeatedly: Q3 2025 push, delayed to Q1 2026 (30 Jun 2025), postponed a further quarter (22 Sep 2025), still no confirmed exco date as of the 4 May 2026 revival attempt.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-reliance-on-zeeshan-pervez-for-exco-advancem",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded reliance on Zeeshan Pervez for exco advancement \u2014 no evidence of direct Zycus engagement with Jonathan Back (CFO) or Eric Francia (CEO) in over a year; broaden the thread now that contact has resumed."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded reliance on Zeeshan Pervez for exco advancement \u2014 no evidence of direct Zycus engagement with Jonathan Back (CFO) or Eric Francia (CEO) in over a year; broaden the thread now that contact has resumed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "hygiene:the-deal-has-been-effectively-stalled-for-roughly-ten-months",
+   "type": "hygiene",
+   "value": {
+    "flag": "The deal has been effectively stalled for roughly ten months since the Sep 2025 postponement; without a dated re-engagement plan anchored to this week's reply, it risks reverting to the in-house P2P status quo or losing further ground to SAP Ariba."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The deal has been effectively stalled for roughly ten months since the Sep 2025 postponement; without a dated re-engagement plan anchored to this week's reply, it risks reverting to the in-house P2P status quo or losing further ground to SAP Ariba.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "hygiene:the-sap-secondary-integration-cost-objection-was-never-confi",
+   "type": "hygiene",
+   "value": {
+    "flag": "The SAP secondary integration cost objection was never confirmed resolved \u2014 quantify and counter it directly during re-engagement, since it remains the single most concrete lever SAP Ariba has."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The SAP secondary integration cost objection was never confirmed resolved \u2014 quantify and counter it directly during re-engagement, since it remains the single most concrete lever SAP Ariba has.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T16:51:43.217721+05:30",
+   "last_confirmed": "2026-07-09T16:51:43.217721+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Zeeshan Pervez",
+    "at_risk": true,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T16:51:43.217721+05:30",
+     "value": {
+      "name": "Mher Tolentino-Blas",
+      "at_risk": true,
+      "strength": "weak"
+     }
+    }
+   ],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T16:51:43.217721+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "requirement:detailed-walkthrough-of-the-full-system-architecture-from-su",
+   "type": "requirement",
+   "value": {
+    "date": "2025-07-28",
+    "kind": "explicit",
+    "quote": "Detailed walkthrough of the full system architecture, starting from supplier processes, through the Source-to-Pay (S2P) application layer, and down to the SAP ERP system.",
+    "source": "Next Step History; delivered as the 13 Aug 2025 architecture walkthrough call",
+    "said_by": "Jeff De Sagun",
+    "addressed": true,
+    "requirement": "Detailed walkthrough of the full system architecture, from supplier processes through the S2P application layer to the SAP ERP"
+   },
+   "source": "Jeff De Sagun",
+   "status": "active",
+   "history": [],
+   "subject": "Detailed walkthrough of the full system architecture, from supplier processes through the S2P application layer to the SAP ERP",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "requirement:resolve-clarify-the-sap-secondary-integration-cost-concern",
+   "type": "requirement",
+   "value": {
+    "date": "2025-05-22",
+    "kind": "explicit",
+    "quote": "He shared a concerned over SAP secondary integration cost which is significant.",
+    "source": "Next Step History",
+    "said_by": "Zeeshan Pervez",
+    "addressed": false,
+    "requirement": "Resolve/clarify the SAP secondary integration cost concern"
+   },
+   "source": "Zeeshan Pervez",
+   "status": "active",
+   "history": [],
+   "subject": "Resolve/clarify the SAP secondary integration cost concern",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "stakeholder:aaron-angeles",
+   "type": "stakeholder",
+   "value": {
+    "name": "Aaron Angeles",
+    "risk": "Present at early meetings; no recent evidenced engagement",
+    "role": "Influencer",
+    "title": "Senior Information Technology Manager",
+    "source": "Avoma meeting manifest, touchpoint 1 (4 Dec 2024)",
+    "sentiment": "neutral",
+    "last_contact_date": "2024-12-04"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "Aaron Angeles",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "competitor:gep",
+   "type": "competitor",
+   "value": {
+    "date": "2025-06-03",
+    "name": "GEP",
+    "quote": "",
+    "source": "Salesforce Competitors__c; inferred eliminated before the 3 Jun 2025 shortlist to two",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "No live evidence of active competition; monitor only.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "GEP",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:acen-s-exco-has-deferred-the-procurement-digitization-budget",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-30",
+    "detail": "ACEN's exco has deferred the Procurement Digitization budget three times (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 target) \u2014 the single live blocker to closing.",
+    "source": "Next Step History",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-09-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "ACEN's exco has deferred the Procurement Digitization budget three times (22 Sep 2025, 30 Oct 2025, and an implied further slip past the 'end of Jan' 2026 target) \u2014 the single live blocker to closing.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:customer-reference-calls-bdo-and-sm-requested-same-industry-",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "Customer reference calls (BDO and SM requested, same-industry preferred) were requested by Jeff De Sagun on 13 Aug 2025, with no confirmed completion in any later record.",
+    "source": "Avoma call 13 Aug 2025",
+    "status": "open/unconfirmed",
+    "category": "references",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Customer reference calls (BDO and SM requested, same-industry preferred) were requested by Jeff De Sagun on 13 Aug 2025, with no confirmed completion in any later record.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:msa-and-order-form-were-sent-to-jeff-de-sagun-for-preliminar",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-13",
+    "detail": "MSA and Order Form were sent to Jeff De Sagun for preliminary legal review on 13 Aug 2025 to pre-empt delays, but no redline or sign-off status has been confirmed since.",
+    "source": "Avoma call 13 Aug 2025",
+    "status": "open/unconfirmed",
+    "category": "legal",
+    "first_raised": "2025-08-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "MSA and Order Form were sent to Jeff De Sagun for preliminary legal review on 13 Aug 2025 to pre-empt delays, but no redline or sign-off status has been confirmed since.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:no-direct-zycus-engagement-with-cfo-jonathan-back-executive-",
+   "type": "risk",
+   "value": {
+    "date": "2025-02-28",
+    "detail": "No direct Zycus engagement with CFO Jonathan Back (Executive Sponsor) has been logged since the single 28 Feb 2025 call; all subsequent contact has routed solely through Zeeshan Pervez.",
+    "source": "Avoma call 28 Feb 2025",
+    "status": "ongoing gap",
+    "category": "executive_alignment",
+    "first_raised": "2025-02-28"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No direct Zycus engagement with CFO Jonathan Back (Executive Sponsor) has been logged since the single 28 Feb 2025 call; all subsequent contact has routed solely through Zeeshan Pervez.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "risk:the-project-has-been-postponed-multiple-times-delayed-to-q1-",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-30",
+    "detail": "The project has been postponed multiple times (delayed to Q1 2026 per the 30 Jun 2025 note, postponed a further quarter on 22 Sep 2025, delayed again on 30 Oct 2025) with no confirmed exco presentation date ever logged.",
+    "source": "Next Step History",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-06-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The project has been postponed multiple times (delayed to Q1 2026 per the 30 Jun 2025 note, postponed a further quarter on 22 Sep 2025, delayed again on 30 Oct 2025) with no confirmed exco presentation date ever logged.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-cfo-jonathan-back-directly-rather-than-relying-sol",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage CFO Jonathan Back directly rather than relying solely on Zeeshan Pervez as the single thread into exco \u2014 no direct Zycus contact with him has been logged in over 16 months despite his confirmed backing."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Re-engage CFO Jonathan Back directly rather than relying solely on Zeeshan Pervez as the single thread into exco \u2014 no direct Zycus contact with him has been logged in over 16 months despite his confirmed backing.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "hygiene:close-out-the-sap-secondary-integration-cost-objection-with-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close out the SAP secondary integration cost objection with a documented TCO comparison before the buyer's next internal review; it is the one live lever competing against SAP Ariba."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close out the SAP secondary integration cost objection with a documented TCO comparison before the buyer's next internal review; it is the one live lever competing against SAP Ariba.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  },
+  {
+   "key": "hygiene:convert-the-7-jul-2026-buyer-reply-into-a-firm-next-meeting-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Convert the 7 Jul 2026 buyer reply into a firm next meeting and a confirmed exco/steering-committee date \u2014 the account currently has no scheduled forward motion on record."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Convert the 7 Jul 2026 buyer reply into a firm next meeting and a confirmed exco/steering-committee date \u2014 the account currently has no scheduled forward motion on record.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:09:42.561878+05:30",
+   "last_updated": "2026-07-09T19:09:42.561878+05:30",
+   "last_confirmed": "2026-07-09T19:09:42.561878+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T19:09:42.561878+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Content of the 7 Jul 2026 buyer email reply is not available in this sweep",
+   "Two early meetings (4 Dec 2024, 5 Feb 2025) have no recording/content",
+   "Reference call (BDO/SM) completion status unconfirmed",
+   "MSA/Order Form legal review outcome unconfirmed",
+   "Confirmed exco/IT steering committee date unconfirmed",
+   "scrubbed 9 placeholder/template string(s)"
+  ],
+  "calls_read": 4,
+  "calls_omitted": [
+   {
+    "date": "2024-12-04",
+    "reason": "completed meeting, no recording/content captured (GAP)",
+    "meeting": "Zycus Team Meeting (F2F)"
+   },
+   {
+    "date": "2025-02-05",
+    "reason": "not_recorded (GAP)",
+    "meeting": "Zycus Updates"
+   }
+  ],
+  "avoma_attendees": [
+   "jenn.nicolas@acenrenewables.com",
+   "aaron.angeles@acenrenewables.com",
+   "zee.pervez@acenrenewables.com",
+   "jeff.desagun@acenrenewables.com",
+   "mher.tolentino-blas@acenrenewables.com",
+   "anna.esguerra@acenrenewables.com"
+  ],
+  "calls_discovered": 6,
+  "discovery_method": "opp+account+attendee-email",
+  "salesforce_window": "full available history read (Created 2024-10-08 through present, 2026-07-09)"
+ },
+ "forecast_critical": false,
+ "analysis_confidence": "Medium"
+}

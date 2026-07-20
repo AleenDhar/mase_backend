@@ -1,0 +1,4500 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic buyer",
+     "date": "2026-07-01",
+     "quote": "Executive_Sponsor_Identified__c = false; Decision_Maker_Identified__c = false",
+     "source": "Opportunity fields",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Champion",
+     "date": "2025-08-18",
+     "quote": "X10b_Champion_Business_Buyer__c is empty; sole active contact is guarded/procedural",
+     "source": "Opportunity.X10b_Champion_Business_Buyer__c + Task 00TP700000XNqjnMAD",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Decision process / paper process",
+     "date": "2025-08-07",
+     "quote": "we will develop our strategy moving forward... will reach out to you for further discussion once our strategy is finalised",
+     "source": "Task 00TP700000Wwb0IMAR",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Compelling event / cost of inaction",
+     "date": "2026-07-09",
+     "quote": "no field populated, no buyer quote captured",
+     "source": "Opportunity.Compelling_Event__c (null)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "RFP status",
+     "date": "2026-03-30",
+     "quote": "unfortunately haven't received any feedback yet. It seems the RFI has not gained much traction",
+     "source": "Next_Step_History__c",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Stage-entry date freshness",
+     "date": "2026-07-01",
+     "quote": "Qualified_Submission_Date__c reads 2026-07-01, the same day a batch of automated 'Opportunity Health' tasks were created, rather than the deal's true Qualified entry near its 14 Jul 2025 creation date",
+     "source": "Opportunity.Qualified_Submission_Date__c + Task records dated 2026-07-01",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.Business_Objectives__c (RFI capture, Jul 2025)"
+    ],
+    "narrative": "Sasol's RFI-derived business objectives (Business_Objectives__c) name concrete targets: cutting sourcing-plan development from 6 months to 1 month, covering all spend categories with sourcing plans, eliminating PowerPoint/Excel/Word-based plans, and reducing dependency on departing specialists' tribal knowledge. These are quantifiable goals, but no Sasol speaker has voiced them on a call or in an email, and no cost-of-inaction or urgency driver has been named."
+   },
+   "champion": {
+    "status": "gap",
+    "sources": [
+     "Task 00TP700000XNqjnMAD (18 Aug 2025)",
+     "Task 00TP700000Wwb0IMAR (7 Aug 2025)"
+    ],
+    "narrative": "No champion is named in Salesforce and none has emerged in 12 months. Estee Larkins (Snr Commercial Contract Specialist) is the only Sasol contact who replies, but her responses are procedural and guarded: she declined to discuss pricing on 7 Aug 2025 and, on 18 Aug 2025, limited the solutions demo to a strict one-hour, question-driven format ('The intension of this session is for a very brief overview of your solution... We will focus more on the questions we have for you'). This is gatekeeper behavior, not internal advocacy."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.How_are_you_addressing_your_problem_toda__c",
+     "Task 00TP700000X7PLKMA3 (11 Aug 2025)"
+    ],
+    "narrative": "Sasol's current-state stack (How_are_you_addressing_your_problem_today field) is SAP Ariba, Taulia, SAP ERP, and an internal AES system for spend reporting. Sasol even routed the RFI itself through the SAP Ariba portal, per the 11 Aug 2025 submission-confirmation email. This makes SAP Ariba the deepest-embedded incumbent to displace, though there is no evidence of a named, actively competing bid inside this specific RFP -- the RFP itself was never issued."
+   },
+   "identify_pain": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.Business_Objectives__c"
+    ],
+    "narrative": "The same RFI-derived objectives that anchor Metrics also describe the pain: slow (6-month) manual sourcing-plan development, inconsistent document-based strategies, and knowledge loss when specialists leave. No Sasol speaker has personally articulated this pain in a call, and no compelling event (contract expiry, budget cycle, mandate) has been named to create urgency."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Full task/next-step history read, no paper artifacts found"
+    ],
+    "narrative": "No paper-process artifact (MSA, SOW, Order Form) or discussion has been logged at any point in this deal's life, consistent with a deal that has never advanced past the RFI stage of a Qualified opportunity."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Opportunity.Executive_Sponsor_Identified__c=false",
+     "Opportunity.Decision_Maker_Identified__c=false",
+     "OpportunityContactRole (Hendrik Steynberg)",
+     "Task 00TP700000gCWARMA4 / 00TP700000gCXg1MAG (14-15 Jan 2026)"
+    ],
+    "narrative": "No economic buyer has been identified in 12 months. Executive_Sponsor_Identified__c and Decision_Maker_Identified__c are both unchecked in Salesforce. Hendrik Steynberg (VP Inbound Supply Chain Management), the highest-titled contact on record, attended the 20 Aug 2025 RFI demo and was invited to the Showpad shared space on 22 Aug 2025, but has never individually corresponded with Zycus on budget or commercial terms. Outreach on 14-15 Jan 2026 also targeted Lebelo Lukhele (introduced in that outreach as Sasol's CPO) and Merika Matlou (introduced as Senior Buyer Tactical Procurement) -- neither has replied."
+   },
+   "decision_process": {
+    "status": "gap",
+    "sources": [
+     "Task 00TP700000Wwb0IMAR (7 Aug 2025)",
+     "Next_Step_History__c (30 Mar 2026 entry)"
+    ],
+    "narrative": "Sasol has kept its internal process opaque. On 7 Aug 2025 Estee Larkins wrote: 'we are more interested in gathering information about your technology offerings based on the SOW... we will need to develop our strategy moving forward... if necessary, we will reach out to you for further discussion once our strategy is finalised.' Eleven months later, no strategy update, RFP, or process step has come back (Next_Step_History__c, 30 Mar 2026 entry: 'unfortunately haven't received any feedback yet')."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Next_Step_History__c (16 Aug 2025 entry)",
+     "Opportunity.Gaps_identified_during_sales_demo__c",
+     "Task 00TP700000Wwb0IMAR (7 Aug 2025 email from Estee Larkins)"
+    ],
+    "narrative": "Sasol's RFI (issued 14 Jul 2025, deadline 28 Jul 2025) scoped the evaluation to Source-to-Pay (S2P). After the 20 Aug 2025 demo, Zycus logged zero gaps identified during the session ('None at the RFI stage'), suggesting an initially clean fit read. However, no formal Business Requirements Document or scored criteria has been shared back, and Estee Larkins told Zycus on 7 Aug 2025 that Sasol was 'not focusing on pricing' and would 'develop our strategy moving forward' internally before re-engaging -- the actual weighting Sasol will apply remains unknown."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": "2025-08-20",
+   "meetings_60d": 0,
+   "last_rep_touch": null,
+   "last_buyer_touch": "2025-08-20",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-07-01",
+   "days_since_buyer_touch": 323
+  },
+  "opp_trends": {
+   "stage_trend": 0.656,
+   "stage_trend_detail": "Stage initial interest -> qualified (8d ago)"
+  },
+  "day_summary": {
+   "as_of": "2026-07-01",
+   "items": [
+    {
+     "at": "2026-07-01",
+     "kind": "movement",
+     "name": "Stage: Initial Interest \u2192 Qualified",
+     "summary": "Opportunity was advanced to Qualified, but this looks procedural rather than earned \u2014 it lands on the same day multiple opportunity-health gaps (no decision maker, cold prospect, thin contact map) were flagged, so the stage may be ahead of the actual evidence."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Evaluation process clarity needed",
+     "summary": "Flagged that we still don't have visibility into how Sasol will evaluate vendors or who influences that process \u2014 a basic gap for a deal now marked Qualified."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Org chart / key contacts missing",
+     "summary": "Health check surfaced that no org chart exists and key contacts across the account haven't been mapped, meaning outreach is likely narrow and exposed to a single thread going dark."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "APD review and approval pending",
+     "summary": "An APD (account plan / discovery document) is awaiting review and sign-off \u2014 indicates internal groundwork is still in progress rather than complete."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Low prospect inbound communication",
+     "summary": "Sasol's inbound engagement has been minimal, reinforcing that we're driving this relationship one-sided right now with little buyer-initiated activity."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Decision maker not identified",
+     "summary": "No confirmed economic or technical decision maker on the account \u2014 a critical blocker given the deal just moved to Qualified."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Multi-threading gap flagged",
+     "summary": "Engagement is currently single-threaded; the health check calls out the need to widen contacts to reduce risk of the deal stalling if the one active contact disengages."
+    },
+    {
+     "at": "2026-07-01",
+     "kind": "call",
+     "name": "Prospect gone cold \u2014 14+ days no inbound",
+     "summary": "No inbound communication from Sasol in over two weeks, the clearest signal that despite the stage bump, we are currently waiting on them with no active dialogue."
+    }
+   ],
+   "source": "ai",
+   "overall": "Sasol moved from Initial Interest to Qualified, but the flurry of health-check flags logged the same day tells the real story: this is a paper advance, not a momentum signal. The account has gone quiet (no inbound in 14+ days), there's no confirmed decision maker, and the org chart/multi-threading work hasn't been done \u2014 so the qualification is provisional until basic account intelligence catches up."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 90.0,
+    "win_position": 10.0,
+    "deal_momentum": 6.0,
+    "customer_commitment": 7.0,
+    "forecast_confidence": 8.0
+   },
+   "cro_panel": {
+    "intro": "Sasol_2025 is a $200K Qualified-stage new-business opportunity that has not advanced since an RFI was submitted in July-August 2025.; The deal has been dark for 175 days against the Salesforce activity rollup and for over 10 months against genuine two-way buyer engagement (last confirmed buyer reply 18 Aug 2025).; No economic buyer, champion, or decision process has been identified, and the RFP Sasol said it would issue in September 2025 was never released",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 10,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "No champion exists; stated plainly; 'No champion exists.; The only responsive Sasol contact behaves as a guarded gatekeeper, not an advocate.' \u25ba Identify and cultivate a genuine internal advocate",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer engaged; MEDDPICC marks economic_buyer as 'gap'; vulnerability log confirms 'no economic buyer engaged after 12 months.' \u25ba Secure a direct session with the VP-level contact on commercial terms",
+        "tone": "warn"
+       },
+       {
+        "text": "Entrenched competitor unchallenged; SAP Ariba is 'the entrenched threat given Sasol's likely SAP ERP footprint,' and 'Zycus has not positioned a differentiated wedge.' \u25ba Build and deliver a differentiation story vs.; Ariba incumbency",
+        "tone": "warn"
+       },
+       {
+        "text": "RFP never materialized; 'the RFP it promised for Sept 2025 was never issued' and the RFI 'has not gained much traction.' \u25ba Push for a scoped workshop to force forward motion",
+        "tone": "warn"
+       },
+       {
+        "text": "Clean single-demo fit; the one demo held 'emphasized Zycus' GenAI capabilities and drew good engagement with zero fit gaps identified,' though never revalidated since",
+        "tone": "good"
+       },
+       {
+        "text": "Stage move looks administrative; StageName advanced Initial Interest\u2192Qualified only 8 days ago despite 0 meetings and a 173-day-dark RFI. \u25ba Confirm the stage bump reflects real buyer motion, not CRM housekeeping",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 6,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Gartner conference touch; Next Step notes log a May 2026 meeting where 'Met team at Gartner Conference and interested in a follow up,' the only live buyer-side signal on record",
+        "tone": "good"
+       },
+       {
+        "text": "Zero meetings ever logged; meetings.total_all_time = 0, with 0 in the last 30/60/90 days and no transcript captured at any point. \u25ba Convert the Gartner interest into a booked discovery call now",
+        "tone": "warn"
+       },
+       {
+        "text": "RFI dark 173 days; competitive summary confirms 'a stalled RFI/RFP cycle that has gone dark for 173 days.' \u25ba Re-engage the RFI owner directly instead of waiting for a reply",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date slipped three times; pushed from 31 Dec 2025 to 26 Feb 2027 across 14 months with 'no buyer-driven trigger for any of the pushes.' \u25ba Re-baseline the close date only against a confirmed buyer milestone",
+        "tone": "warn"
+       },
+       {
+        "text": "Rep nudging into silence; Mar 2026 note; 'unfortunately haven't received any feedback yet...; I'll continue to nudge them.' \u25ba Escalate past the gatekeeper to a named economic buyer rather than continued nudging",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 90,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Competing against SAP Ariba (primary) and Taulia (secondary) in a stalled RFI/RFP cycle that has gone dark for 173 days.",
+      "bullets": [
+       {
+        "text": "No EB or champion after 11+ months; vulnerability log; 'no economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper.'",
+        "tone": "warn"
+       },
+       {
+        "text": "Entrenched incumbent competitor; SAP Ariba holds the likely ERP footprint advantage with 'no differentiated wedge' from Zycus positioned against it",
+        "tone": "warn"
+       },
+       {
+        "text": "173-day dark RFI with no trigger; the promised Sept 2025 RFP 'was never issued,' and the cycle 'has not gained much traction so far.'",
+        "tone": "warn"
+       },
+       {
+        "text": "Repeated close-date slippage; three pushes over 14 months (31 Dec 2025 \u2192 26 Feb 2027) with no buyer-driven cause, signaling schedule and forecast risk",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Re-engage Estee Larkins and Hendrik Steynberg directly on RFP status and the referenced Gartner Conference conversation. (by 16 Jun)",
+       "Individually approach Hendrik Steynberg (VP Inbound Supply Chain) to validate him as economic buyer. (by 23 Jun)",
+       "Offer and schedule the design workshop already proposed to help Sasol define next steps. (by 8 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Sasol Limited \u2014 Qualified \u00b7 $200K \u00b7 closes 26 Jan",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 90.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No EB or champion after 11+ months \u2014 vulnerability log: 'no economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper.'",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Entrenched incumbent competitor \u2014 SAP Ariba holds the likely ERP footprint advantage with 'no differentiated wedge' from Zycus positioned against it.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "173-day dark RFI with no trigger \u2014 the promised Sept 2025 RFP 'was never issued,' and the cycle 'has not gained much traction so far.'",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Repeated close-date slippage \u2014 three pushes over 14 months (2025-12-31 \u2192 2027-02-26) with no buyer-driven cause, signaling schedule and forecast risk.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "No EB or champion after 11+ months \u2014 vulnerability log: 'no economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper.'",
+      "tone": "warn"
+     },
+     {
+      "text": "Entrenched incumbent competitor \u2014 SAP Ariba holds the likely ERP footprint advantage with 'no differentiated wedge' from Zycus positioned against it.",
+      "tone": "warn"
+     },
+     {
+      "text": "173-day dark RFI with no trigger \u2014 the promised Sept 2025 RFP 'was never issued,' and the cycle 'has not gained much traction so far.'",
+      "tone": "warn"
+     },
+     {
+      "text": "Repeated close-date slippage \u2014 three pushes over 14 months (2025-12-31 \u2192 2027-02-26) with no buyer-driven cause, signaling schedule and forecast risk.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "No champion exists \u2014 stated plainly: 'No champion exists. The only responsive Sasol contact behaves as a guarded gatekeeper, not an advocate.' \u25ba Identify and cultivate a genuine internal advocate.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer engaged \u2014 MEDDPICC marks economic_buyer as 'gap'; vulnerability log confirms 'no economic buyer engaged after 12 months.' \u25ba Secure a direct session with the VP-level contact on commercial terms.",
+      "tone": "warn"
+     },
+     {
+      "text": "Entrenched competitor unchallenged \u2014 SAP Ariba is 'the entrenched threat given Sasol's likely SAP ERP footprint,' and 'Zycus has not positioned a differentiated wedge.' \u25ba Build and deliver a differentiation story vs. Ariba incumbency.",
+      "tone": "warn"
+     },
+     {
+      "text": "RFP never materialized \u2014 'the RFP it promised for Sept 2025 was never issued' and the RFI 'has not gained much traction.' \u25ba Push for a scoped workshop to force forward motion.",
+      "tone": "warn"
+     },
+     {
+      "text": "Clean single-demo fit \u2014 the one demo held 'emphasized Zycus' GenAI capabilities and drew good engagement with zero fit gaps identified,' though never revalidated since.",
+      "tone": "good"
+     },
+     {
+      "text": "Stage move looks administrative \u2014 StageName advanced Initial Interest\u2192Qualified only 8 days ago despite 0 meetings and a 173-day-dark RFI. \u25ba Confirm the stage bump reflects real buyer motion, not CRM housekeeping.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Gartner conference touch \u2014 Next Step notes log a May 2026 meeting where 'Met team at Gartner Conference and interested in a follow up,' the only live buyer-side signal on record.",
+      "tone": "good"
+     },
+     {
+      "text": "Zero meetings ever logged \u2014 meetings.total_all_time = 0, with 0 in the last 30/60/90 days and no transcript captured at any point. \u25ba Convert the Gartner interest into a booked discovery call now.",
+      "tone": "warn"
+     },
+     {
+      "text": "RFI dark 173 days \u2014 competitive summary confirms 'a stalled RFI/RFP cycle that has gone dark for 173 days.' \u25ba Re-engage the RFI owner directly instead of waiting for a reply.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date slipped three times \u2014 pushed from 2025-12-31 to 2027-02-26 across 14 months with 'no buyer-driven trigger for any of the pushes.' \u25ba Re-baseline the close date only against a confirmed buyer milestone.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep nudging into silence \u2014 Mar 2026 note: 'unfortunately haven't received any feedback yet... I'll continue to nudge them.' \u25ba Escalate past the gatekeeper to a named economic buyer rather than continued nudging.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No paper process started \u2014 MEDDPICC flags paper_process as 'gap' with no procurement or security review evidenced. \u25ba Define a concrete commercial next step with the buyer.",
+      "tone": "warn"
+     },
+     {
+      "text": "Decision process undefined \u2014 decision_process marked 'gap' in MEDDPICC; no internal approval path has been shared. \u25ba Ask the buyer to map their internal sign-off chain.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zero buyer-owned action items \u2014 no meetings logged in 30/60/90 days and no evidence the buyer has taken any task ownership. \u25ba Get the buyer to commit to a dated action (workshop or RFP reissue).",
+      "tone": "warn"
+     },
+     {
+      "text": "Verbal interest expressed \u2014 buyer's Gartner Conference remark (May 2026) that they are 'interested in a follow up' is the only sign of buyer-side investment on file. \u25ba Lock that interest into a scheduled call within two weeks.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 10.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No champion exists \u2014 stated plainly: 'No champion exists. The only responsive Sasol contact behaves as a guarded gatekeeper, not an advocate.' \u25ba Identify and cultivate a genuine internal advocate.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer engaged \u2014 MEDDPICC marks economic_buyer as 'gap'; vulnerability log confirms 'no economic buyer engaged after 12 months.' \u25ba Secure a direct session with the VP-level contact on commercial terms.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Entrenched competitor unchallenged \u2014 SAP Ariba is 'the entrenched threat given Sasol's likely SAP ERP footprint,' and 'Zycus has not positioned a differentiated wedge.' \u25ba Build and deliver a differentiation story vs. Ariba incumbency.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "RFP never materialized \u2014 'the RFP it promised for Sept 2025 was never issued' and the RFI 'has not gained much traction.' \u25ba Push for a scoped workshop to force forward motion.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Clean single-demo fit \u2014 the one demo held 'emphasized Zycus' GenAI capabilities and drew good engagement with zero fit gaps identified,' though never revalidated since.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage move looks administrative \u2014 StageName advanced Initial Interest\u2192Qualified only 8 days ago despite 0 meetings and a 173-day-dark RFI. \u25ba Confirm the stage bump reflects real buyer motion, not CRM housekeeping.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 6.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Gartner conference touch \u2014 Next Step notes log a May 2026 meeting where 'Met team at Gartner Conference and interested in a follow up,' the only live buyer-side signal on record.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero meetings ever logged \u2014 meetings.total_all_time = 0, with 0 in the last 30/60/90 days and no transcript captured at any point. \u25ba Convert the Gartner interest into a booked discovery call now.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "RFI dark 173 days \u2014 competitive summary confirms 'a stalled RFI/RFP cycle that has gone dark for 173 days.' \u25ba Re-engage the RFI owner directly instead of waiting for a reply.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date slipped three times \u2014 pushed from 2025-12-31 to 2027-02-26 across 14 months with 'no buyer-driven trigger for any of the pushes.' \u25ba Re-baseline the close date only against a confirmed buyer milestone.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Rep nudging into silence \u2014 Mar 2026 note: 'unfortunately haven't received any feedback yet... I'll continue to nudge them.' \u25ba Escalate past the gatekeeper to a named economic buyer rather than continued nudging.",
+      "points": -1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Sasol's team responded well to the GenAI/Merlin overview in the one demo held, and the account rep has continued pitching the Autonomous Negotiation Agent (ANA) in follow-up outreach, but no buyer-side confirmation of an AI-specific require",
+     "expectations_fit": "The single demo produced a clean fit read (no gaps identified), and Sasol's stated objectives map to Zycus' GenAI sourcing-plan capability, but none of this has been validated in a second session or against a formal requirements document.",
+     "north_star_verdict": null,
+     "positioning_strength": "The single demo emphasized Zycus' GenAI capabilities and drew good engagement with zero fit gaps identified, but there has been no subsequent AI-specific validation (no RFP was issued to score AI requirements formally)."
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 200000.0,
+     "opp_id": "006P700000LR3st",
+     "account": "Sasol Limited",
+     "opp_name": "Sasol_2025",
+     "next_step": "May 2026: Met team at Gartner Conference and interested in a follow upMatch 2026: unfortunately haven\u2019t received any feedback yet. It seems the RFI has not gained much traction so far, despite my offer to organise a design workshop to help define our next steps. I\u2019ll continue to nudge them and keep you posted if anything changes.Oct 10, 2025Following up with this prospect as they are in their planning stage for a projectWe are planning to attack through EY and we&#39;ll invite Sasol to the roundtable event.",
+     "close_date": "2027-02-26",
+     "stage_tier": "early",
+     "days_to_close": 232,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-01-15"
+    },
+    "trends": {
+     "stage_trend": 0.656,
+     "stage_trend_detail": "Stage initial interest -> qualified (8d ago)"
+    },
+    "champion": "No champion exists. The only responsive Sasol contact behaves as a guarded gatekeeper, not an advocate.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "gap",
+     "competition": "partial",
+     "identify_pain": "partial",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "gap",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": null,
+     "next_scheduled": null,
+     "total_all_time": 0,
+     "days_since_last": null,
+     "with_transcript_all_time": 0
+    },
+    "competition": {
+     "summary": "Competing against SAP Ariba (primary) and Taulia (secondary) in a stalled RFI/RFP cycle that has gone dark for 173 days. Ariba is the entrenched threat given Sasol's likely SAP ERP footprint; Taulia targets working-capital optimization. Zycus has not positioned a differentiated wedge or secured a champion to navigate the competitive dynamics. The path forward is to restart engagement with a head-t",
+     "competitors": []
+    },
+    "vulnerabilities": [
+     "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper",
+     "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes",
+     "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'",
+     "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence",
+     "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": null
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 7.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No paper process started \u2014 MEDDPICC flags paper_process as 'gap' with no procurement or security review evidenced. \u25ba Define a concrete commercial next step with the buyer.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Decision process undefined \u2014 decision_process marked 'gap' in MEDDPICC; no internal approval path has been shared. \u25ba Ask the buyer to map their internal sign-off chain.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero buyer-owned action items \u2014 no meetings logged in 30/60/90 days and no evidence the buyer has taken any task ownership. \u25ba Get the buyer to commit to a dated action (workshop or RFP reissue).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Verbal interest expressed \u2014 buyer's Gartner Conference remark (May 2026) that they are 'interested in a follow up' is the only sign of buyer-side investment on file. \u25ba Lock that interest into a scheduled call within two weeks.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 8.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'ai capabilit' in Next-Step/narrative",
+    "present": true,
+    "age_days": 8
+   }
+  },
+  "scope_change": {
+   "to": "",
+   "from": "",
+   "detail": "Products in scope (ML iAnalyze, iSave, iSupplier, iRisk) are unchanged since the RFI; the RFI itself was explicitly scoped to Source-to-Pay (S2P) per the 16 Aug 2025 Next Step History entry.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Sasol's team responded well to the GenAI/Merlin overview in the one demo held, and the account rep has continued pitching the Autonomous Negotiation Agent (ANA) in follow-up outreach, but no buyer-side confirmation of an AI-specific requirement exists."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Quantified objectives exist only in an RFI-derived field (Business_Objectives__c); no buyer-voiced compelling event or cost-of-inaction has been captured."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-07-14",
+     "change": "RFI released by Sasol (deadline 28 Jul 2025)"
+    },
+    {
+     "date": "2025-08-16",
+     "change": "RFI response submitted via SAP Ariba portal; scope confirmed as S2P; Sasol said RFP planned early-to-mid Sept 2025"
+    },
+    {
+     "date": "2025-08-20",
+     "change": "One-hour solutions demo delivered to Sasol procurement team"
+    },
+    {
+     "date": "2025-08-22",
+     "change": "Showpad shared space created and populated for 5 Sasol contacts"
+    },
+    {
+     "date": "2025-08-18",
+     "change": "Last confirmed two-way buyer reply (Estee Larkins, declining pricing discussion)"
+    },
+    {
+     "date": "2025-10-27",
+     "change": "EY roundtable re-engagement play proposed; no confirmed attendance/outcome logged"
+    },
+    {
+     "date": "2026-01-15",
+     "change": "Wave of LinkedIn/email re-engagement outreach to Estee Larkins, Lebelo Lukhele, Merika Matlou; no replies"
+    },
+    {
+     "date": "2026-03-30",
+     "change": "Design workshop offer repeated; still no feedback, RFI has 'not gained much traction'"
+    },
+    {
+     "date": "2026-05-01",
+     "change": "Unconfirmed Next Step note: team met Sasol at a Gartner Conference, Sasol 'interested in a follow up'"
+    }
+   ],
+   "summary": "No net-forward deal movement since Aug 2025. The RFI was submitted and a one-hour demo delivered in Aug 2025; every subsequent event has been a one-way rep outreach attempt (Sept 2025 - Jan 2026) with no confirmed buyer response, and the close date has been pushed three times."
+  },
+  "forecast_read": {
+   "math": "Close date 26 Feb 2027 = 232 days out. Stage Qualified since opp creation 14 Jul 2025 (~360 days in stage, far beyond typical Qualified dwell). RFI issued 14 Jul 2025, promised RFP (Sept 2025) never delivered. Close date has already forward-slipped three times (31 Dec 2025 -> 26 Feb 2027) with no buyer-driven trigger cited.",
+   "reason": "Pipeline is already the most conservative category and matches the evidence: no economic buyer, no champion, a stalled RFI, an RFP that never materialized, and 175+ days of Salesforce-verified silence. Nothing here supports upgrading to Best Case or Commit.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "ML iAnalyze;iSave;iSupplier;iRisk"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "account_context": {
+   "stamped": "2026-07-07",
+   "sibling_name": "Sasol via Letsema",
+   "sibling_strong": false,
+   "best_sibling_mom": 25,
+   "best_sibling_win": 5,
+   "sibling_closed_won": false
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Estee Larkins",
+     "risk": "Sole active thread; declines pricing conversations and controls the pace of engagement",
+     "role": "Coach",
+     "email": "estee.larkins@sasol.com",
+     "title": "Snr Commercial Contract Specialist at Sasol",
+     "_source": "sfdc_contact_role",
+     "sentiment": "guarded/procedural",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-18"
+    },
+    {
+     "name": "Jacobus de Wet",
+     "risk": "No individual engagement since the group demo/Shared Space invite",
+     "role": "Influencer",
+     "email": "jacobus.dewet@sasol.com",
+     "title": "Lead Sourcing: Facilities and Civil (Acting)",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-22"
+    },
+    {
+     "name": "Deon Meyer",
+     "risk": "No individual engagement since the group demo/Shared Space invite",
+     "role": "Influencer",
+     "email": "deon.meyer@sasol.com",
+     "title": "Manager: Business Improvement / Project Portfolio Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-22"
+    },
+    {
+     "name": "Thabiso Seboka",
+     "risk": "No individual engagement since the group demo/Shared Space invite",
+     "role": "Influencer",
+     "email": "thabiso.seboka@sasol.com",
+     "title": "Improvement Specialist",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-22"
+    },
+    {
+     "name": "Hendrik Steynberg",
+     "risk": "Highest-titled contact but never individually engaged on commercial terms; potential but unconfirmed economic buyer",
+     "role": "Unknown",
+     "email": "hendrik.steynberg@sasol.com",
+     "title": "VP Inbound Supply Chain Management",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral (no individual correspondence logged)",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-22"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-01",
+     "change": "carried",
+     "detail": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper",
+     "status": "unresolved",
+     "category": "political",
+     "first_seen": "2026-07-07T14:38:21.288603+05:30",
+     "first_raised": "2025-08-18",
+     "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+    },
+    {
+     "date": "2026-03-02",
+     "change": "carried",
+     "detail": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-07T14:38:21.288603+05:30",
+     "first_raised": "2025-08-20",
+     "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+    },
+    {
+     "date": "2026-03-30",
+     "change": "carried",
+     "detail": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'",
+     "status": "unresolved",
+     "category": "change_management",
+     "first_seen": "2026-07-07T14:38:21.288603+05:30",
+     "first_raised": "2025-08-17",
+     "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+    },
+    {
+     "date": "2025-10-27",
+     "change": "carried",
+     "detail": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence",
+     "status": "unconfirmed",
+     "category": "partner_support",
+     "first_seen": "2026-07-07T14:38:21.288603+05:30",
+     "first_raised": "2025-10-10",
+     "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T15:28:43.163534+05:30",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+    },
+    {
+     "date": "2027-02-26",
+     "change": "carried",
+     "detail": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T15:28:43.163534+05:30",
+     "first_raised": "2025-12-31",
+     "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T15:28:43.163534+05:30",
+     "first_raised": "2025-08-20",
+     "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no executive sponsor mapped",
+     "status": "unresolved",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "carried",
+     "detail": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-10-23",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-08-20",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-01-15",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency or justify $200k investment.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commercial terms or business case",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-08-20",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stalled, RFP never issued",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-12-31",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No Economic Buyer or champion identified after 12 months; highest-title contact (VP Steynberg) not engaged on business case or commercial terms; no executive sponsor mapped.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-01",
+     "change": "new",
+     "detail": "No economic buyer or executive sponsor identified after 12 months; the highest-titled contact (VP) has never been individually engaged on commercial terms.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T19:25:14.541623+05:30",
+     "first_raised": "2025-07-14",
+     "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+    },
+    {
+     "date": "2026-01-15",
+     "change": "new",
+     "detail": "Single-threaded relationship through a guarded, procedural contact (Estee Larkins); no multi-threading confirmed since Aug 2025.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-09T19:25:14.541623+05:30",
+     "first_raised": "2025-08-18",
+     "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+    },
+    {
+     "date": "2027-02-26",
+     "change": "new",
+     "detail": "Close date has slipped three times over 14 months (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T19:25:14.541623+05:30",
+     "first_raised": "2025-12-31",
+     "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+    },
+    {
+     "date": "2026-03-30",
+     "change": "new",
+     "detail": "RFI issued Jul 2025 stalled; the RFP promised for Sept 2025 was never issued and 'has not gained much traction' as of Mar 2026.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-09T19:25:14.541623+05:30",
+     "first_raised": "2025-09-15",
+     "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 6.0,
+   "win": 10.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The one substantive session on record, a one-hour RFI solutions demo on 20 Aug 2025 (~11 months ago), ran without a recording; Sasol described it afterward as engaged but strictly question-driven, and the RFP that was meant to follow within weeks never materialized.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "Sasol runs its RFI process through its existing SAP Ariba portal and still uses Taulia and SAP ERP for adjacent processes, making SAP Ariba the entrenched incumbent this deal would need to displace.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "The current Next Step claims a Gartner Conference meeting with the Sasol team in May 2026 (~2 months before this sweep) where they expressed interest in a follow-up, but no task, call, or email corroborates this and no follow-up appears to have been logged since.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Commercials",
+    "text": "No economic buyer has ever been engaged on budget or commercial terms in 12 months; the one active contact explicitly declined to discuss pricing in August 2025.",
+    "tone": "crit"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": true,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Opportunity.X10b_Champion_Business_Buyer__c (empty); Task 00TP700000XNqjnMAD, 00TP700000Wwb0IMAR",
+   "at_risk": true,
+   "summary": "No champion exists. The only responsive Sasol contact behaves as a guarded gatekeeper, not an advocate.",
+   "champion": "",
+   "strength": "none"
+  },
+  "expansion_context": {
+   "note": "A separate open opportunity exists on this account (Sasol via Letsema, Qualified) but there is no Closed-Won history on Sasol Limited to inherit executive access from.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Re-engage Estee Larkins and Hendrik Steynberg directly on RFP status and the referenced Gartner Conference conversation.",
+     "horizon": "next_7_days",
+     "trigger": "No buyer reply in 325 days; unconfirmed Gartner Conference interest logged in Next Step",
+     "trigger_date": "2026-05-01",
+     "expected_effect": "Re-open two-way contact and confirm whether the stalled RFI/RFP is still live."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Individually approach Hendrik Steynberg (VP Inbound Supply Chain) to validate him as economic buyer.",
+     "horizon": "next_14_days",
+     "trigger": "No economic buyer identified after 12 months",
+     "trigger_date": "2026-07-01",
+     "expected_effect": "Establish a second, senior-level thread and identify or rule out the true economic buyer."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Offer and schedule the design workshop already proposed to help Sasol define next steps.",
+     "horizon": "next_30_days",
+     "trigger": "Design workshop offered but never scheduled",
+     "trigger_date": "2026-03-30",
+     "expected_effect": "Create a structured forcing function to revive the stalled evaluation and surface real decision criteria/process."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Re-attempt executive outreach to Lebelo Lukhele and Merika Matlou with a different message and channel.",
+     "horizon": "next_30_days",
+     "trigger": "No reply to 14-15 Jan 2026 InMails",
+     "trigger_date": "2026-01-15",
+     "expected_effect": "Open an executive-level channel independent of the single Larkins thread."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "No buyer reply in 325 days",
+    "Close date slipped 3x with no buyer trigger",
+    "RFP promised for Sept 2025 never issued"
+   ],
+   "cooling": true,
+   "summary": "Every independent signal (activity rollup, buyer replies, RFP delivery, close-date stability) points the same direction: this deal has stalled and needs direct re-engagement, not continued nudging."
+  },
+  "north_star_verdict": {
+   "math": "Created 14 Jul 2025, stuck in Qualified for 358 days. Close date 2027-02-26 (234 days out). Last buyer engagement 2026-01-15, now 173 days dark. Close date slipped from 2025-12-31 to 2026-06-30 (by 181 days on 2025-10-23), then to 2027-02-26 (by 241 days on 2026-07-01). No submission-date series available; forward velocity is zero. Required pace to close: immediate re-engagement and executive sponsor mapping within 14 days.",
+   "verdict": "Off Track",
+   "critical": true,
+   "evidence": [
+    "LastActivityDate 2026-01-15, 173 days ago; no buyer response to multiple rep nudges per Next Step (Mar 2026, May 2026).",
+    "Stuck in Qualified since creation (14 Jul 2025), 358 days without progression to deeper evaluation or commercial stage.",
+    "RFI issued Jul 2025 stalled; promised RFP for Sept 2025 never issued and 'has not gained much traction' (Next Step, Mar 2026).",
+    "Single-threaded: highest-engaged contact is Estee Larkins (mid-level commercial specialist); VP Steynberg and Manager Meyer have not been directly engaged on business case or commercial terms.",
+    "No Economic Buyer, no Champion, no quantified pain or compelling event recorded in any field or call.",
+    "EY roundtable re-engagement attempt (Oct 2025) has no confirmed attendance or outcome evidence.",
+    "Close date slipped 3 times over 14 months with no buyer-driven trigger; most recent slip (Jul 2026) pushed close by 8 months to Feb 2027."
+   ],
+   "headline": "Dormant for 173 days with no buyer response; stuck in Qualified for 12 months; RFI stalled, RFP never materialized; single-threaded with no EB, no champion, and no quantified pain to restart momentum.",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Omitted"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the Aug 2025 demo, rather than relying on Larkins to relay progress.",
+    "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has not moved the deal and needs a concrete ask, not another nudge.",
+    "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025.",
+    "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate channel back into Sasol.",
+    "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'.",
+    "Restart buyer engagement directly -- 325 days since the last confirmed buyer reply; the deal has gone cold on every channel tried so far.",
+    "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event.",
+    "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months",
+    "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger.",
+    "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible.",
+    "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence",
+    "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP.",
+    "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible.",
+    "No Champion after 12 months",
+    "Map the economic buyer and decision process explicitly -- no org chart or decision-maker confirmation exists after 12 months; use the offered design workshop as the forcing function to get it."
+   ],
+   "summary": "Salesforce's own automated health check (2026-07-01) already flagged this deal as cold, single-threaded, and missing a decision maker -- confirming the independent read from the activity timeline."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference for Zycus has been recorded; the last confirmed buyer reply (18 Aug 2025) declined to discuss pricing and kept the demo strictly question-driven."
+  },
+  "competitive_position": {
+   "summary": "Competing against SAP Ariba (primary) and Taulia (secondary) in a stalled RFI/RFP cycle that has gone dark for 173 days. Ariba is the entrenched threat given Sasol's likely SAP ERP footprint; Taulia targets working-capital optimization. Zycus has not positioned a differentiated wedge or secured a champion to navigate the competitive dynamics. The path forward is to restart engagement with a head-to-head AI/ML capability comparison (Zycus iAnalyze + iRisk vs Ariba's static analytics) anchored to a quantified pain, delivered via an executive briefing or design workshop.",
+   "competitors": []
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Sasol_2025 is a $200K Qualified-stage new-business opportunity that has not advanced since an RFI was submitted in July-August 2025. The deal has been dark for 175 days against the Salesforce activity rollup and for over 10 months against genuine two-way buyer engagement (last confirmed buyer reply 18 Aug 2025). No economic buyer, champion, or decision process has been identified, and the RFP Sasol said it would issue in September 2025 was never released.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Deal is stuck in Qualified stage for 12 months with the RFI stalled and the promised RFP never issued -- classic early-stage stall risk (weak/no champion, unmapped EB, unclear decision process).",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through a guarded, procedural contact who has explicitly declined pricing conversations; no coach or champion exists to restart the stalled process.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "No economic buyer engaged in 12 months -- Executive_Sponsor_Identified__c and Decision_Maker_Identified__c are both unchecked, and VP Hendrik Steynberg, the highest-titled contact, has never individually corresponded with Zycus.",
+      "tone": "warn"
+     },
+     {
+      "text": "No champion, single-threaded relationship -- the only responsive contact, Estee Larkins, is guarded and procedural, declining to discuss pricing on 7 Aug 2025.",
+      "tone": "warn"
+     },
+     {
+      "text": "Initial technical fit read was clean -- zero gaps were logged from the 20 Aug 2025 solutions demo, and Sasol's RFI-derived objectives (6-month-to-1-month sourcing cycle reduction) map directly to Zycus' GenAI sourcing capability.",
+      "tone": "good"
+     },
+     {
+      "text": "RFP promised for Sept 2025 never issued -- Sasol said on 16 Aug 2025 it planned to release the RFP 'early to mid Sept'; as of 30 Mar 2026 the deal's Next Step History still records no traction.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "175 days since the last logged Salesforce activity (15 Jan 2026) and no buyer reply since 18 Aug 2025 (325 days) despite 6+ rep touches (LinkedIn InMails, emails, an EY roundtable invite).",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date has slipped three times over the opportunity's 12-month life (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push.",
+      "tone": "warn"
+     },
+     {
+      "text": "An EY-partner roundtable re-engagement play was floated for Nov 2025 but no attendance or outcome was ever logged.",
+      "tone": "neu"
+     },
+     {
+      "text": "The current Next Step claims a Gartner Conference meeting in May 2026 (~2 months ago) where Sasol was 'interested in a follow up,' but no task, call, or email corroborates this and no follow-up has been logged since.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Sasol made two dated commitments -- conclude its internal evaluation of the 20 Aug 2025 demo, and issue the planned RFP -- and has honored neither as of this sweep (9 Jul 2026).",
+      "tone": "warn"
+     },
+     {
+      "text": "Sasol did accept and populate a Zycus Showpad shared space (5 contacts invited, 22 Aug 2025), the one piece of tangible buyer-side follow-through on record.",
+      "tone": "neu"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": []
+  },
+  "implicit_requirements": {
+   "items": []
+  },
+  "ai_positioning_strength": {
+   "score": "",
+   "summary": "The single demo emphasized Zycus' GenAI capabilities and drew good engagement with zero fit gaps identified, but there has been no subsequent AI-specific validation (no RFP was issued to score AI requirements formally).",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2025-07-14",
+     "quote": "Reduce sourcing plan development from 6 months to 1 month, with basic strategy developed in less than 60 minutes.",
+     "source": "Opportunity.Business_Objectives__c",
+     "position": "aligned",
+     "criterion": "Sourcing-plan development speed (6 months to 1 month target)"
+    },
+    {
+     "date": "2025-08-20",
+     "quote": "None at the RFI stage",
+     "source": "Opportunity.Gaps_identified_during_sales_demo__c",
+     "position": "aligned",
+     "criterion": "No gaps identified in solution fit at RFI stage"
+    }
+   ],
+   "summary": "The single demo produced a clean fit read (no gaps identified), and Sasol's stated objectives map to Zycus' GenAI sourcing-plan capability, but none of this has been validated in a second session or against a formal requirements document."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 200000.0,
+  "opp_id": "006P700000LR3stIAD",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000LR3stIAD/view",
+  "opp_name": "Sasol_2025",
+  "owner_id": "005P7000002gRKPIA2",
+  "products": "ML iAnalyze;iSave;iSupplier;iRisk",
+  "ais_score": null,
+  "next_step": "May 2026: Met team at Gartner Conference and interested in a follow upMatch 2026: unfortunately haven\u2019t received any feedback yet. It seems the RFI has not gained much traction so far, despite my offer to organise a design workshop to help define our next steps. I\u2019ll continue to nudge them and keep you posted if anything changes.Oct 10, 2025Following up with this prospect as they are in their planning stage for a projectWe are planning to attack through EY and we&#39;ll invite Sasol to the roundtable event.",
+  "ais_status": null,
+  "close_date": "2027-02-26",
+  "competitor": null,
+  "owner_name": "Caroline Lacocque",
+  "owner_title": null,
+  "account_name": "Sasol Limited",
+  "created_date": "2025-07-14",
+  "manager_name": "John Woodcock",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 232,
+  "dm_identified": false,
+  "eb_identified": false,
+  "qualified_date": "2026-07-01",
+  "billing_country": "South Africa",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-01-15",
+  "last_modified_date": "2026-07-01",
+  "metrics_identified": true,
+  "primary_competitor": "SAP Ariba",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2025-08-18",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "dark",
+  "summary": "Dark: no verified buyer engagement in 175 day(s) (last 2026-01-15). Buyer EMAIL RECEIVED 325 day(s) ago (2025-08-18) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement.",
+  "calls_read": 0,
+  "close_date": "2027-02-26",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 232,
+  "verified_known": true,
+  "buyer_calls_seen": false,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 325,
+  "last_activity_date": "2026-01-15",
+  "days_since_activity": 175,
+  "next_scheduled_date": null,
+  "days_since_qualified": 8,
+  "last_inbound_email_date": "2025-08-18"
+ },
+ "deltas": [
+  {
+   "to": "Dedicated Showpad shared space with modular solution content for the Sasol team - completed",
+   "key": "commitment:zycus-dedicated-showpad-shared-space-with-modular-solution-c",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Dedicated Showpad shared space with modular solution content for the Sasol team - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Dedicated Showpad shared space with modular solution content for the Sasol team"
+  },
+  {
+   "key": "commitment:zycus-dedicated-showpad-shared-space-with-modular-solution-c",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "resolved",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Dedicated Showpad shared space with modular solution content for the Sasol team"
+  },
+  {
+   "to": "Conclude internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "key": "commitment:buyer-conclude-internal-evaluation-of-the-20-aug-2025-demo-a",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Conclude internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+  },
+  {
+   "to": "Issue the planned RFP following the RFI response - overdue",
+   "key": "commitment:buyer-issue-the-planned-rfp-following-the-rfi-response",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Issue the planned RFP following the RFI response - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Issue the planned RFP following the RFI response"
+  },
+  {
+   "to": "Estee Larkins - Coach",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Estee Larkins - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Hendrik Steynberg - Unknown",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Hendrik Steynberg - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Lebelo Lukhele - Unknown",
+   "key": "stakeholder:lebelo-lukhele",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Lebelo Lukhele - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Lebelo Lukhele"
+  },
+  {
+   "to": "Jacobus de Wet - Influencer",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Jacobus de Wet - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Deon Meyer - Influencer",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Deon Meyer - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Thabiso Seboka - Influencer",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Thabiso Seboka - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "Merika Matlou - Unknown",
+   "key": "stakeholder:merika-matlou",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "from": "Merika Matlou - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Merika Matlou"
+  },
+  {
+   "to": "No economic buyer or executive sponsor identified after 12 months; the highest-titled contact (VP) has never been individually engaged on commercial terms. - op",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-after-12-m",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor identified after 12 months; the highest-titled contact (VP) has never been individually engaged on commercial terms."
+  },
+  {
+   "to": "Single-threaded relationship through a guarded, procedural contact (Estee Larkins); no multi-threading confirmed since Aug 2025. - open",
+   "key": "risk:single-threaded-relationship-through-a-guarded-procedural-co",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded relationship through a guarded, procedural contact (Estee Larkins); no multi-threading confirmed since Aug 2025."
+  },
+  {
+   "to": "Close date has slipped three times over 14 months (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push. - open",
+   "key": "risk:close-date-has-slipped-three-times-over-14-months-31-dec-202",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date has slipped three times over 14 months (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push."
+  },
+  {
+   "to": "RFI issued Jul 2025 stalled; the RFP promised for Sept 2025 was never issued and 'has not gained much traction' as of Mar 2026. - open",
+   "key": "risk:rfi-issued-jul-2025-stalled-the-rfp-promised-for-sept-2025-w",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "RFI issued Jul 2025 stalled; the RFP promised for Sept 2025 was never issued and 'has not gained much traction' as of Mar 2026."
+  },
+  {
+   "to": "Restart buyer engagement directly -- 325 days since the last confirmed buyer reply; the deal has gone cold on every channel tried so far.",
+   "key": "hygiene:restart-buyer-engagement-directly-325-days-since-the-last-co",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Restart buyer engagement directly -- 325 days since the last confirmed buyer reply; the deal has gone cold on every channel tried so far."
+  },
+  {
+   "to": "Multi-thread beyond the single Estee Larkins relationship -- reach VP Hendrik Steynberg and other demo attendees (Jacobus de Wet, Deon Meyer, Thabiso Seboka) in",
+   "key": "hygiene:multi-thread-beyond-the-single-estee-larkins-relationship-re",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond the single Estee Larkins relationship -- reach VP Hendrik Steynberg and other demo attendees (Jacobus de Wet, Deon Meyer, Thabiso Seboka) individually rather than only via group invites."
+  },
+  {
+   "to": "Map the economic buyer and decision process explicitly -- no org chart or decision-maker confirmation exists after 12 months; use the offered design workshop as",
+   "key": "hygiene:map-the-economic-buyer-and-decision-process-explicitly-no-or",
+   "date": "2026-07-09T19:25:14.541623+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Map the economic buyer and decision process explicitly -- no org chart or decision-maker confirmation exists after 12 months; use the offered design workshop as the forcing function to get it."
+  },
+  {
+   "to": "Hendrik Steynberg - Unknown",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-07",
+   "from": "Hendrik Steynberg - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Deon Meyer - Influencer",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-07",
+   "from": "Deon Meyer - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Estee Larkins - Influencer",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-07",
+   "from": "Estee Larkins - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Jacobus de Wet - Influencer",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-07",
+   "from": "Jacobus de Wet - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Thabiso Seboka - Influencer",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-07",
+   "from": "Thabiso Seboka - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "No Economic Buyer or champion identified after 12 months; highest-title contact (VP Steynberg) not engaged on business case or commercial terms; no executive sp",
+   "key": "risk:no-economic-buyer-or-champion-identified-after-12-months-hig",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No Economic Buyer or champion identified after 12 months; highest-title contact (VP Steynberg) not engaged on business case or commercial terms; no executive sponsor mapped."
+  },
+  {
+   "to": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issu",
+   "key": "risk:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "date": "2026-07-07",
+   "from": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issu",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued"
+  },
+  {
+   "to": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stal",
+   "key": "risk:single-threaded-through-mid-level-commercial-ops-contacts-no",
+   "date": "2026-07-07",
+   "from": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stal",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP"
+  },
+  {
+   "to": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency or justify $200k invest",
+   "key": "risk:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "date": "2026-07-07",
+   "from": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency - unresolved",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency"
+  },
+  {
+   "to": "Organise a design workshop with Sasol to help define next steps - open",
+   "key": "commitment:zycus-organise-a-design-workshop-with-sasol-to-help-define-n",
+   "date": "2026-07-07",
+   "from": "Organise a design workshop with Sasol to help define next steps - no due date",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Organise a design workshop with Sasol to help define next steps"
+  },
+  {
+   "to": "Dedicated Showpad shared space with modular solution content for the Sasol team - open",
+   "key": "commitment:zycus-dedicated-showpad-shared-space-with-modular-solution-c",
+   "date": "2026-07-07",
+   "from": "Dedicated Showpad shared space with modular solution content for the Sasol team - completed",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Dedicated Showpad shared space with modular solution content for the Sasol team"
+  },
+  {
+   "to": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "key": "commitment:buyer-conclude-their-internal-evaluation-of-the-20-aug-2025-",
+   "date": "2026-07-07",
+   "from": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+  },
+  {
+   "to": "Issue the planned RFP following the RFI response - overdue",
+   "key": "commitment:buyer-issue-the-planned-rfp-following-the-rfi-response",
+   "date": "2026-07-07",
+   "from": "Issue the planned RFP following the RFI response - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Issue the planned RFP following the RFI response"
+  },
+  {
+   "to": "Dark for 173 days",
+   "key": "hygiene:dark-for-173-days",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Dark for 173 days"
+  },
+  {
+   "to": "No Economic Buyer mapped after 12 months",
+   "key": "hygiene:no-economic-buyer-mapped-after-12-months",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No Economic Buyer mapped after 12 months"
+  },
+  {
+   "to": "No Champion after 12 months",
+   "key": "hygiene:no-champion-after-12-months",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No Champion after 12 months"
+  },
+  {
+   "to": "Stuck in Qualified for 358 days",
+   "key": "hygiene:stuck-in-qualified-for-358-days",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Stuck in Qualified for 358 days"
+  },
+  {
+   "to": "RFI stalled, RFP never issued",
+   "key": "hygiene:rfi-stalled-rfp-never-issued",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "RFI stalled, RFP never issued"
+  },
+  {
+   "to": "Single-threaded relationship",
+   "key": "hygiene:single-threaded-relationship",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded relationship"
+  },
+  {
+   "to": "No quantified pain or compelling event",
+   "key": "hygiene:no-quantified-pain-or-compelling-event",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified pain or compelling event"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-or-engaged",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commercial terms or business case"
+  },
+  {
+   "key": "risk:single-threaded-through-mid-level-commercial-contact-estee-l",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP"
+  },
+  {
+   "key": "risk:close-date-has-slipped-3-times-over-14-months-2025-12-31-to-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stalled, RFP never issued"
+  },
+  {
+   "key": "risk:no-economic-buyer-identified-no-budget-authority-confirmed-n",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment"
+  },
+  {
+   "key": "hygiene:dark-deal-no-buyer-engagement-in-173-days-last-activity-2026",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "DARK DEAL: No buyer engagement in 173 days (last activity 2026-01-15). Deal is genuinely dark; re-engagement is the only priority."
+  },
+  {
+   "key": "hygiene:single-threaded-no-multi-threading-confirmed-since-aug-2025-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'."
+  },
+  {
+   "key": "hygiene:no-economic-buyer-highest-title-contact-vp-hendrik-steynberg",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "NO ECONOMIC BUYER: Highest-title contact (VP Hendrik Steynberg) has not been engaged on commercial terms or business case in 12 months."
+  },
+  {
+   "key": "hygiene:no-champion-no-advocate-identified-or-developed-to-drive-int",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP."
+  },
+  {
+   "key": "hygiene:stuck-in-stage-qualified-for-12-months-with-zero-progression",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible."
+  },
+  {
+   "key": "hygiene:no-quantified-pain-no-business-problem-pain-owner-or-value-c",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event."
+  },
+  {
+   "key": "hygiene:close-date-slip-slipped-3-times-over-14-months-2025-12-31-to",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger."
+  },
+  {
+   "key": "hygiene:indefensible-forecast-pipeline-forecast-with-no-active-buyer",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible."
+  },
+  {
+   "to": "Hendrik Steynberg - Economic Buyer",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-07",
+   "from": "Hendrik Steynberg - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Deon Meyer - Influencer",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-07",
+   "from": "Deon Meyer - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Estee Larkins - Influencer",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-07",
+   "from": "Estee Larkins - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Jacobus de Wet - Influencer",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-07",
+   "from": "Jacobus de Wet - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Thabiso Seboka - Influencer",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-07",
+   "from": "Thabiso Seboka - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commerc",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-or-engaged",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commercial terms or business case"
+  },
+  {
+   "to": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach ",
+   "key": "risk:single-threaded-through-mid-level-commercial-contact-estee-l",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP"
+  },
+  {
+   "to": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stal",
+   "key": "risk:close-date-has-slipped-3-times-over-14-months-2025-12-31-to-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stalled, RFP never issued"
+  },
+  {
+   "to": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment - open",
+   "key": "risk:no-economic-buyer-identified-no-budget-authority-confirmed-n",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment"
+  },
+  {
+   "to": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges (Mar 2026, May 2026 Gartner Conference follow-up) - open",
+   "key": "risk:deal-dark-for-173-days-since-last-buyer-engagement-2026-01-1",
+   "date": "2026-07-07",
+   "from": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed out",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome"
+  },
+  {
+   "to": "Organise a design workshop with Sasol to help define next steps - no due date",
+   "key": "commitment:zycus-organise-a-design-workshop-with-sasol-to-help-define-n",
+   "date": "2026-07-07",
+   "from": "Organise a design workshop with Sasol to help define next steps - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Organise a design workshop with Sasol to help define next steps"
+  },
+  {
+   "to": "Issue the planned RFP following the RFI response - overdue",
+   "key": "commitment:buyer-issue-the-planned-rfp-following-the-rfi-response",
+   "date": "2026-07-07",
+   "from": "Issue the planned RFP following the RFI response - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Issue the planned RFP following the RFI response"
+  },
+  {
+   "to": "DARK DEAL: No buyer engagement in 173 days (last activity 2026-01-15). Deal is genuinely dark; re-engagement is the only priority.",
+   "key": "hygiene:dark-deal-no-buyer-engagement-in-173-days-last-activity-2026",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "DARK DEAL: No buyer engagement in 173 days (last activity 2026-01-15). Deal is genuinely dark; re-engagement is the only priority."
+  },
+  {
+   "to": "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'",
+   "key": "hygiene:single-threaded-no-multi-threading-confirmed-since-aug-2025-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'."
+  },
+  {
+   "to": "NO ECONOMIC BUYER: Highest-title contact (VP Hendrik Steynberg) has not been engaged on commercial terms or business case in 12 months.",
+   "key": "hygiene:no-economic-buyer-highest-title-contact-vp-hendrik-steynberg",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "NO ECONOMIC BUYER: Highest-title contact (VP Hendrik Steynberg) has not been engaged on commercial terms or business case in 12 months."
+  },
+  {
+   "to": "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP.",
+   "key": "hygiene:no-champion-no-advocate-identified-or-developed-to-drive-int",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP."
+  },
+  {
+   "to": "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible.",
+   "key": "hygiene:stuck-in-stage-qualified-for-12-months-with-zero-progression",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible."
+  },
+  {
+   "to": "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event.",
+   "key": "hygiene:no-quantified-pain-no-business-problem-pain-owner-or-value-c",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event."
+  },
+  {
+   "to": "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger.",
+   "key": "hygiene:close-date-slip-slipped-3-times-over-14-months-2025-12-31-to",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger."
+  },
+  {
+   "to": "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible.",
+   "key": "hygiene:indefensible-forecast-pipeline-forecast-with-no-active-buyer",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible."
+  },
+  {
+   "key": "risk:no-economic-buyer-or-champion-identified-after-12-months-vp-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no executive sponsor mapped"
+  },
+  {
+   "key": "risk:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued"
+  },
+  {
+   "key": "risk:single-threaded-through-mid-level-commercial-ops-contacts-no",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP"
+  },
+  {
+   "key": "risk:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-identified-or-engaged-after-12-months-high",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No economic buyer identified or engaged after 12 months; highest-title contact (VP Steynberg) not directly engaged on commercial terms"
+  },
+  {
+   "key": "hygiene:no-champion-identified-or-developed-single-threaded-through-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No champion identified or developed; single-threaded through mid-level commercial/ops contacts"
+  },
+  {
+   "key": "hygiene:dark-deal-173-days-since-last-buyer-engagement-2026-01-15",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Dark deal: 173 days since last buyer engagement (2026-01-15)"
+  },
+  {
+   "key": "hygiene:rfi-issued-july-2025-stalled-rfp-promised-sept-2025-never-is",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "RFI issued July 2025 stalled; RFP promised Sept 2025 never issued; 'has not gained much traction' (March 2026)"
+  },
+  {
+   "key": "hygiene:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol"
+  },
+  {
+   "key": "hygiene:no-decision-criteria-or-must-haves-shared-demo-aug-2025-awai",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months"
+  },
+  {
+   "key": "hygiene:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger cited"
+  },
+  {
+   "key": "hygiene:stuck-in-qualified-for-12-months-with-no-stage-progression",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Stuck in Qualified for 12 months with no stage progression"
+  },
+  {
+   "key": "hygiene:ey-roundtable-re-engagement-approach-oct-2025-has-no-confirm",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence"
+  },
+  {
+   "to": "Hendrik Steynberg - Unknown",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-07",
+   "from": "Hendrik Steynberg - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Estee Larkins - Influencer",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-07",
+   "from": "Estee Larkins - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Deon Meyer - Influencer",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-07",
+   "from": "Deon Meyer - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Jacobus de Wet - Influencer",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-07",
+   "from": "Jacobus de Wet - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Thabiso Seboka - Influencer",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-07",
+   "from": "Thabiso Seboka - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no exe",
+   "key": "risk:no-economic-buyer-or-champion-identified-after-12-months-vp-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no executive sponsor mapped"
+  },
+  {
+   "to": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issu",
+   "key": "risk:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued"
+  },
+  {
+   "to": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stal",
+   "key": "risk:single-threaded-through-mid-level-commercial-ops-contacts-no",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP"
+  },
+  {
+   "to": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed out",
+   "key": "risk:deal-dark-for-173-days-since-last-buyer-engagement-2026-01-1",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome"
+  },
+  {
+   "to": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency - unresolved",
+   "key": "risk:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency"
+  },
+  {
+   "to": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "key": "commitment:buyer-conclude-their-internal-evaluation-of-the-20-aug-2025-",
+   "date": "2026-07-07",
+   "from": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+  },
+  {
+   "to": "No economic buyer identified or engaged after 12 months; highest-title contact (VP Steynberg) not directly engaged on commercial terms",
+   "key": "hygiene:no-economic-buyer-identified-or-engaged-after-12-months-high",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No economic buyer identified or engaged after 12 months; highest-title contact (VP Steynberg) not directly engaged on commercial terms"
+  },
+  {
+   "to": "No champion identified or developed; single-threaded through mid-level commercial/ops contacts",
+   "key": "hygiene:no-champion-identified-or-developed-single-threaded-through-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion identified or developed; single-threaded through mid-level commercial/ops contacts"
+  },
+  {
+   "to": "Dark deal: 173 days since last buyer engagement (2026-01-15)",
+   "key": "hygiene:dark-deal-173-days-since-last-buyer-engagement-2026-01-15",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Dark deal: 173 days since last buyer engagement (2026-01-15)"
+  },
+  {
+   "to": "RFI issued July 2025 stalled; RFP promised Sept 2025 never issued; 'has not gained much traction' (March 2026)",
+   "key": "hygiene:rfi-issued-july-2025-stalled-rfp-promised-sept-2025-never-is",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "RFI issued July 2025 stalled; RFP promised Sept 2025 never issued; 'has not gained much traction' (March 2026)"
+  },
+  {
+   "to": "No quantified business problem, pain owner, or value case articulated by Sasol",
+   "key": "hygiene:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol"
+  },
+  {
+   "to": "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months",
+   "key": "hygiene:no-decision-criteria-or-must-haves-shared-demo-aug-2025-awai",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months"
+  },
+  {
+   "to": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger cited",
+   "key": "hygiene:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger cited"
+  },
+  {
+   "to": "Stuck in Qualified for 12 months with no stage progression",
+   "key": "hygiene:stuck-in-qualified-for-12-months-with-no-stage-progression",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Stuck in Qualified for 12 months with no stage progression"
+  },
+  {
+   "to": "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence",
+   "key": "hygiene:ey-roundtable-re-engagement-approach-oct-2025-has-no-confirm",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence"
+  },
+  {
+   "key": "stakeholder:lebelo-lukhele",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Lebelo Lukhele"
+  },
+  {
+   "key": "stakeholder:merika-matlou",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Merika Matlou"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-champion-identified-after-11-months-sol",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper"
+  },
+  {
+   "key": "risk:close-date-has-slipped-three-times-over-14-months-2025-12-31",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes"
+  },
+  {
+   "key": "risk:the-rfi-sasol-issued-in-jul-2025-stalled-the-rfp-it-promised",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'"
+  },
+  {
+   "key": "risk:plan-to-re-approach-via-an-ey-roundtable-oct-2025-has-no-con",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence"
+  },
+  {
+   "key": "hygiene:single-threaded-on-estee-larkins-snr-commercial-contract-spe",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the Aug 2025 demo, rather than relying on Larkins to relay progress."
+  },
+  {
+   "key": "hygiene:the-cpo-lebelo-lukhele-and-a-senior-tactical-buyer-merika-ma",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "The CPO (Lebelo Lukhele) and a senior tactical buyer (Merika Matlou) were identified only in Jan 2026 via cold LinkedIn outreach with zero response; a warm introduction via Steynberg or the EY partner channel would land better than repeat cold InMails."
+  },
+  {
+   "key": "hygiene:convert-the-open-ended-design-workshop-offer-next-step-30-ma",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has not moved the deal and needs a concrete ask, not another nudge."
+  },
+  {
+   "key": "risk:no-economic-buyer-engaged-after-12-months-highest-title-cont",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms"
+  },
+  {
+   "key": "risk:close-date-has-slipped-multiple-times-over-the-opportunity-s",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited"
+  },
+  {
+   "key": "risk:single-threaded-relationship-through-a-mid-level-commercial-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025"
+  },
+  {
+   "key": "hygiene:re-engage-above-the-gatekeeper-approach-hendrik-steynberg-vp",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Re-engage above the gatekeeper: approach Hendrik Steynberg (VP Inbound Supply Chain Management) directly, since no economic buyer has surfaced after 12 months of only mid-level contact."
+  },
+  {
+   "key": "hygiene:request-a-direct-status-check-on-the-stalled-rfi-and-the-nev",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025."
+  },
+  {
+   "key": "hygiene:confirm-whether-the-ey-hosted-roundtable-re-approach-referen",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate channel back into Sasol."
+  },
+  {
+   "to": "Hendrik Steynberg - Unknown",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Hendrik Steynberg - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Estee Larkins - Unknown",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Estee Larkins - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Jacobus de Wet - Unknown",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Jacobus de Wet - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Deon Meyer - Unknown",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Deon Meyer - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Thabiso Seboka - Unknown",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Thabiso Seboka - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "Lebelo Lukhele - Unknown",
+   "key": "stakeholder:lebelo-lukhele",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Lebelo Lukhele - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Lebelo Lukhele"
+  },
+  {
+   "to": "Merika Matlou - Unknown",
+   "key": "stakeholder:merika-matlou",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "from": "Merika Matlou - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Merika Matlou"
+  },
+  {
+   "to": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms - open",
+   "key": "risk:no-economic-buyer-engaged-after-12-months-highest-title-cont",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms"
+  },
+  {
+   "to": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited - open",
+   "key": "risk:close-date-has-slipped-multiple-times-over-the-opportunity-s",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited"
+  },
+  {
+   "to": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025 - open",
+   "key": "risk:single-threaded-relationship-through-a-mid-level-commercial-",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025"
+  },
+  {
+   "to": "Re-engage above the gatekeeper: approach Hendrik Steynberg (VP Inbound Supply Chain Management) directly, since no economic buyer has surfaced after 12 months o",
+   "key": "hygiene:re-engage-above-the-gatekeeper-approach-hendrik-steynberg-vp",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage above the gatekeeper: approach Hendrik Steynberg (VP Inbound Supply Chain Management) directly, since no economic buyer has surfaced after 12 months of only mid-level contact."
+  },
+  {
+   "to": "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025.",
+   "key": "hygiene:request-a-direct-status-check-on-the-stalled-rfi-and-the-nev",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025."
+  },
+  {
+   "to": "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate chan",
+   "key": "hygiene:confirm-whether-the-ey-hosted-roundtable-re-approach-referen",
+   "date": "2026-07-07T15:28:43.163534+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate channel back into Sasol."
+  },
+  {
+   "to": "Limit the solutions demo to one hour and focus it on Sasol's own questions rather than a full walkthrough",
+   "key": "requirement:limit-the-solutions-demo-to-one-hour-and-focus-it-on-sasol-s",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Estee Larkins",
+   "subject": "Limit the solutions demo to one hour and focus it on Sasol's own questions rather than a full walkthrough"
+  },
+  {
+   "to": "Organise a design workshop with Sasol to help define next steps - open",
+   "key": "commitment:zycus-organise-a-design-workshop-with-sasol-to-help-define-n",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Organise a design workshop with Sasol to help define next steps"
+  },
+  {
+   "to": "Dedicated Showpad shared space with modular solution content for the Sasol team - completed",
+   "key": "commitment:zycus-dedicated-showpad-shared-space-with-modular-solution-c",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Dedicated Showpad shared space with modular solution content for the Sasol team"
+  },
+  {
+   "to": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps - overdue",
+   "key": "commitment:buyer-conclude-their-internal-evaluation-of-the-20-aug-2025-",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+  },
+  {
+   "to": "Issue the planned RFP following the RFI response - overdue",
+   "key": "commitment:buyer-issue-the-planned-rfp-following-the-rfi-response",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Issue the planned RFP following the RFI response"
+  },
+  {
+   "to": "Hendrik Steynberg - Unknown",
+   "key": "stakeholder:hendrik-steynberg",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hendrik Steynberg"
+  },
+  {
+   "to": "Estee Larkins - Coach",
+   "key": "stakeholder:estee-larkins",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Estee Larkins"
+  },
+  {
+   "to": "Jacobus de Wet - Influencer",
+   "key": "stakeholder:jacobus-de-wet",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacobus de Wet"
+  },
+  {
+   "to": "Deon Meyer - Influencer",
+   "key": "stakeholder:deon-meyer",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Deon Meyer"
+  },
+  {
+   "to": "Thabiso Seboka - Influencer",
+   "key": "stakeholder:thabiso-seboka",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Thabiso Seboka"
+  },
+  {
+   "to": "Lebelo Lukhele - Unknown",
+   "key": "stakeholder:lebelo-lukhele",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Lebelo Lukhele"
+  },
+  {
+   "to": "Merika Matlou - Influencer",
+   "key": "stakeholder:merika-matlou",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Merika Matlou"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Taulia - incumbent",
+   "key": "competitor:taulia",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Taulia"
+  },
+  {
+   "to": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper - unresolved",
+   "key": "risk:no-economic-buyer-or-champion-identified-after-11-months-sol",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper"
+  },
+  {
+   "to": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes - unresolved",
+   "key": "risk:close-date-has-slipped-three-times-over-14-months-2025-12-31",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes"
+  },
+  {
+   "to": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction' - unresolved",
+   "key": "risk:the-rfi-sasol-issued-in-jul-2025-stalled-the-rfp-it-promised",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'"
+  },
+  {
+   "to": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence - unconfirmed",
+   "key": "risk:plan-to-re-approach-via-an-ey-roundtable-oct-2025-has-no-con",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence"
+  },
+  {
+   "to": "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the ",
+   "key": "hygiene:single-threaded-on-estee-larkins-snr-commercial-contract-spe",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the Aug 2025 demo, rather than relying on Larkins to relay progress."
+  },
+  {
+   "to": "The CPO (Lebelo Lukhele) and a senior tactical buyer (Merika Matlou) were identified only in Jan 2026 via cold LinkedIn outreach with zero response; a warm intr",
+   "key": "hygiene:the-cpo-lebelo-lukhele-and-a-senior-tactical-buyer-merika-ma",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The CPO (Lebelo Lukhele) and a senior tactical buyer (Merika Matlou) were identified only in Jan 2026 via cold LinkedIn outreach with zero response; a warm introduction via Steynberg or the EY partner channel would land better than repeat cold InMails."
+  },
+  {
+   "to": "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has n",
+   "key": "hygiene:convert-the-open-ended-design-workshop-offer-next-step-30-ma",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has not moved the deal and needs a concrete ask, not another nudge."
+  },
+  {
+   "to": "ML iAnalyze;iSave;iSupplier;iRisk",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T14:38:21.288603+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000LR3st",
+ "packets": [
+  {
+   "key": "requirement:limit-the-solutions-demo-to-one-hour-and-focus-it-on-sasol-s",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-18",
+    "kind": "explicit",
+    "quote": "The intension of this session is for a very brief overview of your solution and hence only 1 hour was allocated. We will focus more on the questions we have for you",
+    "source": "Task 00TP700000XNqjnMAD (18 Aug 2025)",
+    "said_by": "Estee Larkins",
+    "addressed": true,
+    "requirement": "Limit the solutions demo to one hour and focus it on Sasol's own questions rather than a full walkthrough"
+   },
+   "source": "Estee Larkins",
+   "status": "active",
+   "history": [],
+   "subject": "Limit the solutions demo to one hour and focus it on Sasol's own questions rather than a full walkthrough",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07T14:38:21.288603+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "commitment:zycus-organise-a-design-workshop-with-sasol-to-help-define-n",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-30",
+    "source": "Next_Step_History__c (30 Mar 2026 entry)",
+    "status": "open",
+    "commitment": "Organise a design workshop with Sasol to help define next steps",
+    "deliverable": "Organise a design workshop with Sasol to help define next steps",
+    "grounding_quote": "despite my offer to organise a design workshop to help define our next steps"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-03-01",
+      "source": "SF Next_Step__c (Mar 2026)",
+      "status": "no due date",
+      "commitment": "Organise a design workshop with Sasol to help define next steps"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-03-31",
+      "source": "SF Next_Step__c March 2026",
+      "status": "open",
+      "commitment": "Organise a design workshop with Sasol to help define next steps"
+     }
+    }
+   ],
+   "subject": "Zycus:Organise a design workshop with Sasol to help define next steps",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "commitment:zycus-dedicated-showpad-shared-space-with-modular-solution-c",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2025-08-22",
+    "source": "Task 00TP700000Xb0ceMAB (22 Aug 2025)",
+    "status": "completed",
+    "commitment": "Dedicated Showpad shared space with modular solution content for the Sasol team",
+    "deliverable": "Dedicated Showpad shared space with modular solution content for the Sasol team",
+    "grounding_quote": "I've created a dedicated Showpad space for you and the Sasol team, which brings together key information on Zycus modular solutions"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "resolved",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "due": null,
+      "who": "Zycus",
+      "date": "2025-08-20",
+      "source": "Known commitment topic on record; inferred from demo date (20 Aug 2025).",
+      "status": "open",
+      "commitment": "Dedicated Showpad shared space with modular solution content for the Sasol team"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "due": "2025-08-22",
+      "who": "Zycus",
+      "date": "2025-08-22",
+      "source": "Task 2025-08-22 (Showpad shared space)",
+      "status": "completed",
+      "commitment": "Dedicated Showpad shared space with modular solution content for the Sasol team",
+      "deliverable": "Dedicated Showpad shared space with modular solution content for the Sasol team",
+      "grounding_quote": "I've created a dedicated Showpad space for you and the Sasol team"
+     }
+    }
+   ],
+   "subject": "Zycus:Dedicated Showpad shared space with modular solution content for the Sasol team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "commitment:buyer-conclude-their-internal-evaluation-of-the-20-aug-2025-",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-30",
+    "who": "Buyer",
+    "date": "2025-08-20",
+    "source": "Known commitment topic on record; inferred due date from RFP promise (Sept 2025); Next Step (Mar 2026) confirms no feedback received.",
+    "status": "overdue",
+    "commitment": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2025-08-20",
+      "source": "",
+      "status": "overdue",
+      "commitment": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "due": "2025-09-30",
+      "who": "Buyer",
+      "date": "2025-08-21",
+      "source": "Next Step History 2025-08-21",
+      "status": "overdue",
+      "commitment": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+      "deliverable": "Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+      "grounding_quote": "Sasol will conclude their evaluation and advise on next steps"
+     }
+    }
+   ],
+   "subject": "Buyer:Conclude their internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:buyer-issue-the-planned-rfp-following-the-rfi-response",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-15",
+    "who": "Buyer",
+    "date": "2025-08-16",
+    "source": "Next_Step_History__c (17 Aug 2025 entry)",
+    "status": "overdue",
+    "commitment": "Issue the planned RFP following the RFI response",
+    "deliverable": "Issue the planned RFP following the RFI response",
+    "grounding_quote": "RFI response submitted. Prospect is planning to release the RFP Early to mid Sept."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "due": "2025-09-30",
+      "who": "Buyer",
+      "date": "2025-08-20",
+      "source": "Known commitment topic on record; RFP promised Sept 2025 per Next Step, never issued; Next Step (Mar 2026) confirms 'RFI has not gained much traction'.",
+      "status": "overdue",
+      "commitment": "Issue the planned RFP following the RFI response"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2025-09-01",
+      "source": "SF Next_Step__c (Mar 2026): 'RFP promised for Sept 2025 was never issued and has not gained much traction'",
+      "status": "overdue",
+      "commitment": "Issue the planned RFP following the RFI response"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "due": "2025-09-15",
+      "who": "Buyer",
+      "date": "2025-08-17",
+      "source": "Next Step History 2025-08-17",
+      "status": "overdue",
+      "commitment": "Issue the planned RFP following the RFI response",
+      "deliverable": "Issue the planned RFP following the RFI response",
+      "grounding_quote": "Prospect is planning to release the RFP Early to mid Sept"
+     }
+    }
+   ],
+   "subject": "Buyer:Issue the planned RFP following the RFI response",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:hendrik-steynberg",
+   "type": "stakeholder",
+   "value": {
+    "name": "Hendrik Steynberg",
+    "risk": "Highest-titled contact but never individually engaged on commercial terms; potential but unconfirmed economic buyer",
+    "role": "Unknown",
+    "title": "VP Inbound Supply Chain Management",
+    "source": "OpportunityContactRole + Task 00TP700000Xb0ceMAB (Shared Space invite)",
+    "sentiment": "neutral (no individual correspondence logged)",
+    "last_contact_date": "2025-08-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Hendrik Steynberg",
+      "risk": "Highest-title contact but not directly engaged on business case or commercial terms; sponsorship unconfirmed.",
+      "role": "Unknown",
+      "title": "VP Inbound Supply Chain Management",
+      "source": "OpportunityContactRole; inferred last contact from demo date (20 Aug 2025) per Next Step.",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Hendrik Steynberg",
+      "risk": "Highest-title contact but never directly engaged on commercial terms or business case; no evidence of sponsorship or budget authority confirmation",
+      "role": "Economic Buyer",
+      "title": "VP Inbound Supply Chain Management",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "Unknown; no direct engagement recorded",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Hendrik Steynberg",
+      "risk": "Highest-title contact but no evidence of direct commercial or champion engagement after 12 months",
+      "role": "Unknown",
+      "title": "VP Inbound Supply Chain Management",
+      "source": "SF OpportunityContactRole, tasks",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07T15:28:43.163534+05:30",
+     "value": {
+      "name": "Hendrik Steynberg",
+      "risk": "Highest-title known contact but no confirmed engagement beyond the Aug 2025 demo",
+      "role": "Unknown",
+      "title": "VP Inbound Supply Chain Management",
+      "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Hendrik Steynberg",
+      "risk": "Most senior confirmed contact but silent since the one demo he attended",
+      "role": "Unknown",
+      "title": "VP Inbound Supply Chain Management",
+      "source": "Next Step History 2025-08-21 (demo attendee)",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    }
+   ],
+   "subject": "Hendrik Steynberg",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:estee-larkins",
+   "type": "stakeholder",
+   "value": {
+    "name": "Estee Larkins",
+    "risk": "Sole active thread; declines pricing conversations and controls the pace of engagement",
+    "role": "Coach",
+    "title": "Snr Commercial Contract Specialist at Sasol",
+    "source": "OpportunityContactRole + Task 00TP700000XNqjnMAD",
+    "sentiment": "guarded/procedural",
+    "last_contact_date": "2025-08-18"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Estee Larkins",
+      "risk": "Mid-level commercial contact; likely gatekeeper but no budget sign-off authority; may be the sole engaged thread post-demo.",
+      "role": "Influencer",
+      "title": "Snr Commercial Contract Specialist",
+      "source": "OpportunityContactRole; LastActivityDate 2026-01-15 may involve this contact.",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Estee Larkins",
+      "risk": "Described as 'guarded gatekeeper' in Next Step (Mar 2026); has not provided feedback or traction on RFI since Aug 2025 demo",
+      "role": "Influencer",
+      "title": "Snr Commercial Contract Specialist at Sasol",
+      "source": "SF OpportunityContactRole + Next_Step__c (Mar 2026) + Task contact",
+      "sentiment": "Guarded, low engagement",
+      "last_contact_date": "2026-01-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Estee Larkins",
+      "risk": "Mid-level commercial contact, no champion behavior, deal dark 173 days",
+      "role": "Influencer",
+      "title": "Snr Commercial Contract Specialist",
+      "source": "SF OpportunityContactRole, tasks",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07T15:28:43.163534+05:30",
+     "value": {
+      "name": "Estee Larkins",
+      "risk": "Sole historically-responsive contact; mid-level, described as a guarded gatekeeper",
+      "role": "Unknown",
+      "title": "Snr Commercial Contract Specialist",
+      "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Estee Larkins",
+      "risk": "Sole consistently responsive contact but gatekeeping, not advocating; unresponsive to 4 follow-ups since Sep 2025",
+      "role": "Coach",
+      "title": "Snr Commercial Contract Specialist",
+      "source": "Email 2025-08-18",
+      "sentiment": "guarded",
+      "last_contact_date": "2025-08-18"
+     }
+    }
+   ],
+   "subject": "Estee Larkins",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:jacobus-de-wet",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jacobus de Wet",
+    "risk": "No individual engagement since the group demo/Shared Space invite",
+    "role": "Influencer",
+    "title": "Lead Sourcing: Facilities and Civil (Acting)",
+    "source": "OpportunityContactRole + Task 00TP700000Xb0ceMAB",
+    "sentiment": "neutral",
+    "last_contact_date": "2025-08-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Jacobus de Wet",
+      "risk": "Sourcing lead for specific category (Facilities/Civil); limited influence on broader P2P platform decision.",
+      "role": "Influencer",
+      "title": "Lead Sourcing: Facilities and Civil (Acting)",
+      "source": "OpportunityContactRole; inferred last contact from demo date (20 Aug 2025) per Next Step.",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Jacobus de Wet",
+      "risk": "Operational contact with no commercial or executive authority; last contact unknown",
+      "role": "Influencer",
+      "title": "Lead Sourcing: Facilities and Civil (Acting)",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "Unknown; no recent engagement",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Jacobus de Wet",
+      "risk": "Sourcing lead, no recent engagement evidence",
+      "role": "Influencer",
+      "title": "Lead Sourcing: Facilities and Civil (Acting)",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T15:28:43.163534+05:30",
+     "value": {
+      "name": "Jacobus de Wet",
+      "risk": "No engagement confirmed since the Aug 2025 demo",
+      "role": "Unknown",
+      "title": "Lead Sourcing: Facilities and Civil (Acting)",
+      "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Jacobus de Wet",
+      "risk": "Acting role, tenure/authority uncertain",
+      "role": "Influencer",
+      "title": "Lead Sourcing: Facilities and Civil (Acting)",
+      "source": "Task 2025-08-22 (Showpad invite)",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    }
+   ],
+   "subject": "Jacobus de Wet",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:deon-meyer",
+   "type": "stakeholder",
+   "value": {
+    "name": "Deon Meyer",
+    "risk": "No individual engagement since the group demo/Shared Space invite",
+    "role": "Influencer",
+    "title": "Manager: Business Improvement / Project Portfolio Manager",
+    "source": "OpportunityContactRole + Task 00TP700000Xb0ceMAB",
+    "sentiment": "neutral",
+    "last_contact_date": "2025-08-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Deon Meyer",
+      "risk": "Owns improvement initiatives and would naturally champion procurement transformation, but engagement and advocacy unconfirmed.",
+      "role": "Influencer",
+      "title": "Manager: Business Improvement / Project Portfolio Manager",
+      "source": "OpportunityContactRole; inferred last contact from demo date (20 Aug 2025) per Next Step.",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Deon Meyer",
+      "risk": "Potential coach or champion but no advocacy behavior demonstrated; last contact unknown",
+      "role": "Influencer",
+      "title": "Manager: Business Improvement / Project Portfolio Manager",
+      "source": "SF OpportunityContactRole + Task contact",
+      "sentiment": "Unknown; no recent engagement",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Deon Meyer",
+      "risk": "Business improvement lead, no champion behavior, deal dark 173 days",
+      "role": "Influencer",
+      "title": "Manager: Business Improvement / Project Portfolio Manager",
+      "source": "SF OpportunityContactRole, tasks",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07T15:28:43.163534+05:30",
+     "value": {
+      "name": "Deon Meyer",
+      "risk": "No engagement confirmed since the Aug 2025 demo",
+      "role": "Unknown",
+      "title": "Manager: Business Improvement / Project Portfolio Manager",
+      "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Deon Meyer",
+      "risk": "No confirmed response to PLaN 2025 invite",
+      "role": "Influencer",
+      "title": "Manager: Business Improvement / Project Portfolio Manager",
+      "source": "Task 2025-10-31 (PLaN invite)",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-10-31"
+     }
+    }
+   ],
+   "subject": "Deon Meyer",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:thabiso-seboka",
+   "type": "stakeholder",
+   "value": {
+    "name": "Thabiso Seboka",
+    "risk": "No individual engagement since the group demo/Shared Space invite",
+    "role": "Influencer",
+    "title": "Improvement Specialist",
+    "source": "OpportunityContactRole + Task 00TP700000Xb0ceMAB",
+    "sentiment": "neutral",
+    "last_contact_date": "2025-08-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Thabiso Seboka",
+      "risk": "Operational role; may support business case development but not a decision-maker.",
+      "role": "Influencer",
+      "title": "Improvement Specialist",
+      "source": "OpportunityContactRole; inferred last contact from demo date (20 Aug 2025) per Next Step.",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Thabiso Seboka",
+      "risk": "Operational contact with no commercial or executive authority; last contact unknown",
+      "role": "Influencer",
+      "title": "Improvement Specialist",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "Unknown; no recent engagement",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Thabiso Seboka",
+      "risk": "Improvement specialist, no recent engagement evidence",
+      "role": "Influencer",
+      "title": "Improvement Specialist",
+      "source": "SF OpportunityContactRole",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T15:28:43.163534+05:30",
+     "value": {
+      "name": "Thabiso Seboka",
+      "risk": "No engagement confirmed since the Aug 2025 demo",
+      "role": "Unknown",
+      "title": "Improvement Specialist",
+      "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Thabiso Seboka",
+      "risk": "No engagement beyond demo attendance",
+      "role": "Influencer",
+      "title": "Improvement Specialist",
+      "source": "Task 2025-08-22 (Showpad invite)",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-08-20"
+     }
+    }
+   ],
+   "subject": "Thabiso Seboka",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:lebelo-lukhele",
+   "type": "stakeholder",
+   "value": {
+    "name": "Lebelo Lukhele",
+    "risk": "Highest potential executive target; no reply to two outreach attempts",
+    "role": "Unknown",
+    "title": "introduced in rep outreach as Chief Procurement Officer (unconfirmed via Salesforce Contact record)",
+    "source": "Task 00TP700000gCWARMA4 / 00TP700000gCXg1MAG (14-15 Jan 2026)",
+    "sentiment": "unknown (no reply)",
+    "last_contact_date": "2026-01-15"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Lebelo Lukhele",
+      "risk": "Task contact only, no meeting evidence found",
+      "role": "Unknown",
+      "title": "",
+      "source": "SF Task contact list",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Lebelo Lukhele",
+      "risk": "Highest-value target but never engaged; cold LinkedIn InMail unanswered",
+      "role": "Unknown",
+      "title": "Chief Procurement Officer (per outreach)",
+      "source": "Task 2026-01-15 (InMail to Lebelo Lukhele)",
+      "sentiment": "unknown",
+      "last_contact_date": "2026-01-15"
+     }
+    }
+   ],
+   "subject": "Lebelo Lukhele",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "stakeholder:merika-matlou",
+   "type": "stakeholder",
+   "value": {
+    "name": "Merika Matlou",
+    "risk": "No reply to two outreach attempts",
+    "role": "Unknown",
+    "title": "introduced in rep outreach as Senior Buyer Tactical Procurement (unconfirmed via Salesforce Contact record)",
+    "source": "Task 00TP700000gCXg1MAG / 00TP700000gCP5vMAG (14-15 Jan 2026)",
+    "sentiment": "unknown (no reply)",
+    "last_contact_date": "2026-01-15"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Merika Matlou",
+      "risk": "Task contact only, no meeting evidence found",
+      "role": "Unknown",
+      "title": "",
+      "source": "SF Task contact list",
+      "sentiment": "neutral",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T14:38:21.288603+05:30",
+     "value": {
+      "name": "Merika Matlou",
+      "risk": "No response to Jan 2026 outreach",
+      "role": "Influencer",
+      "title": "Senior Buyer Tactical Procurement",
+      "source": "Task 2026-01-15 (connection request)",
+      "sentiment": "unknown",
+      "last_contact_date": "2026-01-15"
+     }
+    }
+   ],
+   "subject": "Merika Matlou",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-champion-identified-after-11-months-sol",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper",
+    "source": "Email 2025-08-18; SF Executive_Sponsor_Identified__c",
+    "status": "unresolved",
+    "category": "political",
+    "first_raised": "2025-08-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or champion identified after 11+ months; sole engaged contact is a mid-level, guarded gatekeeper",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "risk:close-date-has-slipped-three-times-over-14-months-2025-12-31",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-02",
+    "detail": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes",
+    "source": "OpportunityFieldHistory (CloseDate changes)",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2025-08-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Close date has slipped three times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger for any of the pushes",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "risk:the-rfi-sasol-issued-in-jul-2025-stalled-the-rfp-it-promised",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-30",
+    "detail": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'",
+    "source": "Next Step History 2025-08-17 / 2026-03-30",
+    "status": "unresolved",
+    "category": "change_management",
+    "first_raised": "2025-08-17"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "The RFI Sasol issued in Jul 2025 stalled; the RFP it promised for Sept 2025 was never issued and 'has not gained much traction'",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "risk:plan-to-re-approach-via-an-ey-roundtable-oct-2025-has-no-con",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-27",
+    "detail": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence",
+    "source": "Next Step History 2025-10-10; Task 2025-10-27 (EY invite)",
+    "status": "unconfirmed",
+    "category": "partner_support",
+    "first_raised": "2025-10-10"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Plan to re-approach via an EY roundtable (Oct 2025) has no confirmed outcome or attendance evidence",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-on-estee-larkins-snr-commercial-contract-spe",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the Aug 2025 demo, rather than relying on Larkins to relay progress."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Single-threaded on Estee Larkins (Snr Commercial Contract Specialist) for 11 months; open a parallel thread with VP Hendrik Steynberg, who already attended the Aug 2025 demo, rather than relying on Larkins to relay progress.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "hygiene:the-cpo-lebelo-lukhele-and-a-senior-tactical-buyer-merika-ma",
+   "type": "hygiene",
+   "value": {
+    "flag": "The CPO (Lebelo Lukhele) and a senior tactical buyer (Merika Matlou) were identified only in Jan 2026 via cold LinkedIn outreach with zero response; a warm introduction via Steynberg or the EY partner channel would land better than repeat cold InMails."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "The CPO (Lebelo Lukhele) and a senior tactical buyer (Merika Matlou) were identified only in Jan 2026 via cold LinkedIn outreach with zero response; a warm introduction via Steynberg or the EY partner channel would land better than repeat cold InMails.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "hygiene:convert-the-open-ended-design-workshop-offer-next-step-30-ma",
+   "type": "hygiene",
+   "value": {
+    "flag": "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has not moved the deal and needs a concrete ask, not another nudge."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Convert the open-ended design-workshop offer (Next Step, 30 Mar 2026) into a fixed date and named agenda; an unscheduled offer restated across four sweeps has not moved the deal and needs a concrete ask, not another nudge.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T14:38:21.288603+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "ML iAnalyze;iSave;iSupplier;iRisk"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:38:21.288603+05:30",
+   "last_updated": "2026-07-07T14:38:21.288603+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-engaged-after-12-months-highest-title-cont",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms",
+    "source": "SF OpportunityContactRole; SF CreatedDate",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer engaged after 12 months; highest-title contact (VP) has not been directly engaged on commercial terms",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "risk:close-date-has-slipped-multiple-times-over-the-opportunity-s",
+   "type": "risk",
+   "value": {
+    "date": "2027-02-26",
+    "detail": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited",
+    "source": "Prior sweep field-history synthesis",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-12-31"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Close date has slipped multiple times over the opportunity's life with no buyer-driven trigger cited",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "risk:single-threaded-relationship-through-a-mid-level-commercial-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025",
+    "source": "SF OpportunityContactRole; Avoma manifest 2025-08-20",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Single-threaded relationship through a mid-level commercial contact; no multi-thread confirmed since Aug 2025",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-above-the-gatekeeper-approach-hendrik-steynberg-vp",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage above the gatekeeper: approach Hendrik Steynberg (VP Inbound Supply Chain Management) directly, since no economic buyer has surfaced after 12 months of only mid-level contact."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Re-engage above the gatekeeper: approach Hendrik Steynberg (VP Inbound Supply Chain Management) directly, since no economic buyer has surfaced after 12 months of only mid-level contact.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "hygiene:request-a-direct-status-check-on-the-stalled-rfi-and-the-nev",
+   "type": "hygiene",
+   "value": {
+    "flag": "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Request a direct status check on the stalled RFI and the never-issued RFP, and re-offer the design workshop Zycus proposed in Oct 2025.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "hygiene:confirm-whether-the-ey-hosted-roundtable-re-approach-referen",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate channel back into Sasol."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Confirm whether the EY-hosted roundtable re-approach (referenced Oct 2025) ever occurred, since it is currently unverified and may be the fastest alternate channel back into Sasol.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T15:28:43.163534+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T15:28:43.163534+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-champion-identified-after-12-months-vp-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no executive sponsor mapped",
+    "source": "SF OpportunityContactRole, Next_Step__c",
+    "status": "unresolved",
+    "category": "executive_alignment",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or champion identified after 12 months; VP Steynberg (highest-title contact) not directly engaged on commercial terms or business case; no executive sponsor mapped",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued.",
+    "source": "Salesforce field history (close date slips 23 Oct 2025, 01 Jul 2026); Next Step (Mar 2026) notes RFI stall.",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-10-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-07-01",
+      "detail": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued",
+      "source": "SF CloseDate field history, Next_Step__c",
+      "status": "unresolved",
+      "category": "timeline",
+      "first_raised": "2025-10-15"
+     }
+    }
+   ],
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12 months; RFI stalled, RFP never issued",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:single-threaded-through-mid-level-commercial-ops-contacts-no",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP.",
+    "source": "OpportunityContactRole; Next Step implies single-thread engagement post-demo.",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-07-07",
+      "detail": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP",
+      "source": "SF OpportunityContactRole, Next_Step__c",
+      "status": "unresolved",
+      "category": "political",
+      "first_raised": "2025-08-20"
+     }
+    }
+   ],
+   "subject": "Single-threaded through mid-level commercial/ops contacts; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:deal-dark-for-173-days-since-last-buyer-engagement-2026-01-1",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome.",
+    "source": "LastActivityDate 2026-01-15; Next Step (Mar, May 2026) references continued nudging with no buyer response; Next Step (Oct 2025) references EY roundtable with no outcome evidence.",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-01-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-07-07",
+      "detail": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome",
+      "source": "SF LastActivityDate, Next_Step__c",
+      "status": "unresolved",
+      "category": "other",
+      "first_raised": "2026-01-15"
+     }
+    }
+   ],
+   "subject": "Deal dark for 173 days since last buyer engagement (2026-01-15); no response to rep nudges; EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency or justify $200k investment.",
+    "source": "No Salesforce pain field (Customer_Business_Problem__c, Compelling_Event__c) populated; Next Step lacks quantified pain or urgency driver.",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-07-07",
+      "detail": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency",
+      "source": "SF Next_Step__c, no Avoma calls",
+      "status": "unresolved",
+      "category": "other",
+      "first_raised": "2025-07-14"
+     }
+    }
+   ],
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol; no compelling event or cost-of-inaction to drive urgency",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-identified-or-engaged-after-12-months-high",
+   "type": "hygiene",
+   "value": {
+    "flag": "No economic buyer identified or engaged after 12 months; highest-title contact (VP Steynberg) not directly engaged on commercial terms"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer identified or engaged after 12 months; highest-title contact (VP Steynberg) not directly engaged on commercial terms",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-identified-or-developed-single-threaded-through-",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion identified or developed; single-threaded through mid-level commercial/ops contacts"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No champion identified or developed; single-threaded through mid-level commercial/ops contacts",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:dark-deal-173-days-since-last-buyer-engagement-2026-01-15",
+   "type": "hygiene",
+   "value": {
+    "flag": "Dark deal: 173 days since last buyer engagement (2026-01-15)"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Dark deal: 173 days since last buyer engagement (2026-01-15)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:rfi-issued-july-2025-stalled-rfp-promised-sept-2025-never-is",
+   "type": "hygiene",
+   "value": {
+    "flag": "RFI issued July 2025 stalled; RFP promised Sept 2025 never issued; 'has not gained much traction' (March 2026)"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "RFI issued July 2025 stalled; RFP promised Sept 2025 never issued; 'has not gained much traction' (March 2026)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-quantified-business-problem-pain-owner-or-value-case-arti",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified business problem, pain owner, or value case articulated by Sasol"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No quantified business problem, pain owner, or value case articulated by Sasol",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-decision-criteria-or-must-haves-shared-demo-aug-2025-awai",
+   "type": "hygiene",
+   "value": {
+    "flag": "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No decision criteria or must-haves shared; demo Aug 2025 awaits feedback with no conclusion after 11 months",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:close-date-slipped-3-times-over-14-months-2025-12-31-to-2027",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger cited"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Close date slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger cited",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:stuck-in-qualified-for-12-months-with-no-stage-progression",
+   "type": "hygiene",
+   "value": {
+    "flag": "Stuck in Qualified for 12 months with no stage progression"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Stuck in Qualified for 12 months with no stage progression",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:ey-roundtable-re-engagement-approach-oct-2025-has-no-confirm",
+   "type": "hygiene",
+   "value": {
+    "flag": "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence"
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "EY roundtable re-engagement approach (Oct 2025) has no confirmed outcome or attendance evidence",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-or-engaged",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commercial terms or business case",
+    "source": "SF OpportunityContactRole + Next_Step__c synthesis",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor identified or engaged in 12 months; highest-title contact (VP Hendrik Steynberg) has not been directly engaged on commercial terms or business case",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:single-threaded-through-mid-level-commercial-contact-estee-l",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP",
+    "source": "SF Next_Step__c (Mar 2026) + OpportunityContactRole",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Single-threaded through mid-level commercial contact (Estee Larkins) described as 'guarded gatekeeper'; no multi-threading since Aug 2025; no champion or coach to navigate internal politics or restart stalled RFI/RFP",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:close-date-has-slipped-3-times-over-14-months-2025-12-31-to-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stalled, RFP never issued",
+    "source": "SF CloseDate field history + Next_Step__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-12-31"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Close date has slipped 3 times over 14 months (2025-12-31 to 2026-06-30 to 2027-02-26) with no buyer-driven trigger; stuck in Qualified for 12+ months; RFI stalled, RFP never issued",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-economic-buyer-identified-no-budget-authority-confirmed-n",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment",
+    "source": "SF OpportunityContactRole + Next_Step__c synthesis",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer identified; no budget authority confirmed; no ROI or value case articulated by Sasol to justify $200K investment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:dark-deal-no-buyer-engagement-in-173-days-last-activity-2026",
+   "type": "hygiene",
+   "value": {
+    "flag": "DARK DEAL: No buyer engagement in 173 days (last activity 2026-01-15). Deal is genuinely dark; re-engagement is the only priority."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "DARK DEAL: No buyer engagement in 173 days (last activity 2026-01-15). Deal is genuinely dark; re-engagement is the only priority.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:single-threaded-no-multi-threading-confirmed-since-aug-2025-",
+   "type": "hygiene",
+   "value": {
+    "flag": "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "SINGLE-THREADED: No multi-threading confirmed since Aug 2025; sole engaged contact is mid-level commercial contract specialist described as 'guarded gatekeeper'.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-highest-title-contact-vp-hendrik-steynberg",
+   "type": "hygiene",
+   "value": {
+    "flag": "NO ECONOMIC BUYER: Highest-title contact (VP Hendrik Steynberg) has not been engaged on commercial terms or business case in 12 months."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "NO ECONOMIC BUYER: Highest-title contact (VP Hendrik Steynberg) has not been engaged on commercial terms or business case in 12 months.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-no-advocate-identified-or-developed-to-drive-int",
+   "type": "hygiene",
+   "value": {
+    "flag": "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "NO CHAMPION: No advocate identified or developed to drive internal process or restart stalled RFI/RFP.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:stuck-in-stage-qualified-for-12-months-with-zero-progression",
+   "type": "hygiene",
+   "value": {
+    "flag": "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "STUCK IN STAGE: Qualified for 12+ months with zero progression; no path to next stage visible.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-quantified-pain-no-business-problem-pain-owner-or-value-c",
+   "type": "hygiene",
+   "value": {
+    "flag": "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "NO QUANTIFIED PAIN: No business problem, pain owner, or value case articulated by Sasol; no urgency or compelling event.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:close-date-slip-slipped-3-times-over-14-months-2025-12-31-to",
+   "type": "hygiene",
+   "value": {
+    "flag": "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "CLOSE DATE SLIP: Slipped 3 times over 14 months (2025-12-31 to 2027-02-26) with no buyer-driven trigger.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:indefensible-forecast-pipeline-forecast-with-no-active-buyer",
+   "type": "hygiene",
+   "value": {
+    "flag": "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "INDEFENSIBLE FORECAST: Pipeline forecast with no active buyer process, no EB, no champion, and 173 days dark is not credible.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-champion-identified-after-12-months-hig",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No Economic Buyer or champion identified after 12 months; highest-title contact (VP Steynberg) not engaged on business case or commercial terms; no executive sponsor mapped.",
+    "source": "OpportunityContactRole; no X10a_Sponsor__c or X10b_Champion_Business_Buyer__c populated.",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No Economic Buyer or champion identified after 12 months; highest-title contact (VP Steynberg) not engaged on business case or commercial terms; no executive sponsor mapped.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:dark-for-173-days",
+   "type": "hygiene",
+   "value": {
+    "flag": "Dark for 173 days"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Dark for 173 days",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-mapped-after-12-months",
+   "type": "hygiene",
+   "value": {
+    "flag": "No Economic Buyer mapped after 12 months"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No Economic Buyer mapped after 12 months",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-after-12-months",
+   "type": "hygiene",
+   "value": {
+    "flag": "No Champion after 12 months"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No Champion after 12 months",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:stuck-in-qualified-for-358-days",
+   "type": "hygiene",
+   "value": {
+    "flag": "Stuck in Qualified for 358 days"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Stuck in Qualified for 358 days",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:rfi-stalled-rfp-never-issued",
+   "type": "hygiene",
+   "value": {
+    "flag": "RFI stalled, RFP never issued"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "RFI stalled, RFP never issued",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:single-threaded-relationship",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded relationship"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded relationship",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-quantified-pain-or-compelling-event",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified pain or compelling event"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified pain or compelling event",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:buyer-conclude-internal-evaluation-of-the-20-aug-2025-demo-a",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2025-08-21",
+    "source": "Next_Step_History__c (21 Aug 2025 entry)",
+    "status": "overdue",
+    "commitment": "Conclude internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+    "deliverable": "Conclude internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+    "grounding_quote": "Sasol will conclude their evaluation and advise on next steps"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Conclude internal evaluation of the 20 Aug 2025 demo and advise Zycus of next steps",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-after-12-m",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-01",
+    "detail": "No economic buyer or executive sponsor identified after 12 months; the highest-titled contact (VP) has never been individually engaged on commercial terms.",
+    "source": "Opportunity.Executive_Sponsor_Identified__c / Decision_Maker_Identified__c + automated health-check task, 1 Jul 2026",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-07-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor identified after 12 months; the highest-titled contact (VP) has never been individually engaged on commercial terms.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:single-threaded-relationship-through-a-guarded-procedural-co",
+   "type": "risk",
+   "value": {
+    "date": "2026-01-15",
+    "detail": "Single-threaded relationship through a guarded, procedural contact (Estee Larkins); no multi-threading confirmed since Aug 2025.",
+    "source": "Task history Aug 2025 - Jan 2026",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-18"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded relationship through a guarded, procedural contact (Estee Larkins); no multi-threading confirmed since Aug 2025.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:close-date-has-slipped-three-times-over-14-months-31-dec-202",
+   "type": "risk",
+   "value": {
+    "date": "2027-02-26",
+    "detail": "Close date has slipped three times over 14 months (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push.",
+    "source": "OpportunityFieldHistory (CloseDate)",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-12-31"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date has slipped three times over 14 months (31 Dec 2025 to 26 Feb 2027) with no buyer-driven trigger cited for any push.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "risk:rfi-issued-jul-2025-stalled-the-rfp-promised-for-sept-2025-w",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-30",
+    "detail": "RFI issued Jul 2025 stalled; the RFP promised for Sept 2025 was never issued and 'has not gained much traction' as of Mar 2026.",
+    "source": "Next_Step_History__c (30 Mar 2026 entry)",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2025-09-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "RFI issued Jul 2025 stalled; the RFP promised for Sept 2025 was never issued and 'has not gained much traction' as of Mar 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "hygiene:restart-buyer-engagement-directly-325-days-since-the-last-co",
+   "type": "hygiene",
+   "value": {
+    "flag": "Restart buyer engagement directly -- 325 days since the last confirmed buyer reply; the deal has gone cold on every channel tried so far."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Restart buyer engagement directly -- 325 days since the last confirmed buyer reply; the deal has gone cold on every channel tried so far.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-the-single-estee-larkins-relationship-re",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond the single Estee Larkins relationship -- reach VP Hendrik Steynberg and other demo attendees (Jacobus de Wet, Deon Meyer, Thabiso Seboka) individually rather than only via group invites."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond the single Estee Larkins relationship -- reach VP Hendrik Steynberg and other demo attendees (Jacobus de Wet, Deon Meyer, Thabiso Seboka) individually rather than only via group invites.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  },
+  {
+   "key": "hygiene:map-the-economic-buyer-and-decision-process-explicitly-no-or",
+   "type": "hygiene",
+   "value": {
+    "flag": "Map the economic buyer and decision process explicitly -- no org chart or decision-maker confirmation exists after 12 months; use the offered design workshop as the forcing function to get it."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Map the economic buyer and decision process explicitly -- no org chart or decision-maker confirmation exists after 12 months; use the offered design workshop as the forcing function to get it.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:25:14.541623+05:30",
+   "last_updated": "2026-07-09T19:25:14.541623+05:30",
+   "last_confirmed": "2026-07-09T19:25:14.541623+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T19:25:14.541623+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No MEDDPICC custom fields (MEDDPICC__c / MEDDPICC_2_0__c) exist in this org -- MEDDPICC read built entirely from RFI-derived fields and Task/Next Step history.",
+   "Only 1 Avoma touchpoint exists for this opp and it has no recording; all detail comes from the Task Description log.",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 0,
+  "calls_omitted": [
+   "19593829 AI Intelligent Sourcing Solution - Zycus (20 Aug 2025) -- not_recorded, content reconstructed from Task Description notes only"
+  ],
+  "avoma_attendees": [
+   "hendrik.steynberg@sasol.com",
+   "estee.larkins@sasol.com",
+   "jacobus.dewet@sasol.com",
+   "thabiso.seboka@sasol.com",
+   "deon.meyer@sasol.com"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Opportunity created 2025-07-14; Task/Next Step history reviewed 2025-07-14 through 2026-07-01; Avoma manifest window 540d"
+ },
+ "forecast_critical": false,
+ "analysis_confidence": "Low"
+}

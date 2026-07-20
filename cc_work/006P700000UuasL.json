@@ -1,0 +1,255 @@
+{
+  "opp_id": "006P700000UuasL",
+  "hard": {
+    "opp_id": "006P700000UuasL",
+    "opp_name": "OXXO_2026",
+    "account_name": "OXXO",
+    "account_industry": "Retail",
+    "billing_country": "Mexico",
+    "owner_name": "Karson Keogh",
+    "owner_title": "Regional Sales Director",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 250000,
+    "close_date": "2027-03-31",
+    "days_to_close": 268,
+    "created_date": "2026-03-06",
+    "qualified_date": null,
+    "last_activity_date": "2026-07-02",
+    "last_modified_date": null,
+    "products": "eProcurement;eInvoicing",
+    "next_step": "6.16.26 KK - still holding pattern waiting on scheduling; 6.8.26 OXXO rescheduled the Payment Portal use-case review/presentation sessions with no new dates provided.",
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "AI importance rated Neutral, Merlin product line empty; scope is strictly eProcurement and eInvoicing, a traditional P2P RFI with no AI modules or buyer-stated AI requirements.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Unknown multi-vendor Ariba RFI participants",
+    "primary_competitor": "No-decision / internal status quo",
+    "sf_link": "https://.../lightning/r/Opportunity/006P700000UuasL/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "OXXO rescheduled the Payment Portal use-case sessions on 8 Jun with no new dates and has stayed quiet ~4 weeks; single-threaded through two IT/procurement analysts with no economic buyer, no champion, and no competitor named 268 days from a placeholder Mar 2027 close.",
+      "math": "Created 6 Mar 2026 (122 days old); 268 days to a 31 Mar 2027 close. Stage Formal Evaluation since 12 Mar 2026 (no stage advance in ~116 days, roughly 2.5x a typical 30-45 day evaluation window). Buyer requested use-case presentations 3 Jun, then rescheduled all sessions 8 Jun with no new dates; owner confirmed holding pattern 16 Jun. Last activity 2 Jul (a Bara-portal demo event tied to an RFI Zycus withdrew from on 26 Jun); last genuine two-way buyer touch on the Payment Portal thread was the 4 Jun reschedule notice. Not cold 60 days, so not Off Track, but the one action that advances the deal (rescheduled use-case sessions) is stalled indefinitely.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Next Step 16 Jun: 'still holding pattern waiting on scheduling' — buyer has not provided new use-case dates for ~4 weeks since the 8 Jun reschedule.",
+        "Buyer-initiated reschedule 8 Jun (email 4 Jun): 'the sessions scheduled for the review and presentation of use cases for the Payment Portal project will be rescheduled' with no new dates.",
+        "No Economic Buyer, Decision Maker, or Executive Sponsor in the 15-person contact roster; every engaged contact is an Evaluator or a technical/procurement analyst.",
+        "No champion: no advocate driving internally, no shared competitive intel, no access to finance or procurement leadership (Patricia Fabila, David Leal Garza never engaged).",
+        "Pipeline forecast is indefensible for a deal 268 days out with no EB, no commercial conversation, and a buyer-initiated stall; the related Bara supplier-portal RFI was closed out 26 Jun (Zycus withdrew)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "OXXO's stated driver is 'streamlining the procurement and payment process' (Next Step 6 Mar) with a functional P2P scope of eProcurement + eInvoicing (Products__c), but the business impact has never been quantified. No buyer has stated a savings target, invoice-cycle time, headcount impact, or error-rate baseline in any email or field. The four requested use-case topics (Payment Reference, Tax Validation, Volume Analysis, Reports/KPIs) point at manual payment processing, tax-compliance complexity, and reporting gaps, but those are inferred from the use-case list, not a quoted metric. The single recorded meeting (9 Apr demo) was not recorded, so no transcript exists to mine; quantifying the value case with OXXO finance is the open move.",
+        "sources": ["SF Next_Step__c 6 Mar 2026", "SF Products__c: eProcurement;eInvoicing", "SF Task 3 Jun 2026 (use-case request)", "AIS_Why__c (functional non-AI mandate)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or named. All two-way contact runs through IT/procurement analysts — Melissa Balderas (IT Analyst, Software Procurement) and Ali Nassif (Category Manager Software) — neither of whom controls budget. The roster does carry plausible budget owners never engaged: Patricia Fabila Rubio (Gerente de Transformación, Administración y Finanzas) is the finance-transformation lead most likely to own the payment-portal budget, and David Leal Garza (Senior Procurement Manager) and Gloria Campos Valladares (IT Manager) sit above the analysts. No email or field shows who signs, so the EB stays unmapped; reaching Patricia Fabila to confirm budget ownership is a ranked move.",
+        "sources": ["SF OpportunityContactRole (Fabila, Leal Garza, Campos — no role assigned, never engaged)", "SF activity trail Mar–Jul 2026 (only analysts corresponded)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are visible in outline but not confirmed against a scoring rubric. OXXO ran a formal Ariba RFI for the Payment Portal (RFI submitted 27 Mar) and asked Zycus to demonstrate specific use cases before the formal session: Payment Reference, Tax Validation, Volume Analysis, and Reports/KPIs (email 3 Jun). Early clarifications also probed purchase-order generation ('confirm whether your tool includes a module for purchase order generation', 14 Apr) and Spanish-language delivery / local support ('is there any chance for the demo to be conducted in Spanish', 31 Mar; post-sale Spanish support confirmed 9 Apr). Mexico-market fit is an explicit criterion — OXXO asked for regional references on 26 May. What is not yet known is how OXXO weights or scores these criteria across vendors.",
+        "sources": ["SF Task 3 Jun 2026 (use-case topics)", "SF Task 14 Apr 2026 (PO module)", "SF Task 31 Mar / 9 Apr 2026 (Spanish support)", "SF Task 26 May 2026 (Mexico references)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's decision process is only partly legible from the activity trail and no call reveals the approval chain. OXXO structured a formal RFI through SAP Ariba (RFI uploaded 11 Mar, submitted 27 Mar), required an NDA before participation, and planned a use-case review-and-presentation phase before a 'formal presentation session' (email 3 Jun) — so there is a defined multi-step evaluation, but the sessions were rescheduled indefinitely on 8 Jun. No evidence names who approves, how many approvals are required, or a target decision date. The FEMSA parent appears in the loop via Gabriela Meza (femsa.com email domain), suggesting parent-level sourcing involvement, but her authority on this OXXO project is unconfirmed. Capturing a written decision timeline is the process-unblocking move.",
+        "sources": ["SF Next_Step__c 11 Mar / 27 Mar 2026 (Ariba RFI)", "SF Task 3 Jun 2026 (review then formal session)", "SF Task 4 Jun 2026 (reschedule)"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Contracting mechanics are early but partly exercised. OXXO required an NDA before RFI participation and Zycus signed it after redlines (Next Step 6 Mar / 9 Mar; buyer proposed removing two clauses, 10 Apr), and Zycus supplied legal documentation (Certificate of Incorporation, Proof of Address) for the buyer's internal review. Procurement is channeled through SAP Ariba, where Zycus was onboarded as a supplier (6 Mar). The roster includes a cloud-infrastructure owner, Javier Espinosa Martinez (Resp. Infraestructura Cloud), signalling that an InfoSec review is likely once the evaluation advances. No MSA/SOW, contract-expiration date, or procurement timeline exists yet — expected at this early stage; a mutual paper timeline becomes relevant only after vendor selection.",
+        "sources": ["SF Next_Step__c 6 Mar / 9 Mar 2026 (NDA, legal docs)", "SF Task 10 Apr 2026 (NDA redlines)", "SF OpportunityContactRole (Javier Espinosa, cloud infra)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clear even if unquantified: OXXO is streamlining procurement and payment processing and invited Zycus into the Payment Portal RFI (Next Step 6 Mar: 'They are in process of streamlining the procurement and payment process and invited us to participate in RFI process'). The requested use cases — Payment Reference, Tax Validation, Volume Analysis, Reports/KPIs (3 Jun) — map to manual payment handling, Mexican tax-compliance validation, and weak procurement reporting. The pain owners are finance and procurement: Patricia Fabila (finance transformation), Luis Kauil Contreras (Gerente Fiscal, Tax Tech — the tax-validation stakeholder), and David Leal Garza (procurement). The pain is confirmed qualitatively; it is not yet tied to a dollar or cycle-time figure, and none of the named pain owners have engaged Zycus directly.",
+        "sources": ["SF Next_Step__c 6 Mar 2026", "SF Products__c: eProcurement;eInvoicing", "SF Task 3 Jun 2026 (use-case topics)", "SF OpportunityContactRole (Fabila, Kauil, Leal Garza)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Melissa Balderas is the primary and most consistent Zycus contact, but every interaction is transactional — RFI logistics, demo scheduling, clarifications, and the 8 Jun reschedule — with no sign she is selling Zycus internally, sharing competitive intel, or opening doors to leadership. Ali Nassif (Category Manager Software) is a second procurement-side Evaluator with no advocacy signal. Gabriela Meza (FEMSA parent sourcing) engaged on references and the parallel Bara RFI but is not advocating for the Payment Portal deal and told Zycus on 29 Jun she hopes to 'collaborate in the future.' With no recorded calls and no advocate, Zycus is running blind in a formal multi-vendor evaluation; developing a champion above the analyst layer is the top build.",
+        "sources": ["SF OpportunityContactRole (Balderas, Nassif — Evaluator; no Champion role)", "SF activity trail Mar–Jul 2026 (transactional only)", "SF Task 29 Jun 2026 (Meza: 'collaborate in the future')"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "OXXO is running a formal multi-vendor RFI through SAP Ariba (RFI released 11 Mar, submitted 27 Mar; use-case sessions described in the plural), but no competitor is named in any Salesforce field, next step, task, or call — Competitors__c and the free-text competition fields are empty and the one demo was not recorded. The only competitive-flavored signal is the 26 May reference inquiry ('Oxxo inquired about our customers in mexico'), which reads as OXXO vetting Zycus's Mexico footprint rather than praising a rival. The real current threat here is inertia, not a known vendor: OXXO keeps evaluating internally and rescheduled the sessions indefinitely, so a no-decision / status-quo outcome is more likely than a loss to a named competitor. Identifying who else is in the Ariba RFI is the key intelligence gap.",
+        "sources": ["SF Next_Step__c 11 Mar / 27 Mar 2026 (Ariba RFI)", "SF Task 26 May 2026 (Mexico references)", "Q3 fields Competitors__c / Existing_vendor__c (empty)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The Payment Portal evaluation stalled after the buyer rescheduled the use-case sessions on 8 Jun with no new dates; the last month is rep chasing plus the wind-down of a related Bara supplier-portal RFI that Zycus withdrew from on 26 Jun.",
+      "items": [
+        {"change": "Buyer requested Zycus present several use cases before the formal Payment Portal session", "date": "2026-06-03"},
+        {"change": "OXXO rescheduled all use-case review/presentation sessions with no new dates provided", "date": "2026-06-08"},
+        {"change": "Owner logged 'still holding pattern waiting on scheduling'", "date": "2026-06-16"},
+        {"change": "Zycus withdrew from the related Bara supplier-portal RFI (Gabriela Meza acknowledged 29 Jun)", "date": "2026-06-26"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No named competitor is documented in any source; this is a formal Ariba multi-vendor RFI where the strongest CURRENT threat is a no-decision / status-quo outcome, not a rival — OXXO rescheduled the use-case sessions indefinitely on 8 Jun and keeps evaluating internally. The 26 May Mexico-reference inquiry is the only competitive-vetting signal (regional fit), not evidence of a preferred vendor. Identifying the other Ariba RFI participants remains the key intelligence gap.",
+      "competitors": [
+        {"name": "No-decision / internal status quo", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "Next Step 16 Jun: 'still holding pattern waiting on scheduling'; 8 Jun: sessions 'will be rescheduled' with no new dates.", "date": "2026-06-16", "source": "SF Next_Step__c + SF Task 4 Jun 2026", "how_we_win": "Create a forcing event: co-agree a dated use-case session and a written decision timeline with OXXO finance so the Payment Portal project cannot keep drifting."},
+        {"name": "Unknown multi-vendor Ariba RFI participants", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Next Step 11 Mar: 'RFP released'; 27 Mar: 'RFI Submitted via Ariba'; multiple use-case sessions imply parallel vendors.", "date": "2026-03-27", "source": "SF Next_Step__c 11 Mar / 27 Mar 2026", "how_we_win": "Ask Melissa/Ali directly who else is shortlisted and differentiate on Mexico presence (DEACERO, Tigo references) plus native Spanish implementation and support."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus is a functional fit for the stated P2P scope and clears the two explicit fit criteria surfaced so far (Spanish delivery/support and Mexico references), but exposure remains on a purchase-order module question and the absence of a quantified value case.",
+      "items": [
+        {"criterion": "Spanish-language demo and post-sale support in Mexico", "position": "aligned", "quote": "'we do provide post-sale Spanish support, including both implementation and long-term customer support' (Zycus, 9 Apr); buyer confirmed 'It's okay if the demo is in English' after Spanish pre-recorded demos offered.", "date": "2026-04-09", "source": "SF Task 9 Apr 2026"},
+        {"criterion": "Proven Mexico / LATAM customer base", "position": "aligned", "quote": "'DEACERO is an active Zycus customer' (Zycus, 26 May) in reply to OXXO's request for Mexico references.", "date": "2026-05-26", "source": "SF Task 26 May 2026"},
+        {"criterion": "Purchase-order generation module", "position": "partially aligned", "quote": "'confirm whether your tool includes a module for purchase order generation' (OXXO, 14 Apr).", "date": "2026-04-14", "source": "SF Task 14 Apr 2026"},
+        {"criterion": "Quantified value / ROI case", "position": "exposed", "quote": "No buyer statement of savings, cycle time, or cost baseline in any field or email.", "date": "2026-07-06", "source": "SF fields + activity trail"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Present the Payment Portal use cases (Payment Reference, Tax Validation, Volume Analysis, Reports/KPIs) before the formal session", "said_by": "Gabriela Meza (OXXO / FEMSA project team)", "date": "2026-06-03", "addressed": false, "quote": "'we would like to request your support in presenting several use cases. Prior to the formal presentation session, we believe it is important...'", "source": "SF Task 3 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Provide new dates for the rescheduled Payment Portal use-case review/presentation sessions", "who": "Buyer", "grounding_quote": "'the sessions scheduled for the review and presentation of use cases for the Payment Portal project will be rescheduled. Once we have the new dates defined, we will share them with you'", "date": "2026-06-08", "due": "2026-06-30", "status": "overdue", "source": "SF Task 4 Jun 2026 / Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "No EB, DM, or Executive Sponsor engaged; only IT/procurement analysts have corresponded.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole + activity trail"},
+        {"area": "Competitor identity unknown", "quote": "Formal Ariba multi-vendor RFI but no rival named in any field, next step, task, or call.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "Competitors__c empty + no recorded calls"},
+        {"area": "No champion above the analyst layer", "quote": "Melissa Balderas and Ali Nassif are transactional Evaluators; no internal advocate.", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Value case unquantified", "quote": "Pain confirmed qualitatively; no savings, cycle-time, or cost baseline stated.", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF fields + activity trail"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Highest-leverage levers for a stalled, single-threaded, non-AI P2P evaluation with a far close date: break out of the analyst layer, convert the indefinite reschedule into a dated commitment, and anchor a quantified value case.",
+      "flags": [
+        "Break single-thread: reach Patricia Fabila (finance transformation) and David Leal Garza (procurement) to find the Payment Portal budget owner, since every contact today is an IT/procurement analyst.",
+        "Convert the stall: get OXXO to commit a rescheduled use-case date and a written decision timeline, or the project drifts into a no-decision outcome after the 8 Jun indefinite reschedule.",
+        "Anchor a value case: quantify payment/invoice cycle-time and tax-validation effort with OXXO finance and lead with Mexico proof (DEACERO, Tigo) plus native Spanish support, since the scope is functional and non-AI (AIS Negative)."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Melissa Balderas", "title": "IT Analyst - Software Procurement", "role": "Evaluator", "last_contact_date": "2026-07-02", "sentiment": "Neutral; transactional. Announced the 8 Jun reschedule and has not followed up with new dates.", "risk": "Single point of contact with no advocacy or authority to restart the process; the deal is single-threaded through her.", "source": "SF OpportunityContactRole (ali.nassif/balderas domain) + SF activity trail"},
+        {"name": "ali nassif", "title": "Category Manager Software", "role": "Evaluator", "last_contact_date": "2026-05-26", "sentiment": "Neutral; procurement-side, no advocacy signals.", "risk": "May gatekeep access to senior procurement leadership (David Leal Garza).", "source": "SF OpportunityContactRole"},
+        {"name": "Patricia Fabila Rubio", "title": "Gerente de Transformación, Administración y Finanzas", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; never engaged.", "risk": "Most likely budget owner / economic buyer for the payment-portal project but has had zero contact with Zycus; unmapped power.", "source": "SF OpportunityContactRole"},
+        {"name": "David Leal Garza", "title": "Senior Procurement Manager", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; never engaged.", "risk": "Senior procurement decision-influencer above the analysts; no direct Zycus contact.", "source": "SF OpportunityContactRole"},
+        {"name": "Luis Kauil Contreras", "title": "Gerente Fiscal - Tax Tech", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; never engaged.", "risk": "Owner of the Tax Validation use case; his buy-in is critical for eInvoicing tax-compliance fit but he has not participated.", "source": "SF OpportunityContactRole"},
+        {"name": "Gloria Campos Valladares", "title": "IT Manager", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown; never engaged.", "risk": "IT approver who could slow or veto the tool selection if unaligned.", "source": "SF OpportunityContactRole"},
+        {"name": "Gabriela Meza", "title": "FEMSA / OXXO sourcing (parent-company project contact)", "role": "Influencer", "last_contact_date": "2026-06-29", "sentiment": "Cordial but non-committal; engaged on references and the parallel Bara RFI, said she hopes to 'collaborate in the future.'", "risk": "Parent-company sourcing contact whose authority on the Payment Portal deal is unconfirmed; the Bara RFI she ran was withdrawn from on 26 Jun.", "source": "SF Task/activity contact (femsa.com) Mar–Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Melissa Balderas is the consistent contact but purely transactional, with no advocacy, urgency, or access to finance/procurement leadership; senior stakeholders (Patricia Fabila, David Leal Garza, Luis Kauil, Gloria Campos) are on the roster but have never engaged. The 8 Jun reschedule and month of silence show no one is driving Zycus internally.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (no Champion role) + SF activity trail Mar–Jul 2026 (transactional only); no recorded calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "This is a deliberately functional, non-AI P2P scope (eProcurement + eInvoicing, no Merlin); AIS is Negative (2.0). We are not under-positioned by failing to sell AI — the buyer's mandate is functional streamlining, so the Merlin/agentic narrative is not the wedge here. Differentiation should lead with Mexico presence, Spanish support, and tax-validation fit.",
+      "score": "2.0 (Negative)",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c 2.0 / AIS_Status__c Negative: no Merlin or AI products tagged, no buyer-stated AI requirement; the RFI is a traditional P2P streamlining mandate. No recorded call exists to add nuance, so the field read stands.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Buyer rescheduled the use-case sessions indefinitely on 8 Jun with no new dates; the project is drifting toward a no-decision outcome 268 days from a placeholder close.", "first_raised": "2026-06-08", "date": "2026-06-16", "status": "open", "source": "SF Task 4 Jun 2026 + Next_Step__c 16 Jun"},
+        {"category": "political", "detail": "Single-threaded through two IT/procurement analysts with no economic buyer, decision maker, or champion above them.", "first_raised": "2026-03-11", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole + activity trail"},
+        {"category": "budget", "detail": "No quantified value case and no commercial conversation; forecast sits in Pipeline with no confirmed budget owner.", "first_raised": "2026-05-12", "date": "2026-07-06", "status": "open", "source": "SF fields + activity trail"},
+        {"category": "other", "detail": "Competitive blind spot: formal Ariba multi-vendor RFI but no rival identified, so an unseen competitor with executive access could be shaping the criteria.", "first_raised": "2026-03-11", "date": "2026-07-06", "status": "open", "source": "Competitors__c empty + no recorded calls"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: buyer-initiated indefinite reschedule on 8 Jun, ~4 weeks of no new dates, and the related Bara RFI wound down on 26 Jun. Rep activity continues (2 Jul event) but two-way buyer momentum on the Payment Portal has thinned.",
+      "cooling": true,
+      "items": [
+        "8 Jun: OXXO rescheduled use-case sessions with no new dates.",
+        "16 Jun: owner confirmed holding pattern.",
+        "26 Jun: Zycus withdrew from the related Bara supplier-portal RFI; Meza replied 29 Jun 'collaborate in the future.'"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "OXXO is a stalled, non-AI P2P evaluation ($250k eProcurement + eInvoicing): the buyer indefinitely rescheduled the use-case sessions on 8 Jun and Zycus still has no economic buyer, no champion, and no named competitor 268 days from a placeholder Mar 2027 close.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We are a functionally-fit RFI participant with an active project team and confirmed Mexico/Spanish fit, but with no economic buyer engaged, no champion, and a buyer-initiated stall, our position is weak and narrowing toward a no-decision outcome (Next Step 16 Jun: 'still holding pattern')."},
+          {"tone": "warn", "text": "OXXO rescheduled the use-case presentations on 8 Jun with no new dates and has stayed quiet roughly four weeks, so there is no forcing event pulling the deal forward."},
+          {"tone": "warn", "text": "The entire relationship runs through two IT/procurement analysts (Melissa Balderas, Ali Nassif); the likely budget owners Patricia Fabila and David Leal Garza are on the roster but have never engaged Zycus."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum has stalled: the use-case sessions were rescheduled 8 Jun with no new dates and the owner logged a holding pattern on 16 Jun."},
+          {"tone": "good", "text": "The buyer did pull for content on 3 Jun, asking Zycus to present several use cases before the formal session, showing the project is not dead — just paused."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "No commercial, pricing, or contract conversation has started; the deal sits in Pipeline 268 days from close with no committed decision date."},
+          {"tone": "warn", "text": "The related Bara supplier-portal RFI was closed out on 26 Jun (Zycus withdrew; Gabriela Meza replied 29 Jun hoping to 'collaborate in the future'), removing a parallel path into the account."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "The primary threat is inertia, not a named rival: OXXO keeps evaluating internally and could let the Payment Portal project drift without selecting any vendor."},
+          {"tone": "warn", "text": "Competitive blind spot: this is a formal multi-vendor Ariba RFI, yet no competitor is named in any source, so an unseen rival with executive access could be shaping the scoring."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.6, "evidence": "Use-case sessions rescheduled 8 Jun with no new dates; holding pattern 16 Jun; ~4 weeks of buyer silence."},
+        "customer_commitment": {"strength": -0.6, "evidence": "No commercial/pricing/decision-date commitment; forecast Pipeline 268 days out; related Bara RFI wound down 26 Jun."},
+        "deal_risk": {"strength": -0.5, "evidence": "No-decision inertia plus single-thread through analysts and an unidentified competitive field."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Neutral, still-evaluating posture ('oxxo still evaluating internally', 12 May) with a buyer-initiated indefinite reschedule on 8 Jun; the only Zycus-specific pull was a 26 May Mexico-reference request, not a stated preference."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain around streamlining procurement/payment and tax validation is clear, but no savings, cycle-time, or cost figure has ever been stated by the buyer."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": true,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Melissa Balderas to lock a firm rescheduled date for the Payment Portal use-case session.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "OXXO rescheduled the sessions 8 Jun with no new dates; owner in holding pattern 16 Jun.", "trigger_date": "2026-06-16", "act_by": "2026-07-13", "expected_effect": "Converts an indefinite stall into a dated commitment and restarts the evaluation clock."},
+        {"rank": 2, "action": "Multi-thread to Patricia Fabila to confirm who owns the Payment Portal budget.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No economic buyer engaged; finance-transformation lead never contacted.", "trigger_date": "2026-07-06", "act_by": "2026-07-20", "expected_effect": "Maps the economic buyer above the analyst layer and de-risks a no-power evaluation."},
+        {"rank": 3, "action": "Ask Melissa and Ali who else is shortlisted in the Ariba RFI and OXXO's scoring criteria.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Formal multi-vendor RFI with no competitor identified in any source.", "trigger_date": "2026-03-27", "act_by": "2026-07-24", "expected_effect": "Removes the competitive blind spot so Zycus can position against the real field."},
+        {"rank": 4, "action": "Offer OXXO finance a DEACERO or Tigo reference call to quantify payment-cycle savings.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "26 May Mexico-reference request; value case still unquantified.", "trigger_date": "2026-05-26", "act_by": "2026-08-04", "expected_effect": "Anchors a data-backed value case and pulls a finance sponsor into the deal."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 0,
+    "calls_omitted": [{"meeting": "Demo Zycus // Portal Proveedores Bara (2 Jul 2026)", "reason": "not-recorded / no transcript or notes available; tied to the Bara RFI Zycus withdrew from 26 Jun"}],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities 120d (Mar–Jul 2026); field history to 2026-03-06",
+    "avoma_attendees": [],
+    "gaps": [
+      "No recorded/transcribed buyer call exists (the only Avoma meeting, 9 Apr demo and 2 Jul Bara demo, are not recorded), so all evidence is from Salesforce fields, the email/activity trail, and contact roles.",
+      "Economic buyer, decision maker, and competitor identity are genuinely unknown across all sources.",
+      "Business impact is not quantified anywhere."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

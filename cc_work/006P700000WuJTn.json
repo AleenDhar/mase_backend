@@ -1,0 +1,252 @@
+{
+  "opp_id": "006P700000WuJTn",
+  "hard": {
+    "opp_id": "006P700000WuJTn",
+    "opp_name": "OptimusSteel_S2P_April26",
+    "account_name": "Optimus Steel LLC",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "United States",
+    "owner_name": "Bailey Erazo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-04-01",
+    "days_to_close": 269,
+    "created_date": "2026-04-17",
+    "qualified_date": "2026-04-20",
+    "last_activity_date": "2026-05-21",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;eProcurement;eInvoicing;Merlin;Merlin Intake",
+    "next_step": "Bailey : Send brochure/deck with module breakdown, integration approach with SAP, and relevant steel industry case study if available.",
+    "ais_score": 4.0,
+    "ais_status": "Strong",
+    "ais_why": "Champion Camilo acknowledged that a system like this is the present and future, but his stated needs are generic (process automation, supplier management, compliance) with no Merlin, ANA, or agentic language. No Avoma meetings are tied to this opp, so there is no transcript evidence to test the AI thesis. Next step is sending a brochure and SAP integration approach with a steel-industry case study: exploratory stage with no AI excitement signal.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000WuJTn/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Qualified-stage steel-manufacturing deal has thinned: Bailey Erazo has chased Camilo Sierra Ortega twice by email (7 May, 21 May) with no buyer reply, and the three deliverables owed since the 17 Apr discovery (module deck, SAP integration approach, steel case study) remain the standing next step.",
+      "math": "Created 2026-04-17, qualified 2026-04-20; today 2026-07-06 so 77 days in Qualified. Close date 2027-04-01 is 269 days out, so calendar-wise there is ample runway. The real signal is engagement: last activity 2026-05-21 (46 days ago) was a rep-side follow-up email, and no buyer reply is logged after it. Buyer-side engagement traces to the 17 Apr discovery and has not recurred in ~80 days. Not yet cold on the 60-day rep-activity test, but the cadence is one-directional (rep chasing, buyer silent) with no follow-on demo, RFI, or fit session booked.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Bailey Erazo sent two follow-up emails with no logged buyer reply: 'I wanted to bump this to the top of your inbox incase it got lost' (Task 2026-05-21) and 'I wanted to check in and see where things stand?' to Camilo and Isabel (Task 2026-05-07)",
+        "Standing next step is still the initial deliverable set: 'Send brochure/deck with module breakdown, integration approach with SAP, and relevant steel industry case study' (SF Next_Step__c)",
+        "Only one buyer contact is anchored in Salesforce: Camilo Sierra Ortega (task/activity contact); Isabel is named in the 2026-05-07 follow-up email",
+        "Stage moved Initial Interest -> Qualified on 2026-04-20 (SF field history, by Noopur Handa); no stage movement since",
+        "AIS 4.0 / Strong but AIS_Why notes generic needs and no agentic language, and no Avoma transcript exists to test AI appetite (SF AIS_Score__c / AIS_Why__c)",
+        "Products in scope span the full source-to-pay suite plus Merlin: iContract, iSource, iSupplier, eProcurement, eInvoicing, Merlin, Merlin Intake (SF Products__c)",
+        "Named competitor SAP Ariba with no active evaluation signal (SF Competitors__c)",
+        "Amount $150k, close 2027-04-01, stage Qualified, forecast Pipeline (SF)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The qualitative pain is on record from the 17 Apr discovery, carried in living memory: Camilo Sierra Ortega (Procurement Leader) described RFQs and quotations run over email, chat, and phone causing version-control problems, and manual supplier onboarding by email and PDF with no self-service portal. No quantified impact was ever captured: no RFQ volume, no cycle time, no onboarding cost, no error rate, and no savings or ROI target. This sweep read zero new buyer calls, so nothing new corroborates or contradicts the earlier read. The move is to convert the qualitative pain into numbers on the next call: RFQs per month, average quote-to-award cycle time, and the labour cost of manual onboarding.",
+        "sources": ["Living memory: discovery notes 2026-04-17", "SF Next_Step__c", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped in Salesforce: there are no OpportunityContactRole entries carrying an Economic Buyer or Executive Sponsor role, and no budget-authority field or call this sweep names who owns the spend on the $150k investment. The only anchored buyer contact is Camilo Sierra Ortega (Procurement Leader), an operational owner rather than a confirmed budget holder. Because no call this run and no Salesforce field names a finance approver, the buyer's budget owner is referred to by role only, not by a guessed name. Mapping the budget owner (the CFO or procurement-finance approver) and getting a Camilo-led introduction is a ranked move before any commercial step.",
+        "sources": ["SF OpportunityContactRole (no EB role present)", "SF activity contacts (Camilo Sierra Ortega only)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The implied criteria come from the pain Camilo articulated at discovery: automate RFQ/quotation management to fix version control, provide a self-service supplier-onboarding portal, and connect cleanly to SAP (Camilo asked how Zycus integrates with SAP, and the standing next step promises an SAP integration approach). Steel-industry fit is a stated evaluation lens: Camilo asked for a relevant steel case study. None of these have been formalized into a written requirement set, scorecard, or RFP, and no use-case validation or workshop has run. The move is to reflect the integration and industry-fit criteria back to Camilo in the deliverables and confirm what else will be judged.",
+        "sources": ["Living memory: discovery notes 2026-04-17", "SF Next_Step__c (SAP integration + steel case study)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The buyer's evaluation process is unknown: no stages, approval chain, timeline, or committee have been described on any call or in any field, and the close date of 2027-04-01 is a placeholder rather than a buyer-stated milestone. The deal has not advanced past a single discovery touch, so there is no call sequence to read process from. The 77 days in Qualified with only rep-side follow-ups indicates the buyer has not yet committed to a next evaluation step. The move is to get Camilo to lay out the evaluation stages and who is involved, then co-author a lightweight mutual plan with dates.",
+        "sources": ["SF field history (Qualified since 2026-04-20)", "SF Next_Step__c"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Nothing on contracting mechanics is known: no MSA/SOW discussion, no procurement channel, no InfoSec or legal thread, and no contract-expiration forcing function is on record. This is expected at Qualified stage for a new-logo deal that has not reached commercials. It is not a risk at this stage, only a visibility gap to close later. Visibility will come once a fit session and pricing conversation occur and the buyer names a target go-live or budget cycle.",
+        "sources": ["Stage Qualified (SF); no paper-process evidence in any field or activity"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Confirmed operational pain, owned by Camilo Sierra Ortega (Procurement Leader): RFQ and quotation management scattered across email, chat, and phone causing version-control issues, and manual supplier onboarding via email and PDF with no self-service portal (living memory, discovery 2026-04-17). Inferred pain, not yet buyer-confirmed: unclear purchase-requisition process and the compliance/reporting exposure that comes with manual procurement in a manufacturing environment. The pain is real but unquantified and, critically, the pain owner has gone quiet, so its urgency is untested. Re-surfacing and quantifying this pain is the wedge to restart momentum.",
+        "sources": ["Living memory: discovery notes 2026-04-17"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Camilo Sierra Ortega (Procurement Leader) is the sole champion candidate and the only Salesforce-anchored buyer contact. He owned the discovery conversation, articulated the pain, and asked how Zycus integrates with SAP, which shows genuine interest. But the rating is developing at best and now at risk: he has not introduced an economic buyer, has not multi-threaded us internally, and has not replied to two follow-up emails (7 May, 21 May), so there is no active advocacy and the thread is cooling. What has developed: a named operational owner who stated pain and requested materials. What is missing: any evidence he is selling internally, access to budget authority, and a live two-way cadence. The move is to deliver the promised materials as the re-engagement hook and ask him to bring the budget owner and the evaluation timeline.",
+        "sources": ["SF activity contact Camilo Sierra Ortega", "SF Tasks 2026-05-07 and 2026-05-21 (unanswered follow-ups)", "Living memory: discovery notes 2026-04-17"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "SAP Ariba is the only named competitor (SF Competitors__c) but there is no active evaluation, shortlist, or pricing contest yet, and the buyer has not raised Ariba on any recorded touch, so its current threat is dormant, not a confirmed bake-off. The realistic near-term threat on a stalled Qualified deal is do-nothing / status quo: Optimus Steel keeps running procurement manually and the transformation never gets prioritized. Our wedge if the evaluation activates is SAP integration depth (Camilo explicitly asked about it), AI/Merlin differentiation versus Ariba, and demonstrated steel-industry fit (the requested case study). None of these wedges are activated because the promised materials have not landed.",
+        "sources": ["SF Competitors__c (SAP Ariba)", "Deal timeline: no buyer engagement since 2026-04-17", "SF Next_Step__c"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Movement is rep-side only. After the 17 Apr discovery and 20 Apr promotion to Qualified, the deal has produced no buyer-facing progression: Bailey Erazo sent check-in emails on 7 May and 21 May that went unanswered, and the standing next step is unchanged since kickoff.",
+      "items": [
+        {"change": "Stage moved Initial Interest -> Qualified (by Noopur Handa)", "date": "2026-04-20"},
+        {"change": "Owner reassigned to Bailey Erazo (by Noopur Handa)", "date": "2026-04-20"},
+        {"change": "Rep follow-up email to Camilo and Isabel, no buyer reply logged", "date": "2026-05-07"},
+        {"change": "Rep follow-up email 'bump this to the top of your inbox', no buyer reply logged", "date": "2026-05-21"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba is the only named rival (SF Competitors__c) but shows no active evaluation signal and was not raised by the buyer, so it ranks dormant/low today. The single strongest CURRENT threat is do-nothing: 80 days after discovery the buyer is silent and the promised materials are undelivered, so the transformation risks losing internal priority. Wedge on activation: SAP integration depth, Merlin/AI differentiation, and steel-industry proof.",
+      "competitors": [
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "low", "status": "dormant", "quote": "SAP Ariba named as competitor in Salesforce; not raised by the buyer on any recorded touch", "date": "2026-04-17", "source": "SF Competitors__c", "how_we_win": "Lead with native SAP integration depth (Camilo asked how Zycus connects to SAP), Merlin/AI differentiation vs Ariba, and a steel-industry reference to prove fit"},
+        {"name": "Do Nothing", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "80 days since discovery with no buyer engagement and the promised materials (module deck, SAP integration approach, steel case study) still undelivered", "date": "2026-06-26", "source": "Deal timeline: last buyer touch 2026-04-17, LastActivityDate 2026-05-21 (rep-side)", "how_we_win": "Deliver the three committed materials now, book a fit call to quantify RFQ and onboarding pain, and co-author a lightweight evaluation plan with dates so the project keeps internal priority"}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit expectations center on SAP connectivity, a self-service supplier-onboarding portal, and steel-industry proof; all are plausible strengths for Zycus but none are validated because no fit session or deliverable has landed since discovery.",
+      "items": [
+        {"criterion": "Native integration with SAP", "position": "partially aligned", "quote": "Camilo asked how Zycus connects to SAP; standing next step promises an SAP integration approach", "date": "2026-04-17", "source": "Living memory: discovery notes 2026-04-17 + SF Next_Step__c"},
+        {"criterion": "Self-service supplier onboarding portal", "position": "aligned", "quote": "Supplier onboarding is manual via email and PDF; a self-service portal is required", "date": "2026-04-17", "source": "Living memory: discovery notes 2026-04-17"},
+        {"criterion": "Steel-industry relevance / reference", "position": "exposed", "quote": "Buyer requested a relevant steel industry case study; not yet delivered", "date": "2026-04-17", "source": "SF Next_Step__c"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide module-breakdown deck, SAP integration approach, and steel case study", "said_by": "Camilo Sierra Ortega", "date": "2026-04-17", "addressed": false, "quote": "Send brochure/deck with module breakdown, integration approach with SAP, and relevant steel industry case study if available", "source": "SF Next_Step__c + discovery 2026-04-17"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm the evaluation stages, stakeholders, and timeline for the procurement transformation", "who": "Buyer", "grounding_quote": "Rep check-in 'I wanted to check in and see where things stand?' went unanswered", "date": "2026-05-07", "due": null, "status": "open", "source": "SF Task 2026-05-07"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unmapped", "quote": "No OpportunityContactRole names an Economic Buyer; no finance approver on any call or field", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"},
+        {"area": "Single-thread: only Camilo Sierra Ortega is anchored, Isabel lightly touched", "quote": "Only activity contact is Camilo; Isabel named in one follow-up email", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF activity contacts + Task 2026-05-07"},
+        {"area": "Pain not quantified", "quote": "Manual RFQ and onboarding pain described but no volume, cycle time, or cost captured", "status": "not addressed", "date": "2026-04-17", "gap_type": "knowledge", "source": "Living memory: discovery notes 2026-04-17"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage deal that has stalled on our own undelivered follow-through; the win levers are re-engagement, quantifying pain, and mapping power.",
+      "flags": [
+        "Re-open the thread by delivering the SAP integration approach and steel case study Camilo asked for; our silence, not a rival, is the current blocker",
+        "Multi-thread beyond Camilo: he has not replied in ~50 days, so add the budget owner and a second procurement stakeholder before the deal goes dark",
+        "Quantify the RFQ and supplier-onboarding pain (volume, cycle time, cost) to build a business case and justify the $150k investment"
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Camilo Sierra Ortega", "title": "Procurement Leader", "role": "Champion", "last_contact_date": "2026-05-07", "sentiment": "Positive but cooling; articulated pain and asked about SAP integration, then went quiet on two follow-ups", "risk": "At risk: sole thread, no reply since early May, no introduction to budget authority", "source": "SF activity contact; SF Task 2026-05-07"},
+        {"name": "Isabel", "title": null, "role": "Influencer", "last_contact_date": "2026-05-07", "sentiment": "Unknown; copied on the 7 May follow-up, no engagement logged", "risk": "Lightly touched; last name and title not confirmed in Salesforce", "source": "SF Task email 2026-05-07 ('Hello Camilo and Isabel')"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Camilo Sierra Ortega (Procurement Leader) is the operational pain owner and only real champion candidate, but strength is developing and now at risk: he articulated pain and asked about SAP integration at discovery, yet has not advocated internally, not introduced a budget owner, and not replied to two follow-up emails since early May. What developed is a named owner with stated pain; what is missing is internal selling, power access, and a live cadence.",
+      "champion": "Camilo Sierra Ortega",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF activity contact Camilo Sierra Ortega; SF Tasks 2026-05-07 / 2026-05-21; living memory discovery 2026-04-17"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin and Merlin Intake are in the product scope but the AI story is not landing: Camilo's stated needs are generic process automation with no agentic or Merlin-specific language, and no call exists to reinforce it. We are under-positioned on the AI wedge that would differentiate us from SAP Ariba.",
+      "score": "4.0 (Strong per AIS field, but unvalidated)",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS field reads 4.0 / Strong, but AIS_Why itself flags generic needs and no agentic language, and there is no transcript to test AI appetite. Treat the AI excitement as unproven and lead with concrete Merlin proof to convert curiosity into a stated need.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or budget owner mapped on a $150k new-logo deal", "first_raised": "2026-04-20", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "political", "detail": "Single-threaded to Camilo, who has stopped replying; no coverage if he disengages", "first_raised": "2026-05-21", "date": "2026-07-06", "status": "open", "source": "SF Tasks 2026-05-07 / 2026-05-21"},
+        {"category": "change_management", "detail": "Do-nothing / status-quo risk: manual procurement persists and the transformation loses internal priority", "first_raised": "2026-06-26", "date": "2026-07-06", "status": "open", "source": "Deal timeline: no buyer engagement since 2026-04-17"},
+        {"category": "budget", "detail": "Pain is unquantified, so there is no business case yet to justify the spend", "first_raised": "2026-04-17", "date": "2026-07-06", "status": "open", "source": "Living memory: discovery notes 2026-04-17"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: two unanswered rep follow-ups and ~80 days of buyer silence since discovery. Not cold yet, but trending down.",
+      "cooling": true,
+      "items": [
+        "Two consecutive follow-up emails (7 May, 21 May) with no logged buyer reply",
+        "No follow-on demo, RFI, or fit session booked since the 17 Apr discovery",
+        "Standing next step unchanged since kickoff"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "This is a thin, early Qualified deal that has stalled on our own undelivered follow-through: Camilo Sierra Ortega named real procurement pain at discovery but has gone quiet on two follow-ups, no economic buyer is mapped, and the promised SAP integration approach and steel case study are the one thing that would restart it.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We are behind our own momentum: 80 days after the 17 Apr discovery the buyer is silent, only Camilo Sierra Ortega is engaged, and no economic buyer or evaluation process is mapped."},
+          {"tone": "good", "text": "Genuine operational pain is on record (RFQ version-control chaos and manual supplier onboarding, per Camilo at discovery) with a clean wedge in SAP integration depth and Merlin differentiation versus SAP Ariba."},
+          {"tone": "warn", "text": "The champion is cooling: Camilo has not replied to Bailey Erazo's 7 May and 21 May emails, so the single thread is thinning with no backup stakeholder."},
+          {"tone": "warn", "text": "The three deliverables Camilo asked for (module deck, SAP integration approach, steel case study) are still undelivered, so our differentiation has never actually been put in front of the buyer."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "All movement since 20 Apr is rep-side; two follow-up emails went unanswered and no buyer-driven next meeting exists."},
+          {"tone": "warn", "text": "Close date 2027-04-01 is a placeholder, not a buyer-stated milestone, so there is no forcing event pulling the deal forward."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer has made no commitment beyond attending discovery: no timeline, no next meeting, no introduction to budget authority."},
+          {"tone": "good", "text": "Camilo did request specific materials and asked about SAP integration, a low but real signal of intent to re-engage if we deliver."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Do-nothing is the primary threat: manual procurement persists and the transformation can quietly lose priority."},
+          {"tone": "warn", "text": "Single-thread exposure: if Camilo stays silent there is no other engaged buyer contact to carry the deal."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.4, "evidence": "Camilo is the only thread and has not replied to two follow-ups since early May; developing and at risk"},
+        "customer_preference": {"strength": -0.5, "evidence": "Buyer asked only for information then went silent; no stated lean toward Zycus"},
+        "engagement": {"strength": -0.5, "evidence": "80 days of buyer silence; movement is rep-side only"}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": null, "to": null, "detail": "Full source-to-pay suite plus Merlin in scope since creation; no narrowing or expansion versus the original scope."},
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "low", "evidence": "Buyer asked only to be sent information at discovery and then went silent through two rep follow-ups (7 May, 21 May); no stated preference for Zycus over SAP Ariba"},
+    "business_case": {"status": "partial", "evidence": "Qualitative procurement pain articulated by Camilo (RFQ version-control chaos, manual supplier onboarding) but no volume, cycle time, cost, or savings quantified"},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Camilo the module-breakdown deck, SAP integration approach, and steel case study.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Standing next step and Camilo's discovery ask remain undelivered after ~80 days", "trigger_date": "2026-04-17", "act_by": "2026-07-13", "expected_effect": "Removes our own blocker and gives Camilo a concrete reason to re-engage"},
+        {"rank": 2, "action": "Book a fit call with Camilo to quantify RFQ and onboarding pain and confirm the timeline.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Pain is unquantified and no buyer-driven next meeting exists", "trigger_date": "2026-05-21", "act_by": "2026-07-17", "expected_effect": "Builds the business case and re-establishes a two-way cadence"},
+        {"rank": 3, "action": "Ask Camilo to introduce the budget owner and name the evaluation stages.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer mapped and deal is single-threaded on Camilo", "trigger_date": "2026-07-06", "act_by": "2026-07-31", "expected_effect": "Maps power and reduces single-thread risk before commercials"}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "activities last 120d; field history to 2026-04-17",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls are associated with this opportunity or reachable by account/attendee-email discovery this sweep; the buyer's pain read carries forward from prior discovery notes (2026-04-17)",
+      "Economic buyer / budget owner genuinely unmapped: no OpportunityContactRole and no field names a finance approver",
+      "Only Camilo Sierra Ortega is a Salesforce-anchored buyer contact; Isabel is named in one email with no confirmed last name or title"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

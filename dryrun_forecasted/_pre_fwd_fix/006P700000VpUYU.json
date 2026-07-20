@@ -1,0 +1,2483 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic buyer / budget approver",
+     "date": "2026-03-26",
+     "quote": "I'd obviously have to present it to ownership",
+     "source": "Avoma call notes, 26 Mar 2026",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Opportunity contact role",
+     "date": "2026-07-09",
+     "quote": "0 OpportunityContactRole records exist for this opportunity",
+     "source": "OpportunityContactRole SOQL",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Decision process / approval chain",
+     "date": "2026-03-26",
+     "quote": "No process, timeline, or committee documented beyond 'present to ownership'",
+     "source": "Avoma call notes, 26 Mar 2026",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Named competitor",
+     "date": "2026-03-26",
+     "quote": "Competitors__c blank, but status-quo tools (Smartsheet, Procore, Jonas) and a live Procore-vs-Zycus question are documented in the call",
+     "source": "Competitors__c field; Avoma transcript, 26 Mar 2026",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Quantified business case / ROI",
+     "date": "2026-03-26",
+     "quote": "No dollar figure or savings target has been attached to the described pain",
+     "source": "Avoma call notes, 26 Mar 2026",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "gap",
+    "sources": [
+     "Avoma call notes, 26 Mar 2026",
+     "Task 00TP700000kTqYwMAK (email, 26 Mar 2026)"
+    ],
+    "narrative": "No quantified value case exists yet. The buyer has described the operational pain (manual invoice entry, eight disconnected tools, no project-level spend visibility) but has not attached a dollar figure or savings target to it (call, 26 Mar 2026). Zycus's own ballpark pricing ($100k-$200k/yr plus a roughly matching one-time implementation fee, sent by Bailey Erazo via email 26 Mar 2026) has not yet been tested against any buyer-side budget or ROI threshold."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 26 Mar 2026",
+     "Task 00TP700000m8GAiMAM (email, 23 Apr 2026)"
+    ],
+    "narrative": "Kyle Campbell is an engaged, positive contact but not yet a proven champion. He closed the 26 Mar 2026 call saying 'you guys do have my interest... something that could benefit us,' and asked for demo videos and pricing specifically so he could pitch it to 'ownership.' He has gone quiet since asking to push the follow-up from 23 Apr to 7 May 2026 (Task 00TP700000m8GAiMAM); that rescheduled meeting was itself cancelled, and there is no evidence yet he has taken the pitch upstairs."
+   },
+   "competition": {
+    "status": "gap",
+    "sources": [
+     "Competitors__c (blank)",
+     "Avoma transcript, 26 Mar 2026"
+    ],
+    "narrative": "No named competitor is on record (Competitors__c and Others_Competitors_Please_specify__c both blank). The live alternative is inertia: Bronte's current stack of Smartsheet, Procore, and Jonas. Kyle Campbell is separately weighing whether Procore's own procurement extensions could cover enough ground to avoid adding a ninth system ('if I need to install another software to make our job better, it is what it is... but I am curious,' call, 26 Mar 2026)."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma transcript, 26 Mar 2026",
+     "Customer_Business_Problem__c"
+    ],
+    "narrative": "Pain is clearly and directly buyer-voiced. Kyle Campbell described procurement as under a year old at Bronte, running on Smartsheet ('like Excel on steroids') as a stand-in ERP, using eight separate tools including Jonas for budgeting, and manually keying every vendor invoice into the ERP; he also flagged union-compliance risk in vendor sourcing as a recurring operational headache (call, 26 Mar 2026). This is confirmed, specific, and owned by the one identified stakeholder."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "No contracting fields populated; Opportunity stage = Qualified"
+    ],
+    "narrative": "No paper process discussion has occurred. The deal has not reached commercials or contracting; no MSA, order form, or contract-expiration forcing function has been raised in any call or field. This is expected at this early stage."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Opportunity fields (Executive_Sponsor_Identified__c, Decision_Maker_Identified__c)",
+     "Avoma call notes, 26 Mar 2026"
+    ],
+    "narrative": "No economic buyer or budget owner is identified. Executive_Sponsor_Identified__c and Decision_Maker_Identified__c are both false and Who_will_approve_budget__c is blank. On the 26 Mar 2026 call, Kyle Campbell (Manager, Procurement) said that if the fit looks right he would 'have to present it to ownership' before any commitment, meaning budget authority sits above him and has had zero contact, direct or indirect, to date."
+   },
+   "decision_process": {
+    "status": "gap",
+    "sources": [
+     "Avoma call notes, 26 Mar 2026"
+    ],
+    "narrative": "The purchase process is undocumented. The only process signal is Kyle Campbell's own comment that he would need to present the solution 'to ownership' before it could move forward (call, 26 Mar 2026), implying at least one additional, unidentified approval layer above the procurement manager. No timeline, committee, or sequence of approvals has been confirmed."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 26 Mar 2026",
+     "Business_Requirements__c (blank)",
+     "Shoe_Fit_Criteria_Met__c (false)"
+    ],
+    "narrative": "Only informal signals exist. On the 26 Mar 2026 call, Kyle Campbell repeatedly returned to two evaluation threads: whether Zycus can track spend at the individual-project level (vs Jonas/Procore) and whether the AI sourcing engine can reliably exclude non-union vendors from RFx events. Neither is captured as a formal Business_Requirements__c or ShoeFit criterion (both blank/false in Salesforce)."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": "2026-05-07",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-04-23",
+   "last_buyer_touch": "2026-05-07",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-04-23",
+   "days_since_buyer_touch": 62
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-04-23",
+   "items": [
+    {
+     "at": "2026-04-23",
+     "kind": "email",
+     "name": "Reschedule request from Kyle Campbell",
+     "summary": "Kyle Campbell emailed Bailey Erazo the morning of the meeting asking to push it to May 7th due to a conflict; Bailey confirmed the new date, so no discussion happened today."
+    },
+    {
+     "at": "2026-04-23",
+     "kind": "meeting",
+     "name": "Bronte Construction - Zycus | Follow Up (rescheduled)",
+     "summary": "The scheduled follow-up did not take place as planned \u2014 it was rescheduled to May 7th per Kyle's last-minute request, so no substance was covered."
+    }
+   ],
+   "source": "ai",
+   "overall": "A follow-up meeting scheduled for today got bumped at the last minute \u2014 Kyle Campbell asked that morning to push it to May 7th since he couldn't attend, and Bailey Erazo confirmed the reschedule. Net effect is a two-week slip on this touchpoint with nothing substantive discussed today; the ball is now sitting on the calendar for May 7th."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 84.0,
+    "win_position": 10.0,
+    "deal_momentum": 10.0,
+    "customer_commitment": 13.0,
+    "forecast_confidence": 12.0
+   },
+   "cro_panel": {
+    "intro": "Early-stage, single-threaded Qualified deal with one strong discovery call and real, buyer-voiced pain, but 105 days without stage movement, no economic buyer contact, and a cancelled follow-up that has not been rebooked",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 10,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed.",
+        "tone": "warn"
+       },
+       {
+        "text": "No EB, no DM, no executive sponsor identified.",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 10,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "1 call read in the window",
+        "tone": "good"
+       },
+       {
+        "text": "Last recorded activity 23 Apr 2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 84,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No named competitor is in play.",
+      "bullets": [
+       {
+        "full": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or deprioritizes.",
+        "text": "Single-threaded through Kyle Campbell (role unknown).",
+        "tone": "warn"
+       },
+       {
+        "full": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qualification elements.",
+        "text": "Zero MEDDPICC coverage.",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Send Kyle Campbell a direct, dated re-engagement referencing the cancelled 7 May meeting and propose two new specific times. (by 16 Jun)",
+       "Log Kyle Campbell as a Contact Role on the opportunity and ask him directly who in 'ownership' approves budget. (by 23 Jun)",
+       "If no reply after two outreach attempts, try one alternate-channel touch before considering any escalation. (by 8 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Bronte Construction \u2014 Qualified \u00b7 $120K \u00b7 closes 23 Aug",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 84.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "76 days to close with zero stage progression and a 77-day buyer blackout make the Sept 23 close date mathematically improbable.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer, decision process, or paper process identified \u2014 deal lacks the foundational qualification a $120k deal needs.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded through one contact with no buying committee mapped \u2014 deal is exposed if Kyle Campbell disengages or leaves.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Status quo (Smartsheet + Procore + Jonas) is a live medium threat \u2014 buyer is weighing whether existing tools suffice, not just comparing vendors.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Ballpark pricing sent 26 Mar has drawn no buyer response in 105 days, leaving affordability and intent unconfirmed.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "76 days to close with zero stage progression and a 77-day buyer blackout make the Sept 23 close date mathematically improbable.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer, decision process, or paper process identified \u2014 deal lacks the foundational qualification a $120k deal needs.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through one contact with no buying committee mapped \u2014 deal is exposed if Kyle Campbell disengages or leaves.",
+      "tone": "warn"
+     },
+     {
+      "text": "Status quo (Smartsheet + Procore + Jonas) is a live medium threat \u2014 buyer is weighing whether existing tools suffice, not just comparing vendors.",
+      "tone": "warn"
+     },
+     {
+      "text": "Ballpark pricing sent 26 Mar has drawn no buyer response in 105 days, leaving affordability and intent unconfirmed.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "MEDDPICC is nearly empty: economic buyer gap, decision process gap, paper process gap, competition gap \u2014 only pain is confirmed.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer or executive sponsor identified for a $120k P2P deal that will need CFO/VP Finance sign-off.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through Kyle Campbell, whose promised advocacy ('present it to ownership') is unconfirmed and who has been dark since the 7 May cancellation.",
+      "tone": "warn"
+     },
+     {
+      "text": "Sept 23 close date is effectively unreachable given zero stage movement and 77 days of buyer silence.",
+      "tone": "warn"
+     },
+     {
+      "text": "No named competitor is actually ahead \u2014 the real contest is inertia (Smartsheet/Procore/Jonas status quo), not a rival vendor displacing Zycus.",
+      "tone": "good"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "77 days since the last buyer contact (23 Apr follow-up call); zero meetings logged in the 30d or 60d windows and nothing scheduled next.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion Kyle Campbell has gone silent since a 7 May meeting was cancelled \u2014 no response in over two months.",
+      "tone": "warn"
+     },
+     {
+      "text": "Ballpark pricing sent 26 Mar has drawn zero buyer reaction in 105 days \u2014 one-way outreach with no follow-through.",
+      "tone": "warn"
+     },
+     {
+      "text": "Next step ('follow-up meeting targeted in April, review demo videos') is now past-dated and stale \u2014 no forward motion recorded since.",
+      "tone": "warn"
+     },
+     {
+      "text": "One substantive call did occur (26 Mar intro call, 34 min, transcript captured) with the buyer engaging on AI capabilities, but it's now over 90 days old and outside the credit window.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No procurement/security review, paper process, or reference checks initiated \u2014 zero buyer-owned action items to date.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion's stated intent to advocate internally is unverified; no confirmation ownership has even seen the pitch.",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer has not reacted to the 26 Mar ballpark pricing in 105 days \u2014 no signal on budget appetite.",
+      "tone": "warn"
+     },
+     {
+      "text": "Kyle Campbell asked specific, curious questions about AI vendor exclusion and AI-assisted redlining on the 26 Mar call \u2014 early but genuine engagement.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 10.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "MEDDPICC is nearly empty: economic buyer gap, decision process gap, paper process gap, competition gap \u2014 only pain is confirmed.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer or executive sponsor identified for a $120k P2P deal that will need CFO/VP Finance sign-off.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded through Kyle Campbell, whose promised advocacy ('present it to ownership') is unconfirmed and who has been dark since the 7 May cancellation.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Sept 23 close date is effectively unreachable given zero stage movement and 77 days of buyer silence.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "No named competitor is actually ahead \u2014 the real contest is inertia (Smartsheet/Procore/Jonas status quo), not a rival vendor displacing Zycus.",
+      "points": 1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 10.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "77 days since the last buyer contact (23 Apr follow-up call); zero meetings logged in the 30d or 60d windows and nothing scheduled next.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion Kyle Campbell has gone silent since a 7 May meeting was cancelled \u2014 no response in over two months.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Ballpark pricing sent 26 Mar has drawn zero buyer reaction in 105 days \u2014 one-way outreach with no follow-through.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Next step ('follow-up meeting targeted in April, review demo videos') is now past-dated and stale \u2014 no forward motion recorded since.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "One substantive call did occur (26 Mar intro call, 34 min, transcript captured) with the buyer engaging on AI capabilities, but it's now over 90 days old and outside the credit window.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Kyle Campbell asked pointed, curious questions about machine-learning vendor exclusion and AI-assisted redlining, showing genuine curiosity, but has not yet confirmed AI as a deciding factor in the evaluation.",
+     "expectations_fit": "Fit is strong on compliance filtering, uncertain on accounting/project-spend depth, and unconfirmed on Procore integration.",
+     "north_star_verdict": null,
+     "positioning_strength": "The buyer engaged closely with Zycus's AI capabilities (AI-driven RFI vendor sourcing, autonomous negotiation agents, AI contract clause-risk scanning), asking specific follow-up questions rather than passing over them (call, 26 Mar 2026)."
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 120000.0,
+     "opp_id": "006P700000VpUYU",
+     "account": "Bronte Construction",
+     "opp_name": "Bronte Construction Opp isupp iSource P2P ANA Mar '26",
+     "next_step": "Next steps include reviewing 5-minute demo videos and ballpark pricing for 25\u201330 users, with a follow-up meeting targeted in April.",
+     "close_date": "2026-09-23",
+     "stage_tier": "early",
+     "days_to_close": 76,
+     "forecast_category": "Pipeline",
+     "last_activity_date": "2026-04-23"
+    },
+    "trends": {},
+    "champion": "Kyle Campbell showed genuine, specific interest and explicit intent to advocate internally ('present it to ownership'), but there is no confirmation that advocacy has happened, and he has not responded since the 7 May 2026 meeting was cancelled.",
+    "meddpicc": {
+     "metrics": "gap",
+     "champion": "partial",
+     "competition": "gap",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "gap",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-04-23",
+       "minutes": null,
+       "subject": "Bronte Construction - Zycus | Follow Up",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "bronteconstruction.ca"
+       ]
+      },
+      {
+       "date": "2026-03-26",
+       "minutes": 34,
+       "subject": "Introductory Call: Bronte Construction & Zycus",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-03-05",
+       "minutes": 1,
+       "subject": "Introductory Call: Bronte Construction & Zycus",
+       "recorded": true,
+       "transcript": false,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 1,
+     "last_date": "2026-04-23",
+     "next_scheduled": null,
+     "total_all_time": 3,
+     "days_since_last": 77,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No named competitor is in play. The real contest is against inertia: Bronte's existing patchwork of Smartsheet, Procore, and Jonas, plus a live buyer question about whether Procore's own procurement extensions could substitute for a dedicated S2P platform.",
+     "competitors": [
+      {
+       "name": "Procore",
+       "status": "active",
+       "threat": "low"
+      },
+      {
+       "name": "Status quo (Smartsheet + Jonas + point tools)",
+       "status": "incumbent",
+       "threat": "medium"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at curr",
+     "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred.",
+     "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or depr",
+     "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qua",
+     "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; afforda"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 77
+    },
+    "decision_outcome": {}
+   },
+   "customer_commitment": {
+    "score": 13.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No procurement/security review, paper process, or reference checks initiated \u2014 zero buyer-owned action items to date.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion's stated intent to advocate internally is unverified; no confirmation ownership has even seen the pitch.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer has not reacted to the 26 Mar ballpark pricing in 105 days \u2014 no signal on budget appetite.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Kyle Campbell asked specific, curious questions about AI vendor exclusion and AI-assisted redlining on the 26 Mar call \u2014 early but genuine engagement.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 12.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'pricing' in Next-Step/narrative",
+    "present": true,
+    "age_days": 104
+   }
+  },
+  "scope_change": {
+   "to": "iSource;iSupplier;eProcurement;eInvoicing;ANA",
+   "from": "iSource;iSupplier;eProcurement;eInvoicing;ANA",
+   "detail": "Scope has been the same five modules since opportunity creation on 26 Mar 2026; no expansion or reduction discussed since.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Kyle Campbell asked pointed, curious questions about machine-learning vendor exclusion and AI-assisted redlining, showing genuine curiosity, but has not yet confirmed AI as a deciding factor in the evaluation."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Pain is described qualitatively (fragmented tools, manual invoicing) but no dollar value, savings target, or ROI figure has been discussed (call, 26 Mar 2026)."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-03-26",
+     "change": "Opportunity created, Qualified stage entered, intro/demo call held"
+    },
+    {
+     "date": "2026-03-26",
+     "change": "Zycus sent Showpad demo videos and ballpark pricing per buyer request"
+    },
+    {
+     "date": "2026-04-23",
+     "change": "Buyer requested reschedule of follow-up from 23 Apr to 7 May 2026; rep agreed"
+    },
+    {
+     "date": "2026-05-07",
+     "change": "Rescheduled 7 May 2026 follow-up cancelled; no new date set"
+    }
+   ],
+   "summary": "Opportunity created directly into Qualified on 26 Mar 2026 following the intro/demo call; no stage or amount movement since. The only forward motion has been email/deliverable exchange, and the sole scheduled follow-up was rescheduled once then cancelled."
+  },
+  "forecast_read": {
+   "math": "76 days to close (today 2026-07-09 to 2026-09-23 close). 105 days in Qualified stage since Qualified_Submission_Date__c of 2026-03-26 against an expected ~30-day Qualified-stage cadence. Last verified buyer activity 2026-04-23, 77 days ago.",
+   "reason": "Stage and recorded forecast both reflect an early, unproven deal; nothing in the evidence (no economic buyer contact, 77 days of buyer silence, cancelled follow-up) supports moving beyond Pipeline.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iSource;iSupplier;eProcurement;eInvoicing;ANA"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.5",
+    "sum": "10.1",
+    "win": "10.3",
+    "todo": "10.1",
+    "sweep": "10.0",
+    "extract": "10.4",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Kyle Campbell",
+     "risk": "Single point of contact; no opportunity contact role logged; silent since requesting the 23 Apr to 7 May 2026 reschedule, and that rescheduled meeting was cancelled",
+     "role": "Coach",
+     "title": "Manager, Procurement",
+     "sentiment": "positive but gone quiet",
+     "last_contact_date": "2026-04-23"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at current velocity.",
+     "status": "active, worsening",
+     "category": "timeline",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-04-23",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred.",
+     "status": "active, unaddressed",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or deprioritizes.",
+     "status": "active, severe",
+     "category": "political",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qualification elements.",
+     "status": "active, deal-fatal without immediate remediation",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-03-26",
+     "change": "new",
+     "detail": "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; affordability fit for a company Kyle described as still building out its procurement function is untested.",
+     "status": "unconfirmed, no buyer reaction",
+     "category": "pricing",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    },
+    {
+     "date": "2026-03-26",
+     "change": "new",
+     "detail": "No confirmed prior Procore integration exists; Bailey Erazo could not verify one on the call and it remains an open action item.",
+     "status": "open, no reference case",
+     "category": "integration",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    },
+    {
+     "date": "2026-03-26",
+     "change": "new",
+     "detail": "No economic buyer or executive sponsor identified; Kyle Campbell must present internally to 'ownership' before any budget decision.",
+     "status": "not addressed",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    },
+    {
+     "date": "2026-04-23",
+     "change": "new",
+     "detail": "Single-threaded through one procurement manager with no confirmed internal coalition or sponsor; deal is exposed if Kyle Campbell deprioritizes or moves on.",
+     "status": "not addressed",
+     "category": "political",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    },
+    {
+     "date": "2026-04-23",
+     "change": "new",
+     "detail": "Kyle Campbell cited fiscal year-end and inventory-management workload as reasons for delay in late March/April 2026; unclear whether that has cleared given the extended 77-day silence.",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "first_raised": "2026-03-26",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 10.0,
+   "win": 10.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The one deep discovery-and-demo call (26 Mar 2026, about 15 weeks ago) landed well, with the buyer asking detailed questions about union-vendor filtering, project-level spend tracking, and AI negotiation, and closing on a positive note. But the planned follow-up was pushed from 23 Apr to 7 May 2026 at the buyer's own request and then cancelled, with no new date set since.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Commercials",
+    "text": "Ballpark pricing ($100k-$200k a year for 25-30 users plus a roughly matching one-time implementation fee) and the demo video package were both sent the same day as the intro call (26 Mar 2026) but have drawn no buyer reaction in the 105 days since.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "The deal remains single-threaded through Kyle Campbell, Manager of Procurement, with zero other contacts logged and no Salesforce contact role recorded for him at all.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "No named rival is in the picture; the real competition is the buyer's own patchwork of Smartsheet, Procore, and Jonas, and a live internal question about whether Procore's own extensions could absorb the need instead of adding Zycus.",
+    "tone": "neu"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": true,
+   "customer_requested_next_meeting": true
+  },
+  "champion_strength": {
+   "source": "Avoma transcript, 26 Mar 2026; Task 00TP700000m8GAiMAM (23 Apr 2026)",
+   "at_risk": true,
+   "summary": "Kyle Campbell showed genuine, specific interest and explicit intent to advocate internally ('present it to ownership'), but there is no confirmation that advocacy has happened, and he has not responded since the 7 May 2026 meeting was cancelled.",
+   "champion": "Kyle Campbell",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "No sibling Closed-Won opportunity on record for Bronte Construction.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Send Kyle Campbell a direct, dated re-engagement referencing the cancelled 7 May meeting and propose two new specific times.",
+     "horizon": "next_7_days",
+     "trigger": "77 days of silence since the 23 Apr 2026 reschedule email and no meeting held since the 7 May 2026 cancellation",
+     "trigger_date": "2026-05-07",
+     "expected_effect": "Re-establish a live next step and test whether buyer interest is still active."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Log Kyle Campbell as a Contact Role on the opportunity and ask him directly who in 'ownership' approves budget.",
+     "horizon": "next_14_days",
+     "trigger": "Zero opportunity contact roles on record and no economic buyer identified",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Opens a path to the real budget approver and closes a hygiene gap currently blocking multi-threading."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "If no reply after two outreach attempts, try one alternate-channel touch before considering any escalation.",
+     "horizon": "next_30_days",
+     "trigger": "No response to the 7-day and 14-day re-engagement attempts",
+     "trigger_date": "2026-07-23",
+     "expected_effect": "Confirms whether the deal is genuinely stalled or just quiet, and supports an honest requalification decision before the 23 Sep 2026 close date becomes indefensible."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "77 days since last verified activity (2026-04-23)",
+    "Planned 7 May 2026 follow-up cancelled and not rebooked",
+    "Next_Step__c unchanged since 26 Mar 2026"
+   ],
+   "cooling": true,
+   "summary": "The deal has cooled sharply since a strong initial call; the one confirmed contact has gone silent for 77 days after personally requesting to push out the only scheduled follow-up, which was then cancelled outright."
+  },
+  "north_star_verdict": {
+   "math": "Created 2026-03-26, now 103 days old. In Qualified stage the entire cycle with no progression to Formal Evaluation or Shortlisted. Last buyer activity 2026-04-23 (75 days ago). Close date 2026-09-23 is 78 days out. NextStep references April follow-up that never happened. At current zero velocity, deal will not reach Vendor Selected (typically 8-10 months into cycle) before close date. No submission dates recorded so true stage velocity cannot be computed from milestones. Forward slip risk is extreme.",
+   "verdict": "Off Track",
+   "critical": true,
+   "evidence": [
+    "75-day buyer silence since 2026-04-23 (COLD forcing condition)",
+    "Zero stage progression in 103 days",
+    "No champion, no EB, no DM identified across all sources",
+    "No Avoma calls discovered via opp or account pull",
+    "NextStep promised April follow-up; today is July 7 with no follow-through",
+    "Five-product scope (iSource, iSupplier, eProcurement, eInvoicing, ANA) with no demo or workshop scheduled",
+    "No field history showing any momentum signals in past 90 days"
+   ],
+   "headline": "Deal is cold with 75-day buyer silence and remains in Qualified stage 103 days after creation with 78 days to close; no demos completed, no champion mapped, no economic buyer identified, and zero progression toward the September close date.",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Omitted"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Zero MEDDPICC coverage: all eight elements are knowledge gaps",
+    "No champion, no EB, no DM identified across all sources",
+    "Log Kyle Campbell as a formal Contact Role on the opportunity and begin multi-threading immediately; the account currently has zero opportunity contact roles despite being the only lead into a $120k, five-module deal.",
+    "No stage progression in 103 days; deal stuck in Qualified with 78 days to close",
+    "Broken commitment: NextStep promised April follow-up; today is July 7 with no follow-through",
+    "No Avoma calls discovered via opp or account pull"
+   ],
+   "summary": "The two highest-leverage moves are fixing the single-thread/contact-role hygiene gap and re-establishing a live next step after the cancelled meeting; both are prerequisites to any credible progress toward the 23 Sep 2026 close."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No preference statement has been made; the buyer's only stated intent (call, 26 Mar 2026) is to review materials before presenting internally to ownership."
+  },
+  "competitive_position": {
+   "summary": "No named competitor is in play. The real contest is against inertia: Bronte's existing patchwork of Smartsheet, Procore, and Jonas, plus a live buyer question about whether Procore's own procurement extensions could substitute for a dedicated S2P platform.",
+   "competitors": [
+    {
+     "date": "2026-03-26",
+     "name": "Procore",
+     "quote": "I am curious on because Procore has so many extensions and partnerships with companies. I'm wondering if they'd be able to do, like, almost like a plug in.",
+     "change": "new",
+     "source": "Avoma transcript, 26 Mar 2026",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "how_we_win": "Position Zycus as complementary depth on the procurement side rather than a competitor to Procore's project-management/accounting scope; Zycus itself acknowledged Procore's open API and offered to integrate rather than replace.",
+     "threat_level": "low",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    },
+    {
+     "date": "2026-03-26",
+     "name": "Status quo (Smartsheet + Jonas + point tools)",
+     "quote": "Right now, we're using a system that's been designed... that's not actually designed for procurement. We just make it work.",
+     "change": "new",
+     "source": "Avoma transcript, 26 Mar 2026",
+     "status": "incumbent",
+     "sentiment": "negative",
+     "first_seen": "2026-07-09T08:14:10.738292+05:30",
+     "how_we_win": "Keep reinforcing the consolidation and compliance-automation value already articulated by the buyer himself; the risk is not a rival vendor but continued tolerance of the manual status quo given the 77-day silence.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Early-stage, single-threaded Qualified deal with one strong discovery call and real, buyer-voiced pain, but 105 days without stage movement, no economic buyer contact, and a cancelled follow-up that has not been rebooked.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "77 days of silence following a cancelled follow-up, against a 23 Sep 2026 close date, puts real pressure on whether this closes on the recorded timeline without immediate re-engagement.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer, no second stakeholder, and no formal decision criteria or process on record: a $120k five-module deal at this stage needs more than one procurement manager's interest to survive a change in priorities or personnel.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Buyer pain is specific and buyer-voiced: Kyle Campbell described a fragmented, largely manual procurement stack (Smartsheet, 8 tools including Jonas) and asked detailed, engaged questions about AI-driven sourcing and union-vendor compliance filtering (call, 26 Mar 2026).",
+      "tone": "good"
+     },
+     {
+      "text": "Zycus already delivered on both buyer asks (demo videos and ballpark pricing) the same day they were requested (email, 26 Mar 2026), so the ball is in the buyer's court with no outstanding Zycus deliverable.",
+      "tone": "good"
+     },
+     {
+      "text": "No economic buyer or budget approver has had any contact, direct or indirect; Kyle Campbell said he would need to present internally to 'ownership' before this can move, and that step is unconfirmed 105 days later.",
+      "tone": "warn"
+     },
+     {
+      "text": "The only follow-up meeting ever scheduled (planned for 23 Apr 2026, pushed to 7 May 2026 at the buyer's request) was cancelled and never rebooked; the deal has had zero verified buyer contact in 77 days.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through one procurement manager with no contact role logged on the opportunity and no second stakeholder identified.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Zero buyer engagement in the last 90-plus days; the last real touchpoint was the buyer's own request (23 Apr 2026 email) to push the meeting to 7 May 2026, and that meeting was then cancelled with nothing rescheduled since.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting, call, or dated milestone is currently on the calendar for this opportunity.",
+      "tone": "warn"
+     },
+     {
+      "text": "Next_Step__c has not been updated since it was written on 26 Mar 2026 ('follow-up meeting targeted in April'), a stale plan that predates two subsequent reschedules and a cancellation.",
+      "tone": "warn"
+     },
+     {
+      "text": "The one substantive call to date was high-depth (a full demo plus detailed Q&A on union compliance, Procore integration, and AI negotiation) and ended on a genuinely positive buyer note, so underlying interest has not visibly cooled, only gone quiet.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Kyle Campbell asked to see the full workflow specifically so he could 'present it to ownership,' the clearest evidence of intent to advance the deal internally (call, 26 Mar 2026), but there is no confirmation this has happened.",
+      "tone": "good"
+     },
+     {
+      "text": "The buyer proactively rescheduled rather than skipping the follow-up outright (23 Apr 2026 email), suggesting continued interest even amid a busy fiscal year-end, but the rescheduled 7 May 2026 session was still cancelled.",
+      "tone": "good"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-03-26",
+     "quote": "I don't know if you guys have it, but if you have any demos to show me... that would be something I'd be very interested in seeing.",
+     "said_by": "Kyle Campbell",
+     "addressed": true,
+     "requirement": "Review 5-minute demo videos for the five products in scope"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "If you wouldn't mind sending over what your basic... packages are on what this would run us in a year.",
+     "said_by": "Kyle Campbell",
+     "addressed": true,
+     "requirement": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA"
+    },
+    {
+     "date": "2026-04-23",
+     "quote": "with a follow-up meeting targeted in April",
+     "said_by": "Kyle Campbell (inferred from NextStep)",
+     "addressed": false,
+     "requirement": "Schedule follow-up meeting (targeted for April, never occurred)"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "Does it have that capability?",
+     "said_by": "Kyle Campbell",
+     "addressed": true,
+     "requirement": "Confirm whether Zycus can track spend under individual projects"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "Verify if Zycus has existing integration with Procore.",
+     "said_by": "Kyle Campbell",
+     "addressed": false,
+     "requirement": "Verify Zycus's Procore integration track record"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "Would you say two weeks is a fair point to get back together? ... I would say probably the April would be when I'd be good to go.",
+     "said_by": "Kyle Campbell",
+     "addressed": false,
+     "requirement": "Schedule follow-up meeting (targeted for last week of April)"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2026-03-26",
+      "who": "Zycus",
+      "date": "2026-03-26",
+      "source": "SF NextStep, last updated ~2026-04-23",
+      "status": "no due date",
+      "group_key": "ana_deliver_demo",
+      "commitment": "Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)",
+      "deliverable": "Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)",
+      "grounding_quote": "I will be sending a separate email from ShowPad that will give you access to the demo videos.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-03-26",
+      "who": "Zycus",
+      "date": "2026-03-26",
+      "source": "SF NextStep, last updated ~2026-04-23",
+      "status": "no due date",
+      "group_key": "across_annual_ballpark",
+      "commitment": "Provide ballpark annual pricing for 25-30 users plus implementation cost",
+      "deliverable": "Provide ballpark annual pricing for 25-30 users plus implementation cost",
+      "grounding_quote": "For about 25 users and all modules included, I would say $100k - $200k yearly with a 1:1 one-time fixed-bid implementation cost.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-05-07",
+      "who": "Zycus",
+      "date": "2026-03-26",
+      "source": "Avoma transcript 26 Mar 2026; meeting rescheduled to 7 May 2026 and then cancelled with no new date",
+      "status": "overdue",
+      "group_key": "follow_last_meeting",
+      "commitment": "Schedule follow-up meeting (was targeted for April, never occurred)",
+      "deliverable": "Schedule follow-up meeting (was targeted for April, never occurred)",
+      "grounding_quote": null,
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-03-26",
+      "who": "Zycus",
+      "date": "2026-03-26",
+      "source": "Task 00TP700000kTqYwMAK",
+      "status": "completed",
+      "group_key": "can_level_management",
+      "commitment": "Confirm whether the project management module can track project-level spend",
+      "deliverable": "Confirm whether the project management module can track project-level spend",
+      "grounding_quote": "I checked with my product team, and our project management module will be able to track spend on a project.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-07-09",
+      "who": "Buyer",
+      "date": "2026-03-26",
+      "source": "Avoma transcript, 26 Mar 2026",
+      "status": "open",
+      "group_key": "budget_internally_off",
+      "commitment": "Present the Zycus solution internally to 'ownership' for budget sign-off",
+      "deliverable": "Present the Zycus solution internally to 'ownership' for budget sign-off",
+      "grounding_quote": "I'd obviously have to present it to ownership... I wanna be able to speak on it.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-07-09",
+      "who": "Buyer",
+      "date": "2026-03-26",
+      "source": "Avoma transcript, 26 Mar 2026; Task 00TP700000m8GAiMAM",
+      "status": "overdue",
+      "group_key": "cancellation_date_follow",
+      "commitment": "Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation",
+      "deliverable": "Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation",
+      "grounding_quote": "We're in a very busy, busy time. Right now, we got our fiscal year end coming up...",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Moderate-positive",
+   "summary": "The buyer engaged closely with Zycus's AI capabilities (AI-driven RFI vendor sourcing, autonomous negotiation agents, AI contract clause-risk scanning), asking specific follow-up questions rather than passing over them (call, 26 Mar 2026).",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-03-26",
+     "quote": "Machine learning adapts over time to automatically exclude vendors flagged as non-compliant.",
+     "source": "Avoma call notes, 26 Mar 2026",
+     "position": "aligned",
+     "criterion": "Union-compliant vendor filtering during sourcing"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "I believe that's just building out... I don't believe you could track spend under each project, but I could be wrong. Let me double check with that.",
+     "source": "Avoma transcript, 26 Mar 2026; confirmed via follow-up email same day",
+     "position": "partially aligned",
+     "criterion": "Project-level spend tracking (vs Jonas)"
+    },
+    {
+     "date": "2026-03-26",
+     "quote": "I couldn't just see if we've done any integrations with Procore... I just don't know if we've done one before in the past.",
+     "source": "Avoma transcript, 26 Mar 2026",
+     "position": "exposed",
+     "criterion": "Procore integration"
+    }
+   ],
+   "summary": "Fit is strong on compliance filtering, uncertain on accounting/project-spend depth, and unconfirmed on Procore integration."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 120000.0,
+  "opp_id": "006P700000VpUYUIA3",
+  "ais_why": "\u2022 On the March 26 intro, Kyle Campbell engaged with the AI-driven RFI engine and autonomous negotiation pitch and asked about Procore integration for project-level spend.\n\u2022 Bronte is a year-old procurement function running on Smartsheet, so the appetite is real but the org is small (25-30 users) and just starting to consolidate eight tools.\n\u2022 A follow-up was placeheld for late April but the 4/23 call wasn't recorded; momentum exists but not yet at Hungry depth.",
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000VpUYUIA3/view",
+  "opp_name": "Bronte Construction Opp isupp iSource P2P ANA Mar '26",
+  "owner_id": "005P7000004wfRtIAI",
+  "products": "iSource;iSupplier;eProcurement;eInvoicing;ANA",
+  "ais_score": 6.0,
+  "next_step": "Next steps include reviewing 5-minute demo videos and ballpark pricing for 25\u201330 users, with a follow-up meeting targeted in April.",
+  "ais_status": "Moderate",
+  "close_date": "2026-09-23",
+  "competitor": null,
+  "owner_name": "Bailey Erazo",
+  "owner_title": "Account Executive",
+  "account_name": "Bronte Construction",
+  "created_date": "2026-03-26",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 76,
+  "dm_identified": false,
+  "eb_identified": false,
+  "ais_why_source": "AIS_Why__c",
+  "qualified_date": "2026-03-26",
+  "billing_country": "Canada",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "Construction",
+  "ais_score_source": "AIS_Score__c",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "ais_status_source": "AIS_Status__c",
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-04-23",
+  "last_modified_date": "2026-06-05",
+  "metrics_identified": false,
+  "primary_competitor": "",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "live",
+  "summary": "Live: buyer call(s) read this sweep.",
+  "calls_read": 1,
+  "close_date": "2026-09-23",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 76,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-04-23",
+  "days_since_activity": 77,
+  "days_since_qualified": 105,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "key": "hygiene:cold-75-day-buyer-silence-since-2026-04-23-no-calls-no-email",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "COLD: 75-day buyer silence since 2026-04-23; no calls, no emails, no meetings recorded"
+  },
+  {
+   "key": "hygiene:indefensible-forecast-pipeline-rating-with-no-buyer-engageme",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Indefensible forecast: Pipeline rating with no buyer engagement, no MEDDPICC, no momentum"
+  },
+  {
+   "to": "Review 5-minute demo videos for the five products in scope",
+   "key": "requirement:review-5-minute-demo-videos-for-the-five-products-in-scope",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "from": "Review 5-minute demo videos for the five products in scope",
+   "kind": "changed",
+   "type": "requirement",
+   "source": "Kyle Campbell",
+   "subject": "Review 5-minute demo videos for the five products in scope"
+  },
+  {
+   "to": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA",
+   "key": "requirement:provide-ballpark-pricing-for-25-30-users-across-isource-isup",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "from": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA",
+   "kind": "changed",
+   "type": "requirement",
+   "source": "Kyle Campbell",
+   "subject": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA"
+  },
+  {
+   "to": "Confirm whether Zycus can track spend under individual projects",
+   "key": "requirement:confirm-whether-zycus-can-track-spend-under-individual-proje",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell",
+   "subject": "Confirm whether Zycus can track spend under individual projects"
+  },
+  {
+   "to": "Verify Zycus's Procore integration track record",
+   "key": "requirement:verify-zycus-s-procore-integration-track-record",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell",
+   "subject": "Verify Zycus's Procore integration track record"
+  },
+  {
+   "to": "Schedule follow-up meeting (targeted for last week of April)",
+   "key": "requirement:schedule-follow-up-meeting-targeted-for-last-week-of-april",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell",
+   "subject": "Schedule follow-up meeting (targeted for last week of April)"
+  },
+  {
+   "to": "Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA) - completed",
+   "key": "commitment:zycus-send-showpad-demo-videos-5-min-videos-for-isource-isup",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)"
+  },
+  {
+   "to": "Provide ballpark annual pricing for 25-30 users plus implementation cost - completed",
+   "key": "commitment:zycus-provide-ballpark-annual-pricing-for-25-30-users-plus-i",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide ballpark annual pricing for 25-30 users plus implementation cost"
+  },
+  {
+   "to": "Confirm whether the project management module can track project-level spend - completed",
+   "key": "commitment:zycus-confirm-whether-the-project-management-module-can-trac",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Confirm whether the project management module can track project-level spend"
+  },
+  {
+   "to": "Schedule a follow-up meeting for the last week of April - overdue",
+   "key": "commitment:zycus-schedule-a-follow-up-meeting-for-the-last-week-of-apri",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Schedule a follow-up meeting for the last week of April"
+  },
+  {
+   "to": "Present the Zycus solution internally to 'ownership' for budget sign-off - open",
+   "key": "commitment:buyer-present-the-zycus-solution-internally-to-ownership-for",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Present the Zycus solution internally to 'ownership' for budget sign-off"
+  },
+  {
+   "to": "Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation - overdue",
+   "key": "commitment:buyer-propose-and-confirm-a-new-follow-up-meeting-date-after",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation"
+  },
+  {
+   "to": "Kyle Campbell - Coach",
+   "key": "stakeholder:kyle-campbell",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "from": "Kyle Campbell - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kyle Campbell"
+  },
+  {
+   "to": "Procore - active",
+   "key": "competitor:procore",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Procore"
+  },
+  {
+   "to": "Status quo (Smartsheet + Jonas + point tools) - incumbent",
+   "key": "competitor:status-quo-smartsheet-jonas-point-tools",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Status quo (Smartsheet + Jonas + point tools)"
+  },
+  {
+   "to": "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; afforda",
+   "key": "risk:ballpark-pricing-of-100k-200k-yr-plus-a-roughly-matching-one",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; affordability fit for a company Kyle described as still building out its procurement function is untested."
+  },
+  {
+   "to": "No confirmed prior Procore integration exists; Bailey Erazo could not verify one on the call and it remains an open action item. - open, no reference case",
+   "key": "risk:no-confirmed-prior-procore-integration-exists-bailey-erazo-c",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No confirmed prior Procore integration exists; Bailey Erazo could not verify one on the call and it remains an open action item."
+  },
+  {
+   "to": "No economic buyer or executive sponsor identified; Kyle Campbell must present internally to 'ownership' before any budget decision. - not addressed",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-kyle-campb",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor identified; Kyle Campbell must present internally to 'ownership' before any budget decision."
+  },
+  {
+   "to": "Single-threaded through one procurement manager with no confirmed internal coalition or sponsor; deal is exposed if Kyle Campbell deprioritizes or moves on. - n",
+   "key": "risk:single-threaded-through-one-procurement-manager-with-no-conf",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through one procurement manager with no confirmed internal coalition or sponsor; deal is exposed if Kyle Campbell deprioritizes or moves on."
+  },
+  {
+   "to": "Kyle Campbell cited fiscal year-end and inventory-management workload as reasons for delay in late March/April 2026; unclear whether that has cleared given the ",
+   "key": "risk:kyle-campbell-cited-fiscal-year-end-and-inventory-management",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Kyle Campbell cited fiscal year-end and inventory-management workload as reasons for delay in late March/April 2026; unclear whether that has cleared given the extended 77-day silence."
+  },
+  {
+   "to": "Log Kyle Campbell as a formal Contact Role on the opportunity and begin multi-threading immediately; the account currently has zero opportunity contact roles de",
+   "key": "hygiene:log-kyle-campbell-as-a-formal-contact-role-on-the-opportunit",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Log Kyle Campbell as a formal Contact Role on the opportunity and begin multi-threading immediately; the account currently has zero opportunity contact roles despite being the only lead into a $120k, five-module deal."
+  },
+  {
+   "to": "Re-engage directly on the cancelled 7 May 2026 follow-up with a specific new date; Zycus delivered its side (demo videos, ballpark pricing) on 26 Mar 2026 and t",
+   "key": "hygiene:re-engage-directly-on-the-cancelled-7-may-2026-follow-up-wit",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage directly on the cancelled 7 May 2026 follow-up with a specific new date; Zycus delivered its side (demo videos, ballpark pricing) on 26 Mar 2026 and the buyer has gone quiet for 77 days since agreeing to push the meeting."
+  },
+  {
+   "to": "Ask Kyle Campbell directly who owns budget approval ('ownership') and request an introduction or joint call; no economic buyer has had any contact, direct or in",
+   "key": "hygiene:ask-kyle-campbell-directly-who-owns-budget-approval-ownershi",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Ask Kyle Campbell directly who owns budget approval ('ownership') and request an introduction or joint call; no economic buyer has had any contact, direct or indirect, and this is the single biggest structural risk to the deal."
+  },
+  {
+   "to": "Kyle Campbell - developing",
+   "key": "champion:champion",
+   "date": "2026-07-09T08:14:10.738292+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Review 5-minute demo videos for the five products in scope",
+   "key": "requirement:review-5-minute-demo-videos-for-the-five-products-in-scope",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell (inferred from NextStep)",
+   "subject": "Review 5-minute demo videos for the five products in scope"
+  },
+  {
+   "to": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA",
+   "key": "requirement:provide-ballpark-pricing-for-25-30-users-across-isource-isup",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell (inferred from NextStep)",
+   "subject": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA"
+  },
+  {
+   "to": "Schedule follow-up meeting (targeted for April, never occurred)",
+   "key": "requirement:schedule-follow-up-meeting-targeted-for-april-never-occurred",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kyle Campbell (inferred from NextStep)",
+   "subject": "Schedule follow-up meeting (targeted for April, never occurred)"
+  },
+  {
+   "to": "Kyle Campbell - Unknown",
+   "key": "stakeholder:kyle-campbell",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kyle Campbell"
+  },
+  {
+   "to": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at curr",
+   "key": "risk:78-days-to-close-with-zero-stage-progression-75-day-buyer-si",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at current velocity."
+  },
+  {
+   "to": "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred. - active,",
+   "key": "risk:no-eb-no-dm-no-executive-sponsor-identified-for-a-120k-p2p-d",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred."
+  },
+  {
+   "to": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or depr",
+   "key": "risk:single-threaded-through-kyle-campbell-role-unknown-no-multi-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or deprioritizes."
+  },
+  {
+   "to": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qua",
+   "key": "risk:zero-meddpicc-coverage-no-quantified-value-case-no-decision-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qualification elements."
+  },
+  {
+   "to": "Deliver 5-minute demo videos for iSource, iSupplier, eProcurement, eInvoicing, ANA - no due date",
+   "key": "commitment:zycus-deliver-5-minute-demo-videos-for-isource-isupplier-epr",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Deliver 5-minute demo videos for iSource, iSupplier, eProcurement, eInvoicing, ANA"
+  },
+  {
+   "to": "Provide ballpark pricing for 25\u201330 users across five products - no due date",
+   "key": "commitment:zycus-provide-ballpark-pricing-for-25-30-users-across-five-p",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Provide ballpark pricing for 25\u201330 users across five products"
+  },
+  {
+   "to": "Schedule follow-up meeting (was targeted for April, never occurred) - overdue",
+   "key": "commitment:zycus-schedule-follow-up-meeting-was-targeted-for-april-neve",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Zycus:Schedule follow-up meeting (was targeted for April, never occurred)"
+  },
+  {
+   "to": "COLD: 75-day buyer silence since 2026-04-23; no calls, no emails, no meetings recorded",
+   "key": "hygiene:cold-75-day-buyer-silence-since-2026-04-23-no-calls-no-email",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "COLD: 75-day buyer silence since 2026-04-23; no calls, no emails, no meetings recorded"
+  },
+  {
+   "to": "Zero MEDDPICC coverage: all eight elements are knowledge gaps",
+   "key": "hygiene:zero-meddpicc-coverage-all-eight-elements-are-knowledge-gaps",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Zero MEDDPICC coverage: all eight elements are knowledge gaps"
+  },
+  {
+   "to": "No champion, no EB, no DM identified across all sources",
+   "key": "hygiene:no-champion-no-eb-no-dm-identified-across-all-sources",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion, no EB, no DM identified across all sources"
+  },
+  {
+   "to": "Single-threaded: only Kyle Campbell mentioned; role, title, seniority unknown",
+   "key": "hygiene:single-threaded-only-kyle-campbell-mentioned-role-title-seni",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded: only Kyle Campbell mentioned; role, title, seniority unknown"
+  },
+  {
+   "to": "No stage progression in 103 days; deal stuck in Qualified with 78 days to close",
+   "key": "hygiene:no-stage-progression-in-103-days-deal-stuck-in-qualified-wit",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No stage progression in 103 days; deal stuck in Qualified with 78 days to close"
+  },
+  {
+   "to": "Broken commitment: NextStep promised April follow-up; today is July 7 with no follow-through",
+   "key": "hygiene:broken-commitment-nextstep-promised-april-follow-up-today-is",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Broken commitment: NextStep promised April follow-up; today is July 7 with no follow-through"
+  },
+  {
+   "to": "No Avoma calls discovered via opp or account pull",
+   "key": "hygiene:no-avoma-calls-discovered-via-opp-or-account-pull",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No Avoma calls discovered via opp or account pull"
+  },
+  {
+   "to": "Indefensible forecast: Pipeline rating with no buyer engagement, no MEDDPICC, no momentum",
+   "key": "hygiene:indefensible-forecast-pipeline-rating-with-no-buyer-engageme",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Indefensible forecast: Pipeline rating with no buyer engagement, no MEDDPICC, no momentum"
+  },
+  {
+   "to": "iSource;iSupplier;eProcurement;eInvoicing;ANA",
+   "key": "product_scope:scope",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000VpUYU",
+ "packets": [
+  {
+   "key": "requirement:review-5-minute-demo-videos-for-the-five-products-in-scope",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-26",
+    "kind": "explicit",
+    "quote": "I don't know if you guys have it, but if you have any demos to show me... that would be something I'd be very interested in seeing.",
+    "source": "Avoma transcript, 26 Mar 2026; delivered via Showpad, Task 00TP700000kTqYwMAK",
+    "said_by": "Kyle Campbell",
+    "addressed": true,
+    "requirement": "Review 5-minute demo videos for the five products in scope"
+   },
+   "source": "Kyle Campbell",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-04-23",
+      "kind": "explicit",
+      "quote": "Next steps include reviewing 5-minute demo videos and ballpark pricing for 25\u201330 users",
+      "source": "SF NextStep, last updated ~2026-04-23",
+      "said_by": "Kyle Campbell (inferred from NextStep)",
+      "addressed": false,
+      "requirement": "Review 5-minute demo videos for the five products in scope"
+     }
+    }
+   ],
+   "subject": "Review 5-minute demo videos for the five products in scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "requirement:provide-ballpark-pricing-for-25-30-users-across-isource-isup",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-26",
+    "kind": "explicit",
+    "quote": "If you wouldn't mind sending over what your basic... packages are on what this would run us in a year.",
+    "source": "Task 00TP700000kTqYwMAK (email, 26 Mar 2026): '$100k - $200k yearly with a 1:1 one-time fixed-bid implementation cost'",
+    "said_by": "Kyle Campbell",
+    "addressed": true,
+    "requirement": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA"
+   },
+   "source": "Kyle Campbell",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-04-23",
+      "kind": "explicit",
+      "quote": "ballpark pricing for 25\u201330 users",
+      "source": "SF NextStep, last updated ~2026-04-23",
+      "said_by": "Kyle Campbell (inferred from NextStep)",
+      "addressed": false,
+      "requirement": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA"
+     }
+    }
+   ],
+   "subject": "Provide ballpark pricing for 25\u201330 users across iSource, iSupplier, eProcurement, eInvoicing, ANA",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "requirement:schedule-follow-up-meeting-targeted-for-april-never-occurred",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-23",
+    "kind": "explicit",
+    "quote": "with a follow-up meeting targeted in April",
+    "source": "SF NextStep, last updated ~2026-04-23",
+    "said_by": "Kyle Campbell (inferred from NextStep)",
+    "addressed": false,
+    "requirement": "Schedule follow-up meeting (targeted for April, never occurred)"
+   },
+   "source": "Kyle Campbell (inferred from NextStep)",
+   "status": "active",
+   "history": [],
+   "subject": "Schedule follow-up meeting (targeted for April, never occurred)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "stakeholder:kyle-campbell",
+   "type": "stakeholder",
+   "value": {
+    "name": "Kyle Campbell",
+    "risk": "Single point of contact; no opportunity contact role logged; silent since requesting the 23 Apr to 7 May 2026 reschedule, and that rescheduled meeting was cancelled",
+    "role": "Coach",
+    "title": "Manager, Procurement",
+    "source": "Avoma transcript 26 Mar 2026; Task 00TP700000m8GAiMAM",
+    "sentiment": "positive but gone quiet",
+    "last_contact_date": "2026-04-23"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Kyle Campbell",
+      "risk": "High risk of disengagement; no response to April follow-up, no calls, no re-engagement",
+      "role": "Unknown",
+      "title": "Unknown",
+      "source": "SF Task history, last contact ~2026-04-23",
+      "sentiment": "Unknown; 75 days of silence",
+      "last_contact_date": "2026-04-23"
+     }
+    }
+   ],
+   "subject": "Kyle Campbell",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:78-days-to-close-with-zero-stage-progression-75-day-buyer-si",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at current velocity.",
+    "source": "SF CloseDate, LastActivityDate, stage history",
+    "status": "active, worsening",
+    "category": "timeline",
+    "first_raised": "2026-04-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "78 days to close with zero stage progression, 75-day buyer silence, and no demos or workshops completed. September 23 close is mathematically impossible at current velocity.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-eb-no-dm-no-executive-sponsor-identified-for-a-120k-p2p-d",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred.",
+    "source": "OpportunityContactRole (zero records), SF EB/DM fields (null), Avoma (zero calls)",
+    "status": "active, unaddressed",
+    "category": "executive_alignment",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No EB, no DM, no executive sponsor identified. For a $120k P2P deal, CFO or VP Finance sign-off is required, but no executive engagement has occurred.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:single-threaded-through-kyle-campbell-role-unknown-no-multi-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or deprioritizes.",
+    "source": "Task history, OpportunityContactRole (zero records)",
+    "status": "active, severe",
+    "category": "political",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through Kyle Campbell (role unknown). No multi-threading, no buying committee mapped, no internal champion. Deal will die if Kyle leaves or deprioritizes.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:zero-meddpicc-coverage-no-quantified-value-case-no-decision-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qualification elements.",
+    "source": "SOQL Q3 synthesis fields, Avoma (zero calls), OpportunityContactRole (zero records)",
+    "status": "active, deal-fatal without immediate remediation",
+    "category": "other",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Zero MEDDPICC coverage. No quantified value case, no decision criteria, no competitive intelligence, no champion, no pain owner. Deal lacks all foundational qualification elements.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-deliver-5-minute-demo-videos-for-isource-isupplier-epr",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-04-23",
+    "source": "SF NextStep, last updated ~2026-04-23",
+    "status": "no due date",
+    "commitment": "Deliver 5-minute demo videos for iSource, iSupplier, eProcurement, eInvoicing, ANA"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Deliver 5-minute demo videos for iSource, iSupplier, eProcurement, eInvoicing, ANA",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-provide-ballpark-pricing-for-25-30-users-across-five-p",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-04-23",
+    "source": "SF NextStep, last updated ~2026-04-23",
+    "status": "no due date",
+    "commitment": "Provide ballpark pricing for 25\u201330 users across five products"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide ballpark pricing for 25\u201330 users across five products",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-schedule-follow-up-meeting-was-targeted-for-april-neve",
+   "type": "commitment",
+   "value": {
+    "due": "2026-04-30",
+    "who": "Zycus",
+    "date": "2026-04-23",
+    "source": "SF NextStep 'follow-up meeting targeted in April'",
+    "status": "overdue",
+    "commitment": "Schedule follow-up meeting (was targeted for April, never occurred)"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Schedule follow-up meeting (was targeted for April, never occurred)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:cold-75-day-buyer-silence-since-2026-04-23-no-calls-no-email",
+   "type": "hygiene",
+   "value": {
+    "flag": "COLD: 75-day buyer silence since 2026-04-23; no calls, no emails, no meetings recorded"
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "COLD: 75-day buyer silence since 2026-04-23; no calls, no emails, no meetings recorded",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:zero-meddpicc-coverage-all-eight-elements-are-knowledge-gaps",
+   "type": "hygiene",
+   "value": {
+    "flag": "Zero MEDDPICC coverage: all eight elements are knowledge gaps"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Zero MEDDPICC coverage: all eight elements are knowledge gaps",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-no-eb-no-dm-identified-across-all-sources",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion, no EB, no DM identified across all sources"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No champion, no EB, no DM identified across all sources",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:single-threaded-only-kyle-campbell-mentioned-role-title-seni",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded: only Kyle Campbell mentioned; role, title, seniority unknown"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded: only Kyle Campbell mentioned; role, title, seniority unknown",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-stage-progression-in-103-days-deal-stuck-in-qualified-wit",
+   "type": "hygiene",
+   "value": {
+    "flag": "No stage progression in 103 days; deal stuck in Qualified with 78 days to close"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No stage progression in 103 days; deal stuck in Qualified with 78 days to close",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:broken-commitment-nextstep-promised-april-follow-up-today-is",
+   "type": "hygiene",
+   "value": {
+    "flag": "Broken commitment: NextStep promised April follow-up; today is July 7 with no follow-through"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Broken commitment: NextStep promised April follow-up; today is July 7 with no follow-through",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-avoma-calls-discovered-via-opp-or-account-pull",
+   "type": "hygiene",
+   "value": {
+    "flag": "No Avoma calls discovered via opp or account pull"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No Avoma calls discovered via opp or account pull",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:indefensible-forecast-pipeline-rating-with-no-buyer-engageme",
+   "type": "hygiene",
+   "value": {
+    "flag": "Indefensible forecast: Pipeline rating with no buyer engagement, no MEDDPICC, no momentum"
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Indefensible forecast: Pipeline rating with no buyer engagement, no MEDDPICC, no momentum",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iSource;iSupplier;eProcurement;eInvoicing;ANA"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "requirement:confirm-whether-zycus-can-track-spend-under-individual-proje",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-26",
+    "kind": "explicit",
+    "quote": "Does it have that capability?",
+    "source": "Task 00TP700000kTqYwMAK (email, 26 Mar 2026): 'our project management module will be able to track spend on a project'",
+    "said_by": "Kyle Campbell",
+    "addressed": true,
+    "requirement": "Confirm whether Zycus can track spend under individual projects"
+   },
+   "source": "Kyle Campbell",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm whether Zycus can track spend under individual projects",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "requirement:verify-zycus-s-procore-integration-track-record",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-26",
+    "kind": "explicit",
+    "quote": "Verify if Zycus has existing integration with Procore.",
+    "source": "Avoma action item, 26 Mar 2026; no confirmed prior implementation identified",
+    "said_by": "Kyle Campbell",
+    "addressed": false,
+    "requirement": "Verify Zycus's Procore integration track record"
+   },
+   "source": "Kyle Campbell",
+   "status": "active",
+   "history": [],
+   "subject": "Verify Zycus's Procore integration track record",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "requirement:schedule-follow-up-meeting-targeted-for-last-week-of-april",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-26",
+    "kind": "explicit",
+    "quote": "Would you say two weeks is a fair point to get back together? ... I would say probably the April would be when I'd be good to go.",
+    "source": "Avoma transcript, 26 Mar 2026; rescheduled 23 Apr 2026 to 7 May 2026, then cancelled, never rebooked",
+    "said_by": "Kyle Campbell",
+    "addressed": false,
+    "requirement": "Schedule follow-up meeting (targeted for last week of April)"
+   },
+   "source": "Kyle Campbell",
+   "status": "active",
+   "history": [],
+   "subject": "Schedule follow-up meeting (targeted for last week of April)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-showpad-demo-videos-5-min-videos-for-isource-isup",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-26",
+    "who": "Zycus",
+    "date": "2026-03-26",
+    "source": "Task 00TP700000kTqYwMAK",
+    "status": "completed",
+    "commitment": "Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)",
+    "deliverable": "Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)",
+    "grounding_quote": "I will be sending a separate email from ShowPad that will give you access to the demo videos."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send Showpad demo videos (5-min videos for iSource, iSupplier, eProcurement, eInvoicing, ANA)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-ballpark-annual-pricing-for-25-30-users-plus-i",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-26",
+    "who": "Zycus",
+    "date": "2026-03-26",
+    "source": "Task 00TP700000kTqYwMAK",
+    "status": "completed",
+    "commitment": "Provide ballpark annual pricing for 25-30 users plus implementation cost",
+    "deliverable": "Provide ballpark annual pricing for 25-30 users plus implementation cost",
+    "grounding_quote": "For about 25 users and all modules included, I would say $100k - $200k yearly with a 1:1 one-time fixed-bid implementation cost."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide ballpark annual pricing for 25-30 users plus implementation cost",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:zycus-confirm-whether-the-project-management-module-can-trac",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-26",
+    "who": "Zycus",
+    "date": "2026-03-26",
+    "source": "Task 00TP700000kTqYwMAK",
+    "status": "completed",
+    "commitment": "Confirm whether the project management module can track project-level spend",
+    "deliverable": "Confirm whether the project management module can track project-level spend",
+    "grounding_quote": "I checked with my product team, and our project management module will be able to track spend on a project."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Confirm whether the project management module can track project-level spend",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:zycus-schedule-a-follow-up-meeting-for-the-last-week-of-apri",
+   "type": "commitment",
+   "value": {
+    "due": "2026-05-07",
+    "who": "Zycus",
+    "date": "2026-03-26",
+    "source": "Avoma transcript 26 Mar 2026; meeting rescheduled to 7 May 2026 and then cancelled with no new date",
+    "status": "overdue",
+    "commitment": "Schedule a follow-up meeting for the last week of April",
+    "deliverable": "Schedule a follow-up meeting for the last week of April",
+    "grounding_quote": "I will send a placeholder meeting invite for last week of April."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Schedule a follow-up meeting for the last week of April",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:buyer-present-the-zycus-solution-internally-to-ownership-for",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-09",
+    "who": "Buyer",
+    "date": "2026-03-26",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "open",
+    "commitment": "Present the Zycus solution internally to 'ownership' for budget sign-off",
+    "deliverable": "Present the Zycus solution internally to 'ownership' for budget sign-off",
+    "grounding_quote": "I'd obviously have to present it to ownership... I wanna be able to speak on it."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Present the Zycus solution internally to 'ownership' for budget sign-off",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "commitment:buyer-propose-and-confirm-a-new-follow-up-meeting-date-after",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-09",
+    "who": "Buyer",
+    "date": "2026-03-26",
+    "source": "Avoma transcript, 26 Mar 2026; Task 00TP700000m8GAiMAM",
+    "status": "overdue",
+    "commitment": "Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation",
+    "deliverable": "Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation",
+    "grounding_quote": "We're in a very busy, busy time. Right now, we got our fiscal year end coming up..."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Propose and confirm a new follow-up meeting date after the 7 May 2026 cancellation",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "competitor:procore",
+   "type": "competitor",
+   "value": {
+    "date": "2026-03-26",
+    "name": "Procore",
+    "quote": "I am curious on because Procore has so many extensions and partnerships with companies. I'm wondering if they'd be able to do, like, almost like a plug in.",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Position Zycus as complementary depth on the procurement side rather than a competitor to Procore's project-management/accounting scope; Zycus itself acknowledged Procore's open API and offered to integrate rather than replace.",
+    "threat_level": "low"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Procore",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "competitor:status-quo-smartsheet-jonas-point-tools",
+   "type": "competitor",
+   "value": {
+    "date": "2026-03-26",
+    "name": "Status quo (Smartsheet + Jonas + point tools)",
+    "quote": "Right now, we're using a system that's been designed... that's not actually designed for procurement. We just make it work.",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "incumbent",
+    "sentiment": "negative",
+    "how_we_win": "Keep reinforcing the consolidation and compliance-automation value already articulated by the buyer himself; the risk is not a rival vendor but continued tolerance of the manual status quo given the 77-day silence.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Status quo (Smartsheet + Jonas + point tools)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:ballpark-pricing-of-100k-200k-yr-plus-a-roughly-matching-one",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-26",
+    "detail": "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; affordability fit for a company Kyle described as still building out its procurement function is untested.",
+    "source": "Task 00TP700000kTqYwMAK",
+    "status": "unconfirmed, no buyer reaction",
+    "category": "pricing",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Ballpark pricing of $100k-$200k/yr plus a roughly matching one-time implementation fee was sent 26 Mar 2026 but has drawn no buyer reaction in 105 days; affordability fit for a company Kyle described as still building out its procurement function is untested.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:no-confirmed-prior-procore-integration-exists-bailey-erazo-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-26",
+    "detail": "No confirmed prior Procore integration exists; Bailey Erazo could not verify one on the call and it remains an open action item.",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "open, no reference case",
+    "category": "integration",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No confirmed prior Procore integration exists; Bailey Erazo could not verify one on the call and it remains an open action item.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-kyle-campb",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-26",
+    "detail": "No economic buyer or executive sponsor identified; Kyle Campbell must present internally to 'ownership' before any budget decision.",
+    "source": "Avoma call notes, 26 Mar 2026; Executive_Sponsor_Identified__c=false",
+    "status": "not addressed",
+    "category": "executive_alignment",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor identified; Kyle Campbell must present internally to 'ownership' before any budget decision.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:single-threaded-through-one-procurement-manager-with-no-conf",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-23",
+    "detail": "Single-threaded through one procurement manager with no confirmed internal coalition or sponsor; deal is exposed if Kyle Campbell deprioritizes or moves on.",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "not addressed",
+    "category": "political",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through one procurement manager with no confirmed internal coalition or sponsor; deal is exposed if Kyle Campbell deprioritizes or moves on.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "risk:kyle-campbell-cited-fiscal-year-end-and-inventory-management",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-23",
+    "detail": "Kyle Campbell cited fiscal year-end and inventory-management workload as reasons for delay in late March/April 2026; unclear whether that has cleared given the extended 77-day silence.",
+    "source": "Avoma transcript, 26 Mar 2026",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2026-03-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Kyle Campbell cited fiscal year-end and inventory-management workload as reasons for delay in late March/April 2026; unclear whether that has cleared given the extended 77-day silence.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "hygiene:log-kyle-campbell-as-a-formal-contact-role-on-the-opportunit",
+   "type": "hygiene",
+   "value": {
+    "flag": "Log Kyle Campbell as a formal Contact Role on the opportunity and begin multi-threading immediately; the account currently has zero opportunity contact roles despite being the only lead into a $120k, five-module deal."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Log Kyle Campbell as a formal Contact Role on the opportunity and begin multi-threading immediately; the account currently has zero opportunity contact roles despite being the only lead into a $120k, five-module deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-directly-on-the-cancelled-7-may-2026-follow-up-wit",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage directly on the cancelled 7 May 2026 follow-up with a specific new date; Zycus delivered its side (demo videos, ballpark pricing) on 26 Mar 2026 and the buyer has gone quiet for 77 days since agreeing to push the meeting."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage directly on the cancelled 7 May 2026 follow-up with a specific new date; Zycus delivered its side (demo videos, ballpark pricing) on 26 Mar 2026 and the buyer has gone quiet for 77 days since agreeing to push the meeting.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "hygiene:ask-kyle-campbell-directly-who-owns-budget-approval-ownershi",
+   "type": "hygiene",
+   "value": {
+    "flag": "Ask Kyle Campbell directly who owns budget approval ('ownership') and request an introduction or joint call; no economic buyer has had any contact, direct or indirect, and this is the single biggest structural risk to the deal."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Ask Kyle Campbell directly who owns budget approval ('ownership') and request an introduction or joint call; no economic buyer has had any contact, direct or indirect, and this is the single biggest structural risk to the deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Kyle Campbell",
+    "at_risk": true,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:14:10.738292+05:30",
+   "last_updated": "2026-07-09T08:14:10.738292+05:30",
+   "last_confirmed": "2026-07-09T08:14:10.738292+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T08:14:10.738292+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No economic buyer / budget approver identified",
+   "No opportunity contact role logged for Kyle Campbell",
+   "Decision process and paper process undocumented",
+   "No named competitor field populated",
+   "scrubbed 2 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [
+   {
+    "reason": "completed, no recording/content available",
+    "meeting": "Introductory Call: Bronte Construction & Zycus, 2026-03-05"
+   },
+   {
+    "reason": "not_recorded",
+    "meeting": "Bronte Construction - Zycus | Follow Up, 2026-04-23"
+   },
+   {
+    "reason": "cancelled",
+    "meeting": "Bronte Construction - Zycus | Follow Up, 2026-05-07"
+   }
+  ],
+  "avoma_attendees": [
+   "bailey.erazo@zycus.com",
+   "kcampbell@bronteconstruction.ca",
+   "Jagmohan Durganandan (Zycus)",
+   "Nikita Bayas (Zycus)"
+  ],
+  "calls_discovered": 4,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "2026-03-26 (CreatedDate) through 2026-07-09 (today)"
+ },
+ "forecast_critical": false,
+ "analysis_confidence": "Medium"
+}

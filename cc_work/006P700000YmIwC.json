@@ -1,0 +1,268 @@
+{
+  "opp_id": "006P700000YmIwC",
+  "hard": {
+    "opp_id": "006P700000YmIwC",
+    "opp_name": "Pluxee_S2P_2026",
+    "account_name": "Pluxee",
+    "account_industry": "Personal Services",
+    "billing_country": "France",
+    "owner_name": "Pierre Meraud",
+    "owner_title": "Sales Director, Southern Europe",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-03-31",
+    "days_to_close": 268,
+    "created_date": "2026-05-28",
+    "qualified_date": "2026-05-28",
+    "last_activity_date": "2026-06-15",
+    "last_modified_date": "2026-06-15",
+    "products": "iContract;iManage;iSupplier;eProcurement;eInvoicing;Merlin;iRisk;ANA",
+    "next_step": "15th of June - Confidence : 10% Reminder sent to Celine as she never replied to my mail on 13th of may asking for number of users to provide Pluxee with a high level estimate. Confirmed business case and budget alignment session with Pluxee stakeholders to support their internal budget discussion and approval process. Zycus to help validate the ROI/business case for AI-led S2P before Pluxee's fiscal year starts on 1 September.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "Explicit customer AI requirement (AI-integrated procurement from zero tooling, AI-assisted per-country reporting); internal AI owner exists (IT purchasing lead responsible for AI integration, engaged on Merlin agentic intake and autonomous negotiation); but gated by budget/timing (carve-out from Sodexo, on hold for 2026, funding uncertain for 2027).",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Do nothing / status quo (no S2P tooling)",
+    "primary_competitor": "Do nothing / status quo",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YmIwC/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Greenfield Pluxee (carved out of Sodexo, zero procurement tooling) engaged well on the 13 May AI-led S2P discovery, but the deal is budget-gated and single-threaded to Celine Libert, who deflected on 15 Jun ('I forwarded to my colleagues, we will revert if we need more info'). No economic buyer, no champion, no quantified ROI. The real contest is do-nothing until Pluxee's 1 Sept budget-validation window.",
+      "math": "Created 28 May 2026, close 31 Mar 2027. As of 6 Jul 2026: 39 days in Qualified (entire deal life), 268 days to close. Only one buyer discovery call (13 May) plus a 15 Jun email exchange; no stage/amount/close movement since creation. Compelling event is Pluxee's fiscal year (Sept-Aug): budget is decided over summer, an RFP would only launch late 2026 for 2027 budget, so the 31 Mar 2027 close date is a placeholder, not a worked plan. Pace: to hit any 2027 close the deal must be funded by ~1 Sept then reach Formal Evaluation; it is currently stalled on a buyer-side deliverable (user counts) and cooling.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last buyer touch 15 Jun 2026: Celine Libert email 'J'ai transmis a mes collegues et nous reviendrons vers vous dans le cas ou nous avions besoin de plus d'infos' (soft deflection, not a next step)",
+        "Pierre re-asked 15 Jun 'Ma comprehension etait que vous aviez besoin de ces elements pour preparer votre budget. Est-ce toujours le cas?' (ball with buyer)",
+        "Discovery 13 May: 'On part de zero. On n'a pas d'outils' (greenfield post-Sodexo carve-out)",
+        "Discovery 13 May: 'J'espere que ce sera valide pour lancer un appel d'offres l'annee prochaine, mais je n'ai aucune garantie. Ce sera la surprise' (funding uncertain)",
+        "AIS_Why: 'Pluxee currently on hold for this year' (2026 budget on hold)",
+        "Pluxee fiscal year Sept-Aug: budget-validation window is the compelling event, ~8 weeks out",
+        "Contact roles: 2, both Evaluators (Celine Libert, Daniel Tolila); no EB/DM/Champion/Exec Sponsor",
+        "No field-history movement on stage, amount or close since 28 May creation"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The pain is clear but no Pluxee-specific numbers exist. On the 13 May discovery Celine Libert described a greenfield procurement organisation ('service achat en creation pas encore mature... on part de zero'), users raising requests by email, SharePoint and phone, non-compliant spend, and 28 countries each asking her the same policy questions. Zycus offered generic value drivers (Pierre: '2 or 3% additional savings' via autonomous negotiation, better control of the ~20% tail spend, Merlin intake to cut off-policy buying), but the buyer never quantified her own baseline (spend under management, headcount, cycle time, error rate). The Next_Step explicitly targets an 'ROI/business case for AI-led S2P' with 'value drivers', so quantifying the case is the known, agreed-upon next milestone. Move: build a Pluxee-specific savings model in the budget-alignment session before 1 Sept.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF Next_Step__c (15 Jun)", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is named or engaged. Celine Libert (Global Procurement Manager IS&T, Evaluator) controls neither budget nor the decision: she said funding is 'currently on hold' and 'j'espere que ce sera valide... mais je n'ai aucune garantie', and she wants a price estimate specifically so she can raise it with her manager ('ce serait bien qu'il ait ca en tete quand meme... pour en parler a mon chef', 13 May). The call also revealed Pluxee's structure (global directives from Pluxee International in France, local country budgets), so the funding decision runs through her superior and a global budget-validation cycle over the summer. No such person appears in Salesforce contact roles. Identifying and reaching the budget owner (Celine's manager / the global procurement or finance leader) is the single biggest structural gap and a ranked move.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF OpportunityContactRole (2 Evaluators, no EB)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Real criteria surfaced on 13 May, though no formal BRD or RFP exists yet. Celine's stated interests: an AI-integrated S2P platform built from zero, Merlin conversational intake embedded directly in Microsoft Teams ('exactement comme un Chat GPT pour le procurement'), the platform answering procurement-policy questions automatically across 28 countries, per-country dashboards, autonomous supplier negotiation, and retaining Baseware for invoice matching while integrating with SAP. She also flagged a future CLM need. Zycus positioned its single-code-base, organically-built suite as the integration and AI advantage over acquisition-grown rivals. These are buyer-articulated evaluation themes (confirmed), but they are not yet weighted, documented, or formalised into a selection scorecard (that would come with the anticipated RFP).",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF AIS_Why__c", "SF Products__c"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no active buying process yet, only a re-opened qualification. Pluxee was carved out of Sodexo last year, inherited its suppliers, and is standing up procurement from scratch; the S2P project was floated for the 2026 budget (originally via a prior contact) but stalled and is now on hold. Celine's own words: 'J'espere que ce sera valide pour lancer un appel d'offres l'annee prochaine, mais je n'ai aucune garantie.' The process is therefore: internal budget validation over the summer (fiscal year starts 1 Sept), and IF funded, a formal RFP in late 2026 for the 2027 budget, with global directives but local country budgets. The approval chain and any formal RFP timeline are unconfirmed. Move: get the budget-validation milestones and the RFP go/no-go date in writing.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF Next_Step__c", "SF field history (no stage movement)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting activity exists and none is expected until the project is funded (early-stage, Qualified). What IS known from the integration discussion: the target landscape is SAP as the ERP (Zycus cited pre-built SAP connectors) with Baseware retained for invoice reconciliation, and a CLM is a later, budget-dependent addition. No MSA, SOW, legal, InfoSec, procurement channel or partner scoping has begun. The only forcing function today is Pluxee's 1 Sept fiscal-year budget window, not a contract deadline. Visibility would come from securing budget approval and the RFP timeline, at which point the paper track becomes real.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert, Brice)", "SF stage = Qualified"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The pain is genuine and owned by Celine Libert (Global Procurement Manager IS&T) and her nascent procurement function. Confirmed on 13 May: Pluxee carved out of Sodexo has zero procurement tooling ('on part de zero'), an immature procurement organisation, all suppliers freshly renegotiated, users raising requests through fragmented channels (email, SharePoint, phone) driving non-compliant spend, and requesters who do not know which process to follow. As the internal AI owner for procurement she explicitly wants AI to auto-answer routine policy questions so her small team is not the bottleneck across 28 countries. Inferred (not yet quantified): cycle-time delays, tail-spend leakage, supplier-onboarding friction and lack of spend visibility. Pain is real and broad (full-suite S2P interest) but not yet costed.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF Products__c (full S2P suite)", "SF AIS_Why__c"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is established. Celine Libert engaged well on the 13 May discovery (shared the carve-out context, budget timeline and RFP intent, asked detailed AI/product questions) and is the natural champion candidate as the procurement-AI owner, but she is an Evaluator without budget authority and her latest signal is a deflection: on 15 Jun she replied only that she had 'forwarded to my colleagues' and would revert 'if we need more info', and she never supplied the user counts Zycus requested on 13 May. That is polite disengagement, not advocacy: no introductions made, no internal document shared, no agenda driven. Daniel Tolila (Global Process Owner P2P, the PRIMARY contact) has never appeared on a call, though Celine said she would loop in 'mon collegue qui est en charge des process'. Building an active champion, and multi-threading to Daniel and the budget owner, ranks ahead of any commercial step.",
+        "sources": ["Avoma discovery call 13 May 2026", "SF Task/email 15 Jun 2026 (Celine Libert reply)", "SF OpportunityContactRole (Celine Libert, Daniel Tolila)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The decisive competitor is do-nothing / status quo, not a named rival. Pluxee has no incumbent S2P platform and the project is unfunded: Celine said the budget is on hold and 'je n'ai aucune garantie' it will be validated, so if the 1 Sept budget cycle does not fund it the project simply does not happen. No specific vendor (Coupa, SAP Ariba, GEP, Ivalua, Jaggaer) has been named by the buyer in any call or field; the only stated future competition is a generic 'appel d'offres l'annee prochaine' if funded. Zycus's wedge against inertia is its AI-led, single-code-base suite (Merlin Teams-native intake, autonomous negotiation agents, per-country analytics) plus early-mover shaping of the business case before any RFP opens. How we win: make funding the decision by delivering a quantified ROI case before 1 Sept, so any 2027 RFP is a validation of a Zycus-shaped requirement rather than an open bake-off.",
+        "sources": ["Avoma discovery call 13 May 2026 (Celine Libert)", "SF Next_Step__c", "SF Products__c (Merlin)"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Verdict trajectory: WEAKER vs the prior read. The prior sweep treated 15 Jun as a rep-only reminder; in fact Celine replied that day but deflected ('forwarded to colleagues, will revert if needed'), confirming cooling engagement on top of an unfunded budget. Only one substantive buyer event (13 May discovery) plus the 15 Jun email exchange; no stage, amount or close-date movement since creation. Single best blocker to the close: the 2026 budget is on hold and funding for 2027 is not guaranteed (do-nothing).",
+      "items": [
+        {"change": "Celine Libert replied to Pierre and deflected: forwarded the request to colleagues, will revert only if more info is needed (cooling)", "date": "2026-06-15"},
+        {"change": "Pierre re-asked whether Celine still needs the pricing elements for her budget (ball with buyer)", "date": "2026-06-15"},
+        {"change": "Discovery call held: full S2P vision + Merlin agentic AI (Teams intake, autonomous negotiation) demoed; pricing model and ~150k EUR range discussed", "date": "2026-05-13"},
+        {"change": "Stage moved Initial Interest to Qualified, close date pushed 31 Dec 2026 to 31 Mar 2027, owner set to Pierre Meraud", "date": "2026-05-28"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Recency-weighted, the single strongest CURRENT threat is do-nothing / status quo: Pluxee has zero procurement tooling and its 2026 budget is on hold, so the deal lives or dies on internal budget validation before the 1 Sept fiscal-year window (Celine, 13 May: 'je n'ai aucune garantie'). No named vendor competitor has surfaced in any call or field; the only future competition is a possible 2027 RFP the buyer has not scoped. Zycus is well positioned on the AI/Merlin and unified-suite story but entirely unvalidated beyond one discovery call.",
+      "competitors": [
+        {"name": "Do nothing / status quo (greenfield, no S2P tooling, budget on hold)", "sentiment": "negative", "threat_level": "high", "status": "do_nothing", "quote": "On part de zero. On n'a pas d'outils. J'espere que ce sera valide pour lancer un appel d'offres l'annee prochaine, mais je n'ai aucune garantie. Ce sera la surprise.", "date": "2026-05-13", "source": "Avoma discovery call 13 May 2026 (Celine Libert)", "how_we_win": "Make funding the decision: deliver a quantified ROI/business case before the 1 Sept budget window so inertia is the risk, not the default."},
+        {"name": "Future RFP field (unnamed; possible 2027 appel d'offres)", "sentiment": "neutral", "threat_level": "dormant", "status": "active", "quote": "J'espere que ce sera valide pour lancer un appel d'offres l'annee prochaine.", "date": "2026-05-13", "source": "Avoma discovery call 13 May 2026 (Celine Libert)", "how_we_win": "Shape the requirement now around AI-led, single-code-base S2P (Merlin Teams intake, autonomous negotiation) so any 2027 RFP validates a Zycus-authored spec rather than opening a bake-off."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong functional fit on the AI-led S2P vision; the exposure is entirely commercial/budget, not capability.",
+      "items": [
+        {"criterion": "AI-integrated procurement built from zero tooling", "position": "aligned", "quote": "Je suis en charge de l'IA pour le service achats. Donc je dois reflechir aux futurs outils qui integreront l'IA.", "date": "2026-05-13", "source": "Avoma discovery call 13 May 2026 (Celine Libert)"},
+        {"criterion": "Conversational intake embedded in Microsoft Teams (Merlin) that auto-routes and answers policy questions", "position": "aligned", "quote": "Est-ce que la plateforme peut repondre directement... chaque pays me pose des questions.", "date": "2026-05-13", "source": "Avoma discovery call 13 May 2026 (Celine Libert)"},
+        {"criterion": "SAP ERP integration while retaining Baseware for invoice matching, per-country dashboards", "position": "aligned", "quote": "Est-ce qu'on a des dashboards avec, par exemple, par pays, tous les suivis en cours.", "date": "2026-05-13", "source": "Avoma discovery call 13 May 2026 (Celine Libert)"},
+        {"criterion": "Affordability / funding within an on-hold budget", "position": "exposed", "quote": "Ploxy currently on hold for this year... je n'ai aucune garantie.", "date": "2026-05-13", "source": "SF AIS_Why__c + Avoma discovery call 13 May 2026"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide a high-level price estimate (~150k EUR range) Celine can take to her manager for budgeting", "said_by": "CelineF Libert", "date": "2026-05-13", "addressed": false, "quote": "Avoir un ordre d'idee... ce serait bien qu'il ait ca en tete quand meme... pour en parler a mon chef.", "source": "Avoma discovery call 13 May 2026 (Celine Libert)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Celine the resource link (solution decks, customer cases, videos) previously shared with the earlier Pluxee contact", "who": "Zycus", "grounding_quote": "Je vous enverrai aussi un lien que j'avais deja envoye a Anais, qui contient differents documents, des presentations de la solution, des cas clients, des videos.", "date": "2026-05-13", "due": "2026-05-16", "status": "open", "source": "Avoma discovery call 13 May 2026 (Pierre Meraud)"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Provide user counts (~50 buyers, ~500 requisitioners) so Zycus can produce a firm estimate", "who": "Buyer", "grounding_quote": "Si vous pouvez deja me dire, on aura a priori une cinquantaine d'acheteurs qui travailleront avec le systeme et cinq cents personnes qui feront des requisitions, je peux vous donner un chiffrage plus precis.", "date": "2026-05-13", "due": "2026-06-15", "status": "overdue", "source": "Avoma discovery call 13 May 2026 (Pierre Meraud); chased by email 15 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unidentified", "quote": "Ce serait bien qu'il ait ca en tete... pour en parler a mon chef.", "status": "not addressed", "date": "2026-05-13", "gap_type": "knowledge", "source": "Avoma discovery call 13 May 2026; SF contact roles (no EB)"},
+        {"area": "Value case not quantified (no Pluxee-specific savings/ROI numbers)", "quote": "business case for AI-led S2P... value drivers", "status": "acknowledged", "date": "2026-06-15", "gap_type": "knowledge", "source": "SF Next_Step__c"},
+        {"area": "Single-threaded; Daniel Tolila (primary contact) never engaged", "quote": "Je ferai les invitations a mon collegue qui est en charge des process.", "status": "not addressed", "date": "2026-05-13", "gap_type": "knowledge", "source": "SF OpportunityContactRole; Avoma discovery call 13 May 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early, budget-gated greenfield deal; the win levers are funding, multi-threading and a quantified case, in that order.",
+      "flags": [
+        "The real competitor is do-nothing: shape a quantified ROI/business case before Pluxee's 1 Sept budget window so funding becomes the decision, not an open question.",
+        "Break the single thread: Celine deflected on 15 Jun and does not own budget; engage Daniel Tolila (primary Global Process Owner P2P contact) and get an introduction to the budget owner.",
+        "Pre-position for the anticipated 2027 RFP now: author the AI-led, single-code-base requirement (Merlin Teams intake, autonomous negotiation) so any tender validates a Zycus-shaped spec."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "CelineF Libert", "title": "Global Procurement Manager IS&T", "role": "Evaluator", "last_contact_date": "2026-06-15", "sentiment": "neutral", "risk": "Cooling. Engaged deeply on 13 May as Pluxee's procurement-AI owner, but deflected on 15 Jun ('forwarded to colleagues, will revert if needed') and never sent the user counts. An Evaluator without budget authority; if she deprioritises or leaves, there is no other live thread.", "source": "SF OpportunityContactRole (PRIMARY task contact); Avoma discovery call 13 May 2026; SF email 15 Jun 2026"},
+        {"name": "Daniel Tolila", "title": "Global Process Owner P2P", "role": "Evaluator", "last_contact_date": null, "sentiment": "unknown", "risk": "Unmapped. The PRIMARY contact role and the process owner Celine said she would loop in, but has never joined a call or exchanged email. Activating him is the first multi-thread step.", "source": "SF OpportunityContactRole (PRIMARY)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No confirmed champion. Celine Libert is the only engaged contact and the natural candidate (procurement-AI owner), but she is an Evaluator without budget authority and her latest signal (15 Jun deflection, no user counts sent) is disengagement, not advocacy. Daniel Tolila is unmapped. Securing an active champion and reaching the budget owner is the priority.",
+      "champion": "CelineF Libert (candidate, now cooling)",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole; Avoma discovery call 13 May 2026; SF email 15 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus led the discovery with a strong AI narrative (Merlin Teams-native intake, ~45-agent library, autonomous negotiation, Merlin Insights dashboards) that landed with the buyer's own AI owner. The story is well positioned; the gap is that it is unfunded and unvalidated beyond one call.",
+      "score": "6/10",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 6.0 / Moderate is accurate: real, explicit AI appetite (Celine owns procurement AI and engaged on Merlin agentic intake and autonomous negotiation) but gated by an on-hold budget, so appetite is not yet funded demand. Calls corroborate, not exceed, the field.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "2026 budget on hold; 2027 funding uncertain ('je n'ai aucune garantie'); project dies if not validated in the summer budget cycle.", "first_raised": "2026-05-13", "date": "2026-05-13", "status": "open", "source": "Avoma discovery call 13 May 2026; SF AIS_Why__c"},
+        {"category": "executive_alignment", "detail": "Economic buyer / budget owner unmapped and unengaged; single-threaded to an Evaluator who is deflecting.", "first_raised": "2026-05-13", "date": "2026-06-15", "status": "open", "source": "SF OpportunityContactRole; SF email 15 Jun 2026"},
+        {"category": "timeline", "detail": "Close date 31 Mar 2027 is a placeholder; everything gates on a summer budget decision and a possible late-2026 RFP, so long silent periods and slip are likely.", "first_raised": "2026-05-13", "date": "2026-05-28", "status": "open", "source": "Avoma discovery call 13 May 2026; SF field history"},
+        {"category": "change_management", "detail": "Greenfield, immature procurement org across 28 countries with no tooling; adoption and rollout complexity is a real downstream risk.", "first_raised": "2026-05-13", "date": "2026-05-13", "status": "open", "source": "Avoma discovery call 13 May 2026 (Celine Libert)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Cooling. One strong discovery (13 May) followed by a 15 Jun deflection and no user counts; single-threaded and budget-gated.",
+      "cooling": true,
+      "items": [
+        "Buyer deflected on 15 Jun rather than scheduling a next step",
+        "User counts requested 13 May still not provided (overdue)",
+        "Only one buyer contact has ever appeared on a call"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Celine a no-obligation high-level estimate and one-page ROI to seed her budget ask.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Celine wants a price to take to her manager but deflected on 15 Jun; the 1 Sept budget window is closing.", "trigger_date": "2026-06-15", "act_by": "2026-07-13", "expected_effect": "Re-warms the thread and gives Celine ammunition to get the project funded, keeping the deal alive past the budget gate."},
+        {"rank": 2, "action": "Engage Daniel Tolila in a process and use-case session to multi-thread beyond Celine.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Celine said she would loop in her process colleague; Daniel is the primary contact but has never engaged.", "trigger_date": "2026-05-13", "act_by": "2026-07-17", "expected_effect": "Removes the single-thread risk and builds a second relationship who can advocate internally."},
+        {"rank": 3, "action": "Ask Celine to name and introduce the budget owner for the business case.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Celine must present pricing to 'mon chef'; no economic buyer is mapped.", "trigger_date": "2026-05-13", "act_by": "2026-07-20", "expected_effect": "Maps the economic buyer and opens a path to the person who controls funding before the budget cycle."},
+        {"rank": 4, "action": "Run an ROI business-case workshop with procurement, finance and IT before 1 Sept.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Next_Step targets a business-case/budget-alignment session; fiscal year starts 1 Sept.", "trigger_date": "2026-06-15", "act_by": "2026-08-08", "expected_effect": "Converts qualitative greenfield pain into a funded, Zycus-shaped business case, making do-nothing the risk."}
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "The real contest is do-nothing: Pluxee has zero tooling and its 2026 budget is on hold, so funding, not a rival vendor, decides this deal by the 1 Sept budget window.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The last touch was a 15 Jun email where Celine Libert deflected ('I've forwarded to my colleagues, we'll revert if we need more'), cooling a strong 13 May discovery.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Daniel Tolila, the primary Global Process Owner P2P contact, is named but has never joined a call, though Celine said she would loop him in on process.", "tone": "neu"},
+      {"lens": "Commercials", "text": "Pricing is on the table (~150k EUR, user-based) but blocked because Celine has not provided the ~50 buyers and ~500 requisitioners needed for a firm estimate.", "tone": "warn"}
+    ],
+    "deal_scores_evidence": {
+      "summary": "Greenfield Pluxee likes the AI-led S2P vision, but the deal is budget-gated and single-threaded to procurement manager Celine Libert, who deflected on 15 Jun; the contest is do-nothing until the 1 Sept budget window.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win is low: this is an early, budget-gated greenfield deal, Pluxee has zero procurement tooling post-Sodexo carve-out and Celine has 'no guarantee' of funding (13 May discovery)."},
+          {"tone": "warn", "text": "Single-threaded to Celine Libert, an Evaluator not a budget owner, who deflected on 15 Jun ('nous reviendrons vers vous dans le cas ou nous avions besoin de plus d'infos')."},
+          {"tone": "warn", "text": "The economic buyer/budget owner is unnamed and unengaged, and Daniel Tolila, the primary process-owner contact, has never joined a call."},
+          {"tone": "good", "text": "AI fit is genuine: Celine owns procurement AI and engaged deeply on Merlin Teams-native intake and autonomous negotiation (13 May), and a ~150k EUR price is already on the table."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is stalling: no forward movement since the 13 May discovery, and the only touch since is a 15 Jun email where Celine deflected to colleagues."},
+          {"tone": "good", "text": "Commercials have entered: Pierre quoted ~150k EUR on a user-based model and named the 1 Sept fiscal-year budget window as the forcing date."},
+          {"tone": "warn", "text": "The buyer owes user counts (~50 buyers, ~500 requisitioners) to unlock the estimate and has not sent them despite a 15 Jun chase."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is low: Celine asked us to 'just send information' and pricing for her boss but requested no Zycus-specific next step."},
+          {"tone": "good", "text": "She did agree to loop in process owner Daniel Tolila and to consider the 16 Jun Paris event, so the door is not closed."},
+          {"tone": "warn", "text": "No finance or executive stakeholder is engaged; the decision gates on an internal budget validation Celine does not control."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Primary risk is do-nothing: the 2026 budget is on hold and 2027 funding is not guaranteed, so the project dies if the 1 Sept budget is not validated."},
+          {"tone": "warn", "text": "Cooling single-thread: if Celine deprioritises or leaves, there is no other live contact on the deal."},
+          {"tone": "warn", "text": "Long, uncertain timeline: the 31 Mar 2027 close is a placeholder gating on a summer budget decision with no guarantee."}
+        ]
+      },
+      "factors": {
+        "deal_risk": {"strength": -0.7, "evidence": "2026 budget on hold, do-nothing is the front-runner (Celine, 13 May)"},
+        "deal_momentum": {"strength": -0.5, "evidence": "no movement since 13 May; 15 Jun buyer deflection; user counts overdue"},
+        "customer_commitment": {"strength": -0.4, "evidence": "'just send information', deflected 15 Jun, no Zycus-specific next step"}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": "Full S2P suite (iContract, iManage, iSupplier, eProcurement, eInvoicing, Merlin, iRisk, ANA)", "to": "Full S2P suite (unchanged)", "detail": "Scope is unchanged since creation; full unified S2P + Merlin remains in play, though the buyer floated phasing (starting with sourcing or contracts) as a budget option on 13 May."},
+    "customer_preference": {"level": "low", "evidence": "Buyer asked Zycus to 'just send information' and pricing for her boss, deflected on 15 Jun, and expressed no Zycus-specific lean or next step."},
+    "business_case": {"status": "partial", "evidence": "Qualitative greenfield pain articulated (no tooling, non-compliant spend, 28-country manual requests) but no quantified savings/ROI; a business case is planned, not built."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 1,
+    "calls_omitted": [{"call": "ZYCUS The Agentic AI Procurement Summit 2026: EMEA (13 May 2026)", "reason": "Marketing/webinar event, no buyer-specific transcript available"}],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "created 28 May 2026 through 6 Jul 2026; activities last 120d; field history",
+    "avoma_attendees": ["CelineF Libert"],
+    "gaps": [
+      "Economic buyer / budget owner not named in Salesforce or on any call (funding runs through Celine's manager and a global budget cycle)",
+      "Value case not quantified: no Pluxee-specific savings, cycle-time or headcount numbers",
+      "Only one buyer contact (Celine Libert) has appeared on a call; Daniel Tolila (primary) unengaged",
+      "No formal decision process, RFP timeline, or paper/InfoSec track (early stage, budget-gated)"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

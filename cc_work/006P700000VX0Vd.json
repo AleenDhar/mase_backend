@@ -1,0 +1,280 @@
+{
+  "opp_id": "006P700000VX0Vd",
+  "hard": {
+    "opp_id": "006P700000VX0Vd",
+    "opp_name": "Bekaert_S2P",
+    "account_name": "Bekaert",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "Belgium",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 250000,
+    "close_date": "2026-12-31",
+    "days_to_close": null,
+    "created_date": "2026-03-20",
+    "qualified_date": "2026-03-23",
+    "last_activity_date": "2026-04-16",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSave;iSupplier;eProcurement;eInvoicing;iRisk",
+    "next_step": "",
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "Product scope is pure traditional S2P (eInvoicing, eProcurement, iContract, iRisk, iSave, iSource, iSupplier) with zero AI modules. This is a process/coverage deal targeting the breadth of the S2P suite without any AI-specific module selected. Qualified stage, unengaged, zero Avoma meetings, last activity 2026-04-16 with no captured rep-buyer transcript to ground AI sentiment.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa;GEP Worldwide",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000VX0Vd/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Bekaert has been silent for 81 days after the 16 Apr introductory meeting: Caroline Lacocque asked Vlad Tomita for late-May dates and got no reply, so the deal is frozen in Qualified with no champion, no mapped economic buyer, and no discovery against Coupa and GEP.",
+      "math": "Created 2026-03-20 (108 days old), Qualified since 2026-03-23 with no stage progression in 105 days. Last buyer-facing activity 2026-04-16 (81 days ago), an introductory meeting followed by an unanswered request for late-May dates. Close date 2026-12-31 is 178 days out; stage velocity is zero and cold beyond 60 days forces Off Track. A credible path requires re-engaging Tomita and running real discovery before any milestone can be dated.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "LastActivityDate 2026-04-16, 81 days ago (SF)",
+        "Introductory Meeting Zycus x Bekaert held 2026-04-16 (SF Event), then a Clari email to Vlad asking to confirm late-May dates went unanswered",
+        "Multiple outbound calls to Vlad Tomita on 2026-04-07/15/16 logged 'Could Not Connect' (SF Tasks)",
+        "Stage Qualified since 2026-03-23, no progression in 105 days; Next_Step__c empty",
+        "No Avoma calls discovered via opp, account, or attendee-email pulls",
+        "Two Decision Maker contact roles (Patrick Van Hecke, Vlad Tomita) but no economic buyer, champion, or pain evidence",
+        "Amount $250k, CloseDate 2026-12-31 (178 days out), ForecastCategory Pipeline, AIS 2.0 Negative"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business problem, savings target, or ROI case is documented anywhere for Bekaert. The only signal is the product scope in Products__c (full traditional S2P suite: iContract, iSource, iSave, iSupplier, eProcurement, eInvoicing, iRisk), which implies a broad procurement-transformation intent but names no cost baseline, cycle-time target, spend-under-management figure, or pain owner. With zero buyer calls discovered and Description empty, the underlying financial driver is genuinely unknown. Quantifying the business case with Vlad Tomita is a required move before this can leave Qualified.",
+        "sources": ["SF Products__c (full S2P suite)", "SF Description empty", "No Avoma calls discovered"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is confirmed. The opportunity carries two Decision Maker contact roles, Vlad Tomita (Purchasing Director EMEA, primary) and Patrick Van Hecke (Procurement), but neither has been engaged on a recorded call and no field or task evidence shows budget authority or a commercial conversation. Given a $250k S2P investment at a global manufacturer, budget control likely sits above the EMEA purchasing director, but no such executive is named on the opportunity. The evidence shows only that the last outreach to Tomita (16 Apr Clari email requesting late-May dates) went unanswered, so budget authority and the approval chain remain unmapped and identifying the EB is a ranked move.",
+        "sources": ["OpportunityContactRole: Vlad Tomita (DM, primary), Patrick Van Hecke (DM)", "No EB-flagged role or budget field populated", "No Avoma calls"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "Decision criteria are unknown. No RFP, RFI, BRD, scorecard, or use-case validation is documented in Salesforce or in any call, and the intro meeting on 16 Apr produced no recorded notes. The full S2P product scope implies broad functional requirements across sourcing, contract, supplier, procurement, invoicing, and risk, but how Bekaert will weigh Zycus against Coupa and GEP, and what their must-haves are, is unconfirmed. Business_Requirements__c, Top_Challenges_Priorities__c, and AI_Needs_in_RFP_Rating__c carry no read signal, so the criteria that will decide selection are a black box until a discovery call is held.",
+        "sources": ["No Avoma calls discovered", "SF criteria fields empty", "SF Products__c signals scope not criteria"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unmapped. There is no call sequence to read, no escalation pattern, and no buying-committee structure on record. The two Decision Maker roles suggest a dual-DM or regional/functional split, but their relationship to each other and to budget approval is unconfirmed, and whether this is a centralized global-procurement decision or an EMEA-led play by Tomita is unclear. No process field (What_is_the_decision_process__c, Does_the_Buyer_need_approval__c, Multiple_approvals__c) is captured, and with 81 days of silence the real process, if one exists, is invisible; mapping it is a discovery-call objective.",
+        "sources": ["OpportunityContactRole: 2 Decision Makers", "No process-field data", "No Avoma calls"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Paper process and contracting mechanics are entirely unknown, which is expected at Qualified stage. No MSA, SOW, legal review, InfoSec questionnaire, or procurement-channel discussion is documented, and Current_Contract_Expiration__c carries no value, so it is unclear whether Bekaert has an incumbent contract acting as a forcing function or is starting fresh. As a Belgium-based (Western Europe) new-business S2P deal, a full-suite motion would eventually need an MSA plus Order Form and SOW, but a missing PO would be normal for the region. Nothing here is a red flag yet; visibility only comes once discovery reopens and a compelling event or contract-expiry date is established.",
+        "sources": ["No contract/legal field data", "SF Current_Contract_Expiration__c empty", "Stage Qualified, no contracting activity"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "The specific operational or financial pain Bekaert is trying to solve has not been articulated by any buyer. No one has stated on a call or in writing what is broken in their current procurement stack, what manual workarounds they endure, or what spend-visibility or compliance gap they face. The full S2P scope implies dissatisfaction with a fragmented or underperforming procurement system, but that is inferred from the solution, not confirmed by the buyer, and Customer_Business_Problem__c, Pain_points_in_the_current_solution__c, and Compelling_Event__c carry no signal. With the deal cold for 81 days and no named pain owner, the pain remains a hypothesis to be validated in a discovery call with Tomita.",
+        "sources": ["No Avoma calls discovered", "SF pain fields empty", "SF Products__c (inferred scope only)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified or developed. Vlad Tomita (Purchasing Director EMEA) is the most engaged contact, having attended the 16 Apr introductory meeting and taken an inbound call on 07 Apr that set that meeting, but there is no evidence of advocacy, internal selling, or access to power, and he has gone silent for 81 days despite repeated outbound attempts logged 'Could Not Connect'. Patrick Van Hecke is a second Decision Maker role with no engagement history at all. A champion by definition drives the process on our behalf and opens the door to the economic buyer; none of that is visible here, so securing a champion (most realistically Tomita, if he re-engages) is the immediate priority before any other element can advance.",
+        "sources": ["OpportunityContactRole: Vlad Tomita (DM, primary), Patrick Van Hecke (DM)", "Event 2026-04-16 intro meeting; Tomita inbound call 2026-04-07", "Outbound calls 2026-04-15/16 'Could Not Connect'"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Coupa and GEP Worldwide are named in Salesforce Competitors__c (logged at or near opp creation, ~2026-03-20), but no call, next step, or task provides context on how Bekaert is evaluating them, whether this is an active bake-off or a passive shortlist, or what each vendor is pitching. The competing-against fact is confirmed; the competitive strategy is a gap. Without a single discovery or demo call, who is ahead and what Bekaert values in each vendor is unknown, and Zycus's likely wedges (Merlin AI-assisted sourcing/supplier intelligence and modular S2P flexibility versus Coupa's cost and GEP's consulting-led model) have not been activated. Uncovering the real competitive picture is a discovery objective on re-engagement.",
+        "sources": ["SF Competitors__c: Coupa; GEP Worldwide", "No call or competitive-context evidence"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only real movement was early: an inbound call from Vlad Tomita on 07 Apr set an introductory meeting, which was held 16 Apr, after which Caroline Lacocque emailed Vlad asking him to confirm dates towards the end of May. That request was never answered and no buyer touch has occurred since, so the deal has been static in Qualified for 105 days with the ball on the buyer's side and unreturned.",
+      "items": [
+        {"change": "Type set to New Business", "date": "2026-03-24"},
+        {"change": "Stage moved Initial Interest to Qualified", "date": "2026-03-23"},
+        {"change": "Vlad Tomita inbound call, introductory meeting set", "date": "2026-04-07"},
+        {"change": "Introductory Meeting Zycus x Bekaert held", "date": "2026-04-16"},
+        {"change": "Follow-up email to Vlad requesting late-May dates, no reply since", "date": "2026-04-16"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Coupa and GEP Worldwide are the two named competitors from Salesforce Competitors__c, logged at or near opp creation (~2026-03-20). No buyer call, task, or next step provides any competitive context this run (zero calls discovered), so threat levels are carried forward unchanged from the prior record rather than re-ranked. Both are credible enterprise S2P rivals and remain active threats until discovery proves otherwise: Coupa is the market-presence leader and typically price-sensitive, GEP is the consulting-led fit-for-complex-enterprise alternative. The single strongest current threat cannot be evidenced without discovery; Coupa is nominally primary by market presence, but this is an assumption, not buyer-stated.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "high", "status": "active", "quote": "", "date": "2026-03-20", "source": "SF Competitors__c", "how_we_win": "Lead with Merlin AI-assisted sourcing and supplier intelligence plus modular S2P flexibility versus Coupa's rigid, higher-cost platform; undercut on price if Bekaert proves cost-sensitive."},
+        {"name": "GEP Worldwide", "sentiment": "neutral", "threat_level": "high", "status": "active", "quote": "", "date": "2026-03-20", "source": "SF Competitors__c", "how_we_win": "Out-innovate GEP on AI and SaaS-native speed and user experience versus its consulting-heavy, slower delivery; win on agility for a regional EMEA rollout."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Bekaert's expectations and success criteria are unconfirmed: no discovery call or requirements document exists, so fit is entirely inferred from the full S2P product scope rather than validated against anything the buyer has said.",
+      "items": []
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm meeting dates for a discovery session with Zycus", "who": "Buyer", "grounding_quote": "Could you kindly confirm a few dates towards the end of May", "date": "2026-04-16", "due": "2026-05-31", "status": "overdue", "source": "SF Task 2026-04-16 (Clari email to Vlad Tomita)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Buyer engagement", "quote": "Prospect's gone cold ? No inbound since last 14 days", "status": "not addressed", "date": "2026-04-16", "gap_type": "knowledge", "source": "SF Task 2026-03-24 + LastActivityDate 2026-04-16"},
+        {"area": "Economic buyer", "quote": "", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "No EB contact role or budget field"},
+        {"area": "Business pain and metrics", "quote": "", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF pain fields empty, no calls"},
+        {"area": "Competitive context vs Coupa and GEP", "quote": "", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c named but no evaluation context"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a cold, early-stage deal against two strong S2P rivals with a single thinly-engaged contact. The winning levers are all about restarting a real two-way conversation and building the fundamentals that do not yet exist.",
+      "flags": [
+        "Re-open the relationship first: Vlad Tomita went silent after the 16 Apr intro meeting, so a value-led re-engagement (a Horizon Vienna follow-through or a manufacturing S2P proof point) outranks any process step.",
+        "Single-thread risk: only Tomita has ever engaged and Patrick Van Hecke is untouched, so multi-thread into procurement and finance to survive one contact going quiet.",
+        "Fly-blind on competition: Coupa and GEP are named but the evaluation is unmapped, so make uncovering criteria and the real decision process the goal of the first discovery call."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Vlad Tomita", "title": "Purchasing Director EMEA", "role": "Decision Maker", "last_contact_date": "2026-04-16", "sentiment": "unknown", "risk": "Only engaged contact but silent 81 days after the intro meeting; potential champion, not yet developed and no proven access to budget power.", "source": "OpportunityContactRole (primary); Event 2026-04-16; Task inbound call 2026-04-07"},
+        {"name": "Patrick Van Hecke", "title": "Procurement", "role": "Decision Maker", "last_contact_date": null, "sentiment": "unknown", "risk": "Second Decision Maker role with no engagement history; untapped second thread.", "source": "OpportunityContactRole"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion is developed. Vlad Tomita is the only contact who has ever engaged (07 Apr inbound call, 16 Apr introductory meeting) but has been silent for 81 days and shows no advocacy or access to power. He is the realistic champion candidate if the deal reopens; Patrick Van Hecke has never engaged. Champion-building is the immediate priority.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": true,
+      "source": "OpportunityContactRole; Event 2026-04-16; LastActivityDate 2026-04-16"
+    },
+    "ai_positioning_strength": {
+      "summary": "No AI positioning has been attempted and the scope is pure traditional S2P with zero AI modules selected, so the Merlin/agentic story is neither landing nor relevant to the buyer's stated intent yet. If a discovery call reopens the deal, testing appetite for Merlin-assisted sourcing could differentiate versus Coupa and GEP, but there is no evidence Bekaert wants it today.",
+      "score": "low",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 2.0 Negative: the scope is entirely traditional S2P (eInvoicing, eProcurement, iContract, iRisk, iSave, iSource, iSupplier) with no AI SKU, marking this a coverage-driven deal, not an AI-driven one. No calls exist to confirm or soften that read, so the field stands.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer mapped; budget authority for a $250k S2P deal sits above the EMEA purchasing director and no such executive is on the opportunity.", "first_raised": "2026-03-24", "date": "2026-07-06", "status": "open", "source": "OpportunityContactRole (2 DMs, no EB)"},
+        {"category": "political", "detail": "Single-thread to Vlad Tomita, who has gone silent 81 days; the deal has no second live relationship.", "first_raised": "2026-04-16", "date": "2026-07-06", "status": "open", "source": "SF activities; LastActivityDate 2026-04-16"},
+        {"category": "timeline", "detail": "Zero stage velocity for 105 days in Qualified against a 2026-12-31 close; the date is not credible without re-engagement.", "first_raised": "2026-04-16", "date": "2026-07-06", "status": "open", "source": "Field history; close date 2026-12-31"},
+        {"category": "budget", "detail": "No quantified business case or savings target, so there is no ROI justification to defend $250k against Coupa's price or GEP's model.", "first_raised": "2026-03-23", "date": "2026-07-06", "status": "open", "source": "SF pain/value fields empty"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: the last genuine two-way touch was the 16 Apr introductory meeting, and Caroline Lacocque's request for late-May dates was never answered. Every outbound call since logged 'Could Not Connect'. The main threat here is inertia, not a competitor: Bekaert going quiet and simply not advancing, a no-decision risk more than a loss to Coupa or GEP.",
+      "cooling": true,
+      "items": [
+        "Introductory meeting held 2026-04-16, no buyer touch in the 81 days since",
+        "Outbound calls to Vlad Tomita on 2026-04-15 and 2026-04-16 both 'Could Not Connect'",
+        "Request to confirm late-May dates unanswered (SF Task 2026-04-16)"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A cold, early-stage S2P deal at Bekaert: Vlad Tomita went silent for 81 days after the 16 Apr introductory meeting and never confirmed the late-May dates we asked for, leaving us with no champion, no mapped economic buyer, and no discovery against Coupa and GEP; the one thing between us and any progress is getting Tomita back in a room.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We are effectively at the starting line and stalled: the deal has sat in Qualified for 105 days with no economic buyer, no champion, and no business case, so we cannot yet say we are winning against Coupa or GEP."},
+          {"tone": "warn", "text": "The competitive picture is blind: Coupa and GEP are logged as competitors but no discovery call has happened, so we do not know who Bekaert prefers or what they value (SF Competitors__c, logged ~20 Mar)."},
+          {"tone": "warn", "text": "Everything rides on a single silent contact: only Vlad Tomita has ever engaged and he has not responded since the 16 Apr intro meeting, so one quiet stakeholder is holding the whole deal (SF activities)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: after Tomita's 07 Apr inbound call set the 16 Apr introductory meeting, every follow-up call logged 'Could Not Connect' and the request for late-May dates went unanswered (SF Tasks, Apr 2026)."},
+          {"tone": "warn", "text": "No senior stakeholders have joined, no commercial or pricing topics have opened, and the buyer has named no dates, so there is no forward pull on the deal (no Avoma calls; SF fields empty)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The only buyer commitment on record, confirming late-May meeting dates, is 5+ weeks overdue and unanswered, showing no active commitment from Bekaert (SF Task 2026-04-16)."},
+          {"tone": "warn", "text": "No requirements document, RFP, or evaluation timeline has been shared by the buyer, so there is nothing they have committed to that moves the deal (no calls; SF criteria fields empty)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Cold beyond 60 days with zero stage velocity in 105 days against a 2026-12-31 close: this is a no-decision / inertia risk, Bekaert simply not advancing, more than a loss to a named rival."},
+          {"tone": "warn", "text": "AIS is 2.0 Negative on a pure traditional-S2P scope with no AI modules, so the Merlin differentiation that wins against Coupa and GEP is not in play as scoped."}
+        ]
+      },
+      "factors": {
+        "buyer_engagement": {"strength": -0.9, "evidence": "81 days silent after the 16 Apr intro meeting; unanswered request for late-May dates; repeated 'Could Not Connect' calls."},
+        "champion": {"strength": -0.7, "evidence": "No champion; only Tomita ever engaged and has gone quiet."},
+        "economic_buyer": {"strength": -0.6, "evidence": "No EB mapped; two Decision Maker roles, neither with budget authority evidence."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer call or written preference; last outreach requesting late-May dates went unanswered, no lean toward or against Zycus."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or quantified pain articulated by the buyer; Description and value fields empty."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Caroline emails Vlad Tomita a Horizon Vienna follow-through and two July meeting dates.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "Introductory meeting held 16 Apr, then the request to confirm late-May dates went unanswered and outbound calls could not connect.",
+          "trigger_date": "2026-04-16",
+          "act_by": "2026-07-13",
+          "expected_effect": "Restarts a two-way conversation with the only engaged contact and tests whether the deal is still live before writing it off."
+        },
+        {
+          "rank": 2,
+          "action": "Open a second thread to Patrick Van Hecke with a manufacturing S2P proof point.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Van Hecke is a Decision Maker role with no engagement history and the deal is single-threaded on a silent Tomita.",
+          "trigger_date": "2026-04-16",
+          "act_by": "2026-07-20",
+          "expected_effect": "Removes single-point-of-failure risk and creates a second path in if Tomita stays quiet."
+        },
+        {
+          "rank": 3,
+          "action": "Run a discovery call to surface Bekaert's pain, criteria, and the Coupa and GEP evaluation.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Competitors named in Salesforce but no discovery has happened; pain, metrics, EB, and criteria all unmapped.",
+          "trigger_date": "2026-03-20",
+          "act_by": "2026-08-05",
+          "expected_effect": "Establishes the business case and competitive wedge and identifies who owns budget, unblocking movement out of Qualified."
+        },
+        {
+          "rank": 4,
+          "action": "If Tomita gives no reply by 24 Jul, ask the owner's manager to open an executive connect.",
+          "owner": "Executive connect",
+          "horizon": "next_30_days",
+          "trigger": "Owner-led re-engagement is the first attempt; escalate only after it gets no response within 10 business days.",
+          "trigger_date": "2026-07-06",
+          "act_by": "2026-08-03",
+          "expected_effect": "Provides a higher-level route to reach the budget owner if the owner's own outreach stays unanswered."
+        }
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history to 2026-03-20 creation",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls discovered via opp, account, or attendee-email pulls, so all buyer dialogue, pain, criteria, and competitive context are unconfirmed",
+      "Economic buyer and budget authority unmapped: two Decision Maker roles, no EB",
+      "No business case, quantified pain, or ROI on record",
+      "Competitive evaluation context for Coupa and GEP is unknown beyond the named field"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

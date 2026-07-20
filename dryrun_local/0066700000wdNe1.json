@@ -1,0 +1,247 @@
+{
+ "schema_version": 1,
+ "model": "ai_v1",
+ "headline": {
+  "win_position": 58.0,
+  "deal_momentum": 71.0,
+  "customer_commitment": 62.0,
+  "deal_risk": 58.0,
+  "forecast_confidence": 46.0,
+  "read": "Close-date risk"
+ },
+ "win_position": {
+  "score": 58.0,
+  "contributions": [
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Buyer-voiced preference: Astrid says Zycus is favored 'in confidence' (Jul 8), and Jul 9 update confirms budget green-lit at exco level with project moving forward.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Champion (Pam) has direct access and controls the vendor vote; MEDDPICC shows champion, pain, and decision-criteria confirmed.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Economic Buyer engagement is only partial \u2014 CPO Rohan is engaged directly, but the CFO (true EB) hasn't met Zycus yet; rep only 'likely' to get 2\u20133 weeks out. \u25ba Secure the CFO meeting before RFP responses are due.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Coupa remains the dominant active competitor, pushing hard on price ('overpricing' per Pam) and still in the mix after 180+ days. \u25ba Prep a pricing/value defense ahead of Pam's guidance session.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "No commercial/paper progress \u2014 MEDDPICC paper_process is a gap, and no pricing discussion is documented despite the verbal budget green light. \u25ba Push for a documented commercial proposal.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Exception: Close date (Jul 30) is not credible \u2014 RFP only went out this week (Jul 8) with requirements still pending, so the deal is behind its Best Case/Shortlisted positioning. \u25ba Correct the close date/forecast category to match the real RFP timeline.",
+    "tone": "warn"
+   }
+  ]
+ },
+ "deal_momentum": {
+  "score": 71.0,
+  "contributions": [
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Pam (Director Procurement, controls the vendor vote) initiated a dinner meeting herself on Jul 9 \u2014 buyer-driven, not rep-chased.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "CPO/eval team attended ProcureCon Jul 8, and Astrid confirmed Zycus is favored 'in confidence' \u2014 real two-way engagement inside the last 14 days.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Continuous cadence since Jan 2026 (RFI, demo, NDA, presentations, multiple F2F touches) with no unexplained gaps over 6 months.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "No future meeting is scheduled in CRM (next_scheduled_meeting: null) even though the RFP window just opened. \u25ba Lock the CFO meeting and Pam's RFP-guidance session on the calendar now.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Only 1 meeting logged in Salesforce in the last 30 days despite active July cadence described in Next Step. \u25ba Log the ProcureCon and dinner touches as Tasks/Events so pipeline reflects reality.",
+    "tone": "warn"
+   }
+  ]
+ },
+ "customer_commitment": {
+  "score": 62.0,
+  "contributions": [
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Pam self-initiated a dinner meeting and is personally steering internal guidance on how Zycus should respond to the RFP.",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "CPO/eval team is organizing travel to ProcureCon and Horizon events, and budget has been confirmed at exco level (Jul 9).",
+    "tone": "good"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "No formal procurement/security review or reference-check activity has been documented yet.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "No commercial paper is in motion \u2014 no proposal accepted, no pricing round documented (paper_process = gap).",
+    "tone": "warn"
+   }
+  ]
+ },
+ "deal_risk": {
+  "score": 58.0,
+  "contributions": [
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "No Economic Buyer directly engaged \u2014 CFO meeting still pending; Rohan/Pam remain the single points of contact.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Coupa is actively pushing hard on price, and Pam has flagged 'overpricing' concern directly \u2014 a live threat, not dormant.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Close date is only 21 days out yet RFP requirements just came out this week with no pricing, paper, or EB alignment \u2014 the date is not defensible as recorded.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": -1.0,
+    "detail": "Funding caution was raised as recently as May 26; the Jul 9 'budget green light' is verbal only, with no signed approval evidenced.",
+    "tone": "warn"
+   },
+   {
+    "key": "ai",
+    "points": 1.0,
+    "detail": "Partial offset: buyer's own team (Astrid, CPO) describes Zycus as favored, which tempers the competitive and EB risk somewhat.",
+    "tone": "good"
+   }
+  ]
+ },
+ "forecast_confidence": {
+  "score": 46.0,
+  "contributions": []
+ },
+ "ai_reasons": {
+  "deal_momentum": [
+   {
+    "tone": "good",
+    "text": "Pam (Director Procurement, controls the vendor vote) initiated a dinner meeting herself on Jul 9 \u2014 buyer-driven, not rep-chased."
+   },
+   {
+    "tone": "good",
+    "text": "CPO/eval team attended ProcureCon Jul 8, and Astrid confirmed Zycus is favored 'in confidence' \u2014 real two-way engagement inside the last 14 days."
+   },
+   {
+    "tone": "good",
+    "text": "Continuous cadence since Jan 2026 (RFI, demo, NDA, presentations, multiple F2F touches) with no unexplained gaps over 6 months."
+   },
+   {
+    "tone": "warn",
+    "text": "No future meeting is scheduled in CRM (next_scheduled_meeting: null) even though the RFP window just opened. \u25ba Lock the CFO meeting and Pam's RFP-guidance session on the calendar now."
+   },
+   {
+    "tone": "warn",
+    "text": "Only 1 meeting logged in Salesforce in the last 30 days despite active July cadence described in Next Step. \u25ba Log the ProcureCon and dinner touches as Tasks/Events so pipeline reflects reality."
+   }
+  ],
+  "win_position": [
+   {
+    "tone": "good",
+    "text": "Buyer-voiced preference: Astrid says Zycus is favored 'in confidence' (Jul 8), and Jul 9 update confirms budget green-lit at exco level with project moving forward."
+   },
+   {
+    "tone": "good",
+    "text": "Champion (Pam) has direct access and controls the vendor vote; MEDDPICC shows champion, pain, and decision-criteria confirmed."
+   },
+   {
+    "tone": "warn",
+    "text": "Economic Buyer engagement is only partial \u2014 CPO Rohan is engaged directly, but the CFO (true EB) hasn't met Zycus yet; rep only 'likely' to get 2\u20133 weeks out. \u25ba Secure the CFO meeting before RFP responses are due."
+   },
+   {
+    "tone": "warn",
+    "text": "Coupa remains the dominant active competitor, pushing hard on price ('overpricing' per Pam) and still in the mix after 180+ days. \u25ba Prep a pricing/value defense ahead of Pam's guidance session."
+   },
+   {
+    "tone": "warn",
+    "text": "No commercial/paper progress \u2014 MEDDPICC paper_process is a gap, and no pricing discussion is documented despite the verbal budget green light. \u25ba Push for a documented commercial proposal."
+   },
+   {
+    "tone": "warn",
+    "text": "Exception: Close date (Jul 30) is not credible \u2014 RFP only went out this week (Jul 8) with requirements still pending, so the deal is behind its Best Case/Shortlisted positioning. \u25ba Correct the close date/forecast category to match the real RFP timeline."
+   }
+  ],
+  "customer_commitment": [
+   {
+    "tone": "good",
+    "text": "Pam self-initiated a dinner meeting and is personally steering internal guidance on how Zycus should respond to the RFP."
+   },
+   {
+    "tone": "good",
+    "text": "CPO/eval team is organizing travel to ProcureCon and Horizon events, and budget has been confirmed at exco level (Jul 9)."
+   },
+   {
+    "tone": "warn",
+    "text": "No formal procurement/security review or reference-check activity has been documented yet."
+   },
+   {
+    "tone": "warn",
+    "text": "No commercial paper is in motion \u2014 no proposal accepted, no pricing round documented (paper_process = gap)."
+   }
+  ],
+  "deal_risk": [
+   {
+    "tone": "warn",
+    "text": "No Economic Buyer directly engaged \u2014 CFO meeting still pending; Rohan/Pam remain the single points of contact."
+   },
+   {
+    "tone": "warn",
+    "text": "Coupa is actively pushing hard on price, and Pam has flagged 'overpricing' concern directly \u2014 a live threat, not dormant."
+   },
+   {
+    "tone": "warn",
+    "text": "Close date is only 21 days out yet RFP requirements just came out this week with no pricing, paper, or EB alignment \u2014 the date is not defensible as recorded."
+   },
+   {
+    "tone": "warn",
+    "text": "Funding caution was raised as recently as May 26; the Jul 9 'budget green light' is verbal only, with no signed approval evidenced."
+   },
+   {
+    "tone": "good",
+    "text": "Partial offset: buyer's own team (Astrid, CPO) describes Zycus as favored, which tempers the competitive and EB risk somewhat."
+   }
+  ]
+ },
+ "factor_source": "ai"
+}

@@ -1,0 +1,3770 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Compelling event / vendor-selection timeline field",
+     "date": "2026-07-09",
+     "quote": "Vendor selection by March 2025 \u2013 Zycus needs to stay top-of-mind.",
+     "source": "Opportunity.Compelling_Event__c",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Product demo status",
+     "date": "2026-07-09",
+     "quote": "Demo yet to be conducted",
+     "source": "Opportunity.Gaps_identified_during_sales_demo__c cross-checked against Task and Avoma history",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Economic buyer / executive sponsor",
+     "date": "2026-07-09",
+     "quote": "Executive_Sponsor_Identified__c = false; X10a_Sponsor__c empty",
+     "source": "Opportunity fields",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Champion",
+     "date": "2026-07-09",
+     "quote": "X10b_Champion_Business_Buyer__c empty; no advocacy evidenced from either logged contact",
+     "source": "Opportunity.X10b_Champion_Business_Buyer__c + Task/email review",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Opportunity contact-role coverage",
+     "date": "2026-07-09",
+     "quote": "Only 2 OpportunityContactRole records (Adriel Picard, Jeffrey Buzila)",
+     "source": "OpportunityContactRole",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.Business_Objectives__c",
+     "Opportunity.Value_to_Customer__c",
+     "Avoma call 2025-01-28 (Introductory call: Zycus X SaskTel)"
+    ],
+    "narrative": "SaskTel's stated Business_Objectives__c call for 'rapid and mass user adoption with a shorter time to ROI realization' and 'accelerated achievement of sourcing and contracting goals,' and Value_to_Customer__c cites 'cost savings and process efficiency with seamless ERP integration.' These are qualification-era CRM narrative fields rather than a quantified figure voiced by a named buyer on a call, since the only Avoma-captured session (introductory call, 28 Jan 2025) was purely social with no business content discussed. No dollar figure, percentage, or specific KPI has ever been confirmed directly by SaskTel."
+   },
+   "champion": {
+    "status": "gap",
+    "sources": [
+     "Task emails dated 2026-04-13/2026-04-14/2026-04-15",
+     "Next_Step__c entries dated 2026-05-04, 2026-06-04, 2026-07-08"
+    ],
+    "narrative": "X10b_Champion_Business_Buyer__c is empty and no contact has shown advocacy behavior. Jeffrey Buzila has been a reliable, responsive point of contact for RFP-process logistics (deadlines, status updates), most recently replying 13 Apr 2026, but every message is a process update, not internal selling or privileged insight into scoring. Adriel Picard, the named Decision Maker, has not replied to either of the two most recent Horizon event invitations (sent 4 May 2026 and 4 Jun 2026, resent 8 Jul 2026). No one on the account is currently behaving as a champion."
+   },
+   "competition": {
+    "status": "confirmed",
+    "sources": [
+     "Opportunity.Competitors__c",
+     "Opportunity.How_are_you_addressing_your_problem_toda__c",
+     "Opportunity.Why_not_Zycus__c"
+    ],
+    "narrative": "Competitors__c names four rivals in this RFP: Coupa, GEP Worldwide, JAGGAER, and SAP Ariba, with SAP Ariba also the incumbent SaskTel is actively trying to replace ('Procurement Tool: Ariba (under evaluation for replacement)'). A further vendor was named in an early qualification-era note (Why_not_Zycus__c) but does not reappear in the current Competitors__c field, so it is carried as an unnamed fifth vendor, unconfirmed for the live 2026 RFP. No scorecard result or buyer-voiced preference among the finalists has been shared with Zycus."
+   },
+   "identify_pain": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.Customer_Business_Problem__c",
+     "Avoma call 2025-01-28"
+    ],
+    "narrative": "Customer_Business_Problem__c documents specific dissatisfaction with the incumbent, SAP Ariba: 'high cost, low value,' 'manual invoicing... leading to inefficiencies,' 'poor supplier experience,' and a 'fragmented procurement setup.' This is a detailed, credible pain narrative, but it lives in the CRM qualification record rather than being voiced by SaskTel on a recorded call; the single Avoma-captured call (28 Jan 2025) never touched on business pain."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Opportunity.Current_Contract_Expiration__c",
+     "Task history 2025-08 through 2026-07",
+     "Next_Step__c dated log"
+    ],
+    "narrative": "No contracting artifact (MSA, Order Form, SOW) has been raised in any source, and Current_Contract_Expiration__c is blank. The deal has not progressed past the RFP/shortlisting stage into commercial or legal discussion; no pricing conversation has occurred with SaskTel in any call or email on record."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Opportunity.Executive_Sponsor_Identified__c",
+     "Opportunity.X10a_Sponsor__c",
+     "OpportunityContactRole",
+     "Next_Step__c entry dated 2026-07-08"
+    ],
+    "narrative": "Executive_Sponsor_Identified__c is false and no economic-buyer or budget-approval field (X10a_Sponsor__c, Who_will_approve_budget__c) is populated. The two people on the opportunity are Adriel Picard, Director of Procurement (Decision Maker contact role), and Jeffrey Buzila, who is coordinating the RFP process; neither carries confirmed commercial or budget authority for a $357,898 multi-year S2P investment. As of 8 Jul 2026, the deal owner planned to reach out to a CTO and a EVP on the account to learn whether either sits on the steering committee making the decision, but that outreach had not yet occurred as of this sweep (9 Jul 2026)."
+   },
+   "decision_process": {
+    "status": "confirmed",
+    "sources": [
+     "Next_Step__c full dated log"
+    ],
+    "narrative": "The process mechanics are unusually well documented in Next_Step__c: RFP issued 11 Feb 2026, Q&A window closing 25 Feb 2026, submission deadline 11 Mar 2026 (met, per the '3.11.26 KK \u2014 RFP submitted' entry), a shortlisting announcement the week of 6 Apr 2026 confirming Zycus advanced, and supplier presentations/interviews originally planned for the week of 20 Apr 2026. That presentation round has not occurred as of 9 Jul 2026, roughly 11 weeks (~80 days) past its planned window, and no new date has been confirmed."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Opportunity.Business_Requirements__c",
+     "Opportunity.Shoe_Fit_Criteria_Met__c",
+     "Next_Step__c dated log"
+    ],
+    "narrative": "Business_Requirements__c and Shoe_Fit_Criteria_Met__c are both empty/false, so no published evaluation rubric is on file with the relevant stakeholder own timeline confirms a structured formal evaluation is underway (issue date 11 Feb 2026, questions due 18 Feb 2026, SaskTel answers due 25 Feb 2026, submission deadline 11 Mar 2026 2:00pm CST), but the actual weighting or scoring criteria used to compare vendors has not been shared with Zycus."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 4.8
+   },
+   "last_meeting": "2025-01-28",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-04-15",
+   "last_buyer_touch": "2026-04-13",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 18,
+   "general_last_activity": "2026-07-08",
+   "days_since_buyer_touch": 87
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-05-04",
+   "items": [
+    {
+     "at": "2026-05-04",
+     "kind": "movement",
+     "name": "Close date pushed ~4 months",
+     "summary": "Close date moved from 2026-04-30 to 2026-09-04, a slip of over four months with no accompanying activity logged \u2014 suggests the deal stalled or was deprioritized rather than progressing toward the original date."
+    }
+   ],
+   "source": "ai",
+   "overall": "The only signal today is a big close-date slip on SaskTel, pushed from end of April all the way to September \u2014 over four months out. No emails or calls logged alongside it, so this reads as a quiet re-forecasting rather than a specific event; the deal has effectively been parked, and someone should find out what's actually stalled before treating the new date as real."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 83.0,
+    "win_position": 20.0,
+    "deal_momentum": 22.0,
+    "customer_commitment": 27.0,
+    "forecast_confidence": 17.0
+   },
+   "cro_panel": {
+    "intro": "Structurally an RFP finalist (Shortlisted since 25 Nov 2025) that delivered its RFP response on time, but 226 days into the Shortlisted stage against an ~18-day playbook cadence, with no economic buyer engaged, no champion, no commercial conversation, and the mandatory supplier-presentation round now roughly 11 weeks overdue with no new date.; Momentum is rep-driven, not buyer-driven; the account owner is actively chasing (last outreach 8 Jul 2026), but SaskTel's last inbound reply was 87 days ago (13 Apr 2026)",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 20,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "No champion anywhere on the account; MEDDPICC lists champion as a gap and the notes confirm Jeffrey/Adriel are process-status contacts only, no advocacy. \u25ba Identify and cultivate a real internal advocate before the scoring decision lands",
+        "tone": "warn"
+       },
+       {
+        "text": "Economic buyer never engaged; Chad Olson (CTO) and John Hill (CIO) are only a contingency plan ('will reach out if no response'); Adriel Picard, Director of Procurement, lacks budget authority for a $357,898 deal. \u25ba Get direct exec face time before shortlisting scores are finalized",
+        "tone": "warn"
+       },
+       {
+        "text": "Four-way competitive RFP, incumbent entrenched; Coupa, GEP Worldwide, JAGGAER and incumbent SAP Ariba all carry undifferentiated medium threat with no buyer preference surfaced since the 11 Mar 2026 submission. \u25ba Push AI/Merlin differentiation directly to the buyer instead of leaving it undemonstrated",
+        "tone": "warn"
+       },
+       {
+        "text": "Shortlisted after a completed formal RFP; SaskTel confirmed shortlisting the week of 6 Apr 2026 following the 11 Mar 2026 submission, keeping Zycus alive in a 4-vendor field",
+        "tone": "good"
+       },
+       {
+        "text": "AI differentiation unproven live; SaskTel's stated objective for 'mature AI-powered features' matches the Zycus Merlin pitch, but it has never been shown or discussed on a recorded call. \u25ba Demo Agentic AI capability directly to the procurement/steering committee",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 22,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "No buyer meeting in 527 days; the only recorded session is the 28 Jan 2025 intro call; 0 meetings logged in the 30/60/90-day windows. \u25ba Get a live session on the calendar before the 4 Sep 2026 close date, not another email invite",
+        "tone": "warn"
+       },
+       {
+        "text": "Supplier presentation round never happened; RFP schedule called for interviews the week of 20 Apr 2026; as of 8 Jul 2026 (11 weeks later) it's still not booked. \u25ba Ask Jeff B for a hard date now; a missed evaluation step this late is a red flag, not a scheduling delay",
+        "tone": "warn"
+       },
+       {
+        "text": "One live status confirmation on 6.4.26; Jeff B told the rep the team is 'still reviewing responses to tally up scores,' confirming the deal is not dead",
+        "tone": "good"
+       },
+       {
+        "text": "All cadence is rep-driven; KK/MF logged chase emails on 4.13.26, 5.4.26, and 7.8.26 with no buyer-initiated contact anywhere in the record. \u25ba Shift from status-check emails to a specific ask (e.g., confirm scoring timeline in writing) to force a response",
+        "tone": "warn"
+       },
+       {
+        "text": "No forward-dated meeting exists; next_scheduled_meeting is null with only 57 days left to the 4 Sep 2026 close. \u25ba Lock a dated next touch this week or the close date will slip again",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+      "score": 83,
+      "title": "What could lose it",
+      "footer": "Competitive picture: SaskTel is running a formal four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with SAP Ariba as the incumbent being displaced; all four currently carry an undifferentiated medium threat level because no buyer preference has\u2026",
+      "bullets": [
+       {
+        "text": "Extreme engagement gap; 527 days since any recorded meeting; the only session on file is the Jan 2025 intro call",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer mapped; MEDDPICC confirms this gap; the highest engaged contact (Director of Procurement) cannot authorize a $357,898 spend",
+        "tone": "warn"
+       },
+       {
+        "text": "Incumbent SAP Ariba entrenched as 'do nothing' option; in a 4-vendor RFP with no buyer preference surfaced, status quo is the real competitor",
+        "tone": "warn"
+       },
+       {
+        "text": "Missed milestone, no reschedule; the week-of-20-Apr-2026 supplier presentation round still hasn't happened as of the 8 Jul 2026 update",
+        "tone": "warn"
+       },
+       {
+        "text": "Forecast/evidence mismatch; booked Best Case despite no champion, no EB access, and no documented business case",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Call Jeffrey Buzila directly for a status update if the 8 Jul Horizon email draws no reply. (by 16 Jun)",
+       "Reach the CTO and the EVP to confirm steering-committee membership and open a second thread. (by 22 Jun)",
+       "Add a confirmed Contact Role and a second SaskTel contact to the opportunity record. (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "SaskTel \u2014 Shortlisted \u00b7 $358K \u00b7 closes 4 Aug",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 83.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Extreme engagement gap \u2014 527 days since any recorded meeting; the only session on file is the Jan 2025 intro call.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer mapped \u2014 MEDDPICC confirms this gap; the highest engaged contact (Director of Procurement) cannot authorize a $357,898 spend.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Incumbent SAP Ariba entrenched as 'do nothing' option \u2014 in a 4-vendor RFP with no buyer preference surfaced, status quo is the real competitor.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Missed milestone, no reschedule \u2014 the week-of-20-Apr-2026 supplier presentation round still hasn't happened as of the 8 Jul 2026 update.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Forecast/evidence mismatch \u2014 booked Best Case despite no champion, no EB access, and no documented business case.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Extreme engagement gap \u2014 527 days since any recorded meeting; the only session on file is the Jan 2025 intro call.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer mapped \u2014 MEDDPICC confirms this gap; the highest engaged contact (Director of Procurement) cannot authorize a $357,898 spend.",
+      "tone": "warn"
+     },
+     {
+      "text": "Incumbent SAP Ariba entrenched as 'do nothing' option \u2014 in a 4-vendor RFP with no buyer preference surfaced, status quo is the real competitor.",
+      "tone": "warn"
+     },
+     {
+      "text": "Missed milestone, no reschedule \u2014 the week-of-20-Apr-2026 supplier presentation round still hasn't happened as of the 8 Jul 2026 update.",
+      "tone": "warn"
+     },
+     {
+      "text": "Forecast/evidence mismatch \u2014 booked Best Case despite no champion, no EB access, and no documented business case.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "No champion anywhere on the account \u2014 MEDDPICC lists champion as a gap and the notes confirm Jeffrey/Adriel are process-status contacts only, no advocacy. \u25ba Identify and cultivate a real internal advocate before the scoring decision lands.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer never engaged \u2014 Chad Olson (CTO) and John Hill (CIO) are only a contingency plan ('will reach out if no response'); Adriel Picard, Director of Procurement, lacks budget authority for a $357,898 deal. \u25ba Get direct exec face time before shortlisting scores are finalized.",
+      "tone": "warn"
+     },
+     {
+      "text": "No business case or pain on record \u2014 Customer_Business_Problem__c, Business_Objectives__c and Value_to_Customer__c are all empty; the sole meeting (Jan 2025) was purely social. \u25ba Run a discovery/ROI session now, RFP submission alone doesn't establish value.",
+      "tone": "warn"
+     },
+     {
+      "text": "Four-way competitive RFP, incumbent entrenched \u2014 Coupa, GEP Worldwide, JAGGAER and incumbent SAP Ariba all carry undifferentiated medium threat with no buyer preference surfaced since the 11 Mar 2026 submission. \u25ba Push AI/Merlin differentiation directly to the buyer instead of leaving it undemonstrated.",
+      "tone": "warn"
+     },
+     {
+      "text": "Shortlisted after a completed formal RFP \u2014 SaskTel confirmed shortlisting the week of 6 Apr 2026 following the 11 Mar 2026 submission, keeping Zycus alive in a 4-vendor field.",
+      "tone": "good"
+     },
+     {
+      "text": "AI differentiation unproven live \u2014 SaskTel's stated objective for 'mature AI-powered features' matches the Zycus Merlin pitch, but it has never been shown or discussed on a recorded call. \u25ba Demo Agentic AI capability directly to the procurement/steering committee.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "No buyer meeting in 527 days \u2014 the only recorded session is the 28 Jan 2025 intro call; 0 meetings logged in the 30/60/90-day windows. \u25ba Get a live session on the calendar before the 4 Sep 2026 close date, not another email invite.",
+      "tone": "warn"
+     },
+     {
+      "text": "Two event invites ignored \u2014 the 5.4.26 and 7.8.26 next-step notes show Horizon and Calgary Stampede invites sent to Adriel Picard with zero response. \u25ba Stop repeating the same invite; escalate directly to Chad Olson (CTO) or John Hill (CIO) as the note itself proposes.",
+      "tone": "warn"
+     },
+     {
+      "text": "Supplier presentation round never happened \u2014 RFP schedule called for interviews the week of 20 Apr 2026; as of 8 Jul 2026 (11 weeks later) it's still not booked. \u25ba Ask Jeff B for a hard date now \u2014 a missed evaluation step this late is a red flag, not a scheduling delay.",
+      "tone": "warn"
+     },
+     {
+      "text": "One live status confirmation on 6.4.26 \u2014 Jeff B told the rep the team is 'still reviewing responses to tally up scores,' confirming the deal is not dead.",
+      "tone": "good"
+     },
+     {
+      "text": "All cadence is rep-driven \u2014 KK/MF logged chase emails on 4.13.26, 5.4.26, and 7.8.26 with no buyer-initiated contact anywhere in the record. \u25ba Shift from status-check emails to a specific ask (e.g., confirm scoring timeline in writing) to force a response.",
+      "tone": "warn"
+     },
+     {
+      "text": "No forward-dated meeting exists \u2014 next_scheduled_meeting is null with only 57 days left to the 4 Sep 2026 close. \u25ba Lock a dated next touch this week or the close date will slip again.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Paper process untouched \u2014 paper_process is flagged as a confirmed gap in MEDDPICC, no contracting motion of any kind. \u25ba Ask what SaskTel's legal/procurement paper process looks like once scoring completes.",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer completed their side of the RFP procedurally \u2014 SaskTel ran Q&A rounds (18\u201325 Feb 2026) and issued the shortlisting announcement (week of 6 Apr 2026), showing real procedural investment.",
+      "tone": "good"
+     },
+     {
+      "text": "No exec sponsorship secured \u2014 decision process is confirmed but no C-level has been granted or offered directly to Zycus. \u25ba Use the CTO/CIO outreach already planned in the next step to convert this.",
+      "tone": "warn"
+     },
+     {
+      "text": "No references or proof-point requests \u2014 nothing in the record shows SaskTel asking for customer references or deeper technical proof beyond the written RFP.",
+      "tone": "warn"
+     },
+     {
+      "text": "Contacts stay reactive only \u2014 Adriel Picard and Jeffrey Buzila respond only to rep-initiated status checks (4.14.26, 6.4.26); no buyer-initiated contact in the whole timeline.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 20.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No champion anywhere on the account \u2014 MEDDPICC lists champion as a gap and the notes confirm Jeffrey/Adriel are process-status contacts only, no advocacy. \u25ba Identify and cultivate a real internal advocate before the scoring decision lands.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer never engaged \u2014 Chad Olson (CTO) and John Hill (CIO) are only a contingency plan ('will reach out if no response'); Adriel Picard, Director of Procurement, lacks budget authority for a $357,898 deal. \u25ba Get direct exec face time before shortlisting scores are finalized.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No business case or pain on record \u2014 Customer_Business_Problem__c, Business_Objectives__c and Value_to_Customer__c are all empty; the sole meeting (Jan 2025) was purely social. \u25ba Run a discovery/ROI session now, RFP submission alone doesn't establish value.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Four-way competitive RFP, incumbent entrenched \u2014 Coupa, GEP Worldwide, JAGGAER and incumbent SAP Ariba all carry undifferentiated medium threat with no buyer preference surfaced since the 11 Mar 2026 submission. \u25ba Push AI/Merlin differentiation directly to the buyer instead of leaving it undemonstrated.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Shortlisted after a completed formal RFP \u2014 SaskTel confirmed shortlisting the week of 6 Apr 2026 following the 11 Mar 2026 submission, keeping Zycus alive in a 4-vendor field.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "AI differentiation unproven live \u2014 SaskTel's stated objective for 'mature AI-powered features' matches the Zycus Merlin pitch, but it has never been shown or discussed on a recorded call. \u25ba Demo Agentic AI capability directly to the procurement/steering committee.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 22.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer meeting in 527 days \u2014 the only recorded session is the 28 Jan 2025 intro call; 0 meetings logged in the 30/60/90-day windows. \u25ba Get a live session on the calendar before the 4 Sep 2026 close date, not another email invite.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Two event invites ignored \u2014 the 5.4.26 and 7.8.26 next-step notes show Horizon and Calgary Stampede invites sent to Adriel Picard with zero response. \u25ba Stop repeating the same invite; escalate directly to Chad Olson (CTO) or John Hill (CIO) as the note itself proposes.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Supplier presentation round never happened \u2014 RFP schedule called for interviews the week of 20 Apr 2026; as of 8 Jul 2026 (11 weeks later) it's still not booked. \u25ba Ask Jeff B for a hard date now \u2014 a missed evaluation step this late is a red flag, not a scheduling delay.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "One live status confirmation on 6.4.26 \u2014 Jeff B told the rep the team is 'still reviewing responses to tally up scores,' confirming the deal is not dead.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "All cadence is rep-driven \u2014 KK/MF logged chase emails on 4.13.26, 5.4.26, and 7.8.26 with no buyer-initiated contact anywhere in the record. \u25ba Shift from status-check emails to a specific ask (e.g., confirm scoring timeline in writing) to force a response.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No forward-dated meeting exists \u2014 next_scheduled_meeting is null with only 57 days left to the 4 Sep 2026 close. \u25ba Lock a dated next touch this week or the close date will slip again.",
+      "points": -1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "SaskTel's own Business_Objectives__c explicitly lists mature AI-powered features as a top-5 objective, indicating real interest, but there is no evidence yet of hands-on evaluation or a scored AI requirement in the RFP.",
+     "expectations_fit": "SaskTel's stated objectives (mass adoption/fast ROI, mature AI features, a unified end-to-end S2P platform, accelerated sourcing/contracting ROI, faster savings identification) map closely to the Zycus product set in scope, but none of this",
+     "north_star_verdict": null,
+     "positioning_strength": "AI capability (Merlin, Agentic AI) is named as a stated SaskTel objective ('mature and comprehensive AI powered features') and as a lead Zycus differentiator versus SAP Ariba, but it has never been demonstrated or discussed on a recorded ca"
+    },
+    "deal": {
+     "stage": "Shortlisted",
+     "amount": 357898.0,
+     "opp_id": "006P700000GmoPW",
+     "account": "SaskTel",
+     "opp_name": "SaskTel S2P Opp- Aug'25",
+     "next_step": "7.8.26MF - resent Horizon invite to Adriel Picard, Dir Procurement. If no response, will reach out to Chad Olson, CTO and John Hill CIO, EVP re: attendance to determine whether they are also members of the steering committee making the S2P decision from SAP Ariba.6.4.26MF - Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants. No response to Horizon or Calgary stampede invites sent out. 5.4.26MF - inviting SaskTel to Horizon in Sept4.14.26MF - Jeffrey responded they&#39;re closing year end books and next steps will be decided late April/early May timeframe.4.13.26 KK - emailed jeffrey to see next step as no comms for next steps yet 3.11.26 KK - RFP submitted - next steps Short-listing Announcement Date: Week of April 6, 2026. Supplier Presentations/Interview Dates: Week of April 20, 2026 2.27.26 KK receive open question responses. continuing to work on response 2.18.26 KK - submitted open questions and set up internal progress calls 2.12.26 - Issue Date of RFP: Wednesday February 11, 2026. Deadline for Questions: Wednesday February 18, 2026. Deadline for SaskTel Response to Questions: Wednesday February 25, 2026. Submission Deadline: WEDNESDAY MARCH 11 2026 at 2:00PM CST (Saskatchewan). Short-listing Announcement Date: Week of April 6, 2026. Supplier Presentations/Interview Dates: Week of April 20, 2026",
+     "close_date": "2026-09-04",
+     "stage_tier": "mid",
+     "days_to_close": 57,
+     "forecast_category": "Best Case",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-08"
+    },
+    "trends": {},
+    "champion": "No one on the account is currently exhibiting champion behavior; the only responsive contact (Jeffrey Buzila) has stayed strictly at the level of process-status updates.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "gap",
+     "competition": "confirmed",
+     "identify_pain": "partial",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "confirmed",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2025-01-28",
+       "minutes": 2,
+       "subject": "Introductory call: Zycus X SaskTel",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2025-01-28",
+     "next_scheduled": null,
+     "total_all_time": 1,
+     "days_since_last": 527,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "SaskTel is running a formal four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with SAP Ariba as the incumbent being displaced; all four currently carry an undifferentiated medium threat level because no buyer preference has surfaced since the 11 Mar 2026 submission. SAP Ariba is the single strongest current threat by virtue of being the entrenched status quo ('do nothing / stay on Ariba' ",
+     "competitors": [
+      {
+       "name": "Coupa",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "GEP Worldwide",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "JAGGAER",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "SAP Ariba",
+       "status": "incumbent",
+       "threat": "medium"
+      },
+      {
+       "name": "Unnamed fifth vendor (qualification-era note)",
+       "status": "faded",
+       "threat": "dormant"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but th",
+     "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P tr",
+     "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites sug",
+     "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only",
+     "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intelligence, no buyer preference signal, no pricing or ROI discussion; risk of price-led de"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 527
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 27.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Paper process untouched \u2014 paper_process is flagged as a confirmed gap in MEDDPICC, no contracting motion of any kind. \u25ba Ask what SaskTel's legal/procurement paper process looks like once scoring completes.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Buyer completed their side of the RFP procedurally \u2014 SaskTel ran Q&A rounds (18\u201325 Feb 2026) and issued the shortlisting announcement (week of 6 Apr 2026), showing real procedural investment.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No exec sponsorship secured \u2014 decision process is confirmed but no C-level has been granted or offered directly to Zycus. \u25ba Use the CTO/CIO outreach already planned in the next step to convert this.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No references or proof-point requests \u2014 nothing in the record shows SaskTel asking for customer references or deeper technical proof beyond the written RFP.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Contacts stay reactive only \u2014 Adriel Picard and Jeffrey Buzila respond only to rep-initiated status checks (4.14.26, 6.4.26); no buyer-initiated contact in the whole timeline.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 17.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'pricing' in Next-Step/narrative",
+    "present": true,
+    "age_days": 0
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cio' in Next-Step/narrative",
+    "present": true,
+    "age_days": 0
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'inefficien' in Next-Step/narrative",
+    "present": true,
+    "age_days": 0
+   }
+  },
+  "scope_change": {
+   "to": "$357,898",
+   "from": "$225,000",
+   "detail": "Opportunity amount increased from $225,000 to $357,898 (+59%) on 12 Mar 2026, the day after RFP submission, consistent with an expanded product/module scope once final RFP requirements were finalized (Products: iContract, iManage, iSupplier, eProcurement, eInvoicing, iRequest, Merlin, iRisk, Agentic AI).",
+   "direction": "expanded"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "SaskTel's own Business_Objectives__c explicitly lists mature AI-powered features as a top-5 objective, indicating real interest, but there is no evidence yet of hands-on evaluation or a scored AI requirement in the RFP."
+  },
+  "business_case": {
+   "status": "partial",
+   "evidence": "Business_Objectives__c and Value_to_Customer__c describe the value case in CRM narrative form, but it has never been confirmed or quantified by SaskTel on a recorded call."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-11-24",
+     "change": "Stage advanced from Formal Evaluation to Shortlisted"
+    },
+    {
+     "date": "2026-03-12",
+     "change": "Amount increased from $225,000 to $357,898 (scope expansion the day after RFP submission)"
+    },
+    {
+     "date": "2026-04-13",
+     "change": "Account ownership transferred from the prior Zycus account rep to Mike Flowers"
+    },
+    {
+     "date": "2026-05-04",
+     "change": "Close date pushed from 30 Apr 2026 to 4 Sep 2026 (third push since Dec 2025)"
+    }
+   ],
+   "summary": "Since qualification, the deal advanced through Formal Evaluation to Shortlisted (24 Nov 2025), grew in scope/amount after RFP submission (12 Mar 2026), changed Zycus account ownership (13 Apr 2026), and had its close date pushed a third time to 4 Sep 2026 (4 May 2026). No forward stage movement or buyer-confirmed milestone has occurred since."
+  },
+  "forecast_read": {
+   "math": "close_date 2026-09-04 minus today 2026-07-09 = 57 days to close; Shortlisted_Submission_Date__c = 2025-11-25, so 226 days dwelling in Shortlisted vs an ~18-day expected stage cadence; CloseDate has been pushed three times (31 Dec 2025 -> 28 Feb 2026 -> 30 Apr 2026 -> 4 Sep 2026), roughly 247 days of cumulative slip from the original target.",
+   "reason": "No economic buyer, no champion, and no commercial/pricing conversation exist on record, and the mandatory supplier-presentation round is roughly 11 weeks overdue with no reschedule; a Best Case tag with 57 days to close is not supported by the evidence.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Adriel Picard",
+     "risk": "Named Decision Maker on the opportunity but has not replied to the two most recent Horizon invites (4 May, 4 Jun 2026) or the 8 Jul 2026 resend; no confirmed direct engagement since the 28 Jan 2025 introductory call.",
+     "role": "Decision Maker",
+     "email": "adriel.picard@sasktel.com",
+     "title": "Director of Procurement",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unresponsive to recent outreach",
+     "_matched_ai": true,
+     "last_contact_date": "2025-01-28"
+    },
+    {
+     "name": "Jeffrey Buzila",
+     "risk": "Sole responsive buyer-side contact; every reply is a status update (year-end close, resource constraints, scoring not yet tallied), with no evidence of internal advocacy or executive access.",
+     "role": "Coach",
+     "email": "jeff.buzila@sasktel.com",
+     "title": "NA",
+     "_source": "sfdc_contact_role",
+     "sentiment": "cooperative, process-only",
+     "_matched_ai": true,
+     "last_contact_date": "2026-04-13"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but that window passed 8-10 weeks ago with no buyer follow-up; 82 days of silence and no response to two Horizon invites (5 May, 4 Jun) signal stalled or deprioritized evaluation; 60 days to close with no path to presentation -> commercial -> contracting.",
+     "status": "active",
+     "category": "timeline",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "first_raised": "2026-04-14",
+     "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P transformation; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to the opp or on a call; no X10a_Sponsor__c or Who_will_approve_budget__c data.",
+     "status": "active",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "first_raised": "2025-01-29",
+     "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites suggest low priority or internal stall.",
+     "status": "active",
+     "category": "other",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "first_raised": "2025-01-28",
+     "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only; no quantified ROI or qualitative pain on record.",
+     "status": "active",
+     "category": "other",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "first_raised": "2025-01-28",
+     "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intelligence, no buyer preference signal, no pricing or ROI discussion; risk of price-led decision without differentiation or value anchoring.",
+     "status": "unresolved",
+     "category": "pricing",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "first_raised": "2026-07-07T05:29:04.670814+05:30",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither has appeared on this deal.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T09:42:14.619189+05:30",
+     "first_raised": "2026-04-15",
+     "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field.",
+     "status": "open",
+     "category": "pricing",
+     "first_seen": "2026-07-07T09:42:14.619189+05:30",
+     "first_raised": "2026-04-15",
+     "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "carried",
+     "detail": "The presentation/interview round planned for the week of 20 Apr 2026 is now ~80 days (11 weeks) overdue with no confirmed reschedule, threatening the 4 Sep 2026 close date.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T09:42:14.619189+05:30",
+     "first_raised": "2026-04-20",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard decision without differentiation.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T09:42:14.619189+05:30",
+     "first_raised": "2026-07-07",
+     "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled, and 59 days remain to a 4 Sep close with no path to commercial, EB approval, or contracting (would require 90-120 days minimum).",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-04-20",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is Director of Procurement (process owner), not commercial authority for $358k multi-year S2P investment; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to opp.",
+     "status": "unresolved",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-07-07",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "82 days of buyer silence (last activity 15 Apr 2026); two Horizon invites (5 May, 4 Jun) unanswered; no response to Jeffrey's stated late Apr/early May next-step window; deal is cooling and may be deprioritized or shelved.",
+     "status": "unresolved",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-04-15",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No quantified business case, pain owner, or ROI target; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; cannot anchor commercials or validate urgency without confirmed pain.",
+     "status": "unresolved",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2026-07-07",
+     "last_confirmed": "2026-07-07"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "No economic buyer or C-level SaskTel contact engaged despite two CFOs existing at the account level; none linked to this opportunity.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T02:01:31.557642+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "Presentation round planned for week of 20 Apr 2026 is ~11 weeks overdue with no confirmed reschedule; 58 days remain to the 4 Sep 2026 close.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T02:01:31.557642+05:30",
+     "first_raised": "2026-04-20",
+     "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+    },
+    {
+     "date": "2025-01-30",
+     "change": "carried",
+     "detail": "Early qualification note flagged internal resistance to leaving Ariba and uncertainty whether SaskTel adopts the full suite versus select modules.",
+     "status": "unconfirmed since raised",
+     "category": "change_management",
+     "first_seen": "2026-07-09T02:01:31.557642+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+    },
+    {
+     "date": "2025-01-30",
+     "change": "carried",
+     "detail": "Multi-step, complex evaluation process and possible customization/configuration cost concerns noted at qualification; never revisited commercially.",
+     "status": "unconfirmed since raised",
+     "category": "pricing",
+     "first_seen": "2026-07-09T02:01:31.557642+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No economic buyer or executive sponsor identified or engaged on a $357,898 multi-year deal; Executive_Sponsor_Identified__c = false.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T18:55:52.343984+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Single-threaded on two contacts (Adriel Picard, Jeffrey Buzila) with no confirmed budget authority; no broader buying-committee access yet.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-09T18:55:52.343984+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No commercial or pricing conversation has occurred in the 18 months since qualification.",
+     "status": "not started",
+     "category": "pricing",
+     "first_seen": "2026-07-09T18:55:52.343984+05:30",
+     "first_raised": "2025-01-30",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 22.0,
+   "win": 20.0,
+   "needed": true,
+   "source": "sweep",
+   "reasons": [
+    {
+     "act": false,
+     "type": "large_slowdown",
+     "as_of": "2026-07-02",
+     "owner": "Mike Flowers",
+     "detail": "SaskTel ($357,898, forecast Best Case, stage Shortlisted) has logged zero activity for 79 days. Mike Flowers' 2026-07-02 next-step note confirms Jeff Buzila says the team is still tallying RFP scores, and SaskTel has not responded to either the Horizon (Sept) or Calgary Stampede invites we sent. With no champion identified and no visibility into Zycus's rank in the four-vendor S2P RFP (Coupa, GEP, JAGGAER, SAP Ariba), a deal carried in Best Case risks a silent loss at down-selection and an inflated forecast.",
+     "metric": "79 days since last activity on a $357,898 Best-Case forecast",
+     "ceo_ask": "Ask Mike Flowers why a $358k Best-Case deal has had zero activity for 79 days, whether SaskTel has actually shortlisted us, and why it stays in Best Case with no champion and no scoring feedback.",
+     "summary": "$358k Best-Case SaskTel forecast stalled 79 days; buyer ignoring our invites",
+     "evidence": "Next_Step (updated 2026-07-02 by Mike Flowers): 'Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants. No response to Horizon or Calgary stampede invites sent out.' days_since_last_activity=79; forecast_category Best Case; amount 357898.",
+     "severity": "high"
+    }
+   ],
+   "summary": "$358k Best-Case SaskTel forecast stalled 79 days; buyer ignoring our invites",
+   "severity": "high",
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The supplier-presentation/interview round SaskTel scheduled for the week of 20 April 2026 never happened, and roughly eleven weeks later, as of 9 July 2026, no new date has been set.",
+    "tone": "crit"
+   },
+   {
+    "lens": "Competition",
+    "text": "SaskTel is evaluating four named vendors plus the SAP Ariba incumbent it wants to replace, and after 226 days in the Shortlisted stage there is still no signal on how Zycus is scoring against any of them.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "The deal owner is now trying to reach a CTO and a CIO/EVP on the account to learn whether either sits on the steering committee making this decision, since the only two engaged contacts carry no budget authority.",
+    "tone": "neu"
+   },
+   {
+    "lens": "Commercials",
+    "text": "No pricing or commercial discussion has taken place in the eighteen months since qualification, and the close date has already been pushed three times, from 31 December 2025 to 4 September 2026.",
+    "tone": "crit"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Task emails 2026-04-13 through 2026-04-15; Next_Step__c dated log",
+   "at_risk": false,
+   "summary": "No one on the account is currently exhibiting champion behavior; the only responsive contact (Jeffrey Buzila) has stayed strictly at the level of process-status updates.",
+   "champion": "none identified",
+   "strength": "none"
+  },
+  "expansion_context": {
+   "note": null,
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Call Jeffrey Buzila directly for a status update if the 8 Jul Horizon email draws no reply.",
+     "horizon": "next_7_days",
+     "trigger": "No reply to the 8 Jul 2026 Horizon re-invite",
+     "trigger_date": "2026-07-15",
+     "expected_effect": "Re-establish a live buyer touch and get a straight read on scoring status and a firm presentation reschedule date."
+    },
+    {
+     "rank": 2,
+     "owner": "Executive connect",
+     "act_by": "2026-07-22",
+     "action": "Reach the CTO and the EVP to confirm steering-committee membership and open a second thread.",
+     "horizon": "next_14_days",
+     "trigger": "No RSVP to the Horizon invite from Adriel Picard",
+     "trigger_date": "2026-07-15",
+     "expected_effect": "Break single-threading and surface a potential economic buyer or influencer beyond Adriel and Jeffrey."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Add a confirmed Contact Role and a second SaskTel contact to the opportunity record.",
+     "horizon": "next_14_days",
+     "trigger": "Only 2 buyer-side contact roles logged, below multi-thread bar",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Reduces single-thread risk and improves stakeholder-map coverage for future sweeps."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Push SaskTel for a firm rescheduled date for the supplier presentation/interview round.",
+     "horizon": "next_30_days",
+     "trigger": "Presentation round is ~11 weeks overdue with no new date",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Unblocks the next RFP gate needed before commercials, EB proposal, or contracting can begin."
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-08-15",
+     "action": "Reassess the 4 Sep 2026 close date against the still-unrescheduled presentation round and propose a realistic internal date.",
+     "horizon": "next_30_days",
+     "trigger": "57 days to close with no path through presentations, commercials, EB approval, or contracting",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Keeps forecast honest and flags the date risk to the deal owner's manager before quarter-end review."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Rep-initiated outreach on 4 Jun and 8 Jul 2026 with no buyer reply logged.",
+    "Buyer's last confirmed inbound reply: 13 Apr 2026 (87 days ago).",
+    "Presentation round overdue ~80 days with no new date."
+   ],
+   "cooling": false,
+   "summary": "The account owner remains actively engaged (most recent outreach 8 Jul 2026), consistent with the live engagement pulse, but SaskTel's last inbound reply was 87 days ago (13 Apr 2026) and the presentation round has not been rescheduled."
+  },
+  "north_star_verdict": {
+   "math": "Today 8 Jul 2026: 58 days to close (4 Sep 2026). Deal has been in Shortlisted stage since 24 Nov 2025 (~226 days / ~7.5 months dwell). Supplier presentations planned for the week of 20 Apr 2026 never occurred (~79 days / ~11 weeks overdue as of today). Last genuine two-way buyer reply was Jeffrey Buzila's email on 13 Apr 2026 (86 days ago); two Horizon invites (5 May, 4 Jun 2026) plus a third resent today (8 Jul 2026) are unanswered. No demo has ever been conducted (SF Gaps_identified_during_sales_demo__c: 'Demo yet to be conducted'). Remaining motion (presentation -> commercial -> EB sign-off -> contracting) realistically needs 90-120+ days, exceeding the 58 days left by 30-60+ days.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Presentation round planned for week of 20 Apr 2026 never occurred; ~11 weeks overdue as of 8 Jul 2026 (SF Next_Step_History__c).",
+    "Last confirmed two-way buyer reply: Jeffrey Buzila, 13 Apr 2026 (86 days ago); three subsequent Horizon invites unanswered (SF Next_Step_History__c / Task, 8 Jul 2026).",
+    "No economic buyer or C-level SaskTel contact engaged; Executive_Sponsor_Identified__c = false (SF field).",
+    "No demo conducted in 18 months since opp creation on 29 Jan 2025 (SF Gaps_identified_during_sales_demo__c).",
+    "Original Compelling_Event__c targets (vendor selection by Mar 2025, implementation by Jan-Feb 2026) have both passed without occurring, showing severe multi-year slippage on this deal."
+   ],
+   "headline": "Presentation gate ~11 weeks overdue and buyer silent for 86 days; RFP scoring stalled with 58 days left to a 4 Sep 2026 close and no economic buyer or demo after 18 months.",
+   "trajectory": "stronger",
+   "prior_verdict": "Off Track",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows Charlene Gavel, Chief Financial Officer, or Mike Anderson, CFO, or a VP Operations) \u2014 a $358k S2P transformation will require C-level sign-off and no CFO or exec is on the opportunity contact roles or has appeared on a call.",
+    "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge vs Coupa/GEP/JAGGAER/Ariba's traditional SaaS; prove AI-led sourcing and negotiation ROI with a use-case demo and quantify the business case to stand out in the scorecard tallying.",
+    "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differentiation has been demonstrated yet (SF Next_Step__c 6.4.26MF).",
+    "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, since neither has advocated or driven the agenda to date.",
+    "No quantified business case, pain, or metrics; cannot anchor ROI or commercials without knowing what problem SaskTel is solving",
+    "Four-vendor RFP with no competitive intelligence or buyer preference signal; risk of price-led decision without differentiation",
+    "59 days to 4 Sep close; even if presentation occurred tomorrow, commercial, EB approval, legal, and contracting would require 90-120 days; close date is unrealistic",
+    "Best Case forecast is indefensible without economic buyer, champion, or recent buyer engagement",
+    "Get a live demo scheduled before the presentation round resumes: SF Gaps_identified_during_sales_demo__c literally reads 'Demo yet to be conducted' after 18 months, so the differentiated AI/Merlin story has never been shown live to SaskTel.",
+    "Request the RFP scorecard or a debrief once shortlisting resolves, so the AI/unified-suite wedge can be validated against SAP Ariba, Coupa, GEP Worldwide and JAGGAER with real buyer feedback instead of an 18-month-old qualification assumption.",
+    "No commercial or pricing conversation has occurred in 18 months of pursuit; once presentations resume, move quickly to frame commercials before a scorecard-only, price-led decision is made among the vendors in this RFP."
+   ],
+   "summary": "The highest-leverage move is broadening access beyond the two current process-level contacts; the process itself is stalled at the presentation-round gate."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No call or email captures SaskTel voicing a preference for Zycus over Coupa, GEP Worldwide, JAGGAER, or SAP Ariba; the RFP scorecard result has not been shared (Next_Step__c dated log, through 2026-07-08)."
+  },
+  "competitive_position": {
+   "summary": "SaskTel is running a formal four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with SAP Ariba as the incumbent being displaced; all four currently carry an undifferentiated medium threat level because no buyer preference has surfaced since the 11 Mar 2026 submission. SAP Ariba is the single strongest current threat by virtue of being the entrenched status quo ('do nothing / stay on Ariba' risk), not because of any stated buyer preference for it. A fifth name (mentioned only in an early qualification-era risk note) never appeared in the formal RFP field and is treated as faded/dormant.",
+   "competitors": [
+    {
+     "date": "2025-01-30",
+     "name": "Coupa",
+     "quote": "",
+     "change": "carried",
+     "source": "Opportunity.Competitors__c",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2025-01-30",
+     "name": "GEP Worldwide",
+     "quote": "",
+     "change": "carried",
+     "source": "Opportunity.Competitors__c",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2025-01-30",
+     "name": "JAGGAER",
+     "quote": "",
+     "change": "carried",
+     "source": "Opportunity.Competitors__c",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2026-03-11",
+     "name": "SAP Ariba",
+     "quote": "Procurement Tool: Ariba (under evaluation for replacement).",
+     "change": "carried",
+     "source": "Opportunity.How_are_you_addressing_your_problem_toda__c",
+     "status": "incumbent",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T05:29:04.670814+05:30",
+     "how_we_win": "SaskTel's own qualification notes cite Ariba dissatisfaction (cost, manual invoicing, poor supplier UX); Zycus_Differentiation_Why_Zycus__c positions AI-driven automation and a friendlier supplier portal as the contrast, but this has not been validated in any live call.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    },
+    {
+     "date": "2025-01-30",
+     "name": "Unnamed fifth vendor (qualification-era note)",
+     "quote": "Competitor Influence: Other players like Coupa, Jaggaer, and may also be considered.",
+     "change": "carried",
+     "source": "Opportunity.Why_not_Zycus__c",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-09T02:01:31.557642+05:30",
+     "how_we_win": "Not confirmed present in the current Competitors__c field for the live 2026 RFP; carried forward at low confidence only.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Structurally an RFP finalist (Shortlisted since 25 Nov 2025) that delivered its RFP response on time, but 226 days into the Shortlisted stage against an ~18-day playbook cadence, with no economic buyer engaged, no champion, no commercial conversation, and the mandatory supplier-presentation round now roughly 11 weeks overdue with no new date. Momentum is rep-driven, not buyer-driven: the account owner is actively chasing (last outreach 8 Jul 2026), but SaskTel's last inbound reply was 87 days ago (13 Apr 2026).",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date has already slipped three times (originally 31 Dec 2025 -> 28 Feb 2026 -> 30 Apr 2026 -> 4 Sep 2026); with 57 days left and the presentation round still not rescheduled, commercials, an EB proposal, and contracting cannot realistically complete by 4 Sep 2026.",
+      "tone": "crit"
+     },
+     {
+      "text": "Forecast is Best Case with no supporting evidence \u2014 no economic buyer, no champion, no pricing conversation, and an 87-day buyer silence streak underlie a category that implies high confidence of closing this quarter.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Economic buyer gate unmet \u2014 Executive_Sponsor_Identified__c is false and no C-level SaskTel contact has ever engaged on this deal; the only two contacts (Adriel Picard, Jeffrey Buzila) carry no confirmed budget authority for the $357,898 deal.",
+      "tone": "warn"
+     },
+     {
+      "text": "Anchor badly eroded by dwell \u2014 the opportunity has sat in Shortlisted for 226 days (since 25 Nov 2025) against an ~18-day expected cadence for this stage, with the mandatory presentation round (week of 20 Apr 2026) never held.",
+      "tone": "warn"
+     },
+     {
+      "text": "RFP execution has been clean \u2014 Zycus met every stated deadline (open questions 18 Feb 2026, RFP response 11 Mar 2026 2:00pm CST) and was confirmed shortlisted the week of 6 Apr 2026 among four named finalists.",
+      "tone": "good"
+     },
+     {
+      "text": "No champion or competitive edge evidenced \u2014 Jeffrey Buzila's replies are process-status only, Adriel Picard (the named Decision Maker) has not answered two consecutive Horizon invites (4 May, 4 Jun 2026), and there is no signal on how Zycus scores against Coupa, GEP Worldwide, JAGGAER, or the incumbent SAP Ariba.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Buyer-side silence since 13 Apr 2026 \u2014 the last confirmed inbound reply from SaskTel is now 87 days old, despite the deal owner sending renewed outreach on 4 Jun and 8 Jul 2026.",
+      "tone": "warn"
+     },
+     {
+      "text": "Planned RFP milestone missed \u2014 the supplier-presentation/interview round scheduled for the week of 20 Apr 2026 (~80 days ago) never occurred and has no confirmed reschedule, so process-mode protection for a 'quiet-but-on-track' RFP no longer applies.",
+      "tone": "warn"
+     },
+     {
+      "text": "The account owner is actively working the deal \u2014 a follow-up email to Adriel Picard went out 8 Jul 2026 (1 day before this sweep), with a concrete next escalation planned (reaching the CTO and CIO/EVP to map the steering committee).",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "SaskTel met its own RFP deadlines through submission (11 Mar 2026) and confirmed the shortlist the week of 6 Apr 2026, but has not delivered the presentation round it committed to for the week of 20 Apr 2026, nor responded to two Horizon invitations since.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-03-11",
+     "quote": "3.11.26 KK - RFP submitted - next steps",
+     "said_by": "sasktel rfp process (coordinated by jeffrey buzila)",
+     "addressed": true,
+     "requirement": "Submit a complete RFP response by the 11 Mar 2026, 2:00pm CST deadline"
+    },
+    {
+     "date": "2026-02-18",
+     "quote": "2.18.26 KK - submitted open questions and set up internal progress calls",
+     "said_by": "sasktel rfp process (coordinated by jeffrey buzila)",
+     "addressed": true,
+     "requirement": "Submit RFP clarifying questions by the 18 Feb 2026 deadline"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": []
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-04-20",
+      "who": "Buyer",
+      "date": "2026-02-12",
+      "source": "Next Step 2.12.26 RFP timeline; Next Step 6.4.26MF (no reschedule)",
+      "status": "overdue",
+      "group_key": "planned_presentation_weeks",
+      "commitment": "Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue)",
+      "deliverable": "Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue)",
+      "grounding_quote": null,
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-05-05",
+      "source": "Next_Step__c entry dated 2026-07-08 / Task 2026-07-08",
+      "status": "overdue",
+      "group_key": "attendance_commitment_event",
+      "commitment": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment",
+      "deliverable": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment",
+      "grounding_quote": null,
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-06-04",
+      "source": "Next Step 6.4.26MF: Jeffrey said team is still reviewing responses to tally up scores",
+      "status": "open",
+      "group_key": "formally_notify_participant",
+      "commitment": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling",
+      "deliverable": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling",
+      "grounding_quote": null,
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-04-20",
+      "who": "Buyer",
+      "date": "2026-06-04",
+      "source": "SF Next_Step_History__c, 4 Jun 2026",
+      "status": "overdue",
+      "group_key": "presentation_shortlisting_timeline",
+      "commitment": "Confirm the shortlisting/presentation scheduling decision and provide an updated timeline",
+      "deliverable": "Confirm the shortlisting/presentation scheduling decision and provide an updated timeline",
+      "grounding_quote": "The team is still reviewing responses to tally up scores and notify shortlisted participants",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-07-08",
+      "source": "Next_Step__c entry dated 2026-07-08",
+      "status": "open",
+      "group_key": "cio_committee_cto",
+      "commitment": "Confirm whether the CTO and EVP sit on the S2P steering committee and respond to the Horizon event invite",
+      "deliverable": "Confirm whether the CTO and EVP sit on the S2P steering committee and respond to the Horizon event invite",
+      "grounding_quote": "Deal owner will reach out to the CTO and the CIO/EVP directly if there is no response, to determine steering-committee membership",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-04-24",
+      "who": "Buyer",
+      "date": "2026-04-20",
+      "source": "Next_Step__c RFP timeline",
+      "status": "overdue",
+      "group_key": "hold_interview_originally",
+      "commitment": "Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)",
+      "deliverable": "Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)",
+      "grounding_quote": "Supplier Presentations/Interview Dates: Week of April 20, 2026",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Unconfirmed / not yet demonstrated",
+   "summary": "AI capability (Merlin, Agentic AI) is named as a stated SaskTel objective ('mature and comprehensive AI powered features') and as a lead Zycus differentiator versus SAP Ariba, but it has never been demonstrated or discussed on a recorded call; the only Avoma-captured session was purely social.",
+   "under_positioned": true
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2025-01-30",
+     "quote": "Mature and comprehensive Artificial Intelligence powered features",
+     "source": "Opportunity.Business_Objectives__c",
+     "position": "partially aligned",
+     "criterion": "Mature, comprehensive AI-powered features"
+    },
+    {
+     "date": "2025-01-30",
+     "quote": "Organically grown system with comprehensive, end-to-end S2P solutions on a unified platform.",
+     "source": "Opportunity.Business_Objectives__c",
+     "position": "aligned",
+     "criterion": "Unified, end-to-end S2P platform vs. a fragmented current stack"
+    },
+    {
+     "date": "2025-01-30",
+     "quote": "Poor supplier experience: Vendors dislike Ariba's portal, making engagement difficult.",
+     "source": "Opportunity.Customer_Business_Problem__c",
+     "position": "exposed",
+     "criterion": "Better supplier experience than the incumbent portal"
+    }
+   ],
+   "summary": "SaskTel's stated objectives (mass adoption/fast ROI, mature AI features, a unified end-to-end S2P platform, accelerated sourcing/contracting ROI, faster savings identification) map closely to the Zycus product set in scope, but none of this has been validated against SaskTel's actual RFP scoring criteria, which have not been shared."
+  }
+ },
+ "hard": {
+  "stage": "Shortlisted",
+  "amount": 357898.0,
+  "opp_id": "006P700000GmoPWIAZ",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000GmoPWIAZ/view",
+  "opp_name": "SaskTel S2P Opp- Aug'25",
+  "owner_id": "005P70000081j9lIAA",
+  "products": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI",
+  "ais_score": null,
+  "next_step": "7.8.26MF - resent Horizon invite to Adriel Picard, Dir Procurement. If no response, will reach out to Chad Olson, CTO and John Hill CIO, EVP re: attendance to determine whether they are also members of the steering committee making the S2P decision from SAP Ariba.6.4.26MF - Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants. No response to Horizon or Calgary stampede invites sent out. 5.4.26MF - inviting SaskTel to Horizon in Sept4.14.26MF - Jeffrey responded they&#39;re closing year end books and next steps will be decided late April/early May timeframe.4.13.26 KK - emailed jeffrey to see next step as no comms for next steps yet 3.11.26 KK - RFP submitted - next steps Short-listing Announcement Date: Week of April 6, 2026. Supplier Presentations/Interview Dates: Week of April 20, 2026 2.27.26 KK receive open question responses. continuing to work on response 2.18.26 KK - submitted open questions and set up internal progress calls 2.12.26 - Issue Date of RFP: Wednesday February 11, 2026. Deadline for Questions: Wednesday February 18, 2026. <span style=\"background-color: inherit; color: inherit; font-size: inherit;\">Deadline for SaskTel Response to Questions: Wednesday February 25, 2026. Submission Deadline: WEDNESDAY MARCH 11 2026 at 2:00PM CST (Saskatchewan). Short-listing Announcement Date: Week of April 6, 2026. Supplier Presentations/Interview Dates: Week of April 20, 2026",
+  "ais_status": null,
+  "close_date": "2026-09-04",
+  "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+  "owner_name": "Mike Flowers",
+  "owner_title": null,
+  "account_name": "SaskTel",
+  "created_date": "2025-01-29",
+  "manager_name": "Alexa Bradley",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 57,
+  "dm_identified": true,
+  "eb_identified": false,
+  "qualified_date": "2025-01-30",
+  "billing_country": "Canada",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Best Case",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-08",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": false,
+  "primary_competitor": "SAP Ariba",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-04-13",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Shortlisted",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 1 day(s) ago (2026-07-08). Buyer EMAIL RECEIVED 87 day(s) ago (2026-04-13) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement.",
+  "calls_read": 1,
+  "close_date": "2026-09-04",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 57,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Best Case",
+  "days_since_inbound": 87,
+  "last_activity_date": "2026-07-08",
+  "days_since_activity": 1,
+  "next_scheduled_date": null,
+  "days_since_qualified": 525,
+  "last_inbound_email_date": "2026-04-13"
+ },
+ "deltas": [
+  {
+   "to": "Submit RFP clarifying questions by the 18 Feb 2026 deadline",
+   "key": "requirement:submit-rfp-clarifying-questions-by-the-18-feb-2026-deadline",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "sasktel rfp process (coordinated by jeffrey buzila)",
+   "subject": "Submit RFP clarifying questions by the 18 Feb 2026 deadline"
+  },
+  {
+   "to": "Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026) - overdue",
+   "key": "commitment:buyer-reschedule-and-hold-the-supplier-presentation-intervie",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)"
+  },
+  {
+   "to": "Tally the RFP scores and formally notify shortlisted participants of next steps - open",
+   "key": "commitment:buyer-tally-the-rfp-scores-and-formally-notify-shortlisted-p",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Tally the RFP scores and formally notify shortlisted participants of next steps"
+  },
+  {
+   "to": "Respond to the renewed Horizon event invitation with an attendance decision - open",
+   "key": "commitment:buyer-respond-to-the-renewed-horizon-event-invitation-with-a",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Respond to the renewed Horizon event invitation with an attendance decision"
+  },
+  {
+   "to": "Confirm whether the CTO and CIO/EVP are members of the S2P steering committee - open",
+   "key": "commitment:buyer-confirm-whether-the-cto-and-cio-evp-are-members-of-the",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm whether the CTO and CIO/EVP are members of the S2P steering committee"
+  },
+  {
+   "to": "adriel picard - Decision Maker",
+   "key": "stakeholder:adriel-picard",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "from": "Adriel Picard - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Adriel Picard"
+  },
+  {
+   "to": "jeffrey buzila - Coach",
+   "key": "stakeholder:jeffrey-buzila",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "from": "Jeffrey Buzila - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeffrey Buzila"
+  },
+  {
+   "to": "No economic buyer or executive sponsor identified or engaged on a $357,898 multi-year deal; Executive_Sponsor_Identified__c = false. - open",
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-or-engaged",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or executive sponsor identified or engaged on a $357,898 multi-year deal; Executive_Sponsor_Identified__c = false."
+  },
+  {
+   "key": "risk:the-presentation-interview-round-planned-for-the-week-of-20-",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "reactivated",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The presentation/interview round planned for the week of 20 Apr 2026 has not occurred as of 7 Jul 2026 (~11 weeks overdue), with no confirmed new date."
+  },
+  {
+   "to": "Single-threaded on two contacts (Adriel Picard, Jeffrey Buzila) with no confirmed budget authority; no broader buying-committee access yet. - open",
+   "key": "risk:single-threaded-on-two-contacts-adriel-picard-jeffrey-buzila",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded on two contacts (Adriel Picard, Jeffrey Buzila) with no confirmed budget authority; no broader buying-committee access yet."
+  },
+  {
+   "to": "No commercial or pricing conversation has occurred in the 18 months since qualification. - not started",
+   "key": "risk:no-commercial-or-pricing-conversation-has-occurred-in-the-18",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No commercial or pricing conversation has occurred in the 18 months since qualification."
+  },
+  {
+   "to": "Single-threaded on Jeffrey Buzila and Adriel Picard with no economic buyer or executive sponsor engaged for a $357,898, multi-year decision; the planned CTO/CIO",
+   "key": "hygiene:single-threaded-on-jeffrey-buzila-and-adriel-picard-with-no-",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded on Jeffrey Buzila and Adriel Picard with no economic buyer or executive sponsor engaged for a $357,898, multi-year decision; the planned CTO/CIO-EVP outreach is the highest-priority lever right now."
+  },
+  {
+   "to": "The scheduled supplier-presentation/demo round (week of 20 Apr 2026) never happened and is now ~11 weeks overdue; securing a firm reschedule is the next-stage g",
+   "key": "hygiene:the-scheduled-supplier-presentation-demo-round-week-of-20-ap",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The scheduled supplier-presentation/demo round (week of 20 Apr 2026) never happened and is now ~11 weeks overdue; securing a firm reschedule is the next-stage gate blocking any further progress."
+  },
+  {
+   "to": "No commercial or pricing conversation has occurred in 18 months of pursuit; once presentations resume, move quickly to frame commercials before a scorecard-only",
+   "key": "hygiene:no-commercial-or-pricing-conversation-has-occurred-in-18-mon",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No commercial or pricing conversation has occurred in 18 months of pursuit; once presentations resume, move quickly to frame commercials before a scorecard-only, price-led decision is made among the vendors in this RFP."
+  },
+  {
+   "to": "none identified - none",
+   "key": "champion:champion",
+   "date": "2026-07-09T18:55:52.343984+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:82-days-since-last-buyer-activity-15-apr-2026-two-horizon-in",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "82 days since last buyer activity (15 Apr 2026); two Horizon invites unanswered; deal is cooling and at risk of being deprioritized or abandoned"
+  },
+  {
+   "to": "Submit a complete RFP response by the 11 Mar 2026, 2:00pm CST deadline",
+   "key": "requirement:submit-a-complete-rfp-response-by-the-11-mar-2026-2-00pm-cst",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "SaskTel RFP process (coordinated by Jeffrey Buzila)",
+   "subject": "Submit a complete RFP response by the 11 Mar 2026, 2:00pm CST deadline"
+  },
+  {
+   "to": "Confirm the shortlisting/presentation scheduling decision and provide an updated timeline - overdue",
+   "key": "commitment:buyer-confirm-the-shortlisting-presentation-scheduling-decis",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm the shortlisting/presentation scheduling decision and provide an updated timeline"
+  },
+  {
+   "to": "Confirm whether the CTO and CIO/EVP sit on the S2P steering committee and respond to the Horizon event invite - open",
+   "key": "commitment:buyer-confirm-whether-the-cto-and-cio-evp-sit-on-the-s2p-ste",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm whether the CTO and CIO/EVP sit on the S2P steering committee and respond to the Horizon event invite"
+  },
+  {
+   "to": "Adriel Picard - Decision Maker",
+   "key": "stakeholder:adriel-picard",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "Adriel Picard - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Adriel Picard"
+  },
+  {
+   "to": "Jeffrey Buzila - Coach",
+   "key": "stakeholder:jeffrey-buzila",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "Jeffrey Buzila - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeffrey Buzila"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "SAP Ariba",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "SAP Ariba (RFP competitor) - active",
+   "key": "competitor:sap-ariba-rfp-competitor",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba (RFP competitor)"
+  },
+  {
+   "to": "Coupa - active",
+   "key": "competitor:coupa",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "Coupa",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "GEP Worldwide",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "JAGGAER - active",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "from": "JAGGAER",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "JAGGAER"
+  },
+  {
+   "to": "Unnamed fifth vendor (qualification-era note) - faded",
+   "key": "competitor:unnamed-fifth-vendor-qualification-era-note",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Unnamed fifth vendor (qualification-era note)"
+  },
+  {
+   "to": "No economic buyer or C-level SaskTel contact engaged despite two CFOs existing at the account level; none linked to this opportunity. - open",
+   "key": "risk:no-economic-buyer-or-c-level-sasktel-contact-engaged-despite",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or C-level SaskTel contact engaged despite two CFOs existing at the account level; none linked to this opportunity."
+  },
+  {
+   "to": "Presentation round planned for week of 20 Apr 2026 is ~11 weeks overdue with no confirmed reschedule; 58 days remain to the 4 Sep 2026 close. - open",
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-is-11-wee",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Presentation round planned for week of 20 Apr 2026 is ~11 weeks overdue with no confirmed reschedule; 58 days remain to the 4 Sep 2026 close."
+  },
+  {
+   "to": "Early qualification note flagged internal resistance to leaving Ariba and uncertainty whether SaskTel adopts the full suite versus select modules. - unconfirmed",
+   "key": "risk:early-qualification-note-flagged-internal-resistance-to-leav",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Early qualification note flagged internal resistance to leaving Ariba and uncertainty whether SaskTel adopts the full suite versus select modules."
+  },
+  {
+   "to": "Multi-step, complex evaluation process and possible customization/configuration cost concerns noted at qualification; never revisited commercially. - unconfirme",
+   "key": "risk:multi-step-complex-evaluation-process-and-possible-customiza",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Multi-step, complex evaluation process and possible customization/configuration cost concerns noted at qualification; never revisited commercially."
+  },
+  {
+   "to": "Re-engage above Adriel Picard and Jeffrey Buzila: no economic buyer or C-level sponsor has ever touched this $357,898, 18-month S2P deal; use the CTO/CIO-EVP ou",
+   "key": "hygiene:re-engage-above-adriel-picard-and-jeffrey-buzila-no-economic",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage above Adriel Picard and Jeffrey Buzila: no economic buyer or C-level sponsor has ever touched this $357,898, 18-month S2P deal; use the CTO/CIO-EVP outreach already planned for 8 Jul 2026 to open a real executive thread."
+  },
+  {
+   "to": "Get a live demo scheduled before the presentation round resumes: SF Gaps_identified_during_sales_demo__c literally reads 'Demo yet to be conducted' after 18 mon",
+   "key": "hygiene:get-a-live-demo-scheduled-before-the-presentation-round-resu",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Get a live demo scheduled before the presentation round resumes: SF Gaps_identified_during_sales_demo__c literally reads 'Demo yet to be conducted' after 18 months, so the differentiated AI/Merlin story has never been shown live to SaskTel."
+  },
+  {
+   "to": "Request the RFP scorecard or a debrief once shortlisting resolves, so the AI/unified-suite wedge can be validated against SAP Ariba, Coupa, GEP Worldwide and JA",
+   "key": "hygiene:request-the-rfp-scorecard-or-a-debrief-once-shortlisting-res",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Request the RFP scorecard or a debrief once shortlisting resolves, so the AI/unified-suite wedge can be validated against SAP Ariba, Coupa, GEP Worldwide and JAGGAER with real buyer feedback instead of an 18-month-old qualification assumption."
+  },
+  {
+   "to": "None identified - none",
+   "key": "champion:champion",
+   "date": "2026-07-09T02:01:31.557642+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Adriel Picard - Decision Maker",
+   "key": "stakeholder:adriel-picard",
+   "date": "2026-07-07",
+   "from": "Adriel Picard - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Adriel Picard"
+  },
+  {
+   "to": "Jeffrey Buzila - Influencer",
+   "key": "stakeholder:jeffrey-buzila",
+   "date": "2026-07-07",
+   "from": "Jeffrey Buzila - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeffrey Buzila"
+  },
+  {
+   "to": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled, and 59 days remain to a 4 Sep c",
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-is-now-11",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled, and 59 days remain to a 4 Sep close with no path to commercial, EB approval, or contracting (would require 90-120 days minimum)."
+  },
+  {
+   "to": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is Director of Procurement (process owner), not commercial authority for $358k multi-yea",
+   "key": "risk:no-economic-buyer-cfo-or-c-level-identified-or-engaged-adrie",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is Director of Procurement (process owner), not commercial authority for $358k multi-year S2P investment; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to opp."
+  },
+  {
+   "to": "82 days of buyer silence (last activity 15 Apr 2026); two Horizon invites (5 May, 4 Jun) unanswered; no response to Jeffrey's stated late Apr/early May next-ste",
+   "key": "risk:82-days-of-buyer-silence-last-activity-15-apr-2026-two-horiz",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "82 days of buyer silence (last activity 15 Apr 2026); two Horizon invites (5 May, 4 Jun) unanswered; no response to Jeffrey's stated late Apr/early May next-step window; deal is cooling and may be deprioritized or shelved."
+  },
+  {
+   "to": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intelligence, no buyer preference signal, no pricing or ROI discussion; risk of price-led de",
+   "key": "risk:four-vendor-rfp-with-coupa-gep-jaggaer-sap-ariba-no-competit",
+   "date": "2026-07-07",
+   "from": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, n",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, no proposal, no ROI workshop); risk of price-led decision without differentiation."
+  },
+  {
+   "to": "No quantified business case, pain owner, or ROI target; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; cannot anchor comm",
+   "key": "risk:no-quantified-business-case-pain-owner-or-roi-target-custome",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified business case, pain owner, or ROI target; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; cannot anchor commercials or validate urgency without confirmed pain."
+  },
+  {
+   "to": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment - no due date",
+   "key": "commitment:buyer-respond-to-horizon-event-invites-sent-5-may-4-jun-with",
+   "date": "2026-07-07",
+   "from": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment"
+  },
+  {
+   "to": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling - open",
+   "key": "commitment:buyer-tally-the-rfp-scores-and-notify-zycus-of-shortlisted-p",
+   "date": "2026-07-07",
+   "from": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:open_deliverables",
+   "subject": "Buyer:Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling"
+  },
+  {
+   "to": "82 days since last buyer activity (15 Apr 2026); two Horizon invites unanswered; deal is cooling and at risk of being deprioritized or abandoned",
+   "key": "hygiene:82-days-since-last-buyer-activity-15-apr-2026-two-horizon-in",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "82 days since last buyer activity (15 Apr 2026); two Horizon invites unanswered; deal is cooling and at risk of being deprioritized or abandoned"
+  },
+  {
+   "to": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is procurement (process owner), not commercial authority for $358k investment",
+   "key": "hygiene:no-economic-buyer-cfo-or-c-level-identified-or-engaged-adrie",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is procurement (process owner), not commercial authority for $358k investment"
+  },
+  {
+   "to": "No champion; Adriel and Jeffrey are passive, transactional contacts with no advocacy, urgency, or executive access",
+   "key": "hygiene:no-champion-adriel-and-jeffrey-are-passive-transactional-con",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion; Adriel and Jeffrey are passive, transactional contacts with no advocacy, urgency, or executive access"
+  },
+  {
+   "to": "No quantified business case, pain, or metrics; cannot anchor ROI or commercials without knowing what problem SaskTel is solving",
+   "key": "hygiene:no-quantified-business-case-pain-or-metrics-cannot-anchor-ro",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified business case, pain, or metrics; cannot anchor ROI or commercials without knowing what problem SaskTel is solving"
+  },
+  {
+   "to": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled",
+   "key": "hygiene:presentation-round-planned-for-week-of-20-apr-2026-is-now-11",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled"
+  },
+  {
+   "to": "Four-vendor RFP with no competitive intelligence or buyer preference signal; risk of price-led decision without differentiation",
+   "key": "hygiene:four-vendor-rfp-with-no-competitive-intelligence-or-buyer-pr",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Four-vendor RFP with no competitive intelligence or buyer preference signal; risk of price-led decision without differentiation"
+  },
+  {
+   "to": "59 days to 4 Sep close; even if presentation occurred tomorrow, commercial, EB approval, legal, and contracting would require 90-120 days; close date is unreali",
+   "key": "hygiene:59-days-to-4-sep-close-even-if-presentation-occurred-tomorro",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "59 days to 4 Sep close; even if presentation occurred tomorrow, commercial, EB approval, legal, and contracting would require 90-120 days; close date is unrealistic"
+  },
+  {
+   "to": "Best Case forecast is indefensible without economic buyer, champion, or recent buyer engagement",
+   "key": "hygiene:best-case-forecast-is-indefensible-without-economic-buyer-ch",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Best Case forecast is indefensible without economic buyer, champion, or recent buyer engagement"
+  },
+  {
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-11-weeks-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but that window passed 8-10 weeks ago with no buyer follow-up; 82 days of silence and no response to two Horizon invites (5 May, 4 Jun) signal stalled or deprioritized evaluation; 60 days to close with no path to presentation -> commercial -> contracting."
+  },
+  {
+   "key": "risk:no-economic-buyer-cfo-or-c-level-mapped-or-engaged-adriel-pi",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P transformation; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to the opp or on a call; no X10a_Sponsor__c or Who_will_approve_budget__c data."
+  },
+  {
+   "key": "risk:no-champion-adriel-and-jeffrey-are-passive-no-advocacy-no-ex",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites suggest low priority or internal stall."
+  },
+  {
+   "key": "risk:no-business-case-pain-or-metrics-articulated-customer-busine",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only; no quantified ROI or qualitative pain on record."
+  },
+  {
+   "key": "hygiene:re-engage-jeffrey-buzila-and-adriel-picard-to-unblock-the-st",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Re-engage Jeffrey Buzila and Adriel Picard to unblock the stalled presentation round (planned week of 20 Apr, now 11 weeks overdue) and establish a firm evaluation timeline \u2014 the deal has been silent for 82 days since the 14 Apr 'late Apr/early May next steps' promise, and that window closed 8-10 weeks ago."
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-adriel-picard-director-of-procurement-an",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows Charlene Gavel, Chief Financial Officer, or Mike Anderson, CFO, or a VP Operations) \u2014 a $358k S2P transformation will require C-level sign-off and no CFO or exec is on the opportunity contact roles or has appeared on a call."
+  },
+  {
+   "key": "hygiene:activate-merlin-and-agentic-ai-differentiation-during-the-pr",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge vs Coupa/GEP/JAGGAER/Ariba's traditional SaaS; prove AI-led sourcing and negotiation ROI with a use-case demo and quantify the business case to stand out in the scorecard tallying."
+  },
+  {
+   "key": "risk:no-economic-buyer-or-c-level-sasktel-contact-is-engaged-or-l",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither has appeared on this deal."
+  },
+  {
+   "key": "risk:no-pricing-commercial-or-roi-conversation-has-occurred-with-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field."
+  },
+  {
+   "key": "risk:the-presentation-interview-round-planned-for-the-week-of-20-",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "The presentation/interview round planned for the week of 20 Apr 2026 has not occurred as of 7 Jul 2026 (~11 weeks overdue), with no confirmed new date."
+  },
+  {
+   "key": "risk:four-vendor-rfp-coupa-gep-worldwide-jaggaer-sap-ariba-with-n",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard decision without differentiation."
+  },
+  {
+   "key": "hygiene:in-a-4-vendor-rfp-already-scoring-responses-get-merlin-agent",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differentiation has been demonstrated yet (SF Next_Step__c 6.4.26MF)."
+  },
+  {
+   "key": "hygiene:map-and-engage-a-real-economic-buyer-e-g-one-of-the-two-sask",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Map and engage a real economic buyer (e.g. one of the two SaskTel CFOs on the account) before the presentation round, since Adriel Picard's procurement role likely lacks unilateral budget authority for a $357,898 deal."
+  },
+  {
+   "key": "hygiene:convert-jeffrey-buzila-and-adriel-picard-from-passive-rfp-re",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, since neither has advocated or driven the agenda to date."
+  },
+  {
+   "to": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling - overdue",
+   "key": "commitment:buyer-tally-the-rfp-scores-and-notify-zycus-of-shortlisted-p",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling"
+  },
+  {
+   "to": "Respond to the Horizon event invitations with an attendance or next-step decision - overdue",
+   "key": "commitment:buyer-respond-to-the-horizon-event-invitations-with-an-atten",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Respond to the Horizon event invitations with an attendance or next-step decision"
+  },
+  {
+   "to": "Adriel Picard - Decision Maker",
+   "key": "stakeholder:adriel-picard",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "from": "Adriel Picard - Decision Maker",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Adriel Picard"
+  },
+  {
+   "to": "Jeffrey Buzila - Unknown",
+   "key": "stakeholder:jeffrey-buzila",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "from": "Jeffrey Buzila - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeffrey Buzila"
+  },
+  {
+   "to": "Coupa - active",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "from": "Coupa - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "from": "GEP Worldwide - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither",
+   "key": "risk:no-economic-buyer-or-c-level-sasktel-contact-is-engaged-or-l",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither has appeared on this deal."
+  },
+  {
+   "to": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field. - open",
+   "key": "risk:no-pricing-commercial-or-roi-conversation-has-occurred-with-",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field."
+  },
+  {
+   "to": "The presentation/interview round planned for the week of 20 Apr 2026 has not occurred as of 7 Jul 2026 (~11 weeks overdue), with no confirmed new date. - open",
+   "key": "risk:the-presentation-interview-round-planned-for-the-week-of-20-",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The presentation/interview round planned for the week of 20 Apr 2026 has not occurred as of 7 Jul 2026 (~11 weeks overdue), with no confirmed new date."
+  },
+  {
+   "to": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard de",
+   "key": "risk:four-vendor-rfp-coupa-gep-worldwide-jaggaer-sap-ariba-with-n",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard decision without differentiation."
+  },
+  {
+   "to": "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differ",
+   "key": "hygiene:in-a-4-vendor-rfp-already-scoring-responses-get-merlin-agent",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differentiation has been demonstrated yet (SF Next_Step__c 6.4.26MF)."
+  },
+  {
+   "to": "Map and engage a real economic buyer (e.g. one of the two SaskTel CFOs on the account) before the presentation round, since Adriel Picard's procurement role lik",
+   "key": "hygiene:map-and-engage-a-real-economic-buyer-e-g-one-of-the-two-sask",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Map and engage a real economic buyer (e.g. one of the two SaskTel CFOs on the account) before the presentation round, since Adriel Picard's procurement role likely lacks unilateral budget authority for a $357,898 deal."
+  },
+  {
+   "to": "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, s",
+   "key": "hygiene:convert-jeffrey-buzila-and-adriel-picard-from-passive-rfp-re",
+   "date": "2026-07-07T09:42:14.619189+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, since neither has advocated or driven the agenda to date."
+  },
+  {
+   "to": "Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue) - overdue",
+   "key": "commitment:buyer-schedule-the-presentation-round-planned-for-week-of-20",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue)"
+  },
+  {
+   "to": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment - open",
+   "key": "commitment:buyer-respond-to-horizon-event-invites-sent-5-may-4-jun-with",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment"
+  },
+  {
+   "to": "Adriel Picard - Decision Maker",
+   "key": "stakeholder:adriel-picard",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Adriel Picard"
+  },
+  {
+   "to": "Jeffrey Buzila - Influencer",
+   "key": "stakeholder:jeffrey-buzila",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jeffrey Buzila"
+  },
+  {
+   "to": "Coupa - active",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "JAGGAER - active",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "JAGGAER"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but th",
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-11-weeks-",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but that window passed 8-10 weeks ago with no buyer follow-up; 82 days of silence and no response to two Horizon invites (5 May, 4 Jun) signal stalled or deprioritized evaluation; 60 days to close with no path to presentation -> commercial -> contracting."
+  },
+  {
+   "to": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P tr",
+   "key": "risk:no-economic-buyer-cfo-or-c-level-mapped-or-engaged-adriel-pi",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P transformation; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to the opp or on a call; no X10a_Sponsor__c or Who_will_approve_budget__c data."
+  },
+  {
+   "to": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites sug",
+   "key": "risk:no-champion-adriel-and-jeffrey-are-passive-no-advocacy-no-ex",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites suggest low priority or internal stall."
+  },
+  {
+   "to": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only",
+   "key": "risk:no-business-case-pain-or-metrics-articulated-customer-busine",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only; no quantified ROI or qualitative pain on record."
+  },
+  {
+   "to": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, n",
+   "key": "risk:four-vendor-rfp-with-coupa-gep-jaggaer-sap-ariba-no-competit",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, no proposal, no ROI workshop); risk of price-led decision without differentiation."
+  },
+  {
+   "to": "Re-engage Jeffrey Buzila and Adriel Picard to unblock the stalled presentation round (planned week of 20 Apr, now 11 weeks overdue) and establish a firm evaluat",
+   "key": "hygiene:re-engage-jeffrey-buzila-and-adriel-picard-to-unblock-the-st",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage Jeffrey Buzila and Adriel Picard to unblock the stalled presentation round (planned week of 20 Apr, now 11 weeks overdue) and establish a firm evaluation timeline \u2014 the deal has been silent for 82 days since the 14 Apr 'late Apr/early May next steps' promise, and that window closed 8-10 weeks ago."
+  },
+  {
+   "to": "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows C",
+   "key": "hygiene:multi-thread-beyond-adriel-picard-director-of-procurement-an",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows Charlene Gavel, Chief Financial Officer, or Mike Anderson, CFO, or a VP Operations) \u2014 a $358k S2P transformation will require C-level sign-off and no CFO or exec is on the opportunity contact roles or has appeared on a call."
+  },
+  {
+   "to": "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge ",
+   "key": "hygiene:activate-merlin-and-agentic-ai-differentiation-during-the-pr",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge vs Coupa/GEP/JAGGAER/Ariba's traditional SaaS; prove AI-led sourcing and negotiation ROI with a use-case demo and quantify the business case to stand out in the scorecard tallying."
+  },
+  {
+   "to": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T05:29:04.670814+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000GmoPW",
+ "packets": [
+  {
+   "key": "commitment:buyer-schedule-the-presentation-round-planned-for-week-of-20",
+   "type": "commitment",
+   "value": {
+    "due": "2026-04-20",
+    "who": "Buyer",
+    "date": "2026-02-12",
+    "source": "Next Step 2.12.26 RFP timeline; Next Step 6.4.26MF (no reschedule)",
+    "status": "overdue",
+    "commitment": "Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue)"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Schedule the presentation round (planned for week of 20 Apr 2026, now 11 weeks overdue)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07T05:29:04.670814+05:30",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:buyer-respond-to-horizon-event-invites-sent-5-may-4-jun-with",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-05-05",
+    "source": "Next Step 5.4.26MF, 6.4.26MF",
+    "status": "no due date",
+    "commitment": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-06-04",
+      "source": "Next_Step 4 Jun 2026; Next_Step 5 May 2026",
+      "status": "open",
+      "commitment": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment",
+      "deliverable": "Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment",
+      "grounding_quote": "Next_Step 4 Jun 2026: 'No response to Horizon or Calgary stampede invites sent out'; Next_Step 5 May 2026: 'inviting SaskTel to Horizon in Sept'."
+     }
+    }
+   ],
+   "subject": "Buyer:Respond to Horizon event invites (sent 5 May, 4 Jun) with attendance decision or next-step commitment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "stakeholder:adriel-picard",
+   "type": "stakeholder",
+   "value": {
+    "name": "adriel picard",
+    "risk": "Named Decision Maker on the opportunity but has not replied to the two most recent Horizon invites (4 May, 4 Jun 2026) or the 8 Jul 2026 resend; no confirmed direct engagement since the 28 Jan 2025 introductory call.",
+    "role": "Decision Maker",
+    "title": "Director of Procurement",
+    "source": "OpportunityContactRole; Next_Step__c entries 2026-05-04/06-04/07-08",
+    "sentiment": "unresponsive to recent outreach",
+    "last_contact_date": "2025-01-28"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T02:01:31.557642+05:30",
+     "value": {
+      "name": "Adriel Picard",
+      "risk": "Not confirmed as budget authority; no reply to three consecutive Horizon invites (5 May, 4 Jun, 8 Jul 2026)",
+      "role": "Decision Maker",
+      "title": "Director of Procurement",
+      "source": "OpportunityContactRole; SF Next_Step_History__c",
+      "sentiment": "neutral (unresponsive to recent outreach)",
+      "last_contact_date": "2025-06-09"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Adriel Picard",
+      "risk": "Passive; procurement-led, transactional; no advocacy or urgency; 83 days of silence",
+      "role": "Decision Maker",
+      "title": "Director of Procurement",
+      "source": "OpportunityContactRole (Decision Maker); Salesforce LastActivityDate",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-04-15"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:42:14.619189+05:30",
+     "value": {
+      "name": "Adriel Picard",
+      "risk": "Sole named contact carries no confirmed budget authority for a $357,898 deal; engagement has been passive since the RFP submission.",
+      "role": "Decision Maker",
+      "title": "Director of Procurement",
+      "source": "SF OpportunityContactRole; Avoma Introductory call 28 Jan 2025",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-01-28"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "name": "Adriel Picard",
+      "risk": "Passive; last engaged 28 Jan 2025 on intro call (social only), no advocacy or deal-driving behavior; 82 days of silence since 14 Apr suggests low priority or stalled internally.",
+      "role": "Decision Maker",
+      "title": "Director of Procurement",
+      "source": "OpportunityContactRole (Decision Maker); Avoma intro call 28 Jan 2025",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-01-28"
+     }
+    }
+   ],
+   "subject": "Adriel Picard",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "stakeholder:jeffrey-buzila",
+   "type": "stakeholder",
+   "value": {
+    "name": "jeffrey buzila",
+    "risk": "Sole responsive buyer-side contact; every reply is a status update (year-end close, resource constraints, scoring not yet tallied), with no evidence of internal advocacy or executive access.",
+    "role": "Coach",
+    "title": "NA (leading the RFP process for SaskTel)",
+    "source": "Task emails dated 2026-04-13/14/15; Next_Step__c entries",
+    "sentiment": "cooperative, process-only",
+    "last_contact_date": "2026-04-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T02:01:31.557642+05:30",
+     "value": {
+      "name": "Jeffrey Buzila",
+      "risk": "Only conduit for RFP status updates; no advocacy or internal introductions evidenced",
+      "role": "Coach",
+      "title": "NA (RFP process lead, SaskTel)",
+      "source": "OpportunityContactRole; Task, 13 Apr 2026",
+      "sentiment": "neutral, process-only",
+      "last_contact_date": "2026-04-13"
+     }
+    },
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Jeffrey Buzila",
+      "risk": "Primary Zycus contact but passive; deferred next steps 14 Apr to late Apr/early May (never followed up); no response to Horizon invites",
+      "role": "Influencer",
+      "title": null,
+      "source": "OpportunityContactRole; Next Step 4.14.26MF, 6.4.26MF",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-06-04"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:42:14.619189+05:30",
+     "value": {
+      "name": "Jeffrey Buzila",
+      "risk": "Only recent point of contact; has not replied since 14 Apr 2026 and has not responded to two Horizon invites.",
+      "role": "Unknown",
+      "title": null,
+      "source": "SF Next_Step__c 4.14.26MF",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-04-14"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "name": "Jeffrey Buzila",
+      "risk": "Passive; last contact 14 Apr 2026 (email saying next steps late Apr/early May after year-end close), but that window passed with no follow-up and no response to two Horizon invites (5 May, 4 Jun).",
+      "role": "Influencer",
+      "title": "NA",
+      "source": "OpportunityContactRole (no role listed); Next_Step 14 Apr 2026, 4 Jun 2026",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-04-14"
+     }
+    }
+   ],
+   "subject": "Jeffrey Buzila",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2025-01-30",
+    "name": "Coupa",
+    "quote": "",
+    "source": "Opportunity.Competitors__c",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:42:14.619189+05:30",
+     "value": {
+      "date": null,
+      "name": "Coupa",
+      "quote": null,
+      "source": "Salesforce Competitors__c",
+      "sentiment": "neutral",
+      "how_we_win": "Merlin agentic negotiation automation on supplier price/contract history tied to quantified SaskTel savings target; make AI the RFP differentiator and Phase 1 centerpiece if selected"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "date": "2026-06-04",
+      "name": "Coupa",
+      "quote": "Listed as primary competitor in RFP shortlist; no buyer sentiment data.",
+      "source": "SF Competitors__c (primary_competitor); Next_Step 4 Jun 2026 (team tallying scores, implies Coupa still in eval)",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "Activate Merlin/Agentic-AI differentiation (in RFP scope) vs Coupa's traditional SaaS; prove AI-led sourcing/negotiation ROI and Canadian-utility fit during presentation round.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "competitor:gep-worldwide",
+   "type": "competitor",
+   "value": {
+    "date": "2025-01-30",
+    "name": "GEP Worldwide",
+    "quote": "",
+    "source": "Opportunity.Competitors__c",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:42:14.619189+05:30",
+     "value": {
+      "date": null,
+      "name": "GEP Worldwide",
+      "quote": null,
+      "source": "Salesforce Competitors__c",
+      "sentiment": "neutral",
+      "how_we_win": "Merlin agentic negotiation automation on supplier price/contract history tied to quantified SaskTel savings target; make AI the RFP differentiator and Phase 1 centerpiece if selected"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "date": "2026-06-04",
+      "name": "GEP Worldwide",
+      "quote": "GEP in RFP shortlist; no buyer preference or elimination data.",
+      "source": "SF Competitors__c; Next_Step 4 Jun 2026",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "Emphasize full S2P suite integration + AI vs GEP's consulting-heavy model; de-risk implementation with utility references.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "GEP Worldwide",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "competitor:jaggaer",
+   "type": "competitor",
+   "value": {
+    "date": "2025-01-30",
+    "name": "JAGGAER",
+    "quote": "",
+    "source": "Opportunity.Competitors__c",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "No direct evidence of standing; named as an RFP finalist only.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "date": null,
+      "name": "JAGGAER",
+      "quote": null,
+      "source": "Salesforce Competitors__c",
+      "sentiment": "neutral",
+      "how_we_win": "Merlin agentic negotiation automation on supplier price/contract history tied to quantified SaskTel savings target; make AI the RFP differentiator and Phase 1 centerpiece if selected"
+     }
+    }
+   ],
+   "subject": "JAGGAER",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2025-01-30",
+    "name": "SAP Ariba",
+    "quote": "Procurement Tool: Ariba (under evaluation for replacement).",
+    "source": "Opportunity.How_are_you_addressing_your_problem_toda__c",
+    "status": "incumbent",
+    "sentiment": "negative",
+    "how_we_win": "SaskTel's own qualification notes cite Ariba dissatisfaction (cost, manual invoicing, poor supplier UX); Zycus_Differentiation_Why_Zycus__c positions AI-driven automation and a friendlier supplier portal as the contrast, but this has not been validated in any live call.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "date": null,
+      "name": "SAP Ariba",
+      "quote": null,
+      "source": "Salesforce Competitors__c",
+      "sentiment": "neutral",
+      "how_we_win": "Merlin agentic negotiation automation on supplier price/contract history tied to quantified SaskTel savings target; make AI the RFP differentiator and Phase 1 centerpiece if selected"
+     }
+    }
+   ],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-11-weeks-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but that window passed 8-10 weeks ago with no buyer follow-up; 82 days of silence and no response to two Horizon invites (5 May, 4 Jun) signal stalled or deprioritized evaluation; 60 days to close with no path to presentation -> commercial -> contracting.",
+    "source": "Next_Step 14 Apr 2026 (Jeffrey email); Next_Step 4 Jun 2026 (no response to Horizon invites); LastActivityDate 15 Apr 2026",
+    "status": "active",
+    "category": "timeline",
+    "first_raised": "2026-04-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Presentation round planned for week of 20 Apr 2026 (11 weeks ago) never scheduled; Jeffrey said 14 Apr next steps late Apr/early May after year-end close but that window passed 8-10 weeks ago with no buyer follow-up; 82 days of silence and no response to two Horizon invites (5 May, 4 Jun) signal stalled or deprioritized evaluation; 60 days to close with no path to presentation -> commercial -> contracting.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-cfo-or-c-level-mapped-or-engaged-adriel-pi",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P transformation; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to the opp or on a call; no X10a_Sponsor__c or Who_will_approve_budget__c data.",
+    "source": "OpportunityContactRole (no CFO/C-level); SF X10a_Sponsor__c (empty); account-level contacts",
+    "status": "active",
+    "category": "executive_alignment",
+    "first_raised": "2025-01-29"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer (CFO or C-level) mapped or engaged; Adriel Picard is Director of Procurement (Decision Maker role) but not budget authority for a $358k S2P transformation; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to the opp or on a call; no X10a_Sponsor__c or Who_will_approve_budget__c data.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "risk:no-champion-adriel-and-jeffrey-are-passive-no-advocacy-no-ex",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites suggest low priority or internal stall.",
+    "source": "Avoma intro call 28 Jan 2025 (social only); Next_Step 4 Jun 2026 (no response); 82 days silence",
+    "status": "active",
+    "category": "other",
+    "first_raised": "2025-01-28"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No champion; Adriel and Jeffrey are passive (no advocacy, no executive access, no agenda-driving); 82 days of silence and no response to two Horizon invites suggest low priority or internal stall.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "risk:no-business-case-pain-or-metrics-articulated-customer-busine",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only; no quantified ROI or qualitative pain on record.",
+    "source": "Avoma intro call 28 Jan 2025; SF Customer_Business_Problem__c (empty)",
+    "status": "active",
+    "category": "other",
+    "first_raised": "2025-01-28"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No business case, pain, or metrics articulated; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; intro call was social only; no quantified ROI or qualitative pain on record.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "risk:four-vendor-rfp-with-coupa-gep-jaggaer-sap-ariba-no-competit",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intelligence, no buyer preference signal, no pricing or ROI discussion; risk of price-led decision without differentiation or value anchoring.",
+    "source": "Salesforce Competitors__c; Next Step 6.4.26MF (team tallying scores); no commercial call or proposal",
+    "status": "unresolved",
+    "category": "pricing",
+    "first_raised": null
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:29:04.670814+05:30",
+     "value": {
+      "date": "2026-07-06",
+      "detail": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, no proposal, no ROI workshop); risk of price-led decision without differentiation.",
+      "source": "SF Competitors__c; Next_Step 4 Jun 2026 (team tallying scores); no call data",
+      "status": "active",
+      "category": "pricing",
+      "first_raised": "2026-02-11"
+     }
+    }
+   ],
+   "subject": "Four-vendor RFP with Coupa, GEP, JAGGAER, SAP Ariba; no competitive intel or buyer-stated preference; pricing and commercial have not been discussed (no call, no proposal, no ROI workshop); risk of price-led decision without differentiation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:re-engage-jeffrey-buzila-and-adriel-picard-to-unblock-the-st",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage Jeffrey Buzila and Adriel Picard to unblock the stalled presentation round (planned week of 20 Apr, now 11 weeks overdue) and establish a firm evaluation timeline \u2014 the deal has been silent for 82 days since the 14 Apr 'late Apr/early May next steps' promise, and that window closed 8-10 weeks ago."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Re-engage Jeffrey Buzila and Adriel Picard to unblock the stalled presentation round (planned week of 20 Apr, now 11 weeks overdue) and establish a firm evaluation timeline \u2014 the deal has been silent for 82 days since the 14 Apr 'late Apr/early May next steps' promise, and that window closed 8-10 weeks ago.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-adriel-picard-director-of-procurement-an",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows Charlene Gavel, Chief Financial Officer, or Mike Anderson, CFO, or a VP Operations) \u2014 a $358k S2P transformation will require C-level sign-off and no CFO or exec is on the opportunity contact roles or has appeared on a call."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Multi-thread beyond Adriel Picard (Director of Procurement) and Jeffrey Buzila to map and engage the economic buyer (likely one of the CFOs: the account shows Charlene Gavel, Chief Financial Officer, or Mike Anderson, CFO, or a VP Operations) \u2014 a $358k S2P transformation will require C-level sign-off and no CFO or exec is on the opportunity contact roles or has appeared on a call.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "hygiene:activate-merlin-and-agentic-ai-differentiation-during-the-pr",
+   "type": "hygiene",
+   "value": {
+    "flag": "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge vs Coupa/GEP/JAGGAER/Ariba's traditional SaaS; prove AI-led sourcing and negotiation ROI with a use-case demo and quantify the business case to stand out in the scorecard tallying."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Activate Merlin and Agentic AI differentiation during the presentation round \u2014 the RFP explicitly includes Merlin and Agentic AI in scope, giving Zycus a wedge vs Coupa/GEP/JAGGAER/Ariba's traditional SaaS; prove AI-led sourcing and negotiation ROI with a use-case demo and quantify the business case to stand out in the scorecard tallying.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T05:29:04.670814+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:29:04.670814+05:30",
+   "last_updated": "2026-07-07T05:29:04.670814+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-tally-the-rfp-scores-and-notify-zycus-of-shortlisted-p",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-04",
+    "source": "Next Step 6.4.26MF: Jeffrey said team is still reviewing responses to tally up scores",
+    "status": "open",
+    "commitment": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling"
+   },
+   "source": "ai:open_deliverables",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:42:14.619189+05:30",
+     "value": {
+      "due": "2026-04-20",
+      "who": "Buyer",
+      "date": "2026-06-04",
+      "source": "SF Next_Step__c 6.4.26MF",
+      "status": "overdue",
+      "commitment": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling",
+      "deliverable": "Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling",
+      "grounding_quote": "Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants."
+     }
+    }
+   ],
+   "subject": "Buyer:Tally the RFP scores and notify Zycus of shortlisted-participant presentation scheduling",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:buyer-respond-to-the-horizon-event-invitations-with-an-atten",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-04",
+    "who": "Buyer",
+    "date": "2026-06-04",
+    "source": "SF Next_Step__c 6.4.26MF",
+    "status": "overdue",
+    "commitment": "Respond to the Horizon event invitations with an attendance or next-step decision",
+    "deliverable": "Respond to the Horizon event invitations with an attendance or next-step decision",
+    "grounding_quote": "No response to Horizon or Calgary stampede invites sent out."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Respond to the Horizon event invitations with an attendance or next-step decision",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07T09:42:14.619189+05:30",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-c-level-sasktel-contact-is-engaged-or-l",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither has appeared on this deal.",
+    "source": "SF OpportunityContactRole; SF Account Contacts",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-04-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or C-level SaskTel contact is engaged or linked to this opportunity; two CFOs exist on the account (Charlene Gavel, Mike Anderson) but neither has appeared on this deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "risk:no-pricing-commercial-or-roi-conversation-has-occurred-with-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field.",
+    "source": "SF Next_Step__c; Avoma 28 Jan 2025",
+    "status": "open",
+    "category": "pricing",
+    "first_raised": "2026-04-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No pricing, commercial, or ROI conversation has occurred with SaskTel in any recorded call or field.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "risk:the-presentation-interview-round-planned-for-the-week-of-20-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "The presentation/interview round planned for the week of 20 Apr 2026 is now ~80 days (11 weeks) overdue with no confirmed reschedule, threatening the 4 Sep 2026 close date.",
+    "source": "Next_Step__c RFP timeline; Next_Step__c entry 2026-06-04",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-04-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The presentation/interview round planned for the week of 20 Apr 2026 has not occurred as of 7 Jul 2026 (~11 weeks overdue), with no confirmed new date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:four-vendor-rfp-coupa-gep-worldwide-jaggaer-sap-ariba-with-n",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard decision without differentiation.",
+    "source": "SF Competitors__c",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-07-07"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Four-vendor RFP (Coupa, GEP Worldwide, JAGGAER, SAP Ariba) with no competitive intelligence or buyer-stated preference; risk of a price/feature-led scorecard decision without differentiation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "hygiene:in-a-4-vendor-rfp-already-scoring-responses-get-merlin-agent",
+   "type": "hygiene",
+   "value": {
+    "flag": "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differentiation has been demonstrated yet (SF Next_Step__c 6.4.26MF)."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "In a 4-vendor RFP already scoring responses, get Merlin/Agentic AI in front of the evaluation committee before or during the presentation round, since no differentiation has been demonstrated yet (SF Next_Step__c 6.4.26MF).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "hygiene:map-and-engage-a-real-economic-buyer-e-g-one-of-the-two-sask",
+   "type": "hygiene",
+   "value": {
+    "flag": "Map and engage a real economic buyer (e.g. one of the two SaskTel CFOs on the account) before the presentation round, since Adriel Picard's procurement role likely lacks unilateral budget authority for a $357,898 deal."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Map and engage a real economic buyer (e.g. one of the two SaskTel CFOs on the account) before the presentation round, since Adriel Picard's procurement role likely lacks unilateral budget authority for a $357,898 deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "hygiene:convert-jeffrey-buzila-and-adriel-picard-from-passive-rfp-re",
+   "type": "hygiene",
+   "value": {
+    "flag": "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, since neither has advocated or driven the agenda to date."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Convert Jeffrey Buzila and Adriel Picard from passive RFP responders into an active champion by giving them an internal-facing business case to carry forward, since neither has advocated or driven the agenda to date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:42:14.619189+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T09:42:14.619189+05:30"
+  },
+  {
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-is-now-11",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled, and 59 days remain to a 4 Sep close with no path to commercial, EB approval, or contracting (would require 90-120 days minimum).",
+    "source": "Next Step 2.12.26 timeline, 6.4.26MF (no reschedule); Salesforce CloseDate 2026-09-04",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2026-04-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled, and 59 days remain to a 4 Sep close with no path to commercial, EB approval, or contracting (would require 90-120 days minimum).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-economic-buyer-cfo-or-c-level-identified-or-engaged-adrie",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is Director of Procurement (process owner), not commercial authority for $358k multi-year S2P investment; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to opp.",
+    "source": "OpportunityContactRole; Salesforce X10a_Sponsor__c, Who_will_approve_budget__c empty; account contact list",
+    "status": "unresolved",
+    "category": "executive_alignment",
+    "first_raised": null
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is Director of Procurement (process owner), not commercial authority for $358k multi-year S2P investment; two CFOs on account (Charlene Gavel, Mike Anderson) but neither linked to opp.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:82-days-of-buyer-silence-last-activity-15-apr-2026-two-horiz",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "82 days of buyer silence (last activity 15 Apr 2026); two Horizon invites (5 May, 4 Jun) unanswered; no response to Jeffrey's stated late Apr/early May next-step window; deal is cooling and may be deprioritized or shelved.",
+    "source": "Salesforce LastActivityDate; Next Step 5.4.26MF, 6.4.26MF",
+    "status": "unresolved",
+    "category": "other",
+    "first_raised": "2026-04-15"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "82 days of buyer silence (last activity 15 Apr 2026); two Horizon invites (5 May, 4 Jun) unanswered; no response to Jeffrey's stated late Apr/early May next-step window; deal is cooling and may be deprioritized or shelved.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "risk:no-quantified-business-case-pain-owner-or-roi-target-custome",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No quantified business case, pain owner, or ROI target; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; cannot anchor commercials or validate urgency without confirmed pain.",
+    "source": "Salesforce fields empty; no discovery call or scoping session",
+    "status": "unresolved",
+    "category": "other",
+    "first_raised": null
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified business case, pain owner, or ROI target; Customer_Business_Problem__c, Business_Objectives__c, Value_to_Customer__c all empty; cannot anchor commercials or validate urgency without confirmed pain.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:82-days-since-last-buyer-activity-15-apr-2026-two-horizon-in",
+   "type": "hygiene",
+   "value": {
+    "flag": "82 days since last buyer activity (15 Apr 2026); two Horizon invites unanswered; deal is cooling and at risk of being deprioritized or abandoned"
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "82 days since last buyer activity (15 Apr 2026); two Horizon invites unanswered; deal is cooling and at risk of being deprioritized or abandoned",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-cfo-or-c-level-identified-or-engaged-adrie",
+   "type": "hygiene",
+   "value": {
+    "flag": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is procurement (process owner), not commercial authority for $358k investment"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer (CFO or C-level) identified or engaged; Adriel Picard is procurement (process owner), not commercial authority for $358k investment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-adriel-and-jeffrey-are-passive-transactional-con",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion; Adriel and Jeffrey are passive, transactional contacts with no advocacy, urgency, or executive access"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No champion; Adriel and Jeffrey are passive, transactional contacts with no advocacy, urgency, or executive access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-quantified-business-case-pain-or-metrics-cannot-anchor-ro",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified business case, pain, or metrics; cannot anchor ROI or commercials without knowing what problem SaskTel is solving"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified business case, pain, or metrics; cannot anchor ROI or commercials without knowing what problem SaskTel is solving",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:presentation-round-planned-for-week-of-20-apr-2026-is-now-11",
+   "type": "hygiene",
+   "value": {
+    "flag": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Presentation round planned for week of 20 Apr 2026 is now 11 weeks overdue with no confirmed reschedule; evaluation has stalled",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:four-vendor-rfp-with-no-competitive-intelligence-or-buyer-pr",
+   "type": "hygiene",
+   "value": {
+    "flag": "Four-vendor RFP with no competitive intelligence or buyer preference signal; risk of price-led decision without differentiation"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Four-vendor RFP with no competitive intelligence or buyer preference signal; risk of price-led decision without differentiation",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:59-days-to-4-sep-close-even-if-presentation-occurred-tomorro",
+   "type": "hygiene",
+   "value": {
+    "flag": "59 days to 4 Sep close; even if presentation occurred tomorrow, commercial, EB approval, legal, and contracting would require 90-120 days; close date is unrealistic"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "59 days to 4 Sep close; even if presentation occurred tomorrow, commercial, EB approval, legal, and contracting would require 90-120 days; close date is unrealistic",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:best-case-forecast-is-indefensible-without-economic-buyer-ch",
+   "type": "hygiene",
+   "value": {
+    "flag": "Best Case forecast is indefensible without economic buyer, champion, or recent buyer engagement"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Best Case forecast is indefensible without economic buyer, champion, or recent buyer engagement",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "requirement:submit-a-complete-rfp-response-by-the-11-mar-2026-2-00pm-cst",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-11",
+    "kind": "explicit",
+    "quote": "3.11.26 KK - RFP submitted - next steps",
+    "source": "Next_Step__c entry dated 2026-03-11",
+    "said_by": "sasktel rfp process (coordinated by jeffrey buzila)",
+    "addressed": true,
+    "requirement": "Submit a complete RFP response by the 11 Mar 2026, 2:00pm CST deadline"
+   },
+   "source": "sasktel rfp process (coordinated by jeffrey buzila)",
+   "status": "active",
+   "history": [],
+   "subject": "Submit a complete RFP response by the 11 Mar 2026, 2:00pm CST deadline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-the-shortlisting-presentation-scheduling-decis",
+   "type": "commitment",
+   "value": {
+    "due": "2026-04-20",
+    "who": "Buyer",
+    "date": "2026-06-04",
+    "source": "SF Next_Step_History__c, 4 Jun 2026",
+    "status": "overdue",
+    "commitment": "Confirm the shortlisting/presentation scheduling decision and provide an updated timeline",
+    "deliverable": "Confirm the shortlisting/presentation scheduling decision and provide an updated timeline",
+    "grounding_quote": "The team is still reviewing responses to tally up scores and notify shortlisted participants"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm the shortlisting/presentation scheduling decision and provide an updated timeline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-whether-the-cto-and-cio-evp-sit-on-the-s2p-ste",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-22",
+    "who": "Buyer",
+    "date": "2026-07-08",
+    "source": "SF Next_Step__c, 8 Jul 2026",
+    "status": "open",
+    "commitment": "Confirm whether the CTO and CIO/EVP sit on the S2P steering committee and respond to the Horizon event invite",
+    "deliverable": "Confirm whether the CTO and CIO/EVP sit on the S2P steering committee and respond to the Horizon event invite",
+    "grounding_quote": "Deal owner will reach out to the CTO and the CIO/EVP directly if there is no response, to determine steering-committee membership"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm whether the CTO and CIO/EVP sit on the S2P steering committee and respond to the Horizon event invite",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba-rfp-competitor",
+   "type": "competitor",
+   "value": {
+    "date": "2026-03-11",
+    "name": "SAP Ariba (RFP competitor)",
+    "quote": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+    "source": "SF Competitors__c",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Reinforce the Gartner Magic Quadrant Leader positioning and unified-suite scope named in the RFP response.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "SAP Ariba (RFP competitor)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "competitor:unnamed-fifth-vendor-qualification-era-note",
+   "type": "competitor",
+   "value": {
+    "date": "2025-01-30",
+    "name": "Unnamed fifth vendor (qualification-era note)",
+    "quote": "Competitor Influence: Other players like Coupa, Jaggaer, and may also be considered.",
+    "source": "Opportunity.Why_not_Zycus__c",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "Not confirmed present in the current Competitors__c field for the live 2026 RFP; carried forward at low confidence only.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Unnamed fifth vendor (qualification-era note)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-c-level-sasktel-contact-engaged-despite",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "No economic buyer or C-level SaskTel contact engaged despite two CFOs existing at the account level; none linked to this opportunity.",
+    "source": "SF Executive_Sponsor_Identified__c",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or C-level SaskTel contact engaged despite two CFOs existing at the account level; none linked to this opportunity.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "risk:presentation-round-planned-for-week-of-20-apr-2026-is-11-wee",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "Presentation round planned for week of 20 Apr 2026 is ~11 weeks overdue with no confirmed reschedule; 58 days remain to the 4 Sep 2026 close.",
+    "source": "SF Next_Step_History__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-04-20"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Presentation round planned for week of 20 Apr 2026 is ~11 weeks overdue with no confirmed reschedule; 58 days remain to the 4 Sep 2026 close.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "risk:early-qualification-note-flagged-internal-resistance-to-leav",
+   "type": "risk",
+   "value": {
+    "date": "2025-01-30",
+    "detail": "Early qualification note flagged internal resistance to leaving Ariba and uncertainty whether SaskTel adopts the full suite versus select modules.",
+    "source": "SF Why_not_Zycus__c",
+    "status": "unconfirmed since raised",
+    "category": "change_management",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Early qualification note flagged internal resistance to leaving Ariba and uncertainty whether SaskTel adopts the full suite versus select modules.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "risk:multi-step-complex-evaluation-process-and-possible-customiza",
+   "type": "risk",
+   "value": {
+    "date": "2025-01-30",
+    "detail": "Multi-step, complex evaluation process and possible customization/configuration cost concerns noted at qualification; never revisited commercially.",
+    "source": "SF Why_not_Zycus__c",
+    "status": "unconfirmed since raised",
+    "category": "pricing",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-step, complex evaluation process and possible customization/configuration cost concerns noted at qualification; never revisited commercially.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-above-adriel-picard-and-jeffrey-buzila-no-economic",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage above Adriel Picard and Jeffrey Buzila: no economic buyer or C-level sponsor has ever touched this $357,898, 18-month S2P deal; use the CTO/CIO-EVP outreach already planned for 8 Jul 2026 to open a real executive thread."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage above Adriel Picard and Jeffrey Buzila: no economic buyer or C-level sponsor has ever touched this $357,898, 18-month S2P deal; use the CTO/CIO-EVP outreach already planned for 8 Jul 2026 to open a real executive thread.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "hygiene:get-a-live-demo-scheduled-before-the-presentation-round-resu",
+   "type": "hygiene",
+   "value": {
+    "flag": "Get a live demo scheduled before the presentation round resumes: SF Gaps_identified_during_sales_demo__c literally reads 'Demo yet to be conducted' after 18 months, so the differentiated AI/Merlin story has never been shown live to SaskTel."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Get a live demo scheduled before the presentation round resumes: SF Gaps_identified_during_sales_demo__c literally reads 'Demo yet to be conducted' after 18 months, so the differentiated AI/Merlin story has never been shown live to SaskTel.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "hygiene:request-the-rfp-scorecard-or-a-debrief-once-shortlisting-res",
+   "type": "hygiene",
+   "value": {
+    "flag": "Request the RFP scorecard or a debrief once shortlisting resolves, so the AI/unified-suite wedge can be validated against SAP Ariba, Coupa, GEP Worldwide and JAGGAER with real buyer feedback instead of an 18-month-old qualification assumption."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Request the RFP scorecard or a debrief once shortlisting resolves, so the AI/unified-suite wedge can be validated against SAP Ariba, Coupa, GEP Worldwide and JAGGAER with real buyer feedback instead of an 18-month-old qualification assumption.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T02:01:31.557642+05:30",
+   "last_updated": "2026-07-09T02:01:31.557642+05:30",
+   "last_confirmed": "2026-07-09T02:01:31.557642+05:30"
+  },
+  {
+   "key": "requirement:submit-rfp-clarifying-questions-by-the-18-feb-2026-deadline",
+   "type": "requirement",
+   "value": {
+    "date": "2026-02-18",
+    "kind": "explicit",
+    "quote": "2.18.26 KK - submitted open questions and set up internal progress calls",
+    "source": "Next_Step__c entry dated 2026-02-18",
+    "said_by": "sasktel rfp process (coordinated by jeffrey buzila)",
+    "addressed": true,
+    "requirement": "Submit RFP clarifying questions by the 18 Feb 2026 deadline"
+   },
+   "source": "sasktel rfp process (coordinated by jeffrey buzila)",
+   "status": "active",
+   "history": [],
+   "subject": "Submit RFP clarifying questions by the 18 Feb 2026 deadline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-reschedule-and-hold-the-supplier-presentation-intervie",
+   "type": "commitment",
+   "value": {
+    "due": "2026-04-24",
+    "who": "Buyer",
+    "date": "2026-04-20",
+    "source": "Next_Step__c RFP timeline",
+    "status": "overdue",
+    "commitment": "Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)",
+    "deliverable": "Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)",
+    "grounding_quote": "Supplier Presentations/Interview Dates: Week of April 20, 2026"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Reschedule and hold the supplier presentation/interview round (originally week of 20 Apr 2026)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-tally-the-rfp-scores-and-formally-notify-shortlisted-p",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-06-04",
+    "source": "Next_Step__c entry dated 2026-06-04",
+    "status": "open",
+    "commitment": "Tally the RFP scores and formally notify shortlisted participants of next steps",
+    "deliverable": "Tally the RFP scores and formally notify shortlisted participants of next steps",
+    "grounding_quote": "Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Tally the RFP scores and formally notify shortlisted participants of next steps",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-respond-to-the-renewed-horizon-event-invitation-with-a",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-07-08",
+    "source": "Next_Step__c entry dated 2026-07-08 / Task 2026-07-08",
+    "status": "open",
+    "commitment": "Respond to the renewed Horizon event invitation with an attendance decision",
+    "deliverable": "Respond to the renewed Horizon event invitation with an attendance decision",
+    "grounding_quote": "resent Horizon invite to Adriel Picard, Dir Procurement."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Respond to the renewed Horizon event invitation with an attendance decision",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-whether-the-cto-and-cio-evp-are-members-of-the",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-07-08",
+    "source": "Next_Step__c entry dated 2026-07-08",
+    "status": "open",
+    "commitment": "Confirm whether the CTO and CIO/EVP are members of the S2P steering committee",
+    "deliverable": "Confirm whether the CTO and CIO/EVP are members of the S2P steering committee",
+    "grounding_quote": "will reach out to and re: attendance to determine whether they are also members of the steering committee making the S2P decision"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm whether the CTO and CIO/EVP are members of the S2P steering committee",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-executive-sponsor-identified-or-engaged",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No economic buyer or executive sponsor identified or engaged on a $357,898 multi-year deal; Executive_Sponsor_Identified__c = false.",
+    "source": "Opportunity.Executive_Sponsor_Identified__c",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor identified or engaged on a $357,898 multi-year deal; Executive_Sponsor_Identified__c = false.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:single-threaded-on-two-contacts-adriel-picard-jeffrey-buzila",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Single-threaded on two contacts (Adriel Picard, Jeffrey Buzila) with no confirmed budget authority; no broader buying-committee access yet.",
+    "source": "OpportunityContactRole",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded on two contacts (Adriel Picard, Jeffrey Buzila) with no confirmed budget authority; no broader buying-committee access yet.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "risk:no-commercial-or-pricing-conversation-has-occurred-in-the-18",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No commercial or pricing conversation has occurred in the 18 months since qualification.",
+    "source": "Task history; Next_Step__c dated log",
+    "status": "not started",
+    "category": "pricing",
+    "first_raised": "2025-01-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No commercial or pricing conversation has occurred in the 18 months since qualification.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-on-jeffrey-buzila-and-adriel-picard-with-no-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded on Jeffrey Buzila and Adriel Picard with no economic buyer or executive sponsor engaged for a $357,898, multi-year decision; the planned CTO/CIO-EVP outreach is the highest-priority lever right now."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded on Jeffrey Buzila and Adriel Picard with no economic buyer or executive sponsor engaged for a $357,898, multi-year decision; the planned CTO/CIO-EVP outreach is the highest-priority lever right now.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "hygiene:the-scheduled-supplier-presentation-demo-round-week-of-20-ap",
+   "type": "hygiene",
+   "value": {
+    "flag": "The scheduled supplier-presentation/demo round (week of 20 Apr 2026) never happened and is now ~11 weeks overdue; securing a firm reschedule is the next-stage gate blocking any further progress."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "The scheduled supplier-presentation/demo round (week of 20 Apr 2026) never happened and is now ~11 weeks overdue; securing a firm reschedule is the next-stage gate blocking any further progress.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "hygiene:no-commercial-or-pricing-conversation-has-occurred-in-18-mon",
+   "type": "hygiene",
+   "value": {
+    "flag": "No commercial or pricing conversation has occurred in 18 months of pursuit; once presentations resume, move quickly to frame commercials before a scorecard-only, price-led decision is made among the vendors in this RFP."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No commercial or pricing conversation has occurred in 18 months of pursuit; once presentations resume, move quickly to frame commercials before a scorecard-only, price-led decision is made among the vendors in this RFP.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "none identified",
+    "at_risk": false,
+    "strength": "none"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T18:55:52.343984+05:30",
+   "last_updated": "2026-07-09T18:55:52.343984+05:30",
+   "last_confirmed": "2026-07-09T18:55:52.343984+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T18:55:52.343984+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No economic buyer/executive sponsor contact on the opportunity",
+   "Only 2 buyer-side contact roles logged (below multi-thread bar)",
+   "No confirmed product demo or presentation session recorded despite the RFP calling for one",
+   "Competitive standing among the RFP finalists is unknown (no scorecard feedback shared)",
+   "scrubbed 3 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "adriel.picard@sasktel.com",
+   "yash.nannaware@zycus.com",
+   "christian.alder@zycus.com",
+   "nikita.bayas@zycus.com",
+   "chetan.mane@zycus.com"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Full Next_Step__c dated log (Jan 2025-Jul 2026), full OpportunityFieldHistory, 90-day+ Task/email review, all Q1-Q3 custom fields read"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

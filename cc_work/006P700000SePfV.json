@@ -1,0 +1,245 @@
+{
+  "opp_id": "006P700000SePfV",
+  "hard": {
+    "opp_id": "006P700000SePfV",
+    "opp_name": "Pima County_CLM+P2P+Supplier_Mar26",
+    "account_name": "Pima County",
+    "account_industry": "Federal",
+    "billing_country": "United States",
+    "owner_name": "Michael McCarthy",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2027-02-01",
+    "days_to_close": 210,
+    "created_date": "2026-01-22",
+    "qualified_date": "2026-03-27",
+    "last_activity_date": "2026-06-19",
+    "last_modified_date": null,
+    "products": "iContract;iSupplier;eProcurement;eInvoicing;Merlin;iRisk",
+    "next_step": "2/3 - They wont be ready to evaluate till September. Qualifying out",
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "Next step explicitly says the prospect won't be ready to evaluate until September and the rep is qualifying out; SF description says 'Revisit in September 2026'; public-sector buyer effectively parked.",
+    "dm_identified": false,
+    "eb_identified": true,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Do Nothing (status quo: Bitnet + Workday + Onbase)",
+    "primary_competitor": "Do Nothing (status quo)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000SePfV/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Parked in Qualified: Pima County deferred any evaluation to September 2026 while it stabilizes a 16-month-old Workday rollout, but a 19 Jun positive call with Director of Finance Hilario Ochoa keeps the relationship warm.",
+      "math": "210 days to close (2027-02-01). In Qualified since 2026-03-27 (~3.4 months), created 2026-01-22. Last activity 2026-06-19 (17 days ago) was a positive buyer conversation, so the deal is not cold. No active evaluation is underway: buyer deferred to September 2026 and Next Step (2026-02-03) reads 'won't be ready to evaluate till September. Qualifying out.' If evaluation restarts in September, only ~5 months remain to run discovery, demos, shortlist, commercials and contracting before the February 2027 date, which is a compressed but not impossible enterprise runway.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Bruce Collins (Pima County procurement) stated on the 2026-01-21 call that Workday was implemented ~16 months ago and is still stabilizing: 'we're still letting Workday settle... we're still working through having spent quite a bit of money adjusting to Workday.'",
+        "Bruce said the CFO 'Art is not gonna look at anything. He has 34 budgets to review to prepare to present to the board' on 2026-01-21, signalling no near-term executive bandwidth.",
+        "Owner Next Step (2026-02-03): 'They wont be ready to evaluate till September. Qualifying out.'",
+        "Positive re-engagement on 2026-06-19 (Nooks call, Prashant Saxena): Hilario Ochoa confirmed he is the Director of Finance and oversees the procurement function.",
+        "Only one transcribed discovery call exists (2026-01-21); no demo, workshop or commercial step has occurred."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Bruce Collins named the core problem on 2026-01-21: procurement runs across three disconnected systems, 'Bitnet, then we have Workday, and then we have Onbase as our system of record. So we have 3 different contracts, 3 different vendors, all within the last 16 months.' He confirmed the full Zycus suite was relevant ('All of it is relevant'). No quantified impact was ever stated for Pima County: no dollar spend under management, no cycle-time, headcount or error-rate figure. Bruce demonstrated he thinks in metrics (a prior role tracking 20,000 invoices/year at a 97%-paid-within-25-days KPI), so quantifying the cost of the three-vendor sprawl is a realistic next move, not a dead end.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins",
+          "SF Next Step 2026-02-03"
+        ]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Two threads point to finance owning the money. On 2026-01-21 Bruce Collins said he is 'connected at the hip with the finance director that serves as our CFO' (referred to as 'Art'), who was mid budget cycle and unavailable. Then on 2026-06-19 the Salesforce task contact Hilario Ochoa confirmed on a Nooks call that he is the Director of Finance and oversees the procurement function, a positive exchange. Hilario is the SFDC-verified budget-side stakeholder and the strongest current Economic Buyer candidate; the open question is his sign-off authority versus the deputy county administrator / county-board budget approval chain Bruce described. Locking Hilario as the confirmed budget owner and mapping the approval path is the move.",
+        "sources": [
+          "Task 2026-06-19 Nooks call (Hilario Ochoa, Director of Finance)",
+          "Avoma discovery call 2026-01-21, Bruce Collins"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are inferred, not yet formally confirmed. From the 2026-01-21 call the buyer-stated priorities are consolidation of the three-system stack into one platform, low-disruption integration alongside the newly-live Workday (Zycus as a layer, not an ERP replacement), quick time-to-value (Bruce reacted to '12 to 16 weeks, not 12 to 16 months'), and AI/automation, where Bruce was most animated ('I love the black ring', the Merlin agentic modules). No RFP, RFI, use-case review or scored requirement set exists yet because the deal is pre-evaluation. Capturing these as a written requirement set when evaluation restarts in September is the path to a real decision-criteria read.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Bruce described the approval chain on 2026-01-21: 'we have a county executive, two deputies, and department heads. So I'll report to one of the deputy county administrators,' with the finance director/CFO controlling the purse. The real process signal is timing, not structure: the buyer explicitly parked any evaluation until September 2026 pending Workday stabilization, and the CFO is consumed by 34 departmental budgets through the board presentation cycle. So the process is a deferred, budget-gated public-sector buy: procurement (Bruce/Hilario) builds internal consensus first, then IT and finance engage. No formal evaluation stages are scheduled yet.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins",
+          "SF Next Step 2026-02-03"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are visible because the deal is pre-evaluation in Qualified: no MSA, Order Form, SOW, procurement channel, InfoSec questionnaire or contract-expiration forcing function has surfaced in any call, task or field. As a US public-sector (county) buyer, a formal solicitation or cooperative-contract vehicle is likely required, and Bruce's El Paso background referencing cooperative contracts hints procurement will run a structured buy. What would create visibility is asking Bruce/Hilario, when evaluation resumes, how the county procures software (sole-source justification, cooperative purchasing agreement, or open solicitation) and any incumbent-contract end dates.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The confirmed pain is fragmentation and recent heavy IT spend. Bruce Collins on 2026-01-21: procurement is 'broken up into 3 different systems... Bitnet... Workday... and then Onbase as our system of record. So we have 3 different contracts, 3 different vendors, all within the last 16 months,' and Workday itself is still being stabilized after they 'spent quite a bit of money adjusting to Workday.' The pain owner is Bruce (procurement) with finance (Hilario Ochoa / the CFO) feeling the cost. The inferred pain is change fatigue: having just absorbed a costly ERP rollout, the county is protective of further disruption, which is exactly why the buy is deferred rather than dead.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Bruce Collins is a developing but cooling champion. On 2026-01-21 he showed genuine personal pull ('I'm really a nerd... I love the black ring') and a track record of championing procurement innovation (award-winning cooperative-marketplace build at City of El Paso), and he volunteered to socialise Zycus internally: 'How about setting up the Sharepoint? ... I would like our IT director to see something... Our CFO... if there's something in the Sharepoint site that I could point him to.' What is missing: Bruce has no budget authority (reports to a deputy county administrator), has not been re-touched since January, and never converted his interest into a scheduled next step. The more recent live thread is Hilario Ochoa (Director of Finance), positive on 2026-06-19; converting Hilario into an internal sponsor while re-warming Bruce is the champion play.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins",
+          "Task 2026-06-19 Nooks call (Hilario Ochoa)"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "There is no named vendor rival; the contest is against Do Nothing / the status quo. Bruce Collins on 2026-01-21 described three incumbent systems, Bitnet (online bidding), Workday (ERP) and Onbase (system of record), all bought within the last 16 months, plus active Workday change fatigue. That entrenched, recently-funded stack plus the explicit September deferral is the real competitor: inertia, not Coupa or SAP Ariba (neither was raised by the buyer). The wedge is platform consolidation of the three vendors into one source-to-pay layer that integrates with (not replaces) Workday, delivered in 12-16 weeks, with Merlin AI as the differentiator Bruce already responded to.",
+        "sources": [
+          "Avoma discovery call 2026-01-21, Bruce Collins",
+          "SF Competitors__c (blank)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "After a strong 2026-01-21 intro call the deal parked itself for a September 2026 evaluation, then re-warmed on 2026-06-19 when the Director of Finance engaged positively; stage advanced to Qualified on 2026-03-27 under new owner Michael McCarthy.",
+      "items": [
+        {"change": "Positive re-engagement: Director of Finance Hilario Ochoa confirmed on a Nooks call that he oversees procurement", "date": "2026-06-19"},
+        {"change": "Stage moved No Decision to Qualified and ownership reassigned to Michael McCarthy", "date": "2026-03-27"},
+        {"change": "Next Step set to 'won't be ready to evaluate till September. Qualifying out'", "date": "2026-02-03"},
+        {"change": "Introduction to Zycus discovery call held with Bruce Collins (Pima County procurement)", "date": "2026-01-21"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is Do Nothing / status quo. Pima County runs three recently-bought systems (Bitnet, Workday, Onbase, all within 16 months) and is prioritising Workday stabilization, explicitly deferring any procurement-platform evaluation to September 2026. No named vendor competitor (Coupa, SAP Ariba, GEP, etc.) has been raised by the buyer in any call or field. Zycus wins by positioning as a low-disruption consolidation layer over Workday with quick ROI and Merlin AI, and by timing re-engagement to the September window.",
+      "competitors": [
+        {
+          "name": "Do Nothing (status quo: Bitnet + Workday + Onbase)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "incumbent",
+          "quote": "We have most of it is broken up into 3 different systems... Bitnet, then we have Workday, and then we have Onbase as our system of record. So we have 3 different contracts, 3 different vendors, all within the last 16 months... we're still letting Workday settle.",
+          "date": "2026-01-21",
+          "source": "Avoma discovery call 2026-01-21, Bruce Collins",
+          "how_we_win": "Position Zycus as a Workday-complementary source-to-pay layer that consolidates the three vendors into one platform in 12-16 weeks, lead with the Merlin AI 'black ring' Bruce loved, and build the CFO consolidation business case for the September restart."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong conceptual fit on consolidation and AI; the exposure is integration with a freshly-live Workday and the county's change/budget capacity.",
+      "items": [
+        {"criterion": "Consolidate three procurement systems into one platform", "position": "aligned", "quote": "All of it is relevant... I love the black ring.", "date": "2026-01-21", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"criterion": "Coexist with / integrate the newly-implemented Workday ERP (not replace it)", "position": "partially aligned", "quote": "Pima County has implemented recently Workday... we're still letting Workday settle... having spent quite a bit of money adjusting to Workday.", "date": "2026-01-21", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"criterion": "Quick time-to-value vs a heavy ERP project", "position": "aligned", "quote": "we're talking 12 to 16 weeks, not 12 to 16 months.", "date": "2026-01-21", "source": "Avoma discovery call 2026-01-21, Michael McCarthy (rep)"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Quantified business case / metrics", "quote": "All of it is relevant (no dollar, cycle-time or headcount figure stated).", "status": "not addressed", "date": "2026-01-21", "gap_type": "knowledge", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"area": "Economic buyer sign-off authority and budget timing", "quote": "Our CFO... Art is not gonna look at anything. He has 34 budgets to review... he's not gonna have capacity.", "status": "acknowledged", "date": "2026-01-21", "gap_type": "knowledge", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"area": "No OpportunityContactRole records attached (contacts live only in tasks/calls)", "quote": "Buyer contacts Bruce Collins and Hilario Ochoa exist in a call and a task but are not on the opportunity's contact roles.", "status": "not addressed", "date": "2026-06-19", "gap_type": "hygiene", "source": "SF contact roles vs Task 2026-06-19"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early-stage, single-purpose public-sector deal parked for a September restart; the win levers are locking finance as sponsor, timing a consolidation business case to the window, and neutralizing Workday change fatigue.",
+      "flags": [
+        "Lock Hilario Ochoa (Director of Finance, positive on 2026-06-19) as the budget sponsor and have him open the IT director and deputy county administrator before September.",
+        "Time re-engagement to the September window with a CFO-ready business case quantifying the cost of running Bitnet + Workday + Onbase separately.",
+        "Neutralize Workday change fatigue by positioning Zycus as a complementary layer over Workday with a 12-16 week rollout, not another ERP-scale project."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Hilario Ochoa", "title": "Director of Finance", "role": "Economic Buyer", "last_contact_date": "2026-06-19", "sentiment": "Positive (confirmed he oversees procurement on a Nooks call)", "risk": "Budget owner engaged but sign-off authority and budget timing unconfirmed; only one positive touch on record.", "source": "Task 2026-06-19 Nooks call"},
+        {"name": "Bruce Collins", "title": "Procurement (per Avoma call 2026-01-21; no Salesforce title on record)", "role": "Champion", "last_contact_date": "2026-01-21", "sentiment": "Positive but cooling (strong interest in the suite and Merlin, no re-touch since January)", "risk": "Developing champion with no budget authority and no follow-through in 5 months; may go cold before the September restart.", "source": "Avoma discovery call 2026-01-21"},
+        {"name": "Deputy County Administrator (unnamed)", "title": "Deputy County Administrator", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown (never contacted; Bruce reports to this role)", "risk": "Approval authority above Bruce, entirely unengaged.", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"name": "IT Director (unnamed)", "title": "IT Director", "role": "Influencer", "last_contact_date": null, "sentiment": "Unknown (never contacted; Bruce wanted to share the SharePoint site with them)", "risk": "Critical for Workday integration and InfoSec, not yet engaged.", "source": "Avoma discovery call 2026-01-21, Bruce Collins"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Bruce Collins is a developing champion who was genuinely enthusiastic on 2026-01-21 (loved the Merlin 'black ring', volunteered to socialise Zycus internally via a SharePoint site to the IT director and CFO) and has a track record of championing procurement innovation at City of El Paso, but he holds no budget authority, has not been re-engaged since January, and never converted his interest into a scheduled step. The more active current thread is Hilario Ochoa (Director of Finance, positive on 2026-06-19). Champion strength is 'developing' because interest is real but access, urgency and follow-through are still missing.",
+      "champion": "Bruce Collins (Pima County procurement)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma discovery call 2026-01-21; Task 2026-06-19 Nooks call (Hilario Ochoa)"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AIS field reads Negative (2.0), but that reflects the September parking and rep qualifying-out, not a lack of AI appetite: on 2026-01-21 Bruce Collins was most animated about the Merlin agentic modules ('I love the black ring') including autonomous negotiation agents and contract AI. The AI story is under-positioned relative to the field score and should anchor the September re-engagement.",
+      "score": "2.0 (Negative)",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS field is Negative (2.0) because the deal is parked with no active evaluation, but the single call shows genuine AI curiosity: Bruce reacted more strongly to the Merlin 'black ring' (autonomous negotiation, contract agents, intake) than to the core suite. Field-negative, call-curious.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "County is stabilizing a costly 16-month-old Workday rollout and is protective of further disruption, which is why the buy is deferred.", "first_raised": "2026-01-21", "date": "2026-01-21", "status": "open", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"category": "budget", "detail": "No budget allocated; CFO consumed by 34 departmental budgets and unavailable until after the board cycle.", "first_raised": "2026-01-21", "date": "2026-01-21", "status": "open", "source": "Avoma discovery call 2026-01-21, Bruce Collins"},
+        {"category": "timeline", "detail": "Evaluation deferred to September 2026, leaving a compressed ~5-month runway to the February 2027 close for a full enterprise cycle.", "first_raised": "2026-02-03", "date": "2026-02-03", "status": "open", "source": "SF Next Step 2026-02-03"},
+        {"category": "executive_alignment", "detail": "Single-threaded on procurement/finance; deputy county administrator and IT director are unengaged.", "first_raised": "2026-01-21", "date": "2026-01-21", "status": "open", "source": "Avoma discovery call 2026-01-21, Bruce Collins"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Deal cooled after the January intro call and self-deferred to September, but a positive 2026-06-19 call with the Director of Finance shows the relationship is re-warming rather than dead.",
+      "cooling": true,
+      "items": [
+        "5-month gap between the 2026-01-21 discovery call and the next buyer touch",
+        "Positive 2026-06-19 Nooks conversation with Hilario Ochoa re-opened the finance thread",
+        "Buyer-set September 2026 restart is the natural re-engagement trigger"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Call Hilario Ochoa to confirm the September evaluation start and the budget approval path.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Positive 2026-06-19 Nooks call where Hilario confirmed he is Director of Finance overseeing procurement.", "trigger_date": "2026-06-19", "act_by": "2026-07-13", "expected_effect": "Converts the fresh finance touch into a mapped, sponsoring economic buyer and a concrete September restart date."},
+        {"rank": 2, "action": "Refresh the SharePoint microsite with the CLM video and a three-system consolidation ROI view for Hilario and the IT director.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Bruce asked on 2026-01-21 to share collateral internally: 'I would like our IT director to see something in Sharepoint.'", "trigger_date": "2026-01-21", "act_by": "2026-07-24", "expected_effect": "Re-warms Bruce as champion and opens a second thread to IT ahead of the September window."},
+        {"rank": 3, "action": "Reconnect Bruce Collins and jointly draft a quantified cost-of-fragmentation case for the CFO.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No quantified value was ever stated; Bruce thinks in metrics but never sized the pain.", "trigger_date": "2026-01-21", "act_by": "2026-07-27", "expected_effect": "Gives finance a numbers-based reason to prioritise the evaluation and defends the price."},
+        {"rank": 4, "action": "Book a scoped, Workday-complementary demo for early September when stabilization frees capacity.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer deferred evaluation to September pending Workday settling: 'we're still letting Workday settle.'", "trigger_date": "2026-02-03", "act_by": "2026-08-14", "expected_effect": "Secures the first real evaluation milestone at the buyer's own restart date and protects the February 2027 runway."}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "medium", "evidence": "Bruce on 2026-01-21: 'All of it is relevant... I love the black ring' - positive and enthusiastic but no decisive Zycus-specific commercial ask beyond sharing collateral internally."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: three fragmented systems (Bitnet, Workday, Onbase) and Workday change fatigue; no dollar, cycle-time or headcount figure quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history from 2026-01-22",
+    "avoma_attendees": ["Bruce Collins"],
+    "gaps": [
+      "No quantified business case / metrics stated by the buyer.",
+      "Economic buyer sign-off authority and budget timing unconfirmed (Hilario Ochoa identified as Director of Finance).",
+      "Deputy county administrator and IT director never engaged (single-thread).",
+      "No paper/procurement process visible (public-sector solicitation vehicle unknown)."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

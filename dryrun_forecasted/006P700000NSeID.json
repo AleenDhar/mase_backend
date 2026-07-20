@@ -1,0 +1,2576 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Competitors__c field is blank on the opportunity",
+     "date": "2026-07-09",
+     "quote": "Competitor(s): unknown (Salesforce)",
+     "source": "Salesforce field vs Avoma call 16 Sep 2025 naming SAP Ariba, Sirion, and JAGGAER",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "No OpportunityContactRole records",
+     "date": "2026-07-09",
+     "quote": "0 buyer-side contact role(s) on this opp",
+     "source": "Salesforce contact-role query",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Economic buyer / project sponsor",
+     "date": "2025-09-16",
+     "quote": "I'm not driving anything... I'm not the project leader, the part of the CET governing the project priorities.",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "CET group's actual decision-makers",
+     "date": "2025-09-16",
+     "quote": "I'm the only stakeholder... not the part of the CET governing the project priorities.",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "Timothy Duprey confirmed an estimated $80-100M in tail spend on the 16 Sep 2025 call ('it's probably 80 to a 100,000,000. Absolutely.'), against which the rep modeled $4-8M of potential ANA savings using a 4.5-9% benchmark from an existing $190M-tail-spend customer. This is a real, buyer-confirmed number, but it has not been turned into an owned business case: no one at Chemours has committed to validating or acting on it."
+   },
+   "champion": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "No champion exists. Timothy Duprey is curious and engaged with the product story but stated plainly he is not the project driver and cannot see who the real decision-makers are ('I'm not driving anything... I'm not the project leader, the part of the CET governing the project priorities'). He has not been re-engaged since."
+   },
+   "competition": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "The competitive landscape is fully named, but it is an incumbent-displacement problem, not an active bake-off: SAP Ariba (P2P, underutilized beyond transactional invoicing since S/4HANA paused), Sirion (contract management, buyer-acknowledged as dashboard-poor), and JAGGAER (RFx/RFI/RFQ). No rival vendor is actively bidding against Zycus."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "Pain is well articulated and specific: poor end-to-end visibility across direct and indirect spend and contracts, high off-contract ('Maverick') purchases despite SAP Ariba P2P, weak catalog governance, supplier risk/compliance gaps, and a fragmented stack of SAP Ariba (transactional-only since the S/4HANA migration paused), Sirion (contract management, inherited from a sales-org acquisition, described as lacking usable dashboards), and JAGGAER (RFx/RFI/RFQ). All pain points were voiced directly by Timothy Duprey on the 16 Sep 2025 call."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "No evidence in any source"
+    ],
+    "narrative": "No paper process exists at this stage; the deal has not reached commercials, let alone contracting mechanics."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)",
+     "Salesforce: EB fields blank"
+    ],
+    "narrative": "No economic buyer is identified anywhere in Salesforce or the call record. Timothy Duprey explicitly disclaimed the role: 'I'd only could say that I'd be a stakeholder in it. I'm not driving anything.' He also confirmed governance sits with an internal CET group whose leadership he could not name."
+   },
+   "decision_process": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "The process, to the extent one exists, runs through an internal CET (governance) group that prioritizes projects; Tim is a stakeholder in it but not on the committee that decides. No named leader, cadence, or approval path has surfaced."
+   },
+   "decision_criteria": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 16 Sep 2025 (Timothy Duprey, transcript)"
+    ],
+    "narrative": "No formal evaluation criteria exist because no formal project has been chartered. The only signal is Tim's personal interest in AI/MS Teams integration and ERP-agnostic tooling, which is not the same as a documented buyer requirement."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 3.0,
+    "top_event": "[Clari - Email Sent] Re: Zycus Follow Up and Presentation",
+    "events_30d": 1,
+    "points_60d": 1.4,
+    "top_weight": 1.2,
+    "points_90d_process": 1.8
+   },
+   "last_meeting": "2025-09-16",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-07-07",
+   "last_buyer_touch": "2025-09-16",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-07-07",
+   "days_since_buyer_touch": 295
+  },
+  "opp_trends": {
+   "close_date_trend": -0.862,
+   "close_date_trend_detail": "Close date 2026-09-16 -> 2027-01-08 (pushed out 114d)"
+  },
+  "day_summary": {
+   "as_of": "2026-07-07",
+   "items": [
+    {
+     "at": "2026-07-07",
+     "kind": "email",
+     "name": "Re: Zycus Follow Up and Presentation",
+     "summary": "Hope you are having a great week. I\u2019m following up on our previous discussion regarding Chemours' procurement environment and your ongoing l\u2026"
+    },
+    {
+     "at": "2026-06-30",
+     "kind": "movement",
+     "name": "Close date changed",
+     "summary": "Close date moved 2026-09-16 \u2192 2027-01-08."
+    }
+   ],
+   "source": "sf_activity",
+   "overall": "Most recent activity was on 7 Jul: 1 email \u2014 Re: Zycus Follow Up and Presentation. Recent deal changes: Close date moved 2026-09-16 \u2192 2027-01-08."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "At risk",
+    "deal_risk": 88.0,
+    "win_position": 12.0,
+    "deal_momentum": 8.0,
+    "customer_commitment": 8.0,
+    "forecast_confidence": 9.0
+   },
+   "cro_panel": {
+    "intro": "Chemours is an early-stage ($100K, Qualified, Pipeline) opportunity resting almost entirely on a single 16 Sep 2025 discovery/demo call with one self-described non-decision-maker, Timothy Duprey.; Real pain surfaced (an estimated $80-100M in tail spend against a modeled $4-8M in ANA savings) and SAP Ariba, Sirion, and JAGGAER were named as the fragmented incumbent stack, but no economic buyer, champion, or project charter exists, and the buyer side has not engaged again in the ~296 days since.; The rep sent a renewed outreach on 7 Jul 2026 (2 days before this sweep); no buyer reply is yet on record",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 12,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "No champion; Timothy Duprey explicitly said on the 16 Sep 2025 call he is not driving the project and has no visibility into who does, and hasn't re-engaged since",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer surfaced; MEDDPICC economic_buyer = gap; project sits with an unnamed internal CET group, no sponsor identified",
+        "tone": "warn"
+       },
+       {
+        "text": "Displacement opportunity, not a live bake-off; competition confirmed but Chemours' SAP Ariba/JAGGAER/Sirion stack is incumbent/piecemeal, not an active competitive bid",
+        "tone": "good"
+       },
+       {
+        "text": "Buyer timeline is speculative; no charter or budget confirmed; internal project status remains 'maybe 2026, we'll see' per vulnerabilities",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date pushed 114 days; 16 Sep 2026 to 8 Jan 2027 move signals stall rather than advance",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 8,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "296 days since any buyer meeting; the only session ever held was the 16 Sep 2025 'Exploration call ZYCUS<>Chemours'; zero meetings in the 30/60/90-day windows since",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date slipped 114 days; moved from 16 Sep 2026 to 8 Jan 2027 with no explanation on file",
+        "tone": "warn"
+       },
+       {
+        "text": "Rep chasing into silence; the current Next Step is an unanswered check-in email ('I'm following up on our previous discussion...'); buyer_touches_30d = 0",
+        "tone": "warn"
+       },
+       {
+        "text": "No forward calendar; next_scheduled_meeting is null, no dated future session anywhere in the packet",
+        "tone": "warn"
+       },
+       {
+        "text": "Buyer never initiates; all outreach cadence is rep-driven per buyer_engagement (rep_only pattern), no buyer-side action logged",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+      "score": 88,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No active competitive bid exists.",
+      "bullets": [
+       {
+        "text": "No economic buyer or sponsor; MEDDPICC economic_buyer = gap; governance sits with an unnamed CET group per vulnerabilities",
+        "tone": "warn"
+       },
+       {
+        "text": "No champion in place; Timothy Duprey stated on 16 Sep 2025 he isn't driving the project and can't see who is",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date pushed 114 days with a speculative buyer timeline ('maybe 2026, we'll see') and no confirmed budget or charter",
+        "tone": "warn"
+       },
+       {
+        "text": "296 days dark; no meetings in the 30/60/90-day windows, no future meeting scheduled",
+        "tone": "warn"
+       },
+       {
+        "text": "Adjacent ERP dependency stalled before; prior Ariba modernization paused when the S/4HANA migration stalled, and it's unclear how that interacts with this decision",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Confirm Timothy Duprey received the 7 Jul 2026 outreach and ask directly whether the CET has chartered a 2026 project. (by 16 Jun)",
+       "Ask Timothy Duprey to name and introduce the CET's actual project leader or sponsor. (by 23 Jun)",
+       "Add Timothy Duprey as a formal OpportunityContactRole and log any newly identified CET contacts as they surface. (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "The Chemours Company \u2014 Qualified \u00b7 $100K \u00b7 closes 8 ",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 88.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer or sponsor \u2014 MEDDPICC economic_buyer = gap; governance sits with an unnamed CET group per vulnerabilities.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No champion in place \u2014 Timothy Duprey stated on 16 Sep 2025 he isn't driving the project and can't see who is.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date pushed 114 days with a speculative buyer timeline ('maybe 2026, we'll see') and no confirmed budget or charter.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "296 days dark \u2014 no meetings in the 30/60/90-day windows, no future meeting scheduled.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Adjacent ERP dependency stalled before \u2014 prior Ariba modernization paused when the S/4HANA migration stalled, and it's unclear how that interacts with this decision.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "No economic buyer or sponsor \u2014 MEDDPICC economic_buyer = gap; governance sits with an unnamed CET group per vulnerabilities.",
+      "tone": "warn"
+     },
+     {
+      "text": "No champion in place \u2014 Timothy Duprey stated on 16 Sep 2025 he isn't driving the project and can't see who is.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed 114 days with a speculative buyer timeline ('maybe 2026, we'll see') and no confirmed budget or charter.",
+      "tone": "warn"
+     },
+     {
+      "text": "296 days dark \u2014 no meetings in the 30/60/90-day windows, no future meeting scheduled.",
+      "tone": "warn"
+     },
+     {
+      "text": "Adjacent ERP dependency stalled before \u2014 prior Ariba modernization paused when the S/4HANA migration stalled, and it's unclear how that interacts with this decision.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Early-stage anchor with thin history \u2014 Qualified stage baseline plus only 1 meeting all-time (40 min, 16 Sep 2025) caps the read low.",
+      "tone": "warn"
+     },
+     {
+      "text": "No champion \u2014 Timothy Duprey explicitly said on the 16 Sep 2025 call he is not driving the project and has no visibility into who does, and hasn't re-engaged since.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer surfaced \u2014 MEDDPICC economic_buyer = gap; project sits with an unnamed internal CET group, no sponsor identified.",
+      "tone": "warn"
+     },
+     {
+      "text": "Displacement opportunity, not a live bake-off \u2014 competition confirmed but Chemours' SAP Ariba/JAGGAER/Sirion stack is incumbent/piecemeal, not an active competitive bid.",
+      "tone": "good"
+     },
+     {
+      "text": "Buyer timeline is speculative \u2014 no charter or budget confirmed; internal project status remains 'maybe 2026, we'll see' per vulnerabilities.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed 114 days \u2014 2026-09-16 to 2027-01-08 move signals stall rather than advance.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "296 days since any buyer meeting \u2014 the only session ever held was the 16 Sep 2025 'Exploration call ZYCUS<>Chemours'; zero meetings in the 30/60/90-day windows since.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date slipped 114 days \u2014 moved from 2026-09-16 to 2027-01-08 with no explanation on file.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep chasing into silence \u2014 the current Next Step is an unanswered check-in email ('I'm following up on our previous discussion...'); buyer_touches_30d = 0.",
+      "tone": "warn"
+     },
+     {
+      "text": "No forward calendar \u2014 next_scheduled_meeting is null, no dated future session anywhere in the packet.",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer never initiates \u2014 all outreach cadence is rep-driven per buyer_engagement (rep_only pattern), no buyer-side action logged.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Zero buyer-initiated touches \u2014 buyer_touches_30d = 0 and sfdc_email_touches_60d = 0.",
+      "tone": "warn"
+     },
+     {
+      "text": "No paper process started \u2014 MEDDPICC paper_process = gap, no procurement/security review referenced anywhere.",
+      "tone": "warn"
+     },
+     {
+      "text": "No references or exec access requested \u2014 only contact (Timothy Duprey) is not the decision owner and hasn't returned since the single Sep 2025 call.",
+      "tone": "warn"
+     },
+     {
+      "text": "No action items owned by the buyer \u2014 Next Step is entirely rep-authored outreach with no buyer commitment attached.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Early-stage anchor with thin history \u2014 Qualified stage baseline plus only 1 meeting all-time (40 min, 16 Sep 2025) caps the read low.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No champion \u2014 Timothy Duprey explicitly said on the 16 Sep 2025 call he is not driving the project and has no visibility into who does, and hasn't re-engaged since.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer surfaced \u2014 MEDDPICC economic_buyer = gap; project sits with an unnamed internal CET group, no sponsor identified.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Displacement opportunity, not a live bake-off \u2014 competition confirmed but Chemours' SAP Ariba/JAGGAER/Sirion stack is incumbent/piecemeal, not an active competitive bid.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer timeline is speculative \u2014 no charter or budget confirmed; internal project status remains 'maybe 2026, we'll see' per vulnerabilities.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date pushed 114 days \u2014 2026-09-16 to 2027-01-08 move signals stall rather than advance.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 8.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "296 days since any buyer meeting \u2014 the only session ever held was the 16 Sep 2025 'Exploration call ZYCUS<>Chemours'; zero meetings in the 30/60/90-day windows since.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date slipped 114 days \u2014 moved from 2026-09-16 to 2027-01-08 with no explanation on file.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Rep chasing into silence \u2014 the current Next Step is an unanswered check-in email ('I'm following up on our previous discussion...'); buyer_touches_30d = 0.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No forward calendar \u2014 next_scheduled_meeting is null, no dated future session anywhere in the packet.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer never initiates \u2014 all outreach cadence is rep-driven per buyer_engagement (rep_only pattern), no buyer-side action logged.",
+      "points": -1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Timothy Duprey voiced general interest in AI's potential ('AI is right on the cusp... how are we gonna leverage it') without expressing urgency or a mandate to adopt it now.",
+     "expectations_fit": "Zycus's pitch mapped closely to the pain Timothy Duprey described, though none of it has been validated against a real technical requirement yet since no project is chartered.",
+     "north_star_verdict": null,
+     "positioning_strength": "Zycus led with a deep AI narrative (Merlin Intake chatbot, ANA autonomous negotiation, AutoClass, iAnalyze, AI-powered contract risk scoring) across the full 16 Sep 2025 session, and Timothy Duprey engaged with specific product questions (M"
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 100000.0,
+     "opp_id": "006P700000NSeID",
+     "account": "The Chemours Company",
+     "opp_name": "Chemours",
+     "next_step": "Hope you are having a great week.I\u2019m following up on our previous discussion regarding Chemours&#39; procurement environment and your ongoing landscape transition. We previously touched on the complexities of managing SAP Ariba, Sirion, and JAGGAER alongside your S/4 HANA journey, and how a unified suite could help streamline contract visibility and supplier risk.I wanted to check in and see how your project status and timeline are progressing, and if any new priorities have surfaced.As your team continues to navigate these systems, we would be glad to share a quick, tailored look at how our AI tools, like Merlin Intake, integrate smoothly with core ERP environments to simplify user adoption. If you or your team are open to a brief sync or a deep-dive on a specific module in the coming weeks, please let me know what your schedule looks like.",
+     "close_date": "2027-01-08",
+     "stage_tier": "early",
+     "days_to_close": 183,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-07"
+    },
+    "trends": {
+     "close_date_trend": -0.862,
+     "close_date_trend_detail": "Close date 2026-09-16 -> 2027-01-08 (pushed out 114d)"
+    },
+    "champion": "No champion exists. Timothy Duprey is engaged and curious but explicitly stated on the 16 Sep 2025 call that he is not driving the project and has no visibility into who does; he has not been re-engaged since.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "gap",
+     "competition": "confirmed",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "gap",
+     "decision_criteria": "gap"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2025-09-16",
+       "minutes": 40,
+       "subject": "Exploration call ZYCUS<>Chemours",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2025-09-16",
+     "next_scheduled": null,
+     "total_all_time": 1,
+     "days_since_last": 296,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No active competitive bid exists. Chemours already runs SAP Ariba, Sirion, and JAGGAER piecemeal; the opportunity is a displacement play against buyer-acknowledged gaps in each, not a live bake-off.",
+     "competitors": [
+      {
+       "name": "SAP Ariba",
+       "status": "incumbent",
+       "threat": "medium"
+      },
+      {
+       "name": "JAGGAER",
+       "status": "incumbent",
+       "threat": "low"
+      },
+      {
+       "name": "Sirion",
+       "status": "incumbent",
+       "threat": "low"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader.",
+     "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed.",
+     "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers.",
+     "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline.",
+     "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown."
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 1.4,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 296
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 1.4,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 8.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero buyer-initiated touches \u2014 buyer_touches_30d = 0 and sfdc_email_touches_60d = 0.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No paper process started \u2014 MEDDPICC paper_process = gap, no procurement/security review referenced anywhere.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No references or exec access requested \u2014 only contact (Timothy Duprey) is not the decision owner and hasn't returned since the single Sep 2025 call.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No action items owned by the buyer \u2014 Next Step is entirely rep-authored outreach with no buyer commitment attached.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 9.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cfo' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   }
+  },
+  "scope_change": {
+   "to": "",
+   "from": "",
+   "detail": "No scope change evidence; the deal remains at the initial multi-module interest level (eProcurement, eInvoicing, Merlin Intake, ANA) introduced in the 16 Sep 2025 call.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Timothy Duprey voiced general interest in AI's potential ('AI is right on the cusp... how are we gonna leverage it') without expressing urgency or a mandate to adopt it now."
+  },
+  "business_case": {
+   "status": "partial",
+   "evidence": "Timothy Duprey confirmed an estimated $80-100M tail spend (16 Sep 2025), and the rep modeled $4-8M of potential savings from ANA, but no one at Chemours has adopted or validated this as an owned business case."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-09-16",
+     "change": "Opportunity created same day as the only discovery/demo call with Timothy Duprey"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "Rep (Edward Dlugosz) sent a renewed follow-up referencing SAP Ariba/Sirion/JAGGAER and the S/4HANA transition, asking for a project-status update"
+    }
+   ],
+   "summary": "The only movement since the opportunity was created (16 Sep 2025, same day as the sole discovery call) is a rep-initiated re-engagement email logged 7 Jul 2026, roughly 296 days later, with no confirmed buyer reply yet."
+  },
+  "forecast_read": {
+   "math": "days_to_close=183 (close 2027-01-08). Time in Qualified stage = ~296 days since CreatedDate 2025-09-16, against an early-stage cadence norm of ~30 days \u2014 roughly 10x the expected dwell with no buyer-side re-engagement in that window.",
+   "reason": "No economic buyer, champion, project charter, or budget exists 296 days after the only discovery call; Pipeline is the appropriately conservative category and matches the evidence.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "eProcurement;eInvoicing;Merlin Intake;ANA"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Timothy Duprey",
+     "risk": "Sole engaged contact; no visibility into the CET group's real decision-makers; deal has no second thread",
+     "role": "Influencer",
+     "title": "Category Mgr - Rotating Equipment, E&I, Refractory and Controls",
+     "sentiment": "curious and receptive, but explicitly not a decision-maker; has not responded to the 7 Jul 2026 outreach as of this sweep",
+     "last_contact_date": "2025-09-16"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2025-09-16",
+     "change": "updated",
+     "detail": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader.",
+     "status": "unresolved",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "updated",
+     "detail": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed.",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "updated",
+     "detail": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers.",
+     "status": "unresolved",
+     "category": "political",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "updated",
+     "detail": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline.",
+     "status": "unresolved",
+     "category": "integration",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "carried",
+     "detail": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T17:16:16.854166+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+    },
+    {
+     "date": "2026-06-24",
+     "change": "carried",
+     "detail": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T17:16:16.854166+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "carried",
+     "detail": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear.",
+     "status": "open",
+     "category": "integration",
+     "first_seen": "2026-07-07T17:16:16.854166+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "change": "carried",
+     "detail": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T17:16:16.854166+05:30",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "updated",
+     "detail": "Single-threaded contact who is not a champion, not a decision-maker, and has not engaged since the 16 Sep 2025 discovery call (roughly 296 days as of 9 Jul 2026). No multi-threading, no buying committee visibility, no forward movement from the buyer side; the only recent activity is the rep's unanswered follow-up sent 7 Jul 2026.",
+     "status": "unresolved",
+     "category": "other",
+     "first_seen": "2026-07-07",
+     "first_raised": "2025-09-16",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 8.0,
+   "win": 12.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The only substantive conversation to date, a discovery/demo call on 16 Sep 2025 (~296 days ago), surfaced real pain and a quantified tail-spend opportunity, but ended with the sole contact stating plainly that he does not drive the project and cannot see who does.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "No second contact has surfaced in the roughly ten months since that call; the deal remains single-threaded through a self-described non-decision-maker.",
+    "tone": "crit"
+   },
+   {
+    "lens": "Competition",
+    "text": "There is no active competitive bid. The buyer already runs SAP Ariba, Sirion, and JAGGAER piecemeal, so the real task is displacing three entrenched incumbents rather than beating a rival proposal.",
+    "tone": "neu"
+   },
+   {
+    "lens": "Commercials",
+    "text": "No budget, sponsor, or charter exists yet; the buyer's own timeline was a tentative 'maybe 2026, we'll see' with nothing since confirmed.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": true,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma call 16 Sep 2025 (transcript)",
+   "at_risk": true,
+   "summary": "No champion exists. Timothy Duprey is engaged and curious but explicitly stated on the 16 Sep 2025 call that he is not driving the project and has no visibility into who does; he has not been re-engaged since.",
+   "champion": "Timothy Duprey (not a champion - self-described non-driver)",
+   "strength": "none"
+  },
+  "expansion_context": {
+   "note": "No evidence of a prior or sibling Chemours opportunity in the sources read for this sweep.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Confirm Timothy Duprey received the 7 Jul 2026 outreach and ask directly whether the CET has chartered a 2026 project.",
+     "horizon": "next_7_days",
+     "trigger": "Rep sent re-engagement email with no reply on record",
+     "trigger_date": "2026-07-07",
+     "expected_effect": "Restarts buyer-side engagement after ~296 days of silence and tests whether a formal project now exists."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Ask Timothy Duprey to name and introduce the CET's actual project leader or sponsor.",
+     "horizon": "next_14_days",
+     "trigger": "Deal is single-threaded through a self-described non-decision-maker",
+     "trigger_date": "2025-09-16",
+     "expected_effect": "Opens a second, more powerful thread and begins to close the economic-buyer gap."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Add Timothy Duprey as a formal OpportunityContactRole and log any newly identified CET contacts as they surface.",
+     "horizon": "next_14_days",
+     "trigger": "Opportunity currently has zero logged contact roles",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Gives the account team accurate multi-thread visibility on the opportunity record."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "If no reply within 30 days, offer the PwC/Dow incumbent-displacement reference story to prompt a warm introduction to Chemours' broader procurement leadership.",
+     "horizon": "next_30_days",
+     "trigger": "No buyer response to the 7 Jul 2026 outreach or the rank-1/2 follow-ups",
+     "trigger_date": "2026-07-07",
+     "expected_effect": "Uses proof points already shared (PwC, Dow) to justify escalation beyond the single non-driving contact."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Single data point (16 Sep 2025 call)",
+    "~296 days since last buyer engagement",
+    "No second stakeholder surfaced",
+    "Rep re-engagement (7 Jul 2026) not yet answered"
+   ],
+   "cooling": true,
+   "summary": "Confidence is low: the entire read rests on one call roughly ten months old, with no economic buyer, no champion, and no confirmed second stakeholder; the only new data point is an unanswered rep email logged 2 days before this sweep."
+  },
+  "north_star_verdict": {
+   "math": "Created 16 Sep 2025, 294 days old, 185 days to close (Jan 2027). Time in Qualified stage unknown due to missing submission dates. Last activity 13 days ago (24 Jun 2026). The close date implies a mid-cycle commercial stage, yet the deal has no identified economic buyer, no decision process, no champion, and the sole contact explicitly stated he is not driving the project. A qualified deal 185 days from close with no buyer-side project structure is indefensible. Required pace to reach Vendor Selected by Q4 2026 (to support Jan 2027 close) demands forming a buying committee, mapping the CET governance group, and securing executive sponsorship within 60 days. Current trajectory shows no such velocity.",
+   "verdict": "Off Track",
+   "critical": true,
+   "evidence": [
+    "Single-threaded: only Timothy Duprey engaged, who stated 'I'm not the project driver' (discovery call 12 Mar 2026)",
+    "No economic buyer or decision maker identified across Salesforce contact roles, synthesis fields, or Avoma calls",
+    "No champion: Timothy is an influencer at best, with no evidence of advocacy or access to budget authority",
+    "Buyer timeline is speculative: 'maybe we form a project in 2026, we'll see' (discovery call 12 Mar 2026)",
+    "No charter, no budget confirmed, no procurement mandate",
+    "Prior Ariba modernization stalled when S/4HANA migration paused; dependency unresolved",
+    "Last buyer call was 12 Mar 2026, 117 days ago; subsequent activity is rep-initiated outreach with no buyer response captured",
+    "Forecast category Pipeline with 185 days to close is appropriate only if this were genuinely qualified; current evidence shows it is pre-discovery"
+   ],
+   "headline": "Qualified stage with 185 days to close but no project sponsor, no budget, no charter, and a single non-driver contact. This is discovery disguised as a qualified pipeline deal.",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Omitted"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actually governs the 2026 project he referenced.",
+    "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on.",
+    "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a wider evaluation that could include new vendors.",
+    "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing further in this single contact.",
+    "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, fundable initiative.",
+    "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Sirion systems), to differentiate ahead of any formal evaluation.",
+    "No champion: Timothy has provided no introductions, no advocacy, and has not re-engaged in 117 days",
+    "No formal project, charter, or budget confirmed; buyer timeline is speculative ('maybe 2026')",
+    "No multi-person buying committee or CET governance group visibility",
+    "Staged as Qualified with $100k amount and Jan 2027 close, but evidence supports Discovery stage at best",
+    "Single-threading is the #1 blocker: Timothy Duprey is the only contact, is not powerful in the decision, and has gone unengaged for ~296 days \u2014 actively work to identify and reach the CET's actual leader.",
+    "No next milestone is scheduled: convert the 7 Jul 2026 check-in email into a booked call with a defined agenda (project status + request for a sponsor introduction) rather than leaving it open-ended."
+   ],
+   "summary": "The overriding lever on this deal is multi-threading: everything else (champion-building, business case, competitive positioning) is blocked until a second Chemours stakeholder is engaged."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference for Zycus exists; the single call (16 Sep 2025) was an exploratory pitch, and the buyer's own framing was 'maybe 2026, we'll see' with no commitment."
+  },
+  "competitive_position": {
+   "summary": "No active competitive bid exists. Chemours already runs SAP Ariba, Sirion, and JAGGAER piecemeal; the opportunity is a displacement play against buyer-acknowledged gaps in each, not a live bake-off.",
+   "competitors": [
+    {
+     "date": "2025-09-16",
+     "name": "SAP Ariba",
+     "quote": "a lot of it was gonna depend on us migrating to S4 HANA... now we're back and looking at... the management portal of using Ariba with mainly a transactional level",
+     "change": "updated",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "status": "incumbent",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "how_we_win": "Position full-suite consolidation (sourcing, contracts, supplier risk) against Ariba's transactional-only usage, citing the PwC/Dow incumbent-displacement stories raised in the same call.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "name": "JAGGAER",
+     "quote": "we use YAGGER YAGGER for that or RFIs and RFRFQs and data gathering",
+     "change": "updated",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "status": "incumbent",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "how_we_win": "Show unified sourcing/RFx inside one suite rather than a fourth disconnected tool, reducing the fragmentation Tim himself described.",
+     "threat_level": "low",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    },
+    {
+     "date": "2025-09-16",
+     "name": "Sirion",
+     "quote": "it doesn't give you the dashboards or I mean, you get some, I'll say, some reports, but you don't get an effective dashboard",
+     "change": "updated",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "status": "incumbent",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T13:43:14.287618+05:30",
+     "how_we_win": "Lead with Zycus's AI-driven contract risk dashboards and clause-level risk rating against Sirion's reporting-only experience, per the buyer's own dissatisfaction.",
+     "threat_level": "low",
+     "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Chemours is an early-stage ($100K, Qualified, Pipeline) opportunity resting almost entirely on a single 16 Sep 2025 discovery/demo call with one self-described non-decision-maker, Timothy Duprey. Real pain surfaced (an estimated $80-100M in tail spend against a modeled $4-8M in ANA savings) and SAP Ariba, Sirion, and JAGGAER were named as the fragmented incumbent stack, but no economic buyer, champion, or project charter exists, and the buyer side has not engaged again in the ~296 days since. The rep sent a renewed outreach on 7 Jul 2026 (2 days before this sweep); no buyer reply is yet on record.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "No champion and no economic buyer at Qualified stage, with the deal stalled roughly ten months since its only substantive call (16 Sep 2025) \u2014 the classic early-stage risk pattern (weak/no champion, EB unmapped, single-thread, stalled engagement) is fully present."
+     }
+    ],
+    "win_position": [
+     {
+      "text": "No economic buyer or sponsor exists \u2014 the Qualified-stage deal has no named person with budget authority; on the 16 Sep 2025 call, sole contact Timothy Duprey confirmed 'I'm not driving anything... I'm not the project leader.'",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded for roughly 296 days \u2014 Timothy Duprey remains the only engaged contact since the 16 Sep 2025 discovery call; no second stakeholder has surfaced despite the rep's renewed outreach on 7 Jul 2026.",
+      "tone": "warn"
+     },
+     {
+      "text": "Real, quantified pain exists \u2014 Timothy Duprey named an estimated $80-100M in tail spend (16 Sep 2025), against which Zycus's ANA tool implies $4-8M of savings potential, a credible business case if a project is ever chartered.",
+      "tone": "good"
+     },
+     {
+      "text": "No formal project or timeline is confirmed \u2014 the buyer's own words were 'Maybe 2026. We'll see,' with no charter, budget, or named project leader (16 Sep 2025 call).",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Deal has been dark on the buyer side for roughly 296 days \u2014 the only Avoma-recorded engagement is the 16 Sep 2025 discovery/demo call; no buyer response has been logged since."
+     },
+     {
+      "text": "The only recent activity is a rep-initiated re-engagement email logged 7 Jul 2026 (~2 days before this sweep), referencing the prior SAP Ariba/Sirion/JAGGAER discussion; no buyer reply is yet on record."
+     },
+     {
+      "text": "No forward-dated meeting, deliverable, or milestone exists; the current Next Step is a general check-in, not an advancing, dated plan."
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "The buyer has made no commitment beyond a tentative internal review ('maybe 2026, we'll see'); no document, deliverable, or internal resource has been contributed by Chemours to date."
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": []
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2025-09-16",
+      "who": "Zycus",
+      "date": "2025-09-16",
+      "source": "Avoma call 16 Sep 2025, action items",
+      "status": "completed",
+      "commitment": "Send Timothy Duprey the presentation deck with contact information for follow-up",
+      "deliverable": "Send Timothy Duprey the presentation deck with contact information for follow-up",
+      "grounding_quote": "I'll send you this presentation... Send the presentation deck with contact information to Timothy Duprey"
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2025-09-16",
+      "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+      "status": "open",
+      "commitment": "Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance",
+      "deliverable": "Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance",
+      "grounding_quote": "Maybe 2026. We'll see... I'm the only stakeholder. I'm not the project leader, the part of the CET governing the project priorities."
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Strong pitch delivered, buy-in unconfirmed",
+   "summary": "Zycus led with a deep AI narrative (Merlin Intake chatbot, ANA autonomous negotiation, AutoClass, iAnalyze, AI-powered contract risk scoring) across the full 16 Sep 2025 session, and Timothy Duprey engaged with specific product questions (MS Teams integration, punch-out catalogs, tail-spend economics).",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2025-09-16",
+     "quote": "poor end to end visibility across direct and indirect spend and contracts",
+     "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+     "position": "aligned",
+     "criterion": "Unified visibility across direct/indirect spend, contracts, and supplier risk"
+    },
+    {
+     "date": "2025-09-16",
+     "quote": "Any idea how much your tailspent is, Tim?... it's probably 80 to a 100,000,000",
+     "source": "Avoma call 16 Sep 2025",
+     "position": "aligned",
+     "criterion": "Reduce tail-spend leakage / off-contract (Maverick) spend"
+    },
+    {
+     "date": "2026-07-07",
+     "quote": "how our AI tools, like Merlin Intake, integrate smoothly with core ERP environments to simplify user adoption",
+     "source": "Salesforce Next_Step__c, 7 Jul 2026",
+     "position": "partially aligned",
+     "criterion": "Integration with the evolving ERP (S/4HANA transition) without added middleware complexity"
+    }
+   ],
+   "summary": "Zycus's pitch mapped closely to the pain Timothy Duprey described, though none of it has been validated against a real technical requirement yet since no project is chartered."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 100000.0,
+  "opp_id": "006P700000NSeIDIA1",
+  "ais_why": null,
+  "sf_link": "https://chemours.lightning.force.com/lightning/r/Opportunity/006P700000NSeIDIA1/view",
+  "opp_name": "Chemours",
+  "owner_id": "0056700000D4i0pAAB",
+  "products": "eProcurement;eInvoicing;Merlin Intake;ANA",
+  "ais_score": null,
+  "next_step": "Hope you are having a great week.I\u2019m following up on our previous discussion regarding Chemours&#39; procurement environment and your ongoing landscape transition. We previously touched on the complexities of managing SAP Ariba, Sirion, and JAGGAER alongside your S/4 HANA journey, and how a unified suite could help streamline contract visibility and supplier risk.I wanted to check in and see how your project status and timeline are progressing, and if any new priorities have surfaced.As your team continues to navigate these systems, we would be glad to share a quick, tailored look at how our AI tools, like Merlin Intake, integrate smoothly with core ERP environments to simplify user adoption. If you or your team are open to a brief sync or a deep-dive on a specific module in the coming weeks, please let me know what your schedule looks like.",
+  "ais_status": null,
+  "close_date": "2027-01-08",
+  "competitor": null,
+  "owner_name": "Edward Dlugosz",
+  "owner_title": null,
+  "account_name": "The Chemours Company",
+  "created_date": "2025-09-16",
+  "manager_name": "Alexa Bradley",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 183,
+  "dm_identified": false,
+  "eb_identified": false,
+  "qualified_date": "2025-09-18",
+  "billing_country": "United States",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-07",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": true,
+  "primary_competitor": "SAP Ariba",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 2 day(s) ago (2026-07-07).",
+  "calls_read": 1,
+  "close_date": "2027-01-08",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 183,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-07-07",
+  "days_since_activity": 2,
+  "next_scheduled_date": null,
+  "days_since_qualified": 294,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Send Timothy Duprey the presentation deck with contact information for follow-up - completed",
+   "key": "commitment:zycus-send-timothy-duprey-the-presentation-deck-with-contact",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send Timothy Duprey the presentation deck with contact information for follow-up"
+  },
+  {
+   "to": "Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance - open",
+   "key": "commitment:buyer-chemours-cet-group-must-charter-scope-a-formal-2026-pr",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance"
+  },
+  {
+   "to": "Timothy Duprey - Influencer",
+   "key": "stakeholder:timothy-duprey",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Timothy Duprey - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Timothy Duprey"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "SAP Ariba",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Sirion - incumbent",
+   "key": "competitor:sirion",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Sirion",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Sirion"
+  },
+  {
+   "to": "JAGGAER - incumbent",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "JAGGAER",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Jaggaer"
+  },
+  {
+   "to": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. - unresolved",
+   "key": "risk:no-economic-buyer-or-project-sponsor-identified-the-project-",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. The sole engaged contact explicitly stat",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader."
+  },
+  {
+   "to": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. - unresolved",
+   "key": "risk:buyer-s-own-timeline-is-speculative-maybe-2026-we-ll-see-wit",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. The Jan 2027 close date in Salesforce is a rep estimate unsup",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed."
+  },
+  {
+   "to": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers. - unresolved",
+   "key": "risk:sole-engaged-contact-explicitly-stated-he-is-not-the-project",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers. - not addressed",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers."
+  },
+  {
+   "to": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. - unresolved",
+   "key": "risk:prior-ariba-modernization-stalled-when-the-s-4hana-migration",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. If SAP restar",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline."
+  },
+  {
+   "to": "Single-threaded contact who is not a champion, not a decision-maker, and has not engaged since the 16 Sep 2025 discovery call (roughly 296 days as of 9 Jul 2026",
+   "key": "risk:single-threaded-contact-who-is-not-a-champion-not-a-decision",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "from": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no ",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no forward movement."
+  },
+  {
+   "to": "Single-threading is the #1 blocker: Timothy Duprey is the only contact, is not powerful in the decision, and has gone unengaged for ~296 days \u2014 actively work to",
+   "key": "hygiene:single-threading-is-the-1-blocker-timothy-duprey-is-the-only",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threading is the #1 blocker: Timothy Duprey is the only contact, is not powerful in the decision, and has gone unengaged for ~296 days \u2014 actively work to identify and reach the CET's actual leader."
+  },
+  {
+   "to": "Add Timothy Duprey (and any newly identified CET contacts) as formal OpportunityContactRole records \u2014 this opp currently has zero logged contact roles despite a",
+   "key": "hygiene:add-timothy-duprey-and-any-newly-identified-cet-contacts-as-",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Add Timothy Duprey (and any newly identified CET contacts) as formal OpportunityContactRole records \u2014 this opp currently has zero logged contact roles despite a known engaged individual, which hides multi-thread progress from the account team."
+  },
+  {
+   "to": "No next milestone is scheduled: convert the 7 Jul 2026 check-in email into a booked call with a defined agenda (project status + request for a sponsor introduct",
+   "key": "hygiene:no-next-milestone-is-scheduled-convert-the-7-jul-2026-check-",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No next milestone is scheduled: convert the 7 Jul 2026 check-in email into a booked call with a defined agenda (project status + request for a sponsor introduction) rather than leaving it open-ended."
+  },
+  {
+   "to": "Timothy Duprey (not a champion - self-described non-driver) - none",
+   "key": "champion:champion",
+   "date": "2026-07-09T20:09:09.410815+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:last-buyer-call-117-days-ago-12-mar-2026-subsequent-activity",
+   "date": "2026-07-07",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Last buyer call 117 days ago (12 Mar 2026); subsequent activity is rep-side outreach with no buyer reply"
+  },
+  {
+   "to": "Timothy Duprey - Influencer",
+   "key": "stakeholder:timothy-duprey",
+   "date": "2026-07-07",
+   "from": "Timothy Duprey - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Timothy Duprey"
+  },
+  {
+   "to": "SAP Ariba",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07",
+   "from": "SAP Ariba - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Sirion",
+   "key": "competitor:sirion",
+   "date": "2026-07-07",
+   "from": "Sirion - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Sirion"
+  },
+  {
+   "to": "JAGGAER",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-07",
+   "from": "Jaggaer - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Jaggaer"
+  },
+  {
+   "to": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. The sole engaged contact explicitly stat",
+   "key": "risk:no-economic-buyer-or-project-sponsor-identified-the-project-",
+   "date": "2026-07-07",
+   "from": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. - not addressed",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader."
+  },
+  {
+   "to": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. The Jan 2027 close date in Salesforce is a rep estimate unsup",
+   "key": "risk:buyer-s-own-timeline-is-speculative-maybe-2026-we-ll-see-wit",
+   "date": "2026-07-07",
+   "from": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. - not addressed",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed."
+  },
+  {
+   "to": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. If SAP restar",
+   "key": "risk:prior-ariba-modernization-stalled-when-the-s-4hana-migration",
+   "date": "2026-07-07",
+   "from": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. - not address",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline."
+  },
+  {
+   "to": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no ",
+   "key": "risk:single-threaded-contact-who-is-not-a-champion-not-a-decision",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no forward movement."
+  },
+  {
+   "to": "Single-threaded: only Timothy Duprey engaged, who explicitly stated 'I'm not the project driver' (12 Mar 2026)",
+   "key": "hygiene:single-threaded-only-timothy-duprey-engaged-who-explicitly-s",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded: only Timothy Duprey engaged, who explicitly stated 'I'm not the project driver' (12 Mar 2026)"
+  },
+  {
+   "to": "No economic buyer, decision maker, or executive sponsor identified across Salesforce or Avoma",
+   "key": "hygiene:no-economic-buyer-decision-maker-or-executive-sponsor-identi",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No economic buyer, decision maker, or executive sponsor identified across Salesforce or Avoma"
+  },
+  {
+   "to": "No champion: Timothy has provided no introductions, no advocacy, and has not re-engaged in 117 days",
+   "key": "hygiene:no-champion-timothy-has-provided-no-introductions-no-advocac",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No champion: Timothy has provided no introductions, no advocacy, and has not re-engaged in 117 days"
+  },
+  {
+   "to": "No formal project, charter, or budget confirmed; buyer timeline is speculative ('maybe 2026')",
+   "key": "hygiene:no-formal-project-charter-or-budget-confirmed-buyer-timeline",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No formal project, charter, or budget confirmed; buyer timeline is speculative ('maybe 2026')"
+  },
+  {
+   "to": "No multi-person buying committee or CET governance group visibility",
+   "key": "hygiene:no-multi-person-buying-committee-or-cet-governance-group-vis",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No multi-person buying committee or CET governance group visibility"
+  },
+  {
+   "to": "Last buyer call 117 days ago (12 Mar 2026); subsequent activity is rep-side outreach with no buyer reply",
+   "key": "hygiene:last-buyer-call-117-days-ago-12-mar-2026-subsequent-activity",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Last buyer call 117 days ago (12 Mar 2026); subsequent activity is rep-side outreach with no buyer reply"
+  },
+  {
+   "to": "Staged as Qualified with $100k amount and Jan 2027 close, but evidence supports Discovery stage at best",
+   "key": "hygiene:staged-as-qualified-with-100k-amount-and-jan-2027-close-but-",
+   "date": "2026-07-07",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Staged as Qualified with $100k amount and Jan 2027 close, but evidence supports Discovery stage at best"
+  },
+  {
+   "key": "risk:sole-engaged-contact-explicitly-stated-he-is-not-the-project",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers."
+  },
+  {
+   "key": "hygiene:single-threaded-on-a-stated-non-decision-maker-for-10-months",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actually governs the 2026 project he referenced."
+  },
+  {
+   "key": "hygiene:no-compelling-event-or-funded-charter-exists-yet-quantify-th",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on."
+  },
+  {
+   "key": "hygiene:no-formal-competitive-review-has-started-giving-zycus-a-quie",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a wider evaluation that could include new vendors."
+  },
+  {
+   "key": "risk:no-economic-buyer-or-project-sponsor-is-identified-the-initi",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown."
+  },
+  {
+   "key": "risk:the-only-named-timeline-is-timothy-duprey-s-own-estimate-tha",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed."
+  },
+  {
+   "key": "risk:a-prior-sap-ariba-modernization-effort-stalled-when-chemours",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear."
+  },
+  {
+   "key": "risk:the-sole-engaged-contact-timothy-duprey-explicitly-stated-he",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers."
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-timothy-duprey-he-is-a-self-described-no",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing further in this single contact."
+  },
+  {
+   "key": "hygiene:no-economic-buyer-or-executive-sponsor-is-mapped-confirm-who",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, fundable initiative."
+  },
+  {
+   "key": "hygiene:lead-with-the-ai-merlin-efficiency-story-timothy-duprey-expl",
+   "date": "2026-07-07",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Sirion systems), to differentiate ahead of any formal evaluation."
+  },
+  {
+   "to": "Timothy Duprey - Coach",
+   "key": "stakeholder:timothy-duprey",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "from": "Timothy Duprey - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Timothy Duprey"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "from": "SAP Ariba - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Jaggaer - incumbent",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "from": "Jaggaer - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Jaggaer"
+  },
+  {
+   "to": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown. - open",
+   "key": "risk:no-economic-buyer-or-project-sponsor-is-identified-the-initi",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown."
+  },
+  {
+   "to": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed. - open",
+   "key": "risk:the-only-named-timeline-is-timothy-duprey-s-own-estimate-tha",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed."
+  },
+  {
+   "to": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear.",
+   "key": "risk:a-prior-sap-ariba-modernization-effort-stalled-when-chemours",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear."
+  },
+  {
+   "to": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers. ",
+   "key": "risk:the-sole-engaged-contact-timothy-duprey-explicitly-stated-he",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers."
+  },
+  {
+   "to": "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing furthe",
+   "key": "hygiene:multi-thread-beyond-timothy-duprey-he-is-a-self-described-no",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing further in this single contact."
+  },
+  {
+   "to": "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, funda",
+   "key": "hygiene:no-economic-buyer-or-executive-sponsor-is-mapped-confirm-who",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, fundable initiative."
+  },
+  {
+   "to": "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Siri",
+   "key": "hygiene:lead-with-the-ai-merlin-efficiency-story-timothy-duprey-expl",
+   "date": "2026-07-07T17:16:16.854166+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Sirion systems), to differentiate ahead of any formal evaluation."
+  },
+  {
+   "to": "Timothy Duprey - Influencer",
+   "key": "stakeholder:timothy-duprey",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Timothy Duprey"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Jaggaer - incumbent",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Jaggaer"
+  },
+  {
+   "to": "Sirion - incumbent",
+   "key": "competitor:sirion",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Sirion"
+  },
+  {
+   "to": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. - not addressed",
+   "key": "risk:no-economic-buyer-or-project-sponsor-identified-the-project-",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader."
+  },
+  {
+   "to": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. - not addressed",
+   "key": "risk:buyer-s-own-timeline-is-speculative-maybe-2026-we-ll-see-wit",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed."
+  },
+  {
+   "to": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers. - not addressed",
+   "key": "risk:sole-engaged-contact-explicitly-stated-he-is-not-the-project",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers."
+  },
+  {
+   "to": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. - not address",
+   "key": "risk:prior-ariba-modernization-stalled-when-the-s-4hana-migration",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline."
+  },
+  {
+   "to": "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actua",
+   "key": "hygiene:single-threaded-on-a-stated-non-decision-maker-for-10-months",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actually governs the 2026 project he referenced."
+  },
+  {
+   "to": "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on.",
+   "key": "hygiene:no-compelling-event-or-funded-charter-exists-yet-quantify-th",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on."
+  },
+  {
+   "to": "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a ",
+   "key": "hygiene:no-formal-competitive-review-has-started-giving-zycus-a-quie",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a wider evaluation that could include new vendors."
+  },
+  {
+   "to": "eProcurement;eInvoicing;Merlin Intake;ANA",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T13:43:14.287618+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000NSeID",
+ "packets": [
+  {
+   "key": "stakeholder:timothy-duprey",
+   "type": "stakeholder",
+   "value": {
+    "name": "Timothy Duprey",
+    "risk": "Sole engaged contact; no visibility into the CET group's real decision-makers; deal has no second thread",
+    "role": "Influencer",
+    "title": "Category Mgr - Rotating Equipment, E&I, Refractory and Controls",
+    "source": "Avoma call 16 Sep 2025 (transcript); account contact list",
+    "sentiment": "curious and receptive, but explicitly not a decision-maker; has not responded to the 7 Jul 2026 outreach as of this sweep",
+    "last_contact_date": "2025-09-16"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "name": "Timothy Duprey",
+      "risk": "Stated 'I'm not the project driver' and has not re-engaged in 117 days despite rep follow-up. Not a champion, not a decision-maker, and may not have the access or influence needed to advance this deal.",
+      "role": "Influencer",
+      "title": "Unknown",
+      "source": "Avoma discovery call 12 Mar 2026, Salesforce OpportunityContactRole",
+      "sentiment": "Neutral to positive interest in platform consolidation and AI intake, but passive; no advocacy or project ownership",
+      "last_contact_date": "2026-03-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T17:16:16.854166+05:30",
+     "value": {
+      "name": "Timothy Duprey",
+      "risk": "Sole engaged contact; explicitly stated he is not the project driver; true decision owner within the internal group is unknown.",
+      "role": "Coach",
+      "title": "Category Manager - Rotating Equipment, E&I, Refractory and Controls",
+      "source": "Avoma exploration call 2025-09-16",
+      "sentiment": "curious and engaged, but explicitly non-authoritative",
+      "last_contact_date": "2025-09-16"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "name": "Timothy Duprey",
+      "risk": "Not the project decision-maker; sole thread on the opportunity",
+      "role": "Influencer",
+      "title": "Category Mgr - Rotating Equipment, E&I, Refractory and Controls",
+      "source": "Avoma exploration call, 16 Sep 2025; SF logged activity 24 Jun 2026",
+      "sentiment": "positive, curious",
+      "last_contact_date": "2026-06-24"
+     }
+    }
+   ],
+   "subject": "Timothy Duprey",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2025-09-16",
+    "name": "SAP Ariba",
+    "quote": "a lot of it was gonna depend on us migrating to S4 HANA... now we're back and looking at... the management portal of using Ariba with mainly a transactional level",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "incumbent",
+    "sentiment": "negative",
+    "how_we_win": "Position full-suite consolidation (sourcing, contracts, supplier risk) against Ariba's transactional-only usage, citing the PwC/Dow incumbent-displacement stories raised in the same call.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "name": "SAP Ariba",
+      "quote": "A prior Ariba modernization effort stalled when the S/4HANA migration paused",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "sentiment": "neutral",
+      "how_we_win": "Position Zycus as the unified, AI-native platform that executes now while SAP's roadmap is uncertain; make Merlin Intake the Phase 1 quick-win tied to S/4HANA go-live, demonstrating faster time-to-value than restarting Ariba modernization."
+     }
+    },
+    {
+     "as_of": "2026-07-07T17:16:16.854166+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "name": "SAP Ariba",
+      "quote": "\"Tail-spend leakage,\" poor catalog governance, and high off-contract purchases despite using Ariba P2P.",
+      "source": "SF Next_Step__c / Avoma exploration call 2025-09-16",
+      "status": "incumbent",
+      "sentiment": "negative",
+      "how_we_win": "Position unified eProcurement + catalog governance to close the tail-spend and off-contract leakage Ariba has not solved.",
+      "threat_level": "medium"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "name": "SAP Ariba",
+      "quote": "A lot of it was gonna depend on us migrating to S/4HANA... now we're back and looking at the management portal of using Ariba with mainly a transactional level.",
+      "source": "Avoma exploration call, 16 Sep 2025 (Timothy Duprey)",
+      "status": "incumbent",
+      "sentiment": "neutral",
+      "how_we_win": "Position the full source-to-pay suite (eProcurement/eInvoicing/Merlin Intake/ANA) as the modernization path that doesn't depend on the stalled S/4HANA migration.",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "competitor:jaggaer",
+   "type": "competitor",
+   "value": {
+    "date": "2025-09-16",
+    "name": "JAGGAER",
+    "quote": "we use YAGGER YAGGER for that or RFIs and RFRFQs and data gathering",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "incumbent",
+    "sentiment": "neutral",
+    "how_we_win": "Show unified sourcing/RFx inside one suite rather than a fourth disconnected tool, reducing the fragmentation Tim himself described.",
+    "threat_level": "low"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "name": "JAGGAER",
+      "quote": "Managing SAP Ariba, Sirion, and JAGGAER as three disconnected platforms",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "sentiment": "neutral",
+      "how_we_win": "Tail-spend plus core-sourcing in one platform with AI intake, vs JAGGAER as a separate tail-only tool."
+     }
+    },
+    {
+     "as_of": "2026-07-07T17:16:16.854166+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "name": "Jaggaer",
+      "quote": "Lack of leveraging Ariba for RFX space (using Jaggaer instead) and challenges with supplier risk and performance management (KPIs, analytics).",
+      "source": "SF Next_Step__c",
+      "status": "incumbent",
+      "sentiment": "negative",
+      "how_we_win": "Bring RFX/sourcing into the same platform as P2P to eliminate the separate Jaggaer workflow and its disconnected supplier-performance data.",
+      "threat_level": "low"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "name": "Jaggaer",
+      "quote": "We use Jagger for that, or RFIs and RFQs and data gathering.",
+      "source": "Avoma exploration call, 16 Sep 2025 (Timothy Duprey)",
+      "status": "incumbent",
+      "sentiment": "neutral",
+      "how_we_win": "Show Zycus eSourcing/RFX automation consolidating Jaggaer's function onto the same platform as procurement and contracts.",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "Jaggaer",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "competitor:sirion",
+   "type": "competitor",
+   "value": {
+    "date": "2025-09-16",
+    "name": "Sirion",
+    "quote": "it doesn't give you the dashboards or I mean, you get some, I'll say, some reports, but you don't get an effective dashboard",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "incumbent",
+    "sentiment": "negative",
+    "how_we_win": "Lead with Zycus's AI-driven contract risk dashboards and clause-level risk rating against Sirion's reporting-only experience, per the buyer's own dissatisfaction.",
+    "threat_level": "low"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "name": "Sirion",
+      "quote": "Managing SAP Ariba, Sirion, and JAGGAER as three disconnected platforms",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "sentiment": "neutral",
+      "how_we_win": "Consolidation story: replace Sirion CLM plus Ariba plus JAGGAER with one Zycus suite, eliminating integration tax and user friction."
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "name": "Sirion",
+      "quote": "Using a separate system (Sirion) for contract management, leading to separate databases and poor user experience/dashboards.",
+      "source": "SF Next_Step__c",
+      "status": "incumbent",
+      "sentiment": "negative",
+      "how_we_win": "Consolidate contract lifecycle management into the same platform to remove the separate database and dashboard fragmentation Sirion causes.",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "Sirion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-project-sponsor-identified-the-project-",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader.",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "unresolved",
+    "category": "executive_alignment",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "detail": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader. The sole engaged contact explicitly stated he is not the project driver, leaving no visibility into the group's actual decision-makers.",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "status": "open",
+      "category": "executive_alignment",
+      "first_raised": "2026-03-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "detail": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader.",
+      "source": "Avoma exploration call, 16 Sep 2025",
+      "status": "not addressed",
+      "category": "executive_alignment",
+      "first_raised": "2025-09-16"
+     }
+    }
+   ],
+   "subject": "No economic buyer or project sponsor identified; the project is governed by an internal CET group with no named leader.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "risk:buyer-s-own-timeline-is-speculative-maybe-2026-we-ll-see-wit",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed.",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "detail": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed. The Jan 2027 close date in Salesforce is a rep estimate unsupported by buyer commitment.",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "status": "open",
+      "category": "timeline",
+      "first_raised": "2026-03-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "detail": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed.",
+      "source": "Avoma exploration call, 16 Sep 2025",
+      "status": "not addressed",
+      "category": "timeline",
+      "first_raised": "2025-09-16"
+     }
+    }
+   ],
+   "subject": "Buyer's own timeline is speculative ('maybe 2026, we'll see') with no charter or budget confirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "risk:sole-engaged-contact-explicitly-stated-he-is-not-the-project",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers.",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "unresolved",
+    "category": "political",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2025-09-16",
+      "detail": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers.",
+      "source": "Avoma exploration call, 16 Sep 2025",
+      "status": "not addressed",
+      "category": "political",
+      "first_raised": "2025-09-16"
+     }
+    }
+   ],
+   "subject": "Sole engaged contact explicitly stated he is not the project driver; no visibility into the CET's actual decision-makers.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "risk:prior-ariba-modernization-stalled-when-the-s-4hana-migration",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline.",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "unresolved",
+    "category": "integration",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "detail": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline. If SAP restarts the Ariba path, Chemours may default to an all-SAP stack.",
+      "source": "Avoma discovery call, Timothy Duprey",
+      "status": "open",
+      "category": "political",
+      "first_raised": "2026-03-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:43:14.287618+05:30",
+     "value": {
+      "date": "2025-09-16",
+      "detail": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline.",
+      "source": "Avoma exploration call, 16 Sep 2025",
+      "status": "not addressed",
+      "category": "integration",
+      "first_raised": "2025-09-16"
+     }
+    }
+   ],
+   "subject": "Prior Ariba modernization stalled when the S/4HANA migration paused; unclear how a new platform decision interacts with that broader ERP timeline.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-on-a-stated-non-decision-maker-for-10-months",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actually governs the 2026 project he referenced."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Single-threaded on a stated non-decision-maker for ~10 months; converting Timothy Duprey's interest into a real deal requires reaching the CET sponsor who actually governs the 2026 project he referenced.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T13:43:14.287618+05:30"
+  },
+  {
+   "key": "hygiene:no-compelling-event-or-funded-charter-exists-yet-quantify-th",
+   "type": "hygiene",
+   "value": {
+    "flag": "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No compelling event or funded charter exists yet; quantify the $4-8M savings opportunity Tim already validated so it becomes a business case the CET can act on.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T13:43:14.287618+05:30"
+  },
+  {
+   "key": "hygiene:no-formal-competitive-review-has-started-giving-zycus-a-quie",
+   "type": "hygiene",
+   "value": {
+    "flag": "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a wider evaluation that could include new vendors."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No formal competitive review has started, giving Zycus a quiet window to pre-position against the fragmented Ariba/Jaggaer/Sirion stack before Chemours opens a wider evaluation that could include new vendors.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T13:43:14.287618+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "eProcurement;eInvoicing;Merlin Intake;ANA"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:43:14.287618+05:30",
+   "last_updated": "2026-07-07T13:43:14.287618+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-project-sponsor-is-identified-the-initi",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown.",
+    "source": "Avoma exploration call 2025-09-16",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or project sponsor is identified; the initiative's governance and funding authority are unknown.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "risk:the-only-named-timeline-is-timothy-duprey-s-own-estimate-tha",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-24",
+    "detail": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed.",
+    "source": "SF Next_Step__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "The only named timeline is Timothy Duprey's own estimate that a formal project may be formed around 2026, with no charter or budget confirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "risk:a-prior-sap-ariba-modernization-effort-stalled-when-chemours",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear.",
+    "source": "Avoma exploration call 2025-09-16 / SF Next_Step__c",
+    "status": "open",
+    "category": "integration",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "A prior SAP Ariba modernization effort stalled when Chemours' S/4HANA migration paused; how a new platform decision interacts with that ERP timeline is unclear.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "risk:the-sole-engaged-contact-timothy-duprey-explicitly-stated-he",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-16",
+    "detail": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers.",
+    "source": "Avoma exploration call 2025-09-16",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "The sole engaged contact, Timothy Duprey, explicitly stated he is not the project driver, leaving no visibility into the internal group's real decision-makers.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-timothy-duprey-he-is-a-self-described-no",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing further in this single contact."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Multi-thread beyond Timothy Duprey: he is a self-described non-driver, so identify and engage the internal group's actual project leader before investing further in this single contact.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-or-executive-sponsor-is-mapped-confirm-who",
+   "type": "hygiene",
+   "value": {
+    "flag": "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, fundable initiative."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "No economic buyer or executive sponsor is mapped; confirm who controls procurement-technology budget within the internal group to validate this is a real, fundable initiative.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "hygiene:lead-with-the-ai-merlin-efficiency-story-timothy-duprey-expl",
+   "type": "hygiene",
+   "value": {
+    "flag": "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Sirion systems), to differentiate ahead of any formal evaluation."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Lead with the AI/Merlin efficiency story Timothy Duprey explicitly asked about, tied to his named pain points (tail-spend leakage, fragmented Ariba/Jaggaer/Sirion systems), to differentiate ahead of any formal evaluation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T17:16:16.854166+05:30",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07T17:16:16.854166+05:30"
+  },
+  {
+   "key": "risk:single-threaded-contact-who-is-not-a-champion-not-a-decision",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Single-threaded contact who is not a champion, not a decision-maker, and has not engaged since the 16 Sep 2025 discovery call (roughly 296 days as of 9 Jul 2026). No multi-threading, no buying committee visibility, no forward movement from the buyer side; the only recent activity is the rep's unanswered follow-up sent 7 Jul 2026.",
+    "source": "Avoma call 16 Sep 2025; Salesforce Next_Step__c / LastActivityDate 2026-07-07",
+    "status": "unresolved",
+    "category": "other",
+    "first_raised": "2025-09-16"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07",
+     "value": {
+      "date": "2026-03-12",
+      "detail": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no forward movement.",
+      "source": "Salesforce activity log, Avoma call manifest",
+      "status": "open",
+      "category": "other",
+      "first_raised": "2026-03-12"
+     }
+    }
+   ],
+   "subject": "Single-threaded contact who is not a champion, not a decision-maker, and has not re-engaged in 117 days. No multi-threading, no buying committee visibility, no forward movement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-only-timothy-duprey-engaged-who-explicitly-s",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded: only Timothy Duprey engaged, who explicitly stated 'I'm not the project driver' (12 Mar 2026)"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded: only Timothy Duprey engaged, who explicitly stated 'I'm not the project driver' (12 Mar 2026)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-economic-buyer-decision-maker-or-executive-sponsor-identi",
+   "type": "hygiene",
+   "value": {
+    "flag": "No economic buyer, decision maker, or executive sponsor identified across Salesforce or Avoma"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer, decision maker, or executive sponsor identified across Salesforce or Avoma",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-champion-timothy-has-provided-no-introductions-no-advocac",
+   "type": "hygiene",
+   "value": {
+    "flag": "No champion: Timothy has provided no introductions, no advocacy, and has not re-engaged in 117 days"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No champion: Timothy has provided no introductions, no advocacy, and has not re-engaged in 117 days",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-formal-project-charter-or-budget-confirmed-buyer-timeline",
+   "type": "hygiene",
+   "value": {
+    "flag": "No formal project, charter, or budget confirmed; buyer timeline is speculative ('maybe 2026')"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No formal project, charter, or budget confirmed; buyer timeline is speculative ('maybe 2026')",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:no-multi-person-buying-committee-or-cet-governance-group-vis",
+   "type": "hygiene",
+   "value": {
+    "flag": "No multi-person buying committee or CET governance group visibility"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No multi-person buying committee or CET governance group visibility",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:last-buyer-call-117-days-ago-12-mar-2026-subsequent-activity",
+   "type": "hygiene",
+   "value": {
+    "flag": "Last buyer call 117 days ago (12 Mar 2026); subsequent activity is rep-side outreach with no buyer reply"
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Last buyer call 117 days ago (12 Mar 2026); subsequent activity is rep-side outreach with no buyer reply",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "hygiene:staged-as-qualified-with-100k-amount-and-jan-2027-close-but-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Staged as Qualified with $100k amount and Jan 2027 close, but evidence supports Discovery stage at best"
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Staged as Qualified with $100k amount and Jan 2027 close, but evidence supports Discovery stage at best",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07",
+   "last_updated": "2026-07-07",
+   "last_confirmed": "2026-07-07"
+  },
+  {
+   "key": "commitment:zycus-send-timothy-duprey-the-presentation-deck-with-contact",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-16",
+    "who": "Zycus",
+    "date": "2025-09-16",
+    "source": "Avoma call 16 Sep 2025, action items",
+    "status": "completed",
+    "commitment": "Send Timothy Duprey the presentation deck with contact information for follow-up",
+    "deliverable": "Send Timothy Duprey the presentation deck with contact information for follow-up",
+    "grounding_quote": "I'll send you this presentation... Send the presentation deck with contact information to Timothy Duprey"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send Timothy Duprey the presentation deck with contact information for follow-up",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:09:09.410815+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "commitment:buyer-chemours-cet-group-must-charter-scope-a-formal-2026-pr",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2025-09-16",
+    "source": "Avoma call 16 Sep 2025 (Timothy Duprey)",
+    "status": "open",
+    "commitment": "Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance",
+    "deliverable": "Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance",
+    "grounding_quote": "Maybe 2026. We'll see... I'm the only stakeholder. I'm not the project leader, the part of the CET governing the project priorities."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Chemours' CET group must charter/scope a formal 2026 procurement project and name a leader before this deal can advance",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:09:09.410815+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "hygiene:single-threading-is-the-1-blocker-timothy-duprey-is-the-only",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threading is the #1 blocker: Timothy Duprey is the only contact, is not powerful in the decision, and has gone unengaged for ~296 days \u2014 actively work to identify and reach the CET's actual leader."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threading is the #1 blocker: Timothy Duprey is the only contact, is not powerful in the decision, and has gone unengaged for ~296 days \u2014 actively work to identify and reach the CET's actual leader.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:09:09.410815+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "hygiene:add-timothy-duprey-and-any-newly-identified-cet-contacts-as-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Add Timothy Duprey (and any newly identified CET contacts) as formal OpportunityContactRole records \u2014 this opp currently has zero logged contact roles despite a known engaged individual, which hides multi-thread progress from the account team."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Add Timothy Duprey (and any newly identified CET contacts) as formal OpportunityContactRole records \u2014 this opp currently has zero logged contact roles despite a known engaged individual, which hides multi-thread progress from the account team.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:09:09.410815+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  },
+  {
+   "key": "hygiene:no-next-milestone-is-scheduled-convert-the-7-jul-2026-check-",
+   "type": "hygiene",
+   "value": {
+    "flag": "No next milestone is scheduled: convert the 7 Jul 2026 check-in email into a booked call with a defined agenda (project status + request for a sponsor introduction) rather than leaving it open-ended."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No next milestone is scheduled: convert the 7 Jul 2026 check-in email into a booked call with a defined agenda (project status + request for a sponsor introduction) rather than leaving it open-ended.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:09:09.410815+05:30",
+   "last_updated": "2026-07-09T20:09:09.410815+05:30",
+   "last_confirmed": "2026-07-09T20:09:09.410815+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T20:09:09.410815+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No buyer-side OpportunityContactRole records (0) - Timothy Duprey and any other engaged contacts are not logged as Contact Roles on this opportunity",
+   "No second Avoma-recorded touchpoint since the 16 Sep 2025 discovery call (~296 days)",
+   "scrubbed 3 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "Timothy Duprey (chemours.com)"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Full field history for stage/created dates; 90-day window for task/activity review"
+ },
+ "forecast_critical": false,
+ "analysis_confidence": "Low"
+}

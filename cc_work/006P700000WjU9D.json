@@ -1,0 +1,240 @@
+{
+  "opp_id": "006P700000WjU9DQAV",
+  "hard": {
+    "opp_id": "006P700000WjU9DQAV",
+    "opp_name": "On Net Fibra_S2P_Apr'26",
+    "account_name": "On Net Fibra",
+    "account_industry": "Telecom and Communication",
+    "billing_country": "Chile",
+    "owner_name": "Karson Keogh",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000,
+    "close_date": "2026-12-31",
+    "days_to_close": 178,
+    "created_date": "2026-04-14",
+    "qualified_date": "2026-06-26",
+    "last_activity_date": "2026-04-22",
+    "last_modified_date": "2026-06-26",
+    "products": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing;iSaaS;Merlin Intake;Agentic AI;ANA",
+    "next_step": "6.16.26 KK - same as below, no update 5.26.26 KK - EY checking on updates 5.12.26 KK - fu on next steps / where we can support 4.28.26 KK - submitted RFI - waiting on next steps 4.24.26 KK - rfi due monday 4.22.26 KK - EY led demo today, working on RFP pricing 4.14.26 KK - clarifications due today, responses 16th, RFP due 27th",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "The process is EY-led; next-step notes read 'EY led demo today, working on RFP pricing' (22 Apr) and 'submitted RFI - waiting on next steps' (28 Apr). The buyer has not engaged directly on AI. Products include ML iAnalyze, Merlin Intake, Agentic AI and ANA (a broad AI surface), but it is Zycus scoping rather than a buyer ask. AI importance is rated Neutral and no buyer-stated mention of Merlin, Agentic, GenAI, intake or ANA appears on the record. Zero Avoma calls found at opportunity, account or onnetfibra.com domain level this run, consistent with an EY-managed offline RFP.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000WjU9DQAV/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "On Net Fibra has been dark for 75 days since the 22 April EY-led demo, three rep follow-ups (12 May, 26 May, 16 June) went unanswered, and the stage slid backward from Formal Evaluation to Qualified on 26 June. Single-threaded through a passive project manager, no economic buyer, and the RFP shortlist has never been shared.",
+      "math": "Created 14 April 2026, 83 days old as of 6 July. Buyer's last activity was the 22 April EY-led demo (LastActivityDate 22 April = 75 days ago). RFI submitted 28 April (Zycus-side) with no buyer reply since. Rep follow-ups 12 May, 26 May and 16 June all record 'no update' / 'EY checking'. On 26 June the stage regressed Formal Evaluation to Qualified (a backward move, not progress) and the division was reclassified New Markets to Mid-Enterprise. Close date 31 December 2026 is 178 days out, so raw pace is not the problem: the problem is 75 days of buyer blackout after an RFI, which crosses the 60-day cold threshold and forces Off Track regardless of the long-cycle stage.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "22 April 2026: EY-led demo of Zycus modular S2P platform to On Net Fibra (event: Clari meeting 'FW: Demo Plataforma de Compras - EY', 22 April; Next Step '4.22.26 KK - EY led demo today, working on RFP pricing'). This is the last buyer-facing touch on the record.",
+        "28 April 2026: RFI submitted per Next Step '4.28.26 KK - submitted RFI - waiting on next steps'. This was Zycus-side; no buyer acknowledgment or next step has been received since.",
+        "12 May, 26 May, 16 June 2026: three rep follow-ups ('fu on next steps / where we can support', 'EY checking on updates', 'same as below, no update') all returned no buyer reply (source: Next Step field entries).",
+        "26 June 2026: StageName regressed Formal Evaluation -> Qualified and Division__c moved New Markets -> Mid-Enterprise (source: OpportunityFieldHistory). A backward stage move alongside a 75-day silence is a cooling signal, not progress.",
+        "LastActivityDate 22 April = 75 days ago as of 6 July. No buyer-side activity, no decision timeline, no shortlist. EY, the consulting partner running the evaluation, has also gone quiet (source: Salesforce LastActivityDate + Next Step history)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "On the 22 April EY-led demo the buyer articulated a qualitative pain (carried in the deal's living memory): initial procurement savings erode after roughly six months because of weak contract-renewal processes. No dollar figure, headcount impact, cycle time or ROI target was ever quantified, and there is no numeric business case on the record. Without a quantified savings-recovery number it will be hard to defend the $150k investment to a budget owner. The move is to co-build a quantified savings model with On Net Fibra finance and procurement, tying iContract renewal automation to a specific recovered-savings figure.",
+        "sources": ["Next Step field '4.22.26 KK - EY led demo today'", "Event 22 April (Clari) 'Demo Plataforma de Compras - EY'", "prior canonical record, 22 April demo pain note (living memory)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is mapped. The only Salesforce contact role is Claudio Diaz (Jefe de Proyectos ERP), a project-execution role with no budget authority. The evaluation is run by EY on the buyer's behalf, so the actual budget owner (a procurement director / CFO-level sponsor at On Net Fibra) is unknown and unreached, and there is no call this run from which to infer them. The move is to ask Claudio and the EY lead for the approval chain and who signs off on the procurement platform spend, then get a direct line to that person.",
+        "sources": ["OpportunityContactRole: Claudio Diaz only", "Next Step field (EY-led process, no EB named)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "A formal RFI/RFP is running (clarifications due 14 April, RFP due 27 April, RFI submitted 28 April per Next Step), so structured evaluation criteria exist, and on the 22 April demo the buyer probed SAP integration, cloud model, modularity, licensing and support, which signals those are scored dimensions. But the RFP scorecard, weighting and priority ranking were never shared with Zycus. The move is to request the evaluation criteria and how Zycus is being scored from EY.",
+        "sources": ["Next Step field (RFI/RFP entries 14/24/28 April)", "prior canonical record, 22 April demo topics (living memory)"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "EY is running a formal, offline RFP for On Net Fibra: clarifications 14 April, responses 16 April, RFP due 27 April, RFI submitted 28 April, then repeated 'EY checking on updates'. Every interaction is routed through EY as an intermediary, so Zycus has no direct line to the internal decision committee and no visibility into the timeline. The 26 June backward stage move to Qualified suggests the buyer's internal process has cooled or reset. The move is to get the decision timeline, committee and next milestone in writing from EY.",
+        "sources": ["Next Step field (14 April - 16 June)", "OpportunityFieldHistory 26 June stage regression"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "This is a new-business full S2P suite (iContract, iSource, eProcurement, eInvoicing, iSupplier, plus Merlin/AI modules) that would require an MSA plus Order Form plus SOW to close, but no contracting motion has started: the deal is early (Qualified) and cold, so there is nothing to redline yet. Paper-process visibility only becomes possible once the buyer re-engages and shortlists Zycus. What would create visibility now is confirming the buyer's procurement/legal channel and contract-award timeline via EY.",
+        "sources": ["Products__c (full S2P suite)", "StageName Qualified"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clear from the 22 April demo (living memory): procurement savings drop off after about six months because contract-renewal processes are weak, and procurement is largely manual (converting Solped requisitions into POs, managing catalogs, negotiations and supplier follow-up by hand), with contract management fragmented across separate legal, tax and compliance handoffs. The pain owner is the ERP/procurement project led by Claudio Diaz. It is real and operational but not yet tied to a number, which is the gap between pain and a fundable business case.",
+        "sources": ["prior canonical record, 22 April demo pain notes (living memory)", "Products__c (iContract, eProcurement scoped against this pain)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no champion. Claudio Diaz (Jefe de Proyectos ERP), the sole mapped buyer contact, has not answered three consecutive rep follow-ups (12 May, 26 May, 16 June) across 75 days: passive, not advocating. EY is running the process as a neutral consultant, not a Zycus advocate, and has shared no shortlist, criteria or coaching. Nobody inside On Net Fibra is carrying the deal or giving Zycus visibility, which is why the process went dark without warning. The move is to re-engage Claudio directly to gauge his real influence and, in parallel, reach the procurement or finance decision owner who can be developed into an advocate.",
+        "sources": ["OpportunityContactRole: Claudio Diaz (passive, 75-day non-response)", "Next Step field 12 May / 26 May / 16 June (unanswered follow-ups)"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "Competition is unknown but present: an EY-run RFI/RFP is by definition a multi-vendor evaluation, yet the shortlist has never been shared and no rival is named in any field, next step, task or (available) call. The Salesforce competitor field is empty and there is no evidence to name a specific vendor, so none is asserted. Given the 75-day blackout, the strongest live threat is arguably a no-decision / status-quo outcome or a silent elimination as much as any single competitor. The move is to obtain the shortlist and Zycus's standing from EY or Claudio before positioning.",
+        "sources": ["Next Step field (RFI/RFP process confirms multi-vendor)", "Competitors__c: empty", "no Avoma calls available this run"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The deal has moved backward and gone quiet. The last real buyer touch was the 22 April EY-led demo; every event since is Zycus-side (RFI 28 April) or a null rep follow-up. On 26 June the stage regressed to Qualified and the account was reclassified to Mid-Enterprise, with 75 days of buyer silence and no shortlist, timeline or decision shared.",
+      "items": [
+        {"change": "EY-led demo of the Zycus S2P platform (last buyer-facing touch)", "date": "2026-04-22"},
+        {"change": "RFI submitted by Zycus, awaiting buyer next steps", "date": "2026-04-28"},
+        {"change": "Rep follow-up, no buyer reply ('EY checking on updates')", "date": "2026-05-26"},
+        {"change": "Rep follow-up, no buyer reply ('same as below, no update')", "date": "2026-06-16"},
+        {"change": "Stage regressed Formal Evaluation to Qualified; division reclassified New Markets to Mid-Enterprise", "date": "2026-06-26"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Competition is unknown. No rival is named in any source: the Salesforce competitor field is empty, no competitor appears in the Next Step log, and no Avoma call is available this run to reveal a shortlist. The EY-run RFI/RFP confirms a multi-vendor evaluation is underway, but On Net Fibra and EY have never shared who else is in the running, so Zycus is blind on positioning. With 75 days of buyer silence the most tangible current threat is a no-decision / status-quo outcome (On Net Fibra keeps its manual procurement and defers) or a silent elimination, as much as any named rival. The immediate move is to obtain the shortlist and Zycus's standing before tailoring any counter-positioning; no competitor is asserted without evidence.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "On the 22 April demo the buyer's stated priorities (SAP integration, cloud model, modular S2P breadth, licensing/support, and reference proof) map well to the scoped Zycus suite on capability, but every one is exposed on PROOF because the buyer disengaged before Zycus could validate them.",
+      "items": [
+        {"criterion": "SAP / ERP integration depth", "position": "partially aligned", "quote": "Buyer probed SAP integration and cloud model on the demo", "date": "2026-04-22", "source": "prior canonical record, 22 April demo (living memory)"},
+        {"criterion": "Modular source-to-pay breadth", "position": "aligned", "quote": "Zycus showcased the modular S2P platform across the scoped modules", "date": "2026-04-22", "source": "Products__c + 22 April demo (living memory)"},
+        {"criterion": "Reference / case-study proof", "position": "exposed", "quote": "Buyer requested case studies; never delivered before the buyer went dark", "date": "2026-04-22", "source": "prior canonical record, 22 April demo (living memory)"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": [
+        {"deliverable": "Share the RFI outcome, vendor shortlist, and decision timeline", "who": "Buyer", "grounding_quote": "submitted RFI - waiting on next steps / EY checking on updates", "date": "2026-04-28", "due": "2026-05-12", "status": "overdue", "source": "Next Step field, 28 April and 26 May entries"}
+      ]}
+    },
+    "gaps": {"items": [
+      {"area": "Competitive shortlist", "quote": "EY-run RFI/RFP with no shortlist shared", "status": "not addressed", "date": "2026-04-28", "gap_type": "knowledge", "source": "Next Step field + empty Competitors__c"},
+      {"area": "Economic buyer / budget owner", "quote": "Only Claudio Diaz (Jefe de Proyectos ERP) mapped; no budget authority named", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "OpportunityContactRole"},
+      {"area": "Decision timeline", "quote": "No buyer-shared timeline or next milestone in 75 days", "status": "not addressed", "date": "2026-06-16", "gap_type": "knowledge", "source": "Next Step field"},
+      {"area": "Buyer call evidence", "quote": "Zero Avoma calls returned this run at opp, account or onnetfibra.com level; the 22 April demo transcript was not retrievable", "status": "acknowledged", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma discovery (opp+account+attendee-email)"}
+    ]},
+    "best_practice_check": {
+      "summary": "Cold, single-threaded, EY-intermediated RFP with an unknown shortlist. The win-strategy priorities are to break the intermediary wall, multi-thread to power, and get sight of the competitive field.",
+      "flags": [
+        "Break the EY intermediary wall: secure a direct buyer line (Claudio plus one more) to see the shortlist, criteria and timeline instead of routing everything through EY.",
+        "Multi-thread beyond Claudio Diaz to the procurement or finance decision owner; a single passive project-manager contact leaves the deal with no advocate and no visibility.",
+        "Establish the competitive shortlist and Zycus's standing before re-positioning; we are bidding blind in a formal RFP with no named rivals."
+      ]
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 22 April EY-led demo was the last real buyer touch; On Net Fibra has been silent for 75 days and ignored three follow-ups, so the deal is going cold.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "Nobody new has engaged; access still runs only through a passive project manager and EY as an intermediary, with no economic buyer reached.", "tone": "crit"},
+      {"lens": "Competition", "text": "A formal EY-run multi-vendor RFP is underway but the shortlist has never been shared, so Zycus is positioning blind.", "tone": "warn"},
+      {"lens": "Commercials", "text": "RFP pricing was prepared and the RFI submitted, but no budget owner is confirmed and the buyer has not engaged on price or next steps.", "tone": "warn"}
+    ],
+    "stakeholder_map": {"items": [
+      {"name": "Claudio Diaz", "title": "Jefe de Proyectos ERP", "role": "Influencer", "last_contact_date": "2026-04-22", "sentiment": "neutral", "risk": "Sole mapped buyer contact and passive: has not answered three rep follow-ups (12 May, 26 May, 16 June) across 75 days. A project-execution role, not decision authority, and no evident advocacy. Single point of contact is a major concentration risk.", "source": "OpportunityContactRole"}
+    ]},
+    "champion_strength": {
+      "summary": "No champion. Claudio Diaz, the only mapped buyer contact, is passive (75-day non-response to three follow-ups) and holds a project-execution role, not decision authority. EY is running the evaluation as a neutral consultant, not a Zycus advocate, and has shared no shortlist or coaching. With no advocate inside On Net Fibra, Zycus has no visibility into the RFP scoring and no defense against a silent elimination. Building a champion (converting Claudio or reaching the procurement/finance owner) is the top priority after re-engagement.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "OpportunityContactRole (Claudio Diaz, passive); Next Step field non-responses 12 May / 26 May / 16 June"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus scoped a broad AI surface (ML iAnalyze, Merlin Intake, Agentic AI, ANA) but the buyer has never asked for it: AI importance is rated Neutral, no buyer AI ask appears anywhere, and the evaluation is an EY-run cost/feature RFP. The AI story is Zycus-pushed and has not landed with the buyer.",
+      "score": "4.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 (Moderate). The broad AI product scope is Zycus-selected, not buyer-requested; AI importance is Neutral and there is zero buyer voice on Merlin, Agentic, GenAI, intake or ANA. This reads as an AI-curious-at-best, feature-checklist evaluation, not an AI-led transformation.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {"items": [
+      {"category": "timeline", "detail": "75-day buyer blackout after the 22 April demo, plus a 26 June backward stage move to Qualified; the 31 December close date is not credible on current (zero) momentum.", "first_raised": "2026-05-12", "date": "2026-06-16", "status": "active", "source": "Next Step field + OpportunityFieldHistory"},
+      {"category": "political", "detail": "Single-threaded through a passive project manager, with EY controlling all access as an intermediary; no direct line to the decision committee.", "first_raised": "2026-04-22", "date": "2026-07-06", "status": "active", "source": "OpportunityContactRole + Next Step field"},
+      {"category": "executive_alignment", "detail": "No economic buyer or executive sponsor mapped; the budget owner is unknown and unreached.", "first_raised": "2026-04-28", "date": "2026-07-06", "status": "active", "source": "OpportunityContactRole"},
+      {"category": "change_management", "detail": "Do-nothing / status-quo risk: On Net Fibra could keep managing procurement and contracts manually and defer the decision indefinitely (a no-decision loss, not a loss to a named rival).", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "active", "source": "Next Step field (repeated 'no update')"}
+    ]},
+    "confidence_signals": {
+      "summary": "Engagement is dark: 75 days of buyer silence, three unanswered follow-ups, a backward stage move, and no shortlist or timeline shared. This is a cooling-to-cold deal, not a healthy long-cycle pause.",
+      "cooling": true,
+      "items": [
+        "Buyer LastActivityDate 22 April = 75 days ago; no buyer reply since.",
+        "Three consecutive rep follow-ups (12 May, 26 May, 16 June) returned no update.",
+        "Stage regressed Formal Evaluation to Qualified on 26 June."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Cold, single-threaded, EY-run RFP: On Net Fibra has gone silent for 75 days since the 22 April demo, the stage just slid back to Qualified, and we still cannot see the shortlist, a champion, or a budget owner.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "Win position is low: this is an early-stage, EY-intermediated RFP where On Net Fibra has not engaged directly since the 22 April demo and no champion, economic buyer, or competitive shortlist is known."},
+          {"tone": "warn", "text": "The stage slid backward from Formal Evaluation to Qualified on 26 June, a negative signal that the buyer's internal process has cooled or reset rather than advanced."},
+          {"tone": "warn", "text": "Claudio Diaz, the only mapped contact, has ignored three follow-ups (12 May, 26 May, 16 June), so Zycus has no advocate and no line of sight inside the account."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-side activity in 75 days; the last touch was the 22 April EY-led demo and every rep follow-up since has gone unanswered."},
+          {"tone": "warn", "text": "The only forward motion is Zycus-side (RFI submitted 28 April); the buyer has shared no timeline, shortlist, or next step."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer named no dates, requested no next meeting, and asked for no Zycus-specific next step; engagement stalled at a single demo."},
+          {"tone": "warn", "text": "All access runs through EY as an intermediary, with no direct executive or budget-owner relationship established."}
+        ],
+        "deal_risk": [
+          {"tone": "crit", "text": "High no-decision / silent-loss risk: a 75-day blackout in a consultant-run multi-vendor RFP with an unknown shortlist means Zycus could be losing, or already cut, without notice."},
+          {"tone": "warn", "text": "Single-threaded through a passive project manager: if Claudio Diaz stays disengaged, Zycus loses the account entirely."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.9, "evidence": "75-day buyer blackout, three unanswered follow-ups, backward stage move on 26 June."},
+        "customer_commitment": {"strength": -0.8, "evidence": "No buyer-named dates, no next-meeting pull, access only via EY intermediary."},
+        "deal_risk": {"strength": -0.8, "evidence": "Cold multi-vendor RFP with unknown shortlist, no champion, no EB, single-threaded."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "Buyer silent for 75 days; no Zycus-specific praise, next step, or preference expressed. Evaluation routed through EY with no lean shared."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only (savings drop off after ~6 months from weak contract renewals, per the 22 April demo); no cost, headcount, cycle-time, or ROI figure quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Full S2P suite scope unchanged; no module drops or amount cut on the record."},
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {"items": [
+      {"rank": 1, "action": "Karson Keogh re-engages Claudio Diaz directly by call and email for the RFI outcome and shortlist.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "75-day silence after RFI submission; three prior follow-ups unanswered ('EY checking on updates')", "trigger_date": "2026-06-16", "act_by": "2026-07-10", "expected_effect": "Restores a live buyer line and reveals whether Zycus is still in the running or has been silently cut."},
+      {"rank": 2, "action": "Ask the EY evaluation lead for the vendor shortlist, decision criteria, and timeline in writing.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "EY-run RFP with no shortlist, scorecard, or timeline ever shared", "trigger_date": "2026-04-28", "act_by": "2026-07-17", "expected_effect": "Ends blind positioning and lets Zycus tailor against the real competitive field."},
+      {"rank": 3, "action": "Multi-thread to On Net Fibra's procurement or finance decision owner beyond Claudio Diaz.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Single-threaded through a passive project manager with no mapped economic buyer", "trigger_date": "2026-07-06", "act_by": "2026-07-24", "expected_effect": "Maps power and creates a candidate champion, reducing the single-point-of-contact risk."},
+      {"rank": 4, "action": "Send a Chile/telecom S2P proof point and quantified renewal-savings model to reopen the conversation.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer pain (savings drop-off from weak contract renewals) never quantified; case studies requested but not delivered", "trigger_date": "2026-04-22", "act_by": "2026-08-03", "expected_effect": "Gives Claudio a reason to re-engage and starts converting qualitative pain into a fundable business case."}
+    ]}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history to 20 April 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma calls returned this run at opportunity, account, or onnetfibra.com attendee level; the 22 April EY demo referenced in prior living memory was not retrievable this sweep, so its detailed attendee list and quotes could not be re-verified.",
+      "Competitive shortlist unknown (EY-run RFP, no rivals named in any source).",
+      "Economic buyer / budget owner unmapped; only Claudio Diaz is a Salesforce contact role.",
+      "No buyer-shared decision timeline or next milestone."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

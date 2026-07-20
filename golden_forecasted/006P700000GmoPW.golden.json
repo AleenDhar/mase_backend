@@ -1,0 +1,298 @@
+{
+  "record": {
+    "opp_id": "006P700000GmoPW",
+    "hard": {
+      "opp_id": "006P700000GmoPW",
+      "opp_name": "SaskTel S2P Opp- Aug'25",
+      "account_name": "SaskTel",
+      "account_industry": "Telecom and Communication",
+      "billing_country": "Canada",
+      "owner_name": "Mike Flowers",
+      "owner_title": null,
+      "stage": "Shortlisted",
+      "forecast_category": "Best Case",
+      "amount": 357898.0,
+      "close_date": "2026-09-04",
+      "days_to_close": 57,
+      "created_date": "2025-01-29",
+      "qualified_date": "2025-01-30",
+      "last_activity_date": "2026-07-08",
+      "last_modified_date": "2026-07-08",
+      "products": "iContract;iManage;iSupplier;eProcurement;eInvoicing;iRequest;Merlin;iRisk;Agentic AI",
+      "next_step": "7.8.26MF - resent Horizon invite to Adriel Picard, Dir Procurement. If no response, will reach out to Chad Olson, CTO and John Hill CIO, EVP re: attendance to determine whether they are also members of the steering committee making the S2P decision from SAP Ariba.",
+      "ais_score": 5.0,
+      "ais_status": "Moderate",
+      "ais_why": "This is a text-based RFP with no recorded calls, so all evidence comes from the Salesforce record. SaskTel's procurement team self-rated AI as a Very Critical evaluation criterion and explicitly wants AI Insights (Tier 2 Info Assist) baked into the S2P scope. The AI tier is Insights, not Agentic or Autonomous, and no demo, POC, or champion has been confirmed, so confidence stays Low until live engagement validates.",
+      "dm_identified": true,
+      "eb_identified": false,
+      "champion_identified": false,
+      "pain_identified": true,
+      "metrics_identified": false,
+      "competitor": "Coupa;GEP Worldwide;JAGGAER;SAP Ariba",
+      "primary_competitor": "SAP Ariba",
+      "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000GmoPW/view"
+    },
+    "ai": {
+      "forecast_read": {
+        "defensible": false,
+        "recommended_forecast": "Pipeline",
+        "reason": "Best Case is not supported: the shortlist SaskTel promised for the week of 6 Apr 2026 has still not been announced (buyer confirmed on 4 Jun 2026 that scores are still being tallied), no supplier presentation or demo has ever occurred, and no economic buyer is engaged, with only 57 days to the 4 Sep 2026 close.",
+        "math": "Today 9 Jul 2026: 57 days to close (4 Sep 2026). Recorded stage Shortlisted since 24 Nov 2025 (~227 days dwell), but the RFP was only issued 11 Feb 2026 and submitted 11 Mar 2026, and shortlisting has not been announced (13+ weeks past the week-of-6-Apr target). Remaining motion (shortlist notification, presentations/orals, selection, commercials, EB sign-off, contracting) realistically needs 120+ days from the shortlist announcement, exceeding the 57 days left. Close date has already slipped twice (28 Feb 2026 to 30 Apr 2026 on 14 Jan 2026; 30 Apr 2026 to 4 Sep 2026 on 4 May 2026)."
+      },
+      "meddpicc": {
+        "metrics": {
+          "status": "partial",
+          "narrative": "SaskTel's stated objectives are rapid mass adoption, accelerated sourcing and contracting ROI, and quick identification of savings opportunities allowing higher savings in a shorter period (SF Business_Objectives__c). The pain is framed in cost terms: Ariba is priced as a premium tool but does not perform accordingly, with fully manual invoicing (SF Customer_Business_Problem__c). No dollar figure, headcount, or cycle-time number has ever been quantified by the buyer, and the case has not been re-confirmed in the last 90 days. Quantifying savings with SaskTel's own numbers remains open.",
+          "sources": ["SF Business_Objectives__c", "SF Customer_Business_Problem__c"]
+        },
+        "economic_buyer": {
+          "status": "gap",
+          "narrative": "No economic buyer or C-level contact has ever engaged in 18 months: Executive_Sponsor_Identified__c is unchecked and Who_will_approve_budget__c is blank. Adriel Picard, Director of Procurement, holds the Decision Maker contact role but is a process owner, not the evident budget authority for a $357,898 multi-year S2P purchase; the deal-creation note that budget is already approved has never been re-validated. The 8 Jul 2026 Next Step proposes reaching Chad Olson (CTO) and John Hill (CIO, EVP) directly to determine steering-committee membership, which is the right move to close this gap.",
+          "sources": ["SF Executive_Sponsor_Identified__c", "SF Who_will_approve_budget__c", "SF Next_Step__c, 8 Jul 2026", "OpportunityContactRole"]
+        },
+        "decision_criteria": {
+          "status": "partial",
+          "narrative": "The RFP's written criteria are the best evidence: SaskTel self-rated AI as a Very Critical evaluation criterion with a Tier 2 Info Assist (AI Insights) rating for what it wants from AI in the S2P scope (SF AIS_Why__c, RFP issued 11 Feb 2026), alongside a full-suite S2P replacement of Ariba with usability and automation as stated drivers. The detailed scoring weights are unknown because SaskTel is running the evaluation through its own portal, no clarification round since 27 Feb 2026 has surfaced criteria detail, and no workshop or presentation has tested them live.",
+          "sources": ["SF AIS_Why__c", "SF Next_Step_History__c, 12 Feb 2026 and 27 Feb 2026"]
+        },
+        "decision_process": {
+          "status": "partial",
+          "narrative": "The process is fully dated and buyer-run: RFP issued 11 Feb 2026, questions closed 25 Feb, submission 11 Mar 2026, shortlist announcement targeted for the week of 6 Apr 2026 and supplier presentations the week of 20 Apr 2026 (SF Next_Step_History__c). That announcement is now roughly 13 weeks overdue: Jeffrey Buzila said on 13 Apr 2026 that evaluations would run to end of April, and the 4 Jun 2026 note records him saying the team is still reviewing responses to tally up scores and notify shortlisted participants. Who sits on the S2P steering committee is unconfirmed; the owner plans to test whether the CTO and CIO are members (SF Next_Step__c, 8 Jul 2026).",
+          "sources": ["SF Next_Step_History__c, 12 Feb 2026 to 4 Jun 2026", "Task email, 13 Apr 2026", "SF Next_Step__c, 8 Jul 2026"]
+        },
+        "paper_process": {
+          "status": "gap",
+          "narrative": "No contracting mechanics have surfaced anywhere: Current_Contract_Expiration__c is blank and there is no mention of MSA, legal review, or procurement requirements beyond the Ariba portal used for this RFP. With no presentation or EB conversation completed in 18 months, paper process has not been scoped, and nothing gives visibility into SaskTel's contracting requirements as a Canadian crown corporation.",
+          "sources": ["SF Current_Contract_Expiration__c (blank)"]
+        },
+        "identify_pain": {
+          "status": "confirmed",
+          "narrative": "SaskTel's documented pain is specific and vendor-anchored: Ariba is priced as a premium tool but does not perform accordingly, invoicing is fully manual, and vendors dislike Ariba's portal, causing supplier-engagement difficulty (SF Customer_Business_Problem__c). Adriel Picard's procurement team owns the pain and is seeking a unified S2P replacement, first captured around the 28 Jan 2025 introductory call. The buyer has not independently re-confirmed this pain on any exchange in the last 90 days, so it should be re-validated at the presentation round before betting the win on it.",
+          "sources": ["SF Customer_Business_Problem__c", "SF How_are_you_addressing_your_problem_toda__c", "SF Next_Step_History__c"]
+        },
+        "champion": {
+          "status": "gap",
+          "narrative": "No champion has emerged in 18 months. Adriel Picard (Director of Procurement, Decision Maker role) has not replied to three consecutive Horizon invitations (5 May, 4 Jun, and the 8 Jul 2026 resend). Jeffrey Buzila, the main conduit, provides process updates only (the team is still reviewing responses to tally up scores, 4 Jun 2026) with no advocacy, internal introductions, or agenda-driving evidenced. Building a genuine champion is the single highest-leverage gap on this deal.",
+          "sources": ["SF Next_Step_History__c, 4 Jun 2026", "Task, 8 Jul 2026", "OpportunityContactRole"]
+        },
+        "competition": {
+          "status": "partial",
+          "narrative": "SaskTel is running a formal four-vendor RFP naming Coupa, GEP, JAGGAER, and SAP Ariba (SF Competitors__c), with SAP Ariba the incumbent under evaluation for replacement (SF How_are_you_addressing_your_problem_toda__c). Zycus's positioned wedge is AI-powered automation, a unified end-to-end suite versus Ariba's fragmented setup, and a more usable supplier portal (SF Zycus_Differentiation_Why_Zycus__c), but no buyer-stated preference among the four has surfaced, and no competitive intelligence has been gathered since the 11 Mar 2026 submission, so the wedge is untested against real buyer feedback.",
+          "sources": ["SF Competitors__c", "SF How_are_you_addressing_your_problem_toda__c", "SF Zycus_Differentiation_Why_Zycus__c"]
+        }
+      },
+      "critical_signals": [
+        {"lens": "Last meeting", "text": "SaskTel's last word (Jeffrey Buzila, 4 Jun 2026) was that the team is still tallying RFP scores to notify shortlisted participants, a decision originally promised for the week of 6 Apr 2026 and now over three months late.", "tone": "warn"},
+        {"lens": "Competition", "text": "This is a live four-way evaluation against Coupa, GEP, JAGGAER, and incumbent SAP Ariba, and no buyer preference has surfaced since the 11 Mar 2026 submission, so Zycus's standing among the four is unknown.", "tone": "warn"},
+        {"lens": "New stakeholder", "text": "Adriel Picard, the named Decision Maker, has not responded to three invitations since 5 May 2026, and it is unconfirmed whether the CTO (Chad Olson) and CIO (John Hill) sit on the S2P steering committee that will decide the move off SAP Ariba.", "tone": "warn"}
+      ],
+      "deal_scores_evidence": {
+        "summary": "A live but drifting four-vendor RFP: Zycus submitted on 11 Mar 2026 and SaskTel confirmed on 4 Jun 2026 that scoring is still underway, but the shortlist is 13+ weeks overdue, the last genuine two-way buyer reply was 13 Apr 2026, no champion, economic buyer, demo, or presentation exists after 18 months, and the 4 Sep 2026 close with a Best Case forecast is not supported by the evidence.",
+        "ai_reasons": {
+          "win_position": [
+            {"tone": "good", "text": "Zycus is one of four finalists in a formal RFP submitted 11 Mar 2026, and the buyer confirmed on 4 Jun 2026 the evaluation is still live, with the delay explained by year-end books and score tallying (SF Next_Step_History__c)."},
+            {"tone": "good", "text": "The documented wedge is real: SaskTel self-rated AI as Very Critical with an AI Insights requirement in its own RFP, and its stated pain is that incumbent SAP Ariba is premium-priced but underperforming with fully manual invoicing (SF AIS_Why__c, SF Customer_Business_Problem__c)."},
+            {"tone": "warn", "text": "After 18 months there is no champion, no engaged economic buyer, and no demo or presentation has ever been delivered, so Zycus's position rests entirely on a written RFP response (SF Executive_Sponsor_Identified__c unchecked, prior record 8 Jul 2026)."},
+            {"tone": "warn", "text": "No buyer preference among Coupa, GEP, JAGGAER, and SAP Ariba has surfaced since submission, and staying on incumbent Ariba remains the default if the evaluation loses steam (SF Competitors__c, SF How_are_you_addressing_your_problem_toda__c)."}
+          ],
+          "deal_momentum": [
+            {"tone": "warn", "text": "The last genuine two-way buyer reply was Jeffrey Buzila's email of 13 Apr 2026; since then the only buyer signal is his 4 Jun 2026 status that scores are still being tallied (Task 13 Apr 2026, SF Next_Step_History__c 4 Jun 2026)."},
+            {"tone": "warn", "text": "Three Horizon invitations to Adriel Picard (5 May, 4 Jun, resent 8 Jul 2026) have gone unanswered, and the buyer has not initiated contact at any point in 2026 (SF Next_Step_History__c, Task 8 Jul 2026)."},
+            {"tone": "warn", "text": "The shortlist announcement targeted for the week of 6 Apr 2026 has not happened and no future dated milestone exists, so the RFP process itself has no scheduled next event (SF Next_Step_History__c)."},
+            {"tone": "good", "text": "The slowdown is explained rather than silent: SaskTel cited year-end book closing on 13 Apr 2026 and confirmed active score tallying on 4 Jun 2026, which keeps the evaluation alive on the back burner (Task 13 Apr 2026, SF Next_Step_History__c 4 Jun 2026)."}
+          ],
+          "customer_commitment": [
+            {"tone": "warn", "text": "SaskTel has invested in the process (issued the RFP 11 Feb 2026, answered vendor questions 27 Feb 2026) but has committed nothing to Zycus specifically: no meeting accepted, no preference voiced, no date offered since 13 Apr 2026 (SF Next_Step_History__c)."},
+            {"tone": "warn", "text": "Both promised buyer milestones (shortlist week of 6 Apr 2026, presentations week of 20 Apr 2026) have passed without being rescheduled to a new date (SF Next_Step_History__c, 11 Mar 2026)."}
+          ],
+          "deal_risk": [
+            {"tone": "warn", "text": "Close-date risk is the headline: 57 days remain to 4 Sep 2026, the close has already slipped twice (14 Jan and 4 May 2026), and the presentation-to-contract motion cannot fit even if the shortlist lands this month (OpportunityFieldHistory)."},
+            {"tone": "warn", "text": "The economic buyer for a $357,898 purchase is unmapped and the steering committee's membership is unknown, leaving Zycus single-threaded through a process contact who only relays status (SF Next_Step__c 8 Jul 2026, prior record)."},
+            {"tone": "warn", "text": "Best Case forecast has no supporting evidence and should be Pipeline until the shortlist notification arrives (SF ForecastCategoryName vs SF Next_Step_History__c 4 Jun 2026)."}
+          ]
+        },
+        "factors": {}
+      },
+      "customer_preference": {"level": "none", "evidence": "No buyer-voiced preference has surfaced in any channel since the 11 Mar 2026 RFP submission; the only buyer communications (13 Apr and 4 Jun 2026) were process-status updates addressed to all participants' situation, not preference signals."},
+      "business_case": {"status": "partial", "evidence": "Qualitative case documented (Ariba premium-priced but underperforming, fully manual invoicing, savings-speed objectives per SF Customer_Business_Problem__c and Business_Objectives__c) but never quantified by the buyer and not re-confirmed since the RFP round (Feb to Mar 2026)."},
+      "momentum_signals": {
+        "seniority_rising": false,
+        "commercial_topics_entering": false,
+        "concrete_dates": false,
+        "customer_requested_next_meeting": false,
+        "close_plan_concretizing": false,
+        "generic_demo_only": false,
+        "competitor_praised": false
+      },
+      "deal_movement": {
+        "summary": "Since April the deal has been rep-driven waiting on SaskTel's overdue shortlist decision: ownership moved from Karson Keogh to Mike Flowers on 13 Apr 2026, the close date was pushed from 30 Apr to 4 Sep 2026 on 4 May 2026, the buyer confirmed on 4 Jun 2026 that scoring is still underway, and on 8 Jul 2026 the owner resent the Horizon invitation to Adriel Picard with a plan to approach the CTO and CIO if it goes unanswered.",
+        "items": [
+          {"change": "Owner resent Horizon invite to Adriel Picard and set an escalation plan toward Chad Olson (CTO) and John Hill (CIO, EVP) to map the steering committee", "date": "2026-07-08"},
+          {"change": "Jeffrey Buzila indicated the team is still reviewing RFP responses to tally scores and notify shortlisted participants", "date": "2026-06-04"},
+          {"change": "Close date pushed from 2026-04-30 to 2026-09-04 by Mike Flowers", "date": "2026-05-04"},
+          {"change": "Opportunity owner changed from Karson Keogh to Mike Flowers", "date": "2026-04-13"},
+          {"change": "Amount increased from 225,000 to 357,898 on RFP scope", "date": "2026-03-12"}
+        ]
+      },
+      "day_summary": {
+        "as_of": "2026-07-08",
+        "overall": "A quiet, rep-side day. Mike Flowers sent a follow-up email to Adriel Picard, Director of Procurement, about attending the Horizon event in September, the third invitation since 5 May 2026, and updated the plan to approach Chad Olson (CTO) and John Hill (CIO, EVP) if Picard stays silent. SaskTel did not respond; the buyer's last touch remains the 4 Jun 2026 status that RFP scores are still being tallied.",
+        "items": [
+          {"kind": "email", "name": "Horizon follow-up to Adriel Picard", "summary": "Follow-up email re-inviting the Director of Procurement to the Horizon event; no response yet", "at": "2026-07-08"}
+        ]
+      },
+      "competitive_position": {
+        "summary": "SaskTel is running a formal four-vendor RFP (Coupa, GEP, JAGGAER, SAP Ariba) to replace incumbent SAP Ariba; all three challengers carry an undifferentiated medium threat because no buyer preference has surfaced since the 11 Mar 2026 submission. SAP Ariba is the single strongest current threat as the entrenched status quo: if the evaluation loses steam, doing nothing means staying on Ariba. A fifth unnamed vendor from an early qualification-era note never appeared in the formal RFP field and stays dormant.",
+        "competitors": [
+          {"name": "SAP Ariba", "sentiment": "negative", "threat_level": "medium", "status": "incumbent", "quote": "Procurement Tool: Ariba (under evaluation for replacement); Ariba is priced as a premium tool but does not perform accordingly", "date": "2026-03-11", "source": "SF How_are_you_addressing_your_problem_toda__c; SF Competitors__c (also a named RFP finalist)", "how_we_win": "Position the unified AI-driven S2P suite and a more usable supplier portal directly against Ariba's fragmented, manual setup; the real risk is the do-nothing path, which for SaskTel means staying on a tool it says is premium-priced but underperforming with fully manual invoicing."},
+          {"name": "Coupa", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Named as one of four RFP finalists", "date": "2026-03-11", "source": "SF Competitors__c", "how_we_win": "Differentiate on end-to-end S2P scope and embedded Merlin AI automation versus a narrower point solution."},
+          {"name": "GEP", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Named as one of four RFP finalists (logged as GEP Worldwide)", "date": "2026-03-11", "source": "SF Competitors__c", "how_we_win": "Differentiate on rapid adoption and time-to-ROI, which SaskTel named as a top objective."},
+          {"name": "JAGGAER", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "Named as one of four RFP finalists", "date": "2026-03-11", "source": "SF Competitors__c", "how_we_win": "Differentiate on AI-Insights capability, which SaskTel's own RFP rated Very Critical."},
+          {"name": "Unnamed fifth vendor (qualification-era note)", "sentiment": "neutral", "threat_level": "dormant", "status": "faded", "quote": "Other players may also be considered alongside the named RFP finalists", "date": "2025-01-30", "source": "SF Why_not_Zycus__c", "how_we_win": "No action needed; never surfaced in the official RFP competitor field."}
+        ]
+      },
+      "customer_expectations_fit": {
+        "summary": "SaskTel's written RFP expectations map well to Zycus's proposed scope: the AI Insights requirement it rated Very Critical is covered by Merlin and Agentic AI in the proposed product set, the unified end-to-end suite answers its complaint about Ariba's fragmented manual setup, and rapid adoption speaks to its savings-speed objectives. None of this fit has been validated live because no demo or presentation has occurred.",
+        "items": [
+          {"criterion": "AI Insights capability, self-rated Very Critical in the RFP", "position": "aligned", "quote": "Zycus has flagged AI as Very Critical for SaskTel, paired with a Tier 2 Info Assist (AI Insights) rating", "date": "2026-02-11", "source": "SF AIS_Why__c"},
+          {"criterion": "Unified end-to-end S2P suite replacing a fragmented, manual Ariba setup", "position": "aligned", "quote": "Ariba is priced as a premium tool but does not perform accordingly; most procurement processes require manual intervention", "date": "2026-03-11", "source": "SF Customer_Business_Problem__c"},
+          {"criterion": "Rapid mass adoption and quick identification of savings opportunities", "position": "partially aligned", "quote": "Quick identification of savings opportunities allowing higher savings in a shorter period", "date": "2026-03-11", "source": "SF Business_Objectives__c; unvalidated live, no demo conducted"}
+        ]
+      },
+      "explicit_requirements": {
+        "items": [
+          {"requirement": "Full S2P suite RFP response through SaskTel's procurement portal, due 11 Mar 2026", "said_by": "SaskTel procurement (RFP issued by Adriel Picard's team)", "date": "2026-02-11", "addressed": true, "quote": "Issue Date of RFP: Wednesday February 11, 2026. Submission Deadline: WEDNESDAY MARCH 11 2026 at 2:00PM CST", "source": "SF Next_Step_History__c, 12 Feb 2026; submission logged 11 Mar 2026 and process re-confirmed live by the buyer on 4 Jun 2026"}
+        ]
+      },
+      "implicit_requirements": {
+        "we_promised": {"items": []},
+        "buyer_dependent": {
+          "items": [
+            {"deliverable": "Shortlist decision and notification from SaskTel's evaluation team", "who": "Buyer", "grounding_quote": "Jeff B referenced that team is still reviewing responses to tally up scores and notify shortlisted participants", "date": "2026-06-04", "due": "2026-04-10", "status": "overdue", "source": "SF Next_Step_History__c, 11 Mar 2026 (Short-listing Announcement Date: Week of April 6, 2026) and 4 Jun 2026"},
+            {"deliverable": "Response from Adriel Picard on Horizon attendance and steering-committee makeup", "who": "Buyer", "grounding_quote": "resent Horizon invite to Adriel Picard, Dir Procurement. If no response, will reach out to Chad Olson, CTO and John Hill CIO, EVP", "date": "2026-07-08", "due": "2026-07-22", "status": "open", "source": "SF Next_Step__c, 8 Jul 2026"}
+          ]
+        }
+      },
+      "gaps": {
+        "items": [
+          {"area": "Economic buyer and budget approval path for a $357,898 purchase", "quote": "Executive_Sponsor_Identified__c unchecked; Who_will_approve_budget__c blank", "status": "not addressed", "date": "2026-07-09", "gap_type": "knowledge", "source": "SF fields; no C-level contact engaged in 18 months"},
+          {"area": "Steering-committee membership deciding the move off SAP Ariba", "quote": "determine whether they are also members of the steering committee making the S2P decision from SAP Ariba", "status": "acknowledged", "date": "2026-07-08", "gap_type": "knowledge", "source": "SF Next_Step__c, 8 Jul 2026"},
+          {"area": "Zycus's competitive standing in the RFP scoring", "quote": "team is still reviewing responses to tally up scores", "status": "not addressed", "date": "2026-06-04", "gap_type": "knowledge", "source": "SF Next_Step_History__c, 4 Jun 2026; no intelligence gathered since the 11 Mar 2026 submission"},
+          {"area": "Paper process and contracting requirements", "quote": "Current_Contract_Expiration__c blank; no MSA, legal, or procurement-contracting mechanics surfaced", "status": "not addressed", "date": "2026-07-09", "gap_type": "knowledge", "source": "SF Current_Contract_Expiration__c"}
+        ]
+      },
+      "best_practice_check": {
+        "summary": "The deal is single-threaded through procurement with no live validation of a strong written wedge. The three levers that change the win odds are multi-threading to the real decision body, converting the overdue shortlist wait into a dated commitment, and having the presentation round ready to prove the AI wedge the moment it is scheduled.",
+        "flags": [
+          "Multi-thread beyond procurement: confirm whether Chad Olson (CTO) and John Hill (CIO, EVP) sit on the S2P steering committee and open a direct line before the presentation round (SF Next_Step__c, 8 Jul 2026).",
+          "Convert the wait into a date: get Jeffrey Buzila to commit to a shortlist-notification date; the announcement is 13+ weeks past the week-of-6-Apr-2026 target (SF Next_Step_History__c).",
+          "Prepare the orals to lead with AI Insights (rated Very Critical in SaskTel's own RFP) against Ariba's manual-invoicing pain; no demo has been delivered in 18 months, so this session will carry the whole live evaluation."
+        ]
+      },
+      "stakeholder_map": {
+        "items": [
+          {"name": "Adriel Picard", "title": "Director of Procurement", "role": "Decision Maker", "last_contact_date": "2025-06-09", "sentiment": "neutral, unresponsive to recent outreach", "risk": "Not confirmed as budget authority; no reply to three consecutive Horizon invites (5 May, 4 Jun, 8 Jul 2026)", "source": "OpportunityContactRole (Primary); Task 8 Jul 2026"},
+          {"name": "Jeffrey Buzila", "title": null, "role": "Coach", "last_contact_date": "2026-06-04", "sentiment": "neutral, process-only", "risk": "Only conduit for RFP status; provides updates but no advocacy or internal introductions", "source": "OpportunityContactRole; Task emails 13 to 15 Apr 2026; SF Next_Step_History__c 4 Jun 2026"}
+        ]
+      },
+      "champion_strength": {
+        "summary": "No champion has developed in 18 months; both named contacts provide process updates only, with no advocacy, internal introductions, or agenda-driving on Zycus's behalf. Jeffrey Buzila is the warmest thread and the natural candidate to develop, but his last touch (4 Jun 2026) was a neutral status relay.",
+        "champion": "None identified",
+        "strength": "none",
+        "at_risk": true,
+        "source": "SF Next_Step_History__c, 4 Jun 2026; Task, 8 Jul 2026"
+      },
+      "expansion_context": {"prior_closed_won": false, "prior_opp": "", "note": "Net-new account; no sibling Closed-Won opportunity evidenced, so no inherited executive access."},
+      "scope_change": {"direction": "expanded", "from": "225000", "to": "357898", "detail": "Amount raised from 225,000 to 357,898 on 12 Mar 2026 by Karson Keogh as the RFP response priced the full nine-product S2P scope (OpportunityFieldHistory)."},
+      "ai_positioning_strength": {"summary": "Zycus is well positioned on paper: SaskTel's own RFP rates AI as Very Critical with an AI Insights (Tier 2 Info Assist) requirement, and the proposed scope includes Merlin and Agentic AI. The positioning is entirely unvalidated live because no demo, POC, or presentation has occurred, so the strength is written, not proven.", "score": "strong on paper, unproven live", "under_positioned": false},
+      "ai_fit_signal": {"summary": "AIS 5.0 (Moderate): buyer-side AI pull is real but bounded. SaskTel self-rated AI as a Very Critical criterion yet wants Insights-tier AI, not Agentic or Autonomous, and a text RFP can mask whether the rating is genuine excitement or checklist hygiene (SF AIS_Why__c).", "tier": "AI Curious"},
+      "vulnerabilities": {
+        "items": [
+          {"category": "timeline", "detail": "57 days to a 4 Sep 2026 close while the shortlist announcement (targeted week of 6 Apr 2026) is still outstanding; the remaining presentation-to-contract motion cannot fit, and the close has already slipped twice (14 Jan and 4 May 2026).", "first_raised": "2026-05-04", "date": "2026-07-09", "status": "open", "source": "OpportunityFieldHistory; SF Next_Step_History__c"},
+          {"category": "executive_alignment", "detail": "No economic buyer or C-level SaskTel contact has engaged in 18 months; budget-approval path unknown for a $357,898 purchase.", "first_raised": "2025-01-30", "date": "2026-07-09", "status": "open", "source": "SF Executive_Sponsor_Identified__c; OpportunityContactRole"},
+          {"category": "political", "detail": "Single-threaded through procurement; steering-committee membership unknown and the named Decision Maker has not replied to three invitations since 5 May 2026.", "first_raised": "2026-05-04", "date": "2026-07-08", "status": "open", "source": "SF Next_Step__c, 8 Jul 2026; Task 8 Jul 2026"},
+          {"category": "other", "detail": "Live four-way bake-off with incumbent SAP Ariba still installed; if the evaluation loses steam the default outcome is staying on Ariba, and Zycus's scoring position is unknown.", "first_raised": "2026-03-11", "date": "2026-06-04", "status": "open", "source": "SF Competitors__c; SF Next_Step_History__c 4 Jun 2026"}
+        ]
+      },
+      "confidence_signals": {
+        "summary": "Cooling. The evaluation is alive by the buyer's own 4 Jun 2026 statement, but every 2026 interaction has been rep-initiated, the last genuine two-way reply was 13 Apr 2026, and three event invitations have gone unanswered. The slowdown is explained (year-end books, score tallying), which keeps the deal warm rather than dark.",
+        "cooling": true,
+        "items": [
+          "Last genuine two-way buyer reply: Jeffrey Buzila email, 13 Apr 2026 (Task).",
+          "Buyer status relay without a meeting: scores still being tallied, 4 Jun 2026 (SF Next_Step_History__c).",
+          "Three unanswered Horizon invitations to Adriel Picard: 5 May, 4 Jun, 8 Jul 2026 (SF Next_Step_History__c; Task 8 Jul 2026)."
+        ]
+      },
+      "ceo_intervention": {"needed": false},
+      "recommended_moves": {
+        "items": [
+          {"rank": 1, "action": "Call Jeffrey Buzila for the shortlist status and a dated notification commitment.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Shortlist announcement 13+ weeks past the week-of-6-Apr-2026 target; buyer last confirmed scoring underway 4 Jun 2026", "trigger_date": "2026-06-04", "act_by": "2026-07-15", "expected_effect": "Converts an open-ended wait into a dated milestone and reveals whether the evaluation is still on track."},
+          {"rank": 2, "action": "Email Chad Olson and John Hill on Horizon and steering-committee membership if Picard stays silent.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Third Horizon invite to Adriel Picard sent 8 Jul 2026 with no response to the prior two", "trigger_date": "2026-07-08", "act_by": "2026-07-22", "expected_effect": "Opens a second thread into the decision body and tests who actually owns the S2P decision off SAP Ariba."},
+          {"rank": 3, "action": "Build the orals deck leading with AI Insights against SaskTel's manual-invoicing Ariba pain.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Supplier presentations were planned for the week of 20 Apr 2026 and could be scheduled at short notice once the shortlist lands", "trigger_date": "2026-06-04", "act_by": "2026-08-07", "expected_effect": "Zycus's first live session in this deal proves the wedge SaskTel rated Very Critical and converts the paper position into preference."},
+          {"rank": 4, "action": "Draft a mutual timeline to co-author with Jeffrey Buzila once the shortlist is announced.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Close date of 4 Sep 2026 leaves 57 days against a presentation-to-contract motion that needs 120+ days", "trigger_date": "2026-05-04", "act_by": "2026-08-07", "expected_effect": "Anchors a realistic buyer-owned path to selection and surfaces the true decision and paper process."}
+        ]
+      }
+    },
+    "evidence_coverage": {
+      "calls_discovered": 1,
+      "calls_read": 1,
+      "calls_omitted": [],
+      "discovery_method": "opp+account+attendee-email",
+      "salesforce_window": "activities 120d; field history 365d; Next_Step_History__c full trail deduped",
+      "avoma_attendees": ["adriel.picard@sasktel.com", "jeff.buzila@sasktel.com"],
+      "gaps": [
+        "Only one Avoma call exists (Introductory call, 28 Jan 2025); its transcript is rapport small talk with no deal substance, and it is 17+ months old (background only).",
+        "This is a text-based RFP run through SaskTel's portal: no recorded calls, demos, or meeting summaries exist for the entire evaluation period, so all 2026 evidence comes from the Salesforce record (emails, Next Step trail, field history).",
+        "Prior canonical record's decision-process narrative was truncated at the source; carried forward as-is."
+      ]
+    },
+    "analysis_confidence": "Medium",
+    "forecast_critical": true,
+    "swept_at": "2026-07-09"
+  },
+  "engines": {
+    "win": {
+      "score": 26,
+      "band": "Behind / early",
+      "drivers": [
+        "✅ Zycus is one of four finalists in a live RFP (submitted 11 Mar 2026), and the buyer confirmed on 4 Jun 2026 that scoring is still underway, an explained slowdown (year-end books, score tallying) that keeps the position alive rather than decaying it.",
+        "✅ The wedge is documented in the buyer's own words: SaskTel rated AI Very Critical with an AI Insights requirement, and says incumbent SAP Ariba is premium-priced but underperforming with fully manual invoicing.",
+        "⚠️ No champion and no economic buyer after 18 months; both named contacts relay process status only and Adriel Picard has ignored three invitations since 5 May 2026 ► confirm whether CTO Chad Olson and CIO John Hill sit on the steering committee and open a direct line.",
+        "⚠️ No demo or presentation has ever been delivered, so the entire position is a written RFP response; the presentation round planned for the week of 20 Apr 2026 never occurred ► have the AI-Insights-led orals deck ready to run the moment the shortlist lands.",
+        "⚠️ Preference is unknown across Coupa, GEP, JAGGAER, and SAP Ariba, and staying on incumbent Ariba is the default if the evaluation drifts ► call Jeffrey Buzila for the scoring status and a dated notification commitment.",
+        "⚠️ Best Case with 57 days to a 4 Sep 2026 close is not defensible against a motion that still needs shortlist, orals, selection, and contracting ► reforecast to Pipeline and co-author a realistic mutual timeline once the shortlist is announced."
+      ]
+    },
+    "mom": {
+      "score": 23,
+      "band": "Slowing / stalled",
+      "drivers": [
+        "⚠️ The last genuine two-way buyer reply was Jeffrey Buzila's email of 13 Apr 2026; the only buyer signal since is his 4 Jun 2026 status that scores are still being tallied ► call him for a dated shortlist-notification commitment.",
+        "⚠️ Three Horizon invitations to Adriel Picard (5 May, 4 Jun, 8 Jul 2026) are unanswered and every 2026 interaction has been rep-initiated ► switch channel and thread to Chad Olson (CTO) and John Hill (CIO) per the current plan.",
+        "⚠️ The RFP's own milestones have lapsed: the shortlist targeted for the week of 6 Apr 2026 is 13+ weeks overdue and no future dated milestone exists, so process-mode credit does not apply ► re-anchor the process on a new buyer-owned date.",
+        "⚠️ The close date was pushed 30 Apr to 4 Sep 2026 on 4 May 2026, the second slip this year, with no buyer-confirmed plan behind the new date.",
+        "✅ The slowdown is explained, not dark: SaskTel cited year-end book closing (13 Apr 2026) and confirmed active score tallying (4 Jun 2026), so the evaluation is alive on the back burner.",
+        "✅ The Next Step is fresh (8 Jul 2026) with a concrete escalation plan toward the CTO and CIO if the Director of Procurement stays silent."
+      ]
+    },
+    "todo": {
+      "prospect_requirements": [],
+      "zycus_commitments": [],
+      "waiting_on_buyer": [
+        {"item": "Shortlist decision and notification from SaskTel's evaluation team (Jeffrey Buzila): originally promised for the week of 6 Apr 2026, re-confirmed as in progress on 4 Jun 2026, now 13+ weeks overdue", "due": "2026-07-18", "status": "overdue"},
+        {"item": "Response from Adriel Picard on Horizon attendance and steering-committee membership (third invite sent 8 Jul 2026)", "due": "2026-07-22", "status": "open"}
+      ],
+      "best_practices": [
+        {"item": "Multi-thread into the decision body: confirm whether Chad Olson (CTO) and John Hill (CIO, EVP) sit on the S2P steering committee and open a direct line before the presentation round", "due": "2026-07-22"},
+        {"item": "Prepare the supplier-presentation/orals deck leading with AI Insights (rated Very Critical in SaskTel's RFP) against Ariba's manual-invoicing pain; flagged for lead time since it will be Zycus's first live session in 18 months", "due": "2026-08-07"},
+        {"item": "Develop Jeffrey Buzila from status conduit toward champion: ask for the evaluation criteria weighting and what would make Zycus the easy recommendation internally", "due": "2026-07-31"}
+      ],
+      "suggested_realistic_close": "2026-12-18"
+    },
+    "sum": {
+      "headline": "No change in the last 24h: SaskTel has not responded; the deal still awaits the shortlist decision it last confirmed was in progress on 4 Jun.",
+      "supporting": [],
+      "no_change": true
+    }
+  }
+}

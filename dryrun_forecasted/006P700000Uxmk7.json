@@ -1,0 +1,3788 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Competitor field",
+     "date": "2026-07-09",
+     "quote": "Competitors__c is blank",
+     "source": "Salesforce Competitors__c; no rival vendor named in any call or Next Step, so status quo/no-decision is the accurate live read",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Economic buyer identity",
+     "date": "2026-07-02",
+     "quote": "Next Step references a CPO coming to Horizon without naming them",
+     "source": "Next_Step__c; no Salesforce contact role or Avoma attendee matches a CPO for this account",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Quantified business case / ROI",
+     "date": "2026-03-06",
+     "quote": "WIK needs quick wins to get buy-in of the organization (Rouven Ehniss)",
+     "source": "Avoma touchpoint transcript, 6 Mar 2026",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "HK/China AI compliance confirmation",
+     "date": "2026-03-06",
+     "quote": "Let us review internally and come back to you",
+     "source": "Avoma touchpoint transcript, 6 Mar 2026; unresolved through 2 Jul 2026 Next Step",
+     "status": "acknowledged",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "gap",
+    "sources": [
+     "Avoma touchpoint, 6 Mar 2026 (transcript)",
+     "Next_Step__c"
+    ],
+    "narrative": "No quantified savings, cycle-time, or efficiency metric has surfaced in any call or Next Step across four months. Rouven Ehniss told the Zycus team on 6 Mar 2026 that WIK needs 'quick wins' to secure buy-in from the organization and board for its broader digitalization strategy, but no number has since been produced to support that ask, leaving the business case qualitative only."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Next_Step__c",
+     "Avoma touchpoint, 6 Mar 2026 (transcript)",
+     "OpportunityContactRole"
+    ],
+    "narrative": "Rouven Ehniss (GM, Global Sourcing) has been the consistent driver since the 6 Mar 2026 discovery call, attending all five identified touchpoints (Mar-May 2026), coordinating the NDA, submitting use cases, and pushing the $150k proposal into WIK's internal budget process (6 Jun 2026). He remains engaged as of 2 Jul 2026 (paired with Hagan Brown on the next revert). However, he told Zycus on 6 Mar 2026 that the initiative needs 'buy-in of the organization,' meaning he lacks unilateral authority to approve the spend, which caps his champion strength at developing rather than fully empowered."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Next_Step__c",
+     "Competitors__c (blank)"
+    ],
+    "narrative": "No rival vendor has been named for this opportunity in any Salesforce field, call, or Next Step entry across four months. The live competitive dynamic is status quo / no-decision: the $150k proposal has sat in internal budget review since 6 Jun 2026 with no confirmed approval date, and the declined 22 Jun 2026 Horizon leadership review increases the risk the initiative simply stalls rather than being lost to a named competitor."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma touchpoint, 6 Mar 2026 (transcript)"
+    ],
+    "narrative": "Kelvin Loh (Head of IT) described WIK's in-house office-automation (OA) platform as handling purchasing requisition forms and approval flows with limited integration options, on the 6 Mar 2026 call ('the current OA system primarily handles purchasing requisition forms and their associated approval flows, indicating a need for potential integrations'). The Zycus regional sales lead framed WIK's broader pain as unstructured, multi-channel procurement requests creating inefficiency, which Kelvin Loh's integration questions and the prepared use cases from Karen Zheng and a Global Indirect Sourcing colleague on the same call corroborated."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Next_Step__c (13/18 Mar 2026 entries)"
+    ],
+    "narrative": "Only an NDA has been executed so far (by 18 Mar 2026, per Next Step). No MSA, Order Form, or SOW discussion has surfaced in any call or Next Step, consistent with the deal still being in Formal Evaluation rather than a contracting stage."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Next_Step__c (22 Jun / 2 Jul 2026 entries)",
+     "Avoma touchpoint, 6 Mar 2026 (transcript)",
+     "OpportunityContactRole"
+    ],
+    "narrative": "No economic buyer has directly engaged with the relevant stakeholder Step notes (22 Jun and 2 Jul 2026 entries) reference a CPO who was expected to attend the 22 Jun 2026 Horizon event to review the ANA proposal with leadership; that person declined and has never joined a call, and is not recorded as a named Salesforce contact for this account. Rouven Ehniss, the highest-engaged contact (GM, Global Sourcing, tagged Evaluator on the contact role), told the Zycus team on 6 Mar 2026 that any initiative would need 'buy-in of the organization,' confirming he cannot approve the $150k spend himself."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Next_Step__c",
+     "Next_Step_History__c"
+    ],
+    "narrative": "The process has run: discovery call (6 Mar 2026) -> NDA execution and use-case submission (by 18 Mar 2026) -> clarification/review meetings (14 Apr, 28 Apr, 14 May 2026) -> proposal issued and sent to WIK management for budget approval (6 Jun 2026) -> a planned leadership review at the Horizon event (22 Jun 2026), which the referenced CPO declined to attend. The process is currently stalled at the internal budget-approval step with no confirmed decision date; Rouven Ehniss and Hagan Brown said on 2 Jul 2026 they would revert shortly."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma touchpoint, 6 Mar 2026 (transcript)",
+     "Next_Step__c (6 Jun 2026 entry)"
+    ],
+    "narrative": "WIK asked Zycus to assess two specific AI use cases (Merlin Intake and ANA) for feasibility, cost, and Hong Kong/China regulatory fit before any workshop-style POC, per the 6 Mar 2026 call. Those use cases were submitted and a formal proposal was issued (Next_Step__c, 6 Jun 2026 entry), showing the evaluation criteria have narrowed to specific agentic-AI use cases rather than a broad RFP against many vendors."
+   }
+  },
+  "footprints": {
+   "alive": true,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 5.0,
+    "top_event": "[Clari - Email Received] Next Steps on Agentic AI Integration with Zycus",
+    "events_30d": 0,
+    "points_60d": 5.4,
+    "top_weight": 3.25,
+    "points_90d_process": 17.0
+   },
+   "last_meeting": "2026-05-22",
+   "meetings_60d": 2,
+   "last_rep_touch": "2026-07-02",
+   "last_buyer_touch": "2026-07-02",
+   "buyer_touches_30d": 2,
+   "buyer_touches_60d": 4,
+   "stage_cadence_days": 21,
+   "general_last_activity": "2026-07-02",
+   "days_since_buyer_touch": 7
+  },
+  "opp_trends": {
+   "stage_trend": 0.161,
+   "amount_trend": -0.458,
+   "close_date_trend": -0.374,
+   "stage_trend_detail": "Stage initial interest -> formal evaluation (109d ago)",
+   "amount_trend_detail": "Amount 250000 -> 150000 (33d ago)",
+   "close_date_trend_detail": "Close date 2026-06-19 -> 2026-08-19 (pushed out 61d)",
+   "forecast_category_trend": -0.374,
+   "forecast_category_trend_detail": "Forecast Best Case -> Pipeline (58d ago)"
+  },
+  "day_summary": {
+   "as_of": "2026-07-02",
+   "items": [
+    {
+     "at": "2026-07-02",
+     "kind": "email",
+     "name": "Carl's check-in to Rouven Ehniss",
+     "summary": "Carl followed up cold after nearly three weeks of no contact since WIK declined the Horizon event invite, simply asking if there was progress or anything he could do to help \u2014 a light-touch nudge to keep the deal from going quiet."
+    },
+    {
+     "at": "2026-07-02",
+     "kind": "email",
+     "name": "Rouven's reply \u2014 review still in progress",
+     "summary": "Rouven Ehniss responded that WIK's internal review is ongoing and committed to sharing a clear outline of next steps by end of July, effectively asking for another few weeks without giving specifics on what's being evaluated."
+    },
+    {
+     "at": "2026-07-02",
+     "kind": "email",
+     "name": "Carl's acknowledgment",
+     "summary": "Carl thanked Rouven and confirmed he'll wait to hear back in the coming weeks, closing the loop for now with the ball squarely in WIK's court."
+    }
+   ],
+   "source": "ai",
+   "overall": "Carl chased WIK for a status update after weeks of silence following their decline of the Horizon Singapore event invite, and Rouven Ehniss finally responded confirming their internal review of the agentic AI proposal is still ongoing, with a next-steps outline promised by end of July. The deal remains stalled on WIK's side with no new commitment beyond a vague timeline \u2014 Zycus is now waiting on them, having done what it can to nudge the process along."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "At risk",
+    "deal_risk": 74.0,
+    "win_position": 28.0,
+    "deal_momentum": 27.0,
+    "customer_commitment": 37.0,
+    "forecast_confidence": 22.0
+   },
+   "cro_panel": {
+    "intro": "A well-engaged, multi-threaded Formal Evaluation deal (five touchpoints since 6 Mar 2026, NDA signed, use cases submitted, $150k proposal issued) that has stalled in internal budget review since 6 Jun 2026, with no economic buyer engaged and the referenced CPO having declined the one scheduled leadership touchpoint",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 28,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Economic buyer never engaged; proposal sits \"with mgmt for budget approval\" (Next Step, 2 Jul 2026) but no EB/CPO/CFO has attended a single call in 4 months; CPO declined the 22 Jun Horizon face-to-face. \u25ba Get Rouven to broker a direct EB session before the 19 Aug close date",
+        "tone": "warn"
+       },
+       {
+        "text": "Sole-vendor evaluation; no named competitor has surfaced in any call, field, or Next_Step across the 6 Mar; 2 Jul cycle; the real threat is status-quo/no-decision, not a rival",
+        "tone": "good"
+       },
+       {
+        "text": "Commercial signals eroding; amount cut from $250K to $150K (33 days ago) and close date pushed 61 days (19 Jun\u219219 Aug); forecast downgraded Best Case\u2192Pipeline (58 days ago)",
+        "tone": "warn"
+       },
+       {
+        "text": "Champion actively engaged; Rouven Ehniss has driven the deal continuously since March, securing NDA and use-case reviews, though he's flagged he can't clear budget alone",
+        "tone": "good"
+       },
+       {
+        "text": "Deal gone quiet; 48 days since the last buyer meeting (22 May), no future meeting on the calendar, and MEDDPICC shows metrics, paper process and EB still gapped",
+        "tone": "warn"
+       },
+       {
+        "text": "No quantified business case; WIK wants \"quick wins for board buy-in\" (6 Mar note) but no ROI/savings metric has been built after 4 months. \u25ba Package a hard ROI figure Rouven can carry to management",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 27,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "No buyer meeting in 48 days; last session 22 May 2026; zero meetings in the last 30 days and none scheduled forward",
+        "tone": "warn"
+       },
+       {
+        "text": "Forecast and close date both slipped; forecast downgraded Best Case\u2192Pipeline (58d ago) and close date pushed 61 days (19 Jun\u219219 Aug)",
+        "tone": "warn"
+       },
+       {
+        "text": "Buyer still responding; 2 buyer touches logged in the last 30 days keep the channel two-way, not rep-only outreach",
+        "tone": "good"
+       },
+       {
+        "text": "CPO skipped face time; declined the 22 Jun Horizon event per the 2 Jul next-step update, a passive signal from the most senior stakeholder in view",
+        "tone": "warn"
+       },
+       {
+        "text": "Next step vague on timing; 2 Jul note (\"will revert on the ANA project shortly\") carries no dated forward milestone; nothing is scheduled next. \u25ba Get Ehniss/Hagen to commit to a specific date this week",
+        "tone": "warn"
+       },
+       {
+        "text": "Real prior depth; NDA signed, 5 meetings since 6 Mar, and repeated use-case reviews keep some residual credit in the relationship",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 74,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No named competitor has surfaced in any call, field, or Next_Step across the 4-month cycle (6 Mar - 2 Jul 2026).",
+      "bullets": [
+       {
+        "text": "Stage may be inflated; Formal Evaluation for 109 days with EB unmapped, no business case, and paper process still a gap",
+        "tone": "warn"
+       },
+       {
+        "text": "Commercial deterioration; amount cut 40% ($250K\u2192$150K, 33d ago), close pushed 61 days, forecast downgraded Best Case\u2192Pipeline (58d ago)",
+        "tone": "warn"
+       },
+       {
+        "text": "Do-nothing risk; no competing vendor named in 4 months, but status-quo/no-decision is flagged medium threat with budget approval still pending",
+        "tone": "warn"
+       },
+       {
+        "text": "Compliance question open; HK/China AI regulatory restriction raised 6 Mar by Kelvin (Head of IT) remains unresolved as of 2 Jul",
+        "tone": "warn"
+       },
+       {
+        "text": "Scope dependency risk; Agentic Sourcing delivery delay flagged 14 May as something that \"may impact final decision\" (Next Step)",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Follow up directly with Rouven Ehniss and Hagan Brown on the budget-approval status they committed to revert on. (by 16 Jun)",
+       "Seek a direct conversation with WIK's economic buyer (the CPO role referenced in Next Step notes) to keep executive sponsorship alive. (by 23 Jun)",
+       "Deliver the outstanding Hong Kong/China AI regulatory compliance confirmation promised to Kelvin Loh. (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Shenzhen WIK Domestic Appliances CO Ltd. \u2014 Formal Evaluation \u00b7 $150K \u00b7 closes 19 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 74.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage may be inflated \u2014 Formal Evaluation for 109 days with EB unmapped, no business case, and paper process still a gap.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Commercial deterioration \u2014 amount cut 40% ($250K\u2192$150K, 33d ago), close pushed 61 days, forecast downgraded Best Case\u2192Pipeline (58d ago).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Do-nothing risk \u2014 no competing vendor named in 4 months, but status-quo/no-decision is flagged medium threat with budget approval still pending.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Compliance question open \u2014 HK/China AI regulatory restriction raised 6 Mar by Kelvin (Head of IT) remains unresolved as of 2 Jul.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Scope dependency risk \u2014 Agentic Sourcing delivery delay flagged 14 May as something that \"may impact final decision\" (Next Step).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Champion still active \u2014 Rouven continues working the deal and posting updates as of 2 Jul, keeping the relationship alive.",
+      "points": 1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Stage may be inflated \u2014 Formal Evaluation for 109 days with EB unmapped, no business case, and paper process still a gap.",
+      "tone": "warn"
+     },
+     {
+      "text": "Commercial deterioration \u2014 amount cut 40% ($250K\u2192$150K, 33d ago), close pushed 61 days, forecast downgraded Best Case\u2192Pipeline (58d ago).",
+      "tone": "warn"
+     },
+     {
+      "text": "Do-nothing risk \u2014 no competing vendor named in 4 months, but status-quo/no-decision is flagged medium threat with budget approval still pending.",
+      "tone": "warn"
+     },
+     {
+      "text": "Compliance question open \u2014 HK/China AI regulatory restriction raised 6 Mar by Kelvin (Head of IT) remains unresolved as of 2 Jul.",
+      "tone": "warn"
+     },
+     {
+      "text": "Scope dependency risk \u2014 Agentic Sourcing delivery delay flagged 14 May as something that \"may impact final decision\" (Next Step).",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion still active \u2014 Rouven continues working the deal and posting updates as of 2 Jul, keeping the relationship alive.",
+      "tone": "good"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Economic buyer never engaged \u2014 proposal sits \"with mgmt for budget approval\" (Next Step, 2 Jul 2026) but no EB/CPO/CFO has attended a single call in 4 months; CPO declined the 22 Jun Horizon face-to-face. \u25ba Get Rouven to broker a direct EB session before the 19 Aug close date.",
+      "tone": "warn"
+     },
+     {
+      "text": "Sole-vendor evaluation \u2014 no named competitor has surfaced in any call, field, or Next_Step across the 6 Mar\u20132 Jul cycle; the real threat is status-quo/no-decision, not a rival.",
+      "tone": "good"
+     },
+     {
+      "text": "Commercial signals eroding \u2014 amount cut from $250K to $150K (33 days ago) and close date pushed 61 days (19 Jun\u219219 Aug); forecast downgraded Best Case\u2192Pipeline (58 days ago).",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion actively engaged \u2014 Rouven Ehniss has driven the deal continuously since March, securing NDA and use-case reviews, though he's flagged he can't clear budget alone.",
+      "tone": "good"
+     },
+     {
+      "text": "Deal gone quiet \u2014 48 days since the last buyer meeting (22 May), no future meeting on the calendar, and MEDDPICC shows metrics, paper process and EB still gapped.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified business case \u2014 WIK wants \"quick wins for board buy-in\" (6 Mar note) but no ROI/savings metric has been built after 4 months. \u25ba Package a hard ROI figure Rouven can carry to management.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "No buyer meeting in 48 days \u2014 last session 22 May 2026; zero meetings in the last 30 days and none scheduled forward.",
+      "tone": "warn"
+     },
+     {
+      "text": "Forecast and close date both slipped \u2014 forecast downgraded Best Case\u2192Pipeline (58d ago) and close date pushed 61 days (19 Jun\u219219 Aug).",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer still responding \u2014 2 buyer touches logged in the last 30 days keep the channel two-way, not rep-only outreach.",
+      "tone": "good"
+     },
+     {
+      "text": "CPO skipped face time \u2014 declined the 22 Jun Horizon event per the 2 Jul next-step update, a passive signal from the most senior stakeholder in view.",
+      "tone": "warn"
+     },
+     {
+      "text": "Next step vague on timing \u2014 2 Jul note (\"will revert on the ANA project shortly\") carries no dated forward milestone; nothing is scheduled next. \u25ba Get Ehniss/Hagen to commit to a specific date this week.",
+      "tone": "warn"
+     },
+     {
+      "text": "Real prior depth \u2014 NDA signed, 5 meetings since 6 Mar, and repeated use-case reviews keep some residual credit in the relationship.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Champion self-driving process \u2014 Rouven Ehniss has pushed NDA execution, use-case review and internal budget approval since March with limited rep pressure.",
+      "tone": "good"
+     },
+     {
+      "text": "No EB investment visible \u2014 economic buyer/CPO has not attended a call or moved the paper process (MEDDPICC: EB gap, paper process gap).",
+      "tone": "warn"
+     },
+     {
+      "text": "Budget approval stuck \u2014 2 Jul next step says the proposal is \"with mgmt for budget approval\" but no confirmation or timeline has come back.",
+      "tone": "warn"
+     },
+     {
+      "text": "CPO declined exec engagement \u2014 skipped the 22 Jun Horizon event, the one offered face-to-face touchpoint with senior leadership.",
+      "tone": "warn"
+     },
+     {
+      "text": "Deep multi-month evaluation \u2014 5 meetings, an executed NDA, and repeated presales use-case reviews since 6 Mar show real buyer time invested.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 28.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer never engaged \u2014 proposal sits \"with mgmt for budget approval\" (Next Step, 2 Jul 2026) but no EB/CPO/CFO has attended a single call in 4 months; CPO declined the 22 Jun Horizon face-to-face. \u25ba Get Rouven to broker a direct EB session before the 19 Aug close date.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Sole-vendor evaluation \u2014 no named competitor has surfaced in any call, field, or Next_Step across the 6 Mar\u20132 Jul cycle; the real threat is status-quo/no-decision, not a rival.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Commercial signals eroding \u2014 amount cut from $250K to $150K (33 days ago) and close date pushed 61 days (19 Jun\u219219 Aug); forecast downgraded Best Case\u2192Pipeline (58 days ago).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Champion actively engaged \u2014 Rouven Ehniss has driven the deal continuously since March, securing NDA and use-case reviews, though he's flagged he can't clear budget alone.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Deal gone quiet \u2014 48 days since the last buyer meeting (22 May), no future meeting on the calendar, and MEDDPICC shows metrics, paper process and EB still gapped.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No quantified business case \u2014 WIK wants \"quick wins for board buy-in\" (6 Mar note) but no ROI/savings metric has been built after 4 months. \u25ba Package a hard ROI figure Rouven can carry to management.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 27.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer meeting in 48 days \u2014 last session 22 May 2026; zero meetings in the last 30 days and none scheduled forward.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Forecast and close date both slipped \u2014 forecast downgraded Best Case\u2192Pipeline (58d ago) and close date pushed 61 days (19 Jun\u219219 Aug).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Buyer still responding \u2014 2 buyer touches logged in the last 30 days keep the channel two-way, not rep-only outreach.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "CPO skipped face time \u2014 declined the 22 Jun Horizon event per the 2 Jul next-step update, a passive signal from the most senior stakeholder in view.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Next step vague on timing \u2014 2 Jul note (\"will revert on the ANA project shortly\") carries no dated forward milestone; nothing is scheduled next. \u25ba Get Ehniss/Hagen to commit to a specific date this week.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Real prior depth \u2014 NDA signed, 5 meetings since 6 Mar, and repeated use-case reviews keep some residual credit in the relationship.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "WIK is explicitly pursuing agentic AI (ANA) as its first use case within a broader global digitalization and AI strategy (Next_Step__c, 28 Apr 2026 entry), and its team engaged deeply with Zycus's autonomous-agent roadmap and backend/archit",
+     "expectations_fit": "WIK's stated fit concerns center on AI regulatory compliance in Hong Kong/China and integration with its custom in-house systems; Zycus has addressed the integration question directly but the compliance question remains open.",
+     "north_star_verdict": null,
+     "positioning_strength": "Zycus's agentic-AI narrative (Merlin Intake, ANA, roadmap toward autonomous procurement) resonated strongly with WIK from the first call; Rouven Ehniss called ANA 'a great use case' for WIK per the 27 Mar 2026 Next Step entry, and the buyin"
+    },
+    "deal": {
+     "stage": "Formal Evaluation",
+     "amount": 150000.0,
+     "opp_id": "006P700000Uxmk7",
+     "account": "Shenzhen WIK Domestic Appliances CO Ltd.",
+     "opp_name": "WIK_ANA Intake Pilot",
+     "next_step": "75% Confidence2nd Jul- follow up with Ehniss & Hagen for next steps- they have declined Horizon, and will revert on the ANA project shortly22nd Jun CPO coming to Horizon- ANA proposal with Mgmt- Pilot and build strategyJun 6th Follow up with WIk team and issues Proposal for ANA.Intak- Going to mgmt for budget approvalck to visit F2F in HK asapMay 14- Good engagement after presales meeting (appetite with Intake/ANA). Scheduling meeting with delivery next week to manage paid POV).May 11- Meeting on May 14 to align on process/ products. Delay in Agentic Sourcing may impact final decision.Apr 28 Good clarification meeting on Sourcing for indirect full AI. Presales will map processes with solution (including Strategic Sourcing) and share next week. Part of broader global digitalisation and strategic initiative as this Agentic AI use case will be the 1st one (Intake, ANA, Strategic Sourcing). Decision in Q2. Apr 27 Meeting on Apr28 to review Ai use cases. Decision to move forward based on requirements matching. Apr 13 AI use cases to be reviewed by Apr14 Mar 27 ANA sounds a great use case for them. Use cases presentation by mid April Mar 20 AI use cases currently under review by presales Mar 18 Meeting at RT. AI use cases to be shared by end of month (NDA signed) Mar 13- currently signing NDA. AI use cases to be received next week. HK AI restriction to be managed. Mar 06- Interest in AI quick wins around negotiations. Use cases to be reviewed by presales. Need to check AI restriction in HK",
+     "close_date": "2026-08-19",
+     "stage_tier": "mid",
+     "days_to_close": 41,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-02"
+    },
+    "trends": {
+     "stage_trend": 0.161,
+     "amount_trend": -0.458,
+     "close_date_trend": -0.374,
+     "stage_trend_detail": "Stage initial interest -> formal evaluation (109d ago)",
+     "amount_trend_detail": "Amount 250000 -> 150000 (33d ago)",
+     "close_date_trend_detail": "Close date 2026-06-19 -> 2026-08-19 (pushed out 61d)",
+     "forecast_category_trend": -0.374,
+     "forecast_category_trend_detail": "Forecast Best Case -> Pipeline (58d ago)"
+    },
+    "champion": "Rouven Ehniss has driven the deal continuously since March 2026 but has explicitly said he needs organizational/board buy-in, meaning his advocacy alone cannot clear the budget approval.",
+    "meddpicc": {
+     "metrics": "gap",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "partial",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-05-22",
+       "minutes": null,
+       "subject": "Wik Group/Zycus",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "wik-group.com"
+       ]
+      },
+      {
+       "date": "2026-05-14",
+       "minutes": null,
+       "subject": "Process Evaluation and Next Steps on Agentic AI Integration",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "wik-group.com"
+       ]
+      },
+      {
+       "date": "2026-04-28",
+       "minutes": null,
+       "subject": "Process Evaluation and Next Steps on Agentic AI Integration// Session with Zycus/ WIK Grou",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "wik-group.com"
+       ]
+      },
+      {
+       "date": "2026-04-14",
+       "minutes": null,
+       "subject": "Process Evaluation and Next Steps on Agentic AI Integration// Session with Zycus/ WIK Grou",
+       "recorded": false,
+       "transcript": false,
+       "buyer_domains": [
+        "wik-group.com"
+       ]
+      },
+      {
+       "date": "2026-03-06",
+       "minutes": 49,
+       "subject": "WIK Group x Zycus: S2P Solution Walkthrough Introductory Connect",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 2,
+     "count_90d": 4,
+     "last_date": "2026-05-22",
+     "next_scheduled": null,
+     "total_all_time": 5,
+     "days_since_last": 48,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No named competitor has surfaced in any call, field, or Next_Step across the 4-month cycle (6 Mar - 2 Jul 2026). The only competitor references in the record are Zycus's own win stories against SAP Ariba, Coupa and GEP cited for OTHER customers during the 6 Mar 2026 intro pitch, not rivals WIK is evaluating. As of 2 Jul 2026 this reads as a sole-vendor evaluation; the real threat is not a competit",
+     "competitors": [
+      {
+       "name": "Status quo / no-decision",
+       "status": "do_nothing",
+       "threat": "medium"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (G",
+     "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quant",
+     "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate an",
+     "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, ",
+     "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or de"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 2,
+     "buyer_touches_30d": 2,
+     "engagement_points_60d": 5.4,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 4,
+     "days_since_last_meeting": 48
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 5.4,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 37.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Champion self-driving process \u2014 Rouven Ehniss has pushed NDA execution, use-case review and internal budget approval since March with limited rep pressure.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No EB investment visible \u2014 economic buyer/CPO has not attended a call or moved the paper process (MEDDPICC: EB gap, paper process gap).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Budget approval stuck \u2014 2 Jul next step says the proposal is \"with mgmt for budget approval\" but no confirmation or timeline has come back.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "CPO declined exec engagement \u2014 skipped the 22 Jun Horizon event, the one offered face-to-face touchpoint with senior leadership.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Deep multi-month evaluation \u2014 5 meetings, an executed NDA, and repeated presales use-case reviews since 6 Mar show real buyer time invested.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 22.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 7
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'cpo' in Next-Step/narrative",
+    "present": true,
+    "age_days": 7
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'inefficien' in Next-Step/narrative",
+    "present": true,
+    "age_days": 7
+   }
+  },
+  "scope_change": {
+   "to": "Merlin Intake + ANA pilot ($150k, per Products__c)",
+   "from": "Merlin Intake + ANA pilot ($150k, per Products__c)",
+   "detail": "Products in scope remain iSource, Merlin Intake, and ANA per Salesforce Products field. WIK's broader ask includes Strategic Sourcing agentic AI as a later phase; a Zycus Agentic Sourcing delivery delay flagged 14 May 2026 may affect that later phase but has not yet changed the current pilot's scope.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Hungry",
+   "summary": "WIK is explicitly pursuing agentic AI (ANA) as its first use case within a broader global digitalization and AI strategy (Next_Step__c, 28 Apr 2026 entry), and its team engaged deeply with Zycus's autonomous-agent roadmap and backend/architecture questions on the 6 Mar 2026 call."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "Rouven Ehniss said on the 6 Mar 2026 call that WIK needs 'quick wins' for board buy-in, but no savings, cycle-time, or efficiency number has appeared in any subsequent call or Next Step entry through 2 Jul 2026."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-03-08",
+     "change": "Opportunity created following the initial discovery call"
+    },
+    {
+     "date": "2026-03-18",
+     "change": "NDA executed, unlocking AI use-case sharing"
+    },
+    {
+     "date": "2026-06-06",
+     "change": "$150k ANA Intake proposal issued to WIK and sent to management for budget approval"
+    },
+    {
+     "date": "2026-06-22",
+     "change": "CPO declined to attend the Horizon event where the proposal was to be reviewed with leadership"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "Rouven Ehniss and Hagan Brown replied confirming they will revert on the ANA project shortly"
+    }
+   ],
+   "summary": "Deal trajectory: weakening. After a strong Mar-May 2026 cadence of calls and a formal $150k proposal issued 6 Jun 2026, the process stalled in internal budget review; the referenced CPO declined the 22 Jun 2026 leadership review, and the only recent signal is a 2 Jul 2026 email holding pattern from Rouven Ehniss and Hagan Brown. Likeliest blocker to close: absence of an engaged economic buyer to force a budget decision before the 19 Aug 2026 close date."
+  },
+  "forecast_read": {
+   "math": "Close date 2026-08-19 is 41 days from today's sweep (2026-07-09). Formal_Eval_Submission_Date__c was not read this sweep so precise time-in-stage is unconfirmed, but Formal Evaluation-type activity (use-case review, clarification meetings) has been ongoing since at least 6 Mar 2026 (~18 weeks). No CloseDate slip is visible in the data read this sweep.",
+   "reason": "Recorded as Pipeline, which is consistent with an unengaged economic buyer and a budget proposal still stuck in internal WIK management review; this is not an over-forecast.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iSource;Merlin Intake;ANA"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Rouven Ehniss",
+     "risk": "Cannot approve the $150k budget alone; needs board/organizational buy-in.",
+     "role": "Champion",
+     "email": "rouven.ehniss@wik-group.com",
+     "title": "General Manager - Global Sourcing\u00a0",
+     "_source": "sfdc_contact_role",
+     "sentiment": "developing, positive",
+     "_matched_ai": true,
+     "last_contact_date": "2026-07-02"
+    },
+    {
+     "name": "Karen Zheng",
+     "risk": "Limited direct quotes captured; stance beyond attendance unconfirmed.",
+     "role": "Influencer",
+     "email": "karen.zheng@wik-group.com",
+     "title": "Head of Purchasing Controlling",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-14"
+    },
+    {
+     "name": "Hazel su",
+     "risk": "Limited direct engagement evidence beyond attendance.",
+     "role": "Influencer",
+     "email": "hazel.su@wik-group.com",
+     "title": "Sourcing Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-14"
+    },
+    {
+     "name": "Josslyn Deng",
+     "risk": "Legal has had zero visibility into the deal to date",
+     "role": "Unknown",
+     "email": "josslyn.deng@wik-group.com",
+     "title": "Head of Legal Function, WIK Group",
+     "_source": "sfdc_contact_role",
+     "sentiment": "not yet engaged",
+     "_matched_ai": true
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (GM-level champion) lacks authority to approve $150k spend; 22 Jun Next_Step referenced 'CPO coming to Horizon' but CPO declined and has never engaged \u2014 without EB sign-off and a committed close date, the pilot will stall in mgmt review indefinitely or be rejected",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T06:02:44.254407+05:30",
+     "first_raised": "2026-07-07T06:02:44.254407+05:30",
+     "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers Rouven cannot build a compelling mgmt case, and budget may be rejected or deferred",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T06:02:44.254407+05:30",
+     "first_raised": "2026-07-07T06:02:44.254407+05:30",
+     "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate and revert, but 4 months later no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK IT/Legal will not sign until compliance is confirmed",
+     "status": "open",
+     "category": "legal",
+     "first_seen": "2026-07-07T06:02:44.254407+05:30",
+     "first_raised": "2026-03-06",
+     "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+    },
+    {
+     "date": "2026-05-14",
+     "change": "carried",
+     "detail": "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, and if Zycus cannot deliver it on their 2026 timeline, the decision may be deferred or scope reduced",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T06:02:44.254407+05:30",
+     "first_raised": "2026-05-14",
+     "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or deprioritization vs other initiatives; the CPO has never joined a call or engaged directly",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T06:02:44.254407+05:30",
+     "first_raised": "2026-07-02",
+     "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "The $150k proposal has been with WIK management for budget approval since 6 Jun 2026; the intended executive sponsor (CPO) declined to attend the Horizon review where the proposal was to be discussed with leadership, leaving no confirmed approval timeline.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T13:13:56.677954+05:30",
+     "first_raised": "2026-06-06",
+     "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "No economic buyer is engaged; Rouven Ehniss (GM level) is the highest-engaged contact and has said he needs board/organizational buy-in, meaning he cannot approve the spend himself.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T13:13:56.677954+05:30",
+     "first_raised": "2026-03-06",
+     "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+    },
+    {
+     "date": "2026-03-06",
+     "change": "carried",
+     "detail": "Hong Kong/China AI usage regulatory compliance question raised by Kelvin Loh has been open since 6 Mar 2026 with no confirmed resolution in any subsequent touchpoint.",
+     "status": "open",
+     "category": "legal",
+     "first_seen": "2026-07-07T13:13:56.677954+05:30",
+     "first_raised": "2026-03-06",
+     "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+    },
+    {
+     "date": "2026-05-14",
+     "change": "carried",
+     "detail": "A delay in Zycus's Agentic Sourcing delivery was flagged 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's broader intended scope.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T13:13:56.677954+05:30",
+     "first_raised": "2026-05-14",
+     "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "Proposal has been in WIK management budget review since 6 Jun 2026 with no confirmed EB engagement or approval timeline.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T14:47:41.360641+05:30",
+     "first_raised": "2026-06-06",
+     "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "carried",
+     "detail": "CPO has never joined a call and declined the 22 Jun Horizon review, the one scheduled leadership touchpoint.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T14:47:41.360641+05:30",
+     "first_raised": "2026-06-22",
+     "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+    },
+    {
+     "date": "2026-03-06",
+     "change": "carried",
+     "detail": "HK/China AI usage regulatory restriction question raised by Kelvin Loh remains unconfirmed after 4 months; IT/Legal sign-off is blocked until resolved.",
+     "status": "open",
+     "category": "legal",
+     "first_seen": "2026-07-07T14:47:41.360641+05:30",
+     "first_raised": "2026-03-06",
+     "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+    },
+    {
+     "date": "2026-05-14",
+     "change": "carried",
+     "detail": "Agentic Sourcing delivery delay flagged 14 May 2026 as potentially affecting WIK's final decision, since Strategic Sourcing agentic AI is part of the broader intended scope.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T14:47:41.360641+05:30",
+     "first_raised": "2026-05-14",
+     "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "new",
+     "detail": "The CPO (unnamed, referenced only in Next Step notes) has never joined a Zycus call and declined the 22 Jun 2026 Horizon session intended for leadership review of the ANA proposal.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T19:51:55.504075+05:30",
+     "first_raised": "2026-06-22",
+     "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "new",
+     "detail": "The $150k ANA Intake proposal has been in WIK management budget review since 6 Jun 2026 (about five weeks) with no confirmed decision date.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-09T19:51:55.504075+05:30",
+     "first_raised": "2026-06-06",
+     "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+    },
+    {
+     "date": "2026-07-02",
+     "change": "new",
+     "detail": "The HK/China AI usage regulatory restriction question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months); IT/Legal sign-off may be blocked until it is answered.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-09T19:51:55.504075+05:30",
+     "first_raised": "2026-03-06",
+     "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+    },
+    {
+     "date": "2026-05-14",
+     "change": "new",
+     "detail": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's intended broader scope.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T19:51:55.504075+05:30",
+     "first_raised": "2026-05-14",
+     "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 27.0,
+   "win": 28.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Commercials",
+    "text": "The $150k proposal has sat with WIK management for budget approval since 6 Jun 2026 (about five weeks), and the referenced CPO declined the 22 Jun 2026 session where leadership was meant to review it; Rouven Ehniss and Hagan Brown say they will revert shortly, but no approval date is confirmed.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "No rival vendor is in play; the real threat is inertia, with the proposal stuck in an unresolved internal budget process rather than lost to a competitor.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Last meeting",
+    "text": "The last tracked session was 22 May 2026 (about seven weeks ago, not recorded); since then the only confirmed engagement is a 2 Jul 2026 email exchange rather than a fresh call, so the cadence has thinned since the March-May run of sessions.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "Hagan Brown has emerged since 14 May 2026 and is now paired with Rouven Ehniss in the 2 Jul 2026 follow-up commitment; his role and seniority are not yet confirmed in Salesforce.",
+    "tone": "neu"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": true,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma touchpoint transcript, 6 Mar 2026 ('we would like to have to have to buy in of the organization'); Next_Step__c (2 Jul 2026)",
+   "at_risk": false,
+   "summary": "Rouven Ehniss has driven the deal continuously since March 2026 but has explicitly said he needs organizational/board buy-in, meaning his advocacy alone cannot clear the budget approval.",
+   "champion": "Rouven Ehniss",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Follow up directly with Rouven Ehniss and Hagan Brown on the budget-approval status they committed to revert on.",
+     "horizon": "next_7_days",
+     "trigger": "Rouven Ehniss and Hagan Brown said they would revert on the ANA project shortly",
+     "trigger_date": "2026-07-02",
+     "expected_effect": "Confirms whether the $150k proposal has cleared internal budget review and surfaces a real decision date."
+    },
+    {
+     "rank": 2,
+     "owner": "Executive sponsor",
+     "act_by": "2026-07-23",
+     "action": "Seek a direct conversation with WIK's economic buyer (the CPO role referenced in Next Step notes) to keep executive sponsorship alive.",
+     "horizon": "next_14_days",
+     "trigger": "The CPO declined the Horizon session and has never engaged directly",
+     "trigger_date": "2026-06-22",
+     "expected_effect": "Establishes direct executive engagement or clarifies who the true economic buyer is before the 19 Aug 2026 close date."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Deliver the outstanding Hong Kong/China AI regulatory compliance confirmation promised to Kelvin Loh.",
+     "horizon": "next_14_days",
+     "trigger": "Kelvin Loh's compliance question has remained open for four months",
+     "trigger_date": "2026-03-06",
+     "expected_effect": "Removes a potential IT/Legal blocker before any contracting stage begins."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Build and share a quantified ROI/business case with Rouven Ehniss to strengthen his internal board case.",
+     "horizon": "next_30_days",
+     "trigger": "Rouven Ehniss said WIK needs quick wins for board buy-in",
+     "trigger_date": "2026-03-06",
+     "expected_effect": "Gives the champion concrete numbers to close the budget approval before the 19 Aug 2026 close date."
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Confirm the Agentic Sourcing delivery timeline internally and communicate status to WIK.",
+     "horizon": "next_30_days",
+     "trigger": "Agentic Sourcing delay flagged as possibly impacting the final decision",
+     "trigger_date": "2026-05-14",
+     "expected_effect": "Removes uncertainty around scope/timeline feasibility for WIK's broader digitalization plan."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "No Avoma-tracked call since 22 May 2026 (~7 weeks ago)",
+    "CPO decline of the 22 Jun 2026 Horizon session",
+    "Budget approval pending since 6 Jun 2026 with no confirmed date"
+   ],
+   "cooling": true,
+   "summary": "Consistent multi-month engagement from a wide buyer group with no economic buyer engaged and a cooling call cadence since May 2026."
+  },
+  "north_star_verdict": {
+   "math": "Opp created 2026-03-08 (~121 days old); has been in Formal Evaluation the full cycle per Next_Step_History__c. Close date 2026-08-19 is 43 days out, but the required steps (EB sign-off, budget approval, HK/China compliance confirmation, contracting) have not started and the deal has no confirmed executive review date, so 43 days is an unrealistic runway on current pace.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Next_Step__c (6 Jun 2026): proposal issued, 'going to mgmt for budget approval'",
+    "Next_Step__c (2 Jul 2026): 'they have declined Horizon, and will revert on the ANA project shortly'",
+    "Avoma call 2026-03-06: Rouven Ehniss - 'we need to have these quick wins to have the buy-in of our board and of our organization'"
+   ],
+   "headline": "Technical evaluation is fully bought-in (AI appetite, use-case fit, integration path all confirmed since Mar 2026), but the $150k proposal has sat with WIK management for budget approval since 6 Jun 2026 (~4.5 weeks) with no named Economic Buyer engaged, and the CPO skipped the one forum (22 Jun Horizon) where leadership would have reviewed it.",
+   "trajectory": "steady",
+   "prior_verdict": "Slowing",
+   "carried_forward": true,
+   "forecast_defensible": true,
+   "recommended_forecast": "Pipeline (unchanged; already the most conservative category and appropriately reflects the stalled approval)"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Economic buyer unmapped and unengaged: proposal is with 'mgmt' for budget approval (Next_Step 2 Jul) but no EB/CFO/CPO is named in OpportunityContactRoles or has joined a call; Rouven (GM-level champion) lacks budget authority and cannot approve the $150k spend himself \u2014 map the EB and get Carl/Shekhar (deal owner's manager) into an exec-to-exec call to secure sign-off and a close date, or the pilot will stall in 'mgmt review' indefinitely.",
+    "No quantified ROI or business case: WIK positioned this as a 'quick win for board buy-in' (6 Mar call), but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers (e.g. '30% faster PR approvals', '200 hrs/month saved', '$X contract-review acceleration') Rouven cannot present a compelling board case, and mgmt may reject or defer; co-author a pilot success-metrics doc with Rouven tying Intake/ANA to measurable WIK KPIs before the mgmt decision.",
+    "Open compliance item blocks contracting: Kelvin (Head of IT) asked on 6 Mar whether AI tools face HK/China regional restrictions; Tanvi committed to validate and revert, but 4 months later (2 Jul) no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK Legal/IT will not sign until regional compliance is confirmed; close this validation with Kelvin and Josslyn (Head of Legal) this week or it becomes a last-minute deal-killer.",
+    "Arm Rouven Ehniss with a quantified savings estimate now that the proposal is with management, since his own stated ask was for 'quick wins' to secure board buy-in, not an undifferentiated pitch.",
+    "Secure a confirmed executive sponsor: no one has directly engaged with Zycus beyond GM-level Rouven Ehniss since March 2026, and the referenced CPO declined the 22 Jun 2026 Horizon session - push for direct executive-level engagement or a named economic buyer before the 19 Aug 2026 close date."
+   ],
+   "summary": "The deal is well-qualified on pain and process but is exposed on executive sponsorship and a quantified business case."
+  },
+  "customer_preference": {
+   "level": "medium",
+   "evidence": "No competing vendor is named anywhere in the record; WIK has sustained multi-session engagement (five touchpoints, Mar-May 2026) and self-initiated a $150k internal budget proposal, indicating active intent, though no buyer has explicitly voiced a preference for Zycus over an alternative."
+  },
+  "competitive_position": {
+   "summary": "No named competitor has surfaced in any call, field, or Next_Step across the 4-month cycle (6 Mar - 2 Jul 2026). The only competitor references in the record are Zycus's own win stories against SAP Ariba, Coupa and GEP cited for OTHER customers during the 6 Mar 2026 intro pitch, not rivals WIK is evaluating. As of 2 Jul 2026 this reads as a sole-vendor evaluation; the real threat is not a competitor but inertia - an unapproved budget and a CPO who has never engaged.",
+   "competitors": [
+    {
+     "date": "2026-07-02",
+     "name": "Status quo / no-decision",
+     "quote": "",
+     "change": "carried",
+     "source": "Next_Step__c (2 Jul 2026 entry, budget review with no confirmed timeline)",
+     "status": "do_nothing",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T14:47:41.360641+05:30",
+     "how_we_win": "Quantify a savings/efficiency ROI case and secure direct executive sponsorship to force a budget decision rather than let the proposal sit in indefinite management review.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "A well-engaged, multi-threaded Formal Evaluation deal (five touchpoints since 6 Mar 2026, NDA signed, use cases submitted, $150k proposal issued) that has stalled in internal budget review since 6 Jun 2026, with no economic buyer engaged and the referenced CPO having declined the one scheduled leadership touchpoint.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "The economic buyer (CPO role referenced in Next Step) has never engaged directly and declined the 22 Jun 2026 Horizon review, the one scheduled leadership touchpoint.",
+      "tone": "warn"
+     },
+     {
+      "text": "The HK/China AI usage compliance question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months), which could block IT/Legal sign-off even if budget clears.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified ROI or business case has been built; without hard numbers Rouven Ehniss's ability to secure board approval is at risk.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Genuine two-way engagement persists - Rouven Ehniss and Hagan Brown replied on 2 Jul 2026, WIK's most recent buyer-initiated touch.",
+      "tone": "good"
+     },
+     {
+      "text": "Multi-threaded relationship - six named or role-identified buyer contacts across sourcing, IT, controlling, and legal have engaged with Zycus since March 2026.",
+      "tone": "good"
+     },
+     {
+      "text": "No economic buyer engaged - the referenced CPO has never joined a call and declined the 22 Jun 2026 Horizon session where the proposal was to be reviewed.",
+      "tone": "warn"
+     },
+     {
+      "text": "Budget approval has been pending since 6 Jun 2026 with no confirmed decision date, over a month into internal review.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified business case exists to help the champion win the internal budget argument he says he needs to win.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "No Avoma-tracked call since 22 May 2026 (about seven weeks ago) - the deal has cooled from its March-May cadence of near-monthly sessions.",
+      "tone": "warn"
+     },
+     {
+      "text": "A buyer-initiated reply on 2 Jul 2026 keeps the deal technically live, with Rouven Ehniss and Hagan Brown committing to revert on the ANA project shortly.",
+      "tone": "good"
+     },
+     {
+      "text": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as a factor that may affect WIK's final decision.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "WIK signed an NDA (by 18 Mar 2026) and submitted two AI use cases (Intake, ANA) for Zycus feasibility review, per the 6 Mar 2026 call and subsequent Next Step notes.",
+      "tone": "good"
+     },
+     {
+      "text": "Rouven Ehniss told Zycus on 6 Mar 2026 that WIK needs 'quick wins' to secure board buy-in for its broader digitalization strategy, indicating genuine internal intent to move forward.",
+      "tone": "good"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-03-06",
+     "quote": "Would it be any concern to us being here in China, Hong Kong? Also not only from the UI standpoint, it's also our supplier base.",
+     "said_by": "Kelvin Loh (Head of IT)",
+     "addressed": false,
+     "requirement": "Validate whether AI tools (Gemini/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+     "said_by": "Kelvin Loh",
+     "addressed": false,
+     "requirement": "Validate whether AI tools (GPT/Claude-based backend) face regional restrictions in Hong Kong/China for procurement team usage and supplier portal access"
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "Question, would it be possible to have a follow up meeting? Because these processes require some explanation.",
+     "said_by": "Rouven Ehniss",
+     "addressed": true,
+     "requirement": "Hold a follow-up meeting to walk through the two AI use cases since the processes require explanation"
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+     "said_by": "Kelvin Loh",
+     "addressed": false,
+     "requirement": "Confirm whether AI tools face regional restrictions in Hong Kong/China for the procurement team and supplier portal."
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+     "said_by": "Kelvin Loh",
+     "addressed": false,
+     "requirement": "Validate whether AI tools (GPT/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "no due date",
+      "who": "Zycus",
+      "date": "2026-03-06",
+      "source": "Avoma touchpoint transcript, 6 Mar 2026; unconfirmed through 2 Jul 2026 Next Step",
+      "status": "overdue",
+      "group_key": "china_compliance_face",
+      "commitment": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+      "deliverable": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+      "grounding_quote": "Let us review internally and come back to you.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-04-28",
+      "who": "Zycus",
+      "date": "2026-03-06",
+      "source": "6 Mar 2026 call (verbatim transcript); presales completed process mapping 28 Apr per Next_Step, proposal issued 6 Jun",
+      "status": "completed",
+      "group_key": "ana_capabilities_cases",
+      "commitment": "Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities",
+      "deliverable": "Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities",
+      "grounding_quote": "Guillaume said 'Share with us the use cases, we will review internally and be transparent with you if we think it's doable or not based on requirements or restrictions'",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-03-18",
+      "who": "Buyer",
+      "date": "2026-03-06",
+      "source": "6 Mar 2026 call notes (action item); Next_Step 18 Mar confirmed 'NDA signed'",
+      "status": "completed",
+      "group_key": "execute_nda_wik",
+      "commitment": "WIK to execute NDA",
+      "deliverable": "WIK to execute NDA",
+      "grounding_quote": "Next step: sign NDA and share two AI use cases for feasibility review",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-03-31",
+      "who": "Buyer",
+      "date": "2026-03-06",
+      "source": "6 Mar 2026 call notes (action item); Next_Step 14 Apr 'AI use cases to be reviewed by Apr 14' implies received",
+      "status": "completed",
+      "group_key": "assessment_case_descriptions",
+      "commitment": "WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment",
+      "deliverable": "WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment",
+      "grounding_quote": "Coordinate NDA completion and forward two AI use case descriptions to Zycus for review",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-06-06",
+      "source": "Next_Step 2 Jul (75% confidence, awaiting mgmt decision)",
+      "status": "overdue",
+      "group_key": "ana_approve_budget",
+      "commitment": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+      "deliverable": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+      "grounding_quote": "Follow up with WIK team and issued proposal for ANA/Intake, going to mgmt for budget approval.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-07-16",
+      "who": "Buyer",
+      "date": "2026-07-02",
+      "source": "Next_Step_History__c 2 Jul 2026",
+      "status": "open",
+      "group_key": "ana_attend_cpo",
+      "commitment": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon.",
+      "deliverable": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon.",
+      "grounding_quote": "they have declined Horizon, and will revert on the ANA project shortly",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Strong",
+   "summary": "Zycus's agentic-AI narrative (Merlin Intake, ANA, roadmap toward autonomous procurement) resonated strongly with WIK from the first call; Rouven Ehniss called ANA 'a great use case' for WIK per the 27 Mar 2026 Next Step entry, and the buying committee asked detailed technical questions (AI backend, SSO, HK/China compliance) indicating genuine evaluation rather than passing interest.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-03-06",
+     "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+     "source": "Avoma touchpoint transcript, 6 Mar 2026 (Kelvin Loh)",
+     "position": "exposed",
+     "criterion": "AI regional compliance (Hong Kong/China usage restrictions)"
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "This OA system that you have built in-house can also be integrated via iSaaS, and if you want to pull or push any kind of information from Zycus to that specific system that you have, can be done.",
+     "source": "Avoma touchpoint transcript, 6 Mar 2026 (Zycus presales lead, responding to Kelvin Loh)",
+     "position": "aligned",
+     "criterion": "Integration with WIK's custom in-house OA platform via iSaaS middleware"
+    },
+    {
+     "date": "2026-03-06",
+     "quote": "We have SSO throughout all the platform. Should not be a problem. We'll take your active directory, we'll be uploaded, and it'll be same way.",
+     "source": "Avoma touchpoint transcript, 6 Mar 2026 (Zycus presales lead, responding to Kelvin Loh)",
+     "position": "aligned",
+     "criterion": "SSO / Active Directory integration"
+    }
+   ],
+   "summary": "WIK's stated fit concerns center on AI regulatory compliance in Hong Kong/China and integration with its custom in-house systems; Zycus has addressed the integration question directly but the compliance question remains open."
+  }
+ },
+ "hard": {
+  "stage": "Formal Evaluation",
+  "amount": 150000.0,
+  "opp_id": "006P700000Uxmk7IAB",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Uxmk7IAB/view",
+  "opp_name": "WIK_ANA Intake Pilot",
+  "owner_id": "0056700000D50r3AAB",
+  "products": "iSource;Merlin Intake;ANA",
+  "ais_score": null,
+  "next_step": "75% Confidence2nd Jul- follow up with Ehniss &amp; Hagen for next steps- they have declined Horizon, and will revert on the ANA project shortly22nd Jun CPO coming to Horizon- ANA proposal with Mgmt- Pilot and build strategyJun 6th Follow up with WIk team and issues Proposal for ANA.Intak- Going to mgmt for budget approvalck to visit F2F in HK asapMay 14- Good engagement after presales meeting (appetite with Intake/ANA). Scheduling meeting with delivery next week to manage paid POV).May 11- Meeting on May 14 to align on process/ products. Delay in Agentic Sourcing may impact final decision.Apr 28 Good clarification meeting on Sourcing for indirect full AI. Presales will map processes with solution (including Strategic Sourcing) and share next week. Part of broader global digitalisation and strategic initiative as this Agentic AI use case will be the 1st one (Intake, ANA, Strategic Sourcing). Decision in Q2. Apr 27 Meeting on Apr28 to review Ai use cases. Decision to move forward based on requirements matching. Apr 13 AI use cases to be reviewed by Apr14 Mar 27 ANA sounds a great use case for them. Use cases presentation by mid April Mar 20 AI use cases currently under review by presales Mar 18 Meeting at RT. AI use cases to be shared by end of month (NDA signed) Mar 13- currently signing NDA. AI use cases to be received next week. HK AI restriction to be managed. Mar 06- Interest in AI quick wins around negotiations. Use cases to be reviewed by presales. Need to check AI restriction in HK",
+  "ais_status": null,
+  "close_date": "2026-08-19",
+  "competitor": null,
+  "owner_name": "Carl Kimball",
+  "owner_title": null,
+  "account_name": "Shenzhen WIK Domestic Appliances CO Ltd.",
+  "created_date": "2026-03-08",
+  "manager_name": "Shekhar Varma",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 41,
+  "dm_identified": false,
+  "eb_identified": false,
+  "qualified_date": null,
+  "billing_country": "China",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-02",
+  "last_modified_date": "2026-07-02",
+  "metrics_identified": false,
+  "primary_competitor": "Status quo / no-decision",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "last_inbound_email_date": "2026-07-02",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Formal Evaluation",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 7 day(s) ago (2026-07-02). Buyer EMAIL RECEIVED 7 day(s) ago (2026-07-02) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement.",
+  "calls_read": 1,
+  "close_date": "2026-08-19",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 41,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 7,
+  "last_activity_date": "2026-07-02",
+  "days_since_activity": 7,
+  "next_scheduled_date": null,
+  "days_since_qualified": null,
+  "last_inbound_email_date": "2026-07-02"
+ },
+ "deltas": [
+  {
+   "to": "Validate whether AI tools (GPT/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal a",
+   "key": "requirement:validate-whether-ai-tools-gpt-claude-backend-face-regional-r",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kelvin Loh",
+   "subject": "Validate whether AI tools (GPT/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+  },
+  {
+   "to": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal - overdue",
+   "key": "commitment:zycus-validate-hk-china-ai-restriction-status-and-confirm-re",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal"
+  },
+  {
+   "to": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback - completed",
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-merlin-intake-ana-and-gi",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback. - completed",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback."
+  },
+  {
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-merlin-intake-ana-and-gi",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "resolved",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback."
+  },
+  {
+   "key": "commitment:buyer-execute-nda-and-share-the-two-detailed-ai-use-case-des",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "resolved",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Execute NDA and share the two detailed AI use-case descriptions"
+  },
+  {
+   "to": "WIK management to approve budget for the $150k ANA Intake pilot proposal - open",
+   "key": "commitment:buyer-wik-management-to-approve-budget-for-the-150k-ana-inta",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "WIK management to approve budget for the $150k ANA Intake pilot proposal - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK management to approve budget for the $150k ANA Intake pilot proposal"
+  },
+  {
+   "to": "Provide a status update on the ANA project following the CPO's decision not to attend Horizon - open",
+   "key": "commitment:buyer-provide-a-status-update-on-the-ana-project-following-t",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide a status update on the ANA project following the CPO's decision not to attend Horizon"
+  },
+  {
+   "to": "Rouven Ehniss - Champion",
+   "key": "stakeholder:rouven-ehniss",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Rouven Ehniss - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Rouven Ehniss"
+  },
+  {
+   "to": "Kelvin Loh - Influencer",
+   "key": "stakeholder:kelvin-loh",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Kelvin Loh - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kelvin Loh"
+  },
+  {
+   "to": "Karen Zheng - Influencer",
+   "key": "stakeholder:karen-zheng",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Karen Zheng - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Karen Zheng"
+  },
+  {
+   "to": "Hazel Su - Influencer",
+   "key": "stakeholder:hazel-su",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Hazel Su - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hazel Su"
+  },
+  {
+   "to": "Jannick Schulze - Influencer",
+   "key": "stakeholder:jannick-schulze",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Jannick Schulze - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jannick Schulze"
+  },
+  {
+   "to": "Hagan Brown - Influencer",
+   "key": "stakeholder:hagan-brown",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Hagan Brown - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hagan Brown"
+  },
+  {
+   "to": "The CPO (unnamed, referenced only in Next Step notes) has never joined a Zycus call and declined the 22 Jun 2026 Horizon session intended for leadership review ",
+   "key": "risk:the-cpo-unnamed-referenced-only-in-next-step-notes-has-never",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The CPO (unnamed, referenced only in Next Step notes) has never joined a Zycus call and declined the 22 Jun 2026 Horizon session intended for leadership review of the ANA proposal."
+  },
+  {
+   "to": "The $150k ANA Intake proposal has been in WIK management budget review since 6 Jun 2026 (about five weeks) with no confirmed decision date. - open",
+   "key": "risk:the-150k-ana-intake-proposal-has-been-in-wik-management-budg",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The $150k ANA Intake proposal has been in WIK management budget review since 6 Jun 2026 (about five weeks) with no confirmed decision date."
+  },
+  {
+   "to": "The HK/China AI usage regulatory restriction question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months); IT/Legal sign-off",
+   "key": "risk:the-hk-china-ai-usage-regulatory-restriction-question-kelvin",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The HK/China AI usage regulatory restriction question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months); IT/Legal sign-off may be blocked until it is answered."
+  },
+  {
+   "to": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK'",
+   "key": "risk:an-agentic-sourcing-delivery-delay-was-flagged-on-14-may-202",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's intended broader scope."
+  },
+  {
+   "to": "Secure a confirmed executive sponsor: no one has directly engaged with Zycus beyond GM-level Rouven Ehniss since March 2026, and the referenced CPO declined the",
+   "key": "hygiene:secure-a-confirmed-executive-sponsor-no-one-has-directly-eng",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Secure a confirmed executive sponsor: no one has directly engaged with Zycus beyond GM-level Rouven Ehniss since March 2026, and the referenced CPO declined the 22 Jun 2026 Horizon session - push for direct executive-level engagement or a named economic buyer before the 19 Aug 2026 close date."
+  },
+  {
+   "to": "Quantify a savings/efficiency business case: Rouven Ehniss said on 6 Mar 2026 that WIK needs 'quick wins' for board buy-in, but no number has been produced in f",
+   "key": "hygiene:quantify-a-savings-efficiency-business-case-rouven-ehniss-sa",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Quantify a savings/efficiency business case: Rouven Ehniss said on 6 Mar 2026 that WIK needs 'quick wins' for board buy-in, but no number has been produced in four months - build the ROI case now to unblock the pending budget review."
+  },
+  {
+   "to": "Close the HK/China AI compliance loop: Kelvin Loh's regional-restriction question from 6 Mar 2026 is still open after four months - resolve and document it befo",
+   "key": "hygiene:close-the-hk-china-ai-compliance-loop-kelvin-loh-s-regional-",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close the HK/China AI compliance loop: Kelvin Loh's regional-restriction question from 6 Mar 2026 is still open after four months - resolve and document it before it becomes a late-stage blocker for IT/Legal sign-off."
+  },
+  {
+   "to": "Rouven Ehniss - developing",
+   "key": "champion:champion",
+   "date": "2026-07-09T19:51:55.504075+05:30",
+   "from": "Rouven Ehniss - developing",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:quantify-a-savings-cycle-time-case-for-the-ana-intake-pilot-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Quantify a savings/cycle-time case for the ANA Intake pilot so Rouven Ehniss has a concrete figure to take to the board, since no ROI number exists after 4 months of calls."
+  },
+  {
+   "to": "Confirm whether AI tools face regional restrictions in Hong Kong/China for the procurement team and supplier portal.",
+   "key": "requirement:confirm-whether-ai-tools-face-regional-restrictions-in-hong-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kelvin Loh",
+   "subject": "Confirm whether AI tools face regional restrictions in Hong Kong/China for the procurement team and supplier portal."
+  },
+  {
+   "to": "Confirm HK/China AI usage regulatory status for WIK's procurement team and supplier portal. - overdue",
+   "key": "commitment:zycus-confirm-hk-china-ai-usage-regulatory-status-for-wik-s-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Confirm HK/China AI usage regulatory status for WIK's procurement team and supplier portal."
+  },
+  {
+   "to": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback. - completed",
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-merlin-intake-ana-and-gi",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback."
+  },
+  {
+   "to": "WIK management to approve the $150k ANA Intake pilot budget. - overdue",
+   "key": "commitment:buyer-wik-management-to-approve-the-150k-ana-intake-pilot-bu",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK management to approve the $150k ANA Intake pilot budget."
+  },
+  {
+   "to": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon. - open",
+   "key": "commitment:buyer-provide-a-written-status-update-on-the-ana-project-aft",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide a written status update on the ANA project after the CPO's decision not to attend Horizon"
+  },
+  {
+   "to": "Rouven Ehniss - Champion",
+   "key": "stakeholder:rouven-ehniss",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Rouven Ehniss - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Rouven Ehniss"
+  },
+  {
+   "to": "Hagan Brown - Influencer",
+   "key": "stakeholder:hagan-brown",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Hagan Brown - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hagan Brown"
+  },
+  {
+   "to": "Kelvin Loh - Influencer",
+   "key": "stakeholder:kelvin-loh",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Kelvin Loh - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kelvin Loh"
+  },
+  {
+   "to": "Hazel Su - Influencer",
+   "key": "stakeholder:hazel-su",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Hazel Su - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hazel Su"
+  },
+  {
+   "to": "Karen Zheng - Influencer",
+   "key": "stakeholder:karen-zheng",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Karen Zheng - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Karen Zheng"
+  },
+  {
+   "to": "Josslyn Deng - Unknown",
+   "key": "stakeholder:josslyn-deng",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Josslyn Deng - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josslyn Deng"
+  },
+  {
+   "to": "Jannick Schulze - Unknown",
+   "key": "stakeholder:jannick-schulze",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jannick Schulze"
+  },
+  {
+   "to": "Status quo / no-decision - do_nothing",
+   "key": "competitor:status-quo-no-decision",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Status quo / no-decision"
+  },
+  {
+   "to": "Proposal has been in WIK management budget review since 6 Jun 2026 with no confirmed EB engagement or approval timeline. - open",
+   "key": "risk:proposal-has-been-in-wik-management-budget-review-since-6-ju",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Proposal has been in WIK management budget review since 6 Jun 2026 with no confirmed EB engagement or approval timeline."
+  },
+  {
+   "to": "CPO has never joined a call and declined the 22 Jun Horizon review, the one scheduled leadership touchpoint. - open",
+   "key": "risk:cpo-has-never-joined-a-call-and-declined-the-22-jun-horizon-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "CPO has never joined a call and declined the 22 Jun Horizon review, the one scheduled leadership touchpoint."
+  },
+  {
+   "to": "HK/China AI usage regulatory restriction question raised by Kelvin Loh remains unconfirmed after 4 months; IT/Legal sign-off is blocked until resolved. - open",
+   "key": "risk:hk-china-ai-usage-regulatory-restriction-question-raised-by-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "HK/China AI usage regulatory restriction question raised by Kelvin Loh remains unconfirmed after 4 months; IT/Legal sign-off is blocked until resolved."
+  },
+  {
+   "to": "Agentic Sourcing delivery delay flagged 14 May 2026 as potentially affecting WIK's final decision, since Strategic Sourcing agentic AI is part of the broader in",
+   "key": "risk:agentic-sourcing-delivery-delay-flagged-14-may-2026-as-poten",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Agentic Sourcing delivery delay flagged 14 May 2026 as potentially affecting WIK's final decision, since Strategic Sourcing agentic AI is part of the broader intended scope."
+  },
+  {
+   "to": "Quantify a savings/cycle-time case for the ANA Intake pilot so Rouven Ehniss has a concrete figure to take to the board, since no ROI number exists after 4 mont",
+   "key": "hygiene:quantify-a-savings-cycle-time-case-for-the-ana-intake-pilot-",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Quantify a savings/cycle-time case for the ANA Intake pilot so Rouven Ehniss has a concrete figure to take to the board, since no ROI number exists after 4 months of calls."
+  },
+  {
+   "to": "Secure a direct CPO or named-EB touchpoint before the next contact; the CPO has never engaged and already skipped one review forum (22 Jun Horizon).",
+   "key": "hygiene:secure-a-direct-cpo-or-named-eb-touchpoint-before-the-next-c",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Secure a direct CPO or named-EB touchpoint before the next contact; the CPO has never engaged and already skipped one review forum (22 Jun Horizon)."
+  },
+  {
+   "to": "Close the outstanding HK/China AI compliance answer proactively so IT/Legal sign-off isn't a late surprise once budget clears.",
+   "key": "hygiene:close-the-outstanding-hk-china-ai-compliance-answer-proactiv",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close the outstanding HK/China AI compliance answer proactively so IT/Legal sign-off isn't a late surprise once budget clears."
+  },
+  {
+   "to": "Rouven Ehniss - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T14:47:41.360641+05:30",
+   "from": "Rouven Ehniss - developing",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:escalate-past-the-gm-level-champion-rouven-ehniss-has-driven",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Escalate past the GM-level champion: Rouven Ehniss has driven the process for 4 months but cannot approve $150k alone, and the intended CPO sponsor has never engaged directly or attended Horizon."
+  },
+  {
+   "to": "Validate whether AI tools (GPT/Claude-based backend) face regional restrictions in Hong Kong/China for procurement team usage and supplier portal access",
+   "key": "requirement:validate-whether-ai-tools-gpt-claude-based-backend-face-regi",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kelvin Loh",
+   "subject": "Validate whether AI tools (GPT/Claude-based backend) face regional restrictions in Hong Kong/China for procurement team usage and supplier portal access"
+  },
+  {
+   "to": "Hold a follow-up meeting to walk through the two AI use cases since the processes require explanation",
+   "key": "requirement:hold-a-follow-up-meeting-to-walk-through-the-two-ai-use-case",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Rouven Ehniss",
+   "subject": "Hold a follow-up meeting to walk through the two AI use cases since the processes require explanation"
+  },
+  {
+   "to": "Confirm whether AI tools face regional restrictions in Hong Kong/China for WIK's procurement team and supplier portal - overdue",
+   "key": "commitment:zycus-confirm-whether-ai-tools-face-regional-restrictions-in",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Confirm whether AI tools face regional restrictions in Hong Kong/China for WIK's procurement team and supplier portal"
+  },
+  {
+   "to": "Review WIK's two AI use cases (Intake, ANA) and give objective feasibility/cost/restriction feedback - completed",
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-intake-ana-and-give-obje",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Review WIK's two AI use cases (Intake, ANA) and give objective feasibility/cost/restriction feedback"
+  },
+  {
+   "to": "Execute NDA and share the two detailed AI use-case descriptions - completed",
+   "key": "commitment:buyer-execute-nda-and-share-the-two-detailed-ai-use-case-des",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Execute NDA and share the two detailed AI use-case descriptions"
+  },
+  {
+   "to": "WIK management to approve budget for the $150k ANA Intake pilot proposal - open",
+   "key": "commitment:buyer-wik-management-to-approve-budget-for-the-150k-ana-inta",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK management to approve budget for the $150k ANA Intake pilot proposal"
+  },
+  {
+   "to": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon - open",
+   "key": "commitment:buyer-provide-a-written-status-update-on-the-ana-project-aft",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide a written status update on the ANA project after the CPO's decision not to attend Horizon"
+  },
+  {
+   "to": "Rouven Ehniss - Champion",
+   "key": "stakeholder:rouven-ehniss",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Rouven Ehniss - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Rouven Ehniss"
+  },
+  {
+   "to": "Hagan Brown - Unknown",
+   "key": "stakeholder:hagan-brown",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Hagan Brown - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hagan Brown"
+  },
+  {
+   "to": "Kelvin Loh - Influencer",
+   "key": "stakeholder:kelvin-loh",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Kelvin Loh - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kelvin Loh"
+  },
+  {
+   "to": "Karen Zheng - Influencer",
+   "key": "stakeholder:karen-zheng",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Karen Zheng - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Karen Zheng"
+  },
+  {
+   "to": "Hazel Su - Influencer",
+   "key": "stakeholder:hazel-su",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Hazel Su - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hazel Su"
+  },
+  {
+   "to": "Josslyn Deng - Unknown",
+   "key": "stakeholder:josslyn-deng",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "from": "Josslyn Deng - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josslyn Deng"
+  },
+  {
+   "to": "The $150k proposal has been with WIK management for budget approval since 6 Jun 2026; the intended executive sponsor (CPO) declined to attend the Horizon review",
+   "key": "risk:the-150k-proposal-has-been-with-wik-management-for-budget-ap",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The $150k proposal has been with WIK management for budget approval since 6 Jun 2026; the intended executive sponsor (CPO) declined to attend the Horizon review where the proposal was to be discussed with leadership, leaving no confirmed approval timeline."
+  },
+  {
+   "to": "No economic buyer is engaged; Rouven Ehniss (GM level) is the highest-engaged contact and has said he needs board/organizational buy-in, meaning he cannot appro",
+   "key": "risk:no-economic-buyer-is-engaged-rouven-ehniss-gm-level-is-the-h",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer is engaged; Rouven Ehniss (GM level) is the highest-engaged contact and has said he needs board/organizational buy-in, meaning he cannot approve the spend himself."
+  },
+  {
+   "to": "Hong Kong/China AI usage regulatory compliance question raised by Kelvin Loh has been open since 6 Mar 2026 with no confirmed resolution in any subsequent touch",
+   "key": "risk:hong-kong-china-ai-usage-regulatory-compliance-question-rais",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Hong Kong/China AI usage regulatory compliance question raised by Kelvin Loh has been open since 6 Mar 2026 with no confirmed resolution in any subsequent touchpoint."
+  },
+  {
+   "to": "A delay in Zycus's Agentic Sourcing delivery was flagged 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part ",
+   "key": "risk:a-delay-in-zycus-s-agentic-sourcing-delivery-was-flagged-14-",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "A delay in Zycus's Agentic Sourcing delivery was flagged 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's broader intended scope."
+  },
+  {
+   "to": "Escalate past the GM-level champion: Rouven Ehniss has driven the process for 4 months but cannot approve $150k alone, and the intended CPO sponsor has never en",
+   "key": "hygiene:escalate-past-the-gm-level-champion-rouven-ehniss-has-driven",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Escalate past the GM-level champion: Rouven Ehniss has driven the process for 4 months but cannot approve $150k alone, and the intended CPO sponsor has never engaged directly or attended Horizon."
+  },
+  {
+   "to": "Close the loop on the Hong Kong/China AI compliance question Kelvin Loh raised on 6 Mar 2026 before contracting, since Legal (Josslyn Deng) has not yet engaged ",
+   "key": "hygiene:close-the-loop-on-the-hong-kong-china-ai-compliance-question",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Close the loop on the Hong Kong/China AI compliance question Kelvin Loh raised on 6 Mar 2026 before contracting, since Legal (Josslyn Deng) has not yet engaged and will likely need it confirmed."
+  },
+  {
+   "to": "Arm Rouven Ehniss with a quantified savings estimate now that the proposal is with management, since his own stated ask was for 'quick wins' to secure board buy",
+   "key": "hygiene:arm-rouven-ehniss-with-a-quantified-savings-estimate-now-tha",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Arm Rouven Ehniss with a quantified savings estimate now that the proposal is with management, since his own stated ask was for 'quick wins' to secure board buy-in, not an undifferentiated pitch."
+  },
+  {
+   "to": "Rouven Ehniss - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T13:13:56.677954+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Validate whether AI tools (Gemini/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier porta",
+   "key": "requirement:validate-whether-ai-tools-gemini-claude-backend-face-regiona",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Kelvin Loh (Head of IT)",
+   "subject": "Validate whether AI tools (Gemini/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+  },
+  {
+   "to": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal - open",
+   "key": "commitment:zycus-validate-hk-china-ai-restriction-status-and-confirm-re",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal"
+  },
+  {
+   "to": "Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities - completed",
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-internally-and-provide-o",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities"
+  },
+  {
+   "to": "WIK to execute NDA - completed",
+   "key": "commitment:buyer-wik-to-execute-nda",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK to execute NDA"
+  },
+  {
+   "to": "WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment - completed",
+   "key": "commitment:buyer-wik-to-share-two-detailed-ai-use-case-descriptions-for",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment"
+  },
+  {
+   "to": "WIK mgmt to approve budget for ANA Intake pilot (proposal value $150k) - open",
+   "key": "commitment:buyer-wik-mgmt-to-approve-budget-for-ana-intake-pilot-propos",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:WIK mgmt to approve budget for ANA Intake pilot (proposal value $150k)"
+  },
+  {
+   "to": "Rouven Ehniss - Champion",
+   "key": "stakeholder:rouven-ehniss",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Rouven Ehniss"
+  },
+  {
+   "to": "Kelvin Loh - Influencer",
+   "key": "stakeholder:kelvin-loh",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Kelvin Loh"
+  },
+  {
+   "to": "Karen Zheng - Influencer",
+   "key": "stakeholder:karen-zheng",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Karen Zheng"
+  },
+  {
+   "to": "Hazel Su - Influencer",
+   "key": "stakeholder:hazel-su",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hazel Su"
+  },
+  {
+   "to": "Josslyn Deng - Influencer",
+   "key": "stakeholder:josslyn-deng",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josslyn Deng"
+  },
+  {
+   "to": "Hagan Brown - Influencer",
+   "key": "stakeholder:hagan-brown",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Hagan Brown"
+  },
+  {
+   "to": "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (G",
+   "key": "risk:economic-buyer-unmapped-and-unengaged-proposal-is-with-mgmt-",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (GM-level champion) lacks authority to approve $150k spend; 22 Jun Next_Step referenced 'CPO coming to Horizon' but CPO declined and has never engaged \u2014 without EB sign-off and a committed close date, the pilot will stall in mgmt review indefinitely or be rejected"
+  },
+  {
+   "to": "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quant",
+   "key": "risk:no-quantified-roi-or-business-case-wik-needs-quick-wins-for-",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers Rouven cannot build a compelling mgmt case, and budget may be rejected or deferred"
+  },
+  {
+   "to": "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate an",
+   "key": "risk:hk-china-ai-regional-restriction-validation-unresolved-since",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate and revert, but 4 months later no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK IT/Legal will not sign until compliance is confirmed"
+  },
+  {
+   "to": "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, ",
+   "key": "risk:agentic-sourcing-delivery-delay-flagged-14-may-as-may-impact",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, and if Zycus cannot deliver it on their 2026 timeline, the decision may be deferred or scope reduced"
+  },
+  {
+   "to": "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or de",
+   "key": "risk:cpo-declined-horizon-attendance-22-jun-event-per-2-jul-updat",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or deprioritization vs other initiatives; the CPO has never joined a call or engaged directly"
+  },
+  {
+   "to": "Economic buyer unmapped and unengaged: proposal is with 'mgmt' for budget approval (Next_Step 2 Jul) but no EB/CFO/CPO is named in OpportunityContactRoles or ha",
+   "key": "hygiene:economic-buyer-unmapped-and-unengaged-proposal-is-with-mgmt-",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Economic buyer unmapped and unengaged: proposal is with 'mgmt' for budget approval (Next_Step 2 Jul) but no EB/CFO/CPO is named in OpportunityContactRoles or has joined a call; Rouven (GM-level champion) lacks budget authority and cannot approve the $150k spend himself \u2014 map the EB and get Carl/Shekhar (deal owner's manager) into an exec-to-exec call to secure sign-off and a close date, or the pilot will stall in 'mgmt review' indefinitely."
+  },
+  {
+   "to": "No quantified ROI or business case: WIK positioned this as a 'quick win for board buy-in' (6 Mar call), but no savings, cycle-time, or efficiency metric has bee",
+   "key": "hygiene:no-quantified-roi-or-business-case-wik-positioned-this-as-a-",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI or business case: WIK positioned this as a 'quick win for board buy-in' (6 Mar call), but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers (e.g. '30% faster PR approvals', '200 hrs/month saved', '$X contract-review acceleration') Rouven cannot present a compelling board case, and mgmt may reject or defer; co-author a pilot success-metrics doc with Rouven tying Intake/ANA to measurable WIK KPIs before the mgmt decision."
+  },
+  {
+   "to": "Open compliance item blocks contracting: Kelvin (Head of IT) asked on 6 Mar whether AI tools face HK/China regional restrictions; Tanvi committed to validate an",
+   "key": "hygiene:open-compliance-item-blocks-contracting-kelvin-head-of-it-as",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Open compliance item blocks contracting: Kelvin (Head of IT) asked on 6 Mar whether AI tools face HK/China regional restrictions; Tanvi committed to validate and revert, but 4 months later (2 Jul) no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK Legal/IT will not sign until regional compliance is confirmed; close this validation with Kelvin and Josslyn (Head of Legal) this week or it becomes a last-minute deal-killer."
+  },
+  {
+   "to": "Rouven Ehniss (GM Global Sourcing) - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iSource;Merlin Intake;ANA",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T06:02:44.254407+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000Uxmk7",
+ "packets": [
+  {
+   "key": "requirement:validate-whether-ai-tools-gemini-claude-backend-face-regiona",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-06",
+    "kind": "explicit",
+    "quote": "Would it be any concern to us being here in China, Hong Kong? Also not only from the UI standpoint, it's also our supplier base.",
+    "source": "6 Mar 2026 call (verbatim transcript); Tanvi committed to validate and revert, but no confirmation in Next_Step trail or touchpoints 2-5",
+    "said_by": "Kelvin Loh (Head of IT)",
+    "addressed": false,
+    "requirement": "Validate whether AI tools (Gemini/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+   },
+   "source": "Kelvin Loh (Head of IT)",
+   "status": "active",
+   "history": [],
+   "subject": "Validate whether AI tools (Gemini/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "commitment:zycus-validate-hk-china-ai-restriction-status-and-confirm-re",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "Avoma touchpoint transcript, 6 Mar 2026; unconfirmed through 2 Jul 2026 Next Step",
+    "status": "overdue",
+    "commitment": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+    "deliverable": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+    "grounding_quote": "Let us review internally and come back to you."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-03-06",
+      "source": "6 Mar 2026 call, Tanvi Bhatt (verbatim transcript)",
+      "status": "open",
+      "commitment": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+      "deliverable": "Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+      "grounding_quote": "Kelvin asked 'Would AI restrictions in HK/China be a concern?' \u2014 Tanvi replied 'I can go back to my team and validate specifically for these regions and we can come back to you'"
+     }
+    }
+   ],
+   "subject": "Zycus:Validate HK/China AI restriction status and confirm regional compliance for procurement AI modules and supplier portal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-internally-and-provide-o",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "6 Mar 2026 call (verbatim transcript); presales completed process mapping 28 Apr per Next_Step, proposal issued 6 Jun",
+    "status": "completed",
+    "commitment": "Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities",
+    "deliverable": "Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities",
+    "grounding_quote": "Guillaume said 'Share with us the use cases, we will review internally and be transparent with you if we think it's doable or not based on requirements or restrictions'"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Review WIK's two AI use cases internally and provide objective feedback on feasibility and AI capabilities",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "commitment:buyer-wik-to-execute-nda",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-18",
+    "who": "Buyer",
+    "date": "2026-03-06",
+    "source": "6 Mar 2026 call notes (action item); Next_Step 18 Mar confirmed 'NDA signed'",
+    "status": "completed",
+    "commitment": "WIK to execute NDA",
+    "deliverable": "WIK to execute NDA",
+    "grounding_quote": "Next step: sign NDA and share two AI use cases for feasibility review"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:WIK to execute NDA",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "commitment:buyer-wik-to-share-two-detailed-ai-use-case-descriptions-for",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-31",
+    "who": "Buyer",
+    "date": "2026-03-06",
+    "source": "6 Mar 2026 call notes (action item); Next_Step 14 Apr 'AI use cases to be reviewed by Apr 14' implies received",
+    "status": "completed",
+    "commitment": "WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment",
+    "deliverable": "WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment",
+    "grounding_quote": "Coordinate NDA completion and forward two AI use case descriptions to Zycus for review"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:WIK to share two detailed AI use-case descriptions for Zycus feasibility assessment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "commitment:buyer-wik-mgmt-to-approve-budget-for-ana-intake-pilot-propos",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-07-02",
+    "source": "Next_Step 2 Jul (75% confidence, awaiting mgmt decision)",
+    "status": "open",
+    "commitment": "WIK mgmt to approve budget for ANA Intake pilot (proposal value $150k)",
+    "deliverable": "WIK mgmt to approve budget for ANA Intake pilot (proposal value $150k)",
+    "grounding_quote": "Going to mgmt for budget approval"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:WIK mgmt to approve budget for ANA Intake pilot (proposal value $150k)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "stakeholder:rouven-ehniss",
+   "type": "stakeholder",
+   "value": {
+    "name": "Rouven Ehniss",
+    "risk": "Cannot approve the $150k budget alone; needs board/organizational buy-in.",
+    "role": "Champion",
+    "title": "General Manager - Global Sourcing",
+    "source": "OpportunityContactRole; Next_Step__c (2 Jul 2026); Avoma touchpoint transcript, 6 Mar 2026",
+    "sentiment": "developing, positive",
+    "last_contact_date": "2026-07-02"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Rouven Ehniss",
+      "risk": "Lacks unilateral authority to approve $150k spend",
+      "role": "Champion",
+      "title": "General Manager, Global Sourcing",
+      "source": "Next_Step_History__c; Avoma calls 2026-03-06, 2026-05-22",
+      "sentiment": "positive, engaged, needs board buy-in",
+      "last_contact_date": "2026-07-02"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Rouven Ehniss",
+      "risk": "lacks unilateral authority to approve $150k spend",
+      "role": "Champion",
+      "title": "GM Global Sourcing",
+      "source": "Avoma calls 2026-03-06 to 2026-05-22; Next_Step__c 2026-07-02",
+      "sentiment": "positive, actively driving",
+      "last_contact_date": "2026-07-02"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Rouven Ehniss",
+      "risk": "Mid-level power (GM, not C-suite); lacks budget authority (proposal is with 'mgmt', not approved by Rouven); has not connected us to the EB/CPO who signs off \u2014 if mgmt rejects, Rouven cannot override",
+      "role": "Champion",
+      "title": "General Manager - Global Sourcing",
+      "source": "OpportunityContactRole (Evaluator); 6 Mar 2026 call (verbatim transcript); touchpoints 1-5 attendee lists; Next_Step 2 Jul",
+      "sentiment": "Positive: driving use-case validation, attended all 5 touchpoints, provided 75% confidence on 2 Jul, positioned pilot as WIK's first agentic AI use case for board buy-in",
+      "last_contact_date": "2026-07-02"
+     }
+    }
+   ],
+   "subject": "Rouven Ehniss",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "stakeholder:kelvin-loh",
+   "type": "stakeholder",
+   "value": {
+    "name": "Kelvin Loh",
+    "risk": "HK/China AI compliance question unresolved since 6 Mar 2026 could block IT/Legal sign-off.",
+    "role": "Influencer",
+    "title": "Head of IT",
+    "source": "Avoma touchpoints, 6 Mar-14 May 2026 attendee lists and transcript",
+    "sentiment": "cautious, diligence-focused",
+    "last_contact_date": "2026-05-14"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Kelvin Loh",
+      "risk": "Owns the unresolved HK/China AI compliance question",
+      "role": "Influencer",
+      "title": "Head of IT",
+      "source": "Avoma call 2026-03-06; touchpoint attendee lists 14 Apr, 28 Apr, 14 May 2026",
+      "sentiment": "engaged, technically probing",
+      "last_contact_date": "2026-04-28"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Kelvin Loh",
+      "risk": "unresolved HK/China AI compliance question could block IT sign-off",
+      "role": "Influencer",
+      "title": "Head of IT",
+      "source": "Avoma call 2026-03-06",
+      "sentiment": "neutral, raised compliance concern",
+      "last_contact_date": "2026-03-06"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Kelvin Loh",
+      "risk": "Holds compliance veto: HK/China AI restriction validation is unresolved since 6 Mar \u2014 if not cleared, IT will block signature even if budget is approved",
+      "role": "Influencer",
+      "title": "Head of IT",
+      "source": "6 Mar 2026 call attendee list and transcript (verbatim questions); touchpoints 2-4 (14 Apr, 28 Apr, 14 May) attendee lists",
+      "sentiment": "Neutral: engaged on integration and compliance validation (OA platform, SSO, HK/China AI restrictions) on 6 Mar call; attended touchpoints 2-4; asked substantive questions but has not advocated or blocked",
+      "last_contact_date": "2026-05-14"
+     }
+    }
+   ],
+   "subject": "Kelvin Loh",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "stakeholder:karen-zheng",
+   "type": "stakeholder",
+   "value": {
+    "name": "Karen Zheng",
+    "risk": "Limited direct quotes captured; stance beyond attendance unconfirmed.",
+    "role": "Influencer",
+    "title": "Head of Purchasing Controlling",
+    "source": "OpportunityContactRole; Avoma touchpoints attendee lists, 6 Mar-14 May 2026",
+    "sentiment": "neutral",
+    "last_contact_date": "2026-05-14"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Karen Zheng",
+      "risk": "Budget-control role but not confirmed as EB",
+      "role": "Influencer",
+      "title": "Head of Purchasing Controlling",
+      "source": "OpportunityContactRole; Avoma call 2026-03-06",
+      "sentiment": "engaged",
+      "last_contact_date": "2026-05-14"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Karen Zheng",
+      "risk": "no direct quote captured beyond attendance",
+      "role": "Influencer",
+      "title": "Head of Purchasing Controlling",
+      "source": "SF OpportunityContactRole; Avoma touchpoint attendees 2026-03-06 to 2026-04-28",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-04-28"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Karen Zheng",
+      "risk": "Low visibility into her stance or approval role",
+      "role": "Influencer",
+      "title": "Head of Purchasing Controlling",
+      "source": "OpportunityContactRole; 6 Mar 2026 call attendee list; touchpoints 2-3 (14 Apr, 28 Apr) attendee lists",
+      "sentiment": "Neutral: attended 6 Mar discovery and touchpoints 2-3; asked no questions on 6 Mar call; may influence budget but showed no EB authority or commercial engagement",
+      "last_contact_date": "2026-04-28"
+     }
+    }
+   ],
+   "subject": "Karen Zheng",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "stakeholder:hazel-su",
+   "type": "stakeholder",
+   "value": {
+    "name": "Hazel Su",
+    "risk": "Limited direct engagement evidence beyond attendance.",
+    "role": "Influencer",
+    "title": "Sourcing Manager",
+    "source": "OpportunityContactRole; Avoma touchpoints attendee lists, 6 Mar & 14 May 2026",
+    "sentiment": "neutral",
+    "last_contact_date": "2026-05-14"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Hazel Su",
+      "risk": "No direct statements captured",
+      "role": "Influencer",
+      "title": "Sourcing Manager",
+      "source": "OpportunityContactRole; Avoma touchpoint attendee lists",
+      "sentiment": "neutral/engaged",
+      "last_contact_date": "2026-05-14"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Hazel Su",
+      "risk": "no direct quote captured beyond attendance",
+      "role": "Influencer",
+      "title": "Sourcing Manager",
+      "source": "SF OpportunityContactRole; Avoma touchpoint attendees",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-04-28"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Hazel Su",
+      "risk": "None visible",
+      "role": "Influencer",
+      "title": "Sourcing Manager",
+      "source": "OpportunityContactRole; 6 Mar 2026 call attendee list; touchpoints 2-4 attendee lists",
+      "sentiment": "Neutral: attended 6 Mar discovery and touchpoints 2-4; no speaking role on 6 Mar call transcript; likely a process user, not a decision-maker",
+      "last_contact_date": "2026-05-14"
+     }
+    }
+   ],
+   "subject": "Hazel Su",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "stakeholder:josslyn-deng",
+   "type": "stakeholder",
+   "value": {
+    "name": "Josslyn Deng",
+    "risk": "Legal has had zero visibility into the deal to date",
+    "role": "Unknown",
+    "title": "Head of Legal Function, WIK Group",
+    "source": "OpportunityContactRole",
+    "sentiment": "not yet engaged",
+    "last_contact_date": null
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Josslyn Deng",
+      "risk": "no evidence of engagement in any read/matched call to date; legal review not yet started",
+      "role": "Unknown",
+      "title": "Head of Legal Function, WIK Group",
+      "source": "SF OpportunityContactRole (no Avoma appearance in manifest)",
+      "sentiment": "not yet engaged",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Josslyn Deng",
+      "risk": "Legal approval required for contracting, but she is disengaged \u2014 no contact since opp creation 8 Mar; if HK/China AI compliance or data-sovereignty issues surface, she could block late-stage",
+      "role": "Influencer",
+      "title": "Head of Legal Function, WIK Group",
+      "source": "OpportunityContactRole only; no call/touchpoint attendance",
+      "sentiment": "Unknown: listed as OpportunityContactRole but did not attend any of the 5 touchpoints and was not mentioned on the 6 Mar call transcript",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Josslyn Deng",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "stakeholder:hagan-brown",
+   "type": "stakeholder",
+   "value": {
+    "name": "Hagan Brown",
+    "risk": "Not yet a named Salesforce contact role; seniority/title unconfirmed.",
+    "role": "Influencer",
+    "title": null,
+    "source": "Next_Step__c (2 Jul 2026, referenced as 'Hagen'); Avoma touchpoints attendee lists, 14 & 22 May 2026",
+    "sentiment": "developing, neutral",
+    "last_contact_date": "2026-07-02"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Hagan Brown",
+      "risk": "Role/authority within WIK unconfirmed",
+      "role": "Influencer",
+      "title": null,
+      "source": "Avoma touchpoints 2026-05-14, 2026-05-22; Next_Step_History__c 2 Jul 2026",
+      "sentiment": "engaged",
+      "last_contact_date": "2026-07-02"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Hagan Brown",
+      "risk": "role and authority not established",
+      "role": "Unknown",
+      "title": null,
+      "source": "Avoma touchpoints 2026-05-14, 2026-05-22; Next_Step__c 2026-07-02",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-05-22"
+     }
+    },
+    {
+     "as_of": "2026-07-07T06:02:44.254407+05:30",
+     "value": {
+      "name": "Hagan Brown",
+      "risk": "Low visibility into authority or stance",
+      "role": "Influencer",
+      "title": "Unknown",
+      "source": "Touchpoint 5 (22 May) attendee list; Next_Step 2 Jul 'follow up with Ehniss & Hagen'",
+      "sentiment": "Neutral: appeared in touchpoint 5 (22 May mgmt discussion) and 2 Jul email with Rouven confirming budget approval in flight; likely a senior WIK stakeholder (appeared in mgmt-level meeting), but title/role unknown",
+      "last_contact_date": "2026-07-02"
+     }
+    }
+   ],
+   "subject": "Hagan Brown",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-unmapped-and-unengaged-proposal-is-with-mgmt-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (GM-level champion) lacks authority to approve $150k spend; 22 Jun Next_Step referenced 'CPO coming to Horizon' but CPO declined and has never engaged \u2014 without EB sign-off and a committed close date, the pilot will stall in mgmt review indefinitely or be rejected",
+    "source": "Next_Step 2 Jul, 22 Jun; OpportunityContactRoles (no EB/Exec Sponsor); 6 Mar call (no EB on call)",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": null
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer unmapped and unengaged; proposal is with 'mgmt for budget approval' (Next_Step 2 Jul) but no EB/CFO/CPO is named or has attended calls; Rouven (GM-level champion) lacks authority to approve $150k spend; 22 Jun Next_Step referenced 'CPO coming to Horizon' but CPO declined and has never engaged \u2014 without EB sign-off and a committed close date, the pilot will stall in mgmt review indefinitely or be rejected",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-or-business-case-wik-needs-quick-wins-for-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers Rouven cannot build a compelling mgmt case, and budget may be rejected or deferred",
+    "source": "6 Mar 2026 call (verbatim transcript); no ROI discussion in touchpoints 2-5 or Next_Step trail",
+    "status": "open",
+    "category": "budget",
+    "first_raised": null
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case: WIK needs 'quick wins for board buy-in' (Rouven, 6 Mar call) but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers Rouven cannot build a compelling mgmt case, and budget may be rejected or deferred",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "risk:hk-china-ai-regional-restriction-validation-unresolved-since",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate and revert, but 4 months later no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK IT/Legal will not sign until compliance is confirmed",
+    "source": "6 Mar 2026 call, Kelvin Loh and Tanvi Bhatt (verbatim transcript); no follow-up visible",
+    "status": "open",
+    "category": "legal",
+    "first_raised": "2026-03-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "HK/China AI regional restriction validation unresolved since 6 Mar: Kelvin (Head of IT) asked whether AI tools face restrictions; Tanvi committed to validate and revert, but 4 months later no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK IT/Legal will not sign until compliance is confirmed",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "risk:agentic-sourcing-delivery-delay-flagged-14-may-as-may-impact",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-14",
+    "detail": "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, and if Zycus cannot deliver it on their 2026 timeline, the decision may be deferred or scope reduced",
+    "source": "Next_Step 14 May",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Agentic Sourcing delivery delay flagged 14 May as 'may impact final decision' (Next_Step) \u2014 WIK wants Strategic Sourcing agentic AI as part of the pilot scope, and if Zycus cannot deliver it on their 2026 timeline, the decision may be deferred or scope reduced",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "risk:cpo-declined-horizon-attendance-22-jun-event-per-2-jul-updat",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or deprioritization vs other initiatives; the CPO has never joined a call or engaged directly",
+    "source": "Next_Step 2 Jul 'they have declined Horizon'",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-07-02"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "CPO declined Horizon attendance (22 Jun event, per 2 Jul update) \u2014 declining a face-to-face exec engagement opportunity may signal low C-level sponsorship or deprioritization vs other initiatives; the CPO has never joined a call or engaged directly",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "hygiene:economic-buyer-unmapped-and-unengaged-proposal-is-with-mgmt-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Economic buyer unmapped and unengaged: proposal is with 'mgmt' for budget approval (Next_Step 2 Jul) but no EB/CFO/CPO is named in OpportunityContactRoles or has joined a call; Rouven (GM-level champion) lacks budget authority and cannot approve the $150k spend himself \u2014 map the EB and get Carl/Shekhar (deal owner's manager) into an exec-to-exec call to secure sign-off and a close date, or the pilot will stall in 'mgmt review' indefinitely."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer unmapped and unengaged: proposal is with 'mgmt' for budget approval (Next_Step 2 Jul) but no EB/CFO/CPO is named in OpportunityContactRoles or has joined a call; Rouven (GM-level champion) lacks budget authority and cannot approve the $150k spend himself \u2014 map the EB and get Carl/Shekhar (deal owner's manager) into an exec-to-exec call to secure sign-off and a close date, or the pilot will stall in 'mgmt review' indefinitely.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-or-business-case-wik-positioned-this-as-a-",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI or business case: WIK positioned this as a 'quick win for board buy-in' (6 Mar call), but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers (e.g. '30% faster PR approvals', '200 hrs/month saved', '$X contract-review acceleration') Rouven cannot present a compelling board case, and mgmt may reject or defer; co-author a pilot success-metrics doc with Rouven tying Intake/ANA to measurable WIK KPIs before the mgmt decision."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case: WIK positioned this as a 'quick win for board buy-in' (6 Mar call), but no savings, cycle-time, or efficiency metric has been quantified across any call or Next_Step \u2014 without hard numbers (e.g. '30% faster PR approvals', '200 hrs/month saved', '$X contract-review acceleration') Rouven cannot present a compelling board case, and mgmt may reject or defer; co-author a pilot success-metrics doc with Rouven tying Intake/ANA to measurable WIK KPIs before the mgmt decision.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "hygiene:open-compliance-item-blocks-contracting-kelvin-head-of-it-as",
+   "type": "hygiene",
+   "value": {
+    "flag": "Open compliance item blocks contracting: Kelvin (Head of IT) asked on 6 Mar whether AI tools face HK/China regional restrictions; Tanvi committed to validate and revert, but 4 months later (2 Jul) no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK Legal/IT will not sign until regional compliance is confirmed; close this validation with Kelvin and Josslyn (Head of Legal) this week or it becomes a last-minute deal-killer."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Open compliance item blocks contracting: Kelvin (Head of IT) asked on 6 Mar whether AI tools face HK/China regional restrictions; Tanvi committed to validate and revert, but 4 months later (2 Jul) no confirmation is visible in Next_Step or touchpoints 2-5 \u2014 even if budget is approved, WIK Legal/IT will not sign until regional compliance is confirmed; close this validation with Kelvin and Josslyn (Head of Legal) this week or it becomes a last-minute deal-killer.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-07T06:02:44.254407+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iSource;Merlin Intake;ANA"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T06:02:44.254407+05:30",
+   "last_updated": "2026-07-07T06:02:44.254407+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "requirement:validate-whether-ai-tools-gpt-claude-based-backend-face-regi",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-06",
+    "kind": "explicit",
+    "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+    "source": "Avoma call 2026-03-06",
+    "said_by": "Kelvin Loh",
+    "addressed": false,
+    "requirement": "Validate whether AI tools (GPT/Claude-based backend) face regional restrictions in Hong Kong/China for procurement team usage and supplier portal access"
+   },
+   "source": "Kelvin Loh",
+   "status": "active",
+   "history": [],
+   "subject": "Validate whether AI tools (GPT/Claude-based backend) face regional restrictions in Hong Kong/China for procurement team usage and supplier portal access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "requirement:hold-a-follow-up-meeting-to-walk-through-the-two-ai-use-case",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-06",
+    "kind": "explicit",
+    "quote": "Question, would it be possible to have a follow up meeting? Because these processes require some explanation.",
+    "source": "Avoma touchpoint transcript, 6 Mar 2026 (followed by sessions on 14 Apr, 28 Apr, 14 May 2026)",
+    "said_by": "Rouven Ehniss",
+    "addressed": true,
+    "requirement": "Hold a follow-up meeting to walk through the two AI use cases since the processes require explanation"
+   },
+   "source": "Rouven Ehniss",
+   "status": "active",
+   "history": [],
+   "subject": "Hold a follow-up meeting to walk through the two AI use cases since the processes require explanation",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:zycus-confirm-whether-ai-tools-face-regional-restrictions-in",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "Avoma call 2026-03-06 (action_item)",
+    "status": "overdue",
+    "commitment": "Confirm whether AI tools face regional restrictions in Hong Kong/China for WIK's procurement team and supplier portal",
+    "deliverable": "Confirm whether AI tools face regional restrictions in Hong Kong/China for WIK's procurement team and supplier portal",
+    "grounding_quote": "I can go back to my team, and I can also validate specifically for these regions as you mentioned, and we can come back to you if there would be any restriction using these AIs."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Confirm whether AI tools face regional restrictions in Hong Kong/China for WIK's procurement team and supplier portal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-intake-ana-and-give-obje",
+   "type": "commitment",
+   "value": {
+    "due": "2026-04-28",
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "Avoma call 2026-03-06; Next_Step__c 2026-04-27",
+    "status": "completed",
+    "commitment": "Review WIK's two AI use cases (Intake, ANA) and give objective feasibility/cost/restriction feedback",
+    "deliverable": "Review WIK's two AI use cases (Intake, ANA) and give objective feasibility/cost/restriction feedback",
+    "grounding_quote": "We'll be transparent with you if we think it's doable or not based on the different requirement or restrictions."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Review WIK's two AI use cases (Intake, ANA) and give objective feasibility/cost/restriction feedback",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "commitment:buyer-execute-nda-and-share-the-two-detailed-ai-use-case-des",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-18",
+    "who": "Buyer",
+    "date": "2026-03-06",
+    "source": "Next_Step__c (13/18 Mar 2026 entries); Avoma touchpoint transcript, 6 Mar 2026",
+    "status": "completed",
+    "commitment": "Execute NDA and share the two detailed AI use-case descriptions for Zycus feasibility assessment",
+    "deliverable": "Execute NDA and share the two detailed AI use-case descriptions for Zycus feasibility assessment",
+    "grounding_quote": "I will come back to your team regarding the NDA, and then we sign the NDA, then we would forward you the two use cases."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "resolved",
+   "history": [],
+   "subject": "Buyer:Execute NDA and share the two detailed AI use-case descriptions",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:buyer-wik-management-to-approve-budget-for-the-150k-ana-inta",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-06-06",
+    "source": "Next_Step__c (6 Jun 2026 entry)",
+    "status": "open",
+    "commitment": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+    "deliverable": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+    "grounding_quote": "Follow up with WIK team and issued proposal for ANA/Intake, going to mgmt for budget approval."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-06-06",
+      "source": "Next_Step__c 2026-06-06",
+      "status": "open",
+      "commitment": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+      "deliverable": "WIK management to approve budget for the $150k ANA Intake pilot proposal",
+      "grounding_quote": null
+     }
+    }
+   ],
+   "subject": "Buyer:WIK management to approve budget for the $150k ANA Intake pilot proposal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-a-written-status-update-on-the-ana-project-aft",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-16",
+    "who": "Buyer",
+    "date": "2026-07-02",
+    "source": "Next_Step_History__c 2 Jul 2026",
+    "status": "open",
+    "commitment": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon.",
+    "deliverable": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon.",
+    "grounding_quote": "they have declined Horizon, and will revert on the ANA project shortly"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-07-02",
+      "source": "Next_Step__c 2026-07-02",
+      "status": "open",
+      "commitment": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon",
+      "deliverable": "Provide a written status update on the ANA project after the CPO's decision not to attend Horizon",
+      "grounding_quote": null
+     }
+    }
+   ],
+   "subject": "Buyer:Provide a written status update on the ANA project after the CPO's decision not to attend Horizon",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "risk:the-150k-proposal-has-been-with-wik-management-for-budget-ap",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "The $150k proposal has been with WIK management for budget approval since 6 Jun 2026; the intended executive sponsor (CPO) declined to attend the Horizon review where the proposal was to be discussed with leadership, leaving no confirmed approval timeline.",
+    "source": "Next_Step__c",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-06-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The $150k proposal has been with WIK management for budget approval since 6 Jun 2026; the intended executive sponsor (CPO) declined to attend the Horizon review where the proposal was to be discussed with leadership, leaving no confirmed approval timeline.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-is-engaged-rouven-ehniss-gm-level-is-the-h",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "No economic buyer is engaged; Rouven Ehniss (GM level) is the highest-engaged contact and has said he needs board/organizational buy-in, meaning he cannot approve the spend himself.",
+    "source": "Avoma call 2026-03-06; Next_Step__c 2026-07-02",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-03-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer is engaged; Rouven Ehniss (GM level) is the highest-engaged contact and has said he needs board/organizational buy-in, meaning he cannot approve the spend himself.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "risk:hong-kong-china-ai-usage-regulatory-compliance-question-rais",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-06",
+    "detail": "Hong Kong/China AI usage regulatory compliance question raised by Kelvin Loh has been open since 6 Mar 2026 with no confirmed resolution in any subsequent touchpoint.",
+    "source": "Avoma call 2026-03-06",
+    "status": "open",
+    "category": "legal",
+    "first_raised": "2026-03-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Hong Kong/China AI usage regulatory compliance question raised by Kelvin Loh has been open since 6 Mar 2026 with no confirmed resolution in any subsequent touchpoint.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "risk:a-delay-in-zycus-s-agentic-sourcing-delivery-was-flagged-14-",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-14",
+    "detail": "A delay in Zycus's Agentic Sourcing delivery was flagged 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's broader intended scope.",
+    "source": "Next_Step__c 2026-05-14",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "A delay in Zycus's Agentic Sourcing delivery was flagged 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's broader intended scope.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "hygiene:escalate-past-the-gm-level-champion-rouven-ehniss-has-driven",
+   "type": "hygiene",
+   "value": {
+    "flag": "Escalate past the GM-level champion: Rouven Ehniss has driven the process for 4 months but cannot approve $150k alone, and the intended CPO sponsor has never engaged directly or attended Horizon."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Escalate past the GM-level champion: Rouven Ehniss has driven the process for 4 months but cannot approve $150k alone, and the intended CPO sponsor has never engaged directly or attended Horizon.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "hygiene:close-the-loop-on-the-hong-kong-china-ai-compliance-question",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close the loop on the Hong Kong/China AI compliance question Kelvin Loh raised on 6 Mar 2026 before contracting, since Legal (Josslyn Deng) has not yet engaged and will likely need it confirmed."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close the loop on the Hong Kong/China AI compliance question Kelvin Loh raised on 6 Mar 2026 before contracting, since Legal (Josslyn Deng) has not yet engaged and will likely need it confirmed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "hygiene:arm-rouven-ehniss-with-a-quantified-savings-estimate-now-tha",
+   "type": "hygiene",
+   "value": {
+    "flag": "Arm Rouven Ehniss with a quantified savings estimate now that the proposal is with management, since his own stated ask was for 'quick wins' to secure board buy-in, not an undifferentiated pitch."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Arm Rouven Ehniss with a quantified savings estimate now that the proposal is with management, since his own stated ask was for 'quick wins' to secure board buy-in, not an undifferentiated pitch.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-07T13:13:56.677954+05:30",
+   "last_confirmed": "2026-07-07T13:13:56.677954+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Rouven Ehniss",
+    "at_risk": false,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Rouven Ehniss",
+      "at_risk": true,
+      "strength": "developing"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:13:56.677954+05:30",
+     "value": {
+      "name": "Rouven Ehniss",
+      "at_risk": false,
+      "strength": "developing"
+     }
+    }
+   ],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:13:56.677954+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "requirement:confirm-whether-ai-tools-face-regional-restrictions-in-hong-",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-06",
+    "kind": "explicit",
+    "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+    "source": "Avoma call 2026-03-06",
+    "said_by": "Kelvin Loh",
+    "addressed": false,
+    "requirement": "Confirm whether AI tools face regional restrictions in Hong Kong/China for the procurement team and supplier portal."
+   },
+   "source": "Kelvin Loh",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm whether AI tools face regional restrictions in Hong Kong/China for the procurement team and supplier portal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "commitment:zycus-confirm-hk-china-ai-usage-regulatory-status-for-wik-s-",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "Avoma call 2026-03-06 (Zycus presales)",
+    "status": "overdue",
+    "commitment": "Confirm HK/China AI usage regulatory status for WIK's procurement team and supplier portal.",
+    "deliverable": "Confirm HK/China AI usage regulatory status for WIK's procurement team and supplier portal.",
+    "grounding_quote": "let us review internally and come back to you... that's definitely fair"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Confirm HK/China AI usage regulatory status for WIK's procurement team and supplier portal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "commitment:zycus-review-wik-s-two-ai-use-cases-merlin-intake-ana-and-gi",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Zycus",
+    "date": "2026-03-06",
+    "source": "Next_Step__c (6 Jun 2026 entry: proposal issued); Avoma touchpoint transcript, 6 Mar 2026",
+    "status": "completed",
+    "commitment": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback",
+    "deliverable": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback",
+    "grounding_quote": "We'll be transparent with you if we think it's doable or not based on the different requirements or restrictions."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "resolved",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-03-06",
+      "source": "Avoma call 2026-03-06; fulfilled via the 6 Jun 2026 proposal",
+      "status": "completed",
+      "commitment": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback.",
+      "deliverable": "Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback.",
+      "grounding_quote": "we'll be transparent with you if we think it's doable or not based on different requirements or restrictions"
+     }
+    }
+   ],
+   "subject": "Zycus:Review WIK's two AI use cases (Merlin Intake, ANA) and give objective feasibility/cost feedback.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:buyer-wik-management-to-approve-the-150k-ana-intake-pilot-bu",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-06",
+    "source": "Next_Step_History__c 6 Jun 2026",
+    "status": "overdue",
+    "commitment": "WIK management to approve the $150k ANA Intake pilot budget.",
+    "deliverable": "WIK management to approve the $150k ANA Intake pilot budget.",
+    "grounding_quote": "issued Proposal for ANA Intake. Going to mgmt for budget approval"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:WIK management to approve the $150k ANA Intake pilot budget.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "stakeholder:jannick-schulze",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jannick Schulze",
+    "risk": "Title not confirmed in Salesforce contact roles; engagement limited to attendee lists.",
+    "role": "Influencer",
+    "title": null,
+    "source": "Recent task contact; Avoma touchpoints attendee lists, 14 Apr-14 May 2026",
+    "sentiment": "neutral",
+    "last_contact_date": "2026-05-14"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:47:41.360641+05:30",
+     "value": {
+      "name": "Jannick Schulze",
+      "risk": "Role and influence unconfirmed",
+      "role": "Unknown",
+      "title": null,
+      "source": "Task contact; Avoma touchpoint attendee lists 14 Apr, 28 Apr, 14 May 2026",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-05-14"
+     }
+    }
+   ],
+   "subject": "Jannick Schulze",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "competitor:status-quo-no-decision",
+   "type": "competitor",
+   "value": {
+    "date": "2026-07-02",
+    "name": "Status quo / no-decision",
+    "quote": "",
+    "source": "Next_Step__c (2 Jul 2026 entry, budget review with no confirmed timeline)",
+    "status": "do_nothing",
+    "sentiment": "neutral",
+    "how_we_win": "Quantify a savings/efficiency ROI case and secure direct executive sponsorship to force a budget decision rather than let the proposal sit in indefinite management review.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Status quo / no-decision",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:proposal-has-been-in-wik-management-budget-review-since-6-ju",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "Proposal has been in WIK management budget review since 6 Jun 2026 with no confirmed EB engagement or approval timeline.",
+    "source": "Next_Step_History__c",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-06-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Proposal has been in WIK management budget review since 6 Jun 2026 with no confirmed EB engagement or approval timeline.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "risk:cpo-has-never-joined-a-call-and-declined-the-22-jun-horizon-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "CPO has never joined a call and declined the 22 Jun Horizon review, the one scheduled leadership touchpoint.",
+    "source": "Next_Step_History__c",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-06-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "CPO has never joined a call and declined the 22 Jun Horizon review, the one scheduled leadership touchpoint.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "risk:hk-china-ai-usage-regulatory-restriction-question-raised-by-",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-06",
+    "detail": "HK/China AI usage regulatory restriction question raised by Kelvin Loh remains unconfirmed after 4 months; IT/Legal sign-off is blocked until resolved.",
+    "source": "Avoma call 2026-03-06",
+    "status": "open",
+    "category": "legal",
+    "first_raised": "2026-03-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "HK/China AI usage regulatory restriction question raised by Kelvin Loh remains unconfirmed after 4 months; IT/Legal sign-off is blocked until resolved.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "risk:agentic-sourcing-delivery-delay-flagged-14-may-2026-as-poten",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-14",
+    "detail": "Agentic Sourcing delivery delay flagged 14 May 2026 as potentially affecting WIK's final decision, since Strategic Sourcing agentic AI is part of the broader intended scope.",
+    "source": "Next_Step_History__c 14 May 2026",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Agentic Sourcing delivery delay flagged 14 May 2026 as potentially affecting WIK's final decision, since Strategic Sourcing agentic AI is part of the broader intended scope.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "hygiene:quantify-a-savings-cycle-time-case-for-the-ana-intake-pilot-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Quantify a savings/cycle-time case for the ANA Intake pilot so Rouven Ehniss has a concrete figure to take to the board, since no ROI number exists after 4 months of calls."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Quantify a savings/cycle-time case for the ANA Intake pilot so Rouven Ehniss has a concrete figure to take to the board, since no ROI number exists after 4 months of calls.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "hygiene:secure-a-direct-cpo-or-named-eb-touchpoint-before-the-next-c",
+   "type": "hygiene",
+   "value": {
+    "flag": "Secure a direct CPO or named-EB touchpoint before the next contact; the CPO has never engaged and already skipped one review forum (22 Jun Horizon)."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Secure a direct CPO or named-EB touchpoint before the next contact; the CPO has never engaged and already skipped one review forum (22 Jun Horizon).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "hygiene:close-the-outstanding-hk-china-ai-compliance-answer-proactiv",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close the outstanding HK/China AI compliance answer proactively so IT/Legal sign-off isn't a late surprise once budget clears."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close the outstanding HK/China AI compliance answer proactively so IT/Legal sign-off isn't a late surprise once budget clears.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:47:41.360641+05:30",
+   "last_updated": "2026-07-07T14:47:41.360641+05:30",
+   "last_confirmed": "2026-07-07T14:47:41.360641+05:30"
+  },
+  {
+   "key": "requirement:validate-whether-ai-tools-gpt-claude-backend-face-regional-r",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-06",
+    "kind": "explicit",
+    "quote": "Would it be any concern to us being here out in China, Hong Kong, and the rest of our deals?",
+    "source": "Avoma touchpoint transcript, 6 Mar 2026",
+    "said_by": "Kelvin Loh",
+    "addressed": false,
+    "requirement": "Validate whether AI tools (GPT/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access"
+   },
+   "source": "Kelvin Loh",
+   "status": "active",
+   "history": [],
+   "subject": "Validate whether AI tools (GPT/Claude backend) face regional restrictions in Hong Kong and China, covering both WIK procurement team usage and supplier portal access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-a-status-update-on-the-ana-project-following-t",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-16",
+    "who": "Buyer",
+    "date": "2026-07-02",
+    "source": "Next_Step__c (2 Jul 2026 entry)",
+    "status": "open",
+    "commitment": "Provide a status update on the ANA project following the CPO's decision not to attend Horizon",
+    "deliverable": "Provide a status update on the ANA project following the CPO's decision not to attend Horizon",
+    "grounding_quote": "They have declined Horizon, and will revert on the ANA project shortly."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Provide a status update on the ANA project following the CPO's decision not to attend Horizon",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:the-cpo-unnamed-referenced-only-in-next-step-notes-has-never",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "The CPO (unnamed, referenced only in Next Step notes) has never joined a Zycus call and declined the 22 Jun 2026 Horizon session intended for leadership review of the ANA proposal.",
+    "source": "Next_Step__c (22 Jun / 2 Jul 2026 entries)",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-06-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The CPO (unnamed, referenced only in Next Step notes) has never joined a Zycus call and declined the 22 Jun 2026 Horizon session intended for leadership review of the ANA proposal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:the-150k-ana-intake-proposal-has-been-in-wik-management-budg",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "The $150k ANA Intake proposal has been in WIK management budget review since 6 Jun 2026 (about five weeks) with no confirmed decision date.",
+    "source": "Next_Step__c",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-06-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The $150k ANA Intake proposal has been in WIK management budget review since 6 Jun 2026 (about five weeks) with no confirmed decision date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:the-hk-china-ai-usage-regulatory-restriction-question-kelvin",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-02",
+    "detail": "The HK/China AI usage regulatory restriction question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months); IT/Legal sign-off may be blocked until it is answered.",
+    "source": "Avoma touchpoint transcript, 6 Mar 2026; Next_Step_History__c",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-03-06"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The HK/China AI usage regulatory restriction question Kelvin Loh raised on 6 Mar 2026 remains unresolved as of 2 Jul 2026 (about four months); IT/Legal sign-off may be blocked until it is answered.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "risk:an-agentic-sourcing-delivery-delay-was-flagged-on-14-may-202",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-14",
+    "detail": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's intended broader scope.",
+    "source": "Next_Step__c (14 May 2026 entry)",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "An Agentic Sourcing delivery delay was flagged on 14 May 2026 as potentially impacting WIK's final decision, since Strategic Sourcing agentic AI is part of WIK's intended broader scope.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "hygiene:secure-a-confirmed-executive-sponsor-no-one-has-directly-eng",
+   "type": "hygiene",
+   "value": {
+    "flag": "Secure a confirmed executive sponsor: no one has directly engaged with Zycus beyond GM-level Rouven Ehniss since March 2026, and the referenced CPO declined the 22 Jun 2026 Horizon session - push for direct executive-level engagement or a named economic buyer before the 19 Aug 2026 close date."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Secure a confirmed executive sponsor: no one has directly engaged with Zycus beyond GM-level Rouven Ehniss since March 2026, and the referenced CPO declined the 22 Jun 2026 Horizon session - push for direct executive-level engagement or a named economic buyer before the 19 Aug 2026 close date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "hygiene:quantify-a-savings-efficiency-business-case-rouven-ehniss-sa",
+   "type": "hygiene",
+   "value": {
+    "flag": "Quantify a savings/efficiency business case: Rouven Ehniss said on 6 Mar 2026 that WIK needs 'quick wins' for board buy-in, but no number has been produced in four months - build the ROI case now to unblock the pending budget review."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Quantify a savings/efficiency business case: Rouven Ehniss said on 6 Mar 2026 that WIK needs 'quick wins' for board buy-in, but no number has been produced in four months - build the ROI case now to unblock the pending budget review.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  },
+  {
+   "key": "hygiene:close-the-hk-china-ai-compliance-loop-kelvin-loh-s-regional-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Close the HK/China AI compliance loop: Kelvin Loh's regional-restriction question from 6 Mar 2026 is still open after four months - resolve and document it before it becomes a late-stage blocker for IT/Legal sign-off."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Close the HK/China AI compliance loop: Kelvin Loh's regional-restriction question from 6 Mar 2026 is still open after four months - resolve and document it before it becomes a late-stage blocker for IT/Legal sign-off.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:51:55.504075+05:30",
+   "last_updated": "2026-07-09T19:51:55.504075+05:30",
+   "last_confirmed": "2026-07-09T19:51:55.504075+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T19:51:55.504075+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Economic buyer's identity and title not confirmed in Salesforce or Avoma; referenced only as 'CPO' in Next Step notes.",
+   "No quantified ROI/business case metrics found in any source.",
+   "Formal_Eval_Submission_Date__c and Qualified_Submission_Date__c not read this sweep; time-in-stage cannot be precisely computed.",
+   "Four touchpoints (14 Apr, 28 Apr, 14 May, 22 May 2026) have no recording/transcript; content inferred only from Next Step / Next Step History notes.",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [
+   {
+    "call": "Process Evaluation and Next Steps on Agentic AI Integration, 14 Apr 2026",
+    "reason": "not_recorded"
+   },
+   {
+    "call": "Process Evaluation and Next Steps on Agentic AI Integration, 28 Apr 2026",
+    "reason": "not_recorded"
+   },
+   {
+    "call": "Process Evaluation and Next Steps on Agentic AI Integration, 14 May 2026",
+    "reason": "not_recorded"
+   },
+   {
+    "call": "WIK Group/Zycus, 22 May 2026",
+    "reason": "not_recorded"
+   }
+  ],
+  "avoma_attendees": [
+   "kelvin.loh@wik-group.com",
+   "jannick.schulze@wik-group.com",
+   "karen.zheng@wik-group.com",
+   "frank.wang@wik-group.com",
+   "hazel.su@wik-group.com",
+   "rouven.ehniss@wik-group.com",
+   "hagan.brown@wik-group.com"
+  ],
+  "calls_discovered": 5,
+  "discovery_method": "opp+account+attendee-email (never-miss engine)",
+  "salesforce_window": "Q1 standard mechanics + Q2 authoritative custom fields + Q3 synthesis fields; Task/Event 90-day window; OpportunityFieldHistory 365d/90d"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

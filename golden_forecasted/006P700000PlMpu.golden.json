@@ -1,0 +1,341 @@
+{
+  "record": {
+    "opp_id": "006P700000PlMpuIAF",
+    "hard": {
+      "opp_id": "006P700000PlMpuIAF",
+      "opp_name": "Bosch S2P",
+      "account_name": "Robert Bosch GmbH",
+      "account_industry": "IT & Consulting",
+      "billing_country": "Germany",
+      "owner_name": "Dirk Fischbach",
+      "owner_title": "Regional Sales Director",
+      "stage": "Shortlisted",
+      "forecast_category": "Best Case",
+      "amount": 1200000.0,
+      "close_date": "2026-07-31",
+      "days_to_close": 22,
+      "created_date": "2025-11-13",
+      "qualified_date": null,
+      "last_activity_date": "2026-06-02",
+      "last_modified_date": "2026-06-29",
+      "products": "iContract;iSource;ML iAnalyze;iSupplier;eProcurement;eInvoicing;iSaaS;Merlin;iRisk;Merlin Intake;AppXtend;ANA",
+      "next_step": "Jun 29, 2026 Received documents for RFP round 2 Due date 17.7. Jun 22, 2026 Second round of RFP should be started by end of June at the latest. In parallel implementation partners will be contacted. Next step: call Thomas Krimse on 25.6. Jun 08, 2026 Answered questions on feedback - people out on PTO to follow up on POC and pricing/contracts. May 21, 2026 21.5. Presentation of agentic AI capabilities 26.5. Integration Deep Dive with Rojo tbd - Deep dive in Strategic Demand Planning capabilities Bosch will internally assess the PoC on 22.5.",
+      "ais_score": 6.0,
+      "ais_status": "Moderate",
+      "ais_why": "Product scope is AI-rich with three AI modules (ANA, Merlin, Merlin Intake) at $1.2M ACV on a platform-consolidation narrative (~40 ERPs, fragmented indirect procurement); scored 6/7 Moderate because AI is in scope but not the buyer's stated selection criterion.",
+      "dm_identified": true,
+      "eb_identified": true,
+      "champion_identified": true,
+      "pain_identified": true,
+      "metrics_identified": true,
+      "competitor": "",
+      "primary_competitor": "",
+      "sf_link": "https://zycus.my.salesforce.com/lightning/r/Opportunity/006P700000PlMpuIAF/view"
+    },
+    "ai": {
+      "forecast_read": {
+        "defensible": false,
+        "recommended_forecast": "Pipeline",
+        "reason": "Best Case with a 31 Jul 2026 close is not supported: the RFP Round 2 response is due 17 Jul 2026, Bosch is still evaluating 'all market participants' (Thomas Kirmse, 22 May 2026), the economic buyer has never joined a call, and Bosch's own plan (2 Feb 2026 Next Step) was July award, August project start, which leaves no room for contracting by 31 Jul. This is a date and conviction problem on an otherwise healthy, engaged deal, not a dead deal.",
+        "math": "22 days to close (31 Jul 2026 vs today 9 Jul 2026). In Shortlisted since 30 Apr 2026 (70 days). RFP Round 2 documents received 29 Jun 2026, response due 17 Jul 2026, leaving 14 days between submission and the recorded close for evaluation, award, partner confirmation and contracting. Last two-way buyer touch 2 Jun 2026 (37 days); last buyer meeting 26 May 2026. Deal open since 13 Nov 2025 (about 8 months)."
+      },
+      "meddpicc": {
+        "metrics": {
+          "status": "partial",
+          "narrative": "Bosch has defined clear operational scale metrics rather than a dollar business case: the platform must support +50% user growth and +100% transaction growth, roughly 10k concurrent users and 11M invoices per year with GDPR, 4-eyes, SOX and audit compliance (SF MEDDPICC field). Qualitative pain is well documented (fragmented best-of-breed tools, manual bid collection, siloed spend data, 11 May 2026 POC kickoff), but no Bosch speaker has quantified savings, headcount or cycle-time impact in money terms on any call read. The move is to convert the scale requirements into a quantified ROI case inside the RFP Round 2 response due 17 Jul 2026.",
+          "sources": ["SF MEDDPICC__c (Metrics)", "Avoma POC kickoff, 11 May 2026", "SF AIS_Why__c (Customer_Business_Problem verbatim)"]
+        },
+        "economic_buyer": {
+          "status": "partial",
+          "narrative": "Salesforce's MEDDPICC field names an economic buyer, so budget authority is nominally identified, but that person has not appeared as a speaker or attendee on any of the calls read across 8 months and is not among the six Bosch contact roles on the opportunity. Zycus's own VP for EMEA flagged direct C-level engagement as the next step on 12 May 2026 ('engage with c level once we are through the current stage of testing') and there is no evidence it has happened in the eight weeks since. Heading into a Round 2 award decision this is the single biggest hole: identified on paper, unengaged in practice.",
+          "sources": ["SF MEDDPICC__c (Economic Buyer)", "SF Next_Step__c (12 May 2026 entry)"]
+        },
+        "decision_criteria": {
+          "status": "confirmed",
+          "narrative": "Criteria are explicit and were re-confirmed in Bosch's own words at the 22 May 2026 POC closing review: functional end-to-end S2P depth, intuitive UX, a highly configurable architecture, integration capability (module-to-module seamlessness and open, documented APIs), AI and innovation potential, and security and identity management (BYOK and SCIM were called 'critical deviations', meaning they are gating criteria). The 26 May 2026 technical deep dive added the concrete API behaviour requirements (push events, export, batch, Swagger documentation) Lisa's team is scoring against.",
+          "sources": ["SF MEDDPICC__c (Decision Criteria)", "Avoma POC closing meeting, 22 May 2026", "Avoma Technical Deep Dive, 26 May 2026"]
+        },
+        "decision_process": {
+          "status": "partial",
+          "narrative": "The process is unusually well documented: RFI submitted 3 Dec 2025, RFP invite 12 Jan 2026, a 4-5 supplier long-list confirmed 2 Feb 2026, shortlisting confirmed 27 Mar 2026, a two-week onsite POC 11-22 May 2026 with daily check-ins, a formal closing review 22 May, and now RFP Round 2 (documents received 29 Jun 2026, due 17 Jul 2026) against Bosch's own plan of July award, August 2026 project start, Q4 2027 first go-live. Thomas Kirmse stated on 22 May that Bosch will close the POC 'with all market participants' and then define the next strategy, with commercial and contract discussions to follow. The call roster has stayed at the IT and procurement working level throughout; the approval chain above that team is unconfirmed.",
+          "sources": ["SF Next_Step_History__c (Dec 2025 to Jun 2026 entries)", "SF task, 27 Mar 2026 shortlisting email", "Avoma POC closing meeting, 22 May 2026"]
+        },
+        "paper_process": {
+          "status": "gap",
+          "narrative": "Pre-award, so no MSA or SOW terms yet, but a real paper-process risk already exists: Bosch's preferred implementation partner EY cannot support the engagement (SF Next_Step__c, 8 May 2026), Zycus sent a partner qualification matrix on 22 May 2026 and Bosch said it will approach the partners itself, with partner contact still running in parallel as of 22 Jun 2026. Germany is a disciplined PO market, so award-to-invoice will also need supplier onboarding and a PO. No contract-expiration forcing function has surfaced. Confirming a delivery partner before award is the concrete de-risking move for the stated August 2026 project start.",
+          "sources": ["SF Next_Step__c (8 May, 22 Jun 2026 entries)", "SF task 22 May 2026 (partner matrix email to Thomas Kirmse)"]
+        },
+        "identify_pain": {
+          "status": "confirmed",
+          "narrative": "Pain is confirmed and specific: Bosch operates roughly 40 ERPs with fragmented, non-standardized indirect procurement, manual email and Excel bid collection, no central intake control, and poor supplier risk transparency (SF Customer_Business_Problem verbatim; 11 May 2026 kickoff). During the POC the working team surfaced dozens of concrete operational gaps of its own, showing the pain is owned at the working-team level (Sabina Nordmann, Lisa, Bruno Streitenberger) though not yet articulated by an executive sponsor on any call.",
+          "sources": ["SF Customer_Business_Problem__c (via AIS_Why)", "SF MEDDPICC__c (Identify Pain)", "Avoma POC check-ins, 12-20 May 2026"]
+        },
+        "champion": {
+          "status": "partial",
+          "narrative": "Thomas Kirmse (Category Purchasing Software & IT Services) is the named champion candidate and the relationship is being cultivated directly by the deal owner (calls on 12 May and a scheduled call 25 Jun 2026 per Next Step). He is the commercial gatekeeper: he confirmed on 22 May 2026 that contract and commercial discussions follow the POC close and that Bosch would share next-strategy details in June. But no call evidence shows him advocating internally, sharing internal documents, or brokering the C-level introduction he gates, so this is a developing champion, not a proven one.",
+          "sources": ["SF MEDDPICC__c (Champion)", "SF Next_Step__c (14 Apr, 22 Jun 2026 entries)", "Avoma POC closing meeting, 22 May 2026 (Kirmse on next steps)"]
+        },
+        "competition": {
+          "status": "gap",
+          "narrative": "No competitor has ever been named in Competitors__c, in any call read, or in the Next Step trail. The only competitive facts on record are that Zycus was one of a 4-5 supplier long-list (SF Next_Step_History__c, 2 Feb 2026), survived shortlisting (27 Mar 2026) and Round 1 into RFP Round 2 (29 Jun 2026), and that Thomas Kirmse said on 22 May 2026 the POC will be closed 'with all market participants', which confirms at least one rival ran a parallel POC and is still live. This is a genuine knowledge gap: Zycus cannot tell whether it is winning on merit or trailing a preferred rival. Asking Kirmse directly who remains in Round 2 closes it fastest.",
+          "sources": ["SF Competitors__c (blank)", "SF Next_Step_History__c (2 Feb 2026 entry)", "Avoma POC closing meeting, 22 May 2026 ('with all market participants')"]
+        }
+      },
+      "critical_signals": [
+        {"lens": "Commercials", "text": "Bosch issued the RFP Round 2 documents on 29 Jun 2026 with responses due 17 Jul, and Thomas Kirmse confirmed on 22 May that contract and commercial discussions follow once the round closes.", "tone": "pos"},
+        {"lens": "Last meeting", "text": "At the 22 May 2026 POC closing review Bosch said the platform passed the majority of its use cases with strong UX and AI potential, but logged BYOK, SCIM, API documentation and ESG risk transparency as critical deviations, and the written BYOK and SCIM commitment Zycus promised that day is still outstanding.", "tone": "warn"},
+        {"lens": "Competition", "text": "Bosch is closing the POC phase 'with all market participants' (Thomas Kirmse, 22 May 2026), so at least one unnamed rival ran a parallel POC and remains live in Round 2, and Zycus does not know who.", "tone": "warn"},
+        {"lens": "New requirement", "text": "Bosch stated on 22 May 2026 that live demonstrations of data import and export and full API documentation are still required before its technical assessment is complete.", "tone": "neu"}
+      ],
+      "deal_scores_evidence": {
+        "summary": "Zycus is genuinely in the fight at Bosch: a strongly reviewed two-week onsite POC (11 to 22 May 2026) carried the deal into RFP Round 2 (documents received 29 Jun 2026, due 17 Jul 2026). The win read is held back by an economic buyer who has never joined a call in 8 months, a live but unnamed competitive field, and two overdue Zycus deliverables (the written BYOK and SCIM commitment from 22 May and the POC findings response promised 2 Jun). Momentum is steady on tender deliverables rather than live meetings, and the 31 Jul 2026 Best Case close is not defensible against Bosch's own award-then-contract sequence.",
+        "ai_reasons": {
+          "win_position": [
+            {"tone": "good", "text": "Bosch confirmed shortlisting in writing on 27 Mar 2026 ('ZYCUS has been selected for the next round') and issued RFP Round 2 documents on 29 Jun 2026, so Zycus has survived every down-select in an eight-month formal tender."},
+            {"tone": "good", "text": "Bosch's own POC closing review (22 May 2026) concluded the platform 'passed the majority of the evaluated use cases' with an intuitive UI, highly configurable architecture and a strong integrated AI concept, and Thomas Kirmse confirmed commercial and contract discussions follow the round."},
+            {"tone": "warn", "text": "The economic buyer named in Salesforce has never appeared on a call, and the C-level engagement Zycus's own VP flagged on 12 May 2026 has not happened in the eight weeks since, leaving no relationship above the working team going into an award decision."},
+            {"tone": "warn", "text": "Bosch is closing the POC 'with all market participants' (22 May 2026): at least one unnamed rival is still live and Zycus has no read on who it is or where it stands."},
+            {"tone": "warn", "text": "Bosch logged BYOK, SCIM, API documentation and ESG transparency as critical deviations on 22 May 2026, and the written BYOK and SCIM commitment Zycus promised 'next week' is now six weeks overdue."}
+          ],
+          "deal_momentum": [
+            {"tone": "good", "text": "The tender is live: Bosch issued Round 2 documents on 29 Jun 2026 with a dated 17 Jul deadline, real buyer skin in the game ten days ago."},
+            {"tone": "good", "text": "The Next Step trail is fresh and advancing (updated 8, 22 and 29 Jun 2026) with a dated forward milestone and parallel partner workstream."},
+            {"tone": "warn", "text": "No buyer meeting since 26 May 2026 and no two-way buyer exchange since Rebecca Elias's 2 Jun email; quiet is normal inside an RFP round but nothing is scheduled after the 17 Jul submission."},
+            {"tone": "warn", "text": "The stalls are Zycus-owed, not buyer-owed: the written BYOK and SCIM commitment (22 May) and the POC evaluation response (promised 2 Jun 'by the end of this week') are both still open."}
+          ],
+          "customer_commitment": [
+            {"tone": "good", "text": "Bosch invested a two-week onsite POC with daily check-ins and roughly 20 sessions (11 to 26 May 2026), sent its Cloud SaaS security questionnaire (2 Apr), ran a CSR check (Apr-May), and issued Round 2 documents on 29 Jun: sustained, structural buyer effort."},
+            {"tone": "warn", "text": "Bosch closed the alignment channel on 2 Jun 2026 ('we do not anticipate any further alignment meetings'), so all motion now runs through the formal tender and through Thomas Kirmse."}
+          ],
+          "deal_risk": [
+            {"tone": "warn", "text": "Date risk: the 31 Jul 2026 close leaves 14 days between the 17 Jul Round 2 submission and close for evaluation, award, partner confirmation and contracting; Bosch's own plan was award in July, project start in August."},
+            {"tone": "warn", "text": "Executive alignment: no economic buyer engagement in 8 months; the award will be made above the level Zycus is talking to."},
+            {"tone": "warn", "text": "Delivery risk: EY cannot support the engagement (8 May 2026) and no replacement implementation partner is confirmed, which Bosch itself needs before an August start."},
+            {"tone": "warn", "text": "Security mandates: BYOK and SCIM are Bosch mandates flagged as critical deviations (22 May 2026); without the promised written commitment they are open scoring wounds in Round 2."}
+          ]
+        },
+        "factors": {}
+      },
+      "customer_preference": {
+        "level": "low",
+        "evidence": "Bosch's 22 May 2026 POC review was substantively positive ('the platform has passed the majority of the evaluated use cases', strengths in UX, configurability and the AI concept), but no Bosch speaker has voiced a preference for Zycus, and Thomas Kirmse made clear the POC is being closed 'with all market participants' before Bosch defines its next strategy."
+      },
+      "business_case": {
+        "status": "partial",
+        "evidence": "Scale metrics are defined (10k concurrent users, 11M invoices per year, +50% user and +100% transaction growth per SF MEDDPICC) and pain is quantified operationally (~40 ERPs, manual bid collection), but no money-terms ROI case has been built or voiced by Bosch on any call through 26 May 2026."
+      },
+      "momentum_signals": {
+        "seniority_rising": false,
+        "commercial_topics_entering": true,
+        "concrete_dates": true,
+        "customer_requested_next_meeting": false,
+        "close_plan_concretizing": false,
+        "generic_demo_only": false,
+        "competitor_praised": false
+      },
+      "deal_movement": {
+        "summary": "The deal re-based hard on 30 Apr 2026 (stage to Shortlisted, amount from $300k to $1.2M, forecast from Pipeline to Best Case), Bosch ran and closed a two-week onsite POC (11 to 22 May 2026) with a formal findings review, follow-up AI and integration deep dives ran 21 and 26 May, Bosch ended the alignment phase on 2 Jun, and RFP Round 2 documents were received on 29 Jun 2026 with responses due 17 Jul.",
+        "items": [
+          {"change": "Stage Formal Evaluation to Shortlisted, amount $300k to $1.2M, forecast Pipeline to Best Case (by Dirk Fischbach)", "date": "2026-04-30"},
+          {"change": "Two-week onsite POC completed; Bosch presented its formal evaluation findings at the closing review", "date": "2026-05-22"},
+          {"change": "Integration deep dive with Rojo; Lisa's API questions resolved via Swagger and JSON walkthrough; Bruno: 'based on this meeting, we will reevaluate our evaluation'", "date": "2026-05-26"},
+          {"change": "Bosch closed the POC alignment phase: 'we do not anticipate any further alignment meetings' (Rebecca Elias email)", "date": "2026-06-02"},
+          {"change": "RFP Round 2 documents received from Bosch, response due 17 Jul 2026", "date": "2026-06-29"}
+        ]
+      },
+      "day_summary": {
+        "as_of": "2026-06-29",
+        "overall": "The last day with real deal activity was 29 Jun 2026, when Bosch issued the RFP Round 2 documents with a response deadline of 17 Jul 2026, confirming Zycus advanced past Round 1 of the tender. Nothing has moved since; the last two-way buyer exchange was Bosch's 2 Jun email closing the POC alignment phase.",
+        "items": [
+          {"kind": "movement", "name": "RFP Round 2 documents received", "summary": "Bosch issued the Round 2 tender documents; the Zycus response is due 17 Jul 2026.", "at": "2026-06-29"}
+        ]
+      },
+      "competitive_position": {
+        "summary": "Bosch has run a formal, blind multi-vendor tender since late 2025: a 4-5 supplier long-list (2 Feb 2026) narrowed to a shortlist (27 Mar 2026), parallel POCs ran with 'all market participants' (Thomas Kirmse, 22 May 2026), and RFP Round 2 documents landed 29 Jun 2026 with a 17 Jul deadline. No rival has ever been named in any field, call or Next Step entry, so the current threat is unnamed and unranked. The strongest available signal is that Zycus survived to Round 2 after a strongly reviewed POC; the biggest exposure is that at least one rival did too.",
+        "competitors": [
+          {"name": "Unnamed RFP Round 2 peer(s)", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "We will, first of all, close the PoC, and as soon as this with all market participants and as soon as this is closed, we will define the next strategy.", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026 (Thomas Kirmse); SF Next_Step_History__c 2 Feb 2026 ('long-list of 4-5 suppliers')", "how_we_win": "Lean into what Bosch itself rated in the 22 May review: the integrated AI concept and agentic potential, the configurable single-platform architecture, and the SAP-certified Rojo integration path, and neutralize the scored deviations (BYOK, SCIM, API documentation) in writing inside the Round 2 response."},
+          {"name": "Unnamed RFP long-list peer(s)", "sentiment": "neutral", "threat_level": "low", "status": "faded", "quote": "We are in a long-list of 4-5 suppliers.", "date": "2026-02-02", "source": "SF Next_Step_History__c (2 Feb 2026 entry)", "how_we_win": "No action needed; these peers did not survive the down-select to the shortlist per the recorded stage progression."}
+        ]
+      },
+      "customer_expectations_fit": {
+        "summary": "Bosch's own 22 May 2026 POC scorecard is the fit map: strong on end-to-end sourcing, UX, configurability, supplier lifecycle and P2O; partially aligned on module-to-module seamlessness, complex auctions and advanced AI; exposed on BYOK/SCIM security, API documentation and push-event profile, and ESG risk steering.",
+        "items": [
+          {"criterion": "End-to-end sourcing process and UX", "position": "aligned", "quote": "a very functional end to end sourcing process, an intuitive user interface", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"criterion": "Configurable architecture and administrative control", "position": "aligned", "quote": "a highly configurable architecture, and that across all the modules", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"criterion": "Integrated AI concept", "position": "partially aligned", "quote": "the AI and automation concepts, the agents, show a very, very cool potential for future enhancements", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026 (advanced and fully automated AI features 'not yet available')"},
+          {"criterion": "Seamless sourcing-to-contracting module integration", "position": "partially aligned", "quote": "we could not see the seamless integration between these two parts", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"criterion": "Complex sourcing events (auctions, non-tender scenarios)", "position": "exposed", "quote": "key features like an auction monitor were incomplete", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"criterion": "Security and identity management (BYOK, SCIM/IDC)", "position": "exposed", "quote": "we have some issues with key security and identity management features, like the new own key scheme", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026 (Zycus committed to BYOK and SCIM in writing)"},
+          {"criterion": "API documentation, push-event profile, import/export", "position": "exposed", "quote": "the lack of API documentation and versioning, then we have seen the absence of the event program for the push RPs", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026; partially addressed at the 26 May technical deep dive"},
+          {"criterion": "ESG and supplier risk transparency", "position": "exposed", "quote": "the system provides limited transparency regarding key supplier figures for the ESG part", "date": "2026-05-22", "source": "Avoma POC closing meeting, 22 May 2026"}
+        ]
+      },
+      "explicit_requirements": {
+        "items": [
+          {"requirement": "Submit the RFP Round 2 response by 17 Jul 2026", "said_by": "Bosch tender team (documents issued via sourcing platform)", "date": "2026-06-29", "addressed": false, "quote": "Received documents for RFP round 2 Due date 17.7.", "source": "SF Next_Step__c, 29 Jun 2026"},
+          {"requirement": "BYOK and SCIM (key security and identity management) support, treated as a Bosch mandate", "said_by": "Rebecca Elias (POC findings presenter)", "date": "2026-05-22", "addressed": false, "quote": "we have some issues with key security and identity management features, like the new own key scheme, IDC, and so on", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"requirement": "API documentation and versioning, push-event profile, and Swagger/Postman examples for the REST APIs", "said_by": "Lisa (IT Solution Manager S2C)", "date": "2026-05-26", "addressed": true, "quote": "do we have a postman collection where you just can demonstrate how a supplier is created?", "source": "Avoma Technical Deep Dive, 26 May 2026 (walked through live; documentation share still owed)"},
+          {"requirement": "Live demonstration of data import and export for a complete technical assessment", "said_by": "Rebecca Elias (POC findings presenter)", "date": "2026-05-22", "addressed": false, "quote": "live demonstrations of data import and exports are still required to, from our point of view, have a complete assessment possible", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"requirement": "Qualified implementation partner options (EY cannot support)", "said_by": "Thomas Kirmse", "date": "2026-05-08", "addressed": true, "quote": "Bosch needs a partner list (EY can't support)", "source": "SF Next_Step__c 8 May 2026; partner qualification matrix emailed to Thomas Kirmse 22 May 2026"}
+        ]
+      },
+      "implicit_requirements": {
+        "we_promised": {
+          "items": [
+            {"deliverable": "Written commitment that Zycus will deliver BYOK and SCIM architecture for Bosch", "who": "Zycus", "grounding_quote": "We are gonna provide that in written commitment as well that Zycus is gonna take that up.", "date": "2026-05-22", "due": "2026-05-29", "status": "overdue", "source": "Avoma POC closing meeting, 22 May 2026 (Varun Kukreja: expected 'sometime next week')"},
+            {"deliverable": "Documented Zycus response to Bosch's POC evaluation findings", "who": "Zycus", "grounding_quote": "We will also share our response to the POC evaluation summary presented by Bosch by the end of this week.", "date": "2026-06-02", "due": "2026-06-05", "status": "overdue", "source": "SF task, 2 Jun 2026 (email to Sabina Nordmann)"},
+            {"deliverable": "Swagger/API documentation package for Lisa's integration team", "who": "Zycus", "grounding_quote": "We can definitely provide Svegga [Swagger] documentation.", "date": "2026-05-26", "due": null, "status": "open", "source": "Avoma Technical Deep Dive, 26 May 2026"}
+          ]
+        },
+        "buyer_dependent": {
+          "items": [
+            {"deliverable": "Bosch's Round 2 award timeline and next-strategy details, promised for June", "who": "Buyer", "grounding_quote": "our aim would be to currently to step into further discussions in June, but you will get additional and further details in June.", "date": "2026-05-22", "due": "2026-06-30", "status": "overdue", "source": "Avoma POC closing meeting, 22 May 2026 (Thomas Kirmse)"},
+            {"deliverable": "Bosch's outreach to the implementation partners on the shared qualification matrix", "who": "Buyer", "grounding_quote": "Ich habe mitgenommen, dass Ihr unsere Partner von Eurer Seite aus ansprechen werdet.", "date": "2026-05-22", "due": null, "status": "open", "source": "SF task, 22 May 2026 (partner matrix email to Thomas Kirmse); SF Next_Step__c 22 Jun 2026"},
+            {"deliverable": "An introduction to the C-level economic buyer via Thomas Kirmse", "who": "Buyer", "grounding_quote": "John suggested to engage with c level once we are through the current stage of testing.", "date": "2026-05-12", "due": "2026-07-17", "status": "open", "source": "SF Next_Step__c, 12 May 2026"}
+          ]
+        }
+      },
+      "gaps": {
+        "items": [
+          {"area": "Competitive field: no rival has ever been named anywhere despite a confirmed multi-vendor Round 2", "quote": "close the PoC with all market participants", "status": "not addressed", "date": "2026-05-22", "gap_type": "knowledge", "source": "SF Competitors__c blank; Avoma POC closing meeting, 22 May 2026"},
+          {"area": "Economic buyer identity and engagement: named on paper, never on a call, no C-level session in 8 months", "quote": "engage with c level once we are through the current stage of testing", "status": "acknowledged", "date": "2026-05-12", "gap_type": "knowledge", "source": "SF Next_Step__c 12 May 2026; SF MEDDPICC__c"},
+          {"area": "Call coverage: 22 of 25 discovered meetings (POC check-ins, kickoff, pitch, early deep dives) carry no transcript or notes in this read", "quote": "", "status": "acknowledged", "date": "2026-07-09", "gap_type": "knowledge", "source": "Evidence packet manifest, sweep of 9 Jul 2026"}
+        ]
+      },
+      "best_practice_check": {
+        "summary": "The deal is deep in a formal tender with the working team won over; the win levers now sit above and beside the process: power, competitive visibility, and a de-risked delivery story inside the Round 2 response.",
+        "flags": [
+          "Engage the economic buyer before the award: the C-level step Zycus's own VP called for on 12 May 2026 is still undone, and the award decision will be made above the roster Zycus talks to. Have Thomas Kirmse broker the session before 17 Jul.",
+          "Close the competitive blind spot: Bosch confirmed rivals ran parallel POCs ('all market participants', 22 May 2026) yet no name is known. Ask Kirmse directly who remains in Round 2 and shape the response against them.",
+          "Turn Bosch's own scorecard into the Round 2 response: answer every 22 May 'critical deviation' in writing (BYOK/SCIM commitment, API documentation, ESG transparency roadmap) and convert the POC scale metrics into a quantified ROI case, with a named implementation partner to protect Bosch's August start."
+        ]
+      },
+      "stakeholder_map": {
+        "items": [
+          {"name": "Thomas Kirmse", "title": "Category Purchasing Software & IT Services (GS/PUI3-S4)", "role": "Champion", "last_contact_date": "2026-06-25", "sentiment": "open, developing", "risk": "Gates the commercial process and C-level access but has not yet made an introduction or shown internal advocacy on any call", "source": "SF contact role; Avoma POC closing meeting 22 May 2026; SF Next_Step__c 22 Jun 2026 (call scheduled 25 Jun)"},
+          {"name": "Nordmann Sabina", "title": "IT & Process Expert Source-to-Contract", "role": "Coach", "last_contact_date": "2026-06-02", "sentiment": "positive, highly engaged", "risk": "Project lead running the POC and alignment cadence; coordinator-level influence, not budget authority", "source": "SF contact role; Avoma Technical Deep Dive 26 May 2026 ('I am the project lead of this project'); SF task 2 Jun 2026"},
+          {"name": "Bruno Streitenberger", "title": "Solution Cluster Manager Source-2-Pay", "role": "Influencer", "last_contact_date": "2026-05-26", "sentiment": "critical, detail-driven", "risk": "Pressed hard on integration and middleware architecture and said Bosch 'will reevaluate our evaluation' off the 26 May session; technical confidence is won or lost through him", "source": "SF contact role; Avoma Technical Deep Dive, 26 May 2026"},
+          {"name": "Rebecca Elias", "title": "", "role": "Influencer", "last_contact_date": "2026-06-02", "sentiment": "constructive, formal", "risk": "Presented Bosch's consolidated POC verdict and closed the alignment channel on 2 Jun; her findings document is the scorecard Round 2 will be graded against", "source": "SF task 22 May and 2 Jun 2026 (rebecca.elias@de.bosch.com); Avoma POC closing meeting, 22 May 2026 (presenter, covering Sabina)"},
+          {"name": "Hoepfinger Andre", "title": "Portfolio Owner for IT & Processes in Indirect Purchasing | Agile Team Coach", "role": "Influencer", "last_contact_date": "2026-05-15", "sentiment": "neutral", "risk": "Limited direct quotes captured; engagement depth unclear", "source": "SF contact role; SF task contacts"},
+          {"name": "Maier Thomas", "title": "Business Team Lead Information Technology", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown", "risk": "No direct call evidence read this sweep", "source": "SF contact role"}
+        ]
+      },
+      "champion_strength": {
+        "summary": "Thomas Kirmse is open, responsive and being cultivated directly by the deal owner (calls 12 May and scheduled 25 Jun 2026), and he personally confirmed the commercial path forward on 22 May 2026, which is real progress from 'too early to say'. But no call evidence yet shows him advocating internally, sharing documents, or brokering the C-level access he gates, so the champion is developing and the deal is at risk if the award is decided above him without Zycus in the room.",
+        "champion": "Thomas Kirmse",
+        "strength": "developing",
+        "at_risk": true,
+        "source": "SF MEDDPICC__c; SF Next_Step__c (14 Apr, 12 May, 22 Jun 2026); Avoma POC closing meeting, 22 May 2026"
+      },
+      "expansion_context": {"prior_closed_won": false, "prior_opp": "", "note": ""},
+      "scope_change": {
+        "direction": "expanded",
+        "from": "S2C-led tender scope at $300k",
+        "to": "Full global S2P platform (12 products including three AI modules) at $1.2M",
+        "detail": "On 30 Apr 2026 the amount moved from $300k to $1.2M alongside the stage move to Shortlisted and the forecast upgrade to Best Case (field history, Dirk Fischbach); the POC that followed covered S2C, demand and supplier management, P2O and technical/integration tracks."
+      },
+      "ai_positioning_strength": {
+        "summary": "AI is a genuine differentiator here and Bosch said so itself: the 22 May 2026 review called the integrated AI concept a key strength and the agents 'very, very cool potential', and a dedicated AI deep dive ran 21 May. But Bosch also scored advanced and fully automated AI features as not yet available, so the positioning is strong on vision and must be evidenced concretely in the Round 2 response.",
+        "score": "strong",
+        "under_positioned": false
+      },
+      "ai_fit_signal": {
+        "summary": "Three AI modules (ANA, Merlin, Merlin Intake) are in scope at $1.2M and Bosch requested a dedicated agentic AI session (21 May 2026), but Bosch's stated selection narrative is platform consolidation, automation and UX rather than AI-led transformation (AIS 6/10, Moderate).",
+        "tier": "AI Curious"
+      },
+      "vulnerabilities": {
+        "items": [
+          {"category": "security_review", "detail": "BYOK and SCIM/IDC flagged by Bosch as critical deviations and a mandate; the promised written commitment (due week of 25 May 2026) is still undelivered", "first_raised": "2026-05-22", "date": "2026-05-22", "status": "open", "source": "Avoma POC closing meeting, 22 May 2026"},
+          {"category": "executive_alignment", "detail": "Economic buyer named on paper but never engaged on a call in 8 months; C-level step flagged 12 May 2026 remains undone before a Round 2 award decision", "first_raised": "2026-05-12", "date": "2026-07-09", "status": "open", "source": "SF Next_Step__c 12 May 2026; SF MEDDPICC__c"},
+          {"category": "partner_support", "detail": "EY cannot support the implementation and no replacement partner is confirmed; Bosch is approaching the partners on the Zycus matrix itself, with the August 2026 project start depending on it", "first_raised": "2026-05-08", "date": "2026-06-22", "status": "open", "source": "SF Next_Step__c 8 May and 22 Jun 2026; SF task 22 May 2026 (partner matrix)"},
+          {"category": "timeline", "detail": "31 Jul 2026 close leaves 14 days from the 17 Jul Round 2 submission for award, partner confirmation and contracting; Bosch's own plan was July award and August project start", "first_raised": "2026-06-29", "date": "2026-07-09", "status": "open", "source": "SF Next_Step__c 29 Jun 2026; SF Next_Step_History__c 2 Feb 2026"},
+          {"category": "integration", "detail": "Bosch scored module-to-module seamlessness (sourcing to contracting), API documentation, push-event profile and import/export as gaps; the 26 May deep dive recovered ground with Lisa ('now I have understood everything') but live import/export proof is still owed", "first_raised": "2026-05-22", "date": "2026-05-26", "status": "acknowledged", "source": "Avoma POC closing meeting 22 May 2026; Avoma Technical Deep Dive 26 May 2026"}
+        ]
+      },
+      "confidence_signals": {
+        "summary": "The buyer's structural investment is high (two-week onsite POC, security and CSR diligence, Round 2 issuance), but interactive engagement has cooled since Bosch closed the alignment phase on 2 Jun 2026: no meeting since 26 May, no two-way exchange since 2 Jun, and the June award-strategy details Thomas Kirmse promised have not arrived. The quiet is consistent with formal tender cadence, not a lost deal, and the 29 Jun Round 2 documents prove Zycus is still in.",
+        "cooling": true,
+        "items": [
+          "Bosch, 2 Jun 2026: 'As the PoC phase has now concluded and we need to move forward, we do not anticipate any further alignment meetings' (Rebecca Elias email).",
+          "No buyer meeting since the 26 May 2026 technical deep dive; the 1 Jun demand-management demo was delivered as a recorded video into an OOO period.",
+          "Round 2 documents received 29 Jun 2026 with a 17 Jul deadline: the process itself is alive and on the buyer's clock."
+        ]
+      },
+      "ceo_intervention": {"needed": false},
+      "recommended_moves": {
+        "items": [
+          {"rank": 1, "action": "Submit the RFP Round 2 response with the written BYOK and SCIM commitment attached.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Round 2 documents received with a 17 Jul due date", "trigger_date": "2026-06-29", "act_by": "2026-07-16", "expected_effect": "Meets Bosch's deadline and converts its two scored critical deviations into documented commitments before evaluation."},
+          {"rank": 2, "action": "Call Thomas Kirmse to confirm who remains in Round 2 and the award timeline.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "June award-strategy details promised on 22 May never arrived", "trigger_date": "2026-06-30", "act_by": "2026-07-15", "expected_effect": "Closes the competitive blind spot and re-anchors the close date to Bosch's real award sequence."},
+          {"rank": 3, "action": "Have Kirmse broker a C-level economic buyer session before the award decision.", "owner": "Executive connect", "horizon": "next_14_days", "trigger": "C-level engagement flagged as the next step on 12 May 2026 and still undone", "trigger_date": "2026-05-12", "act_by": "2026-07-23", "expected_effect": "Puts Zycus in front of the person who will actually sign off the award instead of relying on the working team's scorecard."},
+          {"rank": 4, "action": "Confirm one qualified implementation partner and a live import/export demo slot with Bosch.", "owner": "Partner", "horizon": "next_30_days", "trigger": "EY out (8 May) and Bosch's 22 May requirement for live import/export proof", "trigger_date": "2026-06-22", "act_by": "2026-08-07", "expected_effect": "De-risks Bosch's August project start and closes the last open technical assessment item from the POC scorecard."}
+        ]
+      }
+    },
+    "evidence_coverage": {
+      "calls_discovered": 25,
+      "calls_read": 3,
+      "calls_omitted": ["22 meetings (POC daily check-ins 11-20 May 2026, P2O and technical deep dives 12-18 May, PoC kickoff 11 May, Abstimmung 8 May, Alignment POC 23 Apr, Pre-Alignment 23 Mar, Technical Deep Dive 11 Mar, Pitch 19 Feb, AI deep-dive tail 21 May) are present as titles or truncated notes only, with no transcript or summary text available to read in this packet"],
+      "discovery_method": "opp+account+attendee-email",
+      "salesforce_window": "120 days of tasks/events (Mar 23 to Jun 2 2026) plus full Next_Step_History__c trail back to Dec 2025 and field history to Feb 2026",
+      "avoma_attendees": ["sabina.nordmann@de.bosch.com", "thomas.kirmse@de.bosch.com", "bruno.streitenberger@boschrexroth.de", "andre.hoepfinger@de.bosch.com"],
+      "gaps": ["No transcript or notes for 22 of 25 discovered meetings (titles only), so POC session-level detail is drawn from the 22 May closing review, the Next Step trail and email tasks", "Economic buyer named in MEDDPICC but identity not present in this packet's contact roles", "No competitor named anywhere despite a confirmed multi-vendor Round 2"]
+    },
+    "analysis_confidence": "Medium",
+    "forecast_critical": true,
+    "swept_at": "2026-07-09"
+  },
+  "engines": {
+    "win": {
+      "score": 49,
+      "band": "In the fight",
+      "drivers": [
+        "✅ Zycus has survived every down-select in an eight-month formal tender: shortlisting confirmed in writing 27 Mar 2026 ('ZYCUS has been selected for the next round') and RFP Round 2 documents issued 29 Jun 2026, due 17 Jul.",
+        "✅ Bosch's own POC closing review (22 May 2026) said the platform 'passed the majority of the evaluated use cases' with strong UX, configurability and AI potential, and Thomas Kirmse confirmed commercial and contract discussions follow the round.",
+        "⚠️ No buyer-voiced preference and a blind field: Bosch is closing the POC 'with all market participants' and no rival has ever been named. ► Ask Kirmse directly who remains in Round 2 before the 17 Jul submission.",
+        "⚠️ The economic buyer has never joined a call in 8 months and the C-level step flagged on 12 May 2026 is still undone. ► Have Kirmse broker a C-level session before the award decision.",
+        "⚠️ Bosch logged BYOK, SCIM, API documentation and ESG transparency as critical deviations on 22 May 2026 and the promised written BYOK/SCIM commitment is six weeks overdue. ► Ship it inside the Round 2 response.",
+        "⚠️ Best Case with a 31 Jul close is not defensible: only 14 days separate the 17 Jul submission from close, against Bosch's own July-award, August-start plan. ► Reset the close date to the real post-award contracting window."
+      ]
+    },
+    "mom": {
+      "score": 56,
+      "band": "Steady",
+      "drivers": [
+        "✅ The tender is live and on the buyer's clock: Bosch issued Round 2 documents on 29 Jun 2026 with a dated 17 Jul deadline, real buyer skin in the game ten days ago.",
+        "✅ Fresh, advancing Next Step trail (updated 8, 22 and 29 Jun 2026) with a dated forward milestone and a parallel implementation-partner workstream.",
+        "✅ A heavy May engagement base is decaying but real: a two-week onsite POC with daily check-ins plus AI, P2O and integration deep dives (11 to 26 May 2026).",
+        "⚠️ No buyer meeting since 26 May and no two-way buyer exchange since 2 Jun (5+ weeks); tolerable inside an RFP round but nothing is scheduled after the submission. ► Book the Round 2 clarification/Q&A session with Kirmse now.",
+        "⚠️ The open stalls are Zycus-owed: the written BYOK/SCIM commitment (22 May) and the POC findings response (promised 2 Jun) are both overdue. ► Deliver both with the 17 Jul submission.",
+        "⚠️ Bosch closed the alignment channel on 2 Jun ('we do not anticipate any further alignment meetings'), so all motion now runs through the formal tender. ► Use the Kirmse relationship as the side-channel for award-timeline intelligence."
+      ]
+    },
+    "todo": {
+      "prospect_requirements": [
+        {"item": "Submit the RFP Round 2 response to Bosch by the buyer's deadline (documents received 29 Jun 2026).", "due": "2026-07-17", "source": "SF Next_Step__c, 29 Jun 2026"},
+        {"item": "Answer Bosch's security and identity mandate in the response: BYOK and SCIM/IDC, flagged as critical deviations at the POC review.", "due": "2026-07-17", "source": "Avoma POC closing meeting, 22 May 2026"},
+        {"item": "Schedule the live data import/export demonstration Bosch said is still required for a complete technical assessment.", "due": "2026-07-24", "source": "Avoma POC closing meeting, 22 May 2026"}
+      ],
+      "zycus_commitments": [
+        {"item": "Deliver the written BYOK and SCIM commitment Varun promised at the POC closing ('we are gonna provide that in written commitment'), now six weeks overdue.", "due": "2026-07-16", "status": "overdue", "source": "Avoma POC closing meeting, 22 May 2026"},
+        {"item": "Send the documented Zycus response to Bosch's POC evaluation summary, promised to Sabina Nordmann 'by the end of this week' on 2 Jun, together with the Swagger/API documentation package owed to Lisa's team.", "due": "2026-07-16", "status": "overdue", "source": "SF task 2 Jun 2026; Avoma Technical Deep Dive 26 May 2026"}
+      ],
+      "waiting_on_buyer": [
+        {"item": "Bosch's Round 2 award timeline and next-strategy details, which Thomas Kirmse promised 'in June' and have not arrived.", "due": "2026-07-15", "source": "Avoma POC closing meeting, 22 May 2026"},
+        {"item": "Feedback from Bosch's own outreach to the implementation partners on the qualification matrix (Bosch said it would approach the partners itself; EY is out).", "due": "2026-07-24", "source": "SF task 22 May 2026; SF Next_Step__c 22 Jun 2026"},
+        {"item": "The C-level economic buyer introduction gated by Thomas Kirmse, flagged as the next step once testing completed (12 May 2026).", "due": "2026-07-23", "source": "SF Next_Step__c, 12 May 2026"}
+      ],
+      "best_practices": [
+        {"item": "Engage the economic buyer before the award: the decision will be made above the working-team roster Zycus talks to; use Kirmse to broker the session before 17 Jul.", "due": "2026-07-23", "source": "SF Next_Step__c 12 May 2026; SF MEDDPICC__c"},
+        {"item": "Close the competitive blind spot: ask Kirmse who else remains in Round 2 ('all market participants' ran POCs) and position the response against them.", "due": "2026-07-15", "source": "Avoma POC closing meeting, 22 May 2026"},
+        {"item": "Convert Bosch's scale metrics (10k concurrent users, 11M invoices/yr, +100% transaction growth) into a quantified ROI case inside the Round 2 response.", "due": "2026-07-17", "source": "SF MEDDPICC__c; Avoma POC kickoff 11 May 2026"},
+        {"item": "De-risk delivery for Bosch's August start: lock one named, qualified implementation partner into the Round 2 response (heavy step, needs lead time).", "due": "2026-07-31", "source": "SF Next_Step__c 8 May and 22 Jun 2026"}
+      ],
+      "suggested_realistic_close": "2026-09-30"
+    },
+    "sum": {
+      "headline": "No change in the last 24h; the most recent movement remains Bosch's RFP Round 2 documents issued on 29 Jun 2026, with the Zycus response due 17 Jul.",
+      "supporting": [],
+      "no_change": true
+    }
+  }
+}

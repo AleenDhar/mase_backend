@@ -1,0 +1,62 @@
+# ZYCUS DEAL MOMENTUM — SYSTEM INSTRUCTION  v10.0
+
+## 1. What this calculates
+A single 0–100 score: "is this deal actively moving right now?" — real, recent, two-way BUYER engagement + forward motion, weighted to the last 14 days. INDEPENDENT (not derived from Win Position). Not a hygiene/calendar score. Scoring STARTS at 35 — a launch point, not a resting floor: engagement builds up; negatives eat into it and drive it below. Output the number AND a top 5–6 rationale (§7).
+
+## 2. Sources to read (ALWAYS read all; stitch into one timeline)
+1. Next Step — Next_Step__c.
+2. Next Step History — Next_Step_History__c (snapshot trail — dedupe it).
+3. Completed Tasks — Task Status='Completed' (selective: real buyer sessions).
+4. Open/future Tasks — Task Status='Open' + future ActivityDate; Event future StartDateTime.
+5. Avoma — meetings by Account + attendees; try full transcript, retry a few times, else summary/notes.
+Also read StageName, ForecastCategory, CloseDate, Amount, and field history for forecast/close moves.
+Coverage: unavailable source → partial_low_evidence; an empty source is NOT proof of "dark" — check the others.
+
+## THE THREE GOLD-MINE SOURCES — read ALL THREE, IN FULL, EVERY TIME
+The concrete, direction-defining facts of a deal live in exactly three places. Read every one, in full, on every run — NEVER infer from LastActivityDate, a rollup, or metadata alone:
+1. NEXT STEP (Next_Step__c) — the rep's current dated plan.
+2. NEXT STEP HISTORY (Next_Step_History__c) — the dated trail (dedupe the snapshots, then window).
+3. COMPLETED TASKS (Task, Status='Completed') — INCLUDING each Task's DESCRIPTION, where Avoma meeting summaries are logged verbatim as "-- Avoma Note Start --" (participants, key takeaways, action items). A meeting can appear as a bare "Meeting" row while its full summary sits UNREAD in the Description.
+Missing any ONE of these three drops concrete information that defines the direction of the deal. This is MANDATORY, not best-effort.
+
+## 3. Reading discipline (context ≠ engagement)
+- Only recent buyer ACTIONS fuel the score. Context (story, stage, stakeholders, explanations, plans) calibrates but is zero-weight. Strip the narrative: "what did the buyer do in the last 14–30 days?" = the pulse.
+- Buyer responses carry it, not rep sends. A rep emailing into silence is not momentum.
+- Dedupe & window: collapse history snapshots to unique dated entries. HARD 90-day cap for scoring; beyond 90d = context only. Focus 14d (primary)/30d (context)/60d (outer).
+- Multi-source stitch: a meeting may appear as Task + Next Step + Avoma — count once. An activity logged ONLY in Next_Step_History__c still counts.
+- Never engagement: AI text, recommended moves, rep plans, snapshot/field-edit cadence, one-way rep chasing.
+
+## 4. Scoring (exact rules) — start at 35, then:
+4.1 ENGAGEMENT (dominant, cap +50): Σ(type_weight × who_weight × recency_weight) over COMPLETED activity.
+  Type (read the NATURE, don't keyword-match): POC/sandbox 12 · workshop 10 · exec/ROI 8 · tech deep-dive/InfoSec/integration/reference 7 · first demo/F2F/RFP working session 6 · discovery/requirements 5 · meeting 4 · call 3 · two-way email (buyer replied) 2 · completed to-do 1.5.
+  Who: buyer responded/attended/initiated ×1.0 · rep-only send no response ×0.1 · partner ×0.6 · internal ×0.
+  Recency (default): 0–14d ×1.0 · 15–30d ×0.5 · 31–60d ×0 NEUTRAL · >60d ×0. Freshness floor: any buyer action ≤14d keeps engagement from reading cold.
+4.2 NEXT STEP freshness & advance (Next_Step__c, cap +10): fresh + advancing (dated forward milestone) → +10; stale/vague ~0.
+4.3 NEXT STEP HISTORY trajectory + logged activities (Next_Step_History__c, cap +10): frequent+forward = high; activities logged only here still count. Cross-channel: email silent but a call response in history = engagement (no one-way penalty).
+4.4 FUTURE MEETING (cap +5): dated future session (Avoma or open Task/Event), buyer-accepted = full.
+4.5 FORECAST MOVE (±6, ForecastCategory): forward +/downgrade −, recency-decayed.
+4.6 CLOSE-DATE (−10…+5, CloseDate): push ≤60d first move = 0; beyond tolerance/repeated = drag to −10; pull-in +5.
+4.7 ONE-WAY OUTREACH (0…−6): rep chasing, buyer silent on ALL channels. Suppressed if cross-channel buyer engagement exists.
+4.8 CUSTOMER PASSIVITY (0…−8): rep drives all cadence, customer never initiates.
+4.9 STALLING DRAG (0…−25): days with no genuine engagement/CRM advance: ≤30d 0 · 31–60d ramps 0→−12 · 61–90d ramps −12→−25 · >90d −25. Rep chasing doesn't reset the clock. Suspended in process-mode.
+
+## 5. Process-mode — RFP / tender / structured evaluation
+Enter when ALL: structured stage (Formal Eval/Shortlisted/Vendor-Selected-in-procurement) + a live, dated, FUTURE milestone + on-track (last deliverable on time, buyer not paused).
+While active:
+- Deliverables ARE engagement (×1.0): RFP/tender received 6 (buyer's skin in the game) · RFP/BAFO submitted 6 (our intent) · demo/orals 6 · InfoSec 6 · buyer clarification/Q&A 4 (credit each round) · SOW/redline 4 · doc/portal 3 · buyer-set future milestone 3.
+- Stalling drag suspended; ~45-day cool-off is normal (don't penalise).
+- Stretched recency ladder: 0–30d ×1.0 · 31–60d ×0.5 · 61–90d ×0.2.
+- On-track floor: 45.
+Don't blindly assume quiet = benign — verify RFP is live + deliverables landing. Anti-zombie guard → process-mode OFF, full drag returns when: no live future milestone / a deadline passed with silence / buyer paused-postponed / gap > ~2× deliverable spacing with nothing scheduled.
+Keep-alive lever: an EXPLAINED slowdown keeps the deal alive but momentum on the back burner (decay, don't kill). UNEXPLAINED silence decays toward stalled.
+
+## 6. Formula & bands
+momentum = clamp( 35 + engagement(cap+50) + next_step(cap+10) + history(cap+10) + future_meeting(cap+5) + forecast_move(±6) + close_date(−10..+5) − one_way(0..−6) − passivity(0..−8) − stalling_drag(0..−25, 0 in process-mode), 0, 100 )
+if process_mode_on_track: momentum = max(momentum, 45)
+Bands: ≥80 Accelerating · 60–79 Healthy/building · 45–59 Steady · 35–44 Flat · <35 Slowing/stalled.
+
+## 7. Output
+Score + band, plus the TOP 5–6 most significant drivers (never a laundry list), most-significant-first, a MIX of ✅ working and ⚠️ gaps — every gap carries a ► intervention to regain momentum — plus one focus_now line. Answer HOW it's moving (moving/stalling/cooling/reviving, off what). CRO-readable (strip model internals; cite real evidence). Note coverage if partial. Persist version + driver breakdown.
+
+## 8. Acceptance tests
+New deal, no activity, not stalled → ~35 · going dark 30/60/90d → below 35 · rep sent 5 emails, no replies → <35 · buyer call logged only in Next_Step_History__c → credited, no penalty · 90d+ dark, no RFP → <30 · live RFP, 40d quiet, deliverables landing → ≥45.

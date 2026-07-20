@@ -1,0 +1,88 @@
+{
+  "account": "Publicis Groupe",
+  "opp_id": "006P700000Xl06R",
+  "extract": {
+    "signals": [
+      { "type": "exec_working_call", "who": "buyer (Florence Tinsley-Roy CPO/EB, Stephen Cook, Paras Sood, Praveen Seemundun)", "date": "2026-07-08", "evidence": "Dear Florence, Praveen, Stephen, Paras, Thank you very much for the constructive call today... we will come back to you by tomorrow with our OF2 / SoW", "confidence": "high" },
+      { "type": "champion_investment", "who": "buyer (Florence Tinsley-Roy)", "date": "2026-07-08", "evidence": "Florence CPO hired one of our senior consultant who will be PM for her... She wants to sign before end of July (She is in vacation in 2 weeks)", "confidence": "high" },
+      { "type": "buyer_deliverable_redlines", "who": "buyer_process (Emeline Le Foyer)", "date": "2026-06-26", "evidence": "Please find attached our revised document... clean everything that we accepted... to get closer to executable version", "confidence": "high" },
+      { "type": "deliverable_landed_nda", "who": "buyer_process", "date": "2026-06-29", "evidence": "Completed: NDA Publicis Groupe Holdings B.V._(2023) and Zycus Infotech B.V. — All parties finished", "confidence": "high" },
+      { "type": "buyer_deliverable_functional_doc", "who": "buyer_process", "date": "2026-07-01", "evidence": "Please find attached the document completed on the functional part... Do you have availability on Friday or Monday to discuss it?", "confidence": "high" },
+      { "type": "buyer_initiated_contact", "who": "buyer (Florence Tinsley-Roy)", "date": "2026-07-06", "evidence": "Can we please move to 11am Tuesday or Wednesday? Thanks Florence", "confidence": "high" },
+      { "type": "forecast_amount_move", "who": "rep/CRM (Pierre Meraud)", "date": "2026-06-01", "evidence": "ForecastCategoryName: Best Case -> Commit; Amount 230000 -> 250000", "confidence": "high" },
+      { "type": "close_date_push", "who": "rep/CRM (Pierre Meraud)", "date": "2026-07-08", "evidence": "CloseDate: 2026-07-15 -> 2026-07-30", "confidence": "high" },
+      { "type": "process_validation_stall_easing", "who": "buyer_process (Stephen Cook, Paras Sood)", "date": "2026-06-12 -> 2026-07-08", "evidence": "sent 3 reminders asking them to schedule a WS... 0 Feedback -> both present on the 8 Jul constructive call", "confidence": "medium" },
+      { "type": "sole_source_no_competitor", "who": "internal (MEDDPICC)", "date": "2026-06-04", "evidence": "MEDDPICC 2.0: 'No competition'; no rival named in any source 11 May-8 Jul", "confidence": "medium" }
+    ],
+    "coverage": "full",
+    "top_rationale": [
+      "Vendor Selected + Commit, sole-sourced: Florence Tinsley-Roy (CPO) is the economic buyer, champion and decision-maker; MEDDPICC records the decision as already made and no competitor appears anywhere.",
+      "The deal is functionally at Contract/Negotiation, not Vendor Selected: BAFO sent 24 Jun, MSA legal clauses resolved and NDA executed 29 Jun, buyer returned redlines 26 Jun, SoW/OF1/OF2 in final review as of 8 Jul.",
+      "Strongest signal is champion investment: Florence hired the project's incoming PM (joins end-Aug) ahead of an unsigned contract and is driving the signature timeline around her own vacation.",
+      "Momentum is accelerating: the 8 Jul EB call finally pulled in the previously-stalled process validators (Stephen Cook, Paras Sood), with a stack of near-term dated milestones (9-10 Jul commercial call + Merlin demo, 13 Jul Merlin Review, 24 Jul finalization).",
+      "Only Avoma entry is a Sep-2025 dinner event (>90d, zero weight); all current-cycle facts come from the three gold-mine sources (Next Step, Next Step History, completed Task email bodies), which are complete.",
+      "Main risks are timing and thread-depth: close date pushed 15 days to 30 Jul, Florence on vacation ~2 weeks out, single-threaded on Florence for exec, and an open ~50K Merlin core-vs-option commercial point."
+    ]
+  },
+  "win": {
+    "score": 89,
+    "band": "Winning",
+    "drivers": [
+      "✅ Sole-source selection at Vendor Selected + Commit forecast — Florence (CPO/EB) has decided (MEDDPICC 'decision already done'), no competitor named in any source since 11 May.",
+      "✅ Economic buyer IS the champion and is investing ahead of signature — Florence hired the project's incoming PM and personally set the signing deadline around her own vacation.",
+      "✅ Contract mechanics in final review — BAFO 24 Jun, MSA legal clauses resolved + NDA executed 29 Jun, buyer redlines returned 26 Jun, full package (MSA/OF1/SoW) with buyer as of 8 Jul.",
+      "⚠️ Close date pushed 15 days (15→30 Jul on 8 Jul) with Florence heading into a ~2-week vacation — signing window compressed. ► Lock a firm signature date and confirm a signing delegate/authority if she is out; hold the 9-10 Jul calls.",
+      "⚠️ Process-validators (Stephen Cook, Paras Sood) only re-engaged on 8 Jul after stalling since 12 Jun — technical/process sign-off not fully closed. ► Get explicit 'no blockers' from Stephen/Paras on the 9-10 Jul commercial + demo calls.",
+      "⚠️ Business case unquantified and ~50K TCV swing open (Merlin for iContract core-vs-option). ► Quantify Florence's ROI for the year-end mandate and resolve the Merlin core-vs-option point before finalization."
+    ],
+    "focus_now": "Convert a sole-source selection into a signed contract before Florence's vacation — lock the signing date, close Stephen/Paras process sign-off on the 9-10 Jul calls, and settle the Merlin core-vs-option commercial point.",
+    "ceiling_applied": "Stage ceiling 85 crossed — §5.1 permits it (ForecastCategory=Commit AND stage ≥ Vendor Selected) and §5.5 stage-reality up-override applies (true stage Contract/Negotiation).",
+    "exception_statement": "Recorded StageName = Vendor Selected (anchor 72, cap 85), but hard paper evidence — BAFO sent 24 Jun 2026, MSA legal clauses resolved and NDA executed 29 Jun 2026, buyer returned contract redlines 26 Jun 2026, and SoW/OF1/OF2 in final review as of 8 Jul 2026 — shows the deal operating at Contract/Negotiation, scored against that higher anchor with Commit forecast. ► Advance StageName to Contract/Negotiation in Salesforce to match reality."
+  },
+  "mom": {
+    "score": 90,
+    "band": "Accelerating",
+    "drivers": [
+      "✅ EB-level working call on 8 Jul that finally pulled in the stalled process validators — Florence (CPO), Praveen, Stephen Cook and Paras Sood on one 'constructive call'; full SoW/contract package issued the same day.",
+      "✅ Dense two-way buyer deliverables in the last two weeks — buyer returned contract redlines (26 Jun), executed the NDA (29 Jun) and sent the completed functional document (1 Jul).",
+      "✅ Fresh, advancing Next Step (8 Jul, 90% confidence) with near-term dated milestones — 9 Jul commercial call, 9-10 Jul Merlin/iContract demo, 24 Jul contract finalization; 13 Jul Merlin Review already scheduled.",
+      "✅ Forecast upgraded to Commit and amount raised 230K→250K; buyer (Émeline) actively driving four OF1 iterations ('super pushy').",
+      "⚠️ Close date pushed 15 days (15→30 Jul) with Florence heading into a ~2-week vacation — tempo must convert to signature fast. ► Lock a firm signing date and a signing delegate; keep the 9-10 Jul calls on the calendar.",
+      "⚠️ Open commercial point (Merlin for iContract core-vs-option, ~50K TCV) could stall the final paper. ► Resolve the Merlin core-vs-option decision on the 9 Jul commercial call so OF1/SoW can be finalized."
+    ],
+    "focus_now": "Keep the tempo through signature — run the 9-10 Jul commercial + demo calls, resolve the Merlin core-vs-option point, and get the paper signed before Florence's vacation."
+  },
+  "todo": {
+    "prospect_requirements": [
+      { "item": "Deliver the Merlin-for-iContract demo the buyer requested", "who_asked": "Florence Tinsley-Roy / Praveen Seemundun", "date": "2026-07-08", "due": "2026-07-10" },
+      { "item": "Complete Publicis vendor compliance declaration on OneTrust (PASS self-assessment)", "who_asked": "Praveen Seemundun", "date": "2026-06-30", "due": "2026-07-11" }
+    ],
+    "zycus_commitments": [
+      { "item": "Deliver finalized OF2 / SoW package for buyer review", "committed_on": "2026-07-08", "grounding_quote": "we will come back to you by tomorrow with our OF2 / SoW", "due": "2026-07-09" },
+      { "item": "Run the commercial call with Praveen (covering for Émeline)", "committed_on": "2026-07-08", "grounding_quote": "9th of July Commercial call with Praaven (replace Émeline as she is off)", "due": "2026-07-09" },
+      { "item": "Finalization of contracts (MSA/OF1/OF2/SoW to executable)", "committed_on": "2026-07-08", "grounding_quote": "Finalizaion of contracts => 24th of July", "due": "2026-07-24" }
+    ],
+    "waiting_on_buyer": [
+      { "item": "Stephen Cook / Paras Sood process-validation sign-off (explicit 'no blockers')", "who": "Stephen Cook, Paras Sood", "needed_by": "2026-07-11" },
+      { "item": "Florence's decision on Merlin for iContract as core module vs option (~50K TCV)", "who": "Florence Tinsley-Roy", "needed_by": "2026-07-11" },
+      { "item": "Confirmation second round of legal comments / MSA cleared", "who": "Publicis Legal (via Émeline Le Foyer)", "needed_by": "2026-07-14" },
+      { "item": "Buyer review and signature on the final contractual package (MSA/OF1/OF2/SoW)", "who": "Florence Tinsley-Roy / Émeline Le Foyer / Praveen Seemundun", "needed_by": "2026-07-22" }
+    ],
+    "best_practices": [
+      { "item": "Multi-thread beyond Florence and secure a signing delegate / backup approver before her vacation", "rank_reason": "Single-threaded on Florence for exec authority and she goes on vacation ~22 Jul — the single biggest close risk in a compressed window", "due": "2026-07-15" },
+      { "item": "Lock a mutual close/signature plan running through the 30 Jul close date", "rank_reason": "Converts a Commit-forecast, sole-source selection into signed paper inside a tight, vacation-compressed window", "due": "2026-07-11" },
+      { "item": "Confirm sole-source / no late competitor entering before signature", "rank_reason": "No competitor is documented in a $250K CPO-led procurement — validate there is no last-minute bake-off before committing", "due": "2026-07-11" },
+      { "item": "Quantify the ROI / business case for Florence's year-end procurement-impact mandate", "rank_reason": "Pain is qualitative and unquantified; a hard impact statement de-risks final sign-off and the Merlin-scope decision", "due": "2026-07-14" }
+    ],
+    "suggested_realistic_close": null
+  },
+  "sum": {
+    "headline": "Zycus held a constructive close-out call on 8 Jul with CPO Florence Tinsley-Roy and the process validators (Stephen Cook, Paras Sood) and delivered the full contract package (MSA, OF1, SoW) — though the close date was pushed from 15 to 30 Jul.",
+    "supporting": [
+      "Florence has hired Zycus's incoming project manager ahead of signature and wants to sign before her end-of-July vacation; a commercial call (9 Jul) and Merlin-for-iContract demo (10 Jul) are set, with contract finalization targeted for 24 Jul.",
+      "The open commercial point is whether Merlin for iContract stays a core module or moves to an option (~50K TCV swing)."
+    ],
+    "no_change": false,
+    "as_of_note": "Reflects activity through the 8 Jul 2026 last-business-day window (today 9 Jul 2026)."
+  }
+}

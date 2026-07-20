@@ -1,0 +1,342 @@
+{
+  "record": {
+    "opp_id": "006P700000X6hvKIAR",
+    "hard": {
+      "opp_id": "006P700000X6hvKIAR",
+      "opp_name": "Domino's S2C + ANA",
+      "account_name": "DOMINO'S PIZZA ENTERPRISES LIMITED",
+      "account_industry": "Food, Bev & FMCG",
+      "billing_country": "Australia",
+      "owner_name": "Luke Dougherty",
+      "owner_title": "Regional Sales Director",
+      "manager_name": null,
+      "stage": "Formal Evaluation",
+      "forecast_category": "Pipeline",
+      "amount": 450000.0,
+      "close_date": "2026-08-28",
+      "days_to_close": 50,
+      "created_date": "2026-04-22",
+      "qualified_date": null,
+      "last_activity_date": "2026-07-08",
+      "last_modified_date": null,
+      "products": "iContract;iSource;iSave;iSupplier;iRequest;iSaaS;Merlin;iRisk;Merlin Intake;ANA",
+      "next_step": "75% confidence 06 JUL - Completed POC planning meeting with Domino's Europe team. Next step is Domino's providing data for Spend POC. Some concerns about executing POC with disparate DPE resources, will work with Jai on this.",
+      "ais_score": 8.0,
+      "ais_status": "Strong",
+      "ais_why": "Named-CPO-driven ANA POC with a defined Phase 2 extension to CLM; Jai Rastogi (Group CPO) is explicitly driving a fast evaluation with a mini POC to show quick value to internal stakeholders.",
+      "dm_identified": true,
+      "eb_identified": true,
+      "champion_identified": true,
+      "pain_identified": true,
+      "metrics_identified": true,
+      "competitor": "",
+      "primary_competitor": "",
+      "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000X6hvKIAR/view"
+    },
+    "ai": {
+      "forecast_read": {
+        "defensible": true,
+        "recommended_forecast": "Pipeline",
+        "reason": "Pipeline is the honest category for a Formal Evaluation deal whose POC has not started; the problem is the date, not the deal. The 28 Aug 2026 close cannot absorb data delivery across seven markets, normalization, POC execution, a readout, an in-principle award, and contracting. This is a healthy, engaged deal with an optimistic date: recommend moving the close date to Q4 2026.",
+        "math": "Today 9 Jul 2026; close 28 Aug 2026 = 50 days out. Created 22 Apr 2026, so about 11 weeks in Formal Evaluation (stage cadence for this tier is roughly 3 weeks, so dwell is stretched). Forward sequence still owed: buyer spend-data extracts (Danny was still checking Navision feasibility on 3 Jul), Zycus normalization and POC build, POC readout, CFO review, in-principle award (Jai's stated plan, 29 May), then paper. That is realistically 3-5 months of work against a 50-day runway."
+      },
+      "meddpicc": {
+        "metrics": {
+          "status": "partial",
+          "narrative": "Jai Rastogi (Group CPO) has clearly articulated the qualitative pain (procurement 'bodies in spreadsheets', spend analysis taking weeks to compile) and on 3 Jun 2026 he tied the initiative to the company mandate: Domino's share price has fallen from $161 to $16.68 and 'the fuel to get fit for growth and generate cash for reinvestment comes from this table.' Zycus surfaced illustrative quantified impact on the 3 Jun demo (dairy consolidation savings, automation efficiency), but none of these figures are yet Domino's-confirmed; the POC on 3 months of real indirect spend data across 7 markets is explicitly the vehicle to validate them.",
+          "sources": ["Avoma call 3 Jun 2026 (Jai: share price and cost-out mandate)", "Avoma call 29 May 2026", "Avoma call 3 Jul 2026 (POC scope: 3 months of indirect spend, 7 markets)"]
+        },
+        "economic_buyer": {
+          "status": "partial",
+          "narrative": "Lynn Carruthers (CFO) is named Executive Sponsor on the Opportunity Contact Role, so the economic buyer is identified. However, she has not personally appeared on any read call or email as of 8 Jul 2026; the finance presence so far is Danny, a finance analyst supporting data gathering (3 Jul call). Jai is building the internal ROI case on her behalf rather than her engaging directly, which is why the POC readout needs a CFO checkpoint attached to it.",
+          "sources": ["SF OpportunityContactRole (Lynn Carruthers, CFO, Executive Sponsor)", "Avoma call 3 Jul 2026 (Danny, finance analyst, on data gathering)"]
+        },
+        "decision_criteria": {
+          "status": "confirmed",
+          "narrative": "Jai laid out explicit priorities on 29 May 2026: first, spend visibility and analytics on Domino's own disparate data; second, a CLM to centralize contracts and cut leakage; with an agentic AI (Merlin) overlay throughout. The 3 Jul 2026 Europe call narrowed this into a concrete POC criterion set: iAnalyze (spend analysis) plus ANA (autonomous negotiation) proving value on 3 months of indirect spend data across 7 markets before any broader rollout, with Michael Gengenbach pressing specifics on bilateral single-supplier negotiation and Antje on multi-language supplier outreach.",
+          "sources": ["Avoma call 29 May 2026", "Avoma call 3 Jul 2026"]
+        },
+        "decision_process": {
+          "status": "partial",
+          "narrative": "The buyer's process is demo, then data-driven POC, then internal sign-off, then an 'in principal agreement to award' (Next_Step__c entry, 29 May 2026). Jai personally sequences who joins at each step: Brisbane procurement first (3 Jun), then Domino's Europe (Michael Gengenbach, Antje, Danny) delegated to lead the POC on 1 Jul. What has not been walked through is the approval chain past Jai: CFO sign-off and IT alignment (Wayne McMahon, CIO, mapped but not engaged) remain unconfirmed steps.",
+          "sources": ["SF Next_Step__c trail (29 May, 22 Jun, 6 Jul 2026)", "Jai email 1 Jul 2026 ('Michael from our European team will help lead this POC')", "Avoma call 3 Jul 2026"]
+        },
+        "paper_process": {
+          "status": "gap",
+          "narrative": "No MSA, Order Form, SOW, or InfoSec review has been discussed on any read call, which is expected and normal at Formal Evaluation ahead of a POC-driven in-principle award. The one paper artifact executed is the NDA: Kadie Skehan (DPE Procurement) drove it and returned the countersigned copy on 27 May 2026, so information exchange for the POC is cleared. Contracting mechanics will only become visible once the POC concludes.",
+          "sources": ["Kadie Skehan email 27 May 2026 (countersigned NDA)", "Avoma calls 29 May, 3 Jun, 3 Jul 2026 (absence of paper-process discussion)"]
+        },
+        "identify_pain": {
+          "status": "confirmed",
+          "narrative": "Pain is extensively and specifically articulated by Jai across calls: procurement maturity is 'exceptionally low', there is no common taxonomy across disparate ERPs, indirect spend is largely unmanaged, and there is no CLM with significant contract leakage. The 3 Jul 2026 Europe call confirmed the same pain from the market side: Michael Gengenbach described indirect spend as 'basically not really managed' with 'very messy' data, and Antje added that 12 markets run 12 different system setups, some with no ERP at all, with Germany still in D365 hypercare. Jai owns the pain and the transformation mandate.",
+          "sources": ["Avoma call 29 May 2026", "Avoma call 3 Jun 2026", "Avoma call 3 Jul 2026 (Michael, Antje verbatim)"]
+        },
+        "champion": {
+          "status": "confirmed",
+          "narrative": "Jai Rastogi (Group Chief Procurement & Supply Chain Officer, ex Thai Union) is a strong, active champion: he initiated the relationship, personally sequenced the demo and POC plan, coached his internal team ahead of stakeholder reviews, completed the S2C sizing survey himself (1 Jun 2026), and on 1 Jul 2026 delegated POC leadership to his Europe team while travelling. He said Zycus has 'a front run' with no formal market process. What developed since June: the evaluation is now multi-threaded into Europe on his initiative. What is missing: advocacy beyond Jai at CFO/CIO level, so his sponsorship still carries the whole commercial case.",
+          "sources": ["Avoma calls 29 May, 3 Jun, 3 Jul 2026", "Jai emails 1 Jun, 25 Jun, 1 Jul 2026", "SF Next_Step__c 22 Apr 2026"]
+        },
+        "competition": {
+          "status": "confirmed",
+          "narrative": "This is a sole-source evaluation: Jai stated plainly on 29 May 2026, 'I haven't gone out to market to anyone.' Coupa, SAP Ariba, and Ivalua surface only as tools Jai personally implemented in prior roles, reference points for his own expertise, not active bids at Domino's. The real threat is not a rival vendor but the do-nothing path: if the POC fails to produce a compelling proof point on Domino's messy multi-market data, the cost-out mandate gets pursued without a platform purchase and the in-principle intent never converts to an award.",
+          "sources": ["Avoma call 29 May 2026 (Jai verbatim)", "Avoma call 3 Jun 2026"]
+        }
+      },
+      "critical_signals": [
+        {"lens": "New stakeholder", "text": "Jai pulled his Domino's Europe team (Michael Gengenbach, Antje, Danny from finance) into POC scoping on 3 Jul, widening the evaluation beyond Brisbane on his own initiative.", "tone": "pos"},
+        {"lens": "Last meeting", "text": "The 3 Jul Europe session locked the POC scope to spend analysis plus autonomous negotiation on 3 months of indirect spend across 7 markets, and the Europe team asked for the follow-up materials themselves.", "tone": "pos"},
+        {"lens": "Competition", "text": "The evaluation remains sole-source: Jai said on 29 May he has not gone to market to anyone, so the fight is against inertia and a failed proof, not a rival vendor.", "tone": "pos"},
+        {"lens": "New requirement", "text": "The POC is now gated on Domino's delivering spend extracts from a fragmented estate (12 markets, some with no ERP, Germany still stabilizing D365), and Jai flagged concern on 6 Jul about disparate internal resources to execute it.", "tone": "warn"},
+        {"lens": "Commercials", "text": "Deal value was raised to $450k on 6 Jun and Jai returned the sizing survey on 1 Jun, but a 28 Aug close leaves only 50 days for a POC that has not yet received data.", "tone": "warn"}
+      ],
+      "deal_scores_evidence": {
+        "summary": "A genuinely live, sole-source, champion-led evaluation: Jai Rastogi (Group CPO) is driving demo to POC to in-principle award and has now multi-threaded the deal into Domino's Europe (3 Jul). Position is as strong as a still-evaluating deal can be, but nothing is proven yet: the POC has no data, the CFO economic buyer is untouched, and the 28 Aug close date is not credible.",
+        "ai_reasons": {
+          "win_position": [
+            {"tone": "good", "text": "Sole-source with buyer-voiced preference: Jai said on 29 May 2026 'I haven't gone out to market to anyone' and that Zycus has 'a front run', and he is personally sequencing demo, POC, and an in-principle award."},
+            {"tone": "good", "text": "The champion is a Group C-level executive actively engaged: Jai completed the sizing survey (1 Jun), hosted the POC discussion in person (9 Jun), and delegated POC leadership to his Europe team on 1 Jul while travelling."},
+            {"tone": "good", "text": "Commercial conviction is building on the Zycus side with buyer corroboration: amount raised from $200k to $450k on 6 Jun after the full-platform demo, and the buyer executed the NDA on 27 May."},
+            {"tone": "warn", "text": "The economic buyer is untested: CFO Lynn Carruthers (Executive Sponsor on the contact role) has not appeared on any call or email, so the budget case rests entirely on Jai's internal advocacy."},
+            {"tone": "warn", "text": "Nothing is proven yet: the POC has not started, no spend data has been delivered, and Jai flagged on 6 Jul that disparate DPE resources are a concern for executing it."}
+          ],
+          "deal_momentum": [
+            {"tone": "good", "text": "Real buyer sessions inside 14 days: the 3 Jul platform and POC-scoping call with Michael Gengenbach, Antje, and Danny, which Michael himself proposed the timing for on 2 Jul."},
+            {"tone": "good", "text": "Two-way buyer email is live: Michael replied twice on 1-2 Jul, and Jai delegated the POC to his EU team on 1 Jul and confirmed handover on 25 Jun."},
+            {"tone": "good", "text": "Next Step is fresh and advancing: updated 6 Jul after the POC planning session, with a clear forward gate (Domino's provides spend data)."},
+            {"tone": "warn", "text": "No dated future meeting is on the calendar; the next touch depends on the buyer returning data and Jai's feedback, both undated as of 8 Jul."}
+          ],
+          "customer_commitment": [
+            {"tone": "good", "text": "Jai committed the process himself: 'Plan for an in principal agreement to award post POC' (Next_Step__c, 29 May) and he keeps assigning his own people to move it (EU delegation, 1 Jul)."},
+            {"tone": "good", "text": "The buyer executed the NDA (countersigned 27 May, driven by Kadie Skehan in DPE procurement) and Jai returned the S2C sizing survey on 1 Jun."},
+            {"tone": "warn", "text": "The buyer's next commitment, spend-data extracts across 7 markets, is unowned and undated: Danny was still checking Navision feasibility on 3 Jul."}
+          ],
+          "deal_risk": [
+            {"tone": "warn", "text": "Close-date risk is the headline: 50 days to 28 Aug cannot absorb data delivery, normalization, POC execution, CFO review, in-principle award, and contracting; the date, not the deal, is wrong."},
+            {"tone": "warn", "text": "Execution risk on the proof itself: 12 markets with fragmented or absent ERPs and messy data, plus Jai's 6 Jul concern about disparate DPE resources, could stall the POC that the entire award hinges on."},
+            {"tone": "warn", "text": "Single-threaded at power: if Jai is distracted (he was travelling and back-to-back through late June), no CFO or CIO relationship exists to keep the initiative alive."}
+          ]
+        },
+        "factors": {}
+      },
+      "customer_preference": {
+        "level": "high",
+        "evidence": "Buyer-voiced: Jai Rastogi said on 29 May 2026 'I haven't gone out to market to anyone' and that Zycus has 'a front run'; he is running a sole-source evaluation and committed to plan for an in-principle agreement to award post POC (Next_Step__c, 29 May 2026)."
+      },
+      "business_case": {
+        "status": "partial",
+        "evidence": "The mandate is real and buyer-stated (Jai, 3 Jun 2026: cost-out is 'the fuel to get fit for growth' after the share-price fall), but the quantified value case is still Zycus-illustrated, not Domino's-confirmed; the POC on 3 months of real indirect spend data is explicitly the validation vehicle."
+      },
+      "momentum_signals": {
+        "seniority_rising": false,
+        "commercial_topics_entering": true,
+        "concrete_dates": false,
+        "customer_requested_next_meeting": true,
+        "close_plan_concretizing": false,
+        "generic_demo_only": false,
+        "competitor_praised": false
+      },
+      "deal_movement": {
+        "summary": "The deal advanced from a Brisbane demo motion into a scoped, Europe-led POC: amount was raised to $450k (6 Jun), the close was pulled in to 28 Aug (29 May), Jai delegated POC leadership to his EU team (1 Jul), and the POC scoping session with that team completed on 3 Jul. The open gate is now buyer data delivery.",
+        "items": [
+          {"change": "Rep followed up with Jai for feedback on the Europe POC session; awaiting reply", "date": "2026-07-08"},
+          {"change": "Next Step updated: POC planning meeting with Domino's Europe completed; next gate is Domino's providing spend data; Jai's resourcing concern flagged", "date": "2026-07-06"},
+          {"change": "Platform overview and POC-scoping call held with Domino's Europe team (Michael Gengenbach, Antje, Danny); templates and Anna materials shared same day", "date": "2026-07-03"},
+          {"change": "Jai assigned POC leadership to Michael Gengenbach on his European team", "date": "2026-07-01"},
+          {"change": "In-person POC discussion with Jai (meeting held, not recorded)", "date": "2026-06-09"},
+          {"change": "Amount raised from $200,000 to $450,000 by Carl Kimball", "date": "2026-06-06"},
+          {"change": "Full platform demo to Brisbane procurement team (Fran, Sarah, Kadie, Annie, Jasmine, Jai); Jai stated the cost-out mandate", "date": "2026-06-03"},
+          {"change": "Close date pulled in from 2026-10-30 to 2026-08-28", "date": "2026-05-29"},
+          {"change": "NDA countersigned by Domino's (Kadie Skehan)", "date": "2026-05-27"}
+        ]
+      },
+      "day_summary": {
+        "as_of": "2026-07-08",
+        "overall": "A quiet day on the buyer side. Luke Dougherty emailed Jai Rastogi on 8 Jul asking for his feedback on the 3 Jul POC-scoping session held with his Europe team (Michael, Antje, Danny), noting the POC templates had been provided; Jai has not yet replied. The last real buyer engagement remains the 3 Jul Europe session and Michael's emails of 1-2 Jul.",
+        "items": [
+          {"kind": "email", "name": "Follow-up to Jai on the Europe POC session", "summary": "Luke asked Jai for feedback on the 3 Jul session with Michael, Antje and Danny and confirmed the POC materials were provided; no reply yet.", "at": "2026-07-08"}
+        ]
+      },
+      "competitive_position": {
+        "summary": "Sole-source evaluation: Jai Rastogi stated on 29 May 2026, 'I haven't gone out to market to anyone,' confirming no formal competitive RFP is running. Coupa, SAP Ariba, and Ivalua are referenced only as tools Jai personally implemented in prior roles (including at Thai Union), background comparison points that lend him credibility, not active bids against Zycus here. The single strongest threat to this deal is not a rival vendor but inertia: if the POC cannot turn Domino's messy multi-market data into a tangible proof point, the cost-out mandate proceeds without a platform purchase and Jai's in-principle intent never converts into a signed award.",
+        "competitors": [
+          {"name": "Coupa", "sentiment": "neutral", "threat_level": "dormant", "status": "do_nothing", "quote": "Previous roles deployed Coupa and Ariba across organizations", "date": "2026-06-03", "source": "Avoma call 3 Jun 2026", "how_we_win": "No active evaluation exists; keep the conversation sole-source by protecting Jai's internal ROI narrative rather than running a competitive bake-off."},
+          {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "dormant", "status": "do_nothing", "quote": "Previous roles deployed Coupa and Ariba across organizations", "date": "2026-06-03", "source": "Avoma call 3 Jun 2026", "how_we_win": "Same as Coupa, a background credibility marker for Jai, not an active bid."},
+          {"name": "Ivalua", "sentiment": "neutral", "threat_level": "dormant", "status": "do_nothing", "quote": "Ivalua implemented in prior engagements", "date": "2026-06-03", "source": "Avoma call 3 Jun 2026", "how_we_win": "Same background context; no action needed beyond maintaining sole-source status."}
+        ]
+      },
+      "customer_expectations_fit": {
+        "summary": "The buyer's stated criteria map well to what was demonstrated: spend transparency on messy multi-ERP data (iAnalyze plus AutoClass normalization) and autonomous tactical negotiation (ANA) are the two POC pillars. Two expectations remain unconfirmed: multi-language supplier negotiation and bilateral single-supplier negotiation in ANA.",
+        "items": [
+          {"criterion": "Spend transparency across a fragmented 12-market estate (some markets with no ERP; Germany in D365 hypercare)", "position": "aligned", "quote": "the idea is to create transparency and then out of that define actions and initiatives... that creates value or savings", "date": "2026-07-03", "source": "Michael Gengenbach, Avoma call 3 Jul 2026"},
+          {"criterion": "Autonomous negotiation of tactical, low-value unmanaged spend", "position": "aligned", "quote": "if it's stuff that you wouldn't do manually because you just don't have the time... I see the value there for sure", "date": "2026-07-03", "source": "Michael Gengenbach, Avoma call 3 Jul 2026"},
+          {"criterion": "ANA handling bilateral negotiation with a sole, unswitchable supplier", "position": "partially aligned", "quote": "is it also possible to let the agent do a negotiation with a nonshiftable supplier?", "date": "2026-07-03", "source": "Michael Gengenbach, Avoma call 3 Jul 2026 (Zycus answered 'pretty sure it can'; not yet demonstrated)"},
+          {"criterion": "Multi-language supplier outreach (e.g. French vendors) in ANA", "position": "partially aligned", "quote": "if I have French vendors in the pool, that they get their questions done in French?", "date": "2026-07-03", "source": "Antje, Avoma call 3 Jul 2026 (Zycus to confirm language support)"}
+        ]
+      },
+      "explicit_requirements": {
+        "items": [
+          {"requirement": "Confirm ANA capability specifics raised by the Europe team: bilateral single-supplier negotiation and multi-language (French) supplier outreach", "said_by": "Michael Gengenbach and Antje (Domino's Europe)", "date": "2026-07-03", "addressed": false, "quote": "I'll need to double check on what languages we have available for Anna", "source": "Avoma call 3 Jul 2026"},
+          {"requirement": "Zycus assistance normalizing messy raw spend extracts (buyer will deliver best-available raw data from different systems, expects Zycus AI models plus validation loop to cleanse it)", "said_by": "Michael Gengenbach", "date": "2026-07-03", "addressed": true, "quote": "that will be a bit messy at times, I guess. But that's the first challenge to do something with it properly", "source": "Avoma call 3 Jul 2026 (Zycus confirmed its team does the cleansing with buyer validation)"}
+        ]
+      },
+      "implicit_requirements": {
+        "we_promised": {
+          "items": [
+            {"deliverable": "Packaged POC follow-up for the Europe team: zipped, clearly-labelled iAnalyze and Anna data templates, the POC scope deck, and screenshots of Anna's historical negotiation and opportunity conversation trails", "who": "Zycus", "grounding_quote": "I will package the templates, and I'll clearly write in the template heading the ones for iAnalyze... I'll do some of the screenshots as well for the supply negotiations", "date": "2026-07-03", "due": null, "status": "open", "source": "Shirley (Zycus solutions consultant), Avoma call 3 Jul 2026; POC materials email sent same day, Anna trail screenshots and language answer still owed"}
+          ]
+        },
+        "buyer_dependent": {
+          "items": [
+            {"deliverable": "Spend-data extracts: 3 months of indirect spend across the 7 agreed markets in (or near) the shared template format", "who": "Buyer", "grounding_quote": "we're gonna give you some instructions on what kind of data fields we're after", "date": "2026-07-03", "due": null, "status": "open", "source": "Avoma call 3 Jul 2026; Next_Step__c 6 Jul 2026 ('Next step is Domino's providing data for Spend POC')"},
+            {"deliverable": "Danny (finance) to confirm what purchase/spend data is extractable from Navision and current systems, and in what format", "who": "Buyer", "grounding_quote": "I need to check like what is available and what do we have", "date": "2026-07-03", "due": null, "status": "open", "source": "Danny, Avoma call 3 Jul 2026"},
+            {"deliverable": "Jai's feedback on the 3 Jul Europe session and a resourcing decision for POC execution across disparate DPE teams", "who": "Buyer", "grounding_quote": "Some concerns about executing POC with disparate DPE resources, will work with Jai on this", "date": "2026-07-06", "due": null, "status": "open", "source": "SF Next_Step__c 6 Jul 2026; rep follow-up email 8 Jul 2026"}
+          ]
+        }
+      },
+      "gaps": {
+        "items": [
+          {"area": "Economic buyer stance: CFO Lynn Carruthers has never appeared on a call or email; her view of the initiative and budget appetite is unknown", "quote": "", "status": "not addressed", "date": "2026-07-08", "gap_type": "knowledge", "source": "All read calls and activities 29 May - 8 Jul 2026 (absence of CFO engagement)"},
+          {"area": "Approval chain past Jai: who signs off the in-principle award and the eventual purchase (CFO, board, IT) has not been walked through", "quote": "", "status": "not addressed", "date": "2026-07-08", "gap_type": "knowledge", "source": "Avoma calls 29 May - 3 Jul 2026"},
+          {"area": "Paper process: contracting mechanics undiscussed (normal at Formal Evaluation ahead of the POC; NDA already executed 27 May)", "quote": "", "status": "acknowledged", "date": "2026-07-08", "gap_type": "knowledge", "source": "Avoma calls (absence); Kadie Skehan email 27 May 2026"}
+        ]
+      },
+      "best_practice_check": {
+        "summary": "The deal is being run well as a champion-led sole-source motion; the three levers now are converting the POC into a dated mutual plan, opening the CFO line before the readout, and hardening the Europe working thread so execution does not hinge on Jai's calendar.",
+        "flags": [
+          "Turn the POC into a dated mutual plan with Jai: named data owners per market, delivery dates, normalization window, readout date, and the in-principle decision date, and reset the close date to match it.",
+          "Engage the economic buyer before the readout: have Jai book CFO Lynn Carruthers into the POC results session so the in-principle award carries budget sign-off, not just procurement conviction.",
+          "Multi-thread deliberately: establish a standing working cadence with Michael Gengenbach and Danny in Europe so data delivery and POC execution progress while Jai travels."
+        ]
+      },
+      "stakeholder_map": {
+        "items": [
+          {"name": "Jai Rastogi", "title": "Group Chief Procurement & Supply Chain Officer", "role": "Champion", "last_contact_date": "2026-07-01", "sentiment": "highly positive, driving the process", "risk": "single primary champion; his internal ROI case is not yet CFO-validated and he is travel-stretched", "source": "SF OpportunityContactRole (Evaluator, Primary); Avoma calls 29 May, 3 Jun 2026; emails 1 Jun - 1 Jul 2026"},
+          {"name": "Lynn Carruthers", "title": "CFO", "role": "Economic Buyer", "last_contact_date": null, "sentiment": "unknown, not engaged", "risk": "no direct engagement seen on any call or email; budget sign-off unvalidated", "source": "SF OpportunityContactRole (Executive Sponsor)"},
+          {"name": "Wayne McMahon", "title": "CIO", "role": "Influencer", "last_contact_date": null, "sentiment": "unknown, not engaged", "risk": "IT alignment for eventual integration not yet tested", "source": "SF OpportunityContactRole (Influencer)"},
+          {"name": "Michael Gengenbach", "title": "", "role": "Influencer", "last_contact_date": "2026-07-03", "sentiment": "engaged and curious ('I see the value there for sure'), pragmatic about data challenges", "risk": "new to Domino's (joined Oct 2025) and new to the deal; his data-feasibility read will shape POC pace", "source": "Jai email 1 Jul 2026 (assigned to lead the POC); Avoma call 3 Jul 2026 (named speaker, self-introduced as supplier account manager supporting tenders and the indirect initiative)"},
+          {"name": "Antje", "title": "", "role": "Influencer", "last_contact_date": "2026-07-03", "sentiment": "engaged, probing (language support, negotiation parameters); cautious on data scope ('worried about the bit where you say you want to have data')", "risk": "surname unresolved in the evidence read (Hamburg-based, on Jai's global team); recommended narrowing the POC to one category, which could shrink perceived scope", "source": "SF Next_Step__c 6 Jul 2026 ('Michael, Antje and Dani'); Avoma call 3 Jul 2026 (named speaker)"},
+          {"name": "Vanessa Muller", "title": "ANZ Supply Chain Manager", "role": "Unknown", "last_contact_date": null, "sentiment": "unknown, no call evidence", "risk": "mapped contact with no observed engagement", "source": "SF OpportunityContactRole"}
+        ]
+      },
+      "champion_strength": {
+        "summary": "Jai Rastogi is a strong, proactive champion: he initiated the relationship, personally sequenced the demo and POC plan, coordinated stakeholders across finance and technology, completed the sizing survey himself (1 Jun), and delegated POC leadership to his Europe team on 1 Jul while travelling. What is still missing is a second advocate at CFO/CIO level, so his sponsorship alone carries the commercial case.",
+        "champion": "Jai Rastogi",
+        "strength": "strong",
+        "at_risk": false,
+        "source": "Avoma calls 29 May, 3 Jun, 3 Jul 2026; Jai emails 1 Jun - 1 Jul 2026"
+      },
+      "expansion_context": {"prior_closed_won": false, "prior_opp": "", "note": "Net-new logo; no sibling Closed-Won relationship to inherit."},
+      "scope_change": {
+        "direction": "expanded",
+        "from": "ANA-led fast evaluation with a mini POC ($200k, opp created 22 Apr 2026)",
+        "to": "S2C + ANA platform opportunity ($450k from 6 Jun 2026) with a two-pillar POC (iAnalyze spend analysis + ANA) across 7 markets and a stated CLM Phase 2",
+        "detail": "After the 3 Jun full-platform demo ignited the Brisbane team, Carl Kimball raised the amount from $200k to $450k on 6 Jun; the POC scope was formalized on 3 Jul as spend analysis plus autonomous negotiation on 3 months of indirect spend across EU, Asia, and Australia markets."
+      },
+      "ai_positioning_strength": {
+        "summary": "AI is the wedge of this deal, not an add-on: the opportunity exists because Jai saw Zycus's AI capabilities as the way to 'leapfrog' Domino's low procurement maturity (3 Jun), and the POC's second pillar is ANA itself. Merlin insights and agentic negotiation were the substance of both demos.",
+        "score": "strong",
+        "under_positioned": false
+      },
+      "ai_fit_signal": {
+        "summary": "A technology-forward buyer explicitly shopping for agentic AI: the CPO named ANA in his first ask (22 Apr), the POC tests an autonomous negotiation agent on live supplier scenarios, and the Europe team's questions (bilateral negotiation, language, response rates) were adoption questions, not skepticism.",
+        "tier": "AI Hungry"
+      },
+      "vulnerabilities": {
+        "items": [
+          {"category": "timeline", "detail": "50 days to the 28 Aug close versus a POC that has not received data; data delivery, normalization, execution, readout, award, and paper cannot fit. The date will slip; treat it as a date problem on a healthy deal.", "first_raised": "2026-07-06", "date": "2026-07-08", "status": "open", "source": "SF Next_Step__c 6 Jul 2026; CloseDate field (pulled to 28 Aug on 29 May)"},
+          {"category": "executive_alignment", "detail": "CFO Lynn Carruthers (Executive Sponsor) has never engaged directly; the in-principle award Jai plans requires budget sign-off that has not been socialized with her on any read evidence.", "first_raised": "2026-06-03", "date": "2026-07-08", "status": "open", "source": "SF OpportunityContactRole; absence across all read calls"},
+          {"category": "integration", "detail": "The POC depends on extracting usable spend data from a fragmented estate: 12 markets, 12 system setups, some markets with no ERP, Germany still in D365 hypercare, and Danny unsure what Navision can produce. Antje suggested narrowing to one category to keep it tractable.", "first_raised": "2026-07-03", "date": "2026-07-08", "status": "open", "source": "Avoma call 3 Jul 2026 (Antje, Danny verbatim)"},
+          {"category": "political", "detail": "Jai flagged concerns about executing the POC with disparate DPE resources (6 Jul); if internal resourcing is not resolved, the proof the award hinges on stalls through no fault of the solution.", "first_raised": "2026-07-06", "date": "2026-07-08", "status": "open", "source": "SF Next_Step__c 6 Jul 2026"}
+        ]
+      },
+      "confidence_signals": {
+        "summary": "Engagement is live and buyer-initiated where it matters: Michael proposed the 3 Jul session timing himself, the Europe team asked for follow-up materials, and Jai keeps assigning his own people to the process. No cooling signal; the open dependency is buyer data delivery.",
+        "cooling": false,
+        "items": [
+          "Michael Gengenbach requested the Friday session slot himself: 'Would it be possible tomorrow (8.30-9.30 CET, Friday 3rd)?' (email, 2 Jul 2026)",
+          "Michael asked to receive Anna's negotiation conversation trails to study in detail (Avoma call, 3 Jul 2026)",
+          "Jai delegated POC leadership to his Europe team rather than letting it wait on his travel (email, 1 Jul 2026)",
+          "Jai completed and returned the S2C sizing survey ('see completed survey', email 1 Jun 2026)"
+        ]
+      },
+      "ceo_intervention": {"needed": false},
+      "recommended_moves": {
+        "items": [
+          {"rank": 1, "action": "Get Jai to name a data owner per market and a dated delivery plan for the spend extracts.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Next Step 6 Jul flags POC resourcing concerns and data delivery is the open gate", "trigger_date": "2026-07-06", "act_by": "2026-07-16", "expected_effect": "Converts the POC from an undated intention into an executing workstream and surfaces resourcing blockers while Jai is engaged."},
+          {"rank": 2, "action": "Book a template-walkthrough working session with Michael Gengenbach and Danny on extract feasibility.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Danny said on 3 Jul he must check what Navision can produce; no session is scheduled", "trigger_date": "2026-07-03", "act_by": "2026-07-17", "expected_effect": "Keeps the Europe thread moving independently of Jai's travel and de-risks the messy-data problem before it stalls the POC."},
+          {"rank": 3, "action": "Co-author a dated mutual POC plan with Jai, including readout and in-principle decision dates.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "POC scope agreed 3 Jul but no milestone dates exist and the 28 Aug close is not credible", "trigger_date": "2026-07-03", "act_by": "2026-07-24", "expected_effect": "Makes the award path concrete, exposes the real close timeline, and gives both sides a plan to hold each other to."},
+          {"rank": 4, "action": "Ask Jai to bring CFO Lynn Carruthers into the POC readout as the budget checkpoint.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "The in-principle award requires budget sign-off and the CFO has never engaged", "trigger_date": "2026-07-03", "act_by": "2026-08-07", "expected_effect": "Puts the economic buyer inside the decision moment so the award converts to a funded purchase instead of a procurement recommendation."}
+        ]
+      }
+    },
+    "evidence_coverage": {
+      "calls_discovered": 5,
+      "calls_read": 3,
+      "calls_omitted": [
+        {"call": "Zycus Demo Alignment (2026-05-29)", "reason": "transcript body not present in the provided evidence; read via prior-sweep summary and dated quotes carried in living memory"},
+        {"call": "POC Discussion (2026-06-09, in-person with Jai)", "reason": "meeting held but not recorded; reconstructed from Next_Step__c trail and the 8/10 Jun email thread (held-but-not-recorded counts as a meeting)"}
+      ],
+      "discovery_method": "opp+account+attendee-email",
+      "salesforce_window": "last 120 days of Tasks/Events, 365 days of field history",
+      "avoma_attendees": ["Jai Rastogi", "Michael Gengenbach", "Antje (Hamburg, Jai's team)", "Danny (finance analyst)", "Fran (IT procurement team lead)", "Sarah (senior IT procurement specialist)", "Kadie Skehan", "Annie Doyle", "Jasmine (Kuala Lumpur)", "Luke Dougherty", "Shirley Islam"],
+      "gaps": ["CFO (Lynn Carruthers) stance unknown across all sources", "Approval chain past Jai not walked through", "29 May alignment call read from summary only"]
+    },
+    "analysis_confidence": "High",
+    "forecast_critical": true,
+    "swept_at": "2026-07-09"
+  },
+  "engines": {
+    "win": {
+      "score": 58,
+      "band": "In the fight",
+      "drivers": [
+        "✅ Sole-source with buyer-voiced preference: Jai (Group CPO) said 29 May 'I haven't gone out to market to anyone' and Zycus has 'a front run'; he is sequencing demo, POC, and an in-principle award himself.",
+        "✅ Strong, active C-level champion: Jai completed the sizing survey (1 Jun), hosted the in-person POC discussion (9 Jun), and delegated POC leadership to his Europe team on 1 Jul rather than letting travel stall it.",
+        "✅ Engagement is widening, not narrowing: the Europe team (Michael, Antje, Danny) joined 3 Jul, asked their own hard questions, and requested follow-up materials; amount raised to $450k on 6 Jun.",
+        "⚠️ Economic buyer untested: CFO Lynn Carruthers has never appeared on any call or email, so the budget case rests entirely on Jai. ► Have Jai book Lynn into the POC readout as the budget checkpoint.",
+        "⚠️ The proof is unearned: the POC has no data yet and Jai flagged disparate DPE resources as a concern on 6 Jul. ► Lock a named data owner per market and a dated delivery plan this week.",
+        "⚠️ The 28 Aug close (50 days out) cannot hold against POC plus award plus contracting. ► Co-author a dated mutual POC plan and reset the close date to Q4 2026."
+      ]
+    },
+    "mom": {
+      "score": 67,
+      "band": "Healthy/building",
+      "drivers": [
+        "✅ Fresh, buyer-attended working session inside 14 days: the 3 Jul platform and POC-scoping call with Domino's Europe, a slot Michael Gengenbach proposed himself on 2 Jul.",
+        "✅ Two-way buyer email is live: Michael replied twice (1-2 Jul), Jai delegated the POC to his EU team (1 Jul) and confirmed handover from travel (25 Jun).",
+        "✅ Next Step is fresh and advancing: updated 6 Jul with a completed POC planning milestone and a clear forward gate (Domino's provides spend data); close date was pulled in on 29 May.",
+        "⚠️ No dated future meeting exists; the next touch depends on Jai's feedback and buyer data, both undated as of 8 Jul. ► Book the template-walkthrough session with Michael and Danny now.",
+        "⚠️ The buyer owes the deal its next motion (7-market spend extracts) with no owner or date, and Danny is still checking Navision feasibility. ► Convert the data ask into a per-market, dated delivery plan.",
+        "⚠️ Cadence since mid-June has been rep-prompted around Jai's travel. ► Make Michael the standing EU working contact so momentum stops hinging on one calendar."
+      ]
+    },
+    "todo": {
+      "prospect_requirements": [
+        {"item": "Answer the Europe team's ANA capability questions: bilateral single-supplier negotiation and multi-language (French) supplier outreach", "who": "Zycus (Shirley Islam)", "asked_by": "Michael Gengenbach and Antje", "date_asked": "2026-07-03", "due": "2026-07-15", "status": "open"},
+        {"item": "Confirm the data-normalization support model for messy raw extracts (Zycus AI cleansing plus buyer validation loop) in the POC plan", "who": "Zycus (deal team)", "asked_by": "Michael Gengenbach", "date_asked": "2026-07-03", "due": "2026-07-24", "status": "open"}
+      ],
+      "zycus_commitments": [
+        {"item": "Complete the promised Anna follow-up pack for the Europe team: screenshots of historical negotiation and opportunity conversation trails plus the zipped, clearly-labelled iAnalyze and Anna templates (POC deck already sent 3 Jul)", "who": "Shirley Islam", "committed": "2026-07-03", "due": "2026-07-15", "status": "open"}
+      ],
+      "waiting_on_buyer": [
+        {"item": "Spend-data extracts: 3 months of indirect spend across the 7 agreed markets, per the shared template", "who": "Michael Gengenbach / Danny (finance)", "needed_by": "2026-07-31", "status": "open"},
+        {"item": "Danny's confirmation of what purchase/spend data Navision and current systems can produce, and in what format", "who": "Danny (finance analyst)", "needed_by": "2026-07-17", "status": "open"},
+        {"item": "Jai's feedback on the 3 Jul Europe session and his resourcing decision for POC execution across disparate DPE teams", "who": "Jai Rastogi", "needed_by": "2026-07-16", "status": "open"}
+      ],
+      "best_practices": [
+        {"item": "Co-author a dated mutual POC plan with Jai (data delivery, normalization, readout, in-principle decision date) and reset the close date against it", "due": "2026-07-24"},
+        {"item": "Engage the economic buyer: have Jai book CFO Lynn Carruthers into the POC readout so the in-principle award carries budget sign-off", "due": "2026-08-07"},
+        {"item": "Harden the Europe working thread: standing cadence with Michael and Danny so POC execution progresses independently of Jai's travel", "due": "2026-07-17"}
+      ],
+      "suggested_realistic_close": "2026-11-27"
+    },
+    "sum": {
+      "headline": "No change in the last 24h.",
+      "supporting": [
+        "Zycus emailed Jai on 8 Jul requesting his feedback on the 3 Jul POC-scoping session with his Europe team; awaiting his reply.",
+        "The deal's open gate is unchanged: Domino's providing spend data for the POC (Next Step, 6 Jul)."
+      ],
+      "no_change": true
+    }
+  }
+}

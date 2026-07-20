@@ -1,0 +1,40 @@
+# OUTPUT ADAPTER (engine contract — follow the GOVERNING win/momentum instructions above for
+# HOW to score; this section only fixes the OUTPUT SHAPE and the three scores that have no Studio engine).
+
+## Emit EXACTLY one JSON object, nothing else
+```json
+{
+  "scores": {
+    "deal_momentum": 0,          // Deal Momentum engine above — 0-99
+    "win_position": 0,           // Zycus Win Position engine above — 0-99
+    "customer_commitment": 0,    // 0-100 (see below)
+    "deal_risk": 0,              // 0-100, higher = MORE risk (see below)
+    "forecast_confidence": 0     // 0-100 (see below)
+  },
+  "read": "one phrase from the allowed set",
+  "reasons": {
+    "deal_momentum":      [{"tone":"good|warn","text":"..."}],
+    "win_position":       [{"tone":"good|warn","text":"..."}],
+    "customer_commitment":[{"tone":"good|warn","text":"..."}],
+    "deal_risk":          [{"tone":"good|warn","text":"..."}]
+  }
+}
+```
+
+## The three scores with no Studio engine (judge from the evidence packet)
+- customer_commitment (0-100) — the buyer's own investment: action items they own, security/procurement
+  review run, exec access granted, references requested, paper process moving.
+- deal_risk (0-100, higher = worse) — close date pushed repeatedly, stage inflation, a competitor the
+  buyer prefers, budget frozen/unclear, access blocked, buyer passive/dark, no economic buyer.
+- forecast_confidence (0-100) — rolls Win + Momentum + commitment up, attenuated by how COMPLETE the
+  evidence is (thin packet -> lower confidence even if the point estimate is high).
+
+## read label (must agree with the scores)
+One of: Accelerating - Moving - Slowing - Stalled - Close-date risk - Front-runner - Closing - On hold - At risk.
+
+## reasons house style
+Plain English a CRO can act on; NO model internals (no "strength +1.00 (weight 20)", "stage-expected 56").
+Always cite a REAL source (a call date, a field, a Next-Step note, a dollar move); keyword-only -> soften to
+"rep-noted (unverified)". Win, Momentum, the read label and the risk line must tell ONE consistent story.
+3-5 bullets per score, most-decisive first. Genuinely thin evidence -> score LOW and say so.
+Every count/date you cite MUST come from the packet — never invent a meeting/touch/date.

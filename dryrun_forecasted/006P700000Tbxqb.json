@@ -1,0 +1,2782 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Economic Buyer / Decision Maker",
+     "date": "2026-07-09",
+     "quote": "",
+     "source": "OpportunityContactRole (0 records); no call, task, or Next Step entry names an EB or DM",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Budget / commercial conversation",
+     "date": "2026-07-09",
+     "quote": "",
+     "source": "Next_Step_History__c (2026-02-17 to 2026-06-22); no budget field populated",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Competitors__c field blank",
+     "date": "2026-03-12",
+     "quote": "connect with SC team - fitment gaps too high, no longer responding to this RFP",
+     "source": "Competitors__c blank, but competitive context is known from Next_Step_History__c 2026-03-12 entry",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Opportunity Contact Roles missing",
+     "date": "2026-07-09",
+     "quote": "",
+     "source": "OpportunityContactRole (0 records) despite named contacts (Leslie McElhaney, Josh Ullrich, Gina Rendar) appearing in the 2026-02-26 call",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "gap",
+    "sources": [
+     "Avoma call 2026-02-26 (Josh Ullrich, current-workflow notes)",
+     "Next_Step_History__c (no metrics entries, 2026-02-17 to 2026-06-22)"
+    ],
+    "narrative": "No quantified business case exists. Josh Ullrich described the current state qualitatively on the 26 Feb 2026 demo call (incidents tracked via a web-based task system that emails a fixed chain and 'disappears from the flow' if replies happen outside that system; supplier and incident performance are tracked manually in Excel scorecards), but no cost, time, or risk figures have been attached to that pain, and no ROI or savings conversation has occurred at any point in the Next Step History through 2026-06-22."
+   },
+   "champion": {
+    "status": "gap",
+    "sources": [
+     "Next_Step_History__c 2026-06-04 entry",
+     "Avoma call 2026-02-26"
+    ],
+    "narrative": "No confirmed champion exists. Leslie McElhaney has been the most consistently responsive contact (she replied on 2026-06-04 confirming the RFP timeline slip and continued Zycus inclusion) but her role has been limited to RFP-logistics coordination, not internal advocacy, and there is no evidence she has championed Zycus to any unengaged senior stakeholder."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Next_Step_History__c 2026-03-12 entry",
+     "Avoma call 2026-02-26 (Josh Ullrich, Leslie McElhaney)"
+    ],
+    "narrative": "No named rival vendor has surfaced for the full S2P RFP in any source (Competitors__c is blank and no vendor was named on the one recorded call). What is known: Zycus self-withdrew from an earlier, narrower Supplier Incident Management RFP on 2026-03-12 because 'fitment gaps too high,' per Grace Kim's own Next Step note, which raises an open risk that similar gaps could resurface in the broader S2P evaluation. In the meantime, the buyer's real alternative is doing nothing differently: incidents and supplier scorecards continue to run on the existing web-task system and manual Excel sheets."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2026-02-26 (Josh Ullrich)",
+     "Next_Step__c / Next_Step_History__c 2026-02-26 entry"
+    ],
+    "narrative": "Pain is clearly articulated and specific. Josh Ullrich described on the 26 Feb 2026 call that incidents are currently reported through a web-based task system that routes to a fixed email chain, and that any reply happening outside that system's email 'kinda disappears from the flow.' Grace Kim's Next Step notes (2026-02-26) also record the buyer's interest in dynamic, store-level incident creation from a tablet/web app and in replacing manual Excel scorecards for supplier and incident performance tracking."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Next_Step_History__c (2026-02-17 to 2026-06-22)"
+    ],
+    "narrative": "No paper process has started. The deal is still pre-RFP-release at Qualified stage; there has been no mention of MSA, SOW, procurement portal, or contracting mechanics in any Next Step entry through 2026-06-22 or on the one recorded call."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "OpportunityContactRole (0 records)",
+     "Account contact list (Checkers - Rally's)",
+     "Avoma call 2026-02-26"
+    ],
+    "narrative": "No economic buyer is identified anywhere in the record. OpportunityContactRole has zero rows on this opp. Nine contacts exist at the account level (including CSCO Chris Ward, Michael Blair, Bobby Knight, Minh Le), but none has appeared in a call, a Next Step entry, or a Task for this opportunity. The most senior attendee on the one recorded call, Gina Rendar, left after roughly 17 minutes asking to see the platform directly rather than the onboarding walkthrough, and has not reappeared in any dated activity since 26 Feb 2026 (~133 days ago)."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-02-26",
+     "Carried-forward living memory (Maine Pointe oversight)"
+    ],
+    "narrative": "The buyer runs a formal RFP process via its 'Symphony' eSourcing system, with vendors down-selected post-submission for a further round of demos/presentations (stated explicitly on the 26 Feb 2026 call). Per prior sweep notes carried forward, a third-party procurement advisory firm, Maine Pointe, is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus, which limits how confidently the process can be read."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma call 2026-02-26 (Leslie McElhaney, Gina Rendar, Josh Ullrich)"
+    ],
+    "narrative": "Criteria are still forming and will formally arrive with the S2P RFP. On the 26 Feb 2026 call, Leslie McElhaney explained the RFP will ask 'what else' each vendor offers beyond incident management, because the buying committee is weighing whether to select a true end-to-end Source-to-Pay platform versus a narrower supplier-governance point solution that would then need to integrate with a separate spend-management system. Josh Ullrich and Gina Rendar also probed weighted scorecard/KPI logic (1-to-5 rubric with weighting) as a capability they want."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": "2026-02-26",
+   "meetings_60d": 0,
+   "last_rep_touch": null,
+   "last_buyer_touch": "2026-02-26",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 30,
+   "general_last_activity": "2026-06-22",
+   "days_since_buyer_touch": 132
+  },
+  "opp_trends": {
+   "close_date_trend": -0.671,
+   "close_date_trend_detail": "Close date 2026-07-14 -> 2026-08-27 (pushed out 44d)"
+  },
+  "day_summary": {
+   "as_of": "2026-06-15",
+   "items": [
+    {
+     "at": "2026-06-15",
+     "kind": "movement",
+     "name": "Close date pushed ~6 weeks",
+     "summary": "Close date moved from 2026-07-14 to 2026-08-27, a meaningful slip that signals delay on the buyer side or a timeline reset; no accompanying note explains the cause."
+    }
+   ],
+   "source": "ai",
+   "overall": "The Checkers - Rally's close date got pushed roughly six weeks, from late July to end of August. That's the only recorded activity today \u2014 no note explaining the reason, but a slip of this size usually means either a stalled internal process on their side or a re-scoping of the deal that isn't reflected yet. We're not shown as waiting on a specific deliverable, so the ball is effectively in our court to find out why and re-engage."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 88.0,
+    "win_position": 13.0,
+    "deal_momentum": 6.0,
+    "customer_commitment": 12.0,
+    "forecast_confidence": 9.0
+   },
+   "cro_panel": {
+    "intro": "Early-stage, pre-RFP-release opportunity that has cooled since a single demo in February 2026; the buyer reaffirmed continued inclusion as recently as 4 Jun 2026 but has gone quiet since, and the deal still lacks an economic buyer, a confirmed champion, or any quantified business case",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 13,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Buyer gone dark 133 days; 0 buyer touches in the 30/60/90-day windows since the 26 Feb 2026 demo. \u25ba Re-engage all three C&R contacts directly to confirm the opportunity is still live",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer identified; MEDDPICC lists EB as 'gap'; no CPO/CFO/CIO contact appears anywhere in the record for a $125k decision. \u25ba Ask current contacts to name and introduce the real budget owner before the RFP drops",
+        "tone": "warn"
+       },
+       {
+        "text": "No confirmed champion; Leslie McElhaney's role is limited to RFP-logistics coordination with no internal advocacy noted. \u25ba Coach her into an active champion role or identify a new internal sponsor",
+        "tone": "warn"
+       },
+       {
+        "text": "S2P RFP repeatedly slipped; release pushed end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is overdue as of 6/22/26 with no buyer update. \u25ba Get written confirmation of a firm date or flag the 8/27 close as at risk",
+        "tone": "warn"
+       },
+       {
+        "text": "Related RFP loss signal; Zycus withdrew from Checkers' incident-mgmt RFP on 12 Mar 2026 citing 'fitment gaps too high,' raising doubt on fit for the parallel S2P effort",
+        "tone": "warn"
+       },
+       {
+        "text": "Pain confirmed, one solid session landed; the 26 Feb 2026 demo was recorded with a full transcript and covered Merlin AI/Questgenie framing, though buyer reaction stayed passive rather than probing",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 6,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Zero buyer engagement in 90+ days; meeting counts for the 30d/60d/90d windows are all 0; the last real buyer session was the 26 Feb 2026 demo, 133 days ago. \u25ba Get a call booked this week to test whether the deal is still alive",
+        "tone": "warn"
+       },
+       {
+        "text": "One-way rep chasing; six straight Next-Step entries (3/17, 3/30, 4/13, 5/26, 6/4, 6/22) show the rep repeatedly following up with no logged buyer reply. \u25ba Escalate via a warmer or higher-level contact since this channel isn't generating response",
+        "tone": "warn"
+       },
+       {
+        "text": "RFP release slipping repeatedly; the S2P RFP timeline has moved end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is now overdue as of 6/22/26 with no update. \u25ba Get a hard release date in writing or treat this as stalled",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date pushed 44 days; 7/14/26 \u2192 8/27/26 (trend -0.671), tracking the RFP delay pattern rather than real progress",
+        "tone": "warn"
+       },
+       {
+        "text": "No future meeting on the books; forward_momentum shows no next_scheduled_meeting and 0 engagement points in the 60-day window",
+        "tone": "warn"
+       },
+       {
+        "text": "Deal not confirmed dead; Leslie's 6/4/26 response confirmed Checkers & Rally's 'will still be included' when the S2P RFP releases, keeping the door open despite the silence",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 88,
+      "title": "What could lose it",
+      "footer": null,
+      "bullets": [
+       {
+        "text": "133 days dark despite repeated rep outreach; follow-ups on 3/17, 3/30, 4/13, 5/26, 6/4 and 6/22 have gone unanswered while the RFP remains unreleased",
+        "tone": "warn"
+       },
+       {
+        "text": "No economic buyer or champion; MEDDPICC records both as 'gap,' leaving a $125k deal single-threaded to logistics-level contacts",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date already slipping in step with RFP delays; pushed 44 days (7/14\u21928/27) as the S2P RFP release itself moved Apr\u2192May\u2192Jul, suggesting 8/27 is also soft",
+        "tone": "warn"
+       },
+       {
+        "text": "Best Case forecast unsupported; no budget, EB, or paper process exists to back a 'Best Case' rating on a deal dark since February",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Follow up directly with Leslie McElhaney and Josh Ullrich referencing the passed first-week-of-July target (by 16 Jun)",
+       "Ask Josh or Leslie for a warm introduction to a senior sponsor such as Chris Ward or Michael Blair (by 16 Jun)",
+       "Send the still-outstanding prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Checkers - Rally's \u2014 Qualified \u00b7 $125K \u00b7 closes 27 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 88.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "133 days dark despite repeated rep outreach \u2014 follow-ups on 3/17, 3/30, 4/13, 5/26, 6/4 and 6/22 have gone unanswered while the RFP remains unreleased.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer or champion \u2014 MEDDPICC records both as 'gap,' leaving a $125k deal single-threaded to logistics-level contacts.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date already slipping in step with RFP delays \u2014 pushed 44 days (7/14\u21928/27) as the S2P RFP release itself moved Apr\u2192May\u2192Jul, suggesting 8/27 is also soft.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Related RFP loss signal \u2014 Zycus withdrew from Checkers' incident-mgmt RFP on 12 Mar 2026 over 'fitment gaps too high,' raising doubt about win-ability here.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Best Case forecast unsupported \u2014 no budget, EB, or paper process exists to back a 'Best Case' rating on a deal dark since February.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "133 days dark despite repeated rep outreach \u2014 follow-ups on 3/17, 3/30, 4/13, 5/26, 6/4 and 6/22 have gone unanswered while the RFP remains unreleased.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer or champion \u2014 MEDDPICC records both as 'gap,' leaving a $125k deal single-threaded to logistics-level contacts.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date already slipping in step with RFP delays \u2014 pushed 44 days (7/14\u21928/27) as the S2P RFP release itself moved Apr\u2192May\u2192Jul, suggesting 8/27 is also soft.",
+      "tone": "warn"
+     },
+     {
+      "text": "Related RFP loss signal \u2014 Zycus withdrew from Checkers' incident-mgmt RFP on 12 Mar 2026 over 'fitment gaps too high,' raising doubt about win-ability here.",
+      "tone": "warn"
+     },
+     {
+      "text": "Best Case forecast unsupported \u2014 no budget, EB, or paper process exists to back a 'Best Case' rating on a deal dark since February.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Buyer gone dark 133 days \u2014 0 buyer touches in the 30/60/90-day windows since the 26 Feb 2026 demo. \u25ba Re-engage all three C&R contacts directly to confirm the opportunity is still live.",
+      "tone": "warn"
+     },
+     {
+      "text": "No economic buyer identified \u2014 MEDDPICC lists EB as 'gap'; no CPO/CFO/CIO contact appears anywhere in the record for a $125k decision. \u25ba Ask current contacts to name and introduce the real budget owner before the RFP drops.",
+      "tone": "warn"
+     },
+     {
+      "text": "No confirmed champion \u2014 Leslie McElhaney's role is limited to RFP-logistics coordination with no internal advocacy noted. \u25ba Coach her into an active champion role or identify a new internal sponsor.",
+      "tone": "warn"
+     },
+     {
+      "text": "S2P RFP repeatedly slipped \u2014 release pushed end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is overdue as of 6/22/26 with no buyer update. \u25ba Get written confirmation of a firm date or flag the 8/27 close as at risk.",
+      "tone": "warn"
+     },
+     {
+      "text": "Related RFP loss signal \u2014 Zycus withdrew from Checkers' incident-mgmt RFP on 12 Mar 2026 citing 'fitment gaps too high,' raising doubt on fit for the parallel S2P effort.",
+      "tone": "warn"
+     },
+     {
+      "text": "Pain confirmed, one solid session landed \u2014 the 26 Feb 2026 demo was recorded with a full transcript and covered Merlin AI/Questgenie framing, though buyer reaction stayed passive rather than probing.",
+      "tone": "good"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Zero buyer engagement in 90+ days \u2014 meeting counts for the 30d/60d/90d windows are all 0; the last real buyer session was the 26 Feb 2026 demo, 133 days ago. \u25ba Get a call booked this week to test whether the deal is still alive.",
+      "tone": "warn"
+     },
+     {
+      "text": "One-way rep chasing \u2014 six straight Next-Step entries (3/17, 3/30, 4/13, 5/26, 6/4, 6/22) show the rep repeatedly following up with no logged buyer reply. \u25ba Escalate via a warmer or higher-level contact since this channel isn't generating response.",
+      "tone": "warn"
+     },
+     {
+      "text": "RFP release slipping repeatedly \u2014 the S2P RFP timeline has moved end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is now overdue as of 6/22/26 with no update. \u25ba Get a hard release date in writing or treat this as stalled.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date pushed 44 days \u2014 7/14/26 \u2192 8/27/26 (trend -0.671), tracking the RFP delay pattern rather than real progress.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting on the books \u2014 forward_momentum shows no next_scheduled_meeting and 0 engagement points in the 60-day window.",
+      "tone": "warn"
+     },
+     {
+      "text": "Deal not confirmed dead \u2014 Leslie's 6/4/26 response confirmed Checkers & Rally's 'will still be included' when the S2P RFP releases, keeping the door open despite the silence.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-initiated action anywhere \u2014 buyer_touches_30d = 0 and sfdc_email_touches_60d = 0; every logged touch originates from the rep.",
+      "tone": "warn"
+     },
+     {
+      "text": "No paper or security process started \u2014 MEDDPICC records paper_process as 'gap'; no procurement or InfoSec review appears in any source.",
+      "tone": "warn"
+     },
+     {
+      "text": "No exec sponsorship \u2014 no CPO/CFO/CIO engagement anywhere; the deal is single-threaded to two mid-level contacts including Leslie.",
+      "tone": "warn"
+     },
+     {
+      "text": "Small buyer-voiced commitment exists \u2014 Leslie confirmed on 6/4/26 that C&R 'will still be included' in the delayed S2P RFP.",
+      "tone": "good"
+     },
+     {
+      "text": "No commercials or references discussed \u2014 no budget figures, references, or paper process touch this $125k opportunity anywhere in the record.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 13.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer gone dark 133 days \u2014 0 buyer touches in the 30/60/90-day windows since the 26 Feb 2026 demo. \u25ba Re-engage all three C&R contacts directly to confirm the opportunity is still live.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No economic buyer identified \u2014 MEDDPICC lists EB as 'gap'; no CPO/CFO/CIO contact appears anywhere in the record for a $125k decision. \u25ba Ask current contacts to name and introduce the real budget owner before the RFP drops.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No confirmed champion \u2014 Leslie McElhaney's role is limited to RFP-logistics coordination with no internal advocacy noted. \u25ba Coach her into an active champion role or identify a new internal sponsor.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "S2P RFP repeatedly slipped \u2014 release pushed end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is overdue as of 6/22/26 with no buyer update. \u25ba Get written confirmation of a firm date or flag the 8/27 close as at risk.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Related RFP loss signal \u2014 Zycus withdrew from Checkers' incident-mgmt RFP on 12 Mar 2026 citing 'fitment gaps too high,' raising doubt on fit for the parallel S2P effort.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Pain confirmed, one solid session landed \u2014 the 26 Feb 2026 demo was recorded with a full transcript and covered Merlin AI/Questgenie framing, though buyer reaction stayed passive rather than probing.",
+      "points": 1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 6.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero buyer engagement in 90+ days \u2014 meeting counts for the 30d/60d/90d windows are all 0; the last real buyer session was the 26 Feb 2026 demo, 133 days ago. \u25ba Get a call booked this week to test whether the deal is still alive.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "One-way rep chasing \u2014 six straight Next-Step entries (3/17, 3/30, 4/13, 5/26, 6/4, 6/22) show the rep repeatedly following up with no logged buyer reply. \u25ba Escalate via a warmer or higher-level contact since this channel isn't generating response.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "RFP release slipping repeatedly \u2014 the S2P RFP timeline has moved end-Apr \u2192 May \u2192 early-July per the Next Step trail, and is now overdue as of 6/22/26 with no update. \u25ba Get a hard release date in writing or treat this as stalled.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date pushed 44 days \u2014 7/14/26 \u2192 8/27/26 (trend -0.671), tracking the RFP delay pattern rather than real progress.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No future meeting on the books \u2014 forward_momentum shows no next_scheduled_meeting and 0 engagement points in the 60-day window.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Deal not confirmed dead \u2014 Leslie's 6/4/26 response confirmed Checkers & Rally's 'will still be included' when the S2P RFP releases, keeping the door open despite the silence.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "The buyer has not voiced explicit enthusiasm or resistance toward AI capabilities; engagement with the AI-specific demo segments was passive rather than probing.",
+     "expectations_fit": "The buyer wants a blend of near-term supplier governance/incident management and a longer-term full Source-to-Pay suite; the 26 Feb 2026 demo covered only the former, leaving the latter unvalidated against Zycus.",
+     "north_star_verdict": null,
+     "positioning_strength": "Zycus proactively wove AI messaging throughout the 26 Feb 2026 demo (Merlin agentic AI framing, the Merlin supplier-health assistant, an AI-driven smart-onboarding/OCR extraction app, and the Questgenie AI question-builder for scorecards) e"
+    },
+    "deal": {
+     "stage": "Qualified",
+     "amount": 125000.0,
+     "opp_id": "006P700000Tbxqb",
+     "account": "Checkers - Rally's",
+     "opp_name": "Checkers - Rally's_ Opp - February '26",
+     "next_step": "6/22/26 GK: awaiting RFP release first week of July6/4/26 GK: Leslie response - S2P release pushed to beginning of Q3, we will still be included5/26/26 GK: follow up with all 3 contacts at C&R, status of SIM award and S2P RFP release4/13/26 GK: connecting with Checkers team on release date/timeline of S2P RFP3/30/26 GK: S2P RFP release end of April3/17/26 GK: followed up regarding SIM integrations and commitment to S2P rfp in following month3/12/26 GK: connect with SC team - fitment gaps too high, no longer responding to this RFP. but staying engaged with C&R for immiment S2P RFP release in 1 month. sharing integration capabilities with Supplier Incident Mgmt solutions3/2/26 GK: RFP received. beginning submission and coordinating necessary next steps2/26/26 GK: demo occurred. rfp release 3/2, plans to release full S2P rfp in May 20262/23/26 GK: prep call w/ Srishti Tuesday2/17/26 GK: scheduling pre-rfp demo for 2/26",
+     "close_date": "2026-08-27",
+     "stage_tier": "early",
+     "days_to_close": 49,
+     "forecast_category": "Best Case",
+     "next_step_history": null,
+     "last_activity_date": "2026-02-27"
+    },
+    "trends": {
+     "close_date_trend": -0.671,
+     "close_date_trend_detail": "Close date 2026-07-14 -> 2026-08-27 (pushed out 44d)"
+    },
+    "champion": "No confirmed champion. Leslie McElhaney is the most engaged contact but her role has been limited to RFP-logistics coordination; there is no evidence of internal advocacy for Zycus.",
+    "meddpicc": {
+     "metrics": "gap",
+     "champion": "gap",
+     "competition": "partial",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "partial",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-02-26",
+       "minutes": 59,
+       "subject": "Zycus Software Demo - Checkers and Rally's",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2026-02-26",
+     "next_scheduled": null,
+     "total_all_time": 1,
+     "days_since_last": 133,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No named vendor competitor has surfaced in any source (Competitors__c is blank, no Avoma call or Next_Step mentions a rival by name). The only competitive signal is Checkers' own RFP-process field noting a 'competitive vendor landscape with specialized point solutions' evaluated under strict cost/timeline criteria with third-party advisor Maine Pointe overseeing the process (SF Why_not_Zycus__c). ",
+     "competitors": [
+      {
+       "name": "Status quo (manual Excel/email process)",
+       "status": "do_nothing",
+       "threat": "medium"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to an",
+     "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark",
+     "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualif",
+     "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated",
+     "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 133
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-initiated action anywhere \u2014 buyer_touches_30d = 0 and sfdc_email_touches_60d = 0; every logged touch originates from the rep.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No paper or security process started \u2014 MEDDPICC records paper_process as 'gap'; no procurement or InfoSec review appears in any source.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No exec sponsorship \u2014 no CPO/CFO/CIO engagement anywhere; the deal is single-threaded to two mid-level contacts including Leslie.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Small buyer-voiced commitment exists \u2014 Leslie confirmed on 6/4/26 that C&R 'will still be included' in the delayed S2P RFP.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No commercials or references discussed \u2014 no budget figures, references, or paper process touch this $125k opportunity anywhere in the record.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 9.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 16
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'executive sponsor' in Next-Step/narrative",
+    "present": true,
+    "age_days": 16
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'inefficien' in Next-Step/narrative",
+    "present": true,
+    "age_days": 16
+   }
+  },
+  "scope_change": {
+   "to": "iSupplier + Merlin Intake (supplier governance/incident management + AI intake)",
+   "from": "iSupplier + Merlin Intake (supplier governance/incident management + AI intake)",
+   "detail": "The 26 Feb 2026 demo was deliberately narrowed to supplier governance/incident management (iSupplier, iRisk) after the buyer's invite scope was clarified mid-call; the full Source-to-Pay suite walkthrough requested by Gina Rendar was deferred to a follow-up that was never scheduled. Products__c still lists iSupplier;Merlin Intake, consistent with the current opp scope.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "The buyer has not voiced explicit enthusiasm or resistance toward AI capabilities; engagement with the AI-specific demo segments was passive rather than probing."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "No ROI, cost, or budget figures discussed in any Next Step entry (2026-02-17 to 2026-06-22) or on the 2026-02-26 call; pain is described qualitatively only."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-02-26",
+     "change": "Demo delivered (narrowed to incident management/onboarding); buyer confirmed RFP would release 2026-03-02, with a full S2P RFP planned for May 2026"
+    },
+    {
+     "date": "2026-03-02",
+     "change": "Supplier Incident Management RFP received"
+    },
+    {
+     "date": "2026-03-12",
+     "change": "Zycus self-withdrew from the Supplier Incident Management RFP ('fitment gaps too high'); stayed engaged with account for the imminent S2P RFP"
+    },
+    {
+     "date": "2026-03-17",
+     "change": "Rep followed up on SIM integrations and S2P RFP commitment"
+    },
+    {
+     "date": "2026-03-30",
+     "change": "S2P RFP release pushed to end of April 2026"
+    },
+    {
+     "date": "2026-04-13",
+     "change": "Rep checked in on S2P RFP release timeline"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "Rep followed up with all three known contacts on SIM award status and S2P RFP release"
+    },
+    {
+     "date": "2026-06-04",
+     "change": "Leslie McElhaney confirmed S2P RFP release pushed to start of Q3; Zycus remains included"
+    },
+    {
+     "date": "2026-06-22",
+     "change": "Rep followed up again; now awaiting RFP release stated for first week of July"
+    }
+   ],
+   "summary": "The deal has moved through a demo and an RFP-receipt milestone in Feb\u2013Mar 2026, then stalled in a repeating cycle of buyer-side RFP delays (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) with no stage advancement since creation on 2026-02-11."
+  },
+  "forecast_read": {
+   "math": "Created 2026-02-11 (~148 days ago). Days to close: 49 (close 2026-08-27). Time in Qualified stage: ~148 days with no stage advancement since creation. Last confirmed buyer reply: 2026-06-04 (35 days ago). Last rep outreach: 2026-06-22 (17 days ago, unanswered).",
+   "reason": "Best Case is not supported by the evidence: the deal is Qualified stage, still pre-RFP-release (the full S2P RFP itself has not yet reached Zycus after four stated slips), single-threaded to two mid-level contacts, with no economic buyer, no budget conversation, and a close date (27 Aug 2026, 49 days out) that assumes RFP issuance, response, evaluation, down-select and contracting can all complete in under seven weeks.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iSupplier;Merlin Intake"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Leslie McElhaney",
+     "risk": "title unconfirmed in Salesforce; no demonstrated internal advocacy",
+     "role": "Coach",
+     "title": null,
+     "sentiment": "cooperative, coordinating RFP logistics",
+     "last_contact_date": "2026-06-04"
+    },
+    {
+     "name": "josh ullrich",
+     "risk": "No direct contact recorded since the 26 Feb 2026 demo",
+     "role": "Influencer",
+     "title": "Supply Chain Manager",
+     "sentiment": "engaged during the demo, described pain in detail",
+     "last_contact_date": "2026-02-26"
+    },
+    {
+     "name": "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+     "risk": "Sole responsive contact; role limited to RFP logistics, not confirmed as a champion",
+     "role": "Unknown",
+     "title": "",
+     "sentiment": "cooperative, process-focused",
+     "last_contact_date": "2026-06-04"
+    },
+    {
+     "name": "gina rendar",
+     "risk": "Most senior attendee identified; left the call early and has not reappeared in over four months",
+     "role": "Unknown",
+     "title": "",
+     "sentiment": "impatient with generic demo format; curious about the full suite from a prior introduction to Zycus",
+     "last_contact_date": "2026-02-26"
+    },
+    {
+     "name": "chris ward",
+     "risk": "Listed as an account-level contact; no confirmed engagement on this opportunity",
+     "role": "Unknown",
+     "title": "Chief Supply Chain Officer",
+     "sentiment": "",
+     "last_contact_date": ""
+    },
+    {
+     "name": "michael blair",
+     "risk": "Candidate economic buyer by title; no confirmed engagement on this opportunity",
+     "role": "Unknown",
+     "title": "Chief Financial & Strategy Officer",
+     "sentiment": "",
+     "last_contact_date": ""
+    },
+    {
+     "name": "minh le",
+     "risk": "Candidate for InfoSec/technical alignment later; no confirmed engagement on this opportunity",
+     "role": "Unknown",
+     "title": "Chief Information Officer",
+     "sentiment": "",
+     "last_contact_date": ""
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to another vendor or been shelved",
+     "status": "critical",
+     "category": "ghost_risk",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-02-27",
+     "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark",
+     "status": "critical",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualified deal",
+     "status": "critical",
+     "category": "timeline",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-03-30",
+     "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+    },
+    {
+     "date": "2026-03-12",
+     "change": "updated",
+     "detail": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-03-12",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    },
+    {
+     "date": "2026-07-06",
+     "change": "carried",
+     "detail": "Single-threaded to two contacts (Leslie McElhaney, Josh Ullrich) who have ghosted; no champion, no multi-thread, no senior stakeholder access",
+     "status": "critical",
+     "category": "other",
+     "first_seen": "2026-07-07T05:27:59.360779+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "No economic buyer or decision maker identified; RFP field references unnamed 'executive sponsorship' with no confirmed C-level engagement on this opp.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "first_raised": "2026-02-11",
+     "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+    },
+    {
+     "date": "2026-06-22",
+     "change": "carried",
+     "detail": "S2P RFP release has slipped three times (end of April -> May -> start of Q3) and is now overdue against the last-stated 'first week of July' target.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "first_raised": "2026-03-30",
+     "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "carried",
+     "detail": "No budget owner, approval process, or commercial conversation has occurred; Who_will_approve_budget__c and X10a_Sponsor__c are blank",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "first_raised": "prior sweep",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "updated",
+     "detail": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "first_raised": "prior sweep",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    },
+    {
+     "date": "2026-03-12",
+     "change": "carried",
+     "detail": "Zycus self-withdrew from the first-phase Supplier Incident Management RFP on 12 Mar 2026 citing fitment gaps; unresolved risk that similar gaps could surface in the S2P evaluation.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "first_raised": "2026-03-12",
+     "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No economic buyer or decision maker identified",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T20:01:20.284954+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    },
+    {
+     "date": "2026-06-22",
+     "change": "new",
+     "detail": "S2P RFP release has now slipped at least four times (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) and remains unreleased as of 2026-07-09, days past the last stated target",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T20:01:20.284954+05:30",
+     "first_raised": "2026-03-30",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Close date 27 Aug 2026 is unattainable from a cold, Qualified-stage, pre-RFP-release deal",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T20:01:20.284954+05:30",
+     "first_raised": "2026-07-09",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 6.0,
+   "win": 13.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Competition",
+    "text": "Zycus pulled itself out of the buyer's first, narrower RFP on 12 Mar 2026 because of fitment gaps, a self-inflicted vulnerability that could resurface once the fuller evaluation arrives.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Last meeting",
+    "text": "The only call to date, on 26 Feb 2026, was deliberately narrowed to incident management after the buyer's most senior attendee said she didn't want the general walkthrough and left the call early asking to be looped in directly instead.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "No economic buyer or decision maker has engaged in nearly five months; the deal still runs through two mid-level contacts, one of whom (Leslie McElhaney) is coordinating logistics rather than championing Zycus internally.",
+    "tone": "crit"
+   },
+   {
+    "lens": "Commercials",
+    "text": "The buyer's own RFP timeline has now slipped past 'end of April,' 'May,' 'start of Q3,' and most recently 'first week of July' without release, and the account has gone quiet since confirming that last slip on 4 Jun 2026.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": true,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Next_Step_History__c 2026-06-04 entry; Avoma call 2026-02-26",
+   "at_risk": true,
+   "summary": "No confirmed champion. Leslie McElhaney is the most engaged contact but her role has been limited to RFP-logistics coordination; there is no evidence of internal advocacy for Zycus.",
+   "champion": "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+   "strength": "none"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Follow up directly with Leslie McElhaney and Josh Ullrich referencing the passed first-week-of-July target",
+     "horizon": "next_7_days",
+     "trigger": "17 days unanswered since 2026-06-22 outreach",
+     "trigger_date": "2026-06-22",
+     "expected_effect": "Re-establish two-way contact and get a firm, current release date for the S2P RFP"
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Ask Josh or Leslie for a warm introduction to a senior sponsor such as Chris Ward or Michael Blair",
+     "horizon": "next_7_days",
+     "trigger": "Zero economic buyer engagement after nearly 5 months",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Begin multi-threading and surface a real economic buyer before the RFP lands"
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Send the still-outstanding prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+     "horizon": "next_14_days",
+     "trigger": "Open commitment from 2026-02-26, undelivered as of this sweep",
+     "trigger_date": "2026-02-26",
+     "expected_effect": "Close out an overdue Zycus commitment and re-engage Gina Rendar, the most senior known attendee"
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Propose a firm date for the deferred full-suite follow-up demo with Gina Rendar",
+     "horizon": "next_14_days",
+     "trigger": "Follow-up demo discussed but never scheduled since 2026-02-26",
+     "trigger_date": "2026-02-26",
+     "expected_effect": "Re-open the senior-stakeholder relationship and validate full-suite fit ahead of the S2P RFP"
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Set an internal checkpoint to reassess deal viability if the S2P RFP still hasn't released",
+     "horizon": "next_30_days",
+     "trigger": "Fourth consecutive RFP-release slip with no confirmed new date",
+     "trigger_date": "2026-06-22",
+     "expected_effect": "Avoid carrying an unrealistic Best Case forecast into August without a credible path to close"
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Buyer reply 2026-06-04 (35 days ago)",
+    "Rep follow-up 2026-06-22 unanswered (17 days)",
+    "One buyer meeting on record since 2026-02-26 (~133 days ago)"
+   ],
+   "cooling": true,
+   "summary": "The account confirmed continued inclusion as recently as 2026-06-04 (35 days ago), but has not replied to the rep's 2026-06-22 follow-up (17 days unanswered as of this sweep); combined with a single demo in over four months, the deal is cooling rather than dead."
+  },
+  "north_star_verdict": {
+   "math": "146 days at Qualified since creation (11 Feb 2026), no stage advance. Close date has slipped twice: 25 May 2026 -> 14 Jul 2026 (+50 days, moved 11 May 2026) -> 27 Aug 2026 (+44 days, moved 15 Jun 2026), a combined 94-day slip from the earliest recorded target. Last confirmed two-way buyer exchange was 4 Jun 2026 (33 days ago); the most recent rep follow-up (22 Jun 2026, 15 days ago) awaiting the 'first week of July' RFP release has gone unanswered. 51 days remain to the current 27 Aug close date, and the RFP that would trigger real evaluation has still not been confirmed released.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "OpportunityFieldHistory: CloseDate 2026-05-25 -> 2026-07-14 (11 May 2026), then -> 2026-08-27 (15 Jun 2026)",
+    "Next_Step_History__c 2026-06-04: 'Leslie response - S2P release pushed to beginning of Q3, we will still be included'",
+    "Next_Step_History__c 2026-06-22: 'awaiting RFP release first week of July' (no further update logged as of 7 Jul 2026)",
+    "OpportunityFieldHistory: StageName Initial Interest -> Qualified same day as creation (11 Feb 2026), no subsequent stage movement"
+   ],
+   "headline": "Zycus is single-threaded to two operational Checkers contacts awaiting a Source-to-Pay RFP that has slipped three times and is now overdue past its last-stated window, with no economic buyer or champion in place.",
+   "trajectory": "stronger",
+   "prior_verdict": "Off Track",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Pipeline (RFP not yet confirmed released, 0 contact roles, no EB or champion identified; Best Case is not supportable at Qualified stage 51 days out)"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Re-engage the buyer directly by phone (not email) \u2014 the deal has been silent for 129 days and the RFP is a week overdue; if no reply in 5 business days, disqualify or move to nurture.",
+    "Single-threaded to two operational contacts (Josh Ullrich, Leslie McElhaney) plus once-mentioned Gina Rendar four-plus months after the last meeting; add Contact Roles and open a path to Chris Ward (CSCO), Michael Blair (Strategy Officer), or Minh Le before the S2P RFP lands.",
+    "Quantify the business case \u2014 the buyer described operational pain (lost incident emails, manual Excel tracking) but never stated the cost, FTE burden, or savings; build the ROI to justify the $125k investment.",
+    "Zycus self-withdrew from the SIM RFP on 12 Mar 2026 citing fitment gaps; pre-brief Josh or Leslie on how the full-suite scope resolves those gaps so Zycus isn't pre-judged as a fit risk again in the S2P round.",
+    "A third-party advisory firm (Maine Pointe) is running a structured cost/timeline scoring process; get the actual evaluation criteria directly from Josh or Leslie so Zycus's S2P submission is built to the real rubric, not written blind after release.",
+    "Confirm or build a real champion: Leslie McElhaney has only played an RFP-coordination role to date; test her willingness to advocate internally, or identify an alternate advocate given Gina Rendar's early exit from the one demo held.",
+    "Re-engage now that the 'first week of July' release target has passed without confirmation, referencing the pattern of four prior slips, to avoid losing visibility before the RFP even reaches Zycus."
+   ],
+   "summary": "The highest-leverage moves are multi-threading to a genuine economic buyer and re-establishing a live response after 35 days of buyer silence, ahead of the still-unreleased S2P RFP."
+  },
+  "customer_preference": {
+   "level": "low",
+   "evidence": "Leslie McElhaney confirmed on 2026-06-04 that Zycus 'will still be included' in the S2P RFP, but no explicit preference for Zycus over any alternative has been voiced, and Zycus already self-withdrew from a related RFP on 2026-03-12 over fitment concerns."
+  },
+  "competitive_position": {
+   "summary": "No named vendor competitor has surfaced in any source (Competitors__c is blank, no Avoma call or Next_Step mentions a rival by name). The only competitive signal is Checkers' own RFP-process field noting a 'competitive vendor landscape with specialized point solutions' evaluated under strict cost/timeline criteria with third-party advisor Maine Pointe overseeing the process (SF Why_not_Zycus__c). Zycus itself self-eliminated from the first-phase Supplier Incident Management RFP on 12 Mar 2026, citing 'fitment gaps too high' (Next_Step__c), while remaining engaged for the larger Source-to-Pay suite RFP expected in Q3 2026. The strongest current threat is Zycus's own unresolved fit gap from the SIM round, plus the buyer's status-quo manual/Excel process, which could persist as a 'do nothing' outcome if the S2P RFP keeps slipping.",
+   "competitors": [
+    {
+     "date": "2026-02-26",
+     "name": "Status quo (manual Excel/email process)",
+     "quote": "Currently, it's ... like a web based ... task management system. So they'll go in there, they'll create their ticket, and then it creates an email that goes to a predefined chain of people ... if the communication goes off of that specific system generated email, it kinda disappears from the flow.",
+     "change": "carried",
+     "source": "Avoma call 2026-02-26 (Josh Ullrich)",
+     "status": "do_nothing",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T09:48:47.435083+05:30",
+     "how_we_win": "Keep the pain concrete (lost communications, manual Excel scorecards) tied to the dynamic routing and scorecard-building capability shown in the demo, and press for a decision date so the status quo doesn't simply persist by default while the RFP keeps slipping.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Early-stage, pre-RFP-release opportunity that has cooled since a single demo in February 2026; the buyer reaffirmed continued inclusion as recently as 4 Jun 2026 but has gone quiet since, and the deal still lacks an economic buyer, a confirmed champion, or any quantified business case.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date of 27 Aug 2026 (49 days from today) is not credible for a Qualified-stage deal that hasn't yet received the RFP it's waiting on, let alone submitted, been shortlisted, or engaged an economic buyer.",
+      "tone": "warn"
+     },
+     {
+      "text": "A third-party procurement advisory firm, Maine Pointe, is understood to be overseeing the RFP evaluation; its scoring weightings and any vendor preferences are unknown to Zycus, adding evaluation risk outside Zycus's control.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Buyer confirmed continued inclusion \u2014 Leslie McElhaney told Grace Kim on 4 Jun 2026 that the S2P RFP release had been pushed to the start of Q3 but that Zycus 'will still be included,' the most recent direct signal Zycus hasn't been dropped.",
+      "tone": "good"
+     },
+     {
+      "text": "No economic buyer or decision maker identified \u2014 none of the nine known Checkers & Rally's contacts, including CSCO Chris Ward, CFO Michael Blair, and CIO Minh Le, has a logged contact role or any recorded involvement on this opportunity.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zycus already withdrew once \u2014 the 12 Mar 2026 Next Step note records Zycus stepping back from the Supplier Incident Management RFP for 'fitment gaps too high,' an unresolved risk for the fuller S2P evaluation.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded and cooling \u2014 the only senior attendee, Gina Rendar, left the 26 Feb 2026 demo early wanting a more direct look and hasn't reappeared since; Leslie McElhaney and Josh Ullrich remain the sole active contacts.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "RFP release has slipped at least four times \u2014 from end of April (30 Mar note), to May (12/17 Mar notes), to start of Q3 (4 Jun note), to 'first week of July' (22 Jun note), and as of 9 Jul 2026 that date has passed with no release or reply.",
+      "tone": "warn"
+     },
+     {
+      "text": "No buyer-initiated contact in 35 days \u2014 the last buyer reply was Leslie McElhaney's 4 Jun 2026 message; Grace Kim's 22 Jun 2026 follow-up to all three known contacts has gone unanswered for 17 days as of today.",
+      "tone": "warn"
+     },
+     {
+      "text": "Only one buyer meeting in over four months \u2014 the sole demo was held 26 Feb 2026 (~133 days ago) and was deliberately narrowed to incident management; the promised full-suite follow-up demo for Gina Rendar was never scheduled.",
+      "tone": "warn"
+     },
+     {
+      "text": "The relationship hasn't gone fully silent \u2014 Leslie McElhaney's 4 Jun 2026 message shows the account is still tracking Zycus internally even as its own RFP timeline slips.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No commercial, budget, or approval-process conversation has occurred at any point in the Next Step History (2026-02-17 through 2026-06-22), consistent with a pre-RFP, pre-qualification deal.",
+      "tone": "warn"
+     },
+     {
+      "text": "The one clear buyer ask \u2014 Gina Rendar's request for a prerecorded full end-to-end S2P suite video, made 26 Feb 2026 \u2014 has no confirmed delivery on record over four months later.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-02-26",
+     "quote": "That would be wonderful if you could send that ... that video would be wonderful ... what your full end to end system looks like.",
+     "said_by": "gina rendar / leslie mcelhaney",
+     "addressed": false,
+     "requirement": "Send pre-recorded demo video of full end-to-end S2P suite to Leslie McElhaney and Gina Rendar"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": []
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-07-07",
+      "who": "Buyer",
+      "date": "2026-06-22",
+      "source": "Next_Step__c / Next_Step_History__c",
+      "status": "overdue",
+      "group_key": "full_pay_release",
+      "commitment": "Release the full Source-to-Pay RFP to Zycus",
+      "deliverable": "Release the full Source-to-Pay RFP to Zycus",
+      "grounding_quote": "6/22/26 GK: awaiting RFP release first week of July",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-05-26",
+      "source": "Next_Step_History__c 2026-05-26 entry",
+      "status": "open",
+      "group_key": "award_incident_management",
+      "commitment": "Confirm outcome/status of the Supplier Incident Management RFP award",
+      "deliverable": "Confirm outcome/status of the Supplier Incident Management RFP award",
+      "grounding_quote": "5/26/26 GK: follow up with all 3 contacts at C&R, status of SIM award and S2P RFP release",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "moderate",
+   "summary": "Zycus proactively wove AI messaging throughout the 26 Feb 2026 demo (Merlin agentic AI framing, the Merlin supplier-health assistant, an AI-driven smart-onboarding/OCR extraction app, and the Questgenie AI question-builder for scorecards) even though the buyer did not ask AI-specific questions.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-02-26",
+     "quote": "we are prepping the next phase is to look at a full spend management suite ... source to pay, procure to pay",
+     "source": "Avoma call 2026-02-26 (Leslie McElhaney)",
+     "position": "partially aligned",
+     "criterion": "End-to-end Source-to-Pay suite (upstream + downstream)"
+    },
+    {
+     "date": "2026-02-26",
+     "quote": "Completely dynamic. So one thing that Zycus does ... is that we do provide dynamic workflows and routing logic",
+     "source": "Avoma call 2026-02-26 (the Zycus solutions consultant)",
+     "position": "aligned",
+     "criterion": "Dynamic, store-level incident creation and routing"
+    },
+    {
+     "date": "2026-02-26",
+     "quote": "Taking those KPIs, translating them ... into a scorecard of that type, is that something that you have the option to build as well?",
+     "source": "Avoma call 2026-02-26 (Leslie McElhaney)",
+     "position": "aligned",
+     "criterion": "Weighted KPI/scorecard rubric (1-5 scale) for supplier performance"
+    }
+   ],
+   "summary": "The buyer wants a blend of near-term supplier governance/incident management and a longer-term full Source-to-Pay suite; the 26 Feb 2026 demo covered only the former, leaving the latter unvalidated against Zycus."
+  }
+ },
+ "hard": {
+  "stage": "Qualified",
+  "amount": 125000.0,
+  "opp_id": "006P700000TbxqbIAB",
+  "ais_why": null,
+  "sf_link": "https://checkers.lightning.force.com/lightning/r/Opportunity/006P700000TbxqbIAB/view",
+  "opp_name": "Checkers - Rally's_ Opp - February '26",
+  "owner_id": "005P7000004sMvhIAE",
+  "products": "iSupplier;Merlin Intake",
+  "ais_score": null,
+  "next_step": "6/22/26 GK: awaiting RFP release first week of July6/4/26 GK: Leslie response - S2P release pushed to beginning of Q3, we will still be included5/26/26 GK: follow up with all 3 contacts at C&amp;R, status of SIM award and S2P RFP release4/13/26 GK: connecting with Checkers team on release date/timeline of S2P RFP3/30/26 GK: S2P RFP release end of April3/17/26 GK: followed up regarding SIM integrations and commitment to S2P rfp in following month3/12/26 GK: connect with SC team - fitment gaps too high, no longer responding to this RFP. but staying engaged with C&amp;R for immiment S2P RFP release in 1 month. sharing integration capabilities with Supplier Incident Mgmt solutions3/2/26 GK: RFP received. beginning submission and coordinating necessary next steps2/26/26 GK: demo occurred. rfp release 3/2, plans to release full S2P rfp in May 20262/23/26 GK: prep call w/ Srishti Tuesday2/17/26 GK: scheduling pre-rfp demo for 2/26",
+  "ais_status": null,
+  "close_date": "2026-08-27",
+  "competitor": null,
+  "owner_name": "Grace Kim",
+  "owner_title": "",
+  "account_name": "Checkers - Rally's",
+  "created_date": "2026-02-11",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 49,
+  "dm_identified": false,
+  "eb_identified": false,
+  "qualified_date": "2026-02-11",
+  "billing_country": "United States",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Best Case",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-02-27",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": false,
+  "primary_competitor": "Status quo (manual Excel/email process)",
+  "account_name_source": "Account.Name",
+  "champion_identified": false,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Qualified",
+  "state": "cooling",
+  "summary": "Cooling: last verified activity 132 day(s) ago (2026-02-27). Rep outreach 2026-06-22 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 1,
+  "close_date": "2026-08-27",
+  "rep_outreach": {
+   "date": "2026-06-22",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "6/22/26 GK: awaiting RFP release first week of July6/4/26 GK: Leslie response - S2P release pushed to beginning of Q3, we will still be included5/26/26 GK: follow up with all 3 contacts at C&amp;R, status of SIM award and S2P RFP release4/13/26 GK: connecting with Checkers team on release date/timel",
+   "detected": true
+  },
+  "days_to_close": 49,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Best Case",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-02-27",
+  "days_since_activity": 132,
+  "next_scheduled_date": null,
+  "days_since_qualified": 148,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Send prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar - overdue",
+   "key": "commitment:zycus-send-prerecorded-full-s2p-suite-demo-video-to-leslie-m",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar"
+  },
+  {
+   "to": "Release the full Source-to-Pay RFP to Zycus - overdue",
+   "key": "commitment:buyer-release-the-full-source-to-pay-rfp-to-zycus",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Release the full Source-to-Pay RFP to Zycus - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release the full Source-to-Pay RFP to Zycus"
+  },
+  {
+   "to": "Confirm outcome/status of the Supplier Incident Management RFP award - open",
+   "key": "commitment:buyer-confirm-outcome-status-of-the-supplier-incident-manage",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Confirm outcome/status of the Supplier Incident Management RFP award - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm outcome/status of the Supplier Incident Management RFP award"
+  },
+  {
+   "to": "leslie mcelhaney (unconfirmed champion; rfp coordination only) - Unknown",
+   "key": "stakeholder:leslie-mcelhaney-unconfirmed-champion-rfp-coordination-only",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "leslie mcelhaney (unconfirmed champion; rfp coordination only)"
+  },
+  {
+   "to": "josh ullrich - Influencer",
+   "key": "stakeholder:josh-ullrich",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Josh Ullrich - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josh Ullrich"
+  },
+  {
+   "to": "gina rendar - Unknown",
+   "key": "stakeholder:gina-rendar",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Gina Rendar - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Gina Rendar"
+  },
+  {
+   "to": "chris ward - Unknown",
+   "key": "stakeholder:chris-ward",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Chris Ward - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Ward"
+  },
+  {
+   "to": "michael blair - Unknown",
+   "key": "stakeholder:michael-blair",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Michael Blair - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Michael Blair"
+  },
+  {
+   "to": "minh le - Unknown",
+   "key": "stakeholder:minh-le",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Minh Le - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Minh Le"
+  },
+  {
+   "to": "No economic buyer or decision maker identified - open",
+   "key": "risk:no-economic-buyer-or-decision-maker-identified",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or decision maker identified"
+  },
+  {
+   "to": "S2P RFP release has now slipped at least four times (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) and remains unreleased as of 2026-07-09, days past t",
+   "key": "risk:s2p-rfp-release-has-now-slipped-at-least-four-times-end-of-a",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "S2P RFP release has now slipped at least four times (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) and remains unreleased as of 2026-07-09, days past the last stated target"
+  },
+  {
+   "to": "Close date 27 Aug 2026 is unattainable from a cold, Qualified-stage, pre-RFP-release deal - open",
+   "key": "risk:close-date-27-aug-2026-is-unattainable-from-a-cold-qualified",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date 27 Aug 2026 is unattainable from a cold, Qualified-stage, pre-RFP-release deal"
+  },
+  {
+   "to": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need - open",
+   "key": "risk:zycus-withdrew-from-incident-mgmt-rfp-on-12-mar-due-to-fitme",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need - acknowledged",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need"
+  },
+  {
+   "to": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus -",
+   "key": "risk:third-party-procurement-advisory-firm-maine-pointe-is-formal",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "from": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus. ",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus."
+  },
+  {
+   "to": "Multi-thread beyond Leslie McElhaney and Josh Ullrich by asking for a warm introduction to a senior sponsor (e.g. CSCO Chris Ward or CFO Michael Blair) before t",
+   "key": "hygiene:multi-thread-beyond-leslie-mcelhaney-and-josh-ullrich-by-ask",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread beyond Leslie McElhaney and Josh Ullrich by asking for a warm introduction to a senior sponsor (e.g. CSCO Chris Ward or CFO Michael Blair) before the S2P RFP lands, and log the resulting contact roles in Salesforce (currently zero on this opp)."
+  },
+  {
+   "to": "Confirm or build a real champion: Leslie McElhaney has only played an RFP-coordination role to date; test her willingness to advocate internally, or identify an",
+   "key": "hygiene:confirm-or-build-a-real-champion-leslie-mcelhaney-has-only-p",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm or build a real champion: Leslie McElhaney has only played an RFP-coordination role to date; test her willingness to advocate internally, or identify an alternate advocate given Gina Rendar's early exit from the one demo held."
+  },
+  {
+   "to": "Re-engage now that the 'first week of July' release target has passed without confirmation, referencing the pattern of four prior slips, to avoid losing visibil",
+   "key": "hygiene:re-engage-now-that-the-first-week-of-july-release-target-has",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage now that the 'first week of July' release target has passed without confirmation, referencing the pattern of four prior slips, to avoid losing visibility before the RFP even reaches Zycus."
+  },
+  {
+   "to": "leslie mcelhaney (unconfirmed champion; rfp coordination only) - none",
+   "key": "champion:champion",
+   "date": "2026-07-09T20:01:20.284954+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Release the full Source-to-Pay RFP to Zycus - overdue",
+   "key": "commitment:buyer-release-the-full-source-to-pay-rfp-to-zycus",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release the full Source-to-Pay RFP to Zycus"
+  },
+  {
+   "to": "Confirm outcome/status of the Supplier Incident Management RFP award - open",
+   "key": "commitment:buyer-confirm-outcome-status-of-the-supplier-incident-manage",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm outcome/status of the Supplier Incident Management RFP award"
+  },
+  {
+   "to": "Josh Ullrich - Influencer",
+   "key": "stakeholder:josh-ullrich",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "from": "Josh Ullrich - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josh Ullrich"
+  },
+  {
+   "to": "Leslie McElhaney - Coach",
+   "key": "stakeholder:leslie-mcelhaney",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "from": "Leslie McElhaney - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Leslie McElhaney"
+  },
+  {
+   "to": "Gina Rendar - Influencer",
+   "key": "stakeholder:gina-rendar",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Gina Rendar"
+  },
+  {
+   "to": "Chris Ward - Unknown",
+   "key": "stakeholder:chris-ward",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "from": "Chris Ward - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Ward"
+  },
+  {
+   "to": "Michael Blair - Unknown",
+   "key": "stakeholder:michael-blair",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "from": "Michael Blair - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Michael Blair"
+  },
+  {
+   "to": "Minh Le - Unknown",
+   "key": "stakeholder:minh-le",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "from": "Minh Le - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Minh Le"
+  },
+  {
+   "to": "Status quo (manual Excel/email process) - do_nothing",
+   "key": "competitor:status-quo-manual-excel-email-process",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Status quo (manual Excel/email process)"
+  },
+  {
+   "to": "No economic buyer or decision maker identified; RFP field references unnamed 'executive sponsorship' with no confirmed C-level engagement on this opp. - open",
+   "key": "risk:no-economic-buyer-or-decision-maker-identified-rfp-field-ref",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer or decision maker identified; RFP field references unnamed 'executive sponsorship' with no confirmed C-level engagement on this opp."
+  },
+  {
+   "to": "S2P RFP release has slipped three times (end of April -> May -> start of Q3) and is now overdue against the last-stated 'first week of July' target. - open",
+   "key": "risk:s2p-rfp-release-has-slipped-three-times-end-of-april-may-sta",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "S2P RFP release has slipped three times (end of April -> May -> start of Q3) and is now overdue against the last-stated 'first week of July' target."
+  },
+  {
+   "to": "No budget owner, approval process, or commercial conversation has occurred; Who_will_approve_budget__c and X10a_Sponsor__c are blank. - open",
+   "key": "risk:no-budget-owner-approval-process-or-commercial-conversation-",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No budget owner, approval process, or commercial conversation has occurred; Who_will_approve_budget__c and X10a_Sponsor__c are blank."
+  },
+  {
+   "to": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus. ",
+   "key": "risk:third-party-procurement-advisory-firm-maine-pointe-is-formal",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus."
+  },
+  {
+   "to": "Zycus self-withdrew from the first-phase Supplier Incident Management RFP on 12 Mar 2026 citing fitment gaps; unresolved risk that similar gaps could surface in",
+   "key": "risk:zycus-self-withdrew-from-the-first-phase-supplier-incident-m",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zycus self-withdrew from the first-phase Supplier Incident Management RFP on 12 Mar 2026 citing fitment gaps; unresolved risk that similar gaps could surface in the S2P evaluation."
+  },
+  {
+   "to": "Single-threaded to two operational contacts (Josh Ullrich, Leslie McElhaney) plus once-mentioned Gina Rendar four-plus months after the last meeting; add Contac",
+   "key": "hygiene:single-threaded-to-two-operational-contacts-josh-ullrich-les",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded to two operational contacts (Josh Ullrich, Leslie McElhaney) plus once-mentioned Gina Rendar four-plus months after the last meeting; add Contact Roles and open a path to Chris Ward (CSCO), Michael Blair (CFO/Strategy Officer), or Minh Le (CIO) before the S2P RFP lands."
+  },
+  {
+   "to": "Zycus self-withdrew from the SIM RFP on 12 Mar 2026 citing fitment gaps; pre-brief Josh or Leslie on how the full-suite scope resolves those gaps so Zycus isn't",
+   "key": "hygiene:zycus-self-withdrew-from-the-sim-rfp-on-12-mar-2026-citing-f",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Zycus self-withdrew from the SIM RFP on 12 Mar 2026 citing fitment gaps; pre-brief Josh or Leslie on how the full-suite scope resolves those gaps so Zycus isn't pre-judged as a fit risk again in the S2P round."
+  },
+  {
+   "to": "A third-party advisory firm (Maine Pointe) is running a structured cost/timeline scoring process; get the actual evaluation criteria directly from Josh or Lesli",
+   "key": "hygiene:a-third-party-advisory-firm-maine-pointe-is-running-a-struct",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "A third-party advisory firm (Maine Pointe) is running a structured cost/timeline scoring process; get the actual evaluation criteria directly from Josh or Leslie so Zycus's S2P submission is built to the real rubric, not written blind after release."
+  },
+  {
+   "to": "Leslie McElhaney (unconfirmed champion; RFP coordination only) - weak",
+   "key": "champion:champion",
+   "date": "2026-07-07T09:48:47.435083+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "Send pre-recorded demo video of full end-to-end S2P suite to Leslie McElhaney and Gina Rendar",
+   "key": "requirement:send-pre-recorded-demo-video-of-full-end-to-end-s2p-suite-to",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Leslie McElhaney",
+   "subject": "Send pre-recorded demo video of full end-to-end S2P suite to Leslie McElhaney and Gina Rendar"
+  },
+  {
+   "to": "Send pre-recorded full S2P suite demo video to Leslie McElhaney and Gina Rendar - no due date",
+   "key": "commitment:zycus-send-pre-recorded-full-s2p-suite-demo-video-to-leslie-",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send pre-recorded full S2P suite demo video to Leslie McElhaney and Gina Rendar"
+  },
+  {
+   "to": "Release full S2P RFP to Zycus - overdue",
+   "key": "commitment:buyer-release-full-s2p-rfp-to-zycus",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Release full S2P RFP to Zycus"
+  },
+  {
+   "to": "Leslie McElhaney - Influencer",
+   "key": "stakeholder:leslie-mcelhaney",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Leslie McElhaney"
+  },
+  {
+   "to": "Josh Ullrich - Influencer",
+   "key": "stakeholder:josh-ullrich",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Josh Ullrich"
+  },
+  {
+   "to": "Chris Ward - Unknown",
+   "key": "stakeholder:chris-ward",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Ward"
+  },
+  {
+   "to": "Michael Blair - Unknown",
+   "key": "stakeholder:michael-blair",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Michael Blair"
+  },
+  {
+   "to": "Minh Le - Unknown",
+   "key": "stakeholder:minh-le",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Minh Le"
+  },
+  {
+   "to": "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to an",
+   "key": "risk:buyer-has-been-silent-for-129-days-since-26-feb-2026-demo-no",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to another vendor or been shelved"
+  },
+  {
+   "to": "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark - critical",
+   "key": "risk:no-eb-identified-no-dm-identified-no-cpo-cfo-cio-engagement-",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark"
+  },
+  {
+   "to": "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualif",
+   "key": "risk:s2p-rfp-has-slipped-three-times-end-apr-may-early-jul-and-is",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualified deal"
+  },
+  {
+   "to": "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated - open",
+   "key": "risk:no-budget-discussion-no-eb-engagement-no-commercials-the-125",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated"
+  },
+  {
+   "to": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need - acknowledged",
+   "key": "risk:zycus-withdrew-from-incident-mgmt-rfp-on-12-mar-due-to-fitme",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need"
+  },
+  {
+   "to": "Single-threaded to two contacts (Leslie McElhaney, Josh Ullrich) who have ghosted; no champion, no multi-thread, no senior stakeholder access - critical",
+   "key": "risk:single-threaded-to-two-contacts-leslie-mcelhaney-josh-ullric",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded to two contacts (Leslie McElhaney, Josh Ullrich) who have ghosted; no champion, no multi-thread, no senior stakeholder access"
+  },
+  {
+   "to": "Re-engage the buyer directly by phone (not email) \u2014 the deal has been silent for 129 days and the RFP is a week overdue; if no reply in 5 business days, disqual",
+   "key": "hygiene:re-engage-the-buyer-directly-by-phone-not-email-the-deal-has",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage the buyer directly by phone (not email) \u2014 the deal has been silent for 129 days and the RFP is a week overdue; if no reply in 5 business days, disqualify or move to nurture."
+  },
+  {
+   "to": "Multi-thread to senior stakeholders (CPO Chris Ward, CFO Michael Blair, CIO Minh Le) \u2014 the deal is single-threaded to two contacts who have gone dark; reach the",
+   "key": "hygiene:multi-thread-to-senior-stakeholders-cpo-chris-ward-cfo-micha",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread to senior stakeholders (CPO Chris Ward, CFO Michael Blair, CIO Minh Le) \u2014 the deal is single-threaded to two contacts who have gone dark; reach the economic buyer."
+  },
+  {
+   "to": "Quantify the business case \u2014 the buyer described operational pain (lost incident emails, manual Excel tracking) but never stated the cost, FTE burden, or saving",
+   "key": "hygiene:quantify-the-business-case-the-buyer-described-operational-p",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Quantify the business case \u2014 the buyer described operational pain (lost incident emails, manual Excel tracking) but never stated the cost, FTE burden, or savings; build the ROI to justify the $125k investment."
+  },
+  {
+   "to": "iSupplier;Merlin Intake",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T05:27:59.360779+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000Tbxqb",
+ "packets": [
+  {
+   "key": "requirement:send-pre-recorded-demo-video-of-full-end-to-end-s2p-suite-to",
+   "type": "requirement",
+   "value": {
+    "date": "2026-02-26",
+    "kind": "explicit",
+    "quote": "That would be wonderful if you could send that ... that video would be wonderful ... what your full end to end system looks like.",
+    "source": "Avoma call 2026-02-26",
+    "said_by": "gina rendar / leslie mcelhaney",
+    "addressed": false,
+    "requirement": "Send pre-recorded demo video of full end-to-end S2P suite to Leslie McElhaney and Gina Rendar"
+   },
+   "source": "gina rendar / leslie mcelhaney",
+   "status": "active",
+   "history": [],
+   "subject": "Send pre-recorded demo video of full end-to-end S2P suite to Leslie McElhaney and Gina Rendar",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-pre-recorded-full-s2p-suite-demo-video-to-leslie-",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-02-26",
+    "source": "Avoma demo call 26 Feb 2026, action item (speaker 3)",
+    "status": "no due date",
+    "commitment": "Send pre-recorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+    "deliverable": "Send pre-recorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+    "grounding_quote": "Send prerecorded demo video of the full end-to-end Source-to-Pay suite to Leslie McElhaney and Gina Rendar"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send pre-recorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "commitment:buyer-release-full-s2p-rfp-to-zycus",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-07",
+    "who": "Buyer",
+    "date": "2026-06-22",
+    "source": "Next_Step__c 22 Jun 2026",
+    "status": "overdue",
+    "commitment": "Release full S2P RFP to Zycus",
+    "deliverable": "Release full S2P RFP to Zycus",
+    "grounding_quote": "awaiting RFP release first week of July"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Release full S2P RFP to Zycus",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "stakeholder:leslie-mcelhaney",
+   "type": "stakeholder",
+   "value": {
+    "name": "Leslie McElhaney",
+    "risk": "title unconfirmed in Salesforce; no demonstrated internal advocacy",
+    "role": "Coach",
+    "title": null,
+    "source": "Task 26 Feb 2026 + Next_Step_History__c 4 Jun 2026",
+    "sentiment": "cooperative, coordinating RFP logistics",
+    "last_contact_date": "2026-06-04"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "name": "Leslie McElhaney",
+      "risk": "Ghosted \u2014 silent for 129 days after 26 Feb demo",
+      "role": "Influencer",
+      "title": "Unknown",
+      "source": "Avoma demo call 26 Feb 2026, attendee and speaker (speaker 0)",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-02-26"
+     }
+    }
+   ],
+   "subject": "Leslie McElhaney",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "stakeholder:josh-ullrich",
+   "type": "stakeholder",
+   "value": {
+    "name": "josh ullrich",
+    "risk": "No direct contact recorded since the 26 Feb 2026 demo",
+    "role": "Influencer",
+    "title": "Supply Chain Manager",
+    "source": "Avoma call 2026-02-26; recent task contact",
+    "sentiment": "engaged during the demo, described pain in detail",
+    "last_contact_date": "2026-02-26"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "name": "Josh Ullrich",
+      "risk": "no evidence of budget authority",
+      "role": "Influencer",
+      "title": "Supply Chain Manager",
+      "source": "SF Contact record + Avoma demo call 26 Feb 2026",
+      "sentiment": "engaged, asked clarifying demo questions",
+      "last_contact_date": "2026-02-26"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "name": "Josh Ullrich",
+      "risk": "Ghosted \u2014 silent for 129 days after 26 Feb demo",
+      "role": "Influencer",
+      "title": "Supply Chain Manager",
+      "source": "Avoma demo call 26 Feb 2026, attendee and speaker (speaker 2); Salesforce account contact",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-02-26"
+     }
+    }
+   ],
+   "subject": "Josh Ullrich",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "stakeholder:chris-ward",
+   "type": "stakeholder",
+   "value": {
+    "name": "chris ward",
+    "risk": "Listed as an account-level contact; no confirmed engagement on this opportunity",
+    "role": "Unknown",
+    "title": "Chief Supply Chain Officer",
+    "source": "Account contact list (Checkers - Rally's)",
+    "sentiment": "",
+    "last_contact_date": ""
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "name": "Chris Ward",
+      "risk": "candidate economic buyer by title, zero confirmed engagement",
+      "role": "Unknown",
+      "title": "Chief Supply Chain Officer",
+      "source": "SF Account Contact record",
+      "sentiment": "not engaged on this opp",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "name": "Chris Ward",
+      "risk": "Never engaged \u2014 CPO-level stakeholder not yet reached",
+      "role": "Unknown",
+      "title": "Chief Supply Chain Officer",
+      "source": "Salesforce account contact",
+      "sentiment": "unknown",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Chris Ward",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "stakeholder:michael-blair",
+   "type": "stakeholder",
+   "value": {
+    "name": "michael blair",
+    "risk": "Candidate economic buyer by title; no confirmed engagement on this opportunity",
+    "role": "Unknown",
+    "title": "Chief Financial & Strategy Officer",
+    "source": "Account contact list (Checkers - Rally's)",
+    "sentiment": "",
+    "last_contact_date": ""
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "name": "Michael Blair",
+      "risk": "candidate economic buyer by title, zero confirmed engagement",
+      "role": "Unknown",
+      "title": "Chief Financial & Strategy Officer",
+      "source": "SF Account Contact record",
+      "sentiment": "not engaged on this opp",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "name": "Michael Blair",
+      "risk": "Never engaged \u2014 CFO-level budget authority not yet reached",
+      "role": "Unknown",
+      "title": "Chief Financial & Strategy Officer",
+      "source": "Salesforce account contact",
+      "sentiment": "unknown",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Michael Blair",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "stakeholder:minh-le",
+   "type": "stakeholder",
+   "value": {
+    "name": "minh le",
+    "risk": "Candidate for InfoSec/technical alignment later; no confirmed engagement on this opportunity",
+    "role": "Unknown",
+    "title": "Chief Information Officer",
+    "source": "Account contact list (Checkers - Rally's)",
+    "sentiment": "",
+    "last_contact_date": ""
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "name": "Minh Le",
+      "risk": "relevant to systems/integration scope, zero confirmed engagement",
+      "role": "Unknown",
+      "title": "Chief Information Officer",
+      "source": "SF Account Contact record",
+      "sentiment": "not engaged on this opp",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "name": "Minh Le",
+      "risk": "Never engaged \u2014 CIO-level stakeholder not yet reached",
+      "role": "Unknown",
+      "title": "Chief Information Officer",
+      "source": "Salesforce account contact",
+      "sentiment": "unknown",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Minh Le",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:buyer-has-been-silent-for-129-days-since-26-feb-2026-demo-no",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to another vendor or been shelved",
+    "source": "LastActivityDate 27 Feb 2026; Next_Step__c trail shows no buyer engagement since demo",
+    "status": "critical",
+    "category": "ghost_risk",
+    "first_raised": "2026-02-27"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer has been silent for 129 days since 26 Feb 2026 demo; no reply to repeated rep follow-ups; RFP overdue by a week with no update \u2014 deal may have moved to another vendor or been shelved",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "risk:no-eb-identified-no-dm-identified-no-cpo-cfo-cio-engagement-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark",
+    "source": "Zero OpportunityContactRoles; Avoma demo call 26 Feb 2026 \u2014 no EB or DM discussion",
+    "status": "critical",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No EB identified, no DM identified, no CPO/CFO/CIO engagement \u2014 deal is single-threaded to two mid-level contacts who have gone dark",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "risk:s2p-rfp-has-slipped-three-times-end-apr-may-early-jul-and-is",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualified deal",
+    "source": "Next_Step__c trail: 30 Mar, 4 Jun, 22 Jun; RFP due 'first week of July' now overdue",
+    "status": "critical",
+    "category": "timeline",
+    "first_raised": "2026-03-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "S2P RFP has slipped three times (end-Apr \u2192 May \u2192 early-Jul) and is now a week overdue with no buyer update; close date 27 Aug is unattainable from a cold Qualified deal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "risk:no-budget-discussion-no-eb-engagement-no-commercials-the-125",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated",
+    "source": "Avoma demo call 26 Feb 2026 \u2014 no budget or commercials discussed; zero EB access",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No budget discussion, no EB engagement, no commercials \u2014 the $125k investment is unvalidated",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "risk:zycus-withdrew-from-incident-mgmt-rfp-on-12-mar-due-to-fitme",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-12",
+    "detail": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need",
+    "source": "Next_Step_History__c 2026-03-12 entry",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-03-12"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:27:59.360779+05:30",
+     "value": {
+      "date": "2026-03-12",
+      "detail": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need",
+      "source": "Next_Step__c 12 Mar 2026",
+      "status": "acknowledged",
+      "category": "change_management",
+      "first_raised": "2026-03-12"
+     }
+    }
+   ],
+   "subject": "Zycus withdrew from incident-mgmt RFP on 12 Mar due to 'fitment gaps too high' \u2014 buyer may perceive Zycus as a poor fit for their immediate need",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:single-threaded-to-two-contacts-leslie-mcelhaney-josh-ullric",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-06",
+    "detail": "Single-threaded to two contacts (Leslie McElhaney, Josh Ullrich) who have ghosted; no champion, no multi-thread, no senior stakeholder access",
+    "source": "Avoma demo call 26 Feb 2026; 129 days no buyer engagement; zero OpportunityContactRoles",
+    "status": "critical",
+    "category": "other",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded to two contacts (Leslie McElhaney, Josh Ullrich) who have ghosted; no champion, no multi-thread, no senior stakeholder access",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-the-buyer-directly-by-phone-not-email-the-deal-has",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage the buyer directly by phone (not email) \u2014 the deal has been silent for 129 days and the RFP is a week overdue; if no reply in 5 business days, disqualify or move to nurture."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage the buyer directly by phone (not email) \u2014 the deal has been silent for 129 days and the RFP is a week overdue; if no reply in 5 business days, disqualify or move to nurture.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-to-senior-stakeholders-cpo-chris-ward-cfo-micha",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread to senior stakeholders (CPO Chris Ward, CFO Michael Blair, CIO Minh Le) \u2014 the deal is single-threaded to two contacts who have gone dark; reach the economic buyer."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread to senior stakeholders (CPO Chris Ward, CFO Michael Blair, CIO Minh Le) \u2014 the deal is single-threaded to two contacts who have gone dark; reach the economic buyer.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "hygiene:quantify-the-business-case-the-buyer-described-operational-p",
+   "type": "hygiene",
+   "value": {
+    "flag": "Quantify the business case \u2014 the buyer described operational pain (lost incident emails, manual Excel tracking) but never stated the cost, FTE burden, or savings; build the ROI to justify the $125k investment."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Quantify the business case \u2014 the buyer described operational pain (lost incident emails, manual Excel tracking) but never stated the cost, FTE burden, or savings; build the ROI to justify the $125k investment.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-07T05:27:59.360779+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iSupplier;Merlin Intake"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:27:59.360779+05:30",
+   "last_updated": "2026-07-07T05:27:59.360779+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "commitment:buyer-release-the-full-source-to-pay-rfp-to-zycus",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-07",
+    "who": "Buyer",
+    "date": "2026-06-22",
+    "source": "Next_Step__c / Next_Step_History__c",
+    "status": "overdue",
+    "commitment": "Release the full Source-to-Pay RFP to Zycus",
+    "deliverable": "Release the full Source-to-Pay RFP to Zycus",
+    "grounding_quote": "6/22/26 GK: awaiting RFP release first week of July"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "due": "2026-07-03",
+      "who": "Buyer",
+      "date": "2026-06-04",
+      "source": "Next_Step_History__c 4 Jun 2026 and 22 Jun 2026",
+      "status": "overdue",
+      "commitment": "Release the full Source-to-Pay RFP to Zycus",
+      "deliverable": "Release the full Source-to-Pay RFP to Zycus",
+      "grounding_quote": "S2P release pushed to beginning of Q3, we will still be included"
+     }
+    }
+   ],
+   "subject": "Buyer:Release the full Source-to-Pay RFP to Zycus",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-outcome-status-of-the-supplier-incident-manage",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-05-26",
+    "source": "Next_Step_History__c 2026-05-26 entry",
+    "status": "open",
+    "commitment": "Confirm outcome/status of the Supplier Incident Management RFP award",
+    "deliverable": "Confirm outcome/status of the Supplier Incident Management RFP award",
+    "grounding_quote": "5/26/26 GK: follow up with all 3 contacts at C&R, status of SIM award and S2P RFP release"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-05-26",
+      "source": "Next_Step_History__c 26 May 2026",
+      "status": "open",
+      "commitment": "Confirm outcome/status of the Supplier Incident Management RFP award",
+      "deliverable": "Confirm outcome/status of the Supplier Incident Management RFP award",
+      "grounding_quote": "follow up with all 3 contacts at C&R, status of SIM award and S2P RFP release"
+     }
+    }
+   ],
+   "subject": "Buyer:Confirm outcome/status of the Supplier Incident Management RFP award",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "stakeholder:gina-rendar",
+   "type": "stakeholder",
+   "value": {
+    "name": "gina rendar",
+    "risk": "Most senior attendee identified; left the call early and has not reappeared in over four months",
+    "role": "Unknown",
+    "title": "",
+    "source": "Avoma call 2026-02-26",
+    "sentiment": "impatient with generic demo format; curious about the full suite from a prior introduction to Zycus",
+    "last_contact_date": "2026-02-26"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "name": "Gina Rendar",
+      "risk": "no contact since demo; title unconfirmed",
+      "role": "Influencer",
+      "title": null,
+      "source": "Task 26 Feb 2026 (Avoma call notes)",
+      "sentiment": "positive prior impression of Zycus",
+      "last_contact_date": "2026-02-26"
+     }
+    }
+   ],
+   "subject": "Gina Rendar",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "competitor:status-quo-manual-excel-email-process",
+   "type": "competitor",
+   "value": {
+    "date": "2026-02-26",
+    "name": "Status quo (manual Excel/email process)",
+    "quote": "Currently, it's ... like a web based ... task management system. So they'll go in there, they'll create their ticket, and then it creates an email that goes to a predefined chain of people ... if the communication goes off of that specific system generated email, it kinda disappears from the flow.",
+    "source": "Avoma call 2026-02-26 (Josh Ullrich)",
+    "status": "do_nothing",
+    "sentiment": "neutral",
+    "how_we_win": "Keep the pain concrete (lost communications, manual Excel scorecards) tied to the dynamic routing and scorecard-building capability shown in the demo, and press for a decision date so the status quo doesn't simply persist by default while the RFP keeps slipping.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Status quo (manual Excel/email process)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-decision-maker-identified-rfp-field-ref",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "No economic buyer or decision maker identified; RFP field references unnamed 'executive sponsorship' with no confirmed C-level engagement on this opp.",
+    "source": "SF auto-task 'Decision Maker is not identified' + Executive_Sponsor_Identified__c=false",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-11"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or decision maker identified; RFP field references unnamed 'executive sponsorship' with no confirmed C-level engagement on this opp.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "risk:s2p-rfp-release-has-slipped-three-times-end-of-april-may-sta",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-22",
+    "detail": "S2P RFP release has slipped three times (end of April -> May -> start of Q3) and is now overdue against the last-stated 'first week of July' target.",
+    "source": "Next_Step_History__c",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-03-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "S2P RFP release has slipped three times (end of April -> May -> start of Q3) and is now overdue against the last-stated 'first week of July' target.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "risk:no-budget-owner-approval-process-or-commercial-conversation-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No budget owner, approval process, or commercial conversation has occurred; Who_will_approve_budget__c and X10a_Sponsor__c are blank",
+    "source": "Q3 synthesis fields (blank)",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "prior sweep"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No budget owner, approval process, or commercial conversation has occurred; Who_will_approve_budget__c and X10a_Sponsor__c are blank.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:third-party-procurement-advisory-firm-maine-pointe-is-formal",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus",
+    "source": "Carried-forward living memory",
+    "status": "open",
+    "category": "political",
+    "first_raised": "prior sweep"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:48:47.435083+05:30",
+     "value": {
+      "date": "2026-07-07",
+      "detail": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus.",
+      "source": "SF Compelling_Event__c / How_are_you_addressing_your_problem_toda__c",
+      "status": "open",
+      "category": "partner_support",
+      "first_raised": "2026-02-11"
+     }
+    }
+   ],
+   "subject": "Third-party procurement advisory firm Maine Pointe is formally overseeing the RFP evaluation; its scoring criteria and vendor preferences are unknown to Zycus.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:zycus-self-withdrew-from-the-first-phase-supplier-incident-m",
+   "type": "risk",
+   "value": {
+    "date": "2026-03-12",
+    "detail": "Zycus self-withdrew from the first-phase Supplier Incident Management RFP on 12 Mar 2026 citing fitment gaps; unresolved risk that similar gaps could surface in the S2P evaluation.",
+    "source": "Next_Step__c 12 Mar 2026",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-03-12"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus self-withdrew from the first-phase Supplier Incident Management RFP on 12 Mar 2026 citing fitment gaps; unresolved risk that similar gaps could surface in the S2P evaluation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-to-two-operational-contacts-josh-ullrich-les",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded to two operational contacts (Josh Ullrich, Leslie McElhaney) plus once-mentioned Gina Rendar four-plus months after the last meeting; add Contact Roles and open a path to Chris Ward (CSCO), Michael Blair (CFO/Strategy Officer), or Minh Le (CIO) before the S2P RFP lands."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded to two operational contacts (Josh Ullrich, Leslie McElhaney) plus once-mentioned Gina Rendar four-plus months after the last meeting; add Contact Roles and open a path to Chris Ward (CSCO), Michael Blair (CFO/Strategy Officer), or Minh Le (CIO) before the S2P RFP lands.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "hygiene:zycus-self-withdrew-from-the-sim-rfp-on-12-mar-2026-citing-f",
+   "type": "hygiene",
+   "value": {
+    "flag": "Zycus self-withdrew from the SIM RFP on 12 Mar 2026 citing fitment gaps; pre-brief Josh or Leslie on how the full-suite scope resolves those gaps so Zycus isn't pre-judged as a fit risk again in the S2P round."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus self-withdrew from the SIM RFP on 12 Mar 2026 citing fitment gaps; pre-brief Josh or Leslie on how the full-suite scope resolves those gaps so Zycus isn't pre-judged as a fit risk again in the S2P round.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "hygiene:a-third-party-advisory-firm-maine-pointe-is-running-a-struct",
+   "type": "hygiene",
+   "value": {
+    "flag": "A third-party advisory firm (Maine Pointe) is running a structured cost/timeline scoring process; get the actual evaluation criteria directly from Josh or Leslie so Zycus's S2P submission is built to the real rubric, not written blind after release."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "A third-party advisory firm (Maine Pointe) is running a structured cost/timeline scoring process; get the actual evaluation criteria directly from Josh or Leslie so Zycus's S2P submission is built to the real rubric, not written blind after release.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:48:47.435083+05:30",
+   "last_updated": "2026-07-07T09:48:47.435083+05:30",
+   "last_confirmed": "2026-07-07T09:48:47.435083+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-prerecorded-full-s2p-suite-demo-video-to-leslie-m",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-12",
+    "who": "Zycus",
+    "date": "2026-02-26",
+    "source": "Avoma call 2026-02-26 (action item); no confirmation of delivery in Next_Step_History__c through 2026-06-22",
+    "status": "overdue",
+    "commitment": "Send prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+    "deliverable": "Send prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+    "grounding_quote": "Send prerecorded demo video of the full end-to-end Source-to-Pay suite to Leslie McElhaney and Gina Rendar"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send prerecorded full S2P suite demo video to Leslie McElhaney and Gina Rendar",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "stakeholder:leslie-mcelhaney-unconfirmed-champion-rfp-coordination-only",
+   "type": "stakeholder",
+   "value": {
+    "name": "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+    "risk": "Sole responsive contact; role limited to RFP logistics, not confirmed as a champion",
+    "role": "Unknown",
+    "title": "",
+    "source": "Next_Step_History__c 2026-06-04 entry; Avoma call 2026-02-26",
+    "sentiment": "cooperative, process-focused",
+    "last_contact_date": "2026-06-04"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:no-economic-buyer-or-decision-maker-identified",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No economic buyer or decision maker identified",
+    "source": "OpportunityContactRole (0 records); Account contact list",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer or decision maker identified",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:s2p-rfp-release-has-now-slipped-at-least-four-times-end-of-a",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-22",
+    "detail": "S2P RFP release has now slipped at least four times (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) and remains unreleased as of 2026-07-09, days past the last stated target",
+    "source": "Next_Step_History__c 2026-03-30, 2026-06-04, 2026-06-22 entries",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-03-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "S2P RFP release has now slipped at least four times (end of April \u2192 May \u2192 start of Q3 \u2192 first week of July) and remains unreleased as of 2026-07-09, days past the last stated target",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "risk:close-date-27-aug-2026-is-unattainable-from-a-cold-qualified",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Close date 27 Aug 2026 is unattainable from a cold, Qualified-stage, pre-RFP-release deal",
+    "source": "CloseDate field vs. stage/engagement evidence",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-07-09"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date 27 Aug 2026 is unattainable from a cold, Qualified-stage, pre-RFP-release deal",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-beyond-leslie-mcelhaney-and-josh-ullrich-by-ask",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread beyond Leslie McElhaney and Josh Ullrich by asking for a warm introduction to a senior sponsor (e.g. CSCO Chris Ward or CFO Michael Blair) before the S2P RFP lands, and log the resulting contact roles in Salesforce (currently zero on this opp)."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread beyond Leslie McElhaney and Josh Ullrich by asking for a warm introduction to a senior sponsor (e.g. CSCO Chris Ward or CFO Michael Blair) before the S2P RFP lands, and log the resulting contact roles in Salesforce (currently zero on this opp).",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "hygiene:confirm-or-build-a-real-champion-leslie-mcelhaney-has-only-p",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm or build a real champion: Leslie McElhaney has only played an RFP-coordination role to date; test her willingness to advocate internally, or identify an alternate advocate given Gina Rendar's early exit from the one demo held."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm or build a real champion: Leslie McElhaney has only played an RFP-coordination role to date; test her willingness to advocate internally, or identify an alternate advocate given Gina Rendar's early exit from the one demo held.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-now-that-the-first-week-of-july-release-target-has",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage now that the 'first week of July' release target has passed without confirmation, referencing the pattern of four prior slips, to avoid losing visibility before the RFP even reaches Zycus."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage now that the 'first week of July' release target has passed without confirmation, referencing the pattern of four prior slips, to avoid losing visibility before the RFP even reaches Zycus.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+    "at_risk": true,
+    "strength": "none"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T20:01:20.284954+05:30",
+   "last_updated": "2026-07-09T20:01:20.284954+05:30",
+   "last_confirmed": "2026-07-09T20:01:20.284954+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T20:01:20.284954+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No Avoma-recorded meeting since 2026-02-26 despite ~19 weeks of subsequent Next Step activity; that activity is corroborated only by Next_Step_History__c, not by call recordings",
+   "overrode a fabricated manager_name with the live Salesforce owner's manager",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "Grace Kim (Zycus)",
+   "the Zycus solutions consultant",
+   "leslie mcelhaney (unconfirmed champion; rfp coordination only)",
+   "josh ullrich",
+   "gina rendar"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Q1 mechanics + Q2 authoritative fields + Q3 synthesis fields read in full; OpportunityContactRole (0 records); Next_Step_History__c deduped and windowed 2026-02-17 through 2026-06-22; Task/Event reviewed for the account"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

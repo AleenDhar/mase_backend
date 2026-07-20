@@ -1,0 +1,315 @@
+{
+  "opp_id": "006P700000YOXs5",
+  "hard": {
+    "opp_id": "006P700000YOXs5",
+    "opp_name": "RCPL_S2P_MAY'26",
+    "account_name": "Reliance Industries Limited",
+    "account_industry": "Oil & Gas",
+    "billing_country": "India",
+    "owner_name": "Tanmay Srivastava",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2027-05-20",
+    "days_to_close": null,
+    "created_date": "2026-05-20",
+    "qualified_date": "2026-05-21",
+    "last_activity_date": "2026-07-03",
+    "last_modified_date": null,
+    "products": "iSource;iSave;iSupplier;eProcurement",
+    "next_step": "Confidence level - 20% 29th June: Demo got reschduled for 3rd July as their IT team not available today. 23rd June: Custom demo is scheduled on 29th June, some of the requirements we cant deliver, will need clarity on that call 17th June - The demo is scheduled with RCPL team on 26th June, our Pilot team is working on the test cases given by them. 5th June: Demo prep in progress, will schedule the platform demo next week 29th May: Had a f2f meeting with the CDO and Procurement head. They liked the Zycus capabilities, Next to next week will be the platform demo 20th May: Had a discussion with Head of procurement, understood the pain points",
+    "ais_score": 6.5,
+    "ais_status": "Moderate",
+    "ais_why": "Excitement Indicators: specific pain articulation (vendor onboarding, spend visibility, sourcing gaps), feature interest (RFP automation, catalog creation, CLM, spend analysis), next-step agreement on a follow-up demo, proof demand (FMCG/India case studies), SAP ECC6 retail-version integration concern, and missing historical baseline data complicating spend analysis.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "SAP Ariba; GEP; Ivalua (buyer's prior-experience benchmarks); parallel RFP / multi-vendor evaluation forthcoming",
+    "primary_competitor": "Status-quo manual process plus an upcoming parallel RFP (no vendor buyer-preferred yet)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YOXs5/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Live, engaged early S2P deal at Reliance where the deciding custom demo keeps slipping (26 Jun to 29 Jun to 3 Jul, then postponed on 3 Jul when procurement showed up without IT), the economic buyer is a still-unnamed CDO sponsor, and a parallel RFP is coming.",
+      "math": "Created 20 May 2026, qualified 21 May, ~47 days in Qualified. Close date 2027-05-20, ~318 days out (unchanged since creation, no slip). Last real buyer touch: 3 Jul 2026 demo call (postponed). Cadence: discovery 20 May, F2F with CDO and Procurement Head 29 May, clarification call 10 Jun, custom demo slipped 26 Jun to 29 Jun to 3 Jul then postponed. Rep-stated confidence 20%. Pace is adequate for a 12-15 month enterprise S2P cycle, but the single value-proving milestone (the custom demo) has failed to land twice.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "3 Jul 2026 demo call: the session was postponed because RCPL's IT team was pulled into an internal PwC workshop and only procurement attended; the Zycus lead (Akshay, India head) said 'it doesn't make sense with only people from procurement being here' and deferred to reset a date via Shashi and IT, targeting 'next Friday or later'.",
+        "3 Jul 2026 call: buyer reaffirmed the timeline is unchanged, 'finalizing the tool by next quarter... it stays the same' (Utchal Barbara), so intent is intact despite the slip.",
+        "10 Jun 2026 clarification call: Zycus solutions team walked Utchal Barbara through 9-10 submitted use cases (self-service supplier onboarding with fuzzy dedup on PAN/GST, end-to-end RFx with side-by-side tax/freight normalization, PR-to-PO with proactive budget checks at PR creation, 24-hour article-code creation, cross-plant stock visibility before external buy, PO amendment with version control, 3-way invoice match, MSME processing, spend analytics), confirming deep discovery.",
+        "20 May 2026 discovery call: Utchal Barbara articulated hard pain, procurement 'working blindsided' with no historical spend/price visibility, '50 to 60% of our time goes in transactions', and set a conservative 4-5% savings target on ~10 lakh crore indirect spend.",
+        "20 May 2026: buyer flagged the competitive path directly, 'I have already started engaging with vendors... we will also be floating an RFP for this one... I may not give a formal RFP but I have already started engaging with vendors', so a parallel evaluation is live.",
+        "29 May 2026 (per Next_Step): F2F with the CDO (stated program sponsor) and Procurement Head, 'they liked the Zycus capabilities', the strongest senior-engagement signal on record."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is vivid and the value target is buyer-stated, but no baseline exists to model ROI yet. On 20 May Utchal Barbara quantified the drag as '50 to 60% of our time goes in transactions' and framed procurement as stuck in an 'admin job' instead of a strategic one. He set the savings anchor himself: 'if we take a conservative approach of 4 to 5%, that's a huge number for us' against an indirect spend he estimated at roughly half of Reliance's ~20 lakh crore total, i.e. ~10 lakh crore. The gap is that RCPL 'do not have access to data as to what was bought last year at what price', so a defensible savings model cannot be built until spend data is loaded, which makes quantifying the case the move.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "Avoma clarification call 10 Jun 2026, Utchal Barbara", "SF AIS_Why__c"]
+      },
+      "economic_buyer": {
+        "status": "partial",
+        "narrative": "Budget authority points to a Chief Digital Officer whom Utchal Barbara named as the project's sponsor, but that person is not yet named in Salesforce and has not engaged commercially. On 20 May Utchal said 'I will bring in the AVP of the procurement team, and I will also bring in the chief digital officer... the chief digital officer is going to be the main sponsor of the project.' The CDO and Procurement Head then attended the 29 May F2F and 'liked the Zycus capabilities' (per Next_Step). No pricing, budget-ownership, or approval-chain conversation has occurred, and the CDO is a role rather than a Salesforce contact, so the economic buyer is mapped-by-role but not confirmed. Getting the CDO named and into a value/commercial conversation is the ranked move.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "SF Next_Step__c 29 May 2026"]
+      },
+      "decision_criteria": {
+        "status": "confirmed",
+        "narrative": "The evaluation criteria are explicit and documented as a 9-10 point use-case list the buyer submitted before the demo, reviewed line by line on 10 Jun. Utchal Barbara's must-haves include self-service supplier onboarding with fuzzy dedup on PAN/GST, side-by-side RFx comparison with tax and freight normalization, proactive budget checks at the PR stage ('if a budget is not there... this is what we currently fail'), 24-hour article-code creation (versus today's 7-10 days), cross-plant stock visibility to source internally before buying externally, PO version control (he referenced Ariba's PO versioning as the bar), and automated 3-way invoice matching with MSME support. Two commercial-selection criteria layered on top on 20 May: proven FMCG/India savings case studies and implementation speed ('go live this year').",
+        "sources": ["Avoma clarification call 10 Jun 2026, Utchal Barbara", "Avoma discovery call 20 May 2026, Utchal Barbara"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running a demo-to-RFP path he controls personally, with process actors visible from the call sequence. Utchal Barbara (Head of Procurement) is the single operational driver so far; he committed on 20 May to bring the AVP Sourcing and the CDO to the walk-through, and the CDO/Procurement Head appeared at the 29 May F2F. On 3 Jul the IT team surfaced as a required audience (they were absent in an internal PwC workshop, which is why the demo was postponed), and PwC is engaged as the buyer's advisor/SI. The approval chain and formal RFP mechanics are not yet defined: Utchal said he 'may not give a formal RFP' but is already engaging vendors and wants a fast decision, so the process is buyer-led, fluid, and IT-gated.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "Avoma demo call 3 Jul 2026", "SF Next_Step__c"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced, which is normal this early (Qualified, ~318 days to close). There is no discussion yet of MSA/SOW, legal review, procurement channel, or InfoSec, and no current-contract expiration to act as a forcing function because RCPL has no incumbent tool ('as of now, since we do not have any tool'). The one paper-adjacent signal is a coming RFP the buyer may or may not formalize. Visibility will come once the demo lands and the CDO sponsor endorses moving to commercials; asking Utchal for the intended procurement route and RFP timeline in writing would create it.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is confirmed, specific, and owned by procurement. Utchal Barbara described a fully manual operation, RFPs built from personal templates and emailed, POs created manually across multiple approval loops, supplier onboarding routed through three teams by email, and 3-way invoice matching done by hand. The core financial pain is blindness: 'right now I'm working with my eyes blindfolded... I don't even know what is my tail spend', and no visibility into prior prices paid. The operational pain is the 50-60% of team time lost to transactional follow-ups. He also flagged that new article/material codes take '7 to 10 days' when the business needs 24 hours. The pain owner is Utchal (Head of Procurement); the business also lacks baseline spend data, which is both a pain and a deployment risk.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "Avoma clarification call 10 Jun 2026, Utchal Barbara"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Utchal Barbara (Head of Procurement) is a developing champion: engaged, knowledgeable, and building the internal case, but not yet decisive and not the budget owner. Evidence of advocacy: he set the savings narrative himself, asked Zycus to build FMCG/India before-and-after use cases specifically so 'when I'm going to go to a program sponsor he should be able to see' the value, and committed to bring the CDO and AVP Sourcing to the table. What is still missing: he has not positioned Zycus as preferred, he is openly running a parallel vendor process, and his deep hands-on experience with Ariba, GEP and Ivalua (J&J implementations across 17 countries) makes him a credible but neutral evaluator rather than a partisan advocate. His advocacy will strengthen or cool on whether the rescheduled demo resolves the flagged functional gaps.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "SF task/activity contact Utchal Barbara"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "There is no incumbent tool to displace (RCPL runs procurement manually), so the real contest is the status-quo plus an upcoming parallel RFP against unnamed vendors. Utchal Barbara benchmarks from personal experience with SAP Ariba, GEP and Ivalua ('I have myself done implementation across the globe... Ariba p2p in the Philippines with Johnson and Johnson') but has NOT stated a preference for any of them, so none is buyer-preferred. He was explicit that he is 'already engaging with vendors' and may float an RFP. Zycus's wedge is the AI-native/Merlin conversational-on-Teams story he responded well to ('this is the power of conversational AI'), the organically built single-code suite versus acquired competitors, and 67% of Zycus customers on SAP for faster ECC6 integration. Winning means resolving the flagged 'requirements we can't deliver' and landing FMCG proof before the RFP formalizes.",
+        "sources": ["Avoma discovery call 20 May 2026, Utchal Barbara", "SF Next_Step__c 23 Jun 2026"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Live but sticky. Buyer engagement is real and recent (3 Jul), pain and criteria are well documented, but the single value-proving custom demo has slipped three times and was postponed again on 3 Jul when only procurement (no IT) attended. Timeline reaffirmed for next quarter.",
+      "items": [
+        {"change": "Discovery call held; pain, scope (indirect ~10 lakh crore) and 4-5% savings target established", "date": "2026-05-20"},
+        {"change": "F2F with the CDO (stated sponsor) and Procurement Head; 'liked the Zycus capabilities'", "date": "2026-05-29"},
+        {"change": "Clarification call reviewing the buyer's 9-10 use-case requirements ahead of the demo", "date": "2026-06-10"},
+        {"change": "Custom demo slipped from 26 Jun to 29 Jun to 3 Jul, then postponed on 3 Jul (IT absent in a PwC workshop); reset targeted for the following Friday", "date": "2026-07-03"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No vendor is buyer-preferred and there is no incumbent tool (RCPL is fully manual). The strongest current threat is inertia plus a coming parallel RFP: Utchal Barbara is 'already engaging with vendors' and may float an RFP (20 May). SAP Ariba, GEP and Ivalua are named only as the buyer's own prior-implementation reference points, not as active RCPL evaluations or preferences, so they carry medium/low current threat and are held as living-memory context, not as leaders. Zycus is in direct, early, single-threaded conversation and must convert the pending demo into a preference before the RFP formalizes.",
+      "competitors": [
+        {
+          "name": "Parallel RFP / multi-vendor evaluation",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "active",
+          "quote": "I have already started engaging with vendors... we will also be floating an RFP for this one... I may not give a formal RFP but I have already started engaging with vendors",
+          "date": "2026-05-20",
+          "source": "Avoma discovery call 20 May 2026, Utchal Barbara",
+          "how_we_win": "Land the rescheduled custom demo resolving the flagged gaps, deliver FMCG/India savings proof for the CDO, and get named into the RFP requirements early so the criteria favour AI-native indirect S2P."
+        },
+        {
+          "name": "Status quo / manual process (do nothing)",
+          "sentiment": "negative",
+          "threat_level": "medium",
+          "status": "do_nothing",
+          "quote": "right now I'm working with my eyes blindfolded... everything is very very manual right now",
+          "date": "2026-05-20",
+          "source": "Avoma discovery call 20 May 2026, Utchal Barbara",
+          "how_we_win": "Quantify the cost of inaction (50-60% team time lost, tail-spend leakage at 4-5%+) and tie the tool to the buyer's own 'go live this year' urgency so no-decision has a visible price."
+        },
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "I know how Zycus works, I know how GEP works, in terms of Ariba works, iValua... Ariba p2p implementation I've done in the Philippines with Johnson and Johnson",
+          "date": "2026-05-20",
+          "source": "Avoma discovery call 20 May 2026, Utchal Barbara",
+          "how_we_win": "Reframe Ariba familiarity as legacy complexity; lead with AI-native Merlin-on-Teams adoption and organically built single-code suite versus Ariba's acquired, integration-heavy stack; leverage fast SAP ECC6 adapters."
+        },
+        {
+          "name": "GEP",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "active",
+          "quote": "I know how Zycus works, GEP, iValua",
+          "date": "2026-05-20",
+          "source": "Avoma discovery call 20 May 2026, Utchal Barbara",
+          "how_we_win": "Differentiate on AI-native automation and India/FMCG references; no active GEP engagement on this deal, keep monitoring the RFP shortlist."
+        },
+        {
+          "name": "Ivalua",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "active",
+          "quote": "I know how Zycus works, GEP, iValua and the other tools I know",
+          "date": "2026-05-20",
+          "source": "Avoma discovery call 20 May 2026, Utchal Barbara",
+          "how_we_win": "Same wedge: AI-native Merlin, single-code suite, FMCG proof; no active Ivalua engagement, hold as context."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong fit on indirect S2P, spend analytics, sourcing and P2P automation; genuine exposure on a few RCPL-specific asks that Zycus flagged it 'can't deliver' and on SAP ECC6 retail-version integration.",
+      "items": [
+        {"criterion": "Indirect procurement automation across S2P as a single platform", "position": "aligned", "quote": "we typically focus more on the indirect side of the procurement... majority of our clients are leveraging us", "date": "2026-06-10", "source": "Avoma clarification call 10 Jun 2026"},
+        {"criterion": "Spend visibility and analytics from raw SAP data", "position": "aligned", "quote": "spend analysis... we take your raw spend data from different systems, normalize it... slice and dice through dashboards", "date": "2026-06-10", "source": "Avoma clarification call 10 Jun 2026"},
+        {"criterion": "Cross-plant stock visibility to source internally before external buy", "position": "exposed", "quote": "I can check on this... without committing in terms of how we are doing it because it requires the data of the warehouse to come in", "date": "2026-06-10", "source": "Avoma clarification call 10 Jun 2026"},
+        {"criterion": "Some submitted use cases Zycus cannot deliver", "position": "exposed", "quote": "some of the requirements we cant deliver, will need clarity on that call", "date": "2026-06-23", "source": "SF Next_Step__c 23 Jun 2026"},
+        {"criterion": "Direct-procurement scope and SAP ECC6 retail-version integration", "position": "partially aligned", "quote": "we are currently using a retail version of SAP where it's very very too many restrictions... direct is better suited to ERP", "date": "2026-05-20", "source": "Avoma discovery call 20 May 2026, plus SF AIS_Why__c"]
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Build FMCG/India before-and-after savings use cases for the CDO sponsor", "said_by": "Utchal Barbara", "date": "2026-05-20", "addressed": false, "quote": "if you can bring something from the FMCG sector... this is the spend analysis we did in XYZ organization, before we did that... once we implemented this is the amount of savings which had come", "source": "Avoma discovery call 20 May 2026"},
+        {"requirement": "Show the 9-10 submitted use cases working live in the platform demo", "said_by": "Utchal Barbara", "date": "2026-07-03", "addressed": false, "quote": "during the demo you would be showing us... how a supplier is created, how are the other things... working through this in the system", "source": "Avoma demo call 3 Jul 2026"},
+        {"requirement": "Give clear positions on the requirements Zycus flagged it cannot fully deliver", "said_by": "Utchal Barbara", "date": "2026-06-23", "addressed": false, "quote": "some of the requirements we cant deliver, will need clarity on that call", "source": "SF Next_Step__c 23 Jun 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Check retail-client precedent for cross-plant stock visibility and revert to Utchal", "who": "Zycus", "grounding_quote": "I can definitely even check on it once... I have made it a point of it", "date": "2026-06-10", "due": null, "status": "open", "source": "Avoma clarification call 10 Jun 2026"},
+          {"deliverable": "Send Utchal a written note listing the open AP, HSN-mapping and warehouse items to confirm", "who": "Zycus", "grounding_quote": "I can send you a note if we can check on them once you have time or availability", "date": "2026-06-10", "due": null, "status": "open", "source": "Avoma clarification call 10 Jun 2026"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Confirm a firm demo date with the IT and full procurement audience present", "who": "Buyer", "grounding_quote": "let me have a word with the IT team and then I'll try and get back a date at the earliest... mostly not before next Friday", "date": "2026-07-03", "due": "2026-07-10", "status": "open", "source": "Avoma demo call 3 Jul 2026"},
+          {"deliverable": "Provide HSN-to-item mapping, warehouse/inventory data access and tax-master details via IT/AP teams", "who": "Buyer", "grounding_quote": "this I will have to ask the IT team... my understanding is yes but I will have to ask the accounts payable team", "date": "2026-06-10", "due": null, "status": "open", "source": "Avoma clarification call 10 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer not named in Salesforce", "quote": "the chief digital officer is going to be the main sponsor of the project", "status": "acknowledged", "date": "2026-05-20", "gap_type": "knowledge", "source": "Avoma discovery call 20 May 2026, Utchal Barbara"},
+        {"area": "Contact roles not populated in Salesforce (only Utchal Barbara appears as a task/activity contact)", "quote": "", "status": "not addressed", "date": "2026-07-03", "gap_type": "hygiene", "source": "SF OpportunityContactRole"},
+        {"area": "Specific 'requirements we cant deliver' not enumerated", "quote": "some of the requirements we cant deliver, will need clarity on that call", "status": "not addressed", "date": "2026-06-23", "gap_type": "knowledge", "source": "SF Next_Step__c 23 Jun 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified enterprise S2P at a marquee account: the win levers are landing the demo, proving FMCG value to the sponsor, and multi-threading beyond a single champion before the RFP formalizes.",
+      "flags": [
+        "Convert the twice-slipped custom demo into a firm IT-plus-procurement session and use it to resolve the flagged 'can't deliver' gaps before the buyer's RFP locks the criteria.",
+        "Multi-thread beyond Utchal Barbara: get the CDO sponsor and AVP Sourcing named in Salesforce and into a value conversation, since the whole deal currently rests on one operational contact.",
+        "Get ahead of the parallel RFP: ask Utchal to share the RFP timeline and required capabilities in writing so Zycus can shape the criteria toward AI-native indirect S2P."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Utchal Barbara", "title": "Head of Procurement", "role": "Champion", "last_contact_date": "2026-07-03", "sentiment": "positive, engaged, building the internal case", "risk": "Developing not decisive: does not own budget, is running a parallel vendor evaluation, and his deep Ariba/GEP/Ivalua experience makes him a neutral expert evaluator; advocacy will cool if the demo does not resolve the flagged gaps.", "source": "SF task/activity contact; Avoma calls 20 May, 10 Jun, 3 Jul 2026"},
+        {"name": null, "title": "Chief Digital Officer", "role": "Economic Buyer", "last_contact_date": "2026-05-29", "sentiment": "positive at 29 May F2F ('liked the Zycus capabilities')", "risk": "Named by Utchal as project sponsor but not identified in Salesforce and no commercial/budget engagement yet; economic buyer is mapped by role only.", "source": "Avoma discovery call 20 May 2026 (role only); SF Next_Step__c 29 May 2026"},
+        {"name": null, "title": "Procurement Head", "role": "Influencer", "last_contact_date": "2026-05-29", "sentiment": "positive at 29 May F2F", "risk": "Attended the F2F but unnamed and not on any recorded call; seniority relative to Utchal unclear.", "source": "SF Next_Step__c 29 May 2026"},
+        {"name": null, "title": "AVP Sourcing", "role": "Decision Maker", "last_contact_date": null, "sentiment": "unknown", "risk": "Named by role only (Utchal committed to bring them in); not yet engaged.", "source": "Avoma discovery call 20 May 2026, Utchal Barbara"},
+        {"name": null, "title": "IT / SAP team", "role": "Influencer", "last_contact_date": null, "sentiment": "neutral", "risk": "Gatekeeper on ECC6 integration and the demo audience; their absence postponed the 3 Jul demo; not yet directly engaged.", "source": "Avoma demo call 3 Jul 2026"},
+        {"name": null, "title": "PwC (buyer's advisor/SI)", "role": "Influencer", "last_contact_date": "2026-07-03", "sentiment": "neutral", "risk": "Running an internal workshop with RCPL IT; involvement not yet mapped for Zycus; could shape the RFP.", "source": "Avoma demo call 3 Jul 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Utchal Barbara (Head of Procurement) is a developing champion who drives the evaluation, articulated the pain and value target, and is building the case for the CDO sponsor, but he does not control budget, is openly running a parallel vendor process, and has not positioned Zycus as preferred. His hands-on Ariba/GEP/Ivalua experience makes him credible but neutral. He strengthens if the rescheduled demo resolves the flagged functional gaps and the FMCG proof lands; he cools if they do not.",
+      "champion": "Utchal Barbara",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "Avoma calls 20 May, 10 Jun, 3 Jul 2026; SF task/activity contact"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is a live wedge and landing well: Utchal responded positively to the Merlin conversational-on-Teams intake and autonomous-agent invoice/matching story ('this is the power of conversational AI'), and he expects AI-based bid analysis as table stakes. Keep the Merlin/I2O narrative central through the demo and RFP.",
+      "score": "6.5 (Moderate)",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.5 / Moderate is consistent with the calls: strong pain articulation and explicit interest in RFP automation, catalog creation, CLM and spend analysis, tempered by cautious signals (SAP ECC6 retail-version integration concern and missing historical baseline data). Buyer engaged enthusiastically with Merlin/agentic AI on Teams, so appetite is real but proof-dependent.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "Economic buyer is an unnamed CDO sponsor with no commercial engagement; deal is single-threaded through one operational champion.", "first_raised": "2026-05-20", "date": "2026-05-20", "status": "open", "source": "Avoma discovery call 20 May 2026, Utchal Barbara"},
+        {"category": "integration", "detail": "RCPL runs a restricted retail version of SAP ECC6 (migrating to HANA by 2027); ECC6 constraints flagged as a blocker for direct-side and data access.", "first_raised": "2026-05-20", "date": "2026-06-10", "status": "open", "source": "Avoma calls 20 May and 10 Jun 2026; SF AIS_Why__c"},
+        {"category": "other", "detail": "Zycus flagged that some submitted use cases 'we cant deliver' (unspecified); cross-plant stock visibility explicitly non-committal pending warehouse data.", "first_raised": "2026-06-23", "date": "2026-06-23", "status": "open", "source": "SF Next_Step__c 23 Jun 2026; Avoma call 10 Jun 2026"},
+        {"category": "timeline", "detail": "The value-proving custom demo has slipped three times (26 Jun to 29 Jun to 3 Jul) and was postponed again on 3 Jul; rep confidence 20%.", "first_raised": "2026-06-23", "date": "2026-07-03", "status": "open", "source": "SF Next_Step__c; Avoma demo call 3 Jul 2026"},
+        {"category": "change_management", "detail": "No baseline historical spend data at RCPL, complicating spend-analysis deployment and delaying a quantified ROI model.", "first_raised": "2026-05-20", "date": "2026-05-20", "status": "open", "source": "Avoma discovery call 20 May 2026, Utchal Barbara; SF AIS_Why__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer is engaged and reaffirmed a next-quarter timeline on 3 Jul, but the deciding demo keeps slipping and the deal is single-threaded, so momentum is soft rather than cooling to cold.",
+      "cooling": false,
+      "items": [
+        "Positive: timeline reaffirmed on 3 Jul ('finalizing the tool by next quarter... it stays the same').",
+        "Watch: custom demo postponed twice; rep confidence 20%.",
+        "Watch: engagement runs through one contact (Utchal); CDO/AVP/IT not yet directly engaged by Zycus."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Lock a firm demo date with Utchal for the coming Friday, IT and procurement both present.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "3 Jul demo postponed when only procurement attended; Zycus lead said to reset via IT for 'next Friday or later'.", "trigger_date": "2026-07-03", "act_by": "2026-07-10", "expected_effect": "Stops the repeated slippage and puts the value-proving milestone back on the calendar with the right audience."},
+        {"rank": 2, "action": "Prepare clear can-do/can't-do positions on the flagged gaps and cross-plant stock visibility for the demo.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Zycus flagged 'some of the requirements we cant deliver' and stayed non-committal on warehouse-data-dependent stock visibility.", "trigger_date": "2026-06-23", "act_by": "2026-07-17", "expected_effect": "Removes the biggest credibility risk with an expert buyer before the RFP criteria lock."},
+        {"rank": 3, "action": "Build the FMCG/India before-and-after savings use cases Utchal requested for the CDO sponsor.", "owner": "Partner", "horizon": "next_14_days", "trigger": "Utchal asked PwC/Zycus to bring FMCG proof so he can sell the program to the sponsor.", "trigger_date": "2026-05-20", "act_by": "2026-07-18", "expected_effect": "Arms the champion to convert CDO sponsorship into active budget support."},
+        {"rank": 4, "action": "Get the CDO sponsor and AVP Sourcing named and into a value conversation.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Economic buyer is an unnamed CDO; deal is single-threaded through Utchal.", "trigger_date": "2026-05-20", "act_by": "2026-08-01", "expected_effect": "Maps power and reduces single-thread risk ahead of the RFP and commercials."},
+        {"rank": 5, "action": "Ask Utchal for the RFP timeline and required capabilities in writing.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Buyer is 'already engaging with vendors' and may float an RFP; timing undefined.", "trigger_date": "2026-05-20", "act_by": "2026-08-04", "expected_effect": "Lets Zycus shape RFP criteria toward AI-native indirect S2P and avoid being commoditized."}
+      ]
+    },
+    "customer_preference": {"level": "medium", "evidence": "Utchal engaged positively with Zycus AI/Merlin ('this is the power of conversational AI') and is in direct dialogue, but is openly running a parallel evaluation and may float an RFP, so no decisive lean (20 May, 10 Jun)."},
+    "business_case": {"status": "partial", "evidence": "Buyer-stated 4-5% savings target on ~10 lakh crore indirect spend plus 50-60% team-time recovery, but qualitative; no baseline data yet to model ROI (20 May)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": true,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "Indirect S2P suite (iSource, iSave, iSupplier, eProcurement)", "to": "Indirect S2P suite (iSource, iSave, iSupplier, eProcurement)", "detail": "Scope unchanged since creation; Zycus positioned indirect-first from the start (direct left to SAP), which is standard positioning, not a reduction. Amount and products steady."},
+    "ceo_intervention": {"needed": false},
+    "deal_scores_evidence": {
+      "summary": "A marquee Reliance indirect-S2P deal, early and engaged, where a well-briefed Head of Procurement champion is running us toward a decision, but the value-proving demo has slipped twice, the economic-buyer CDO is unnamed, and a parallel RFP is coming.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "We are in a direct, early, single-threaded position with a knowledgeable champion (Utchal Barbara, Head of Procurement) who articulated hard pain and a 4-5% savings target on ~10 lakh crore indirect spend, and there is no incumbent tool to displace (20 May)."},
+          {"tone": "warn", "text": "No vendor is preferred yet and the buyer is 'already engaging with vendors' with a possible RFP, so the field is open and could commoditize if we do not shape the criteria first (20 May)."},
+          {"tone": "warn", "text": "The economic buyer is an unnamed CDO sponsor with no commercial engagement and the deal rests on one contact, leaving power unmapped this early (29 May)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "The custom demo slipped from 26 Jun to 29 Jun to 3 Jul and was postponed again on 3 Jul when IT was absent in a PwC workshop, so the deciding milestone has not landed (3 Jul)."},
+          {"tone": "good", "text": "Buyer reaffirmed the next-quarter timeline on 3 Jul ('it stays the same'), so intent survived the slip."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Buyer submitted a detailed 9-10 point use-case requirement list and reviewed it line by line on 10 Jun, and brought the CDO and Procurement Head to a 29 May F2F, showing real investment."},
+          {"tone": "warn", "text": "Commitment is still operational only: no budget conversation, no formal RFP, and rep-stated confidence is 20% (29 Jun)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Zycus flagged 'some of the requirements we cant deliver' and was non-committal on cross-plant stock visibility, a credibility risk with an expert Ariba/GEP-experienced buyer (23 Jun, 10 Jun)."},
+          {"tone": "warn", "text": "SAP ECC6 retail-version restrictions and missing historical spend data threaten integration and delay a quantified ROI model (20 May)."}
+        ]
+      },
+      "factors": {
+        "demo_execution": {"strength": -0.4, "evidence": "Value-proving custom demo slipped three times and postponed again on 3 Jul."},
+        "economic_buyer_access": {"strength": -0.3, "evidence": "CDO sponsor unnamed, no commercial engagement, single-threaded through Utchal."},
+        "competitive_pressure": {"strength": -0.2, "evidence": "Parallel vendor engagement and a possible RFP; no vendor preferred but field is open."},
+        "champion_engagement": {"strength": 0.4, "evidence": "Utchal actively building the internal case and coordinating senior stakeholders."}
+      }
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 4,
+    "calls_read": 3,
+    "calls_omitted": [{"call": "Zycus <> RCPL: Presentation / F2F with CDO and Procurement Head (29 May 2026)", "reason": "No transcript available in this sweep; known only via Next_Step summary (referenced, not recorded)."}],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history since 20 May 2026 creation",
+    "avoma_attendees": ["Utchal Barbara"],
+    "gaps": [
+      "Economic buyer not named in Salesforce (CDO known by role only).",
+      "Specific 'requirements we cant deliver' not enumerated.",
+      "Single-threaded evidence: only Utchal Barbara appears as a buyer participant/contact; CDO, AVP Sourcing, Procurement Head and IT are unnamed roles."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

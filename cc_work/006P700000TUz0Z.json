@@ -1,0 +1,363 @@
+{
+  "opp_id": "006P700000TUz0Z",
+  "hard": {
+    "opp_id": "006P700000TUz0Z",
+    "opp_name": "ABM_Opp_Feb'26",
+    "account_name": "ABM Industries Incorporated",
+    "account_industry": "Business Services",
+    "billing_country": "United States",
+    "owner_name": "Richard Hunsinger",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 250000,
+    "close_date": "2027-06-30",
+    "days_to_close": 359,
+    "created_date": "2026-02-09",
+    "qualified_date": "2026-02-09",
+    "last_activity_date": "2026-06-19",
+    "last_modified_date": null,
+    "products": "Merlin Intake;ANA",
+    "next_step": "",
+    "ais_score": 3.0,
+    "ais_status": "Negative",
+    "ais_why": "On the Feb 2026 call, Maisam Raza confirmed ABM is locking in Coupa SIM in under 30 days and has 'no immediate opportunity' for any change. She liked Zycus's Teams integration and AI-driven automation conceptually but on her way out. AI excitement belongs to the individual, not the account.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Coupa",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000TUz0Z/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "Opp created 9 Feb 2026 as a courtesy placeholder days after Maisam Raza said 'there's no scope at ABM specifically' post Coupa go-live; no buyer has engaged in the ~5 months since, and Coupa is freshly entrenched with CTO sponsorship.",
+      "math": "Created 9 Feb 2026; close date 30 Jun 2027 is ~359 days out. Last genuine buyer conversation was the 3 Feb 2026 intro call (~153 days ago as of 6 Jul 2026). In Qualified stage ~147 days with no Next Step and no progression signal. The 19 Jun 2026 LastActivityDate is a one-way rep 'Call Attempted' Clari email with no buyer reply. No champion, no multi-thread, no MEDDPICC progress, no business case. This is a networking touchpoint, not a buying motion.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Maisam Raza, 3 Feb 2026 (Avoma): 'there's no scope at ABM specifically... this would be something that I would carry with me' and 'I'll take the learnings with me to any new company that I join' - framed as personal learning, not an ABM opportunity",
+        "Maisam Raza, 3 Feb 2026 (Avoma): 'we have just implemented ERP and Coupa and everything recently. So this is not an opportunity for ABM right now because big companies don't change ERPs very often or P2P technologies very often'",
+        "ABM was launching Coupa SIM within 30 days of the 3 Feb 2026 call, on top of a Coupa P2P go-live in Nov 2024 (Avoma, 3 Feb 2026 and 1 Aug 2025)",
+        "No buyer call since 3 Feb 2026; the 19 Jun 2026 activity is a one-way rep Clari email ('Call Attempted'), not buyer engagement",
+        "Zero OpportunityContactRole records; the only buyer contact tied to the opp is task/activity contact Maisam Raza, a non-authority influencer",
+        "No Next_Step__c populated; AIS 3.0 / Negative confirms this is a networking touchpoint, not a live deal",
+        "Stage remains Qualified with no discovery depth, demo follow-up, RFI/RFP positioning, or any validation milestone appropriate to a mid-2027 close"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No business case exists for ABM. On the 3 Feb 2026 intro call Maisam Raza acknowledged Zycus's proof points (she noted Delta's ROI moving 3x to 12x and a 50% sourcing-cycle-time reduction from the deck shared on the 1 Aug 2025 call) but applied them explicitly as learnings for a future employer, not to an ABM pain. No cost, headcount, cycle-time, or savings target was ever tied to ABM's ~$1.1B spend base or its 9,200-supplier footprint. The pain she did articulate ('I barely make my ends meet with Coupa', UI 'I can't just tolerate in 2026') is personal frustration, not a funded business problem. To create Metrics the team would have to reopen a real ABM procurement gap post Coupa SIM go-live and quantify it, which the buyer has said does not exist today.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "Avoma quick connect 1 Aug 2025",
+          "No Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c populated"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is unmapped and unengaged. From the 3 Feb 2026 call the budget authority for procurement tooling sits with ABM's CPO (Maisam: 'I wouldn't lead my CPU in that direction. Although he loves Coupa, he's been a Coupa fan more than me') and the platform decision is owned by a CTO she described as a 'Coupa fan' whom she 'cannot overrule'. Neither is named in Salesforce, neither has been contacted, and both are inclined toward the incumbent. Our only relationship is with Maisam Raza, who has no decision authority. Identifying and reaching the CPO and CTO would be prerequisite to any real motion, but there is no path to them today and no ABM appetite to open one.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "No X10a_Sponsor__c / Who_will_approve_budget__c / Executive_Sponsor_Identified__c populated",
+          "Zero OpportunityContactRole records"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "There is no live ABM evaluation, so no decision criteria are in play, but the 3 Feb 2026 call surfaced what Maisam Raza personally values in a procurement platform: ease of use ('is your UI as easy and straightforward that a blind man could follow or is it cumbersome like Coupa'), responsive customer support (she praised Buysmart and GEP support and slammed Coupa's 'this is a Coupa limitation' answers), and third-party integrations (Relish, supplier.io, Avetta/Aravo for risk and COI/MSA validation). Zycus's Teams-based orchestration and AppExtend/open-API story landed well against these. These are inferred, individual criteria, not a documented ABM requirement set, because ABM is not evaluating.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "No Business_Requirements__c / Top_Challenges_Priorities__c populated"
+        ]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no buying process because ABM has no active project. Read from the call sequence: a 1 Aug 2025 quick connect with an associate-level buyer (Danielle) who could only offer to relay Zycus to her director, then a 3 Feb 2026 intro call with Maisam Raza who explicitly closed the door for now. No one has escalated, no committee has formed, and no next step exists. The only forcing function on the horizon is Coupa's contract renewal (Coupa P2P went live ~Nov 2024, typically a 3-year term, implying a ~2027 renewal-evaluation window) - that is the realistic re-entry point, not any current process.",
+        "sources": [
+          "Avoma quick connect 1 Aug 2025",
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "No What_is_the_decision_process__c populated"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in view and none are relevant at this stage - the deal has never reached commercials. ABM's active paper motion is entirely with Coupa: they are completing a Coupa SIM go-live and migrating open POs and suppliers off the legacy Buysmart system (Danielle, 1 Aug 2025). ERP is JD Edwards. Nothing about a Zycus MSA, SOW, InfoSec review, or procurement channel has been discussed. Visibility would only come after a genuine ABM opportunity reopens.",
+        "sources": [
+          "Avoma quick connect 1 Aug 2025 (Danielle)",
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)"
+        ]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The pain is real but owned by an individual, not the account, and it is already being addressed by the incumbent. Maisam Raza voiced concrete Coupa dissatisfaction on 3 Feb 2026: 'I have a laundry list of things that I don't like in Coupa', 'I barely make my ends meet with Coupa', Coupa Analytics and SIM were '99% not what they sold me', and the UI 'I can't just tolerate in 2026'. But she pairs every complaint with resignation ('I cannot overrule what the CTO thinks') and states ABM has no scope to change. So the pain is confirmed and articulate, yet it is not a funded ABM problem - it is a knowledgeable user venting about a tool her leadership just committed to.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)"
+        ]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Maisam Raza was receptive and intellectually engaged on 3 Feb 2026 - she liked the Teams orchestration and autonomous negotiation agent ('this is really cool, I haven't seen that in Coupa') - but she has no decision authority, explicitly framed the conversation as learning she will 'take with me to any new company', and has not re-engaged in ~5 months. The earlier 1 Aug 2025 contact, Danielle, an associate-level buyer, was positive ('I think this would be beneficial') and offered to relay Zycus to her director, but no follow-through or director conversation ever materialised. Neither introduced Zycus to the CPO or CTO or drove any motion. Building a real champion at power would be the precondition to reviving this deal.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "Avoma quick connect 1 Aug 2025 (Danielle)",
+          "Zero OpportunityContactRole records; no re-engagement since 3 Feb 2026"
+        ]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The competition is the freshly-entrenched incumbent plus pure status-quo, not an active bake-off. ABM went live on Coupa P2P in Nov 2024 and was launching Coupa SIM within 30 days of the 3 Feb 2026 call, replacing legacy Buysmart, with the CTO as an internal Coupa advocate. That makes a platform switch years away, so the true 'competitor' is do-nothing / no-decision. Coupa is beatable only on its known weaknesses - user experience, customer support, and under-delivery on Analytics and SIM ('99% not what they sold me', Maisam, 3 Feb 2026) - and Zycus's wedge is the Teams orchestration layer and autonomous negotiation agent. The broader market names Maisam raised (Ariba, SAP, GEP, Zip, Buysmart) were general industry discussion, not an ABM shortlist. The realistic opening is the ~2027 Coupa renewal window.",
+        "sources": [
+          "Avoma intro call 3 Feb 2026 (Maisam Raza)",
+          "Avoma quick connect 1 Aug 2025 (Danielle)"
+        ]
+      }
+    },
+    "deal_movement": {
+      "summary": "No forward motion since creation. The opp was created 9 Feb 2026, days after the 3 Feb 2026 intro call where the buyer declined an opportunity, and has sat in Qualified with no Next Step ever since. The only later activity is a one-way rep Clari email on 19 Jun 2026 that drew no reply.",
+      "items": [
+        {"change": "Opportunity created and set to Qualified stage (New Business)", "date": "2026-02-09"},
+        {"change": "Owner assigned to Richard Hunsinger", "date": "2026-02-09"},
+        {"change": "Rep 'Call Attempted' / Clari email sent re Coupa SIM go-live; no buyer reply", "date": "2026-06-19"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Coupa is the entrenched incumbent and the strongest current 'threat' is really status-quo. ABM went live on Coupa P2P in Nov 2024 and was launching Coupa SIM within 30 days of the 3 Feb 2026 call, with the CTO as an internal Coupa champion, so a switch is years out - a no-decision / do-nothing risk more than a live competitive loss. Coupa is vulnerable on UI, support, and Analytics/SIM under-delivery per Maisam Raza (3 Feb 2026). Buysmart is the retired legacy system ABM migrated off and carries no current threat. No active bake-off exists.",
+      "competitors": [
+        {
+          "name": "Coupa",
+          "sentiment": "negative",
+          "threat_level": "high",
+          "status": "incumbent",
+          "quote": "I have a laundry list of things that I don't like in Coupa, but I cannot overrule what the CTO thinks. I barely make my ends meet with Coupa. 99% not what they sold me. (Maisam Raza, 3 Feb 2026)",
+          "date": "2026-02-03",
+          "source": "Avoma intro call 3 Feb 2026",
+          "how_we_win": "Wait for and target the ~2027 Coupa renewal window; lead with the Teams orchestration layer and autonomous negotiation agent against Coupa's UI, support, and Analytics/SIM under-delivery; multi-thread to the CPO to counter the CTO's Coupa loyalty."
+        },
+        {
+          "name": "Status quo / do-nothing",
+          "sentiment": "negative",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "This is not an opportunity for ABM right now because big companies don't change ERPs very often or P2P technologies very often. There's no scope at ABM specifically. (Maisam Raza, 3 Feb 2026)",
+          "date": "2026-02-03",
+          "source": "Avoma intro call 3 Feb 2026",
+          "how_we_win": "ABM keeps running just-implemented Coupa and never revisits procurement tooling; the only lever is a renewal-timed re-engagement in ~2027, not activity now."
+        },
+        {
+          "name": "Buysmart",
+          "sentiment": "neutral",
+          "threat_level": "dormant",
+          "status": "faded",
+          "quote": "Buysmart was our older software that we migrated from... that contract will be expiring sooner than later, and Coupa is going to be our main software. (Danielle, 1 Aug 2025)",
+          "date": "2025-08-01",
+          "source": "Avoma quick connect 1 Aug 2025",
+          "how_we_win": "Not a live competitor - retired legacy system being decommissioned; no action needed."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Where Zycus was measured against Maisam Raza's personal criteria on 3 Feb 2026 it fit well (Teams-based ease of use, integrations, innovation), but the overriding reality is that ABM has no active need - the account just committed to Coupa - which leaves the deal exposed on timing and appetite, not capability.",
+      "items": [
+        {
+          "criterion": "Ease of use / UI",
+          "position": "aligned",
+          "quote": "This is really cool. I haven't seen that in Coupa... is your UI as easy as a blind man could follow or cumbersome like Coupa? I can't just tolerate it in 2026. (Maisam Raza)",
+          "date": "2026-02-03",
+          "source": "Avoma intro call 3 Feb 2026"
+        },
+        {
+          "criterion": "Third-party integrations (risk/compliance, supplier validation)",
+          "position": "aligned",
+          "quote": "Do you also provide integrations to other technologies? ... We're an open API platform, and we built AppExtend to develop integrations in weeks. (Maisam Raza / Richard Hunsinger)",
+          "date": "2026-02-03",
+          "source": "Avoma intro call 3 Feb 2026"
+        },
+        {
+          "criterion": "Active buying need / timing",
+          "position": "exposed",
+          "quote": "There's no scope at ABM specifically... this is not an opportunity for ABM right now. (Maisam Raza)",
+          "date": "2026-02-03",
+          "source": "Avoma intro call 3 Feb 2026"
+        }
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / decision maker access", "quote": "I cannot overrule what the CTO thinks. (Maisam Raza, 3 Feb 2026)", "status": "not addressed", "date": "2026-02-03", "gap_type": "knowledge", "source": "Avoma intro call 3 Feb 2026"},
+        {"area": "Business case / metrics for ABM", "quote": "I'll take the learnings with me to any new company that I join. (Maisam Raza, 3 Feb 2026)", "status": "not addressed", "date": "2026-02-03", "gap_type": "knowledge", "source": "Avoma intro call 3 Feb 2026"},
+        {"area": "Buyer contact roles not recorded on the opp", "quote": "", "status": "acknowledged", "date": "2026-02-09", "gap_type": "hygiene", "source": "Zero OpportunityContactRole records; Maisam Raza only a task/activity contact"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is not a live opportunity today; the winning move is honest qualification plus a renewal-timed watch, not manufactured activity.",
+      "flags": [
+        "Qualify this out of the active forecast and set a dated nurture - the buyer stated there is no ABM scope right after going live on Coupa.",
+        "The only real opening is Coupa's ~2027 renewal window (P2P live Nov 2024, SIM Feb 2026, typical 3-year term); set a watch and re-engage then, not now.",
+        "If pursued, multi-thread past the non-authority influencer (Maisam Raza) to the unnamed CPO and Coupa-loyal CTO who actually own the platform decision."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {
+          "name": "Maisam Raza",
+          "title": null,
+          "role": "Influencer",
+          "last_contact_date": "2026-02-03",
+          "sentiment": "Warm toward Zycus capabilities (Teams orchestration, AI negotiation agent, UI) but resigned on Coupa and explicit that ABM has no opportunity now; framed learnings as for a future role",
+          "risk": "Cooling / passive; no authority, no re-engagement in ~5 months, may change employers. Single point of contact.",
+          "source": "SF task/activity contact; Avoma intro call 3 Feb 2026"
+        },
+        {
+          "name": "Danielle",
+          "title": null,
+          "role": "Influencer",
+          "last_contact_date": "2025-08-01",
+          "sentiment": "Positive ('I think this would be beneficial') but associate-level; offered to relay Zycus to her director",
+          "risk": "Stale (pre-dates the opp by ~6 months); no follow-through and no confirmed director conversation; likely no longer relevant.",
+          "source": "Avoma quick connect 1 Aug 2025 (named speaker)"
+        }
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Maisam Raza is a receptive, knowledgeable influencer with no decision authority who explicitly declined an ABM opportunity and has not re-engaged in ~5 months; Danielle (Aug 2025) was positive but associate-level and never followed through. Neither reached the CPO or CTO. Developing a champion at power is the precondition to reviving the deal.",
+      "champion": "None",
+      "strength": "none",
+      "at_risk": true,
+      "source": "Avoma intro call 3 Feb 2026 (Maisam Raza); Avoma quick connect 1 Aug 2025 (Danielle); zero OpportunityContactRole records"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus's Merlin / autonomous negotiation agent and Teams orchestration story was told well and landed with Maisam Raza on 3 Feb 2026 ('I haven't seen that in Coupa'), but there is no ABM AI initiative or POC interest to carry it - AIS is 3.0 / Negative because the appetite is individual, not organizational.",
+      "score": "3.0",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 3.0 / Negative. The Avoma calls confirm the field: Maisam Raza engaged intellectually with Merlin and the autonomous negotiation agent but expressed no ABM agentic/AI project, no POC interest, and planned only to 'research Zycus on YouTube post go-live'. The AI excitement is personal curiosity, not account demand.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "No buying need until Coupa's ~2027 renewal; deal is years early with a placeholder 30 Jun 2027 close.", "first_raised": "Avoma intro call 3 Feb 2026", "date": "2026-02-03", "status": "open", "source": "Avoma intro call 3 Feb 2026"},
+        {"category": "change_management", "detail": "Status-quo / do-nothing is the deal-killer: ABM just went live on Coupa P2P and SIM and will not revisit tooling soon.", "first_raised": "Avoma intro call 3 Feb 2026", "date": "2026-02-03", "status": "open", "source": "Avoma intro call 3 Feb 2026"},
+        {"category": "executive_alignment", "detail": "Budget owners (CPO, and a Coupa-loyal CTO) are unnamed and never contacted; only a non-authority influencer is engaged.", "first_raised": "Avoma intro call 3 Feb 2026", "date": "2026-02-03", "status": "open", "source": "Avoma intro call 3 Feb 2026"},
+        {"category": "political", "detail": "Single-thread to one influencer whose mindshare is already turning to a future employer.", "first_raised": "Avoma intro call 3 Feb 2026", "date": "2026-02-03", "status": "open", "source": "Avoma intro call 3 Feb 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is dark: last genuine two-way buyer exchange was 3 Feb 2026; the only later touch is a one-way rep email on 19 Jun 2026 with no reply.",
+      "cooling": true,
+      "items": [
+        "No buyer response to the 19 Jun 2026 Clari email",
+        "No Next Step, no scheduled meeting, no champion",
+        "Buyer explicitly declined an opportunity on the last call"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {
+          "rank": 1,
+          "action": "Reply to Maisam's stalled thread with one ABM-specific post-go-live value proof point.",
+          "owner": "Deal team",
+          "horizon": "next_7_days",
+          "trigger": "The 19 Jun 2026 Clari email got no reply and no buyer has engaged since 3 Feb 2026.",
+          "trigger_date": "2026-06-19",
+          "act_by": "2026-07-13",
+          "expected_effect": "Tests whether any real ABM interest survives the Coupa SIM go-live before spending further cycles."
+        },
+        {
+          "rank": 2,
+          "action": "Ask Maisam directly whether any procurement gap has opened at ABM since Coupa SIM went live.",
+          "owner": "Deal team",
+          "horizon": "next_14_days",
+          "trigger": "Buyer said 'no scope at ABM' on 3 Feb 2026; go-live has since completed, changing the ground truth.",
+          "trigger_date": "2026-02-03",
+          "act_by": "2026-07-20",
+          "expected_effect": "Either surfaces a genuine opening or confirms the deal should move to a nurture status."
+        },
+        {
+          "rank": 3,
+          "action": "If no reply, diarize a re-engagement timed to Coupa's ~2027 renewal window and move the opp to nurture.",
+          "owner": "Deal team",
+          "horizon": "next_30_days",
+          "trigger": "Coupa P2P live Nov 2024 plus SIM Feb 2026 on a typical 3-year term implies a ~2027 renewal-evaluation window.",
+          "trigger_date": "2026-02-03",
+          "act_by": "2026-08-05",
+          "expected_effect": "Preserves the only realistic re-entry point without forcing premature activity on a dead-today deal."
+        }
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "ABM told us on the 3 Feb 2026 intro call there is 'no scope at ABM specifically' right after going live on Coupa; this opp is a courtesy networking placeholder with no buyer engagement since, not a live deal.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This is not a winnable deal today: Maisam Raza said 'there's no scope at ABM specifically' on 3 Feb 2026, ABM had just gone live on Coupa, and no buyer has engaged in the ~5 months since (Avoma, 3 Feb 2026)."},
+          {"tone": "warn", "text": "The Coupa decision is owned by an unnamed CTO Maisam called a 'Coupa fan' whom she 'cannot overrule', and we have never reached him or the CPO who holds the budget (Avoma, 3 Feb 2026)."},
+          {"tone": "warn", "text": "Our only contact is a non-authority influencer who framed the call as 'learnings I'll take to any new company I join', signalling personal interest rather than an ABM buying motion (Avoma, 3 Feb 2026)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No forward motion since the opp was created on 9 Feb 2026: it has sat in Qualified with no Next Step, and the 19 Jun 2026 touch was a one-way rep email that drew no reply."},
+          {"tone": "warn", "text": "The last genuine two-way exchange was the 3 Feb 2026 intro call; the only later 2025 call (1 Aug) pre-dates the opp and led nowhere."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "ABM made no commitment: Maisam explicitly declined an opportunity and offered only to 'stay in touch via LinkedIn' and watch Zycus on YouTube after go-live (Avoma, 3 Feb 2026)."},
+          {"tone": "good", "text": "The one positive is genuine product affinity: Maisam praised the Teams orchestration and autonomous negotiation agent as things she 'hadn't seen in Coupa' (Avoma, 3 Feb 2026)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Status-quo is the deal-killer: ABM went live on Coupa P2P (Nov 2024) plus Coupa SIM (Feb 2026) on a fresh multi-year contract, so any switch is years away, not quarters (Avoma, 3 Feb 2026)."},
+          {"tone": "warn", "text": "Single-thread to a departing-mindshare influencer with no access to the CPO or CTO who own the Coupa decision (Avoma, 3 Feb 2026)."}
+        ]
+      },
+      "factors": {
+        "customer_commitment": {"strength": -0.8, "evidence": "Buyer explicitly declined an ABM opportunity and offered only casual future contact (Maisam Raza, 3 Feb 2026)."},
+        "deal_risk": {"strength": -0.8, "evidence": "Freshly-implemented Coupa plus CTO loyalty makes a switch years off; do-nothing dominates (3 Feb 2026)."},
+        "deal_momentum": {"strength": -0.7, "evidence": "No buyer engagement in ~5 months; only a one-way rep email on 19 Jun 2026."}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "ABM is locked into Coupa: they went live on P2P in Nov 2024 and were launching Coupa SIM within 30 days of our 3 Feb 2026 call, with the CTO as an internal Coupa champion.", "tone": "crit"},
+      {"lens": "Last meeting", "text": "Our last real conversation on 3 Feb 2026 ended with Maisam Raza stating there is 'no scope at ABM' and that she would only take Zycus learnings to a future employer.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "The budget owners are an unnamed CPO and a Coupa-loyal CTO we have never met; our sole contact is a non-authority influencer whose mindshare is turning to a future role.", "tone": "warn"},
+      {"lens": "Commercials", "text": "No business case exists for ABM: no ROI, savings, or scope was ever quantified against their ~$1.1B spend base.", "tone": "warn"}
+    ],
+    "customer_preference": {"level": "low", "evidence": "Maisam Raza personally liked Zycus's Teams integration and AI negotiation agent ('haven't seen that in Coupa') but explicitly said 'there's no scope at ABM specifically' and the org is committed to Coupa (3 Feb 2026)."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or automation impact was quantified for ABM; Zycus metrics were acknowledged only as future-role learning (3 Feb 2026)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "Merlin Intake;ANA ($250k)", "to": "Merlin Intake;ANA ($250k)", "detail": "No scope change; opp has held the same products and amount since creation with no active evaluation to expand or narrow."},
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 2,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history to 2026-02-09 (opp creation)",
+    "avoma_attendees": ["Maisam Raza", "Danielle", "Richard Hunsinger"],
+    "gaps": [
+      "No named, reachable economic buyer or decision maker (CPO and CTO referenced by role only, never named in Salesforce)",
+      "No ABM business case, metrics, or active evaluation",
+      "No buyer engagement since 3 Feb 2026; latest touch is a one-way rep email"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

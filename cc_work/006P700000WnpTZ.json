@@ -1,0 +1,258 @@
+{
+  "opp_id": "006P700000WnpTZ",
+  "hard": {
+    "opp_id": "006P700000WnpTZ",
+    "opp_name": "Atlas Air Worldwide S2P",
+    "account_name": "Atlas Air Inc",
+    "account_industry": "Auto & Transport",
+    "billing_country": "United States",
+    "owner_name": "Richard Hunsinger",
+    "owner_title": "Regional Sales Director",
+    "manager_name": null,
+    "stage": "Formal Evaluation",
+    "forecast_category": "Pipeline",
+    "amount": 550000,
+    "close_date": "2027-03-12",
+    "days_to_close": 249,
+    "created_date": "2026-04-15",
+    "qualified_date": "2026-04-16",
+    "last_activity_date": "2026-05-26",
+    "last_modified_date": "2026-06-30",
+    "products": "iContract;iSource;ML iAnalyze;iManage;iSave;iSupplier;eProcurement;eInvoicing;iRequest;iSaaS;Merlin;iRisk;Merlin Intake",
+    "next_step": "RH 5/11/26 Submitted RFI",
+    "ais_score": 5.0,
+    "ais_status": "Moderate",
+    "ais_why": "No discovery call has been recorded in Avoma yet, so customer AI sentiment is unknown. Salesforce frames the deal as an Ariba displacement with a strong fit in the aviation vertical; Atlas Air just submitted an RFI on 5/11, indicating a structured buy rather than an AI-driven mandate. Activity is process-driven (RFI submitted, 550K ACV, Qualified) without verbatim AI cues.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "SAP Ariba (incumbent being displaced)",
+    "primary_competitor": "SAP Ariba",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000WnpTZ/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Atlas Air's procurement team submitted our P2P RFI on 11 May and confirmed review on 26 May, but 41 days of silence have followed with only Sr. Buyer Lindsay Wright engaged, no business or executive stakeholder, and SAP Ariba as the incumbent to displace.",
+      "math": "Today 6 Jul 2026, close 12 Mar 2027 = 249 days out. Stage moved Qualified to Formal Evaluation on 30 Jun 2026. Last verified buyer activity 26 May 2026 (41 days ago), when Lindsay Wright said she was reviewing all proposals. Long runway allows recovery, but no buyer-driven next date exists and the thread has gone quiet, so this is thinning engagement, not yet cold (under the 60-day Off Track floor).",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Next Step: RFI submitted 11 May 2026 (Richard Hunsinger)",
+        "LastActivityDate 26 May 2026, Lindsay Wright confirmed reviewing all proposals",
+        "Stage advanced Qualified to Formal Evaluation on 30 Jun 2026 (SF field history)",
+        "Mutual NDA fully executed 20 Apr 2026 (SF Task, Lindsay Wright)",
+        "Zero Avoma calls and zero OpportunityContactRoles; only procurement contacts Lindsay Wright and Janet Banzon touched",
+        "SAP Ariba is the incumbent being displaced (SF AIS rationale)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified value case has been captured: Customer_Business_Problem__c, Business_Objectives__c and Value_to_Customer__c are all null, and zero Avoma calls exist to quote buyer-stated savings, cycle-time, or headcount targets. The only inferable driver is that Salesforce frames this as an SAP Ariba displacement across a full S2P suite (source: AIS_Why field), which implies procurement-modernization intent but no numbers. The move is to run a discovery call that surfaces and quantifies why Atlas Air is moving off Ariba (cost, spend visibility, supplier risk, cycle time).",
+        "sources": ["SF Products__c (full S2P suite)", "SF AIS_Why (Ariba displacement)", "Customer_Business_Problem__c / Business_Objectives__c / Value_to_Customer__c all null", "Zero Avoma calls"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged or mapped on this opportunity: there are zero OpportunityContactRoles, and the only buyer people touched are Sr. Buyer Lindsay Wright and procurement contact Janet Banzon (both procurement, not budget owners), across the 15 Apr to 26 May 2026 email thread. For a $550k S2P transformation the budget authority is almost certainly a CFO or a senior supply-chain/procurement executive, but no such person has been named in a field or reached on a call. The move is to ask Lindsay Wright who signs off on this investment and to secure a direct line to that executive before shortlist.",
+        "sources": ["OpportunityContactRole query (0 roles)", "SF Tasks 15 Apr-26 May 2026 (Lindsay Wright, Janet Banzon)", "X10a_Sponsor__c / Who_will_approve_budget__c null"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Atlas Air is running a formal Procure-to-Pay RFI (submitted by Zycus 11 May 2026, confirmed received by Lindsay Wright same day), which means their evaluation criteria are written down in the RFI document, but those criteria are not captured in the record. Business_Requirements__c, Top_Challenges_Priorities__c and AI_Needs_in_RFP_Rating__c are null, and the RFI response itself is not in the record, so we know a structured criteria set exists but not its priorities (cost, automation depth, ERP/aviation-systems integration, supplier network, AI). The move is to debrief the RFI internally and validate our read of their weighting in a follow-up with Lindsay Wright.",
+        "sources": ["SF Task 11 May 2026 (RFI submitted, Lindsay Wright receipt)", "SF Task 24-29 Apr 2026 (RFI clarification questions exchanged)", "Business_Requirements__c / Top_Challenges_Priorities__c null"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "The buyer is running a procurement-led RFI process: Rick Hunsinger confirmed participation on 15-17 Apr, the mutual NDA was executed 20 Apr, clarification questions were exchanged 24-29 Apr, the RFI was submitted 11 May, and on 26 May Lindsay Wright said the team is reviewing all proposals, implying a shortlist step next. What is undocumented is who beyond procurement reviews the responses, the shortlist/demo timeline, and the approval chain (What_is_the_decision_process__c and Does_the_Buyer_need_approval__c are null). The move is to get the evaluation milestones and the reviewing committee named on the next call.",
+        "sources": ["SF Tasks 15 Apr-26 May 2026 (RFI cycle)", "SF field history: Qualified to Formal Evaluation 30 Jun 2026", "What_is_the_decision_process__c null"]
+      },
+      "paper_process": {
+        "status": "partial",
+        "narrative": "Contracting has an early positive marker: a mutual NDA (MNDA) was fully executed on 20 Apr 2026, with Zycus signing first and Lindsay Wright returning the executed copy same day, so the procurement paper channel and a working legal relationship are already established. Beyond the NDA, the deeper mechanics are unknown: Current_Contract_Expiration__c (the SAP Ariba contract end, a potential forcing function) is null, and there is no visibility yet into MSA/SOW paper, InfoSec questionnaires, or ERP-integration scope. The March 2027 close allows time; the move is to learn Atlas Air's contracting and InfoSec requirements and the Ariba renewal date as the deal advances past RFI.",
+        "sources": ["SF Task 20 Apr 2026 (MNDA fully executed, Lindsay Wright)", "Current_Contract_Expiration__c / Mandate__c null"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No specific operational or financial pain has been articulated by the buyer on any call or field. The strongest signal is that Salesforce frames the deal as an SAP Ariba displacement (source: AIS_Why), which implies dissatisfaction with the incumbent S2P stack (likely manual process, weak spend visibility, or supplier risk), but this is inferred from the solution scope and the displacement framing, not confirmed by a buyer quote. Pain_points_in_the_current_solution__c and Compelling_Event__c are null and there are zero Avoma calls. The move is a discovery call to make Atlas Air articulate and own the pain that justifies switching off Ariba.",
+        "sources": ["SF AIS_Why (Ariba displacement)", "SF Products__c (full S2P suite)", "Pain_points_in_the_current_solution__c / Compelling_Event__c null", "Zero Avoma calls"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion is identified or developed. The only engaged buyer is Sr. Buyer Lindsay Wright, who has been responsive and professional across the 15 Apr to 26 May 2026 email thread (confirming participation, returning the executed NDA, acknowledging the RFI), but she is a procurement gatekeeper managing a competitive RFI, not a confirmed internal advocate with access to power. Janet Banzon (procurement) is copied but has not spoken. There are zero OpportunityContactRoles and zero calls showing anyone pushing the Zycus story internally. The move is to convert Lindsay Wright from process-owner to coach by giving her a compelling differentiated story (S2P suite breadth plus Merlin AI) she can carry to the business.",
+        "sources": ["OpportunityContactRole query (0 roles)", "SF Tasks 15 Apr-26 May 2026 (Lindsay Wright responsive, Janet Banzon copied)", "X10b_Champion_Business_Buyer__c null", "Zero Avoma calls"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "The one named competitive signal is that Salesforce frames this as an SAP Ariba displacement (source: AIS_Why), making SAP Ariba the incumbent Atlas Air would be replacing, which is both the rival to beat and the source of switching pain. Because Atlas Air is running a formal RFI, this is a multi-vendor evaluation, but no other vendor (Coupa, Ivalua, GEP, Jaggaer) is named in any field, task, or call, so the wider shortlist is unknown. Our wedge is the displacement story: full S2P suite breadth plus Merlin AI (agentic sourcing, intake automation, risk scoring) and aviation-vertical fit versus a legacy Ariba footprint. The move is to ask directly who else is shortlisted and to make the case for why Atlas Air should move off Ariba.",
+        "sources": ["SF AIS_Why (Ariba displacement)", "SF Task 11 May 2026 (formal P2P RFI submitted)", "Competitors__c / Others_Competitors_Please_specify__c null"]
+      }
+    },
+    "deal_movement": {
+      "summary": "A clean, procurement-led RFI cycle ran Apr-May 2026 (NDA executed 20 Apr, clarification questions 24-29 Apr, RFI submitted 11 May, receipt confirmed and under review 26 May), and the stage was advanced Qualified to Formal Evaluation on 30 Jun. Since 26 May there has been no buyer-side movement, so the deal is progressing on paper but the live thread has gone quiet.",
+      "items": [
+        {"change": "Stage advanced Qualified to Formal Evaluation (Kanchi Gupta)", "date": "2026-06-30"},
+        {"change": "Lindsay Wright confirmed team is reviewing all proposals", "date": "2026-05-26"},
+        {"change": "Zycus submitted the Atlas Air Worldwide P2P RFI", "date": "2026-05-11"},
+        {"change": "RFI clarification questions and responses exchanged with Lindsay Wright", "date": "2026-04-29"},
+        {"change": "Mutual NDA fully executed (Zycus signed, buyer returned executed copy)", "date": "2026-04-20"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "SAP Ariba is the single named competitive factor and the incumbent Atlas Air would be displacing (source: SF AIS rationale); it is the rival to beat and the source of switching pain, but no direct buyer quote yet confirms dissatisfaction. Because Atlas Air is running a formal RFI this is a multi-vendor evaluation, yet no other vendor is named in any field, task, or call, so the wider shortlist and the status-quo/renewal risk remain unmapped. We win by landing the displacement wedge: full S2P suite breadth plus Merlin AI and aviation-vertical fit against a legacy Ariba footprint.",
+      "competitors": [
+        {
+          "name": "SAP Ariba",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "Salesforce frames the deal as an Ariba displacement with a strong fit in the aviation vertical.",
+          "date": "2026-07-06",
+          "source": "SF AIS_Why field",
+          "how_we_win": "Displacement wedge: quantify Ariba's manual/visibility pain, then position full S2P suite + Merlin agentic sourcing/intake/risk and aviation-vertical fit as the modernization Ariba cannot match."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Atlas Air's expectations live in a formal Procure-to-Pay RFI that we responded to on 11 May 2026, but the specific criteria and their weighting are not captured in the record, so fit is inferred from the full S2P suite scope rather than confirmed against stated requirements.",
+      "items": [
+        {"criterion": "Full Procure-to-Pay suite coverage", "position": "aligned", "quote": "our full S2P Suite and deep Aviation Industry experience", "date": "2026-04-15", "source": "SF Task 15 Apr 2026 (Rick Hunsinger)"},
+        {"criterion": "Detailed RFI requirement responses", "position": "partially aligned", "quote": "master list of questions and responses", "date": "2026-04-29", "source": "SF Task 29 Apr 2026 (Lindsay Wright)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Complete and submit the Atlas Air Worldwide P2P RFI response", "said_by": "Lindsay Wright", "date": "2026-04-16", "addressed": true, "quote": "Kindly please send the executed NDA at your earliest convenience", "source": "SF Task 16 Apr 2026 (Lindsay Wright)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Share RFI evaluation outcome, shortlist decision, and next-step timeline", "who": "Buyer", "grounding_quote": "We are reviewing all proposals", "date": "2026-05-26", "due": "2026-07-15", "status": "overdue", "source": "SF Task 26 May 2026 (Lindsay Wright)"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "Zero OpportunityContactRoles; only procurement buyers Lindsay Wright and Janet Banzon touched", "status": "not addressed", "date": "2026-05-26", "gap_type": "knowledge", "source": "OpportunityContactRole query (0 roles)"},
+        {"area": "No discovery call or business-case quantification", "quote": "No discovery call has been recorded in Avoma yet", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF AIS_Why; zero Avoma calls"},
+        {"area": "Competitive shortlist beyond incumbent SAP Ariba unknown", "quote": "formal Procure-to-Pay RFI with no other vendor named", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "Competitors__c null; SF Task 11 May 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is an early, single-threaded RFI-stage deal against an SAP Ariba incumbency; the win levers are multi-threading past procurement, converting a spec response into a live discovery, and building the displacement business case.",
+      "flags": [
+        "Multi-thread past procurement: only Sr. Buyer Lindsay Wright and Janet Banzon are engaged; reach the CFO/supply-chain owner who funds a $550k S2P buy.",
+        "Convert the RFI into a live discovery/demo before shortlist, so evaluation is not a spec-only, price-led paper exercise we cannot shape.",
+        "Nail the SAP Ariba displacement wedge: quantify the incumbent's pain and lead with Merlin AI plus aviation-vertical fit to justify the switch."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Lindsay Wright", "title": "Sr. Buyer, Procurement", "role": "Influencer", "last_contact_date": "2026-05-26", "sentiment": "neutral", "risk": "Responsive procurement gatekeeper running the RFI, not a confirmed advocate and no access to budget authority shown.", "source": "SF Tasks 15 Apr-26 May 2026 (email signature: Sr. Buyer, Procurement)"},
+        {"name": "Janet Banzon", "title": null, "role": "Influencer", "last_contact_date": "2026-05-11", "sentiment": "unknown", "risk": "Copied on the RFI thread but has not spoken; involvement and stance unconfirmed.", "source": "SF Task activity contact; SF Task 11 May 2026 (RFI addressed to Lindsay and Janet)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Sr. Buyer Lindsay Wright is responsive and professional across the Apr-May 2026 RFI thread but is a procurement gatekeeper, not a confirmed advocate with access to power; there are zero OpportunityContactRoles and zero calls showing internal advocacy. Building Lindsay into a coach (or finding a business sponsor) is the foundational early-stage move.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "OpportunityContactRole query (0 roles); SF Tasks 15 Apr-26 May 2026; zero Avoma calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS is Moderate (5.0): Salesforce frames a strong aviation-vertical Ariba displacement, but with no discovery call the AI/Merlin narrative has not been put in front of the buyer, so our agentic differentiation is untested. The full suite includes Merlin and Merlin Intake, giving us a clear AI story to land once we secure a discovery/demo.",
+      "score": "5.0 Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 5.0 / Moderate: Salesforce frames a structured Ariba-displacement buy rather than an AI-driven mandate, and with zero Avoma calls there are no verbatim AI cues from the buyer to confirm appetite. Merlin and Merlin Intake are in scope, so the AI story is available but unproven with this buyer.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No economic buyer or business sponsor engaged; single-threaded through procurement on a $550k suite deal.", "first_raised": "2026-04-16", "date": "2026-05-26", "status": "open", "source": "OpportunityContactRole query (0 roles); SF Tasks"},
+        {"category": "timeline", "detail": "41 days of buyer silence since the 26 May proposal-review note, with no customer-driven next date.", "first_raised": "2026-05-26", "date": "2026-07-06", "status": "open", "source": "SF Task 26 May 2026 (Lindsay Wright)"},
+        {"category": "change_management", "detail": "SAP Ariba incumbency plus a distant Mar 2027 close leaves room for a status-quo renewal instead of a switch.", "first_raised": "2026-07-06", "date": "2026-07-06", "status": "open", "source": "SF AIS_Why (Ariba displacement)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling: a clean RFI cycle through 26 May 2026 then 41 days of silence, single-threaded to procurement with no economic buyer and no discovery call.",
+      "cooling": true,
+      "items": [
+        "Last buyer touch 26 May 2026 (41 days ago)",
+        "No customer-requested next meeting or buyer-named date",
+        "Only procurement contacts engaged; no business or executive stakeholder"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "Atlas Air's procurement team submitted our P2P RFI on 11 May and confirmed review on 26 May, but the deal has gone quiet for 41 days with only Sr. Buyer Lindsay Wright engaged, no economic buyer or business sponsor, and SAP Ariba as the incumbent to displace.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "We are an active RFI participant on a $550k full S2P suite deal with a mutual NDA executed 20 Apr and aviation-vertical fit, but early: only procurement gatekeepers are engaged and no business case is confirmed."},
+          {"tone": "warn", "text": "The only buyer contact is Sr. Buyer Lindsay Wright; no CFO, budget owner, or business sponsor has been reached, so we cannot yet influence the decision above procurement (SF activities through 26 May 2026)."},
+          {"tone": "warn", "text": "SAP Ariba is the incumbent being displaced (SF AIS rationale) and with no discovery call yet we have no read on why Atlas Air would switch or which criteria decide the RFI."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum stalled after 26 May 2026 when Lindsay Wright said she was reviewing all proposals, with no buyer reply in the 41 days since and no customer-named next date."},
+          {"tone": "good", "text": "The stage advanced Qualified to Formal Evaluation on 30 Jun 2026 and the buyer ran a clean RFI cycle (NDA 20 Apr, clarification questions 24-29 Apr, submission 11 May)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Commitment is procurement-process only: a submitted RFI and signed NDA, but no demo, workshop, named business sponsor, or customer-driven decision date."},
+          {"tone": "warn", "text": "Zero Avoma calls and zero OpportunityContactRoles mean there is no confirmed champion advocating for Zycus inside Atlas Air."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded through the procurement buyer with a 41-day silence risks a spec-only, price-led evaluation we cannot shape."},
+          {"tone": "warn", "text": "SAP Ariba incumbency plus a distant 12 Mar 2027 close leaves room for a status-quo renewal or a competitor to set the agenda."}
+        ]
+      },
+      "factors": {
+        "seniority_rising": {"strength": -0.5, "evidence": "Only procurement buyers engaged; no CFO/CIO/VP has joined."},
+        "buyer_engagement": {"strength": -0.6, "evidence": "41 days silent since 26 May 2026 proposal-review note."},
+        "champion": {"strength": -0.7, "evidence": "No OpportunityContactRole, no advocacy shown; Lindsay Wright is a gatekeeper."}
+      }
+    },
+    "customer_preference": {"level": "none", "evidence": "No buyer preference expressed; RFI-only engagement with no Zycus-specific lean and zero calls."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or pain quantified; Ariba displacement is inferred from the AIS rationale, not stated by the buyer."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "expansion_context": {"prior_closed_won": false, "prior_opp": null, "note": "No sibling Closed-Won on Atlas Air; this is a net-new S2P pursuit, so executive access is not inherited and must be earned."},
+    "scope_change": {"direction": "stable", "from": "Full S2P suite + Merlin", "to": "Full S2P suite + Merlin", "detail": "Product scope unchanged versus the prior record; no modules dropped and amount steady at $550k."},
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email and call Lindsay Wright to get the RFI outcome, shortlist decision, and next-step dates.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Lindsay Wright said the team is reviewing all proposals, then 41 days of silence.", "trigger_date": "2026-05-26", "act_by": "2026-07-13", "expected_effect": "Restarts the thread and reveals whether we made the shortlist before momentum decays further."},
+        {"rank": 2, "action": "Ask Lindsay Wright who else is shortlisted and what is driving the move off SAP Ariba.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "SAP Ariba named as the incumbent to displace; no competitive shortlist or switching pain captured.", "trigger_date": "2026-07-06", "act_by": "2026-07-20", "expected_effect": "Exposes the real competition and the pain, letting us tailor the displacement wedge and business case."},
+        {"rank": 3, "action": "Book a discovery and Merlin AI demo with Atlas Air's procurement and business owners.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No discovery call recorded; AI/Merlin story untested and evaluation risks staying spec-only.", "trigger_date": "2026-07-06", "act_by": "2026-08-05", "expected_effect": "Multi-threads beyond procurement, quantifies pain, and lands the AI differentiation ahead of shortlist."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities 15 Apr 2026-26 May 2026; field history through 30 Jun 2026",
+    "avoma_attendees": [],
+    "gaps": [
+      "Zero Avoma calls found via opp, account, or attendee-email discovery; all buyer signal is email/RFI-based.",
+      "Zero OpportunityContactRoles; economic buyer and decision maker unmapped.",
+      "RFI response content and Atlas Air's decision criteria/weighting not in the record.",
+      "Competitive shortlist beyond incumbent SAP Ariba is unknown."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

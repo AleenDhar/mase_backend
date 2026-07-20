@@ -1,0 +1,51 @@
+name: db-backup
+
+# Mirrors the MAIN Supabase (deal-intelligence) into the dedicated `mase-backup` project every
+# 5 hours. INCREMENTAL by default (only rows changed since the last run — cheap); dispatch with
+# mode=full for a complete re-seed (the one-time 2.8 GB seed, or after a schema change).
+#
+# ISOLATED from the ECS api/worker: runs only in this Actions runner, reads mase/app-env via the
+# existing OIDC deploy role, and talks to Supabase over HTTPS. It never touches the running app.
+# The same routine (db_backup.run) also backs the admin "Sync Now" button on the api.
+#
+# One-time setup: add SUPABASE_ACCESS_TOKEN, BACKUP_URL, BACKUP_SERVICE_KEY (and optionally
+# BACKUP_REF) to the mase/app-env secret. SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY are already there.
+
+on:
+  schedule:
+    - cron: '0 */5 * * *'      # every 5 hours on the hour (00,05,10,15,20 UTC)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'incremental (default) or full (complete re-seed)'
+        required: false
+        default: 'incremental'
+
+concurrency:
+  group: db-backup            # never overlap two backups
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120       # a full 2.8 GB seed can take a while; incremental is minutes
+    permissions:
+      id-token: write          # OIDC: assume the AWS role to read mase/app-env
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::022187637784:role/mase-github-deploy-role
+          aws-region: ap-south-1
+
+      - name: Install deps
+        run: pip install --quiet requests urllib3
+
+      - name: Run DB backup
+        run: python run_backup_cron.py "${{ github.event.inputs.mode || 'incremental' }}"

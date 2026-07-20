@@ -1,0 +1,256 @@
+{
+  "opp_id": "006P700000X3d9t",
+  "hard": {
+    "opp_id": "006P700000X3d9t",
+    "opp_name": "P&G S2C",
+    "account_name": "Procter & Gamble",
+    "account_industry": "Food, Bev & FMCG",
+    "billing_country": "South Africa",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": "John Woodcock",
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000.0,
+    "close_date": "2027-04-21",
+    "days_to_close": 289,
+    "created_date": "2026-04-21",
+    "qualified_date": "2026-04-21",
+    "last_activity_date": "2026-05-07",
+    "last_modified_date": "2026-05-07",
+    "products": "iContract;iSource;ML iAnalyze;iSupplier;Merlin Intake;Agentic AI;ANA",
+    "next_step": "Demo to be scheduled and pricing quote to be shared with them",
+    "ais_score": 8.0,
+    "ais_status": "Moderate",
+    "ais_why": "Apr 2026 Avoma call captures P&G buyer Noha Wael Ali asking technical AI-agent questions verbatim: can Merlin work with Coupa, how does the autonomous negotiation agent function, how does AI-driven price benchmarking work. AI-dense product scope (ANA, Agentic AI, Merlin Intake, ML iAnalyze) with no eProcurement/eInvoicing in scope. Held at 8 (not 9) because the deal is at Qualified with no POC commitment and the buyer is still scoping Coupa-overlay-vs-Coupa-replacement.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Coupa",
+    "primary_competitor": "Coupa",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000X3d9t/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Cold since the 21 Apr discovery: Zycus never delivered the pricing sheet and demo Caroline promised, so a live buyer request has gone unanswered for 76 days and the deal has stalled out on our side, not the buyer's.",
+      "math": "Created and qualified 21 Apr 2026; close 21 Apr 2027 (289 days out, so no date pressure). Stage still Qualified. Two buyer calls in April (intro 15 Apr, discovery 21 Apr). LastActivityDate 7 May 2026 is 60 days ago, and that touch was only an out-of-office auto-reply for Eid; the last genuine two-way buyer exchange was the 21 Apr discovery (76 days ago). The demo Noha requested and the pricing quote Caroline committed to were never delivered. Cold past 60 days with a seller-side deliverable outstanding puts this Off Track; the only correct action is re-engagement, not a new gate.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Two buyer calls in April 2026: intro 15 Apr (Noha's team no-showed, rescheduled) and substantive discovery 21 Apr with Noha Wael Ali (MEA Scaled Digital Sourcing Senior Manager) asking detailed Merlin, agentic-negotiation and Coupa-integration questions",
+        "Noha asked on 21 Apr: 'Can Merlin work with Coupa? Do you offer one solution that integrates everything together or separate solutions?' and requested an hour-and-a-half demo and a pricing quotation",
+        "Caroline committed on 21 Apr: 'I'm going to send you a pricing sheet... just fill in which ones you're interested in... then I can give you a quote in a few days' and 'let me have Parleen plan with you a demo'",
+        "LastActivityDate 7 May 2026 was an out-of-office auto-reply from Noha for Eid ('I am OOO for Eid holidays'), not genuine engagement; no demo invite, no pricing sheet and no follow-up logged since",
+        "Next_Step still reads 'Demo to be scheduled and pricing quote to be shared with them' 76 days after the buyer asked for both, confirming the deliverables are outstanding on the Zycus side",
+        "Forecast Pipeline is correct for a cold Qualified-stage deal 289 days from close with discovery done but demo and pricing never sent"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "Noha Wael Ali stated on the 21 Apr call that she manages 'the scale digital sourcing for Middle East and Africa... the 3 spend procurement that we have in P&G... managed out of Egypt' spanning Egypt, South Africa, Saudi, UAE and Morocco, so the business problem is governing tail-spend procurement across a five-country MEA footprint. The pain is real but entirely unquantified: no savings target, tail-spend volume, FTE hours, maverick-spend leakage or cycle-time figure was ever named on either April call. The value story stayed qualitative (Caroline's 'chaotic requests that waste time' and 'email overload' pitch), so quantifying the tail-spend baseline and expected savings with Noha is a required move before any pricing lands.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (Noha Wael Ali intro and MEA scope statement)", "Avoma discovery call 21 Apr 2026 (Caroline efficiency/email-overload narrative)"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified. Noha Wael Ali (Evaluator per the Salesforce contact role) controls the MEA scaled-sourcing evaluation and drove the commercial thread by asking for the quotation, but nothing on the 15 or 21 Apr calls shows who owns the budget or signs. Laylah Kara is an Influencer (Senior Purchasing Manager), not a budget authority. The evidence gives no P&G finance or CPO sponsor and no approval chain, so budget authority is genuinely unknown rather than merely unlogged. Mapping the MEA procurement budget owner (likely a regional CPO or procurement director above Noha) is a ranked move and a prerequisite to a credible proposal.",
+        "sources": ["Salesforce OpportunityContactRole: Noha Wael Ali = Evaluator, Laylah Kara = Influencer", "Avoma discovery call 21 Apr 2026 (no budget owner named)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria the buyer surfaced on 21 Apr are concrete but early: (1) native AI/agentic capability versus a bolt-on, (2) whether Merlin can coexist with or integrate into their existing Coupa stack rather than force a rip-and-replace, (3) autonomous negotiation and AI price-benchmarking behaviour, and (4) data trustworthiness of agent inputs (Noha pressed 'how do you ensure the price benchmarking is linked to external websites and up to date'). These came from Noha's own questions, so they are confirmed as her stated interests but not yet validated in a demo or against a formal requirements document. The augment-vs-replace decision is the pivotal criterion and remains open because Caroline deferred it to the technical team.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (Noha: Merlin-Coupa integration, autonomous negotiation, price-benchmarking data-source questions)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "No decision process is visible yet. The call sequence shows only a two-step discovery motion: a 15 Apr intro that the P&G team missed (only one purchasing contact joined) and a 21 Apr discovery with Noha and two regional colleagues. No evaluation timeline, approval steps, RFP/RFI plan or shortlist mechanics were discussed, and Noha never named a date. Because the deal then went cold with the demo unbooked, the process map cannot be read from the calls. Establishing how P&G will evaluate (demo, then pricing, then who approves) is part of the re-engagement, and Salesforce carries no decision-process field value to fall back on.",
+        "sources": ["Avoma intro call 15 Apr 2026 (P&G team no-show, single attendee)", "Avoma discovery call 21 Apr 2026 (no timeline or approval steps stated)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced, which is expected at Qualified stage 289 days from close. There is no MSA/SOW discussion, no legal or InfoSec contact, no procurement channel and no Coupa contract-expiration date to act as a forcing function. The only commercial artifact even referenced is the pricing sheet Caroline offered to send. Visibility here will only come once the demo and quotation restart the deal and P&G names its procurement and legal path, so no paper risk should be raised at this stage.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (pricing-sheet offer, no contracting discussion)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The confirmed pain is operational inefficiency in running non-strategic (tail) spend across P&G's five-country MEA footprint out of Egypt, with Noha owning that function. Her questions revealed the target use case in detail: a business user should be able to request a spare part in Microsoft Teams, have an agent source three suppliers, run an autonomous negotiation and route approvals without leaving Teams ('so for the user they don't need to go out of this Teams window, Merlin launches the bid'). That is a clear qualitative pain and a named pain owner (Noha), but no cost or time impact was quantified, so the pain is real yet unsized.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (Noha's Teams-to-agent spare-part use case and workflow questions)"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Noha Wael Ali is the developing champion: she owns MEA scaled digital sourcing, initiated and rescheduled the meetings, brought colleagues to the 21 Apr discovery, asked the substantive technical and commercial questions, and explicitly pulled for next steps ('Do you have a demo?', 'Can we get the quotation?', 'Please share with us again'). What is still missing is advocacy beyond her own evaluation: no introduction to a budget owner or CPO, no internal document shared, and no competitive push against Coupa on our behalf. Critically her engagement has gone cold for 76 days, which is a Zycus-created lapse (the promised pricing and demo never arrived) rather than a loss of interest, so she is a warm-but-neglected champion at risk of disengaging.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (Noha drove the agenda and requested demo + quote)", "Salesforce OpportunityContactRole: Noha Wael Ali = Evaluator", "LastActivityDate 7 May 2026 (OOO auto-reply); no follow-up since"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "Coupa is the incumbent and only named competitor: Noha confirmed 'we use Coupa as our platform for source to pay.' The live competitive question is not replace-or-lose but replace-versus-augment, because Noha repeatedly asked whether Merlin could run as an AI/agent overlay on Coupa ('Can Merlin work with Coupa? Do you offer one solution or separate solutions?'). Caroline (ex-Coupa, 3.5 years) positioned Zycus's single-source-code, AI-to-the-core platform against Coupa's bolt-on Navi AI ('at Coupa they have Navi... a bolt-on AI tool... more complicated than having it inside'), a credible wedge but one she could not close because she deferred the Coupa-integration answer to the technical team. Coupa's threat is high through incumbency and switching inertia, and the danger is P&G defaulting to keep Coupa and buy only a narrow agent, shrinking the deal.",
+        "sources": ["Avoma discovery call 21 Apr 2026 (Noha confirms Coupa incumbent, asks augment-vs-replace)", "Avoma discovery call 21 Apr 2026 (Caroline's Navi-bolt-on vs native-AI positioning)", "Salesforce Competitors__c: Coupa"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Reads as a fast-qualified deal that then stalled on the Zycus side: two April discovery calls, a stage/amount move on 21 Apr, then 76 days of silence with the promised demo and pricing never delivered. The only touch after 21 Apr was an out-of-office auto-reply, so there has been no forward motion since discovery.",
+      "items": [
+        {"change": "Stage moved Initial Interest to Qualified", "date": "2026-04-21"},
+        {"change": "Amount set from 0 to 200,000", "date": "2026-04-21"},
+        {"change": "Discovery call held: Noha Wael Ali and MEA colleagues probed Merlin, agentic negotiation and Coupa integration; requested demo and pricing", "date": "2026-04-21"},
+        {"change": "Last logged activity was an out-of-office auto-reply from Noha for Eid, not a genuine exchange", "date": "2026-05-07"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Coupa is the incumbent and the single strongest current threat, confirmed by Noha on 21 Apr ('we use Coupa as our platform for source to pay'). The competitive frame is augment-vs-replace, not a bake-off: P&G is weighing keeping Coupa and layering a Zycus AI/agent overlay versus a fuller Zycus S2C move. No other vendor was named in any source. Our wedge is Merlin's native, single-source-code agentic AI versus Coupa's bolt-on Navi, voiced credibly by Caroline (ex-Coupa), but it is unproven because the demo never happened and the Coupa-coexistence question was left open.",
+      "competitors": [
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "high", "status": "incumbent", "quote": "We use Coupa as our platform for source to pay. Can Merlin work with Coupa? Do you offer one solution that integrates everything together or separate solutions?", "date": "2026-04-21", "source": "Avoma discovery call 21 Apr 2026, Noha Wael Ali", "how_we_win": "Prove Merlin's native agentic AI (autonomous intake-to-PO, negotiation bot, Teams-native) beats Coupa's bolt-on Navi in the demo, answer the Coupa-coexistence question concretely, and offer a low-risk Phase 1 agent overlay to earn a Phase 2 replacement."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "P&G's stated expectations centre on native agentic AI, coexistence with their Coupa stack, and trustworthy data behind the agents. We align strongly on the AI-native story but are exposed on the two things that were never answered or delivered: whether Merlin integrates with Coupa, and transparent pricing.",
+      "items": [
+        {"criterion": "Native agentic AI rather than a bolt-on", "position": "aligned", "quote": "Our system is developed with AI to the core... at Coupa they have Navi, a bolt-on AI tool, more complicated than having it inside", "date": "2026-04-21", "source": "Avoma discovery call 21 Apr 2026, Caroline Lacocque"},
+        {"criterion": "Merlin coexistence / integration with existing Coupa platform", "position": "exposed", "quote": "But can Merlin work with Coupa? ... I am not the expert on the technical side, so let me take that back", "date": "2026-04-21", "source": "Avoma discovery call 21 Apr 2026, Noha Wael Ali and Caroline Lacocque"},
+        {"criterion": "Transparent pricing for the modules and user tiers in scope", "position": "exposed", "quote": "Can we get the quotation? ... I'm going to send you a pricing sheet... then I can give you a quote in a few days", "date": "2026-04-21", "source": "Avoma discovery call 21 Apr 2026 (quote never delivered)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Deliver the Merlin demo showing agent-led sourcing, negotiation and approvals", "said_by": "Noha Wael Ali", "date": "2026-04-21", "addressed": false, "quote": "I think I would like to understand more if there is a demo... Do you have demos that can showcase this?", "source": "Avoma discovery call 21 Apr 2026"},
+        {"requirement": "Send the pricing quotation for the requested modules and user tiers", "said_by": "Noha Wael Ali", "date": "2026-04-21", "addressed": false, "quote": "Can we get also the quotation? ... Please share with us again as well", "source": "Avoma discovery call 21 Apr 2026"},
+        {"requirement": "Confirm whether Merlin can integrate with or run as an agent on top of Coupa", "said_by": "Noha Wael Ali", "date": "2026-04-21", "addressed": false, "quote": "Can Merlin work with Coupa? Do you offer one solution that integrates everything together or separate solutions?", "source": "Avoma discovery call 21 Apr 2026"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Return the completed pricing sheet inputs (module selection, power-user and business-user counts, contract and invoice volumes)", "who": "Buyer", "grounding_quote": "I'm going to ask you how many you think you need and which modules you want... just fill in which ones you're interested in", "date": "2026-04-21", "due": "2026-07-20", "status": "open", "source": "Avoma discovery call 21 Apr 2026, Caroline Lacocque"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner for MEA scaled sourcing", "quote": "No budget owner or approver named across either April call; Noha is the Evaluator", "status": "not addressed", "date": "2026-04-21", "gap_type": "knowledge", "source": "Salesforce OpportunityContactRole + Avoma calls 15/21 Apr 2026"},
+        {"area": "Quantified business case (tail-spend volume, savings target, process cost)", "quote": "Pain articulated qualitatively but no figures stated", "status": "not addressed", "date": "2026-04-21", "gap_type": "knowledge", "source": "Avoma discovery call 21 Apr 2026"},
+        {"area": "Coupa contract expiration / renewal timing as a forcing function", "quote": "Incumbent Coupa confirmed but no renewal or expiry date discussed", "status": "not addressed", "date": "2026-04-21", "gap_type": "knowledge", "source": "Avoma discovery call 21 Apr 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This deal did not lose momentum to a rival; it stalled because Zycus never delivered the demo and pricing Noha asked for on 21 Apr. The win levers are all about re-engaging fast, closing the Coupa-coexistence question, and mapping power above Noha.",
+      "flags": [
+        "Restart the deal now by sending Noha the overdue pricing sheet and proposing demo dates; this is the single re-engagement lever after 76 days of Zycus-side silence.",
+        "Answer the unresolved Coupa-coexistence question with a technical proof point so P&G does not default to keeping Coupa and buying only a narrow agent.",
+        "Multi-thread above Noha to the MEA procurement budget owner / CPO before quoting, since no economic buyer is mapped on an early single-threaded deal."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Noha Wael Ali", "title": "MEA Scaled Digital Sourcing - Senior Manager", "role": "Champion", "last_contact_date": "2026-04-21", "sentiment": "Positive but neglected; drove the 21 Apr discovery and requested demo + pricing, then went quiet for 76 days after Zycus failed to follow up", "risk": "At risk of disengaging because the demo and quote she asked for were never delivered; interest may fade without immediate re-engagement", "source": "Avoma discovery call 21 Apr 2026; Salesforce OpportunityContactRole (Evaluator)"},
+        {"name": "Laylah Kara", "title": "Senior Purchasing Manager", "role": "Influencer", "last_contact_date": "2026-04-15", "sentiment": "Neutral; attended the 15 Apr intro when Noha's team no-showed, helped reschedule, not present on the 21 Apr discovery", "risk": "Low current visibility; role in the evaluation and decision authority unclear", "source": "Avoma intro call 15 Apr 2026; Salesforce OpportunityContactRole (Influencer)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Noha Wael Ali is a developing champion who controls the MEA evaluation gate and pulled for a demo and pricing on 21 Apr, but she has shown no advocacy beyond her own evaluation (no EB intro, no internal doc shared, no push against Coupa) and has been silent for 76 days because Zycus never delivered what she asked for. She is warm but neglected and at risk.",
+      "champion": "Noha Wael Ali",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma discovery call 21 Apr 2026; Salesforce OpportunityContactRole; LastActivityDate 7 May 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story is well framed verbally: Caroline (ex-Coupa) contrasted Zycus's single-source-code, AI-to-the-core Merlin platform with Coupa's bolt-on Navi, and Noha engaged deeply on agentic negotiation and price benchmarking. But it is unproven because the demo that would land the agentic narrative never happened, so the positioning is strong on paper and undemonstrated in practice.",
+      "score": "medium",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS is 8 / Moderate. The 21 Apr call backs a genuine AI appetite: Noha asked buyer-led questions about Merlin-on-Coupa, the autonomous negotiation agent and AI price benchmarking, and the product scope is AI-dense (ANA, Agentic AI, Merlin Intake, ML iAnalyze) with no transactional eProc. Appetite is real but exploratory, not yet committed to a POC.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Deal cold for 76 days because Zycus never delivered the promised demo and pricing; the risk is inertia and losing the champion's attention, not a competitor.", "first_raised": "2026-04-21", "date": "2026-05-07", "status": "open", "source": "Next_Step + LastActivityDate 7 May 2026"},
+        {"category": "executive_alignment", "detail": "No economic buyer or budget owner mapped above Noha (Evaluator); single-threaded into one MEA sourcing manager on an early-stage deal.", "first_raised": "2026-04-21", "date": "2026-04-21", "status": "open", "source": "Salesforce OpportunityContactRole + Avoma calls"},
+        {"category": "budget", "detail": "Buyer is exploring augmenting Coupa with a narrow agent rather than replacing it, which could shrink the deal from a full S2C footprint to a single agentic module.", "first_raised": "2026-04-21", "date": "2026-04-21", "status": "open", "source": "Avoma discovery call 21 Apr 2026, Noha Wael Ali"},
+        {"category": "integration", "detail": "The unanswered Merlin-on-Coupa coexistence question is a blocker; Caroline deferred it to the technical team and it was never closed.", "first_raised": "2026-04-21", "date": "2026-04-21", "status": "open", "source": "Avoma discovery call 21 Apr 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement was strong in April then went dark; the cadence has clearly cooled and the deal is currently cold on a Zycus-created lapse.",
+      "cooling": true,
+      "items": [
+        "Two engaged buyer calls in April 2026 with detailed buyer-led questions",
+        "No genuine buyer exchange since 21 Apr 2026 (76 days); 7 May touch was an out-of-office auto-reply",
+        "Promised demo and pricing never delivered, so the silence is seller-caused"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Send Noha the pricing sheet and propose three demo dates this week.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Noha requested a demo and quotation on 21 Apr; both promised and never delivered, deal cold 76 days", "trigger_date": "2026-04-21", "act_by": "2026-07-13", "expected_effect": "Restarts the stalled deal and re-earns the champion's attention before interest fully fades"},
+        {"rank": 2, "action": "Run the 90-minute Merlin demo answering the Coupa-coexistence question directly.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Noha asked twice whether Merlin can work with or integrate into Coupa; Caroline deferred it to technical experts", "trigger_date": "2026-04-21", "act_by": "2026-07-24", "expected_effect": "Closes the open integration question and proves the native-AI wedge versus Coupa's Navi, moving the deal toward a POC"},
+        {"rank": 3, "action": "Ask Noha to introduce the MEA procurement budget owner or CPO.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No economic buyer mapped; Noha is the Evaluator and the deal is single-threaded", "trigger_date": "2026-04-21", "act_by": "2026-08-05", "expected_effect": "Maps budget authority so pricing lands with a decision-maker and reduces single-thread risk"},
+        {"rank": 4, "action": "Quantify P&G's MEA tail-spend baseline and target savings with Noha.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Pain is clear but unquantified; no savings or volume figure stated", "trigger_date": "2026-04-21", "act_by": "2026-08-05", "expected_effect": "Builds the business case needed to justify price and support an eventual EB proposal"}
+      ]
+    }
+  },
+  "customer_preference": {"level": "medium", "evidence": "Noha asked deep Zycus-specific questions (Merlin-on-Coupa, autonomous negotiation, price benchmarking) and requested a demo and quote on 21 Apr, but stayed in exploratory augment-vs-replace mode with no clear lean and Coupa firmly incumbent."},
+  "business_case": {"status": "partial", "evidence": "Qualitative tail-spend efficiency pain across five MEA countries articulated by Noha, but no savings, volume, cost or ROI figure was ever quantified."},
+  "momentum_signals": {
+    "seniority_rising": false,
+    "commercial_topics_entering": true,
+    "concrete_dates": false,
+    "customer_requested_next_meeting": true,
+    "close_plan_concretizing": false,
+    "generic_demo_only": true,
+    "competitor_praised": false
+  },
+  "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "No confirmed scope reduction yet, but the buyer's augment-vs-replace exploration is a watch item that could narrow scope from full S2C to a single agentic overlay."},
+  "deal_scores_evidence": {
+    "summary": "P&G is an early, cold Qualified deal that stalled on our side: Noha, a genuine MEA-sourcing champion, asked for a demo and pricing on 21 Apr and 76 days later has received neither, while Coupa sits as the entrenched incumbent and no budget owner is mapped.",
+    "ai_reasons": {
+      "win_position": [
+        {"tone": "warn", "text": "This sits low because the deal is early Qualified and cold: no economic buyer is mapped, Coupa is the entrenched incumbent, and the single champion is exploring an overlay rather than a replacement (Avoma, 21 Apr)."},
+        {"tone": "good", "text": "The one real asset is Noha Wael Ali, who ran the discovery and pulled for a demo and quote, plus a credible native-AI wedge voiced by Caroline as ex-Coupa (Avoma, 21 Apr)."},
+        {"tone": "warn", "text": "The biggest risk is self-inflicted: the demo and pricing Caroline promised on 21 Apr were never sent, so the deal has been dark for 76 days and the champion may disengage."},
+        {"tone": "warn", "text": "Coupa incumbency plus the augment-vs-replace framing threatens to shrink this from a full S2C buy to a single agentic module (Avoma, 21 Apr, Noha Wael Ali)."}
+      ],
+      "deal_momentum": [
+        {"tone": "warn", "text": "Momentum has collapsed: after two engaged April calls there has been no genuine buyer exchange since 21 Apr, and the 7 May touch was only an out-of-office auto-reply."},
+        {"tone": "good", "text": "Commercial topics did enter early: Noha requested pricing and a demo on 21 Apr, a buyer pull rather than a seller push."},
+        {"tone": "warn", "text": "No customer-named dates and no close plan exist; engagement is still only a generic-demo, pre-POC stage."}
+      ],
+      "customer_commitment": [
+        {"tone": "warn", "text": "Commitment is thin: Noha is an Evaluator, not a budget owner, and no economic buyer or approver has been introduced (Salesforce contact roles, 21 Apr)."},
+        {"tone": "good", "text": "She did commit her own time and colleagues to the 21 Apr discovery and explicitly asked Zycus to 'share with us again', signalling real interest."},
+        {"tone": "warn", "text": "That interest is unreinforced after 76 days of silence, so any commitment is at risk of lapsing without immediate re-engagement."}
+      ],
+      "deal_risk": [
+        {"tone": "warn", "text": "The deal is cold past 60 days because Zycus never delivered the promised demo and pricing, the dominant risk here is inertia, not a competitor."},
+        {"tone": "warn", "text": "Single-threaded into one MEA sourcing manager with no mapped budget authority above her."},
+        {"tone": "warn", "text": "Coupa's incumbency and the open Merlin-on-Coupa integration question could steer P&G to keep Coupa and buy only a narrow overlay."}
+      ]
+    },
+    "factors": {
+      "champion_strength": {"strength": -0.2, "evidence": "Noha drove discovery but has shown no advocacy beyond her own evaluation and has gone silent for 76 days."},
+      "engagement": {"strength": -0.6, "evidence": "No genuine buyer exchange since 21 Apr; last touch was an Eid out-of-office auto-reply on 7 May."},
+      "economic_buyer": {"strength": -0.5, "evidence": "No budget owner or approver mapped; Noha is the Evaluator only."}
+    }
+  },
+  "ceo_intervention": {"needed": false},
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 2,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "activities last 120 days; field history since 21 Apr 2026",
+    "avoma_attendees": ["Noha Wael Ali", "Laylah Kara"],
+    "gaps": [
+      "No economic buyer / budget owner identified in any Salesforce field or call",
+      "No quantified business case (tail-spend volume, savings target, process cost)",
+      "No Coupa contract-expiration or renewal date to serve as a forcing function",
+      "Only two buyer calls exist, both from April 2026; no evidence after 21 Apr except an out-of-office auto-reply"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

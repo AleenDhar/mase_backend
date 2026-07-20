@@ -1,0 +1,279 @@
+{
+  "opp_id": "006P700000VYm1x",
+  "hard": {
+    "opp_id": "006P700000VYm1x",
+    "opp_name": "Southwest Research Institute_iSupplier'26",
+    "account_name": "Southwest Research Institute",
+    "account_industry": "IT & Consulting",
+    "billing_country": "United States",
+    "owner_name": "Karson Keogh",
+    "owner_title": "Regional Sales Director",
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 51150.0,
+    "close_date": "2027-03-19",
+    "days_to_close": 256,
+    "created_date": "2026-03-20",
+    "qualified_date": "2026-03-24",
+    "last_activity_date": "2026-05-12",
+    "last_modified_date": "2026-05-19",
+    "products": "iContract;iSupplier;iRisk;iCompliance",
+    "next_step": "5.19.26 KK - chris and monica looking for stakeholder buyin; 5.4.26 KK - fu on proposal / next steps; 4.20.26 KK - fu on pricing to SWRI; 4.13.26 KK - submitted QIT",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "Scope work is ACH/banking validation and supplier onboarding, no Merlin/agentic cues from either side; next steps center on supplier master, risk and contract repository (functional framing, not AI-led); Qualified $51K deal with sparse AI excitement.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Status quo (manual PDF-based supplier onboarding and phone-based ACH validation / do-nothing); one unnamed all-encompassing supplier-management vendor (final two)",
+    "primary_competitor": "Status quo / internal change-management inertia (no-decision risk)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000VYm1x/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "A well-received demo put Zycus in the buyer's final two, but the deal has gone quiet for 55 days, no economic buyer (CFO) is engaged, and the real blocker is the buyer's own change-management fear, not a rival.",
+      "math": "Created 20 Mar 2026, Qualified since 24 Mar (104 days in stage, no progression). Last buyer touch 12 May 2026 (55 days ago); three rep follow-ups since (4 May, 19 May) drew no substantive buyer reply. Close date 19 Mar 2027 is 256 days out. The buyer's aspirational 60-day decision window (stated early May) has lapsed. To reach Vendor Selected by year-end 2026 (a realistic gate for a Q1-2027 close), the deal must move Qualified to Formal Evaluation within 30 days, which requires re-engagement and CFO/stakeholder alignment that has not occurred.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Last verified Salesforce activity 12 May 2026, 55 days ago (source: SF LastActivityDate)",
+        "Rep follow-ups documented 19 May ('chris and monica looking for stakeholder buyin') and 4 May ('fu on proposal / next steps'), no substantive buyer response (source: SF Next_Step__c)",
+        "Buyer put Zycus in the final two on the 2 Apr demo: 'I would say y'all are top two right now' and 'definitely beats what we're doing now' (source: Avoma demo 2 Apr 2026, Cody Ellerbee)",
+        "Economic buyer is the CFO by the buyer's own account but is unengaged: 'our biggest hurdle is our CFO accepting a third party validation software' (source: Avoma demo 2 Apr 2026, Cody Ellerbee)",
+        "Single-threaded through Cody Ellerbee (Manager, Evaluator), who has been silent 55 days (source: SF Contact Roles, SF LastActivityDate)",
+        "Amount cut from $120,000 to $51,150 on 15 Apr 2026, a defensive narrowing to the phase-1 ACH use case (source: SF Field History)"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The buyer confirmed a concrete operational burden on the 30 Mar discovery and 2 Apr demo: they onboard 'just a little over 500 a year' suppliers manually (Monica Romero, 30 Mar) and each new supplier or bank-detail change triggers a manual phone-based ACH validation that the Zycus SE quantified as 8 to 9 hours per week, unchallenged by the buyer. Cody Ellerbee also named a fraud-risk metric: paying a wrong ACH account 'could be significantly high cost, way more than the 8 to 9 hours.' What is missing is a dollarized ROI or annual-savings figure the CFO could approve; Alexa Bradley explicitly steered away from a full business case ('Instead of doing a full blown business case, which I wouldn't always suggest for a full suite... we can just support you with the outcome percentages,' 2 Apr). Building that quantified value case is the open move.",
+        "sources": ["Avoma discovery 30 Mar 2026 (Monica Romero: ~500 vendors/yr)", "Avoma demo 2 Apr 2026 (Devika/Zycus: 8-9 hrs/week; Cody Ellerbee: ACH fraud cost)", "SF Business_Objectives__c / Value_to_Customer__c: blank"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is functionally identified but not named or engaged. Cody Ellerbee stated plainly on 2 Apr that 'our biggest hurdle is our CFO accepting a third party validation software... regardless of however many there are,' establishing the CFO as the true budget-and-acceptance gate, and separately noted his own boss reviews and passes a summary to 'executive management' (26 Mar email). No CFO is named in Salesforce Contact Roles and none has appeared on any call, so the person cannot be confirmed by name. Budget authority is further shaped by the nonprofit context Cody raised, weighing an ACH tool against funding core research. The move is to get Cody to name and broker an introduction to the CFO and executive-management sponsor before pricing can be defended.",
+        "sources": ["Avoma demo 2 Apr 2026 (Cody Ellerbee: CFO is the hurdle)", "SF Task/email 26 Mar 2026 (Cody: boss passes summary to executive management)", "SF Contact Roles: no EB named"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The buyer's criteria are clear from the two discovery/demo calls. First and foremost is automated ACH/banking validation to replace manual phone verification, which Cody called 'the main component.' Second is an all-encompassing, outward-facing self-service supplier portal that captures and scores data, which the buyer used to differentiate the field: 'we've only seen one other, like, all encompassing type where they're willing to have an outward facing portal... other ones are like, you can enter in the ACH information... and we'll tell you if it's good or bad' (Cody, 2 Apr). Third is Deltek Costpoint integration feasibility (API to their vendor database). Fourth, and decisive, is ease of adoption/change management for a PDF-based team. CUI/government-compliance handling appears in the rep's next-step notes but was not validated with the buyer on a call, so it is inferred.",
+        "sources": ["Avoma demo 2 Apr 2026 (Cody Ellerbee: all-encompassing portal, ACH, Deltek)", "Avoma discovery 30 Mar 2026", "SF Next_Step__c (CUI/government standards) - inferred"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Reading the call and email sequence, the process is bottom-up and informal: Cody Ellerbee (Manager, Services Purchasing) and Monica Romero (Purchasing) are running the evaluation, then packaging a summary email for Cody's boss to pass to executive management, with the CFO as the acceptance gate for third-party validation. Cody described this on 26 Mar ('I'd like to have yall included in my summary email she can hopefully pass along and executive management can kick it around') and the 19 May next-step ('chris and monica looking for stakeholder buyin') shows the internal buy-in step is still in progress and stalled. There is no formal procurement track, RFP, or committee yet. The buyer floated a ~60-day decision target for the banking-verification solution (early May) that has since lapsed with no confirmation.",
+        "sources": ["SF Task/email 26 Mar 2026 (Cody Ellerbee)", "SF Next_Step__c 19 May 2026", "Avoma demo 2 Apr 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are early and largely undiscussed. A commercial SaaS proposal was delivered 15 Apr 2026 with a scoping workshop recommended for the one-time implementation cost; no MSA, Order Form, SOW, legal review, or InfoSec track has begun. Two paper dependencies are visible: the buyer must separately procure the third-party banking-validation service (GIACT/GAIAC), which Devika confirmed is a direct buyer contract ('it would be your subscription with GAIAT'), adding a cost line Cody must factor; and CFO sign-off on accepting third-party validation is the gate. Implementation timeline was quoted at 2-3 months without integration, plus ~1-1.5 months with Deltek. Visibility will come from confirming the internal approval chain and the buyer's procurement steps for both Zycus and the validation vendor.",
+        "sources": ["SF Task/email 15 Apr 2026 (commercial SaaS proposal + scoping workshop)", "Avoma demo 2 Apr 2026 (GIACT direct subscription; 2-3 month implementation)"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is confirmed and owned by Cody Ellerbee and Monica Romero in Purchasing. Today a new-vendor request triggers a PDF packet, one admin keys company data, a second person manually phone-verifies banking details, and re-activations after 1-2 dormant years repeat the whole cycle (Monica, 30 Mar). Cody framed the burden and the fear vividly on 2 Apr: 'we operate off PDFs... it's scary and overwhelming... getting the buy in and getting people to sign off on it.' The confirmed pains are labor (8-9 hrs/week, ~500 vendors/yr), ACH fraud exposure from manual verification, and poor vendor-data quality from handwritten forms. The inferred pain is compliance/audit strain (diversity checks, spreadsheet audit reports) which the buyer acknowledged as lower priority.",
+        "sources": ["Avoma discovery 30 Mar 2026 (Monica Romero)", "Avoma demo 2 Apr 2026 (Cody Ellerbee)", "SF Pain_points_in_the_current_solution__c"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Cody Ellerbee (Manager, Services Purchasing, Evaluator, primary contact) is the developing champion, and the strength is weak and cooling. He drove the evaluation, articulated pain and criteria, praised Zycus as 'top two,' and requested the proposal, which is genuine advocacy. What is missing: he has not introduced Zycus to the CFO or executive management he himself named as the gate, and he has been silent for 55 days despite three rep follow-ups (last buyer touch 12 May). Monica Romero (Administrative Coordinator/Purchasing Specialist) is a supportive influencer but holds no decision authority. The 19 May next-step shows Cody and Monica seeking internal buy-in but with no result. To convert Cody from evaluator to true champion he must broker the CFO/executive introduction, not just relay a summary email.",
+        "sources": ["SF Contact Roles (Cody Ellerbee - Evaluator - Primary; Monica Romero)", "Avoma demo 2 Apr 2026 (Cody: 'top two')", "SF Next_Step__c 19 May 2026; SF LastActivityDate 12 May 2026"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "The dominant competitor is the status quo / do-nothing: a PDF-and-phone manual process the team has run 'for so long,' and the buyer's own admitted fear of adoption is the biggest force keeping them there ('it's scary and overwhelming'). This is a no-decision risk, not a loss to a rival. There is exactly one named-by-category software alternative: an unnamed all-encompassing supplier-management vendor with an outward-facing portal that put Zycus in a final two ('I would say y'all are top two right now,' Cody, 2 Apr); other vendors the buyer saw only offer partial ACH-entry tooling and are effectively out. Third-party validation providers (GIACT/GAIAC, and a JP Morgan reference) are Zycus partners in the workflow, not competitors. We win by de-risking change management (Alexa's 'lead with adoption, then technology' reframe), proving the all-encompassing portal + automated bank validation the partial vendors lack, and landing a CFO-grade ROI.",
+        "sources": ["Avoma demo 2 Apr 2026 (Cody Ellerbee: 'top two', 'only seen one other all encompassing type')", "Avoma discovery 30 Mar 2026 (manual PDF/phone process)", "SF Competitors__c: blank"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Momentum peaked at the 2 Apr demo (Zycus named final two) and the 15 Apr proposal, then decayed: the amount was halved the same day the proposal went out, and the deal has been buyer-silent for 55 days while rep follow-ups and an internal buy-in push (19 May) produced no reply.",
+      "items": [
+        {"change": "Buyer silent 55 days; last buyer touch was Monica Romero acknowledging rep follow-up ('continuing to try to nail down key stakeholders')", "date": "2026-05-12"},
+        {"change": "Rep next-step logged internal buy-in attempt in progress ('chris and monica looking for stakeholder buyin'), no buyer response since", "date": "2026-05-19"},
+        {"change": "Amount cut from $120,000 to $51,150, narrowing to the phase-1 ACH/banking-validation use case", "date": "2026-04-15"},
+        {"change": "Commercial SaaS proposal delivered with a recommended scoping workshop for implementation cost", "date": "2026-04-15"},
+        {"change": "Focused ACH/onboarding demo delivered; buyer placed Zycus in the final two and said it 'beats what we're doing now'", "date": "2026-04-02"},
+        {"change": "Discovery confirmed ~500 vendors/yr onboarded manually and 8-9 hrs/week of manual ACH validation", "date": "2026-03-30"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is the buyer's own status-quo and change-management inertia, a no-decision risk they named repeatedly on 2 Apr ('scary and overwhelming... getting the buy in'). The only live software rival is one unnamed all-encompassing supplier-management vendor that shares the final two with Zycus; partial ACH-only tools the buyer saw are effectively out. Third-party bank-validation providers (GIACT, JP Morgan) are workflow partners, not competitors, and should not be read as rivals.",
+      "competitors": [
+        {"name": "Status quo / do-nothing (manual PDF onboarding + phone-based ACH validation)", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "we operate off PDFs... it's scary and overwhelming... getting the buy in and getting people to sign off on it", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)", "how_we_win": "Sell adoption/change-management first (Alexa's insurance-customer reframe), then the technology; offer a hesitant-customer reference call to de-risk the switch."},
+        {"name": "Unnamed all-encompassing supplier-management vendor (final two)", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": "we've only seen one other, like, all encompassing type where they're willing to have an outward facing portal... I would say y'all are top two right now", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)", "how_we_win": "Prove the end-to-end self-service portal plus automated GIACT bank validation and Deltek integration the partial tools cannot match; land a CFO-grade ROI."},
+        {"name": "Partial ACH-entry tools (buyer-seen, not all-encompassing)", "sentiment": "negative", "threat_level": "low", "status": "faded", "quote": "other ones are like, well, you can enter in the ACH information that you obtained... and then we'll tell you if it's good or bad", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)", "how_we_win": "Contrast scope: outward-facing supplier self-service and lifecycle vs a point ACH checker."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus fits the buyer's stated must-haves on capability (all-encompassing portal, automated bank validation) but is exposed on the two things that actually decide this deal: internal adoption/change management and CFO acceptance of third-party validation. Deltek integration feasibility is unproven.",
+      "items": [
+        {"criterion": "All-encompassing, outward-facing self-service supplier portal", "position": "aligned", "quote": "we're looking more towards that all encompassing, which you guys offer, which is what the reason for this demo call", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"criterion": "Automated ACH/banking validation to replace manual phone checks", "position": "aligned", "quote": "this validation is now either a pre built or done in seconds... no call, no waiting, no manual keying", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Devika/Zycus, buyer engaged)"},
+        {"criterion": "Deltek Costpoint integration (API to vendor database)", "position": "exposed", "quote": "how would I go about asking Deltek if they can integrate with you?", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"criterion": "Ease of adoption / change management for a PDF-based team", "position": "exposed", "quote": "it's scary and overwhelming on trying to figure out how we're gonna get there", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"criterion": "CFO acceptance of, and separate cost for, third-party validation (GIACT)", "position": "exposed", "quote": "our biggest hurdle is our CFO accepting a third party validation software", "date": "2026-04-02", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide a commercial proposal/pricing for the ACH-validation solution", "said_by": "Cody Ellerbee", "date": "2026-04-02", "addressed": true, "quote": "are we at a point where you would be able to propose to us, provide us with a proposal?", "source": "Avoma demo 2 Apr 2026; proposal delivered 15 Apr 2026 (SF Task)"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Share a light value-outcome summary (labor hours saved, fraud-loss avoidance) to arm Cody's internal CFO pitch", "who": "Zycus", "grounding_quote": "we can just support you with the outcome percentages of, okay, you're gonna get this, you're gonna save, save, save", "date": "2026-04-02", "due": "2026-04-16", "status": "overdue", "source": "Avoma demo 2 Apr 2026 (Alexa Bradley)"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Share the vendor breakdown (count, US vs foreign, which countries) so Zycus can advise on foreign-vendor validation", "who": "Buyer", "grounding_quote": "if you and Monica can share me the list of, like, breakdown of how many vendors and how many are US versus foreign... then we can check internally", "date": "2026-04-02", "due": "2026-04-16", "status": "open", "source": "Avoma demo 2 Apr 2026 (Devika/Zycus asked Cody & Monica)"},
+          {"deliverable": "Complete the internal stakeholder buy-in and route the summary to the CFO/executive management for feedback", "who": "Buyer", "grounding_quote": "chris and monica looking for stakeholder buyin", "date": "2026-05-19", "due": "2026-05-30", "status": "open", "source": "SF Next_Step__c 19 May 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer not named or engaged", "quote": "our biggest hurdle is our CFO accepting a third party validation software", "status": "not addressed", "date": "2026-04-02", "gap_type": "knowledge", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee); SF Contact Roles (no EB named)"},
+        {"area": "Deltek Costpoint integration feasibility unvalidated", "quote": "how would I go about asking Deltek if they can integrate with you?", "status": "acknowledged", "date": "2026-04-02", "gap_type": "knowledge", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"area": "Single-thread: no confirmed decision maker beyond the evaluator", "quote": "chris and monica looking for stakeholder buyin", "status": "not addressed", "date": "2026-05-19", "gap_type": "knowledge", "source": "SF Next_Step__c; SF Contact Roles"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three win-strategy levers matter now: break the single-thread to the CFO, lead with a change-management/adoption narrative, and put a dollarized ROI in front of the budget owner.",
+      "flags": [
+        "Multi-thread to the CFO and executive-management sponsor Cody named as the acceptance gate; single-thread through one cooling evaluator is the top structural risk.",
+        "Lead the next buyer conversation with adoption and change-management (Alexa's Flintstones-to-Jetsons reframe), then the technology, to overcome the buyer's stated fear.",
+        "Dollarize the ROI (8-9 hrs/week plus ACH fraud-loss avoidance) against nonprofit budget pressure so Cody can defend the spend to the CFO."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Cody Ellerbee", "title": "Manager", "role": "Champion", "last_contact_date": "2026-05-12", "sentiment": "Positive but cooling; enthusiastic through the 2 Apr demo, silent 55 days since", "risk": "Weak, single-threaded, and cooling; has not introduced the CFO/executive sponsor and has not replied to three rep follow-ups. If he deprioritizes, the deal has no backup.", "source": "SF Contact Roles (Evaluator, Primary); Avoma calls 30 Mar & 2 Apr 2026"},
+        {"name": "Monica R Romero", "title": "Administrative Coordinator", "role": "Influencer", "last_contact_date": "2026-05-12", "sentiment": "Supportive, neutral; owns the day-to-day onboarding pain, no decision authority", "risk": "No budget or decision power; helpful for requirements but cannot advance the deal alone.", "source": "SF Contact Roles; Avoma calls 30 Mar & 2 Apr 2026; SF email 4 May 2026"},
+        {"name": "Jeremy Babin", "title": null, "role": "Unknown", "last_contact_date": "2026-03-23", "sentiment": "Unknown; invited to the shared space and addressed in an early email but never engaged on a call", "risk": "Named in a shared-space invite and one email only; role and stance unknown, never met.", "source": "SF Shared Space activity 23 Mar 2026 (jeremy.babin@swri.org); SF email 24 Mar 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Cody Ellerbee is a developing champion whose strength is weak and at risk. He drove discovery, praised Zycus as 'top two,' and pulled the proposal, but he has not introduced the CFO/executive sponsor he named as the gate and has gone silent for 55 days after three rep follow-ups. Until he brokers the internal introduction, advocacy is stalling and the deal is exposed to no-decision.",
+      "champion": "Cody Ellerbee",
+      "strength": "weak",
+      "at_risk": true,
+      "source": "SF Contact Roles; Avoma demo 2 Apr 2026; SF Next_Step__c 19 May 2026; SF LastActivityDate 12 May 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Zycus showed real AI in the demo (autonomous document-extraction agent for W-9s, AI-assisted data capture, intake orchestration agent in Teams, AI redlining), but the buyer is functionally motivated by ACH automation and change-management, and never engaged the AI story. AI is a supporting proof point here, not the buying lever, so heavier agentic positioning would not move this deal.",
+      "score": "Moderate",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 Moderate matches the evidence: AI capabilities exist and were demoed but the buyer's priorities are functional (bank validation, onboarding, adoption), with no agentic pull from Cody or Monica across three calls.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "change_management", "detail": "Buyer's fear of adoption for a PDF-based team is the primary threat and a no-decision risk: 'it's scary and overwhelming... getting the buy in and getting people to sign off.'", "first_raised": "2026-04-02", "date": "2026-04-02", "status": "open", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"category": "executive_alignment", "detail": "CFO named as the acceptance gate for third-party validation but never engaged; no executive sponsor mapped.", "first_raised": "2026-04-02", "date": "2026-04-02", "status": "open", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"category": "budget", "detail": "Nonprofit budget pressure; Cody weighed the ACH tool against funding core research, and GIACT is a separate buyer-borne cost line.", "first_raised": "2026-04-02", "date": "2026-04-02", "status": "open", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"category": "integration", "detail": "Deltek Costpoint API integration feasibility unvalidated; without it, onboarded records must be re-keyed manually into Costpoint.", "first_raised": "2026-04-02", "date": "2026-04-02", "status": "open", "source": "Avoma demo 2 Apr 2026 (Cody Ellerbee)"},
+        {"category": "timeline", "detail": "The buyer's aspirational 60-day decision window has lapsed and the deal has sat 104 days in Qualified with no progression.", "first_raised": "2026-05-19", "date": "2026-05-19", "status": "open", "source": "SF Next_Step__c; SF StageName history"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling to dark: 55 days of buyer silence after a strong 2 Apr demo, three unanswered rep follow-ups, and no CFO/stakeholder progression.",
+      "cooling": true,
+      "items": [
+        "Last genuine buyer exchange 12 May 2026 (Monica ack); nothing substantive since",
+        "Three rep-initiated follow-ups (4 May, 19 May) with no reply",
+        "Internal buy-in effort logged 19 May has produced no movement"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A Qualified $51k phase-1 ACH-validation deal that a strong demo put in the buyer's final two, now stalled 55 days, with the CFO approval gate unengaged and the buyer's own change-management fear, not a rival, standing between us and a decision.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Zycus is one of the buyer's final two after the 2 Apr demo: Cody Ellerbee said we are 'top two right now' and 'definitely beats what we're doing now,' then pulled a proposal (delivered 15 Apr)."},
+          {"tone": "warn", "text": "No economic buyer is engaged; Cody named the CFO as the real gate ('our biggest hurdle is our CFO accepting a third party validation software,' 2 Apr) but the CFO has never been contacted."},
+          {"tone": "warn", "text": "The deal is single-threaded through one cooling evaluator and has been buyer-silent for 55 days (last touch 12 May), with the aspirational 60-day decision window already lapsed."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-initiated activity in 55 days; the last touches were rep follow-ups on the proposal drawing a single one-line acknowledgement (12 May)."},
+          {"tone": "warn", "text": "The deal has sat 104 days in Qualified with no stage progression since 24 Mar 2026."},
+          {"tone": "good", "text": "Commercials entered early: a commercial SaaS proposal was delivered 15 Apr and pricing is on the table."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "The buyer ran real discovery and a focused demo, disclosed ~500 vendors/yr onboarded manually and 8-9 hrs/week of ACH validation, and requested a proposal."},
+          {"tone": "warn", "text": "Commitment is soft: no next meeting booked, no CFO introduction, and the internal buy-in push ('chris and monica looking for stakeholder buyin,' 19 May) has produced no movement."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Change-management inertia is the primary threat: 'it's scary and overwhelming... getting the buy in and getting people to sign off' (Cody, 2 Apr) points to a do-nothing/no-decision risk, not a loss to a rival."},
+          {"tone": "warn", "text": "Scope was halved from $120k to $51k on 15 Apr, a defensive narrowing to a single phase-1 ACH use case."},
+          {"tone": "warn", "text": "Nonprofit budget pressure plus an unproven CFO acceptance of third-party validation leaves the spend undefended."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.6, "evidence": "55-day buyer silence, 104 days in Qualified with no progression, only rep-initiated follow-ups since 12 May"},
+        "customer_commitment": {"strength": -0.2, "evidence": "Real discovery and proposal request, but no next meeting, no CFO intro, stalled internal buy-in"},
+        "deal_risk": {"strength": -0.6, "evidence": "Change-management/do-nothing inertia, scope halved, CFO acceptance unproven at a budget-constrained nonprofit"}
+      }
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "$120,000 (full-suite framing across iContract, iSupplier, iRisk, iCompliance)",
+      "to": "$51,150 (phase-1 iSupplier ACH/banking validation and supplier onboarding)",
+      "detail": "Amount cut on 15 Apr 2026 (SF Field History). The buyer explicitly deferred contract lifecycle and risk modules to a phase-2 expansion and focused first on the ACH/banking-validation use case, a defensive, phased posture consistent with nonprofit budget pressure and change-management caution."
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 2 Apr demo landed well: Cody Ellerbee put Zycus in the final two and said it beats the current manual process, but committed only to requesting a proposal.", "tone": "pos"},
+      {"lens": "Competition", "text": "The real contest is the buyer's own status-quo and change-management fear, a no-decision risk, not a named rival; one unnamed all-encompassing vendor shares the final two.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "The CFO surfaced as the true approval gate for accepting third-party validation but has never been engaged and is not named in the record.", "tone": "warn"},
+      {"lens": "Commercials", "text": "A $51k proposal (halved from $120k) went to a budget-constrained nonprofit on 15 Apr with no ROI case landed and no buyer feedback in 55 days.", "tone": "warn"},
+      {"lens": "New requirement", "text": "Deltek Costpoint integration feasibility is the buyer's open technical question and is still unvalidated.", "tone": "neu"}
+    ],
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Karson re-engages Cody and Monica directly to break the 55-day silence and ask for their internal review status.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Last buyer touch 12 May; three rep follow-ups since with no substantive reply", "trigger_date": "2026-05-19", "act_by": "2026-07-13", "expected_effect": "Restarts the thread and reveals whether the deal is alive or truly cold before it forces Off Track."},
+        {"rank": 2, "action": "Deliver a one-page dollarized ROI summary (labor hours plus ACH fraud-loss avoidance) for Cody's CFO pitch.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Alexa committed to outcome percentages; CFO named as the acceptance gate", "trigger_date": "2026-04-02", "act_by": "2026-07-20", "expected_effect": "Arms the champion with a defensible business case and moves the CFO from unengaged blocker toward sponsor."},
+        {"rank": 3, "action": "Ask Cody to broker an introduction to the CFO or executive-management sponsor for a short value conversation.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "'our biggest hurdle is our CFO accepting a third party validation software'", "trigger_date": "2026-04-02", "act_by": "2026-07-22", "expected_effect": "Breaks the single-thread and directly engages the acceptance gate, the biggest structural risk."},
+        {"rank": 4, "action": "Offer a reference call with a similar change-averse customer to de-risk adoption for the buyer's staff.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "'it's scary and overwhelming... getting the buy in and getting people to sign off'", "trigger_date": "2026-04-02", "act_by": "2026-08-01", "expected_effect": "Neutralizes the change-management/do-nothing threat and rebuilds momentum with a proof point."},
+        {"rank": 5, "action": "Get Cody to connect Zycus with IT to validate Deltek Costpoint API integration feasibility.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "'how would I go about asking Deltek if they can integrate with you?'", "trigger_date": "2026-04-02", "act_by": "2026-08-05", "expected_effect": "Removes the open technical risk that would otherwise force manual re-keying and stall the business case."}
+      ]
+    },
+    "ceo_intervention": {"needed": false},
+    "expansion_context": null,
+    "customer_preference": {"level": "medium", "evidence": "'I would say y'all are top two right now' and 'definitely beats what we're doing now' (Cody Ellerbee, 2 Apr); positive but not decisive, and no Zycus-specific commitment beyond a proposal request, now 55 days silent."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain quantified in hours (8-9 hrs/week) and volume (~500 vendors/yr) plus fraud-risk framing, but no dollar ROI; Alexa steered away from a full business case toward 'outcome percentages.'"},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": true,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 3,
+    "calls_read": 2,
+    "calls_omitted": [{"call": "Zycus x Southwest Research Institute (2026-03-20)", "reason": "No transcript or notes available in the record (transcript body empty)"}],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history full; contact roles; Next_Step__c and history",
+    "avoma_attendees": ["Cody Ellerbee", "Monica Romero"],
+    "gaps": [
+      "Economic buyer (CFO) named only by title on a call, never identified by name in Salesforce or engaged (knowledge gap)",
+      "No decision maker confirmed beyond the evaluator; internal approval chain (Cody's boss, executive management, CFO) unmapped by name",
+      "The 20 Mar 2026 first meeting has no transcript, so earliest qualification content is unavailable",
+      "Deltek Costpoint integration feasibility unvalidated with buyer IT"
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

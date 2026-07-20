@@ -1,0 +1,257 @@
+{
+  "opp_id": "006P700000YpEBq",
+  "hard": {
+    "opp_id": "006P700000YpEBq",
+    "opp_name": "Swinkels_S2P",
+    "account_name": "Swinkels Family Brewers",
+    "account_industry": "Food, Bev & FMCG",
+    "billing_country": "Netherlands",
+    "owner_name": "Caroline Lacocque",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 200000,
+    "close_date": "2027-03-31",
+    "days_to_close": 268,
+    "created_date": "2026-05-29",
+    "qualified_date": "2026-05-29",
+    "last_activity_date": "2026-06-04",
+    "last_modified_date": "2026-06-04",
+    "products": "iContract;iSource;iSave;iSupplier;eProcurement;eInvoicing;Merlin;iRisk",
+    "next_step": "Vendor evaluation underway with a year-end decision target. Effort focused on identifying the decision maker and exec sponsor and building out contacts beyond the CPO. Partnership and pricing strategy still to be decided internally, with competitive positioning against the lower-cost concern and the Heineken reference to be developed.",
+    "ais_score": 50,
+    "ais_status": "Moderate",
+    "ais_why": null,
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": false,
+    "metrics_identified": false,
+    "competitor": "Unnamed lower-cost vendor",
+    "primary_competitor": "Unnamed lower-cost vendor",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YpEBq/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "Early Qualified S2P deal at Swinkels Family Brewers with a long 268-day runway, but engagement is thinning: last buyer touch was the 4 Jun Amsterdam roundtable, the deal is single-threaded on Head of Procurement Han Tetteroo, the economic buyer and exec sponsor are unmapped, and a price-led rival is in the evaluation. Multi-threading and quantifying the business case are the unlocks.",
+      "math": "Created 2026-05-29, Qualified same day; approximately 38 days in Qualified as of 2026-07-06. Close date 2027-03-31 is 268 days out (CloseDate was pushed from 2026-12-31 to 2027-03-31 on 2026-05-29). Last activity 2026-06-04, 32 days ago, and no buyer-facing deliverable since the 4 Jun roundtable. Pace is not yet a slip against the 268-day runway, but the thread has gone quiet with no scheduled next step, which reads as Slowing rather than On Track.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Pipeline forecast is defensible: Qualified stage, no economic buyer engaged and no confirmed business case, matches an early-funnel Pipeline category (SF ForecastCategoryName + StageName, 2026-07-06)",
+        "Last genuine buyer engagement was the Amsterdam roundtable Han Tetteroo attended, acknowledged in the 4 Jun Clari follow-up email (Task 2026-06-04)",
+        "Single-threaded: Han Tetteroo (Head of Procurement) is the only contact role; Next_Step names 'building out contacts beyond the CPO' as an open task (SF Next_Step__c, 2026-06-04)",
+        "Economic buyer and executive sponsor are explicitly still being identified (SF Next_Step__c, 2026-06-04)",
+        "Price-led competition is live but unnamed: 'competitive positioning against the lower-cost concern' (SF Next_Step__c, 2026-06-04)",
+        "No Avoma buyer calls exist for this opportunity, so pain, metrics and decision criteria are undocumented and confidence is Low"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "gap",
+        "narrative": "No quantified business case has been articulated by Swinkels Family Brewers. There are no Avoma calls on this opportunity, and the only substantive field, Next_Step__c (2026-06-04), speaks to internal Zycus positioning ('competitive positioning against the lower-cost concern') rather than a buyer-stated cost, cycle-time, headcount, or savings figure. The full eight-module S2P scope (iContract, iSource, iSave, iSupplier, eProcurement, eInvoicing, Merlin, iRisk) implies broad procurement-transformation intent, but the value that justifies a $200k programme is unbuilt. The move is a discovery call with Han Tetteroo to quantify current procurement pain (maverick spend, invoice cycle time, supplier fragmentation) and convert it into a measurable outcome.",
+        "sources": ["SF Next_Step__c 2026-06-04", "SF Products__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "The economic buyer is not identified and, unlike the prior record, no CFO or transformation executive can be named from Salesforce: the only contact role is Han Tetteroo (Head of Procurement, Decision Maker), and no budget owner appears in any field, task, or call. Next_Step__c (2026-06-04) confirms the gap is known: 'identifying the decision maker and exec sponsor'. At $200k for a full S2P suite the commercial sign-off almost certainly sits above the Head of Procurement, but the evidence does not name that person, so we must not assert one. The move is to ask Han directly who approves the procurement-transformation budget and secure a warm introduction.",
+        "sources": ["SF Next_Step__c 2026-06-04", "OpportunityContactRole: Han Tetteroo, Decision Maker"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "The buyer's evaluation criteria are undocumented. No demo, use-case review, RFI, or workshop has been captured, and there are no Avoma transcripts for this opportunity. Next_Step__c (2026-06-04) confirms a multi-vendor 'vendor evaluation underway' but does not enumerate what the buyer is scoring vendors on. Cost is clearly one axis given the 'lower-cost concern' framing, and the eight-module scope suggests functional breadth matters, but both are inferred rather than confirmed by the buyer. The move is to ask Han for the evaluation scorecard and the weighting of cost versus functional fit and AI capability.",
+        "sources": ["SF Next_Step__c 2026-06-04"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "A partial process read exists from the fields. Next_Step__c (2026-06-04) establishes a 'year-end decision target', i.e. roughly December 2026, and a live multi-vendor evaluation, so a forcing function and a bake-off are in play. But the gate sequence (RFI, RFP, shortlist, demo, commercial, contract), the number of vendors, and the internal approval chain are unknown, and with a single contact 38 days into Qualified the process has not been mapped. The move is to have Han walk through the evaluation stages and internal approvals so we can influence the process before shortlisting.",
+        "sources": ["SF Next_Step__c 2026-06-04"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "Contracting mechanics are entirely unmapped, which is normal this early. No MSA, SOW, InfoSec, or procurement-channel signal exists in any field or activity. Next_Step__c (2026-06-04) notes that 'partnership and pricing strategy still to be decided internally', which is a Zycus-side go-to-market decision (this is a New Markets division deal), not the buyer's paper process. For a Netherlands enterprise brewery running a full S2P suite, legal and InfoSec review will be mandatory gates later. The move is to ask Han, during the process discovery, what legal, procurement, InfoSec, and IT-integration reviews the contract will pass through.",
+        "sources": ["SF Next_Step__c 2026-06-04", "SF Division__c New Markets"]
+      },
+      "identify_pain": {
+        "status": "gap",
+        "narrative": "No buyer-articulated pain has been captured. There are no calls, and no pain field is populated; the eight-module S2P scope implies the buyer recognises procurement fragmentation and manual inefficiency, but that is inferred from the product selection, not stated by Swinkels. The 'year-end decision target' hints at a forcing function (a contract expiry, budget cycle, or transformation mandate), yet the underlying driver and the pain owner are unconfirmed. The move is a discovery call to surface what is broken today, the cost of inaction, and why the buyer set a year-end deadline.",
+        "sources": ["SF Next_Step__c 2026-06-04", "SF Products__c"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Han Tetteroo (Head of Procurement) is the sole contact role and the designated Decision Maker, and he is engaged enough to have attended the Zycus Amsterdam roundtable acknowledged in the 4 Jun Clari email, so he is the working thread. But he is a developing champion, not a proven one: there is no evidence yet that he will introduce us to power, coach us on the competition, or advocate internally, and Next_Step__c (2026-06-04) itself flags the need to build 'beyond the CPO'. What has developed is his personal engagement and process ownership; what is missing is access to the economic buyer and any sign of active advocacy. The move is to test his sponsorship by asking for an introduction to the budget owner and the names of the other vendors under evaluation.",
+        "sources": ["OpportunityContactRole: Han Tetteroo, Decision Maker", "Task 2026-06-04 (Amsterdam roundtable follow-up)", "SF Next_Step__c 2026-06-04"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Competition is live but unnamed. Next_Step__c (2026-06-04) confirms a 'vendor evaluation underway' and directs effort at 'competitive positioning against the lower-cost concern', so at least one rival is competing on price and Zycus is positioned as the premium option; Competitors__c itself is blank. The same field flags 'the Heineken reference to be developed', signalling Zycus intends to counter with a peer brewing-industry proof point. No competitor is named in any field, task, or call, so we cannot list a brand. The wedge is a quantified ROI plus the Merlin AI and full-suite breadth a low-cost point tool cannot match; the move is to get Han to name who else is in the running.",
+        "sources": ["SF Next_Step__c 2026-06-04"]
+      }
+    },
+    "critical_signals": [
+      {"lens": "Competition", "text": "A lower-cost rival is in the evaluation and Zycus is the premium option, so we need a quantified value case and a peer-brewer reference to hold the price.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "Han Tetteroo, Head of Procurement, is our only relationship and is engaged but unproven, while the budget owner and exec sponsor are still unknown.", "tone": "warn"},
+      {"lens": "Last meeting", "text": "The last real touch was the 4 Jun Amsterdam roundtable Han attended, with no follow-on meeting booked since.", "tone": "neu"},
+      {"lens": "Commercials", "text": "We cannot yet justify the $200k price: no buyer-stated ROI or savings target exists and pricing strategy is still being set internally.", "tone": "warn"}
+    ],
+    "deal_movement": {
+      "summary": "The deal was created and qualified on 2026-05-29 (moved Initial Interest to Qualified, close date pushed from 2026-12-31 to 2027-03-31) and routed into the New Markets division under Caroline Lacocque. The only buyer-facing progress since is Han Tetteroo attending the Zycus Amsterdam roundtable, acknowledged in the 4 Jun follow-up. No movement since 2026-06-04.",
+      "items": [
+        {"change": "Opportunity created and advanced Initial Interest to Qualified; owner set to Caroline Lacocque; routed to New Markets division", "date": "2026-05-29"},
+        {"change": "Close date pushed from 2026-12-31 to 2027-03-31", "date": "2026-05-29"},
+        {"change": "Han Tetteroo attended the Zycus Amsterdam roundtable; follow-up email sent", "date": "2026-06-04"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "Zycus is in an early, unresolved multi-vendor evaluation against at least one unnamed lower-cost rival competing on price and positioning Zycus as premium (SF Next_Step__c, 2026-06-04). No competitor is named in any Salesforce field, task, or call, and there are no Avoma transcripts, so the shortlist is not yet visible. Threat level is medium: the price pressure is explicit and the value case is unbuilt, but Zycus carries full-suite plus Merlin AI differentiation and is preparing a Heineken peer-brewer reference. The single strongest current threat is the unnamed lower-cost vendor because price sensitivity is the only competitive signal on record. No call evidence this run, so the carried competitor is not re-ranked.",
+      "competitors": [
+        {
+          "name": "Unnamed lower-cost vendor",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "active",
+          "quote": "competitive positioning against the lower-cost concern",
+          "date": "2026-06-04",
+          "source": "SF Next_Step__c 2026-06-04",
+          "how_we_win": "Build a quantified ROI case (savings, cycle-time, Merlin AI procurement intelligence) to justify the premium, and activate the Heineken peer-brewer reference to prove enterprise-brewery fit against a cost-only alternative."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "No buyer-stated expectations or evaluation criteria are documented; the only inferable expectation is competitive pricing, given the 'lower-cost concern' framing (SF Next_Step__c, 2026-06-04). Fit cannot be assessed until a discovery or demo captures the buyer's requirements.",
+      "items": [
+        {"criterion": "Competitive / justified pricing versus a lower-cost rival", "position": "exposed", "quote": "competitive positioning against the lower-cost concern", "date": "2026-06-04", "source": "SF Next_Step__c 2026-06-04"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Han to introduce the budget owner and executive sponsor for the S2P investment", "who": "Buyer", "grounding_quote": "identifying the decision maker and exec sponsor and building out contacts beyond the CPO", "date": "2026-06-04", "due": null, "status": "open", "source": "SF Next_Step__c 2026-06-04"},
+          {"deliverable": "Han to name the other vendors under evaluation and the decision stages", "who": "Buyer", "grounding_quote": "vendor evaluation underway with a year-end decision target", "date": "2026-06-04", "due": null, "status": "open", "source": "SF Next_Step__c 2026-06-04"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner", "quote": "identifying the decision maker and exec sponsor", "status": "acknowledged", "date": "2026-06-04", "gap_type": "knowledge", "source": "SF Next_Step__c 2026-06-04"},
+        {"area": "Business case / quantified pain", "quote": "", "status": "not addressed", "date": "2026-06-04", "gap_type": "knowledge", "source": "SF Products__c + no Avoma calls"},
+        {"area": "Named competitors in the evaluation", "quote": "competitive positioning against the lower-cost concern", "status": "acknowledged", "date": "2026-06-04", "gap_type": "knowledge", "source": "SF Next_Step__c 2026-06-04"},
+        {"area": "Buyer calls / discovery", "quote": "", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "Avoma: no calls found for this opportunity"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Early Qualified, single-threaded, price-pressured deal: the win levers are multi-threading to power, quantifying value, and naming the competition.",
+      "flags": [
+        "Multi-thread beyond Han Tetteroo now: the deal rests entirely on one Head of Procurement while the budget owner and exec sponsor are unmapped.",
+        "Quantify the business case before pricing: with a lower-cost rival in play and no buyer-stated ROI, a value case is the only defence of the $200k premium.",
+        "Uncover the competitive shortlist: ask Han who else is being evaluated so positioning and the Heineken reference target the right rival."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Han Tetteroo", "title": "Head of Procurement", "role": "Decision Maker", "last_contact_date": "2026-06-04", "sentiment": "Engaged, operational owner of the vendor evaluation; developing champion, advocacy unproven", "risk": "Single-threaded: sole contact role, no demonstrated access to the economic buyer or evidence of internal advocacy yet.", "source": "OpportunityContactRole: Han Tetteroo, Decision Maker; Task 2026-06-04"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Han Tetteroo (Head of Procurement) is the sole contact and designated Decision Maker, engaged enough to attend the 4 Jun Amsterdam roundtable, but his champion strength is developing: no evidence yet of introductions to power, competitive coaching, or internal advocacy, and Next_Step (2026-06-04) itself flags building 'beyond the CPO'. Single-threaded risk is high.",
+      "champion": "Han Tetteroo",
+      "strength": "developing",
+      "at_risk": false,
+      "source": "OpportunityContactRole; SF Next_Step__c 2026-06-04; Task 2026-06-04"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in the eight-module scope and AIS is Moderate (50), so there is a real AI angle, but with no buyer call the agentic story has not been put in front of Swinkels and cannot be shown to have landed. It is under-positioned relative to its potential as a differentiator versus a low-cost rival.",
+      "score": "50",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score__c is 50 with AIS_Status__c Moderate, indicating measured AI appetite. No Avoma calls exist to confirm or contradict the field, so the read is the field alone; the Merlin module in scope suggests appetite that has not yet been activated in a buyer conversation.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "Economic buyer and executive sponsor are unmapped; the deal has no confirmed access to budget authority.", "first_raised": "2026-06-04", "date": "2026-06-04", "status": "open", "source": "SF Next_Step__c 2026-06-04"},
+        {"category": "political", "detail": "Single-threaded on Han Tetteroo; a loss of this one contact would leave the deal with no relationship.", "first_raised": "2026-06-04", "date": "2026-06-04", "status": "open", "source": "OpportunityContactRole"},
+        {"category": "pricing", "detail": "A lower-cost rival is competing on price with no Zycus value case built to justify the premium.", "first_raised": "2026-06-04", "date": "2026-06-04", "status": "open", "source": "SF Next_Step__c 2026-06-04"},
+        {"category": "budget", "detail": "No quantified ROI or business case exists to anchor the $200k full-suite investment.", "first_raised": "2026-06-04", "date": "2026-06-04", "status": "open", "source": "SF Products__c + no Avoma calls"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is thinning: the last buyer touch was the 4 Jun roundtable, 32 days ago, with no next meeting booked. Not yet cold, but the cadence has dropped.",
+      "cooling": true,
+      "items": [
+        "Last activity 2026-06-04 (roundtable follow-up); no buyer-facing deliverable or scheduled next step since",
+        "No Avoma buyer calls on record for this opportunity"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Ask Han to introduce the budget owner and executive sponsor for the S2P programme.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Economic buyer and exec sponsor still unidentified", "trigger_date": "2026-06-04", "act_by": "2026-07-13", "expected_effect": "Maps power and unblocks progression past Qualified toward the year-end decision."},
+        {"rank": 2, "action": "Book a discovery call with Han to quantify procurement pain and savings targets.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "No buyer-stated business case or metrics on record", "trigger_date": "2026-06-04", "act_by": "2026-07-20", "expected_effect": "Builds the ROI case needed to defend the premium against the lower-cost rival."},
+        {"rank": 3, "action": "Ask Han to name the other vendors and walk through the evaluation stages.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Multi-vendor evaluation underway but competitors unnamed", "trigger_date": "2026-06-04", "act_by": "2026-07-20", "expected_effect": "Reveals the shortlist so positioning and the Heineken reference target the right rival."},
+        {"rank": 4, "action": "Reach a second Swinkels stakeholder in finance or transformation to multi-thread.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Single-threaded on Han Tetteroo", "trigger_date": "2026-06-04", "act_by": "2026-08-03", "expected_effect": "Reduces single-point-of-failure risk and creates a path to the economic buyer."},
+        {"rank": 5, "action": "Prepare the Heineken peer-brewer reference and Merlin AI proof points for Han.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Heineken reference and value story flagged as to-be-developed", "trigger_date": "2026-06-04", "act_by": "2026-08-05", "expected_effect": "Counters the lower-cost objection with peer-industry proof and AI differentiation."}
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "An early Qualified S2P deal riding on one Head of Procurement: Han Tetteroo is engaged but the economic buyer is unmapped, a lower-cost rival is pressuring price, and no value case exists yet, so the win rests on multi-threading to power and quantifying ROI before the year-end decision.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "We hold one working relationship (Han Tetteroo, Head of Procurement, engaged at the 4 Jun Amsterdam roundtable) but no access to the budget owner, and a lower-cost rival is in the evaluation, so the position is early and unproven (SF Next_Step__c, 2026-06-04)."},
+          {"tone": "warn", "text": "The economic buyer and exec sponsor are still unidentified, so we have no confirmed path to commercial sign-off on a $200k programme (SF Next_Step__c, 2026-06-04)."},
+          {"tone": "warn", "text": "No buyer-stated ROI or pain metric exists to justify the premium against the lower-cost concern (SF Products__c and no Avoma calls, 2026-07-06)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "The last buyer touch was the 4 Jun roundtable and no next meeting is booked, so momentum is thinning 32 days on (Task 2026-06-04)."},
+          {"tone": "warn", "text": "No demo, workshop, or discovery call has occurred and there are no Avoma transcripts for the deal (Avoma, 2026-07-06)."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "The buyer has set a year-end decision target but has not committed a next step, dates, or named the evaluation stages (SF Next_Step__c, 2026-06-04)."},
+          {"tone": "good", "text": "Han Tetteroo personally attended the Zycus Amsterdam roundtable, showing real interest at the operational level (Task 2026-06-04)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded on Han Tetteroo with no economic buyer mapped leaves the deal exposed to one contact (OpportunityContactRole, 2026-06-04)."},
+          {"tone": "warn", "text": "A lower-cost rival is competing on price with no Zycus value case built yet to defend the premium (SF Next_Step__c, 2026-06-04)."}
+        ]
+      },
+      "factors": {
+        "champion_strength": {"strength": -0.2, "evidence": "Han is engaged and owns the evaluation but shows no proven advocacy or access to power yet (Next_Step 2026-06-04)."},
+        "executive_alignment": {"strength": -0.6, "evidence": "Economic buyer and exec sponsor unidentified (Next_Step 2026-06-04)."},
+        "pricing": {"strength": -0.4, "evidence": "Lower-cost rival pressuring price with no value case built (Next_Step 2026-06-04)."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "No buyer statement of preference on record; the only competitive signal is a rep-noted 'lower-cost concern' and the need to develop positioning, with no Avoma call to confirm a Zycus lean (SF Next_Step__c, 2026-06-04)."},
+    "business_case": {"status": "gap", "evidence": "No ROI, savings, or automation impact quantified or articulated by the buyer; only an eight-module product scope implies transformation intent (SF Products__c; no Avoma calls)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities and field history through 2026-07-06; opportunity created 2026-05-29",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma buyer calls found for this opportunity across opp, account, and attendee discovery; pain, metrics, and decision criteria are undocumented",
+      "Economic buyer and executive sponsor unidentified in Salesforce",
+      "Competitors named only as an unspecified 'lower-cost concern'; no rival brand on record"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,251 @@
+{
+  "opp_id": "006P700000QG3ZG",
+  "hard": {
+    "opp_id": "006P700000QG3ZG",
+    "opp_name": "CIMA - CLM Evaluation",
+    "account_name": "CIMA+ Construction",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "Canada",
+    "owner_name": "Justin Ajmo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 50000,
+    "close_date": "2026-09-24",
+    "days_to_close": 80,
+    "created_date": "2025-11-25",
+    "qualified_date": "2026-01-09",
+    "last_activity_date": "2026-06-19",
+    "last_modified_date": "2026-06-19",
+    "products": "iContract;Merlin",
+    "next_step": "Jun 19, 2026: Touched base with Christopher to determine the state of this project and downselection to RFP. JRA 5/12: Awaiting CIMA team to finish reviewing RFI responses and shortlist vendors.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "Christopher Tandu's intro framed the need as a holistic CLM to replace Excel reminders and SharePoint storage; the 13-minute call surfaced no Merlin, agentic, or GenAI language. RFI is ~98% CLM-focused, targeting ERP integration with Dynamics/SAP/Oracle; AI was never raised as a requirement.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Agiloft",
+    "primary_competitor": "Agiloft",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000QG3ZG/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "A $50k early-stage CLM evaluation that has gone effectively dark since the 24 Nov 2025 intro call: single-threaded to Christopher Tandu, an IT procurement specialist with no budget authority, with the RFI he planned for Dec 2025 still unconfirmed as issued and the buyer's shortlist decision still outstanding. The 19 Jun rep check-in drew no reply, and the close date has been pushed three times to 24 Sep.",
+      "math": "Created 25 Nov 2025, qualified 9 Jan 2026, now ~223 days old and still in Qualified (stage actually regressed from Formal Evaluation to Qualified on 9 Jan 2026). 80 days to close (24 Sep 2026). Only one recorded two-way buyer exchange (the 24 Nov 2025 intro call); everything since is rep-side (12 May and 19 Jun Next Step notes, three close-date pushes). Buyer last genuinely engaged ~7 months ago, well beyond any normal cadence. Reaching 24 Sep would require RFI completion, shortlist, tailored demo, use-case validation, commercials, negotiation and contracting in under three months, against a realistic 12-15 month enterprise CLM motion for a 600-project-manager buyer. Current buyer-side pace is zero, so the date is indefensible.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omit",
+      "evidence": [
+        "Only one recorded buyer conversation: the 24 Nov 2025 intro call with Christopher Tandu; no buyer-side activity since",
+        "12 May 2026 rep note (Next Step): awaiting CIMA team to finish reviewing RFI responses and shortlist vendors",
+        "19 Jun 2026 rep note (Next Step): touched base with Christopher on project status and downselect to RFP, with no buyer reply logged",
+        "Stage regressed Formal Evaluation to Qualified on 9 Jan 2026 (field history)",
+        "Close date pushed three times by Michael McCarthy: 19 Mar to 20 May (23 Feb), to 25 Jun (30 Mar), to 24 Sep (1 Jun)",
+        "Single-threaded to Christopher Tandu, an IT procurement specialist who himself said he has no CLM and no budget authority; the board and sponsor he references are unnamed",
+        "No Economic Buyer, Decision Maker, or power-level stakeholder identified or engaged; no Salesforce contact roles on the opportunity",
+        "Agiloft named in Salesforce (Competitors__c) but no buyer sentiment or competitive-position intelligence exists",
+        "Primary threat is inertia: buyer runs Excel plus SharePoint today and just absorbed an ERP change, making a no-decision the most likely outcome"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The pain is articulated but never quantified. Christopher Tandu described a fragmented status quo on the 24 Nov 2025 call: he personally tracks contract renewals by hand, saying 'I put mail in an Excel sheet someday to see, okay Christopher, be careful, the renewal is minus 90 days,' while roughly 600 project managers handle legal documents with 'no standard regarding how the contract is supposed to be managed.' He named a concrete failure mode, 'some people just face those plus 20% increase because they didn't say no, we do not renew,' which points at auto-renewal leakage as the measurable cost. No dollar figure, contract volume, cycle-time, or savings target was put on it. The move is to convert that auto-renewal-penalty story into a quantified business case (annual value of missed renewals, hours lost across 600 PMs) so the project can be justified against doing nothing.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "AIS_Why__c", "SF Customer_Business_Problem__c / Value_to_Customer__c: empty"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified or engaged. Christopher Tandu, the only contact, openly positioned himself as operational, 'I, as a procurement person, I do not have a CLM,' and pointed authority elsewhere: 'we might see internally with the board and the sponsor if we go on RFP,' and separately referenced 'my committee regarding the vision' (24 Nov 2025 call). Those figures are unnamed, and there are no Salesforce contact roles, so budget authority cannot be attributed to a real person. What the evidence does show is that the RFI-to-RFP decision, and therefore the budget, sits with a board/sponsor and a buying committee Christopher gatekeeps. The move is to ask Christopher to name and introduce that sponsor so the economic buyer can be mapped before any demo investment.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "SF OpportunityContactRole: none", "SF X10a_Sponsor__c / Who_will_approve_budget__c: empty"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "The evaluation criteria are visible from the intro call and the RFI framing even though no formal scorecard exists. Christopher Tandu made ERP integration a first-order test, asking directly 'in terms of integration with ERP, do you integrate yourself with Microsoft Dynamics,' after noting CIMA recently changed its ERP. He prioritised a holistic CLM 'ideally procurement and sales' that standardises contract handling across the organisation, and he valued Zycus doing its own implementation, confirming 'so editor and integrator as well, okay' when told there is no third-party handoff. The AIS note records the RFI is ~98% CLM-focused with ERP integration to Dynamics/SAP/Oracle as the core ask and AI absent. These are inferred-from-discovery rather than a confirmed weighted RFI scorecard; the move is to obtain the written RFI to lock the ranked criteria.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "AIS_Why__c"]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Christopher Tandu described the process he intends to run but has not executed it. He said he will not release the RFI until the downstream path is set, 'I won't send that RFI if I do not know what will be the next step after that RFI,' and wants a demo tied to his questions delivered once, 'if we have a demo, it'll be with everyone involved in this project, Christopher and the IT team and the integrator.' The gating sequence he named is RFI, then internal review with the committee, then a board/sponsor decision on whether to go to RFP, then a scoped demo. The risk is that this process has stalled: the RFI he hoped to issue before Christmas 2025 is still unconfirmed as sent, and the 19 Jun 2026 status check went unanswered. The move is to re-confirm where the RFI review actually stands and secure the multi-party scoping call he described.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "Next Step 12 May 2026", "Next Step 19 Jun 2026"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have been discussed. There is no reference to MSA, SOW, order form, legal review, procurement channel, or InfoSec on the only recorded call, and Current_Contract_Expiration__c is empty, so there is no incumbent-contract forcing function. The only adjacent signal is that CIMA just completed an ERP change and expects a 'massive cultural change,' implying IT and change-management approvals will matter at contracting for a 600-user rollout. Because the deal is still pre-RFP, paper process is genuinely unknown rather than a hygiene gap. The move is to surface, during the demo-scoping conversation, who owns legal, IT security, and procurement approval, so the path from selection to signature is visible before the date is committed.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "SF What_is_the_decision_process__c / Current_Contract_Expiration__c: empty"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The operational pain is clearly confirmed and owned by Christopher Tandu. He characterised the current state as messy: no CLM, renewals tracked manually in Excel, contracts sitting 'somewhere in SharePoint on my desktop,' and roughly 600 project managers managing legal documents with no shared standard so 'some people track the end of the contract, some people do not' (24 Nov 2025 call). The financial edge of that pain is auto-renewal exposure, contracts silently rolling with a '+20% increase' because no one gave notice. There is also a change-management pain: CIMA 'just changed the ERP a few months ago,' so adoption fatigue is real. The confirmed pain owner is Christopher at the operational level; the executive pain owner who feels the leakage financially is not yet mapped. The move is to tie this pain to a number and to the board sponsor who bears the cost.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "AIS_Why__c"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "There is no champion, only a cooperative gatekeeper. Christopher Tandu is engaged and transparent, he did his own homework, found Zycus via Gartner, and openly walked through CIMA's mess, but he is an IT procurement specialist with no CLM and no budget authority, and he controls access rather than opening it ('I'm still discussing with my committee regarding the vision'). He has not introduced the board, the sponsor, the IT team, or the integrator he references, and his engagement has cooled, the 19 Jun 2026 status check drew no reply. What is developed is rapport and a clear articulation of pain; what is missing is any evidence of internal advocacy, access to power, or him driving the agenda for Zycus. The move is to earn a multi-threaded scoping call that either elevates Christopher into a real champion or reaches the sponsor directly.",
+        "sources": ["Avoma intro call 24 Nov 2025 (Christopher Tandu)", "Next Step 19 Jun 2026", "SF X10b_Champion_Business_Buyer__c: empty"]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "Agiloft is the only named rival (Salesforce Competitors__c), but no buyer sentiment toward it exists on any call, so its shortlist status and the buyer's lean are unknown. On the evidence, the more immediate competitor is the status quo: CIMA runs Excel plus SharePoint with no CLM today and just absorbed an ERP change, so a no-decision or an indefinite delay is the likeliest way this deal is lost, not a head-to-head to Agiloft. Zycus's wedge from the intro call is a holistic CLM across procurement and sales with native Microsoft Dynamics integration and fully in-house implementation and integration (Christopher reacted positively to 'editor and integrator as well'). The move is to make that integrated, single-vendor delivery story the centrepiece of the scoped demo and to surface Agiloft's actual position when re-engaging the committee.",
+        "sources": ["SF Competitors__c: Agiloft", "Avoma intro call 24 Nov 2025 (Christopher Tandu)", "SF Why_not_Zycus__c / Zycus_Differentiation_Why_Zycus__c: empty"]
+      }
+    },
+    "deal_movement": {
+      "summary": "The only genuine buyer movement is the 24 Nov 2025 intro call. Everything since is rep-side administration: the stage regressed to Qualified on 9 Jan 2026, the close date has been pushed three times, and two Next Step notes (12 May, 19 Jun) record the rep chasing an RFI review that has never confirmed forward.",
+      "items": [
+        {"change": "Intro call held; Christopher Tandu framed the CLM need and integration questions", "date": "2025-11-24"},
+        {"change": "Stage regressed from Formal Evaluation to Qualified", "date": "2026-01-09"},
+        {"change": "Close date pushed from 25 Jun to 24 Sep (third push since Feb)", "date": "2026-06-01"},
+        {"change": "Rep status check on downselect to RFP; no buyer reply logged", "date": "2026-06-19"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is inertia, not a vendor: CIMA manages contracts in Excel and SharePoint today and just absorbed an ERP change, so a no-decision or indefinite stall is the most probable loss path (24 Nov 2025 call). Agiloft is the only named rival (Salesforce Competitors__c) but carries no dated buyer sentiment, so its status is unknown rather than proven ahead. Zycus's live wedge is a holistic cross-org CLM with native Dynamics integration and fully in-house implementation.",
+      "competitors": [
+        {"name": "Do nothing (Excel + SharePoint status quo)", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "I put mail in an Excel sheet someday to see, okay Christopher, be careful, the renewal is minus 90 days.", "date": "2025-11-24", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)", "how_we_win": "Quantify auto-renewal leakage and post-ERP standardisation value so a decision beats delay; anchor a compelling event to the RFP timeline."},
+        {"name": "Agiloft", "sentiment": "neutral", "threat_level": "medium", "status": "active", "quote": null, "date": "2026-07-05", "source": "SF Competitors__c", "how_we_win": "Holistic procurement-plus-sales CLM, native Microsoft Dynamics integration, and in-house implementation (no third-party handoff) that Christopher reacted well to on 24 Nov 2025."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "The buyer's stated expectations align well with Zycus strengths on the intro call: holistic cross-org CLM, native ERP integration, and single-vendor implementation. The exposure is commercial and political, not product fit.",
+      "items": [
+        {"criterion": "Holistic CLM standardising contracts across procurement and sales", "position": "aligned", "quote": "Ideally, procurement and sales... to put some standard.", "date": "2025-11-24", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)"},
+        {"criterion": "Out-of-box integration with Microsoft Dynamics ERP", "position": "aligned", "quote": "In terms of integration with ERP, do you integrate yourself with Microsoft Dynamics?", "date": "2025-11-24", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)"},
+        {"criterion": "Single vendor doing its own implementation and integration", "position": "aligned", "quote": "So editor and integrator as well. Okay.", "date": "2025-11-24", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "CIMA to finish reviewing RFI responses and confirm the vendor shortlist / downselect to RFP", "who": "Buyer", "grounding_quote": "Awaiting CIMA team to finish reviewing RFI responses and shortlist vendors.", "date": "2026-05-12", "due": "2026-07-31", "status": "overdue", "source": "Next Step 12 May 2026, re-checked 19 Jun 2026"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "We might see internally with the board and the sponsor if we go on RFP.", "status": "not addressed", "date": "2025-11-24", "gap_type": "knowledge", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)"},
+        {"area": "No champion with power or advocacy", "quote": "I'm still discussing with my committee regarding the vision.", "status": "not addressed", "date": "2025-11-24", "gap_type": "knowledge", "source": "Avoma intro call 24 Nov 2025 (Christopher Tandu)"},
+        {"area": "Agiloft competitive status and buyer sentiment unknown", "quote": null, "status": "not addressed", "date": "2026-07-05", "gap_type": "knowledge", "source": "SF Competitors__c"},
+        {"area": "RFI issuance and shortlist status unconfirmed", "quote": "Touched base with Christopher to determine the state of this project and downselection to RFP.", "status": "not addressed", "date": "2026-06-19", "gap_type": "knowledge", "source": "Next Step 19 Jun 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Win-strategy levers for a dark, single-threaded early-stage deal whose main enemy is inertia.",
+      "flags": [
+        "Multi-thread past Christopher into the named board sponsor and IT/integrator before investing in a demo, single-threading to a no-power contact is the top risk.",
+        "Beat inertia by quantifying auto-renewal leakage across 600 project managers so the committee has a reason to decide rather than delay.",
+        "Re-confirm the RFI review state and win agreement to a single scoped demo tied to CIMA's questions to restart momentum before Agiloft gains ground."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Christopher Tandu", "title": "IT procurement specialist", "role": "Influencer", "last_contact_date": "2025-11-24", "sentiment": "neutral", "risk": "Cooling: no reply to the 19 Jun 2026 status check. Operational contact with no CLM and no budget authority; gatekeeps the committee and board sponsor without introducing them.", "source": "Avoma intro call 24 Nov 2025; Next Step 12 May and 19 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Christopher Tandu is a cooperative gatekeeper who articulated the pain clearly and reacted well to Zycus's integrated delivery, but he has no budget authority, has not introduced the committee or board sponsor, shows no internal advocacy, and has gone quiet since the 19 Jun 2026 rep check-in.",
+      "champion": "Christopher Tandu",
+      "strength": "none",
+      "at_risk": true,
+      "source": "Avoma intro call 24 Nov 2025; Next Step 19 Jun 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "Merlin is in the product set (iContract;Merlin) but was never positioned; the 24 Nov 2025 call and the RFI carry no AI language, so the agentic/Merlin story is entirely under-surfaced with this buyer.",
+      "score": "low",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 / Moderate. The field and the call agree: this is a CLM-hygiene buyer replacing Excel and SharePoint, with no AI raised in a ~98% CLM-focused RFI. AI appetite is unproven rather than resisted, likely a function of early stage.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Close date pushed three times to 24 Sep 2026 with zero buyer-side progression; the date is not credible.", "first_raised": "2026-02-23", "date": "2026-06-01", "status": "open", "source": "Field history (CloseDate changes)"},
+        {"category": "executive_alignment", "detail": "No economic buyer or board sponsor mapped; the RFP go/no-go sits with people Zycus has never met.", "first_raised": "2025-11-24", "date": "2025-11-24", "status": "open", "source": "Avoma intro call 24 Nov 2025"},
+        {"category": "political", "detail": "Single-threaded to a gatekeeping IT procurement specialist who controls access to the committee and has gone quiet.", "first_raised": "2025-11-24", "date": "2026-06-19", "status": "open", "source": "Avoma intro call 24 Nov 2025; Next Step 19 Jun 2026"},
+        {"category": "change_management", "detail": "CIMA just completed an ERP change and expects 'massive cultural change,' fuelling a do-nothing / delay bias across 600 project managers.", "first_raised": "2025-11-24", "date": "2025-11-24", "status": "open", "source": "Avoma intro call 24 Nov 2025"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Buyer engagement has cooled to silence: one recorded call seven months ago and no reply to the 19 Jun 2026 status check. The deal is dormant on the buyer side.",
+      "cooling": true,
+      "items": [
+        "Only one buyer conversation on record (24 Nov 2025)",
+        "No buyer reply to the 19 Jun 2026 rep check-in",
+        "Close date slipped three times without buyer-driven progress"
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A $50k early-stage CLM evaluation gone dark since the 24 Nov 2025 intro call: single-threaded to Christopher Tandu, an IT procurement specialist with no budget authority, with the RFI still unconfirmed as issued and the biggest threat being CIMA simply doing nothing.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This deal stands weak: seven months since the only buyer call (24 Nov 2025), no economic buyer met, and the board sponsor Christopher named remains unintroduced."},
+          {"tone": "good", "text": "Product fit is genuinely strong, Christopher wanted a holistic procurement-plus-sales CLM with native Dynamics integration and reacted well to Zycus doing its own implementation ('editor and integrator as well', 24 Nov 2025)."},
+          {"tone": "warn", "text": "The most likely loss is a no-decision, not Agiloft, CIMA runs Excel and SharePoint today and just absorbed an ERP change, so inertia is winning."},
+          {"tone": "warn", "text": "The close date has been pushed three times to 24 Sep 2026 with zero buyer-side progression, so the forecast is indefensible."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "Momentum is negative: the stage regressed from Formal Evaluation to Qualified on 9 Jan 2026 and no buyer step has advanced since."},
+          {"tone": "warn", "text": "The 19 Jun 2026 rep check on downselect to RFP drew no buyer reply, confirming the RFI review has stalled."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Christopher committed to nothing beyond eventually sending an RFI, and even that is gated on his committee ('I'm still discussing with my committee regarding the vision', 24 Nov 2025)."},
+          {"tone": "warn", "text": "No demo, workshop, or next meeting has been scheduled by the buyer; the relationship is a single, cooling operational thread."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "No economic buyer, decision maker, or champion is engaged, and there are no Salesforce contact roles on the opportunity."},
+          {"tone": "warn", "text": "Post-ERP change fatigue across 600 project managers makes a delayed or abandoned decision the base case unless a quantified value story forces action."}
+        ]
+      },
+      "factors": {
+        "buyer_engagement": {"strength": -0.8, "evidence": "One call on 24 Nov 2025 and no buyer reply since 19 Jun 2026 check-in."},
+        "stakeholder_coverage": {"strength": -0.7, "evidence": "Single-threaded to a no-power IT procurement specialist; board sponsor and committee unnamed."},
+        "timeline_credibility": {"strength": -0.7, "evidence": "Close date pushed three times to 24 Sep 2026 with zero buyer progression."}
+      }
+    },
+    "customer_preference": {"level": "low", "evidence": "Christopher was exploratory and transparent but non-committal: 'I just did my homework' via Gartner and wanted only to eventually send an RFI; no Zycus-specific preference or next-step ask (24 Nov 2025)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: manual Excel renewal tracking, contracts in SharePoint, and auto-renewal '+20% increase' leakage across ~600 project managers, with no figures quantified (24 Nov 2025)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "scope_change": {"direction": "stable", "from": "iContract (CLM) + Merlin", "to": "iContract (CLM) + Merlin", "detail": "No scope change on record; the deal has remained a single-module CLM evaluation with Merlin attached since creation."},
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Christopher to confirm the RFI shortlist status and request a scoping call.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "19 Jun status check drew no reply; RFI review unconfirmed since 12 May.", "trigger_date": "2026-06-19", "act_by": "2026-07-13", "expected_effect": "Restarts a dormant thread and reveals whether Zycus is still in the shortlist before more time is lost."},
+        {"rank": 2, "action": "Ask Christopher to introduce the board sponsor and IT/integrator to map the economic buyer.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Christopher gates access: 'we might see internally with the board and the sponsor' (24 Nov 2025).", "trigger_date": "2025-11-24", "act_by": "2026-07-20", "expected_effect": "Breaks single-threading and puts a real decision-maker in view before any demo investment."},
+        {"rank": 3, "action": "Build and share a quantified auto-renewal-leakage value model for CIMA's 600 project managers.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Pain stated but never quantified: '+20% increase because they didn't say no' (24 Nov 2025).", "trigger_date": "2025-11-24", "act_by": "2026-07-24", "expected_effect": "Gives the committee a reason to decide rather than default to the Excel/SharePoint status quo."},
+        {"rank": 4, "action": "Propose one scoped demo mapped to CIMA's RFI questions with IT and the integrator present.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Christopher wants a single demo 'with everyone involved in this project' (24 Nov 2025).", "trigger_date": "2025-11-24", "act_by": "2026-08-05", "expected_effect": "Creates the multi-party event that advances the deal from Qualified toward a real evaluation."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities 120d; field history to 2026-01-05; Next Step 12 May and 19 Jun 2026",
+    "avoma_attendees": ["Christopher Tandu"],
+    "gaps": [
+      "No Salesforce OpportunityContactRole entries; stakeholder baseline rests on one Avoma speaker",
+      "Only one buyer call (24 Nov 2025); no calls in the last 7 months",
+      "Economic buyer, decision maker, and champion unmapped",
+      "Agiloft competitive status and buyer sentiment unknown"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

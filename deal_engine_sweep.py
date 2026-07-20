@@ -4199,9 +4199,19 @@ async def analyze_one(
             #   1. a LOST/dead deal (a hard fact — handled inside score_deal_ai, which returns the
             #      terminal headline immediately and never AI-scores a loss), and
             #   2. the empty-read SAFETY NET below, which carries the PRIOR good scores forward.
+            #
+            # A DEAD HEADLINE IS A VALID RESULT, NOT A FAILURE (2026-07-20 regression fix): the
+            # deterministic dead/loss override returns win_position=None WITH dead=True (a
+            # terminal deal has no win odds to report), and score_deal_ai returns it verbatim
+            # without ever calling the LLM. Keying "did we score it?" on win_position alone
+            # therefore flagged every Qualified Out / No Decision / Omitted deal as SCORING
+            # FAILED and blanked the `dead` marker the UI reads to render "Lost / Qualified Out".
+            # Accept dead as scored; only a MISSING win_position on a LIVE deal is a failure.
+            def _hl_ok(_s) -> bool:
+                _h = (_s.get("headline") or {}) if isinstance(_s, dict) else {}
+                return bool(_h) and (_h.get("win_position") is not None or _h.get("dead") is True)
             _scoring_failed = False
-            if not (isinstance(_scores, dict)
-                    and (_scores.get("headline") or {}).get("win_position") is not None):
+            if not _hl_ok(_scores):
                 if _fallback_reason is None:
                     _fallback_reason = ((_scores or {}).get("ai_scoring_error")
                                         if isinstance(_scores, dict) else None) \
@@ -4255,7 +4265,17 @@ async def analyze_one(
                         and not (_ai_now.get("crm_evidence")))
             _prior_ds = (existing_record.get("ai") or {}).get("deal_scores") if isinstance(existing_record, dict) else None
             _prior_hl = (_prior_ds or {}).get("headline") or {}
-            _prior_ok = bool(_prior_ds) and not _prior_hl.get("dead") and _prior_hl.get("win_position") is not None
+            # OMNIVISION-ONLY (2026-07-20): a prior score that was itself the deterministic
+            # keyword fallback is NOT a good score to carry forward — carrying it re-stamps
+            # the degraded read every sweep, so the deal never leaves "hybrid" and never shows
+            # up as needing a re-sweep. Only a real AI score counts as a carryable prior.
+            _prior_degraded = bool(_prior_ds) and (
+                (_prior_ds or {}).get("scoring_degraded") is True
+                or ((_prior_ds or {}).get("factor_source") or "ai") != "ai"
+            )
+            _prior_ok = (bool(_prior_ds) and not _prior_hl.get("dead")
+                         and _prior_hl.get("win_position") is not None
+                         and not _prior_degraded)
             _is_loss = (_ai_now.get("decision_outcome") or {}).get("status") == "lost"
             if _no_data and _prior_ok and not _is_loss:
                 _scores = dict(_prior_ds)
@@ -4300,8 +4320,24 @@ async def analyze_one(
             # reasons. HARD FLOOR: if we still have no usable headline, force one final
             # deterministic compute on THIS sweep's record (it always returns a headline, even
             # for a thin/Salesforce-only deal), so a deal can never get stuck scoreless.
+            # OMNIVISION-ONLY (2026-07-20, user-directed): when the AI scorer actually FAILED,
+            # the husk-floor must NOT paper over it with a keyword score — a fake number is
+            # worse than a visible gap, because it reads as a real analyst score in the UI and
+            # the deal silently drops out of any "needs re-sweep" query. The floor still runs
+            # for its original case (a husk with no AI failure recorded), where a deterministic
+            # headline beats a scoreless record. Verified safe: with headline=None the drawer
+            # renders "No scores computed for this deal yet." and nothing defaults it to a number.
             _fin_hl = (_scores or {}).get("headline") if isinstance(_scores, dict) else None
-            if not (isinstance(_fin_hl, dict) and _fin_hl.get("win_position") is not None) and not _pinned:
+            # Same dead-is-valid rule as the scoring gate above: a terminal deal is fully
+            # scored (dead=True, no win odds) and must not be re-forced through the floor.
+            _fin_ok = isinstance(_fin_hl, dict) and (
+                _fin_hl.get("win_position") is not None or _fin_hl.get("dead") is True)
+            _fin_failed = bool(_scores) and (_scores or {}).get("scoring_failed") is True
+            if (not _fin_ok) and _fin_failed:
+                print(f"[DEAL-SCORES] husk-floor SKIPPED opp={opp_id} — AI scoring failed; "
+                      f"persisting UNSCORED (keyword fallback is disabled). Re-sweep required.",
+                      flush=True)
+            if (not _fin_ok) and not _pinned and not _fin_failed:
                 try:
                     _forced = deal_engine_scoring.compute_deal_scores(parsed)
                     if isinstance(_forced, dict) and (_forced.get("headline") or {}).get("win_position") is not None:

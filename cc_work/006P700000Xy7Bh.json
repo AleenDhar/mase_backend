@@ -1,0 +1,291 @@
+{
+  "opp_id": "006P700000Xy7Bh",
+  "hard": {
+    "opp_id": "006P700000Xy7Bh",
+    "opp_name": "Trimco_S2C_2026",
+    "account_name": "Trimco Group",
+    "account_industry": "Manufacturing & Engineering",
+    "billing_country": "Hong Kong",
+    "owner_name": "Carl Kimball",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 150000.0,
+    "close_date": "2027-03-19",
+    "days_to_close": 256,
+    "created_date": "2026-05-12",
+    "qualified_date": "2026-05-21",
+    "last_activity_date": "2026-06-11",
+    "last_modified_date": "2026-07-01",
+    "products": "iContract;iSource;iSupplier;iRequest;iSaaS;iRisk;ANA",
+    "next_step": "26th May- follow up for demo in June Focused on S2C + AI demo",
+    "ais_score": 8.5,
+    "ais_status": "Strong",
+    "ais_why": "Kevin Feng (Head of Global Procurement) showed strong, genuine AI appetite driven by real operational pain: ~10,000 RFQs/year handled manually by a 3-person team across 2,000 global suppliers. Explicitly stated 'We need the AI for RFQ. That's for sure.' and 'Just let the AI be our sourcing manager.' Budget not confirmed and CFO/finance not yet looped in.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": true,
+    "competitor": "Coupa;SAP Ariba",
+    "primary_competitor": "Do Nothing / Manual Process (deprioritization)",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000Xy7Bh/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Slowing",
+      "critical": false,
+      "headline": "On hold since 11 June: a strong AI-fit discovery on 12 May stalled when Kevin Feng deprioritized the S2C demo for competing internal priorities; re-engaging him and reaching the CFO who owns budget are the unlocks.",
+      "math": "Created 12 May 2026, Qualified since 21 May (~46 days in stage). Last genuine buyer touch 11 Jun 2026 (25 days ago), when Kevin Feng asked to keep the evaluation on hold. The planned June S2C+AI demo never happened; the only touches since are unanswered rep attempts (schedule-demo call 26 Jun). Owner reassigned to Carl Kimball on 1 Jul. 256 days to close (19 Mar 2027) leaves runway, but the buyer-initiated hold is a momentum reversal versus the prior On Track read.",
+      "forecast_defensible": true,
+      "recommended_forecast": "Pipeline",
+      "evidence": [
+        "Outbound call 11 Jun 2026: Kevin Feng 'mentioned that currently need to keep this on hold due to other ongoing priorities at the moment and asked to reconnect later'. Buyer-initiated pause of the evaluation.",
+        "Email 11 Jun 2026 (Ruchi Yadav to Kevin Feng): 'I completely understand that the S2C system demo may need to be put on hold for now while internal priorities...'. Zycus acknowledged the hold; the June demo was not delivered.",
+        "Call Attempted 26 Jun 2026: 'Schedule demo Call' with no logged buyer response since the 11 Jun hold, confirming the deal is rep-chasing, not buyer-engaged.",
+        "Discovery call 12 May 2026: Kevin Feng articulated strong, quantified pain (3-person team, 2,000 suppliers, ~10,000 RFQs/year across three ERPs) and said 'Just let the AI to be our sourcing manager... There will be some quick win.' The fit and appetite are real; the blocker is timing and priority, not desire.",
+        "Field history 1 Jul 2026: owner changed to Carl Kimball. A fresh owner inheriting a paused early-stage deal needs to re-establish the relationship before any milestone can advance."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "confirmed",
+        "narrative": "Kevin Feng quantified the operational load on the 12 May discovery call: a lean team of three under him handles roughly 10,000 RFQs a year for about 2,000 suppliers across 27 countries and three disconnected ERPs, with RFQ creation, spend data cleansing, supplier performance and invoice matching all done manually by email ('so 10,000 per years... we really need the AI solution to help us'). The pain is vividly sized in volume and headcount, but no dollar savings, cost-to-serve, or ROI figure was ever put on it, and Kevin himself said the business case 'is easy... in terms of the ROI' yet never produced one. Turning that volume into a quantified savings/capacity model is the open metric and a ranked move.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'We only have 3 person under myself... we have 2,000 supplier globally... around 10,000 r q per year.'",
+          "Opportunity.AIS_Why__c (10,000 RFQs/year, 3-person team, 2,000 suppliers)"
+        ]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is engaged, and none is named in Salesforce (Kevin Feng is the only contact role, as Decision Maker). Kevin himself signalled he does not hold the budget: he said he must 'secure circulate internally about some stakeholder alignment' before committing, and when asked about P2P he pointed away from himself: 'It is under our CFO and the financial controller. They are overseeing.' So the budget owner is the Group CFO (a role, unnamed in Salesforce), not Kevin. Until Kevin introduces that CFO/financial-controller pair the deal cannot clear budget; securing that introduction is the single highest-leverage power move.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'It is under our CFO and the financial controller. They are overseeing.'",
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'I need to also secure circulate internally about some stakeholder alignment.'",
+          "Salesforce OpportunityContactRole (only Kevin Feng, Decision Maker; no Economic Buyer role assigned)"
+        ]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Kevin named his real evaluation lens clearly on 12 May: not features, but deployability. He said the business case 'is easy' and that 'the most challenging... would be how to assess the deployment, the whole process, and then how much we need to integrate to the existing system', and he tied any decision to sequencing with an unsettled 3-ERP-to-Microsoft-Dynamics consolidation roadmap ('how to ensure that AI deployment is... at least at the same phase of our ERP... not create any conflict or the duplicate investment... That's something I have not yet figured out'). Guillaume Pasquet reinforced that the deciding factors should be implementation flexibility and AI roadmap rather than functional coverage. Confirmed criteria: integration effort with three ERPs, deployment/roadmap fit, cost/ROI and AI capability; a formal weighted criteria set has not been documented.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'how much we need to integrate to the existing system... how to ensure that AI deployment is... at the same phase of our ERP.'",
+          "Avoma discovery call 12 May 2026, Guillaume Pasquet: 'point is more related with... the flexibility in terms of implementations... linked with the AI capabilities... and the roadmap for the future.'"
+        ]
+      },
+      "decision_process": {
+        "status": "partial",
+        "narrative": "Trimco is in early, informal vendor assessment, not a structured RFP. Kevin said 'nowadays, we are in the process of identifying the AI solution to partner... maybe you and maybe your other company industry player', with no launched RFI/RFP and no named committee. The process he is actually running is: discovery (done 12 May) then a focused S2C+AI demo, then internal scope/data sharing under a mutual NDA, then stakeholder alignment with finance. That process is now paused: on 11 June Kevin put it on hold for competing priorities, so the next step (the demo) has not executed. The approval chain runs through the CFO/financial controller Kevin has not yet engaged.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'we are in the process of identifying the the AI solution to partner... maybe your other company industry payer.'",
+          "Outbound call 11 Jun 2026, Kevin Feng: asked to 'keep this on hold due to other ongoing priorities... reconnect later.'"
+        ]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "This is greenfield new business with no incumbent contract and no paper mechanics in motion yet, so there is no MSA, Order Form, SOW or contract-expiration forcing function to track. The one concrete paper signal is Kevin proactively offering a mutual NDA to enable data sharing: 'we also can sign some mutual NDA, right, between us.' As a full-suite/S2C new-business deal, the eventual path will be MSA plus Order Form plus a separately-signed SOW, but that is many stages out. Near-term visibility would come from executing the NDA and getting scope/data flowing; nothing here is a current blocker beyond the fact that the process is paused.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'we also can sign some mutual NDA, right, between us.'"
+        ]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "The pain is concrete and buyer-articulated: procurement is a newly formed function with a lean 3-person strategic-sourcing team that cannot cover indirect spend, running ~10,000 manual, email-driven RFQs a year with no SRM platform and manual spend-data cleansing across three ERPs. Kevin described it plainly: 'every process, every step, it required a menu interaction... you need to communicate with your colleague, stakeholder via email. So many by enforce email.' Downstream P2P (GR, PO matching, invoice posting) is also fully manual and owned by finance ('the GR is a manual... payment is the finance check the invoice PO... by manual'). Pain owner is Kevin for sourcing; the CFO/financial controller own the P2P side.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'So far, we don't have the SRM platform... we just manually need to manage the contract life cycle of our supplier.'",
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'the GR is a manual... payment is the finance check the invoice PO... by manual.'"
+        ]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Kevin Feng (Head of Global Procurement, the primary Decision Maker contact role) is a developing champion who is now cooling. On 12 May his advocacy was genuine: he called Zycus 'very professional and very impressive', endorsed S2C+AI as the quick win, offered a mutual NDA, and said 'I fully support on this initiative.' What is missing is decisive: he holds no budget, has not introduced the CFO/financial controller, has not returned the scope and data he promised, and on 11 June he deprioritized the whole evaluation. So he is a willing internal advocate whose conviction has not converted into access, artifacts, or momentum. Re-securing him with a value reason to restart, and getting him to open the CFO door, is what turns 'developing' into 'strong'.",
+        "sources": [
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'I fully support on this initiative.'",
+          "Outbound call 11 Jun 2026, Kevin Feng: on hold 'due to other ongoing priorities... reconnect later.'"
+        ]
+      },
+      "competition": {
+        "status": "partial",
+        "narrative": "No competitor was named on any call. Coupa and SAP Ariba sit in the Salesforce Competitors__c field but have never surfaced in a conversation, task, or next step, so their status in this specific evaluation is unconfirmed. Kevin referenced evaluating an 'AI solution' from Zycus 'and maybe your other company industry player' only generically. The genuine competitive threat here is not a rival vendor but inertia: Trimco can keep running procurement manually, and Kevin explicitly gated any move behind an unsettled 3-ERP consolidation roadmap he 'has not yet figured out', then paused on 11 June. The wedge is an AI-native S2C quick win plus the iSaaS middleware for the three-ERP environment, positioned to run in parallel with the ERP consolidation rather than after it.",
+        "sources": [
+          "Salesforce Opportunity.Competitors__c: 'Coupa;SAP Ariba' (not confirmed in any buyer conversation).",
+          "Avoma discovery call 12 May 2026, Kevin Feng: 'identifying the AI solution to partner... maybe your other company industry payer.'"
+        ]
+      }
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "Kevin Feng put the S2C+AI demo on hold on 11 June for competing internal priorities, and the follow-up scheduling call on 26 June drew no response.", "tone": "crit"},
+      {"lens": "New stakeholder", "text": "The Group CFO and financial controller own budget and P2P but have never been engaged; the deal is single-threaded on Kevin Feng, who holds no budget.", "tone": "warn"},
+      {"lens": "Commercials", "text": "Pricing is untouched: Guillaume deferred cost and licensing on 12 May pending scope, and Kevin confirmed budget is not yet identified.", "tone": "warn"},
+      {"lens": "Competition", "text": "No rival was named on any call; the real threat is inertia, with Kevin gating any move behind an unsettled three-ERP consolidation roadmap.", "tone": "warn"}
+    ],
+    "deal_movement": {
+      "summary": "The pulse has cooled from LIVE to slowing. After a strong 12 May discovery, the planned June demo never ran: Kevin Feng put the evaluation on hold on 11 June, rep re-scheduling attempts since have gone unanswered, and the opportunity was reassigned to Carl Kimball on 1 July.",
+      "items": [
+        {"change": "Discovery call established strong AI appetite and quantified pain (10,000 RFQs/year, 3-person team)", "date": "2026-05-12"},
+        {"change": "Stage advanced Initial Interest to Qualified", "date": "2026-05-21"},
+        {"change": "Buyer put the S2C evaluation on hold citing other ongoing internal priorities; June demo not delivered", "date": "2026-06-11"},
+        {"change": "Rep demo-scheduling call attempted with no buyer response", "date": "2026-06-26"},
+        {"change": "Opportunity reassigned to owner Carl Kimball", "date": "2026-07-01"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "The single strongest current threat is Do Nothing / deprioritization: Trimco has no S2C or SRM platform and runs everything manually, and on 11 June 2026 Kevin Feng put the evaluation on hold for competing priorities, with any move gated behind an unsettled 3-ERP-to-Dynamics consolidation roadmap. Coupa and SAP Ariba appear only in the Salesforce Competitors__c field and have never been named in any call, task, or next step, so they are low, unconfirmed threats in this cycle, not active rivals. No competitor has been positioned ahead of Zycus by the buyer.",
+      "competitors": [
+        {"name": "Do Nothing / Manual Process", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "So far, we don't have the SRM platform... We just manually need to manage the contract life cycle of our supplier.", "date": "2026-06-11", "source": "Avoma discovery call 12 May 2026 (Kevin Feng) + outbound hold call 11 Jun 2026", "how_we_win": "Anchor a quantified capacity/savings model on 10,000 manual RFQs/year, deliver a phased S2C quick win that goes live in parallel with the ERP consolidation via iSaaS middleware, and reach the CFO to convert pain into a funded priority."},
+        {"name": "Coupa", "sentiment": "neutral", "threat_level": "low", "status": "active", "quote": null, "date": "2026-05-12", "source": "Salesforce Opportunity.Competitors__c (not confirmed in any buyer conversation)", "how_we_win": "Differentiate on native agentic AI (ANA for tail-spend RFQs, Merlin, iInTech in Microsoft Teams) and iSaaS middleware for the three-ERP environment; contrast Coupa's integration effort and TCO."},
+        {"name": "SAP Ariba", "sentiment": "neutral", "threat_level": "low", "status": "active", "quote": null, "date": "2026-05-12", "source": "Salesforce Opportunity.Competitors__c (not confirmed in any buyer conversation)", "how_we_win": "Position a modular quick-win S2C start against Ariba's heavyweight all-or-nothing deployment, and lead with the single-code-base native AI story and faster time-to-value."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Zycus fits Kevin's AI-automation and phased-deployment expectations well, but is exposed on the two things that gate the decision: a quantified cost/ROI case and a clear integration path for the three-ERP environment.",
+      "items": [
+        {"criterion": "AI-native automation of RFQ / sourcing (S2C)", "position": "aligned", "quote": "Just let the AI to be our sourcing manager.", "date": "2026-05-12", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"criterion": "Phased quick-win start rather than big-bang", "position": "aligned", "quote": "source to contract is kind of okay... There will be some quick win.", "date": "2026-05-12", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"criterion": "Integration with three ERPs and future Microsoft Dynamics consolidation", "position": "partially aligned", "quote": "how much we need to integrate to the existing system... That's something I have not yet figured out.", "date": "2026-05-12", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"criterion": "Cost, licensing and ROI justification", "position": "exposed", "quote": "so maybe you can help me to figure out what is the road map, is the cost, timeline.", "date": "2026-05-12", "source": "Avoma discovery call 12 May 2026, Kevin Feng"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Provide a deployment roadmap with cost, licensing and timeline for S2C", "said_by": "Kevin Feng", "date": "2026-05-12", "addressed": false, "quote": "maybe you can help me to figure out what is the road map, is the cost, timeline, right, etcetera.", "source": "Avoma discovery call 12 May 2026, Kevin Feng"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Deliver the focused 30-minute S2C+AI demo to Kevin Feng", "who": "Zycus", "grounding_quote": "we can organize again a 30 minutes demo just for you to understand what does it mean... AI impact into the s to c.", "date": "2026-05-12", "due": "2026-06-30", "status": "open", "source": "Avoma discovery call 12 May 2026, Guillaume Pasquet"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Share S2C deployment scope and company/spend data to enable the demo and configuration", "who": "Buyer", "grounding_quote": "help me how to assess this... what scope, and then what kind of information you need more... I try to provide.", "date": "2026-05-12", "due": "2026-06-30", "status": "overdue", "source": "Avoma discovery call 12 May 2026, Kevin Feng"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer unmapped", "quote": "It is under our CFO and the financial controller. They are overseeing.", "status": "not addressed", "date": "2026-05-12", "gap_type": "knowledge", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"area": "Competitive landscape unconfirmed (Coupa/Ariba only in SF field, never in conversation)", "quote": "identifying the AI solution to partner... maybe your other company industry payer.", "status": "not addressed", "date": "2026-05-12", "gap_type": "knowledge", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"area": "ERP consolidation timeline and deployment sequencing unknown", "quote": "how to ensure that AI deployment is... at the same phase of our ERP... That's something I have not yet figured out.", "status": "not addressed", "date": "2026-05-12", "gap_type": "knowledge", "source": "Avoma discovery call 12 May 2026, Kevin Feng"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "The deal is early, single-threaded and paused. Winning depends on re-earning Kevin's attention with value, breaking into the CFO who owns budget, and neutralizing the ERP-roadmap objection.",
+      "flags": [
+        "Re-secure Kevin Feng first: he paused on 11 June, so lead the restart with his 10,000-RFQ pain, not another generic demo.",
+        "Break single-thread: engage the Group CFO and financial controller who own P2P and budget, since Kevin holds no spend authority.",
+        "Neutralize the ERP-roadmap objection: show how iSaaS middleware lets S2C go live in parallel with the three-ERP consolidation, not after it."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Kevin Feng", "title": "Head of Global Procurement", "role": "Decision Maker", "last_contact_date": "2026-06-11", "sentiment": "Positive on fit but now cooling: enthusiastic on 12 May ('very professional and very impressive... I fully support on this initiative'), then asked to put the evaluation on hold on 11 June for competing priorities.", "risk": "Single point of contact with no budget authority. If he stays deprioritized or the CFO is never introduced, the deal dies at Qualified as a no-decision.", "source": "Salesforce OpportunityContactRole (Decision Maker, primary); Avoma discovery call 12 May 2026; outbound call 11 Jun 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Kevin Feng is a developing champion whose conviction has not converted to access or momentum. On 12 May he advocated strongly, offered a mutual NDA, and committed to share scope and data, but he holds no budget, has not introduced the CFO/financial controller, has not returned the promised scope, and paused the evaluation on 11 June. He is a willing advocate who now needs a value reason to re-engage and to open the economic-buyer door.",
+      "champion": "Kevin Feng (Head of Global Procurement)",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "Avoma discovery call 12 May 2026; outbound call 11 Jun 2026; Salesforce OpportunityContactRole"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI story landed strongly on 12 May: Guillaume and Tanvi walked Kevin through Merlin agentic AI, the 100+ agent library, ANA autonomous negotiation for tail-spend, iInTech in Microsoft Teams and iSaaS integration, and Kevin responded 'no doubt that we believe in this kind of the solution... very professional and very impressive.' Positioning is a genuine strength, not under-played; the constraint is priority and budget access, not the AI narrative.",
+      "score": "strong",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 8.5 / Strong is fully corroborated by the call: Kevin independently articulated AI agents for RFQ generation, supplier Q&A and spend analysis before Zycus pitched, and said 'We need the AI for RFQ. That's for sure.' The field is accurate, not over-rated.",
+      "tier": "AI Hungry"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "Budget is unconfirmed and the CFO/financial controller who own it have never been engaged; Kevin holds no spend authority.", "first_raised": "2026-05-12", "date": "2026-05-12", "status": "open", "source": "Avoma discovery call 12 May 2026, Kevin Feng ('It is under our CFO and the financial controller')"},
+        {"category": "timeline", "detail": "Buyer put the evaluation on hold on 11 June and the June demo never ran, against a placeholder 19 Mar 2027 close date; momentum has reversed.", "first_raised": "2026-06-11", "date": "2026-06-11", "status": "open", "source": "Outbound call 11 Jun 2026, Kevin Feng"},
+        {"category": "integration", "detail": "Any deployment is gated behind an unsettled three-ERP-to-Microsoft-Dynamics consolidation roadmap Kevin 'has not yet figured out'.", "first_raised": "2026-05-12", "date": "2026-05-12", "status": "open", "source": "Avoma discovery call 12 May 2026, Kevin Feng"},
+        {"category": "executive_alignment", "detail": "Deal is single-threaded on Kevin Feng with no economic buyer or executive sponsor mapped or engaged.", "first_raised": "2026-05-12", "date": "2026-06-11", "status": "open", "source": "Salesforce OpportunityContactRole (only Kevin Feng)"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling. The last genuine two-way exchange was the 11 June hold call; since then only unanswered rep attempts. The relationship is warm on fit but paused on action.",
+      "cooling": true,
+      "items": [
+        "Buyer-initiated hold on 11 Jun 2026 ('keep this on hold due to other ongoing priorities').",
+        "June S2C+AI demo never delivered.",
+        "Schedule-demo call attempted 26 Jun 2026 with no logged buyer response."
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Reconnect with Kevin Feng and agree a restart date for the paused S2C+AI demo.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Kevin asked to hold and reconnect later due to other priorities.", "trigger_date": "2026-06-11", "act_by": "2026-07-13", "expected_effect": "Reopens the paused evaluation and re-anchors it to his 10,000-RFQ pain before it goes cold."},
+        {"rank": 2, "action": "Ask Kevin to introduce the Group CFO and financial controller to validate the business case.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Kevin confirmed budget sits with the CFO and financial controller, who are unengaged.", "trigger_date": "2026-05-12", "act_by": "2026-07-20", "expected_effect": "Maps the economic buyer and unblocks budget, breaking the single-thread on Kevin."},
+        {"rank": 3, "action": "Build and share a quantified savings model for automating 10,000 manual RFQs a year.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Kevin said the ROI case 'is easy' but no numbers were ever produced.", "trigger_date": "2026-05-12", "act_by": "2026-07-24", "expected_effect": "Gives Kevin an internal business case to re-prioritize the project and take to finance."},
+        {"rank": 4, "action": "Request Trimco's ERP-consolidation timeline and map S2C to run in parallel via iSaaS.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Kevin gated any deployment behind an unsettled three-ERP roadmap he 'has not yet figured out'.", "trigger_date": "2026-05-12", "act_by": "2026-08-04", "expected_effect": "Removes the integration/sequencing objection that is stalling the decision."}
+      ]
+    },
+    "scope_change": {
+      "direction": "reduced",
+      "from": "Full Source-to-Pay suite (iSource, iContract, iSupplier, iRequest, iSaaS, iRisk, ANA)",
+      "to": "Source-to-Contract quick win (AI-driven RFQ automation and contract, phase 1)",
+      "detail": "On 12 May Guillaume recommended starting narrow ('recommendation would be to be focused on source to contract... you don't have so much history in term of back office solutions'), and Kevin agreed S2C is the quick win; the opportunity name Trimco_S2C_2026 reflects the reduced phase-1 scope versus the full-suite product list. This is a seller-recommended phased entry rather than a purely defensive cut, but it does narrow the initial footprint and has since been further deprioritized by the 11 June hold."
+    },
+    "customer_preference": {"level": "medium", "evidence": "Kevin praised Zycus specifically ('very professional and very impressive', 'no doubt that we believe in this kind of the solution') and endorsed S2C+AI, but named no decisive Zycus-specific next step and then paused the evaluation on 11 June."},
+    "business_case": {"status": "partial", "evidence": "Strong qualitative and volume-based pain (10,000 manual RFQs/year, 3-person team, 2,000 suppliers) but no ROI, savings, or cost figure quantified; Kevin said the ROI 'is easy' yet none was built."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "deal_scores_evidence": {
+      "summary": "A strong AI-fit discovery on 12 May (Kevin Feng: 'just let the AI be our sourcing manager') stalled on 11 June when he put the S2C demo on hold for competing priorities; no economic buyer is engaged and Trimco's unsettled three-ERP roadmap gates any deployment decision.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "good", "text": "Genuine buyer pull on fit: Kevin Feng, Head of Global Procurement and the sole mapped contact, called Zycus 'very professional and very impressive' and agreed S2C+AI is the quick win (Avoma, 12 May), backed by an 8.5 Strong AIS."},
+          {"tone": "warn", "text": "Kevin paused the entire evaluation on 11 June ('keep this on hold due to other ongoing priorities'), so the June demo never happened and momentum has reversed."},
+          {"tone": "warn", "text": "The deal is single-threaded with no economic buyer engaged: Kevin holds no budget and the CFO/financial controller who own it have never been in a conversation."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "After the 12 May discovery the planned June demo was never delivered and Kevin deprioritized the deal on 11 June; the only touches since are unanswered rep attempts (schedule-demo call 26 June)."},
+          {"tone": "warn", "text": "No commercial discussion has started (Guillaume deferred pricing on 12 May pending scope) and the buyer has named no dates."}
+        ],
+        "customer_commitment": [
+          {"tone": "good", "text": "Kevin committed on 12 May to provide deployment scope and data and to sign a mutual NDA ('we also can sign some mutual NDA'), and said 'I fully support on this initiative.'"},
+          {"tone": "warn", "text": "That commitment has not converted: he has not returned the scope or data and put the next step on hold on 11 June, so it remains verbal only."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Deprioritization / do-nothing is the primary risk: Trimco runs all procurement manually and can keep doing so, and Kevin tied any move to a three-ERP-to-Dynamics consolidation he 'has not yet figured out' (12 May)."},
+          {"tone": "warn", "text": "Single-thread on Kevin with no EB and a placeholder 19 Mar 2027 close date leaves the forecast soft."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.6, "evidence": "Buyer-initiated hold on 11 June; June demo never delivered; only unanswered rep attempts since."},
+        "deal_risk": {"strength": -0.5, "evidence": "No-decision/inertia risk plus single-thread and ERP-roadmap dependency."},
+        "customer_commitment": {"strength": 0.1, "evidence": "Verbal commitment to NDA, scope and data on 12 May, not yet acted on."}
+      }
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120 days; field history full; contact roles; Q1/Q2/Q3 opportunity fields",
+    "avoma_attendees": ["Kevin Feng"],
+    "gaps": [
+      "Only one buyer call on record (F2F discovery, 12 May 2026); no demo or second call has occurred, limiting evidence on decision criteria and process.",
+      "Economic buyer not named in Salesforce; budget owner identified only by role (Group CFO / financial controller) from the 12 May call.",
+      "Competitors Coupa and SAP Ariba are field-only and unconfirmed in any conversation.",
+      "ERP-consolidation timeline that gates deployment is undefined."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

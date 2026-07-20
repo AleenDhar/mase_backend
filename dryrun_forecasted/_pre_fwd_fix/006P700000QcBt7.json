@@ -1,0 +1,3618 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Quantified ROI / business case",
+     "date": "2026-05-26",
+     "quote": "No quantified ROI has ever been produced against the $300-400M spend base.",
+     "source": "living memory + all 7 calls",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Economic buyer direct engagement",
+     "date": "2026-04-13",
+     "quote": "Jackie Zhang has not appeared on any of the seven read calls despite repeated scheduling attempts Mar-Apr 2026.",
+     "source": "Next_Step_History__c + Avoma manifest",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Opportunity Products field does not match discussed scope",
+     "date": "2026-05-26",
+     "quote": "SF Products field lists iManage, iSave, eInvoicing, iRequest, Merlin, iRisk, Merlin Intake, iCompliance, while calls consistently discuss iContract/CLM, iSource, iAnalyze, Merlin Intake, and ANA.",
+     "source": "SF Products__c field vs. Avoma calls",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Avoma 3 Dec 2025 intro call",
+     "Avoma 11 Mar 2026 CLM deep dive"
+    ],
+    "narrative": "DuBois manages $300-400M in combined direct and indirect spend with a 9-10 person central sourcing team (Tharunkumar Chandirasekaran, 3 Dec 2025 intro call), and pain is specific: Chris Klein described losing roughly 1,000 hours a year to manual contract data entry with minimal net benefit from prior tools (11 Mar 2026 CLM deep dive). However, no dollar-quantified ROI or business case has ever been built against the $300-400M spend base across more than seven months of engagement, and the detailed quote shared 30 Jan 2026 was never validated against a value case."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma 3 Dec 2025",
+     "Avoma 11 Mar 2026",
+     "Avoma 26 May 2026",
+     "Next_Step_History__c"
+    ],
+    "narrative": "Tharunkumar Chandirasekaran has been the consistent internal driver since 3 Dec 2025: he joined Showpad and reviewed all resources (29 Dec 2025), coordinated the legal team's participation in the 11 Mar 2026 CLM deep dive, and transparently disclosed internal restructuring and budget-gate changes on 26 May 2026. He is a Sourcing Analyst, not an executive, has not succeeded in brokering EB access after repeated attempts since March 2026, and the project's priority is now being set above his level by a new corporate governance team."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Avoma 26 Feb 2026",
+     "Avoma 3 Dec 2025",
+     "living memory (prior sweep)"
+    ],
+    "narrative": "Coupa is a deeply embedded incumbent handling invoicing and supplier onboarding; Tharun stated on 26 Feb 2026 'I don't think we'll be getting rid of Coupa,' and Zycus's own solutions consultant told the buyer that keeping supplier onboarding in Coupa might be 'the natural choice' rather than a third-party solution (26 Feb 2026) \u2014 a self-inflicted competitive opening. SAP Ariba is named in Salesforce and referenced as DuBois's existing e-bidding tool (3 Dec 2025) but was not raised as an active competing bid in any later call. A broader ~10-vendor shortlist was underway but never completed before the project was paused."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma 12 Dec 2025",
+     "Avoma 11 Mar 2026",
+     "Avoma 3 Dec 2025"
+    ],
+    "narrative": "Pain is well articulated and consistent across calls: fragmented, offline indirect-spend processes and manual supplier outreach (12 Dec 2025 discovery), a rudimentary, under-leveraged contract repository driving CLM interest (12 Dec 2025), missed rebate/payment milestones from manual Excel tracking (11 Mar 2026), and Chris Klein's explicit complaint that prior contract tools added work instead of saving it (11 Mar 2026). This is tempered by an explicit coexistence requirement: DuBois has no plans to replace Dynamics 365 or Coupa."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "Next_Step_History__c (full trail)"
+    ],
+    "narrative": "No paper process has started. The deal remains in Formal Evaluation with the vendor shortlist incomplete; there is no MSA, SOW, or Order Form activity referenced in any call or Next Step entry, and commercial negotiation has not begun beyond an initial quote and a detailed follow-up quote (30 Jan 2026)."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Next_Step_History__c (4 Mar - 13 Apr 2026 entries)",
+     "OpportunityContactRole (Jackie Zhang, Decision Maker)",
+     "Avoma 26 May 2026 call"
+    ],
+    "narrative": "Jackie Zhang (VP Procurement) is the named Decision Maker in Salesforce, and Next Step History shows repeated attempts to bring her into the conversation: a VP connect was tentatively planned for 24 Mar 2026, then end of April 2026, then a meeting was added for the last week of April 2026 (13 Apr 2026 note). None of these materialized: Jackie has not appeared as a speaker on any of the seven read calls between 3 Dec 2025 and 26 May 2026. Tharunkumar remains the sole conduit to her and has said he will represent the sourcing team but defers company-level decisions upward (26 May 2026 call)."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma 26 Feb 2026",
+     "Avoma 26 May 2026"
+    ],
+    "narrative": "The original process was a ~10-vendor bake-off narrowing to a top-3 shortlist by end of Q1 2026, followed by group demos with Jackie, Ryan and legal, IT integration review, and a parallel C-suite budget push (26 Feb 2026 call). That process was interrupted mid-flow: the shortlist was never completed, and on 26 May 2026 Tharun disclosed a new internal IT-governance team and cross-department approval workflow now gates the decision beyond the sourcing team, with the project 'implemented throughout the company' rather than owned solely by sourcing."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma 3 Dec 2025",
+     "Avoma 11 Mar 2026"
+    ],
+    "narrative": "Voiced criteria are concrete: CLM extraction accuracy validated against DuBois's own contract samples (Chris Klein and Tharun, 11 Mar 2026), real-time bidirectional integration with D365 and Coupa without replacing either (3 Dec 2025), and minimal manual effort/ease of use for the legal team (Chris Klein, 11 Mar 2026: 'my dream software would be... two clicks and I'm done'). None of these has been formally confirmed because the sandbox proof and integration assessment that would validate them remain outstanding."
+   }
+  },
+  "footprints": {
+   "alive": true,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 2.4,
+    "top_weight": 0.0,
+    "points_90d_process": 3.0
+   },
+   "last_meeting": "2026-05-26",
+   "meetings_60d": 1,
+   "last_rep_touch": "2026-05-07",
+   "last_buyer_touch": "2026-07-07",
+   "buyer_touches_30d": 1,
+   "buyer_touches_60d": 2,
+   "stage_cadence_days": 21,
+   "general_last_activity": "2026-07-07",
+   "days_since_buyer_touch": 2
+  },
+  "opp_trends": {
+   "close_date_trend": -0.586,
+   "close_date_trend_detail": "Close date 2026-07-02 -> 2026-07-30 (pushed out 28d)"
+  },
+  "day_summary": {
+   "as_of": "2026-06-15",
+   "items": [
+    {
+     "at": "2026-06-15",
+     "kind": "movement",
+     "name": "Close date pushed 4 weeks (Jul 2 -> Jul 30)",
+     "summary": "Close date moved back another 28 days with no accompanying email or call logged, marking the second slip in under a month (previously pushed from Jun 16 to Jul 2) \u2014 a pattern pointing to a stalled deal rather than a one-off scheduling issue."
+    }
+   ],
+   "source": "ai",
+   "overall": "The DuBois Chemicals close date slipped again, this time from July 2 to July 30 \u2014 the second push in about three weeks after an earlier slip from June 16. No other activity accompanied this change, which suggests the deal is stalling rather than progressing, and the team should be asking what's actually blocking it from closing."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "On hold",
+    "deal_risk": 78.0,
+    "win_position": 28.0,
+    "deal_momentum": 22.0,
+    "customer_commitment": 32.0,
+    "forecast_confidence": 21.0
+   },
+   "cro_panel": {
+    "intro": "A deal with genuinely deep evaluation history (seven buyer sessions over seven months, including a dedicated legal-team CLM deep dive) that has stalled hard; the buyer paused the project to Q3 2026 in late May, the economic buyer has never engaged directly, and three rep-initiated re-engagement attempts since 1 Jun 2026 have gone unanswered against a close date that is no longer credible",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 28,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call.",
+        "tone": "warn"
+       },
+       {
+        "text": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks).",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 22,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "7 calls read in the window",
+        "tone": "good"
+       },
+       {
+        "text": "Last recorded activity 7 Jul 2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 78,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Coupa is the single strongest current factor: it is deeply embedded in DuBois's invoicing and supplier-onboarding flow and DuBois has stated no plan to replace it, making it both a co-existence anchor and the natural low-switching-cost\u2026",
+      "bullets": [
+       {
+        "full": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is in place and the project must pass a cross-department budget gate. Without a board-ready ROI tied to the $300\u2013400M spend base this will not clear that gate.",
+        "text": "No quantified ROI or business case.",
+        "tone": "warn"
+       },
+       {
+        "full": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment. Tharun stated on 26 Feb IT must validate integration before budget is finalized, but no scoping call has occurred. Zycus promised an integration cost range but has not delivered a formal estimate.",
+        "text": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval.",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date 2 Jul 2026 \u2192 30 Jul 2026 (pushed out 28d)",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Follow up directly with Tharun, naming the passed Q2/Q3 restart deadline, since three prior outreach attempts have gone unanswered. (by 16 Jun)",
+       "Ask Tharun to broker a short intro touch with Jackie Zhang now that the project needs company-wide governance sign-off. (by 23 Jun)",
+       "Request status of Ryan Anderson's D365 + Coupa integration assessment, promised since 26 Feb 2026 and still outstanding. (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "DuBois Chemicals Inc. \u2014 Formal Evaluation \u00b7 $115K \u00b7 closes 30 Jun",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 78.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer (Jackie Zhang) absent for ~11 weeks with no re-engagement plan.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date already pushed 28 days and the buyer's own 6/1 comments make the current 7/30 date unrealistic.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Coupa is entrenched in core workflows with no displacement plan \u2014 a low-switching-cost fallback if the deal narrows or dies.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Integration cost/complexity (D365+Coupa) is unscoped and directly gates budget approval.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Geopolitical/tariff crisis pulled the sourcing team away and forced the project pause \u2014 an external driver outside rep or champion control.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Economic buyer (Jackie Zhang) absent for ~11 weeks with no re-engagement plan.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date already pushed 28 days and the buyer's own 6/1 comments make the current 7/30 date unrealistic.",
+      "tone": "warn"
+     },
+     {
+      "text": "Coupa is entrenched in core workflows with no displacement plan \u2014 a low-switching-cost fallback if the deal narrows or dies.",
+      "tone": "warn"
+     },
+     {
+      "text": "Integration cost/complexity (D365+Coupa) is unscoped and directly gates budget approval.",
+      "tone": "warn"
+     },
+     {
+      "text": "Geopolitical/tariff crisis pulled the sourcing team away and forced the project pause \u2014 an external driver outside rep or champion control.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Economic buyer Jackie Zhang has not engaged since the 12/3 intro call \u2014 ~11 weeks absent \u2014 despite the deal sitting in Formal Evaluation.",
+      "tone": "warn"
+     },
+     {
+      "text": "Buyer explicitly paused the project on 6/1 ('next steps pushed to end of Q2... looping in additional teams'), yet the record still shows Best Case with a 7/30 close (21 days out) \u2014 a real stage/forecast mismatch.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified ROI/business case exists; integration assessment (Ryan Anderson, D365+Coupa) is still outstanding and gates budget approval.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion Tharun has stayed engaged and cooperative across 7+ months and 7 transcribed sessions \u2014 a durable, if unescalated, internal advocate.",
+      "tone": "good"
+     },
+     {
+      "text": "AI/agentic positioning landed well \u2014 the 2/26 AI deep dive directly answered Tharun's sustained questions and he wants a demo to justify spend upward.",
+      "tone": "good"
+     },
+     {
+      "text": "Coupa is deeply embedded in invoicing/supplier-onboarding with no stated plan to replace it \u2014 a real fallback if DuBois narrows scope.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Since the 6/1 bridge call, every next-step entry (6/11, 6/22, 6/29, 7/7) is a rep-only touch \u2014 feeler emails and a webinar invite \u2014 with no buyer reply logged.",
+      "tone": "warn"
+     },
+     {
+      "text": "Last actual buyer meeting was 5/26/26 (44 days ago); no future meeting is scheduled (next_scheduled: null).",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date already slipped 28 days (7/2 \u2192 7/30) mid-cycle, and the buyer said on 6/1 that vendor follow-up was pushed to end of Q2/Q3 \u2014 the current 7/30 date is not credible.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep (GK) is driving 100% of the cadence; Tharun has not initiated contact since the 6/1 status call.",
+      "tone": "warn"
+     },
+     {
+      "text": "When actually reached (6/1), Tharun gave a full, honest project update rather than going dark \u2014 the relationship itself isn't broken, just paused.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Tharun proactively requested the AI deep dive and asked sustained follow-up questions across multiple calls (12/3 through 5/26).",
+      "tone": "good"
+     },
+     {
+      "text": "Sandbox proof and the integration assessment remain outstanding \u2014 no buyer-side deliverable has actually been completed.",
+      "tone": "warn"
+     },
+     {
+      "text": "No evidence of security/procurement review, paper process, or reference requests \u2014 commitment hasn't converted into process movement.",
+      "tone": "warn"
+     },
+     {
+      "text": "Project was paused by the buyer itself (6/1) due to internal guideline-building and external pressures, with no restart date confirmed.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 28.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer Jackie Zhang has not engaged since the 12/3 intro call \u2014 ~11 weeks absent \u2014 despite the deal sitting in Formal Evaluation.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Buyer explicitly paused the project on 6/1 ('next steps pushed to end of Q2... looping in additional teams'), yet the record still shows Best Case with a 7/30 close (21 days out) \u2014 a real stage/forecast mismatch.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No quantified ROI/business case exists; integration assessment (Ryan Anderson, D365+Coupa) is still outstanding and gates budget approval.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Champion Tharun has stayed engaged and cooperative across 7+ months and 7 transcribed sessions \u2014 a durable, if unescalated, internal advocate.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "AI/agentic positioning landed well \u2014 the 2/26 AI deep dive directly answered Tharun's sustained questions and he wants a demo to justify spend upward.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Coupa is deeply embedded in invoicing/supplier-onboarding with no stated plan to replace it \u2014 a real fallback if DuBois narrows scope.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 22.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Since the 6/1 bridge call, every next-step entry (6/11, 6/22, 6/29, 7/7) is a rep-only touch \u2014 feeler emails and a webinar invite \u2014 with no buyer reply logged.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Last actual buyer meeting was 5/26/26 (44 days ago); no future meeting is scheduled (next_scheduled: null).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date already slipped 28 days (7/2 \u2192 7/30) mid-cycle, and the buyer said on 6/1 that vendor follow-up was pushed to end of Q2/Q3 \u2014 the current 7/30 date is not credible.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Rep (GK) is driving 100% of the cadence; Tharun has not initiated contact since the 6/1 status call.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "When actually reached (6/1), Tharun gave a full, honest project update rather than going dark \u2014 the relationship itself isn't broken, just paused.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Tharun has asked specific, sustained questions about agentic AI, autonomous negotiation, and natural-language workflow triggers across multiple calls, and explicitly wants a visual demo he can use to justify the AI spend to upper management",
+     "expectations_fit": "Zycus has demonstrated against the buyer's stated criteria (extraction accuracy, integration coexistence, ease of use) but none has been formally validated because the sandbox proof and integration assessment remain outstanding.",
+     "north_star_verdict": null,
+     "positioning_strength": "AI capabilities landed well with the buyer: Tharun requested and received a dedicated AI deep dive (26 Feb 2026) covering agentic flows, autonomous negotiation (ANA), and conversational analytics, and asked detailed follow-up questions abou"
+    },
+    "deal": {
+     "stage": "Formal Evaluation",
+     "amount": 115000.0,
+     "opp_id": "006P700000QcBt7",
+     "account": "DuBois Chemicals Inc.",
+     "opp_name": "DuBois Chemicals - December '25",
+     "next_step": "7/7/26 GK: feeler email to Tharun and team for demo later in July6/29/26 GK: email to Tharun + team to set up time for July6/22/26 GK: invited Tharun to webinar and highlighted reconnecting in early July6/11/26 GK: reconnect tentative for first week of July6/1/26 GK: bridge call with Tharun - full project update. next steps pushed to end of Q2; internally creating more guidelines for this project and looping in additional teams before follow up calls with vendors. Tharun still main POC, will reconnect end of Q2 to schedule recap demo for all new stakeholders5/19/26 GK: quick call, Tharun on PT",
+     "close_date": "2026-07-30",
+     "stage_tier": "mid",
+     "days_to_close": 21,
+     "forecast_category": "Best Case",
+     "last_activity_date": "2026-07-07"
+    },
+    "trends": {
+     "close_date_trend": -0.586,
+     "close_date_trend_detail": "Close date 2026-07-02 -> 2026-07-30 (pushed out 28d)"
+    },
+    "champion": "Tharunkumar Chandirasekaran has been a consistent, cooperative internal advocate for seven-plus months but has not converted that into executive access or a completed vendor down-select, and the project itself was paused under his stewardship due to factors above his control.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "partial",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-05-26",
+       "minutes": 10,
+       "subject": "Tentative Connect: Zycus + DuBois Chemicals",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-03-11",
+       "minutes": 61,
+       "subject": "CLM Deep Dive: Zycus + DuBois Chemicals",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-02-26",
+       "minutes": 27,
+       "subject": "Zycus + DuBois: AI Discussion",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-01-29",
+       "minutes": 88,
+       "subject": "Zycus + DuBois Chemicals: Demo Session Part 2",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2026-01-14",
+       "minutes": 58,
+       "subject": "Zycus + DuBois Chemical: Demo Session",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-12-12",
+       "minutes": 33,
+       "subject": "Zycus + DuBois Chemicals: Discovery Session",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      },
+      {
+       "date": "2025-12-03",
+       "minutes": 24,
+       "subject": "Introductory Call : DuBois Chemicals <> Zycus",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 1,
+     "count_90d": 1,
+     "last_date": "2026-05-26",
+     "next_scheduled": null,
+     "total_all_time": 7,
+     "days_since_last": 44,
+     "with_transcript_all_time": 7
+    },
+    "competition": {
+     "summary": "Coupa is the single strongest current factor: it is deeply embedded in DuBois's invoicing and supplier-onboarding flow and DuBois has stated no plan to replace it, making it both a co-existence anchor and the natural low-switching-cost alternative if DuBois narrows scope. SAP Ariba is a minor, third-party-operated (Blackstone) e-bidding tool with no direct evidence of active re-evaluation. DuBois ",
+     "competitors": [
+      {
+       "name": "Coupa",
+       "status": "incumbent",
+       "threat": "medium"
+      },
+      {
+       "name": "SAP Ariba",
+       "status": "incumbent",
+       "threat": "low"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5",
+     "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not eng",
+     "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 M",
+     "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment.",
+     "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focu"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 1,
+     "sfdc_email_touches_60d": 2,
+     "days_since_last_meeting": 44
+    },
+    "decision_outcome": {}
+   },
+   "customer_commitment": {
+    "score": 32.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Tharun proactively requested the AI deep dive and asked sustained follow-up questions across multiple calls (12/3 through 5/26).",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Sandbox proof and the integration assessment remain outstanding \u2014 no buyer-side deliverable has actually been completed.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No evidence of security/procurement review, paper process, or reference requests \u2014 commitment hasn't converted into process movement.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Project was paused by the buyer itself (6/1) due to internal guideline-building and external pressures, with no restart date confirmed.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 21.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'pricing' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   },
+   "exec_access": {
+    "src": "Next-Step/narrative",
+    "value": "'vp procurement' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'automation' in Next-Step/narrative",
+    "present": true,
+    "age_days": 1
+   }
+  },
+  "scope_change": {
+   "to": "Sourcing/analytics board now prioritized above CLM; some previously-discussed CLM features may be dropped (per 26 May 2026 call)",
+   "from": "CLM (iContract) as top priority since Dec 2025, with iSource, spend analytics, and Merlin/ANA AI as secondary scope (confirmed 4 Mar 2026 call)",
+   "detail": "The Opportunity's Products field (iManage, iSave, eInvoicing, iRequest, Merlin, iRisk, Merlin Intake, iCompliance) does not reflect the modules actually demoed and discussed (iContract/CLM, iSource, iAnalyze, Merlin Intake, ANA) \u2014 a hygiene gap, not a knowledge gap, since the real scope is well documented across seven calls.",
+   "direction": "reduced"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Tharun has asked specific, sustained questions about agentic AI, autonomous negotiation, and natural-language workflow triggers across multiple calls, and explicitly wants a visual demo he can use to justify the AI spend to upper management, but the interest has not yet become a funded mandate."
+  },
+  "business_case": {
+   "status": "gap",
+   "evidence": "No quantified ROI or business case has been produced against the $300-400M spend base across seven-plus months of calls (3 Dec 2025 - 26 May 2026); pricing was shared (3 Dec 2025 ballpark, 30 Jan 2026 detailed quote) but never validated against value, and Tharun stated on 26 May 2026 that a new cross-department budget-approval workflow now gates the project."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-05-26",
+     "change": "Buyer paused the project to Q3 2026, citing geopolitical cost-mitigation focus and a new cross-department governance workflow"
+    },
+    {
+     "date": "2026-06-01",
+     "change": "Bridge call reaffirmed restart plan slipped to 'end of Q2'; Q2 ended 30 Jun 2026 with no reconnect logged"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "Three consecutive rep-initiated outreach attempts (webinar invite, email, feeler email) went unanswered"
+    }
+   ],
+   "summary": "Since the last sweep, the deal moved from an active evaluation cadence (CLM deep-dive with legal on 11 Mar 2026) to an explicit buyer-stated pause to Q3 2026, driven by a geopolitical cost-mitigation crisis and a new corporate governance layer over the project. The buyer's own 'end of Q2' restart window (30 Jun 2026) has now passed with no reconnect, and three rep-initiated re-engagement attempts since have gone unanswered."
+  },
+  "forecast_read": {
+   "math": "Created 4 Dec 2025; today is 9 Jul 2026 (~218 days in pipeline), still at Formal Evaluation since roughly Dec 2025/Jan 2026 with no stage advance recorded. Days to close = 21 (30 Jul 2026). Last confirmed two-way buyer contact was 1 Jun 2026 (38 days ago); three rep-initiated outreach attempts since (22 Jun, 29 Jun, 7 Jul 2026) are unanswered. The remaining 21 days cannot accommodate a demo restart, completion of the stalled vendor down-select, the outstanding IT integration assessment, and a new cross-department budget approval before close.",
+   "reason": "Best Case with a 30 Jul 2026 close is not supported by the evidence: the buyer explicitly paused the entire evaluation to Q3 2026 on the 26 May 2026 call, reaffirmed the pause on the 1 Jun 2026 bridge call, and the buyer's own stated 'end of Q2' restart window (30 Jun 2026) has now passed with no reconnect logged in the 38 days since. Recommend Pipeline with a close date no earlier than Q3/Q4 2026 pending confirmed buyer re-engagement.",
+   "defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iManage;iSave;eInvoicing;iRequest;Merlin;iRisk;Merlin Intake;iCompliance"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.5",
+    "sum": "10.1",
+    "win": "10.3",
+    "todo": "10.1",
+    "sweep": "10.0",
+    "extract": "10.4",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Jackie Zhang",
+     "risk": "Never appeared on a recorded call despite repeated scheduling attempts Mar-Apr 2026; budget authority sits with her",
+     "role": "Decision Maker",
+     "email": "jackie.zhang@duboischemicals.com",
+     "title": "Vice President Procurement",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown, never engaged",
+     "_matched_ai": true
+    },
+    {
+     "name": "Tharunkumar Chandirasekaran",
+     "risk": "Sole consistent point of contact; defers budget/exec decisions upward and to a new governance team",
+     "role": "Champion",
+     "email": "tharunkumar.chandirasekaran@duboischemicals.com",
+     "title": "Sourcing Analyst",
+     "_source": "sfdc_contact_role",
+     "sentiment": "positive, cooperative but constrained",
+     "_matched_ai": true,
+     "last_contact_date": "2026-06-01"
+    },
+    {
+     "name": "Chris Klein",
+     "risk": "Voiced explicit doubt about extraction accuracy; sandbox proof he asked for is still outstanding",
+     "role": "Influencer",
+     "email": "chris.klein@duboischemicals.com",
+     "title": "Technical Representative",
+     "_source": "sfdc_contact_role",
+     "sentiment": "skeptical, pragmatic",
+     "_matched_ai": true,
+     "last_contact_date": "2026-03-11"
+    },
+    {
+     "name": "Ryan Anderson",
+     "risk": "Named for integration questions since the first call but has not completed or reported the D365+Coupa integration assessment",
+     "role": "Influencer",
+     "email": "ryan.anderson@duboischemicals.com",
+     "title": "Enterprise Resources Planning Business Analyst",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral",
+     "_matched_ai": true,
+     "last_contact_date": "2025-12-03"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5 weeks ago). Date will slip to Q3 at minimum, likely Q4 if shortlist and IT scoping drag.",
+     "status": "active",
+     "category": "timeline",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2026-04-13",
+     "change": "carried",
+     "detail": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not engaged since. Tharun drives the eval but defers budget and exec decisions to the relevant stakeholder her re-engagement in Q3 this stays a team-level project that can be paused indefinitely.",
+     "status": "active",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2026-04-13",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2025-12-03",
+     "change": "carried",
+     "detail": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is in place and the project must pass a cross-department budget gate. Without a board-ready ROI tied to the $300\u2013400M spend base this will not clear that gate.",
+     "status": "active",
+     "category": "budget",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2025-12-03",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "carried",
+     "detail": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment. Tharun stated on 26 Feb IT must validate integration before budget is finalized, but no scoping call has occurred. Zycus promised an integration cost range but has not delivered a formal estimate.",
+     "status": "active",
+     "category": "integration",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2026-04-22",
+     "change": "carried",
+     "detail": "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focus went '100% into cost mitigation and supply negotiations' and the project is 'a business decision not made by the sourcing department but implemented throughout the company' (Avoma 26 May). Risk: another geopolitical flare-up in Q3/Q4 could re-pause the deal.",
+     "status": "active",
+     "category": "political",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2026-04-22",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "carried",
+     "detail": "Multi-vendor bake-off with ~10 solutions being evaluated, shortlist to top 3 planned by end Q1 but not completed due to pause. Coupa (incumbent) is embedded and could counter-propose a CLM or sourcing expansion. Zycus is in the running but not the front-runner. Risk: DuBois picks a Coupa-native expansion or a lower-cost best-of-breed CLM in the Q3 bake-off.",
+     "status": "active",
+     "category": "other",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "Buyer explicitly postponed the project to Q3 2026 at the earliest, citing a geopolitical cost-mitigation focus and a new internal approval workflow",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "carried",
+     "detail": "Economic buyer Jackie Zhang has not been directly engaged on any recorded call since the account's earliest engagement window; budget sign-off runs through her and the C-suite",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "carried",
+     "detail": "No quantified ROI has ever been produced against the $300-400M spend base; Tharun needs facts to justify the AI spend to his own management",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "carried",
+     "detail": "D365 + Coupa integration complexity and cost remains unscoped; Ryan Anderson's IT assessment has not been completed since it was first flagged",
+     "status": "open",
+     "category": "integration",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "A new internal IT-governance team and cross-department approval workflow now gates the project beyond the sourcing team's authority.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "Management now prioritizes the sourcing/analytics board over the CLM module that had been top priority since Dec 2025; some previously-discussed CLM features may be dropped.",
+     "status": "open",
+     "category": "change_management",
+     "first_seen": "2026-07-07T09:47:01.634595+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "No quantified ROI has ever been produced against DuBois's $300-400M spend base, and a new cross-department budget-governance workflow now gates project resumption",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T18:45:33.893536+05:30",
+     "first_raised": "2026-02-26",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "Economic buyer Jackie Zhang has not appeared on any recorded call since the early Dec 2025 engagement window; Tharun defers exec/budget decisions to her and the C-suite",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T18:45:33.893536+05:30",
+     "first_raised": "2025-12-12",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "Close date of 30 Jul 2026 is unreachable given the buyer explicitly paused the project to a Q3 2026 restart",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T18:45:33.893536+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "A geopolitical supply-chain crisis (tariffs, price increases) consumed 100% of the sourcing team's bandwidth in Q2 2026 and forced the pause; a recurrence could re-pause the deal again",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T18:45:33.893536+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "carried",
+     "detail": "DuBois's management has repriotized the sourcing/analytics board ahead of CLM (previously the top priority since Dec 2025) and some previously discussed CLM features may be dropped",
+     "status": "open",
+     "category": "change_management",
+     "first_seen": "2026-07-07T18:45:33.893536+05:30",
+     "first_raised": "2026-05-26",
+     "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+    },
+    {
+     "date": "2026-04-13",
+     "change": "new",
+     "detail": "Economic buyer Jackie Zhang has never engaged directly on any call despite repeated scheduling attempts.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T08:19:58.071603+05:30",
+     "first_raised": "2026-02-17",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    },
+    {
+     "date": "2026-02-26",
+     "change": "new",
+     "detail": "D365 + Coupa integration complexity and cost remain unscoped; Ryan Anderson's IT assessment has not been completed.",
+     "status": "open",
+     "category": "integration",
+     "first_seen": "2026-07-09T08:19:58.071603+05:30",
+     "first_raised": "2025-12-03",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    },
+    {
+     "date": "2026-05-26",
+     "change": "new",
+     "detail": "Project explicitly paused to Q3 2026 due to a geopolitical cost-mitigation crisis (Iran-related tariffs/price increases); risk of a further pause if the crisis recurs in Q3/Q4.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-09T08:19:58.071603+05:30",
+     "first_raised": "2026-04-22",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 22.0,
+   "win": 28.0,
+   "needed": true,
+   "source": "sweep",
+   "reasons": [
+    {
+     "to": "Sourcing/analytics board now prioritized above CLM; some previously-discussed CLM features may be dropped (per 26 May 2026 call)",
+     "act": false,
+     "from": "CLM (iContract) as top priority since Dec 2025, with iSource, spend analytics, and Merlin/ANA AI as secondary scope (confirmed 4 Mar 2026 call)",
+     "type": "scope_shrink",
+     "as_of": "2026-07-09",
+     "detail": "The Opportunity's Products field (iManage, iSave, eInvoicing, iRequest, Merlin, iRisk, Merlin Intake, iCompliance) does not reflect the modules actually demoed and discussed (iContract/CLM, iSource, iAnalyze, Merlin Intake, ANA) \u2014 a hygiene gap, not a knowledge gap, since the real scope is well documented across seven calls.",
+     "summary": "Scope shrinking vs prior \u2014 The Opportunity's Products field (iManage, iSave, eInvoicing, iRequest, Merlin, iRisk, Merlin Intake, iCompliance) does not reflect the modules actually demoed and discussed (iContract/CLM, iSource, i. Buyer likely getting defensive on cost or implementation/integration (phased over big-bang) \u2014 watch.",
+     "severity": "medium"
+    }
+   ],
+   "severity": "medium",
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "On 26 May 2026 (about six and a half weeks ago), the buyer explicitly paused the entire evaluation to Q3 2026, citing a geopolitical cost-mitigation crisis and a new cross-department governance layer over the project; the last confirmed two-way contact since then was a 1 Jun 2026 status call, now 38 days in the past.",
+    "tone": "crit"
+   },
+   {
+    "lens": "Competition",
+    "text": "Coupa already handles invoicing and supplier onboarding for DuBois and the buyer has said outright it won't be replaced; Zycus's own team even suggested keeping that piece in Coupa during the 26 Feb 2026 call, a self-inflicted opening for the incumbent.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "Despite repeated attempts between March and April 2026 to bring VP of Procurement Jackie Zhang into a call, she has never joined a single session, leaving budget authority entirely outside any conversation Zycus has had.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New requirement",
+    "text": "A new internal IT-governance team and cross-department approval workflow, disclosed 26 May 2026, means the project must now clear a corporate-wide gate rather than a sourcing-team decision, and management is prioritizing the sourcing/analytics tool over the contract module that had been top priority since December 2025.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma 3 Dec 2025 - 26 May 2026 (all touchpoints)",
+   "at_risk": true,
+   "summary": "Tharunkumar Chandirasekaran has been a consistent, cooperative internal advocate for seven-plus months but has not converted that into executive access or a completed vendor down-select, and the project itself was paused under his stewardship due to factors above his control.",
+   "champion": "Tharunkumar Chandirasekaran",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Follow up directly with Tharun, naming the passed Q2/Q3 restart deadline, since three prior outreach attempts have gone unanswered.",
+     "horizon": "next_7_days",
+     "trigger": "No reply logged to 7 Jul 2026 feeler email",
+     "trigger_date": "2026-07-14",
+     "expected_effect": "Re-establish two-way contact and get a concrete restart date now that the buyer's own 'end of Q2' deadline has passed."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Ask Tharun to broker a short intro touch with Jackie Zhang now that the project needs company-wide governance sign-off.",
+     "horizon": "next_14_days",
+     "trigger": "Buyer reconnects following move 1",
+     "trigger_date": "2026-07-16",
+     "expected_effect": "Secure direct economic-buyer engagement to unblock the new cross-department budget gate."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Request status of Ryan Anderson's D365 + Coupa integration assessment, promised since 26 Feb 2026 and still outstanding.",
+     "horizon": "next_14_days",
+     "trigger": "Buyer re-engagement confirmed",
+     "trigger_date": "2026-07-16",
+     "expected_effect": "Unblock the integration-cost deliverable Zycus owes and clarify whether the D365/Coupa scope has narrowed."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-08-06",
+     "action": "Deliver the recap demo (CLM, sourcing board, AI/Merlin) plus a refreshed quote once a restart date is confirmed.",
+     "horizon": "next_30_days",
+     "trigger": "Confirmed restart meeting scheduled",
+     "trigger_date": "2026-07-23",
+     "expected_effect": "Re-anchor the deal to a real evaluation milestone and test whether CLM has actually been deprioritized."
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-08-13",
+     "action": "Get explicit written confirmation of which modules remain in scope after the recap demo, given signaled CLM feature cuts.",
+     "horizon": "next_30_days",
+     "trigger": "Recap demo delivered",
+     "trigger_date": "2026-08-06",
+     "expected_effect": "Lock a defensible scope and quote that reflects the buyer's actual current intent."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "38 days since last confirmed two-way buyer engagement (1 Jun 2026 bridge call)",
+    "Three consecutive unanswered rep outreach attempts since (22 Jun, 29 Jun, 7 Jul 2026)",
+    "Buyer-stated 'end of Q2' restart window passed (30 Jun 2026) without reconnect",
+    "Project explicitly paused for cost-mitigation reasons since 26 May 2026"
+   ],
+   "cooling": true,
+   "summary": "The deal is cooling: real buyer engagement stopped 38 days ago and three subsequent rep outreach attempts have gone unanswered, despite Salesforce showing a LIVE pulse based on the rep's own logged activity."
+  },
+  "north_star_verdict": {
+   "math": "Opportunity is 215 days old (created 4 Dec 2025). Only 23 days remain to the SF close date of 30 Jul 2026, but on the 26 May 2026 call (42 days ago) Tharun Chandirasekaran told Grace Kim the project was paused for cost-mitigation firefighting and would not restart before Q3 2026 (i.e. after the current close date). Three rep-initiated outreach touches since (22 Jun webinar invite, 29 Jun email, 7 Jul feeler email) have drawn no confirmed reply, so the deal is stalled awaiting the buyer's internal review, not actively progressing toward close.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Buyer explicitly paused the evaluation and cited a Q3 2026 restart (Avoma Tentative Connect, 26 May 2026)",
+    "Economic buyer Jackie Zhang has not appeared on a recorded call since the early Dec 2025 engagement window",
+    "No quantified ROI has ever been produced against DuBois's $300-400M spend base"
+   ],
+   "headline": "Deal cooled for 42 days after the buyer explicitly paused the evaluation to a Q3 2026 restart; the current 30 Jul 2026 close date is not credible.",
+   "trajectory": "steady",
+   "prior_verdict": "Slowing",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks) and did not attend any Q2 calls (Feb AI call, March CLM demo, May check-in). Tharun drives the evaluation but defers commercial and budget decisions to the relevant stakeholder the project restarts in Q3 Jackie must re-engage and validate the business case, or this stays a team-level productivity project that can be paused again. Recommended move: book an exec connect with Jackie in Q3 to present a quantified ROI tied to the $300\u2013400M spend base and position Zycus as her strategic pick, not just Tharun's preference.",
+    "No quantified ROI or business case. DuBois articulated pain (fragmented CLM, manual sourcing, no AI analytics) but never quantified savings, cost reduction, or cycle-time improvement across the $300\u2013400M spend base managed by 9\u201310 people. Zycus shared pricing ($85K+ ballpark, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is now in place and the project must pass a cross-department budget gate. Without a board-ready ROI this will not clear that gate. Recommended move: run an ROI workshop with Tharun + Jackie in Q3, quantify savings on contract cycle-time, indirect-spend consolidation, and AI-driven negotiation, and tie it to their spend base to build the business case for the IT approval workflow.",
+    "Multi-vendor bake-off is frozen with no Zycus differentiation anchored. Tharun is evaluating ~10 vendors with a plan to shortlist to top 3, but the process paused in April before any finalist was named. Coupa (incumbent for onboarding + invoicing) is the embedded threat if they counter-propose a CLM or sourcing expansion. Zycus has not been positioned as the front-runner and has no unique wedge anchored in the buyer's mind beyond 'we saw good demos'. Recommended move: when the deal restarts, lead with the AI differentiation story (conversational analytics, autonomous negotiation, predictive sourcing) as the strategic layer above Coupa's transactional plumbing, prove seamless D365 + Coupa integration, and make the recap demo an ROI-led business case, not a feature tour, to own the top spot in the shortlist.",
+    "Protect CLM's position in scope as DuBois's management pivots priority to the sourcing board -- reinforce the CLM/AI differentiation (NegoGenie, obligation extraction) shown on 11 Mar 2026 before the sourcing-only narrative hardens further.",
+    "Champion Tharun is working-level only; without looping Jackie Zhang (VP Procurement, economic buyer) back in, budget approval through DuBois's new cross-department gate stalls regardless of feature fit.",
+    "DuBois's roughly 10-vendor bake-off never reached its planned Q1 shortlist; use the Q3 restart request for a recap demo to press DuBois to formally narrow the field to a top 3.",
+    "Deliver the sandbox proof Chris Klein asked for on 11 Mar 2026 ('I'm not sure... I need to evaluate this') \u2014 it remains the single biggest unresolved credibility gap.",
+    "Break single-threading: Jackie Zhang (VP Procurement, Decision Maker) has never engaged directly despite repeated attempts since March 2026 \u2014 use Tharun to broker access now that the project has moved to a company-wide governance review.",
+    "Change outreach channel: three consecutive email/webinar-invite attempts (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered \u2014 consider a phone call given the prior success of the 1 Jun bridge call."
+   ],
+   "summary": "The highest-leverage moves are proving the CLM extraction accuracy that legal is still skeptical about, breaking single-threading by getting the economic buyer engaged, and re-establishing any cadence at all after three unanswered outreach attempts."
+  },
+  "customer_preference": {
+   "level": "low",
+   "evidence": "Tharunkumar said 'I personally like the platform' and Laura said 'I like the platform... it'll be very helpful when we provide a sample and see the accuracy' (both 11 Mar 2026), but neither confirmed Zycus as the preferred vendor over the broader ~10-vendor field, and the down-select was never completed before the project paused."
+  },
+  "competitive_position": {
+   "summary": "Coupa is the single strongest current factor: it is deeply embedded in DuBois's invoicing and supplier-onboarding flow and DuBois has stated no plan to replace it, making it both a co-existence anchor and the natural low-switching-cost alternative if DuBois narrows scope. SAP Ariba is a minor, third-party-operated (Blackstone) e-bidding tool with no direct evidence of active re-evaluation. DuBois described a roughly 10-vendor bake-off intended to shortlist to a top 3 by end of Q1 2026, which was never completed due to the Q2 pause, so the field has not yet been narrowed.",
+   "competitors": [
+    {
+     "date": "2026-02-26",
+     "name": "Coupa",
+     "quote": "I don't believe we'll be getting rid of Coupa... it's just that some of the solutions were not as comprehensive as we were expecting, but the supplier onboarding part is fine for now.",
+     "change": "carried",
+     "source": "Avoma AI Discussion call, 26 Feb 2026",
+     "status": "incumbent",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "how_we_win": "Position Zycus as coexisting with Coupa (integration, not replacement) and press for the sandbox proof that would differentiate CLM extraction accuracy, since Zycus's own team has already conceded ground on the supplier-onboarding piece.",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    },
+    {
+     "date": "2025-12-03",
+     "name": "SAP Ariba",
+     "quote": "Current technology landscape includes Microsoft Dynamics 365 as ERP, Ariba for e-bidding, and Coupa for invoicing, yet CLM and broader S2P capabilities remain gaps.",
+     "change": "carried",
+     "source": "Avoma Introductory Call, 3 Dec 2025",
+     "status": "incumbent",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:36:47.327228+05:30",
+     "how_we_win": "Ariba is used narrowly for e-bidding and was not raised as a competing bid in any later call; the gap Zycus targets (CLM, broader S2P) is one Ariba does not currently fill for DuBois.",
+     "threat_level": "low",
+     "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "A deal with genuinely deep evaluation history (seven buyer sessions over seven months, including a dedicated legal-team CLM deep dive) that has stalled hard: the buyer paused the project to Q3 2026 in late May, the economic buyer has never engaged directly, and three rep-initiated re-engagement attempts since 1 Jun 2026 have gone unanswered against a close date that is no longer credible.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Stalled engagement: 38 days since the last confirmed two-way buyer contact (1 Jun 2026), against a 30 Jul 2026 close date that is only 21 days away and was never re-affirmed by the buyer.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer access gap: Jackie Zhang has never joined a call despite repeated scheduling attempts in March-April 2026, and the new cross-department approval process announced 26 May 2026 raises the bar for exec sign-off further.",
+      "tone": "warn"
+     },
+     {
+      "text": "Scope risk: management now prioritizes the sourcing/analytics board over the CLM module that had been top priority since Dec 2025, and some previously-discussed CLM features may be dropped (26 May 2026), which could shrink the deal or shift the module mix away from what is currently quoted.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "The stated economic buyer, Jackie Zhang (VP Procurement), has never appeared on a recorded call despite repeated scheduling attempts between 4 Mar and 13 Apr 2026.",
+      "tone": "warn"
+     },
+     {
+      "text": "The buyer explicitly paused the evaluation to Q3 2026 on 26 May 2026, citing a geopolitical cost-mitigation crisis and a new cross-department governance workflow that now gates the project.",
+      "tone": "warn"
+     },
+     {
+      "text": "The deal has real depth to build on: seven distinct buyer sessions since 3 Dec 2025 including a dedicated CLM deep-dive with legal (Chris Klein, Laura) on 11 Mar 2026, where Tharunkumar and Laura both voiced positive impressions of the platform.",
+      "tone": "good"
+     },
+     {
+      "text": "No quantified ROI or business case has been produced against the buyer's $300-400M spend base across more than seven months of engagement.",
+      "tone": "warn"
+     },
+     {
+      "text": "Coupa is a deeply embedded incumbent the buyer says it will not replace, and Zycus's own consultant suggested on 26 Feb 2026 that keeping supplier onboarding in Coupa might be the 'natural choice' \u2014 a self-inflicted competitive opening.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "The last confirmed two-way buyer engagement was the 1 Jun 2026 bridge call (38 days ago); three rep-initiated outreach attempts since (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered.",
+      "tone": "warn"
+     },
+     {
+      "text": "The buyer's own stated restart window ('end of Q2') passed on 30 Jun 2026 without a reconnect, and the recap demo the buyer asked for on 26 May 2026 remains undelivered.",
+      "tone": "warn"
+     },
+     {
+      "text": "Prior to the pause, cadence was healthy: three demo sessions (14 Jan, 29 Jan, 11 Mar 2026) plus a dedicated AI deep dive (26 Feb 2026) landed within roughly a ten-week window.",
+      "tone": "good"
+     },
+     {
+      "text": "Ryan Anderson's promised IT integration assessment for D365 + Coupa sync, first flagged as a dependency on 26 Feb 2026, still has not been completed or reported back.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Tharunkumar Chandirasekaran has stayed consistently engaged across seven-plus months, proactively looping in legal for the 11 Mar 2026 CLM deep-dive and transparently disclosing internal restructuring on the 26 May 2026 call.",
+      "tone": "good"
+     },
+     {
+      "text": "Tharunkumar has repeatedly deferred to Jackie Zhang and now to a company-wide governance team for budget and scope decisions ('the lead is for the overall company... I'll be representing the sourcing team' \u2014 26 May 2026), meaning DuBois-side commitment currently sits below the level that can approve spend.",
+      "tone": "warn"
+     },
+     {
+      "text": "Legal stakeholder Chris Klein left the 11 Mar 2026 demo saying 'I'm not sure, I need to evaluate this' about the core extraction feature, and the sandbox proof he asked for to resolve that doubt has never been delivered.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-03-11",
+     "quote": "Chris asked 'how many samples should I provide' for sandbox testing; Grace said 'provide us with multiple samples and we can work towards providing either services or goods'.",
+     "said_by": "Chris Klein (legal)",
+     "addressed": false,
+     "requirement": "Provide sandbox environment for legal team to test CLM contract extraction and risk assessment with DuBois contract samples"
+    },
+    {
+     "date": "2026-04-13",
+     "quote": "Adding meeting w/ Jackie for last week of April; follow up on legal inputs.",
+     "said_by": "Tharunkumar Chandirasekaran",
+     "addressed": false,
+     "requirement": "Share integration cost range and implementation timeline for D365 + Coupa sync ahead of Q3 restart"
+    },
+    {
+     "date": "2026-05-26",
+     "quote": "Tharun said 'when we are trying to resume it we would love a recap of what we went through so far and where we stand at this point'.",
+     "said_by": "Tharunkumar Chandirasekaran",
+     "addressed": false,
+     "requirement": "Deliver recap demo covering CLM, sourcing, and AI when project restarts in Q3"
+    },
+    {
+     "date": "2026-05-26",
+     "quote": "When we are trying to resume it, we would love a recap, like, of what we went through so far and where we stand at this point.",
+     "said_by": "Tharunkumar Chandirasekaran",
+     "addressed": false,
+     "requirement": "Deliver a recap demo (sourcing, CLM, AI) and a fresh pricing quote when the project resumes"
+    },
+    {
+     "date": "2026-02-26",
+     "quote": "if you can provide us any entire pricing for the AI too, like what level of depth we want this tool to get integrated to the other modules... would be helpful",
+     "said_by": "Tharunkumar Chandirasekaran",
+     "addressed": false,
+     "requirement": "Provide full AI-module pricing and an integration-cost range ahead of the CLM demo"
+    },
+    {
+     "date": "2026-03-11",
+     "quote": "One of Chris' main key point for validation is also for him to utilize the sandbox environment to test things out.",
+     "said_by": "Chris Klein",
+     "addressed": false,
+     "requirement": "Provide sandbox access for the legal team to test CLM extraction accuracy on DuBois's own contract samples"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "",
+      "who": "Zycus",
+      "date": "2026-02-26",
+      "source": "Avoma AI Discussion 26 Feb 2026",
+      "status": "open",
+      "group_key": "accompany_ahead_cost",
+      "commitment": "Send updated quote highlighting AI module pricing and integration cost estimate to Tharunkumar ahead of Q3 restart",
+      "deliverable": "Send updated quote highlighting AI module pricing and integration cost estimate to Tharunkumar ahead of Q3 restart",
+      "grounding_quote": "I can definitely sort of adjust the quote to highlight where the AI is, and then in terms of the integration, that would likely require a further scoping call, but I can get you sort of a range right now.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-03-11",
+      "source": "Avoma 11 Mar 2026, Grace Kim commitment",
+      "status": "open",
+      "group_key": "access_accuracy_chris",
+      "commitment": "Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+      "deliverable": "Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+      "grounding_quote": "Grace Kim: 'Provide us with multiple samples maybe and then we can work towards providing them with either services or goods.' Context: Chris asked how to share samples for sandbox testing.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Zycus",
+      "date": "2026-05-26",
+      "source": "Avoma 26 May 2026",
+      "status": "open",
+      "group_key": "analytics_board_clm",
+      "commitment": "Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects",
+      "deliverable": "Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects",
+      "grounding_quote": "Prepare and schedule a recap demo that covers sourcing tool features, contract management, and analytics dashboards.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-03-11",
+      "source": "Avoma 11 Mar 2026",
+      "status": "overdue",
+      "group_key": "availability_calendar_demo",
+      "commitment": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo",
+      "deliverable": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo",
+      "grounding_quote": "Share Jackie's calendar availability with Grace Kim and schedule the follow-up meeting involving Jackie, Mike, Grace, and himself.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-03-11",
+      "source": "Avoma 11 Mar 2026",
+      "status": "open",
+      "group_key": "chris_contract_klein",
+      "commitment": "Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)",
+      "deliverable": "Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)",
+      "grounding_quote": "Grace Kim asked Chris 'how many samples should I provide' and Chris was prepared to share; no follow-up confirmation that samples were sent.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-06-30",
+      "who": "Buyer",
+      "date": "2026-06-01",
+      "source": "Next_Step_History__c, 1 Jun 2026",
+      "status": "overdue",
+      "group_key": "date_demo_out",
+      "commitment": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "deliverable": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "grounding_quote": "Tharun still main POC, will reconnect end of Q2 to schedule recap demo for all new stakeholders.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-02-26",
+      "source": "Avoma 26 Feb 2026",
+      "status": "open",
+      "group_key": "anderson_assessment_complexity",
+      "commitment": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+      "deliverable": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+      "grounding_quote": "Plan to engage IT to assess integration complexity with existing systems before finalizing AI scope and budget.",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "Well-positioned but unconverted",
+   "summary": "AI capabilities landed well with the buyer: Tharun requested and received a dedicated AI deep dive (26 Feb 2026) covering agentic flows, autonomous negotiation (ANA), and conversational analytics, and asked detailed follow-up questions about predictive forecasting and supplier-risk insights. This has not yet translated into a validated business case or executive buy-in for the AI spend.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-03-11",
+     "quote": "I think that it'll be very helpful when we provide a sample and see the accuracy. I think that's really key.",
+     "source": "Avoma CLM Deep Dive, 11 Mar 2026",
+     "position": "exposed",
+     "criterion": "CLM extraction accuracy validated via sandbox with DuBois's own contract samples"
+    },
+    {
+     "date": "2025-12-03",
+     "quote": "No plans to replace Dynamics 365 or Coupa, requiring coexistence and data synchronization.",
+     "source": "Avoma Introductory Call, 3 Dec 2025",
+     "position": "partially aligned",
+     "criterion": "Real-time bidirectional integration with D365 + Coupa without replacing either system"
+    },
+    {
+     "date": "2026-03-11",
+     "quote": "My dream software would be... I press submit or I upload it, and I'm done. Literally, like, two clicks.",
+     "source": "Avoma CLM Deep Dive, 11 Mar 2026",
+     "position": "partially aligned",
+     "criterion": "Minimal manual data entry / ease of use for the legal team"
+    }
+   ],
+   "summary": "Zycus has demonstrated against the buyer's stated criteria (extraction accuracy, integration coexistence, ease of use) but none has been formally validated because the sandbox proof and integration assessment remain outstanding."
+  }
+ },
+ "hard": {
+  "stage": "Formal Evaluation",
+  "amount": 115000.0,
+  "opp_id": "006P700000QcBt7IAF",
+  "ais_why": "\u2022 Champion Tharun Chandirasekaran engaged the January 29 2026 demo on agentic capability across multiple dimensions. He pulled for custom AI prompt creation via the Merlin Agentic platform for end-to-end negotiation flows, asked for the rationale behind AI-suggested discount percentages, and requested a backend chemical supplier search via the autonomous agent. AI importance is rated Very Critical.\n\u2022 Tharun raised concrete agentic-platform questions: surfacing Anna's negotiation rationale in the UI, Outlook integration for auto-syncing contract red-lines, RFX Scoring Pro automating supplier response scoring with AI, and AI-driven supplier identification via supplier.io. These are capability-fit probes, not generic curiosity. The discovery has moved past pitch into evaluation.\n\u2022 Five completed meetings between December 2025 and March 2026 with Tharun as the consistent champion, plus legal counsel Chris Klein joining for contract module review and Ryan Anderson handling integration. Pricing has been quoted across iContract, iSource, iAnalyze, iRisk and ANA modules. With Very Critical AI posture and an agentic AI champion driving the relationship, this is a high-confidence Hungry deal.",
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000QcBt7IAF/view",
+  "opp_name": "DuBois Chemicals - December '25",
+  "owner_id": "005P7000004sMvhIAE",
+  "products": "iManage;iSave;eInvoicing;iRequest;Merlin;iRisk;Merlin Intake;iCompliance",
+  "ais_score": 8.0,
+  "next_step": "7/7/26 GK: feeler email to Tharun and team for demo later in July6/29/26 GK: email to Tharun + team to set up time for July6/22/26 GK: invited Tharun to webinar and highlighted reconnecting in early July6/11/26 GK: reconnect tentative for first week of July6/1/26 GK: bridge call with Tharun - full project update. next steps pushed to end of Q2; internally creating more guidelines for this project and looping in additional teams before follow up calls with vendors. Tharun still main POC, will reconnect end of Q2 to schedule recap demo for all new stakeholders5/19/26 GK: quick call, Tharun on PTO still - answered my call, said let&#39;s connect next Tuesday, sending tenative invite5/11/26 GK: Tharun messaged last week on PTO. connecting 5/14 to discuss project timeline and realign on next steps4/30/26 GK: scheduling 1:1 on with Tharun to discuss updates, timeline, and legal team involvement on next steps4/22/26 GK: delays due to strategic team focused on Iran issues and price increases; staying in contact with Tharun on next call4/13/26 GK: adding meeting w/ Jackie for last week of April; fu on legal inputs4/6/26 GK: connecting with legal team directly for sample docs; tentative VP connect end of April for alignment3/30/26 GK: call w/ Tharun to nudge legal team to share data for demo session3/18/26 GK: requesting input from legal team to tailor follow up session; tentative VP connect for 3/24 to discuss project timeline3/11/26 GK: CLM deep dive with legal team, doing use case follow up. downselect pushed to end of April3/4/26 GK: confirmed scope with Tharun via phone (iContract/iSource, possible ANA + Intake). prepping for CLM demo 3/11. coordinating call with VP for executive alignment in next 2 weeks2/26/26 GK: AI call complete, sharing clarity on quote w/ AI. prepping for demo March 11th with legal team2/23/26 GK: prepping for AI call; confirming Chris from legal availability to book demo in March2/18/26 GK: Tharun looping in legal team; setting up AI discussion and demot pt.2 with legal team first week of March2/17/26 GK: voicemail Tharun, working to set up next call and loop Jackie VP back into convos2/9/26 GK: follow up with updated availability for call this week1/30/26 GK: pricing shared, scheduling AI deep dive for week of 9th, bringing in Head of Legal, IT team, additional proc team members1/23/26 GK: demo scheduled 1/29. confirmed decision timeline late February. arranging call to loop VP back in to clarify scope and phase approach1/20/26 GK: sent completed checklist, and shared updated availability for demo pt.21/14/26 GK: completed CLM for demo, offered times for following week to complete pt. 2. beginning QIT\ufeff1/5/26 GK: scheduling follow up call for 1/1412/29/25 GK: Tharun joined showpad and viewed all resources, sending fu message to refine scope and better understand next steps12/16/25 GK: sent showpad and scheduling demo, trying to refine scope12/12/25 GK: discovery occurred, scope: CLM, iSource, Spend, AI tools. Want a full suite demo to possibly add more tools into scope of work for indirect spend, email to Tharun to schedule next call12/3/25 GK: intro occurred, scope fluid, primary interest CLM/Spend/AI tools, multiple siloed tools in place currently for direct, indirect is a new addition to the team&#39;s responsibilities",
+  "ais_status": "Strong",
+  "close_date": "2026-07-30",
+  "competitor": "Coupa;SAP Ariba",
+  "owner_name": "Grace Kim",
+  "owner_title": "",
+  "account_name": "DuBois Chemicals Inc.",
+  "created_date": "2025-12-04",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 21,
+  "dm_identified": true,
+  "eb_identified": true,
+  "ais_why_source": "AIS_Why__c",
+  "qualified_date": "2025-12-05",
+  "billing_country": "US",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "",
+  "ais_score_source": "AIS_Score__c",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "ais_status_source": "AIS_Status__c",
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Best Case",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-07",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": false,
+  "primary_competitor": "Coupa",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Formal Evaluation",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 2 day(s) ago (2026-07-07). Rep outreach 2026-07-07 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 7,
+  "close_date": "2026-07-30",
+  "rep_outreach": {
+   "date": "2026-07-07",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "7/7/26 GK: feeler email to Tharun and team for demo later in July6/29/26 GK: email to Tharun + team to set up time for July6/22/26 GK: invited Tharun to webinar and highlighted reconnecting in early July6/11/26 GK: reconnect tentative for first week of July6/1/26 GK: bridge call with Tharun - full p",
+   "detected": true
+  },
+  "days_to_close": 21,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Best Case",
+  "days_since_inbound": null,
+  "last_activity_date": "2026-07-07",
+  "days_since_activity": 2,
+  "days_since_qualified": 216,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Provide sandbox access and process contract samples from Chris Klein to demonstrate CLM extraction accuracy - open",
+   "key": "commitment:zycus-provide-sandbox-access-and-process-contract-samples-fr",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide sandbox access and process contract samples from Chris Klein to demonstrate CLM extraction accuracy"
+  },
+  {
+   "to": "Confirm the Q3 restart date and reach back out to schedule the recap demo - overdue",
+   "key": "commitment:buyer-confirm-the-q3-restart-date-and-reach-back-out-to-sche",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Confirm the Q3 restart date and reach back out to schedule the recap demo - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm the Q3 restart date and reach back out to schedule the recap demo"
+  },
+  {
+   "to": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson) - open",
+   "key": "commitment:buyer-complete-the-it-integration-complexity-assessment-for-",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson) - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)"
+  },
+  {
+   "to": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo - overdue",
+   "key": "commitment:buyer-share-jackie-zhang-s-vp-procurement-calendar-availabil",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts"
+  },
+  {
+   "to": "Tharunkumar Chandirasekaran - Champion",
+   "key": "stakeholder:tharunkumar-chandirasekaran",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Tharunkumar Chandirasekaran - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tharunkumar Chandirasekaran"
+  },
+  {
+   "to": "Jackie Zhang - Decision Maker",
+   "key": "stakeholder:jackie-zhang",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Jackie Zhang - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jackie Zhang"
+  },
+  {
+   "to": "Chris Klein - Influencer",
+   "key": "stakeholder:chris-klein",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Chris Klein - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Klein"
+  },
+  {
+   "to": "Ryan Anderson - Influencer",
+   "key": "stakeholder:ryan-anderson",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Ryan Anderson - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ryan Anderson"
+  },
+  {
+   "to": "Laura - Influencer",
+   "key": "stakeholder:laura",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "from": "Laura - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Laura"
+  },
+  {
+   "to": "Economic buyer Jackie Zhang has never engaged directly on any call despite repeated scheduling attempts. - open",
+   "key": "risk:economic-buyer-jackie-zhang-has-never-engaged-directly-on-an",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer Jackie Zhang has never engaged directly on any call despite repeated scheduling attempts."
+  },
+  {
+   "to": "D365 + Coupa integration complexity and cost remain unscoped; Ryan Anderson's IT assessment has not been completed. - open",
+   "key": "risk:d365-coupa-integration-complexity-and-cost-remain-unscoped-r",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "D365 + Coupa integration complexity and cost remain unscoped; Ryan Anderson's IT assessment has not been completed."
+  },
+  {
+   "to": "Project explicitly paused to Q3 2026 due to a geopolitical cost-mitigation crisis (Iran-related tariffs/price increases); risk of a further pause if the crisis ",
+   "key": "risk:project-explicitly-paused-to-q3-2026-due-to-a-geopolitical-c",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Project explicitly paused to Q3 2026 due to a geopolitical cost-mitigation crisis (Iran-related tariffs/price increases); risk of a further pause if the crisis recurs in Q3/Q4."
+  },
+  {
+   "to": "Deliver the sandbox proof Chris Klein asked for on 11 Mar 2026 ('I'm not sure... I need to evaluate this') \u2014 it remains the single biggest unresolved credibilit",
+   "key": "hygiene:deliver-the-sandbox-proof-chris-klein-asked-for-on-11-mar-20",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Deliver the sandbox proof Chris Klein asked for on 11 Mar 2026 ('I'm not sure... I need to evaluate this') \u2014 it remains the single biggest unresolved credibility gap."
+  },
+  {
+   "to": "Break single-threading: Jackie Zhang (VP Procurement, Decision Maker) has never engaged directly despite repeated attempts since March 2026 \u2014 use Tharun to brok",
+   "key": "hygiene:break-single-threading-jackie-zhang-vp-procurement-decision-",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Break single-threading: Jackie Zhang (VP Procurement, Decision Maker) has never engaged directly despite repeated attempts since March 2026 \u2014 use Tharun to broker access now that the project has moved to a company-wide governance review."
+  },
+  {
+   "to": "Change outreach channel: three consecutive email/webinar-invite attempts (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered \u2014 consider a phone call given the pri",
+   "key": "hygiene:change-outreach-channel-three-consecutive-email-webinar-invi",
+   "date": "2026-07-09T08:19:58.071603+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Change outreach channel: three consecutive email/webinar-invite attempts (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered \u2014 consider a phone call given the prior success of the 1 Jun bridge call."
+  },
+  {
+   "to": "Provide sandbox access for the legal team to test CLM extraction accuracy on DuBois's own contract samples",
+   "key": "requirement:provide-sandbox-access-for-the-legal-team-to-test-clm-extrac",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Laura",
+   "subject": "Provide sandbox access for the legal team to test CLM extraction accuracy on DuBois's own contract samples"
+  },
+  {
+   "to": "Confirm the Q3 restart date and reach back out to schedule the recap demo - open",
+   "key": "commitment:buyer-confirm-the-q3-restart-date-and-reach-back-out-to-sche",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Confirm the Q3 restart date and reach back out to schedule the recap demo - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm the Q3 restart date and reach back out to schedule the recap demo"
+  },
+  {
+   "to": "Jackie Zhang - Economic Buyer",
+   "key": "stakeholder:jackie-zhang",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Jackie Zhang - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jackie Zhang"
+  },
+  {
+   "to": "Tharunkumar Chandirasekaran - Champion",
+   "key": "stakeholder:tharunkumar-chandirasekaran",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Tharunkumar Chandirasekaran - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tharunkumar Chandirasekaran"
+  },
+  {
+   "to": "Chris Klein - Influencer",
+   "key": "stakeholder:chris-klein",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Chris Klein - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Klein"
+  },
+  {
+   "to": "Laura - Influencer",
+   "key": "stakeholder:laura",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Laura - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Laura"
+  },
+  {
+   "to": "Ryan Anderson - Coach",
+   "key": "stakeholder:ryan-anderson",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Ryan Anderson - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ryan Anderson"
+  },
+  {
+   "to": "Coupa - incumbent",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "from": "Coupa - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "No quantified ROI has ever been produced against DuBois's $300-400M spend base, and a new cross-department budget-governance workflow now gates project resumpti",
+   "key": "risk:no-quantified-roi-has-ever-been-produced-against-dubois-s-30",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI has ever been produced against DuBois's $300-400M spend base, and a new cross-department budget-governance workflow now gates project resumption"
+  },
+  {
+   "to": "Economic buyer Jackie Zhang has not appeared on any recorded call since the early Dec 2025 engagement window; Tharun defers exec/budget decisions to her and the",
+   "key": "risk:economic-buyer-jackie-zhang-has-not-appeared-on-any-recorded",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer Jackie Zhang has not appeared on any recorded call since the early Dec 2025 engagement window; Tharun defers exec/budget decisions to her and the C-suite"
+  },
+  {
+   "to": "Close date of 30 Jul 2026 is unreachable given the buyer explicitly paused the project to a Q3 2026 restart - open",
+   "key": "risk:close-date-of-30-jul-2026-is-unreachable-given-the-buyer-exp",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date of 30 Jul 2026 is unreachable given the buyer explicitly paused the project to a Q3 2026 restart"
+  },
+  {
+   "to": "A geopolitical supply-chain crisis (tariffs, price increases) consumed 100% of the sourcing team's bandwidth in Q2 2026 and forced the pause; a recurrence could",
+   "key": "risk:a-geopolitical-supply-chain-crisis-tariffs-price-increases-c",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "A geopolitical supply-chain crisis (tariffs, price increases) consumed 100% of the sourcing team's bandwidth in Q2 2026 and forced the pause; a recurrence could re-pause the deal again"
+  },
+  {
+   "to": "DuBois's management has repriotized the sourcing/analytics board ahead of CLM (previously the top priority since Dec 2025) and some previously discussed CLM fea",
+   "key": "risk:dubois-s-management-has-repriotized-the-sourcing-analytics-b",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "DuBois's management has repriotized the sourcing/analytics board ahead of CLM (previously the top priority since Dec 2025) and some previously discussed CLM features may be dropped"
+  },
+  {
+   "to": "Champion Tharun is working-level only; without looping Jackie Zhang (VP Procurement, economic buyer) back in, budget approval through DuBois's new cross-departm",
+   "key": "hygiene:champion-tharun-is-working-level-only-without-looping-jackie",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Champion Tharun is working-level only; without looping Jackie Zhang (VP Procurement, economic buyer) back in, budget approval through DuBois's new cross-department gate stalls regardless of feature fit."
+  },
+  {
+   "to": "DuBois's roughly 10-vendor bake-off never reached its planned Q1 shortlist; use the Q3 restart request for a recap demo to press DuBois to formally narrow the f",
+   "key": "hygiene:dubois-s-roughly-10-vendor-bake-off-never-reached-its-planne",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "DuBois's roughly 10-vendor bake-off never reached its planned Q1 shortlist; use the Q3 restart request for a recap demo to press DuBois to formally narrow the field to a top 3."
+  },
+  {
+   "to": "No quantified ROI has been built against DuBois's $300-400M spend base; deliver one proactively before the Q3 restart so it satisfies the new internal budget-ap",
+   "key": "hygiene:no-quantified-roi-has-been-built-against-dubois-s-300-400m-s",
+   "date": "2026-07-07T18:45:33.893536+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI has been built against DuBois's $300-400M spend base; deliver one proactively before the Q3 restart so it satisfies the new internal budget-approval workflow Tharun described on 26 May 2026."
+  },
+  {
+   "to": "Deliver a recap demo (sourcing, CLM, AI) and a fresh pricing quote when the project resumes",
+   "key": "requirement:deliver-a-recap-demo-sourcing-clm-ai-and-a-fresh-pricing-quo",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Tharunkumar Chandirasekaran",
+   "subject": "Deliver a recap demo (sourcing, CLM, AI) and a fresh pricing quote when the project resumes"
+  },
+  {
+   "to": "Provide full AI-module pricing and an integration-cost range ahead of the CLM demo",
+   "key": "requirement:provide-full-ai-module-pricing-and-an-integration-cost-range",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Tharunkumar Chandirasekaran",
+   "subject": "Provide full AI-module pricing and an integration-cost range ahead of the CLM demo"
+  },
+  {
+   "to": "Send Tharun an updated quote highlighting AI-module pricing and integration cost, to be shared alongside the recap demo - open",
+   "key": "commitment:zycus-send-tharun-an-updated-quote-highlighting-ai-module-pr",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send Tharun an updated quote highlighting AI-module pricing and integration cost, to be shared alongside the recap demo"
+  },
+  {
+   "to": "Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects - open",
+   "key": "commitment:zycus-prepare-and-schedule-a-recap-demo-covering-the-sourcin",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects"
+  },
+  {
+   "to": "Confirm the Q3 restart date and reach back out to schedule the recap demo - open",
+   "key": "commitment:buyer-confirm-the-q3-restart-date-and-reach-back-out-to-sche",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm the Q3 restart date and reach back out to schedule the recap demo"
+  },
+  {
+   "to": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson) - overdue",
+   "key": "commitment:buyer-complete-the-it-integration-complexity-assessment-for-",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)"
+  },
+  {
+   "to": "Jackie Zhang - Economic Buyer",
+   "key": "stakeholder:jackie-zhang",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Jackie Zhang - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jackie Zhang"
+  },
+  {
+   "to": "Tharunkumar Chandirasekaran - Champion",
+   "key": "stakeholder:tharunkumar-chandirasekaran",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Tharunkumar Chandirasekaran - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tharunkumar Chandirasekaran"
+  },
+  {
+   "to": "Chris Klein - Influencer",
+   "key": "stakeholder:chris-klein",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Chris Klein - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Klein"
+  },
+  {
+   "to": "Ryan Anderson - Influencer",
+   "key": "stakeholder:ryan-anderson",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Ryan Anderson - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ryan Anderson"
+  },
+  {
+   "to": "Laura - Influencer",
+   "key": "stakeholder:laura",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Laura - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Laura"
+  },
+  {
+   "to": "Coupa - incumbent",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "from": "Coupa - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "Buyer explicitly postponed the project to Q3 2026 at the earliest, citing a geopolitical cost-mitigation focus and a new internal approval workflow - open",
+   "key": "risk:buyer-explicitly-postponed-the-project-to-q3-2026-at-the-ear",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer explicitly postponed the project to Q3 2026 at the earliest, citing a geopolitical cost-mitigation focus and a new internal approval workflow"
+  },
+  {
+   "to": "Economic buyer Jackie Zhang has not been directly engaged on any recorded call since the account's earliest engagement window; budget sign-off runs through her ",
+   "key": "risk:economic-buyer-jackie-zhang-has-not-been-directly-engaged-on",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer Jackie Zhang has not been directly engaged on any recorded call since the account's earliest engagement window; budget sign-off runs through her and the C-suite"
+  },
+  {
+   "to": "No quantified ROI has ever been produced against the $300-400M spend base; Tharun needs facts to justify the AI spend to his own management - open",
+   "key": "risk:no-quantified-roi-has-ever-been-produced-against-the-300-400",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI has ever been produced against the $300-400M spend base; Tharun needs facts to justify the AI spend to his own management"
+  },
+  {
+   "to": "D365 + Coupa integration complexity and cost remains unscoped; Ryan Anderson's IT assessment has not been completed - open",
+   "key": "risk:d365-coupa-integration-complexity-and-cost-remains-unscoped-",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "D365 + Coupa integration complexity and cost remains unscoped; Ryan Anderson's IT assessment has not been completed"
+  },
+  {
+   "to": "A new internal IT-governance team and cross-department approval workflow now gates the project beyond the sourcing team - open",
+   "key": "risk:a-new-internal-it-governance-team-and-cross-department-appro",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "A new internal IT-governance team and cross-department approval workflow now gates the project beyond the sourcing team"
+  },
+  {
+   "to": "Management now prioritizes the sourcing/analytics board over CLM (previously top priority since Dec 2025); some previously-discussed CLM features may be dropped",
+   "key": "risk:management-now-prioritizes-the-sourcing-analytics-board-over",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Management now prioritizes the sourcing/analytics board over CLM (previously top priority since Dec 2025); some previously-discussed CLM features may be dropped"
+  },
+  {
+   "to": "Re-engage Jackie Zhang (VP Procurement, the named Decision Maker) directly rather than relying solely on Tharun -- she has no confirmed contact on any read call",
+   "key": "hygiene:re-engage-jackie-zhang-vp-procurement-the-named-decision-mak",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage Jackie Zhang (VP Procurement, the named Decision Maker) directly rather than relying solely on Tharun -- she has no confirmed contact on any read call since the account's earliest engagement, and budget sign-off runs through her and the C-suite."
+  },
+  {
+   "to": "Build a quantified ROI tied to the $300-400M spend base before Q3, since Tharun said on 26 Feb 2026 he needs 'possible facts' to justify the spend to upper mana",
+   "key": "hygiene:build-a-quantified-roi-tied-to-the-300-400m-spend-base-befor",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build a quantified ROI tied to the $300-400M spend base before Q3, since Tharun said on 26 Feb 2026 he needs 'possible facts' to justify the spend to upper management, and DuBois's new cross-department approval workflow raises that bar further."
+  },
+  {
+   "to": "Protect CLM's position in scope as DuBois's management pivots priority to the sourcing board -- reinforce the CLM/AI differentiation (NegoGenie, obligation extr",
+   "key": "hygiene:protect-clm-s-position-in-scope-as-dubois-s-management-pivot",
+   "date": "2026-07-07T09:47:01.634595+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Protect CLM's position in scope as DuBois's management pivots priority to the sourcing board -- reinforce the CLM/AI differentiation (NegoGenie, obligation extraction) shown on 11 Mar 2026 before the sourcing-only narrative hardens further."
+  },
+  {
+   "to": "Provide sandbox environment for legal team to test CLM contract extraction and risk assessment with DuBois contract samples",
+   "key": "requirement:provide-sandbox-environment-for-legal-team-to-test-clm-contr",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Chris Klein (legal)",
+   "subject": "Provide sandbox environment for legal team to test CLM contract extraction and risk assessment with DuBois contract samples"
+  },
+  {
+   "to": "Share integration cost range and implementation timeline for D365 + Coupa sync ahead of Q3 restart",
+   "key": "requirement:share-integration-cost-range-and-implementation-timeline-for",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Tharunkumar Chandirasekaran",
+   "subject": "Share integration cost range and implementation timeline for D365 + Coupa sync ahead of Q3 restart"
+  },
+  {
+   "to": "Deliver recap demo covering CLM, sourcing, and AI when project restarts in Q3",
+   "key": "requirement:deliver-recap-demo-covering-clm-sourcing-and-ai-when-project",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Tharunkumar Chandirasekaran",
+   "subject": "Deliver recap demo covering CLM, sourcing, and AI when project restarts in Q3"
+  },
+  {
+   "to": "Send updated quote highlighting AI module pricing and integration cost estimate to Tharun ahead of Q3 restart - open",
+   "key": "commitment:zycus-send-updated-quote-highlighting-ai-module-pricing-and-",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send updated quote highlighting AI module pricing and integration cost estimate to Tharun ahead of Q3 restart"
+  },
+  {
+   "to": "Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy - open",
+   "key": "commitment:zycus-provide-sandbox-access-and-process-multiple-contract-s",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy"
+  },
+  {
+   "to": "Send meeting recording of 11 Mar CLM demo to Chris Klein - open",
+   "key": "commitment:zycus-send-meeting-recording-of-11-mar-clm-demo-to-chris-kle",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send meeting recording of 11 Mar CLM demo to Chris Klein"
+  },
+  {
+   "to": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts - open",
+   "key": "commitment:buyer-share-jackie-zhang-s-vp-procurement-calendar-availabil",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts"
+  },
+  {
+   "to": "Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team) - open",
+   "key": "commitment:buyer-provide-contract-samples-to-zycus-for-sandbox-testing-",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)"
+  },
+  {
+   "to": "Jackie Zhang - Economic Buyer",
+   "key": "stakeholder:jackie-zhang",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jackie Zhang"
+  },
+  {
+   "to": "Tharunkumar Chandirasekaran - Champion",
+   "key": "stakeholder:tharunkumar-chandirasekaran",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tharunkumar Chandirasekaran"
+  },
+  {
+   "to": "Chris Klein - Influencer",
+   "key": "stakeholder:chris-klein",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Klein"
+  },
+  {
+   "to": "Ryan Anderson - Influencer",
+   "key": "stakeholder:ryan-anderson",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ryan Anderson"
+  },
+  {
+   "to": "Laura - Influencer",
+   "key": "stakeholder:laura",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Laura"
+  },
+  {
+   "to": "Coupa - incumbent",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "SAP Ariba - incumbent",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5",
+   "key": "risk:close-date-30-jul-2026-is-24-days-out-but-buyer-explicitly-p",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5 weeks ago). Date will slip to Q3 at minimum, likely Q4 if shortlist and IT scoping drag."
+  },
+  {
+   "to": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not eng",
+   "key": "risk:economic-buyer-jackie-zhang-vp-procurement-decision-maker-ro",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not engaged since. Tharun drives the eval but defers budget and exec decisions to the relevant stakeholder her re-engagement in Q3 this stays a team-level project that can be paused indefinitely."
+  },
+  {
+   "to": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 M",
+   "key": "risk:no-quantified-roi-or-business-case-pricing-shared-85k-ballpa",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is in place and the project must pass a cross-department budget gate. Without a board-ready ROI tied to the $300\u2013400M spend base this will not clear that gate."
+  },
+  {
+   "to": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment.",
+   "key": "risk:d365-coupa-integration-complexity-and-cost-is-unscoped-and-g",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment. Tharun stated on 26 Feb IT must validate integration before budget is finalized, but no scoping call has occurred. Zycus promised an integration cost range but has not delivered a formal estimate."
+  },
+  {
+   "to": "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focu",
+   "key": "risk:geopolitical-supply-chain-crisis-iran-tariffs-price-increase",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focus went '100% into cost mitigation and supply negotiations' and the project is 'a business decision not made by the sourcing department but implemented throughout the company' (Avoma 26 May). Risk: another geopolitical flare-up in Q3/Q4 could re-pause the deal."
+  },
+  {
+   "to": "Multi-vendor bake-off with ~10 solutions being evaluated, shortlist to top 3 planned by end Q1 but not completed due to pause. Coupa (incumbent) is embedded and",
+   "key": "risk:multi-vendor-bake-off-with-10-solutions-being-evaluated-shor",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Multi-vendor bake-off with ~10 solutions being evaluated, shortlist to top 3 planned by end Q1 but not completed due to pause. Coupa (incumbent) is embedded and could counter-propose a CLM or sourcing expansion. Zycus is in the running but not the front-runner. Risk: DuBois picks a Coupa-native expansion or a lower-cost best-of-breed CLM in the Q3 bake-off."
+  },
+  {
+   "to": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks) and did not attend any Q2 calls (Feb AI call, Marc",
+   "key": "hygiene:economic-buyer-jackie-zhang-vp-procurement-decision-maker-ro",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks) and did not attend any Q2 calls (Feb AI call, March CLM demo, May check-in). Tharun drives the evaluation but defers commercial and budget decisions to the relevant stakeholder the project restarts in Q3 Jackie must re-engage and validate the business case, or this stays a team-level productivity project that can be paused again. Recommended move: book an exec connect with Jackie in Q3 to present a quantified ROI tied to the $300\u2013400M spend base and position Zycus as her strategic pick, not just Tharun's preference."
+  },
+  {
+   "to": "No quantified ROI or business case. DuBois articulated pain (fragmented CLM, manual sourcing, no AI analytics) but never quantified savings, cost reduction, or ",
+   "key": "hygiene:no-quantified-roi-or-business-case-dubois-articulated-pain-f",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI or business case. DuBois articulated pain (fragmented CLM, manual sourcing, no AI analytics) but never quantified savings, cost reduction, or cycle-time improvement across the $300\u2013400M spend base managed by 9\u201310 people. Zycus shared pricing ($85K+ ballpark, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is now in place and the project must pass a cross-department budget gate. Without a board-ready ROI this will not clear that gate. Recommended move: run an ROI workshop with Tharun + Jackie in Q3, quantify savings on contract cycle-time, indirect-spend consolidation, and AI-driven negotiation, and tie it to their spend base to build the business case for the IT approval workflow."
+  },
+  {
+   "to": "Multi-vendor bake-off is frozen with no Zycus differentiation anchored. Tharun is evaluating ~10 vendors with a plan to shortlist to top 3, but the process paus",
+   "key": "hygiene:multi-vendor-bake-off-is-frozen-with-no-zycus-differentiatio",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-vendor bake-off is frozen with no Zycus differentiation anchored. Tharun is evaluating ~10 vendors with a plan to shortlist to top 3, but the process paused in April before any finalist was named. Coupa (incumbent for onboarding + invoicing) is the embedded threat if they counter-propose a CLM or sourcing expansion. Zycus has not been positioned as the front-runner and has no unique wedge anchored in the buyer's mind beyond 'we saw good demos'. Recommended move: when the deal restarts, lead with the AI differentiation story (conversational analytics, autonomous negotiation, predictive sourcing) as the strategic layer above Coupa's transactional plumbing, prove seamless D365 + Coupa integration, and make the recap demo an ROI-led business case, not a feature tour, to own the top spot in the shortlist."
+  },
+  {
+   "to": "Tharunkumar Chandirasekaran - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iManage;iSave;eInvoicing;iRequest;Merlin;iRisk;Merlin Intake;iCompliance",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T05:36:47.327228+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000QcBt7",
+ "packets": [
+  {
+   "key": "requirement:provide-sandbox-environment-for-legal-team-to-test-clm-contr",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-11",
+    "kind": "explicit",
+    "quote": "Chris asked 'how many samples should I provide' for sandbox testing; Grace said 'provide us with multiple samples and we can work towards providing either services or goods'.",
+    "source": "Avoma 11 Mar 2026",
+    "said_by": "Chris Klein (legal)",
+    "addressed": false,
+    "requirement": "Provide sandbox environment for legal team to test CLM contract extraction and risk assessment with DuBois contract samples"
+   },
+   "source": "Chris Klein (legal)",
+   "status": "active",
+   "history": [],
+   "subject": "Provide sandbox environment for legal team to test CLM contract extraction and risk assessment with DuBois contract samples",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "requirement:share-integration-cost-range-and-implementation-timeline-for",
+   "type": "requirement",
+   "value": {
+    "date": "2026-04-13",
+    "kind": "explicit",
+    "quote": "Adding meeting w/ Jackie for last week of April; follow up on legal inputs.",
+    "source": "Next_Step_History__c, 13 Apr 2026",
+    "said_by": "Tharunkumar Chandirasekaran",
+    "addressed": false,
+    "requirement": "Share integration cost range and implementation timeline for D365 + Coupa sync ahead of Q3 restart"
+   },
+   "source": "Tharunkumar Chandirasekaran",
+   "status": "active",
+   "history": [],
+   "subject": "Share integration cost range and implementation timeline for D365 + Coupa sync ahead of Q3 restart",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "requirement:deliver-recap-demo-covering-clm-sourcing-and-ai-when-project",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-26",
+    "kind": "explicit",
+    "quote": "Tharun said 'when we are trying to resume it we would love a recap of what we went through so far and where we stand at this point'.",
+    "source": "Avoma 26 May 2026",
+    "said_by": "Tharunkumar Chandirasekaran",
+    "addressed": false,
+    "requirement": "Deliver recap demo covering CLM, sourcing, and AI when project restarts in Q3"
+   },
+   "source": "Tharunkumar Chandirasekaran",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver recap demo covering CLM, sourcing, and AI when project restarts in Q3",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-updated-quote-highlighting-ai-module-pricing-and-",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-02-26",
+    "source": "Avoma 26 Feb 2026",
+    "status": "open",
+    "commitment": "Send updated quote highlighting AI module pricing and integration cost estimate to Tharunkumar ahead of Q3 restart",
+    "deliverable": "Send updated quote highlighting AI module pricing and integration cost estimate to Tharunkumar ahead of Q3 restart",
+    "grounding_quote": "I can definitely sort of adjust the quote to highlight where the AI is, and then in terms of the integration, that would likely require a further scoping call, but I can get you sort of a range right now."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send updated quote highlighting AI module pricing and integration cost estimate to Tharun ahead of Q3 restart",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-sandbox-access-and-process-multiple-contract-s",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-11",
+    "source": "Avoma 11 Mar 2026, Grace Kim commitment",
+    "status": "open",
+    "commitment": "Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+    "deliverable": "Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+    "grounding_quote": "Grace Kim: 'Provide us with multiple samples maybe and then we can work towards providing them with either services or goods.' Context: Chris asked how to share samples for sandbox testing."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide sandbox access and process multiple contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-meeting-recording-of-11-mar-clm-demo-to-chris-kle",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-03-11",
+    "source": "Avoma 11 Mar 2026",
+    "status": "open",
+    "commitment": "Send meeting recording of 11 Mar CLM demo to Chris Klein",
+    "deliverable": "Send meeting recording of 11 Mar CLM demo to Chris Klein",
+    "grounding_quote": "Grace Kim: 'Send over the recording' (responding to a request to share the demo recording with Chris)."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send meeting recording of 11 Mar CLM demo to Chris Klein",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-jackie-zhang-s-vp-procurement-calendar-availabil",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-03-11",
+    "source": "Avoma 11 Mar 2026",
+    "status": "overdue",
+    "commitment": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo",
+    "deliverable": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo",
+    "grounding_quote": "Share Jackie's calendar availability with Grace Kim and schedule the follow-up meeting involving Jackie, Mike, Grace, and himself."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-03-11",
+      "source": "Avoma 11 Mar 2026, action item",
+      "status": "open",
+      "commitment": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts",
+      "deliverable": "Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts",
+      "grounding_quote": "Avoma notes 11 Mar: 'Tharun will share Jackie's calendar availability with Grace Kim and schedule the follow-up meeting involving Jackie.'"
+     }
+    }
+   ],
+   "subject": "Buyer:Share Jackie Zhang's (VP Procurement) calendar availability with Grace Kim to schedule follow-up demo when project restarts",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-contract-samples-to-zycus-for-sandbox-testing-",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-03-11",
+    "source": "Avoma 11 Mar 2026",
+    "status": "open",
+    "commitment": "Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)",
+    "deliverable": "Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)",
+    "grounding_quote": "Grace Kim asked Chris 'how many samples should I provide' and Chris was prepared to share; no follow-up confirmation that samples were sent."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Provide contract samples to Zycus for sandbox testing (Chris Klein, legal team)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "stakeholder:jackie-zhang",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jackie Zhang",
+    "risk": "Never appeared on a recorded call despite repeated scheduling attempts Mar-Apr 2026; budget authority sits with her",
+    "role": "Decision Maker",
+    "title": "Vice President Procurement",
+    "source": "OpportunityContactRole + Next_Step_History__c",
+    "sentiment": "unknown, never engaged",
+    "last_contact_date": ""
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "name": "Jackie Zhang",
+      "risk": "Not directly engaged on any recorded call since the early Dec 2025 window; budget sign-off runs through her",
+      "role": "Economic Buyer",
+      "title": "Vice President Procurement",
+      "source": "Avoma Discovery Session 12 Dec 2025 (referenced); SF OpportunityContactRole",
+      "sentiment": "unknown",
+      "last_contact_date": "2025-12-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "name": "Jackie Zhang",
+      "risk": "No confirmed contact on any read call since the account's earliest engagement window; budget authority sits with her and the C-suite",
+      "role": "Economic Buyer",
+      "title": "Vice President Procurement",
+      "source": "Salesforce OpportunityContactRole; referenced Avoma Discovery Session 12 Dec 2025",
+      "sentiment": "unknown",
+      "last_contact_date": "2025-12-12"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "name": "Jackie Zhang",
+      "risk": "Absent since mid-April; has not engaged in Q2 despite being the budget owner. Risk: passive sponsorship, may not prioritize the deal when it restarts in Q3.",
+      "role": "Economic Buyer",
+      "title": "Vice President Procurement",
+      "source": "SF OpportunityContactRole Decision Maker; Avoma 3 Dec intro call; Next Step references 17 Feb, 6 Apr, 13 Apr",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-12-03"
+     }
+    }
+   ],
+   "subject": "Jackie Zhang",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "stakeholder:tharunkumar-chandirasekaran",
+   "type": "stakeholder",
+   "value": {
+    "name": "Tharunkumar Chandirasekaran",
+    "risk": "Sole consistent point of contact; defers budget/exec decisions upward and to a new governance team",
+    "role": "Champion",
+    "title": "Sourcing Analyst",
+    "source": "Avoma 1 Jun 2026 (Next_Step_History__c) + OpportunityContactRole",
+    "sentiment": "positive, cooperative but constrained",
+    "last_contact_date": "2026-06-01"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "name": "Tharunkumar Chandirasekaran",
+      "risk": "Working-level only; defers exec/budget decisions upward and the project can be paused indefinitely without his escalation",
+      "role": "Champion",
+      "title": "Sourcing Analyst",
+      "source": "Avoma Tentative Connect 26 May 2026",
+      "sentiment": "positive but cautious",
+      "last_contact_date": "2026-05-26"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "name": "Tharunkumar Chandirasekaran",
+      "risk": "No budget authority; his own stated priority (CLM) is being deprioritized by his management",
+      "role": "Champion",
+      "title": "Sourcing Analyst",
+      "source": "Avoma Tentative Connect call 26 May 2026",
+      "sentiment": "positive, transparent",
+      "last_contact_date": "2026-05-26"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "name": "Tharunkumar Chandirasekaran",
+      "risk": "Developing champion with no exec authority; engagement cooling (last two-way touch 1 Jun, no reply to 29 Jun outreach). At risk of fading if not reactivated in Q3 with a compelling ROI and Jackie re-engaged.",
+      "role": "Champion",
+      "title": "Sourcing Analyst",
+      "source": "SF OpportunityContactRole Evaluator; Avoma all seven calls 3 Dec\u201326 May; Next Step trail",
+      "sentiment": "positive",
+      "last_contact_date": "2026-06-01"
+     }
+    }
+   ],
+   "subject": "Tharunkumar Chandirasekaran",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "stakeholder:chris-klein",
+   "type": "stakeholder",
+   "value": {
+    "name": "Chris Klein",
+    "risk": "Voiced explicit doubt about extraction accuracy; sandbox proof he asked for is still outstanding",
+    "role": "Influencer",
+    "title": "Technical Representative",
+    "source": "Avoma CLM Deep Dive, 11 Mar 2026",
+    "sentiment": "skeptical, pragmatic",
+    "last_contact_date": "2026-03-11"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "name": "Chris Klein",
+      "risk": "No re-engagement since 11 Mar 2026",
+      "role": "Influencer",
+      "title": "Technical Representative",
+      "source": "Avoma CLM Deep Dive 11 Mar 2026",
+      "sentiment": "engaged",
+      "last_contact_date": "2026-03-11"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "name": "Chris Klein",
+      "risk": "Legal-side stakeholder with equal decision weight per Tharun; engagement since 11 Mar not confirmed",
+      "role": "Influencer",
+      "title": "Technical Representative",
+      "source": "Avoma CLM Deep Dive 11 Mar 2026",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-03-11"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "name": "Chris Klein",
+      "risk": "Legal team newly hired (~Feb 2026); Chris attended 11 Mar CLM demo, validated features, requested sandbox. No recent contact; legal buy-in is critical for CLM but not yet locked.",
+      "role": "Influencer",
+      "title": "Technical Representative (Legal)",
+      "source": "SF OpportunityContactRole; Avoma 11 Mar CLM demo; Next Step 23 Feb, 18 Feb",
+      "sentiment": "positive",
+      "last_contact_date": "2026-03-11"
+     }
+    }
+   ],
+   "subject": "Chris Klein",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "stakeholder:ryan-anderson",
+   "type": "stakeholder",
+   "value": {
+    "name": "Ryan Anderson",
+    "risk": "Named for integration questions since the first call but has not completed or reported the D365+Coupa integration assessment",
+    "role": "Influencer",
+    "title": "Enterprise Resources Planning Business Analyst",
+    "source": "Avoma 3 Dec 2025 + OpportunityContactRole",
+    "sentiment": "neutral",
+    "last_contact_date": "2025-12-03"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "name": "Ryan Anderson",
+      "risk": "IT integration assessment he owns has not been completed since it was flagged 26 Feb 2026",
+      "role": "Coach",
+      "title": "Enterprise Resources Planning Business Analyst",
+      "source": "Avoma Demo Session 14 Jan 2026; Avoma AI Discussion 26 Feb 2026",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-14"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "name": "Ryan Anderson",
+      "risk": "Owns the still-outstanding D365/Coupa integration assessment that gates budget finalization",
+      "role": "Influencer",
+      "title": "Enterprise Resources Planning Business Analyst",
+      "source": "Avoma Introductory Call 3 Dec 2025",
+      "sentiment": "neutral",
+      "last_contact_date": "2025-12-03"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "name": "Ryan Anderson",
+      "risk": "IT lead for integration scoping; attended 29 Jan demo but has not completed the D365 + Coupa integration assessment that gates budget approval. His validation is required before the deal can advance past Q3 shortlist.",
+      "role": "Influencer",
+      "title": "Enterprise Resources Planning Business Analyst",
+      "source": "SF OpportunityContactRole; Avoma 29 Jan demo; Tharun referenced Ryan as IT integration lead on 26 Feb call",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-01-29"
+     }
+    }
+   ],
+   "subject": "Ryan Anderson",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "stakeholder:laura",
+   "type": "stakeholder",
+   "value": {
+    "name": "Laura",
+    "risk": "First introduction to Zycus was 11 Mar 2026; has not appeared on any subsequent call",
+    "role": "Influencer",
+    "title": "Not in Salesforce (legal team member per 11 Mar 2026 call)",
+    "source": "Avoma CLM Deep Dive, 11 Mar 2026",
+    "sentiment": "positive but unconfirmed",
+    "last_contact_date": "2026-03-11"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "name": "Laura",
+      "risk": "No re-engagement since 11 Mar 2026",
+      "role": "Influencer",
+      "title": "Legal team member",
+      "source": "Avoma CLM Deep Dive 11 Mar 2026",
+      "sentiment": "engaged, first Zycus introduction",
+      "last_contact_date": "2026-03-11"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "name": "Laura",
+      "risk": "New to CLM demo process; feedback on sandbox/extraction accuracy not yet confirmed",
+      "role": "Influencer",
+      "title": "Legal team member",
+      "source": "Avoma CLM Deep Dive 11 Mar 2026",
+      "sentiment": "neutral",
+      "last_contact_date": "2026-03-11"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "name": "Laura",
+      "risk": "Legal team member, attended 11 Mar CLM demo alongside Chris Klein. No SF contact record with last name or email, so limited visibility. Engaged but not a decision-maker.",
+      "role": "Influencer",
+      "title": "Legal team member",
+      "source": "Avoma 11 Mar CLM demo; Next Step 26 Feb referencing Laura",
+      "sentiment": "positive",
+      "last_contact_date": "2026-03-11"
+     }
+    }
+   ],
+   "subject": "Laura",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2026-02-26",
+    "name": "Coupa",
+    "quote": "I don't believe we'll be getting rid of Coupa... it's just that some of the solutions were not as comprehensive as we were expecting, but the supplier onboarding part is fine for now.",
+    "source": "Avoma AI Discussion call, 26 Feb 2026",
+    "status": "incumbent",
+    "sentiment": "neutral",
+    "how_we_win": "Position Zycus as coexisting with Coupa (integration, not replacement) and press for the sandbox proof that would differentiate CLM extraction accuracy, since Zycus's own team has already conceded ground on the supplier-onboarding piece.",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "date": "2025-12-03",
+      "name": "Coupa",
+      "quote": "were not looking to replace existing systems like Dynamics and Coupa",
+      "source": "Avoma Introductory Call 3 Dec 2025",
+      "status": "incumbent",
+      "sentiment": "neutral",
+      "how_we_win": "Coupa stays for invoicing/onboarding; win by owning the CLM and indirect-sourcing gaps Coupa doesn't cover, per Tharun's own 26 Feb 2026 assessment that Coupa can't meet those needs.",
+      "threat_level": "low"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:36:47.327228+05:30",
+     "value": {
+      "date": "2026-01-29",
+      "name": "Coupa",
+      "quote": "Coupa is something we are not getting rid of\u2026 the supplier onboarding part is fine for now. But some of the solutions were not as comprehensive as we were expecting.",
+      "source": "Avoma 29 Jan 2026, Tharun",
+      "status": "incumbent",
+      "sentiment": "neutral",
+      "how_we_win": "Co-exist story: Zycus CLM + strategic sourcing + AI complements Coupa's P2P, no rip-and-replace. Prove ROI on the $300\u2013400M spend base and differentiate on AI depth (conversational analytics, autonomous negotiation) where Coupa is weak. Make the integration with D365 + Coupa seamless and position Zycus as the strategic layer above Coupa's transactional plumbing.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2025-12-03",
+    "name": "SAP Ariba",
+    "quote": "Current technology landscape includes Microsoft Dynamics 365 as ERP, Ariba for e-bidding, and Coupa for invoicing, yet CLM and broader S2P capabilities remain gaps.",
+    "source": "Avoma Introductory Call, 3 Dec 2025",
+    "status": "incumbent",
+    "sentiment": "neutral",
+    "how_we_win": "Ariba is used narrowly for e-bidding and was not raised as a competing bid in any later call; the gap Zycus targets (CLM, broader S2P) is one Ariba does not currently fill for DuBois.",
+    "threat_level": "low"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:close-date-30-jul-2026-is-24-days-out-but-buyer-explicitly-p",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5 weeks ago). Date will slip to Q3 at minimum, likely Q4 if shortlist and IT scoping drag.",
+    "source": "Avoma 26 May: Tharun stated project paused until Q3",
+    "status": "active",
+    "category": "timeline",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date 30 Jul 2026 is 24 days out but buyer explicitly postponed project to Q3 (late Jul/Aug/Sep restart) on 26 May call. No buyer engagement since 1 Jun (5 weeks ago). Date will slip to Q3 at minimum, likely Q4 if shortlist and IT scoping drag.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-jackie-zhang-vp-procurement-decision-maker-ro",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-13",
+    "detail": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not engaged since. Tharun drives the eval but defers budget and exec decisions to the relevant stakeholder her re-engagement in Q3 this stays a team-level project that can be paused indefinitely.",
+    "source": "Next Step 13 Apr last Jackie mention; Avoma 26 Feb Tharun confirmed Jackie is VP and budget owner",
+    "status": "active",
+    "category": "executive_alignment",
+    "first_raised": "2026-04-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks). She attended the 3 Dec intro call but has not engaged since. Tharun drives the eval but defers budget and exec decisions to the relevant stakeholder her re-engagement in Q3 this stays a team-level project that can be paused indefinitely.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-or-business-case-pricing-shared-85k-ballpa",
+   "type": "risk",
+   "value": {
+    "date": "2025-12-03",
+    "detail": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is in place and the project must pass a cross-department budget gate. Without a board-ready ROI tied to the $300\u2013400M spend base this will not clear that gate.",
+    "source": "Avoma 3 Dec, 29 Jan: pricing discussed but no ROI quantified; Avoma 26 May: new IT approval workflow",
+    "status": "active",
+    "category": "budget",
+    "first_raised": "2025-12-03"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case. Pricing shared ($85K+ ballpark 3 Dec, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is in place and the project must pass a cross-department budget gate. Without a board-ready ROI tied to the $300\u2013400M spend base this will not clear that gate.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "risk:d365-coupa-integration-complexity-and-cost-is-unscoped-and-g",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment. Tharun stated on 26 Feb IT must validate integration before budget is finalized, but no scoping call has occurred. Zycus promised an integration cost range but has not delivered a formal estimate.",
+    "source": "Avoma 26 Feb: Tharun stated IT to assess integration complexity before budget approval",
+    "status": "active",
+    "category": "integration",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "D365 + Coupa integration complexity and cost is unscoped and gates budget approval. Ryan Anderson (IT/ERP analyst) has not completed the integration assessment. Tharun stated on 26 Feb IT must validate integration before budget is finalized, but no scoping call has occurred. Zycus promised an integration cost range but has not delivered a formal estimate.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "risk:geopolitical-supply-chain-crisis-iran-tariffs-price-increase",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-22",
+    "detail": "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focus went '100% into cost mitigation and supply negotiations' and the project is 'a business decision not made by the sourcing department but implemented throughout the company' (Avoma 26 May). Risk: another geopolitical flare-up in Q3/Q4 could re-pause the deal.",
+    "source": "Next Step 22 Apr 'delays due to strategic team focused on Iran issues and price increases'; Avoma 26 May project pause explanation",
+    "status": "active",
+    "category": "political",
+    "first_raised": "2026-04-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Geopolitical supply-chain crisis (Iran tariffs, price increases) consumed the sourcing team in Q2 and forced the project pause. Tharun said on 26 May their focus went '100% into cost mitigation and supply negotiations' and the project is 'a business decision not made by the sourcing department but implemented throughout the company' (Avoma 26 May). Risk: another geopolitical flare-up in Q3/Q4 could re-pause the deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "risk:multi-vendor-bake-off-with-10-solutions-being-evaluated-shor",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "Multi-vendor bake-off with ~10 solutions being evaluated, shortlist to top 3 planned by end Q1 but not completed due to pause. Coupa (incumbent) is embedded and could counter-propose a CLM or sourcing expansion. Zycus is in the running but not the front-runner. Risk: DuBois picks a Coupa-native expansion or a lower-cost best-of-breed CLM in the Q3 bake-off.",
+    "source": "Avoma 26 Feb: Tharun stated evaluating ~10 vendors, shortlist to top 3 by end Q1",
+    "status": "active",
+    "category": "other",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-vendor bake-off with ~10 solutions being evaluated, shortlist to top 3 planned by end Q1 but not completed due to pause. Coupa (incumbent) is embedded and could counter-propose a CLM or sourcing expansion. Zycus is in the running but not the front-runner. Risk: DuBois picks a Coupa-native expansion or a lower-cost best-of-breed CLM in the Q3 bake-off.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "hygiene:economic-buyer-jackie-zhang-vp-procurement-decision-maker-ro",
+   "type": "hygiene",
+   "value": {
+    "flag": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks) and did not attend any Q2 calls (Feb AI call, March CLM demo, May check-in). Tharun drives the evaluation but defers commercial and budget decisions to the relevant stakeholder the project restarts in Q3 Jackie must re-engage and validate the business case, or this stays a team-level productivity project that can be paused again. Recommended move: book an exec connect with Jackie in Q3 to present a quantified ROI tied to the $300\u2013400M spend base and position Zycus as her strategic pick, not just Tharun's preference."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer Jackie Zhang (VP Procurement, Decision Maker role) has been absent since mid-April (~11 weeks) and did not attend any Q2 calls (Feb AI call, March CLM demo, May check-in). Tharun drives the evaluation but defers commercial and budget decisions to the relevant stakeholder the project restarts in Q3 Jackie must re-engage and validate the business case, or this stays a team-level productivity project that can be paused again. Recommended move: book an exec connect with Jackie in Q3 to present a quantified ROI tied to the $300\u2013400M spend base and position Zycus as her strategic pick, not just Tharun's preference.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-or-business-case-dubois-articulated-pain-f",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI or business case. DuBois articulated pain (fragmented CLM, manual sourcing, no AI analytics) but never quantified savings, cost reduction, or cycle-time improvement across the $300\u2013400M spend base managed by 9\u201310 people. Zycus shared pricing ($85K+ ballpark, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is now in place and the project must pass a cross-department budget gate. Without a board-ready ROI this will not clear that gate. Recommended move: run an ROI workshop with Tharun + Jackie in Q3, quantify savings on contract cycle-time, indirect-spend consolidation, and AI-driven negotiation, and tie it to their spend base to build the business case for the IT approval workflow."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case. DuBois articulated pain (fragmented CLM, manual sourcing, no AI analytics) but never quantified savings, cost reduction, or cycle-time improvement across the $300\u2013400M spend base managed by 9\u201310 people. Zycus shared pricing ($85K+ ballpark, detailed quote 30 Jan) but DuBois never validated value vs cost. Tharun stated on 26 May a new IT governance approval workflow is now in place and the project must pass a cross-department budget gate. Without a board-ready ROI this will not clear that gate. Recommended move: run an ROI workshop with Tharun + Jackie in Q3, quantify savings on contract cycle-time, indirect-spend consolidation, and AI-driven negotiation, and tie it to their spend base to build the business case for the IT approval workflow.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "hygiene:multi-vendor-bake-off-is-frozen-with-no-zycus-differentiatio",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-vendor bake-off is frozen with no Zycus differentiation anchored. Tharun is evaluating ~10 vendors with a plan to shortlist to top 3, but the process paused in April before any finalist was named. Coupa (incumbent for onboarding + invoicing) is the embedded threat if they counter-propose a CLM or sourcing expansion. Zycus has not been positioned as the front-runner and has no unique wedge anchored in the buyer's mind beyond 'we saw good demos'. Recommended move: when the deal restarts, lead with the AI differentiation story (conversational analytics, autonomous negotiation, predictive sourcing) as the strategic layer above Coupa's transactional plumbing, prove seamless D365 + Coupa integration, and make the recap demo an ROI-led business case, not a feature tour, to own the top spot in the shortlist."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-vendor bake-off is frozen with no Zycus differentiation anchored. Tharun is evaluating ~10 vendors with a plan to shortlist to top 3, but the process paused in April before any finalist was named. Coupa (incumbent for onboarding + invoicing) is the embedded threat if they counter-propose a CLM or sourcing expansion. Zycus has not been positioned as the front-runner and has no unique wedge anchored in the buyer's mind beyond 'we saw good demos'. Recommended move: when the deal restarts, lead with the AI differentiation story (conversational analytics, autonomous negotiation, predictive sourcing) as the strategic layer above Coupa's transactional plumbing, prove seamless D365 + Coupa integration, and make the recap demo an ROI-led business case, not a feature tour, to own the top spot in the shortlist.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-07T05:36:47.327228+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Tharunkumar Chandirasekaran",
+    "at_risk": true,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iManage;iSave;eInvoicing;iRequest;Merlin;iRisk;Merlin Intake;iCompliance"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:36:47.327228+05:30",
+   "last_updated": "2026-07-07T05:36:47.327228+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "requirement:deliver-a-recap-demo-sourcing-clm-ai-and-a-fresh-pricing-quo",
+   "type": "requirement",
+   "value": {
+    "date": "2026-05-26",
+    "kind": "explicit",
+    "quote": "When we are trying to resume it, we would love a recap, like, of what we went through so far and where we stand at this point.",
+    "source": "Avoma 26 May 2026",
+    "said_by": "Tharunkumar Chandirasekaran",
+    "addressed": false,
+    "requirement": "Deliver a recap demo (sourcing, CLM, AI) and a fresh pricing quote when the project resumes"
+   },
+   "source": "Tharunkumar Chandirasekaran",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver a recap demo (sourcing, CLM, AI) and a fresh pricing quote when the project resumes",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "requirement:provide-full-ai-module-pricing-and-an-integration-cost-range",
+   "type": "requirement",
+   "value": {
+    "date": "2026-02-26",
+    "kind": "explicit",
+    "quote": "if you can provide us any entire pricing for the AI too, like what level of depth we want this tool to get integrated to the other modules... would be helpful",
+    "source": "Avoma AI Discussion 26 Feb 2026",
+    "said_by": "Tharunkumar Chandirasekaran",
+    "addressed": false,
+    "requirement": "Provide full AI-module pricing and an integration-cost range ahead of the CLM demo"
+   },
+   "source": "Tharunkumar Chandirasekaran",
+   "status": "active",
+   "history": [],
+   "subject": "Provide full AI-module pricing and an integration-cost range ahead of the CLM demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-tharun-an-updated-quote-highlighting-ai-module-pr",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-02-26",
+    "source": "Avoma AI Discussion 26 Feb 2026",
+    "status": "open",
+    "commitment": "Send Tharun an updated quote highlighting AI-module pricing and integration cost, to accompany the recap demo",
+    "deliverable": "Send Tharun an updated quote highlighting AI-module pricing and integration cost, to accompany the recap demo",
+    "grounding_quote": "I can definitely sort of adjust the quote to highlight where the AI is, and then in terms of the integration, that would likely require a further scoping call, but I can get you sort of a range right now"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Send Tharun an updated quote highlighting AI-module pricing and integration cost, to be shared alongside the recap demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "commitment:zycus-prepare-and-schedule-a-recap-demo-covering-the-sourcin",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-05-26",
+    "source": "Avoma 26 May 2026",
+    "status": "open",
+    "commitment": "Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects",
+    "deliverable": "Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects",
+    "grounding_quote": "Prepare and schedule a recap demo that covers sourcing tool features, contract management, and analytics dashboards."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Prepare and schedule a recap demo covering the sourcing board, CLM, and analytics dashboards for when DuBois reconnects",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-the-q3-restart-date-and-reach-back-out-to-sche",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-30",
+    "who": "Buyer",
+    "date": "2026-06-01",
+    "source": "Next_Step_History__c, 1 Jun 2026",
+    "status": "overdue",
+    "commitment": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+    "deliverable": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+    "grounding_quote": "Tharun still main POC, will reconnect end of Q2 to schedule recap demo for all new stakeholders."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T18:45:33.893536+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-05-26",
+      "source": "Avoma Tentative Connect 26 May 2026",
+      "status": "open",
+      "commitment": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "deliverable": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "grounding_quote": "I would suggest to put a pause on this and wait for some time. But when we are trying to resume it, we would love a recap"
+     }
+    },
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "due": "2026-08-01",
+      "who": "Buyer",
+      "date": "2026-05-26",
+      "source": "Avoma Tentative Connect call 26 May 2026",
+      "status": "open",
+      "commitment": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "deliverable": "Confirm the Q3 restart date and reach back out to schedule the recap demo",
+      "grounding_quote": "I would suggest to, like, put a pause on this and wait for some time"
+     }
+    }
+   ],
+   "subject": "Buyer:Confirm the Q3 restart date and reach back out to schedule the recap demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "commitment:buyer-complete-the-it-integration-complexity-assessment-for-",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-02-26",
+    "source": "Avoma 26 Feb 2026",
+    "status": "open",
+    "commitment": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+    "deliverable": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+    "grounding_quote": "Plan to engage IT to assess integration complexity with existing systems before finalizing AI scope and budget."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T09:47:01.634595+05:30",
+     "value": {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-02-26",
+      "source": "Avoma AI Discussion 26 Feb 2026",
+      "status": "overdue",
+      "commitment": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+      "deliverable": "Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+      "grounding_quote": "Plan to engage IT to assess integration complexity with existing systems before finalizing AI scope and budget"
+     }
+    }
+   ],
+   "subject": "Buyer:Complete the IT integration-complexity assessment for D365 + Coupa sync (Ryan Anderson)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:buyer-explicitly-postponed-the-project-to-q3-2026-at-the-ear",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Buyer explicitly postponed the project to Q3 2026 at the earliest, citing a geopolitical cost-mitigation focus and a new internal approval workflow",
+    "source": "Avoma Tentative Connect call 26 May 2026",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer explicitly postponed the project to Q3 2026 at the earliest, citing a geopolitical cost-mitigation focus and a new internal approval workflow",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-jackie-zhang-has-not-been-directly-engaged-on",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "Economic buyer Jackie Zhang has not been directly engaged on any recorded call since the account's earliest engagement window; budget sign-off runs through her and the C-suite",
+    "source": "Avoma AI Discussion 26 Feb 2026",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer Jackie Zhang has not been directly engaged on any recorded call since the account's earliest engagement window; budget sign-off runs through her and the C-suite",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-has-ever-been-produced-against-the-300-400",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "No quantified ROI has ever been produced against the $300-400M spend base; Tharun needs facts to justify the AI spend to his own management",
+    "source": "Avoma AI Discussion 26 Feb 2026",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI has ever been produced against the $300-400M spend base; Tharun needs facts to justify the AI spend to his own management",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "risk:d365-coupa-integration-complexity-and-cost-remains-unscoped-",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "D365 + Coupa integration complexity and cost remains unscoped; Ryan Anderson's IT assessment has not been completed since it was first flagged",
+    "source": "Avoma AI Discussion 26 Feb 2026",
+    "status": "open",
+    "category": "integration",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "D365 + Coupa integration complexity and cost remains unscoped; Ryan Anderson's IT assessment has not been completed",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "risk:a-new-internal-it-governance-team-and-cross-department-appro",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "A new internal IT-governance team and cross-department approval workflow now gates the project beyond the sourcing team's authority.",
+    "source": "Avoma 26 May 2026",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "A new internal IT-governance team and cross-department approval workflow now gates the project beyond the sourcing team",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:management-now-prioritizes-the-sourcing-analytics-board-over",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Management now prioritizes the sourcing/analytics board over the CLM module that had been top priority since Dec 2025; some previously-discussed CLM features may be dropped.",
+    "source": "Avoma 26 May 2026",
+    "status": "open",
+    "category": "change_management",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Management now prioritizes the sourcing/analytics board over CLM (previously top priority since Dec 2025); some previously-discussed CLM features may be dropped",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-jackie-zhang-vp-procurement-the-named-decision-mak",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage Jackie Zhang (VP Procurement, the named Decision Maker) directly rather than relying solely on Tharun -- she has no confirmed contact on any read call since the account's earliest engagement, and budget sign-off runs through her and the C-suite."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage Jackie Zhang (VP Procurement, the named Decision Maker) directly rather than relying solely on Tharun -- she has no confirmed contact on any read call since the account's earliest engagement, and budget sign-off runs through her and the C-suite.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "hygiene:build-a-quantified-roi-tied-to-the-300-400m-spend-base-befor",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build a quantified ROI tied to the $300-400M spend base before Q3, since Tharun said on 26 Feb 2026 he needs 'possible facts' to justify the spend to upper management, and DuBois's new cross-department approval workflow raises that bar further."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build a quantified ROI tied to the $300-400M spend base before Q3, since Tharun said on 26 Feb 2026 he needs 'possible facts' to justify the spend to upper management, and DuBois's new cross-department approval workflow raises that bar further.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "hygiene:protect-clm-s-position-in-scope-as-dubois-s-management-pivot",
+   "type": "hygiene",
+   "value": {
+    "flag": "Protect CLM's position in scope as DuBois's management pivots priority to the sourcing board -- reinforce the CLM/AI differentiation (NegoGenie, obligation extraction) shown on 11 Mar 2026 before the sourcing-only narrative hardens further."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Protect CLM's position in scope as DuBois's management pivots priority to the sourcing board -- reinforce the CLM/AI differentiation (NegoGenie, obligation extraction) shown on 11 Mar 2026 before the sourcing-only narrative hardens further.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T09:47:01.634595+05:30",
+   "last_updated": "2026-07-07T09:47:01.634595+05:30",
+   "last_confirmed": "2026-07-07T09:47:01.634595+05:30"
+  },
+  {
+   "key": "requirement:provide-sandbox-access-for-the-legal-team-to-test-clm-extrac",
+   "type": "requirement",
+   "value": {
+    "date": "2026-03-11",
+    "kind": "explicit",
+    "quote": "One of Chris' main key point for validation is also for him to utilize the sandbox environment to test things out.",
+    "source": "Avoma 11 Mar 2026",
+    "said_by": "Chris Klein",
+    "addressed": false,
+    "requirement": "Provide sandbox access for the legal team to test CLM extraction accuracy on DuBois's own contract samples"
+   },
+   "source": "Chris Klein",
+   "status": "active",
+   "history": [],
+   "subject": "Provide sandbox access for the legal team to test CLM extraction accuracy on DuBois's own contract samples",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-has-ever-been-produced-against-dubois-s-30",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "No quantified ROI has ever been produced against DuBois's $300-400M spend base, and a new cross-department budget-governance workflow now gates project resumption",
+    "source": "Avoma AI Discussion 26 Feb 2026 + Avoma Tentative Connect 26 May 2026",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2026-02-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI has ever been produced against DuBois's $300-400M spend base, and a new cross-department budget-governance workflow now gates project resumption",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-jackie-zhang-has-not-appeared-on-any-recorded",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Economic buyer Jackie Zhang has not appeared on any recorded call since the early Dec 2025 engagement window; Tharun defers exec/budget decisions to her and the C-suite",
+    "source": "Avoma Discovery Session 12 Dec 2025 + Avoma Tentative Connect 26 May 2026",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-12-12"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer Jackie Zhang has not appeared on any recorded call since the early Dec 2025 engagement window; Tharun defers exec/budget decisions to her and the C-suite",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "risk:close-date-of-30-jul-2026-is-unreachable-given-the-buyer-exp",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Close date of 30 Jul 2026 is unreachable given the buyer explicitly paused the project to a Q3 2026 restart",
+    "source": "Avoma Tentative Connect 26 May 2026",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date of 30 Jul 2026 is unreachable given the buyer explicitly paused the project to a Q3 2026 restart",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "risk:a-geopolitical-supply-chain-crisis-tariffs-price-increases-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "A geopolitical supply-chain crisis (tariffs, price increases) consumed 100% of the sourcing team's bandwidth in Q2 2026 and forced the pause; a recurrence could re-pause the deal again",
+    "source": "Avoma Tentative Connect 26 May 2026",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "A geopolitical supply-chain crisis (tariffs, price increases) consumed 100% of the sourcing team's bandwidth in Q2 2026 and forced the pause; a recurrence could re-pause the deal again",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "risk:dubois-s-management-has-repriotized-the-sourcing-analytics-b",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "DuBois's management has repriotized the sourcing/analytics board ahead of CLM (previously the top priority since Dec 2025) and some previously discussed CLM features may be dropped",
+    "source": "Avoma Tentative Connect 26 May 2026",
+    "status": "open",
+    "category": "change_management",
+    "first_raised": "2026-05-26"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "DuBois's management has repriotized the sourcing/analytics board ahead of CLM (previously the top priority since Dec 2025) and some previously discussed CLM features may be dropped",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "hygiene:champion-tharun-is-working-level-only-without-looping-jackie",
+   "type": "hygiene",
+   "value": {
+    "flag": "Champion Tharun is working-level only; without looping Jackie Zhang (VP Procurement, economic buyer) back in, budget approval through DuBois's new cross-department gate stalls regardless of feature fit."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Champion Tharun is working-level only; without looping Jackie Zhang (VP Procurement, economic buyer) back in, budget approval through DuBois's new cross-department gate stalls regardless of feature fit.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "hygiene:dubois-s-roughly-10-vendor-bake-off-never-reached-its-planne",
+   "type": "hygiene",
+   "value": {
+    "flag": "DuBois's roughly 10-vendor bake-off never reached its planned Q1 shortlist; use the Q3 restart request for a recap demo to press DuBois to formally narrow the field to a top 3."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "DuBois's roughly 10-vendor bake-off never reached its planned Q1 shortlist; use the Q3 restart request for a recap demo to press DuBois to formally narrow the field to a top 3.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-has-been-built-against-dubois-s-300-400m-s",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI has been built against DuBois's $300-400M spend base; deliver one proactively before the Q3 restart so it satisfies the new internal budget-approval workflow Tharun described on 26 May 2026."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI has been built against DuBois's $300-400M spend base; deliver one proactively before the Q3 restart so it satisfies the new internal budget-approval workflow Tharun described on 26 May 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T18:45:33.893536+05:30",
+   "last_updated": "2026-07-07T18:45:33.893536+05:30",
+   "last_confirmed": "2026-07-07T18:45:33.893536+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-sandbox-access-and-process-contract-samples-fr",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-03-11",
+    "source": "Avoma 11 Mar 2026",
+    "status": "open",
+    "commitment": "Provide sandbox access and process contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+    "deliverable": "Provide sandbox access and process contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+    "grounding_quote": "We are able to make exceptions in certain cases where... the value of giving you guys that hands on experience will really take you across the line and showing you that Zycus is the solution for you."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide sandbox access and process contract samples from Chris Klein to demonstrate CLM extraction accuracy",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-jackie-zhang-has-never-engaged-directly-on-an",
+   "type": "risk",
+   "value": {
+    "date": "2026-04-13",
+    "detail": "Economic buyer Jackie Zhang has never engaged directly on any call despite repeated scheduling attempts.",
+    "source": "Next_Step_History__c",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-02-17"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer Jackie Zhang has never engaged directly on any call despite repeated scheduling attempts.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:d365-coupa-integration-complexity-and-cost-remain-unscoped-r",
+   "type": "risk",
+   "value": {
+    "date": "2026-02-26",
+    "detail": "D365 + Coupa integration complexity and cost remain unscoped; Ryan Anderson's IT assessment has not been completed.",
+    "source": "Avoma 26 Feb 2026",
+    "status": "open",
+    "category": "integration",
+    "first_raised": "2025-12-03"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "D365 + Coupa integration complexity and cost remain unscoped; Ryan Anderson's IT assessment has not been completed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "risk:project-explicitly-paused-to-q3-2026-due-to-a-geopolitical-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-26",
+    "detail": "Project explicitly paused to Q3 2026 due to a geopolitical cost-mitigation crisis (Iran-related tariffs/price increases); risk of a further pause if the crisis recurs in Q3/Q4.",
+    "source": "Next_Step_History__c + Avoma 26 May 2026",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-04-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Project explicitly paused to Q3 2026 due to a geopolitical cost-mitigation crisis (Iran-related tariffs/price increases); risk of a further pause if the crisis recurs in Q3/Q4.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "hygiene:deliver-the-sandbox-proof-chris-klein-asked-for-on-11-mar-20",
+   "type": "hygiene",
+   "value": {
+    "flag": "Deliver the sandbox proof Chris Klein asked for on 11 Mar 2026 ('I'm not sure... I need to evaluate this') \u2014 it remains the single biggest unresolved credibility gap."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Deliver the sandbox proof Chris Klein asked for on 11 Mar 2026 ('I'm not sure... I need to evaluate this') \u2014 it remains the single biggest unresolved credibility gap.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "hygiene:break-single-threading-jackie-zhang-vp-procurement-decision-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Break single-threading: Jackie Zhang (VP Procurement, Decision Maker) has never engaged directly despite repeated attempts since March 2026 \u2014 use Tharun to broker access now that the project has moved to a company-wide governance review."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Break single-threading: Jackie Zhang (VP Procurement, Decision Maker) has never engaged directly despite repeated attempts since March 2026 \u2014 use Tharun to broker access now that the project has moved to a company-wide governance review.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  },
+  {
+   "key": "hygiene:change-outreach-channel-three-consecutive-email-webinar-invi",
+   "type": "hygiene",
+   "value": {
+    "flag": "Change outreach channel: three consecutive email/webinar-invite attempts (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered \u2014 consider a phone call given the prior success of the 1 Jun bridge call."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Change outreach channel: three consecutive email/webinar-invite attempts (22 Jun, 29 Jun, 7 Jul 2026) have gone unanswered \u2014 consider a phone call given the prior success of the 1 Jun bridge call.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T08:19:58.071603+05:30",
+   "last_updated": "2026-07-09T08:19:58.071603+05:30",
+   "last_confirmed": "2026-07-09T08:19:58.071603+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T08:19:58.071603+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Economic buyer Jackie Zhang has not attended any read call",
+   "1 Jun 2026 bridge call is recorded only in Next_Step_History__c, not in Avoma",
+   "No formal ROI/business case document found in any source",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 7,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "tharunkumar.chandirasekaran@duboischemicals.com",
+   "jackie.zhang@duboischemicals.com (invited, never attended)",
+   "chris.klein@duboischemicals.com",
+   "ryan.anderson@duboischemicals.com (invited 3 Dec 2025)"
+  ],
+  "calls_discovered": 7,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Next_Step_History__c full trail 3 Dec 2025 - 7 Jul 2026; Tasks/Events 90d"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

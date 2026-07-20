@@ -1,0 +1,1784 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Competitive field",
+     "date": "2026-07-13",
+     "quote": "Competitors__c is blank in Salesforce",
+     "source": "Salesforce Competitors__c",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Direct engagement with Decision Maker (John Coyne) and Executive Sponsor (Lucy Moody)",
+     "date": "2026-07-10",
+     "quote": "Hold a post-submission review call... open direct dialogue with John Coyne... Secure executive alignment with Lucy Moody",
+     "source": "Next_Step__c, 2026-07-10",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Stale Next Step language predating RFI submission",
+     "date": "2026-07-10",
+     "quote": "Share the RFI primer with Sophie Onyeks and support the team in refining the draft RFI before release... Follow up with Sophie and Greig Evans once the draft is reviewed and approved for external circulation.",
+     "source": "Next_Step__c text vs. RFI submission Task, 2026-07-10",
+     "status": "resolved",
+     "gap_type": "hygiene"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Avoma call, Birmingham City Council<>Zycus, 2026-04-22",
+     "MEDDPICC 2.0 (CRM), updated 2026-07-07"
+    ],
+    "narrative": "The council has quantified scale (roughly 65 procurement officers and circa 3,000 active contracts, per MEDDPICC 2.0, CRM, 7 Jul 2026) and Sophie Onyeks named the council's annual income as '1,700,000,000' on the 22 Apr 2026 discovery call to underline the scale of the transformation, but no quantified savings, cycle-time, or ROI target has been articulated by the buyer yet. Pain is well described qualitatively; a business case in dollar or hour terms is still missing."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma call, 2026-04-22",
+     "MEDDPICC 2.0 (CRM), updated 2026-07-07",
+     "Email thread with Sophie Onyeks, 2026-06-01 through 2026-07-10"
+    ],
+    "narrative": "Sophie Onyeks (IT Delivery Manager) is the most consistently engaged and responsive contact across the discovery call and every clarification round from Jun-Jul 2026, coordinating the RFI internally. However, she repeatedly self-described her limited authority on the 22 Apr 2026 call ('I'm not going to be one of the big people doing the evaluations... I'm literally just running things... I'm a grunt worker'), so she reads as an engaged coordinator rather than a power-holding champion. The CRM's MEDDPICC 2.0 record (updated 2026-07-07) tentatively points to another named RFI coordinating contact within IT category management as a possible champion, but states that status is 'not yet established' \u2014 that contact is not named here per this sweep's naming policy."
+   },
+   "competition": {
+    "status": "gap",
+    "sources": [
+     "Salesforce Competitors__c (blank)",
+     "RFI email (Task), 2026-06-22"
+    ],
+    "narrative": "Salesforce's Competitors__c field is blank, and no rival vendor has been named in a Salesforce competition field or a verbatim buyer quote read this sweep. The council's own 22 Jun 2026 RFI email was addressed to 'Approved Delivery Partner, OEM and/or Systems Integrator' generally, implying a multi-vendor field, but Zycus has no confirmed visibility into which specific competitors are participating. This is a genuine knowledge gap, not a hygiene gap."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call, Birmingham City Council<>Zycus, 2026-04-22"
+    ],
+    "narrative": "Sophie Onyeks gave a detailed, first-hand account on the 22 Apr 2026 call: the council runs Intend for procurement and Oracle ERP, neither of which handles contract management, so the team relies on 'a lot of Excel spreadsheets... and Sharepoint for documents.' She named the core issue as the lack of 'centralized, very good contract and solid contract management processes,' driven by best-practice and Procurement Act 2023 transformation goals, and confirmed the council cannot currently produce a risk-supplier report on demand ('That would be... too difficult')."
+   },
+   "paper_process": {
+    "status": "partial",
+    "sources": [
+     "RFI email (Task), 2026-06-22",
+     "Next_Step__c, 2026-07-10"
+    ],
+    "narrative": "The framework route (GCA RM6285 Lot 2 / Back Office Software 2) is confirmed as the contracting vehicle, but the deal is still pre-award (ITT closes 7 Aug 2026) so no SOW/MSA/paper mechanics have begun. The Next Step's mutual close plan works back from the incumbent (Intent) contract's August 2027 expiry to sequence selection, contracting and implementation runway."
+   },
+   "economic_buyer": {
+    "status": "partial",
+    "sources": [
+     "Avoma call, 2026-04-22",
+     "Salesforce OpportunityContactRole (John Coyne, Lucy Moody)",
+     "Next_Step__c, 2026-07-10"
+    ],
+    "narrative": "Lucy Moody is named by Sophie Onyeks on the 22 Apr 2026 call as 'the sponsor... for this programme' and carries the title 'Assistant Director, the relevant stakeholder (Executive Sponsor)' in the Salesforce contact role; she reports into John Coyne, tagged Decision Maker and named as Procurement Director on the same call. Neither has had direct Zycus engagement yet \u2014 access runs entirely through Sophie Onyeks. The Next Step (10 Jul 2026) explicitly plans to open direct dialogue with John Coyne by 5 Aug 2026 and build executive alignment with Lucy Moody through Aug 2026, confirming this is still pending, not done."
+   },
+   "decision_process": {
+    "status": "confirmed",
+    "sources": [
+     "MEDDPICC 2.0 (CRM), updated 2026-07-07",
+     "RFI email (Task), 2026-06-22",
+     "Avoma call, 2026-04-22"
+    ],
+    "narrative": "MEDDPICC 2.0 (CRM, 7 Jul 2026) lays out a dated phased process: RFI closed with submissions due 13 Jul 2026 (Zycus submitted 10 Jul 2026, ahead of deadline), ITT issued 13 Jul 2026 (today), ITT closes 7 Aug 2026, evaluation/award 10 Aug-4 Sep 2026, mobilisation w/c 7 Sep 2026, go-live/hypercare May 2027. On the 22 Apr 2026 call the commercial route (framework vs open market) was still undecided ('Don't know... reached out to 7 suppliers'); the subsequent RFI email confirms the route is GCA RM6285 Lot 2 (Back Office Software 2)."
+   },
+   "decision_criteria": {
+    "status": "confirmed",
+    "sources": [
+     "RFI email (Task), 2026-06-22",
+     "MEDDPICC 2.0 (CRM), updated 2026-07-07"
+    ],
+    "narrative": "The council's 22 Jun 2026 RFI email under GCA RM6285 Lot 2 explicitly scopes strategic sourcing, contract lifecycle management, supplier onboarding/management, procurement intake, and governance/audit workflows, with mandatory integration to the relevant stakeholder (ERP) and alignment to the UK Government Central Digital Platform. MEDDPICC 2.0 (CRM, 7 Jul 2026) confirms full AP automation/invoice-payment processing is explicitly out of scope, and flags a phased approach for requisitioning/catalogue management."
+   }
+  },
+  "footprints": {
+   "alive": true,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 6.0,
+    "top_event": "[Clari - Email Sent] Birmingham City Council RFI \u2013 Enterprise Procurement & Contract Management Platform \u2013 Zycus Response",
+    "events_30d": 6,
+    "points_60d": 27.4,
+    "top_weight": 6.0,
+    "points_90d_process": 43.3
+   },
+   "last_meeting": "2026-04-22",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-07-10",
+   "last_buyer_touch": "2026-07-07",
+   "buyer_touches_30d": 3,
+   "buyer_touches_60d": 4,
+   "stage_cadence_days": 21,
+   "general_last_activity": "2026-07-10",
+   "days_since_buyer_touch": 6
+  },
+  "opp_trends": {
+   "stage_trend": 0.555,
+   "amount_trend": 0.356,
+   "stage_trend_detail": "Stage qualified -> formal evaluation (18d ago)",
+   "amount_trend_detail": "Amount 150000 -> 250000 (62d ago)"
+  },
+  "day_summary": {
+   "as_of": "2026-07-10",
+   "items": [
+    {
+     "at": "2026-07-10",
+     "kind": "email",
+     "name": "Birmingham City Council RFI \u2013 Enterprise Procurement & Contract Management Platform \u2013 Zycus Response",
+     "summary": "Please find attached Zycus' response to the RFI, submitted ahead of the close of business deadline on 13th July 2026. Could you also let us know your anticipated timing for confirming whether we've progressed to the next stage?"
+    },
+    {
+     "at": "2026-07-10",
+     "kind": "email",
+     "name": "FW: Request for Information under GCA RM6285, Lot 2 'Specialist Software Solutions' for the Provision of a Procurement & Contract Management Solution",
+     "summary": "Dear both See attached and below.See list of delivery partners on the list for the Framework we are using. Regards Sophie OFFICIAL From:Jamie Parris Sent:Monday, June 22, 2026 15:05 Cc:Sophie Onyeks Subject:Request for Information under GCA RM6285, Lot 2\u2026"
+    },
+    {
+     "at": "2026-07-10",
+     "kind": "email",
+     "name": "Following Up \u2013 Zycus & Birmingham City Council | Source-to-Pay",
+     "summary": "I hope you're doing well. My name is Claire Hudson, I'm reaching out as I've recently taken over the relationship with Birmingham City Council and wanted to formally introduce myself.I've been fully briefed on the excellent introductory conversation held in\u2026"
+    },
+    {
+     "at": "2026-07-10",
+     "kind": "email",
+     "name": "Re: Following Up \u2013 Zycus & Birmingham City Council | Source-to-Pay",
+     "summary": "Great to connect with you too.Yes, I'm your main point of contact going forward, though Shrika remains part of the wider team if needed, everything comes through me from here.Completely understand, leadership transitions take time to settle and it sounds like\u2026"
+    },
+    {
+     "at": "2026-06-25",
+     "kind": "movement",
+     "name": "Stage changed",
+     "summary": "Stage moved Qualified \u2192 Formal Evaluation."
+    }
+   ],
+   "source": "sf_activity",
+   "overall": "Most recent activity was on 10 Jul: 4 emails \u2014 Following Up \u2013 Zycus & Birmingham City Council | Source-to-Pay. Recent deal changes: Stage moved Qualified \u2192 Formal Evaluation."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Moving",
+    "deal_risk": 58.0,
+    "win_position": 47.0,
+    "deal_momentum": 56.0,
+    "customer_commitment": 42.0,
+    "forecast_confidence": 36.0
+   },
+   "cro_panel": {
+    "intro": "The deal is a live, buyer-driven public-sector RFI that Zycus met on deadline, but it remains single-threaded through an engaged coordinator with limited authority, with no direct line yet to the named Decision Maker or Executive Sponsor, and no confirmed visibility into the competitive field",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "Too close to call.",
+      "score": 47,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Economic buyer and sponsor untouched; John Coyne (decision maker) and Lucy Moody (exec sponsor) have had zero Zycus engagement; both are only targeted for Jul/Aug outreach. \u25ba Convert the Greig Evans introduction and Lucy Moody sponsor touch into real meetings before the shortlist forms",
+        "tone": "warn"
+       },
+       {
+        "text": "Champion has no authority; Sophie Onyeks is responsive across every touchpoint but has 'explicitly and repeatedly disclaimed evaluation authority.' \u25ba Use Sophie purely as a broker to Greig Evans/John Coyne, not as the influence path",
+        "tone": "warn"
+       },
+       {
+        "text": "Competitive field is genuinely open; the council's RFI was addressed generally to 'Approved Delivery Partner, OEM and/or Systems Integrator,' implying multiple vendors with none named or ruled out",
+        "tone": "warn"
+       },
+       {
+        "text": "Commercial and stage trajectory both up; amount moved $150K\u2192$250K and stage advanced Qualified\u2192Formal Evaluation inside the last ~2 months, a real buyer-side signal of increasing scope/seriousness",
+        "tone": "good"
+       },
+       {
+        "text": "Buyer's own process is genuinely live; the RM6285 Lot 2 RFI is active with a firm 10 Jul 2026 response deadline, not a stalled or hypothetical deal",
+        "tone": "good"
+       },
+       {
+        "text": "Single-threaded account; Sophie Onyeks remains the only substantively engaged contact after 82+ days since the one recorded meeting",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Lukewarm \u2014 some motion, but not strong.",
+      "score": 56,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Buyer issued a live RFI; the council released the RM6285 Lot 2 RFI on 22 Jun 2026, a real buyer-owned action that resets the engagement clock despite the last meeting being 82 days ago",
+        "tone": "good"
+       },
+       {
+        "text": "Next step is fresh and forward-dated; dated milestones run through Aug 2026; RFI response 10 Jul, Greig Evans introduction 21 Jul, post-submission review 5 Aug, exec alignment through August",
+        "tone": "good"
+       },
+       {
+        "text": "No live meeting in 82 days; the only recorded session is the 22 Apr 2026 intro call; everything since has been email/clarification, not a buyer session",
+        "tone": "warn"
+       },
+       {
+        "text": "Zero forward calendar visibility; next_scheduled_meeting is null, so there's no dated future buyer session locked yet",
+        "tone": "warn"
+       },
+       {
+        "text": "Deal is strengthening on the record; amount raised $150K\u2192$250K (62 days ago) and stage advanced Qualified\u2192Formal Evaluation (18 days ago)",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 58,
+      "title": "What could lose it",
+      "footer": "Competitive picture: No competitor can be named with adequate anchoring this sweep.",
+      "bullets": [
+       {
+        "text": "Single-threaded through a powerless contact; Sophie Onyeks has disclaimed evaluation authority and no line exists yet to the Decision Maker or Exec Sponsor. \u25ba Force multi-threading via Greig Evans/John Coyne before the RFP shortlist locks",
+        "tone": "warn"
+       },
+       {
+        "text": "Unconfirmed but real competitive exposure; the RFI's generic addressing to multiple delivery partners signals a live multi-vendor field with no rival named or excluded",
+        "tone": "warn"
+       },
+       {
+        "text": "Long runway on an early-stage deal; 283 days to a 22 Apr 2027 close while still at RFI/Formal Evaluation, racing an Aug 2027 incumbent contract expiry",
+        "tone": "warn"
+       },
+       {
+        "text": "Track record of buyer-side stall; a council leadership change previously delayed RFI release for months, per Sophie Onyeks, showing this account's vulnerability to internal disruption",
+        "tone": "warn"
+       },
+       {
+        "text": "Process has resumed and is buyer-driven; the RFI is now issued and active with a dated Zycus response deadline, lowering near-term stall risk versus the earlier delay period",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Follow up with Sophie Onyeks for the council's anticipated RFI/ITT outcome-notification timing. (by 20 Jun)",
+       "Ask Sophie Onyeks to broker a direct introduction to Greig Evans, the procurement lead approving the RFI for release. (by 21 Jun)",
+       "Hold a post-submission review call to confirm the RFP/demo timeline and open dialogue with John Coyne. (by 5 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Birmingham City Council_UK \u2014 Formal Evaluation \u00b7 $250K \u00b7 closes 22 Mar",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 58.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded through a powerless contact \u2014 Sophie Onyeks has disclaimed evaluation authority and no line exists yet to the Decision Maker or Exec Sponsor. \u25ba Force multi-threading via Greig Evans/John Coyne before the RFP shortlist locks.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Unconfirmed but real competitive exposure \u2014 the RFI's generic addressing to multiple delivery partners signals a live multi-vendor field with no rival named or excluded.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Long runway on an early-stage deal \u2014 283 days to a 2027-04-22 close while still at RFI/Formal Evaluation, racing an Aug 2027 incumbent contract expiry.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Track record of buyer-side stall \u2014 a council leadership change previously delayed RFI release for months, per Sophie Onyeks, showing this account's vulnerability to internal disruption.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Process has resumed and is buyer-driven \u2014 the RFI is now issued and active with a dated Zycus response deadline, lowering near-term stall risk versus the earlier delay period.",
+      "points": 1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Single-threaded through a powerless contact \u2014 Sophie Onyeks has disclaimed evaluation authority and no line exists yet to the Decision Maker or Exec Sponsor. \u25ba Force multi-threading via Greig Evans/John Coyne before the RFP shortlist locks.",
+      "tone": "warn"
+     },
+     {
+      "text": "Unconfirmed but real competitive exposure \u2014 the RFI's generic addressing to multiple delivery partners signals a live multi-vendor field with no rival named or excluded.",
+      "tone": "warn"
+     },
+     {
+      "text": "Long runway on an early-stage deal \u2014 283 days to a 2027-04-22 close while still at RFI/Formal Evaluation, racing an Aug 2027 incumbent contract expiry.",
+      "tone": "warn"
+     },
+     {
+      "text": "Track record of buyer-side stall \u2014 a council leadership change previously delayed RFI release for months, per Sophie Onyeks, showing this account's vulnerability to internal disruption.",
+      "tone": "warn"
+     },
+     {
+      "text": "Process has resumed and is buyer-driven \u2014 the RFI is now issued and active with a dated Zycus response deadline, lowering near-term stall risk versus the earlier delay period.",
+      "tone": "good"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Economic buyer and sponsor untouched \u2014 John Coyne (decision maker) and Lucy Moody (exec sponsor) have had zero Zycus engagement; both are only targeted for Jul/Aug outreach. \u25ba Convert the Greig Evans introduction and Lucy Moody sponsor touch into real meetings before the shortlist forms.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion has no authority \u2014 Sophie Onyeks is responsive across every touchpoint but has 'explicitly and repeatedly disclaimed evaluation authority.' \u25ba Use Sophie purely as a broker to Greig Evans/John Coyne, not as the influence path.",
+      "tone": "warn"
+     },
+     {
+      "text": "Competitive field is genuinely open \u2014 the council's RFI was addressed generally to 'Approved Delivery Partner, OEM and/or Systems Integrator,' implying multiple vendors with none named or ruled out.",
+      "tone": "warn"
+     },
+     {
+      "text": "Commercial and stage trajectory both up \u2014 amount moved $150K\u2192$250K and stage advanced Qualified\u2192Formal Evaluation inside the last ~2 months, a real buyer-side signal of increasing scope/seriousness.",
+      "tone": "good"
+     },
+     {
+      "text": "Buyer's own process is genuinely live \u2014 the RM6285 Lot 2 RFI is active with a firm 10 Jul 2026 response deadline, not a stalled or hypothetical deal.",
+      "tone": "good"
+     },
+     {
+      "text": "Single-threaded account \u2014 Sophie Onyeks remains the only substantively engaged contact after 82+ days since the one recorded meeting.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Buyer issued a live RFI \u2014 the council released the RM6285 Lot 2 RFI on 22 Jun 2026, a real buyer-owned action that resets the engagement clock despite the last meeting being 82 days ago.",
+      "tone": "good"
+     },
+     {
+      "text": "Next step is fresh and forward-dated \u2014 dated milestones run through Aug 2026: RFI response 10 Jul, Greig Evans introduction 21 Jul, post-submission review 5 Aug, exec alignment through August.",
+      "tone": "good"
+     },
+     {
+      "text": "No live meeting in 82 days \u2014 the only recorded session is the 22 Apr 2026 intro call; everything since has been email/clarification, not a buyer session.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zero forward calendar visibility \u2014 next_scheduled_meeting is null, so there's no dated future buyer session locked yet.",
+      "tone": "warn"
+     },
+     {
+      "text": "Deal is strengthening on the record \u2014 amount raised $150K\u2192$250K (62 days ago) and stage advanced Qualified\u2192Formal Evaluation (18 days ago).",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Council issued a formal RFI \u2014 RM6285 Lot 2 sent 22 Jun 2026 to approved delivery partners, a real procurement-owned deliverable, not a soft signal.",
+      "tone": "good"
+     },
+     {
+      "text": "Buyer is customizing the evaluation for AI \u2014 Sophie confirmed on the 22 Apr call the council is adding an RFI question specifically to assess AI capability.",
+      "tone": "good"
+     },
+     {
+      "text": "No executive sponsorship locked \u2014 Lucy Moody's exec-level backing is still an Aug 2026 target, not a secured commitment.",
+      "tone": "warn"
+     },
+     {
+      "text": "No security/procurement deep-dive yet \u2014 beyond the RFI itself, no confirmed InfoSec, reference, or procurement review session is on record.",
+      "tone": "warn"
+     },
+     {
+      "text": "Commitment is process-level, not stakeholder-level \u2014 the buyer's investment so far is the RFI mechanism, not a champion or exec putting weight behind Zycus specifically.",
+      "tone": "warn"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 47.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer and sponsor untouched \u2014 John Coyne (decision maker) and Lucy Moody (exec sponsor) have had zero Zycus engagement; both are only targeted for Jul/Aug outreach. \u25ba Convert the Greig Evans introduction and Lucy Moody sponsor touch into real meetings before the shortlist forms.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion has no authority \u2014 Sophie Onyeks is responsive across every touchpoint but has 'explicitly and repeatedly disclaimed evaluation authority.' \u25ba Use Sophie purely as a broker to Greig Evans/John Coyne, not as the influence path.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Competitive field is genuinely open \u2014 the council's RFI was addressed generally to 'Approved Delivery Partner, OEM and/or Systems Integrator,' implying multiple vendors with none named or ruled out.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Commercial and stage trajectory both up \u2014 amount moved $150K\u2192$250K and stage advanced Qualified\u2192Formal Evaluation inside the last ~2 months, a real buyer-side signal of increasing scope/seriousness.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Buyer's own process is genuinely live \u2014 the RM6285 Lot 2 RFI is active with a firm 10 Jul 2026 response deadline, not a stalled or hypothetical deal.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded account \u2014 Sophie Onyeks remains the only substantively engaged contact after 82+ days since the one recorded meeting.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 56.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Buyer issued a live RFI \u2014 the council released the RM6285 Lot 2 RFI on 22 Jun 2026, a real buyer-owned action that resets the engagement clock despite the last meeting being 82 days ago.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Next step is fresh and forward-dated \u2014 dated milestones run through Aug 2026: RFI response 10 Jul, Greig Evans introduction 21 Jul, post-submission review 5 Aug, exec alignment through August.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No live meeting in 82 days \u2014 the only recorded session is the 22 Apr 2026 intro call; everything since has been email/clarification, not a buyer session.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero forward calendar visibility \u2014 next_scheduled_meeting is null, so there's no dated future buyer session locked yet.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Deal is strengthening on the record \u2014 amount raised $150K\u2192$250K (62 days ago) and stage advanced Qualified\u2192Formal Evaluation (18 days ago).",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Sophie Onyeks confirmed on the 22 Apr 2026 call that current requirements don't formally include AI but the council is adding an RFI question specifically to assess AI capability: 'our requirements at the moment doesn't don't include AI. We",
+     "expectations_fit": "Zycus' proposed scope tracks closely to the council's stated RFI requirements: mandatory Oracle Cloud Fusion integration, Central Digital Platform/Procurement Act 2023 transparency alignment, and an upstream Source-to-Contract scope explici",
+     "north_star_verdict": "Pipeline is appropriately conservative: the council is still running its own competitive RFI/ITT under RM6285 Lot 2 with no vendor down-select yet, and Zycus has no direct engagement with the named Decision Maker (John Coyne) or Executive S",
+     "positioning_strength": "Zycus is deliberately leading its RFI response with Merlin/agentic AI positioning per the current Next Step, in response to the council's own stated interest in evaluating AI capability."
+    },
+    "deal": {
+     "stage": "Formal Evaluation",
+     "amount": 250000.0,
+     "opp_id": "006P700000X6W3q",
+     "account": "Birmingham City Council_UK",
+     "opp_name": "Birmingham City Council_UK_S2C_2026",
+     "next_step": "By 10 Jul 2026: Complete and submit the written RFI response with the EY bid team, leading with Zycus\u2019 connected S2C platform, Merlin / agentic AI, Oracle integration, contract lifecycle management, supplier risk reporting, and standardized intake story. Confirm written receipt with Sophie Onyeks and close out the RM6285 Lot 2 framework-route clarification before the response goes out. By 21 Jul 2026: Ask Sophie Onyeks to broker a direct introduction to Greig Evans so Zycus is multi-threaded to the procurement lead who reviews and approves the RFI for external release. By 5 Aug 2026: Hold a post-submission review call to confirm the RFP/demo timeline and open direct dialogue with John Coyne on procurement mandate, evaluation criteria, and decision process. Through Aug 2026: Secure executive alignment with Lucy Moody as the RFP shortlist forms and position Zycus at sponsor level around the transformation outcome. Mutual close plan: RFI \u2192 RFP/demo \u2192 shortlist \u2192 contract, working back from the August 2027 incumbent Intent contract expiry to ensure selection, contracting, and implementation runway. They have had a change in leadership which is why it has taken so long - We have had a change in leadership which has delayed the project. It should pick up at pace now, but we aren\u2019t in a position to send out the RFI yet. I will let you know when we are. I am hoping it will be soon. We will request demos after receiving the RFI if we feel we need demos at this stage. It is something we haven\u2019t discussed in detail with the team yet. Claire is chasing on this for a update. Share the RFI primer with Sophie Onyeks and support the team in refining the draft RFI before release, especially around AI capabilities, Oracle integration, procurement volumes, framework preference, and implementation model. Follow up with Sophie and Greig Evans once the draft is reviewed and approved for external circulation.",
+     "close_date": "2027-04-22",
+     "stage_tier": "mid",
+     "days_to_close": 283,
+     "forecast_category": "Pipeline",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-10"
+    },
+    "trends": {
+     "stage_trend": 0.555,
+     "amount_trend": 0.356,
+     "stage_trend_detail": "Stage qualified -> formal evaluation (18d ago)",
+     "amount_trend_detail": "Amount 150000 -> 250000 (62d ago)"
+    },
+    "champion": "Sophie Onyeks is engaged and responsive across every touchpoint since April 2026 but has explicitly and repeatedly disclaimed evaluation authority; a stronger champion with access to power has not yet been secured.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "partial",
+     "competition": "gap",
+     "identify_pain": "confirmed",
+     "paper_process": "partial",
+     "economic_buyer": "partial",
+     "decision_process": "confirmed",
+     "decision_criteria": "confirmed"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2026-04-22",
+       "minutes": 31,
+       "subject": "Introductory call - Birmingham City Council<>Zycus",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 1,
+     "last_date": "2026-04-22",
+     "next_scheduled": null,
+     "total_all_time": 1,
+     "days_since_last": 82,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "No competitor can be named with adequate anchoring this sweep. Salesforce's Competitors__c field is blank, and while the council's 22 Jun 2026 RFI email was addressed generally to 'Approved Delivery Partner, OEM and/or Systems Integrator' (implying a multi-vendor field), no specific rival has been confirmed in a Salesforce competition field or a verbatim buyer quote. This is treated as an open kno",
+     "competitors": []
+    },
+    "vulnerabilities": [
+     "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor.",
+     "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed",
+     "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug an",
+     "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Sale"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 3,
+     "engagement_points_60d": 27.4,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 4,
+     "days_since_last_meeting": 82
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 27.4,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 42.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Council issued a formal RFI \u2014 RM6285 Lot 2 sent 22 Jun 2026 to approved delivery partners, a real procurement-owned deliverable, not a soft signal.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Buyer is customizing the evaluation for AI \u2014 Sophie confirmed on the 22 Apr call the council is adding an RFI question specifically to assess AI capability.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No executive sponsorship locked \u2014 Lucy Moody's exec-level backing is still an Aug 2026 target, not a secured commitment.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No security/procurement deep-dive yet \u2014 beyond the RFI itself, no confirmed InfoSec, reference, or procurement review session is on record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Commitment is process-level, not stakeholder-level \u2014 the buyer's investment so far is the RFI mechanism, not a champion or exec putting weight behind Zycus specifically.",
+      "points": -1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 36.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "champion": {
+    "src": "MEDDPICC 2.0",
+    "value": "Jamie Parris (Interim Head of IT Category Management, Digital & Technology Services) - named RFI contact coordinating th",
+    "present": true,
+    "age_days": 5
+   },
+   "commercial": {
+    "src": "MEDDPICC 2.0",
+    "value": "Phased approach: Phase 1 soft market test/demos, Phase 2 competitive procurement via a compliant framework (likely GCA B",
+    "present": true,
+    "age_days": 5
+   },
+   "exec_access": {
+    "src": "MEDDPICC 2.0",
+    "value": "Not explicitly named in the RFI - needs confirmation. Jamie Parris (Interim Head of IT Category Management, DTS) is the ",
+    "present": true,
+    "age_days": 5
+   },
+   "differentiation": {
+    "src": "MEDDPICC 2.0",
+    "value": "Council wants a single enterprise-wide upstream procurement platform to ensure compliance with the Procurement Act 2023 ",
+    "present": true,
+    "age_days": 5
+   }
+  },
+  "scope_change": {
+   "to": "Upstream Source-to-Contract scope (sourcing, CLM, supplier management/risk, intake, governance)",
+   "from": "Upstream Source-to-Contract scope (sourcing, CLM, supplier management/risk, intake, governance)",
+   "detail": "Opportunity products (iContract, iSource, iManage, iSupplier, Merlin/Merlin Intake, iLogix, iRisk, iCompliance, ANA) track closely to the RFI's stated Source-to-Contract scope, with full AP automation/invoice processing explicitly excluded per the council's 22 Jun 2026 RFI email.",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "Sophie Onyeks confirmed on the 22 Apr 2026 call that current requirements don't formally include AI but the council is adding an RFI question specifically to assess AI capability: 'our requirements at the moment doesn't don't include AI. We're adding a question in there to see what kind of capabilities you've got.'"
+  },
+  "business_case": {
+   "status": "partial",
+   "evidence": "Pain is clearly and repeatedly articulated (fragmented systems, manual Excel/SharePoint contract management, inability to report on risk suppliers), but no quantified savings, ROI, or efficiency target has been stated by the buyer (Avoma call, 2026-04-22; MEDDPICC 2.0, CRM, 2026-07-07)."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2026-06-01",
+     "change": "New Zycus account owner (Claire Hudson) introduced herself to Sophie Onyeks, replacing the prior contact"
+    },
+    {
+     "date": "2026-06-22",
+     "change": "Council issued the formal RFI under GCA RM6285 Lot 2, scoping an upstream Source-to-Contract platform integrating with Oracle Cloud Fusion and the UK Central Digital Platform"
+    },
+    {
+     "date": "2026-06-26",
+     "change": "Zycus sent RFI clarification questions to the council as a tracked spreadsheet"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "Council confirmed submission channel is email, not the In-tend portal"
+    },
+    {
+     "date": "2026-07-10",
+     "change": "Zycus submitted its written RFI response ahead of the 13 Jul 2026 deadline and asked for the outcome-notification timeline"
+    }
+   ],
+   "summary": "Since the 22 Apr 2026 discovery call, the relationship has moved entirely through email: a new account owner introduction (1 Jun 2026), the formal RFI issuance (22 Jun 2026), two rounds of written clarification questions (26 and 29 Jun 2026), submission-channel confirmation (7 Jul 2026), and the RFI response submission ahead of deadline (10 Jul 2026)."
+  },
+  "forecast_read": {
+   "math": "283 days to close (13 Jul 2026 -> 22 Apr 2027). Opportunity created 2026-04-22, so ~82 days in the pipeline, all inside Formal Evaluation. RFI submitted 10 Jul 2026, ITT issued 13 Jul 2026 (today), ITT closes 7 Aug 2026, evaluation/award 10 Aug-4 Sep 2026, mobilisation w/c 7 Sep 2026, go-live/hypercare May 2027 (MEDDPICC 2.0, CRM, 7 Jul 2026). Recorded close date sits ~7-8 months after the stated award window but roughly aligns with the incumbent contract's August 2027 expiry (Next Step, 10 Jul 2026) plus implementation runway to the May 2027 go-live target \u2014 worth a rep reconciliation but not indefensible.",
+   "reason": "Pipeline is appropriately conservative: the council is still running its own competitive RFI/ITT under RM6285 Lot 2 with no vendor down-select yet, and Zycus has no direct engagement with the named Decision Maker (John Coyne) or Executive Sponsor (Lucy Moody). The long close-date runway is consistent with the CRM's own decision-process timeline (evaluation/award 10 Aug-4 Sep 2026, mobilisation Sep 2026, go-live/hypercare May 2027) bridging to the incumbent Intent contract's August 2027 expiry cited in the Next Step, rather than an over-optimistic date.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iContract;iSource;iManage;iSupplier;Merlin;iLogix;iRisk;Merlin Intake;iCompliance;ANA"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.9",
+    "sum": "10.4",
+    "win": "10.9",
+    "todo": "10.4",
+    "sweep": "10.4",
+    "extract": "10.6",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-13"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "John Coyne",
+     "risk": "No direct Zycus contact yet; named only via Sophie Onyeks on the discovery call",
+     "role": "Decision Maker",
+     "email": "john.coyne@birmingham.gov.uk",
+     "title": "Procurement Director",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown (not yet directly engaged)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-04-22"
+    },
+    {
+     "name": "Sophie Onyeks",
+     "risk": "Self-describes limited evaluation authority ('I'm a grunt worker'); primary/sole active thread",
+     "role": "Influencer",
+     "email": "sophie.onyeks@birmingham.gov.uk",
+     "title": "IT Delivery Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "cooperative, engaged",
+     "_matched_ai": true,
+     "last_contact_date": "2026-07-07"
+    },
+    {
+     "name": "Greig Evans",
+     "risk": "Reviews/approves the RFI for external release but has no direct Zycus line; introduction requested for 2026-07-21",
+     "role": "Evaluator",
+     "email": "greig.evans@birmingham.gov.uk",
+     "title": "Procurement Lead",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown (not yet directly engaged)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-04-22"
+    },
+    {
+     "name": "Lucy Moody",
+     "risk": "Named as programme sponsor but no direct Zycus contact; executive alignment targeted through Aug 2026",
+     "role": "Evaluator",
+     "email": "lucy.moody@birmingham.gov.uk",
+     "title": "Assistant Director, Strategic Procurement Operations (Executive Sponsor)",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown (not yet directly engaged)",
+     "_matched_ai": true,
+     "last_contact_date": "2026-04-22"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-07-10",
+     "change": "new",
+     "detail": "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-13T17:15:04.623426+05:30",
+     "first_raised": "2026-04-22",
+     "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+    },
+    {
+     "date": "2026-06-01",
+     "change": "new",
+     "detail": "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed on schedule.",
+     "status": "acknowledged",
+     "category": "timeline",
+     "first_seen": "2026-07-13T17:15:04.623426+05:30",
+     "first_raised": "2026-06-01",
+     "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+    },
+    {
+     "date": "2026-07-10",
+     "change": "new",
+     "detail": "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug and through Aug 2026 respectively.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-13T17:15:04.623426+05:30",
+     "first_raised": "2026-04-22",
+     "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+    },
+    {
+     "date": "2026-07-13",
+     "change": "new",
+     "detail": "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Salesforce field or buyer quote.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-13T17:15:04.623426+05:30",
+     "first_raised": "2026-06-22",
+     "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 56.0,
+   "win": 47.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "summary": "",
+   "severity": null,
+   "generated_at": "2026-07-13",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Commercials",
+    "text": "Zycus submitted its written RFI response on 10 Jul 2026, three days ahead of the 13 Jul close-of-business deadline under GCA RM6285 Lot 2, and immediately asked the council to confirm the timeline for notifying bidders of outcome.",
+    "tone": "pos"
+   },
+   {
+    "lens": "Competition",
+    "text": "The RFI was addressed to multiple approved delivery partners and systems integrators, but no specific rival vendor has been named in a Salesforce field or a buyer quote this sweep, leaving the competitive field genuinely unconfirmed.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Last meeting",
+    "text": "The only recorded call remains the discovery call on 22 Apr 2026 (about 12 weeks ago); every touchpoint since then, including the Jun-Jul clarification rounds and the RFI submission, has been email-only, with no further call or demo held.",
+    "tone": "neu"
+   },
+   {
+    "lens": "New requirement",
+    "text": "The rep's own plan (dated 10 Jul 2026) calls for Sophie Onyeks to broker a direct introduction to Greig Evans, the procurement lead who reviews and approves the RFI for external release, by 21 Jul 2026: Zycus still has no direct line to him.",
+    "tone": "warn"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": true,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": true,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma call, 2026-04-22; email thread, 2026-06-01 through 2026-07-10",
+   "at_risk": false,
+   "summary": "Sophie Onyeks is engaged and responsive across every touchpoint since April 2026 but has explicitly and repeatedly disclaimed evaluation authority; a stronger champion with access to power has not yet been secured.",
+   "champion": "Sophie Onyeks",
+   "strength": "developing"
+  },
+  "expansion_context": {
+   "note": "",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-20",
+     "action": "Follow up with Sophie Onyeks for the council's anticipated RFI/ITT outcome-notification timing.",
+     "horizon": "next_7_days",
+     "trigger": "10 Jul 2026 question to the council remains unanswered",
+     "trigger_date": "2026-07-10",
+     "expected_effect": "Clarity on the evaluation timeline to plan resourcing and next-stage prep."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-21",
+     "action": "Ask Sophie Onyeks to broker a direct introduction to Greig Evans, the procurement lead approving the RFI for release.",
+     "horizon": "next_14_days",
+     "trigger": "Rep's own Next Step deadline for multi-threading",
+     "trigger_date": "2026-07-10",
+     "expected_effect": "Multi-thread beyond Sophie Onyeks into the evaluator who controls RFI release and approval."
+    },
+    {
+     "rank": 3,
+     "owner": "Deal team",
+     "act_by": "2026-08-05",
+     "action": "Hold a post-submission review call to confirm the RFP/demo timeline and open dialogue with John Coyne.",
+     "horizon": "next_30_days",
+     "trigger": "ITT closes 7 Aug 2026; need Decision-Maker engagement before award",
+     "trigger_date": "2026-07-10",
+     "expected_effect": "Direct line to the Decision Maker on procurement mandate, evaluation criteria and decision process."
+    },
+    {
+     "rank": 4,
+     "owner": "Executive sponsor",
+     "act_by": "2026-08-31",
+     "action": "Begin building executive alignment with Lucy Moody ahead of the RFP shortlist forming.",
+     "horizon": "next_30_days",
+     "trigger": "Evaluation/award window opens 10 Aug 2026 per MEDDPICC 2.0",
+     "trigger_date": "2026-07-10",
+     "expected_effect": "Sponsor-level access as the shortlist is decided, ahead of the Aug-Sep 2026 award window."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [],
+   "cooling": false,
+   "summary": "Engagement is genuinely live (buyer email reply 2026-07-07, RFI submission 2026-07-10) and process-anchored to a dated ITT, but power access and competitive visibility remain unproven."
+  },
+  "north_star_verdict": {
+   "source": "forecast_read_adapter",
+   "summary": "Pipeline is appropriately conservative: the council is still running its own competitive RFI/ITT under RM6285 Lot 2 with no vendor down-select yet, and Zycus has no direct engagement with the named Decision Maker (John Coyne) or Executive Sponsor (Lucy Moody). The long close-date runway is consisten",
+   "verdict": "On Track"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Break single-threading: secure direct engagement with John Coyne (Decision Maker) and Lucy Moody (Executive Sponsor) before the ITT closes 7 Aug 2026 \u2014 every touchpoint currently runs through Sophie Onyeks, who has repeatedly said she isn't an evaluator.",
+    "Confirm the competitive field once outcome timing is known \u2014 the RFI went to multiple approved delivery partners, but Zycus has no visibility into which specific vendors are responding.",
+    "Reconcile the recorded close date (22 Apr 2027) against the CRM's own award window (10 Aug-4 Sep 2026) so the forecast reflects the real RM6285 Lot 2 timeline."
+   ],
+   "summary": "The deal is on-process for a live public-sector RFI/ITT but is thin on power access and competitive visibility."
+  },
+  "customer_preference": {
+   "level": "none",
+   "evidence": "No buyer-voiced preference for Zycus over other bidders has been recorded in any call, email, or CRM field this sweep."
+  },
+  "competitive_position": {
+   "summary": "No competitor can be named with adequate anchoring this sweep. Salesforce's Competitors__c field is blank, and while the council's 22 Jun 2026 RFI email was addressed generally to 'Approved Delivery Partner, OEM and/or Systems Integrator' (implying a multi-vendor field), no specific rival has been confirmed in a Salesforce competition field or a verbatim buyer quote. This is treated as an open knowledge gap rather than a filled-in competitive picture.",
+   "competitors": []
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "The deal is a live, buyer-driven public-sector RFI that Zycus met on deadline, but it remains single-threaded through an engaged coordinator with limited authority, with no direct line yet to the named Decision Maker or Executive Sponsor, and no confirmed visibility into the competitive field.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Single-threaded relationship \u2014 Sophie Onyeks, the most engaged contact, has repeatedly described her own role as limited ('I'm not going to be one of the big people doing the evaluations... I'm a grunt worker', 22 Apr 2026), and no direct line exists yet to the Decision Maker or Executive Sponsor.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close-date/award-timeline gap \u2014 the recorded close date (22 Apr 2027) sits well beyond the MEDDPICC 2.0 field's own stated evaluation/award window (10 Aug-4 Sep 2026), meriting reconciliation against the incumbent Intent contract's Aug 2027 expiry cited in the Next Step.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "RFI submitted on time \u2014 Zycus filed its written RFI response 10 Jul 2026, three days ahead of the 13 Jul 2026 deadline under GCA RM6285 Lot 2.",
+      "tone": "good"
+     },
+     {
+      "text": "Pain and criteria well documented \u2014 Sophie Onyeks detailed fragmented Intend/Oracle/Excel/SharePoint processes on the 22 Apr 2026 call, and decision criteria are fully specified in the CRM's MEDDPICC 2.0 record (7 Jul 2026).",
+      "tone": "good"
+     },
+     {
+      "text": "Decision Maker not yet engaged \u2014 John Coyne (Procurement Director, tagged Decision Maker) has been named since the 22 Apr 2026 call but has had no direct Zycus contact; the deal remains single-threaded through Sophie Onyeks.",
+      "tone": "warn"
+     },
+     {
+      "text": "Competitive field unconfirmed \u2014 Competitors__c is blank and no rival vendor has been named in a buyer quote or CRM field this sweep, despite the RFI being addressed to multiple approved delivery partners (22 Jun 2026 email).",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Two-way email engagement inside the last week \u2014 the buyer confirmed the RFI submission channel by email on 7 Jul 2026 ('Correct' \u2014 Sophie Onyeks), a genuine buyer reply.",
+      "tone": "good"
+     },
+     {
+      "text": "Live, dated ITT process \u2014 ITT issued 13 Jul 2026 (today), closes 7 Aug 2026, award expected 10 Aug-4 Sep 2026 per MEDDPICC 2.0, so the immediate post-submission quiet period is expected process cadence, not a stall.",
+      "tone": "good"
+     },
+     {
+      "text": "Outreach outstanding a reply \u2014 Claire Hudson's 10 Jul 2026 email asking for the outcome-notification timeline has not yet been answered as of 13 Jul 2026 (3 days).",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "Buyer-driven RFI process \u2014 the council initiated and is running its own formal RFI/ITT under RM6285 Lot 2, with Sophie Onyeks actively managing clarification rounds through Jun-Jul 2026.",
+      "tone": "good"
+     },
+     {
+      "text": "No buyer-voiced preference \u2014 nothing in the evidence read has the council expressing a preference for Zycus over other bidders; standing is unconfirmed.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-06-01",
+     "quote": "We will request demos after receiving the RFI if we feel we need demos at this stage. It is something we haven't discussed in detail with the team yet.",
+     "said_by": "Sophie Onyeks",
+     "addressed": false,
+     "requirement": "Decide whether demos are needed after reviewing RFI responses"
+    },
+    {
+     "date": "2026-06-22",
+     "quote": "The solution is expected to integrate with: Oracle Cloud Fusion (ERP)",
+     "said_by": "Birmingham City Council (RFI issuing team)",
+     "addressed": true,
+     "requirement": "Mandatory integration with the relevant stakeholder (ERP) via API-first architecture"
+    },
+    {
+     "date": "2026-06-22",
+     "quote": "UK Government Central Digital Platform (CDP)",
+     "said_by": "Birmingham City Council (RFI issuing team)",
+     "addressed": true,
+     "requirement": "Alignment to the UK Government Central Digital Platform (CDP) for Procurement Act 2023 transparency"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "",
+      "who": "Zycus",
+      "date": "2026-04-22",
+      "source": "Avoma call, 2026-04-22",
+      "status": "completed",
+      "group_key": "benchmarking_onyeks_primer",
+      "commitment": "Share the Zycus RFI benchmarking primer with Sophie Onyeks",
+      "deliverable": "Share the Zycus RFI benchmarking primer with Sophie Onyeks",
+      "grounding_quote": "I'll follow up, and I'll send a primer for you.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "",
+      "who": "Zycus",
+      "date": "2026-06-26",
+      "source": "Email (Task), Claire Hudson, 2026-06-26",
+      "status": "completed",
+      "group_key": "clarification_definitions_detailed",
+      "commitment": "Provide detailed RFI clarification responses on PO/procurement-volume definitions",
+      "deliverable": "Provide detailed RFI clarification responses on PO/procurement-volume definitions",
+      "grounding_quote": "To clarify the intent behind Clarification 5: purchase order volumes in this context refer specifically to the number of purchase orders or purchase requisitions processed annually through your procurement function.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "",
+      "who": "Buyer",
+      "date": "2026-07-10",
+      "source": "Email (Task), Claire Hudson, 2026-07-10",
+      "status": "open",
+      "group_key": "anticipated_bidders_itt",
+      "commitment": "Confirm anticipated timing for notifying bidders of the RFI/ITT outcome",
+      "deliverable": "Confirm anticipated timing for notifying bidders of the RFI/ITT outcome",
+      "grounding_quote": "Could you also let us know your anticipated timing for confirming whether we've progressed to the next stage?",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-07-21",
+      "who": "Buyer",
+      "date": "2026-07-10",
+      "source": "Next_Step__c, 2026-07-10",
+      "status": "open",
+      "group_key": "approves_broker_direct",
+      "commitment": "Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)",
+      "deliverable": "Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)",
+      "grounding_quote": "Ask Sophie Onyeks to broker a direct introduction to Greig Evans so Zycus is multi-threaded to the procurement lead who reviews and approves the RFI for external release.",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "moderate \u2014 buyer-curious, not yet a stated mandate",
+   "summary": "Zycus is deliberately leading its RFI response with Merlin/agentic AI positioning per the current Next Step, in response to the council's own stated interest in evaluating AI capability.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-06-22",
+     "quote": "The solution is expected to integrate with: Oracle Cloud Fusion (ERP)",
+     "source": "RFI email (Task), 2026-06-22",
+     "position": "aligned",
+     "criterion": "Integration with Oracle Cloud Fusion (ERP)"
+    },
+    {
+     "date": "2026-07-07",
+     "quote": "Mandatory integration with Oracle Cloud Fusion via API-first architecture, plus alignment to the UK Government Central Digital Platform for Procurement Act 2023 transparency compliance.",
+     "source": "MEDDPICC 2.0 (CRM), updated 2026-07-07",
+     "position": "aligned",
+     "criterion": "Alignment to UK Government Central Digital Platform for Procurement Act 2023 transparency compliance"
+    },
+    {
+     "date": "2026-07-07",
+     "quote": "Out of scope: full AP automation, invoice/payment processing.",
+     "source": "MEDDPICC 2.0 (CRM), updated 2026-07-07",
+     "position": "aligned",
+     "criterion": "Upstream Source-to-Contract scope only; full AP automation/invoicing out of scope"
+    }
+   ],
+   "summary": "Zycus' proposed scope tracks closely to the council's stated RFI requirements: mandatory Oracle Cloud Fusion integration, Central Digital Platform/Procurement Act 2023 transparency alignment, and an upstream Source-to-Contract scope explicitly excluding full AP automation and invoice/payment processing."
+  }
+ },
+ "hard": {
+  "stage": "Formal Evaluation",
+  "amount": 250000.0,
+  "opp_id": "006P700000X6W3qIAF",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000X6W3qIAF/view",
+  "opp_name": "Birmingham City Council_UK_S2C_2026",
+  "owner_id": "005P7000009HzQ5IAK",
+  "products": "iContract;iSource;iManage;iSupplier;Merlin;iLogix;iRisk;Merlin Intake;iCompliance;ANA",
+  "ais_score": null,
+  "next_step": "By 10 Jul 2026: Complete and submit the written RFI response with the EY bid team, leading with Zycus\u2019 connected S2C platform, Merlin / agentic AI, Oracle integration, contract lifecycle management, supplier risk reporting, and standardized intake story. Confirm written receipt with Sophie Onyeks and close out the RM6285 Lot 2 framework-route clarification before the response goes out. By 21 Jul 2026: Ask Sophie Onyeks to broker a direct introduction to Greig Evans so Zycus is multi-threaded to the procurement lead who reviews and approves the RFI for external release. By 5 Aug 2026: Hold a post-submission review call to confirm the RFP/demo timeline and open direct dialogue with John Coyne on procurement mandate, evaluation criteria, and decision process. Through Aug 2026: Secure executive alignment with Lucy Moody as the RFP shortlist forms and position Zycus at sponsor level around the transformation outcome. Mutual close plan: RFI \u2192 RFP/demo \u2192 shortlist \u2192 contract, working back from the August 2027 incumbent Intent contract expiry to ensure selection, contracting, and implementation runway. They have had a change in leadership which is why it has taken so long - <span style=\"color: inherit; font-family: inherit;\">We have had a change in leadership which has delayed the project. It should pick up at pace now, but we aren\u2019t in a position to send out the RFI yet. I will let you know when we are. I am hoping it will be soon. <span style=\"color: inherit; font-family: inherit;\"> <span style=\"color: inherit; font-family: inherit;\">We will request demos after receiving the RFI if we feel we need demos at this stage. It is something we haven\u2019t discussed in detail with the team yet. <span style=\"color: inherit; font-family: inherit;\"> Claire is chasing on this for a update. Share the RFI primer with Sophie Onyeks and support the team in refining the draft RFI before release, especially around AI capabilities, Oracle integration, procurement volumes, framework preference, and implementation model. Follow up with Sophie and Greig Evans once the draft is reviewed and approved for external circulation.",
+  "ais_status": null,
+  "close_date": "2027-04-22",
+  "competitor": null,
+  "owner_name": "Claire Hudson",
+  "owner_title": "Regional Sales Director \u2013 UK & Ireland",
+  "account_name": "Birmingham City Council_UK",
+  "created_date": "2026-04-22",
+  "manager_name": "Anthony Gray",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 283,
+  "dm_identified": true,
+  "eb_identified": true,
+  "qualified_date": "2026-04-27",
+  "billing_country": "United Kingdom",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "Public Sector / Local Government",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-07-10",
+  "last_modified_date": "2026-07-07",
+  "metrics_identified": false,
+  "primary_competitor": "",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-07-07",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-13",
+  "stage": "Formal Evaluation",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 3 day(s) ago (2026-07-10). Buyer EMAIL RECEIVED 6 day(s) ago (2026-07-07) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement. Rep outreach 2026-07-10 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 1,
+  "close_date": "2027-04-22",
+  "rep_outreach": {
+   "date": "2026-07-10",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "By 10 Jul 2026: Complete and submit the written RFI response with the EY bid team, leading with Zycus\u2019 connected S2C platform, Merlin / agentic AI, Oracle integration, contract lifecycle management, supplier risk reporting, and standardized intake story. Confirm written receipt with Sophie Onyeks an",
+   "detected": true
+  },
+  "days_to_close": 283,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 6,
+  "last_activity_date": "2026-07-10",
+  "days_since_activity": 3,
+  "next_scheduled_date": null,
+  "days_since_qualified": 77,
+  "last_inbound_email_date": "2026-07-07"
+ },
+ "deltas": [
+  {
+   "to": "Decide whether demos are needed after reviewing RFI responses",
+   "key": "requirement:decide-whether-demos-are-needed-after-reviewing-rfi-response",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Sophie Onyeks",
+   "subject": "Decide whether demos are needed after reviewing RFI responses"
+  },
+  {
+   "to": "Mandatory integration with the relevant stakeholder (ERP) via API-first architecture",
+   "key": "requirement:mandatory-integration-with-the-relevant-stakeholder-erp-via-",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Birmingham City Council (RFI issuing team)",
+   "subject": "Mandatory integration with the relevant stakeholder (ERP) via API-first architecture"
+  },
+  {
+   "to": "Alignment to the UK Government Central Digital Platform (CDP) for Procurement Act 2023 transparency",
+   "key": "requirement:alignment-to-the-uk-government-central-digital-platform-cdp-",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Birmingham City Council (RFI issuing team)",
+   "subject": "Alignment to the UK Government Central Digital Platform (CDP) for Procurement Act 2023 transparency"
+  },
+  {
+   "to": "Share the Zycus RFI benchmarking primer with Sophie Onyeks - completed",
+   "key": "commitment:zycus-share-the-zycus-rfi-benchmarking-primer-with-sophie-on",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Share the Zycus RFI benchmarking primer with Sophie Onyeks"
+  },
+  {
+   "to": "Provide detailed RFI clarification responses on PO/procurement-volume definitions - completed",
+   "key": "commitment:zycus-provide-detailed-rfi-clarification-responses-on-po-pro",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Provide detailed RFI clarification responses on PO/procurement-volume definitions"
+  },
+  {
+   "to": "Confirm anticipated timing for notifying bidders of the RFI/ITT outcome - open",
+   "key": "commitment:buyer-confirm-anticipated-timing-for-notifying-bidders-of-th",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm anticipated timing for notifying bidders of the RFI/ITT outcome"
+  },
+  {
+   "to": "Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release) - open",
+   "key": "commitment:buyer-broker-a-direct-introduction-to-greig-evans-procuremen",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)"
+  },
+  {
+   "to": "Sophie Onyeks - Influencer",
+   "key": "stakeholder:sophie-onyeks",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Sophie Onyeks"
+  },
+  {
+   "to": "John Coyne - Decision Maker",
+   "key": "stakeholder:john-coyne",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "John Coyne"
+  },
+  {
+   "to": "Greig Evans - Evaluator",
+   "key": "stakeholder:greig-evans",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Greig Evans"
+  },
+  {
+   "to": "Lucy Moody - Evaluator",
+   "key": "stakeholder:lucy-moody",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Lucy Moody"
+  },
+  {
+   "to": "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor. - open",
+   "key": "risk:single-threaded-through-sophie-onyeks-who-has-explicitly-dis",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor."
+  },
+  {
+   "to": "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed",
+   "key": "risk:a-council-leadership-change-delayed-the-rfi-release-earlier-",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed on schedule."
+  },
+  {
+   "to": "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug an",
+   "key": "risk:neither-the-decision-maker-john-coyne-nor-the-executive-spon",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug and through Aug 2026 respectively."
+  },
+  {
+   "to": "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Sale",
+   "key": "risk:the-competitive-field-is-genuinely-unconfirmed-the-rfi-was-s",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Salesforce field or buyer quote."
+  },
+  {
+   "to": "Break single-threading: secure direct engagement with John Coyne (Decision Maker) and Lucy Moody (Executive Sponsor) before the ITT closes 7 Aug 2026 \u2014 every to",
+   "key": "hygiene:break-single-threading-secure-direct-engagement-with-john-co",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Break single-threading: secure direct engagement with John Coyne (Decision Maker) and Lucy Moody (Executive Sponsor) before the ITT closes 7 Aug 2026 \u2014 every touchpoint currently runs through Sophie Onyeks, who has repeatedly said she isn't an evaluator."
+  },
+  {
+   "to": "Confirm the competitive field once outcome timing is known \u2014 the RFI went to multiple approved delivery partners, but Zycus has no visibility into which specifi",
+   "key": "hygiene:confirm-the-competitive-field-once-outcome-timing-is-known-t",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm the competitive field once outcome timing is known \u2014 the RFI went to multiple approved delivery partners, but Zycus has no visibility into which specific vendors are responding."
+  },
+  {
+   "to": "Reconcile the recorded close date (22 Apr 2027) against the CRM's own award window (10 Aug-4 Sep 2026) so the forecast reflects the real RM6285 Lot 2 timeline.",
+   "key": "hygiene:reconcile-the-recorded-close-date-22-apr-2027-against-the-cr",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Reconcile the recorded close date (22 Apr 2027) against the CRM's own award window (10 Aug-4 Sep 2026) so the forecast reflects the real RM6285 Lot 2 timeline."
+  },
+  {
+   "to": "Sophie Onyeks - developing",
+   "key": "champion:champion",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iContract;iSource;iManage;iSupplier;Merlin;iLogix;iRisk;Merlin Intake;iCompliance;ANA",
+   "key": "product_scope:scope",
+   "date": "2026-07-13T17:15:04.623426+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000X6W3q",
+ "packets": [
+  {
+   "key": "requirement:decide-whether-demos-are-needed-after-reviewing-rfi-response",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-01",
+    "kind": "explicit",
+    "quote": "We will request demos after receiving the RFI if we feel we need demos at this stage. It is something we haven't discussed in detail with the team yet.",
+    "source": "Email, Sophie Onyeks, 2026-06-01",
+    "said_by": "Sophie Onyeks",
+    "addressed": false,
+    "requirement": "Decide whether demos are needed after reviewing RFI responses"
+   },
+   "source": "Sophie Onyeks",
+   "status": "active",
+   "history": [],
+   "subject": "Decide whether demos are needed after reviewing RFI responses",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "requirement:mandatory-integration-with-the-relevant-stakeholder-erp-via-",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-22",
+    "kind": "explicit",
+    "quote": "The solution is expected to integrate with: Oracle Cloud Fusion (ERP)",
+    "source": "RFI email (Task), 2026-06-22",
+    "said_by": "Birmingham City Council (RFI issuing team)",
+    "addressed": true,
+    "requirement": "Mandatory integration with the relevant stakeholder (ERP) via API-first architecture"
+   },
+   "source": "Birmingham City Council (RFI issuing team)",
+   "status": "active",
+   "history": [],
+   "subject": "Mandatory integration with the relevant stakeholder (ERP) via API-first architecture",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "requirement:alignment-to-the-uk-government-central-digital-platform-cdp-",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-22",
+    "kind": "explicit",
+    "quote": "UK Government Central Digital Platform (CDP)",
+    "source": "RFI email (Task), 2026-06-22",
+    "said_by": "Birmingham City Council (RFI issuing team)",
+    "addressed": true,
+    "requirement": "Alignment to the UK Government Central Digital Platform (CDP) for Procurement Act 2023 transparency"
+   },
+   "source": "Birmingham City Council (RFI issuing team)",
+   "status": "active",
+   "history": [],
+   "subject": "Alignment to the UK Government Central Digital Platform (CDP) for Procurement Act 2023 transparency",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "commitment:zycus-share-the-zycus-rfi-benchmarking-primer-with-sophie-on",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-04-22",
+    "source": "Avoma call, 2026-04-22",
+    "status": "completed",
+    "commitment": "Share the Zycus RFI benchmarking primer with Sophie Onyeks",
+    "deliverable": "Share the Zycus RFI benchmarking primer with Sophie Onyeks",
+    "grounding_quote": "I'll follow up, and I'll send a primer for you."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Share the Zycus RFI benchmarking primer with Sophie Onyeks",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "commitment:zycus-provide-detailed-rfi-clarification-responses-on-po-pro",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Zycus",
+    "date": "2026-06-26",
+    "source": "Email (Task), Claire Hudson, 2026-06-26",
+    "status": "completed",
+    "commitment": "Provide detailed RFI clarification responses on PO/procurement-volume definitions",
+    "deliverable": "Provide detailed RFI clarification responses on PO/procurement-volume definitions",
+    "grounding_quote": "To clarify the intent behind Clarification 5: purchase order volumes in this context refer specifically to the number of purchase orders or purchase requisitions processed annually through your procurement function."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Provide detailed RFI clarification responses on PO/procurement-volume definitions",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-anticipated-timing-for-notifying-bidders-of-th",
+   "type": "commitment",
+   "value": {
+    "due": "",
+    "who": "Buyer",
+    "date": "2026-07-10",
+    "source": "Email (Task), Claire Hudson, 2026-07-10",
+    "status": "open",
+    "commitment": "Confirm anticipated timing for notifying bidders of the RFI/ITT outcome",
+    "deliverable": "Confirm anticipated timing for notifying bidders of the RFI/ITT outcome",
+    "grounding_quote": "Could you also let us know your anticipated timing for confirming whether we've progressed to the next stage?"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm anticipated timing for notifying bidders of the RFI/ITT outcome",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "commitment:buyer-broker-a-direct-introduction-to-greig-evans-procuremen",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-21",
+    "who": "Buyer",
+    "date": "2026-07-10",
+    "source": "Next_Step__c, 2026-07-10",
+    "status": "open",
+    "commitment": "Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)",
+    "deliverable": "Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)",
+    "grounding_quote": "Ask Sophie Onyeks to broker a direct introduction to Greig Evans so Zycus is multi-threaded to the procurement lead who reviews and approves the RFI for external release."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Broker a direct introduction to Greig Evans (procurement lead who reviews/approves the RFI for external release)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "stakeholder:sophie-onyeks",
+   "type": "stakeholder",
+   "value": {
+    "name": "Sophie Onyeks",
+    "risk": "Self-describes limited evaluation authority ('I'm a grunt worker'); primary/sole active thread",
+    "role": "Influencer",
+    "title": "IT Delivery Manager",
+    "source": "Avoma call 2026-04-22; email thread through 2026-07-07",
+    "sentiment": "cooperative, engaged",
+    "last_contact_date": "2026-07-07"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "Sophie Onyeks",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "stakeholder:john-coyne",
+   "type": "stakeholder",
+   "value": {
+    "name": "John Coyne",
+    "risk": "No direct Zycus contact yet; named only via Sophie Onyeks on the discovery call",
+    "role": "Decision Maker",
+    "title": "Procurement Director",
+    "source": "Avoma call, 2026-04-22; Salesforce OpportunityContactRole",
+    "sentiment": "unknown (not yet directly engaged)",
+    "last_contact_date": "2026-04-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "John Coyne",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "stakeholder:greig-evans",
+   "type": "stakeholder",
+   "value": {
+    "name": "Greig Evans",
+    "risk": "Reviews/approves the RFI for external release but has no direct Zycus line; introduction requested for 2026-07-21",
+    "role": "Evaluator",
+    "title": "Procurement Lead",
+    "source": "Avoma call, 2026-04-22; Next_Step__c, 2026-07-10",
+    "sentiment": "unknown (not yet directly engaged)",
+    "last_contact_date": "2026-04-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "Greig Evans",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "stakeholder:lucy-moody",
+   "type": "stakeholder",
+   "value": {
+    "name": "Lucy Moody",
+    "risk": "Named as programme sponsor but no direct Zycus contact; executive alignment targeted through Aug 2026",
+    "role": "Evaluator",
+    "title": "Assistant Director, Strategic Procurement Operations (Executive Sponsor)",
+    "source": "Avoma call, 2026-04-22; Salesforce OpportunityContactRole; Next_Step__c, 2026-07-10",
+    "sentiment": "unknown (not yet directly engaged)",
+    "last_contact_date": "2026-04-22"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [],
+   "subject": "Lucy Moody",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "risk:single-threaded-through-sophie-onyeks-who-has-explicitly-dis",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-10",
+    "detail": "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor.",
+    "source": "Avoma call, 2026-04-22; Next_Step__c, 2026-07-10",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-04-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through Sophie Onyeks, who has explicitly disclaimed evaluation authority; no direct line to the Decision Maker or Executive Sponsor.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "risk:a-council-leadership-change-delayed-the-rfi-release-earlier-",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-01",
+    "detail": "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed on schedule.",
+    "source": "Email, Sophie Onyeks, 2026-06-01",
+    "status": "acknowledged",
+    "category": "timeline",
+    "first_raised": "2026-06-01"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "A council leadership change delayed the RFI release earlier in 2026, per Sophie Onyeks; the process has since resumed and the RFI has now been issued and closed on schedule.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "risk:neither-the-decision-maker-john-coyne-nor-the-executive-spon",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-10",
+    "detail": "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug and through Aug 2026 respectively.",
+    "source": "Avoma call, 2026-04-22; Next_Step__c, 2026-07-10",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-04-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Neither the Decision Maker (John Coyne) nor the Executive Sponsor (Lucy Moody) has had direct Zycus engagement; both are targeted for direct contact by 5 Aug and through Aug 2026 respectively.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "risk:the-competitive-field-is-genuinely-unconfirmed-the-rfi-was-s",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-13",
+    "detail": "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Salesforce field or buyer quote.",
+    "source": "RFI email (Task), 2026-06-22; Salesforce Competitors__c (blank)",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-06-22"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The competitive field is genuinely unconfirmed: the RFI was sent to multiple approved delivery partners but no specific rival vendor has been anchored to a Salesforce field or buyer quote.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "hygiene:break-single-threading-secure-direct-engagement-with-john-co",
+   "type": "hygiene",
+   "value": {
+    "flag": "Break single-threading: secure direct engagement with John Coyne (Decision Maker) and Lucy Moody (Executive Sponsor) before the ITT closes 7 Aug 2026 \u2014 every touchpoint currently runs through Sophie Onyeks, who has repeatedly said she isn't an evaluator."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Break single-threading: secure direct engagement with John Coyne (Decision Maker) and Lucy Moody (Executive Sponsor) before the ITT closes 7 Aug 2026 \u2014 every touchpoint currently runs through Sophie Onyeks, who has repeatedly said she isn't an evaluator.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "hygiene:confirm-the-competitive-field-once-outcome-timing-is-known-t",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm the competitive field once outcome timing is known \u2014 the RFI went to multiple approved delivery partners, but Zycus has no visibility into which specific vendors are responding."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm the competitive field once outcome timing is known \u2014 the RFI went to multiple approved delivery partners, but Zycus has no visibility into which specific vendors are responding.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "hygiene:reconcile-the-recorded-close-date-22-apr-2027-against-the-cr",
+   "type": "hygiene",
+   "value": {
+    "flag": "Reconcile the recorded close date (22 Apr 2027) against the CRM's own award window (10 Aug-4 Sep 2026) so the forecast reflects the real RM6285 Lot 2 timeline."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Reconcile the recorded close date (22 Apr 2027) against the CRM's own award window (10 Aug-4 Sep 2026) so the forecast reflects the real RM6285 Lot 2 timeline.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Sophie Onyeks",
+    "at_risk": false,
+    "strength": "developing"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iSource;iManage;iSupplier;Merlin;iLogix;iRisk;Merlin Intake;iCompliance;ANA"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-13T17:15:04.623426+05:30",
+   "last_updated": "2026-07-13T17:15:04.623426+05:30",
+   "last_confirmed": "2026-07-13T17:15:04.623426+05:30"
+  }
+ ],
+ "swept_at": "2026-07-13T17:15:04.623426+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "Only one recorded/transcribed call exists (22 Apr 2026 discovery call); all subsequent engagement is email-only, so no first-hand read of any RFI-review or clarification discussion beyond the written threads.",
+   "No direct evidence of engagement with John Coyne (Decision Maker), Greig Evans (Evaluator), or Lucy Moody (Executive Sponsor) beyond their being named on the 22 Apr 2026 call.",
+   "Specific competitor identities in this RFI remain unconfirmed by any anchored Salesforce field or buyer quote.",
+   "scrubbed 3 placeholder/template string(s)",
+   "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: 'Oracle Cloud Fusion')"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [],
+  "avoma_attendees": [
+   "sophie.onyeks@birmingham.gov.uk"
+  ],
+  "calls_discovered": 1,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "2026-04-22 to 2026-07-13"
+ },
+ "forecast_critical": false,
+ "analysis_confidence": "Medium"
+}

@@ -1,0 +1,213 @@
+{
+  "opp_id": "006P700000YC92N",
+  "hard": {
+    "opp_id": "006P700000YC92N",
+    "opp_name": "Civeo _ S2C_May26",
+    "account_name": "Civeo Corporation",
+    "account_industry": "Hospitality",
+    "billing_country": "United States",
+    "owner_name": "Bailey Erazo",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2026-12-18",
+    "days_to_close": 165,
+    "created_date": "2026-05-15",
+    "qualified_date": "2026-05-18",
+    "last_activity_date": null,
+    "last_modified_date": "2026-06-02",
+    "products": "iContract;iSource;iSupplier",
+    "next_step": "Abeerah: Reach out to Scott and set up a demo call post conversation with Scott and Mike at ISM Denver",
+    "ais_score": 2.0,
+    "ais_status": "Negative",
+    "ais_why": "Scott reinitiated a stalled 2024 procurement project after meeting Zycus at ISM Denver; documented need is conventional S2C (sourcing, supplier management, contract visibility, approvals, spend visibility) with cost optimization due to revenue pressure, no AI requirement, budget not yet established.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "",
+    "primary_competitor": "",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000YC92N/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": true,
+      "headline": "165 days to close but never engaged: no buyer call since creation, single-threaded on Scott Tymchuk, AIS Negative, forecast indefensible.",
+      "math": "Created 15 May 2026, moved Initial Interest to Qualified on 18 May, and has sat in Qualified ~52 days with zero forward motion. LastActivityDate is null, no completed buyer-facing tasks (the 18 May tasks are all system-generated Opportunity-Health flags, not real touches), and the only field edits since are None-to-None Next Step churn on 2 Jun. Close date 18 Dec 2026 is 165 days out. The rep's Next Step (owner Abeerah, later reassigned to Bailey Erazo on 1 Jun) is still to reach out to Scott to set up the demo after the ISM Denver conversation; that outreach has not been logged and no demo is scheduled. A 12-15 month enterprise S2C motion should be in discovery depth by now; this one has not started, so the forecast is not defensible.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "LastActivityDate is null (SF field); no completed buyer-facing activity exists",
+        "The nine 18 May 2026 tasks are all 'Call Attempted' Opportunity-Health system flags (e.g. 'Decision Maker is not identified', 'Prospect's gone cold'), not real buyer touches",
+        "No Avoma calls found for this opp or the civeo.com account domain across opp+account+attendee discovery",
+        "Next Step (updated via None-to-None churn on 2 Jun 2026) is still the planned demo outreach to Scott Tymchuk; no outreach logged, no demo booked",
+        "Single contact role: Scott Tymchuk, Director Supply Chain (Decision Maker), with no verified engagement",
+        "AIS_Score 2.0 / Status Negative: documented need is conventional S2C with no AI driver and budget not yet established"
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is documented in the field record but never quantified. AIS_Why states Civeo needs to 'improve sourcing, supplier management, contract visibility, approvals, and spend visibility' with 'cost optimization... due to revenue pressure,' and that 'supplier oversight and procurement governance need stronger structure.' That is a real, field-sourced qualitative driver (efficiency and governance under revenue pressure), but no number exists anywhere: no savings target, no spend-under-management figure, no cycle-time or headcount metric, and no buyer has stated impact on a call because zero calls were captured. The move is a discovery call with Scott Tymchuk to quantify current-state cost and the target (addressable spend, sourcing cycle time, manual contract effort) before any demo.",
+        "sources": ["SF AIS_Why__c", "SF Products__c (iContract;iSource;iSupplier)", "Zero Avoma calls discovered"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No Economic Buyer is named in any authoritative source. The only contact role is Scott Tymchuk, Director Supply Chain, marked Decision Maker, and AIS_Why calls him the person who reinitiated the project after ISM Denver, but there is no evidence of his budget authority and AIS_Why explicitly notes budget is 'not yet established.' The Next Step references a 'Scott and Mike' conversation at ISM Denver, but 'Mike' matches no Salesforce contact role or civeo.com contact, so he cannot be promoted to a named stakeholder or given a title. For a $100K three-module S2C deal at a publicly traded company, sign-off almost certainly sits above Director level. The move is to ask Scott directly who owns the procurement budget and secure an introduction before commercials.",
+        "sources": ["SF OpportunityContactRole (Scott Tymchuk, Decision Maker, no EB role)", "SF AIS_Why__c ('Budget - No')", "Zero Avoma calls"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria have been captured. AIS_Why frames the agenda as efficiency and governance ('supplier oversight and procurement governance need stronger structure'), which implies the buyer will weigh sourcing, supplier management, and contract-visibility fit, but that is inference from a summary field, not confirmed criteria from a use-case review, RFI/RFP, or workshop. No such session has occurred and zero calls exist to surface what Scott or his committee will actually judge vendors on. The move is to establish the buyer's must-have requirements on the first discovery call and confirm whether this is a competitive evaluation with a formal scorecard.",
+        "sources": ["SF AIS_Why__c", "Zero Avoma calls", "No RFI/RFP or workshop evidence"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "The decision process is unknown. AIS_Why tells us the deal is a reinitiated 2024 procurement project restarted after an ISM Denver meeting, which signals a warm origin, but there is no evidence of RFI/RFP rounds, shortlisting, an approval chain, or a timeline. No calls were captured and the synthesis-map process fields carry nothing usable. We do not know whether this is a sole-source exploration or a competitive bid, or who beyond Scott participates. The move is to map the process on the discovery call: is there an RFP, who is on the buying committee, and what are the milestone dates between now and a December close.",
+        "sources": ["SF AIS_Why__c (reinitiated 2024 project, ISM Denver origin)", "Zero Avoma calls", "SF field history (no stage progression past Qualified)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have surfaced, which is expected this early. There is no discussion of MSA/SOW, legal, procurement channel, InfoSec, or ERP integration, and Current_Contract_Expiration__c is not populated, so there is no incumbent-renewal forcing function. For a US-based S2C SaaS deal, InfoSec review and integration scoping will eventually be required, but none of that is in scope yet and it is not a current risk at Qualified stage. Visibility will come once a discovery call establishes who owns vendor contracts and what procurement/security review Civeo runs.",
+        "sources": ["SF Current_Contract_Expiration__c (blank)", "Zero Avoma calls", "Stage: Qualified (pre-paper)"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "The pain is documented at a summary level but not owned or validated by the buyer on the record. AIS_Why describes conventional S2C pain, weak sourcing, supplier management, contract visibility, approvals, and spend visibility, plus 'cost optimization... due to revenue pressure' and a governance gap ('supplier oversight and procurement governance need stronger structure'). Scott Tymchuk, Director Supply Chain, is the implied pain owner as the person who restarted the project, but no call has captured him articulating the cost of inaction or the compelling event beyond the revenue-pressure framing. The move is to confirm and deepen this pain directly with Scott and attach a cost to it.",
+        "sources": ["SF AIS_Why__c", "SF OpportunityContactRole (Scott Tymchuk)", "Zero Avoma calls"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion has been developed. Scott Tymchuk is the single contact and the person who reinitiated the project after ISM Denver, which makes him the natural champion candidate, but there is zero evidence of advocacy: no internal selling, no introductions to finance or IT, no competitive intel shared, and no engagement logged since the opportunity was created. The planned demo outreach to him has not happened. We do not yet know if Scott is engaged, passive, or unresponsive. The move is to re-engage Scott, run discovery, and test his willingness to sponsor Zycus and open the wider committee; if he stays passive, multi-thread immediately.",
+        "sources": ["SF OpportunityContactRole (Scott Tymchuk, Decision Maker)", "SF Next_Step__c (planned demo outreach, not executed)", "Zero Avoma calls"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No competitive intelligence exists in any source. Competitors__c is null and the free-text competition fields carry nothing; AIS_Why does not name an incumbent system or a rival, only that a 2024 project was restarted. With zero calls, no buyer has named an alternative or described the current stack, so we cannot tell whether this is a sole-source restart, a competitive S2C evaluation, or a replacement of a manual/legacy process. The three-module iContract/iSource/iSupplier scope is where SAP Ariba, Coupa, and Ivalua typically appear, but naming any of them here would be fabrication. The move is to establish current-state and competition on the first discovery call.",
+        "sources": ["SF Competitors__c (null)", "SF AIS_Why__c (no vendor named)", "Zero Avoma calls"]
+      }
+    },
+    "deal_movement": {
+      "summary": "No genuine forward motion since creation. Ownership changed hands on 1 Jun 2026 (Abeerah Fazil to Michael McCarthy to Bailey Erazo) and Next Step saw None-to-None churn on 2 Jun, but there is no buyer-facing progress: LastActivityDate is null and no discovery call or demo has occurred. The last real signal is the field-recorded ISM Denver origin that restarted a stalled 2024 procurement project.",
+      "items": [
+        {"change": "Owner reassigned to Bailey Erazo (from Michael McCarthy)", "date": "2026-06-01"},
+        {"change": "Next Step churned None-to-None (no substantive update)", "date": "2026-06-02"},
+        {"change": "Stage advanced Initial Interest to Qualified", "date": "2026-05-18"},
+        {"change": "Opportunity created off ISM Denver ground event (reinitiated 2024 procurement project)", "date": "2026-05-15"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No competitor is named in any source (Competitors__c null, AIS_Why names no vendor, zero calls). It is unknown whether this is a sole-source restart of the 2024 project or a competitive S2C evaluation. The iContract/iSource/iSupplier scope is the territory where SAP Ariba, Coupa, and Ivalua normally compete, but naming one without evidence would be fabrication, so the field is empty until a discovery call establishes the current stack and any alternatives.",
+      "competitors": []
+    },
+    "customer_expectations_fit": {
+      "summary": "Fit is inferable from the field-documented need but unvalidated by the buyer. Civeo wants stronger sourcing, supplier oversight, contract visibility, approvals, and spend visibility under revenue pressure, which maps cleanly to the iContract/iSource/iSupplier scope; whether Zycus meets Civeo's specific criteria is untested because no discovery or demo has happened.",
+      "items": [
+        {"criterion": "Sourcing, supplier management, contract visibility, approvals and spend visibility", "position": "partially aligned", "quote": "improve sourcing, supplier management, contract visibility, approvals, and spend visibility", "date": "2026-05-15", "source": "SF AIS_Why__c"},
+        {"criterion": "Cost optimization under revenue pressure", "position": "partially aligned", "quote": "cost optimization... due to revenue pressure", "date": "2026-05-15", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {"items": []},
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic Buyer / budget owner", "quote": "Budget - No; single contact role is Director-level", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole + AIS_Why__c"},
+        {"area": "Buyer engagement / discovery", "quote": "No Avoma call or completed buyer task exists; planned demo outreach not executed", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF LastActivityDate null + zero Avoma calls"},
+        {"area": "Competition / current-state stack", "quote": "No vendor or incumbent named in any field or call", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF Competitors__c null + zero calls"},
+        {"area": "Multi-threading", "quote": "Only Scott Tymchuk is on the deal", "status": "not addressed", "date": "2026-07-06", "gap_type": "knowledge", "source": "SF OpportunityContactRole"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a warm-origin but never-started single-threaded Qualified deal; the win path is to convert the ISM Denver interest into a real discovery call, quantify the governance/cost pain, and widen beyond Scott before a December close is credible.",
+      "flags": [
+        "Convert the ISM Denver interest into a booked discovery call with Scott Tymchuk now; nothing advances until a real two-way conversation happens.",
+        "Multi-thread beyond a single Director: identify the finance or procurement budget owner, since AIS_Why confirms budget is not yet established.",
+        "Quantify the cost of the manual/governance gap early so an AIS-Negative, no-AI S2C deal earns priority and a defensible forecast."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Scott Tymchuk", "title": "Director Supply Chain", "role": "Decision Maker", "last_contact_date": null, "sentiment": "Unknown, no verified engagement", "risk": "Single point of contact and the entire deal rests on him; no advocacy, engagement, or introductions logged, so both single-thread and champion risk are extreme.", "source": "SF OpportunityContactRole (primary, Decision Maker)"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion exists yet. Scott Tymchuk, the person who restarted the project after ISM Denver, is the natural candidate but has shown no advocacy or engagement, and the planned demo outreach to him was never executed. Until he is re-engaged and tested, there is no one selling Zycus inside Civeo.",
+      "champion": null,
+      "strength": "none",
+      "at_risk": false,
+      "source": "SF OpportunityContactRole + SF Next_Step__c (outreach not executed) + zero Avoma calls"
+    },
+    "ai_positioning_strength": {
+      "summary": "AI is not a driver on this deal. AIS_Why states the scope (iContract/iSource/iSupplier) carries no AI modules and there is no AI requirement, and AIS is Negative (2.0). Positioning Merlin/agentic AI here would be off-target unless discovery surfaces a latent appetite; the wedge is governance and cost, not AI.",
+      "score": "2.0 / Negative",
+      "under_positioned": false
+    },
+    "ai_fit_signal": {
+      "summary": "AIS_Score 2.0, Status Negative. The documented need is conventional S2C efficiency and governance under revenue pressure with no AI requirement and no AI modules in scope; no calls exist to suggest the field under-rates a hidden AI appetite.",
+      "tier": "AI Resistant"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "executive_alignment", "detail": "No Economic Buyer mapped and budget not yet established; deal cannot reach commercials without a budget owner.", "first_raised": "2026-05-15", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole + AIS_Why__c"},
+        {"category": "political", "detail": "Single-threaded on one Director; loss of Scott's attention kills the deal.", "first_raised": "2026-05-15", "date": "2026-07-06", "status": "open", "source": "SF OpportunityContactRole"},
+        {"category": "timeline", "detail": "165 days to a 18 Dec close with discovery not yet started; the date is not credible on current pace.", "first_raised": "2026-05-18", "date": "2026-07-06", "status": "open", "source": "SF CloseDate + stage history"},
+        {"category": "budget", "detail": "AIS_Why records budget as not established; funding is unconfirmed.", "first_raised": "2026-05-15", "date": "2026-07-06", "status": "open", "source": "SF AIS_Why__c"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "No buyer engagement has ever registered on this deal; the relationship is effectively cold since creation.",
+      "cooling": true,
+      "items": [
+        "LastActivityDate null; no completed buyer touch since 15 May 2026 creation",
+        "Planned demo outreach to Scott never logged",
+        "System Opportunity-Health flags on 18 May explicitly warn 'Prospect's gone cold' and 'Decision Maker is not identified'"
+      ]
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Email Scott Tymchuk to book the post-ISM Denver discovery and demo call.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Next Step still open: set up demo after ISM Denver conversation, never executed", "trigger_date": "2026-06-02", "act_by": "2026-07-13", "expected_effect": "Creates the first real two-way engagement and restarts a dark deal toward its close date."},
+        {"rank": 2, "action": "Run discovery with Scott to quantify the sourcing, governance and cost-optimization pain.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "AIS_Why documents qualitative S2C pain and revenue-pressure cost driver, but no numbers exist", "trigger_date": "2026-05-15", "act_by": "2026-07-20", "expected_effect": "Attaches a dollar value to the pain so the deal earns priority and a defensible forecast."},
+        {"rank": 3, "action": "Ask Scott who owns the procurement budget and request an introduction.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "AIS_Why states budget not yet established; only a Director is mapped", "trigger_date": "2026-05-15", "act_by": "2026-07-24", "expected_effect": "Maps the Economic Buyer, the gate to commercials on a $100K deal above Director authority."},
+        {"rank": 4, "action": "Multi-thread to a second Civeo stakeholder in finance or IT.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Single contact role (Scott Tymchuk) creates extreme single-thread risk", "trigger_date": "2026-05-18", "act_by": "2026-08-05", "expected_effect": "Reduces single-point-of-failure risk and widens the buying committee."},
+        {"rank": 5, "action": "On the discovery call, establish Civeo's current sourcing stack and any competing vendors.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "No competitor or incumbent named in any field or call", "trigger_date": "2026-07-06", "act_by": "2026-08-05", "expected_effect": "Reveals whether this is sole-source or competitive so we can position the wedge."}
+      ]
+    },
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "Scope is the original three-module S2C set (iContract, iSource, iSupplier) from creation; no narrowing or expansion versus the prior record."},
+    "customer_preference": {"level": "none", "evidence": "No buyer call or stated preference exists; the buyer has not compared Zycus to any alternative."},
+    "business_case": {"status": "partial", "evidence": "AIS_Why documents qualitative S2C need (sourcing, supplier oversight, contract visibility, spend visibility) and cost optimization under revenue pressure, but no ROI, savings, or spend figure is quantified."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": false,
+      "competitor_praised": false
+    },
+    "ceo_intervention": {"needed": false}
+  },
+  "evidence_coverage": {
+    "calls_discovered": 0,
+    "calls_read": 0,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "2026-05-15 creation to 2026-07-06 sweep",
+    "avoma_attendees": [],
+    "gaps": [
+      "No Avoma calls exist for this opp or the civeo.com account domain across opp+account+attendee discovery; all MEDDPICC beyond the field-documented pain is unconfirmed by buyer voice",
+      "No Economic Buyer named; budget not established",
+      "No competitive intelligence in any source",
+      "Single contact role only (Scott Tymchuk); no multi-thread"
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": true,
+  "swept_at": "2026-07-06"
+}

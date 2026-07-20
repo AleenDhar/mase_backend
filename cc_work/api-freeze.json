@@ -1,0 +1,350 @@
+{
+ "containerDefinitions": [
+  {
+   "name": "mase-api",
+   "image": "022187637784.dkr.ecr.ap-south-1.amazonaws.com/mase-service:b107e42-20260709T063810Z",
+   "cpu": 0,
+   "portMappings": [
+    {
+     "containerPort": 5000,
+     "hostPort": 5000,
+     "protocol": "tcp"
+    }
+   ],
+   "essential": true,
+   "environment": [
+    {
+     "name": "DEAL_SWEEP_AVOMA_FROM_DATALAKE",
+     "value": "true"
+    },
+    {
+     "name": "DEAL_ENGINE_SWEEP_MODEL",
+     "value": "anthropic:claude-sonnet-5"
+    },
+    {
+     "name": "DEAL_ENGINE_AI_SCORING",
+     "value": "true"
+    },
+    {
+     "name": "PORT",
+     "value": "5000"
+    },
+    {
+     "name": "DEAL_ENGINE_SCORING_MODEL",
+     "value": "anthropic:claude-sonnet-5"
+    },
+    {
+     "name": "DEAL_SWEEP_PARALLEL_READERS",
+     "value": "true"
+    },
+    {
+     "name": "DEAL_SWEEP_MAX_TOKENS",
+     "value": "64000"
+    },
+    {
+     "name": "HOST",
+     "value": "0.0.0.0"
+    },
+    {
+     "name": "ANTHROPIC_MAX_RETRIES",
+     "value": "8"
+    },
+    {
+     "name": "SNS_ALLOWED_TOPIC_ARNS",
+     "value": "arn:aws:sns:ap-south-1:022187637784:avoma-meeting-events"
+    },
+    {
+     "name": "LLM_REQUEST_TIMEOUT_S",
+     "value": "1200"
+    },
+    {
+     "name": "DEAL_SWEEP_MAX_TRANSIENT_RETRIES",
+     "value": "50"
+    },
+    {
+     "name": "SWEEP_AUTOSCALE_MAX",
+     "value": "6"
+    },
+    {
+     "name": "DATALAKE_URL",
+     "value": "https://upxxvoyngfiblaypluyc.supabase.co"
+    },
+    {
+     "name": "SNS_ALLOWED_REGIONS",
+     "value": "ap-south-1"
+    },
+    {
+     "name": "SWEEP_AUTOSCALE_ENABLED",
+     "value": "false"
+    },
+    {
+     "name": "DEAL_ENGINE_DISCOVERY_ENABLED",
+     "value": "false"
+    },
+    {
+     "name": "MCP_TOOL_TIMEOUT_S",
+     "value": "600"
+    },
+    {
+     "name": "SNS_ALLOWED_ACCOUNT_IDS",
+     "value": "022187637784"
+    },
+    {
+     "name": "DEAL_SWEEP_MANUAL_ONLY",
+     "value": "true"
+    }
+   ],
+   "mountPoints": [],
+   "volumesFrom": [],
+   "secrets": [
+    {
+     "name": "SF_USERNAME",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SF_USERNAME::"
+    },
+    {
+     "name": "SF_DOMAIN",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SF_DOMAIN::"
+    },
+    {
+     "name": "LEMLIST_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:LEMLIST_API_KEY::"
+    },
+    {
+     "name": "ZEROBOUNCE_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ZEROBOUNCE_API_KEY::"
+    },
+    {
+     "name": "SHOWPAD_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SHOWPAD_API_KEY::"
+    },
+    {
+     "name": "GOJIBERRY_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:GOJIBERRY_API_KEY::"
+    },
+    {
+     "name": "CLAY_WEBHOOK_URL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:CLAY_WEBHOOK_URL::"
+    },
+    {
+     "name": "LINKEDIN_CLIENT_ID",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:LINKEDIN_CLIENT_ID::"
+    },
+    {
+     "name": "LINKEDIN_CLIENT_SECRET",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:LINKEDIN_CLIENT_SECRET::"
+    },
+    {
+     "name": "SUPABASE_PROJECT_REF",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SUPABASE_PROJECT_REF::"
+    },
+    {
+     "name": "PIPELINE_USE_LOOPBACK",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:PIPELINE_USE_LOOPBACK::"
+    },
+    {
+     "name": "MCP_TOOL_DENYLIST",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MCP_TOOL_DENYLIST::"
+    },
+    {
+     "name": "AWS_SQS_JOBS_URL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:AWS_SQS_JOBS_URL::"
+    },
+    {
+     "name": "AWS_REGION",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:AWS_REGION::"
+    },
+    {
+     "name": "REDIS_URL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:REDIS_URL::"
+    },
+    {
+     "name": "SESSION_SECRET",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SESSION_SECRET::"
+    },
+    {
+     "name": "SF_PASSWORD",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SF_PASSWORD::"
+    },
+    {
+     "name": "SF_SECURITY_TOKEN",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SF_SECURITY_TOKEN::"
+    },
+    {
+     "name": "SUPABASE_URL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SUPABASE_URL::"
+    },
+    {
+     "name": "SUPABASE_SERVICE_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SUPABASE_SERVICE_KEY::"
+    },
+    {
+     "name": "SUPABASE_SERVICE_ROLE_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SUPABASE_SERVICE_ROLE_KEY::"
+    },
+    {
+     "name": "SUPABASE_ACCESS_TOKEN",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SUPABASE_ACCESS_TOKEN::"
+    },
+    {
+     "name": "CLAY_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:CLAY_API_KEY::"
+    },
+    {
+     "name": "APOLLO_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:APOLLO_API_KEY::"
+    },
+    {
+     "name": "SEAMLESS_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SEAMLESS_API_KEY::"
+    },
+    {
+     "name": "ZOOMINFO_CLIENT_ID",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ZOOMINFO_CLIENT_ID::"
+    },
+    {
+     "name": "ZOOMINFO_USERNAME",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ZOOMINFO_USERNAME::"
+    },
+    {
+     "name": "WIZA_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:WIZA_API_KEY::"
+    },
+    {
+     "name": "CLEAROUT_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:CLEAROUT_API_KEY::"
+    },
+    {
+     "name": "DISPATCH_SECRET",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:DISPATCH_SECRET::"
+    },
+    {
+     "name": "NEXTJS_APP_URL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:NEXTJS_APP_URL::"
+    },
+    {
+     "name": "XAI_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:XAI_API_KEY::"
+    },
+    {
+     "name": "ANTHROPIC_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ANTHROPIC_API_KEY::"
+    },
+    {
+     "name": "OPENAI_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:OPENAI_API_KEY::"
+    },
+    {
+     "name": "GOOGLE_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:GOOGLE_API_KEY::"
+    },
+    {
+     "name": "MAILCHIMP_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MAILCHIMP_API_KEY::"
+    },
+    {
+     "name": "LUSHA_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:LUSHA_API_KEY::"
+    },
+    {
+     "name": "ELOQUA_USERNAME",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ELOQUA_USERNAME::"
+    },
+    {
+     "name": "ELOQUA_SITE_NAME",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ELOQUA_SITE_NAME::"
+    },
+    {
+     "name": "ELOQUA_PASSWORD",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ELOQUA_PASSWORD::"
+    },
+    {
+     "name": "LINKEDIN_ACCESS_TOKEN",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:LINKEDIN_ACCESS_TOKEN::"
+    },
+    {
+     "name": "MODEL",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MODEL::"
+    },
+    {
+     "name": "ZOOMINFO_PRIVATE_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:ZOOMINFO_PRIVATE_KEY::"
+    },
+    {
+     "name": "REVOPS_HEAD_ENABLED",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:REVOPS_HEAD_ENABLED::"
+    },
+    {
+     "name": "DEAL_SWEEP_AVOMA_LOOKBACK_DAYS",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:DEAL_SWEEP_AVOMA_LOOKBACK_DAYS::"
+    },
+    {
+     "name": "DEAL_SWEEP_AVOMA_MAX_READS",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:DEAL_SWEEP_AVOMA_MAX_READS::"
+    },
+    {
+     "name": "DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:DEAL_SWEEP_AVOMA_TRANSCRIPT_CHARS::"
+    },
+    {
+     "name": "DEAL_SWEEP_GATE_ATTEMPTS",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:DEAL_SWEEP_GATE_ATTEMPTS::"
+    },
+    {
+     "name": "FIREWORKS_API_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:FIREWORKS_API_KEY::"
+    },
+    {
+     "name": "MS_CLIENT_ID",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MS_CLIENT_ID::"
+    },
+    {
+     "name": "MS_TENANT_ID",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MS_TENANT_ID::"
+    },
+    {
+     "name": "MS_CLIENT_SECRET",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:MS_CLIENT_SECRET::"
+    },
+    {
+     "name": "SWEEP_QUEUE_SECRET",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/app-env-Adtn25:SWEEP_QUEUE_SECRET::"
+    },
+    {
+     "name": "DATALAKE_SERVICE_KEY",
+     "valueFrom": "arn:aws:secretsmanager:ap-south-1:022187637784:secret:mase/datalake-kcMH0p"
+    }
+   ],
+   "stopTimeout": 120,
+   "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+     "awslogs-group": "/ecs/mase-service",
+     "awslogs-region": "ap-south-1",
+     "awslogs-stream-prefix": "api"
+    }
+   },
+   "healthCheck": {
+    "command": [
+     "CMD-SHELL",
+     "curl -fsS http://127.0.0.1:5000/api/health || exit 1"
+    ],
+    "interval": 30,
+    "timeout": 5,
+    "retries": 3,
+    "startPeriod": 60
+   },
+   "systemControls": []
+  }
+ ],
+ "family": "mase-api",
+ "taskRoleArn": "arn:aws:iam::022187637784:role/mase-ecs-task-role",
+ "executionRoleArn": "arn:aws:iam::022187637784:role/mase-ecs-task-execution-role",
+ "networkMode": "awsvpc",
+ "volumes": [],
+ "placementConstraints": [],
+ "requiresCompatibilities": [
+  "FARGATE"
+ ],
+ "cpu": "1024",
+ "memory": "2048"
+}

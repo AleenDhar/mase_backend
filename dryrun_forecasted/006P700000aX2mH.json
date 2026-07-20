@@ -1,0 +1,3711 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "Opportunity contact roles",
+     "date": "2026-07-09",
+     "quote": "0 buyer-side contact role(s) on this opp",
+     "source": "Salesforce buyer-identity prefetch",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Logged activity on this Opportunity",
+     "date": "2026-07-09",
+     "quote": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep.",
+     "source": "Known-topics record / Salesforce",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Close date accuracy",
+     "date": "2026-07-09",
+     "quote": "CloseDate 2031-07-01, 1,818 days out",
+     "source": "Salesforce ground truth",
+     "status": "not addressed",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Signature confirmation",
+     "date": "2026-07-09",
+     "quote": "no evidence exists confirming whether the SOW/MSA was actually signed since the 30 Jun 2026 call",
+     "source": "Avoma manifest (no touchpoint after 2026-06-30)",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Sanctions-screening vendor decision",
+     "date": "2026-06-30",
+     "quote": "we can check with the DNB partner team",
+     "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+     "status": "acknowledged",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Implementation-partner decision",
+     "date": "2026-06-30",
+     "quote": "I'm not certain how it came about that Zycus and jointly Omnia.",
+     "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+     "status": "acknowledged",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2025-10-08 'Omnia_Zycus Alignment for 13/10 presentation'",
+     "Avoma call 2026-06-30 'SOW discussion and closure call'"
+    ],
+    "narrative": "Omnia is digitizing an entirely manual, Excel-based procurement process spanning roughly ZAR 16 billion (~USD 1 billion) of spend, with 15 sourcing events and 18 contracts in flight (11 under frequent follow-up) at the time of the 8 Oct 2025 alignment call. Marianne Ventura also flagged a standing operational pain point: spend data currently lags 3 weeks after month-close ('I can't do monthly... we need our data quicker than that,' 30 Jun 2026). These are buyer-quantified, not rep-asserted, figures."
+   },
+   "champion": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2025-10-08 'Omnia_Zycus Alignment for 13/10 presentation'",
+     "Avoma call 2026-06-30 'SOW discussion and closure call'"
+    ],
+    "narrative": "Marianne Ventura (Senior Category Manager: IT & Communications, per Salesforce) has driven the deal across every call from the Oct 2025 executive session through the 30 Jun 2026 closure call, personally resolving redlines line-by-line and stating, 'I really, really expect that we're going to walk away with the signature,' and later, 'we've gotta go in a couple of days, and we have to report we're ready to sign.' Her engagement is current, senior, and unambiguous."
+   },
+   "competition": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2025-04-24 'Certinal and Omnia Holdings'",
+     "Avoma call 2026-06-30 'SOW discussion and closure call'"
+    ],
+    "narrative": "The only named incumbent is Adobe Sign for e-signature, criticized by Ashen Chathury for a 'lack of workflow integration and a 60% adoption rate' (24 Apr 2025) and now formally displaced by Zycus's own Certinal (confirmed 30 Jun 2026). A single unspecified reference to 'considering Zycus among other options' surfaced once, on 24 Apr 2025, and was never repeated across fourteen subsequent months of deepening engagement."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2026-06-30 'SOW discussion and closure call'",
+     "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'"
+    ],
+    "narrative": "Pain is well-documented and buyer-voiced: fully manual, Excel-governed sourcing and contracting across 15+ events and 18 contracts; fragmented legacy source systems (SharePoint, Teams, file servers, and multiple ERPs including AX2012 and QAD) forcing Indonesia and the DRC out of the initial rollout; and a 3-week lag on spend data. Marianne Ventura also cited a 2020 cyber incident that left supplier-master data incomplete, compounding the case for a single source of truth."
+   },
+   "paper_process": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2026-06-30 'SOW discussion and closure call'"
+    ],
+    "narrative": "By 30 Jun 2026 the SOW redlines were fully worked through comment-by-comment (country phasing, spend threshold, e-signature vendor) and accepted; the spend threshold was raised from ZAR 900 million to ZAR 1 billion at no commercial uplift, and Certinal was confirmed as the e-signature vendor. Two updated MSA/Order Form documents were committed to follow by email the same day. The signature owner on Zycus's side for the SOW is the AVP Global Delivery (role only, per standard practice); the deal is at the classic SOW choke point immediately ahead of signature."
+   },
+   "economic_buyer": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2025-10-08 'Omnia_Zycus Alignment for 13/10 presentation'",
+     "Avoma call 2025-10-13 'FW: Source to Contract Demo and Business Case'"
+    ],
+    "narrative": "The unnamed Omnia legal director/board member and Jacques de Villiers (Group: Head of Supply Chain, per Salesforce) were named by Marianne Ventura as the two sign-off authorities whose approval unlocks budget: 'I have the legal director in this meeting... his signing off on this is important to me, along with Jacques de Villiers.' Both attended the 13 Oct 2025 executive session held specifically to secure the funding commitment. No direct engagement with either has been documented since that date, roughly nine months before this sweep."
+   },
+   "decision_process": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2026-06-30 'SOW discussion and closure call'",
+     "Avoma call 2026-06-17 'SOW alignment'"
+    ],
+    "narrative": "The process ran discovery (Apr 2025) through executive funding approval (Oct 2025), design/SOW iteration (Feb-Jun 2026), and into a defined legal sign-off sequence: Omnia completes an internal legal-cover signature in Adobe Sign for its own audit trail, then routes the package to Zycus for countersignature. Marianne Ventura named the sequence explicitly on 30 Jun 2026 and noted a prior slip: 'Delay noted from January to March due to external counsel.'"
+   },
+   "decision_criteria": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+     "Avoma call 2026-06-17 'SOW alignment'"
+    ],
+    "narrative": "Detailed evaluation criteria were built out through 2026 via sample design-document walkthroughs (implementation approach document + technical design document, process flows, user stories, configuration worksheets) and an explicit requirement that every functionality demonstrated during sales be captured and enforceable in the contract. Omnia's legal reviewer pressed on this directly: 'everything that has been demonstrated is in the statement of work.'"
+   }
+  },
+  "footprints": {
+   "alive": true,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 0,
+    "top_event": null,
+    "events_30d": 0,
+    "points_60d": 0.0,
+    "top_weight": 0.0,
+    "points_90d_process": 0.0
+   },
+   "last_meeting": "2026-06-30",
+   "meetings_60d": 3,
+   "last_rep_touch": null,
+   "last_buyer_touch": "2026-06-30",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 14,
+   "general_last_activity": "2026-07-06",
+   "days_since_buyer_touch": 9
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-06-30",
+   "items": [
+    {
+     "at": "2026-06-30",
+     "kind": "call",
+     "name": "SOW discussion and closure call",
+     "summary": "Redlines resolved, scope finalized, spend threshold raised to ZAR 1B, Certinal confirmed as e-sign vendor; champion to route documents for signature."
+    },
+    {
+     "at": "2026-06-30",
+     "kind": "call",
+     "name": "Omnia<>Zycus catch up",
+     "summary": "Morning check-in ahead of the closure call; not recorded, content unknown."
+    }
+   ],
+   "overall": "On 30 Jun 2026 (about nine days before this sweep), Omnia and the vendor held a closure call to finalize the Source-to-Contract SOW: every open redline was resolved, rollout scope was locked (Indonesia and DRC dropped, Mauritius and Brazil re-phased), the governed spend threshold was raised to ZAR 1 billion at no extra cost, and Certinal was confirmed as the e-signature vendor. The champion, Marianne Ventura, committed to complete Omnia's internal legal sign-off and route the SOW/MSA/Order Forms for countersignature within days. A separate morning check-in the same day was held but not recorded."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "At risk",
+    "deal_risk": 76.0,
+    "win_position": 22.0,
+    "deal_momentum": 30.0,
+    "customer_commitment": 18.0,
+    "forecast_confidence": 20.0
+   },
+   "cro_panel": {
+    "intro": "Real, deeply-documented buyer engagement puts this deal on the doorstep of a signed SOW and MSA, even though the opportunity record itself was created only three days ago with no logged activity, no logged contact roles, and a close date that cannot be reconciled with the evidence",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 22,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Stage-reality override applied downward; scored against the deal's true state (an unstarted renewal placeholder), not the recorded late stage (\u00a75.5)",
+        "tone": "warn"
+       },
+       {
+        "text": "No verifiable current-cycle evidence; meetings=0 all-time, no next step, no history entries; every MEDDPICC pillar reads 'confirmed' with nothing dated behind it in this record",
+        "tone": "warn"
+       },
+       {
+        "text": "Real underlying account relationship exists; Marianne Ventura is credited with driving 'executive funding approval through final SOW redlining' on the live OmniaS2C24 relationship, a genuine asset if the renewal motion actually starts",
+        "tone": "good"
+       },
+       {
+        "text": "No competitive threat present; only named rival is Adobe Sign, dormant/displaced years ago; no S2C vendor competing for this renewal",
+        "tone": "good"
+       },
+       {
+        "text": "Data-integrity mismatch; a 'confirmed' MEDDPICC set with zero supporting meetings/tasks looks like carried-over/administrative defaults rather than fresh qualification for this opportunity",
+        "tone": "warn"
+       },
+       {
+        "text": "\u25ba Seller nudge; correct the record; either set close date/stage to reflect this is a future renewal placeholder (not an active Vendor Selected cycle), or open a real evaluation with dated next steps if the renewal conversation has actually begun",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 30,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "Zero buyer touches ever logged; meetings.total_all_time = 0 across all windows (30d/60d/90d), no next scheduled meeting, no future calendar",
+        "tone": "warn"
+       },
+       {
+        "text": "Five-year close horizon signals no near-term push; close date 1 Jul 2031 is 1,818 days out, the opposite of the 60; 90 day pattern expected at Vendor Selected/Best Case",
+        "tone": "warn"
+       },
+       {
+        "text": "Champion 'most recent call' unverified; the narrative claims Marianne Ventura is 'actively engaged as of the most recent call,' but no call/meeting with that date exists anywhere in the activity data",
+        "tone": "warn"
+       },
+       {
+        "text": "Too new to show stalling drag; opp was created 2 days ago (last_activity_date 6 Jul 2026), so \u00a74.9 decay hasn't kicked in yet; this is a blank slate, not yet a proven stall",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "There's a live competitive threat plus execution risk \u2014 both below.",
+      "score": 76,
+      "title": "What could lose it",
+      "footer": "Competitive picture: Only one competitor has ever been named across the account's history: the incumbent e-signature tool Adobe Sign, which was displaced by Certinal well before this sweep.",
+      "bullets": [
+       {
+        "text": "Stage inflation; Vendor Selected recorded on a 2-day-old opportunity with zero activity, zero stakeholders logged",
+        "tone": "warn"
+       },
+       {
+        "text": "Close date 1,818 days out; wildly atypical for Vendor Selected + Best Case, which normally implies a 60-90 day close",
+        "tone": "warn"
+       },
+       {
+        "text": "Zero engagement across every channel; no meetings, no next step, no history, no future calendar entries anywhere in the packet",
+        "tone": "warn"
+       },
+       {
+        "text": "MEDDPICC 'confirmed' without support; every pillar marked confirmed but none is backed by a dated meeting or task in this record, raising data-quality risk",
+        "tone": "warn"
+       },
+       {
+        "text": "Mitigating; no active competitive threat; Adobe Sign dormant, no rival S2C vendor named at any point",
+        "tone": "good"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Confirm SOW/MSA sign-off status with the champion and secure the countersigned documents (by 14 Jun)",
+       "Log the account's verified call history and buyer-side contact roles against this opportunity in Salesforce (by 16 Jun)",
+       "Re-engage the economic buyer to reconfirm executive sponsorship ahead of contract execution (by 23 Jun)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Omnia Holdings Limited \u2014 Vendor Selected \u00b7 $234K \u00b7 closes 1 Jun",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 76.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage inflation \u2014 Vendor Selected recorded on a 2-day-old opportunity with zero activity, zero stakeholders logged.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date 1,818 days out \u2014 wildly atypical for Vendor Selected + Best Case, which normally implies a 60-90 day close.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero engagement across every channel \u2014 no meetings, no next step, no history, no future calendar entries anywhere in the packet.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "MEDDPICC 'confirmed' without support \u2014 every pillar marked confirmed but none is backed by a dated meeting or task in this record, raising data-quality risk.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Mitigating: no active competitive threat \u2014 Adobe Sign dormant, no rival S2C vendor named at any point.",
+      "points": 1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Stage inflation \u2014 Vendor Selected recorded on a 2-day-old opportunity with zero activity, zero stakeholders logged.",
+      "tone": "warn"
+     },
+     {
+      "text": "Close date 1,818 days out \u2014 wildly atypical for Vendor Selected + Best Case, which normally implies a 60-90 day close.",
+      "tone": "warn"
+     },
+     {
+      "text": "Zero engagement across every channel \u2014 no meetings, no next step, no history, no future calendar entries anywhere in the packet.",
+      "tone": "warn"
+     },
+     {
+      "text": "MEDDPICC 'confirmed' without support \u2014 every pillar marked confirmed but none is backed by a dated meeting or task in this record, raising data-quality risk.",
+      "tone": "warn"
+     },
+     {
+      "text": "Mitigating: no active competitive threat \u2014 Adobe Sign dormant, no rival S2C vendor named at any point.",
+      "tone": "good"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Stage-reality override applied downward \u2014 recorded Vendor Selected + Best Case (ceiling 85), but the opp was created 2 days ago with zero activity, zero stakeholders and a 5-year-out close; scored against the deal's true state (an unstarted renewal placeholder), not the recorded late stage (\u00a75.5).",
+      "tone": "warn"
+     },
+     {
+      "text": "No verifiable current-cycle evidence \u2014 meetings=0 all-time, no next step, no history entries; every MEDDPICC pillar reads 'confirmed' with nothing dated behind it in this record.",
+      "tone": "warn"
+     },
+     {
+      "text": "Real underlying account relationship exists \u2014 Marianne Ventura is credited with driving 'executive funding approval through final SOW redlining' on the live OmniaS2C24 relationship, a genuine asset if the renewal motion actually starts.",
+      "tone": "good"
+     },
+     {
+      "text": "No competitive threat present \u2014 only named rival is Adobe Sign, dormant/displaced years ago; no S2C vendor competing for this renewal.",
+      "tone": "good"
+     },
+     {
+      "text": "Data-integrity mismatch \u2014 a 'confirmed' MEDDPICC set with zero supporting meetings/tasks looks like carried-over/administrative defaults rather than fresh qualification for this opportunity.",
+      "tone": "warn"
+     },
+     {
+      "text": "\u25ba Seller nudge: correct the record \u2014 either set close date/stage to reflect this is a future renewal placeholder (not an active Vendor Selected cycle), or open a real evaluation with dated next steps if the renewal conversation has actually begun.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Zero buyer touches ever logged \u2014 meetings.total_all_time = 0 across all windows (30d/60d/90d), no next scheduled meeting, no future calendar.",
+      "tone": "warn"
+     },
+     {
+      "text": "No dated plan on record \u2014 Next_Step__c is blank and Next_Step_History__c is null, so there is no forward motion to credit.",
+      "tone": "warn"
+     },
+     {
+      "text": "Five-year close horizon signals no near-term push \u2014 close date 2031-07-01 is 1,818 days out, the opposite of the 60\u201390 day pattern expected at Vendor Selected/Best Case.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion 'most recent call' unverified \u2014 the narrative claims Marianne Ventura is 'actively engaged as of the most recent call,' but no call/meeting with that date exists anywhere in the activity data.",
+      "tone": "warn"
+     },
+     {
+      "text": "Too new to show stalling drag \u2014 opp was created 2 days ago (last_activity_date 2026-07-06), so \u00a74.9 decay hasn't kicked in yet; this is a blank slate, not yet a proven stall.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-owned action items in this opp \u2014 zero completed or open tasks, zero meetings logged against this record.",
+      "tone": "warn"
+     },
+     {
+      "text": "No procurement/security review evidenced for the renewal cycle itself \u2014 the only referenced review activity (SOW redlining, funding approval) belongs to the prior, already-closed deal.",
+      "tone": "warn"
+     },
+     {
+      "text": "No exec access within this opp's timeline \u2014 economic buyer marked 'confirmed' but no session date exists in the packet.",
+      "tone": "warn"
+     },
+     {
+      "text": "Strong prior investment on record \u2014 buyer previously ran funding approval and SOW redlining to close the original S2C24 contract, evidence of real historical commitment to the relationship.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 22.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Stage-reality override applied downward \u2014 recorded Vendor Selected + Best Case (ceiling 85), but the opp was created 2 days ago with zero activity, zero stakeholders and a 5-year-out close; scored against the deal's true state (an unstarted renewal placeholder), not the recorded late stage (\u00a75.5).",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No verifiable current-cycle evidence \u2014 meetings=0 all-time, no next step, no history entries; every MEDDPICC pillar reads 'confirmed' with nothing dated behind it in this record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Real underlying account relationship exists \u2014 Marianne Ventura is credited with driving 'executive funding approval through final SOW redlining' on the live OmniaS2C24 relationship, a genuine asset if the renewal motion actually starts.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "No competitive threat present \u2014 only named rival is Adobe Sign, dormant/displaced years ago; no S2C vendor competing for this renewal.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Data-integrity mismatch \u2014 a 'confirmed' MEDDPICC set with zero supporting meetings/tasks looks like carried-over/administrative defaults rather than fresh qualification for this opportunity.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "\u25ba Seller nudge: correct the record \u2014 either set close date/stage to reflect this is a future renewal placeholder (not an active Vendor Selected cycle), or open a real evaluation with dated next steps if the renewal conversation has actually begun.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 30.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Zero buyer touches ever logged \u2014 meetings.total_all_time = 0 across all windows (30d/60d/90d), no next scheduled meeting, no future calendar.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No dated plan on record \u2014 Next_Step__c is blank and Next_Step_History__c is null, so there is no forward motion to credit.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Five-year close horizon signals no near-term push \u2014 close date 2031-07-01 is 1,818 days out, the opposite of the 60\u201390 day pattern expected at Vendor Selected/Best Case.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion 'most recent call' unverified \u2014 the narrative claims Marianne Ventura is 'actively engaged as of the most recent call,' but no call/meeting with that date exists anywhere in the activity data.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Too new to show stalling drag \u2014 opp was created 2 days ago (last_activity_date 2026-07-06), so \u00a74.9 decay hasn't kicked in yet; this is a blank slate, not yet a proven stall.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "The buyer explicitly asked that Merlin Insights (AI spend analysis) be added to the SOW and referenced its own internal 'AI play' when discussing metadata access, showing genuine appetite for AI capability rather than passive tolerance.",
+     "expectations_fit": "Omnia's core expectations (contractual protection for demonstrated functionality, integration on its own framework, faster spend visibility) are largely aligned, with the spend-data cadence still an open design-phase item.",
+     "north_star_verdict": null,
+     "positioning_strength": "Merlin AI capabilities (Merlin Intake, Merlin contract discovery for data migration, Merlin Insights for spend analysis, Questionnaire Genie, Merlin Risk Radar) were deliberately dosed rather than oversold, at the buyer's own request, and w"
+    },
+    "deal": {
+     "stage": "Vendor Selected",
+     "amount": 234000.0,
+     "opp_id": "006P700000aX2mH",
+     "account": "Omnia Holdings Limited",
+     "opp_name": "OmniaS2C24 Contract Renewal 7/1/2031",
+     "next_step": "",
+     "close_date": "2031-07-01",
+     "stage_tier": "late",
+     "days_to_close": 1818,
+     "forecast_category": "Best Case",
+     "next_step_history": null,
+     "last_activity_date": "2026-07-06"
+    },
+    "trends": {},
+    "champion": "Marianne Ventura has personally driven every material step of this deal from executive funding approval through final SOW redlining, and remains actively engaged as of the most recent call.",
+    "meddpicc": {
+     "metrics": "confirmed",
+     "champion": "confirmed",
+     "competition": "confirmed",
+     "identify_pain": "confirmed",
+     "paper_process": "confirmed",
+     "economic_buyer": "confirmed",
+     "decision_process": "confirmed",
+     "decision_criteria": "confirmed"
+    },
+    "meetings": {
+     "recent": [],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": null,
+     "next_scheduled": null,
+     "total_all_time": 0,
+     "days_since_last": null,
+     "with_transcript_all_time": 0
+    },
+    "competition": {
+     "summary": "Only one competitor has ever been named across the account's history: the incumbent e-signature tool Adobe Sign, which was displaced by Certinal well before this sweep. No rival source-to-contract vendor has been named at any point.",
+     "competitors": [
+      {
+       "name": "Adobe Sign",
+       "status": "declined",
+       "threat": "dormant"
+      },
+      {
+       "name": "Unnamed alternative S2C vendors (background)",
+       "status": "faded",
+       "threat": "dormant"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Sanctions/compliance-screening coverage (World-Check One vs. DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase.",
+     "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025,",
+     "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-t",
+     "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. ",
+     "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizo"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "buyer_touches_30d": 0,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": null
+    },
+    "decision_outcome": {},
+    "forward_momentum": {
+     "has_future_calendar": false,
+     "engagement_points_60d": 0.0,
+     "next_scheduled_meeting": null
+    }
+   },
+   "customer_commitment": {
+    "score": 18.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-owned action items in this opp \u2014 zero completed or open tasks, zero meetings logged against this record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No procurement/security review evidenced for the renewal cycle itself \u2014 the only referenced review activity (SOW redlining, funding approval) belongs to the prior, already-closed deal.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No exec access within this opp's timeline \u2014 economic buyer marked 'confirmed' but no session date exists in the packet.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Strong prior investment on record \u2014 buyer previously ran funding approval and SOW redlining to close the original S2C24 contract, evidence of real historical commitment to the relationship.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 20.0,
+    "contributions": []
+   }
+  },
+  "scope_change": {
+   "to": "Indonesia and DRC removed from initial scope due to legacy QAD-system incompatibility; Mauritius moved to the Africa phase and Brazil to the Americas phase; governed spend threshold raised from ZAR 900 million to ZAR 1 billion at no additional cost",
+   "from": "Initial multi-country rollout plan including Indonesia and additional African countries",
+   "detail": "Finalized on the 30 Jun 2026 closure call: two countries dropped from the initial rollout footprint while the spend ceiling under management was increased with no commercial impact.",
+   "direction": "reduced"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Curious",
+   "summary": "The buyer explicitly asked that Merlin Insights (AI spend analysis) be added to the SOW and referenced its own internal 'AI play' when discussing metadata access, showing genuine appetite for AI capability rather than passive tolerance."
+  },
+  "business_case": {
+   "status": "confirmed",
+   "evidence": "Roughly ZAR 16 billion (~USD 1 billion) of spend under a fully manual, Excel-governed process, 18 contracts in flight, and a standing 3-week spend-data lag were quantified directly by the buyer across the 8 Oct 2025 and 30 Jun 2026 calls."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-10-13",
+     "change": "Executive funding presentation held for the economic buyer and Group Head of Supply Chain"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "Supplier-master source-of-truth model finalized (vendor platform as master for collaboration/transactional data, D365 as master for financial/payment records)"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "Country/business-unit rollout scope finalized: Indonesia and DRC removed (legacy QAD system), Mauritius moved to Africa phase, Brazil moved to Americas phase"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "SOW fully redlined and accepted; spend threshold raised to ZAR 1 billion at no additional cost; Certinal confirmed as e-signature vendor"
+    }
+   ],
+   "summary": "The deal progressed from executive funding approval (Oct 2025) through iterative SOW/design finalization (Feb-Jun 2026) to a fully redlined, scope-locked SOW awaiting signature routing (30 Jun 2026)."
+  },
+  "forecast_read": {
+   "math": "days_to_close=1818 per Salesforce (CloseDate 2031-07-01 vs today 2026-07-09); this figure is not usable for pacing because the underlying evidence points to a near-term signature, not a five-year horizon.",
+   "reason": "The recorded close date of 2031-07-01 (1,818 days out) is not a credible signature target for a deal in active SOW finalization; it reads as the multi-year contract term rather than the signing date. Hard evidence from the 30 Jun 2026 closure call shows every SOW redline resolved, scope locked, and the champion (Marianne Ventura) committing to route the signed MSA/Order Forms/SOW to Zycus within days. All days-to-close and time-in-stage math against 2031 is meaningless.",
+   "defensible": false,
+   "recommended_forecast": "Commit (contracting nearly closed) \u2014 treat the recorded 2031 date as a data artifact, not a real target"
+  },
+  "product_scope": {
+   "scope": "iContract;iSource;ML iAnalyze;iSupplier"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.7",
+    "sum": "10.2",
+    "win": "10.7",
+    "todo": "10.2",
+    "sweep": "10.3",
+    "extract": "10.5",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "unnamed Omnia legal director/board member",
+     "risk": "no confirmed direct engagement in roughly nine months",
+     "role": "Economic Buyer",
+     "title": "Director (unspecified)",
+     "sentiment": "positive at last direct contact",
+     "last_contact_date": "2025-10-13"
+    },
+    {
+     "name": "Marianne Ventura",
+     "risk": "none evident; single strongest thread on the account",
+     "role": "Champion",
+     "title": "Senior Category Manager: IT & Communications",
+     "sentiment": "strongly positive, driving to signature",
+     "last_contact_date": "2026-06-30"
+    },
+    {
+     "name": "Dieter Sparbier",
+     "risk": "integration-framework alignment session still pending",
+     "role": "Influencer",
+     "title": "Unknown (not in Salesforce contact roles)",
+     "sentiment": "constructive, detail-oriented on integration standards",
+     "last_contact_date": "2026-06-23"
+    },
+    {
+     "name": "Zama Khambula",
+     "risk": "low",
+     "role": "Influencer",
+     "title": "Financial Systems Support Analyst",
+     "sentiment": "engaged, pragmatic on onboarding and data issues",
+     "last_contact_date": "2026-06-23"
+    },
+    {
+     "name": "Jacques de Villiers",
+     "risk": "no confirmed engagement since Oct 2025",
+     "role": "Influencer",
+     "title": "Group: Head of Supply Chain",
+     "sentiment": "positive at last direct contact",
+     "last_contact_date": "2025-10-13"
+    },
+    {
+     "name": "Tracy Seeley-Jeppe",
+     "risk": "legal review previously caused a Jan-Mar 2026 slip and could still affect signature timing",
+     "role": "Influencer (Legal)",
+     "title": "Unknown (not in Salesforce contact roles)",
+     "sentiment": "cautious, legal-diligence focused",
+     "last_contact_date": "2026-06-17"
+    },
+    {
+     "name": "Ashen Chathury",
+     "risk": "no evidence of continued involvement since Oct 2025; role appears to have shifted to Marianne Ventura",
+     "role": "Coach (early)",
+     "title": "Unknown (not in Salesforce contact roles)",
+     "sentiment": "positive at last contact",
+     "last_contact_date": "2025-10-13"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2026-06-30",
+     "change": "carried",
+     "detail": "Sanctions/compliance-screening coverage (World-Check One vs. DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase.",
+     "status": "open",
+     "category": "integration",
+     "first_seen": "2026-07-07T11:45:39.474425+05:30",
+     "first_raised": "2026-06-23",
+     "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "carried",
+     "detail": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025, Jun 2026); Zycus recommended proceeding without a partner but the decision is not yet finalized.",
+     "status": "open",
+     "category": "change_management",
+     "first_seen": "2026-07-07T11:45:39.474425+05:30",
+     "first_raised": "2025-10-13",
+     "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "carried",
+     "detail": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-truth model (Zycus vs D365) was finalized 30 Jun 2026.",
+     "status": "resolved for initial scope; Indonesia deferred 6-12 months",
+     "category": "integration",
+     "first_seen": "2026-07-07T11:45:39.474425+05:30",
+     "first_raised": "2026-02-19",
+     "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. This stage may be incorrect or the deal may be a placeholder. If the stage is real, the absence of any post-selection activity (contracting, legal review, MSA negotiation) and the extreme close-date horizon suggest the selection is not yet operationalized.",
+     "status": "open",
+     "category": "data_quality",
+     "first_seen": "2026-07-08",
+     "first_raised": "2026-07-08 (this sweep)",
+     "last_confirmed": "2026-07-08"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizon is either a data-entry error or encodes a contract-end milestone rather than a signature target. This makes all velocity and urgency math meaningless.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-08",
+     "first_raised": "2026-07-08 (this sweep)",
+     "last_confirmed": "2026-07-08"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "No economic buyer, no executive sponsor, no CFO/procurement-director engagement is documented. Zero contact roles exist. For a $234k renewal at an enterprise account, exec alignment is required to secure budget and navigate procurement/legal, but it is completely unmapped.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-08",
+     "first_raised": "2026-07-08 (this sweep)",
+     "last_confirmed": "2026-07-08"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "No champion, no internal advocate, no buying-committee map exists. The deal is zero-threaded. Without a champion to drive the renewal, defend the budget, and navigate internal approvals, the deal is at high risk of stalling or being deprioritized.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-08",
+     "first_raised": "2026-07-08 (this sweep)",
+     "last_confirmed": "2026-07-08"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "The known-topics note references detailed prior activity (material-breach negotiation resolved 17 Jun 2026, sanctions-screening scoping deferred to design phase, implementation-partner ambiguity, legacy-ERP fragmentation scoping finalized 30 Jun 2026, and named stakeholders Marianne Ventura, Jacques de Villiers, Tracy Seeley-Jeppe, Dieter Sparbier, Zama Khambula, Ashen Chathury), but this opportunity (006P700000aX2mH) was created 2026-07-06 with zero calls or tasks. This suggests either (a) the known-topics history belongs to a DIFFERENT opportunity and was incorrectly associated with this one, or (b) this opp_id is a new placeholder for a prior engagement that was tracked elsewhere. Either way, the known-topics evidence is not traceable to this opp_id in the current sweep, creating a provenance gap.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-08",
+     "first_raised": "2026-07-08 (this sweep)",
+     "last_confirmed": "2026-07-08"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "carried",
+     "detail": "Whether an external implementation partner is needed (vs. Zycus direct plus an Omnia-hired PM/change manager) has surfaced twice; Zycus recommended proceeding without a partner but the decision is not finalized.",
+     "status": "open",
+     "category": "partner_support",
+     "first_seen": "2026-07-09T05:24:22.664309+05:30",
+     "first_raised": "2025-10-08",
+     "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+    },
+    {
+     "date": "2026-07-08",
+     "change": "carried",
+     "detail": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep, making the deal's true state invisible without cross-referencing Avoma.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-09T05:24:22.664309+05:30",
+     "first_raised": "2026-07-08",
+     "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+    },
+    {
+     "date": "2026-06-17",
+     "change": "new",
+     "detail": "External counsel review caused a Jan-Mar 2026 slip in the SOW timeline before it was resolved by late June 2026.",
+     "status": "resolved",
+     "category": "legal",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2026-06-17",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2026-06-23",
+     "change": "new",
+     "detail": "Omnia's own integration-standards framework has not yet been shared or aligned with Zycus's design documentation.",
+     "status": "open",
+     "category": "integration",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2026-06-23",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "new",
+     "detail": "Sanctions/political-exposure screening tool decision (World-Check One vs. DNB/Refinitiv/iOxcio) is unresolved and deferred to the design phase.",
+     "status": "open",
+     "category": "security_review",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2026-06-23",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2026-06-30",
+     "change": "new",
+     "detail": "Whether an external implementation partner is needed alongside Zycus (vs. Zycus direct plus Omnia-hired PM/change-manager contractors) has been raised twice without a final decision.",
+     "status": "open",
+     "category": "change_management",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2025-10-13",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2025-10-13",
+     "change": "new",
+     "detail": "No documented direct contact with the economic buyer (the unnamed legal director/board member) since the 13 Oct 2025 funding presentation, roughly nine months before this sweep.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2025-10-13",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "The recorded close date (2031-07-01) makes all forecast-pacing math indefensible; hard evidence points to a near-term signature instead.",
+     "status": "not addressed",
+     "category": "other",
+     "first_seen": "2026-07-09T19:19:16.459465+05:30",
+     "first_raised": "2026-07-09",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 30.0,
+   "win": 22.0,
+   "needed": true,
+   "source": "sweep",
+   "reasons": [
+    {
+     "to": "Indonesia and DRC removed from initial scope due to legacy QAD-system incompatibility; Mauritius moved to the Africa phase and Brazil to the Americas phase; governed spend threshold raised from ZAR 900 million to ZAR 1 billion at no additional cost",
+     "act": false,
+     "from": "Initial multi-country rollout plan including Indonesia and additional African countries",
+     "type": "scope_shrink",
+     "as_of": "2026-07-09",
+     "detail": "Finalized on the 30 Jun 2026 closure call: two countries dropped from the initial rollout footprint while the spend ceiling under management was increased with no commercial impact.",
+     "summary": "Scope shrinking vs prior \u2014 Finalized on the 30 Jun 2026 closure call: two countries dropped from the initial rollout footprint while the spend ceiling under management was increased with no commercial impact.. Buyer likely getting defensive on cost or implementation/integration (phased over big-bang) \u2014 watch.",
+     "severity": "medium"
+    }
+   ],
+   "summary": "Scope shrinking vs prior \u2014 Finalized on the 30 Jun 2026 closure call: two countries dropped from the initial rollout footprint while the spend ceiling under management was increased with no commercial impact.. Buyer like",
+   "severity": "medium",
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "On 30 Jun 2026 (about nine days before this sweep) the champion finalized every open SOW redline, locked the rollout scope, and told the Zycus team she expected to route the fully signed contract package within days \u2014 the clearest signature-imminent signal on this account in over a year.",
+    "tone": "pos"
+   },
+   {
+    "lens": "Commercials",
+    "text": "The governed spend threshold was raised from ZAR 900 million to ZAR 1 billion at no extra cost, and the e-signature vendor decision was locked in favor of Zycus's own product, closing out the last open commercial items.",
+    "tone": "pos"
+   },
+   {
+    "lens": "New requirement",
+    "text": "Omnia's legal reviewer pushed to have every demonstrated capability, especially the end-to-end contract workflow, written into binding contract language as a condition of accepting a five-year commitment, and the vendor agreed this qualifies as a material breach if not delivered.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "The only named incumbent, Adobe Sign, is being actively retired in favor of the vendor's own e-signature product, and no alternative source-to-contract vendor has been mentioned since a single passing reference over a year earlier.",
+    "tone": "pos"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": true,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": true,
+   "commercial_topics_entering": true,
+   "customer_requested_next_meeting": true
+  },
+  "champion_strength": {
+   "source": "Avoma calls 2025-10-08 through 2026-06-30",
+   "at_risk": false,
+   "summary": "Marianne Ventura has personally driven every material step of this deal from executive funding approval through final SOW redlining, and remains actively engaged as of the most recent call.",
+   "champion": "Marianne Ventura",
+   "strength": "strong"
+  },
+  "expansion_context": {
+   "note": "Two sibling opportunities are open on this account (Omnia_Certinal in Contract Negotiation; OmniaS2C24 Annual Invoicing 7/2/2027 in Vendor Selected), but neither is Closed-Won, so no inherited executive-access credit applies.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-14",
+     "action": "Confirm SOW/MSA sign-off status with the champion and secure the countersigned documents",
+     "horizon": "next_7_days",
+     "trigger": "Champion committed on the 30 Jun 2026 call to route signed documents within days",
+     "trigger_date": "2026-06-30",
+     "expected_effect": "Closes the loop on a deal that reads dark in Salesforce but was days from signature per Avoma."
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Log the account's verified call history and buyer-side contact roles against this opportunity in Salesforce",
+     "horizon": "next_7_days",
+     "trigger": "Zero Tasks or contact roles logged despite verified engagement through 30 Jun 2026",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Restores Salesforce as a reliable source of truth for this deal."
+    },
+    {
+     "rank": 3,
+     "owner": "Executive sponsor",
+     "act_by": "2026-07-23",
+     "action": "Re-engage the economic buyer to reconfirm executive sponsorship ahead of contract execution",
+     "horizon": "next_14_days",
+     "trigger": "No documented direct contact with the economic buyer since the 13 Oct 2025 funding presentation",
+     "trigger_date": "2025-10-13",
+     "expected_effect": "Protects against budget or authority risk right before signature."
+    },
+    {
+     "rank": 4,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Correct the recorded close date and flag the stage for review against the true near-signature contracting status",
+     "horizon": "next_14_days",
+     "trigger": "CloseDate of 2031-07-01 renders forecast math meaningless while evidence shows imminent signature",
+     "trigger_date": "2026-07-09",
+     "expected_effect": "Restores forecast defensibility for this opportunity."
+    },
+    {
+     "rank": 5,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Finalize the sanctions-screening integration decision with the relevant stakeholder and finance analysts in the design phase",
+     "horizon": "next_30_days",
+     "trigger": "Buyer sent World-Check sample data on 30 Jun 2026 for scoping; decision deferred to design",
+     "trigger_date": "2026-06-30",
+     "expected_effect": "Removes an open integration scoping dependency before kickoff."
+    },
+    {
+     "rank": 6,
+     "owner": "Deal team",
+     "act_by": "2026-08-08",
+     "action": "Resolve whether an external implementation partner is required or Zycus plus Omnia-hired PM/change-manager contractors suffice",
+     "horizon": "next_30_days",
+     "trigger": "Ambiguity raised twice (Oct 2025, 30 Jun 2026) without a final decision",
+     "trigger_date": "2026-06-30",
+     "expected_effect": "Unblocks kickoff planning and change-management resourcing."
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "Deep multi-call evidence trail through 2026-06-30",
+    "No confirmation of signature since the 30 Jun 2026 commitment",
+    "Opportunity record itself is only 3 days old with no logged activity"
+   ],
+   "cooling": false,
+   "summary": "Fourteen months of deep, consistent engagement give high confidence in the deal's substance, but the brand-new opportunity record with zero logged activity and an unusable close date, plus nine days of silence since the last confirmed call, keep overall confidence at Medium."
+  },
+  "north_star_verdict": {
+   "math": "Days to close: 1819 (5 years out). Created 2026-07-06, last modified 2026-07-06, no LastActivityDate on record. Time in Vendor Selected: 2 days. This is not a real 2031 renewal; the close date and stage reflect a data-entry error or a placeholder. A Vendor Selected deal with Best Case forecast typically closes within 60-90 days, not 1,819. Forward slip: not applicable (no prior close-date history). Pace required: cannot be computed against an indefensible 2031 target.",
+   "verdict": "Off Track",
+   "critical": false,
+   "evidence": [
+    "Deal created 2026-07-06, stage Vendor Selected, forecast Best Case, close date 2031-07-01 (5 years out).",
+    "No LastActivityDate, no Next_Step__c, no field history beyond creation.",
+    "Zero Avoma calls discovered (opp+account pull).",
+    "Zero tasks, zero events, zero contact roles on record.",
+    "The opp name ('OmniaS2C24 Contract Renewal 7/1/2031') suggests a 2024 contract cycle with a 2031 end date, but the deal was created in July 2026 with no prior activity, implying the name may encode a future contract-expiration milestone rather than an active close date.",
+    "Best Case forecast with Vendor Selected stage and a 5-year horizon is internally contradictory and not defensible."
+   ],
+   "headline": "Vendor-selected deal created 2 days ago with a 5-year-out close date (Jul 2031) is a data-quality anomaly requiring immediate correction: the stage, forecast, and close date are misaligned with reality, and the deal shows zero buyer activity since creation.",
+   "carried_forward": true,
+   "forecast_defensible": false,
+   "recommended_forecast": "Pipeline"
+  },
+  "best_practice_check": {
+   "flags": [
+    "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence - close this loop before the board-reporting urgency she cited fades.",
+    "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened over an unresolved scoping item.",
+    "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026) from resurfacing as implementation risk.",
+    "Build a documented, multi-threaded buying-committee record (Marianne Ventura, Dieter Sparbier, Tracy Seeley-Jeppe, Zama Khambula, Jacques de Villiers) so continuity survives if the champion changes roles.",
+    "Keep the sanctions-screening vendor question (World-Check One vs. DNB/Refinitiv) moving so it doesn't become a design-phase blocker once signed.",
+    "Re-engage the economic buyer (the unnamed legal director/board member) who has had no documented direct contact since the 13 Oct 2025 funding presentation, roughly nine months ago."
+   ],
+   "summary": "The deal is functionally at the signature threshold; the highest-leverage moves are closing the loop on the committed sign-off, refreshing executive-sponsor contact, and fixing the Salesforce record so it reflects reality."
+  },
+  "customer_preference": {
+   "level": "high",
+   "evidence": "Marianne Ventura, 30 Jun 2026: 'we've gotta go in a couple of days, and we have to report we're ready to sign,' following her personal, line-by-line resolution of every open SOW redline on the same call."
+  },
+  "competitive_position": {
+   "summary": "Only one competitor has ever been named across the account's history: the incumbent e-signature tool Adobe Sign, which was displaced by Certinal well before this sweep. No rival source-to-contract vendor has been named at any point.",
+   "competitors": [
+    {
+     "date": "2025-04-24",
+     "name": "Adobe Sign",
+     "quote": "Ashen Chathury expressed concerns with Adobe Sign, noting a lack of workflow integration and a 60% adoption rate at Omnia.",
+     "change": "carried",
+     "source": "Avoma call 2025-04-24 'Certinal and Omnia Holdings'",
+     "status": "declined",
+     "sentiment": "negative",
+     "first_seen": "2026-07-07T11:45:39.474425+05:30",
+     "how_we_win": "Certinal was demonstrated with transaction-based pricing, embedded iContract integration, and was formally confirmed as the e-signature vendor by 30 Jun 2026.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    },
+    {
+     "date": "2025-04-24",
+     "name": "Unnamed alternative S2C vendors (background)",
+     "quote": "Omnia is exploring a source-to-contract system and considering Zycus among other options.",
+     "change": "carried",
+     "source": "Avoma call 2025-04-24 'Certinal and Omnia Holdings'",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T11:45:39.474425+05:30",
+     "how_we_win": "No named rival resurfaced across the following fourteen-plus months of demos, design, and SOW negotiation leading to a signature-ready contract.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "Real, deeply-documented buyer engagement puts this deal on the doorstep of a signed SOW and MSA, even though the opportunity record itself was created only three days ago with no logged activity, no logged contact roles, and a close date that cannot be reconciled with the evidence.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Sanctions/compliance-screening integration (World-Check One vs. DNB/Refinitiv/iOxcio) remains unresolved and deferred to the design phase, an open dependency ahead of go-live.",
+      "tone": "warn"
+     },
+     {
+      "text": "Whether an external implementation partner is needed alongside the vendor has been raised twice (Oct 2025 and 30 Jun 2026) without a final decision, creating resourcing ambiguity heading into kickoff.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "SOW fully redlined and scope locked \u2014 the 30 Jun 2026 closure call resolved every open comment (country phasing, spend threshold, e-sign vendor) and the champion confirmed she is routing the package for internal legal sign-off within days.",
+      "tone": "good"
+     },
+     {
+      "text": "Economic buyer identified with direct engagement \u2014 an Omnia director/board-level legal sponsor and the Group Head of Supply Chain both attended the 13 Oct 2025 executive session held specifically to secure the funding commitment.",
+      "tone": "good"
+     },
+     {
+      "text": "No confirmed executive contact in roughly nine months \u2014 the only documented direct touch with the economic buyer was the 13 Oct 2025 funding presentation; nothing since then verifies the sponsor is still actively behind the deal.",
+      "tone": "warn"
+     },
+     {
+      "text": "The recorded close date (2031-07-01) and the absence of any logged Salesforce activity on this opportunity make the record itself unreliable as a source of truth, masking how close this deal actually is to signature.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Two calls in the final week of June 2026 (23 Jun integration/SOW review, 30 Jun closure call) show active, high-frequency back-and-forth resolving the last redlines and locking commercial terms.",
+      "tone": "good"
+     },
+     {
+      "text": "No verified touch has occurred in the nine days since the 30 Jun 2026 closure call, and the champion's committed 'couple of days' turnaround for legal sign-off has not been confirmed.",
+      "tone": "warn"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "The champion personally drove redline resolution line-by-line on the 30 Jun 2026 call and stated she was already preparing to report internally that Omnia is 'ready to sign.'",
+      "tone": "good"
+     },
+     {
+      "text": "Omnia raised its own governed spend threshold to ZAR 1 billion and accepted the change at no additional cost, signaling continued institutional buy-in rather than scope retrenchment.",
+      "tone": "good"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2026-06-17",
+     "quote": "Omnia requires the physical functionality demonstrated... to be explicitly captured and enforceable in contractual documents to avoid being locked into a 5-year license if deployment fails.",
+     "said_by": "unnamed Omnia legal director/board member (via SOW alignment discussion)",
+     "addressed": true,
+     "requirement": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach protection against a 5-year lock-in"
+    },
+    {
+     "date": "2026-06-30",
+     "quote": "It was my understanding when I saw the demonstrations that if I took the full iRisk, it could take this out of my onboarding view and be able to give me that information in the Zycus system.",
+     "said_by": "Marianne Ventura",
+     "addressed": false,
+     "requirement": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening"
+    },
+    {
+     "date": "2026-06-30",
+     "quote": "I'm a little bit naive on how this came about... I'm not certain how it came about that Zycus and jointly Omnia.",
+     "said_by": "Marianne Ventura",
+     "addressed": false,
+     "requirement": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner"
+    },
+    {
+     "date": "2026-06-30",
+     "quote": "I can't do monthly. It's one of the frustrations I have on the current spend data is that after a month closes, it's 3 weeks later. We need our data quicker than that.",
+     "said_by": "Marianne Ventura",
+     "addressed": false,
+     "requirement": "Provide spend data faster than the current 3-week post-month-close delay"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2026-07-03",
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma call 30 Jun 2026 (Caroline Lacocque/Nishita Sareen)",
+      "status": "overdue",
+      "group_key": "bradstreet_documents_dun",
+      "commitment": "Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents",
+      "deliverable": "Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents",
+      "grounding_quote": "I'll put it in an email, and then put also the two new MSA in order form... I'll put it in the email.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+      "status": "open",
+      "group_key": "africa_check_coverage",
+      "commitment": "Check with the DNB partner team on South-Africa-specific sanctions-screening coverage versus World-Check One",
+      "deliverable": "Check with the DNB partner team on South-Africa-specific sanctions-screening coverage versus World-Check One",
+      "grounding_quote": "We can check with the DNB partner team. But apart from that...",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+      "status": "open",
+      "group_key": "capability_change_configuration",
+      "commitment": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration",
+      "deliverable": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration",
+      "grounding_quote": "Maybe have a dedicated workshop or a session where we can tell the team or demonstrate what all we can do in the change management... it's something that can be called off during the configuration workshops in a week or so.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-06-30",
+      "who": "Zycus",
+      "date": "2026-06-23",
+      "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+      "status": "overdue",
+      "group_key": "arrange_between_document",
+      "commitment": "Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document",
+      "deliverable": "Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document",
+      "grounding_quote": "Extract and provide access to the integration documentation and schedule a dedicated integration session between Omnia and Zycus integration teams.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2026-07-03",
+      "who": "Buyer",
+      "date": "2026-06-30",
+      "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+      "status": "overdue",
+      "group_key": "countersignature_cover_form",
+      "commitment": "Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature.",
+      "deliverable": "Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature.",
+      "grounding_quote": "I need one more day, and then I will send it through... we've gotta go in a couple of days, and we have to report we're ready to sign.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": null,
+      "who": "Buyer",
+      "date": "2026-06-23",
+      "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+      "status": "open",
+      "group_key": "document_framework_integration",
+      "commitment": "Share Omnia's integration standards/framework document with Zycus",
+      "deliverable": "Share Omnia's integration standards/framework document with Zycus",
+      "grounding_quote": "I'll share that document with yourselves as well just so that you have a look at how we actually do the integrations from our side.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "no due date",
+      "who": "Buyer",
+      "date": "2026-06-30",
+      "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+      "status": "open",
+      "group_key": "about_check_dozen",
+      "commitment": "Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping",
+      "deliverable": "Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping",
+      "grounding_quote": "I have about a dozen of them, I could share it in both of them.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-06-30",
+      "who": "Buyer",
+      "date": "2026-06-30",
+      "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+      "status": "completed",
+      "group_key": "business_country_final",
+      "commitment": "Confirm final country/business-unit rollout split",
+      "deliverable": "Confirm final country/business-unit rollout split",
+      "grounding_quote": "In rest of the Africa, we have 10, and in Australia, China... 3 units? Yes.",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "moderate-to-strong",
+   "summary": "Merlin AI capabilities (Merlin Intake, Merlin contract discovery for data migration, Merlin Insights for spend analysis, Questionnaire Genie, Merlin Risk Radar) were deliberately dosed rather than oversold, at the buyer's own request, and were later pulled deeper into scope at the buyer's initiative.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2026-06-17",
+     "quote": "Zycus confirms material failure to deliver as per the signed design documents will qualify as a material breach allowing Omnia termination rights under the MSA.",
+     "source": "Avoma call 2026-06-17 'SOW alignment'",
+     "position": "aligned",
+     "criterion": "Demonstrated iContract functionality (end-to-end workflow, auto-population, signature flow) must be contractually guaranteed"
+    },
+    {
+     "date": "2026-06-23",
+     "quote": "Everything will go via OIB, and obviously, we will make the appropriate endpoints available with authentication and everything else.",
+     "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+     "position": "aligned",
+     "criterion": "Integration must follow Omnia's own standardized framework (event-based preferred, API fallback) routed through Omnia's middleware"
+    },
+    {
+     "date": "2026-06-30",
+     "quote": "I can't do monthly... we need our data quicker than that.",
+     "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+     "position": "partially aligned",
+     "criterion": "Faster spend-data refresh than the current 3-week post-close delay"
+    }
+   ],
+   "summary": "Omnia's core expectations (contractual protection for demonstrated functionality, integration on its own framework, faster spend visibility) are largely aligned, with the spend-data cadence still an open design-phase item."
+  }
+ },
+ "hard": {
+  "stage": "Vendor Selected",
+  "amount": 234000.0,
+  "opp_id": "006P700000aX2mHIAS",
+  "ais_why": null,
+  "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000aX2mHIAS/view",
+  "opp_name": "OmniaS2C24 Contract Renewal 7/1/2031",
+  "owner_id": "005P7000002gRKPIA2",
+  "products": "iContract;iSource;ML iAnalyze;iSupplier",
+  "ais_score": null,
+  "next_step": null,
+  "ais_status": null,
+  "close_date": "2031-07-01",
+  "competitor": null,
+  "owner_name": "Caroline Lacocque",
+  "owner_title": null,
+  "account_name": "Omnia Holdings Limited",
+  "created_date": "2026-07-06",
+  "manager_name": "John Woodcock",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 1818,
+  "dm_identified": true,
+  "eb_identified": true,
+  "qualified_date": null,
+  "billing_country": "South Africa",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": null,
+  "_sf_facts_applied": true,
+  "close_date_source": "CloseDate",
+  "forecast_category": "Best Case",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": null,
+  "last_modified_date": "2026-07-06",
+  "metrics_identified": true,
+  "primary_competitor": "Adobe Sign (incumbent e-signature tool at Omnia, being actively displaced by Zycus's own Certinal; no S2C-suite rival has been named since a single unspecified mention in April 2025)",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Vendor Selected",
+  "state": "live",
+  "summary": "Live: buyer call(s) read this sweep.",
+  "calls_read": 10,
+  "close_date": "2031-07-01",
+  "rep_outreach": {
+   "date": null,
+   "note": "rep reached out, awaiting buyer reply",
+   "text": null,
+   "detected": false
+  },
+  "days_to_close": 1818,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Best Case",
+  "days_since_inbound": null,
+  "last_activity_date": null,
+  "days_since_activity": null,
+  "next_scheduled_date": null,
+  "days_since_qualified": null,
+  "last_inbound_email_date": null
+ },
+ "deltas": [
+  {
+   "to": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner",
+   "key": "requirement:clarify-overlapping-roles-responsibilities-between-zycus-and",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner.",
+   "kind": "changed",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner."
+  },
+  {
+   "to": "Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents - overdue",
+   "key": "commitment:zycus-email-marianne-ventura-the-dun-bradstreet-enrichment-p",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents"
+  },
+  {
+   "to": "Check with the DNB partner team on South-Africa-specific sanctions-screening coverage versus World-Check One - open",
+   "key": "commitment:zycus-check-with-the-dnb-partner-team-on-south-africa-specif",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Check with the DNB partner team on South Africa-specific data coverage versus World-Check One. - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Check with the DNB partner team on South-Africa-specific coverage versus World-Check One."
+  },
+  {
+   "to": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration - open",
+   "key": "commitment:zycus-schedule-a-dedicated-change-management-capability-work",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration. - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Schedule a dedicated change-management capability workshop for the Omnia team during configuration."
+  },
+  {
+   "to": "Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document - overdue",
+   "key": "commitment:zycus-arrange-a-follow-up-integration-session-between-omnia-",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document"
+  },
+  {
+   "to": "Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping - open",
+   "key": "commitment:buyer-send-sample-world-check-one-pdf-reports-and-about-a-do",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping"
+  },
+  {
+   "to": "Share Omnia's integration standards/framework document with Zycus - open",
+   "key": "commitment:buyer-share-omnia-s-integration-standards-framework-document",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Share Omnia's integration standards/framework document with Zycus. - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Omnia's integration standards/framework document."
+  },
+  {
+   "to": "Confirm final country/business-unit rollout split - completed",
+   "key": "commitment:buyer-confirm-final-country-business-unit-rollout-split",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Confirm final country/business-unit rollout split"
+  },
+  {
+   "to": "Marianne Ventura - Champion",
+   "key": "stakeholder:marianne-ventura",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Marianne Ventura - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marianne Ventura"
+  },
+  {
+   "to": "unnamed Omnia legal director/board member - Economic Buyer",
+   "key": "stakeholder:unnamed-omnia-legal-director-board-member",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "unnamed Omnia legal director/board member - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Unnamed Omnia legal director/board member"
+  },
+  {
+   "to": "Jacques de Villiers - Influencer",
+   "key": "stakeholder:jacques-de-villiers",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Jacques de Villiers - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacques de Villiers"
+  },
+  {
+   "to": "Zama Khambula - Influencer",
+   "key": "stakeholder:zama-khambula",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Zama Khambula - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zama Khambula"
+  },
+  {
+   "to": "Dieter Sparbier - Influencer",
+   "key": "stakeholder:dieter-sparbier",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Dieter Sparbier - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Dieter Sparbier"
+  },
+  {
+   "to": "Tracy Seeley-Jeppe - Influencer (Legal)",
+   "key": "stakeholder:tracy-seeley-jeppe",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Tracy Seeley-Jeppe - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tracy Seeley-Jeppe"
+  },
+  {
+   "to": "Ashen Chathury - Coach (early)",
+   "key": "stakeholder:ashen-chathury",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "from": "Ashen Chathury - Coach",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ashen Chathury"
+  },
+  {
+   "to": "External counsel review caused a Jan-Mar 2026 slip in the SOW timeline before it was resolved by late June 2026. - resolved",
+   "key": "risk:external-counsel-review-caused-a-jan-mar-2026-slip-in-the-so",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "External counsel review caused a Jan-Mar 2026 slip in the SOW timeline before it was resolved by late June 2026."
+  },
+  {
+   "to": "Omnia's own integration-standards framework has not yet been shared or aligned with Zycus's design documentation. - open",
+   "key": "risk:omnia-s-own-integration-standards-framework-has-not-yet-been",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Omnia's own integration-standards framework has not yet been shared or aligned with Zycus's design documentation."
+  },
+  {
+   "to": "Sanctions/political-exposure screening tool decision (World-Check One vs. DNB/Refinitiv/iOxcio) is unresolved and deferred to the design phase. - open",
+   "key": "risk:sanctions-political-exposure-screening-tool-decision-world-c",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Sanctions/political-exposure screening tool decision (World-Check One vs. DNB/Refinitiv/iOxcio) is unresolved and deferred to the design phase."
+  },
+  {
+   "to": "Whether an external implementation partner is needed alongside Zycus (vs. Zycus direct plus Omnia-hired PM/change-manager contractors) has been raised twice wit",
+   "key": "risk:whether-an-external-implementation-partner-is-needed-alongsi",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Whether an external implementation partner is needed alongside Zycus (vs. Zycus direct plus Omnia-hired PM/change-manager contractors) has been raised twice without a final decision."
+  },
+  {
+   "to": "No documented direct contact with the economic buyer (the unnamed legal director/board member) since the 13 Oct 2025 funding presentation, roughly nine months b",
+   "key": "risk:no-documented-direct-contact-with-the-economic-buyer-the-unn",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No documented direct contact with the economic buyer (the unnamed legal director/board member) since the 13 Oct 2025 funding presentation, roughly nine months before this sweep."
+  },
+  {
+   "to": "The recorded close date (2031-07-01) makes all forecast-pacing math indefensible; hard evidence points to a near-term signature instead. - not addressed",
+   "key": "risk:the-recorded-close-date-2031-07-01-makes-all-forecast-pacing",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The recorded close date (2031-07-01) makes all forecast-pacing math indefensible; hard evidence points to a near-term signature instead."
+  },
+  {
+   "to": "Confirm SOW/MSA signature status \u2014 the 30 Jun 2026 call ended with the champion committing to route signed documents within days, and no confirmation has follow",
+   "key": "hygiene:confirm-sow-msa-signature-status-the-30-jun-2026-call-ended-",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm SOW/MSA signature status \u2014 the 30 Jun 2026 call ended with the champion committing to route signed documents within days, and no confirmation has followed."
+  },
+  {
+   "to": "Re-engage the economic buyer (the unnamed legal director/board member) who has had no documented direct contact since the 13 Oct 2025 funding presentation, roug",
+   "key": "hygiene:re-engage-the-economic-buyer-the-unnamed-legal-director-boar",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Re-engage the economic buyer (the unnamed legal director/board member) who has had no documented direct contact since the 13 Oct 2025 funding presentation, roughly nine months ago."
+  },
+  {
+   "to": "Fix Salesforce hygiene \u2014 log buyer-side contact roles and completed activities against this opportunity, and correct the close date away from the 2031 contract-",
+   "key": "hygiene:fix-salesforce-hygiene-log-buyer-side-contact-roles-and-comp",
+   "date": "2026-07-09T19:19:16.459465+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Fix Salesforce hygiene \u2014 log buyer-side contact roles and completed activities against this opportunity, and correct the close date away from the 2031 contract-term artifact."
+  },
+  {
+   "key": "requirement:explicitly-capture-demonstrated-icontract-functionality-in-b",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "requirement",
+   "source": "unnamed Omnia legal director/board member (via SOW alignment discussion)",
+   "subject": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach."
+  },
+  {
+   "key": "requirement:assess-whether-dnb-or-refinitiv-can-replace-world-check-one-",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "requirement",
+   "source": "unnamed Omnia legal director/board member",
+   "subject": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening."
+  },
+  {
+   "key": "requirement:clarify-overlapping-roles-responsibilities-between-zycus-and",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner."
+  },
+  {
+   "key": "requirement:provide-spend-data-faster-than-the-current-3-week-post-month",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "requirement",
+   "source": "unnamed Omnia legal director/board member",
+   "subject": "Provide spend data faster than the current 3-week post-month-close delay."
+  },
+  {
+   "to": "Email the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents. - overdue",
+   "key": "commitment:zycus-email-the-dun-bradstreet-enrichment-pricing-10-25k-yea",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Email the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents."
+  },
+  {
+   "to": "Check with the DNB partner team on South Africa-specific data coverage versus World-Check One. - open",
+   "key": "commitment:zycus-check-with-the-dnb-partner-team-on-south-africa-specif",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Check with the DNB partner team on South-Africa-specific coverage versus World-Check One. - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Check with the DNB partner team on South-Africa-specific coverage versus World-Check One."
+  },
+  {
+   "to": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration. - open",
+   "key": "commitment:zycus-schedule-a-dedicated-change-management-capability-work",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration. - open",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Schedule a dedicated change-management capability workshop for the Omnia team during configuration."
+  },
+  {
+   "to": "Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature. - overdue",
+   "key": "commitment:buyer-complete-internal-legal-cover-sign-off-and-route-the-s",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature."
+  },
+  {
+   "to": "Share Omnia's integration standards/framework document with Zycus. - overdue",
+   "key": "commitment:buyer-share-omnia-s-integration-standards-framework-document",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Share Omnia's integration standards/framework document. - completed",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Omnia's integration standards/framework document."
+  },
+  {
+   "to": "Send sample World-Check One PDF reports for sanctions-screening integration scoping. - open",
+   "key": "commitment:buyer-send-sample-world-check-one-pdf-reports-for-sanctions-",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Send sample World-Check One PDF reports for sanctions-screening integration scoping."
+  },
+  {
+   "to": "Marianne Ventura - Champion",
+   "key": "stakeholder:marianne-ventura",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Marianne Ventura - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marianne Ventura"
+  },
+  {
+   "to": "unnamed Omnia legal director/board member - Economic Buyer",
+   "key": "stakeholder:unnamed-omnia-legal-director-board-member",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Unnamed Omnia legal director/board member - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Unnamed Omnia legal director/board member"
+  },
+  {
+   "to": "Jacques de Villiers - Influencer",
+   "key": "stakeholder:jacques-de-villiers",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Jacques de Villiers - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacques de Villiers"
+  },
+  {
+   "to": "Dieter Sparbier - Influencer",
+   "key": "stakeholder:dieter-sparbier",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Dieter Sparbier - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Dieter Sparbier"
+  },
+  {
+   "to": "Tracy Seeley-Jeppe - Influencer",
+   "key": "stakeholder:tracy-seeley-jeppe",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Tracy Seeley-Jeppe - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tracy Seeley-Jeppe"
+  },
+  {
+   "to": "Zama Khambula - Coach",
+   "key": "stakeholder:zama-khambula",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Zama Khambula - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zama Khambula"
+  },
+  {
+   "to": "Adobe Sign - declined",
+   "key": "competitor:adobe-sign",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Adobe Sign - declined",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Adobe Sign"
+  },
+  {
+   "key": "risk:material-breach-termination-for-convenience-language-require",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the finalized SOW/MSA structure."
+  },
+  {
+   "key": "risk:material-breach-termination-for-convenience-language-require",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "resolved",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the finalized SOW/MSA structure."
+  },
+  {
+   "to": "Sanctions/compliance-screening coverage (World-Check One vs. DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase. - open",
+   "key": "risk:sanctions-compliance-screening-coverage-world-check-one-vs-d",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "from": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase. - open",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase."
+  },
+  {
+   "to": "Whether an external implementation partner is needed (vs. Zycus direct plus an Omnia-hired PM/change manager) has surfaced twice; Zycus recommended proceeding w",
+   "key": "risk:whether-an-external-implementation-partner-is-needed-vs-zycu",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Whether an external implementation partner is needed (vs. Zycus direct plus an Omnia-hired PM/change manager) has surfaced twice; Zycus recommended proceeding without a partner but the decision is not finalized."
+  },
+  {
+   "to": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep, making the d",
+   "key": "risk:this-opportunity-record-shows-zero-logged-contact-roles-and-",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep, making the deal's true state invisible without cross-referencing Avoma."
+  },
+  {
+   "to": "Confirm signature status now: the buyer targeted reporting readiness-to-sign within days of the 30 June 2026 closure call, and today is more than a week past th",
+   "key": "hygiene:confirm-signature-status-now-the-buyer-targeted-reporting-re",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm signature status now: the buyer targeted reporting readiness-to-sign within days of the 30 June 2026 closure call, and today is more than a week past that with no confirming touchpoint."
+  },
+  {
+   "to": "Build a documented, multi-threaded buying-committee record (Marianne Ventura, Dieter Sparbier, Tracy Seeley-Jeppe, Zama Khambula, Jacques de Villiers) so contin",
+   "key": "hygiene:build-a-documented-multi-threaded-buying-committee-record-ma",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build a documented, multi-threaded buying-committee record (Marianne Ventura, Dieter Sparbier, Tracy Seeley-Jeppe, Zama Khambula, Jacques de Villiers) so continuity survives if the champion changes roles."
+  },
+  {
+   "to": "Keep the sanctions-screening vendor question (World-Check One vs. DNB/Refinitiv) moving so it doesn't become a design-phase blocker once signed.",
+   "key": "hygiene:keep-the-sanctions-screening-vendor-question-world-check-one",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Keep the sanctions-screening vendor question (World-Check One vs. DNB/Refinitiv) moving so it doesn't become a design-phase blocker once signed."
+  },
+  {
+   "key": "champion:champion",
+   "date": "2026-07-09T05:24:22.664309+05:30",
+   "kind": "reactivated",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. ",
+   "key": "risk:the-stage-is-recorded-as-vendor-selected-in-salesforce-but-t",
+   "date": "2026-07-08",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. This stage may be incorrect or the deal may be a placeholder. If the stage is real, the absence of any post-selection activity (contracting, legal review, MSA negotiation) and the extreme close-date horizon suggest the selection is not yet operationalized."
+  },
+  {
+   "to": "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizo",
+   "key": "risk:close-date-is-2031-07-01-1-819-days-out-5-years-for-a-vendor",
+   "date": "2026-07-08",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizon is either a data-entry error or encodes a contract-end milestone rather than a signature target. This makes all velocity and urgency math meaningless."
+  },
+  {
+   "to": "No economic buyer, no executive sponsor, no CFO/procurement-director engagement is documented. Zero contact roles exist. For a $234k renewal at an enterprise ac",
+   "key": "risk:no-economic-buyer-no-executive-sponsor-no-cfo-procurement-di",
+   "date": "2026-07-08",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No economic buyer, no executive sponsor, no CFO/procurement-director engagement is documented. Zero contact roles exist. For a $234k renewal at an enterprise account, exec alignment is required to secure budget and navigate procurement/legal, but it is completely unmapped."
+  },
+  {
+   "to": "No champion, no internal advocate, no buying-committee map exists. The deal is zero-threaded. Without a champion to drive the renewal, defend the budget, and na",
+   "key": "risk:no-champion-no-internal-advocate-no-buying-committee-map-exi",
+   "date": "2026-07-08",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No champion, no internal advocate, no buying-committee map exists. The deal is zero-threaded. Without a champion to drive the renewal, defend the budget, and navigate internal approvals, the deal is at high risk of stalling or being deprioritized."
+  },
+  {
+   "to": "The known-topics note references detailed prior activity (material-breach negotiation resolved 17 Jun 2026, sanctions-screening scoping deferred to design phase",
+   "key": "risk:the-known-topics-note-references-detailed-prior-activity-mat",
+   "date": "2026-07-08",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The known-topics note references detailed prior activity (material-breach negotiation resolved 17 Jun 2026, sanctions-screening scoping deferred to design phase, implementation-partner ambiguity, legacy-ERP fragmentation scoping finalized 30 Jun 2026, and named stakeholders Marianne Ventura, Jacques de Villiers, Tracy Seeley-Jeppe, Dieter Sparbier, Zama Khambula, Ashen Chathury), but this opportunity (006P700000aX2mH) was created 2026-07-06 with zero calls or tasks. This suggests either (a) the known-topics history belongs to a DIFFERENT opportunity and was incorrectly associated with this one, or (b) this opp_id is a new placeholder for a prior engagement that was tracked elsewhere. Either way, the known-topics evidence is not traceable to this opp_id in the current sweep, creating a provenance gap."
+  },
+  {
+   "key": "requirement:explicitly-capture-demonstrated-icontract-functionality-in-b",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "requirement",
+   "source": "absence",
+   "subject": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach."
+  },
+  {
+   "key": "requirement:assess-whether-dnb-or-refinitiv-can-replace-world-check-one-",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "requirement",
+   "source": "absence",
+   "subject": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening."
+  },
+  {
+   "key": "requirement:clarify-overlapping-roles-responsibilities-between-zycus-and",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "requirement",
+   "source": "absence",
+   "subject": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner."
+  },
+  {
+   "key": "requirement:provide-spend-data-faster-than-the-current-3-week-post-month",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "requirement",
+   "source": "absence",
+   "subject": "Provide spend data faster than the current 3-week post-month-close delay."
+  },
+  {
+   "key": "stakeholder:marianne-ventura",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Marianne Ventura"
+  },
+  {
+   "key": "stakeholder:jacques-de-villiers",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Jacques de Villiers"
+  },
+  {
+   "key": "stakeholder:unnamed-omnia-legal-director-board-member",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Unnamed Omnia legal director/board member"
+  },
+  {
+   "key": "stakeholder:tracy-seeley-jeppe",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Tracy Seeley-Jeppe"
+  },
+  {
+   "key": "stakeholder:dieter-sparbier",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Dieter Sparbier"
+  },
+  {
+   "key": "stakeholder:zama-khambula",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Zama Khambula"
+  },
+  {
+   "key": "stakeholder:ashen-chathury",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "stakeholder",
+   "source": "absence",
+   "subject": "Ashen Chathury"
+  },
+  {
+   "key": "risk:material-breach-termination-for-convenience-language-require",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the finalized SOW/MSA structure."
+  },
+  {
+   "key": "risk:sanctions-compliance-screening-coverage-world-check-one-vs-d",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase."
+  },
+  {
+   "key": "risk:ambiguity-over-whether-an-external-implementation-partner-vs",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025, Jun 2026); Zycus recommended proceeding without a partner but the decision is not yet finalized."
+  },
+  {
+   "key": "risk:legacy-erp-fragmentation-d365-ax2012-being-phased-out-qad-fo",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "risk",
+   "source": "absence",
+   "subject": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-truth model (Zycus vs D365) was finalized 30 Jun 2026."
+  },
+  {
+   "key": "hygiene:confirm-signature-status-now-marianne-expected-to-route-for-",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence - close this loop before the board-reporting urgency she cited fades."
+  },
+  {
+   "key": "hygiene:deliver-the-two-outstanding-zycus-commitments-d-b-pricing-ms",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened over an unresolved scoping item."
+  },
+  {
+   "key": "hygiene:lock-in-the-change-management-partner-role-workshop-early-in",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "hygiene",
+   "source": "absence",
+   "subject": "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026) from resurfacing as implementation risk."
+  },
+  {
+   "key": "champion:champion",
+   "date": "2026-07-08",
+   "kind": "dormant",
+   "type": "champion",
+   "source": "absence",
+   "subject": "champion"
+  },
+  {
+   "to": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach.",
+   "key": "requirement:explicitly-capture-demonstrated-icontract-functionality-in-b",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach."
+  },
+  {
+   "to": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening.",
+   "key": "requirement:assess-whether-dnb-or-refinitiv-can-replace-world-check-one-",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening."
+  },
+  {
+   "to": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner.",
+   "key": "requirement:clarify-overlapping-roles-responsibilities-between-zycus-and",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner."
+  },
+  {
+   "to": "Provide spend data faster than the current 3-week post-month-close delay.",
+   "key": "requirement:provide-spend-data-faster-than-the-current-3-week-post-month",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Marianne Ventura",
+   "subject": "Provide spend data faster than the current 3-week post-month-close delay."
+  },
+  {
+   "to": "Email Marianne the D&B enrichment pricing ($10-25k/yr) and the two updated MSA/Order Form documents. - overdue",
+   "key": "commitment:zycus-email-marianne-the-d-b-enrichment-pricing-10-25k-yr-an",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Email Marianne the D&B enrichment pricing ($10-25k/yr) and the two updated MSA/Order Form documents."
+  },
+  {
+   "to": "Check with the DNB partner team on South-Africa-specific coverage versus World-Check One. - open",
+   "key": "commitment:zycus-check-with-the-dnb-partner-team-on-south-africa-specif",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Check with the DNB partner team on South-Africa-specific coverage versus World-Check One."
+  },
+  {
+   "to": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration. - open",
+   "key": "commitment:zycus-schedule-a-dedicated-change-management-capability-work",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Schedule a dedicated change-management capability workshop for the Omnia team during configuration."
+  },
+  {
+   "to": "Complete internal legal sign-off and route the MSA/Order Form/SOW to Zycus for signature. - overdue",
+   "key": "commitment:buyer-complete-internal-legal-sign-off-and-route-the-msa-ord",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Complete internal legal sign-off and route the MSA/Order Form/SOW to Zycus for signature."
+  },
+  {
+   "to": "Share Omnia's integration standards/framework document. - completed",
+   "key": "commitment:buyer-share-omnia-s-integration-standards-framework-document",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share Omnia's integration standards/framework document."
+  },
+  {
+   "to": "Marianne Ventura - Champion",
+   "key": "stakeholder:marianne-ventura",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Marianne Ventura"
+  },
+  {
+   "to": "Jacques de Villiers - Economic Buyer",
+   "key": "stakeholder:jacques-de-villiers",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Jacques de Villiers"
+  },
+  {
+   "to": "Unnamed Omnia legal director/board member - Economic Buyer",
+   "key": "stakeholder:unnamed-omnia-legal-director-board-member",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Unnamed Omnia legal director/board member"
+  },
+  {
+   "to": "Tracy Seeley-Jeppe - Influencer",
+   "key": "stakeholder:tracy-seeley-jeppe",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Tracy Seeley-Jeppe"
+  },
+  {
+   "to": "Dieter Sparbier - Influencer",
+   "key": "stakeholder:dieter-sparbier",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Dieter Sparbier"
+  },
+  {
+   "to": "Zama Khambula - Influencer",
+   "key": "stakeholder:zama-khambula",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Zama Khambula"
+  },
+  {
+   "to": "Ashen Chathury - Coach",
+   "key": "stakeholder:ashen-chathury",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Ashen Chathury"
+  },
+  {
+   "to": "Adobe Sign - declined",
+   "key": "competitor:adobe-sign",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Adobe Sign"
+  },
+  {
+   "to": "Unnamed alternative S2C vendors (background) - faded",
+   "key": "competitor:unnamed-alternative-s2c-vendors-background",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Unnamed alternative S2C vendors (background)"
+  },
+  {
+   "to": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the ",
+   "key": "risk:material-breach-termination-for-convenience-language-require",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the finalized SOW/MSA structure."
+  },
+  {
+   "to": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase. - open",
+   "key": "risk:sanctions-compliance-screening-coverage-world-check-one-vs-d",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase."
+  },
+  {
+   "to": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025,",
+   "key": "risk:ambiguity-over-whether-an-external-implementation-partner-vs",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025, Jun 2026); Zycus recommended proceeding without a partner but the decision is not yet finalized."
+  },
+  {
+   "to": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-t",
+   "key": "risk:legacy-erp-fragmentation-d365-ax2012-being-phased-out-qad-fo",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-truth model (Zycus vs D365) was finalized 30 Jun 2026."
+  },
+  {
+   "to": "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence",
+   "key": "hygiene:confirm-signature-status-now-marianne-expected-to-route-for-",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence - close this loop before the board-reporting urgency she cited fades."
+  },
+  {
+   "to": "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened ove",
+   "key": "hygiene:deliver-the-two-outstanding-zycus-commitments-d-b-pricing-ms",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened over an unresolved scoping item."
+  },
+  {
+   "to": "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026)",
+   "key": "hygiene:lock-in-the-change-management-partner-role-workshop-early-in",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026) from resurfacing as implementation risk."
+  },
+  {
+   "to": "Marianne Ventura - strong",
+   "key": "champion:champion",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iContract;iSource;ML iAnalyze;iSupplier",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T11:45:39.474425+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000aX2mH",
+ "packets": [
+  {
+   "key": "requirement:explicitly-capture-demonstrated-icontract-functionality-in-b",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-17",
+    "kind": "explicit",
+    "quote": "Omnia requires the physical functionality demonstrated... to be explicitly captured and enforceable in contractual documents to avoid being locked into a 5-year license if deployment fails.",
+    "source": "Avoma call 2026-06-17 'SOW alignment'",
+    "said_by": "unnamed Omnia legal director/board member (via SOW alignment discussion)",
+    "addressed": true,
+    "requirement": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach protection against a 5-year lock-in"
+   },
+   "source": "unnamed Omnia legal director/board member (via SOW alignment discussion)",
+   "status": "active",
+   "history": [],
+   "subject": "Explicitly capture demonstrated iContract functionality in binding contract documents as material breach.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "requirement:assess-whether-dnb-or-refinitiv-can-replace-world-check-one-",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-30",
+    "kind": "explicit",
+    "quote": "It was my understanding when I saw the demonstrations that if I took the full iRisk, it could take this out of my onboarding view and be able to give me that information in the Zycus system.",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "said_by": "Marianne Ventura",
+    "addressed": false,
+    "requirement": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening"
+   },
+   "source": "Marianne Ventura",
+   "status": "active",
+   "history": [],
+   "subject": "Assess whether DNB or Refinitiv can replace World-Check One's sanctions/political-exposure screening.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "requirement:clarify-overlapping-roles-responsibilities-between-zycus-and",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-30",
+    "kind": "explicit",
+    "quote": "I'm a little bit naive on how this came about... I'm not certain how it came about that Zycus and jointly Omnia.",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "said_by": "Marianne Ventura",
+    "addressed": false,
+    "requirement": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner"
+   },
+   "source": "Marianne Ventura",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "date": "2026-06-30",
+      "kind": "explicit",
+      "quote": "Implementation roles: Zycus will perform majority of configuration, design, UAT/training and will provide PM/PMO; an external partner is optional and primarily valuable for local change management presence in South Africa.",
+      "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+      "said_by": "Marianne Ventura",
+      "addressed": true,
+      "requirement": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner."
+     }
+    }
+   ],
+   "subject": "Clarify overlapping roles/responsibilities between Zycus and the proposed implementation partner.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "requirement:provide-spend-data-faster-than-the-current-3-week-post-month",
+   "type": "requirement",
+   "value": {
+    "date": "2026-06-30",
+    "kind": "explicit",
+    "quote": "I can't do monthly. It's one of the frustrations I have on the current spend data is that after a month closes, it's 3 weeks later. We need our data quicker than that.",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "said_by": "Marianne Ventura",
+    "addressed": false,
+    "requirement": "Provide spend data faster than the current 3-week post-month-close delay"
+   },
+   "source": "Marianne Ventura",
+   "status": "active",
+   "history": [],
+   "subject": "Provide spend data faster than the current 3-week post-month-close delay.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:zycus-email-marianne-the-d-b-enrichment-pricing-10-25k-yr-an",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-02",
+    "who": "Zycus",
+    "date": "2026-06-30",
+    "source": "Avoma call 30 Jun 2026 (Caroline Lacocque/Nishita Sareen)",
+    "status": "overdue",
+    "commitment": "Email Marianne the D&B enrichment pricing ($10-25k/yr) and the two updated MSA/Order Form documents.",
+    "deliverable": "Email Marianne the D&B enrichment pricing ($10-25k/yr) and the two updated MSA/Order Form documents.",
+    "grounding_quote": "I'll put it in an email, and then put also the two new MSA in order form"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Email Marianne the D&B enrichment pricing ($10-25k/yr) and the two updated MSA/Order Form documents.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-07T11:45:39.474425+05:30",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "commitment:zycus-check-with-the-dnb-partner-team-on-south-africa-specif",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "open",
+    "commitment": "Check with the DNB partner team on South-Africa-specific sanctions-screening coverage versus World-Check One",
+    "deliverable": "Check with the DNB partner team on South-Africa-specific sanctions-screening coverage versus World-Check One",
+    "grounding_quote": "We can check with the DNB partner team. But apart from that..."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "due": "no due date",
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+      "status": "open",
+      "commitment": "Check with the DNB partner team on South Africa-specific data coverage versus World-Check One.",
+      "deliverable": "Check with the DNB partner team on South Africa-specific data coverage versus World-Check One.",
+      "grounding_quote": "We can check with the DNB partner team."
+     }
+    },
+    {
+     "as_of": "2026-07-07T11:45:39.474425+05:30",
+     "value": {
+      "due": "2026-07-14",
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma call 30 Jun 2026 (Nishita Sareen)",
+      "status": "open",
+      "commitment": "Check with the DNB partner team on South-Africa-specific coverage versus World-Check One.",
+      "deliverable": "Check with the DNB partner team on South-Africa-specific coverage versus World-Check One.",
+      "grounding_quote": "we can check with the DNB partner team"
+     }
+    }
+   ],
+   "subject": "Zycus:Check with the DNB partner team on South-Africa-specific coverage versus World-Check One.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:zycus-schedule-a-dedicated-change-management-capability-work",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "open",
+    "commitment": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration",
+    "deliverable": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration",
+    "grounding_quote": "Maybe have a dedicated workshop or a session where we can tell the team or demonstrate what all we can do in the change management... it's something that can be called off during the configuration workshops in a week or so."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "due": "no due date",
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+      "status": "open",
+      "commitment": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration.",
+      "deliverable": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration.",
+      "grounding_quote": "We are gonna go through the configuration workshops and all, maybe have a dedicated workshop or a session where we can tell the team or demonstrate what all we can do in the change management."
+     }
+    },
+    {
+     "as_of": "2026-07-07T11:45:39.474425+05:30",
+     "value": {
+      "due": "2026-07-21",
+      "who": "Zycus",
+      "date": "2026-06-30",
+      "source": "Avoma call 30 Jun 2026 (Hrishikesh Pachhapur)",
+      "status": "open",
+      "commitment": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration.",
+      "deliverable": "Schedule a dedicated change-management capability workshop for the Omnia team during configuration.",
+      "grounding_quote": "maybe have a dedicated workshop or a session where we can tell the team or demonstrate what all we can do in the change management"
+     }
+    }
+   ],
+   "subject": "Zycus:Schedule a dedicated change-management capability workshop for the Omnia team during configuration.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:buyer-complete-internal-legal-sign-off-and-route-the-msa-ord",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-02",
+    "who": "Buyer",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "overdue",
+    "commitment": "Complete internal legal sign-off and route the MSA/Order Form/SOW to Zycus for countersignature",
+    "deliverable": "Complete internal legal sign-off and route the MSA/Order Form/SOW to Zycus for countersignature",
+    "grounding_quote": "As soon as we've done our internal signing, I'm going to tap you guys to say it is with you for signature."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Complete internal legal sign-off and route the MSA/Order Form/SOW to Zycus for signature.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-07T11:45:39.474425+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-omnia-s-integration-standards-framework-document",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-23",
+    "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+    "status": "open",
+    "commitment": "Share Omnia's integration standards/framework document with Zycus",
+    "deliverable": "Share Omnia's integration standards/framework document with Zycus",
+    "grounding_quote": "I'll share that document with yourselves as well just so that you have a look at how we actually do the integrations from our side."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "due": "2026-06-30",
+      "who": "Buyer",
+      "date": "2026-06-23",
+      "source": "Avoma: Zycus - OMNIA - SOW review, 2026-06-23",
+      "status": "overdue",
+      "commitment": "Share Omnia's integration standards/framework document with Zycus.",
+      "deliverable": "Share Omnia's integration standards/framework document with Zycus.",
+      "grounding_quote": "I'll share that document with yourselves as well just so that you have a look at how we actually do the integrations from our side."
+     }
+    },
+    {
+     "as_of": "2026-07-07T11:45:39.474425+05:30",
+     "value": {
+      "due": "2026-06-30",
+      "who": "Buyer",
+      "date": "2026-06-23",
+      "source": "Avoma call 23 Jun 2026",
+      "status": "completed",
+      "commitment": "Share Omnia's integration standards/framework document.",
+      "deliverable": "Share Omnia's integration standards/framework document.",
+      "grounding_quote": "Dieter will share Omnia's integration standards/framework document"
+     }
+    }
+   ],
+   "subject": "Buyer:Share Omnia's integration standards/framework document.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:marianne-ventura",
+   "type": "stakeholder",
+   "value": {
+    "name": "Marianne Ventura",
+    "risk": "none evident; single strongest thread on the account",
+    "role": "Champion",
+    "title": "Senior Category Manager: IT & Communications",
+    "source": "Avoma calls 2025-10-08 through 2026-06-30",
+    "sentiment": "strongly positive, driving to signature",
+    "last_contact_date": "2026-06-30"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "Marianne Ventura",
+      "risk": "Single-threaded at the closing step; no confirmed economic-buyer engagement alongside her in the final call.",
+      "role": "Champion",
+      "title": "Project sponsor / buying lead (title not confirmed in Salesforce)",
+      "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+      "sentiment": "positive, urgent to close",
+      "last_contact_date": "2026-06-30"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Marianne Ventura",
+      "risk": "none",
+      "role": "Champion",
+      "title": "Senior Category Manager: IT & Communications",
+      "source": "Avoma calls Oct 2025 - Jun 2026",
+      "sentiment": "very positive, driving to close",
+      "last_contact_date": "2026-06-30"
+     }
+    }
+   ],
+   "subject": "Marianne Ventura",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:jacques-de-villiers",
+   "type": "stakeholder",
+   "value": {
+    "name": "Jacques de Villiers",
+    "risk": "no confirmed engagement since Oct 2025",
+    "role": "Influencer",
+    "title": "Group: Head of Supply Chain",
+    "source": "Avoma calls 2025-10-08 and 2025-10-13",
+    "sentiment": "positive at last direct contact",
+    "last_contact_date": "2025-10-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "Jacques de Villiers",
+      "risk": "No confirmed involvement in the 2026 SOW negotiation.",
+      "role": "Influencer",
+      "title": "Head of Supply Chain (per Salesforce)",
+      "source": "Avoma: FW: Source to Contract Demo and Business Case, 2025-10-13",
+      "sentiment": "positive as of Oct 2025 (named as a required approver)",
+      "last_contact_date": "2025-10-13"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Jacques de Villiers",
+      "risk": "not recently re-engaged on a transcribed call",
+      "role": "Economic Buyer",
+      "title": "Group: Head of Supply Chain",
+      "source": "Avoma call 8 Oct 2025 (named by Marianne)",
+      "sentiment": "not directly observed since",
+      "last_contact_date": "2025-10-08"
+     }
+    }
+   ],
+   "subject": "Jacques de Villiers",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:unnamed-omnia-legal-director-board-member",
+   "type": "stakeholder",
+   "value": {
+    "name": "unnamed Omnia legal director/board member",
+    "risk": "no confirmed direct engagement in roughly nine months",
+    "role": "Economic Buyer",
+    "title": "Director (unspecified)",
+    "source": "Avoma calls 2025-10-08 and 2025-10-13",
+    "sentiment": "positive at last direct contact",
+    "last_contact_date": "2025-10-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "unnamed Omnia legal director/board member",
+      "risk": "Not evidenced in any 2026 contracting call; engagement may have lapsed to the working level.",
+      "role": "Economic Buyer",
+      "title": "Director of Omnia (unnamed)",
+      "source": "Avoma: Omnia_Zycus Alignment for 13/10 presentation, 2025-10-08",
+      "sentiment": "positive as of Oct 2025 (named as a required signer)",
+      "last_contact_date": "2025-10-13"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Unnamed Omnia legal director/board member",
+      "risk": "identity unconfirmed - genuine knowledge gap",
+      "role": "Economic Buyer",
+      "title": "Director (unconfirmed)",
+      "source": "Avoma call 8 Oct 2025",
+      "sentiment": "unknown, described as a required sponsor",
+      "last_contact_date": "2025-10-08"
+     }
+    }
+   ],
+   "subject": "Unnamed Omnia legal director/board member",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:tracy-seeley-jeppe",
+   "type": "stakeholder",
+   "value": {
+    "name": "Tracy Seeley-Jeppe",
+    "risk": "legal review previously caused a Jan-Mar 2026 slip and could still affect signature timing",
+    "role": "Influencer (Legal)",
+    "title": "Unknown (not in Salesforce contact roles)",
+    "source": "Avoma calls 2026-02-23 and 2026-06-17",
+    "sentiment": "cautious, legal-diligence focused",
+    "last_contact_date": "2026-06-17"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "Tracy Seeley-Jeppe",
+      "risk": "Reviewing final SOW alongside Marianne before legal sign-off; a bottleneck if unavailable.",
+      "role": "Influencer",
+      "title": "Legal/contract reviewer (title not confirmed in Salesforce)",
+      "source": "Avoma: SOW alignment, 2026-06-17",
+      "sentiment": "neutral, process-focused",
+      "last_contact_date": "2026-06-17"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Tracy Seeley-Jeppe",
+      "risk": "low",
+      "role": "Influencer",
+      "title": "Legal reviewer (unconfirmed title)",
+      "source": "Avoma calls 23 Feb 2026, 17 Jun 2026",
+      "sentiment": "constructive, negotiating protective language",
+      "last_contact_date": "2026-06-17"
+     }
+    }
+   ],
+   "subject": "Tracy Seeley-Jeppe",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:dieter-sparbier",
+   "type": "stakeholder",
+   "value": {
+    "name": "Dieter Sparbier",
+    "risk": "integration-framework alignment session still pending",
+    "role": "Influencer",
+    "title": "Unknown (not in Salesforce contact roles)",
+    "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+    "sentiment": "constructive, detail-oriented on integration standards",
+    "last_contact_date": "2026-06-23"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "Dieter Sparbier",
+      "risk": "Integration-standards document from his side was still outstanding as of 30 Jun 2026.",
+      "role": "Influencer",
+      "title": "IT/Integration lead (title not confirmed in Salesforce)",
+      "source": "Avoma: Zycus - OMNIA - SOW review, 2026-06-23",
+      "sentiment": "engaged, detail-oriented on integration standards",
+      "last_contact_date": "2026-06-23"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Dieter Sparbier",
+      "risk": "low",
+      "role": "Influencer",
+      "title": "Integration lead (unconfirmed title)",
+      "source": "Avoma call 23 Jun 2026",
+      "sentiment": "engaged, technical, not yet a confirmed advocate",
+      "last_contact_date": "2026-06-23"
+     }
+    }
+   ],
+   "subject": "Dieter Sparbier",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:zama-khambula",
+   "type": "stakeholder",
+   "value": {
+    "name": "Zama Khambula",
+    "risk": "low",
+    "role": "Influencer",
+    "title": "Financial Systems Support Analyst",
+    "source": "Avoma calls 2026-03-18, 2026-04-07, 2026-06-23",
+    "sentiment": "engaged, pragmatic on onboarding and data issues",
+    "last_contact_date": "2026-06-23"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-09T05:24:22.664309+05:30",
+     "value": {
+      "name": "Zama Khambula",
+      "risk": "None noted.",
+      "role": "Coach",
+      "title": "Financial Systems Support Analyst (per Salesforce)",
+      "source": "Avoma: Omnia Onboarding Zycus, 2026-04-07",
+      "sentiment": "positive, hands-on during onboarding troubleshooting",
+      "last_contact_date": "2026-06-23"
+     }
+    },
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Zama Khambula",
+      "risk": "low",
+      "role": "Influencer",
+      "title": "IT/onboarding coordinator (unconfirmed title)",
+      "source": "Avoma calls 7 Apr 2026, 23 Jun 2026",
+      "sentiment": "cooperative",
+      "last_contact_date": "2026-06-23"
+     }
+    }
+   ],
+   "subject": "Zama Khambula",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "stakeholder:ashen-chathury",
+   "type": "stakeholder",
+   "value": {
+    "name": "Ashen Chathury",
+    "risk": "no evidence of continued involvement since Oct 2025; role appears to have shifted to Marianne Ventura",
+    "role": "Coach (early)",
+    "title": "Unknown (not in Salesforce contact roles)",
+    "source": "Avoma calls 2025-04-24 and 2025-10-13",
+    "sentiment": "positive at last contact",
+    "last_contact_date": "2025-10-13"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "name": "Ashen Chathury",
+      "risk": "no recent re-engagement observed",
+      "role": "Coach",
+      "title": "Contact (unconfirmed title)",
+      "source": "Avoma call 24 Apr 2025",
+      "sentiment": "positive, championed Certinal internally",
+      "last_contact_date": "2025-04-24"
+     }
+    }
+   ],
+   "subject": "Ashen Chathury",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "competitor:adobe-sign",
+   "type": "competitor",
+   "value": {
+    "date": "2025-04-24",
+    "name": "Adobe Sign",
+    "quote": "Ashen Chathury expressed concerns with Adobe Sign, noting a lack of workflow integration and a 60% adoption rate at Omnia.",
+    "source": "Avoma call 2025-04-24 'Certinal and Omnia Holdings'",
+    "status": "declined",
+    "sentiment": "negative",
+    "how_we_win": "Certinal was demonstrated with transaction-based pricing, embedded iContract integration, and was formally confirmed as the e-signature vendor by 30 Jun 2026.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T11:45:39.474425+05:30",
+     "value": {
+      "date": "2025-04-24",
+      "name": "Adobe Sign",
+      "quote": "Ashen Chathury expressed concerns with Adobe Sign, noting a lack of workflow integration and a 60% adoption rate at Omnia",
+      "source": "Avoma call 24 Apr 2025",
+      "status": "declined",
+      "sentiment": "negative",
+      "how_we_win": "Certinal (Zycus's own e-signature subsidiary) already confirmed as the replacement (30 Jun 2026).",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "Adobe Sign",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "competitor:unnamed-alternative-s2c-vendors-background",
+   "type": "competitor",
+   "value": {
+    "date": "2025-04-24",
+    "name": "Unnamed alternative S2C vendors (background)",
+    "quote": "Omnia is exploring a source-to-contract system and considering Zycus among other options.",
+    "source": "Avoma call 2025-04-24 'Certinal and Omnia Holdings'",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "No named rival resurfaced across the following fourteen-plus months of demos, design, and SOW negotiation leading to a signature-ready contract.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "Unnamed alternative S2C vendors (background)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-07T11:45:39.474425+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:material-breach-termination-for-convenience-language-require",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-17",
+    "detail": "Material-breach/termination-for-convenience language required extended negotiation before Omnia was comfortable; now resolved.",
+    "source": "Avoma: SOW alignment, 2026-06-17",
+    "status": "resolved",
+    "category": "legal",
+    "first_raised": "2026-06-17"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "resolved",
+   "history": [],
+   "subject": "Material-breach/termination-for-convenience language required lengthy negotiation (17 Jun 2026) before Omnia was comfortable; now resolved and reflected in the finalized SOW/MSA structure.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "risk:sanctions-compliance-screening-coverage-world-check-one-vs-d",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Sanctions/compliance-screening coverage (World-Check One vs. DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase.",
+    "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+    "status": "open",
+    "category": "integration",
+    "first_raised": "2026-06-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-08",
+     "value": {
+      "date": "2026-06-30",
+      "detail": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase.",
+      "source": "Avoma call 30 Jun 2026",
+      "status": "open",
+      "category": "security_review",
+      "first_raised": "2026-06-30"
+     }
+    }
+   ],
+   "subject": "Sanctions/compliance-screening coverage (World-Check One vs DNB/Refinitiv/iOxcio) remains an open scoping item deferred to the design phase.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "risk:ambiguity-over-whether-an-external-implementation-partner-vs",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025, Jun 2026); Zycus recommended proceeding without a partner but the decision is not yet finalized.",
+    "source": "Avoma calls 13 Oct 2025, 30 Jun 2026",
+    "status": "open",
+    "category": "change_management",
+    "first_raised": "2025-10-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Ambiguity over whether an external implementation partner (vs. Zycus direct + Omnia-hired PM/change-manager contractors) is needed has surfaced twice (Oct 2025, Jun 2026); Zycus recommended proceeding without a partner but the decision is not yet finalized.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "risk:legacy-erp-fragmentation-d365-ax2012-being-phased-out-qad-fo",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-truth model (Zycus vs D365) was finalized 30 Jun 2026.",
+    "source": "Avoma calls 19 Feb 2026, 30 Jun 2026",
+    "status": "resolved for initial scope; Indonesia deferred 6-12 months",
+    "category": "integration",
+    "first_raised": "2026-02-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "dormant",
+   "history": [],
+   "subject": "Legacy ERP fragmentation (D365, AX2012 being phased out, QAD for Indonesia) forced Indonesia and DRC out of initial rollout scope; a supplier-master source-of-truth model (Zycus vs D365) was finalized 30 Jun 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "hygiene:confirm-signature-status-now-marianne-expected-to-route-for-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence - close this loop before the board-reporting urgency she cited fades."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Confirm signature status now: Marianne expected to route for signature within days of the 30 Jun 2026 closure, and a week has passed with no confirming evidence - close this loop before the board-reporting urgency she cited fades.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "hygiene:deliver-the-two-outstanding-zycus-commitments-d-b-pricing-ms",
+   "type": "hygiene",
+   "value": {
+    "flag": "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened over an unresolved scoping item."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Deliver the two outstanding Zycus commitments (D&B pricing/MSA docs email, World-Check vs DNB compliance-fit read) promptly so the SOW does not get reopened over an unresolved scoping item.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "hygiene:lock-in-the-change-management-partner-role-workshop-early-in",
+   "type": "hygiene",
+   "value": {
+    "flag": "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026) from resurfacing as implementation risk."
+   },
+   "source": "ai:best_practice_check",
+   "status": "dormant",
+   "history": [],
+   "subject": "Lock in the change-management/partner-role workshop early in configuration kickoff to prevent the local-partner ambiguity (raised in both Oct 2025 and Jun 2026) from resurfacing as implementation risk.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-07T11:45:39.474425+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Marianne Ventura",
+    "at_risk": false,
+    "strength": "strong"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iContract;iSource;ML iAnalyze;iSupplier"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T11:45:39.474425+05:30",
+   "last_updated": "2026-07-07T11:45:39.474425+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:the-stage-is-recorded-as-vendor-selected-in-salesforce-but-t",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. This stage may be incorrect or the deal may be a placeholder. If the stage is real, the absence of any post-selection activity (contracting, legal review, MSA negotiation) and the extreme close-date horizon suggest the selection is not yet operationalized.",
+    "source": "Salesforce stage vs evidence mismatch",
+    "status": "open",
+    "category": "data_quality",
+    "first_raised": "2026-07-08 (this sweep)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The stage is recorded as Vendor Selected in Salesforce, but the deal was created 2 days ago with zero activity, zero stakeholders, and a 5-year-out close date. This stage may be incorrect or the deal may be a placeholder. If the stage is real, the absence of any post-selection activity (contracting, legal review, MSA negotiation) and the extreme close-date horizon suggest the selection is not yet operationalized.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-08"
+  },
+  {
+   "key": "risk:close-date-is-2031-07-01-1-819-days-out-5-years-for-a-vendor",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizon is either a data-entry error or encodes a contract-end milestone rather than a signature target. This makes all velocity and urgency math meaningless.",
+    "source": "Ground truth close date 2031-07-01",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-07-08 (this sweep)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date is 2031-07-01 (1,819 days out, 5 years). For a Vendor Selected deal with Best Case forecast, a 60-90 day close timeline is typical. The 5-year horizon is either a data-entry error or encodes a contract-end milestone rather than a signature target. This makes all velocity and urgency math meaningless.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-08"
+  },
+  {
+   "key": "risk:no-economic-buyer-no-executive-sponsor-no-cfo-procurement-di",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "No economic buyer, no executive sponsor, no CFO/procurement-director engagement is documented. Zero contact roles exist. For a $234k renewal at an enterprise account, exec alignment is required to secure budget and navigate procurement/legal, but it is completely unmapped.",
+    "source": "Zero contact roles",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2026-07-08 (this sweep)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No economic buyer, no executive sponsor, no CFO/procurement-director engagement is documented. Zero contact roles exist. For a $234k renewal at an enterprise account, exec alignment is required to secure budget and navigate procurement/legal, but it is completely unmapped.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-08"
+  },
+  {
+   "key": "risk:no-champion-no-internal-advocate-no-buying-committee-map-exi",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "No champion, no internal advocate, no buying-committee map exists. The deal is zero-threaded. Without a champion to drive the renewal, defend the budget, and navigate internal approvals, the deal is at high risk of stalling or being deprioritized.",
+    "source": "Zero contact roles, zero calls",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2026-07-08 (this sweep)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No champion, no internal advocate, no buying-committee map exists. The deal is zero-threaded. Without a champion to drive the renewal, defend the budget, and navigate internal approvals, the deal is at high risk of stalling or being deprioritized.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-08"
+  },
+  {
+   "key": "risk:the-known-topics-note-references-detailed-prior-activity-mat",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "The known-topics note references detailed prior activity (material-breach negotiation resolved 17 Jun 2026, sanctions-screening scoping deferred to design phase, implementation-partner ambiguity, legacy-ERP fragmentation scoping finalized 30 Jun 2026, and named stakeholders Marianne Ventura, Jacques de Villiers, Tracy Seeley-Jeppe, Dieter Sparbier, Zama Khambula, Ashen Chathury), but this opportunity (006P700000aX2mH) was created 2026-07-06 with zero calls or tasks. This suggests either (a) the known-topics history belongs to a DIFFERENT opportunity and was incorrectly associated with this one, or (b) this opp_id is a new placeholder for a prior engagement that was tracked elsewhere. Either way, the known-topics evidence is not traceable to this opp_id in the current sweep, creating a provenance gap.",
+    "source": "Known-topics inheritance vs zero current evidence mismatch",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-07-08 (this sweep)"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The known-topics note references detailed prior activity (material-breach negotiation resolved 17 Jun 2026, sanctions-screening scoping deferred to design phase, implementation-partner ambiguity, legacy-ERP fragmentation scoping finalized 30 Jun 2026, and named stakeholders Marianne Ventura, Jacques de Villiers, Tracy Seeley-Jeppe, Dieter Sparbier, Zama Khambula, Ashen Chathury), but this opportunity (006P700000aX2mH) was created 2026-07-06 with zero calls or tasks. This suggests either (a) the known-topics history belongs to a DIFFERENT opportunity and was incorrectly associated with this one, or (b) this opp_id is a new placeholder for a prior engagement that was tracked elsewhere. Either way, the known-topics evidence is not traceable to this opp_id in the current sweep, creating a provenance gap.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-08",
+   "last_updated": "2026-07-08",
+   "last_confirmed": "2026-07-08"
+  },
+  {
+   "key": "commitment:zycus-email-the-dun-bradstreet-enrichment-pricing-10-25k-yea",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-03",
+    "who": "Zycus",
+    "date": "2026-06-30",
+    "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+    "status": "overdue",
+    "commitment": "Email the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents.",
+    "deliverable": "Email the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents.",
+    "grounding_quote": "I'll put it in an email, and then put also the two new MSA in order form. So please only send the last ones."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Email the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "commitment:buyer-complete-internal-legal-cover-sign-off-and-route-the-s",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-03",
+    "who": "Buyer",
+    "date": "2026-06-30",
+    "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+    "status": "overdue",
+    "commitment": "Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature.",
+    "deliverable": "Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature.",
+    "grounding_quote": "I need one more day, and then I will send it through... we've gotta go in a couple of days, and we have to report we're ready to sign."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Complete internal legal cover sign-off and route the SOW/MSA/Order Forms to Zycus for countersignature.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "commitment:buyer-send-sample-world-check-one-pdf-reports-for-sanctions-",
+   "type": "commitment",
+   "value": {
+    "due": "no due date",
+    "who": "Buyer",
+    "date": "2026-06-30",
+    "source": "Avoma: SOW discussion and closure call, 2026-06-30",
+    "status": "open",
+    "commitment": "Send sample World-Check One PDF reports for sanctions-screening integration scoping.",
+    "deliverable": "Send sample World-Check One PDF reports for sanctions-screening integration scoping.",
+    "grounding_quote": "I have about a dozen of them, I could share it in both of them."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Send sample World-Check One PDF reports for sanctions-screening integration scoping.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "risk:whether-an-external-implementation-partner-is-needed-vs-zycu",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Whether an external implementation partner is needed (vs. Zycus direct plus an Omnia-hired PM/change manager) has surfaced twice; Zycus recommended proceeding without a partner but the decision is not finalized.",
+    "source": "Avoma: Omnia_Zycus Alignment for 13/10 presentation, 2025-10-08; SOW discussion and closure call, 2026-06-30",
+    "status": "open",
+    "category": "partner_support",
+    "first_raised": "2025-10-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Whether an external implementation partner is needed (vs. Zycus direct plus an Omnia-hired PM/change manager) has surfaced twice; Zycus recommended proceeding without a partner but the decision is not finalized.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "risk:this-opportunity-record-shows-zero-logged-contact-roles-and-",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-08",
+    "detail": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep, making the deal's true state invisible without cross-referencing Avoma.",
+    "source": "ground truth field read + Avoma manifest cross-check, this sweep",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2026-07-08"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "This opportunity record shows zero logged contact roles and no logged activity despite verified engagement as recently as 8 days before this sweep, making the deal's true state invisible without cross-referencing Avoma.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "hygiene:confirm-signature-status-now-the-buyer-targeted-reporting-re",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm signature status now: the buyer targeted reporting readiness-to-sign within days of the 30 June 2026 closure call, and today is more than a week past that with no confirming touchpoint."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm signature status now: the buyer targeted reporting readiness-to-sign within days of the 30 June 2026 closure call, and today is more than a week past that with no confirming touchpoint.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "hygiene:build-a-documented-multi-threaded-buying-committee-record-ma",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build a documented, multi-threaded buying-committee record (Marianne Ventura, Dieter Sparbier, Tracy Seeley-Jeppe, Zama Khambula, Jacques de Villiers) so continuity survives if the champion changes roles."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build a documented, multi-threaded buying-committee record (Marianne Ventura, Dieter Sparbier, Tracy Seeley-Jeppe, Zama Khambula, Jacques de Villiers) so continuity survives if the champion changes roles.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "hygiene:keep-the-sanctions-screening-vendor-question-world-check-one",
+   "type": "hygiene",
+   "value": {
+    "flag": "Keep the sanctions-screening vendor question (World-Check One vs. DNB/Refinitiv) moving so it doesn't become a design-phase blocker once signed."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Keep the sanctions-screening vendor question (World-Check One vs. DNB/Refinitiv) moving so it doesn't become a design-phase blocker once signed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T05:24:22.664309+05:30",
+   "last_updated": "2026-07-09T05:24:22.664309+05:30",
+   "last_confirmed": "2026-07-09T05:24:22.664309+05:30"
+  },
+  {
+   "key": "commitment:zycus-email-marianne-ventura-the-dun-bradstreet-enrichment-p",
+   "type": "commitment",
+   "value": {
+    "due": "2026-07-02",
+    "who": "Zycus",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "overdue",
+    "commitment": "Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents",
+    "deliverable": "Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents",
+    "grounding_quote": "I'll put it in an email, and then put also the two new MSA in order form... I'll put it in the email."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Email Marianne Ventura the Dun & Bradstreet enrichment pricing ($10-25k/year) and the two updated MSA/Order Form documents",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:zycus-arrange-a-follow-up-integration-session-between-omnia-",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-30",
+    "who": "Zycus",
+    "date": "2026-06-23",
+    "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+    "status": "overdue",
+    "commitment": "Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document",
+    "deliverable": "Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document",
+    "grounding_quote": "Extract and provide access to the integration documentation and schedule a dedicated integration session between Omnia and Zycus integration teams."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Arrange a follow-up integration session between Omnia and Zycus integration teams after receiving Omnia's integration framework document",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:buyer-send-sample-world-check-one-pdf-reports-and-about-a-do",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Buyer",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "open",
+    "commitment": "Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping",
+    "deliverable": "Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping",
+    "grounding_quote": "I have about a dozen of them, I could share it in both of them."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Send sample World-Check One PDF reports and about a dozen example records for sanctions-screening integration scoping",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "commitment:buyer-confirm-final-country-business-unit-rollout-split",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-30",
+    "who": "Buyer",
+    "date": "2026-06-30",
+    "source": "Avoma call 2026-06-30 'SOW discussion and closure call'",
+    "status": "completed",
+    "commitment": "Confirm final country/business-unit rollout split",
+    "deliverable": "Confirm final country/business-unit rollout split",
+    "grounding_quote": "In rest of the Africa, we have 10, and in Australia, China... 3 units? Yes."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Confirm final country/business-unit rollout split",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:external-counsel-review-caused-a-jan-mar-2026-slip-in-the-so",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-17",
+    "detail": "External counsel review caused a Jan-Mar 2026 slip in the SOW timeline before it was resolved by late June 2026.",
+    "source": "Avoma call 2026-06-17 'SOW alignment'",
+    "status": "resolved",
+    "category": "legal",
+    "first_raised": "2026-06-17"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "External counsel review caused a Jan-Mar 2026 slip in the SOW timeline before it was resolved by late June 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:omnia-s-own-integration-standards-framework-has-not-yet-been",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-23",
+    "detail": "Omnia's own integration-standards framework has not yet been shared or aligned with Zycus's design documentation.",
+    "source": "Avoma call 2026-06-23 'Zycus - OMNIA - SOW review'",
+    "status": "open",
+    "category": "integration",
+    "first_raised": "2026-06-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Omnia's own integration-standards framework has not yet been shared or aligned with Zycus's design documentation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:sanctions-political-exposure-screening-tool-decision-world-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Sanctions/political-exposure screening tool decision (World-Check One vs. DNB/Refinitiv/iOxcio) is unresolved and deferred to the design phase.",
+    "source": "Avoma calls 2026-06-23 and 2026-06-30",
+    "status": "open",
+    "category": "security_review",
+    "first_raised": "2026-06-23"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Sanctions/political-exposure screening tool decision (World-Check One vs. DNB/Refinitiv/iOxcio) is unresolved and deferred to the design phase.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:whether-an-external-implementation-partner-is-needed-alongsi",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-30",
+    "detail": "Whether an external implementation partner is needed alongside Zycus (vs. Zycus direct plus Omnia-hired PM/change-manager contractors) has been raised twice without a final decision.",
+    "source": "Avoma calls 2025-10-13 and 2026-06-30",
+    "status": "open",
+    "category": "change_management",
+    "first_raised": "2025-10-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Whether an external implementation partner is needed alongside Zycus (vs. Zycus direct plus Omnia-hired PM/change-manager contractors) has been raised twice without a final decision.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:no-documented-direct-contact-with-the-economic-buyer-the-unn",
+   "type": "risk",
+   "value": {
+    "date": "2025-10-13",
+    "detail": "No documented direct contact with the economic buyer (the unnamed legal director/board member) since the 13 Oct 2025 funding presentation, roughly nine months before this sweep.",
+    "source": "Avoma call 2025-10-13 'FW: Source to Contract Demo and Business Case'",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-10-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No documented direct contact with the economic buyer (the unnamed legal director/board member) since the 13 Oct 2025 funding presentation, roughly nine months before this sweep.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "risk:the-recorded-close-date-2031-07-01-makes-all-forecast-pacing",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "The recorded close date (2031-07-01) makes all forecast-pacing math indefensible; hard evidence points to a near-term signature instead.",
+    "source": "Salesforce ground truth vs. Avoma call 2026-06-30",
+    "status": "not addressed",
+    "category": "other",
+    "first_raised": "2026-07-09"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The recorded close date (2031-07-01) makes all forecast-pacing math indefensible; hard evidence points to a near-term signature instead.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "hygiene:confirm-sow-msa-signature-status-the-30-jun-2026-call-ended-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Confirm SOW/MSA signature status \u2014 the 30 Jun 2026 call ended with the champion committing to route signed documents within days, and no confirmation has followed."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Confirm SOW/MSA signature status \u2014 the 30 Jun 2026 call ended with the champion committing to route signed documents within days, and no confirmation has followed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "hygiene:re-engage-the-economic-buyer-the-unnamed-legal-director-boar",
+   "type": "hygiene",
+   "value": {
+    "flag": "Re-engage the economic buyer (the unnamed legal director/board member) who has had no documented direct contact since the 13 Oct 2025 funding presentation, roughly nine months ago."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Re-engage the economic buyer (the unnamed legal director/board member) who has had no documented direct contact since the 13 Oct 2025 funding presentation, roughly nine months ago.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  },
+  {
+   "key": "hygiene:fix-salesforce-hygiene-log-buyer-side-contact-roles-and-comp",
+   "type": "hygiene",
+   "value": {
+    "flag": "Fix Salesforce hygiene \u2014 log buyer-side contact roles and completed activities against this opportunity, and correct the close date away from the 2031 contract-term artifact."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Fix Salesforce hygiene \u2014 log buyer-side contact roles and completed activities against this opportunity, and correct the close date away from the 2031 contract-term artifact.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T19:19:16.459465+05:30",
+   "last_updated": "2026-07-09T19:19:16.459465+05:30",
+   "last_confirmed": "2026-07-09T19:19:16.459465+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T19:19:16.459465+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "No Tasks, Events, or contact roles logged against this Opportunity Id despite verified buyer engagement through 2026-06-30",
+   "No confirmation exists that the SOW/MSA was actually signed since the 30 Jun 2026 closure call (9 days of silence as of this sweep)",
+   "Recorded CloseDate (2031-07-01) cannot be reconciled with the evidenced near-term signature timeline",
+   "scrubbed 2 placeholder/template string(s)",
+   "validation gate: a named person in a to-do/action item is in no Salesforce contact role, Avoma attendee list, or active-user roster and is anchored to no source (offending: \"Omnia's IT\")"
+  ],
+  "calls_read": 10,
+  "calls_omitted": [
+   {
+    "date": "2025-04-16",
+    "reason": "cancelled",
+    "meeting": "Certinal and Omnia Holdings"
+   },
+   {
+    "date": "2025-10-13",
+    "reason": "not_recorded",
+    "meeting": "Source to Contract Demo and Business Case"
+   },
+   {
+    "date": "2026-02-23",
+    "reason": "not_recorded",
+    "meeting": "meeting Zycus"
+   },
+   {
+    "date": "2026-06-30",
+    "reason": "not_recorded",
+    "meeting": "Omnia<>Zycus catch up"
+   }
+  ],
+  "avoma_attendees": [
+   "omnia.co.za",
+   "omnia.com",
+   "omnia.ae",
+   "cci-g.com",
+   "bme.co.za"
+  ],
+  "calls_discovered": 14,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "Next_Step__c, Next_Step_History__c, and LastActivityDate unread/unavailable for this opportunity per ground truth; Q1/Q2/Q3 SOQL otherwise as provided"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

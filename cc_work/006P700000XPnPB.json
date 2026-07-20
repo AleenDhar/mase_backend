@@ -1,0 +1,269 @@
+{
+  "opp_id": "006P700000XPnPB",
+  "hard": {
+    "opp_id": "006P700000XPnPB",
+    "opp_name": "PHEAA_S2C_Opp_April'26",
+    "account_name": "Pennsylvania Higher Education Assistance Agency",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Grace Kim",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000,
+    "close_date": "2026-10-14",
+    "days_to_close": 100,
+    "created_date": "2026-04-29",
+    "qualified_date": "2026-04-29",
+    "last_activity_date": "2026-05-07",
+    "last_modified_date": null,
+    "products": "iContract;iSource;iSupplier;Merlin;iRisk",
+    "next_step": "Sending Gerald Showpad content that he shares with the larger procurement team - Getting in touch with the team for a Discovery call with them in 3 weeks.",
+    "ais_score": 4.0,
+    "ais_status": "Moderate",
+    "ais_why": "Latest activity is sending Gerald Showpad content and scheduling a discovery call in three weeks, with no AI cue from the prospect. SF description is empty and there is no documented AI mandate, pilot, or named-product pull from the customer side. Stage is Qualified at $100K, opp created late April, early Discovery with AI excitement unproven.",
+    "dm_identified": false,
+    "eb_identified": false,
+    "champion_identified": true,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Status Quo / Do Nothing",
+    "primary_competitor": "Status Quo / Do Nothing",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000XPnPB/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Cold for 69 days: the only contact, risk-side evaluator Gerald Stiver, has gone silent since the 28 Apr intro call and pegged any purchase 1.5-2 years out behind PHEAA's multi-year mainframe-to-cloud transformation, so the 14 Oct close has no credible path.",
+      "math": "Today 6 Jul 2026. Last genuine two-way buyer engagement was the 28 Apr 2026 intro call, 69 days ago; the only touch since was a 7 May 2026 rep-sent summit-invite email that drew no reply. Stage Qualified since 29 Apr 2026 with no forward movement and the promised discovery call never scheduled. Close date 14 Oct 2026 is 100 days out, but Gerald stated on 28 Apr that budget and appetite are 1.5-2 years away pending the IT transformation, so the date is a placeholder. No buyer-facing deliverable and no buyer engagement in 60+ days forces Off Track.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Intro call 8 Jul 2025: Gerald Stiver said PHEAA is on an austerity plan and not ready to buy for a year or two, but wanted to see the suite (source: Avoma transcript 8 Jul 2025).",
+        "Second intro call 28 Apr 2026: Gerald confirmed an ongoing multi-year mainframe-to-COBOL-to-cloud transformation and said appetite and budget will not materialize for another 1.5-2 years (source: Avoma transcript 28 Apr 2026).",
+        "Grace Kim committed on 28 Apr to send a Showpad shared space with demo videos; Next_Step__c on 7 May says send Showpad content and schedule a discovery call in three weeks (source: SF Next_Step__c).",
+        "No evidence the Showpad pack was sent, no discovery call scheduled, and no reply from Gerald since the 28 Apr call (source: SF Activities, no buyer task/event after 28 Apr).",
+        "Only touch after 28 Apr is a 7 May 2026 Outreach summit-invite email from Nikita Bayas to Gerald, a rep-side outbound with no buyer response (source: SF Task 7 May 2026).",
+        "Close date 14 Oct 2026 (100 days out) has no credible path given the buyer-stated 1.5-2 year timeline and current silence (source: Avoma transcript 28 Apr 2026 + SF CloseDate)."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "The business problem is well articulated but never quantified. Gerald Stiver, Manager of Vendor Compliance, described a manual paper-and-Excel third-party-risk program: a home-built 'procurement workbook' spreadsheet, manual desktop audits across debarment, DMV, SAR/SSI and OFAC lists, and no way to report across the sum of his risk assessments ('I can't say show me all the vendors that have access to data', 8 Jul 2025; reaffirmed 28 Apr 2026). He attached no cost, headcount, cycle-time or error-rate figure to any of it. Quantifying the audit hours and compliance-exposure cost of the manual process is the open move that would build a real value case.",
+        "sources": ["Avoma transcript 8 Jul 2025, Gerald Stiver", "Avoma transcript 28 Apr 2026, Gerald Stiver"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer is identified anywhere in the record. The only Salesforce contact, Gerald Stiver, explicitly disclaimed budget authority on 28 Apr 2026 ('that's not even really my conversation... they're really price conscious at my company'). He named no budget owner, pointing only vaguely to 'the procurement team' and 'my organization' as the eventual deciders once the IT transformation completes. Budget authority is therefore unmapped and sits behind a stated 1.5-2 year timeline. Getting Gerald to name and introduce the procurement or finance budget owner is the top structural move before this deal can be real.",
+        "sources": ["Avoma transcript 28 Apr 2026, Gerald Stiver", "SF OpportunityContactRole (only Gerald Stiver, Evaluator)"]
+      },
+      "decision_criteria": {
+        "status": "partial",
+        "narrative": "Early criteria surfaced from Gerald's own questions rather than any formal evaluation: automated inherent-risk scoring with cross-vendor reporting, out-of-the-box OFAC and debarment checks, US-domestic data hosting (Gerald flagged Zycus's India routing as a potential showstopper for a Pennsylvania state agency), open-API integration to PeopleSoft and outside data sources like DNB and LexisNexis, low customization ('out of the box'), and a manageable path to migrate ~20,000 legacy contracts (28 Apr 2026 and 8 Jul 2025). These are inferred buyer priorities, not a documented business-requirements document; no RFP or scored criteria exist for this opportunity yet.",
+        "sources": ["Avoma transcript 28 Apr 2026, Gerald Stiver", "Avoma transcript 8 Jul 2025, Gerald Stiver"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no defined buying process. Both touches (8 Jul 2025 and 28 Apr 2026) were single-threaded introductory calls with Gerald alone; no procurement stakeholders, IT, or approvers have ever joined. Gerald described the real gate as organizational rather than a purchase process: a multi-year mainframe-to-cloud transformation that must finish first, after which 'the procurement team' would evaluate peripheral software ('probably really where they're gonna start really thinking about it', 28 Apr 2026). No steps, owners, or decision timeline for a purchase have been established, and a discovery call to begin mapping one was never held.",
+        "sources": ["Avoma transcript 28 Apr 2026, Gerald Stiver", "SF Activities (no multi-stakeholder meetings on record)"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics have been discussed. The relevant facts are constraints, not process: PHEAA is a Pennsylvania state agency likely bound by public-procurement/RFP rules (Gerald referenced running a full GRC-system RFP about two years ago), a data-residency requirement that could force a US-only hosting commitment ('we are a state agency here in Pennsylvania, so for us that could sometimes be a showstopper', 28 Apr 2026), and organizational resistance to migrating roughly 20,000 contracts. What would create visibility is a scoped discovery with procurement to learn PHEAA's sourcing, legal and security process once the transformation window opens.",
+        "sources": ["Avoma transcript 28 Apr 2026, Gerald Stiver", "Avoma transcript 8 Jul 2025, Gerald Stiver"]
+      },
+      "identify_pain": {
+        "status": "confirmed",
+        "narrative": "Pain is confirmed and owned by Gerald Stiver on the third-party-risk side. His program is manual: 'Our program is mostly on paper... our procurement workbook is an Excel spreadsheet' (8 Jul 2025), he cannot report across his risk assessments, and desktop audits against debarment, DMV, SAR/SSI and OFAC lists are searched by hand ('that's very manual for us, we do want to see something that gets that more automated', 28 Apr 2026). He also wants AI contract redlining to support his two contract specialists. The pain is genuine and long-standing ('I've been promised a system for about 10 years', 8 Jul 2025) but not urgent enough to override the transformation and budget constraints today.",
+        "sources": ["Avoma transcript 8 Jul 2025, Gerald Stiver", "Avoma transcript 28 Apr 2026, Gerald Stiver"]
+      },
+      "champion": {
+        "status": "partial",
+        "narrative": "Gerald Stiver is a developing coach, not yet a champion. He owns the pain, engaged with detailed, probing questions across two calls (8 Jul 2025 and 28 Apr 2026), and offered to circulate materials internally ('I have a very good rapport with the procurement team... they can maybe schedule a demo', 28 Apr 2026). What is missing is any advocacy: he made no internal introduction, requested no demo, disclaimed budget authority, deferred to a 1.5-2 year timeline, and has not replied in the 69 days since 28 Apr. He is a warm relay who could carry a business case when the window opens, but he is currently passive and cooling.",
+        "sources": ["Avoma transcript 28 Apr 2026, Gerald Stiver", "Avoma transcript 8 Jul 2025, Gerald Stiver", "SF OpportunityContactRole (Gerald Stiver, Evaluator, Primary)"]
+      },
+      "competition": {
+        "status": "confirmed",
+        "narrative": "There is no external competitor in this deal; the contest is against the status quo and timing. Gerald runs a disliked incumbent, SAI Global Compliance 360 ('I hate it, to be perfectly honest... it really doesn't provide a lot to us', 8 Jul 2025), plus Oracle PeopleSoft for vendor master and AP and a home-built Excel risk workbook that 'is actually pretty effective for a spreadsheet' (28 Apr 2026). No rival procurement-software vendor was named or evaluated. The real blocker is do-nothing inertia, reinforced by a multi-year IT transformation that owns all budget and attention and by price sensitivity. We win on timing and a phased, migration-light entry (iRisk and iSupplier first, no contract migration) that proves value alongside Compliance 360.",
+        "sources": ["Avoma transcript 8 Jul 2025, Gerald Stiver", "Avoma transcript 28 Apr 2026, Gerald Stiver"]
+      }
+    },
+    "deal_movement": {
+      "summary": "Second introductory call held 28 Apr 2026 after a first intro on 8 Jul 2025; a rep-side summit-invite email went out 7 May 2026 with no reply. No forward movement, no discovery call, and no buyer response since early May: the deal has crossed into cold.",
+      "items": [
+        {"change": "Second introductory suite-overview call held with Gerald Stiver (risk side); Zycus walked the full source-to-pay wheel", "date": "2026-04-28"},
+        {"change": "Owner set to Grace Kim and stage moved Initial Interest to Qualified", "date": "2026-04-29"},
+        {"change": "Rep-side summit-invite email sent by Nikita Bayas to Gerald; no buyer reply", "date": "2026-05-07"},
+        {"change": "Promised Showpad demo pack never delivered and discovery call never scheduled; buyer silent since", "date": "2026-05-07"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No external rival has ever been named or evaluated; the single strongest current threat is do-nothing inertia. Status quo is the active threat (manual Excel risk workbook Gerald calls 'pretty effective', 28 Apr 2026), amplified by PHEAA's multi-year mainframe-to-cloud transformation that consumes all budget and attention through roughly 2027-2028. SAI Global Compliance 360 is the disliked but embedded incumbent GRC/contract tool (8 Jul 2025), and Oracle PeopleSoft is the entrenched vendor-master/AP ERP that Zycus integrates with rather than replaces. The deal is won or lost on timing and a migration-light phased entry, not against a competitor.",
+      "competitors": [
+        {"name": "Status Quo / Do Nothing", "sentiment": "neutral", "threat_level": "high", "status": "do_nothing", "quote": "Our procurement workbook is an Excel spreadsheet we've developed with scoring and due diligence list generation. It's actually pretty effective for a spreadsheet. We've gotten good at it. I've had the same analyst for 10 years.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver", "how_we_win": "Quantify the hidden cost and compliance risk of the manual process (audit hours, incomplete risk data, inability to report across vendors) and co-build a lightweight ROI model with Gerald showing consolidation savings and automation of the OFAC/debarment desktop audits."},
+        {"name": "Core IT Transformation (Mainframe to Cloud) - priority/budget blocker", "sentiment": "neutral", "threat_level": "high", "status": "active", "quote": "We're in a 3-year project moving off mainframe COBOL to cloud. My organization is still a year or two out. There will be a better appetite and budget in about 2 years.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver", "how_we_win": "Do not force a decision now. Stay warm with low-touch quarterly value content (state-agency risk-automation ROI, new iRisk/Merlin capabilities) and set a firm re-engagement trigger for Q4 2027 / Q1 2028 when the transformation wraps, positioning Zycus as the first post-transformation quick win."},
+        {"name": "SAI Global (Intelex) Compliance 360", "sentiment": "negative", "threat_level": "medium", "status": "incumbent", "quote": "We use SAI Global Compliance 360. I hate it, to be perfectly honest. It really doesn't provide a lot to us. Our program is mostly on paper.", "date": "2026-04-28", "source": "Avoma transcripts 8 Jul 2025 and 28 Apr 2026, Gerald Stiver", "how_we_win": "Gerald dislikes the incumbent, but the barrier is the fear of migrating 20,000 contracts. Lead with iRisk and iSupplier (no contract migration) as a phase-1 quick win that runs alongside Compliance 360, then phase in iContract with a Zycus-led migration plan once value is proven."},
+        {"name": "Oracle PeopleSoft (ERP - vendor master and AP)", "sentiment": "neutral", "threat_level": "low", "status": "incumbent", "quote": "We keep our vendors in Peoplesoft, and it's a pretty entrenched system we've used really for a long time.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver", "how_we_win": "Position Zycus as a value-add layer, not a PeopleSoft replacement. Emphasize open-API bidirectional integration so vendor-master data flows both ways, removing the replacement-fear objection."}
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Strong functional fit on risk automation, but exposed on data residency, migration effort, and budget. Zycus iRisk/iSupplier map directly to Gerald's manual-risk pain, yet a Pennsylvania state agency's US-hosting requirement, the 20,000-contract migration fear, and Gerald's stated price ceiling are unresolved.",
+      "items": [
+        {"criterion": "Automated inherent-risk scoring, cross-vendor reporting, and OFAC/debarment desktop-audit automation", "position": "aligned", "quote": "That's very manual for us. So we do wanna see something that gets that more automated.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"criterion": "US-domestic data hosting (state-agency data-residency requirement)", "position": "exposed", "quote": "We are a state agency here in Pennsylvania. So for us, that could sometimes be a showstopper.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"criterion": "Manageable migration of ~20,000 legacy contracts", "position": "exposed", "quote": "There's like PTSD in the company that says we're not moving 20,000 contracts again.", "date": "2025-07-08", "source": "Avoma transcript 8 Jul 2025, Gerald Stiver"},
+        {"criterion": "Budget fit within a price-conscious ceiling", "position": "exposed", "quote": "They're really price conscious at my company. If you guys are a couple of $100,000 a year tool, I can't see that happening.", "date": "2026-04-28", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"}
+      ]
+    },
+    "explicit_requirements": {
+      "items": [
+        {"requirement": "Share a sample vendor risk-assessment output report showing generated risk scores and covered checks (incl. OFAC)", "said_by": "Gerald Stiver", "date": "2026-04-28", "addressed": false, "quote": "I'd really love to see some of the output for me... have it be able to generate some risk scores and things like that.", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"requirement": "Confirm a fully US-domestic hosting option and provide the security/data-residency documentation", "said_by": "Gerald Stiver", "date": "2026-04-28", "addressed": false, "quote": "Is it hosted domestically? ... We are a state agency, that could sometimes be a showstopper.", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"}
+      ]
+    },
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Gerald the Showpad shared space with Zycus demo videos to circulate to procurement", "who": "Zycus", "grounding_quote": "I could send some video resources of the tool... you can share that with your full team.", "date": "2026-04-28", "due": "2026-05-28", "status": "overdue", "source": "Avoma transcript 28 Apr 2026, Grace Kim; SF Next_Step__c"},
+          {"deliverable": "Send Gerald the full third-party risk-assessment scoring resource that shows the 100+ risk factors", "who": "Zycus", "grounding_quote": "I can send over a resource that sort of shows you the full risk assessment score that we get.", "date": "2026-04-28", "due": "2026-05-12", "status": "overdue", "source": "Avoma transcript 28 Apr 2026, Grace Kim"}
+        ]
+      },
+      "buyer_dependent": {
+        "items": [
+          {"deliverable": "Gerald to circulate the Zycus materials to the procurement team and set up a discovery call with them", "who": "Buyer", "grounding_quote": "I would be happy to share some of the items you send over with the folks in procurement... if they want more information they can maybe schedule a demo.", "date": "2026-04-28", "due": "2026-05-28", "status": "open", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver; SF Next_Step__c"}
+        ]
+      }
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget owner unmapped", "quote": "That's not even really my conversation... they're really price conscious at my company.", "status": "not addressed", "date": "2026-04-28", "gap_type": "knowledge", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"area": "No procurement decision-maker engaged; single-threaded to a risk-side evaluator", "quote": "I'm on the third party risk side. I'm not sure what our procurement folks are doing.", "status": "not addressed", "date": "2026-04-28", "gap_type": "knowledge", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"area": "No discovery call held; buyer silent 69 days and purchase pegged 1.5-2 years out", "quote": "It's honestly probably gonna take another like a year and a half to two years.", "status": "not addressed", "date": "2026-04-28", "gap_type": "knowledge", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "Three win-strategy levers for a cold, single-threaded, early deal against inertia.",
+      "flags": [
+        "Multi-thread beyond Gerald: he is a risk-side evaluator with no budget authority, so ask him to introduce a procurement decision-maker and the budget owner before the window closes.",
+        "The competitor is inertia plus a multi-year IT transformation that owns all budget: run a low-touch quarterly nurture and set a Q4-2027 re-engagement trigger rather than forcing a decision now.",
+        "Neutralize the 20,000-contract migration fear by leading with iRisk and iSupplier (no contract migration) as a phase-1 quick win that runs alongside Compliance 360."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Gerald Stiver", "title": "Manager, Vendor Compliance", "role": "Coach", "last_contact_date": "2026-04-28", "sentiment": "Positive but passive: engaged with detailed questions across two calls and aligned on the risk-automation pain, but has not advocated internally or replied in 69 days and disclaims budget authority.", "risk": "Cooling to cold. Only thread on the deal, no follow-up since 28 Apr, waiting on a 1.5-2 year organizational timeline rather than pushing internally. High risk of going dormant without a high-value, low-effort re-engagement.", "source": "SF OpportunityContactRole (Evaluator, Primary); Avoma transcripts 8 Jul 2025 and 28 Apr 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "Gerald Stiver is a developing coach, not a champion. He deeply understands and owns the third-party-risk pain and engaged twice with substantive questions, but has made no internal introduction, requested no demo, disclaims budget authority, and has been silent for 69 days. He is a warm relay who could carry a business case when the transformation window opens, but is currently passive and cooling, and there is no second thread to fall back on.",
+      "champion": "Gerald Stiver, Manager, Vendor Compliance",
+      "strength": "developing",
+      "at_risk": true,
+      "source": "SF OpportunityContactRole (Evaluator, Primary); Avoma transcripts 8 Jul 2025 and 28 Apr 2026; no buyer activity since 7 May 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "The AI/Merlin story was mentioned (agentic contract authoring, autonomous risk and negotiation agents, Merlin intake in Teams) but delivered as part of a generic suite walkthrough, not tailored to Gerald's specific risk-automation pain. There is room to lead with the Merlin risk agent (inherent-risk scoring, automated OFAC/debarment checks) as the wedge.",
+      "score": "moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 4.0 / Moderate is fair: Gerald is curious about AI contract redlining and risk automation and PHEAA has a stated agency goal to 'integrate some AI', but there is no AI mandate, pilot, or named-product pull, and the agency also has an AI use policy hurdle plus a 1.5-2 year readiness gap. The calls neither raise nor lower the field materially.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "timeline", "detail": "Buyer stated budget and appetite are 1.5-2 years out, gated behind a multi-year mainframe-to-cloud transformation; the 14 Oct 2026 close date has no credible path.", "first_raised": "2025-07-08", "date": "2026-04-28", "status": "open", "source": "Avoma transcripts 8 Jul 2025 and 28 Apr 2026, Gerald Stiver"},
+        {"category": "budget", "detail": "Price sensitivity: Gerald said a couple-hundred-thousand-a-year tool is a non-starter, putting the $100k amount near his stated ceiling; PHEAA is on an austerity plan.", "first_raised": "2025-07-08", "date": "2026-04-28", "status": "open", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"},
+        {"category": "executive_alignment", "detail": "No economic buyer or procurement decision-maker engaged; the only contact is a risk-side evaluator who disclaims budget authority.", "first_raised": "2026-04-28", "date": "2026-04-28", "status": "open", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver; SF OpportunityContactRole"},
+        {"category": "change_management", "detail": "Organizational resistance to migrating ~20,000 legacy contracts ('PTSD' about a prior migration) blocks a full-suite replacement.", "first_raised": "2025-07-08", "date": "2025-07-08", "status": "open", "source": "Avoma transcript 8 Jul 2025, Gerald Stiver"},
+        {"category": "integration", "detail": "US data-residency requirement for a Pennsylvania state agency conflicts with Zycus's default India data routing; a fully-domestic hosting option must be confirmed.", "first_raised": "2026-04-28", "date": "2026-04-28", "status": "open", "source": "Avoma transcript 28 Apr 2026, Gerald Stiver"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Engagement is cooling to cold: no buyer reply in 69 days, promised deliverables undelivered, discovery call never held, and the buyer has explicitly deferred a purchase 1.5-2 years.",
+      "cooling": true,
+      "items": [
+        "No buyer response since the 28 Apr 2026 call; a 7 May rep-sent summit invite drew no reply.",
+        "Buyer set the timeline against us at 1.5-2 years (28 Apr 2026).",
+        "Single-threaded to one evaluator with no budget authority."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "A cold, early-stage risk-side conversation: our only contact, evaluator Gerald Stiver, has gone silent for 69 days and put any purchase 1.5-2 years out behind PHEAA's mainframe-to-cloud transformation, so there is no live path to the 14 Oct close.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This sits low: the only engaged person is Gerald Stiver, a vendor-compliance evaluator with no budget authority, no procurement decision-maker or economic buyer has been met, and Gerald himself put any purchase 1.5-2 years out on the 28 Apr call."},
+          {"tone": "warn", "text": "Gerald has not replied in 69 days (last genuine two-way was the 28 Apr intro call); the promised Showpad demo pack was never delivered and the discovery call never materialized."},
+          {"tone": "warn", "text": "PHEAA is a Pennsylvania state agency and Gerald flagged Zycus's India data routing as a potential showstopper (28 Apr) that remains unresolved."},
+          {"tone": "good", "text": "The pain is real and named: a manual paper-and-Excel third-party-risk program, no way to report across risk assessments, and manual OFAC/debarment desktop audits Gerald wants automated (28 Apr)."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No forward movement since the 28 Apr intro call; the only touch since was a 7 May summit-invite email from Nikita Bayas that drew no reply."},
+          {"tone": "warn", "text": "The buyer set the pace against us: Gerald said budget and appetite are 1.5-2 years out pending the multi-year mainframe-to-cloud transformation (28 Apr)."},
+          {"tone": "warn", "text": "Engagement is still a single generic suite walkthrough, not a scoped evaluation."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "No commitment secured: Gerald offered only to 'share the literature' with procurement and said spend is 'not my conversation' (28 Apr)."},
+          {"tone": "warn", "text": "No demo requested, no next meeting booked by the buyer, and no procurement stakeholder introduced."},
+          {"tone": "neu", "text": "Gerald claims good rapport with the procurement team and offered to pass materials along, a thin but real internal relay (28 Apr)."}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Price ceiling is live: Gerald said a couple-hundred-thousand tool can't happen, putting the $100k amount near his stated limit (28 Apr)."},
+          {"tone": "warn", "text": "Change-management fear: organizational 'PTSD' about migrating 20,000 contracts blocks a full replacement (8 Jul 2025)."},
+          {"tone": "warn", "text": "Single-thread and power gap: no economic buyer or procurement decision-maker is identified anywhere in the record."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "No buyer movement in 69 days; buyer-stated 1.5-2 year timeline; still a generic intro (28 Apr 2026)."},
+        "customer_commitment": {"strength": -0.7, "evidence": "No demo request, no meeting booked, budget disclaimed, silent since 7 May 2026."},
+        "deal_risk": {"strength": -0.7, "evidence": "Price ceiling near $100k, 20,000-contract migration fear, single-thread with no EB (28 Apr 2026, 8 Jul 2025)."}
+      }
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 28 Apr intro call ended with Gerald offering only to forward materials to procurement and pegging any purchase 1.5-2 years out, and nothing has moved in the 69 days since.", "tone": "crit"},
+      {"lens": "Competition", "text": "There is no rival in the deal: the threat is inertia, with PHEAA still running third-party risk on paper and Excel while a multi-year core-IT transformation owns all budget and attention.", "tone": "warn"},
+      {"lens": "New stakeholder", "text": "No procurement decision-maker or budget owner has been reached; the sole contact, Gerald Stiver, is a risk-side evaluator who says spend is not his conversation.", "tone": "crit"},
+      {"lens": "Commercials", "text": "Price ceiling is a live risk: Gerald said a couple-hundred-thousand tool is a non-starter, putting the $100k near his stated limit.", "tone": "warn"}
+    ],
+    "scope_change": {"direction": "stable", "from": "", "to": "", "detail": "New opportunity created 29 Apr 2026 with a five-module source-to-pay scope (iContract, iSource, iSupplier, iRisk, Merlin); no prior scope to compare, no narrowing observed."},
+    "expansion_context": {"prior_closed_won": false, "prior_opp": null, "note": "No sibling Closed-Won deal on this account; this is a net-new first-time pursuit, so executive/seat access is NOT inherited and must be earned."},
+    "ceo_intervention": {"needed": false},
+    "customer_preference": {"level": "low", "evidence": "Gerald was neutral and price-conscious, asked only for information and videos to circulate, and deferred a purchase 1.5-2 years; no Zycus-specific lean or next-step pull (28 Apr 2026)."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: manual paper/Excel risk program, no cross-vendor reporting, manual OFAC/debarment audits; no cost, hours, or ROI quantified (28 Apr 2026)."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Re-send Gerald the promised Showpad demo videos plus a sample state-agency vendor risk-score report.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "Grace committed the Showpad pack and a risk-assessment resource on 28 Apr; both are overdue and Gerald has gone silent 69 days.", "trigger_date": "2026-04-28", "act_by": "2026-07-13", "expected_effect": "Delivers on the open commitment, gives Gerald something concrete to circulate to procurement, and reopens a stalled thread."},
+        {"rank": 2, "action": "Confirm a fully US-domestic hosting option and send the security and data-residency documentation.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Gerald flagged Zycus's India data routing as a potential showstopper for a Pennsylvania state agency on 28 Apr.", "trigger_date": "2026-04-28", "act_by": "2026-07-20", "expected_effect": "Removes the single hardest technical objection and keeps the state-agency evaluation viable when the window reopens."},
+        {"rank": 3, "action": "Ask Gerald to introduce a procurement decision-maker and the budget owner to map power.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Only contact is a risk-side evaluator who disclaimed budget authority; no economic buyer or procurement decision-maker is mapped.", "trigger_date": "2026-04-28", "act_by": "2026-08-05", "expected_effect": "Adds a second thread and a path to budget, converting a single-threaded coach into a real buying committee."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 2,
+    "calls_read": 2,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendee-email",
+    "salesforce_window": "Activities last 120d; field history since 29 Apr 2026",
+    "avoma_attendees": ["Gerald Stiver"],
+    "gaps": [
+      "Economic buyer / budget owner genuinely unknown; no OpportunityContactRole or call names one (knowledge gap).",
+      "No procurement decision-maker or IT stakeholder has ever engaged; single-threaded to Gerald Stiver (knowledge gap).",
+      "No discovery call held and no buyer contact in 69 days; forward evaluation plan is unknown (knowledge gap)."
+    ]
+  },
+  "analysis_confidence": "Medium",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

@@ -1,0 +1,3931 @@
+{
+ "ai": {
+  "gaps": {
+   "items": [
+    {
+     "area": "MEDDPICC custom fields (MEDDPICC__c / MEDDPICC_2_0__c) do not exist in this org's schema",
+     "date": "2026-07-09",
+     "quote": "INVALID_FIELD on both queries",
+     "source": "SOQL error, this sweep; MEDDPICC narrative instead reconstructed from Avoma calls, Next_Step_History__c, and AIS_Why__c",
+     "status": "acknowledged",
+     "gap_type": "hygiene"
+    },
+    {
+     "area": "Economic Buyer identity (Head of Global Procurement)",
+     "date": "2025-08-19",
+     "quote": "finally, my head of global procurement to be part of it to give his blessing",
+     "source": "Avoma transcript, 19 Aug 2025 demo; no name ever surfaced in any subsequent source",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    },
+    {
+     "area": "Current competitive standing vs GEP Worldwide, Ivalua, JAGGAER, SAP Ariba",
+     "date": "2026-07-09",
+     "quote": "n/a \u2014 no evidence exists past the Dec 2025/Jan 2026 decision window",
+     "source": "Absence across all sources (Avoma, Tasks, Next Step History) since 13 Jan 2026 demo",
+     "status": "not addressed",
+     "gap_type": "knowledge"
+    }
+   ]
+  },
+  "meddpicc": {
+   "metrics": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo (speaker: Amresh Munshi)"
+    ],
+    "narrative": "On the 19 Aug 2025 demo, Amresh Munshi set concrete negotiation parameters: a savings target of 4-9% on autonomous negotiations, a sub-$25,000 autonomous-sourcing threshold (currently informally raised to $50,000 but targeted back down to $25,000), a 3-5% cap on annual renewal increases, and standard payment terms (Net 60 new vendors, push existing vendors toward Net 45). These are real, buyer-articulated figures, not rep assumptions. However, no formal ROI workshop or savings model has been built since, and none of this has been reconfirmed by the buyer in the ~11 months since that call."
+   },
+   "champion": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo",
+     "Task 'Call Attempted', 24 Apr 2026",
+     "Next_Step_History__c, 2026-06-22 and 2026-06-29"
+    ],
+    "narrative": "Amresh Munshi acted as a genuine champion on the 19 Aug 2025 and 13 Jan 2026 calls \u2014 he set the agenda, defined evaluation criteria, and committed to bringing in procurement ops, power users, and the (unnamed) Head of Global Procurement. But he has missed his own commitments repeatedly: the September 2025 follow-up with Chris Soriano and Alycia Stafford never happened as promised (it slipped to a January 2026 demo instead), a promised early-March 2026 check-in (his own request, per his 26 Feb 2026 reply) never materialized, and there has been no verified reply from him since that 26 Feb 2026 email despite at least 6 documented outreach attempts (9 Mar, 12 Mar, 25 Mar, 7 Apr, 13 May, 22 Jun, 29 Jun 2026). No other buyer contact (Purav Desai, Chris Soriano, Alycia Stafford, Justin Robinson) has independently engaged beyond being cc'd or invited."
+   },
+   "competition": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo (speaker: Amresh Munshi)",
+     "Opportunity.Competitors__c"
+    ],
+    "narrative": "Amresh Munshi confirmed a live multi-vendor bake-off on the 19 Aug 2025 call: 'we are exploring all the providers to see who can best fit our requirement, and the player who is having more capability... will onboard one or two of them to go for the POC.' Salesforce lists GEP Worldwide, Ivalua, JAGGAER and SAP Ariba as named competitors. Cornerstone's own decision window (finalize by Sept 2025, POC Dec 2025/Jan 2026) has passed with zero subsequent competitive intelligence \u2014 we do not know whether Zycus is still in contention."
+   },
+   "identify_pain": {
+    "status": "confirmed",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo (speaker: Amresh Munshi)"
+    ],
+    "narrative": "Amresh Munshi articulated detailed, specific pain on the 19 Aug 2025 call: tail-spend purchases (under $20-25k) are handled entirely outside any system via phone/email with no audit trail; Oracle iProcurement (tied to the relevant stakeholder) cannot be replaced but is limited and costly to enhance, a legacy of a 2021 leadership decision to move off NetSuite/Coupa onto Oracle; and a recent ~$10,000 software purchase bypassed a mandatory TSR security review, creating a real compliance incident. This is rich, buyer-voiced pain, though it has not been reconfirmed in the ~11 months since that call."
+   },
+   "paper_process": {
+    "status": "gap",
+    "sources": [
+     "OpportunityFieldHistory (Amount changes, 2025-08-20 to 2026-03-18)"
+    ],
+    "narrative": "No commercials, pricing, MSA, or SOW discussion has started. The Amount field has moved several times ($120k created \u2192 $210k on 4 Sep 2025 \u2192 $185k on 18 Mar 2026 current) but these appear to be internal scoping adjustments, not buyer-negotiated commercial terms \u2014 no call or email in the record discusses price with the buyer."
+   },
+   "economic_buyer": {
+    "status": "gap",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo (speaker: Amresh Munshi)",
+     "Next_Step_History__c (no EB engagement logged 25 Jul 2025 - 29 Jun 2026)"
+    ],
+    "narrative": "Amresh Munshi named the Economic Buyer role explicitly on the 19 Aug 2025 call: 'finally, my head of global procurement to be part of it to give his blessing and take it forward.' That person has never been named, never joined a call, and no budget or approval conversation has started at any point in the 11-month history of this deal per Salesforce field history and Next Step History."
+   },
+   "decision_process": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo (speaker: Amresh Munshi)",
+     "Task email recap, 15 Jan 2026 (Steve Ovadje to Amresh Munshi/Alycia Stafford)"
+    ],
+    "narrative": "Amresh Munshi laid out a detailed process on the 19 Aug 2025 call: exploration through Sept 2025, vendor identification/pricing after Sept, POC with one or two finalists by Dec 2025/Jan 2026, contracting during and just after the POC, and a targeted go-live of May 2026 (with an internal 'safer' target of roughly a year out). Every one of those milestones has since passed without confirmed resolution \u2014 the POC decision point (Dec 2025/Jan 2026) came and went with only a third demo held 13 Jan 2026, and no RFP, POC, or contracting activity has been logged since."
+   },
+   "decision_criteria": {
+    "status": "partial",
+    "sources": [
+     "Avoma transcript, 19 Aug 2025 demo",
+     "Next_Step_History__c entry 2025-12-01 (Steve Ovadje): 'Cornerstone team is planning to send out a structured RFI by end of month'"
+    ],
+    "narrative": "Amresh Munshi described specific evaluation needs on the 19 Aug 2025 call: strategic sourcing analytics with pre-negotiation insights and historical benchmarking for high-value SaaS/platform deals, configurable negotiation tone/aggressiveness, and a hard requirement that any new software purchase (regardless of dollar threshold) trigger an IT security (TSR) review given a past internal security incident. A structured RFI was reportedly being prepared by Cornerstone in Dec 2025 but no evidence confirms it was ever sent or received."
+   }
+  },
+  "footprints": {
+   "alive": false,
+   "rep_only": false,
+   "engagement": {
+    "raw_top": 3.0,
+    "top_event": "[Clari - Email Sent] Re: Zycus X Cornerstone - Initial Demo Follow Up.",
+    "events_30d": 1,
+    "points_60d": 0.6,
+    "top_weight": 1.2,
+    "points_90d_process": 1.4
+   },
+   "last_meeting": "2025-08-19",
+   "meetings_60d": 0,
+   "last_rep_touch": "2026-06-26",
+   "last_buyer_touch": "2025-08-19",
+   "buyer_touches_30d": 0,
+   "buyer_touches_60d": 0,
+   "stage_cadence_days": 21,
+   "general_last_activity": "2026-06-29",
+   "days_since_buyer_touch": 323
+  },
+  "opp_trends": {},
+  "day_summary": {
+   "as_of": "2026-06-26",
+   "items": [
+    {
+     "at": "2026-06-26",
+     "kind": "email",
+     "name": "Follow-up invite to Justin Robinson",
+     "summary": "Davis Thomson followed up on his prior invitation, directly asking Justin if he can attend the June 30 Palo Alto procurement roundtable \u2014 a simple RSVP chase with no reply visible yet."
+    },
+    {
+     "at": "2026-06-26",
+     "kind": "email",
+     "name": "Follow-up invite to Chris Soriano",
+     "summary": "Same follow-up sent to Chris Soriano pressing for a yes/no on the roundtable seat; this is event marketing rather than deal-specific correspondence, and remains unanswered."
+    }
+   ],
+   "source": "ai",
+   "overall": "This was a low-touch day driven entirely by vendor-side outreach rather than deal progress \u2014 Zycus's Davis Thomson followed up on his own event invite to two Cornerstone contacts, Justin Robinson and Chris Soriano, chasing an RSVP for the Palo Alto procurement roundtable. Nothing here reflects buyer engagement or deal movement; it's a marketing nudge sitting in both inboxes with no response yet."
+  },
+  "deal_scores": {
+   "model": "ai_v1",
+   "headline": {
+    "read": "Stalled",
+    "deal_risk": 90.0,
+    "win_position": 18.0,
+    "deal_momentum": 6.0,
+    "customer_commitment": 12.0,
+    "forecast_confidence": 10.0
+   },
+   "cro_panel": {
+    "intro": "This deal shows genuine early qualification (specific buyer-articulated pain, quantified negotiation parameters, two deep and well-attended product sessions) but has stalled hard; the Economic Buyer was never engaged, the champion has gone quiet for over four months, the stage was demoted back from Shortlisted, and competitive standing is completely unknown past its own decision window",
+    "blocks": [
+     {
+      "key": "win_position",
+      "sub": "can we win it?",
+      "kind": "score",
+      "read": "We're well behind \u2014 this one is cold.",
+      "score": 18,
+      "title": "Zycus win position",
+      "bullets": [
+       {
+        "text": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion\u2026",
+        "tone": "warn"
+       },
+       {
+        "text": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero\u2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "how": null,
+      "key": "deal_momentum",
+      "sub": "is it moving?",
+      "kind": "score",
+      "read": "Going quiet \u2014 engagement has dropped off.",
+      "score": 6,
+      "title": "Deal momentum",
+      "bullets": [
+       {
+        "text": "1 call read in the window",
+        "tone": "good"
+       },
+       {
+        "text": "Last recorded activity 26 Jun 2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "sub": "the honest downside",
+      "kind": "risk",
+      "read": "The threat is the deal stalling into 'do nothing', not a competitor beating us.",
+      "score": 90,
+      "title": "What could lose it",
+      "footer": "Competitive picture: A multi-vendor bake-off was confirmed by the buyer on 19 Aug 2025 (GEP Worldwide, Ivalua, JAGGAER, SAP Ariba named in Salesforce), with a POC-selection decision point originally targeted for Dec 2025/Jan 2026.",
+      "bullets": [
+       {
+        "full": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no contract activity, and buyer has been unresponsive for 4+ months \u2014 close date is not credible.",
+        "text": "Close date 27 Aug 2026 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no\u2026",
+        "tone": "warn"
+       },
+       {
+        "full": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR violations, Oracle cost) but no dollar figures or savings target.",
+        "text": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR\u2026",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "kind": "moves",
+      "items": [
+       "Open a direct, substantive thread with Chris Soriano and Justin Robinson beyond the event-invite email, referencing the stalled evaluation. (by 16 Jun)",
+       "Ask Purav Desai directly where the Dec 2025/Jan 2026 vendor down-select landed and whether Zycus remains under consideration. (by 23 Jun)",
+       "Propose a scoped call with the Head of Global Procurement, leveraging Amresh Munshi's own Aug 2025 commitment to involve that person for budget sign-off. (by 6 Jul)"
+      ],
+      "title": "What moves it forward"
+     }
+    ],
+    "header": "Cornerstone OnDemand \u2014 Formal Evaluation \u00b7 $185K \u00b7 closes 27 Jul",
+    "pinned": false,
+    "schema": 1,
+    "generated": true
+   },
+   "deal_risk": {
+    "score": 90.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Close date is 49 days out but the deal has had zero buyer engagement in 324 days, no commercial discussion, and no EB contact \u2014 a live contract signature in this window is not credible.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Single-threaded through one mid-level champion who has missed two of his own commitments and left no backup contact.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Competitive bake-off (GEP, Ivalua, JAGGAER, SAP Ariba) status is unknown since the Dec'25/Jan'26 decision point passed with zero follow-up intel.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No quantified business case exists to defend $185k against budget scrutiny or EB approval.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Integration ask is non-trivial (overlay on Oracle iProcurement/Fusion ERP + ServiceNow) with an unresolved open question on whether TSR review can be automated.",
+      "points": -1.0
+     }
+    ]
+   },
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date is 49 days out but the deal has had zero buyer engagement in 324 days, no commercial discussion, and no EB contact \u2014 a live contract signature in this window is not credible.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through one mid-level champion who has missed two of his own commitments and left no backup contact.",
+      "tone": "warn"
+     },
+     {
+      "text": "Competitive bake-off (GEP, Ivalua, JAGGAER, SAP Ariba) status is unknown since the Dec'25/Jan'26 decision point passed with zero follow-up intel.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified business case exists to defend $185k against budget scrutiny or EB approval.",
+      "tone": "warn"
+     },
+     {
+      "text": "Integration ask is non-trivial (overlay on Oracle iProcurement/Fusion ERP + ServiceNow) with an unresolved open question on whether TSR review can be automated.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "EXCEPTION: recorded stage Formal Evaluation caps at 60, but 324 days dark since the only meeting, champion silent 4+ months with two missed self-committed windows, and a Dec'25/Jan'26 POC-decision window that passed with zero subsequent competitive intel together show a deal that is behind its recorded stage \u2014 capped down to 18. \u25ba Rep/manager should update forecast category or move toward a re-qualify/closed-lost decision if no response within 2 weeks.",
+      "tone": "warn"
+     },
+     {
+      "text": "Economic buyer (head of global procurement) is unmapped and has never engaged \u2014 MEDDPICC flags this as a hard gap, and the deal is single-threaded through a mid-level champion who's gone quiet.",
+      "tone": "warn"
+     },
+     {
+      "text": "Active 4-way bake-off (GEP Worldwide, Ivalua, JAGGAER, SAP Ariba) with no visibility on standing since the shortlist decision window passed 6+ months ago.",
+      "tone": "warn"
+     },
+     {
+      "text": "No quantified ROI or business case built to justify the $185k ask or secure budget/EB approval; no commercial or pricing conversation on record.",
+      "tone": "warn"
+     },
+     {
+      "text": "When last engaged (19-Aug-2025 demo), Amresh drove 50+ minutes of technically detailed questioning on autonomous negotiation/escalation logic \u2014 genuine strategic-fit signal, though now fully stale.",
+      "tone": "good"
+     },
+     {
+      "text": "Champion has not established a backup thread \u2014 if Amresh stays dark, there is no other buyer-side contact to fall back on.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "Only one meeting exists on record, ever \u2014 the 19-Aug-2025 demo \u2014 and it's now 324 days old; zero meetings in the last 30/60/90 days.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep has logged five straight follow-up attempts (4/28, 5/13, 6/1, 6/22, 6/29) with no buyer response on any of them \u2014 pure one-way outreach.",
+      "tone": "warn"
+     },
+     {
+      "text": "Next Step notes read 'No Material Update' for three consecutive cycles (6/1, 6/22, 6/29) \u2014 no forward motion, no new date.",
+      "tone": "warn"
+     },
+     {
+      "text": "No future meeting or deliverable scheduled despite sitting in Formal Evaluation.",
+      "tone": "warn"
+     },
+     {
+      "text": "Champion missed two of his own committed follow-up windows (Sept 2025, March 2026) \u2014 this reads as deprioritization, not just absence.",
+      "tone": "warn"
+     },
+     {
+      "text": "Rep has kept a steady, non-harassing cadence of outreach, leaving the door open if Amresh resurfaces.",
+      "tone": "good"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "No buyer-owned action item has closed since the single Aug-2025 demo; champion has not resurfaced in 324 days.",
+      "tone": "warn"
+     },
+     {
+      "text": "Paper/security process (TSR) never initiated \u2014 MEDDPICC marks paper_process as a gap despite being a named open question from the demo.",
+      "tone": "warn"
+     },
+     {
+      "text": "No exec sponsor or EB contact has been granted at any point in the cycle.",
+      "tone": "warn"
+     },
+     {
+      "text": "April note referenced coordinating a demo with 'additional stakeholders' \u2014 that session never materialized, and no new names have surfaced since.",
+      "tone": "warn"
+     },
+     {
+      "text": "Early behavior was strong: Amresh gave detailed requirements and staged stakeholder introductions before going dark \u2014 real initial investment, just unsustained.",
+      "tone": "good"
+     }
+    ]
+   },
+   "win_position": {
+    "score": 18.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "EXCEPTION: recorded stage Formal Evaluation caps at 60, but 324 days dark since the only meeting, champion silent 4+ months with two missed self-committed windows, and a Dec'25/Jan'26 POC-decision window that passed with zero subsequent competitive intel together show a deal that is behind its recorded stage \u2014 capped down to 18. \u25ba Rep/manager should update forecast category or move toward a re-qualify/closed-lost decision if no response within 2 weeks.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Economic buyer (head of global procurement) is unmapped and has never engaged \u2014 MEDDPICC flags this as a hard gap, and the deal is single-threaded through a mid-level champion who's gone quiet.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Active 4-way bake-off (GEP Worldwide, Ivalua, JAGGAER, SAP Ariba) with no visibility on standing since the shortlist decision window passed 6+ months ago.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No quantified ROI or business case built to justify the $185k ask or secure budget/EB approval; no commercial or pricing conversation on record.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "When last engaged (19-Aug-2025 demo), Amresh drove 50+ minutes of technically detailed questioning on autonomous negotiation/escalation logic \u2014 genuine strategic-fit signal, though now fully stale.",
+      "points": 1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion has not established a backup thread \u2014 if Amresh stays dark, there is no other buyer-side contact to fall back on.",
+      "points": -1.0
+     }
+    ]
+   },
+   "deal_momentum": {
+    "score": 6.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Only one meeting exists on record, ever \u2014 the 19-Aug-2025 demo \u2014 and it's now 324 days old; zero meetings in the last 30/60/90 days.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Rep has logged five straight follow-up attempts (4/28, 5/13, 6/1, 6/22, 6/29) with no buyer response on any of them \u2014 pure one-way outreach.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Next Step notes read 'No Material Update' for three consecutive cycles (6/1, 6/22, 6/29) \u2014 no forward motion, no new date.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No future meeting or deliverable scheduled despite sitting in Formal Evaluation.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Champion missed two of his own committed follow-up windows (Sept 2025, March 2026) \u2014 this reads as deprioritization, not just absence.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Rep has kept a steady, non-harassing cadence of outreach, leaving the door open if Amresh resurfaces.",
+      "points": 1.0
+     }
+    ]
+   },
+   "factor_source": "ai",
+   "schema_version": 1,
+   "evidence_packet": {
+    "fit": {
+     "ai_fit_signal": "Amresh Munshi drove an extended, technically detailed line of questioning on autonomous negotiation configurability, escalation logic, and AI-driven strategic sourcing analytics across a 50+ minute stretch of the 19 Aug 2025 demo \u2014 well bey",
+     "expectations_fit": "Zycus confirmed feasibility on most buyer-raised integration and workflow requirements during the 19 Aug 2025 demo; the one open question is whether the TSR (security review) trigger can be fully automated regardless of purchase value.",
+     "north_star_verdict": null,
+     "positioning_strength": "AIS reads 'Strong' \u2014 the buyer is explicitly seeking agentic/autonomous AI (not just intake), articulated specific configurable AI negotiation parameters, and pushed hard on AI-governed workflows (TSR triggers, escalation logic) during the "
+    },
+    "deal": {
+     "stage": "Formal Evaluation",
+     "amount": 185000.0,
+     "opp_id": "006P700000LmMrl",
+     "account": "Cornerstone OnDemand",
+     "opp_name": "CornerstoneOD_OPP_July'25",
+     "next_step": "6/29 - No Material Update. 6/22 - Following up with Amresh to receive updated evaluation timeline, No response yet6/1 - No material update5/13 - Amresh is back in office. Will follow up with some available times to meet week of 5/184/28 - Coordinating TIme with Amresh to schedule a demo with additional stakeholders. Amresh is out of office till 5/8",
+     "close_date": "2026-08-27",
+     "stage_tier": "mid",
+     "days_to_close": 49,
+     "forecast_category": "Pipeline",
+     "last_activity_date": "2026-06-26"
+    },
+    "trends": {},
+    "champion": "Amresh Munshi showed real early advocacy \u2014 detailed requirements, staged stakeholder introductions, explicit project-lead framing \u2014 but has been unresponsive for over four months and has twice missed his own committed follow-up windows (Sept 2025, March 2026), with no backup thread established.",
+    "meddpicc": {
+     "metrics": "partial",
+     "champion": "partial",
+     "competition": "partial",
+     "identify_pain": "confirmed",
+     "paper_process": "gap",
+     "economic_buyer": "gap",
+     "decision_process": "partial",
+     "decision_criteria": "partial"
+    },
+    "meetings": {
+     "recent": [
+      {
+       "date": "2025-08-19",
+       "minutes": 55,
+       "subject": "Zycus X Cornerstone - Demo",
+       "recorded": true,
+       "transcript": true,
+       "buyer_domains": []
+      }
+     ],
+     "count_30d": 0,
+     "count_60d": 0,
+     "count_90d": 0,
+     "last_date": "2025-08-19",
+     "next_scheduled": null,
+     "total_all_time": 1,
+     "days_since_last": 324,
+     "with_transcript_all_time": 1
+    },
+    "competition": {
+     "summary": "A multi-vendor bake-off was confirmed by the buyer on 19 Aug 2025 (GEP Worldwide, Ivalua, JAGGAER, SAP Ariba named in Salesforce), with a POC-selection decision point originally targeted for Dec 2025/Jan 2026. That window has passed with zero subsequent competitive intelligence. Oracle iProcurement is a fixed incumbent that cannot be replaced (tied to Oracle Fusion ERP) and Zycus's proposal is exp",
+     "competitors": [
+      {
+       "name": "GEP Worldwide",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "Ivalua",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "JAGGAER",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "SAP Ariba",
+       "status": "active",
+       "threat": "medium"
+      },
+      {
+       "name": "Oracle iProcurement",
+       "status": "incumbent",
+       "threat": "low"
+      }
+     ]
+    },
+    "vulnerabilities": [
+     "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amre",
+     "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibilit",
+     "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagemen",
+     "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR",
+     "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurem"
+    ],
+    "buyer_engagement": {
+     "rep_only": false,
+     "meeting_days_30d": 0,
+     "meeting_days_60d": 0,
+     "sfdc_email_touches_60d": 0,
+     "days_since_last_meeting": 324
+    },
+    "decision_outcome": {}
+   },
+   "customer_commitment": {
+    "score": 12.0,
+    "contributions": [
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No buyer-owned action item has closed since the single Aug-2025 demo; champion has not resurfaced in 324 days.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "Paper/security process (TSR) never initiated \u2014 MEDDPICC marks paper_process as a gap despite being a named open question from the demo.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "No exec sponsor or EB contact has been granted at any point in the cycle.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "warn",
+      "detail": "April note referenced coordinating a demo with 'additional stakeholders' \u2014 that session never materialized, and no new names have surfaced since.",
+      "points": -1.0
+     },
+     {
+      "key": "ai",
+      "tone": "good",
+      "detail": "Early behavior was strong: Amresh gave detailed requirements and staged stakeholder introductions before going dark \u2014 real initial investment, just unsustained.",
+      "points": 1.0
+     }
+    ]
+   },
+   "forecast_confidence": {
+    "score": 10.0,
+    "contributions": []
+   }
+  },
+  "crm_evidence": {
+   "commercial": {
+    "src": "Next-Step/narrative",
+    "value": "'procurement process' in Next-Step/narrative",
+    "present": true,
+    "age_days": 9
+   },
+   "differentiation": {
+    "src": "Next-Step/narrative",
+    "value": "'inefficien' in Next-Step/narrative",
+    "present": true,
+    "age_days": 9
+   }
+  },
+  "scope_change": {
+   "to": "iSource, eProcurement, eInvoicing, Merlin, Merlin Intake, Agentic AI",
+   "from": "iSource, eProcurement, eInvoicing, Merlin, Merlin Intake, Agentic AI",
+   "detail": "Product scope has not changed since deal creation; only the commercial Amount has moved (created at $120,000, peaked at $210,000 on 4 Sep 2025, currently $185,000 since 18 Mar 2026).",
+   "direction": "stable"
+  },
+  "ai_fit_signal": {
+   "tier": "AI Hungry",
+   "summary": "Amresh Munshi drove an extended, technically detailed line of questioning on autonomous negotiation configurability, escalation logic, and AI-driven strategic sourcing analytics across a 50+ minute stretch of the 19 Aug 2025 demo \u2014 well beyond a generic AI-curiosity conversation."
+  },
+  "business_case": {
+   "status": "partial",
+   "evidence": "Buyer set informal savings/negotiation parameters (4-9% target, $25k threshold, 3-5% renewal cap) on the 19 Aug 2025 call, but no formal ROI model or updated business case has been built or reconfirmed since."
+  },
+  "deal_movement": {
+   "items": [
+    {
+     "date": "2025-07-25",
+     "change": "Stage: Initial Interest \u2192 Qualified"
+    },
+    {
+     "date": "2025-07-30",
+     "change": "Stage: Qualified \u2192 Formal Evaluation"
+    },
+    {
+     "date": "2025-08-20",
+     "change": "Stage: Formal Evaluation \u2192 Shortlisted; Forecast: Pipeline \u2192 Best Case; Amount adjusted to $130,000 (following a strong demo where the buyer said Zycus was shortlisted)"
+    },
+    {
+     "date": "2025-09-04",
+     "change": "Amount: $130,000 \u2192 $210,000"
+    },
+    {
+     "date": "2025-10-15",
+     "change": "Forecast: Best Case \u2192 Upside Key Deal"
+    },
+    {
+     "date": "2026-03-18",
+     "change": "Amount: $210,000 \u2192 $185,000 (current)"
+    },
+    {
+     "date": "2026-04-14",
+     "change": "Stage: Shortlisted \u2192 Formal Evaluation (demotion); Forecast: Upside Key Deal \u2192 Pipeline (current)"
+    },
+    {
+     "date": "2026-05-13",
+     "change": "Close date revised to 2026-08-27 (current; 9th revision since creation, originally 2025-10-27)"
+    }
+   ],
+   "summary": "Stage advanced quickly to Shortlisted after a strong demo in Aug 2025, then regressed to Formal Evaluation in Apr 2026 after roughly eight months without a confirmed next step; close date has slipped nine times since creation; amount has been revised down to $185k after peaking at $210k."
+  },
+  "forecast_read": {
+   "math": "Close date 27 Aug 2026 is 49 days from today (9 Jul 2026). Current Formal Evaluation stint began 14 Apr 2026 (demotion from Shortlisted) \u2014 86 days in-stage against a ~21-day expected cadence for this stage (~4.1x normal dwell). Original Formal_Eval_Submission_Date__c (30 Jul 2025) is stale and no longer reflects true stage entry given the demotion. Close date has been revised at least 9 times since creation (27 Oct 2025 \u2192 27 Aug 2026 per field history).",
+   "reason": "Pipeline is already the most conservative category and matches the evidence: no verified buyer reply since 26 Feb 2026 (~133 days ago), a stage demotion from Shortlisted back to Formal Evaluation on 14 Apr 2026 (~12 weeks ago), and zero commercial/EB engagement. Keeping it at Pipeline is the honest read; it is the 49-day-out close date (27 Aug 2026), not the forecast field, that is not credible.",
+   "defensible": true,
+   "recommended_forecast": "Pipeline"
+  },
+  "product_scope": {
+   "scope": "iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI"
+  },
+  "scoring_studio": {
+   "versions": {
+    "mom": "10.5",
+    "sum": "10.1",
+    "win": "10.3",
+    "todo": "10.1",
+    "sweep": "10.0",
+    "extract": "10.4",
+    "playbook": "1.0",
+    "vendordict": "1.0"
+   },
+   "stamped_at": "2026-07-09"
+  },
+  "stakeholder_map": {
+   "items": [
+    {
+     "name": "Purav Desai",
+     "risk": "Attended original demo and was named as coordination point of contact, but no independent follow-through evidenced since",
+     "role": "Coach",
+     "email": "pdesai@csod.com",
+     "title": "Senior Manager, Strategic Sourcing",
+     "_source": "sfdc_contact_role",
+     "sentiment": "neutral/engaged at the time",
+     "_matched_ai": true,
+     "last_contact_date": "2025-08-19"
+    },
+    {
+     "name": "Alycia Stafford",
+     "risk": "Consistently cc'd since 2025 and named as a requirements-document co-owner in Dec 2025, but an outbound call attempt on 4 May 2026 could not connect",
+     "role": "Influencer",
+     "email": "astafford@csod.com",
+     "title": "TBD",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown \u2014 no confirmed reply",
+     "_matched_ai": true,
+     "last_contact_date": "2026-05-04"
+    },
+    {
+     "name": "Chris Soriano",
+     "risk": "Named as senior stakeholder to be looped in since Aug 2025; still no confirmed direct engagement despite being cc'd and invited to a June 2026 event",
+     "role": "Unknown",
+     "email": "csoriano@csod.com",
+     "title": "VP of Strategic Sourcing",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown \u2014 no confirmed engagement",
+     "_matched_ai": true,
+     "last_contact_date": "2026-06-26"
+    },
+    {
+     "name": "Justin Robinson",
+     "risk": "Only surfaces in June 2026 event-invite outreach; no evidence of any earlier direct involvement",
+     "role": "Unknown",
+     "email": "justinrobinson@csod.com",
+     "title": "Strategic Sourcing Principal Manager",
+     "_source": "sfdc_contact_role",
+     "sentiment": "unknown \u2014 no confirmed engagement",
+     "_matched_ai": true,
+     "last_contact_date": "2026-06-26"
+    }
+   ]
+  },
+  "vulnerabilities": {
+   "items": [
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amresh) who is now unresponsive for 4+ months \u2014 no executive sponsorship or budget sign-off path.",
+     "status": "open",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibility into vendor standings, no competitive intel, and no confirmation we are still in contention. Risk: we may have lost the shortlist during the 10-month silence.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2026-06-29",
+     "change": "carried",
+     "detail": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no contract activity, and buyer has been unresponsive for 4+ months \u2014 close date is not credible.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2026-06-29",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR violations, Oracle cost) but no dollar figures or savings target.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurement \u2014 Zycus confirmed feasibility on demo but no SOW scoping, no technical-deep-dive with IT, no integration architecture agreed.",
+     "status": "acknowledged",
+     "category": "integration",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "Buyer wants to 'fix the baseline' (clean up Oracle + ServiceNow issues) before implementing Zycus overlay, running internal cleanup in parallel with vendor exploration \u2014 risk that internal cleanup delays decision or kills project if they decide Oracle-fix is sufficient.",
+     "status": "acknowledged",
+     "category": "change_management",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2025-09-30",
+     "change": "carried",
+     "detail": "September 2025 follow-up with procurement ops + Chris Soriano (VP) + Alicia Stafford was committed by buyer but never scheduled \u2014 Amresh/Purav ghosted the coordination, and deal lost momentum. Risk: champion commitment is unreliable, and we have no backup thread.",
+     "status": "open",
+     "category": "other",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "first_raised": "2025-09-30",
+     "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+    },
+    {
+     "date": "2026-06-29",
+     "change": "carried",
+     "detail": "Single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 despite 5 follow-ups; no working relationship with Purav Desai, Chris Soriano, Alycia Stafford or Justin Robinson beyond cc-lines and unanswered invites.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T13:03:51.724747+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "change": "carried",
+     "detail": "Economic buyer (head of global procurement) never engaged; no budget or approval conversation has started.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T13:03:51.724747+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+    },
+    {
+     "date": "2026-05-13",
+     "change": "carried",
+     "detail": "Close date has slipped at least 9 times over 11 months (27 Oct 2025 -> 27 Aug 2026); stage was demoted from Shortlisted back to the relevant stakeholder on 14 Apr 2026.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T13:03:51.724747+05:30",
+     "first_raised": "2025-10-02",
+     "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "updated",
+     "detail": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement was discussed conceptually but never technically scoped with IT (no HLD/LLD, no SOW).",
+     "status": "unresolved",
+     "category": "integration",
+     "first_seen": "2026-07-07T13:03:51.724747+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2026-06-29",
+     "change": "carried",
+     "detail": "Single-threaded through Amresh Munshi with no working relationship established with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson beyond cc-lines.",
+     "status": "open",
+     "category": "political",
+     "first_seen": "2026-07-07T14:50:45.803109+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+    },
+    {
+     "date": "2026-06-29",
+     "change": "carried",
+     "detail": "Economic buyer (head of global procurement) has never been engaged and no budget or pricing conversation has started.",
+     "status": "open",
+     "category": "budget",
+     "first_seen": "2026-07-07T14:50:45.803109+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+    },
+    {
+     "date": "2026-07-07",
+     "change": "carried",
+     "detail": "Close date of 27 Aug 2026 (51 days out) requires contract execution in roughly 7 weeks with zero active momentum.",
+     "status": "open",
+     "category": "timeline",
+     "first_seen": "2026-07-07T14:50:45.803109+05:30",
+     "first_raised": "2026-04-14",
+     "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "The Economic Buyer (unnamed Head of Global Procurement) has never been engaged; no path to budget approval exists.",
+     "status": "unresolved",
+     "category": "executive_alignment",
+     "first_seen": "2026-07-09T07:37:14.784208+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Deal is single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 (~133 days); no independent relationship exists with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson.",
+     "status": "unresolved",
+     "category": "political",
+     "first_seen": "2026-07-09T07:37:14.784208+05:30",
+     "first_raised": "2026-04-14",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection decision point passed; unknown whether Zycus remains in contention against GEP Worldwide, Ivalua, JAGGAER, or SAP Ariba.",
+     "status": "unresolved",
+     "category": "other",
+     "first_seen": "2026-07-09T07:37:14.784208+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "Close date (27 Aug 2026, 49 days out) requires contracting to complete within 7 weeks, but no commercials, EB engagement, or contract activity exists and buyer has not replied in over 4 months.",
+     "status": "unresolved",
+     "category": "timeline",
+     "first_seen": "2026-07-09T07:37:14.784208+05:30",
+     "first_raised": "2026-05-13",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2026-07-09",
+     "change": "new",
+     "detail": "No quantified ROI/savings model or business case has been built to justify the $185,000 investment beyond informal 4-9% savings targets discussed on the 19 Aug 2025 call.",
+     "status": "unresolved",
+     "category": "budget",
+     "first_seen": "2026-07-09T07:37:14.784208+05:30",
+     "first_raised": "2025-08-19",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    }
+   ]
+  },
+  "ceo_intervention": {
+   "mom": 6.0,
+   "win": 18.0,
+   "needed": false,
+   "source": "sweep",
+   "reasons": [],
+   "severity": null,
+   "generated_at": "2026-07-09",
+   "needs_action": false
+  },
+  "critical_signals": [
+   {
+    "lens": "Last meeting",
+    "text": "The most recent substantive product session was a demo on 13 Jan 2026 that the rep logged as 'successful,' with the buyer asking for an early-March check-in on internal cleanup and RFP timing \u2014 that promised March conversation never happened and no confirmed buyer reply has landed since 26 Feb 2026.",
+    "tone": "warn"
+   },
+   {
+    "lens": "Competition",
+    "text": "Cornerstone told Zycus directly it was evaluating GEP Worldwide, Ivalua, JAGGAER and SAP Ariba and planned to take one or two finalists into a proof of concept after a Sept 2025 exploration window \u2014 that decision point passed roughly six to seven months ago with no word on where Zycus stands.",
+    "tone": "warn"
+   },
+   {
+    "lens": "New stakeholder",
+    "text": "A different member of the Zycus team reached out directly to VP Chris Soriano and Strategic Sourcing Principal Manager Justin Robinson in late June 2026 with an event invitation, opening a possible second thread beyond the unresponsive champion, though neither has replied yet.",
+    "tone": "neu"
+   },
+   {
+    "lens": "Commercials",
+    "text": "No pricing, budget, or Economic Buyer conversation has ever started on this deal, and the one person positioned to open that door (the champion) has not replied in over four months.",
+    "tone": "crit"
+   }
+  ],
+  "momentum_signals": {
+   "concrete_dates": false,
+   "seniority_rising": false,
+   "generic_demo_only": false,
+   "competitor_praised": false,
+   "close_plan_concretizing": false,
+   "commercial_topics_entering": false,
+   "customer_requested_next_meeting": false
+  },
+  "champion_strength": {
+   "source": "Avoma transcript, 19 Aug 2025 and 13 Jan 2026 (recap); Next_Step_History__c through 2026-06-29",
+   "at_risk": true,
+   "summary": "Amresh Munshi showed real early advocacy \u2014 detailed requirements, staged stakeholder introductions, explicit project-lead framing \u2014 but has been unresponsive for over four months and has twice missed his own committed follow-up windows (Sept 2025, March 2026), with no backup thread established.",
+   "champion": "Amresh Munshi",
+   "strength": "weak"
+  },
+  "expansion_context": {
+   "note": "No sibling Closed-Won opportunity identified for this account in the data reviewed.",
+   "prior_opp": "",
+   "prior_closed_won": false
+  },
+  "recommended_moves": {
+   "items": [
+    {
+     "rank": 1,
+     "owner": "Deal team",
+     "act_by": "2026-07-16",
+     "action": "Open a direct, substantive thread with Chris Soriano and Justin Robinson beyond the event-invite email, referencing the stalled evaluation.",
+     "horizon": "next_7_days",
+     "trigger": "No verified buyer reply in ~133 days; a colleague's June 2026 event outreach already opened contact with both",
+     "trigger_date": "2026-06-26",
+     "expected_effect": "Establishes a second engaged thread so the deal is no longer entirely dependent on an unresponsive champion"
+    },
+    {
+     "rank": 2,
+     "owner": "Deal team",
+     "act_by": "2026-07-23",
+     "action": "Ask Purav Desai directly where the Dec 2025/Jan 2026 vendor down-select landed and whether Zycus remains under consideration.",
+     "horizon": "next_14_days",
+     "trigger": "Buyer's own stated POC-selection window (Dec 2025/Jan 2026) passed with zero subsequent competitive intel",
+     "trigger_date": "2025-08-19",
+     "expected_effect": "Restores visibility into competitive standing before further investment of rep time"
+    },
+    {
+     "rank": 3,
+     "owner": "Executive sponsor",
+     "act_by": "2026-08-06",
+     "action": "Propose a scoped call with the Head of Global Procurement, leveraging Amresh Munshi's own Aug 2025 commitment to involve that person for budget sign-off.",
+     "horizon": "next_30_days",
+     "trigger": "Economic Buyer has never been engaged and no budget conversation has started",
+     "trigger_date": "2025-08-19",
+     "expected_effect": "Opens the only viable path to budget approval given the current close date"
+    }
+   ]
+  },
+  "confidence_signals": {
+   "items": [
+    "No confirmed buyer reply since 26 Feb 2026",
+    "Stage demoted from Shortlisted to Formal Evaluation on 14 Apr 2026",
+    "Buyer's own Dec 2025/Jan 2026 POC decision window passed with no resolution"
+   ],
+   "cooling": true,
+   "summary": "The account is being actively worked by the rep team (outbound outreach as recently as 26 Jun 2026), which keeps the deal in a live engagement state, but real buyer-side engagement has been quiet since 26 Feb 2026 (~133 days) and two of the buyer's own committed re-engagement windows (Sept 2025, March 2026) passed without follow-through."
+  },
+  "north_star_verdict": {
+   "math": "51 days to close (27 Aug 2026) from today, 07 Jul 2026. Stage was demoted from Shortlisted back to Formal Evaluation on 14 Apr 2026 (~12 weeks in current stage). Last verified two-way buyer reply was 26 Feb 2026 (131 days ago). Five rep-initiated outreach attempts since (28 Apr, 13 May, 1 Jun, 22 Jun, 29 Jun 2026) have gone unanswered. Close date has slipped at least nine times since Oct 2025. Remaining steps (vendor down-select confirmation, EB engagement, commercials, contracting) cannot plausibly complete in 51 days at current pace.",
+   "verdict": "Slowing",
+   "critical": true,
+   "evidence": [
+    "Next Step history: 28 Apr, 13 May, 1 Jun, 22 Jun, 29 Jun 2026 all log unanswered outreach to Amresh Munshi.",
+    "Stage field history: demoted from Shortlisted to Formal Evaluation on 14 Apr 2026.",
+    "Avoma 19 Aug 2025 demo: Amresh Munshi outlined a Dec 2025/Jan 2026 POC-decision checkpoint that has since passed with no update."
+   ],
+   "headline": "Evaluation has been effectively frozen for over four months: champion Amresh Munshi has not replied since 26 Feb 2026 despite five rep follow-ups, the economic buyer (head of global procurement) has never engaged, and the close date has slipped repeatedly to 27 Aug 2026 with no active buyer engagement behind it.",
+   "trajectory": "steady",
+   "prior_verdict": "Slowing",
+   "carried_forward": true,
+   "forecast_defensible": true,
+   "recommended_forecast": "Pipeline (current category is already the most conservative and matches the evidence; do not upgrade until Amresh Munshi or another buyer contact re-engages)."
+  },
+  "best_practice_check": {
+   "flags": [
+    "Multi-vendor bake-off (GEP, iValua, JAGGAER, Ariba) with a POC shortlist planned for Dec 2025/Jan 2026 per Amresh's timeline \u2014 that window has passed and we have zero competitive intel on where rivals stand or if POC is running without us. Immediate move: re-engage Amresh to confirm current vendor standings and whether we are still in contention, and run a competitive-differentiation session (Merlin agentic AI vs GEP/iValua traditional S2P) to position our wedge.",
+    "No quantified ROI or business case to justify the $185k investment and secure EB/CFO sign-off \u2014 build a tail-spend savings model (current manual-email process cost vs Merlin automation for <$25k purchases) + TSR-violation compliance-risk cost-avoidance + Oracle overlay value (user-experience improvement without rip-and-replace cost) to create a defendable value case for the head of global procurement.",
+    "Champion Amresh Munshi has gone unresponsive for 131+ days after five follow-ups; multi-threading to Chris Soriano (VP) and Justin Robinson, both already named contacts, is the highest-leverage lever to restart the deal.",
+    "No written requirements document or quantified ROI/savings model has ever been delivered despite being promised twice (Dec 2025, Jan 2026); packaging a Cornerstone-specific savings model against the buyer's own 4-9% negotiation targets would give a re-engaged champion something concrete to escalate internally.",
+    "Single-threaded through a champion unresponsive since 26 Feb 2026 (~133 days) \u2014 actively open a parallel thread with Purav Desai, Chris Soriano, or Justin Robinson rather than continuing to chase Amresh Munshi alone.",
+    "No forward-dated next step has been logged since early 2026 \u2014 every recent Next Step entry reads 'no material update'; the deal needs a concrete, dated ask, not another status-check email."
+   ],
+   "summary": "The single highest-leverage move is breaking single-threading; a secondary lever is restarting competitive visibility before the close date arrives with no read on standing."
+  },
+  "customer_preference": {
+   "level": "low",
+   "evidence": "Amresh Munshi said on 20 Aug 2025 (via Next_Step_History__c note) that Cornerstone shared Zycus was 'shortlisted' after a strong demo \u2014 the only buyer-voiced preference signal on record, and now ~11 months stale with no reconfirmation."
+  },
+  "competitive_position": {
+   "summary": "A multi-vendor bake-off was confirmed by the buyer on 19 Aug 2025 (GEP Worldwide, Ivalua, JAGGAER, SAP Ariba named in Salesforce), with a POC-selection decision point originally targeted for Dec 2025/Jan 2026. That window has passed with zero subsequent competitive intelligence. Oracle iProcurement is a fixed incumbent that cannot be replaced (tied to Oracle Fusion ERP) and Zycus's proposal is explicitly an overlay, not a replacement.",
+   "competitors": [
+    {
+     "date": "2025-08-19",
+     "name": "GEP Worldwide",
+     "quote": "we are exploring all the providers to see who can best fit our requirement",
+     "change": "carried",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "Pure-play SaaS speed of deployment (3-6 months) vs GEP's software-plus-consulting model (per Zycus competitive positioning reference).",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "name": "Ivalua",
+     "quote": "we are exploring all the providers to see who can best fit our requirement",
+     "change": "carried",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "Faster integration and autonomous/agentic negotiation depth vs Ivalua's low-code flexibility positioning (per Zycus competitive positioning reference).",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "name": "JAGGAER",
+     "quote": "we are exploring all the providers to see who can best fit our requirement",
+     "change": "carried",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "AI/agentic maturity, faster implementation, transparent pricing vs JAGGAER (per Zycus competitive positioning reference).",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "name": "SAP Ariba",
+     "quote": "we are exploring all the providers to see who can best fit our requirement",
+     "change": "carried",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "active",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "Non-SAP/multi-ERP integration with no middleware, faster implementation, mid-market pricing transparency vs SAP Ariba's ecosystem lock-in (per Zycus competitive positioning reference).",
+     "threat_level": "medium",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "name": "Oracle iProcurement",
+     "quote": "We cannot replace iProcurement as our procure to pay process because it is integrated with our Oracle ERP system",
+     "change": "updated",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "incumbent",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "Position Zycus as a source-to-pay/AI overlay on top of, not a replacement for, Oracle iProcurement/Fusion; do-nothing risk here means Cornerstone simply keeps running fragmented tail-spend and negotiation work manually over email/phone rather than buying the $185k overlay.",
+     "threat_level": "low",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    },
+    {
+     "date": "2025-08-19",
+     "name": "Coupa",
+     "quote": "there was a mistake happened in 2021... moving away from Netsuite and completely reverse engineering and saying, hey, we want to go for Oracle Fusion and removing Coupa altogether",
+     "change": "updated",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+     "status": "faded",
+     "sentiment": "neutral",
+     "first_seen": "2026-07-07T05:52:10.772708+05:30",
+     "how_we_win": "N/A \u2014 Coupa was removed from Cornerstone's stack in 2021 and is not part of the current evaluation; background context only.",
+     "threat_level": "dormant",
+     "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+    }
+   ]
+  },
+  "deal_scores_evidence": {
+   "factors": {},
+   "summary": "This deal shows genuine early qualification (specific buyer-articulated pain, quantified negotiation parameters, two deep and well-attended product sessions) but has stalled hard: the Economic Buyer was never engaged, the champion has gone quiet for over four months, the stage was demoted back from Shortlisted, and competitive standing is completely unknown past its own decision window.",
+   "ai_reasons": {
+    "deal_risk": [
+     {
+      "text": "Close date 27 Aug 2026 is 49 days out with no commercials, no EB access, and no confirmed buyer engagement in over 4 months \u2014 not a credible date absent a material re-engagement.",
+      "tone": "warn"
+     },
+     {
+      "text": "Single-threaded through a now-unresponsive champion with no independently engaged secondary contact among Purav Desai, Chris Soriano, Alycia Stafford or Justin Robinson.",
+      "tone": "warn"
+     }
+    ],
+    "win_position": [
+     {
+      "text": "Pain and requirements are specific and buyer-articulated (sub-$25k autonomous sourcing threshold, 4-9% savings target, TSR-review compliance gap), evidenced across two deep calls (19 Aug 2025 and 13 Jan 2026).",
+      "tone": "good"
+     },
+     {
+      "text": "The Economic Buyer (the unnamed Head of Global Procurement) has never been engaged and no budget conversation has started, per Next_Step_History__c across the full 25 Jul 2025 - 29 Jun 2026 window.",
+      "tone": "warn"
+     },
+     {
+      "text": "Stage was demoted from Shortlisted back to Formal Evaluation on 14 Apr 2026, and forecast simultaneously moved from Upside Key Deal back to Pipeline \u2014 a documented regression, not just a stall.",
+      "tone": "warn"
+     },
+     {
+      "text": "No verified buyer reply has been logged since 26 Feb 2026 (~133 days), despite at least 6 dated rep outreach attempts through 29 Jun 2026.",
+      "tone": "warn"
+     }
+    ],
+    "deal_momentum": [
+     {
+      "text": "The last completed buyer-attended session was 13 Jan 2026 (~178 days ago), well past the 60-day recency window that counts toward current momentum.",
+      "tone": "warn"
+     },
+     {
+      "text": "All logged activity since late Feb 2026 is one-way: rep (and a second Zycus colleague) sending outreach and event invitations to Amresh Munshi, Purav Desai, Chris Soriano and Justin Robinson with zero confirmed replies.",
+      "tone": "warn"
+     },
+     {
+      "text": "An outbound call attempt to Alycia Stafford on 4 May 2026 could not connect.",
+      "tone": "neu"
+     }
+    ],
+    "customer_commitment": [
+     {
+      "text": "The Sept 2025 follow-up session Amresh Munshi personally committed to (bringing in Chris Soriano, Alycia Stafford and procurement ops) never happened on schedule; it slipped roughly four months to a Jan 2026 demo.",
+      "tone": "warn"
+     },
+     {
+      "text": "A promised early-March 2026 buyer check-in (the buyer's own proposed date, from a 26 Feb 2026 reply) never materialized.",
+      "tone": "warn"
+     }
+    ]
+   }
+  },
+  "explicit_requirements": {
+   "items": [
+    {
+     "date": "2025-08-19",
+     "quote": "I'll touch base and we'll get that those list... Prepare and share the list of SaaS categories before the next call.",
+     "said_by": "Amresh Munshi",
+     "addressed": false,
+     "requirement": "Share list of SaaS categories Zycus can support for strategic sourcing analytics/demo"
+    },
+    {
+     "date": "2025-08-19",
+     "quote": "Amresh: 'Before end of this week we'll share the email IDs'... Steve Ovadje to send Showpad invites once received",
+     "said_by": "Amresh Munshi",
+     "addressed": false,
+     "requirement": "Provide stakeholder email addresses (Chris Soriano, Alicia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+    },
+    {
+     "date": "2025-08-20",
+     "quote": "Please share the Showpad link with Chris Soriano - csoriano@csod.com, Alycia Stafford - astafford@csod.com, Justin Robinson - justinrobinson@csod.com, Purav Desai - pdesai@csod.com",
+     "said_by": "Amresh Munshi",
+     "addressed": true,
+     "requirement": "Share stakeholder email addresses (Chris Soriano, Alycia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+    },
+    {
+     "date": "2025-12-01",
+     "quote": "Cornerstone team is planning to send out a structured RFI by end of month.",
+     "said_by": "Amresh Munshi / Purav Desai (via rep note)",
+     "addressed": false,
+     "requirement": "Cornerstone to send a structured RFI to Zycus"
+    },
+    {
+     "date": "2025-12-15",
+     "quote": "Alycia and Amresh will send over their requirements document.",
+     "said_by": "Amresh Munshi / Alycia Stafford (via rep note)",
+     "addressed": false,
+     "requirement": "Provide requirements document following internal alignment"
+    }
+   ]
+  },
+  "implicit_requirements": {
+   "we_promised": {
+    "items": [
+     {
+      "due": "2026-01-13",
+      "who": "Zycus",
+      "date": "2025-08-19",
+      "source": "Avoma transcript, 19 Aug 2025; recap email, 15 Jan 2026 confirming strategic sourcing/RFP/RFQ scoring and analytics were reviewed",
+      "status": "no due date",
+      "group_key": "analytics_benchmarking_category",
+      "commitment": "Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)",
+      "deliverable": "Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)",
+      "grounding_quote": "Amresh asked for strategic sourcing analytics demo; Zycus team (Harshall/Ronit) acknowledged and asked for category preference to 'stage up for demonstration'",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-01-15",
+      "who": "Zycus",
+      "date": "2026-01-15",
+      "source": "Task email recap, 15 Jan 2026",
+      "status": "completed",
+      "group_key": "call_demo_following",
+      "commitment": "Share call recording and RFP template following the January demo",
+      "deliverable": "Share call recording and RFP template following the January demo",
+      "grounding_quote": "Here is a link to call recording today. I have also attached a copy of the presentation and RFP template.",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-03-09",
+      "who": "Zycus",
+      "date": "2026-01-15",
+      "source": "Task email recap, 15 Jan 2026; follow-up sent 9 Mar 2026 per Next_Step_History__c",
+      "status": "completed",
+      "group_key": "check_out_progress",
+      "commitment": "Reach back out in early March 2026 to check in on progress",
+      "deliverable": "Reach back out in early March 2026 to check in on progress",
+      "grounding_quote": "I'll plan to reach back out in early March to check in on progress and discuss timing for stakeholder sessions, RFP, and any potential POC.",
+      "waiting_on_buyer": false
+     }
+    ]
+   },
+   "buyer_dependent": {
+    "items": [
+     {
+      "due": "2025-09-30",
+      "who": "Buyer",
+      "date": "2025-08-19",
+      "source": "Avoma transcript, 19 Aug 2025 demo; no confirmed session with that specific stakeholder set occurred until a Jan 2026 demo, well past the committed window",
+      "status": "overdue",
+      "group_key": "addresses_alicia_alycia",
+      "commitment": "Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users",
+      "deliverable": "Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users",
+      "grounding_quote": "Amresh: 'We can touch base in September\u2026 I'll leave it to Purav, he'll be point of contact to coordinate and set up the call'",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2025-08-26",
+      "who": "Buyer",
+      "date": "2025-08-19",
+      "source": "Avoma 2025-08-19, Amresh commitment",
+      "status": "overdue",
+      "group_key": "category_demo_list",
+      "commitment": "Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep",
+      "deliverable": "Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep",
+      "grounding_quote": "Amresh: 'My ops person has the list\u2026 I'll touch base and get that list prepared and share before next call'",
+      "waiting_on_buyer": false
+     },
+     {
+      "due": "2026-06-22",
+      "who": "Buyer",
+      "date": "2026-06-22",
+      "source": "Next_Step_History__c, 2026-06-22",
+      "status": "overdue",
+      "group_key": "evaluation_timeline_updated",
+      "commitment": "Provide updated evaluation timeline",
+      "deliverable": "Provide updated evaluation timeline",
+      "grounding_quote": "Following up with Amresh to receive updated evaluation timeline, No response yet",
+      "waiting_on_buyer": false
+     }
+    ]
+   }
+  },
+  "ai_positioning_strength": {
+   "score": "8.0 (Strong)",
+   "summary": "AIS reads 'Strong' \u2014 the buyer is explicitly seeking agentic/autonomous AI (not just intake), articulated specific configurable AI negotiation parameters, and pushed hard on AI-governed workflows (TSR triggers, escalation logic) during the demo.",
+   "under_positioned": false
+  },
+  "customer_expectations_fit": {
+   "items": [
+    {
+     "date": "2025-08-19",
+     "quote": "Amresh, I can assure you that majority of our customers uses Zycus's systems on top of their ERP. We can never replace the ERP functions, not completely.",
+     "source": "Avoma transcript, 19 Aug 2025 demo",
+     "position": "aligned",
+     "criterion": "Overlay on Oracle iProcurement/Fusion + ServiceNow without replacing iProcurement"
+    },
+    {
+     "date": "2025-08-19",
+     "quote": "It's absolutely similar since you're already using Okta... We can use single sign on using SAML 2.0 protocol, which is also accepted by Okta",
+     "source": "Avoma transcript, 19 Aug 2025 demo",
+     "position": "aligned",
+     "criterion": "Single sign-on via Okta (SAML 2.0)"
+    },
+    {
+     "date": "2025-08-19",
+     "quote": "Right now, because we don't have a source to pay... we do everything outside the system, but via email... This will completely change.",
+     "source": "Avoma transcript, 19 Aug 2025 demo",
+     "position": "aligned",
+     "criterion": "System-based audit trail for supplier communications (vs. off-system phone/email)"
+    },
+    {
+     "date": "2025-08-19",
+     "quote": "you don't have to, like, I can do the autonomous negotiation for you, but I want you to go back to the IT security team and get the TSR done before I can initiate the process",
+     "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi describing the need; no confirmed automated workflow demonstrated)",
+     "position": "partially aligned",
+     "criterion": "Mandatory TSR/security review trigger for any new software purchase regardless of dollar threshold"
+    }
+   ],
+   "summary": "Zycus confirmed feasibility on most buyer-raised integration and workflow requirements during the 19 Aug 2025 demo; the one open question is whether the TSR (security review) trigger can be fully automated regardless of purchase value."
+  }
+ },
+ "hard": {
+  "stage": "Formal Evaluation",
+  "amount": 185000.0,
+  "opp_id": "006P700000LmMrlIAF",
+  "ais_why": "\u2022 Champion Amresh Munshi engaged the August 19 2025 demo squarely on autonomous AI. The call confirmed strong interest in autonomous sourcing and AI-enabled negotiation, with explicit configurable thresholds for purchases below $25,000. He set savings expectations of 4 to 9 percent from autonomous negotiation, framing AI as the value driver rather than a feature on the wishlist.\n\u2022 Amresh and ops lead Purav Desai treated AI as the core architecture. The integration requirement was that Zycus deliver an overlay solution on Oracle iProcurement, Oracle Fusion and ServiceNow without ripping iProcurement, with mandatory TSR review automation for sub-$25K critical software. That is buyer-led specification of where AI must plug in.\n\u2022 Project sequencing reinforces the Hungry call: exploration through September, POC in December or January, go-live targeted May 2026 within roughly a year. Amresh is convening additional stakeholders including Chris and Alicia and power users. Two recorded sessions, one completed and one cancelled, plus action items committing both sides to AI-anchored next steps.",
+  "sf_link": "https://cornerstoneondemand.lightning.force.com/lightning/r/Opportunity/006P700000LmMrlIAF/view",
+  "opp_name": "CornerstoneOD_OPP_July'25",
+  "owner_id": "005P7000004wbo7IAA",
+  "products": "iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI",
+  "ais_score": 8.0,
+  "next_step": "6/29 - No Material Update. 6/22 - Following up with Amresh to receive updated evaluation timeline, No response yet6/1 - No material update5/13 - Amresh is back in office. Will follow up with some available times to meet week of 5/184/28 - Coordinating TIme with Amresh to schedule a demo with additional stakeholders. Amresh is out of office till 5/8",
+  "ais_status": "Strong",
+  "close_date": "2026-08-27",
+  "competitor": "GEP Worldwide;iValua;JAGGAER;SAP Ariba",
+  "owner_name": "Steve Ovadje",
+  "owner_title": null,
+  "account_name": "Cornerstone OnDemand",
+  "created_date": "2025-07-25",
+  "manager_name": "Michael McCarthy",
+  "stage_source": "StageName",
+  "amount_source": "Amount",
+  "days_to_close": 49,
+  "dm_identified": false,
+  "eb_identified": false,
+  "ais_why_source": "AIS_Why__c",
+  "qualified_date": "2025-07-25",
+  "billing_country": "United States",
+  "pain_identified": true,
+  "products_source": "Products__c",
+  "account_industry": "IT & Consulting",
+  "ais_score_source": "AIS_Score__c",
+  "next_step_source": "Next_Step__c",
+  "_sf_facts_applied": true,
+  "ais_status_source": "AIS_Status__c",
+  "close_date_source": "CloseDate",
+  "competitor_source": "Competitors__c",
+  "forecast_category": "Pipeline",
+  "owner_name_source": "Owner.Name",
+  "last_activity_date": "2026-06-26",
+  "last_modified_date": "2026-07-08",
+  "metrics_identified": true,
+  "primary_competitor": "Unconfirmed \u2014 no dated evidence names a current leader; standing versus GEP Worldwide, Ivalua, JAGGAER and SAP Ariba is unknown since the last deep-read call on 13 Jan 2026 (~178 days ago)",
+  "account_name_source": "Account.Name",
+  "champion_identified": true,
+  "created_date_source": "CreatedDate",
+  "manager_name_source": "Owner.Manager.Name",
+  "qualified_date_source": "Qualified_Submission_Date__c",
+  "last_inbound_email_date": "2026-02-26",
+  "forecast_category_source": "ForecastCategoryName",
+  "last_activity_date_source": "LastActivityDate",
+  "last_modified_date_source": "LastModifiedDate"
+ },
+ "pulse": {
+  "as_of": "2026-07-09",
+  "stage": "Formal Evaluation",
+  "state": "live",
+  "summary": "Live: last verified Salesforce activity 13 day(s) ago (2026-06-26). Buyer EMAIL RECEIVED 133 day(s) ago (2026-02-26) \u2014 a real two-way reply from the buyer (NOT rep outreach); treat as genuine engagement. Rep outreach 2026-06-29 \u2014 rep reached out, awaiting buyer reply.",
+  "calls_read": 1,
+  "close_date": "2026-08-27",
+  "rep_outreach": {
+   "date": "2026-06-29",
+   "note": "rep reached out, awaiting buyer reply",
+   "text": "6/29 - No Material Update. 6/22 - Following up with Amresh to receive updated evaluation timeline, No response yet6/1 - No material update5/13 - Amresh is back in office. Will follow up with some available times to meet week of 5/184/28 - Coordinating TIme with Amresh to schedule a demo with additio",
+   "detected": true
+  },
+  "days_to_close": 49,
+  "verified_known": true,
+  "buyer_calls_seen": true,
+  "forecast_category": "Pipeline",
+  "days_since_inbound": 133,
+  "last_activity_date": "2026-06-26",
+  "days_since_activity": 13,
+  "days_since_qualified": 349,
+  "last_inbound_email_date": "2026-02-26"
+ },
+ "deltas": [
+  {
+   "to": "Share stakeholder email addresses (Chris Soriano, Alycia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination",
+   "key": "requirement:share-stakeholder-email-addresses-chris-soriano-alycia-staff",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Amresh Munshi",
+   "subject": "Share stakeholder email addresses (Chris Soriano, Alycia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+  },
+  {
+   "to": "Cornerstone to send a structured RFI to Zycus",
+   "key": "requirement:cornerstone-to-send-a-structured-rfi-to-zycus",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Amresh Munshi / Purav Desai (via rep note)",
+   "subject": "Cornerstone to send a structured RFI to Zycus"
+  },
+  {
+   "to": "Provide requirements document following internal alignment",
+   "key": "requirement:provide-requirements-document-following-internal-alignment",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Amresh Munshi / Alycia Stafford (via rep note)",
+   "subject": "Provide requirements document following internal alignment"
+  },
+  {
+   "to": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list - completed",
+   "key": "commitment:zycus-send-follow-up-email-with-showpad-invites-to-stakehold",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list - overdue",
+   "kind": "changed",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list"
+  },
+  {
+   "key": "commitment:zycus-send-follow-up-email-with-showpad-invites-to-stakehold",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "resolved",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list"
+  },
+  {
+   "to": "Prepare customized strategic-sourcing demo covering high-value SaaS category analytics (pre-negotiation insights, historical benchmarking) - completed",
+   "key": "commitment:zycus-prepare-customized-strategic-sourcing-demo-covering-hi",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare customized strategic-sourcing demo covering high-value SaaS category analytics (pre-negotiation insights, historical benchmarking)"
+  },
+  {
+   "to": "Share call recording and RFP template following the January demo - completed",
+   "key": "commitment:zycus-share-call-recording-and-rfp-template-following-the-ja",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Share call recording and RFP template following the January demo"
+  },
+  {
+   "to": "Reach back out in early March 2026 to check in on progress - completed",
+   "key": "commitment:zycus-reach-back-out-in-early-march-2026-to-check-in-on-prog",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Reach back out in early March 2026 to check in on progress"
+  },
+  {
+   "to": "Coordinate a September 2025 follow-up call with Chris Soriano, Alycia Stafford, procurement ops, and power users - overdue",
+   "key": "commitment:buyer-coordinate-a-september-2025-follow-up-call-with-chris-",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Coordinate a September 2025 follow-up call with Chris Soriano, Alycia Stafford, procurement ops, and power users"
+  },
+  {
+   "to": "Provide updated evaluation timeline - overdue",
+   "key": "commitment:buyer-provide-updated-evaluation-timeline",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide updated evaluation timeline"
+  },
+  {
+   "to": "Provide SaaS category list from procurement ops for demo staging - overdue",
+   "key": "commitment:buyer-provide-saas-category-list-from-procurement-ops-for-de",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide SaaS category list from procurement ops for demo staging"
+  },
+  {
+   "to": "Amresh Munshi - Champion",
+   "key": "stakeholder:amresh-munshi",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Amresh Munshi - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Amresh Munshi"
+  },
+  {
+   "to": "Purav Desai - Coach",
+   "key": "stakeholder:purav-desai",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Purav Desai - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Purav Desai"
+  },
+  {
+   "to": "Chris Soriano - Unknown",
+   "key": "stakeholder:chris-soriano",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Chris Soriano - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Soriano"
+  },
+  {
+   "to": "Alycia Stafford - Influencer",
+   "key": "stakeholder:alycia-stafford",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Alycia Stafford - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Alycia Stafford"
+  },
+  {
+   "to": "Justin Robinson - Unknown",
+   "key": "stakeholder:justin-robinson",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Justin Robinson - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Justin Robinson"
+  },
+  {
+   "to": "head of global procurement - Economic Buyer",
+   "key": "stakeholder:head-of-global-procurement",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "head of global procurement - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Head of Global Procurement"
+  },
+  {
+   "to": "Oracle iProcurement - incumbent",
+   "key": "competitor:oracle-iprocurement",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Oracle iProcurement - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Oracle iProcurement"
+  },
+  {
+   "to": "Coupa - faded",
+   "key": "competitor:coupa",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Coupa - declined",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "The Economic Buyer (unnamed Head of Global Procurement) has never been engaged; no path to budget approval exists. - unresolved",
+   "key": "risk:the-economic-buyer-unnamed-head-of-global-procurement-has-ne",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "The Economic Buyer (unnamed Head of Global Procurement) has never been engaged; no path to budget approval exists."
+  },
+  {
+   "to": "Deal is single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 (~133 days); no independent relationship exists with Purav Desai, Chris S",
+   "key": "risk:deal-is-single-threaded-through-champion-amresh-munshi-unres",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Deal is single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 (~133 days); no independent relationship exists with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson."
+  },
+  {
+   "to": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection decision point passed; unknown whether Zycus remains in contention against G",
+   "key": "risk:zero-competitive-intelligence-since-the-buyer-s-own-dec-2025",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection decision point passed; unknown whether Zycus remains in contention against GEP Worldwide, Ivalua, JAGGAER, or SAP Ariba."
+  },
+  {
+   "to": "Close date (27 Aug 2026, 49 days out) requires contracting to complete within 7 weeks, but no commercials, EB engagement, or contract activity exists and buyer ",
+   "key": "risk:close-date-27-aug-2026-49-days-out-requires-contracting-to-c",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date (27 Aug 2026, 49 days out) requires contracting to complete within 7 weeks, but no commercials, EB engagement, or contract activity exists and buyer has not replied in over 4 months."
+  },
+  {
+   "to": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement was discussed conceptually but",
+   "key": "risk:required-overlay-on-oracle-iprocurement-fusion-erp-plus-serv",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "from": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) has never been technically scoped with the buyer's IT team. -",
+   "kind": "changed",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement has never been technically scoped with IT."
+  },
+  {
+   "to": "No quantified ROI/savings model or business case has been built to justify the $185,000 investment beyond informal 4-9% savings targets discussed on the 19 Aug ",
+   "key": "risk:no-quantified-roi-savings-model-or-business-case-has-been-bu",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI/savings model or business case has been built to justify the $185,000 investment beyond informal 4-9% savings targets discussed on the 19 Aug 2025 call."
+  },
+  {
+   "to": "Single-threaded through a champion unresponsive since 26 Feb 2026 (~133 days) \u2014 actively open a parallel thread with Purav Desai, Chris Soriano, or Justin Robin",
+   "key": "hygiene:single-threaded-through-a-champion-unresponsive-since-26-feb",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded through a champion unresponsive since 26 Feb 2026 (~133 days) \u2014 actively open a parallel thread with Purav Desai, Chris Soriano, or Justin Robinson rather than continuing to chase Amresh Munshi alone."
+  },
+  {
+   "to": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection window passed \u2014 a direct ask to Purav Desai or Amresh Munshi on where the do",
+   "key": "hygiene:zero-competitive-intelligence-since-the-buyer-s-own-dec-2025",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection window passed \u2014 a direct ask to Purav Desai or Amresh Munshi on where the down-select landed is overdue."
+  },
+  {
+   "to": "No forward-dated next step has been logged since early 2026 \u2014 every recent Next Step entry reads 'no material update'; the deal needs a concrete, dated ask, not",
+   "key": "hygiene:no-forward-dated-next-step-has-been-logged-since-early-2026-",
+   "date": "2026-07-09T07:37:14.784208+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No forward-dated next step has been logged since early 2026 \u2014 every recent Next Step entry reads 'no material update'; the deal needs a concrete, dated ask, not another status-check email."
+  },
+  {
+   "to": "Amresh Munshi - Champion",
+   "key": "stakeholder:amresh-munshi",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Amresh Munshi - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Amresh Munshi"
+  },
+  {
+   "to": "Purav Desai - Influencer",
+   "key": "stakeholder:purav-desai",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Purav Desai - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Purav Desai"
+  },
+  {
+   "to": "Chris Soriano - Unknown",
+   "key": "stakeholder:chris-soriano",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Chris Soriano - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Soriano"
+  },
+  {
+   "to": "Alycia Stafford - Unknown",
+   "key": "stakeholder:alycia-stafford",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Alycia Stafford - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Alycia Stafford"
+  },
+  {
+   "to": "head of global procurement - Economic Buyer",
+   "key": "stakeholder:head-of-global-procurement",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Head of Global Procurement - Economic Buyer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Head of Global Procurement"
+  },
+  {
+   "to": "Justin Robinson - Unknown",
+   "key": "stakeholder:justin-robinson",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Justin Robinson - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Justin Robinson"
+  },
+  {
+   "to": "Oracle iProcurement - incumbent",
+   "key": "competitor:oracle-iprocurement",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Oracle iProcurement - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Oracle iProcurement"
+  },
+  {
+   "to": "Single-threaded through Amresh Munshi with no working relationship established with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson beyond cc-li",
+   "key": "risk:single-threaded-through-amresh-munshi-with-no-working-relati",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through Amresh Munshi with no working relationship established with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson beyond cc-lines."
+  },
+  {
+   "to": "Economic buyer (head of global procurement) has never been engaged and no budget or pricing conversation has started. - open",
+   "key": "risk:economic-buyer-head-of-global-procurement-has-never-been-eng",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer (head of global procurement) has never been engaged and no budget or pricing conversation has started."
+  },
+  {
+   "to": "Close date of 27 Aug 2026 (51 days out) requires contract execution in roughly 7 weeks with zero active momentum. - open",
+   "key": "risk:close-date-of-27-aug-2026-51-days-out-requires-contract-exec",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date of 27 Aug 2026 (51 days out) requires contract execution in roughly 7 weeks with zero active momentum."
+  },
+  {
+   "to": "Multi-thread now: with Amresh Munshi unresponsive for 131+ days, contact Purav Desai and Chris Soriano directly to remove the single point of failure before the",
+   "key": "hygiene:multi-thread-now-with-amresh-munshi-unresponsive-for-131-day",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-thread now: with Amresh Munshi unresponsive for 131+ days, contact Purav Desai and Chris Soriano directly to remove the single point of failure before the 27 Aug 2026 close date."
+  },
+  {
+   "to": "Regain competitive visibility: confirm Cornerstone's vendor down-select status against GEP Worldwide, iValua, JAGGAER, and SAP Ariba, since the Dec 2025/Jan 202",
+   "key": "hygiene:regain-competitive-visibility-confirm-cornerstone-s-vendor-d",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Regain competitive visibility: confirm Cornerstone's vendor down-select status against GEP Worldwide, iValua, JAGGAER, and SAP Ariba, since the Dec 2025/Jan 2026 POC checkpoint Amresh named has passed with no update."
+  },
+  {
+   "to": "Build the missing ROI case now: quantify tail-spend savings (3-5% negotiation ceiling, $25k-$50k threshold volume) into a written business case Purav Desai can ",
+   "key": "hygiene:build-the-missing-roi-case-now-quantify-tail-spend-savings-3",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Build the missing ROI case now: quantify tail-spend savings (3-5% negotiation ceiling, $25k-$50k threshold volume) into a written business case Purav Desai can carry to the unengaged head of global procurement."
+  },
+  {
+   "to": "Amresh Munshi - weak",
+   "key": "champion:champion",
+   "date": "2026-07-07T14:50:45.803109+05:30",
+   "from": "Amresh Munshi - developing",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:the-economic-buyer-head-of-global-procurement-required-to-bl",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "The economic buyer (head of global procurement) required to bless the ~$185k spend has never engaged after 11 months; securing that introduction is critical given four active competitors in the same evaluation."
+  },
+  {
+   "to": "Amresh Munshi - Champion",
+   "key": "stakeholder:amresh-munshi",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Amresh Munshi - Champion",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Amresh Munshi"
+  },
+  {
+   "to": "Purav Desai - Influencer",
+   "key": "stakeholder:purav-desai",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Purav Desai - Evaluator",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Purav Desai"
+  },
+  {
+   "to": "Chris Soriano - Unknown",
+   "key": "stakeholder:chris-soriano",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Chris Soriano - Influencer",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Soriano"
+  },
+  {
+   "to": "Alycia Stafford - Influencer",
+   "key": "stakeholder:alycia-stafford",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Alycia Stafford - Unknown",
+   "kind": "changed",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Alycia Stafford"
+  },
+  {
+   "to": "Justin Robinson - Unknown",
+   "key": "stakeholder:justin-robinson",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Justin Robinson"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "GEP Worldwide - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "iValua - active",
+   "key": "competitor:ivalua",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "iValua - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "iValua"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "SAP Ariba - active",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Oracle iProcurement - incumbent",
+   "key": "competitor:oracle-iprocurement",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Oracle iProcurement - incumbent",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Oracle iProcurement"
+  },
+  {
+   "to": "Coupa - declined",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Coupa - declined",
+   "kind": "changed",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "Single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 despite 5 follow-ups; no working relationship with Purav Desai, Chris Soriano, Al",
+   "key": "risk:single-threaded-through-champion-amresh-munshi-unresponsive-",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 despite 5 follow-ups; no working relationship with Purav Desai, Chris Soriano, Alycia Stafford or Justin Robinson beyond cc-lines and unanswered invites."
+  },
+  {
+   "to": "Economic buyer (head of global procurement) never engaged; no budget or approval conversation has started. - open",
+   "key": "risk:economic-buyer-head-of-global-procurement-never-engaged-no-b",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer (head of global procurement) never engaged; no budget or approval conversation has started."
+  },
+  {
+   "to": "Close date has slipped at least 9 times over 11 months (27 Oct 2025 -> 27 Aug 2026); stage was demoted from Shortlisted back to the relevant stakeholder on 14 A",
+   "key": "risk:close-date-has-slipped-at-least-9-times-over-11-months-27-oc",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date has slipped at least 9 times over 11 months (27 Oct 2025 -> 27 Aug 2026); stage was demoted from Shortlisted back to the relevant stakeholder on 14 Apr 2026."
+  },
+  {
+   "to": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement has never been technically sco",
+   "key": "risk:required-overlay-on-oracle-iprocurement-fusion-erp-plus-serv",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement has never been technically scoped with IT."
+  },
+  {
+   "to": "Champion Amresh Munshi has gone unresponsive for 131+ days after five follow-ups; multi-threading to Chris Soriano (VP) and Justin Robinson, both already named ",
+   "key": "hygiene:champion-amresh-munshi-has-gone-unresponsive-for-131-days-af",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Champion Amresh Munshi has gone unresponsive for 131+ days after five follow-ups; multi-threading to Chris Soriano (VP) and Justin Robinson, both already named contacts, is the highest-leverage lever to restart the deal."
+  },
+  {
+   "to": "The economic buyer (head of global procurement) required to bless the ~$185k spend has never engaged after 11 months; securing that introduction is critical giv",
+   "key": "hygiene:the-economic-buyer-head-of-global-procurement-required-to-bl",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "The economic buyer (head of global procurement) required to bless the ~$185k spend has never engaged after 11 months; securing that introduction is critical given four active competitors in the same evaluation."
+  },
+  {
+   "to": "No written requirements document or quantified ROI/savings model has ever been delivered despite being promised twice (Dec 2025, Jan 2026); packaging a Cornerst",
+   "key": "hygiene:no-written-requirements-document-or-quantified-roi-savings-m",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No written requirements document or quantified ROI/savings model has ever been delivered despite being promised twice (Dec 2025, Jan 2026); packaging a Cornerstone-specific savings model against the buyer's own 4-9% negotiation targets would give a re-engaged champion something concrete to escalate internally."
+  },
+  {
+   "to": "Amresh Munshi - developing",
+   "key": "champion:champion",
+   "date": "2026-07-07T13:03:51.724747+05:30",
+   "from": "Amresh Munshi - weak",
+   "kind": "changed",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "key": "hygiene:single-threaded-through-amresh-project-lead-mid-level-with-n",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Single-threaded through Amresh (project lead, mid-level) with no executive sponsor, no EB access, and cooling engagement (unresponsive for 4+ months since last buyer email 2026-02-26) \u2014 multi-thread to Chris Soriano (VP Strategic Sourcing, contact role exists) and map the head of global procurement (unnamed EB, final decision authority) before the deal ghosts entirely."
+  },
+  {
+   "key": "hygiene:demo-follow-up-promised-for-september-2025-with-procurement-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "retired",
+   "type": "hygiene",
+   "reason": "contradicts live engagement pulse",
+   "subject": "Demo follow-up promised for September 2025 with procurement ops + Chris Soriano + Alicia Stafford never materialized, and the deal has had no buyer engagement for 10+ months \u2014 create urgency by offering a limited-time pilot/POC (e.g. 30-day Merlin intake + autonomous sourcing trial for one category, running in parallel with Oracle) to break the stall and prove ROI before a rival locks the decision."
+  },
+  {
+   "to": "Share list of SaaS categories Zycus can support for strategic sourcing analytics/demo",
+   "key": "requirement:share-list-of-saas-categories-zycus-can-support-for-strategi",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Amresh Munshi",
+   "subject": "Share list of SaaS categories Zycus can support for strategic sourcing analytics/demo"
+  },
+  {
+   "to": "Provide stakeholder email addresses (Chris Soriano, Alicia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination",
+   "key": "requirement:provide-stakeholder-email-addresses-chris-soriano-alicia-sta",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "requirement",
+   "source": "Amresh Munshi",
+   "subject": "Provide stakeholder email addresses (Chris Soriano, Alicia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+  },
+  {
+   "to": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list - overdue",
+   "key": "commitment:zycus-send-follow-up-email-with-showpad-invites-to-stakehold",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list"
+  },
+  {
+   "to": "Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking",
+   "key": "commitment:zycus-prepare-customized-strategic-sourcing-demo-for-high-va",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Zycus:Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)"
+  },
+  {
+   "to": "Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users - overdue",
+   "key": "commitment:buyer-coordinate-and-schedule-september-2025-follow-up-call-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users"
+  },
+  {
+   "to": "Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep - overdue",
+   "key": "commitment:buyer-provide-saas-category-list-from-procurement-ops-for-st",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep"
+  },
+  {
+   "to": "Share stakeholder email addresses (Chris, Alicia, procurement ops, power users) for Showpad invite - overdue",
+   "key": "commitment:buyer-share-stakeholder-email-addresses-chris-alicia-procure",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "commitment",
+   "source": "ai:implicit_requirements",
+   "subject": "Buyer:Share stakeholder email addresses (Chris, Alicia, procurement ops, power users) for Showpad invite"
+  },
+  {
+   "to": "Amresh Munshi - Champion",
+   "key": "stakeholder:amresh-munshi",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Amresh Munshi"
+  },
+  {
+   "to": "Purav Desai - Evaluator",
+   "key": "stakeholder:purav-desai",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Purav Desai"
+  },
+  {
+   "to": "Chris Soriano - Influencer",
+   "key": "stakeholder:chris-soriano",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Chris Soriano"
+  },
+  {
+   "to": "Alycia Stafford - Unknown",
+   "key": "stakeholder:alycia-stafford",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Alycia Stafford"
+  },
+  {
+   "to": "Head of Global Procurement - Economic Buyer",
+   "key": "stakeholder:head-of-global-procurement",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "stakeholder",
+   "source": "ai:stakeholder_map",
+   "subject": "Head of Global Procurement"
+  },
+  {
+   "to": "GEP Worldwide - active",
+   "key": "competitor:gep-worldwide",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "GEP Worldwide"
+  },
+  {
+   "to": "iValua - active",
+   "key": "competitor:ivalua",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "iValua"
+  },
+  {
+   "to": "JAGGAER - active",
+   "key": "competitor:jaggaer",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "JAGGAER"
+  },
+  {
+   "to": "SAP Ariba - active",
+   "key": "competitor:sap-ariba",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "SAP Ariba"
+  },
+  {
+   "to": "Oracle iProcurement - incumbent",
+   "key": "competitor:oracle-iprocurement",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Oracle iProcurement"
+  },
+  {
+   "to": "Coupa - declined",
+   "key": "competitor:coupa",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "competitor",
+   "source": "ai:competitive_position",
+   "subject": "Coupa"
+  },
+  {
+   "to": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amre",
+   "key": "risk:economic-buyer-head-of-global-procurement-unnamed-and-decisi",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amresh) who is now unresponsive for 4+ months \u2014 no executive sponsorship or budget sign-off path."
+  },
+  {
+   "to": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibilit",
+   "key": "risk:multi-vendor-bake-off-against-gep-ivalua-jaggaer-ariba-with-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibility into vendor standings, no competitive intel, and no confirmation we are still in contention. Risk: we may have lost the shortlist during the 10-month silence."
+  },
+  {
+   "to": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagemen",
+   "key": "risk:close-date-2026-08-27-51-days-out-requires-contract-executio",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no contract activity, and buyer has been unresponsive for 4+ months \u2014 close date is not credible."
+  },
+  {
+   "to": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR",
+   "key": "risk:no-quantified-roi-savings-model-or-business-case-to-justify-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR violations, Oracle cost) but no dollar figures or savings target."
+  },
+  {
+   "to": "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurem",
+   "key": "risk:integration-requirement-is-complex-overlay-on-oracle-iprocur",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurement \u2014 Zycus confirmed feasibility on demo but no SOW scoping, no technical-deep-dive with IT, no integration architecture agreed."
+  },
+  {
+   "to": "Buyer wants to 'fix the baseline' (clean up Oracle + ServiceNow issues) before implementing Zycus overlay, running internal cleanup in parallel with vendor expl",
+   "key": "risk:buyer-wants-to-fix-the-baseline-clean-up-oracle-servicenow-i",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "Buyer wants to 'fix the baseline' (clean up Oracle + ServiceNow issues) before implementing Zycus overlay, running internal cleanup in parallel with vendor exploration \u2014 risk that internal cleanup delays decision or kills project if they decide Oracle-fix is sufficient."
+  },
+  {
+   "to": "September 2025 follow-up with procurement ops + Chris Soriano (VP) + Alicia Stafford was committed by buyer but never scheduled \u2014 Amresh/Purav ghosted the coord",
+   "key": "risk:september-2025-follow-up-with-procurement-ops-chris-soriano-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "risk",
+   "source": "ai:vulnerabilities",
+   "subject": "September 2025 follow-up with procurement ops + Chris Soriano (VP) + Alicia Stafford was committed by buyer but never scheduled \u2014 Amresh/Purav ghosted the coordination, and deal lost momentum. Risk: champion commitment is unreliable, and we have no backup thread."
+  },
+  {
+   "to": "Single-threaded through Amresh (project lead, mid-level) with no executive sponsor, no EB access, and cooling engagement (unresponsive for 4+ months since last ",
+   "key": "hygiene:single-threaded-through-amresh-project-lead-mid-level-with-n",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Single-threaded through Amresh (project lead, mid-level) with no executive sponsor, no EB access, and cooling engagement (unresponsive for 4+ months since last buyer email 2026-02-26) \u2014 multi-thread to Chris Soriano (VP Strategic Sourcing, contact role exists) and map the head of global procurement (unnamed EB, final decision authority) before the deal ghosts entirely."
+  },
+  {
+   "to": "Multi-vendor bake-off (GEP, iValua, JAGGAER, Ariba) with a POC shortlist planned for Dec 2025/Jan 2026 per Amresh's timeline \u2014 that window has passed and we hav",
+   "key": "hygiene:multi-vendor-bake-off-gep-ivalua-jaggaer-ariba-with-a-poc-sh",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Multi-vendor bake-off (GEP, iValua, JAGGAER, Ariba) with a POC shortlist planned for Dec 2025/Jan 2026 per Amresh's timeline \u2014 that window has passed and we have zero competitive intel on where rivals stand or if POC is running without us. Immediate move: re-engage Amresh to confirm current vendor standings and whether we are still in contention, and run a competitive-differentiation session (Merlin agentic AI vs GEP/iValua traditional S2P) to position our wedge."
+  },
+  {
+   "to": "No quantified ROI or business case to justify the $185k investment and secure EB/CFO sign-off \u2014 build a tail-spend savings model (current manual-email process c",
+   "key": "hygiene:no-quantified-roi-or-business-case-to-justify-the-185k-inves",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "No quantified ROI or business case to justify the $185k investment and secure EB/CFO sign-off \u2014 build a tail-spend savings model (current manual-email process cost vs Merlin automation for <$25k purchases) + TSR-violation compliance-risk cost-avoidance + Oracle overlay value (user-experience improvement without rip-and-replace cost) to create a defendable value case for the head of global procurement."
+  },
+  {
+   "to": "Demo follow-up promised for September 2025 with procurement ops + Chris Soriano + Alicia Stafford never materialized, and the deal has had no buyer engagement f",
+   "key": "hygiene:demo-follow-up-promised-for-september-2025-with-procurement-",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "hygiene",
+   "source": "ai:best_practice_check",
+   "subject": "Demo follow-up promised for September 2025 with procurement ops + Chris Soriano + Alicia Stafford never materialized, and the deal has had no buyer engagement for 10+ months \u2014 create urgency by offering a limited-time pilot/POC (e.g. 30-day Merlin intake + autonomous sourcing trial for one category, running in parallel with Oracle) to break the stall and prove ROI before a rival locks the decision."
+  },
+  {
+   "to": "Amresh Munshi - weak",
+   "key": "champion:champion",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "champion",
+   "source": "ai:champion_strength",
+   "subject": "champion"
+  },
+  {
+   "to": "iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI",
+   "key": "product_scope:scope",
+   "date": "2026-07-07T05:52:10.772708+05:30",
+   "kind": "added",
+   "type": "product_scope",
+   "source": "sf:OpportunityLineItem",
+   "subject": "scope"
+  }
+ ],
+ "opp_id": "006P700000LmMrl",
+ "packets": [
+  {
+   "key": "requirement:share-list-of-saas-categories-zycus-can-support-for-strategi",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-19",
+    "kind": "explicit",
+    "quote": "I'll touch base and we'll get that those list... Prepare and share the list of SaaS categories before the next call.",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "said_by": "Amresh Munshi",
+    "addressed": false,
+    "requirement": "Share list of SaaS categories Zycus can support for strategic sourcing analytics/demo"
+   },
+   "source": "Amresh Munshi",
+   "status": "active",
+   "history": [],
+   "subject": "Share list of SaaS categories Zycus can support for strategic sourcing analytics/demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "requirement:provide-stakeholder-email-addresses-chris-soriano-alicia-sta",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-19",
+    "kind": "explicit",
+    "quote": "Amresh: 'Before end of this week we'll share the email IDs'... Steve Ovadje to send Showpad invites once received",
+    "source": "Avoma 2025-08-19",
+    "said_by": "Amresh Munshi",
+    "addressed": false,
+    "requirement": "Provide stakeholder email addresses (Chris Soriano, Alicia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+   },
+   "source": "Amresh Munshi",
+   "status": "active",
+   "history": [],
+   "subject": "Provide stakeholder email addresses (Chris Soriano, Alicia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "commitment:zycus-send-follow-up-email-with-showpad-invites-to-stakehold",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-22",
+    "who": "Zycus",
+    "date": "2025-08-19",
+    "source": "Avoma transcript + email confirmation, 20 Aug 2025",
+    "status": "completed",
+    "commitment": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list",
+    "deliverable": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list",
+    "grounding_quote": "Steve Ovadje will send follow-up emails with invites to stakeholders after receiving their email addresses."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "resolved",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "due": "2025-08-22",
+      "who": "Zycus",
+      "date": "2025-08-19",
+      "source": "Avoma 2025-08-19, Steve Ovadje commitment",
+      "status": "overdue",
+      "commitment": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list",
+      "deliverable": "Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list",
+      "grounding_quote": "Steve Ovadje: 'I'll send a follow-up email after our call today, provide me with the emails and I'll send those invites directly'"
+     }
+    }
+   ],
+   "subject": "Zycus:Send follow-up email with Showpad invites to stakeholder email addresses once Amresh provides the list",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:zycus-prepare-customized-strategic-sourcing-demo-for-high-va",
+   "type": "commitment",
+   "value": {
+    "due": null,
+    "who": "Zycus",
+    "date": "2025-08-19",
+    "source": "Avoma 2025-08-19",
+    "status": "no due date",
+    "commitment": "Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)",
+    "deliverable": "Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)",
+    "grounding_quote": "Amresh asked for strategic sourcing analytics demo; Zycus team (Harshall/Ronit) acknowledged and asked for category preference to 'stage up for demonstration'"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Prepare customized strategic-sourcing demo for high-value SaaS category (e.g. Okta negotiation scenario with pre-negotiation analytics + historical benchmarking)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "commitment:buyer-coordinate-and-schedule-september-2025-follow-up-call-",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-30",
+    "who": "Buyer",
+    "date": "2025-08-19",
+    "source": "Avoma 2025-08-19, Amresh commitment",
+    "status": "overdue",
+    "commitment": "Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users",
+    "deliverable": "Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users",
+    "grounding_quote": "Amresh: 'We can touch base in September\u2026 I'll leave it to Purav, he'll be point of contact to coordinate and set up the call'"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Coordinate and schedule September 2025 follow-up call with Chris Soriano (VP Strategic Sourcing), Alicia Stafford, procurement ops, and power users",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-saas-category-list-from-procurement-ops-for-st",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-22",
+    "who": "Buyer",
+    "date": "2025-08-19",
+    "source": "Avoma 2025-08-19, Amresh commitment",
+    "status": "overdue",
+    "commitment": "Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep",
+    "deliverable": "Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep",
+    "grounding_quote": "Amresh: 'My ops person has the list\u2026 I'll touch base and get that list prepared and share before next call'"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Provide SaaS category list (from procurement ops) for strategic-sourcing demo prep",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "commitment:buyer-share-stakeholder-email-addresses-chris-alicia-procure",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-22",
+    "who": "Buyer",
+    "date": "2025-08-19",
+    "source": "Avoma 2025-08-19, Amresh commitment",
+    "status": "overdue",
+    "commitment": "Share stakeholder email addresses (Chris, Alicia, procurement ops, power users) for Showpad invite",
+    "deliverable": "Share stakeholder email addresses (Chris, Alicia, procurement ops, power users) for Showpad invite",
+    "grounding_quote": "Amresh: 'Before end of this week we'll share the email IDs'"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Share stakeholder email addresses (Chris, Alicia, procurement ops, power users) for Showpad invite",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "stakeholder:amresh-munshi",
+   "type": "stakeholder",
+   "value": {
+    "name": "Amresh Munshi",
+    "risk": "Single point of failure; missed own Sept 2025 and March 2026 commitments; no reply in ~133 days",
+    "role": "Champion",
+    "title": "Director, Strategic Sourcing, Global IT & Tech Sourcing",
+    "source": "Email chain in Task, most recent buyer reply 26 Feb 2026",
+    "sentiment": "previously positive, now unresponsive",
+    "last_contact_date": "2026-02-26"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "Amresh Munshi",
+      "risk": "Single-threaded; no reply in 131+ days despite five follow-ups",
+      "role": "Champion",
+      "title": "Project lead, procurement evaluation",
+      "source": "Avoma demo call, 19 Aug 2025; Next Step history through 29 Jun 2026",
+      "sentiment": "positive (as of last contact) but now unresponsive",
+      "last_contact_date": "2026-02-26"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Amresh Munshi",
+      "risk": "single-threaded, unresponsive for 131+ days",
+      "role": "Champion",
+      "title": "Director, Strategic Sourcing",
+      "source": "SF Task email 2026-02-26; Avoma call 19 Aug 2025",
+      "sentiment": "previously positive, currently unresponsive",
+      "last_contact_date": "2026-02-26"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Amresh Munshi",
+      "risk": "Single point of contact, mid-level (not EB), no executive pull, unresponsive to rep outreach since Feb 2026 \u2014 high ghost risk",
+      "role": "Champion",
+      "title": "Project Lead (Procurement)",
+      "source": "Avoma 2025-08-19 demo attendee, Next_Step__c 2026-06-29 mentions Amresh, last buyer email 2026-02-26 per pulse",
+      "sentiment": "Positive on product (2025-08-19 demo), now cooling/unresponsive (4+ months silence)",
+      "last_contact_date": "2026-02-26"
+     }
+    }
+   ],
+   "subject": "Amresh Munshi",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "stakeholder:purav-desai",
+   "type": "stakeholder",
+   "value": {
+    "name": "Purav Desai",
+    "risk": "Attended original demo and was named as coordination point of contact, but no independent follow-through evidenced since",
+    "role": "Coach",
+    "title": "Senior Manager, Strategic Sourcing",
+    "source": "OpportunityContactRole; Avoma transcript, 19 Aug 2025 demo",
+    "sentiment": "neutral/engaged at the time",
+    "last_contact_date": "2025-08-19"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "Purav Desai",
+      "risk": "Named as coordination point of contact but never independently engaged since",
+      "role": "Influencer",
+      "title": "Senior Manager, Strategic Sourcing",
+      "source": "OpportunityContactRole; Avoma demo call, 19 Aug 2025 (background)",
+      "sentiment": "engaged but passive since",
+      "last_contact_date": "2025-08-19"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Purav Desai",
+      "risk": "no direct engagement in ~11 months; outbound June 2026 invite drew no reply",
+      "role": "Influencer",
+      "title": "Senior Manager, Strategic Sourcing",
+      "source": "OpportunityContactRole; Avoma call 19 Aug 2025",
+      "sentiment": "neutral, disengaged since Aug 2025",
+      "last_contact_date": "2025-08-19"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Purav Desai",
+      "risk": "Peer/subordinate to Amresh, not a decision influencer, no recent engagement",
+      "role": "Evaluator",
+      "title": "Senior Manager, Strategic Sourcing",
+      "source": "OpportunityContactRole Evaluator, Avoma 2025-08-19 demo attendee, email pdesai@csod.com",
+      "sentiment": "Neutral, operational support role",
+      "last_contact_date": "2025-08-19"
+     }
+    }
+   ],
+   "subject": "Purav Desai",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "stakeholder:chris-soriano",
+   "type": "stakeholder",
+   "value": {
+    "name": "Chris Soriano",
+    "risk": "Named as senior stakeholder to be looped in since Aug 2025; still no confirmed direct engagement despite being cc'd and invited to a June 2026 event",
+    "role": "Unknown",
+    "title": "VP of Strategic Sourcing",
+    "source": "OpportunityContactRole; email, 26 Jun 2026 (roundtable invite, no reply)",
+    "sentiment": "unknown \u2014 no confirmed engagement",
+    "last_contact_date": "2026-06-26"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "Chris Soriano",
+      "risk": "Named by Amresh as a September 2025 follow-up participant; that call never confirmed as held",
+      "role": "Unknown",
+      "title": "VP of Strategic Sourcing",
+      "source": "OpportunityContactRole; Avoma demo call, 19 Aug 2025 (background, referenced not attended)",
+      "sentiment": "unknown, never attended a call",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Chris Soriano",
+      "risk": "VP-level stakeholder promised access to since Aug 2025 but never engaged; June 2026 invite unanswered",
+      "role": "Unknown",
+      "title": "VP of Strategic Sourcing",
+      "source": "OpportunityContactRole; SF Task 2026-06-26",
+      "sentiment": "never directly engaged",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Chris Soriano",
+      "risk": "Invited to September 2025 follow-up but never joined; senior stakeholder, unmapped, no relationship",
+      "role": "Influencer",
+      "title": "VP of Strategic Sourcing",
+      "source": "OpportunityContactRole, email csoriano@csod.com, Avoma 2025-08-19 (Amresh mentioned bringing Chris to next call)",
+      "sentiment": "Unknown, never engaged",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Chris Soriano",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "stakeholder:alycia-stafford",
+   "type": "stakeholder",
+   "value": {
+    "name": "Alycia Stafford",
+    "risk": "Consistently cc'd since 2025 and named as a requirements-document co-owner in Dec 2025, but an outbound call attempt on 4 May 2026 could not connect",
+    "role": "Influencer",
+    "title": "TBD (Contractor)",
+    "source": "OpportunityContactRole; Task 'Call Attempted', 4 May 2026",
+    "sentiment": "unknown \u2014 no confirmed reply",
+    "last_contact_date": "2026-05-04"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "Alycia Stafford",
+      "risk": "Named alongside Chris Soriano for the never-confirmed September 2025 follow-up",
+      "role": "Unknown",
+      "title": "TBD",
+      "source": "OpportunityContactRole; Avoma demo call, 19 Aug 2025 (background, referenced not attended)",
+      "sentiment": "unknown, never attended a call",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Alycia Stafford",
+      "risk": "attempted outbound call could not connect",
+      "role": "Influencer",
+      "title": "TBD",
+      "source": "SF Task 2026-05-04",
+      "sentiment": "never directly spoken with, only cc'd on threads",
+      "last_contact_date": "2026-05-04"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Alycia Stafford",
+      "risk": "Invited to September 2025 follow-up but never joined; role unclear, unmapped",
+      "role": "Unknown",
+      "title": "TBD",
+      "source": "OpportunityContactRole, email astafford@csod.com, Avoma 2025-08-19 (Amresh mentioned bringing Alicia to next call)",
+      "sentiment": "Unknown, never engaged",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Alycia Stafford",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "stakeholder:head-of-global-procurement",
+   "type": "stakeholder",
+   "value": {
+    "name": "head of global procurement",
+    "risk": "Never named or contacted at any point in the 11-month history; no budget/approval path exists without this person",
+    "role": "Economic Buyer",
+    "title": "Unknown (per Amresh Munshi, this role would give final approval)",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "sentiment": "never engaged",
+    "last_contact_date": null
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "head of global procurement",
+      "risk": "Final approval authority per Amresh Munshi, never named or engaged on any call",
+      "role": "Economic Buyer",
+      "title": "Head of Global Procurement (unnamed)",
+      "source": "Avoma demo call, 19 Aug 2025 (background)",
+      "sentiment": "unknown, never engaged",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Head of Global Procurement",
+      "risk": "Final decision authority ('must give blessing' per Amresh), completely unmapped, no contact, no relationship \u2014 blocking commercials and contract approval",
+      "role": "Economic Buyer",
+      "title": "Head of Global Procurement (title inferred, name unknown)",
+      "source": "Avoma 2025-08-19, Amresh: 'finally my head of global procurement must give his blessing'",
+      "sentiment": "Unknown, never engaged",
+      "last_contact_date": null
+     }
+    }
+   ],
+   "subject": "Head of Global Procurement",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:gep-worldwide",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "GEP Worldwide",
+    "quote": "we are exploring all the providers to see who can best fit our requirement",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Pure-play SaaS speed of deployment (3-6 months) vs GEP's software-plus-consulting model (per Zycus competitive positioning reference).",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "GEP Worldwide",
+      "quote": "Amresh: 'we are exploring all providers\u2026 will shortlist 1\u20132 for POC' (Avoma 2025-08-19)",
+      "source": "Competitors__c field + Avoma 2025-08-19",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "Position GEP as heavy/complex strategic-sourcing platform (overkill for tail-spend automation <$25k); lead with Merlin's autonomous negotiation + MS Teams intake simplicity + policy-enforcement AI (TSR trigger) as the lightweight, user-friendly overlay vs GEP's enterprise-suite complexity.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "GEP Worldwide",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:ivalua",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "Ivalua",
+    "quote": "we are exploring all the providers to see who can best fit our requirement",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Faster integration and autonomous/agentic negotiation depth vs Ivalua's low-code flexibility positioning (per Zycus competitive positioning reference).",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "iValua",
+      "quote": "Listed in Competitors__c; part of multi-vendor exploration per Amresh's 2025-08-19 statement",
+      "source": "Competitors__c field + Avoma 2025-08-19",
+      "status": "active",
+      "sentiment": "neutral",
+      "how_we_win": "iValua is traditional S2P with weak agentic-AI story; emphasize Merlin's autonomous negotiation + intake as next-gen vs iValua's manual/workflow-heavy approach. Show Tata Sky/Tassel India case studies (Avoma 2025-08-19 mentioned Tata Sky using Zycus despite having TCS/Tata's own tool) to prove Merlin adoption in complex multi-ERP environments.",
+      "threat_level": "high"
+     }
+    }
+   ],
+   "subject": "iValua",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:jaggaer",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "JAGGAER",
+    "quote": "we are exploring all the providers to see who can best fit our requirement",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "AI/agentic maturity, faster implementation, transparent pricing vs JAGGAER (per Zycus competitive positioning reference).",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [],
+   "subject": "JAGGAER",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:sap-ariba",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "SAP Ariba",
+    "quote": "we are exploring all the providers to see who can best fit our requirement",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "active",
+    "sentiment": "neutral",
+    "how_we_win": "Non-SAP/multi-ERP integration with no middleware, faster implementation, mid-market pricing transparency vs SAP Ariba's ecosystem lock-in (per Zycus competitive positioning reference).",
+    "threat_level": "medium"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "SAP Ariba",
+      "quote": "Amresh: 'Oracle limitations and high costs\u2026 we don't want to spend in Oracle right now\u2026 mistake in 2021' (Avoma 2025-08-19) \u2014 Ariba is SAP/Oracle-adjacent, expensive, complex",
+      "source": "Competitors__c field + Avoma 2025-08-19",
+      "status": "active",
+      "sentiment": "negative",
+      "how_we_win": "Ariba is Oracle-heavy/expensive \u2014 aligns with Amresh's Oracle pain ('too expensive', 'mistake'). Position Ariba as the 'old-guard SAP/Oracle problem', Zycus as the modern AI-first alternative. Merlin agentic AI is a clear differentiator vs Ariba's workflow-based intake.",
+      "threat_level": "low"
+     }
+    }
+   ],
+   "subject": "SAP Ariba",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:oracle-iprocurement",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "Oracle iProcurement",
+    "quote": "We cannot replace iProcurement as our procure to pay process because it is integrated with our Oracle ERP system",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "incumbent",
+    "sentiment": "neutral",
+    "how_we_win": "Position Zycus as a source-to-pay/AI overlay on top of, not a replacement for, Oracle iProcurement/Fusion; do-nothing risk here means Cornerstone simply keeps running fragmented tail-spend and negotiation work manually over email/phone rather than buying the $185k overlay.",
+    "threat_level": "low"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "Oracle iProcurement",
+      "quote": "We cannot replace iProcurement as our procure to pay process because it is integrated with our Oracle ERP system... Oracle has clearly said we are behind in enhancing that thing, and if we do it, it will be very significantly high cost.",
+      "source": "Avoma demo call, 19 Aug 2025 (background)",
+      "status": "incumbent",
+      "sentiment": "negative",
+      "how_we_win": "Do not compete on replacement; win as the source-to-pay/agentic-AI overlay Oracle cannot deliver.",
+      "threat_level": "medium"
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "Oracle iProcurement",
+      "quote": "we cannot replace iProcurement as our procure to pay process because it is integrated with our Oracle ERP system",
+      "source": "Avoma call 19 Aug 2025",
+      "status": "incumbent",
+      "sentiment": "neutral",
+      "how_we_win": "Not a bake-off competitor; win by proving the overlay/orchestration model rather than displacement.",
+      "threat_level": "low"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "Oracle iProcurement",
+      "quote": "Amresh: 'Oracle iProcurement integrated with Oracle Fusion, we cannot replace it\u2026 Oracle is too expensive, behind on AI, 2021 mistake' (Avoma 2025-08-19)",
+      "source": "Avoma 2025-08-19",
+      "status": "incumbent",
+      "sentiment": "negative",
+      "how_we_win": "Oracle iProcurement is the locked-in incumbent (cannot be replaced due to ERP integration) but Amresh hates it \u2014 'too expensive', 'behind on AI', 'user-unfriendly'. Zycus is the overlay that makes Oracle bearable. Not a competitive threat, but a forcing function: they MUST keep Oracle, so they need us to fix the user experience and add AI on top.",
+      "threat_level": "dormant"
+     }
+    }
+   ],
+   "subject": "Oracle iProcurement",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "competitor:coupa",
+   "type": "competitor",
+   "value": {
+    "date": "2025-08-19",
+    "name": "Coupa",
+    "quote": "there was a mistake happened in 2021... moving away from Netsuite and completely reverse engineering and saying, hey, we want to go for Oracle Fusion and removing Coupa altogether",
+    "source": "Avoma transcript, 19 Aug 2025 demo (Amresh Munshi)",
+    "status": "faded",
+    "sentiment": "neutral",
+    "how_we_win": "N/A \u2014 Coupa was removed from Cornerstone's stack in 2021 and is not part of the current evaluation; background context only.",
+    "threat_level": "dormant"
+   },
+   "source": "ai:competitive_position",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "Coupa",
+      "quote": "There was a mistake happened in 2021 by some leaders in past... moving away from Netsuite... removing Coupa altogether.",
+      "source": "Avoma demo call, 19 Aug 2025 (background)",
+      "status": "declined",
+      "sentiment": "negative",
+      "how_we_win": "Not a live competitor; historical decision predates and is unrelated to this evaluation.",
+      "threat_level": "dormant"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "name": "Coupa",
+      "quote": "Amresh: 'mistake in 2021\u2026 moving from NetSuite and Coupa to Oracle Fusion, removing Coupa altogether' (Avoma 2025-08-19) \u2014 Coupa was replaced, not in current evaluation",
+      "source": "Avoma 2025-08-19",
+      "status": "declined",
+      "sentiment": "neutral",
+      "how_we_win": "Coupa is OUT \u2014 replaced in 2021, not part of the current evaluation. Mentioned only as context (prior incumbent, ripped out). No current threat.",
+      "threat_level": "dormant"
+     }
+    }
+   ],
+   "subject": "Coupa",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-head-of-global-procurement-unnamed-and-decisi",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amresh) who is now unresponsive for 4+ months \u2014 no executive sponsorship or budget sign-off path.",
+    "source": "Avoma 2025-08-19 (Amresh: 'head of global procurement must give blessing'), OpportunityContactRole (no EB/Exec Sponsor role), Next_Step__c 2026-06-29 (no EB engagement)",
+    "status": "open",
+    "category": "executive_alignment",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer (head of global procurement, unnamed) and Decision Maker are unmapped and never engaged; deal is single-threaded through mid-level champion (Amresh) who is now unresponsive for 4+ months \u2014 no executive sponsorship or budget sign-off path.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:multi-vendor-bake-off-against-gep-ivalua-jaggaer-ariba-with-",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibility into vendor standings, no competitive intel, and no confirmation we are still in contention. Risk: we may have lost the shortlist during the 10-month silence.",
+    "source": "Avoma 2025-08-19 (Amresh: 'exploring all providers, shortlist 1\u20132 for POC'), Competitors__c field, Next_Step__c (no competitive-status update)",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-vendor bake-off against GEP, iValua, JAGGAER, Ariba with a POC shortlist planned for Dec 2025/Jan 2026 \u2014 that window has passed and we have zero visibility into vendor standings, no competitive intel, and no confirmation we are still in contention. Risk: we may have lost the shortlist during the 10-month silence.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:close-date-2026-08-27-51-days-out-requires-contract-executio",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-29",
+    "detail": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no contract activity, and buyer has been unresponsive for 4+ months \u2014 close date is not credible.",
+    "source": "Ground truth close date 2026-08-27, Next_Step__c 2026-06-29 (no material update, no buyer response), Pulse (last buyer email 2026-02-26)",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-06-29"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date 2026-08-27 (51 days out) requires contract execution in ~7 weeks, but deal has no active momentum, no commercials/pricing discussion, no EB engagement, no contract activity, and buyer has been unresponsive for 4+ months \u2014 close date is not credible.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-savings-model-or-business-case-to-justify-",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR violations, Oracle cost) but no dollar figures or savings target.",
+    "source": "Avoma 2025-08-19 (no ROI discussion), Next_Step__c (no ROI workshop or value-case work)",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI, savings model, or business case to justify $185k investment and secure EB/CFO budget approval \u2014 buyer articulated pain (tail-spend chaos, TSR violations, Oracle cost) but no dollar figures or savings target.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:integration-requirement-is-complex-overlay-on-oracle-iprocur",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurement \u2014 Zycus confirmed feasibility on demo but no SOW scoping, no technical-deep-dive with IT, no integration architecture agreed.",
+    "source": "Avoma 2025-08-19 (Amresh: 'we cannot replace iProcurement, want overlay\u2026 integrate with ServiceNow'), no post-demo IT/integration discussion in Next_Step__c",
+    "status": "acknowledged",
+    "category": "integration",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Integration requirement is complex: overlay on Oracle iProcurement + Oracle Fusion ERP + ServiceNow (legal/contract/InfoSec workflows), cannot replace iProcurement \u2014 Zycus confirmed feasibility on demo but no SOW scoping, no technical-deep-dive with IT, no integration architecture agreed.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:buyer-wants-to-fix-the-baseline-clean-up-oracle-servicenow-i",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "Buyer wants to 'fix the baseline' (clean up Oracle + ServiceNow issues) before implementing Zycus overlay, running internal cleanup in parallel with vendor exploration \u2014 risk that internal cleanup delays decision or kills project if they decide Oracle-fix is sufficient.",
+    "source": "Avoma 2025-08-19, Amresh: 'we need to fix our system first\u2026 clean up Oracle, ServiceNow\u2026 create baseline before bringing Zycus on top'",
+    "status": "acknowledged",
+    "category": "change_management",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer wants to 'fix the baseline' (clean up Oracle + ServiceNow issues) before implementing Zycus overlay, running internal cleanup in parallel with vendor exploration \u2014 risk that internal cleanup delays decision or kills project if they decide Oracle-fix is sufficient.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "risk:september-2025-follow-up-with-procurement-ops-chris-soriano-",
+   "type": "risk",
+   "value": {
+    "date": "2025-09-30",
+    "detail": "September 2025 follow-up with procurement ops + Chris Soriano (VP) + Alicia Stafford was committed by buyer but never scheduled \u2014 Amresh/Purav ghosted the coordination, and deal lost momentum. Risk: champion commitment is unreliable, and we have no backup thread.",
+    "source": "Avoma 2025-08-19 (Amresh: 'touch base in September, Purav will coordinate'), Avoma manifest (no call after 2025-08-19), Next_Step__c (no mention of September follow-up)",
+    "status": "open",
+    "category": "other",
+    "first_raised": "2025-09-30"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "September 2025 follow-up with procurement ops + Chris Soriano (VP) + Alicia Stafford was committed by buyer but never scheduled \u2014 Amresh/Purav ghosted the coordination, and deal lost momentum. Risk: champion commitment is unreliable, and we have no backup thread.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-through-amresh-project-lead-mid-level-with-n",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded through Amresh (project lead, mid-level) with no executive sponsor, no EB access, and cooling engagement (unresponsive for 4+ months since last buyer email 2026-02-26) \u2014 multi-thread to Chris Soriano (VP Strategic Sourcing, contact role exists) and map the head of global procurement (unnamed EB, final decision authority) before the deal ghosts entirely."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Single-threaded through Amresh (project lead, mid-level) with no executive sponsor, no EB access, and cooling engagement (unresponsive for 4+ months since last buyer email 2026-02-26) \u2014 multi-thread to Chris Soriano (VP Strategic Sourcing, contact role exists) and map the head of global procurement (unnamed EB, final decision authority) before the deal ghosts entirely.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "hygiene:multi-vendor-bake-off-gep-ivalua-jaggaer-ariba-with-a-poc-sh",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-vendor bake-off (GEP, iValua, JAGGAER, Ariba) with a POC shortlist planned for Dec 2025/Jan 2026 per Amresh's timeline \u2014 that window has passed and we have zero competitive intel on where rivals stand or if POC is running without us. Immediate move: re-engage Amresh to confirm current vendor standings and whether we are still in contention, and run a competitive-differentiation session (Merlin agentic AI vs GEP/iValua traditional S2P) to position our wedge."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-vendor bake-off (GEP, iValua, JAGGAER, Ariba) with a POC shortlist planned for Dec 2025/Jan 2026 per Amresh's timeline \u2014 that window has passed and we have zero competitive intel on where rivals stand or if POC is running without us. Immediate move: re-engage Amresh to confirm current vendor standings and whether we are still in contention, and run a competitive-differentiation session (Merlin agentic AI vs GEP/iValua traditional S2P) to position our wedge.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "hygiene:no-quantified-roi-or-business-case-to-justify-the-185k-inves",
+   "type": "hygiene",
+   "value": {
+    "flag": "No quantified ROI or business case to justify the $185k investment and secure EB/CFO sign-off \u2014 build a tail-spend savings model (current manual-email process cost vs Merlin automation for <$25k purchases) + TSR-violation compliance-risk cost-avoidance + Oracle overlay value (user-experience improvement without rip-and-replace cost) to create a defendable value case for the head of global procurement."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI or business case to justify the $185k investment and secure EB/CFO sign-off \u2014 build a tail-spend savings model (current manual-email process cost vs Merlin automation for <$25k purchases) + TSR-violation compliance-risk cost-avoidance + Oracle overlay value (user-experience improvement without rip-and-replace cost) to create a defendable value case for the head of global procurement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "hygiene:demo-follow-up-promised-for-september-2025-with-procurement-",
+   "type": "hygiene",
+   "value": {
+    "flag": "Demo follow-up promised for September 2025 with procurement ops + Chris Soriano + Alicia Stafford never materialized, and the deal has had no buyer engagement for 10+ months \u2014 create urgency by offering a limited-time pilot/POC (e.g. 30-day Merlin intake + autonomous sourcing trial for one category, running in parallel with Oracle) to break the stall and prove ROI before a rival locks the decision."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "Demo follow-up promised for September 2025 with procurement ops + Chris Soriano + Alicia Stafford never materialized, and the deal has had no buyer engagement for 10+ months \u2014 create urgency by offering a limited-time pilot/POC (e.g. 30-day Merlin intake + autonomous sourcing trial for one category, running in parallel with Oracle) to break the stall and prove ROI before a rival locks the decision.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-07T05:52:10.772708+05:30"
+  },
+  {
+   "key": "champion:champion",
+   "type": "champion",
+   "value": {
+    "name": "Amresh Munshi",
+    "at_risk": true,
+    "strength": "weak"
+   },
+   "source": "ai:champion_strength",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Amresh Munshi",
+      "at_risk": true,
+      "strength": "developing"
+     }
+    },
+    {
+     "as_of": "2026-07-07T05:52:10.772708+05:30",
+     "value": {
+      "name": "Amresh Munshi",
+      "at_risk": true,
+      "strength": "weak"
+     }
+    }
+   ],
+   "subject": "champion",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "product_scope:scope",
+   "type": "product_scope",
+   "value": {
+    "scope": "iSource;eProcurement;eInvoicing;Merlin;Merlin Intake;Agentic AI"
+   },
+   "source": "sf:OpportunityLineItem",
+   "status": "active",
+   "history": [],
+   "subject": "scope",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T05:52:10.772708+05:30",
+   "last_updated": "2026-07-07T05:52:10.772708+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "stakeholder:justin-robinson",
+   "type": "stakeholder",
+   "value": {
+    "name": "Justin Robinson",
+    "risk": "Only surfaces in June 2026 event-invite outreach; no evidence of any earlier direct involvement",
+    "role": "Unknown",
+    "title": "Strategic Sourcing Principal Manager",
+    "source": "OpportunityContactRole; email, 26 Jun 2026 (roundtable invite, no reply)",
+    "sentiment": "unknown \u2014 no confirmed engagement",
+    "last_contact_date": "2026-06-26"
+   },
+   "source": "ai:stakeholder_map",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T14:50:45.803109+05:30",
+     "value": {
+      "name": "Justin Robinson",
+      "risk": "Contact role exists but no engagement evidence found",
+      "role": "Unknown",
+      "title": "Strategic Sourcing Principal Manager",
+      "source": "OpportunityContactRole",
+      "sentiment": "unknown, no call evidence",
+      "last_contact_date": null
+     }
+    },
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "name": "Justin Robinson",
+      "risk": "June 2026 invite unanswered",
+      "role": "Unknown",
+      "title": "Strategic Sourcing Principal Manager",
+      "source": "OpportunityContactRole; SF Task 2026-06-26",
+      "sentiment": "never directly engaged",
+      "last_contact_date": "2026-06-26"
+     }
+    }
+   ],
+   "subject": "Justin Robinson",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:single-threaded-through-champion-amresh-munshi-unresponsive-",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-29",
+    "detail": "Single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 despite 5 follow-ups; no working relationship with Purav Desai, Chris Soriano, Alycia Stafford or Justin Robinson beyond cc-lines and unanswered invites.",
+    "source": "SF Task emails; Next_Step_History__c",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 despite 5 follow-ups; no working relationship with Purav Desai, Chris Soriano, Alycia Stafford or Justin Robinson beyond cc-lines and unanswered invites.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-head-of-global-procurement-never-engaged-no-b",
+   "type": "risk",
+   "value": {
+    "date": "2025-08-19",
+    "detail": "Economic buyer (head of global procurement) never engaged; no budget or approval conversation has started.",
+    "source": "Avoma call 19 Aug 2025; SF Executive_Sponsor_Identified__c = false",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer (head of global procurement) never engaged; no budget or approval conversation has started.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "risk:close-date-has-slipped-at-least-9-times-over-11-months-27-oc",
+   "type": "risk",
+   "value": {
+    "date": "2026-05-13",
+    "detail": "Close date has slipped at least 9 times over 11 months (27 Oct 2025 -> 27 Aug 2026); stage was demoted from Shortlisted back to the relevant stakeholder on 14 Apr 2026.",
+    "source": "SF OpportunityFieldHistory",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2025-10-02"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date has slipped at least 9 times over 11 months (27 Oct 2025 -> 27 Aug 2026); stage was demoted from Shortlisted back to the relevant stakeholder on 14 Apr 2026.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "risk:required-overlay-on-oracle-iprocurement-fusion-erp-plus-serv",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement was discussed conceptually but never technically scoped with IT (no HLD/LLD, no SOW).",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "status": "unresolved",
+    "category": "integration",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [
+    {
+     "as_of": "2026-07-07T13:03:51.724747+05:30",
+     "value": {
+      "date": "2025-08-19",
+      "detail": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) has never been technically scoped with the buyer's IT team.",
+      "source": "Avoma demo call, 19 Aug 2025 (background)",
+      "status": "open",
+      "category": "integration",
+      "first_raised": "2025-08-19"
+     }
+    }
+   ],
+   "subject": "Required overlay on Oracle iProcurement/Fusion ERP plus ServiceNow (legal, InfoSec, TSR workflows) without replacing iProcurement has never been technically scoped with IT.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "hygiene:champion-amresh-munshi-has-gone-unresponsive-for-131-days-af",
+   "type": "hygiene",
+   "value": {
+    "flag": "Champion Amresh Munshi has gone unresponsive for 131+ days after five follow-ups; multi-threading to Chris Soriano (VP) and Justin Robinson, both already named contacts, is the highest-leverage lever to restart the deal."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Champion Amresh Munshi has gone unresponsive for 131+ days after five follow-ups; multi-threading to Chris Soriano (VP) and Justin Robinson, both already named contacts, is the highest-leverage lever to restart the deal.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "hygiene:the-economic-buyer-head-of-global-procurement-required-to-bl",
+   "type": "hygiene",
+   "value": {
+    "flag": "The economic buyer (head of global procurement) required to bless the ~$185k spend has never engaged after 11 months; securing that introduction is critical given four active competitors in the same evaluation."
+   },
+   "source": "ai:best_practice_check",
+   "status": "retired",
+   "history": [],
+   "subject": "The economic buyer (head of global procurement) required to bless the ~$185k spend has never engaged after 11 months; securing that introduction is critical given four active competitors in the same evaluation.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "hygiene:no-written-requirements-document-or-quantified-roi-savings-m",
+   "type": "hygiene",
+   "value": {
+    "flag": "No written requirements document or quantified ROI/savings model has ever been delivered despite being promised twice (Dec 2025, Jan 2026); packaging a Cornerstone-specific savings model against the buyer's own 4-9% negotiation targets would give a re-engaged champion something concrete to escalate internally."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No written requirements document or quantified ROI/savings model has ever been delivered despite being promised twice (Dec 2025, Jan 2026); packaging a Cornerstone-specific savings model against the buyer's own 4-9% negotiation targets would give a re-engaged champion something concrete to escalate internally.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T13:03:51.724747+05:30",
+   "last_updated": "2026-07-07T13:03:51.724747+05:30",
+   "last_confirmed": "2026-07-07T13:03:51.724747+05:30"
+  },
+  {
+   "key": "risk:single-threaded-through-amresh-munshi-with-no-working-relati",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-29",
+    "detail": "Single-threaded through Amresh Munshi with no working relationship established with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson beyond cc-lines.",
+    "source": "Avoma demo call, 19 Aug 2025 (background); Next Step history",
+    "status": "open",
+    "category": "political",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through Amresh Munshi with no working relationship established with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson beyond cc-lines.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "risk:economic-buyer-head-of-global-procurement-has-never-been-eng",
+   "type": "risk",
+   "value": {
+    "date": "2026-06-29",
+    "detail": "Economic buyer (head of global procurement) has never been engaged and no budget or pricing conversation has started.",
+    "source": "Avoma demo call, 19 Aug 2025 (background)",
+    "status": "open",
+    "category": "budget",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Economic buyer (head of global procurement) has never been engaged and no budget or pricing conversation has started.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "risk:close-date-of-27-aug-2026-51-days-out-requires-contract-exec",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-07",
+    "detail": "Close date of 27 Aug 2026 (51 days out) requires contract execution in roughly 7 weeks with zero active momentum.",
+    "source": "Opportunity CloseDate; stage field history",
+    "status": "open",
+    "category": "timeline",
+    "first_raised": "2026-04-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date of 27 Aug 2026 (51 days out) requires contract execution in roughly 7 weeks with zero active momentum.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "hygiene:multi-thread-now-with-amresh-munshi-unresponsive-for-131-day",
+   "type": "hygiene",
+   "value": {
+    "flag": "Multi-thread now: with Amresh Munshi unresponsive for 131+ days, contact Purav Desai and Chris Soriano directly to remove the single point of failure before the 27 Aug 2026 close date."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Multi-thread now: with Amresh Munshi unresponsive for 131+ days, contact Purav Desai and Chris Soriano directly to remove the single point of failure before the 27 Aug 2026 close date.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "hygiene:regain-competitive-visibility-confirm-cornerstone-s-vendor-d",
+   "type": "hygiene",
+   "value": {
+    "flag": "Regain competitive visibility: confirm Cornerstone's vendor down-select status against GEP Worldwide, iValua, JAGGAER, and SAP Ariba, since the Dec 2025/Jan 2026 POC checkpoint Amresh named has passed with no update."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Regain competitive visibility: confirm Cornerstone's vendor down-select status against GEP Worldwide, iValua, JAGGAER, and SAP Ariba, since the Dec 2025/Jan 2026 POC checkpoint Amresh named has passed with no update.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "hygiene:build-the-missing-roi-case-now-quantify-tail-spend-savings-3",
+   "type": "hygiene",
+   "value": {
+    "flag": "Build the missing ROI case now: quantify tail-spend savings (3-5% negotiation ceiling, $25k-$50k threshold volume) into a written business case Purav Desai can carry to the unengaged head of global procurement."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Build the missing ROI case now: quantify tail-spend savings (3-5% negotiation ceiling, $25k-$50k threshold volume) into a written business case Purav Desai can carry to the unengaged head of global procurement.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-07T14:50:45.803109+05:30",
+   "last_updated": "2026-07-07T14:50:45.803109+05:30",
+   "last_confirmed": "2026-07-07T14:50:45.803109+05:30"
+  },
+  {
+   "key": "requirement:share-stakeholder-email-addresses-chris-soriano-alycia-staff",
+   "type": "requirement",
+   "value": {
+    "date": "2025-08-20",
+    "kind": "explicit",
+    "quote": "Please share the Showpad link with Chris Soriano - csoriano@csod.com, Alycia Stafford - astafford@csod.com, Justin Robinson - justinrobinson@csod.com, Purav Desai - pdesai@csod.com",
+    "source": "Email, 20 Aug 2025 (Amresh Munshi to Steve Ovadje); confirmed sent same day",
+    "said_by": "Amresh Munshi",
+    "addressed": true,
+    "requirement": "Share stakeholder email addresses (Chris Soriano, Alycia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination"
+   },
+   "source": "Amresh Munshi",
+   "status": "active",
+   "history": [],
+   "subject": "Share stakeholder email addresses (Chris Soriano, Alycia Stafford, procurement ops, power users) for Showpad invite and September follow-up coordination",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "requirement:cornerstone-to-send-a-structured-rfi-to-zycus",
+   "type": "requirement",
+   "value": {
+    "date": "2025-12-01",
+    "kind": "explicit",
+    "quote": "Cornerstone team is planning to send out a structured RFI by end of month.",
+    "source": "Next_Step_History__c, 2025-12-01",
+    "said_by": "Amresh Munshi / Purav Desai (via rep note)",
+    "addressed": false,
+    "requirement": "Cornerstone to send a structured RFI to Zycus"
+   },
+   "source": "Amresh Munshi / Purav Desai (via rep note)",
+   "status": "active",
+   "history": [],
+   "subject": "Cornerstone to send a structured RFI to Zycus",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "requirement:provide-requirements-document-following-internal-alignment",
+   "type": "requirement",
+   "value": {
+    "date": "2025-12-15",
+    "kind": "explicit",
+    "quote": "Alycia and Amresh will send over their requirements document.",
+    "source": "Next_Step_History__c, 2025-12-15",
+    "said_by": "Amresh Munshi / Alycia Stafford (via rep note)",
+    "addressed": false,
+    "requirement": "Provide requirements document following internal alignment"
+   },
+   "source": "Amresh Munshi / Alycia Stafford (via rep note)",
+   "status": "active",
+   "history": [],
+   "subject": "Provide requirements document following internal alignment",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:zycus-prepare-customized-strategic-sourcing-demo-covering-hi",
+   "type": "commitment",
+   "value": {
+    "due": "2026-01-13",
+    "who": "Zycus",
+    "date": "2025-08-19",
+    "source": "Avoma transcript, 19 Aug 2025; recap email, 15 Jan 2026 confirming strategic sourcing/RFP/RFQ scoring and analytics were reviewed",
+    "status": "completed",
+    "commitment": "Prepare customized strategic-sourcing demo covering high-value SaaS category analytics (pre-negotiation insights, historical benchmarking)",
+    "deliverable": "Prepare customized strategic-sourcing demo covering high-value SaaS category analytics (pre-negotiation insights, historical benchmarking)",
+    "grounding_quote": "There was a request for strategic sourcing analytics with pre-negotiation insights and historical benchmarking to support high-value SaaS and platform deals."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Prepare customized strategic-sourcing demo covering high-value SaaS category analytics (pre-negotiation insights, historical benchmarking)",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:zycus-share-call-recording-and-rfp-template-following-the-ja",
+   "type": "commitment",
+   "value": {
+    "due": "2026-01-15",
+    "who": "Zycus",
+    "date": "2026-01-15",
+    "source": "Task email recap, 15 Jan 2026",
+    "status": "completed",
+    "commitment": "Share call recording and RFP template following the January demo",
+    "deliverable": "Share call recording and RFP template following the January demo",
+    "grounding_quote": "Here is a link to call recording today. I have also attached a copy of the presentation and RFP template."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Share call recording and RFP template following the January demo",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:zycus-reach-back-out-in-early-march-2026-to-check-in-on-prog",
+   "type": "commitment",
+   "value": {
+    "due": "2026-03-09",
+    "who": "Zycus",
+    "date": "2026-01-15",
+    "source": "Task email recap, 15 Jan 2026; follow-up sent 9 Mar 2026 per Next_Step_History__c",
+    "status": "completed",
+    "commitment": "Reach back out in early March 2026 to check in on progress",
+    "deliverable": "Reach back out in early March 2026 to check in on progress",
+    "grounding_quote": "I'll plan to reach back out in early March to check in on progress and discuss timing for stakeholder sessions, RFP, and any potential POC."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Zycus:Reach back out in early March 2026 to check in on progress",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:buyer-coordinate-a-september-2025-follow-up-call-with-chris-",
+   "type": "commitment",
+   "value": {
+    "due": "2025-09-30",
+    "who": "Buyer",
+    "date": "2025-08-19",
+    "source": "Avoma transcript, 19 Aug 2025 demo; no confirmed session with that specific stakeholder set occurred until a Jan 2026 demo, well past the committed window",
+    "status": "overdue",
+    "commitment": "Coordinate a September 2025 follow-up call with Chris Soriano, Alycia Stafford, procurement ops, and power users",
+    "deliverable": "Coordinate a September 2025 follow-up call with Chris Soriano, Alycia Stafford, procurement ops, and power users",
+    "grounding_quote": "Purav, please take a note that we need to discuss this with Chris and Alicia to set up a time and have a call with Michael and the team to take it forward from there, okay, in September."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Coordinate a September 2025 follow-up call with Chris Soriano, Alycia Stafford, procurement ops, and power users",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-updated-evaluation-timeline",
+   "type": "commitment",
+   "value": {
+    "due": "2026-06-22",
+    "who": "Buyer",
+    "date": "2026-06-22",
+    "source": "Next_Step_History__c, 2026-06-22",
+    "status": "overdue",
+    "commitment": "Provide updated evaluation timeline",
+    "deliverable": "Provide updated evaluation timeline",
+    "grounding_quote": "Following up with Amresh to receive updated evaluation timeline, No response yet"
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Provide updated evaluation timeline",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "commitment:buyer-provide-saas-category-list-from-procurement-ops-for-de",
+   "type": "commitment",
+   "value": {
+    "due": "2025-08-26",
+    "who": "Buyer",
+    "date": "2025-08-19",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "status": "overdue",
+    "commitment": "Provide SaaS category list from procurement ops for demo staging",
+    "deliverable": "Provide SaaS category list from procurement ops for demo staging",
+    "grounding_quote": "My operation person has the list with them. I'll touch base and we'll get that those list."
+   },
+   "source": "ai:implicit_requirements",
+   "status": "active",
+   "history": [],
+   "subject": "Buyer:Provide SaaS category list from procurement ops for demo staging",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:the-economic-buyer-unnamed-head-of-global-procurement-has-ne",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "The Economic Buyer (unnamed Head of Global Procurement) has never been engaged; no path to budget approval exists.",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "status": "unresolved",
+    "category": "executive_alignment",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "The Economic Buyer (unnamed Head of Global Procurement) has never been engaged; no path to budget approval exists.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:deal-is-single-threaded-through-champion-amresh-munshi-unres",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Deal is single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 (~133 days); no independent relationship exists with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson.",
+    "source": "Next_Step_History__c; stage demotion 14 Apr 2026",
+    "status": "unresolved",
+    "category": "political",
+    "first_raised": "2026-04-14"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Deal is single-threaded through champion Amresh Munshi, unresponsive since 26 Feb 2026 (~133 days); no independent relationship exists with Purav Desai, Chris Soriano, Alycia Stafford, or Justin Robinson.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:zero-competitive-intelligence-since-the-buyer-s-own-dec-2025",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection decision point passed; unknown whether Zycus remains in contention against GEP Worldwide, Ivalua, JAGGAER, or SAP Ariba.",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "status": "unresolved",
+    "category": "other",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection decision point passed; unknown whether Zycus remains in contention against GEP Worldwide, Ivalua, JAGGAER, or SAP Ariba.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:close-date-27-aug-2026-49-days-out-requires-contracting-to-c",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "Close date (27 Aug 2026, 49 days out) requires contracting to complete within 7 weeks, but no commercials, EB engagement, or contract activity exists and buyer has not replied in over 4 months.",
+    "source": "OpportunityFieldHistory, CloseDate revision 13 May 2026",
+    "status": "unresolved",
+    "category": "timeline",
+    "first_raised": "2026-05-13"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "Close date (27 Aug 2026, 49 days out) requires contracting to complete within 7 weeks, but no commercials, EB engagement, or contract activity exists and buyer has not replied in over 4 months.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "risk:no-quantified-roi-savings-model-or-business-case-has-been-bu",
+   "type": "risk",
+   "value": {
+    "date": "2026-07-09",
+    "detail": "No quantified ROI/savings model or business case has been built to justify the $185,000 investment beyond informal 4-9% savings targets discussed on the 19 Aug 2025 call.",
+    "source": "Avoma transcript, 19 Aug 2025 demo",
+    "status": "unresolved",
+    "category": "budget",
+    "first_raised": "2025-08-19"
+   },
+   "source": "ai:vulnerabilities",
+   "status": "active",
+   "history": [],
+   "subject": "No quantified ROI/savings model or business case has been built to justify the $185,000 investment beyond informal 4-9% savings targets discussed on the 19 Aug 2025 call.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "hygiene:single-threaded-through-a-champion-unresponsive-since-26-feb",
+   "type": "hygiene",
+   "value": {
+    "flag": "Single-threaded through a champion unresponsive since 26 Feb 2026 (~133 days) \u2014 actively open a parallel thread with Purav Desai, Chris Soriano, or Justin Robinson rather than continuing to chase Amresh Munshi alone."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Single-threaded through a champion unresponsive since 26 Feb 2026 (~133 days) \u2014 actively open a parallel thread with Purav Desai, Chris Soriano, or Justin Robinson rather than continuing to chase Amresh Munshi alone.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "hygiene:zero-competitive-intelligence-since-the-buyer-s-own-dec-2025",
+   "type": "hygiene",
+   "value": {
+    "flag": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection window passed \u2014 a direct ask to Purav Desai or Amresh Munshi on where the down-select landed is overdue."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "Zero competitive intelligence since the buyer's own Dec 2025/Jan 2026 POC-selection window passed \u2014 a direct ask to Purav Desai or Amresh Munshi on where the down-select landed is overdue.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  },
+  {
+   "key": "hygiene:no-forward-dated-next-step-has-been-logged-since-early-2026-",
+   "type": "hygiene",
+   "value": {
+    "flag": "No forward-dated next step has been logged since early 2026 \u2014 every recent Next Step entry reads 'no material update'; the deal needs a concrete, dated ask, not another status-check email."
+   },
+   "source": "ai:best_practice_check",
+   "status": "active",
+   "history": [],
+   "subject": "No forward-dated next step has been logged since early 2026 \u2014 every recent Next Step entry reads 'no material update'; the deal needs a concrete, dated ask, not another status-check email.",
+   "evidence": null,
+   "confidence": null,
+   "first_seen": "2026-07-09T07:37:14.784208+05:30",
+   "last_updated": "2026-07-09T07:37:14.784208+05:30",
+   "last_confirmed": "2026-07-09T07:37:14.784208+05:30"
+  }
+ ],
+ "swept_at": "2026-07-09T07:37:14.784208+05:30",
+ "schema_version": 2,
+ "evidence_coverage": {
+  "gaps": [
+   "A third product session (demo) on 13 Jan 2026 is documented via a Salesforce Task email recap, not via the Avoma manifest \u2014 treated as a real gold-mine-source event per section 4.1, but its full call content (beyond the rep's written recap) was not independently verified.",
+   "MEDDPICC__c / MEDDPICC_2_0__c custom fields do not exist in this org \u2014 MEDDPICC narrative reconstructed entirely from Avoma calls, Next_Step_History__c, and AIS_Why__c (hygiene gap, does not lower confidence).",
+   "scrubbed 1 placeholder/template string(s)"
+  ],
+  "calls_read": 1,
+  "calls_omitted": [
+   "2025-08-13 demo \u2014 cancelled, no content (touchpoint, not a knowledge gap)"
+  ],
+  "avoma_attendees": [
+   "amunshi@csod.com",
+   "pdesai@csod.com",
+   "michael.mccarthy@zycus.com",
+   "steve.ovadje@zycus.com"
+  ],
+  "calls_discovered": 2,
+  "discovery_method": "never-miss engine (opp+account+attendee)",
+  "salesforce_window": "OpportunityFieldHistory: full history since 2025-07-25; Tasks: 90d+ selective read including Description bodies"
+ },
+ "forecast_critical": true,
+ "analysis_confidence": "Medium"
+}

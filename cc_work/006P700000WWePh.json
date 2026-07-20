@@ -1,0 +1,288 @@
+{
+  "opp_id": "006P700000WWePh",
+  "hard": {
+    "opp_id": "006P700000WWePh",
+    "opp_name": "Options Clearing - S2C Opp - April '26",
+    "account_name": "The Options Clearing Corporation",
+    "account_industry": "BFSI",
+    "billing_country": "United States",
+    "owner_name": "Michael McCarthy",
+    "owner_title": null,
+    "manager_name": null,
+    "stage": "Qualified",
+    "forecast_category": "Pipeline",
+    "amount": 100000.0,
+    "close_date": "2027-04-13",
+    "days_to_close": 281,
+    "created_date": "2026-04-09",
+    "qualified_date": "2026-04-29",
+    "last_activity_date": "2026-04-25",
+    "last_modified_date": "2026-07-03",
+    "products": "iContract;iSource;iSupplier;eProcurement;iRequest;Merlin;iRisk;Merlin Intake",
+    "next_step": "Rickson : Bailey to send info and follow up. Keeping lead wam by sending invite for Agentic AI Webinar.",
+    "ais_score": 6.0,
+    "ais_status": "Moderate",
+    "ais_why": "Rep is keeping OCC's Marcy warm by inviting her to the Agentic AI Webinar; OCC flagged gaps across their source-to-pay stack after the Chicago Roundtable but the conversation is still exploratory.",
+    "dm_identified": true,
+    "eb_identified": false,
+    "champion_identified": false,
+    "pain_identified": true,
+    "metrics_identified": false,
+    "competitor": "Oracle (incumbent ERP); do-nothing / status quo",
+    "primary_competitor": "Do-nothing (manual Excel/email sourcing) with Oracle as the incumbent ERP",
+    "sf_link": "https://zycus.lightning.force.com/lightning/r/Opportunity/006P700000WWePh/view"
+  },
+  "ai": {
+    "north_star_verdict": {
+      "verdict": "Off Track",
+      "critical": false,
+      "headline": "Cold lead masquerading as an opportunity. One intro call on 24 April 2026 where Marcy Harman said OCC is 'not actively in the market'; zero buyer engagement in the 72 days since. No champion, no economic buyer, no quantified pain, no evaluation timeline. This is a nurture contact, not a qualified deal.",
+      "math": "Close date 2027-04-13, 281 days out. Created 9 April 2026, moved to Qualified 29 April 2026, so ~68 days in Qualified. LastActivityDate 25 April 2026 (72 days ago); no buyer-facing deliverable executed in 60+ days. Single buyer call 24 April 2026 was exploratory. Cold 60+ days forces Off Track regardless of the distant close date.",
+      "forecast_defensible": false,
+      "recommended_forecast": "Omitted",
+      "evidence": [
+        "Single buyer call 24 April 2026 (72 days ago): Marcy Harman (Decision Maker per contact role) stated 'I'm not, like, actively in the market... I'm always keeping my eyes open for what different tools are out there' and closed with 'there's nothing really going on right now' (Avoma intro call, 24 Apr 2026).",
+        "Next_Step__c (undated): 'Rickson : Bailey to send info and follow up. Keeping lead wam by sending invite for Agentic AI Webinar' is rep-side nurture intent, not a buyer commitment or timeline.",
+        "A 29 April 2026 Opportunity Health task already flagged 'Prospect's gone cold, no inbound since last 14 days' and 'Decision Maker is not identified'; no buyer engagement since LastActivityDate 25 April 2026.",
+        "No champion, no economic buyer, no quantified pain, no evaluation criteria, no competitive shortlist, and no approval process mapped after the intro call.",
+        "Forecast category Pipeline on a self-described non-buyer with no active need is indefensible; recommend Omitted until OCC confirms an active evaluation."
+      ]
+    },
+    "meddpicc": {
+      "metrics": {
+        "status": "partial",
+        "narrative": "On the 24 April 2026 intro call Marcy Harman confirmed real qualitative pain: OCC runs 'a lot of' RFXs and does them entirely 'Manually' via Excel and back-and-forth emails, and she asked how Zycus manages a portfolio of requests including future renewals she 'wants to keep an eye on.' That is a genuine operational inefficiency, but she never quantified it: no cost of the manual process, no cycle-time figure, no headcount burden, no error rate, and no savings target. The Hackett Group benchmark (RFP build time cut from many days to 5-6 days) was presented by Zycus rep Bailey, not confirmed by the buyer. The move is to re-engage Marcy and quantify OCC's RFX volume, cycle time and FTE load to convert stated pain into a numeric value case.",
+        "sources": ["Avoma intro call 24 April 2026 (Marcy Harman, buyer)", "SF Next_Step__c"]
+      },
+      "economic_buyer": {
+        "status": "gap",
+        "narrative": "No economic buyer has been identified or engaged. Marcy Harman (Executive Director, Strategic Sourcing) leads the sourcing team but presented herself as a market-scanner, not a budget owner, and named no approver, budget process, or finance sponsor on the 24 April 2026 call. The conversation never reached pricing, budget, or commercials, so nothing in the transcript reveals who controls spend for a procurement-platform purchase at OCC. No OpportunityContactRole beyond Marcy exists and no MEDDPICC economic-buyer field is populated. The move is to have Marcy identify and introduce the procurement and finance leadership who would own a platform budget before any commercial motion is possible.",
+        "sources": ["SF OpportunityContactRole (Marcy Harman only)", "Avoma intro call 24 April 2026 (no budget authority surfaced)"]
+      },
+      "decision_criteria": {
+        "status": "gap",
+        "narrative": "No evaluation criteria have been established because no evaluation is underway. The only directional signal is comparative: on 24 April 2026 Marcy asked 'how you see yourself comparing to other types of tools like Oracle, Oracle ERP, Zip, CLM, and where do you see Zycus fitting,' which shows she is category-mapping (ERP vs procure-to-pay vs contract lifecycle) rather than scoring vendors against a defined requirement set. No use-case review, RFP, test case, or workshop has occurred. The move is to run a discovery session that surfaces OCC's actual must-have requirements for sourcing and contract management if and when a real evaluation starts.",
+        "sources": ["Avoma intro call 24 April 2026 (Marcy Harman)"]
+      },
+      "decision_process": {
+        "status": "gap",
+        "narrative": "There is no decision process to read because there is no active deal: the call sequence is a single exploratory intro on 24 April 2026 with one attendee, Marcy Harman, and two Zycus reps (Bailey and Rickson). No stakeholders have joined, none have escalated, and no timeline, approval chain, or steps were discussed. Marcy explicitly deferred any process ('maybe in the future, there will be a time where OCC looks for something of this'). The move is to establish whether a compelling event or a mandated sourcing-transformation initiative exists that would create a real buying process, and to map who would run it.",
+        "sources": ["Avoma intro call 24 April 2026", "SF activity history"]
+      },
+      "paper_process": {
+        "status": "gap",
+        "narrative": "No contracting mechanics are in play: the deal is at Qualified with a single intro call and no commercial, legal, InfoSec, or procurement conversation has begun. As a BFSI institution OCC will carry heavy InfoSec, DPA/GDPR and vendor-onboarding requirements when a real evaluation starts, but none of that is visible yet and no contract-expiration forcing function exists (Current_Contract_Expiration__c not populated). Visibility would come from a qualified evaluation reaching commercials; nothing to track today.",
+        "sources": ["SF stage = Qualified", "Avoma intro call 24 April 2026"]
+      },
+      "identify_pain": {
+        "status": "partial",
+        "narrative": "Confirmed pain, owned by Marcy Harman: OCC's sourcing team runs 'a lot of' RFXs 'Manually' in Excel and email (24 April 2026), and Marcy raised an unmet need to manage a portfolio of requests, including renewals '9 months in the future' she wants to monitor. That is a real, buyer-stated inefficiency in strategic sourcing and request/intake management. Inferred (not yet confirmed) pain: contract lifecycle and supplier-risk gaps that Zycus's CLM and iRisk modules would address, implied by Marcy's Oracle/Zip/CLM comparison question but not articulated as a problem. The pain is genuine but not yet urgent or quantified; the owner is Marcy's strategic-sourcing function.",
+        "sources": ["Avoma intro call 24 April 2026 (Marcy Harman: 'Manually', portfolio-of-requests question)"]
+      },
+      "champion": {
+        "status": "gap",
+        "narrative": "No champion exists. Marcy Harman is the only engaged contact and behaved as a polite, informed learner on 24 April 2026, not an advocate: she stated 'I'm not actively in the market,' made no commitment, introduced no colleagues, set no next step beyond receiving information 'for future reference,' and has not initiated any follow-up in the 72 days since. There is no evidence she is advocating for Zycus internally or has access to a budget owner. A 'developing' rating would be overstated because nothing has developed. Champion-building is the highest-value near-term move: re-engage Marcy on her stated manual-RFP pain, give her a concrete reason to advance, and earn a multi-thread into procurement and finance leadership.",
+        "sources": ["Avoma intro call 24 April 2026 (Marcy Harman)", "SF OpportunityContactRole (Decision Maker, sole contact)", "29 April 2026 Opportunity Health task: 'Prospect's gone cold'"]
+      },
+      "competition": {
+        "status": "gap",
+        "narrative": "No active competitive evaluation exists. On 24 April 2026 Marcy Harman named Oracle (OCC's incumbent ERP, 'Yes' they use it), Zip (procure-to-pay), and CLM tools as reference categories to understand where Zycus fits, not as vendors in a bake-off. The real competitor today is do-nothing / status quo: OCC keeps sourcing manually in Excel and email and has no stated intent to change. Zycus rep Bailey positioned the wedge (single codebase and AI-native vs 'Frankenstein' acquired suites, attach-and-extend onto Oracle rather than rip-and-replace, autonomous negotiation and Merlin AI vs manual work). When a genuine evaluation starts, expect Oracle Procurement (status quo), a full-suite peer (Coupa or SAP Ariba), and Zip or a standalone CLM to enter; none is a current threat because there is no live deal.",
+        "sources": ["Avoma intro call 24 April 2026 (Marcy Harman named Oracle, Zip, CLM)", "Bailey Erazo positioning, same call"]
+      }
+    },
+    "deal_movement": {
+      "summary": "No buyer-facing movement since the 24 April 2026 intro call. All recent activity is internal CRM housekeeping: owner reassigned from Rickson Castelino to Michael McCarthy on 11 May 2026, and Division/Opportunity-Source recategorized on 3 July 2026. The close date was pushed from 30 Nov 2026 to 13 Apr 2027 on 28 April 2026. The deal has been effectively dark for 72 days.",
+      "items": [
+        {"change": "Opportunity_Source recategorized Ground Events -> Round Table; Division set to Mid-Enterprise (internal, by Kasturi Talukdar)", "date": "2026-07-03"},
+        {"change": "Owner reassigned Rickson Castelino -> Michael McCarthy (internal reshuffle)", "date": "2026-05-11"},
+        {"change": "Stage advanced Initial Interest -> Qualified", "date": "2026-04-29"},
+        {"change": "Close date pushed 2026-11-30 -> 2027-04-13", "date": "2026-04-28"},
+        {"change": "Intro call held: Marcy Harman said OCC is not actively in the market", "date": "2026-04-24"}
+      ]
+    },
+    "competitive_position": {
+      "summary": "No live competition; the strongest current threat is do-nothing (OCC keeps running RFXs manually in Excel and email and may never prioritize a purchase). Oracle is the incumbent ERP that Zycus would attach to rather than replace. Zip (procure-to-pay) and generic CLM tools are Marcy's mental reference categories from the 24 April 2026 call, not active rivals. Nothing new surfaced this run, so threat levels are carried forward unchanged.",
+      "competitors": [
+        {
+          "name": "Do-nothing / status quo (manual Excel + email sourcing)",
+          "sentiment": "neutral",
+          "threat_level": "high",
+          "status": "do_nothing",
+          "quote": "You know, I'm not, like, actively in the market... there's nothing really going on right now.",
+          "date": "2026-04-24",
+          "source": "Avoma intro call 24 April 2026 (Marcy Harman)",
+          "how_we_win": "Create urgency by quantifying the cost of the manual RFX process (cycle time, FTE burden) against the Hackett benchmark and tie it to a compelling event; without that, OCC defaults to no-decision."
+        },
+        {
+          "name": "Oracle ERP / Oracle Procurement",
+          "sentiment": "neutral",
+          "threat_level": "medium",
+          "status": "incumbent",
+          "quote": "Do you guys use Oracle over at OCC? Yes... we would essentially attach onto Oracle. So we aren't gonna replace it.",
+          "date": "2026-04-24",
+          "source": "Avoma intro call 24 April 2026",
+          "how_we_win": "Position Zycus as Oracle's AI-powered procurement layer: attach and extend the Oracle ERP core with RFP automation, autonomous negotiation, Merlin AI and contract-risk scanning rather than rip-and-replace."
+        },
+        {
+          "name": "Zip (procure-to-pay)",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "do_nothing",
+          "quote": "How you see yourself comparing to other types of tools like... Zip. Zip is mostly a procure to pay... more in our wheelhouse rather than a Zip.",
+          "date": "2026-04-24",
+          "source": "Avoma intro call 24 April 2026",
+          "how_we_win": "Zip is procure-to-pay only; Zycus is full source-to-pay with eSourcing, CLM, supplier network and autonomous negotiation. Position the complete suite versus a partial P2P tool."
+        },
+        {
+          "name": "CLM tools (generic category)",
+          "sentiment": "neutral",
+          "threat_level": "low",
+          "status": "do_nothing",
+          "quote": "How you see yourself comparing to other types of tools like... CLM.",
+          "date": "2026-04-24",
+          "source": "Avoma intro call 24 April 2026",
+          "how_we_win": "Standalone CLM lacks upstream sourcing and downstream P2P; Zycus is a Forrester CLM Leader inside a full S2P suite so contracts live in the context of the sourcing event and supplier relationship."
+        }
+      ]
+    },
+    "customer_expectations_fit": {
+      "summary": "Marcy's only stated expectation was to understand where Zycus fits relative to Oracle, Zip and CLM, and whether it manages a portfolio of requests. Zycus's Oracle attach-and-extend model and intake/request management align to what she asked, but nothing is validated because no evaluation is running.",
+      "items": [
+        {"criterion": "Fits alongside Oracle ERP rather than replacing it", "position": "aligned", "quote": "we would essentially attach onto Oracle. So we aren't gonna replace it, basically just bolting onto it.", "date": "2026-04-24", "source": "Avoma intro call 24 April 2026"},
+        {"criterion": "Manages a portfolio of requests / future renewals, not just single requests", "position": "partially aligned", "quote": "what does it do around managing a portfolio of requests... some of them are renewals that are maybe 9 months in the future.", "date": "2026-04-24", "source": "Avoma intro call 24 April 2026"}
+      ]
+    },
+    "explicit_requirements": {"items": []},
+    "implicit_requirements": {
+      "we_promised": {
+        "items": [
+          {"deliverable": "Send Marcy the S2P overview and Hackett RFP benchmark materials Bailey offered.", "who": "Zycus", "grounding_quote": "what I can do is I can send some information over... you can kind of refer back to that.", "date": "2026-04-24", "due": "2026-05-01", "status": "overdue", "source": "Avoma intro call 24 April 2026 (Bailey Erazo)"}
+        ]
+      },
+      "buyer_dependent": {"items": []}
+    },
+    "gaps": {
+      "items": [
+        {"area": "Economic buyer / budget authority", "quote": "No budget owner or approver named on the intro call; Marcy is the sole contact.", "status": "not addressed", "date": "2026-04-24", "gap_type": "knowledge", "source": "Avoma intro call 24 April 2026 + SF OpportunityContactRole"},
+        {"area": "Compelling event / active need", "quote": "I'm not, like, actively in the market... there's nothing really going on right now.", "status": "not addressed", "date": "2026-04-24", "gap_type": "knowledge", "source": "Avoma intro call 24 April 2026 (Marcy Harman)"},
+        {"area": "Quantified value case", "quote": "Manual RFX pain confirmed but never quantified (no cost, cycle time, or FTE figures).", "status": "not addressed", "date": "2026-04-24", "gap_type": "knowledge", "source": "Avoma intro call 24 April 2026"}
+      ]
+    },
+    "best_practice_check": {
+      "summary": "This is a cold, single-threaded, unqualified lead. The win-strategy priorities are to re-open the relationship on Marcy's real pain, multi-thread to a budget owner, and qualify hard rather than nurture indefinitely.",
+      "flags": [
+        "Convert Marcy from polite learner to advocate by leading with her stated manual-RFX pain, not another generic AI webinar.",
+        "Multi-thread beyond Marcy into OCC procurement and finance leadership to find a budget owner; the deal has no economic buyer.",
+        "Qualify hard: confirm a compelling event or reclassify to nurture. Forecast Pipeline is indefensible on a not-in-market lead."
+      ]
+    },
+    "stakeholder_map": {
+      "items": [
+        {"name": "Marcy Harman", "title": "Executive Director, Strategic Sourcing", "role": "Decision Maker", "last_contact_date": "2026-04-24", "sentiment": "neutral", "risk": "Polite but passive; said she is 'not actively in the market' and has not responded in 72 days. Not a champion, no advocacy, single thread.", "source": "SF OpportunityContactRole (PRIMARY, Decision Maker); Avoma intro call 24 April 2026"}
+      ]
+    },
+    "champion_strength": {
+      "summary": "No champion. Marcy Harman is the sole engaged contact and behaved as an informed learner, not an advocate: she stated 'I'm not actively in the market,' made no commitment, introduced no colleagues, and has not followed up in 72 days. She is a polite, informed contact only.",
+      "champion": "None identified",
+      "strength": "none",
+      "at_risk": true,
+      "source": "Avoma intro call 24 April 2026; SF OpportunityContactRole; 72 days silence since 25 April 2026"
+    },
+    "ai_positioning_strength": {
+      "summary": "AIS 6.0 (Moderate). AI is the chosen door-opener (Agentic AI Webinar invite) and Bailey led with AI-native single-codebase differentiation, but the Merlin / agentic sourcing narrative has not yet landed with a real buyer need, so positioning is early and rep-driven, not buyer-pulled.",
+      "score": "6.0 / Moderate",
+      "under_positioned": true
+    },
+    "ai_fit_signal": {
+      "summary": "AIS 6.0 Moderate. The calls show mild AI curiosity: Marcy attended an AI-themed roundtable and engaged on autonomous negotiation and AI-graded RFPs, but expressed no active AI mandate or urgency. The rep is using AI content to keep the lead warm rather than responding to buyer-stated AI appetite.",
+      "tier": "AI Curious"
+    },
+    "vulnerabilities": {
+      "items": [
+        {"category": "budget", "detail": "No economic buyer or confirmed budget; the $100k amount is a placeholder with no buyer-validated value case.", "first_raised": "2026-04-24", "date": "2026-04-24", "status": "open", "source": "Avoma intro call 24 April 2026 + SF"},
+        {"category": "change_management", "detail": "Do-nothing risk: OCC keeps running RFXs manually in Excel and email and has stated no intent to change, a no-decision risk rather than a loss to a rival.", "first_raised": "2026-04-24", "date": "2026-04-24", "status": "open", "source": "Avoma intro call 24 April 2026 (Marcy Harman)"},
+        {"category": "political", "detail": "Single-threaded on Marcy Harman, a self-described non-buyer; no procurement or finance leader engaged.", "first_raised": "2026-04-24", "date": "2026-04-29", "status": "open", "source": "29 April 2026 Opportunity Health task: 'Keep the engagement multi-threaded'"},
+        {"category": "executive_alignment", "detail": "No power role engaged; a 29 April task flagged 'Decision Maker is not identified' at the sponsor level.", "first_raised": "2026-04-29", "date": "2026-04-29", "status": "open", "source": "SF task 29 April 2026"}
+      ]
+    },
+    "confidence_signals": {
+      "summary": "Deal is cold. Last real buyer touch 24-25 April 2026; a 29 April Opportunity Health task already recorded 'Prospect's gone cold, no inbound since last 14 days.' 72 days of silence since.",
+      "cooling": true,
+      "items": [
+        "72 days since last activity (25 April 2026).",
+        "Buyer stated she is not in-market and set no next step.",
+        "Only forward motion is a rep-side webinar invite, awaiting buyer reply."
+      ]
+    },
+    "deal_scores_evidence": {
+      "summary": "One exploratory intro call 72 days ago where Marcy Harman said OCC is 'not actively in the market'; this is a single-threaded nurture contact, not a qualified deal, with no champion, no economic buyer and no compelling event.",
+      "ai_reasons": {
+        "win_position": [
+          {"tone": "warn", "text": "This is a cold, unqualified lead: the only contact, Marcy Harman (Executive Director, Strategic Sourcing), told us on 24 Apr she is 'not actively in the market' and OCC has gone silent for 72 days."},
+          {"tone": "warn", "text": "No economic buyer or budget owner has engaged and Marcy is a single thread, so there is no path to a decision even against a distant Apr 2027 close."},
+          {"tone": "warn", "text": "The strongest threat is do-nothing: OCC keeps running RFXs manually in Excel and email and may never prioritize a purchase."},
+          {"tone": "good", "text": "The one real opening is buyer-confirmed pain, OCC runs 'a lot of' RFXs entirely manually, which Zycus's AI sourcing directly addresses if we can make it urgent."}
+        ],
+        "deal_momentum": [
+          {"tone": "warn", "text": "No buyer-facing progress since the 24 Apr intro call; the only recent motion is internal (owner reassigned to Michael McCarthy on 11 May, close pushed to Apr 2027)."},
+          {"tone": "warn", "text": "The next step is a rep-side nurture, an Agentic AI Webinar invite, with no buyer commitment or date."}
+        ],
+        "customer_commitment": [
+          {"tone": "warn", "text": "Marcy made no commitment, introduced no colleagues, and asked only to receive information 'for future reference' when OCC 'may need it.'"},
+          {"tone": "warn", "text": "OCC has not responded in 72 days; a 29 Apr Opportunity Health task already flagged 'Prospect's gone cold.'"}
+        ],
+        "deal_risk": [
+          {"tone": "warn", "text": "Single-threaded on a self-described non-buyer with no economic buyer, no compelling event and no evaluation timeline."},
+          {"tone": "warn", "text": "Forecast category Pipeline is indefensible on a not-in-market lead; recommend Omitted until OCC confirms an active evaluation."}
+        ]
+      },
+      "factors": {
+        "deal_momentum": {"strength": -0.8, "evidence": "No buyer touch in 72 days; only internal CRM edits and a rep-side webinar invite since the 24 Apr intro call."},
+        "customer_commitment": {"strength": -0.9, "evidence": "Buyer said 'not actively in the market,' set no next step, and has been silent 72 days."},
+        "deal_risk": {"strength": -0.8, "evidence": "Single-threaded, no EB, no compelling event; do-nothing is the leading outcome."}
+      }
+    },
+    "scope_change": {"direction": "stable", "from": null, "to": null, "detail": "No prior scope on record to compare; products span the full S2P suite (iContract, iSource, iSupplier, eProcurement, iRequest, Merlin, iRisk, Merlin Intake). No narrowing observed this run."},
+    "customer_preference": {"level": "none", "evidence": "Marcy Harman: 'I'm not, like, actively in the market... there's nothing really going on right now' (24 Apr 2026). Neutral, information-only posture."},
+    "business_case": {"status": "partial", "evidence": "Qualitative pain only: OCC runs 'a lot of' RFXs 'Manually' in Excel/email; no cost, cycle-time, FTE or savings figure was quantified by the buyer."},
+    "momentum_signals": {
+      "seniority_rising": false,
+      "commercial_topics_entering": false,
+      "concrete_dates": false,
+      "customer_requested_next_meeting": false,
+      "close_plan_concretizing": false,
+      "generic_demo_only": true,
+      "competitor_praised": false
+    },
+    "critical_signals": [
+      {"lens": "Last meeting", "text": "The 24 April intro call ended with Marcy Harman saying OCC is not actively in the market and 'nothing is really going on right now'; it was a learning session, not a buying trigger.", "tone": "warn"},
+      {"lens": "Competition", "text": "OCC is only category-mapping Zycus against its Oracle ERP, Zip and CLM tools; there is no live evaluation or shortlist, so the real contest is against doing nothing.", "tone": "neu"},
+      {"lens": "New stakeholder", "text": "Marcy Harman remains the single thread and has never advocated; no procurement or finance leader has engaged, so the deal has no budget owner.", "tone": "warn"},
+      {"lens": "Commercials", "text": "No budget, ROI or economic buyer has surfaced; the $100k amount is a placeholder with no buyer-confirmed value case.", "tone": "warn"}
+    ],
+    "ceo_intervention": {"needed": false},
+    "recommended_moves": {
+      "items": [
+        {"rank": 1, "action": "Michael McCarthy re-engages Marcy Harman with a tailored manual-RFX value point.", "owner": "Deal team", "horizon": "next_7_days", "trigger": "72 days silent since the 24 Apr intro call where Marcy confirmed manual RFX pain but said she is not in-market.", "trigger_date": "2026-04-24", "act_by": "2026-07-13", "expected_effect": "Reopens the relationship on a concrete pain and tests whether a real need has emerged, restarting momentum on a dark lead."},
+        {"rank": 2, "action": "Ask Marcy for OCC's annual RFX volume and average build time to size the manual-process cost.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Buyer confirmed 'a lot of' RFXs done 'Manually' but quantified nothing (24 Apr 2026).", "trigger_date": "2026-04-24", "act_by": "2026-07-20", "expected_effect": "Converts qualitative pain into a numeric business case, the prerequisite for any economic-buyer conversation."},
+        {"rank": 3, "action": "Request an intro from Marcy to OCC procurement and finance leadership who own platform budget.", "owner": "Deal team", "horizon": "next_14_days", "trigger": "Single-threaded on Marcy; a 29 Apr task flagged 'Decision Maker is not identified' and 'keep multi-threaded'.", "trigger_date": "2026-04-29", "act_by": "2026-07-24", "expected_effect": "Maps an economic buyer and reduces single-thread risk so the deal can qualify beyond a nurture contact."},
+        {"rank": 4, "action": "If no reply within 10 business days, requalify the deal or move it to nurture and drop the Pipeline forecast.", "owner": "Deal team", "horizon": "next_30_days", "trigger": "Forecast Pipeline is indefensible on a not-in-market lead with 72 days silence.", "trigger_date": "2026-04-25", "act_by": "2026-08-03", "expected_effect": "Keeps the forecast honest and reallocates effort away from a lead that is not an active opportunity."}
+      ]
+    }
+  },
+  "evidence_coverage": {
+    "calls_discovered": 1,
+    "calls_read": 1,
+    "calls_omitted": [],
+    "discovery_method": "opp+account+attendees",
+    "salesforce_window": "Activities last 120d; field history to 2026-07-03",
+    "avoma_attendees": ["Marcy Harman"],
+    "gaps": [
+      "Only one buyer call exists (24 April 2026 intro); no discovery, demo, or commercial call, so evaluation criteria, decision process, economic buyer and quantified value are all genuinely unknown.",
+      "No OpportunityContactRole beyond Marcy Harman; procurement and finance leadership are unmapped and unnamed in the source data."
+    ]
+  },
+  "analysis_confidence": "Low",
+  "forecast_critical": false,
+  "swept_at": "2026-07-06"
+}

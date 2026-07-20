@@ -80,6 +80,18 @@ _SWEEP_TUNING = {
     # a deal if the AI call fails or a loss is a hard fact, so a deal is never left unscored.
     "DEAL_ENGINE_AI_SCORING": "true",
     "DEAL_ENGINE_SCORING_MODEL": "anthropic:claude-sonnet-5",
+    # AI-SCORER TOKEN BUDGET (2026-07-20). Was never set, so the scorer ran on the CODE
+    # default of 16000 while the sweep got 64000. sonnet-5 is a THINKING model and this
+    # budget covers thinking + text TOGETHER: the locked Studio engines alone are ~32k
+    # chars (win v10.10 19k + mom v10.10 13k) before the evidence packet, so on rich deals
+    # the response truncated, _extract_json found no JSON, and the deal silently fell back
+    # to the deterministic keyword scorer (factor_source="hybrid", scoring_degraded=true)
+    # with the UI banner "keyword fallback — degraded score". Same failure the comment in
+    # deal_engine_ai_scoring._model() records at 4000 -> 16000, just at a higher ceiling.
+    # Evidence: 32 live deals on hybrid, 25 of them "ai scoring returned no usable scores",
+    # and they skew to the BIGGEST books (Bosch $4.8M, JT International $1.5M, Keurig $500k)
+    # because more evidence = more thinking = truncation. 64000 matches the sweep.
+    "DEAL_SCORING_MAX_TOKENS": "64000",
     # MANUAL-ONLY TEST PAUSE stays ON: Salesforce-CDC and scheduled sweeps are still DROPPED
     # (server.py's trigger route refuses them; enqueue_trigger blocks them independently).
     # What CHANGED 2026-07-09: a MANUAL trigger no longer runs fire-and-forget on the web tier

@@ -4187,25 +4187,52 @@ async def analyze_one(
             # stamp (factor_source=hybrid, ai_scoring_error=None) — a wrong keyword score shipped
             # looking normal. Every fallback now stamps scoring_degraded + fallback_reason and
             # logs LOUDLY, so a degraded score is visible at a glance and greppable in CloudWatch.
+            # OMNIVISION-ONLY (2026-07-20, user-directed): the deterministic KEYWORD scorer must
+            # NEVER stand in for a failed AI score. It produced numbers that looked real but were
+            # not — 32 live deals ($12.8M incl. Bosch $4.8M) sat on `factor_source=hybrid`, many at
+            # the engine's bare 5.0 floor, and those fake numbers flow into every rollup, forecast
+            # and "at risk" list. An HONEST BLANK beats a confident wrong number: on failure we now
+            # leave the scores NULL and stamp the error so the deal reads "scoring failed — needs a
+            # re-sweep" instead of silently wearing a keyword score.
+            #
+            # The deterministic engine is still used for the two cases where it is NOT guessing:
+            #   1. a LOST/dead deal (a hard fact — handled inside score_deal_ai, which returns the
+            #      terminal headline immediately and never AI-scores a loss), and
+            #   2. the empty-read SAFETY NET below, which carries the PRIOR good scores forward.
+            _scoring_failed = False
             if not (isinstance(_scores, dict)
                     and (_scores.get("headline") or {}).get("win_position") is not None):
                 if _fallback_reason is None:
                     _fallback_reason = ((_scores or {}).get("ai_scoring_error")
                                         if isinstance(_scores, dict) else None) \
                         or "ai scorer returned no usable headline"
-                _scores = deal_engine_scoring.compute_deal_scores(parsed)
-                if isinstance(_scores, dict):
-                    _scores["scoring_degraded"] = True
-                    _scores["fallback_reason"] = str(_fallback_reason)[:220]
-                print(f"[DEAL-SCORES] DEGRADED opp={opp_id} — deterministic fallback scored this "
-                      f"deal ({_fallback_reason})", flush=True)
+                _scoring_failed = True
+                _scores = {
+                    "headline": {},                 # NO numbers — the UI shows "not scored"
+                    "factor_source": None,
+                    "scoring_degraded": True,
+                    "scoring_failed": True,
+                    "fallback_reason": str(_fallback_reason)[:220],
+                    "ai_scoring_error": str(_fallback_reason)[:220],
+                }
+                print(f"[DEAL-SCORES] ❌ SCORING FAILED opp={opp_id} — Omnivision produced no usable "
+                      f"score and the keyword fallback is DISABLED, so this deal is left UNSCORED "
+                      f"({_fallback_reason}). Re-sweep required.", flush=True)
             elif isinstance(_scores, dict) and _scores.get("ai_scoring_error"):
-                # score_deal_ai's INTERNAL fallback (it returns det scores + the error string):
-                # normalize to the same loud shape.
-                _scores["scoring_degraded"] = True
-                _scores["fallback_reason"] = str(_scores.get("ai_scoring_error"))[:220]
-                print(f"[DEAL-SCORES] DEGRADED opp={opp_id} — internal fallback "
-                      f"({_scores.get('ai_scoring_error')})", flush=True)
+                # score_deal_ai's INTERNAL fallback returned deterministic numbers + an error.
+                # Those are keyword scores wearing the analyst's badge — discard them too.
+                _err = str(_scores.get("ai_scoring_error"))[:220]
+                _scoring_failed = True
+                _scores = {
+                    "headline": {},
+                    "factor_source": None,
+                    "scoring_degraded": True,
+                    "scoring_failed": True,
+                    "fallback_reason": _err,
+                    "ai_scoring_error": _err,
+                }
+                print(f"[DEAL-SCORES] ❌ SCORING FAILED opp={opp_id} — internal keyword fallback "
+                      f"DISCARDED, deal left UNSCORED ({_err}). Re-sweep required.", flush=True)
             # SAFETY NET — a sweep that read NOTHING (zero Avoma calls AND no engagement
             # footprints AND no CRM evidence) cannot produce a trustworthy score; left alone
             # it writes a confident-but-wrong LOW score over a good one — the "a strong deal
@@ -4244,11 +4271,22 @@ async def analyze_one(
             _fresh_ok = bool(_scores) and isinstance(_fresh_hl, dict) and _fresh_hl.get("win_position") is not None
             _fresh_dead = isinstance(_fresh_hl, dict) and _fresh_hl.get("dead") is True
             if (not _fresh_ok) and (not _fresh_dead) and (not _is_loss) and _prior_ok:
+                _carry_err = (_scores or {}).get("ai_scoring_error") if isinstance(_scores, dict) else None
                 _scores = dict(_prior_ds)
                 _scores["stale_read"] = True
                 _scores["headline"] = {**_prior_hl, "stale_read": True}
+                # Preserve WHY this sweep failed to score. Without this the carried-forward
+                # (older, but real) score looks perfectly healthy and the deal is invisible to
+                # any "needs re-sweep" sweep-quality query — the scoring failure would be
+                # silently swallowed by the carry-forward.
+                if _carry_err:
+                    _scores["scoring_failed"] = True
+                    _scores["ai_scoring_error"] = _carry_err
+                    _scores["fallback_reason"] = _carry_err
                 print(f"[DEAL-SCORES] degraded/empty compute opp={opp_id} — carried prior "
-                      f"scores forward (fresh headline missing win_position)", flush=True)
+                      f"scores forward (fresh headline missing win_position)"
+                      f"{'; scoring failure recorded: ' + str(_carry_err)[:120] if _carry_err else ''}",
+                      flush=True)
             if _pinned and isinstance(_prior_ds, dict):
                 # Frozen by a human correction — keep the pinned scores + panel verbatim.
                 _scores = dict(_prior_ds)

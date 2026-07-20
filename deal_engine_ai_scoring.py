@@ -180,7 +180,13 @@ def _model():
     return CachedChatAnthropic(
         model_name=model_id,
         api_key=os.environ.get("ANTHROPIC_API_KEY") or None,
-        max_tokens=int(os.getenv("DEAL_SCORING_MAX_TOKENS", "16000")),
+        # 64000 (was 16000). This budget covers THINKING + TEXT together, and the locked
+        # Studio engines are ~32k chars (win v10.10 + mom v10.10) before the evidence packet,
+        # so 16000 truncated the response on evidence-rich deals -> _extract_json found no
+        # JSON -> silent permanent fallback to the deterministic keyword scorer. The env is
+        # now also set explicitly in render_taskdef (_SWEEP_TUNING); this default matches it
+        # so any process WITHOUT the env still gets the full budget instead of degrading.
+        max_tokens=int(os.getenv("DEAL_SCORING_MAX_TOKENS", "64000")),
         timeout=int(os.getenv("LLM_REQUEST_TIMEOUT_S", "300")),
         max_retries=int(os.getenv("ANTHROPIC_MAX_RETRIES", "4")),
     )

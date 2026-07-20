@@ -11,6 +11,37 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-20 — Omnivision-only scoring: no more keyword fallback + fix the truncation that caused it
+
+**What.**
+1. **`DEAL_SCORING_MAX_TOKENS=64000`** added to the shared `_SWEEP_TUNING` block
+   (`.github/deploy/render_taskdef.py`) and the code default in
+   `deal_engine_ai_scoring._model()` raised **16000 → 64000**.
+2. **The deterministic KEYWORD fallback no longer substitutes for a failed AI score**
+   (`deal_engine_sweep.py`). On AI-scoring failure the deal is now left **UNSCORED** with
+   `scoring_failed=true` + `ai_scoring_error`, and logs `❌ SCORING FAILED … Re-sweep required`.
+   The deterministic engine is still used for the two cases where it is NOT guessing: a
+   hard-fact **lost** deal, and the empty-read safety-net that carries PRIOR good scores forward.
+3. The broader carry-forward now **preserves the failure reason** when it carries an older good
+   score, so a scoring failure can't be silently swallowed and stays greppable/queryable.
+
+**Why.** `DEAL_SCORING_MAX_TOKENS` was never set, so the scorer ran on the 16000 code default
+while the sweep got 64000. `claude-sonnet-5` is a THINKING model and that budget covers
+thinking + text together; the locked Studio engines alone are ~32k chars (win v10.10 19k +
+mom v10.10 13k) before the evidence packet, so on evidence-rich deals the response truncated,
+`_extract_json` found no JSON, and the deal silently fell back to the keyword scorer. Same
+failure class the comment in `_model()` records at 4000→16000, just at a higher ceiling.
+Result: **32 live deals ($12.8M) on `factor_source=hybrid`** — skewed to the BIGGEST books
+(Bosch $4.8M, JT International $1.5M, Keurig $500k) because more evidence = more thinking =
+truncation — 25 of them reading `ai scoring returned no usable scores`. Many sat at the
+deterministic engine's bare `5.0` floor: fake numbers that flowed into every rollup, forecast
+and at-risk list. User directive: an honest blank beats a confident wrong number.
+
+**How to work with it going forward.** Keep `DEAL_SCORING_MAX_TOKENS` in `_SWEEP_TUNING`
+(shared) — do not re-add a per-tier copy. A deal showing "not scored" now means the AI scorer
+genuinely failed and it needs a re-sweep — it is NOT a low score. Query
+`record->ai->deal_scores->>scoring_failed = 'true'` to find them.
+
 ## 2026-07-19 — Sweep timeouts: shared budget + heavy sweeps off the API tier
 
 **What.** Three changes so a sweep can never die on a short clock again:

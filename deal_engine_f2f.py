@@ -283,9 +283,14 @@ def is_real_person(name: str, email: str = "") -> bool:
 # a personal/forwarded email). Values are the person's real Zycus C-title. Extend as needed.
 ZYCUS_EXECS_BY_EMAIL = {
     "amit.shah@zycus.com": "Chief Marketing Officer",
+    "aatish@zycus.com": "Chief Executive Officer",
+    "shekhar.varma@zycus.com": "President",
 }
 ZYCUS_EXECS_BY_NAME = {
     "amit shah": "Chief Marketing Officer",
+    "aatish dedhia": "Chief Executive Officer",
+    "shekhar varma": "President",
+    "shekhar verma": "President",   # duplicate SF spelling, same person/email
 }
 
 

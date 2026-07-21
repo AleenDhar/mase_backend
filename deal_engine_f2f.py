@@ -275,6 +275,31 @@ def is_real_person(name: str, email: str = "") -> bool:
     return True
 
 
+# ── Zycus-side executives (OUR side) ──────────────────────────────────────────────
+# "Executive connect" counts a C-level on EITHER side — their CPO or our CMO. But the buyer
+# roster comes from SF EventRelation (their contacts only) and Avoma attendees carry no
+# titles, so a Zycus C-level in the room is invisible unless we name them here. Keyed by
+# @zycus.com email (exact) and by normalized full name (fallback when Avoma logs a name but
+# a personal/forwarded email). Values are the person's real Zycus C-title. Extend as needed.
+ZYCUS_EXECS_BY_EMAIL = {
+    "amit.shah@zycus.com": "Chief Marketing Officer",
+}
+ZYCUS_EXECS_BY_NAME = {
+    "amit shah": "Chief Marketing Officer",
+}
+
+
+def zycus_exec_title(email: str = "", name: str = "") -> str | None:
+    """The Zycus C-title for one of OUR attendees, or None. Email match is authoritative;
+    the name fallback is trusted only for a @zycus.com (or missing) email, never a buyer's."""
+    e = _norm(email)
+    if e in ZYCUS_EXECS_BY_EMAIL:
+        return ZYCUS_EXECS_BY_EMAIL[e]
+    if not e or e.endswith("zycus.com"):
+        return ZYCUS_EXECS_BY_NAME.get(_norm(name))
+    return None
+
+
 def _to_date(v):
     if not v:
         return None
@@ -286,7 +311,7 @@ def _to_date(v):
 
 
 def derive_exec_f2f(*, events=None, tasks=None, next_step: str = "",
-                    today: date | None = None) -> dict:
+                    today: date | None = None, zycus_exec_meetings=None) -> dict:
     """Weigh the evidence and return the exec-F2F verdict for one deal.
 
     events: [{subject, description, location, date, attendees:[{name,title,email}],
@@ -294,11 +319,14 @@ def derive_exec_f2f(*, events=None, tasks=None, next_step: str = "",
              is the untouched body (virtual veto only); see _is_virtual.
     tasks:  [{subject, status, date}]
     next_step: Opportunity.Next_Step__c raw text.
+    zycus_exec_meetings: [{date, subject, name, title}] — past in-person meetings a ZYCUS
+             C-level attended (resolved by the caller from Avoma attendees + zycus_exec_title).
+             A C-level on EITHER side makes a meeting an exec connect.
 
-    Returns {status, date, exec_name, exec_title, evidence, days_stale,
-             near_miss, attendees_found}.  `near_miss` = in-person CONFIRMED but no
-    executive attendee resolvable — the "it happened, seniority unproven" bucket,
-    which is where the real forecast exposure sits (measured: $8.4M over 7 deals).
+    Returns {status, date, exec_name, exec_title, exec_side, evidence, days_stale,
+             near_miss, attendees_found}.  `exec_side` is "buyer" or "zycus" on a "done".
+    `near_miss` = in-person CONFIRMED but no executive (either side) resolvable — the "it
+    happened, seniority unproven" bucket, where the real forecast exposure sits.
     """
     today = today or datetime.now(timezone.utc).date()
     events = events or []
@@ -343,11 +371,30 @@ def derive_exec_f2f(*, events=None, tasks=None, next_step: str = "",
         elif near is None or (when > near[0]):
             near = (when, cite, len(people))
 
-    if best:
+    # Zycus-side C-level on a past in-person meeting — our exec counts too. The caller has
+    # already matched Avoma attendees against the roster (zycus_exec_title), so each entry is
+    # a confirmed hit; we only enforce "past" here.
+    zbest = None
+    for zm in (zycus_exec_meetings or []):
+        when = _to_date(zm.get("date"))
+        if when is None or when > today:
+            continue
+        if zbest is None or when > zbest[0]:
+            zbest = (when, zm)
+
+    if best or zbest:
+        # Whichever side's most-recent exec meeting is newer wins the "done".
+        if zbest and (best is None or zbest[0] >= best[0]):
+            when, zm = zbest
+            return {"status": STATUS_DONE, "date": when.isoformat(),
+                    "exec_name": zm.get("name"), "exec_title": zm.get("title"),
+                    "exec_side": "zycus", "evidence": zm.get("subject") or None,
+                    "days_stale": (today - when).days, "near_miss": False,
+                    "attendees_found": 1}
         when, ex, cite, n = best
         return {"status": STATUS_DONE, "date": when.isoformat(),
                 "exec_name": ex.get("name"), "exec_title": ex.get("title"),
-                "evidence": cite, "days_stale": (today - when).days,
+                "exec_side": "buyer", "evidence": cite, "days_stale": (today - when).days,
                 "near_miss": False, "attendees_found": n}
 
     # No exec-backed meeting. Look for a planned signal in tasks / next-step.
@@ -383,7 +430,7 @@ def derive_exec_f2f(*, events=None, tasks=None, next_step: str = "",
         when, cite, n = near
         return {"status": STATUS_PLANNED,
                 "date": when.isoformat() if when else None,
-                "exec_name": None, "exec_title": None, "evidence": cite,
+                "exec_name": None, "exec_title": None, "exec_side": None, "evidence": cite,
                 "days_stale": (today - when).days if when else None,
                 "near_miss": True, "attendees_found": n}
 
@@ -391,9 +438,9 @@ def derive_exec_f2f(*, events=None, tasks=None, next_step: str = "",
         when, cite = planned
         return {"status": STATUS_PLANNED,
                 "date": when.isoformat() if when else None,
-                "exec_name": None, "exec_title": None, "evidence": cite,
+                "exec_name": None, "exec_title": None, "exec_side": None, "evidence": cite,
                 "days_stale": None, "near_miss": False, "attendees_found": 0}
 
     return {"status": STATUS_NONE, "date": None, "exec_name": None,
-            "exec_title": None, "evidence": None, "days_stale": None,
+            "exec_title": None, "exec_side": None, "evidence": None, "days_stale": None,
             "near_miss": False, "attendees_found": 0}

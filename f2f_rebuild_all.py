@@ -6,11 +6,11 @@ neither. Attendee truth comes from EventRelation -> Contact; the same meeting is
 (Clari Event + Avoma Event + Task) with DIFFERENT WhoIds on each mirror, so attendees are unioned
 across events sharing subject+date before the gate sees them. Parallel SF reads (8 threads).
 --apply writes {ai,exec_f2f}."""
-import sys, re, json
+import sys, re, json, ast
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests, urllib3
-from deal_engine_f2f import derive_exec_f2f
+from deal_engine_f2f import derive_exec_f2f, zycus_exec_title, _has_in_person
 from deal_engine_f2f_prep import (EVENT_ORDER_BY, MAX_EVENTS, MAX_TASKS, TASK_ORDER_BY,
                                   clean_description, event_date, event_window_clause,
                                   should_replace, task_window_clause)
@@ -28,6 +28,44 @@ H = {"apikey": KEY, "Authorization": f"Bearer {KEY}"}
 REF = re.search(r"https://([a-z0-9]+)\.supabase\.co", sec["SUPABASE_URL"]).group(1)
 MGMT = f"https://api.supabase.com/v1/projects/{REF}/database/query"; MTOK = sec["SUPABASE_ACCESS_TOKEN"]
 SID, INST = C.sf_login(sec)
+# Avoma datalake — the ONLY source that records Zycus-side attendees (EventRelation is buyer
+# contacts only). None if creds are absent; Zycus-exec detection is skipped gracefully then.
+try:
+    DL = C.load_datalake()
+except Exception:  # noqa: BLE001
+    DL = None
+
+
+def zycus_exec_meetings_for(oid):
+    """Past in-person Avoma meetings a Zycus C-level attended, for one opp — so 'exec connect'
+    credits OUR CMO/CFO/etc., not just the buyer's. Avoma carries no titles, so each @zycus.com
+    attendee is matched by email/name against the roster in deal_engine_f2f (zycus_exec_title)."""
+    if not DL:
+        return []
+    try:
+        ms = C.datalake_get(DL, f"avoma_meetings?crm_opportunity_id=ilike.{oid}*"
+                                "&select=subject,start_at,attendees&order=start_at.desc&limit=60") or []
+    except Exception:  # noqa: BLE001
+        return []
+    out = []
+    for m in ms:
+        subj = m.get("subject") or ""
+        if not _has_in_person(subj):        # same in-person marker test as the gate
+            continue
+        att = m.get("attendees")
+        if isinstance(att, str):
+            try:
+                att = ast.literal_eval(att)
+            except Exception:  # noqa: BLE001
+                att = []
+        for p in (att or []):
+            if not isinstance(p, dict):
+                continue
+            title = zycus_exec_title(p.get("email") or "", p.get("name") or "")
+            if title:
+                out.append({"date": str(m.get("start_at"))[:10], "subject": subj,
+                            "name": p.get("name"), "title": title})
+    return out
 
 DEALS_PER_CHUNK = 40      # one Event/Task/Opp query per chunk, not per deal
 IDS_PER_IN = 200          # SOQL IN() batch for the EventRelation / Contact hops
@@ -50,7 +88,8 @@ def _key(subject, when):
 
 def pull_chunk(oids):
     """All SOQL for one chunk of deals -> {oid: {"events":[...], "tasks":[...], "next_step":str}}."""
-    out = {o: {"events": [], "tasks": [], "next_step": ""} for o in oids}
+    out = {o: {"events": [], "tasks": [], "next_step": "", "zycus_exec_meetings": []}
+           for o in oids}
     inl = _ids(oids)
 
     evs = C.soql(SID, INST, (
@@ -114,6 +153,10 @@ def pull_chunk(oids):
         oid = id15(o.get("Id"))
         if oid in out:
             out[oid]["next_step"] = o.get("Next_Step__c") or ""
+
+    # Zycus-side C-level attendance from Avoma (per opp — the datalake has no WhatId-IN batch).
+    for o in oids:
+        out[o]["zycus_exec_meetings"] = zycus_exec_meetings_for(o)
     return out
 
 
@@ -150,7 +193,8 @@ def main():
     def work(ch):
         try:
             return {o: derive_exec_f2f(events=d["events"], tasks=d["tasks"],
-                                       next_step=d["next_step"])
+                                       next_step=d["next_step"],
+                                       zycus_exec_meetings=d.get("zycus_exec_meetings"))
                     for o, d in pull_chunk(ch).items()}
         except Exception as e:  # noqa: BLE001 — one bad chunk must not sink the backfill
             print(f"  ERR chunk {ch[0]}..: {str(e)[:120]}")
@@ -160,6 +204,14 @@ def main():
     with ThreadPoolExecutor(max_workers=8) as ex:
         for fut in as_completed([ex.submit(work, ch) for ch in chunks]):
             out.update(fut.result())
+
+    # Preserve the stored meeting BRIEF — derive_exec_f2f never produces one (it is an
+    # out-of-band Next-Step summary), so a bare recompute would blank the tooltip content.
+    for o, v in out.items():
+        if isinstance(v, dict) and not v.get("brief"):
+            _sb = stored.get(o)
+            if isinstance(_sb, dict) and _sb.get("brief"):
+                v["brief"] = _sb["brief"]
 
     counts = defaultdict(int)
     for v in out.values():

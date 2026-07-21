@@ -4154,6 +4154,16 @@ async def analyze_one(
                 parsed.setdefault("ai", {})["exec_f2f"] = _f2f_prior
                 print(f"[EXEC-F2F] kept stored verdict for {opp_id}: "
                       f"{_f2f_prior.get('status')} beats new {_f2f_v.get('status')}", flush=True)
+            # exec_f2f.brief is the deal's meeting-substance one-liner shown on the column
+            # tooltip. It is summarized from the SFDC Next Step out-of-band (an LLM step), NOT
+            # produced by derive_exec_f2f — so a verdict recompute above never carries it and
+            # would blank it. Preserve the prior brief onto whatever verdict was written, unless
+            # a fresher brief is already present.
+            _f2f_written = (parsed.get("ai") or {}).get("exec_f2f")
+            if isinstance(_f2f_written, dict) and not _f2f_written.get("brief"):
+                _f2f_pb = _f2f_prior.get("brief") if isinstance(_f2f_prior, dict) else None
+                if _f2f_pb:
+                    _f2f_written["brief"] = _f2f_pb
         except Exception as _f2fe:  # noqa: BLE001
             print(f"[EXEC-F2F] sweep compute failed for {opp_id}: {_f2fe}", flush=True)
         try:

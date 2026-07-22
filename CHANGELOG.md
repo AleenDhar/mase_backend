@@ -11,6 +11,76 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-22 — Ask-Mase per-user spend cap ($20 / rolling 5h window)
+
+**What.** Ask-Mase (deal chat) now meters LLM spend per user and caps it, mirroring
+Claude's usage-limit UX. New migration `migrations/0015_mase_ask_spend_cap.sql` adds the
+spend-window table + `mase_ask_add_spend()` RPC (RLS enabled, NO policies — service-role
+only, same posture as `mase_skills`/0014). In `server.py`: `_save_chat_usage(chat_id,
+user_email)` now returns the run's dollar cost; `_record_ask_spend(user_email, cost)` calls
+the RPC to accumulate it onto the caller's window; `_ask_window_hours()` reads the window
+length from the shared Supabase `app_config` key `ask_mase_window_hours` (same key the
+frontend proxy reads), env `ASK_MASE_WINDOW_HOURS` fallback, default 5h. Wired into
+`run_agent_and_save` / `deal_engine_chat_async`.
+
+**Why.** Unbounded Ask-Mase usage let a single user run up large model cost. The window is
+FIXED (anchored to first use in the period, not sliding); `resets_at = window_start + 5h`.
+Identity is the lower-cased user email, injected by the frontend proxy for non-admins only —
+admins send no email, so no window is recorded and they are automatically exempt. Spend
+recording is best-effort: a failure never blocks a chat.
+
+**How to work with it going forward.** The backend owns cost and advances the window; the
+proxy is the identity choke point. Tune the window live from admin via `app_config`
+(`ask_mase_window_hours`) — no deploy needed. The cap amount lives in the migration/RPC.
+
+---
+
+## 2026-07-22 — Stakeholder roster = SEEDED membership + LLM enrichment
+
+**What.** The Stakeholders tab was silently dropping people who are demonstrably
+engaged on a deal. Root cause was **LLM adherence, not wiring**: the sweep already fed
+the agent the full account-contact list, the rep-written narrative (Description /
+Next Step / Next Step History) and the call-attendee roster, but the agent only mapped
+Opportunity Contact Roles + loudly-discussed names and skipped quiet attendees. A
+prompt-only lever (sweep studio v10.7) did **not** fix it — the v10.7 rerun still dropped
+Kory Cooper (Bass Pro), Mazen El-Haidari (McAfee) and Bhaskar Pandey / Marci Jasinski
+(Russell).
+
+Fix in `deal_engine_sweep._roster_from_sfdc` (called from `analyze_one`): **membership is
+now seeded from fact, then the LLM enriches** (role/title/sentiment) rather than deciding
+membership. A `_seed(contact, why)` pass adds, if not already mapped:
+1. **every** Opportunity Contact Role,
+2. every **call attendee** (`_buyer_attendee_roster`, built from Avoma `attendee_objs`)
+   that resolves to a real SFDC contact,
+3. every **narrative-named** SFDC contact (whole first+last-name match against
+   Description / Next Step / Next Step History),
+each enriched from the AI item when the fold-key matches, else tagged `_source=why`.
+`_ROSTER_CAP` raised 8 → 12. A new `_DEPT_WORDS` frozenset guards the narrative seed so a
+department filed as a contact ("Global Sourcing", "Procurement Team") is skipped when ALL
+its tokens are role/department words.
+
+**Why this shape.** We explicitly rejected a deterministic force-feed of the whole
+roster — membership from fact + LLM enrichment keeps the agent doing the judgement work
+(role, sentiment, "why they matter") while guaranteeing a proven-engaged person can't be
+dropped. AI-invented names with no SFDC anchor are still dropped (anti-fabrication intact).
+
+**Verified.** Deploy-gated rerun of the three canonical opps on live `mase-worker:285`:
+Russell 4→6, McAfee 5→6, Bass Pro 5→7; all previously-dropped names recovered; no
+"Global Sourcing" phantom.
+
+**Scope boundary (deliberate — do NOT "fix").** The roster is **verified SFDC contacts
+only**: every seeded person must anchor to a real Contact (anti-fabrication). A read-only
+coverage audit of the three canonical opps (2026-07-22) confirmed the ONLY residual misses
+are people with **no SFDC contact record at all** — Russell: 8 `@russellinvestments.com`
+Avoma call attendees (Bharath, Barros, Jagga, Muravne, Mittal, Kakkad, Harris, Arena);
+McAfee: Rohith Shankar (runs the POC over email) + Ruben Rodriguez Valle + Juliana Ferreira
+(CC'd); Bass Pro: Chris Rodgers (+ tentative Sara Walker). All appear only in Avoma
+attendee lists / email signatures/CC, and **none are Salesforce contacts** (verified by
+SOQL against the buyer domains). Surfacing engaged-but-not-in-CRM people as an "also
+engaged" tier was **explicitly declined** — MASE shows CRM-verified contacts only. So the
+narrative seed intentionally does NOT mine Task/Event activity bodies, and there is no
+unlinked-participant tier. Revisit only if that product decision is reversed.
+
 ## 2026-07-21 — Exec F2F wired into the sweep + exposed on the deals list
 
 **What.** Backend plumbing for the Exec F2F column. Two additive edits, no new logic —

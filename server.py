@@ -2284,6 +2284,28 @@ def _calculate_llm_cost(
     return 0.0
 
 
+def _model_from_response(ai_message) -> Optional[str]:
+    """Best-effort read of the model the provider ACTUALLY used, from the
+    message's response/usage metadata. Anthropic + OpenAI both echo the served
+    model back under response_metadata["model_name"] (or ["model"]). Returns
+    None when unavailable so the caller falls back to the passed label.
+
+    Why this exists: the async deal chat spawns run_agent_and_save with the
+    _deal_engine_model() label ("gpt-4o"), but the chat agent actually runs
+    opportunity_analyzer._build_model() (claude-sonnet-4-5 by default). Pricing
+    Sonnet tokens against the gpt-4o rate ($2.50/$10 vs $3/$15) under-reported
+    cost. Trusting the provider-reported model fixes the mispricing generically.
+    """
+    for attr in ("response_metadata", "usage_metadata"):
+        meta = getattr(ai_message, attr, None)
+        if isinstance(meta, dict):
+            for k in ("model_name", "model"):
+                v = meta.get(k)
+                if v:
+                    return str(v)
+    return None
+
+
 def _accumulate_tokens_from_msg(chat_id: str, model: str, ai_message) -> None:
     usage = getattr(ai_message, "usage_metadata", None)
     if not usage:
@@ -2305,7 +2327,10 @@ def _accumulate_tokens_from_msg(chat_id: str, model: str, ai_message) -> None:
             "per_model": {},
         }
     acc = _chat_token_accumulators[chat_id]
-    model_key = model or acc["model"]
+    # Prefer the provider-reported model over the caller's label so cost is priced
+    # against the model that really ran (see _model_from_response). Falls back to
+    # the passed label, then the accumulator's stored model.
+    model_key = _model_from_response(ai_message) or model or acc["model"]
     acc["model"] = model_key
     inp = usage.get("input_tokens", 0) or 0
     out = usage.get("output_tokens", 0) or 0
@@ -2332,12 +2357,16 @@ def _accumulate_tokens_from_msg(chat_id: str, model: str, ai_message) -> None:
     per[model_key]["cache_read"] += cr
 
 
-async def _save_chat_usage(chat_id: str) -> None:
+async def _save_chat_usage(chat_id: str, user_email: Optional[str] = None) -> Optional[float]:
+    """Persist this run's token usage + cost to chat_usage. Returns the computed
+    dollar cost (float) so the caller can meter per-user spend, or None when there
+    was nothing to record. `user_email` (lower-cased, non-admins only) is written
+    to chat_usage for per-user audit attribution."""
     if not supabase or chat_id not in _chat_token_accumulators:
-        return
+        return None
     acc = _chat_token_accumulators.get(chat_id, {})
     if not acc or not acc.get("total_tokens"):
-        return
+        return None
     per_model = acc.get("per_model", {})
     if per_model:
         cost = sum(
@@ -2361,18 +2390,21 @@ async def _save_chat_usage(chat_id: str) -> None:
         )
         model_display = acc["model"]
     loop = asyncio.get_event_loop()
+    _row = {
+        "chat_id": chat_id,
+        "model": model_display,
+        "input_tokens": acc["input_tokens"],
+        "output_tokens": acc["output_tokens"],
+        "total_tokens": acc["total_tokens"],
+        "cost_usd": round(cost, 6),
+    }
+    if user_email:
+        _row["user_email"] = user_email
     try:
         await loop.run_in_executor(
             None,
             lambda: supabase.table("chat_usage").upsert(
-                {
-                    "chat_id": chat_id,
-                    "model": model_display,
-                    "input_tokens": acc["input_tokens"],
-                    "output_tokens": acc["output_tokens"],
-                    "total_tokens": acc["total_tokens"],
-                    "cost_usd": round(cost, 6),
-                },
+                _row,
                 on_conflict="chat_id",
             ).execute(),
         )
@@ -2386,6 +2418,55 @@ async def _save_chat_usage(chat_id: str) -> None:
         )
     except Exception as e:
         print(f"[USAGE ERROR] Failed to save usage for {chat_id}: {e}")
+    return cost
+
+
+def _ask_window_hours() -> float:
+    """Ask-Mase rolling-window length in hours. Read from the SHARED Supabase
+    app_config table (key `ask_mase_window_hours`) — the SAME key the proxy reads
+    (lib/config/server.ts) — so the window length is single-sourced and tunable
+    live from admin without a deploy. Falls back to the ASK_MASE_WINDOW_HOURS env
+    var, then 5 (the contract default). Best-effort: any read failure falls back,
+    never raises. Runs inside the record executor, so the DB read never blocks the
+    event loop."""
+    try:
+        if supabase:
+            r = supabase.table("app_config").select("value").eq(
+                "key", "ask_mase_window_hours").limit(1).execute()
+            data = getattr(r, "data", None) or []
+            if data and str(data[0].get("value") or "").strip() != "":
+                return float(data[0]["value"])
+    except Exception:  # noqa: BLE001 — fall back, never break metering
+        pass
+    try:
+        return float(os.environ.get("ASK_MASE_WINDOW_HOURS", "5"))
+    except (TypeError, ValueError):
+        return 5.0
+
+
+async def _record_ask_spend(user_email: Optional[str], cost: Optional[float]) -> None:
+    """Add this run's Ask-Mase cost to the caller's rolling spend window via the
+    Supabase RPC mase_ask_add_spend (migration 0015). BEST-EFFORT: every failure
+    is logged and swallowed so metering can NEVER break the chat. Only called
+    when a user_email is present — admins send none, so no window is recorded for
+    them (automatic exemption)."""
+    if not supabase or not user_email or not cost or cost <= 0:
+        return
+    try:
+        def _advance():
+            # config read + RPC both run here, off the event loop.
+            params = {
+                "p_email": user_email,
+                "p_cost": round(float(cost), 6),
+                "p_hours": _ask_window_hours(),
+            }
+            return supabase.rpc("mase_ask_add_spend", params).execute()
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(None, _advance)
+        print(f"[ASK SPEND] user={user_email} +${float(cost):.6f}")
+    except Exception as e:  # noqa: BLE001 — metering must never break chat
+        print(f"[ASK SPEND ERROR] user={user_email}: {e}")
+
 
 def _set_rag_context(chat_id: str, project_id: str = None):
     """Set RAG context vars so search_knowledge tool can scope its queries."""
@@ -2840,7 +2921,8 @@ async def run_agent_and_save(chat_id: str,
                              messages: list,
                              agent,
                              request_model: str = None,
-                             project_id: str = None):
+                             project_id: str = None,
+                             user_email: Optional[str] = None):
     print(
         f"\n[AGENT TASK] Starting background agent run for chat_id={chat_id}, project_id={project_id}")
     _current_chat_id.set(chat_id)
@@ -3052,7 +3134,10 @@ async def run_agent_and_save(chat_id: str,
             except Exception as _e:
                 print(f"[AGENT TASK] safety-net terminal write failed "
                       f"chat_id={chat_id}: {_e}")
-        await _save_chat_usage(chat_id)
+        _run_cost = await _save_chat_usage(chat_id, user_email)
+        # Per-user Ask-Mase spend metering. No-op for admins (user_email is None).
+        # Best-effort inside _record_ask_spend — a metering failure never breaks chat.
+        await _record_ask_spend(user_email, _run_cost)
         await _evict_checkpoint(chat_id)
         try:
             from custom_tools.search_knowledge import reset_search_knowledge_counter
@@ -9674,6 +9759,18 @@ async def deal_engine_chat_async(request: Request):
         owners = [str(o).strip() for o in d.get("owners", [])
                   if str(o).strip()] if isinstance(d.get("owners"), list) else []
         model_name = (d.get("model") or "").strip() or _deal_engine_model()
+        # Per-user Ask-Mase metering identity. The proxy injects body.user_email
+        # (lower-cased) for non-admins and NOTHING for admins, so admins are
+        # exempt automatically. None => no spend window recorded.
+        user_email = (d.get("user_email") or "").strip().lower() or None
+        # Pricing label fallback: the chat agent runs opportunity_analyzer._build_model()
+        # (claude-sonnet-4-5 by default), NOT `model_name` from the request. Passing the
+        # request label (gpt-4o) mispriced Sonnet tokens. _accumulate_tokens_from_msg now
+        # prefers the provider-reported model from response metadata; this label is only
+        # the fallback used when that metadata is absent.
+        _selected = (os.environ.get("OPP_ANALYZER_MODEL")
+                     or os.environ.get("MODEL") or "anthropic:claude-sonnet-4-5")
+        pricing_model = _selected.split(":", 1)[1] if ":" in _selected else _selected
 
         active_count = sum(1 for t in _running_tasks.values() if t and not t.done())
         if active_count >= config.MAX_CONCURRENT_SESSIONS:
@@ -9762,8 +9859,9 @@ async def deal_engine_chat_async(request: Request):
         # MASE_KNOWLEDGE_PROJECT_ID routes the agent's search_knowledge to the
         # isolated MASE namespace (it's also the realtime routing marker).
         consumer_task = asyncio.create_task(
-            run_agent_and_save(chat_id, conv, agent, model_name,
-                               deal_engine_chat_agent.MASE_KNOWLEDGE_PROJECT_ID))
+            run_agent_and_save(chat_id, conv, agent, pricing_model,
+                               deal_engine_chat_agent.MASE_KNOWLEDGE_PROJECT_ID,
+                               user_email=user_email))
         _running_tasks[chat_id] = consumer_task
         _session_start_times[chat_id] = asyncio.get_event_loop().time()
 

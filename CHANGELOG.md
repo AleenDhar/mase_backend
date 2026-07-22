@@ -11,6 +11,29 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-22 — Per-stakeholder `importance` + `why` (Avoma-parity in Stakeholders tab)
+
+**What.** Each `stakeholder_map` item now carries two new fields the drawer renders as a
+ranked importance badge + a "why they matter" line:
+- `importance` — "Highest / High / Medium / Low", the person's INFLUENCE over the deal,
+  reasoned from evidence (drove the review / owns the budget / ran the POC / only observed),
+  not from title/seniority alone.
+- `why` — one short positive-evidence sentence (what they've DONE), distinct from `risk`
+  (what could go wrong). Populated for EVERY stakeholder, incl. quiet call-attendees.
+
+**How.** Two coupled changes, both required:
+1. **Prompt** — sweep engine locked **v10.8** (Prompt Studio) appends a directive to emit
+   `importance` + `why` per `stakeholder_map` item, grounded in call/email/narrative
+   evidence, never fabricated (a quiet attendee is labelled as such, not given an invented
+   contribution).
+2. **`deal_engine_sweep._sfdc_item`** — the roster field whitelist (the tuple copied from
+   the AI item) now includes `importance` + `why`, so they survive roster post-processing.
+   Without this the prompt fields are silently dropped.
+
+Frontend already prefers `item.importance` / `item.why` when present (else derives
+importance from `role` and falls back to the `risk` narrative), so this lights up on
+re-sweep with no further UI change. Values populate per deal on its next sweep.
+
 ## 2026-07-22 — 90-day evidence window enforced IN THE DATA (packet + manifest), not just prompts
 
 **What.** Two data-layer changes so the locked engines (win v10.11 / mom v10.11 / sweep v10.7)

@@ -3262,7 +3262,7 @@ def _roster_from_sfdc(new_ai, buyer, existing_record, attendee_roster=None):
                 if c.get(_cf):
                     it[_cf] = c[_cf]
             if isinstance(ai_src, dict):
-                for f in ("role", "risk", "sentiment", "relationship", "last_contact_date"):
+                for f in ("role", "risk", "sentiment", "relationship", "last_contact_date", "importance", "why"):
                     v = ai_src.get(f)
                     if v not in (None, "", []):
                         it[f] = v

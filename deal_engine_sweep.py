@@ -2655,7 +2655,10 @@ async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
     for d in doms[:6]:
         ors.append(f"attendee_domains.cs.{{{d}}}")   # array-contains the buyer domain
     params = {
-        "select": "uuid,subject,start_at,state,attendee_emails,attendee_domains,"
+        # `attendees` (named objects) is added alongside attendee_emails: the email list is
+        # sparse (Bass Pro: 3 of 11), but `attendees` carries the full {name,email} roster —
+        # the authoritative "who is a stakeholder" signal fed to the agent.
+        "select": "uuid,subject,start_at,state,attendees,attendee_emails,attendee_domains,"
                   "crm_opportunity_id,transcript_ready,notes_ready,"
                   "avoma_transcripts(transcript_text),avoma_insights(ai_notes_text)",
         "or": "(" + ",".join(ors) + ")",
@@ -2687,8 +2690,26 @@ async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
         notes = _one(m.get("avoma_insights")).get("ai_notes_text")
         state = (m.get("state") or "").lower()
         is_gap = state in _AVOMA_GAP_STATES or (not tr_text and not notes)
+        # Parse the named-attendee objects (jsonb list, or a repr/JSON string). attendee_objs
+        # carries {name,email} for the stakeholder roster; the display `attendees` line now
+        # shows NAMES (falling back to emails), which reads far better than raw emails.
+        _ao = m.get("attendees")
+        if isinstance(_ao, str):
+            try:
+                _ao = json.loads(_ao)
+            except Exception:  # noqa: BLE001
+                try:
+                    import ast as _ast
+                    _ao = _ast.literal_eval(_ao)
+                except Exception:  # noqa: BLE001
+                    _ao = []
+        _ao = [a for a in (_ao or []) if isinstance(a, dict)]
+        _disp = [str(a.get("name") or a.get("email") or "").strip()
+                 for a in _ao if (a.get("name") or a.get("email"))]
         entry = {"meeting_id": m.get("uuid"), "date": m.get("start_at"),
-                 "subject": m.get("subject"), "attendees": m.get("attendee_emails") or [],
+                 "subject": m.get("subject"),
+                 "attendees": _disp or (m.get("attendee_emails") or []),
+                 "attendee_objs": _ao,
                  "state": state or "unknown", "is_gap": bool(is_gap),
                  "has_content": bool(tr_text or notes)}
         if notes:
@@ -2742,6 +2763,74 @@ async def _avoma_prefetch_from_datalake(opp: dict, buyer: dict = None) -> dict:
     return shaped
 
 
+def _buyer_attendee_roster(manifest, buyer) -> list:
+    """Consolidated buyer-side call-attendee roster across ALL Avoma touchpoints — the
+    single most reliable 'who is a stakeholder' signal: who actually SAT IN the calls.
+
+    Root cause this fixes (measured on Bass Pro): the agent maps the contact roles it is
+    handed plus people LOUDLY DISCUSSED in the notes (McAfee's Aitor: 110 mentions), but
+    reconstructs call attendance from transcript prose — so a QUIET attendee who was in the
+    room but not written up is dropped. Bass Pro's roster was EXACTLY its 5 contact roles;
+    all 6 non-role people who attended calls (Gouvion, Cooper, …) vanished. The attendee
+    list is structured data we already fetch (avoma_meetings.attendee_emails) — so hand the
+    agent the complete, resolved roster instead of making it infer attendance from prose.
+
+    Each attendee email is resolved to the SFDC contact name+title (from the buyer's account
+    contacts / contact roles); buyer-side only (our domain + generic providers excluded); a
+    personal-looking local-part yields a name hint when no contact matches."""
+    buyer = buyer or {}
+    doms = {str(d).lower() for d in (buyer.get("domains") or []) if d}
+    by_email = {}
+    for c in (buyer.get("account_contacts") or []) + (buyer.get("contacts") or []):
+        e = str((c or {}).get("email") or "").lower().strip()
+        if e and e not in by_email:
+            by_email[e] = {"name": (c or {}).get("name"), "title": (c or {}).get("title")}
+    # Key on NAME (folded) — the attendee objects carry names directly (avoma_meetings
+    # .attendees = [{name,email}]); attendee_EMAILS alone is sparse (Bass Pro: 3 vs 11), so
+    # the roster is built from the named objects, with email only as a domain/dedupe hint.
+    agg: dict = {}
+    for call in (manifest or []):
+        dt = call.get("date")
+        for a in (call.get("attendee_objs") or []):
+            if not isinstance(a, dict):
+                continue
+            nm = str(a.get("name") or "").strip()
+            e = str(a.get("email") or "").lower().strip()
+            dom = e.split("@")[-1] if "@" in e else ""
+            if dom.endswith("zycus.com") or (dom and dom in _AVOMA_MATCH_EXCLUDE_DOMAINS):
+                continue                       # our side / generic provider
+            # buyer-side gate: an email must be on a buyer domain; a name-only attendee (no
+            # email) is kept — a person in the room is a person, and the roster matcher will
+            # still only surface them if they anchor to a real SFDC contact.
+            if e and doms and dom not in doms:
+                continue                       # a non-buyer-domain attendee (partner/other)
+            if not nm and not e:
+                continue
+            key = _fold_name_key(nm) or e
+            if not key:
+                continue
+            r = agg.setdefault(key, {"email": e or None, "name": nm or None,
+                                     "title": None, "n": 0, "last": None})
+            r["n"] += 1
+            r["email"] = r["email"] or (e or None)
+            r["name"] = r["name"] or nm or None
+            if dt and (not r["last"] or str(dt) > str(r["last"])):
+                r["last"] = dt
+            hit = by_email.get(e) if e else None
+            if hit:
+                r["name"] = r["name"] or hit.get("name")
+                r["title"] = r["title"] or hit.get("title")
+    out = []
+    for r in agg.values():
+        if not r.get("name"):
+            continue
+        if _is_nonperson(r.get("name"), r.get("email") or ""):
+            continue
+        out.append(r)
+    out.sort(key=lambda x: (x["n"], str(x.get("last") or "")), reverse=True)
+    return out[:20]
+
+
 def _avoma_prefetch_block(pf: dict) -> str:
     """Render the never-miss engine's output as the AUTHORITATIVE Avoma manifest for
     the agent: every matched touchpoint (chronological), deep content where read,
@@ -2780,6 +2869,26 @@ def _avoma_prefetch_block(pf: dict) -> str:
         f"notes={cov.get('notes', 0)}), gaps={gaps}, "
         f"unverified-association={cov.get('mismatch', 0)}.",
     ]
+    # CONSOLIDATED call-attendee roster — the authoritative "who is a stakeholder" list,
+    # so the agent maps everyone who was IN the calls, not only contact roles + the people
+    # it happens to see quoted. Without this it drops quiet attendees (Bass Pro: 6 of 11).
+    roster = pf.get("attendee_roster") or []
+    if roster:
+        people = "; ".join(
+            (r.get("name") or r.get("email"))
+            + (f" ({r['title']})" if r.get("title") else "")
+            + f" — {r['n']} call{'s' if r['n'] != 1 else ''}"
+            for r in roster)
+        parts.append(
+            "\n=== CALL ATTENDEES (consolidated buyer-side roster across ALL the calls "
+            "above) ===\n"
+            "These people SAT IN your calls on this deal — the authoritative list of who is "
+            "ENGAGED, not who happens to be discussed most. MAP EVERY ONE of them as a "
+            "stakeholder in stakeholder_map, using the transcripts to assign each one's role "
+            "and sentiment. A quiet attendee who never speaks in the notes is STILL a "
+            "stakeholder — do NOT limit the roster to formal contact roles or to the loudest "
+            "voices. Exclude ONLY a clear non-buyer (a Zycus person, a partner/SI, or a "
+            "room/mailbox). List: " + people)
     for i, c in enumerate(manifest, 1):
         hdr = (f"\n--- Touchpoint {i}: {c.get('subject') or 'untitled'} "
                f"({c.get('date') or 'date unknown'})")
@@ -3344,6 +3453,15 @@ async def analyze_one(
                         _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
                 else:
                     _avoma_pf = await _avoma_prefetch(agent_manager, opp, buyer)
+                # Consolidated buyer-side call-attendee roster (both paths) so the agent maps
+                # every person who attended a call, not just contact roles + loudly-discussed
+                # names. Best-effort — a build failure never blocks the sweep.
+                try:
+                    _avoma_pf["attendee_roster"] = _buyer_attendee_roster(
+                        _avoma_pf.get("manifest"), buyer)
+                except Exception as _are:  # noqa: BLE001
+                    print(f"[DEAL-SWEEP] attendee-roster build failed opp={opp_id}: "
+                          f"{type(_are).__name__}: {_are}", flush=True)
                 avoma_prefetch_block = _avoma_prefetch_block(_avoma_pf)
                 _cov = _avoma_pf.get("coverage") or {}
                 print(f"[DEAL-SWEEP] avoma-engine opp={opp_id} "

@@ -11,6 +11,33 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-23 — Roster now includes buyer-domain call attendees NOT in CRM (reverses "verified-only")
+
+**What.** The "verified SFDC contacts only" rule (2026-07-22) is **partially reversed** at
+the user's request. `deal_engine_sweep._roster_from_sfdc` now ALSO adds a person who
+**sat in a recorded call** on the **buyer's email domain** but has **no Salesforce contact
+record** — as an UNLINKED stakeholder flagged `_not_in_crm=True`, seeded LAST (after every
+real SFDC contact) so it never bumps a verified contact under the roster cap.
+`_seed_attendee_no_crm` requires a buyer-domain email and skips non-people (rooms, bots,
+mailers via a name regex) and pure departments (`_DEPT_WORDS`). Each gets
+`role="Unknown"`, `importance="Medium"`, and `why="On N recorded call(s); not yet a
+Salesforce contact."`.
+
+**Why.** Real buyers on calls were being dropped purely because CRM hygiene lags (Bass Pro:
+Chris Rodgers, on 6 calls; Radicare: Khuza Ashikin, on 2 calls). Verified via the datalake +
+SOQL. The bar is deliberately CALL ATTENDANCE (real provenance) + buyer domain — NOT
+email-only mentions, so a rep's guess ("Sara Walker perhaps?") is still excluded.
+
+**Frontend.** `DealDrawerView` renders a `not in CRM` tag on these cards so they read as
+unverified, distinct from anchored contacts.
+
+## 2026-07-23 — Action Plan hides completed todos by default
+
+**What.** `DealTodos.DealTodoBuckets` now hides todos that are DONE (pushed to Salesforce
+or locally checked) behind a "Show N completed" toggle, so a fresh sweep reads as a clean
+actionable list instead of being buried under already-pushed history. The done/total
+counter is unchanged (still counts everything).
+
 ## 2026-07-22 — Per-stakeholder `importance` + `why` (Avoma-parity in Stakeholders tab)
 
 **What.** Each `stakeholder_map` item now carries two new fields the drawer renders as a

@@ -29,15 +29,20 @@ not already mapped, and enriches from the matching AI item (fold-key) else tags
 list into the roster. Seed-from-fact + LLM-enrich keeps the judgement work (role/sentiment)
 with the agent while making it impossible to drop a proven-engaged person.
 
-**Scope boundary (deliberate — do NOT "fix").** Roster = **verified SFDC contacts only**.
-A 2026-07-22 read-only audit of the three opps confirmed the only residual misses are
-people with NO SFDC contact record — Russell's 8 Avoma call attendees, McAfee's Rohith
-Shankar (+ 2 CC'd), Bass Pro's Chris Rodgers — all named only in Avoma attendee lists /
-email signatures, none present as Salesforce contacts (verified by SOQL). The user
-**explicitly chose "verified-contacts-only"** over adding an "also engaged (not in CRM)"
-tier. So the narrative seed intentionally does NOT mine Task/Event activity bodies, and
-there is no unlinked-participant tier. Don't add one — revisit only if that product
-decision is reversed.
+**Scope (updated 2026-07-23 — "verified-only" PARTIALLY REVERSED).** History: a 2026-07-22
+audit found the only residual misses were people with NO SFDC contact record (Bass Pro's
+Chris Rodgers, Radicare's Khuza Ashikin, etc.) and the user first chose "verified-contacts-
+only". On 2026-07-23 the user **reversed that**: the roster NOW adds a person who **sat in a
+recorded call** on the **buyer email domain** but has no SFDC contact — via
+`_seed_attendee_no_crm`, flagged `_not_in_crm=True`, seeded LAST so it never bumps a
+verified contact under the cap. Guards: requires a buyer-domain email; skips rooms/bots/
+mailers (name regex) and pure departments (`_DEPT_WORDS`).
+
+**Still excluded (the bar is CALL ATTENDANCE, not mention):** email-only / narrative-only
+names that never attended a call (e.g. Bass Pro "Sara Walker perhaps?" — a rep's guess in
+one email). The narrative seed still only anchors to real SFDC contacts; it does NOT mine
+Task/Event bodies. So: on a call + buyer domain → added even if not in CRM; merely mentioned
+→ still needs a real SFDC contact.
 
 **Verified 2026-07-22** on live `mase-worker:285`: Russell 4→6 (recovered Bhaskar Pandey,
 Marci Jasinski), McAfee 5→6 (Mazen El-Haidari), Bass Pro 5→7 (Kory Cooper, David Gouvion);

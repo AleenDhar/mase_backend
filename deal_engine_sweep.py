@@ -3309,6 +3309,32 @@ def _roster_from_sfdc(new_ai, buyer, existing_record, attendee_roster=None):
             if not it.get("_matched_ai"):
                 it["_source"] = why
             roster.append(it)
+        def _seed_attendee_no_crm(a):
+            # A buyer-domain person who SAT IN a recorded call but has NO Salesforce contact
+            # record. Added as an UNLINKED stakeholder (_not_in_crm=True) so genuine call
+            # participants aren't lost just because CRM hygiene lags — flagged so the UI can
+            # mark them unverified. Requires a buyer-domain email (attendee_roster is already
+            # domain-gated); skips non-people (rooms, bots, mailers) and pure departments.
+            nm = (a.get("name") or "").strip()
+            if not (a.get("email") or "").strip():
+                return                                   # name-only → can't confirm buyer-side
+            k = _fold_name_key(nm)
+            if not k or k in used:
+                return
+            _tok = [t for t in re.sub(r"[^A-Za-z ]", " ", nm).split() if len(t) >= 2]
+            if len(_tok) < 2 or all(t.lower() in _DEPT_WORDS for t in _tok):
+                return                                   # too short, or a department
+            if re.search(r"\b(room|rooms|zoom|teams|webex|meet|hangout|salesforce|"
+                         r"notification|no[- ]?reply|noreply|mailer|calendar|scheduler|bot)\b",
+                         nm, re.I):
+                return                                   # a room / bot / mailer, not a person
+            used.add(k)
+            _n = a.get("n") or 1
+            roster.append({
+                "name": nm, "role": "Unknown", "importance": "Medium",
+                "why": f"On {_n} recorded call{'s' if _n != 1 else ''}; not yet a Salesforce contact.",
+                "last_contact_date": a.get("last"), "email": a.get("email"),
+                "_source": "call_attendee_no_crm", "_not_in_crm": True})
         # contact roles are the FORMAL confirmed stakeholders — always on the roster
         for _oc in ocr:
             if isinstance(_oc, dict) and not _oc.get("is_nonperson") and (_oc.get("name") or "").strip():
@@ -3332,6 +3358,13 @@ def _roster_from_sfdc(new_ai, buyer, existing_record, attendee_roster=None):
                 if re.search(r"\b" + re.escape(_raw[0]) + r"\b", _narr, re.I) \
                         and re.search(r"\b" + re.escape(_raw[-1]) + r"\b", _narr, re.I):
                     _seed(_nc, "named_in_narrative")
+        # buyer-domain call attendees with NO CRM record — seeded LAST (after every real
+        # SFDC contact) so an unverified attendee never bumps a verified contact under the
+        # roster cap. Flagged _not_in_crm so the drawer marks them as unverified.
+        for _a in (attendee_roster or []):
+            _ak2 = _fold_name_key((_a or {}).get("name"))
+            if _ak2 and _ak2 not in used and index.get(_ak2) is None:
+                _seed_attendee_no_crm(_a or {})
         # (B) senior-by-title backfill
         for k, c in pool:
             if len(roster) >= _ROSTER_CAP:

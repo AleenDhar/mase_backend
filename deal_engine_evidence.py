@@ -123,18 +123,32 @@ def _meetings_block(opp_id: str, meetings: Optional[list[dict]]) -> dict:
     def _in(n):
         return sum(1 for d in days if (_days_since(d) or 9999) <= n)
 
-    recent = []
-    for d in days[:12]:
+    # EVIDENCE WINDOW (2026-07-22, win v10.11 / sweep v10.7 enforcement IN THE DATA):
+    # meeting DETAIL (subjects, domains, per-meeting rows) is restricted to the last
+    # 90 days. The old `recent` list was days[:12] AT ANY AGE — on a quiet deal it was
+    # entirely 2025 yet arrived under the key "recent", which is how old content kept
+    # leaking into scoring rationales despite the locked prompt rules. Older meetings
+    # now surface as dated COUNTS only (coverage stays honest; content can't be
+    # narrated from what the packet no longer carries).
+    recent_90d = []
+    for d in days:
+        age = _days_since(d)
+        if age is None or age > 90:
+            continue
         m = by_day[d]
         doms = [x for x in (m.get("attendee_domains") or []) if str(x).lower() not in _GENERIC_DOMAINS]
-        recent.append({
+        recent_90d.append({
             "date": d,
+            "age_days": age,
             "subject": (m.get("subject") or "")[:90],
             "buyer_domains": doms[:3],
             "recorded": (m.get("state") == "completed"),
             "transcript": bool(m.get("transcript_ready")),
             "minutes": round((m.get("duration") or 0) / 60) if m.get("duration") else None,
         })
+        if len(recent_90d) >= 12:
+            break
+    older = [d for d in days if (_days_since(d) or 0) > 90]
     return {
         "total_all_time": len(days),
         "count_30d": _in(30), "count_60d": _in(60), "count_90d": _in(90),
@@ -142,7 +156,12 @@ def _meetings_block(opp_id: str, meetings: Optional[list[dict]]) -> dict:
         "last_date": days[0] if days else None,
         "days_since_last": _days_since(days[0]) if days else None,
         "next_scheduled": (_future[0] if _future else None),
-        "recent": recent,
+        "recent_90d": recent_90d,
+        "older_than_90d": {"count": len(older),
+                           "newest": (older[0] if older else None),
+                           "oldest": (older[-1] if older else None)},
+        "evidence_window": ("meeting detail limited to the last 90 days; older meetings "
+                            "are counted (dated) but not described"),
     }
 
 

@@ -2889,6 +2889,20 @@ def _avoma_prefetch_block(pf: dict) -> str:
             "stakeholder — do NOT limit the roster to formal contact roles or to the loudest "
             "voices. Exclude ONLY a clear non-buyer (a Zycus person, a partner/SI, or a "
             "room/mailbox). List: " + people)
+    # EVIDENCE WINDOW AT THE DATA LAYER (2026-07-22): the locked engines (win v10.11 /
+    # sweep v10.7) forbid narrating >90-day content, but this block used to hand the
+    # model every old call's full notes/transcript anyway — and instruction-level
+    # compliance occasionally lost (Flydubai kept citing an Oct-2025 demo). Now a
+    # touchpoint older than 90 days keeps its dated HEADER line (coverage counts,
+    # attendee roster, and the anti-"gone dark" rule all still work) but its CONTENT
+    # is withheld. EXEMPTION: a call whose content carries an explicit win/loss
+    # announcement is ALWAYS inlined regardless of age — a decisive call must never
+    # be hidden (the HAVI class). Unparseable/missing dates fail OPEN (content kept).
+    parts.append(
+        "\nEVIDENCE WINDOW: touchpoints older than 90 days are listed as dated "
+        "coverage ONLY (content withheld — do not narrate them as the live story; "
+        "withheld background content does NOT count as partial coverage). Decision-"
+        "bearing calls (an explicit win/loss) are inlined regardless of age.")
     for i, c in enumerate(manifest, 1):
         hdr = (f"\n--- Touchpoint {i}: {c.get('subject') or 'untitled'} "
                f"({c.get('date') or 'date unknown'})")
@@ -2897,6 +2911,21 @@ def _avoma_prefetch_block(pf: dict) -> str:
         att = c.get("attendees") or []
         if att:
             hdr += " — attendees: " + ", ".join(att[:12])
+        _stale = False
+        try:
+            _d = datetime.strptime(str(c.get("date") or "")[:10], "%Y-%m-%d").date()
+            _stale = (date.today() - _d).days > 90
+        except Exception:  # noqa: BLE001 — bad/missing date -> keep content (fail open)
+            _stale = False
+        if _stale:
+            _blob = ((c.get("notes") or "") + " " + (c.get("transcript_excerpt") or "")).lower()
+            if any(p in _blob for p in _LOSS_PHRASES) or any(p in _blob for p in _WON_PHRASES):
+                _stale = False  # decision call — always inlined
+                hdr += " [DECISION CALL — inlined despite age]"
+        if _stale:
+            hdr += " [BACKGROUND >90d — content withheld (evidence window)]"
+            parts.append(hdr)
+            continue
         parts.append(hdr)
         if c.get("notes"):
             parts.append("Notes / summary (speaker-attributed): " + c["notes"])

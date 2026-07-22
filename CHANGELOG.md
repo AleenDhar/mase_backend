@@ -11,6 +11,34 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-22 — 90-day evidence window enforced IN THE DATA (packet + manifest), not just prompts
+
+**What.** Two data-layer changes so the locked engines (win v10.11 / mom v10.11 / sweep v10.7)
+can't be fed what they're forbidden to narrate:
+1. `deal_engine_evidence._meetings_block` — the scorer packet's `recent` list was the 12
+   most-recent meeting-days **at any age** (on a quiet deal: entirely 2025, keyed "recent").
+   Now `recent_90d` (≤90d only, each entry stamped `age_days`), plus `older_than_90d`
+   {count, newest, oldest} — dated coverage with no describable content — and a
+   self-describing `evidence_window` note. Aggregates (`total_all_time`, `count_30/60/90d`,
+   `days_since_last`, `next_scheduled`) unchanged.
+2. `deal_engine_sweep._avoma_prefetch_block` — the Avoma manifest inlined every call's full
+   notes/transcript regardless of age (how Flydubai kept citing an Oct-2025 demo through the
+   locked window). A touchpoint >90d now keeps its dated HEADER line (coverage counts, the
+   attendee roster, and the anti-"gone dark" rule still work) but content is withheld
+   (`[BACKGROUND >90d]`). EXEMPTION: a call carrying an explicit win/loss phrase
+   (`_LOSS_PHRASES`/`_WON_PHRASES`) is always inlined (`[DECISION CALL]` — the HAVI class).
+   Unparseable dates fail OPEN (content kept).
+
+**Why.** The Flydubai A/B (win v10.11) cut 2025 narrative references 73→8, but the residue
+traced to the packet still physically carrying old content — instruction-level compliance
+occasionally loses. Withheld data can't leak. Also locked **mom v10.11** in the Studio (same
+window: >90d weight zero + never cited; 91–360d read-only context floored at the Qualified
+date; "no two-way engagement in 90d" stated as the finding; scoring ladders untouched).
+
+**How to work with it going forward.** Coverage vs content is the invariant: old touchpoints
+COUNT (never shrink the touchpoint count) but are not describable. If a legitimately decisive
+old call is being withheld, extend the phrase lists, don't widen the window.
+
 ## 2026-07-22 — CDC auto-adopt: a Qualified+ trigger on an untracked opp ADDS it to the book
 
 **What.** `enqueue_trigger` (deal_engine_sweep.py) no longer flat-refuses a non-member CDC

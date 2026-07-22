@@ -3258,6 +3258,8 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
         merged = _ds.dedupe_stakeholder_items(roster)
         merged = merged if isinstance(merged, list) else roster
         merged = merged[:_ROSTER_CAP]
+        print(f"[ROSTER-ANCHOR] ai_in={[it.get('name') for it in ai_items if isinstance(it, dict)]} "
+              f"pool={len(index)} final_out={[r.get('name') for r in merged]}", flush=True)
         out = dict(new_ai)
         out_sm = dict(sm)
         out_sm["items"] = merged
@@ -3463,6 +3465,10 @@ async def analyze_one(
                     print(f"[DEAL-SWEEP] attendee-roster build failed opp={opp_id}: "
                           f"{type(_are).__name__}: {_are}", flush=True)
                 avoma_prefetch_block = _avoma_prefetch_block(_avoma_pf)
+                _ar = _avoma_pf.get("attendee_roster") or []
+                print(f"[ATTENDEE-ROSTER] opp={opp_id} n={len(_ar)} "
+                      f"names={[r.get('name') for r in _ar[:8]]} "
+                      f"in_prompt={'CALL ATTENDEES' in (avoma_prefetch_block or '')}", flush=True)
                 _cov = _avoma_pf.get("coverage") or {}
                 print(f"[DEAL-SWEEP] avoma-engine opp={opp_id} "
                       f"window={_avoma_pf.get('window_days')}d "

@@ -1648,12 +1648,19 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
            "website": None, "domains": [], "contacts": [], "account_contacts": [],
            "task_contacts": [], "sibling_opps": [], "contact_roles_thin": False,
            "roles_count": 0, "buyer_roles_count": 0, "partner_count": 0,
-           "nonperson_count": 0, "last_activity_date": None, "eb_candidates": []}
+           "nonperson_count": 0, "last_activity_date": None, "eb_candidates": [],
+           "description": None, "next_step": None, "next_step_history": None}
     sid = _sql_str(opp_id)
     try:
         head = await _soql(
             agent_manager,
-            f"SELECT AccountId, Account.Name, Account.Website, Name, LastActivityDate "
+            # Description + Next_Step__c + Next_Step_History__c are the rep-written narrative
+            # where the REAL stakeholders live (Russell's Description names Gajendra Badodekar
+            # as project lead, Jack Brougham as a decision-maker, and the CFO/CLO to map — none
+            # of them tagged as contact roles). They were read only for MEDDPICC keyword scans
+            # and never reached the agent, so it could not extract the people named there.
+            f"SELECT AccountId, Account.Name, Account.Website, Name, LastActivityDate, "
+            f"Description, Next_Step__c, Next_Step_History__c "
             f"FROM Opportunity WHERE Id = '{sid}'")
         if head:
             h = head[0]
@@ -1662,6 +1669,9 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
             out["website"] = _sf_name(h, "Account", "Website")
             out["self_name"] = h.get("Name")
             out["last_activity_date"] = h.get("LastActivityDate")
+            out["description"] = h.get("Description")
+            out["next_step"] = h.get("Next_Step__c")
+            out["next_step_history"] = h.get("Next_Step_History__c")
     except Exception as e:  # noqa: BLE001 — prefetch is best-effort
         print(f"[DEAL-SWEEP] buyer-identity head failed opp={opp_id}: "
               f"{type(e).__name__}: {e}", flush=True)
@@ -1788,19 +1798,47 @@ async def _buyer_identity(agent_manager, opp_id: str) -> dict:
     if out.get("account_id"):
         acct = _sql_str(out["account_id"])
         try:
+            # Read the FULL buyer contact pool — the fuzzy-match roster anchor. Two fixes:
+            #
+            # 1) TRUNCATION: the old query capped at LIMIT 50, required `Email != null`, and
+            #    the roster then ignored it entirely — so on a ~100-contact account it matched
+            #    AI-found names against the 1 OpportunityContactRole and dropped the rest.
+            #    Now: no email gate (a name with no email is still matchable), LIMIT 500.
+            #
+            # 2) DUPLICATE ACCOUNTS: a buyer's contacts are routinely split across duplicate
+            #    Account records (Russell: "Russell Investments Group, LLC" + "Frank Russell
+            #    Company" + a misspelled "Russel Investment"). Scoping to the opp's single
+            #    AccountId dropped everyone on the dupes — including real senior stakeholders
+            #    (Gajendra Badodekar, Director of Procurement, gbadodekar@russellinvestments.com,
+            #    filed under the misspelled dupe). So we ALSO pull every contact on the buyer's
+            #    email DOMAIN(S) across ALL accounts, which reunites the duplicated company.
+            _bd = sorted({re.sub(r"[^a-z0-9.\-]", "", d.lower())
+                          for d in (buyer_domains or set()) if d})
+            _dom_or = " OR ".join(f"Email LIKE '%@{d}'" for d in _bd if d)
+            _where = f"AccountId = '{acct}'"
+            if _dom_or:
+                _where = f"(AccountId = '{acct}') OR ({_dom_or})"
             acct_contacts = await _soql(
                 agent_manager,
-                f"SELECT Name, Title, Email FROM Contact "
-                f"WHERE AccountId = '{acct}' "
-                f"AND Email != null ORDER BY LastModifiedDate DESC LIMIT 50")
+                f"SELECT Name, Title, Email, AccountId FROM Contact "
+                f"WHERE {_where} "
+                f"ORDER BY LastModifiedDate DESC LIMIT 500")
+            _seen_ac = set()
             for c in acct_contacts or []:
                 nm = _sf_name(c, "Name")
                 if not nm:
                     continue
+                _em = _sf_name(c, "Email")
+                _k = (nm.strip().lower(), (_em or "").strip().lower())
+                if _k in _seen_ac:
+                    continue
+                _seen_ac.add(_k)
                 out["account_contacts"].append({
                     "name": nm,
                     "title": _sf_name(c, "Title"),
-                    "email": _sf_name(c, "Email"),
+                    "email": _em,
+                    "domain": _domain_of(_em),
+                    "is_nonperson": _is_nonperson(nm, _em),
                 })
         except Exception as e:  # noqa: BLE001
             print(f"[DEAL-SWEEP] buyer-identity account-contacts failed "
@@ -1952,17 +1990,44 @@ def _buyer_identity_block(bi: dict) -> str:
             "Only upgrade to strength = 'direct' if MEDDPICC explicitly names them as EB "
             "OR an Avoma transcript explicitly identifies them as the budget authority, "
             "final decision-maker, or 'the person who signs'.")
-    if bi.get("account_contacts") and bi.get("contact_roles_thin"):
+    if bi.get("account_contacts"):
+        _people_ac = [c for c in bi["account_contacts"] if not c.get("is_nonperson")]
         acct_people = "; ".join(
             f"{c['name']}"
             + (f" ({c['title']})" if c.get("title") else "")
             + (f" <{c['email']}>" if c.get("email") else "")
-            for c in bi["account_contacts"][:20])
+            for c in _people_ac[:80])
         lines.append(
-            f"Opp is thin on contact roles ({bi.get('roles_count', 0)}); "
-            "account-level contacts pulled directly (for domain/mailbox identification "
-            "and multi-thread candidates, NOT confirmed opp stakeholders unless a call "
-            f"or email proves involvement in THIS opp's scope): {acct_people}")
+            f"FULL ACCOUNT CONTACT LIST ({len(_people_ac)} people on the account — the "
+            "authoritative roster to MATCH stakeholders against). When you find a person "
+            "engaged on THIS opp — named in a call, an email, the Opportunity Description, "
+            "the Next Step (or its history), or a Task/Event activity — FUZZY-MATCH them to "
+            "this list (email-exact, or close name similarity: handle nicknames, initials, "
+            "first/last swaps, minor misspellings) and use the SFDC canonical name+title. "
+            "Anyone here who is genuinely involved in this deal's scope IS a real "
+            f"stakeholder; do not require a formal contact role to include them: {acct_people}")
+    # Rep-written NARRATIVE (Description + Next Step + its history) — the richest source of
+    # who is actually driving the deal, and the exact fields the user pointed to. Injected in
+    # full (bounded) so the agent EXTRACTS every person named here, then matches them to the
+    # contact list above. Newest content first for the append-logs; bounded for token cost.
+    _narr = []
+    if bi.get("description"):
+        _narr.append("OPPORTUNITY DESCRIPTION:\n" + str(bi["description"])[:2500])
+    if bi.get("next_step"):
+        _narr.append("NEXT STEP:\n" + str(bi["next_step"])[:2000])
+    if bi.get("next_step_history"):
+        _narr.append("NEXT STEP HISTORY:\n" + str(bi["next_step_history"])[:2500])
+    if _narr:
+        lines.append(
+            "DEAL NARRATIVE (rep-written — MINE IT FOR STAKEHOLDERS). Read the fields below and "
+            "extract EVERY named person involved in this deal — the champion/project lead, "
+            "decision-makers, the economic buyer, anyone the rep 'met with' or who 'requested' / "
+            "'is leading' / 'is the key connect'. For each, fuzzy-match to the account contact "
+            "list above (handle misspellings, initials, first/last order) and use the SFDC "
+            "canonical name + title. A person named here as engaged IS a stakeholder even with no "
+            "contact role. Also surface named roles to map (e.g. 'the CFO', 'the CLO') as gaps. "
+            "Do NOT include Zycus-side names (the rep, the deal team) as buyer stakeholders.\n\n"
+            + "\n\n".join(_narr))
     if bi.get("sibling_opps"):
         sibs = "; ".join(
             f"{s['name']} [{s.get('stage') or '?'}]"
@@ -2984,11 +3049,29 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
         sm = sm if isinstance(sm, dict) else {}
         ai_items = sm.get("items")
         ai_items = ai_items if isinstance(ai_items, list) else []
-        contacts = buyer.get("contacts") if isinstance(buyer, dict) else []
-        contacts = contacts if isinstance(contacts, list) else []
+        ocr = buyer.get("contacts") if isinstance(buyer, dict) else []
+        ocr = ocr if isinstance(ocr, list) else []
+        acct = buyer.get("account_contacts") if isinstance(buyer, dict) else []
+        acct = acct if isinstance(acct, list) else []
 
+        # MATCHING INDEX for AI-referenced names = OpportunityContactRole + the FULL account
+        # contact list. This is the fix for the "only 1 stakeholder shows" complaint: an
+        # engaged person who is a real account contact but was never tagged as an opp contact
+        # role now ANCHORS (matches an authoritative SFDC name) instead of being dropped as
+        # AI-invented. OCR entries win a key collision — they carry Role + partner flags.
+        # BACKFILL POOL (senior-by-title, used only when the AI named too few) stays
+        # OCR-ONLY: we surface engaged account contacts, never unengaged senior randoms.
         pool, index = [], {}
-        for c in contacts:
+        for c in acct:
+            if not isinstance(c, dict):
+                continue
+            nm = (c.get("name") or "").strip()
+            if not nm or c.get("is_nonperson"):
+                continue
+            key = _fold_name_key(nm)
+            if key:
+                index.setdefault(key, c)
+        for c in ocr:
             if not isinstance(c, dict):
                 continue
             nm = (c.get("name") or "").strip()
@@ -2998,8 +3081,8 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
             if not key:
                 continue
             pool.append((key, c))
-            index.setdefault(key, c)
-        if not pool:
+            index[key] = c  # OCR overrides an account-contact entry at the same name key
+        if not index:
             return new_ai  # nothing authoritative to anchor to -> leave AI roster
 
         def _sfdc_item(c, ai_src=None):

@@ -3097,7 +3097,19 @@ _SENIOR_TITLE_TOKENS = (
 )
 _SENIOR_TITLE_RE = _rex.compile(
     "|".join(_rex.escape(t) for t in _SENIOR_TITLE_TOKENS), _rex.IGNORECASE)
-_ROSTER_CAP = 8
+# Raised 8 -> 12 with the seed-and-enrich roster: we now guarantee every call attendee +
+# narrative-named contact, so a deal with a genuinely wide buyer team needs the headroom.
+# Ordered AI-analysed first, then attendees by engagement, so a cap trims one-off attendees.
+_ROSTER_CAP = 12
+# A "contact" whose name is ALL department/role words is not a person (e.g. "Global Sourcing",
+# "Procurement Team") — the narrative seed must not admit it just because the deal text mentions
+# the department. A real person has at least one token OUTSIDE this set (a surname/given name).
+_DEPT_WORDS = frozenset((
+    "global", "sourcing", "procurement", "team", "group", "department", "dept", "division",
+    "operations", "finance", "legal", "admin", "purchasing", "category", "account", "accounts",
+    "sales", "contracts", "supply", "chain", "indirect", "strategic", "corporate", "office",
+    "services", "management", "support", "payable", "payables", "it", "hr", "the", "and",
+))
 
 
 def _fold_name_key(name):
@@ -3143,13 +3155,19 @@ def _role_from_title(title):
     return None
 
 
-def _roster_from_sfdc(new_ai, buyer, existing_record):
-    """Rebuild ai.stakeholder_map.items anchored to SFDC OpportunityContactRole.
+def _roster_from_sfdc(new_ai, buyer, existing_record, attendee_roster=None):
+    """Rebuild ai.stakeholder_map.items — SEEDED membership + LLM enrichment.
 
-    Roster = (A) SFDC contacts the AI referenced (fuzzy match, carrying the AI's
-    role/risk/sentiment onto the SFDC canonical name+title) + (B) a few senior-by-
-    title SFDC contacts. AI-invented names with no SFDC match are DROPPED. Capped
-    at ~8. Never raises — a failure returns new_ai untouched."""
+    The roster MEMBERSHIP is grounded in FACT, not left to the LLM (which reliably dropped
+    quiet call attendees no matter how it was prompted — measured on Bass Pro). It is the
+    union of:
+      (A)  SFDC contacts the AI referenced — the LLM's role/sentiment/risk is carried over;
+      (B') every buyer-side CALL ATTENDEE (attendee_roster) and every account contact NAMED
+           in the Description/Next-Step — enriched with the AI's analysis when the AI mapped
+           them, else a title-inferred role + a source note;
+      (C)  a few senior-by-title SFDC contacts to fill a thin roster.
+    Every name must resolve to a REAL SFDC contact — an AI-invented name with no match is
+    still DROPPED (anti-fabrication). Capped. Never raises — a failure returns new_ai."""
     if not isinstance(new_ai, dict):
         return new_ai
     try:
@@ -3158,6 +3176,17 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
         sm = sm if isinstance(sm, dict) else {}
         ai_items = sm.get("items")
         ai_items = ai_items if isinstance(ai_items, list) else []
+        # AI-annotation index (fold-key -> the AI's item) so a SEEDED contact inherits the
+        # LLM's role/sentiment/risk when the LLM analysed that person.
+        ai_by_key = {}
+        for _it in ai_items:
+            if isinstance(_it, dict):
+                _k = _fold_name_key(_it.get("name"))
+                if _k:
+                    ai_by_key.setdefault(_k, _it)
+        # Rep-written narrative (from _buyer_identity) for the "named in the deal" seed.
+        _narr = " ".join(str((buyer or {}).get(_f) or "")
+                         for _f in ("description", "next_step", "next_step_history"))
         ocr = buyer.get("contacts") if isinstance(buyer, dict) else []
         ocr = ocr if isinstance(ocr, list) else []
         acct = buyer.get("account_contacts") if isinstance(buyer, dict) else []
@@ -3237,6 +3266,43 @@ def _roster_from_sfdc(new_ai, buyer, existing_record):
                 continue  # AI-invented name -> DROP
             used.add(k)
             roster.append(_sfdc_item(c, ai_src=it))
+        # (B') SEED — every verified-engaged person MUST be on the roster (the LLM would not
+        # reliably include a quiet attendee, so membership comes from FACT: who attended a
+        # recorded call + who is NAMED in the Description/Next-Step). Each seeded contact
+        # inherits the LLM's analysis when it mapped them (ai_by_key), else a title-inferred
+        # role + a source note. Only real SFDC contacts are ever seeded.
+        def _seed(c, why):
+            k = _fold_name_key(c.get("name"))
+            if not k or k in used:
+                return
+            used.add(k)
+            it = _sfdc_item(c, ai_src=ai_by_key.get(k))
+            if not it.get("_matched_ai"):
+                it["_source"] = why
+            roster.append(it)
+        # contact roles are the FORMAL confirmed stakeholders — always on the roster
+        for _oc in ocr:
+            if isinstance(_oc, dict) and not _oc.get("is_nonperson") and (_oc.get("name") or "").strip():
+                _seed(_oc, "contact_role")
+        # call attendees (attendee_roster is pre-sorted by call-count desc)
+        for _a in (attendee_roster or []):
+            _ak = _fold_name_key((_a or {}).get("name"))
+            _ac = index.get(_ak) if _ak else None
+            if _ac is not None:
+                _seed(_ac, "call_attendee")
+        # account contacts NAMED (first+last, whole words) in the deal narrative — skipping a
+        # "contact" that is really a department (all name tokens are dept/role words).
+        if _narr.strip():
+            for _nk, _nc in index.items():
+                if _nk in used:
+                    continue
+                _raw = [t for t in re.sub(r"[^A-Za-z ]", " ", _nc.get("name") or "").split()
+                        if len(t) >= 3]
+                if len(_raw) < 2 or all(t.lower() in _DEPT_WORDS for t in _raw):
+                    continue  # too short, or a department, not a person
+                if re.search(r"\b" + re.escape(_raw[0]) + r"\b", _narr, re.I) \
+                        and re.search(r"\b" + re.escape(_raw[-1]) + r"\b", _narr, re.I):
+                    _seed(_nc, "named_in_narrative")
         # (B) senior-by-title backfill
         for k, c in pool:
             if len(roster) >= _ROSTER_CAP:
@@ -4476,7 +4542,9 @@ async def analyze_one(
                 # which would re-admit/rescore names the correction curated).
                 parsed.setdefault("ai", {})["stakeholder_map"] = _prior_ai_full["stakeholder_map"]
             elif isinstance(parsed, dict) and isinstance(parsed.get("ai"), dict):
-                parsed["ai"] = _roster_from_sfdc(parsed["ai"], buyer, existing_record)
+                parsed["ai"] = _roster_from_sfdc(
+                    parsed["ai"], buyer, existing_record,
+                    attendee_roster=(_avoma_pf or {}).get("attendee_roster"))
         except Exception as _rre:  # noqa: BLE001
             print(f"[DEAL-SWEEP] roster build skipped opp={opp_id}: {type(_rre).__name__}: {_rre}", flush=True)
         # Carry the pin forward so the freeze survives this write (upsert replaces `record`).

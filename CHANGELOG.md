@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-22 — CDC auto-adopt: a Qualified+ trigger on an untracked opp ADDS it to the book
+
+**What.** `enqueue_trigger` (deal_engine_sweep.py) no longer flat-refuses a non-member CDC
+trigger. When `source` is `salesforce_trigger`/`salesforce` and the opp's **live SOQL stage**
+is Qualified-or-later and OPEN (`_ADOPT_STAGES_LC`, mirroring the Lambda's
+`QUALIFIED_PLUS_STAGES` — keep in sync), the opp is ADDED to `deal_records`
+(`deal_engine_store.adopt_member`: minimal row, or reactivation of an inactive one) and its
+first sweep enqueued. Kill switch: `DEAL_ADOPT_ON_TRIGGER` (default ON). Fail-closed: an
+unreadable stage, a non-qualifying stage, or a failed insert all still return `not_in_book`.
+
+**Why.** The Lambda's adopt path (built 2026-06-08) had been silently broken since the
+membership gate landed: it logged `[adopt] … adding via trigger`, POSTed the trigger, got a
+202 — and the backend dropped it with `not_in_book`. Proven live 2026-07-22: **9/9 Qualified+
+opps created after Jul 19 were missing from the book** (Bega Cheese $300K, WPP $200K, Incyte
+$250K, …); everything in the book had entered via the last manual report reconcile (~Jul 19).
+Those 9 were hand-adopted + swept the same day; this change stops the leak going forward.
+
+**How to work with it going forward.** Membership adds now have TWO sanctioned paths: report
+reconciliation (unchanged, still the only REMOVER) and CDC auto-adopt (Qualified+ open only —
+below-Qualified, closed, Qualified Out, Omitted, No Decision never adopt). Renewal-type opps
+are not stage-filtered here; if Type-based exclusion is wanted it belongs in this same gate.
+The nightly reconcile remains OFF (`DEAL_ENGINE_DISCOVERY_ENABLED=false`).
+
+---
+
 ## 2026-07-22 — Ask-Mase per-user spend cap ($20 / rolling 5h window)
 
 **What.** Ask-Mase (deal chat) now meters LLM spend per user and caps it, mirroring

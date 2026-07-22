@@ -5203,6 +5203,29 @@ async def enqueue_book_run(agent_manager, *, owner: Optional[str] = None,
     }
 
 
+# CDC AUTO-ADOPT (2026-07-22, user-directed): a Salesforce trigger on an UNTRACKED opp
+# whose LIVE stage is Qualified-or-later and OPEN adds it to the book, then sweeps it.
+# This restores the Lambda's original adopt intent (its [adopt] log had been bouncing
+# off the not_in_book gate below since the membership gate landed — silently, because
+# the endpoint still returned 202). The stage set MIRRORS the Lambda's
+# QUALIFIED_PLUS_STAGES (infra/sf-cdc-bridge/lambda_function.py:85) — keep in sync.
+# Below-Qualified (Initial Interest, "1. Generate interest", blank) and every
+# closed/lost stage (Closed Won/Lost, Qualified Out, Omitted, No Decision) are absent
+# -> never adopted. Stage is verified from the LIVE SOQL read (never trusted from the
+# webhook), and an unreadable stage fails CLOSED (no adopt on a blind read).
+_ADOPT_STAGES_LC = {s.lower() for s in (
+    "Qualified", "Shortlisted", "Formal Evaluation", "Vendor Selected",
+    "Contract In Progress", "Contract Signed", "PO Received",
+    "2. Solution Fitment", "3. Evaluation / POC", "4. Stakeholder Alignment",
+    "5. Budget Approval", "6. Contract Negotiation",
+)}
+
+
+def _adopt_enabled() -> bool:
+    """Kill switch for CDC auto-adopt (DEAL_ADOPT_ON_TRIGGER, default ON)."""
+    return os.getenv("DEAL_ADOPT_ON_TRIGGER", "true").strip().lower() in ("1", "true", "yes", "on")
+
+
 async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual") -> str:
     """Queue-mode single-opp trigger (the Salesforce-update webhook). Enrich the
     opp's display labels cheaply (one SOQL, no agent run) so the dashboard row is
@@ -5219,14 +5242,36 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
         print(f"[DEAL-SWEEP] manual-only mode: BLOCKED automated trigger opp={opp_id} "
               f"source={source!r} (automated sweeping is paused)", flush=True)
         return "blocked_manual_only"
-    # Membership comes ONLY from the MASE report (single source of truth). A
-    # trigger is a faster RE-sweep of a deal already in the book — it must never
-    # ADD a non-member (e.g. a Salesforce-update webhook firing on an opp outside
-    # the report). New members are added solely by report reconciliation.
+    # Membership comes from the MASE report — PLUS the one sanctioned ADD path:
+    # CDC auto-adopt of a Qualified+ OPEN opp (see _ADOPT_STAGES_LC above). Any
+    # other non-member trigger is still refused.
+    _adopted_opp: Optional[dict] = None
     if not await asyncio.to_thread(store.is_active_member, opp_id):
-        print(f"[DEAL-SWEEP] trigger opp={opp_id} -> not_in_book (skipped)",
-              flush=True)
-        return "not_in_book"
+        if source not in ("salesforce_trigger", "salesforce") or not _adopt_enabled():
+            print(f"[DEAL-SWEEP] trigger opp={opp_id} -> not_in_book (skipped)",
+                  flush=True)
+            return "not_in_book"
+        # Live stage check (fail-closed: no stage read -> no adopt).
+        try:
+            _cand = (await _enrich_opp_ids(agent_manager, [opp_id]) or [{}])[0]
+        except Exception as _e:  # noqa: BLE001
+            print(f"[DEAL-SWEEP] adopt check failed opp={opp_id}: "
+                  f"{type(_e).__name__}: {_e} -> not_in_book", flush=True)
+            return "not_in_book"
+        _stage = str(_cand.get("stage") or "").strip()
+        if _stage.lower() not in _ADOPT_STAGES_LC:
+            print(f"[DEAL-SWEEP] trigger opp={opp_id} -> not_in_book "
+                  f"(stage {_stage!r} not Qualified+/open; no adopt)", flush=True)
+            return "not_in_book"
+        try:
+            _res = await asyncio.to_thread(store.adopt_member, _cand)
+        except Exception as _e:  # noqa: BLE001 — refuse rather than enqueue a non-member
+            print(f"[DEAL-SWEEP] adopt FAILED opp={opp_id}: "
+                  f"{type(_e).__name__}: {_e} -> not_in_book", flush=True)
+            return "not_in_book"
+        _adopted_opp = _cand
+        print(f"[DEAL-SWEEP] ADOPTED opp={opp_id} stage={_stage!r} "
+              f"({_res}) -> enqueueing first sweep", flush=True)
     # Mutual exclusion with the AI-free hard refresh: once it has set its guard no
     # new queue work may be enqueued, or the worker could claim the row and write a
     # full record over the freshly-corrected SF facts. The webhook is fire-and-
@@ -5247,13 +5292,16 @@ async def enqueue_trigger(agent_manager, opp_id: str, *, source: str = "manual")
                 print(f"[DEAL-SWEEP] trigger opp={opp_id} -> skipped_cooldown "
                       f"(swept {_age:.1f}h ago < {_cooldown_h:g}h window)", flush=True)
                 return "skipped_cooldown"
-    try:
-        enriched = await _enrich_opp_ids(agent_manager, [opp_id])
-        opp = enriched[0] if enriched else {"id": opp_id}
-    except Exception as e:  # noqa: BLE001 — labels are best-effort; never block enqueue
-        print(f"[DEAL-SWEEP] trigger enrich failed opp={opp_id}: "
-              f"{type(e).__name__}: {e}", flush=True)
-        opp = {"id": opp_id}
+    if _adopted_opp is not None:
+        opp = _adopted_opp  # already enriched by the adopt check — no second SOQL
+    else:
+        try:
+            enriched = await _enrich_opp_ids(agent_manager, [opp_id])
+            opp = enriched[0] if enriched else {"id": opp_id}
+        except Exception as e:  # noqa: BLE001 — labels are best-effort; never block enqueue
+            print(f"[DEAL-SWEEP] trigger enrich failed opp={opp_id}: "
+                  f"{type(e).__name__}: {e}", flush=True)
+            opp = {"id": opp_id}
     opp.setdefault("id", opp_id)
     # Encode the ORIGIN in the run_id prefix so the worker can stamp the real source
     # on the run log (the dashboard shows "salesforce" for a CDC trigger, not "worker").

@@ -513,6 +513,39 @@ def is_active_member(opp_id: str) -> bool:
     return bool(rows)
 
 
+def adopt_member(opp: dict) -> str:
+    """ADD an untracked opportunity to the book (CDC auto-adopt, 2026-07-22).
+
+    The one sanctioned ADD path besides report reconciliation: a Salesforce CDC
+    trigger on a Qualified+ OPEN opp (stage-gated by the caller in
+    deal_engine_sweep.enqueue_trigger) creates a minimal membership row; the
+    triggered sweep then populates the full record. An existing-but-inactive row
+    is REACTIVATED instead (re-entrant deal). Returns "adopted" | "reactivated" |
+    "already_member". Raises on a hard REST failure so the caller can refuse the
+    trigger rather than enqueue a non-member."""
+    oid = str(opp.get("id") or "").strip()[:15]
+    if not oid:
+        raise DealEngineError("adopt_member: missing opp id")
+    rows = _select(T_RECORDS, select="opp_id,active",
+                   filters=[f"opp_id=eq.{quote(oid, safe='')}"], limit=1)
+    if rows:
+        if rows[0].get("active"):
+            return "already_member"
+        set_active([oid], True)
+        return "reactivated"
+    row = {"opp_id": oid,
+           "account_name": opp.get("account"),
+           "opp_name": opp.get("name"),
+           "owner_name": opp.get("owner_name"),
+           "stage": opp.get("stage"),
+           "amount": _num(opp.get("amount")) or None,
+           "close_date": (str(opp.get("close_date"))[:10] if opp.get("close_date") else None)}
+    # merge-duplicates upsert: a concurrent adopt of the same opp is a no-op, and
+    # (unlike a plain insert) a retry after a maybe-landed error can't 409.
+    _upsert(T_RECORDS, row, on_conflict="opp_id", returning=False)
+    return "adopted"
+
+
 def set_active(opp_ids, active: bool) -> int:
     """Flip the active flag for a batch of opp ids (15-char keyed). Sets
     removed_at when deactivating, clears it when reactivating. Membership is

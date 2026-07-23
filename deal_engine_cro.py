@@ -585,13 +585,15 @@ _ENGINE_SPEAK = re.compile(
     r"no ais field|read (?:error|artifact)|mcp (?:error|timeout)", re.I)
 _SF_API_NAME = re.compile(r"\b\w+__c\b")
 _ISO_DATE = re.compile(r"\b(20\d{2})-(\d{2})-(\d{2})\b")
-_MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+# NOTE: _MONTHS is defined once, at the top of the module, 0-indexed (Jan == index 0).
+# A duplicate 1-indexed copy used to live here and silently shadowed the top one for the
+# WHOLE file, which pushed _human_date() a month early (Jul close date rendered "31 Jun").
 
 
 def _pretty_dates(t):
     def _one(m):
         y, mo, d = m.group(1), int(m.group(2)), int(m.group(3))
-        return f"{int(d)} {_MONTHS[mo]} {y}" if 1 <= mo <= 12 else m.group(0)
+        return f"{int(d)} {_MONTHS[mo - 1]} {y}" if 1 <= mo <= 12 else m.group(0)
     return _ISO_DATE.sub(_one, t)
 
 

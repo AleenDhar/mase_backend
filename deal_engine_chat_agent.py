@@ -354,6 +354,41 @@ def _make_load_skill_tool():
     return load_skill
 
 
+def _make_create_document_tool():
+    @tool
+    async def create_document(title: str, markdown_content: str) -> str:
+        """Create a DOWNLOADABLE Markdown document for the user (a summary, plan,
+        brief, comparison, or any deliverable they asked to save/share/export).
+        Write the COMPLETE, polished document in `markdown_content` (headings,
+        tables, lists — full Markdown is supported). Returns JSON with a
+        `download_link`; you MUST then present it in your reply as a normal
+        Markdown link, e.g. [Download <title> (.md)](<download_link>) — the chat
+        renders it as a clickable download. Do not paste the whole document into
+        the chat as well; give a 2-3 line summary plus the link.
+        Args: title — short human title (becomes the filename);
+              markdown_content — the full document body in Markdown."""
+        try:
+            import mase_chat_docs as _docs
+            import rag_context as _rag
+            _cid = _rag.current_chat_id.get()
+            res = await asyncio.get_running_loop().run_in_executor(
+                None, lambda: _docs.create(
+                    title=title, content=markdown_content,
+                    chat_id=(str(_cid) if _cid else None)))
+            return json.dumps({
+                "ok": True,
+                "title": res["title"],
+                "filename": res["filename"],
+                "size_bytes": res["size"],
+                "download_link": f"/api/deal-engine/documents/{res['doc_id']}",
+                "instruction": ("Present this to the user as a Markdown link, e.g. "
+                                f"[Download {res['title']} (.md)](/api/deal-engine/documents/{res['doc_id']})"),
+            })
+        except Exception as e:  # noqa: BLE001 — tool must return, never raise
+            return json.dumps({"ok": False, "error": f"{type(e).__name__}: {e}"})
+    return create_document
+
+
 def build_chat_agent(agent_manager, system_prompt: str, emit=None):
     """Build the RevOps chat deep agent: search_knowledge (shared MASE KB) + run_todo
     (delegate to the Todo Runner). Raises if neither tool is available so the caller can
@@ -373,6 +408,9 @@ def build_chat_agent(agent_manager, system_prompt: str, emit=None):
     # SKILLS AVAILABLE index is injected into system_prompt by server.py; this tool
     # returns the full body when the agent decides a skill applies.
     tools.append(_make_load_skill_tool())
+    # Downloadable deliverables: the agent writes a .md to S3 and links it in chat
+    # (GET /api/deal-engine/documents/{id} streams it back as an attachment).
+    tools.append(_make_create_document_tool())
     # Direct read access to Salesforce + Avoma so the chat can follow the retrieval
     # hierarchy itself: deal-sweep analysis -> SFDC (tasks / next steps) -> Avoma.
     # (Drafting + Showpad collateral stays delegated to the Todo Runner via run_todo.)

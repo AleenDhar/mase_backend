@@ -11,6 +11,31 @@ How to work with it going forward**. Keep it tight; link code paths and docs.
 
 ---
 
+## 2026-07-23 — Ask-Mase downloadable documents (create_document → S3 → stable download link)
+
+**What.** The chat agent can now author a Markdown DELIVERABLE (account plan, deal brief,
+QBR summary, comparison…) the user downloads from chat. New tool `create_document(title,
+markdown_content)` (deal_engine_chat_agent.py) → `mase_chat_docs.py` writes the .md to S3
+`chatdocs/<uuid>/<file>.md` (knowledge bucket; NEW 90-day lifecycle rule on `chatdocs/` —
+the 1-day `uploads/` rule is untouched) + a row in `public.mase_chat_documents`
+(migrations/0016, applied; RLS service-role only). Download: `GET
+/api/deal-engine/documents/{doc_id}` (server.py) streams it back with Content-Disposition:
+attachment. The agent is instructed (in `_CHAT_CAPABILITIES`) to present the returned
+`download_link` as a normal Markdown link + a 2-3 line summary, never to paste the whole
+document into chat, and never to create files unprompted.
+
+**Why a backend endpoint, not a presigned S3 GET:** presigned URLs are signed with the ECS
+task role's ROTATING credentials and die within hours; a link in chat history must still
+work days later. The endpoint link is same-origin, stable, and gated at the frontend proxy
+by the SAME chat-access policy that minted it (isDocumentsPath → chatAllowedForCaller); the
+proxy now passes `Content-Disposition` through (it used to strip all headers but
+content-type, which would have rendered the .md inline instead of downloading).
+
+**How to work with it going forward.** doc_id is an unguessable uuid; docs expire from S3
+after 90 days (the DB row remains — a later download 404s cleanly). Size cap
+`MASE_CHAT_DOC_MAX_CHARS` (400k chars). Regional-endpoint pinning matters (the S3
+307-redirect trap) — mase_chat_docs.py mirrors server.py's `_get_s3` config.
+
 ## 2026-07-23 — Roster now includes buyer-domain call attendees NOT in CRM (reverses "verified-only")
 
 **What.** The "verified SFDC contacts only" rule (2026-07-22) is **partially reversed** at

@@ -7136,6 +7136,13 @@ _CHAT_CAPABILITIES = (
     "engineer, product, or a partner — for those it returns one line 'NEEDS HUMAN: <who and "
     "why>'. When you call run_todo, present its draft to the user and surface any 'NEEDS "
     "HUMAN' verbatim with a short note on what's needed.\n"
+    "- create_document(title, markdown_content): create a DOWNLOADABLE .md document for the "
+    "user. Use it whenever they ask for something they can save, share, or export — an "
+    "account plan, deal brief, QBR summary, competitive comparison, meeting prep pack. Write "
+    "the COMPLETE document as Markdown in one call, then present the returned download_link "
+    "in your reply as a normal Markdown link ([Download <title> (.md)](<link>)) with a 2-3 "
+    "line summary — do NOT also paste the full document into the chat. For a quick answer "
+    "that nobody asked to export, just answer in chat; don't create files unprompted.\n"
     "\nINTERACTIVE MULTIPLE-CHOICE (offer the user clickable choice cards):\n"
     "Whenever you want the user to make a choice — clarify intent, pick among options, "
     "choose a focus, or confirm a direction — append a HIDDEN marker, ONE PER QUESTION, "
@@ -7902,6 +7909,27 @@ async def mase_skills_delete(skill_id: str):
     try:
         await _aw(ms.delete, skill_id)
         return {"status": "deleted", "id": skill_id}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+
+# ── Ask-Mase downloadable documents: the chat agent's create_document tool writes a
+# .md to S3 (chatdocs/) + a mase_chat_documents row; this endpoint streams it back as
+# a DOWNLOAD. Deliberately not a presigned S3 URL (those expire with the task role's
+# rotating credentials — a chat link must still work days later). doc_id is an
+# unguessable uuid; the frontend proxy gates the path behind the chat access policy.
+@app.get("/api/deal-engine/documents/{doc_id}")
+async def mase_chat_document_download(doc_id: str):
+    import mase_chat_docs as mcd
+    try:
+        row = await _aw(mcd.get, doc_id)
+        if not row:
+            return JSONResponse({"error": "not found"}, status_code=404)
+        raw = await _aw(mcd.fetch_content, row["s3_key"])
+        return Response(
+            content=raw, media_type="text/markdown; charset=utf-8",
+            headers={"Content-Disposition": f'attachment; filename="{row["filename"]}"',
+                     "Cache-Control": "private, max-age=3600"})
     except Exception as e:  # noqa: BLE001
         return JSONResponse({"error": str(e)}, status_code=500)
 
